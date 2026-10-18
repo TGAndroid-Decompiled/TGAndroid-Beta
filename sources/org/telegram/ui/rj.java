@@ -16,7 +16,7 @@ public final class rj extends li.m {
     public final void F() {
         sn snVar = this.X;
         if (snVar.H9 == -1) {
-            snVar.H9 = snVar.getNotificationCenter().setAnimationInProgress(snVar.H9, sn.Nc, false);
+            snVar.H9 = snVar.getNotificationCenter().setAnimationInProgress(snVar.H9, sn.Oc, false);
         }
     }
 
@@ -36,7 +36,7 @@ public final class rj extends li.m {
     @Override
     public final void W() {
         sn snVar = this.X;
-        snVar.H9 = snVar.getNotificationCenter().setAnimationInProgress(snVar.H9, sn.Nc, false);
+        snVar.H9 = snVar.getNotificationCenter().setAnimationInProgress(snVar.H9, sn.Oc, false);
         Runnable runnable = this.W;
         if (runnable != null) {
             AndroidUtilities.cancelRunOnUIThread(runnable);

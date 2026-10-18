@@ -1,95 +1,96 @@
 package ai;
 
-import android.text.TextUtils;
-import android.text.style.CharacterStyle;
+import java.util.ArrayList;
+import java.util.regex.Pattern;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.SharedConfig;
+import org.telegram.messenger.voip.VoIPService;
+import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.sn;
-public final class m2 implements Runnable {
-    public final int f1805a = 0;
-    public final boolean f1806b;
-    public final boolean f1807c;
-    public final Object d;
-    public final Object e;
-    public final Object f1808f;
-    public final Object h;
-    public final Object f1809n;
+import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.ui.Components.dv0;
+import org.telegram.ui.Components.w31;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.fi;
+import org.telegram.ui.xh1;
+public final class m2 implements RequestDelegate {
+    public final int f1807a;
+    public final int f1808b;
+    public final Object f1809c;
 
-    public m2(k7 k7Var, TLObject tLObject, boolean z10, TLRPC.Document document, boolean z11, TLRPC.TL_error tL_error, TL_stars.saveStarGift savestargift) {
-        this.d = k7Var;
-        this.e = tLObject;
-        this.f1806b = z10;
-        this.f1808f = document;
-        this.f1807c = z11;
-        this.h = tL_error;
-        this.f1809n = savestargift;
+    public m2(int i10, ua uaVar) {
+        this.f1807a = 2;
+        this.f1808b = i10;
+        this.f1809c = uaVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f1805a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        int i10 = this.f1807a;
+        int i11 = this.f1808b;
+        Object obj = this.f1809c;
+        switch (i10) {
             case 0:
-                k7.c1((k7) this.d, (TLObject) this.e, this.f1806b, (TLRPC.Document) this.f1808f, this.f1807c, (TLRPC.TL_error) this.h, (TL_stars.saveStarGift) this.f1809n);
+                k7.g0((k7) obj, i11, tLObject);
                 return;
             case 1:
-                sn snVar = (sn) this.d;
-                String str = (String) this.e;
-                CharacterStyle characterStyle = (CharacterStyle) this.f1808f;
-                MessageObject messageObject = (MessageObject) this.h;
-                org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) this.f1809n;
-                if (str.startsWith("video?")) {
-                    snVar.X7(characterStyle, false, messageObject, u1Var);
+                AndroidUtilities.runOnUIThread(new ah.o((ga) obj, i11, tLObject, 3));
+                return;
+            case 2:
+                AndroidUtilities.runOnUIThread(new ah.o(tLObject, i11, (ua) obj, 6));
+                return;
+            case 3:
+                ci.z6 z6Var = (ci.z6) obj;
+                if (tLObject instanceof TL_stories.TL_stories_stories) {
+                    ArrayList arrayList = new ArrayList();
+                    TL_stories.TL_stories_stories tL_stories_stories = (TL_stories.TL_stories_stories) tLObject;
+                    for (int i12 = 0; i12 < tL_stories_stories.stories.size(); i12++) {
+                        arrayList.add(z6Var.y(tL_stories_stories.stories.get(i12)));
+                    }
+                    AndroidUtilities.runOnUIThread(new cb(z6Var, arrayList, tL_stories_stories, this.f1808b, 1));
                     return;
-                } else if (this.f1806b && !this.f1807c) {
-                    snVar.getParentActivity();
-                    pf.d.m(str);
+                }
+                AndroidUtilities.runOnUIThread(new ci.w6(z6Var, 1));
+                return;
+            case 4:
+                AndroidUtilities.runOnUIThread(new ah.o((gi.f4) obj, tLObject, i11, 15));
+                return;
+            case 5:
+                ((VoIPService) obj).lambda$startScreenCapture$60(i11, tLObject, tL_error);
+                return;
+            case 6:
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.i4((dv0) obj, tLObject, i11, 22));
+                return;
+            case 7:
+                LaunchActivity launchActivity = (LaunchActivity) obj;
+                Pattern pattern = LaunchActivity.C1;
+                SharedConfig.lastUpdateCheckTime = System.currentTimeMillis();
+                SharedConfig.saveConfig();
+                if (tLObject instanceof TLRPC.TL_help_appUpdate) {
+                    AndroidUtilities.runOnUIThread(new w31(launchActivity, (TLRPC.TL_help_appUpdate) tLObject, i11, 4));
+                    return;
+                } else if (tLObject instanceof TLRPC.TL_help_noAppUpdate) {
+                    AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.sc(24));
+                    return;
+                } else if (tL_error != null) {
+                    AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.sc(tL_error, 25));
                     return;
                 } else {
-                    snVar.O9(messageObject, false, false);
-                    snVar.ea(characterStyle, str, false, u1Var, messageObject);
                     return;
                 }
+            case 8:
+                AndroidUtilities.runOnUIThread(new w31((fi) obj, tLObject, i11, 5));
+                return;
             default:
-                xh.k kVar = (xh.k) this.d;
-                Runnable runnable = (Runnable) this.f1808f;
-                String str2 = (String) this.f1809n;
-                TLRPC.TL_error tL_error = (TLRPC.TL_error) this.h;
-                TLObject tLObject = (TLObject) this.e;
-                kVar.f49922w = false;
-                kVar.f49925z = true;
-                if (this.f1806b) {
-                    AndroidUtilities.cancelRunOnUIThread(runnable);
-                }
-                xh.k.k(kVar.f49917q, false, false);
-                if (TextUtils.equals(str2, kVar.f49920t) && tL_error == null) {
-                    kVar.f49925z = true;
-                    kVar.g((TLRPC.TL_messages_chatInviteImporters) tLObject, str2, this.f1807c, false);
-                    return;
-                }
+                AndroidUtilities.runOnUIThread(new w31((xh1) obj, i11, tLObject, 22));
                 return;
         }
     }
 
-    public m2(sn snVar, String str, CharacterStyle characterStyle, MessageObject messageObject, org.telegram.ui.Cells.u1 u1Var, boolean z10, boolean z11) {
-        this.d = snVar;
-        this.e = str;
-        this.f1808f = characterStyle;
-        this.h = messageObject;
-        this.f1809n = u1Var;
-        this.f1806b = z10;
-        this.f1807c = z11;
-    }
-
-    public m2(xh.k kVar, boolean z10, Runnable runnable, String str, TLRPC.TL_error tL_error, TLObject tLObject, boolean z11) {
-        this.d = kVar;
-        this.f1806b = z10;
-        this.f1808f = runnable;
-        this.f1809n = str;
-        this.h = tL_error;
-        this.e = tLObject;
-        this.f1807c = z11;
+    public m2(Object obj, int i10, int i11) {
+        this.f1807a = i11;
+        this.f1809c = obj;
+        this.f1808b = i10;
     }
 }

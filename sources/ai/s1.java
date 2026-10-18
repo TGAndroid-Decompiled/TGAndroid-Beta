@@ -70,7 +70,7 @@ public final class s1 extends e7 {
             fArr[2] = Math.min(1.0f, fArr[2] * 1.1f);
             int HSVToColor = Color.HSVToColor(fArr);
             if (q6Var.getSizeableBackground() instanceof t6) {
-                ((t6) q6Var.getSizeableBackground()).f2205b.setColor(HSVToColor);
+                ((t6) q6Var.getSizeableBackground()).f2206b.setColor(HSVToColor);
                 q6Var.invalidate();
             } else if (org.telegram.ui.ActionBar.h6.C1(q6Var.getSizeableBackground(), HSVToColor, false)) {
                 q6Var.invalidate();

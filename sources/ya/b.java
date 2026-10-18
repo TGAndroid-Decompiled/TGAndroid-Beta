@@ -1,43 +1,68 @@
 package ya;
 
-import j$.util.DesugarCollections;
-import java.util.HashSet;
-import java.util.Iterator;
+import com.google.android.gms.internal.cast.z5;
+import d9.k;
 import java.util.Set;
-public final class b {
-    public final String f50157a;
-    public final c f50158b;
+import org.telegram.messenger.GenericProvider;
+import org.telegram.tgnet.InputSerializedData;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.Vector;
+import org.telegram.ui.ActionBar.a2;
+import org.telegram.ui.ActionBar.b2;
+import yh.f4;
+public final class b implements r9.d, a2, GenericProvider, k, Vector.TLDeserializer {
+    public final int f50110a;
 
-    public b(Set set, c cVar) {
-        this.f50157a = b(set);
-        this.f50158b = cVar;
+    public b(int i10) {
+        this.f50110a = i10;
     }
 
-    public static String b(Set set) {
-        StringBuilder sb2 = new StringBuilder();
-        Iterator it = set.iterator();
-        while (it.hasNext()) {
-            a aVar = (a) it.next();
-            sb2.append(aVar.f50155a);
-            sb2.append('/');
-            sb2.append(aVar.f50156b);
-            if (it.hasNext()) {
-                sb2.append(' ');
+    @Override
+    public java.lang.Object apply(java.lang.Object r26) {
+        throw new UnsupportedOperationException("Method not decompiled: ya.b.apply(java.lang.Object):java.lang.Object");
+    }
+
+    @Override
+    public TLObject deserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+        return TLRPC.MessageReplyHeader.TLdeserialize(inputSerializedData, i10, z10);
+    }
+
+    @Override
+    public void g(b2 b2Var, int i10) {
+        switch (this.f50110a) {
+            case 1:
+                b2Var.dismiss();
+                return;
+            default:
+                b2Var.dismiss();
+                return;
+        }
+    }
+
+    @Override
+    public Object j2(z5 z5Var) {
+        Set y3 = z5Var.y(a.class);
+        d dVar = d.f50113c;
+        if (dVar == null) {
+            synchronized (d.class) {
+                try {
+                    dVar = d.f50113c;
+                    if (dVar == null) {
+                        dVar = new d();
+                        d.f50113c = dVar;
+                    }
+                } finally {
+                }
             }
         }
-        return sb2.toString();
+        return new c(y3, dVar);
     }
 
-    public final String a() {
-        Set unmodifiableSet;
-        String str = this.f50157a;
-        c cVar = this.f50158b;
-        synchronized (((HashSet) cVar.f50161b)) {
-            unmodifiableSet = DesugarCollections.unmodifiableSet((HashSet) cVar.f50161b);
-        }
-        if (unmodifiableSet.isEmpty()) {
-            return str;
-        }
-        return str + ' ' + b(cVar.T());
+    @Override
+    public Object provide(Object obj) {
+        Integer num = (Integer) obj;
+        int i10 = f4.f50233k0;
+        return 0;
     }
 }

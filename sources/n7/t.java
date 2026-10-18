@@ -13,10 +13,10 @@ public abstract class t extends p implements NavigableSet, d0, SortedSet {
     }
 
     public static a0 w(Comparator comparator) {
-        if (w.f17323b.equals(comparator)) {
+        if (w.f17319b.equals(comparator)) {
             return a0.h;
         }
-        j jVar = n.f17297b;
+        j jVar = n.f17293b;
         return new a0(y.e, comparator);
     }
 
@@ -79,7 +79,7 @@ public abstract class t extends p implements NavigableSet, d0, SortedSet {
     public final java.util.SortedSet tailSet(Object obj) {
         obj.getClass();
         a0 a0Var = (a0) this;
-        return a0Var.z(a0Var.y(obj, true), a0Var.f17258f.size());
+        return a0Var.z(a0Var.y(obj, true), a0Var.f17254f.size());
     }
 
     @Override
@@ -91,7 +91,7 @@ public abstract class t extends p implements NavigableSet, d0, SortedSet {
             if (a0Var2.isEmpty()) {
                 a0Var = w(reverseOrder);
             } else {
-                a0Var = new a0(a0Var2.f17258f.q(), reverseOrder);
+                a0Var = new a0(a0Var2.f17254f.q(), reverseOrder);
             }
             this.e = a0Var;
             a0Var.e = this;
@@ -105,7 +105,7 @@ public abstract class t extends p implements NavigableSet, d0, SortedSet {
         obj2.getClass();
         if (this.d.compare(obj, obj2) <= 0) {
             a0 a0Var = (a0) this;
-            a0 z12 = a0Var.z(a0Var.y(obj, z10), a0Var.f17258f.size());
+            a0 z12 = a0Var.z(a0Var.y(obj, z10), a0Var.f17254f.size());
             return z12.z(0, z12.x(obj2, z11));
         }
         throw new IllegalArgumentException();
@@ -122,6 +122,6 @@ public abstract class t extends p implements NavigableSet, d0, SortedSet {
     public final NavigableSet tailSet(Object obj, boolean z10) {
         obj.getClass();
         a0 a0Var = (a0) this;
-        return a0Var.z(a0Var.y(obj, z10), a0Var.f17258f.size());
+        return a0Var.z(a0Var.y(obj, z10), a0Var.f17254f.size());
     }
 }

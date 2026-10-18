@@ -10,6 +10,17 @@ public final class zd extends tg.n {
     }
 
     @Override
+    public void n() {
+        switch (this.f2561i0) {
+            case 0:
+                return;
+            default:
+                super.n();
+                return;
+        }
+    }
+
+    @Override
     public void onAttachedToWindow() {
         switch (this.f2561i0) {
             case 1:
@@ -59,17 +70,6 @@ public final class zd extends tg.n {
         }
     }
 
-    @Override
-    public void p() {
-        switch (this.f2561i0) {
-            case 0:
-                return;
-            default:
-                super.p();
-                return;
-        }
-    }
-
-    private final void r() {
+    private final void p() {
     }
 }

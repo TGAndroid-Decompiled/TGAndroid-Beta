@@ -2,17 +2,17 @@ package org.telegram.ui;
 
 import android.text.TextUtils;
 public final class mb0 extends pg.a {
-    public final CharSequence f39109c;
+    public final CharSequence f39065c;
     public final int d;
     public final int e;
-    public final int f39110f;
+    public final int f39066f;
 
     public mb0(int i10, int i11, CharSequence charSequence, int i12, int i13) {
         super(i10, false);
-        this.f39109c = charSequence;
+        this.f39065c = charSequence;
         this.d = i11;
         this.e = i12;
-        this.f39110f = i13;
+        this.f39066f = i13;
     }
 
     public static mb0 b(int i10, String str) {
@@ -27,13 +27,13 @@ public final class mb0 extends pg.a {
         if (this != obj) {
             if (obj instanceof mb0) {
                 mb0 mb0Var = (mb0) obj;
-                int i10 = mb0Var.f44334a;
-                int i11 = this.f44334a;
+                int i10 = mb0Var.f44291a;
+                int i11 = this.f44291a;
                 if (i10 == i11) {
                     if (i11 != 3 || mb0Var.d == this.d) {
-                        if (i11 != 5 || mb0Var.f39110f == this.f39110f) {
+                        if (i11 != 5 || mb0Var.f39066f == this.f39066f) {
                             if ((i11 != 3 && i11 != 4) || mb0Var.e == this.e) {
-                                if ((i11 == 0 || i11 == 2 || i11 == 3 || i11 == 4 || i11 == 5) && !TextUtils.equals(mb0Var.f39109c, this.f39109c)) {
+                                if ((i11 == 0 || i11 == 2 || i11 == 3 || i11 == 4 || i11 == 5) && !TextUtils.equals(mb0Var.f39065c, this.f39065c)) {
                                     return false;
                                 }
                                 return true;

@@ -31,7 +31,7 @@ public final class a1 implements TextWatcher {
             i10 = ag.a.i(0L, b1Var.m0.f631a);
         }
         b1Var.V(i10, false, false, true);
-        b1Var.f997c0.c(b1Var.f998d0.isFocused(), true ^ TextUtils.isEmpty(b1Var.f998d0.getText()));
+        b1Var.f999c0.c(b1Var.f1000d0.isFocused(), true ^ TextUtils.isEmpty(b1Var.f1000d0.getText()));
     }
 
     @Override

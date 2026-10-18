@@ -2,32 +2,32 @@ package org.telegram.ui.Components;
 
 import android.content.DialogInterface;
 public final class w80 implements DialogInterface.OnDismissListener {
-    public final int f32036a;
-    public final Object f32037b;
-    public final boolean f32038c;
+    public final int f32029a;
+    public final Object f32030b;
+    public final boolean f32031c;
 
     public w80(int i10, Object obj, boolean z10) {
-        this.f32036a = i10;
-        this.f32037b = obj;
-        this.f32038c = z10;
+        this.f32029a = i10;
+        this.f32030b = obj;
+        this.f32031c = z10;
     }
 
     @Override
     public final void onDismiss(DialogInterface dialogInterface) {
-        switch (this.f32036a) {
+        switch (this.f32029a) {
             case 0:
-                a90 a90Var = (a90) this.f32037b;
-                a90.y(a90Var.getContext(), a90Var.f24554c, a90Var.f24556n, this.f32038c);
+                a90 a90Var = (a90) this.f32030b;
+                a90.y(a90Var.getContext(), a90Var.f24547c, a90Var.f24549n, this.f32031c);
                 return;
             case 1:
-                a90 a90Var2 = (a90) this.f32037b;
-                a90.y(a90Var2.getContext(), a90Var2.f24554c, a90Var2.f24556n, this.f32038c);
+                a90 a90Var2 = (a90) this.f32030b;
+                a90.y(a90Var2.getContext(), a90Var2.f24547c, a90Var2.f24549n, this.f32031c);
                 return;
             default:
-                ei.vb vbVar = (ei.vb) this.f32037b;
-                vbVar.f10034z2 = false;
+                ei.vb vbVar = (ei.vb) this.f32030b;
+                vbVar.f10032z2 = false;
                 vbVar.X0.x(7, true);
-                if (this.f32038c) {
+                if (this.f32031c) {
                     vbVar.p(true);
                     return;
                 }

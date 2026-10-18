@@ -61,7 +61,35 @@ public final class b0 implements e2.d, r2.u, c3.g0 {
         return obj;
     }
 
-    public void c(long j10) {
+    public void c(int i10, int i11, int i12) {
+        if (i12 != 0 && i10 < i11) {
+            int i13 = this.f4703b;
+            if (i13 >= 3) {
+                int[] iArr = (int[]) this.f4704c;
+                if (iArr[i13 - 1] == i12 && iArr[i13 - 2] == i10) {
+                    iArr[i13 - 2] = i11;
+                    return;
+                }
+            }
+            int i14 = i13 + 3;
+            int[] iArr2 = (int[]) this.f4704c;
+            if (i14 > iArr2.length) {
+                this.f4704c = Arrays.copyOf(iArr2, iArr2.length * 2);
+            }
+            int[] iArr3 = (int[]) this.f4704c;
+            int i15 = this.f4703b;
+            int i16 = i15 + 1;
+            this.f4703b = i16;
+            iArr3[i15] = i10;
+            int i17 = i15 + 2;
+            this.f4703b = i17;
+            iArr3[i16] = i11;
+            this.f4703b = i15 + 3;
+            iArr3[i17] = i12;
+        }
+    }
+
+    public void d(long j10) {
         int i10 = this.f4703b;
         long[] jArr = (long[]) this.f4704c;
         if (i10 == jArr.length) {
@@ -70,16 +98,6 @@ public final class b0 implements e2.d, r2.u, c3.g0 {
         int i11 = this.f4703b;
         this.f4703b = i11 + 1;
         ((long[]) this.f4704c)[i11] = j10;
-    }
-
-    public void d(long[] jArr) {
-        int length = this.f4703b + jArr.length;
-        long[] jArr2 = (long[]) this.f4704c;
-        if (length > jArr2.length) {
-            this.f4704c = Arrays.copyOf(jArr2, Math.max(jArr2.length * 2, length));
-        }
-        System.arraycopy(jArr, 0, (long[]) this.f4704c, this.f4703b, jArr.length);
-        this.f4703b = length;
     }
 
     @Override
@@ -96,72 +114,87 @@ public final class b0 implements e2.d, r2.u, c3.g0 {
         return codecCapabilities.isFeatureSupported(str);
     }
 
-    public g.f g() {
+    public void g(long[] jArr) {
+        int length = this.f4703b + jArr.length;
+        long[] jArr2 = (long[]) this.f4704c;
+        if (length > jArr2.length) {
+            this.f4704c = Arrays.copyOf(jArr2, Math.max(jArr2.length * 2, length));
+        }
+        System.arraycopy(jArr, 0, (long[]) this.f4704c, this.f4703b, jArr.length);
+        this.f4703b = length;
+    }
+
+    @Override
+    public boolean h(String str, MediaCodecInfo.CodecCapabilities codecCapabilities) {
+        return codecCapabilities.isFeatureRequired(str);
+    }
+
+    public g.f i() {
         int i10;
         Message message;
         g.b bVar = (g.b) this.f4704c;
-        g.f fVar = new g.f(bVar.f10641a, this.f4703b);
+        g.f fVar = new g.f(bVar.f10639a, this.f4703b);
         View view = bVar.e;
-        g.e eVar = fVar.f10675f;
+        g.e eVar = fVar.f10673f;
         if (view != null) {
-            eVar.f10667r = view;
+            eVar.f10665r = view;
         } else {
             CharSequence charSequence = bVar.d;
             if (charSequence != null) {
                 eVar.d = charSequence;
-                TextView textView = eVar.f10665p;
+                TextView textView = eVar.f10663p;
                 if (textView != null) {
                     textView.setText(charSequence);
                 }
             }
-            Drawable drawable = bVar.f10643c;
+            Drawable drawable = bVar.f10641c;
             if (drawable != null) {
-                eVar.f10663n = drawable;
-                ImageView imageView = eVar.f10664o;
+                eVar.f10661n = drawable;
+                ImageView imageView = eVar.f10662o;
                 if (imageView != null) {
                     imageView.setVisibility(0);
-                    eVar.f10664o.setImageDrawable(drawable);
+                    eVar.f10662o.setImageDrawable(drawable);
                 }
             }
         }
-        CharSequence charSequence2 = bVar.f10644f;
+        CharSequence charSequence2 = bVar.f10642f;
         if (charSequence2 != null) {
-            androidx.biometric.x xVar = bVar.f10645g;
+            androidx.biometric.x xVar = bVar.f10643g;
             eVar.getClass();
             if (xVar != null) {
-                message = eVar.f10674z.obtainMessage(-2, xVar);
+                message = eVar.f10672z.obtainMessage(-2, xVar);
             } else {
                 message = null;
             }
-            eVar.f10659j = charSequence2;
-            eVar.f10660k = message;
+            eVar.f10657j = charSequence2;
+            eVar.f10658k = message;
         }
-        if (bVar.f10646i != null) {
-            AlertController$RecycleListView alertController$RecycleListView = (AlertController$RecycleListView) bVar.f10642b.inflate(eVar.v, (ViewGroup) null);
-            if (bVar.f10649l) {
-                i10 = eVar.f10671w;
+        if (bVar.f10644i != null) {
+            AlertController$RecycleListView alertController$RecycleListView = (AlertController$RecycleListView) bVar.f10640b.inflate(eVar.v, (ViewGroup) null);
+            if (bVar.f10647l) {
+                i10 = eVar.f10669w;
             } else {
-                i10 = eVar.f10672x;
+                i10 = eVar.f10670x;
             }
-            Object obj = bVar.f10646i;
+            Object obj = bVar.f10644i;
             ArrayAdapter arrayAdapter = obj;
             if (obj == null) {
-                arrayAdapter = new ArrayAdapter(bVar.f10641a, i10, 16908308, (Object[]) null);
+                arrayAdapter = new ArrayAdapter(bVar.f10639a, i10, 16908308, (Object[]) null);
             }
-            eVar.f10668s = arrayAdapter;
-            eVar.f10669t = bVar.f10650m;
-            if (bVar.f10647j != null) {
+            eVar.f10666s = arrayAdapter;
+            eVar.f10667t = bVar.f10648m;
+            if (bVar.f10645j != null) {
                 alertController$RecycleListView.setOnItemClickListener(new g.a(bVar, eVar));
             }
-            if (bVar.f10649l) {
+            if (bVar.f10647l) {
                 alertController$RecycleListView.setChoiceMode(1);
             }
             eVar.e = alertController$RecycleListView;
         }
-        View view2 = bVar.f10648k;
+        View view2 = bVar.f10646k;
         if (view2 != null) {
-            eVar.f10656f = view2;
-            eVar.f10657g = false;
+            eVar.f10654f = view2;
+            eVar.f10655g = false;
         }
         fVar.setCancelable(true);
         fVar.setCanceledOnTouchOutside(true);
@@ -174,12 +207,7 @@ public final class b0 implements e2.d, r2.u, c3.g0 {
         return fVar;
     }
 
-    @Override
-    public boolean h(String str, MediaCodecInfo.CodecCapabilities codecCapabilities) {
-        return codecCapabilities.isFeatureRequired(str);
-    }
-
-    public tc.u i(String str) {
+    public tc.u j(String str) {
         Matcher matcher;
         String str2;
         Matcher matcher2;
@@ -195,7 +223,7 @@ public final class b0 implements e2.d, r2.u, c3.g0 {
                     if (i11 >= 0) {
                         String scheme = create.getScheme();
                         String userInfo = create.getUserInfo();
-                        SecureRandom secureRandom = tc.k.f46995a;
+                        SecureRandom secureRandom = tc.k.f46945a;
                         String host = create.getHost();
                         if (host == null) {
                             String rawAuthority = create.getRawAuthority();
@@ -247,7 +275,7 @@ public final class b0 implements e2.d, r2.u, c3.g0 {
                                             tc.s sVar = new tc.s(socketFactory, new tc.a(str2, i10), i11, null, null);
                                             sVar.d = 1;
                                             sVar.e = 250;
-                                            sVar.f47010f = true;
+                                            sVar.f46960f = true;
                                             if (port >= 0) {
                                                 str2 = str2 + ":" + port;
                                             }
@@ -279,15 +307,6 @@ public final class b0 implements e2.d, r2.u, c3.g0 {
         throw new IllegalArgumentException("The given URI is null.");
     }
 
-    public void j(int i10) {
-        ByteBuffer allocate = ByteBuffer.allocate(i10);
-        int position = ((ByteBuffer) this.f4704c).position();
-        ((ByteBuffer) this.f4704c).position(0);
-        allocate.put((ByteBuffer) this.f4704c);
-        allocate.position(position);
-        this.f4704c = allocate;
-    }
-
     @Override
     public int k() {
         if (((MediaCodecInfo[]) this.f4704c) == null) {
@@ -296,14 +315,23 @@ public final class b0 implements e2.d, r2.u, c3.g0 {
         return ((MediaCodecInfo[]) this.f4704c).length;
     }
 
-    public byte l(int i10) {
+    public void l(int i10) {
+        ByteBuffer allocate = ByteBuffer.allocate(i10);
+        int position = ((ByteBuffer) this.f4704c).position();
+        ((ByteBuffer) this.f4704c).position(0);
+        allocate.put((ByteBuffer) this.f4704c);
+        allocate.position(position);
+        this.f4704c = allocate;
+    }
+
+    public byte m(int i10) {
         if (i10 >= 0 && this.f4703b > i10) {
             return ((ByteBuffer) this.f4704c).get(i10);
         }
         throw new IndexOutOfBoundsException(String.format("Bad index: index=%d, length=%d", Integer.valueOf(i10), Integer.valueOf(this.f4703b)));
     }
 
-    public long m(int i10) {
+    public long n(int i10) {
         if (i10 >= 0 && i10 < this.f4703b) {
             return ((long[]) this.f4704c)[i10];
         }
@@ -312,45 +340,45 @@ public final class b0 implements e2.d, r2.u, c3.g0 {
         throw new IndexOutOfBoundsException(l4.toString());
     }
 
-    public boolean n(int i10) {
+    public boolean o(int i10) {
         int i11 = i10 / 8;
-        if (((1 << (i10 % 8)) & l(i11)) != 0) {
+        if (((1 << (i10 % 8)) & m(i11)) != 0) {
             return true;
         }
         return false;
     }
 
-    public synchronized List o() {
+    public synchronized List p() {
         return DesugarCollections.unmodifiableList(new ArrayList((ArrayList) this.f4704c));
     }
 
-    public void p(int i10) {
+    public void q(int i10) {
         int capacity = ((ByteBuffer) this.f4704c).capacity();
         int i11 = this.f4703b;
         if (capacity < i11 + 1) {
-            j(i11 + 1024);
+            l(i11 + 1024);
         }
         ((ByteBuffer) this.f4704c).put((byte) i10);
         this.f4703b++;
     }
 
-    public void q(byte[] bArr) {
+    public void r(byte[] bArr) {
         int capacity = ((ByteBuffer) this.f4704c).capacity();
         int i10 = this.f4703b;
         if (capacity < bArr.length + i10) {
-            j(i10 + bArr.length + 1024);
+            l(i10 + bArr.length + 1024);
         }
         ((ByteBuffer) this.f4704c).put(bArr);
         this.f4703b += bArr.length;
     }
 
-    public int r(int i10, int[] iArr) {
+    public int s(int i10, int[] iArr) {
         int i11 = iArr[0];
         int i12 = 1;
         int i13 = 0;
         int i14 = 0;
         while (i13 < i10) {
-            if (n(i11 + i13)) {
+            if (o(i11 + i13)) {
                 i14 += i12;
             }
             i13++;
@@ -360,11 +388,11 @@ public final class b0 implements e2.d, r2.u, c3.g0 {
         return i14;
     }
 
-    public long s(c3.l lVar) {
+    public long t(c3.l lVar) {
         e2.x xVar = (e2.x) this.f4704c;
         int i10 = 0;
-        lVar.j(xVar.f8294a, 0, 1, false);
-        int i11 = xVar.f8294a[0] & 255;
+        lVar.j(xVar.f8292a, 0, 1, false);
+        int i11 = xVar.f8292a[0] & 255;
         if (i11 == 0) {
             return Long.MIN_VALUE;
         }
@@ -375,39 +403,23 @@ public final class b0 implements e2.d, r2.u, c3.g0 {
             i13++;
         }
         int i14 = i11 & (~i12);
-        lVar.j(xVar.f8294a, 1, i13, false);
+        lVar.j(xVar.f8292a, 1, i13, false);
         while (i10 < i13) {
             i10++;
-            i14 = (xVar.f8294a[i10] & 255) + (i14 << 8);
+            i14 = (xVar.f8292a[i10] & 255) + (i14 << 8);
         }
         this.f4703b = i13 + 1 + this.f4703b;
         return i14;
     }
 
-    public void t(Object instance) {
-        Object[] objArr = (Object[]) this.f4704c;
-        kotlin.jvm.internal.i.e(instance, "instance");
-        int i10 = this.f4703b;
-        for (int i11 = 0; i11 < i10; i11++) {
-            if (objArr[i11] == instance) {
-                throw new IllegalStateException("Already in the pool!");
-            }
-        }
-        int i12 = this.f4703b;
-        if (i12 < objArr.length) {
-            objArr[i12] = instance;
-            this.f4703b = i12 + 1;
-        }
-    }
-
     public String toString() {
         switch (this.f4702a) {
-            case 7:
+            case 8:
                 return new String((char[]) this.f4704c, 0, this.f4703b);
-            case 14:
+            case 15:
                 i9.a aVar = (i9.a) this.f4704c;
-                ArrayList arrayList = new ArrayList(aVar.f12738b);
-                for (int i10 = 0; i10 < aVar.f12738b; i10++) {
+                ArrayList arrayList = new ArrayList(aVar.f12736b);
+                for (int i10 = 0; i10 < aVar.f12736b; i10++) {
                     arrayList.add(m0.e0(aVar.b(i10)));
                 }
                 return "UnsupportedBrands{major=" + m0.e0(this.f4703b) + ", compatible=" + arrayList + "}";
@@ -426,7 +438,23 @@ public final class b0 implements e2.d, r2.u, c3.g0 {
         return q8.c(((e2.d) this.f4704c).v(bArr), new j5.b(this, 18));
     }
 
-    public byte[] w(int i10, int i11) {
+    public void w(Object instance) {
+        Object[] objArr = (Object[]) this.f4704c;
+        kotlin.jvm.internal.i.e(instance, "instance");
+        int i10 = this.f4703b;
+        for (int i11 = 0; i11 < i10; i11++) {
+            if (objArr[i11] == instance) {
+                throw new IllegalStateException("Already in the pool!");
+            }
+        }
+        int i12 = this.f4703b;
+        if (i12 < objArr.length) {
+            objArr[i12] = instance;
+            this.f4703b = i12 + 1;
+        }
+    }
+
+    public byte[] x(int i10, int i11) {
         int i12 = i11 - i10;
         if (i12 >= 0 && i10 >= 0 && this.f4703b >= i11) {
             byte[] bArr = new byte[i12];
@@ -438,7 +466,7 @@ public final class b0 implements e2.d, r2.u, c3.g0 {
         throw new IllegalArgumentException(String.format("Bad range: beginIndex=%d, endIndex=%d, length=%d", Integer.valueOf(i10), Integer.valueOf(i11), Integer.valueOf(this.f4703b)));
     }
 
-    public String x(i4 i4Var) {
+    public String y(i4 i4Var) {
         String str;
         d0 d0Var = (d0) this.f4704c;
         int i10 = this.f4703b;
@@ -472,7 +500,7 @@ public final class b0 implements e2.d, r2.u, c3.g0 {
                 Parcel T0 = eVar.T0();
                 T0.writeString(packageName);
                 T0.writeString(str);
-                int i11 = com.google.android.gms.internal.play_billing.d.f7086a;
+                int i11 = com.google.android.gms.internal.play_billing.d.f7084a;
                 T0.writeStrongBinder(c0Var);
                 eVar.f318b.transact(1, T0, null, 1);
                 T0.recycle();
@@ -503,13 +531,13 @@ public final class b0 implements e2.d, r2.u, c3.g0 {
     public b0(int i10, short s10) {
         this.f4702a = i10;
         switch (i10) {
-            case 12:
+            case 13:
                 this.f4704c = new sb.a();
                 return;
-            case 13:
+            case 14:
                 this.f4704c = new e2.x(8);
                 return;
-            case 17:
+            case 18:
                 this.f4704c = new ArrayList();
                 this.f4703b = 128;
                 return;
@@ -523,21 +551,21 @@ public final class b0 implements e2.d, r2.u, c3.g0 {
     public b0(int i10, int i11) {
         this.f4702a = i11;
         switch (i11) {
-            case 8:
+            case 9:
                 if (i10 > 0) {
                     this.f4704c = new Object[i10];
                     return;
                 }
                 throw new IllegalArgumentException("The max pool size must be > 0");
-            case 9:
+            case 10:
             default:
                 this.f4704c = new long[i10];
                 return;
-            case 10:
+            case 11:
                 this.f4704c = ByteBuffer.allocate(i10);
                 this.f4703b = 0;
                 return;
-            case 11:
+            case 12:
                 this.f4704c = new CountDownLatch(1);
                 this.f4703b = i10;
                 return;
@@ -546,13 +574,13 @@ public final class b0 implements e2.d, r2.u, c3.g0 {
 
     public b0(int i10, int[] iArr) {
         i9.a aVar;
-        this.f4702a = 14;
+        this.f4702a = 15;
         this.f4703b = i10;
         if (iArr != null) {
-            i9.a aVar2 = i9.a.f12736c;
-            aVar = iArr.length == 0 ? i9.a.f12736c : new i9.a(Arrays.copyOf(iArr, iArr.length));
+            i9.a aVar2 = i9.a.f12734c;
+            aVar = iArr.length == 0 ? i9.a.f12734c : new i9.a(Arrays.copyOf(iArr, iArr.length));
         } else {
-            aVar = i9.a.f12736c;
+            aVar = i9.a.f12734c;
         }
         this.f4704c = aVar;
     }
@@ -571,7 +599,7 @@ public final class b0 implements e2.d, r2.u, c3.g0 {
     }
 
     public b0(boolean z10, boolean z11, boolean z12) {
-        this.f4702a = 9;
+        this.f4702a = 10;
         this.f4703b = (z10 || z11 || z12) ? 1 : 0;
     }
 }

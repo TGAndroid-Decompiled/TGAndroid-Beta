@@ -8,40 +8,40 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.SharedConfig;
 public final class g4 extends FrameLayout {
-    public final org.telegram.ui.Components.cp0 f37095a;
-    public final int f37096b;
-    public final int f37097c;
+    public final org.telegram.ui.Components.cp0 f37060a;
+    public final int f37061b;
+    public final int f37062c;
     public int d;
     public final TextPaint e;
-    public final l4 f37098f;
+    public final l4 f37063f;
 
     public g4(l4 l4Var, Context context) {
         super(context);
-        this.f37098f = l4Var;
-        this.f37096b = 12;
-        this.f37097c = 30;
+        this.f37063f = l4Var;
+        this.f37061b = 12;
+        this.f37062c = 30;
         setWillNotDraw(false);
         TextPaint textPaint = new TextPaint(1);
         this.e = textPaint;
         textPaint.setTextSize(AndroidUtilities.dp(16.0f));
         org.telegram.ui.Components.cp0 cp0Var = new org.telegram.ui.Components.cp0(context, null, false);
-        this.f37095a = cp0Var;
+        this.f37060a = cp0Var;
         cp0Var.setReportChanges(true);
         cp0Var.setSeparatorsCount(19);
         cp0Var.setDelegate(new g(this, 3));
-        addView(cp0Var, w7.z5.a(38.0f, 5.0f, 5.0f, 39.0f, 0.0f, -1, 51));
+        addView(cp0Var, w7.z5.d(-1, 38.0f, 51, 5.0f, 5.0f, 39.0f, 0.0f));
     }
 
     @Override
     public final void invalidate() {
         super.invalidate();
-        this.f37095a.invalidate();
+        this.f37060a.invalidate();
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         int i10 = org.telegram.ui.ActionBar.h6.I6;
-        this.f37098f.getClass();
+        this.f37063f.getClass();
         int x02 = org.telegram.ui.ActionBar.h6.x0(null, i10, false);
         TextPaint textPaint = this.e;
         textPaint.setColor(x02);
@@ -54,8 +54,8 @@ public final class g4 extends FrameLayout {
         int size = View.MeasureSpec.getSize(i10);
         if (this.d != size) {
             int i12 = SharedConfig.ivFontSize;
-            int i13 = this.f37096b;
-            this.f37095a.setProgress((i12 - i13) / (this.f37097c - i13));
+            int i13 = this.f37061b;
+            this.f37060a.setProgress((i12 - i13) / (this.f37062c - i13));
             this.d = size;
         }
     }

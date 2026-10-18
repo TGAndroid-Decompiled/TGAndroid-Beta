@@ -11,62 +11,62 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 public final class ap extends FrameLayout implements org.telegram.ui.ActionBar.y5 {
-    public final org.telegram.ui.ActionBar.d6 f24691a;
-    public final ImageView f24692b;
-    public final org.telegram.ui.ActionBar.j5 f24693c;
+    public final org.telegram.ui.ActionBar.d6 f24684a;
+    public final ImageView f24685b;
+    public final org.telegram.ui.ActionBar.j5 f24686c;
     public final org.telegram.ui.ActionBar.j5 d;
     public final org.telegram.ui.ActionBar.j5 e;
-    public final org.telegram.ui.gl f24694f;
+    public final org.telegram.ui.gl f24687f;
     public boolean h;
-    public boolean f24695n;
+    public boolean f24688n;
 
     public ap(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
-        this.f24691a = d6Var;
+        this.f24684a = d6Var;
         ImageView imageView = new ImageView(context);
-        this.f24692b = imageView;
+        this.f24685b = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         addView(imageView, w7.z5.e(52, 46, 51));
         org.telegram.ui.ActionBar.j5 j5Var = new org.telegram.ui.ActionBar.j5(context);
-        this.f24693c = j5Var;
+        this.f24686c = j5Var;
         j5Var.setTextSize(14);
         j5Var.setTypeface(AndroidUtilities.bold());
-        addView(j5Var, w7.z5.a(18.0f, 52.0f, 6.0f, 0.0f, 0.0f, -1, 51));
+        addView(j5Var, w7.z5.d(-1, 18.0f, 51, 52.0f, 6.0f, 0.0f, 0.0f));
         org.telegram.ui.ActionBar.j5 j5Var2 = new org.telegram.ui.ActionBar.j5(context);
         this.d = j5Var2;
         j5Var2.setTextSize(14);
         NotificationCenter.listenEmojiLoading(j5Var2);
-        addView(j5Var2, w7.z5.a(18.0f, 52.0f, 24.0f, 0.0f, 0.0f, -1, 51));
+        addView(j5Var2, w7.z5.d(-1, 18.0f, 51, 52.0f, 24.0f, 0.0f, 0.0f));
         org.telegram.ui.ActionBar.j5 j5Var3 = new org.telegram.ui.ActionBar.j5(context);
         this.e = j5Var3;
         j5Var3.setTextSize(14);
         j5Var3.l(LocaleController.getString(R.string.TapForForwardingOptions), false);
         j5Var3.setAlpha(0.0f);
-        addView(j5Var3, w7.z5.a(18.0f, 52.0f, 24.0f, 0.0f, 0.0f, -1, 51));
+        addView(j5Var3, w7.z5.d(-1, 18.0f, 51, 52.0f, 24.0f, 0.0f, 0.0f));
         org.telegram.ui.gl glVar = new org.telegram.ui.gl(this, context, new wh.g());
-        this.f24694f = glVar;
+        this.f24687f = glVar;
         glVar.setRoundRadius(AndroidUtilities.dp(6.0f));
-        addView(glVar, w7.z5.a(34.0f, 52.0f, 6.0f, 0.0f, 0.0f, 34, 51));
+        addView(glVar, w7.z5.d(34, 34.0f, 51, 52.0f, 6.0f, 0.0f, 0.0f));
         d();
     }
 
     @Override
     public final void d() {
-        int i10 = org.telegram.ui.ActionBar.h6.f21297te;
-        org.telegram.ui.ActionBar.d6 d6Var = this.f24691a;
-        this.f24692b.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(i10, d6Var), PorterDuff.Mode.MULTIPLY));
-        this.f24693c.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21334ve, d6Var));
+        int i10 = org.telegram.ui.ActionBar.h6.f21290te;
+        org.telegram.ui.ActionBar.d6 d6Var = this.f24684a;
+        this.f24685b.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(i10, d6Var), PorterDuff.Mode.MULTIPLY));
+        this.f24686c.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21327ve, d6Var));
         int i11 = org.telegram.ui.ActionBar.h6.Xk;
         int w02 = org.telegram.ui.ActionBar.h6.w0(i11, d6Var);
         org.telegram.ui.ActionBar.j5 j5Var = this.d;
         j5Var.setTextColor(w02);
-        j5Var.setLinkTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21052gc, d6Var));
+        j5Var.setLinkTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21045gc, d6Var));
         this.e.setTextColor(org.telegram.ui.ActionBar.h6.w0(i11, d6Var));
     }
 
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (!this.f24695n) {
+        if (!this.f24688n) {
             return false;
         }
         return super.dispatchTouchEvent(motionEvent);

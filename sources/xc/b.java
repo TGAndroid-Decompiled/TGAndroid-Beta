@@ -16,7 +16,7 @@ import org.telegram.ui.Cells.c1;
 import vc.g;
 import w7.n9;
 public abstract class b {
-    public static final c f49813a = new c();
+    public static final c f49766a = new c();
 
     public static HttpURLConnection a(String str, e eVar) {
         Throwable th2;
@@ -29,7 +29,7 @@ public abstract class b {
         hashMap.put("Accept-Charset", "UTF-8");
         hashMap.put("Accept", "application/json");
         hashMap.put("User-Agent", "Stripe/v1 JavaBindings/3.5.0");
-        String str2 = eVar.f6923b;
+        String str2 = eVar.f6921b;
         hashMap.put("Authorization", "Bearer " + str2);
         String[] strArr = {"os.name", "os.version", "os.arch", "java.version", "java.vendor", "java.vm.version", "java.vm.vendor"};
         HashMap hashMap2 = new HashMap();
@@ -45,7 +45,7 @@ public abstract class b {
             httpURLConnection.setRequestProperty((String) entry.getKey(), (String) entry.getValue());
         }
         if (httpURLConnection instanceof HttpsURLConnection) {
-            ((HttpsURLConnection) httpURLConnection).setSSLSocketFactory(f49813a);
+            ((HttpsURLConnection) httpURLConnection).setSSLSocketFactory(f49766a);
         }
         httpURLConnection.setDoOutput(true);
         httpURLConnection.setRequestMethod("POST");
@@ -77,8 +77,8 @@ public abstract class b {
             if (sb2.length() > 0) {
                 sb2.append("&");
             }
-            String str = aVar.f49811a;
-            String str2 = aVar.f49812b;
+            String str = aVar.f49764a;
+            String str2 = aVar.f49765b;
             if (str == null) {
                 encode = null;
             } else {
@@ -94,8 +94,8 @@ public abstract class b {
         return sb2.toString();
     }
 
-    public static t0.h c(java.util.HashMap r7, com.google.android.gms.internal.clearcut.e r8) {
-        throw new UnsupportedOperationException("Method not decompiled: xc.b.c(java.util.HashMap, com.google.android.gms.internal.clearcut.e):t0.h");
+    public static u2.c c(java.util.HashMap r7, com.google.android.gms.internal.clearcut.e r8) {
+        throw new UnsupportedOperationException("Method not decompiled: xc.b.c(java.util.HashMap, com.google.android.gms.internal.clearcut.e):u2.c");
     }
 
     public static LinkedList d(String str, Map map) {

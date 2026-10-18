@@ -1,21 +1,11 @@
 package yh;
 
 import android.view.View;
-import org.telegram.ui.Components.p5;
-public final class t0 implements View.OnAttachStateChangeListener {
-    public final p5 f50551a;
-
-    public t0(p5 p5Var) {
-        this.f50551a = p5Var;
-    }
-
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+public final class t0 extends FrameLayout {
     @Override
-    public final void onViewAttachedToWindow(View view) {
-        this.f50551a.a();
-    }
-
-    @Override
-    public final void onViewDetachedFromWindow(View view) {
-        this.f50551a.b();
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(120.0f), 1073741824));
     }
 }

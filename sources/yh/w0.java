@@ -1,13 +1,19 @@
 package yh;
 
-import android.view.MotionEvent;
-import org.telegram.ui.Components.x90;
-public final class w0 extends x90 {
+import android.view.View;
+public final class w0 implements View.OnAttachStateChangeListener {
+    public final ai.z f50563a;
+
+    public w0(ai.z zVar) {
+        this.f50563a = zVar;
+    }
+
     @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (getAlpha() < 0.95f) {
-            return false;
-        }
-        return super.dispatchTouchEvent(motionEvent);
+    public final void onViewAttachedToWindow(View view) {
+        this.f50563a.run();
+    }
+
+    @Override
+    public final void onViewDetachedFromWindow(View view) {
     }
 }

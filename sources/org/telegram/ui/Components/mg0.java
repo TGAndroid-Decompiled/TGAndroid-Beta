@@ -7,9 +7,9 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class mg0 extends FrameLayout {
-    public final TextView f28517a;
-    public final TextView f28518b;
-    public final TextView f28519c;
+    public final TextView f28510a;
+    public final TextView f28511b;
+    public final TextView f28512c;
     public final boolean d;
 
     public mg0(Context context) {
@@ -17,7 +17,7 @@ public final class mg0 extends FrameLayout {
         this.d = true;
         setBackgroundColor(-15066598);
         TextView textView = new TextView(context);
-        this.f28517a = textView;
+        this.f28510a = textView;
         textView.setTextSize(1, 14.0f);
         textView.setTextColor(-1);
         textView.setGravity(17);
@@ -27,7 +27,7 @@ public final class mg0 extends FrameLayout {
         textView.setTypeface(AndroidUtilities.bold());
         addView(textView, w7.z5.e(-2, -1, 51));
         TextView textView2 = new TextView(context);
-        this.f28518b = textView2;
+        this.f28511b = textView2;
         textView2.setTextSize(1, 14.0f);
         textView2.setTextColor(-1);
         textView2.setGravity(17);
@@ -37,7 +37,7 @@ public final class mg0 extends FrameLayout {
         textView2.setTypeface(AndroidUtilities.bold());
         addView(textView2, w7.z5.e(-2, -1, 53));
         TextView textView3 = new TextView(context);
-        this.f28519c = textView3;
+        this.f28512c = textView3;
         textView3.setTypeface(AndroidUtilities.bold());
         textView3.setTextSize(1, 13.0f);
         textView3.setTextColor(-1);
@@ -45,17 +45,17 @@ public final class mg0 extends FrameLayout {
         textView3.setBackgroundResource(R.drawable.photobadge);
         textView3.setMinWidth(AndroidUtilities.dp(23.0f));
         textView3.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(1.0f));
-        addView(textView3, w7.z5.a(23.0f, 0.0f, 0.0f, 7.0f, 0.0f, -2, 53));
+        addView(textView3, w7.z5.d(-2, 23.0f, 53, 0.0f, 0.0f, 7.0f, 0.0f));
     }
 
     public final void a() {
         int i10;
-        this.f28519c.setVisibility(8);
+        this.f28512c.setVisibility(8);
         if (this.d) {
             i10 = -1;
         } else {
             i10 = -15095832;
         }
-        this.f28518b.setTextColor(i10);
+        this.f28511b.setTextColor(i10);
     }
 }

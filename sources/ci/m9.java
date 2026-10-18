@@ -1,30 +1,60 @@
 package ci;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class m9 extends AnimatorListenerAdapter {
-    public final int f5626a;
-    public final o9 f5627b;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.ob;
+import org.telegram.ui.Components.qc;
+public final class m9 implements ob {
+    public final float[] f5580a = new float[2];
+    public final n9 f5581b;
 
-    public m9(o9 o9Var, int i10) {
-        this.f5626a = i10;
-        this.f5627b = o9Var;
+    public m9(n9 n9Var) {
+        this.f5581b = n9Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f5626a) {
-            case 0:
-                aa aaVar = this.f5627b.I0;
-                aaVar.X = 0.0f;
-                aa.k(aaVar);
-                return;
-            default:
-                aa aaVar2 = this.f5627b.I0;
-                aaVar2.W = 0.0f;
-                aaVar2.Z = 0.0f;
-                aa.k(aaVar2);
-                return;
+    public final boolean a() {
+        return true;
+    }
+
+    @Override
+    public final boolean e() {
+        return true;
+    }
+
+    @Override
+    public final int f(int i10) {
+        n9 n9Var = this.f5581b;
+        z9 z9Var = n9Var.I0;
+        p4 t10 = z9Var.t();
+        if (t10 == null) {
+            return 0;
         }
+        q3 q3Var = t10.f5652c1;
+        n9 n9Var2 = z9Var.f6249s;
+        float[] fArr = this.f5580a;
+        AndroidUtilities.getViewPositionInParent(q3Var, n9Var2, fArr);
+        return (int) (n9Var.getMeasuredHeight() - (fArr[1] + q3Var.getMeasuredHeight()));
+    }
+
+    @Override
+    public final boolean g(int i10) {
+        return false;
+    }
+
+    @Override
+    public final int h(int i10) {
+        return 0;
+    }
+
+    @Override
+    public final void b(qc qcVar) {
+    }
+
+    @Override
+    public final void c(float f7) {
+    }
+
+    @Override
+    public final void d(qc qcVar) {
     }
 }

@@ -1,28 +1,28 @@
 package org.telegram.messenger;
 
-import android.content.DialogInterface;
-public final class ab implements DialogInterface.OnCancelListener {
-    public final int f17861a;
-    public final BaseController f17862b;
-    public final int f17863c;
+import zf.r;
+public final class ab implements Runnable {
+    public final int f17855a;
+    public final MessagesController f17856b;
+    public final r f17857c;
 
-    public ab(BaseController baseController, int i10, int i11) {
-        this.f17861a = i11;
-        this.f17862b = baseController;
-        this.f17863c = i10;
+    public ab(MessagesController messagesController, r rVar, int i10) {
+        this.f17855a = i10;
+        this.f17856b = messagesController;
+        this.f17857c = rVar;
     }
 
     @Override
-    public final void onCancel(DialogInterface dialogInterface) {
-        switch (this.f17861a) {
+    public final void run() {
+        switch (this.f17855a) {
             case 0:
-                ((MessagesController) this.f17862b).lambda$convertToGigaGroup$270(this.f17863c, dialogInterface);
+                this.f17856b.lambda$processUpdateArray$402(this.f17857c);
                 return;
             case 1:
-                ((MessagesController) this.f17862b).lambda$convertToMegaGroup$265(this.f17863c, dialogInterface);
+                this.f17856b.lambda$processUpdateArray$405(this.f17857c);
                 return;
             default:
-                ((SecretChatHelper) this.f17862b).lambda$startSecretChat$31(this.f17863c, dialogInterface);
+                this.f17856b.lambda$processUpdateArray$407(this.f17857c);
                 return;
         }
     }

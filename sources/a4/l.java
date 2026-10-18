@@ -41,7 +41,7 @@ public final class l implements z3.d {
     }
 
     @Override
-    public int i() {
+    public int h() {
         return 1;
     }
 

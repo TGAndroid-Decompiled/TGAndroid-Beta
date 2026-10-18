@@ -1,21 +1,21 @@
 package ei;
 public final class n implements Runnable {
-    public final int f9492a;
-    public final lb f9493b;
+    public final int f9490a;
+    public final lb f9491b;
 
     public n(lb lbVar, int i10) {
-        this.f9492a = i10;
-        this.f9493b = lbVar;
+        this.f9490a = i10;
+        this.f9491b = lbVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f9492a) {
+        switch (this.f9490a) {
             case 0:
-                this.f9493b.n();
+                this.f9491b.n();
                 return;
             case 1:
-                lb lbVar = this.f9493b;
+                lb lbVar = this.f9491b;
                 lbVar.K0 = false;
                 lbVar.L0 = Integer.MIN_VALUE;
                 lbVar.invalidate();
@@ -23,7 +23,7 @@ public final class n implements Runnable {
                 lbVar.T0.setVisibility(0);
                 return;
             default:
-                vb vbVar = this.f9493b.S1;
+                vb vbVar = this.f9491b.S1;
                 jb jbVar = vbVar.X0;
                 if (jbVar != null) {
                     jbVar.O = false;

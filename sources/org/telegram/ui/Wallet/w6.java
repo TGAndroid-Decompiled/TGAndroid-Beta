@@ -1,42 +1,198 @@
 package org.telegram.ui.Wallet;
 
+import android.text.TextUtils;
+import android.widget.LinearLayout;
+import java.util.concurrent.atomic.AtomicBoolean;
+import org.json.JSONObject;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.tl.TL_wallet;
+import org.telegram.ui.Components.i80;
+import org.telegram.ui.Wallet.WalletEngine2;
 public final class w6 implements Runnable {
-    public final int f35037a;
-    public final Utilities.Callback2 f35038b;
+    public final int f35044a;
+    public final Object f35045b;
+    public final Object f35046c;
+    public final Object d;
+    public final Object e;
 
-    public w6(int i10, Utilities.Callback2 callback2) {
-        this.f35037a = i10;
-        this.f35038b = callback2;
+    public w6(Object obj, Object obj2, Object obj3, Object obj4, int i10) {
+        this.f35044a = i10;
+        this.f35045b = obj;
+        this.d = obj2;
+        this.e = obj3;
+        this.f35046c = obj4;
     }
 
     @Override
     public final void run() {
-        switch (this.f35037a) {
+        e0 e0Var;
+        byte[] bArr;
+        String h;
+        JSONObject jSONObject;
+        switch (this.f35044a) {
             case 0:
-                this.f35038b.run(null, "Wallet engine is closed");
+                ((WalletEngine2) this.f35045b).lambda$prepareRotateKey$34((Utilities.Callback4) this.d, (WalletEngine2.PreparedRotation) this.e, (String) this.f35046c);
                 return;
             case 1:
-                this.f35038b.run(null, "NO_WALLET_ENGINE");
+                ((WalletEngine2) this.f35045b).lambda$rotateKey$52((WalletEngine2.RotationCallbacks) this.d, (byte[]) this.e, (String) this.f35046c);
                 return;
             case 2:
-                this.f35038b.run(null, "NO_WALLET_ENGINE");
+                ((WalletEngine2.SendCallbacks) this.f35045b).lambda$dispatch$0((WalletEngine2.SendPhase) this.d, (String) this.f35046c, (String) this.e);
                 return;
             case 3:
-                this.f35038b.run(null, "Recovery phrase is required");
+                m0 m0Var = (m0) this.f35045b;
+                TL_wallet.walletTransaction wallettransaction = (TL_wallet.walletTransaction) this.d;
+                TL_wallet.nftItem nftitem = (TL_wallet.nftItem) this.e;
+                l0 l0Var = (l0) this.f35046c;
+                m0Var.getClass();
+                if (wallettransaction.pending || wallettransaction.failed || TextUtils.isEmpty(wallettransaction.f20531id)) {
+                    wallettransaction.pending = false;
+                    wallettransaction.failed = true;
+                    Utilities.Callback callback = (Utilities.Callback) m0Var.f34464q.remove(wallettransaction);
+                    if (callback != null) {
+                        callback.run(Boolean.FALSE);
+                    }
+                    if (nftitem != null && (e0Var = m0Var.f34462o) != null) {
+                        e0.a(e0Var, wallettransaction);
+                    }
+                    l0Var.j();
+                    l0Var.h();
+                    l0Var.f();
+                    m0Var.Q();
+                    return;
+                }
                 return;
             case 4:
-                this.f35038b.run(null, "Transaction hash is required");
+                m0 m0Var2 = (m0) this.f35045b;
+                boolean[] zArr = (boolean[]) this.d;
+                ai.q qVar = (ai.q) this.e;
+                e2 e2Var = (e2) this.f35046c;
+                if (!zArr[0]) {
+                    WalletEngine2 walletEngine2 = m0Var2.f34452b;
+                    if (walletEngine2 == null) {
+                        qVar.run(null, "NULL_ENGINE");
+                        return;
+                    } else {
+                        walletEngine2.previewTonConnect(e2Var, new ai.q5(27, zArr, qVar));
+                        return;
+                    }
+                }
                 return;
             case 5:
-                this.f35038b.run(null, "NO_WALLET_ENGINE");
+                TL_wallet.walletTransaction wallettransaction2 = (TL_wallet.walletTransaction) this.e;
+                l0 l0Var2 = (l0) this.f35046c;
+                ((j0) this.d).close();
+                m0.F("disable backup: fail!");
+                wallettransaction2.pending = false;
+                wallettransaction2.failed = true;
+                l0Var2.j();
+                l0Var2.h();
+                l0Var2.f();
+                ((m0) this.f35045b).Q();
                 return;
             case 6:
-                this.f35038b.run(null, "NO_WALLET_ENGINE");
+                f2 f2Var = (f2) this.f35045b;
+                a2 a2Var = (a2) this.d;
+                l lVar = (l) this.e;
+                TL_wallet.tonConnectSession tonconnectsession = (TL_wallet.tonConnectSession) this.f35046c;
+                m0 m0Var3 = f2Var.f34169b;
+                String s10 = m0Var3.s();
+                byte[] x10 = m0Var3.x();
+                if (x10 == null) {
+                    bArr = null;
+                } else {
+                    bArr = (byte[]) x10.clone();
+                }
+                byte[] bArr2 = bArr;
+                x xVar = new x(4, a2Var, lVar);
+                if (s10 != null && bArr2 != null) {
+                    m0Var3.y(new i1(f2Var, xVar, tonconnectsession, s10, bArr2, a2Var, 3), true, false);
+                    return;
+                } else {
+                    xVar.run("Wallet is not ready");
+                    return;
+                }
+            case 7:
+                f2.a((f2) this.f35045b, (TL_wallet.tonConnectSession) this.d, (String) this.f35046c, (l) this.e);
+                return;
+            case 8:
+                byte[] bArr3 = (byte[]) this.f35045b;
+                x xVar2 = (x) this.d;
+                String str = (String) this.f35046c;
+                ai.o3 o3Var = (ai.o3) this.e;
+                if (bArr3 == null) {
+                    xVar2.run(str);
+                    return;
+                } else {
+                    o3Var.run(bArr3);
+                    return;
+                }
+            case 9:
+                f2 f2Var2 = (f2) this.f35045b;
+                j0 j0Var = (j0) this.d;
+                b2 b2Var = (b2) this.e;
+                x xVar3 = (x) this.f35046c;
+                try {
+                    jSONObject = WalletEngine2.signData(j0Var, b2Var.f33997a, b2Var.h, b2Var.f34001g, new JSONObject(b2Var.f34004k), f2.l(b2Var.f33997a.manifest.url), f2Var2.f34171f.getCurrentTime());
+                    h = null;
+                } catch (Exception e) {
+                    h = f2.h("sign data", e);
+                    jSONObject = null;
+                }
+                AndroidUtilities.runOnUIThread(new ai.j3(f2Var2, b2Var, j0Var, xVar3, jSONObject, h, 23));
+                return;
+            case 10:
+                n5.f0((n5) this.f35045b, (LinearLayout) this.d, (m0) this.e, (i80) this.f35046c);
+                return;
+            case 11:
+                boolean[] zArr2 = (boolean[]) this.d;
+                org.telegram.ui.ActionBar.e1 e1Var = (org.telegram.ui.ActionBar.e1) this.e;
+                w6 w6Var = (w6) this.f35046c;
+                f fVar = ((m0) this.f35045b).h;
+                if (fVar.f() != null && !zArr2[0]) {
+                    e1Var.setSubtext(fVar.i());
+                    w6Var.run();
+                    zArr2[0] = true;
+                    return;
+                }
+                return;
+            case 12:
+                ((WalletEngine2) this.f35045b).lambda$decryptTransactionComment$45((String) this.f35046c, (byte[]) this.d, (Utilities.Callback2) this.e);
+                return;
+            case 13:
+                ((WalletEngine2) this.f35045b).lambda$signMessage$10((Utilities.Callback2) this.d, (String) this.f35046c, (String) this.e);
+                return;
+            case 14:
+                ((WalletEngine2) this.f35045b).lambda$prepareRotateKey$35((byte[]) this.e, (String) this.f35046c, (Utilities.Callback4) this.d);
                 return;
             default:
-                this.f35038b.run(null, "NO_WALLET_ENGINE");
+                WalletEngine2.lambda$emulateSend$15((AtomicBoolean) this.f35045b, (Utilities.Callback2) this.d, (TL_wallet.walletTransaction) this.e, (String) this.f35046c);
                 return;
         }
+    }
+
+    public w6(Object obj, Object obj2, String str, Object obj3, int i10) {
+        this.f35044a = i10;
+        this.f35045b = obj;
+        this.d = obj2;
+        this.f35046c = str;
+        this.e = obj3;
+    }
+
+    public w6(WalletEngine2 walletEngine2, String str, byte[] bArr, Utilities.Callback2 callback2) {
+        this.f35044a = 12;
+        this.f35045b = walletEngine2;
+        this.f35046c = str;
+        this.d = bArr;
+        this.e = callback2;
+    }
+
+    public w6(WalletEngine2 walletEngine2, byte[] bArr, String str, Utilities.Callback4 callback4) {
+        this.f35044a = 14;
+        this.f35045b = walletEngine2;
+        this.e = bArr;
+        this.f35046c = str;
+        this.d = callback4;
     }
 }

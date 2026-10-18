@@ -1,4 +1,6 @@
 package sg;
-public interface l0 {
-    void setOffset(float f7);
+public final class l0 {
+    public int f46315a;
+    public int f46316b = 5;
+    public long f46317c;
 }

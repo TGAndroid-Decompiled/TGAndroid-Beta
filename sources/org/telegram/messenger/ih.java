@@ -1,35 +1,26 @@
 package org.telegram.messenger;
 
-import android.content.Context;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-public final class ih implements Utilities.Callback2 {
-    public final int f18634a = 0;
-    public final int f18635b;
-    public final Object f18636c;
-    public final Object d;
+public final class ih implements Runnable {
+    public final int f18607a;
+    public final Utilities.Callback2 f18608b;
+    public final Exception f18609c;
 
-    public ih(Context context, int i10, Utilities.Callback2 callback2) {
-        this.f18636c = callback2;
-        this.d = context;
-        this.f18635b = i10;
+    public ih(Utilities.Callback2 callback2, Exception exc, int i10) {
+        this.f18607a = i10;
+        this.f18608b = callback2;
+        this.f18609c = exc;
     }
 
     @Override
-    public final void run(Object obj, Object obj2) {
-        switch (this.f18634a) {
+    public final void run() {
+        switch (this.f18607a) {
             case 0:
-                PasskeysController.lambda$create$7((Utilities.Callback2) this.f18636c, (Context) this.d, this.f18635b, (v0.c) obj, (Throwable) obj2);
+                PasskeysController.lambda$create$3(this.f18608b, this.f18609c);
                 return;
             default:
-                ((TranslateController) this.f18636c).lambda$pushToSummarize$19(this.f18635b, (Utilities.Callback) this.d, (TLRPC.TL_textWithEntities) obj, (TLRPC.TL_error) obj2);
+                PasskeysController.lambda$create$8(this.f18608b, this.f18609c);
                 return;
         }
-    }
-
-    public ih(TranslateController translateController, int i10, Utilities.Callback callback) {
-        this.f18636c = translateController;
-        this.f18635b = i10;
-        this.d = callback;
     }
 }

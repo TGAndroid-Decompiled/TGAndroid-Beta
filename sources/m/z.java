@@ -20,19 +20,19 @@ import android.view.inputmethod.InputConnection;
 import android.widget.AbsSeekBar;
 import android.widget.EditText;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
-import w7.n6;
+import w7.l6;
 public class z {
     public static final int[] d = {16843067, 16843068};
-    public final int f16393a = 2;
-    public View f16394b;
-    public Object f16395c;
+    public final int f16391a = 2;
+    public View f16392b;
+    public Object f16393c;
 
     public z() {
     }
 
     public KeyListener a(KeyListener keyListener) {
         if (!(keyListener instanceof NumberKeyListener)) {
-            ((mi.q) ((k0.b) this.f16395c).f14566b).getClass();
+            ((mi.q) ((k0.b) this.f16393c).f14564b).getClass();
             if (keyListener instanceof q1.e) {
                 return keyListener;
             }
@@ -49,14 +49,14 @@ public class z {
 
     public void b(AttributeSet attributeSet, int i10) {
         boolean z10 = true;
-        switch (this.f16393a) {
+        switch (this.f16391a) {
             case 0:
-                AbsSeekBar absSeekBar = (AbsSeekBar) this.f16394b;
-                g3 K = g3.K(absSeekBar.getContext(), attributeSet, d, i10);
-                Drawable B = K.B(0);
-                if (B != null) {
-                    if (B instanceof AnimationDrawable) {
-                        AnimationDrawable animationDrawable = (AnimationDrawable) B;
+                AbsSeekBar absSeekBar = (AbsSeekBar) this.f16392b;
+                g3 P = g3.P(absSeekBar.getContext(), attributeSet, d, i10);
+                Drawable G = P.G(0);
+                if (G != null) {
+                    if (G instanceof AnimationDrawable) {
+                        AnimationDrawable animationDrawable = (AnimationDrawable) G;
                         int numberOfFrames = animationDrawable.getNumberOfFrames();
                         AnimationDrawable animationDrawable2 = new AnimationDrawable();
                         animationDrawable2.setOneShot(animationDrawable.isOneShot());
@@ -66,18 +66,18 @@ public class z {
                             animationDrawable2.addFrame(e, animationDrawable.getDuration(i11));
                         }
                         animationDrawable2.setLevel(10000);
-                        B = animationDrawable2;
+                        G = animationDrawable2;
                     }
-                    absSeekBar.setIndeterminateDrawable(B);
+                    absSeekBar.setIndeterminateDrawable(G);
                 }
-                Drawable B2 = K.B(1);
-                if (B2 != null) {
-                    absSeekBar.setProgressDrawable(e(B2, false));
+                Drawable G2 = P.G(1);
+                if (G2 != null) {
+                    absSeekBar.setProgressDrawable(e(G2, false));
                 }
-                K.L();
+                P.Q();
                 return;
             default:
-                TypedArray obtainStyledAttributes = ((EditText) this.f16394b).getContext().obtainStyledAttributes(attributeSet, f.a.f10257i, i10, 0);
+                TypedArray obtainStyledAttributes = ((EditText) this.f16392b).getContext().obtainStyledAttributes(attributeSet, f.a.f10255i, i10, 0);
                 try {
                     if (obtainStyledAttributes.hasValue(14)) {
                         z10 = obtainStyledAttributes.getBoolean(14, true);
@@ -93,28 +93,28 @@ public class z {
     }
 
     public q1.b c(InputConnection inputConnection, EditorInfo editorInfo) {
-        k0.b bVar = (k0.b) this.f16395c;
+        k0.b bVar = (k0.b) this.f16393c;
         if (inputConnection == null) {
             bVar.getClass();
             inputConnection = null;
         } else {
-            mi.q qVar = (mi.q) bVar.f14566b;
+            mi.q qVar = (mi.q) bVar.f14564b;
             qVar.getClass();
             if (!(inputConnection instanceof q1.b)) {
-                inputConnection = new q1.b((EditText) qVar.f16974b, inputConnection, editorInfo);
+                inputConnection = new q1.b((EditText) qVar.f16972b, inputConnection, editorInfo);
             }
         }
         return (q1.b) inputConnection;
     }
 
     public void d(boolean z10) {
-        q1.i iVar = (q1.i) ((mi.q) ((k0.b) this.f16395c).f14566b).f16975c;
-        if (iVar.f44384c != z10) {
-            if (iVar.f44383b != null) {
+        q1.i iVar = (q1.i) ((mi.q) ((k0.b) this.f16393c).f14564b).f16973c;
+        if (iVar.f44341c != z10) {
+            if (iVar.f44340b != null) {
                 androidx.emoji2.text.l a2 = androidx.emoji2.text.l.a();
-                q1.h hVar = iVar.f44383b;
+                q1.h hVar = iVar.f44340b;
                 a2.getClass();
-                n6.a(hVar, "initCallback cannot be null");
+                l6.a(hVar, "initCallback cannot be null");
                 ReentrantReadWriteLock reentrantReadWriteLock = a2.f3107a;
                 reentrantReadWriteLock.writeLock().lock();
                 try {
@@ -123,9 +123,9 @@ public class z {
                     reentrantReadWriteLock.writeLock().unlock();
                 }
             }
-            iVar.f44384c = z10;
+            iVar.f44341c = z10;
             if (z10) {
-                q1.i.a(iVar.f44382a, androidx.emoji2.text.l.a().b());
+                q1.i.a(iVar.f44339a, androidx.emoji2.text.l.a().b());
             }
         }
     }
@@ -165,8 +165,8 @@ public class z {
         } else if (drawable instanceof BitmapDrawable) {
             BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
             Bitmap bitmap = bitmapDrawable.getBitmap();
-            if (((Bitmap) this.f16395c) == null) {
-                this.f16395c = bitmap;
+            if (((Bitmap) this.f16393c) == null) {
+                this.f16393c = bitmap;
             }
             ShapeDrawable shapeDrawable = new ShapeDrawable(new RoundRectShape(new float[]{5.0f, 5.0f, 5.0f, 5.0f, 5.0f, 5.0f, 5.0f, 5.0f}, null, null));
             shapeDrawable.getPaint().setShader(new BitmapShader(bitmap, Shader.TileMode.REPEAT, Shader.TileMode.CLAMP));
@@ -180,11 +180,11 @@ public class z {
     }
 
     public z(AbsSeekBar absSeekBar) {
-        this.f16394b = absSeekBar;
+        this.f16392b = absSeekBar;
     }
 
     public z(EditText editText) {
-        this.f16394b = editText;
-        this.f16395c = new k0.b(editText);
+        this.f16392b = editText;
+        this.f16393c = new k0.b(editText);
     }
 }

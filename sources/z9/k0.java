@@ -1,25 +1,25 @@
 package z9;
 public final class k0 extends m1 {
-    public final int f51455a;
-    public final String f51456b;
-    public final int f51457c;
+    public final int f51408a;
+    public final String f51409b;
+    public final int f51410c;
     public final long d;
     public final long e;
-    public final boolean f51458f;
-    public final int f51459g;
+    public final boolean f51411f;
+    public final int f51412g;
     public final String h;
-    public final String f51460i;
+    public final String f51413i;
 
     public k0(int i10, String str, int i11, long j10, long j11, boolean z10, int i12, String str2, String str3) {
-        this.f51455a = i10;
-        this.f51456b = str;
-        this.f51457c = i11;
+        this.f51408a = i10;
+        this.f51409b = str;
+        this.f51410c = i11;
         this.d = j10;
         this.e = j11;
-        this.f51458f = z10;
-        this.f51459g = i12;
+        this.f51411f = z10;
+        this.f51412g = i12;
         this.h = str2;
-        this.f51460i = str3;
+        this.f51413i = str3;
     }
 
     public final boolean equals(Object obj) {
@@ -28,7 +28,7 @@ public final class k0 extends m1 {
         }
         if (obj instanceof m1) {
             k0 k0Var = (k0) ((m1) obj);
-            if (this.f51455a == k0Var.f51455a && this.f51456b.equals(k0Var.f51456b) && this.f51457c == k0Var.f51457c && this.d == k0Var.d && this.e == k0Var.e && this.f51458f == k0Var.f51458f && this.f51459g == k0Var.f51459g && this.h.equals(k0Var.h) && this.f51460i.equals(k0Var.f51460i)) {
+            if (this.f51408a == k0Var.f51408a && this.f51409b.equals(k0Var.f51409b) && this.f51410c == k0Var.f51410c && this.d == k0Var.d && this.e == k0Var.e && this.f51411f == k0Var.f51411f && this.f51412g == k0Var.f51412g && this.h.equals(k0Var.h) && this.f51413i.equals(k0Var.f51413i)) {
                 return true;
             }
         }
@@ -39,33 +39,33 @@ public final class k0 extends m1 {
         int i10;
         long j10 = this.d;
         long j11 = this.e;
-        int hashCode = (((((((((this.f51455a ^ 1000003) * 1000003) ^ this.f51456b.hashCode()) * 1000003) ^ this.f51457c) * 1000003) ^ ((int) (j10 ^ (j10 >>> 32)))) * 1000003) ^ ((int) (j11 ^ (j11 >>> 32)))) * 1000003;
-        if (this.f51458f) {
+        int hashCode = (((((((((this.f51408a ^ 1000003) * 1000003) ^ this.f51409b.hashCode()) * 1000003) ^ this.f51410c) * 1000003) ^ ((int) (j10 ^ (j10 >>> 32)))) * 1000003) ^ ((int) (j11 ^ (j11 >>> 32)))) * 1000003;
+        if (this.f51411f) {
             i10 = 1231;
         } else {
             i10 = 1237;
         }
-        return ((((((hashCode ^ i10) * 1000003) ^ this.f51459g) * 1000003) ^ this.h.hashCode()) * 1000003) ^ this.f51460i.hashCode();
+        return ((((((hashCode ^ i10) * 1000003) ^ this.f51412g) * 1000003) ^ this.h.hashCode()) * 1000003) ^ this.f51413i.hashCode();
     }
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("Device{arch=");
-        sb2.append(this.f51455a);
+        sb2.append(this.f51408a);
         sb2.append(", model=");
-        sb2.append(this.f51456b);
+        sb2.append(this.f51409b);
         sb2.append(", cores=");
-        sb2.append(this.f51457c);
+        sb2.append(this.f51410c);
         sb2.append(", ram=");
         sb2.append(this.d);
         sb2.append(", diskSpace=");
         sb2.append(this.e);
         sb2.append(", simulator=");
-        sb2.append(this.f51458f);
+        sb2.append(this.f51411f);
         sb2.append(", state=");
-        sb2.append(this.f51459g);
+        sb2.append(this.f51412g);
         sb2.append(", manufacturer=");
         sb2.append(this.h);
         sb2.append(", modelClass=");
-        return a1.g.s(sb2, this.f51460i, "}");
+        return a1.g.s(sb2, this.f51413i, "}");
     }
 }

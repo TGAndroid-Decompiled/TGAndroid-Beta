@@ -7,28 +7,28 @@ import java.util.ArrayList;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class s60 extends org.telegram.ui.Components.hm0 {
-    public final Context f41044c;
+    public final Context f41006c;
     public int d;
     public final ArrayList e = new ArrayList();
-    public final u60 f41045f;
+    public final u60 f41007f;
 
     public s60(u60 u60Var, Context context) {
-        this.f41045f = u60Var;
-        this.f41044c = context;
+        this.f41007f = u60Var;
+        this.f41006c = context;
     }
 
     @Override
     public final void A(s4.b1 b1Var) {
-        if (b1Var.f45961f == 2) {
-            ((org.telegram.ui.Cells.f4) b1Var.f45958a).f22239a.getImageReceiver().cancelLoadImage();
+        if (b1Var.f45913f == 2) {
+            ((org.telegram.ui.Cells.f4) b1Var.f45910a).f22232a.getImageReceiver().cancelLoadImage();
         }
     }
 
     @Override
     public final boolean D(s4.b1 b1Var) {
-        int i10 = b1Var.f45961f;
+        int i10 = b1Var.f45913f;
         if (i10 != 3 && i10 != 4) {
-            if (i10 != 6 || !this.f41045f.Q) {
+            if (i10 != 6 || !this.f41007f.Q) {
                 return false;
             }
             return true;
@@ -43,7 +43,7 @@ public final class s60 extends org.telegram.ui.Components.hm0 {
 
     @Override
     public final int j(int i10) {
-        return ((r60) this.e.get(i10)).f44334a;
+        return ((r60) this.e.get(i10)).f44291a;
     }
 
     @Override
@@ -51,7 +51,7 @@ public final class s60 extends org.telegram.ui.Components.hm0 {
         ArrayList arrayList = this.e;
         arrayList.clear();
         arrayList.add(new pg.a(0, true));
-        u60 u60Var = this.f41045f;
+        u60 u60Var = this.f41007f;
         if (u60Var.P == 5) {
             arrayList.add(new pg.a(6, true));
             arrayList.add(new r60(LocaleController.getString(R.string.ForumToggleDescription)));
@@ -79,11 +79,11 @@ public final class s60 extends org.telegram.ui.Components.hm0 {
     public final void v(s4.b1 b1Var, int i10) {
         String formatTTLString;
         boolean z10;
-        int i11 = b1Var.f45961f;
-        View view = b1Var.f45958a;
+        int i11 = b1Var.f45913f;
+        View view = b1Var.f45910a;
         ArrayList arrayList = this.e;
         boolean z11 = false;
-        u60 u60Var = this.f41045f;
+        u60 u60Var = this.f41007f;
         switch (i11) {
             case 1:
                 org.telegram.ui.Cells.l4 l4Var = (org.telegram.ui.Cells.l4) view;
@@ -119,7 +119,7 @@ public final class s60 extends org.telegram.ui.Components.hm0 {
                 q8Var.s(string, str, z10, R.drawable.msg_autodelete, false);
                 return;
             case 5:
-                ((org.telegram.ui.Cells.d9) view).setText(((r60) arrayList.get(i10)).f40611c);
+                ((org.telegram.ui.Cells.d9) view).setText(((r60) arrayList.get(i10)).f40577c);
                 return;
             case 6:
                 org.telegram.ui.Cells.q8 q8Var2 = (org.telegram.ui.Cells.q8) view;
@@ -134,7 +134,7 @@ public final class s60 extends org.telegram.ui.Components.hm0 {
     @Override
     public final s4.b1 x(ViewGroup viewGroup, int i10) {
         org.telegram.ui.Cells.l4 l4Var;
-        Context context = this.f41044c;
+        Context context = this.f41006c;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 != 2) {
@@ -149,7 +149,7 @@ public final class s60 extends org.telegram.ui.Components.hm0 {
                                     l4Var = view;
                                 }
                             } else {
-                                l4Var = new org.telegram.ui.Cells.q8(23, this.f41044c, this.f41045f.getResourceProvider(), false, true);
+                                l4Var = new org.telegram.ui.Cells.q8(23, this.f41006c, this.f41007f.getResourceProvider(), false, true);
                             }
                         } else {
                             l4Var = new org.telegram.ui.Cells.d9(context);
@@ -158,7 +158,7 @@ public final class s60 extends org.telegram.ui.Components.hm0 {
                         l4Var = new org.telegram.ui.Cells.q8(context);
                     }
                 } else {
-                    l4Var = new org.telegram.ui.Cells.f4(0, 3, context, false);
+                    l4Var = new org.telegram.ui.Cells.f4(context, 0, 3, false);
                 }
             } else {
                 org.telegram.ui.Cells.l4 l4Var2 = new org.telegram.ui.Cells.l4(context);

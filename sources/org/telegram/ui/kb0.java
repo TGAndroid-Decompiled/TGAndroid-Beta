@@ -8,7 +8,9 @@ import java.math.BigDecimal;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
@@ -22,21 +24,22 @@ import org.telegram.tgnet.tl.TL_aicompose;
 import org.telegram.tgnet.tl.TL_wallet;
 import org.telegram.ui.Wallet.WalletEngine2;
 public final class kb0 {
-    public final LaunchActivity f38468a;
-    public final int f38469b;
-    public final pf.c f38470c;
+    public static final Pattern f38453k = Pattern.compile("^[a-z0-9_]{1,32}$");
+    public final LaunchActivity f38454a;
+    public final int f38455b;
+    public final pf.c f38456c;
     public final boolean d;
     public org.telegram.ui.ActionBar.b2 e;
-    public boolean f38471f;
-    public boolean f38472g;
+    public boolean f38457f;
+    public boolean f38458g;
     public int h = -1;
-    public ai.ub f38473i;
-    public boolean f38474j;
+    public ai.ub f38459i;
+    public boolean f38460j;
 
     public kb0(LaunchActivity launchActivity, int i10, pf.c cVar, boolean z10) {
-        this.f38468a = launchActivity;
-        this.f38469b = i10;
-        this.f38470c = cVar;
+        this.f38454a = launchActivity;
+        this.f38455b = i10;
+        this.f38456c = cVar;
         this.d = z10;
     }
 
@@ -84,9 +87,9 @@ public final class kb0 {
     }
 
     public final boolean a() {
-        if (!this.f38474j) {
-            LaunchActivity launchActivity = this.f38468a;
-            if (!launchActivity.isFinishing() && !launchActivity.isDestroyed() && LaunchActivity.F1 && !SharedConfig.appLocked && !SharedConfig.isWaitingForPasscodeEnter && UserConfig.selectedAccount == this.f38469b) {
+        if (!this.f38460j) {
+            LaunchActivity launchActivity = this.f38454a;
+            if (!launchActivity.isFinishing() && !launchActivity.isDestroyed() && LaunchActivity.F1 && !SharedConfig.appLocked && !SharedConfig.isWaitingForPasscodeEnter && UserConfig.selectedAccount == this.f38455b) {
                 return true;
             }
             return false;
@@ -95,62 +98,63 @@ public final class kb0 {
     }
 
     public final void b() {
-        this.f38474j = true;
-        ai.ub ubVar = this.f38473i;
+        this.f38460j = true;
+        ai.ub ubVar = this.f38459i;
         if (ubVar != null) {
             AndroidUtilities.cancelRunOnUIThread(ubVar);
         }
         if (this.h >= 0) {
-            ConnectionsManager.getInstance(this.f38469b).cancelRequest(this.h, true);
+            ConnectionsManager.getInstance(this.f38455b).cancelRequest(this.h, true);
             this.h = -1;
         }
     }
 
     public final void c() {
-        if (this.f38472g) {
+        if (this.f38458g) {
             return;
         }
         org.telegram.ui.ActionBar.b2 b2Var = this.e;
         if (b2Var != null) {
             b2Var.dismiss();
         }
-        pf.c cVar = this.f38470c;
+        pf.c cVar = this.f38456c;
         if (cVar != null) {
             cVar.b();
         }
-        this.f38472g = true;
+        this.f38458g = true;
     }
 
     public final org.telegram.ui.ActionBar.d5 e() {
-        return this.f38468a.O();
+        return this.f38454a.O();
     }
 
     public final UserConfig f() {
-        return UserConfig.getInstance(this.f38469b);
+        return UserConfig.getInstance(this.f38455b);
     }
 
     public final boolean g(Uri uri) {
         String str;
         String str2;
+        String str3;
         String path;
         Uri s10;
         List<String> pathSegments;
-        String str3;
-        Long l4;
         String str4;
+        Long l4;
+        String str5;
         boolean z10;
         Uri uri2 = uri;
         if (uri2 != null) {
             FileLog.d("link manager handle " + uri2);
             String scheme = uri2.getScheme();
             boolean equalsIgnoreCase = "tonsite".equalsIgnoreCase(scheme);
-            LaunchActivity launchActivity = this.f38468a;
+            LaunchActivity launchActivity = this.f38454a;
             if (equalsIgnoreCase) {
                 pf.d.o(launchActivity, uri2, true, true);
                 return true;
             } else if (!"http".equalsIgnoreCase(scheme) && !"https".equalsIgnoreCase(scheme)) {
                 boolean equalsIgnoreCase2 = "tg".equalsIgnoreCase(scheme);
-                int i10 = this.f38469b;
+                int i10 = this.f38455b;
                 if (equalsIgnoreCase2) {
                     Uri s11 = s(Uri.parse(uri2.toString().replaceFirst("(?i)^tg:(//)?sendgrams&", "tg://sendgrams?")));
                     List<String> pathSegments2 = s11.getPathSegments();
@@ -161,19 +165,19 @@ public final class kb0 {
                             arrayList.add(0, authority);
                         }
                         if (!arrayList.isEmpty()) {
-                            String str5 = (String) arrayList.get(0);
+                            String str6 = (String) arrayList.get(0);
                             if (arrayList.size() > 1) {
-                                str4 = (String) arrayList.get(1);
+                                str5 = (String) arrayList.get(1);
                             } else {
-                                str4 = null;
+                                str5 = null;
                             }
-                            if ("sendgrams".equalsIgnoreCase(str5)) {
+                            if ("sendgrams".equalsIgnoreCase(str6)) {
                                 return l(s11);
                             }
-                            if ("newbot".equalsIgnoreCase(str5)) {
+                            if ("newbot".equalsIgnoreCase(str6)) {
                                 j(s11.getQueryParameter("manager"), s11.getQueryParameter("username"), s11.getQueryParameter("name"));
                                 return true;
-                            } else if ("resolve".equalsIgnoreCase(str5)) {
+                            } else if ("resolve".equalsIgnoreCase(str6)) {
                                 List<String> pathSegments3 = s11.getPathSegments();
                                 if (pathSegments3 != null) {
                                     ArrayList arrayList2 = new ArrayList(pathSegments3);
@@ -193,28 +197,28 @@ public final class kb0 {
                                         }
                                     }
                                 }
-                            } else if ("invoice".equalsIgnoreCase(str5)) {
+                            } else if ("invoice".equalsIgnoreCase(str6)) {
                                 return i(s11.getQueryParameter("slug"));
                             } else {
-                                if ("oauth".equalsIgnoreCase(str5)) {
+                                if ("oauth".equalsIgnoreCase(str6)) {
                                     return k(s11, s11.getQueryParameter("token"));
                                 }
-                                if ("settings".equalsIgnoreCase(str5)) {
+                                if ("settings".equalsIgnoreCase(str6)) {
                                     return m(arrayList.subList(1, arrayList.size()));
                                 }
-                                if ("chats".equalsIgnoreCase(str5)) {
-                                    "search".equalsIgnoreCase(str4);
-                                    "edit".equalsIgnoreCase(str4);
-                                    "emoji-status".equalsIgnoreCase(str4);
+                                if ("chats".equalsIgnoreCase(str6)) {
+                                    "search".equalsIgnoreCase(str5);
+                                    "edit".equalsIgnoreCase(str5);
+                                    "emoji-status".equalsIgnoreCase(str5);
                                 }
-                                if ("new".equalsIgnoreCase(str5)) {
-                                    if ("group".equalsIgnoreCase(str4)) {
+                                if ("new".equalsIgnoreCase(str6)) {
+                                    if ("group".equalsIgnoreCase(str5)) {
                                         u(new n60(new Bundle()), false);
                                         return true;
-                                    } else if ("contact".equalsIgnoreCase(str4)) {
+                                    } else if ("contact".equalsIgnoreCase(str5)) {
                                         new oj0(launchActivity, LaunchActivity.U()).show();
                                         return true;
-                                    } else if ("channel".equalsIgnoreCase(str4)) {
+                                    } else if ("channel".equalsIgnoreCase(str5)) {
                                         SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
                                         if (!BuildVars.DEBUG_VERSION && globalMainSettings.getBoolean("channel_intro", false)) {
                                             u(new od(org.telegram.ui.Cells.c1.i(0, "step")), false);
@@ -227,9 +231,9 @@ public final class kb0 {
                                         u(new ContactsActivity(a1.g.h("destroyAfterSelect", true)), false);
                                         return true;
                                     }
-                                } else if ("post".equalsIgnoreCase(str5)) {
-                                    ?? r02 = "video".equalsIgnoreCase(str4);
-                                    if ("live".equalsIgnoreCase(str4)) {
+                                } else if ("post".equalsIgnoreCase(str6)) {
+                                    ?? r02 = "video".equalsIgnoreCase(str5);
+                                    if ("live".equalsIgnoreCase(str5)) {
                                         r02 = -1;
                                     }
                                     ei.vb D = ei.vb.D(launchActivity, i10);
@@ -253,8 +257,8 @@ public final class kb0 {
                                     }
                                     D.Q(null);
                                     return true;
-                                } else if ("contacts".equalsIgnoreCase(str5)) {
-                                    if ("new".equalsIgnoreCase(str4)) {
+                                } else if ("contacts".equalsIgnoreCase(str6)) {
+                                    if ("new".equalsIgnoreCase(str5)) {
                                         new oj0(launchActivity, LaunchActivity.U()).show();
                                         return true;
                                     }
@@ -262,14 +266,14 @@ public final class kb0 {
                                     bundle.putBoolean("needPhonebook", true);
                                     bundle.putBoolean("needFinishFragment", true);
                                     u(new ContactsActivity(bundle), false);
-                                    "search".equalsIgnoreCase(str4);
-                                    "sort".equalsIgnoreCase(str4);
-                                    if ("invite".equalsIgnoreCase(str4)) {
+                                    "search".equalsIgnoreCase(str5);
+                                    "sort".equalsIgnoreCase(str5);
+                                    if ("invite".equalsIgnoreCase(str5)) {
                                         x("phonebookRow");
                                         return true;
                                     }
                                     return true;
-                                } else if ("addstyle".equalsIgnoreCase(str5)) {
+                                } else if ("addstyle".equalsIgnoreCase(str6)) {
                                     return h(s11.getQueryParameter("slug"));
                                 }
                             }
@@ -283,16 +287,16 @@ public final class kb0 {
                             arrayList3.add(0, authority3);
                         }
                         if (!arrayList3.isEmpty()) {
-                            String str6 = (String) arrayList3.get(0);
+                            String str7 = (String) arrayList3.get(0);
                             if (arrayList3.size() > 1) {
-                                str3 = (String) arrayList3.get(1);
+                                str4 = (String) arrayList3.get(1);
                             } else {
-                                str3 = null;
+                                str4 = null;
                             }
-                            if (!"transfer".equalsIgnoreCase(str6)) {
+                            if (!"transfer".equalsIgnoreCase(str7)) {
                                 return false;
                             }
-                            if (arrayList3.size() == 2 && WalletEngine2.isValidRecipientAddress(str3)) {
+                            if (arrayList3.size() == 2 && WalletEngine2.isValidRecipientAddress(str4)) {
                                 try {
                                     l4 = Long.valueOf(Long.parseLong(s10.getQueryParameter("amount")));
                                 } catch (Throwable unused) {
@@ -305,16 +309,16 @@ public final class kb0 {
                                 String r10 = r(queryParameter3);
                                 boolean booleanQueryParameter = s10.getBooleanQueryParameter("encrypted", false);
                                 try {
-                                    org.telegram.ui.Wallet.o9 o9Var = new org.telegram.ui.Wallet.o9(str3);
+                                    org.telegram.ui.Wallet.i9 i9Var = new org.telegram.ui.Wallet.i9(str4);
                                     if (l4 != null && l4.longValue() > 0) {
-                                        o9Var.f34707r = l4.longValue();
+                                        i9Var.f34335r = l4.longValue();
                                     }
                                     if (!TextUtils.isEmpty(r10)) {
-                                        o9Var.f34692d0 = r10;
-                                        o9Var.f34693e0 = booleanQueryParameter;
+                                        i9Var.f34320d0 = r10;
+                                        i9Var.f34321e0 = booleanQueryParameter;
                                     }
-                                    o9Var.f34691c0 = true;
-                                    u(o9Var, false);
+                                    i9Var.f34319c0 = true;
+                                    u(i9Var, false);
                                     return true;
                                 } catch (Throwable th2) {
                                     FileLog.e(th2);
@@ -336,7 +340,7 @@ public final class kb0 {
                         if (find) {
                             StringBuilder sb2 = new StringBuilder("https://t.me/");
                             sb2.append(matcher.group(1));
-                            String str7 = "";
+                            String str8 = "";
                             if (TextUtils.isEmpty(uri2.getPath())) {
                                 path = "";
                             } else {
@@ -344,9 +348,9 @@ public final class kb0 {
                             }
                             sb2.append(path);
                             if (!TextUtils.isEmpty(uri2.getQuery())) {
-                                str7 = "?" + uri2.getQuery();
+                                str8 = "?" + uri2.getQuery();
                             }
-                            sb2.append(str7);
+                            sb2.append(str8);
                             uri2 = Uri.parse(sb2.toString());
                         }
                         String path2 = uri2.getPath();
@@ -354,38 +358,52 @@ public final class kb0 {
                             String substring = path2.substring(1);
                             List<String> pathSegments4 = uri2.getPathSegments();
                             if (pathSegments4 != null && !pathSegments4.isEmpty()) {
-                                String str8 = pathSegments4.get(0);
+                                String str9 = pathSegments4.get(0);
                                 if (pathSegments4.size() > 1) {
                                     str = pathSegments4.get(1);
                                 } else {
                                     str = null;
                                 }
-                                if ("sendgrams".equalsIgnoreCase(str8)) {
+                                if ("sendgrams".equalsIgnoreCase(str9)) {
                                     return l(uri2);
                                 }
-                                if ("$".equalsIgnoreCase(str8)) {
-                                    return i(substring.substring(1));
-                                }
-                                if ("invoice".equalsIgnoreCase(str8)) {
-                                    return i(str);
-                                }
-                                if ("addstyle".equalsIgnoreCase(str8)) {
-                                    return h(str);
-                                }
-                                if ("oauth".equalsIgnoreCase(str8)) {
-                                    return k(uri2, uri2.getQueryParameter("startapp"));
-                                }
-                                if ("newbot".equalsIgnoreCase(str8)) {
-                                    if (pathSegments4.size() >= 2) {
-                                        if (pathSegments4.size() >= 3) {
-                                            str2 = pathSegments4.get(2);
-                                        } else {
-                                            str2 = null;
+                                if ("getpremium".equalsIgnoreCase(str9)) {
+                                    String queryParameter4 = uri2.getQueryParameter("ref");
+                                    if (queryParameter4 != null) {
+                                        String lowerCase = queryParameter4.toLowerCase(Locale.ROOT);
+                                        if (f38453k.matcher(lowerCase).matches()) {
+                                            str3 = r4.c.h("tme_getpremium_", lowerCase);
+                                            u(new PremiumPreviewFragment(0, str3), false);
+                                            return true;
                                         }
-                                        j(str, str2, uri2.getQueryParameter("name"));
+                                    }
+                                    str3 = "tme_getpremium";
+                                    u(new PremiumPreviewFragment(0, str3), false);
+                                    return true;
+                                } else if ("$".equalsIgnoreCase(str9)) {
+                                    return i(substring.substring(1));
+                                } else {
+                                    if ("invoice".equalsIgnoreCase(str9)) {
+                                        return i(str);
+                                    }
+                                    if ("addstyle".equalsIgnoreCase(str9)) {
+                                        return h(str);
+                                    }
+                                    if ("oauth".equalsIgnoreCase(str9)) {
+                                        return k(uri2, uri2.getQueryParameter("startapp"));
+                                    }
+                                    if ("newbot".equalsIgnoreCase(str9)) {
+                                        if (pathSegments4.size() >= 2) {
+                                            if (pathSegments4.size() >= 3) {
+                                                str2 = pathSegments4.get(2);
+                                            } else {
+                                                str2 = null;
+                                            }
+                                            j(str, str2, uri2.getQueryParameter("name"));
+                                            return true;
+                                        }
                                         return true;
                                     }
-                                    return true;
                                 }
                             }
                         }
@@ -405,7 +423,7 @@ public final class kb0 {
         inputaicomposetoneslug.slug = str;
         gettone.tone = inputaicomposetoneslug;
         o();
-        ConnectionsManager.getInstance(this.f38469b).sendRequestTyped(gettone, new Object(), new g5(this, 14));
+        ConnectionsManager.getInstance(this.f38455b).sendRequestTyped(gettone, new Object(), new g5(this, 14));
         return true;
     }
 
@@ -418,7 +436,7 @@ public final class kb0 {
         TLRPC.TL_inputInvoiceSlug tL_inputInvoiceSlug = new TLRPC.TL_inputInvoiceSlug();
         tL_inputInvoiceSlug.slug = str;
         tL_payments_getPaymentForm.invoice = tL_inputInvoiceSlug;
-        this.h = ConnectionsManager.getInstance(this.f38469b).sendRequest(tL_payments_getPaymentForm, new ea((Object) this, (TLObject) tL_inputInvoiceSlug, str, 18));
+        this.h = ConnectionsManager.getInstance(this.f38455b).sendRequest(tL_payments_getPaymentForm, new ea((Object) this, (TLObject) tL_inputInvoiceSlug, str, 18));
         return true;
     }
 
@@ -437,7 +455,7 @@ public final class kb0 {
         if (U != null && U.getContext() != null) {
             o();
             TLRPC.User[] userArr = {null};
-            MessagesController.getInstance(this.f38469b).getUserNameResolver().resolve(str, new z(this, userArr, new org.telegram.ui.Components.i90(this, U, userArr, tL_requestPeerTypeCreateBot, 19), 10));
+            MessagesController.getInstance(this.f38455b).getUserNameResolver().resolve(str, new z(this, userArr, new org.telegram.ui.Components.i90(this, U, userArr, tL_requestPeerTypeCreateBot, 19), 10));
         }
     }
 
@@ -452,14 +470,14 @@ public final class kb0 {
         TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth = new TLRPC.TL_messages_requestUrlAuth();
         tL_messages_requestUrlAuth.flags |= 4;
         tL_messages_requestUrlAuth.url = uri.toString();
-        ConnectionsManager.getInstance(this.f38469b).sendRequestTyped(tL_messages_requestUrlAuth, new Object(), new ai.q5(19, this, tL_messages_requestUrlAuth));
+        ConnectionsManager.getInstance(this.f38455b).sendRequestTyped(tL_messages_requestUrlAuth, new Object(), new ai.q5(19, this, tL_messages_requestUrlAuth));
         return true;
     }
 
     public final boolean l(Uri uri) {
         Uri uri2;
         long j10;
-        int i10 = this.f38469b;
+        int i10 = this.f38455b;
         if (!MessagesController.getInstance(i10).config.walletAvailable.get()) {
             return false;
         }
@@ -494,17 +512,17 @@ public final class kb0 {
         j10 = 0;
         long j11 = j10;
         if (TextUtils.isEmpty(queryParameter2)) {
-            u(new org.telegram.ui.Wallet.m5(), false);
+            u(new org.telegram.ui.Wallet.n5(), false);
             return true;
         }
         if (!queryParameter2.startsWith("@") && !queryParameter2.matches("[a-zA-Z0-9_]{1,32}")) {
             if (WalletEngine2.isValidRecipientAddress(queryParameter2)) {
-                org.telegram.ui.Wallet.o9 o9Var = new org.telegram.ui.Wallet.o9(queryParameter2);
-                o9Var.f34707r = j11;
-                o9Var.f34692d0 = r10;
-                o9Var.f34693e0 = booleanQueryParameter;
-                o9Var.f34691c0 = true;
-                u(o9Var, false);
+                org.telegram.ui.Wallet.i9 i9Var = new org.telegram.ui.Wallet.i9(queryParameter2);
+                i9Var.f34335r = j11;
+                i9Var.f34320d0 = r10;
+                i9Var.f34321e0 = booleanQueryParameter;
+                i9Var.f34319c0 = true;
+                u(i9Var, false);
                 return true;
             }
         } else {
@@ -531,19 +549,19 @@ public final class kb0 {
     }
 
     public final void o() {
-        if (!this.f38471f && !this.f38472g) {
-            pf.c cVar = this.f38470c;
+        if (!this.f38457f && !this.f38458g) {
+            pf.c cVar = this.f38456c;
             if (cVar == null) {
                 if (this.e == null) {
-                    this.e = new org.telegram.ui.ActionBar.b2(this.f38468a, 3, null);
+                    this.e = new org.telegram.ui.ActionBar.b2(this.f38454a, 3, null);
                 }
                 this.e.setOnCancelListener(new jg(this, 3));
                 this.e.q(300L);
             } else {
-                cVar.f44328b = new fb0(this, 0);
+                cVar.f44285b = new fb0(this, 0);
                 cVar.d();
             }
-            this.f38471f = true;
+            this.f38457f = true;
         }
     }
 
@@ -552,21 +570,21 @@ public final class kb0 {
     }
 
     public final void u(org.telegram.ui.ActionBar.n2 n2Var, boolean z10) {
-        LaunchActivity launchActivity = this.f38468a;
+        LaunchActivity launchActivity = this.f38454a;
         launchActivity.u0(n2Var, z10, false);
         if (AndroidUtilities.isTablet()) {
-            launchActivity.f33180q0.U(true, true);
-            launchActivity.f33184s0.U(true, true);
+            launchActivity.f33173q0.U(true, true);
+            launchActivity.f33177s0.U(true, true);
         }
     }
 
     public final void v(String str, int i10, String str2, String str3) {
-        if (!this.f38474j) {
-            LaunchActivity launchActivity = this.f38468a;
+        if (!this.f38460j) {
+            LaunchActivity launchActivity = this.f38454a;
             if (!launchActivity.isFinishing() && !launchActivity.isDestroyed()) {
                 TL_wallet.tonConnectGetPending tonconnectgetpending = new TL_wallet.tonConnectGetPending();
                 tonconnectgetpending.dapp_client_id = str;
-                this.h = ConnectionsManager.getInstance(this.f38469b).sendRequestTyped(tonconnectgetpending, new Object(), new org.telegram.messenger.eh(this, str, str2, str3, i10, 2));
+                this.h = ConnectionsManager.getInstance(this.f38455b).sendRequestTyped(tonconnectgetpending, new Object(), new org.telegram.messenger.fh(this, str, str2, str3, i10, 2));
                 return;
             }
         }
@@ -574,7 +592,7 @@ public final class kb0 {
     }
 
     public final void w(String str) {
-        LaunchActivity launchActivity = this.f38468a;
+        LaunchActivity launchActivity = this.f38454a;
         if (!launchActivity.isFinishing() && !launchActivity.isDestroyed() && !"none".equals(str)) {
             if ("back".equals(str)) {
                 if (this.d) {
@@ -588,6 +606,6 @@ public final class kb0 {
     }
 
     public final void x(String str) {
-        AndroidUtilities.scrollToFragmentRow(this.f38468a.O(), str);
+        AndroidUtilities.scrollToFragmentRow(this.f38454a.O(), str);
     }
 }

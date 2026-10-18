@@ -70,10 +70,10 @@ public final class s0 extends FrameLayout {
         super.invalidate();
         t0 t0Var = this.f866w;
         cl0 cl0Var = t0Var.f880n;
-        if (t0Var.f890y != 1 && (cl0Var == null || cl0Var.getDelegate() == null || !cl0Var.getDelegate().r())) {
+        if (t0Var.f890y != 1 && (cl0Var == null || cl0Var.getDelegate() == null || !cl0Var.getDelegate().s())) {
             return;
         }
-        t0Var.f879m.f43618f0.invalidate();
+        t0Var.f879m.f43582f0.invalidate();
     }
 
     @Override

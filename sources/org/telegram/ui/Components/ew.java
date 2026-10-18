@@ -1,5 +1,5 @@
 package org.telegram.ui.Components;
-public final class ew extends sg.b1 {
+public final class ew extends sg.c1 {
     @Override
     public final void invalidate() {
         if (ah.x0.b(this)) {

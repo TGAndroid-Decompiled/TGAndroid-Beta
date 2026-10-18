@@ -10,19 +10,19 @@ import e2.x;
 import java.io.EOFException;
 import v7.u6;
 public final class n implements j0 {
-    public final j0 f50703a;
-    public final k f50704b;
-    public m f50707g;
+    public final j0 f50656a;
+    public final k f50657b;
+    public m f50660g;
     public w h;
-    public boolean f50708i;
+    public boolean f50661i;
     public int d = 0;
     public int e = 0;
-    public byte[] f50706f = m0.f8256b;
-    public final x f50705c = new x();
+    public byte[] f50659f = m0.f8254b;
+    public final x f50658c = new x();
 
     public n(j0 j0Var, k kVar) {
-        this.f50703a = j0Var;
-        this.f50704b = kVar;
+        this.f50656a = j0Var;
+        this.f50657b = kVar;
     }
 
     @Override
@@ -43,7 +43,7 @@ public final class n implements j0 {
         }
         u6.g(z10);
         boolean equals = wVar.equals(this.h);
-        k kVar = this.f50704b;
+        k kVar = this.f50657b;
         if (!equals) {
             this.h = wVar;
             if (kVar.a0(wVar)) {
@@ -51,10 +51,10 @@ public final class n implements j0 {
             } else {
                 mVar = null;
             }
-            this.f50707g = mVar;
+            this.f50660g = mVar;
         }
-        m mVar2 = this.f50707g;
-        j0 j0Var = this.f50703a;
+        m mVar2 = this.f50660g;
+        j0 j0Var = this.f50656a;
         if (mVar2 == null) {
             j0Var.b(wVar);
             return;
@@ -79,11 +79,11 @@ public final class n implements j0 {
 
     @Override
     public final int f(o oVar, int i10, boolean z10) {
-        if (this.f50707g == null) {
-            return this.f50703a.f(oVar, i10, z10);
+        if (this.f50660g == null) {
+            return this.f50656a.f(oVar, i10, z10);
         }
         h(i10);
-        int read = oVar.read(this.f50706f, this.e, i10);
+        int read = oVar.read(this.f50659f, this.e, i10);
         if (read == -1) {
             if (z10) {
                 return -1;
@@ -96,25 +96,25 @@ public final class n implements j0 {
 
     @Override
     public final void g(x xVar, int i10, int i11) {
-        if (this.f50707g == null) {
-            this.f50703a.g(xVar, i10, i11);
+        if (this.f50660g == null) {
+            this.f50656a.g(xVar, i10, i11);
             return;
         }
         h(i10);
-        xVar.k(this.e, i10, this.f50706f);
+        xVar.k(this.e, i10, this.f50659f);
         this.e += i10;
     }
 
     public final void h(int i10) {
         byte[] bArr;
-        int length = this.f50706f.length;
+        int length = this.f50659f.length;
         int i11 = this.e;
         if (length - i11 >= i10) {
             return;
         }
         int i12 = i11 - this.d;
         int max = Math.max(i12 * 2, i10 + i12);
-        byte[] bArr2 = this.f50706f;
+        byte[] bArr2 = this.f50659f;
         if (max <= bArr2.length) {
             bArr = bArr2;
         } else {
@@ -123,7 +123,7 @@ public final class n implements j0 {
         System.arraycopy(bArr2, this.d, bArr, 0, i12);
         this.d = 0;
         this.e = i12;
-        this.f50706f = bArr;
+        this.f50659f = bArr;
     }
 
     @Override

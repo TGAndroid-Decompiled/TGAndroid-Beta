@@ -2,10 +2,10 @@ package n7;
 
 import java.util.Arrays;
 public final class b1 extends d1 {
-    public final String f17263a;
+    public final String f17259a;
 
     public b1(String str) {
-        this.f17263a = str;
+        this.f17259a = str;
     }
 
     @Override
@@ -16,9 +16,9 @@ public final class b1 extends d1 {
         if (c10 != zza) {
             return c10 - d1Var.zza();
         }
-        String str = ((b1) d1Var).f17263a;
+        String str = ((b1) d1Var).f17259a;
         int length = str.length();
-        String str2 = this.f17263a;
+        String str2 = this.f17259a;
         if (str2.length() != length) {
             return str2.length() - str.length();
         }
@@ -32,15 +32,15 @@ public final class b1 extends d1 {
         if (obj == null || b1.class != obj.getClass()) {
             return false;
         }
-        return this.f17263a.equals(((b1) obj).f17263a);
+        return this.f17259a.equals(((b1) obj).f17259a);
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Integer.valueOf(d1.c((byte) 96)), this.f17263a});
+        return Arrays.hashCode(new Object[]{Integer.valueOf(d1.c((byte) 96)), this.f17259a});
     }
 
     public final String toString() {
-        return a1.g.s(new StringBuilder("\""), this.f17263a, "\"");
+        return a1.g.s(new StringBuilder("\""), this.f17259a, "\"");
     }
 
     @Override

@@ -24,57 +24,57 @@ import n4.s;
 import n6.l;
 import v7.y6;
 public final class f {
-    public static final g6.b f10469u = new g6.b("MediaNotificationProxy", null);
-    public final Context f10470a;
-    public final NotificationManager f10471b;
-    public final e6.f f10472c;
+    public static final g6.b f10467u = new g6.b("MediaNotificationProxy", null);
+    public final Context f10468a;
+    public final NotificationManager f10469b;
+    public final e6.f f10470c;
     public final ComponentName d;
     public final ComponentName e;
-    public ArrayList f10473f = new ArrayList();
-    public int[] f10474g;
+    public ArrayList f10471f = new ArrayList();
+    public int[] f10472g;
     public final long h;
-    public final z5 f10475i;
-    public final Resources f10476j;
-    public af.e f10477k;
-    public s f10478l;
-    public e0.h f10479m;
-    public e0.h f10480n;
-    public e0.h f10481o;
-    public e0.h f10482p;
-    public e0.h f10483q;
-    public e0.h f10484r;
-    public e0.h f10485s;
-    public e0.h f10486t;
+    public final z5 f10473i;
+    public final Resources f10474j;
+    public af.e f10475k;
+    public s f10476l;
+    public e0.h f10477m;
+    public e0.h f10478n;
+    public e0.h f10479o;
+    public e0.h f10480p;
+    public e0.h f10481q;
+    public e0.h f10482r;
+    public e0.h f10483s;
+    public e0.h f10484t;
 
     public f(Context context) {
-        this.f10470a = context;
+        this.f10468a = context;
         NotificationManager notificationManager = (NotificationManager) context.getSystemService("notification");
-        this.f10471b = notificationManager;
-        g6.b bVar = d6.a.f7829l;
+        this.f10469b = notificationManager;
+        g6.b bVar = d6.a.f7827l;
         l.e("Must be called from the main thread.");
-        d6.a aVar = d6.a.f7831n;
+        d6.a aVar = d6.a.f7829n;
         l.h(aVar);
         l.e("Must be called from the main thread.");
         d6.b bVar2 = aVar.e;
         l.h(bVar2);
-        e6.a aVar2 = bVar2.f7844f;
+        e6.a aVar2 = bVar2.f7842f;
         l.h(aVar2);
         e6.f fVar = aVar2.d;
         l.h(fVar);
-        this.f10472c = fVar;
+        this.f10470c = fVar;
         aVar2.b();
         Resources resources = context.getResources();
-        this.f10476j = resources;
-        this.d = new ComponentName(context.getApplicationContext(), aVar2.f8341a);
+        this.f10474j = resources;
+        this.d = new ComponentName(context.getApplicationContext(), aVar2.f8339a);
         String str = fVar.d;
         if (!TextUtils.isEmpty(str)) {
             this.e = new ComponentName(context.getApplicationContext(), str);
         } else {
             this.e = null;
         }
-        this.h = fVar.f8363c;
+        this.h = fVar.f8361c;
         int dimensionPixelSize = resources.getDimensionPixelSize(fVar.H);
-        this.f10475i = new z5(context.getApplicationContext(), new e6.b(1, dimensionPixelSize, dimensionPixelSize));
+        this.f10473i = new z5(context.getApplicationContext(), new e6.b(1, dimensionPixelSize, dimensionPixelSize));
         if (u6.b.d() && notificationManager != null) {
             NotificationChannel notificationChannel = new NotificationChannel("cast_media_notification", context.getResources().getString(2131689632), 2);
             notificationChannel.setShowBadge(false);
@@ -89,21 +89,21 @@ public final class f {
         int hashCode = str.hashCode();
         long j10 = this.h;
         PendingIntent pendingIntent = null;
-        Resources resources = this.f10476j;
-        Context context = this.f10470a;
+        Resources resources = this.f10474j;
+        Context context = this.f10468a;
         ComponentName componentName = this.d;
-        e6.f fVar = this.f10472c;
+        e6.f fVar = this.f10470c;
         switch (hashCode) {
             case -1699820260:
                 if (str.equals("com.google.android.gms.cast.framework.action.REWIND")) {
-                    if (this.f10484r == null) {
+                    if (this.f10482r == null) {
                         Intent intent = new Intent("com.google.android.gms.cast.framework.action.REWIND");
                         intent.setComponent(componentName);
                         intent.putExtra("googlecast-extra_skip_step_ms", j10);
                         PendingIntent broadcast = PendingIntent.getBroadcast(context, 0, intent, 201326592);
-                        g6.b bVar = i.f10506a;
+                        g6.b bVar = i.f10504a;
                         int i12 = (j10 > 10000L ? 1 : (j10 == 10000L ? 0 : -1));
-                        int i13 = fVar.f8370y;
+                        int i13 = fVar.f8368y;
                         if (i12 == 0) {
                             i13 = fVar.E;
                         } else if (j10 == 30000) {
@@ -115,67 +115,67 @@ public final class f {
                         } else if (j10 == 30000) {
                             i14 = fVar.T;
                         }
-                        this.f10484r = new e0.g(i13, resources.getString(i14), broadcast).b();
+                        this.f10482r = new e0.g(i13, resources.getString(i14), broadcast).b();
                     }
-                    return this.f10484r;
+                    return this.f10482r;
                 }
                 break;
             case -945151566:
                 if (str.equals("com.google.android.gms.cast.framework.action.SKIP_NEXT")) {
-                    boolean z10 = this.f10477k.f559c;
-                    if (this.f10481o == null) {
+                    boolean z10 = this.f10475k.f559c;
+                    if (this.f10479o == null) {
                         if (z10) {
                             Intent intent2 = new Intent("com.google.android.gms.cast.framework.action.SKIP_NEXT");
                             intent2.setComponent(componentName);
                             pendingIntent = PendingIntent.getBroadcast(context, 0, intent2, 67108864);
                         }
-                        this.f10481o = new e0.g(fVar.f8366r, resources.getString(fVar.M), pendingIntent).b();
+                        this.f10479o = new e0.g(fVar.f8364r, resources.getString(fVar.M), pendingIntent).b();
                     }
-                    return this.f10481o;
+                    return this.f10479o;
                 }
                 break;
             case -945080078:
                 if (str.equals("com.google.android.gms.cast.framework.action.SKIP_PREV")) {
-                    boolean z11 = this.f10477k.d;
-                    if (this.f10482p == null) {
+                    boolean z11 = this.f10475k.d;
+                    if (this.f10480p == null) {
                         if (z11) {
                             Intent intent3 = new Intent("com.google.android.gms.cast.framework.action.SKIP_PREV");
                             intent3.setComponent(componentName);
                             pendingIntent = PendingIntent.getBroadcast(context, 0, intent3, 67108864);
                         }
-                        this.f10482p = new e0.g(fVar.f8367s, resources.getString(fVar.N), pendingIntent).b();
+                        this.f10480p = new e0.g(fVar.f8365s, resources.getString(fVar.N), pendingIntent).b();
                     }
-                    return this.f10482p;
+                    return this.f10480p;
                 }
                 break;
             case -668151673:
                 if (str.equals("com.google.android.gms.cast.framework.action.STOP_CASTING")) {
-                    if (this.f10486t == null) {
+                    if (this.f10484t == null) {
                         Intent intent4 = new Intent("com.google.android.gms.cast.framework.action.STOP_CASTING");
                         intent4.setComponent(componentName);
-                        this.f10486t = new e0.g(fVar.G, resources.getString(fVar.U), PendingIntent.getBroadcast(context, 0, intent4, 67108864)).b();
+                        this.f10484t = new e0.g(fVar.G, resources.getString(fVar.U), PendingIntent.getBroadcast(context, 0, intent4, 67108864)).b();
                     }
-                    return this.f10486t;
+                    return this.f10484t;
                 }
                 break;
             case -124479363:
                 if (str.equals("com.google.android.gms.cast.framework.action.DISCONNECT")) {
-                    if (this.f10485s == null) {
+                    if (this.f10483s == null) {
                         Intent intent5 = new Intent("com.google.android.gms.cast.framework.action.DISCONNECT");
                         intent5.setComponent(componentName);
-                        this.f10485s = new e0.g(fVar.G, resources.getString(fVar.U, ""), PendingIntent.getBroadcast(context, 0, intent5, 67108864)).b();
+                        this.f10483s = new e0.g(fVar.G, resources.getString(fVar.U, ""), PendingIntent.getBroadcast(context, 0, intent5, 67108864)).b();
                     }
-                    return this.f10485s;
+                    return this.f10483s;
                 }
                 break;
             case 235550565:
                 if (str.equals("com.google.android.gms.cast.framework.action.TOGGLE_PLAYBACK")) {
-                    af.e eVar = this.f10477k;
+                    af.e eVar = this.f10475k;
                     int i15 = eVar.f558b;
                     if (eVar.f557a) {
-                        if (this.f10480n == null) {
+                        if (this.f10478n == null) {
                             if (i15 == 2) {
-                                i10 = fVar.f8364f;
+                                i10 = fVar.f8362f;
                                 i11 = fVar.J;
                             } else {
                                 i10 = fVar.h;
@@ -183,32 +183,32 @@ public final class f {
                             }
                             Intent intent6 = new Intent("com.google.android.gms.cast.framework.action.TOGGLE_PLAYBACK");
                             intent6.setComponent(componentName);
-                            this.f10480n = new e0.g(i10, resources.getString(i11), PendingIntent.getBroadcast(context, 0, intent6, 67108864)).b();
+                            this.f10478n = new e0.g(i10, resources.getString(i11), PendingIntent.getBroadcast(context, 0, intent6, 67108864)).b();
                         }
-                        return this.f10480n;
+                        return this.f10478n;
                     }
-                    if (this.f10479m == null) {
+                    if (this.f10477m == null) {
                         Intent intent7 = new Intent("com.google.android.gms.cast.framework.action.TOGGLE_PLAYBACK");
                         intent7.setComponent(componentName);
-                        this.f10479m = new e0.g(fVar.f8365n, resources.getString(fVar.L), PendingIntent.getBroadcast(context, 0, intent7, 67108864)).b();
+                        this.f10477m = new e0.g(fVar.f8363n, resources.getString(fVar.L), PendingIntent.getBroadcast(context, 0, intent7, 67108864)).b();
                     }
-                    return this.f10479m;
+                    return this.f10477m;
                 }
                 break;
             case 1362116196:
                 if (str.equals("com.google.android.gms.cast.framework.action.FORWARD")) {
-                    if (this.f10483q == null) {
+                    if (this.f10481q == null) {
                         Intent intent8 = new Intent("com.google.android.gms.cast.framework.action.FORWARD");
                         intent8.setComponent(componentName);
                         intent8.putExtra("googlecast-extra_skip_step_ms", j10);
                         PendingIntent broadcast2 = PendingIntent.getBroadcast(context, 0, intent8, 201326592);
-                        g6.b bVar2 = i.f10506a;
+                        g6.b bVar2 = i.f10504a;
                         int i16 = (j10 > 10000L ? 1 : (j10 == 10000L ? 0 : -1));
                         int i17 = fVar.v;
                         if (i16 == 0) {
-                            i17 = fVar.f8368w;
+                            i17 = fVar.f8366w;
                         } else if (j10 == 30000) {
-                            i17 = fVar.f8369x;
+                            i17 = fVar.f8367x;
                         }
                         int i18 = fVar.O;
                         if (i16 == 0) {
@@ -216,14 +216,14 @@ public final class f {
                         } else if (j10 == 30000) {
                             i18 = fVar.Q;
                         }
-                        this.f10483q = new e0.g(i17, resources.getString(i18), broadcast2).b();
+                        this.f10481q = new e0.g(i17, resources.getString(i18), broadcast2).b();
                     }
-                    return this.f10483q;
+                    return this.f10481q;
                 }
                 break;
         }
-        g6.b bVar3 = f10469u;
-        Log.e(bVar3.f10845a, bVar3.d("Action: %s is not a pre-defined action.", str));
+        g6.b bVar3 = f10467u;
+        Log.e(bVar3.f10843a, bVar3.d("Action: %s is not a pre-defined action.", str));
         return null;
     }
 
@@ -232,25 +232,25 @@ public final class f {
         PendingIntent activities;
         int[] iArr;
         e0.h a2;
-        NotificationManager notificationManager = this.f10471b;
-        if (notificationManager != null && this.f10477k != null) {
-            s sVar = this.f10478l;
+        NotificationManager notificationManager = this.f10469b;
+        if (notificationManager != null && this.f10475k != null) {
+            s sVar = this.f10476l;
             if (sVar == null) {
                 bitmap = null;
             } else {
-                bitmap = (Bitmap) sVar.f17129c;
+                bitmap = (Bitmap) sVar.f17125c;
             }
-            Context context = this.f10470a;
+            Context context = this.f10468a;
             q qVar = new q(context, "cast_media_notification");
             qVar.j(bitmap);
-            e6.f fVar = this.f10472c;
+            e6.f fVar = this.f10470c;
             qVar.E.icon = fVar.e;
-            qVar.e = q.d((String) this.f10477k.f560f);
+            qVar.e = q.d((String) this.f10475k.f560f);
             int i10 = 0;
-            qVar.f8147f = q.d(this.f10476j.getString(fVar.I, (String) this.f10477k.f561g));
+            qVar.f8145f = q.d(this.f10474j.getString(fVar.I, (String) this.f10475k.f561g));
             qVar.h(2, true);
-            qVar.f8151k = false;
-            qVar.f8163x = 1;
+            qVar.f8149k = false;
+            qVar.f8161x = 1;
             ComponentName componentName = this.e;
             if (componentName == null) {
                 activities = null;
@@ -285,10 +285,10 @@ public final class f {
                 }
             }
             if (activities != null) {
-                qVar.f8148g = activities;
+                qVar.f8146g = activities;
             }
             p pVar = fVar.V;
-            g6.b bVar = f10469u;
+            g6.b bVar = f10467u;
             if (pVar != null) {
                 bVar.b("actionsProvider != null", new Object[0]);
                 int[] b10 = i.b(pVar);
@@ -297,9 +297,9 @@ public final class f {
                 } else {
                     iArr = (int[]) b10.clone();
                 }
-                this.f10474g = iArr;
+                this.f10472g = iArr;
                 ArrayList a11 = i.a(pVar);
-                this.f10473f = new ArrayList();
+                this.f10471f = new ArrayList();
                 if (a11 != null) {
                     int size2 = a11.size();
                     int i11 = 0;
@@ -307,23 +307,23 @@ public final class f {
                         Object obj = a11.get(i11);
                         i11++;
                         e6.d dVar = (e6.d) obj;
-                        String str = dVar.f8358a;
+                        String str = dVar.f8356a;
                         if (!str.equals("com.google.android.gms.cast.framework.action.TOGGLE_PLAYBACK") && !str.equals("com.google.android.gms.cast.framework.action.SKIP_NEXT") && !str.equals("com.google.android.gms.cast.framework.action.SKIP_PREV") && !str.equals("com.google.android.gms.cast.framework.action.FORWARD") && !str.equals("com.google.android.gms.cast.framework.action.REWIND") && !str.equals("com.google.android.gms.cast.framework.action.STOP_CASTING") && !str.equals("com.google.android.gms.cast.framework.action.DISCONNECT")) {
                             Intent intent2 = new Intent(str);
                             intent2.setComponent(this.d);
-                            a2 = new e0.g(dVar.f8359b, dVar.f8360c, PendingIntent.getBroadcast(context, 0, intent2, 67108864)).b();
+                            a2 = new e0.g(dVar.f8357b, dVar.f8358c, PendingIntent.getBroadcast(context, 0, intent2, 67108864)).b();
                         } else {
                             a2 = a(str);
                         }
                         if (a2 != null) {
-                            this.f10473f.add(a2);
+                            this.f10471f.add(a2);
                         }
                     }
                 }
             } else {
                 bVar.b("actionsProvider == null", new Object[0]);
-                this.f10473f = new ArrayList();
-                ArrayList arrayList2 = fVar.f8361a;
+                this.f10471f = new ArrayList();
+                ArrayList arrayList2 = fVar.f8359a;
                 int size3 = arrayList2.size();
                 int i12 = 0;
                 while (i12 < size3) {
@@ -331,31 +331,31 @@ public final class f {
                     i12++;
                     e0.h a12 = a((String) obj2);
                     if (a12 != null) {
-                        this.f10473f.add(a12);
+                        this.f10471f.add(a12);
                     }
                 }
-                int[] iArr2 = fVar.f8362b;
-                this.f10474g = (int[]) Arrays.copyOf(iArr2, iArr2.length).clone();
+                int[] iArr2 = fVar.f8360b;
+                this.f10472g = (int[]) Arrays.copyOf(iArr2, iArr2.length).clone();
             }
-            ArrayList arrayList3 = this.f10473f;
+            ArrayList arrayList3 = this.f10471f;
             int size4 = arrayList3.size();
             while (i10 < size4) {
                 Object obj3 = arrayList3.get(i10);
                 i10++;
                 e0.h hVar = (e0.h) obj3;
                 if (hVar != null) {
-                    qVar.f8145b.add(hVar);
+                    qVar.f8143b.add(hVar);
                 }
             }
             ?? yVar = new y();
             yVar.e = null;
-            int[] iArr3 = this.f10474g;
+            int[] iArr3 = this.f10472g;
             if (iArr3 != null) {
                 yVar.e = iArr3;
             }
-            MediaSessionCompat$Token mediaSessionCompat$Token = (MediaSessionCompat$Token) this.f10477k.e;
+            MediaSessionCompat$Token mediaSessionCompat$Token = (MediaSessionCompat$Token) this.f10475k.e;
             if (mediaSessionCompat$Token != null) {
-                yVar.f50671f = mediaSessionCompat$Token;
+                yVar.f50624f = mediaSessionCompat$Token;
             }
             qVar.n(yVar);
             notificationManager.notify("castMediaNotification", 1, qVar.b());

@@ -17,7 +17,7 @@ import android.util.Log;
 import com.google.android.gms.tasks.TaskCompletionSource;
 import e9.m2;
 import java.util.List;
-import w7.x6;
+import w7.v6;
 public abstract class d {
     public static void a(Context context, boolean z10, TaskCompletionSource taskCompletionSource) {
         try {
@@ -70,22 +70,22 @@ public abstract class d {
                     break;
                 }
             }
-            if (i12 == 1 && x6.f48903a == null) {
+            if (i12 == 1 && v6.f48843a == null) {
                 int i14 = Build.VERSION.SDK_INT;
                 if (i14 < 37) {
                     int d10 = d(true);
                     if (i14 < 35) {
-                        x6.f48903a = Boolean.valueOf(z10);
+                        v6.f48843a = Boolean.valueOf(z10);
                         if (z10) {
                         }
                     } else {
-                        x6.f48903a = Boolean.valueOf(z10);
+                        v6.f48843a = Boolean.valueOf(z10);
                         if (z10) {
                         }
                     }
                 }
                 z10 = false;
-                x6.f48903a = Boolean.valueOf(z10);
+                v6.f48843a = Boolean.valueOf(z10);
                 if (z10) {
                 }
             }
@@ -135,10 +135,10 @@ public abstract class d {
     public static e9.x1 e(f fVar) {
         e9.k0 t10 = e9.n0.t();
         e9.q0 q0Var = k2.b.h;
-        e9.y0 y0Var = q0Var.f8490b;
+        e9.y0 y0Var = q0Var.f8488b;
         if (y0Var == null) {
             y0Var = q0Var.c();
-            q0Var.f8490b = y0Var;
+            q0Var.f8488b = y0Var;
         }
         m2 it = y0Var.iterator();
         while (it.hasNext()) {

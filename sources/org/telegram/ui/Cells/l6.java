@@ -4,7 +4,7 @@ import android.view.View;
 import org.telegram.ui.Components.im0;
 import org.telegram.ui.Components.ko;
 import org.telegram.ui.LaunchActivity;
-public final class l6 extends ci.y7 {
+public final class l6 extends ci.x7 {
     public final int S = 0;
     public final View T;
 
@@ -24,7 +24,7 @@ public final class l6 extends ci.y7 {
                 org.telegram.ui.ActionBar.n2 R = LaunchActivity.R();
                 if (R != null) {
                     R.getOrCreateStoryViewer().getClass();
-                    R.getOrCreateStoryViewer().D(vaVar.getContext(), j10, ci.r7.a((im0) vaVar.getParent()));
+                    R.getOrCreateStoryViewer().D(vaVar.getContext(), j10, ci.q7.a((im0) vaVar.getParent()));
                     return;
                 }
                 return;

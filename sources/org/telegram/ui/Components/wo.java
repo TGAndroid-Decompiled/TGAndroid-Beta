@@ -7,38 +7,38 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.TLRPC;
 public final class wo implements View.OnClickListener {
-    public final int f32167a;
-    public final Context f32168b;
-    public final int f32169c;
+    public final int f32160a;
+    public final Context f32161b;
+    public final int f32162c;
     public final Object d;
     public final Object e;
-    public final Object f32170f;
+    public final Object f32163f;
 
     public wo(Object obj, Context context, Object obj2, int i10, Object obj3, int i11) {
-        this.f32167a = i11;
+        this.f32160a = i11;
         this.d = obj;
-        this.f32168b = context;
+        this.f32161b = context;
         this.e = obj2;
-        this.f32169c = i10;
-        this.f32170f = obj3;
+        this.f32162c = i10;
+        this.f32163f = obj3;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f32167a) {
+        switch (this.f32160a) {
             case 0:
                 ((zo) this.d).a();
-                i2.r rVar = new i2.r(this.f32169c, (yo) this.f32170f, 7);
-                f5.F(this.f32168b, (org.telegram.ui.ActionBar.d6) this.e, rVar);
+                i2.r rVar = new i2.r(this.f32162c, (yo) this.f32163f, 7);
+                f5.F(this.f32161b, (org.telegram.ui.ActionBar.d6) this.e, rVar);
                 return;
             default:
                 xp xpVar = (xp) this.e;
-                TLRPC.TL_inputGroupCallSlug tL_inputGroupCallSlug = (TLRPC.TL_inputGroupCallSlug) this.f32170f;
+                TLRPC.TL_inputGroupCallSlug tL_inputGroupCallSlug = (TLRPC.TL_inputGroupCallSlug) this.f32163f;
                 ((org.telegram.ui.ActionBar.f3) this.d).dismiss();
-                Activity findActivity = AndroidUtilities.findActivity(this.f32168b);
+                Activity findActivity = AndroidUtilities.findActivity(this.f32161b);
                 if (findActivity != null) {
-                    MessagesController.getGlobalMainSettings().edit().putBoolean("callmiconstart", xpVar.f32435a.f24154q).apply();
-                    org.telegram.ui.Components.voip.d2.g(findActivity, this.f32169c, tL_inputGroupCallSlug, false, null, null);
+                    MessagesController.getGlobalMainSettings().edit().putBoolean("callmiconstart", xpVar.f32428a.f24147q).apply();
+                    org.telegram.ui.Components.voip.d2.g(findActivity, this.f32162c, tL_inputGroupCallSlug, false, null, null);
                     return;
                 }
                 return;

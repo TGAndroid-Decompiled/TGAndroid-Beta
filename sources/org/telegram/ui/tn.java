@@ -2,16 +2,16 @@ package org.telegram.ui;
 
 import android.os.Bundle;
 public final class tn extends sn {
-    public final un Qc;
+    public final un Rc;
 
     public tn(un unVar, Bundle bundle) {
         super(bundle);
-        this.Qc = unVar;
+        this.Rc = unVar;
     }
 
     @Override
     public final void aa(boolean z10) {
-        this.Qc.b(z10);
+        this.Rc.b(z10);
     }
 
     @Override

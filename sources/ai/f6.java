@@ -10,24 +10,24 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.tl.TL_stars;
 public final class f6 extends View {
-    public final u6 f1285a;
-    public final ImageReceiver f1286b;
-    public final Path f1287c;
+    public final u6 f1286a;
+    public final ImageReceiver f1287b;
+    public final Path f1288c;
     public final Paint d;
 
     public f6(Context context, TL_stars.StarGift starGift, TLObject tLObject) {
         super(context);
         Path path = new Path();
-        this.f1287c = path;
+        this.f1288c = path;
         Paint paint = new Paint(1);
         this.d = paint;
         u6 u6Var = new u6(this, starGift, 60, 0.27f);
-        this.f1285a = u6Var;
+        this.f1286a = u6Var;
         u6Var.K = 3;
         org.telegram.ui.Components.h9 h9Var = new org.telegram.ui.Components.h9((org.telegram.ui.ActionBar.d6) null);
         h9Var.p(tLObject);
         ImageReceiver imageReceiver = new ImageReceiver(this);
-        this.f1286b = imageReceiver;
+        this.f1287b = imageReceiver;
         imageReceiver.setRoundRadius(AndroidUtilities.dp(30.0f));
         imageReceiver.setForUserOrChat(tLObject, h9Var);
         paint.setColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.E6, false));
@@ -44,27 +44,27 @@ public final class f6 extends View {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f1286b.onAttachedToWindow();
+        this.f1287b.onAttachedToWindow();
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f1286b.onDetachedFromWindow();
+        this.f1287b.onDetachedFromWindow();
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         int width = (getWidth() / 2) - (AndroidUtilities.dp(156.0f) / 2);
         int height = (getHeight() / 2) - AndroidUtilities.dp(30.0f);
-        u6 u6Var = this.f1285a;
+        u6 u6Var = this.f1286a;
         u6Var.setBounds(width, height, AndroidUtilities.dp(60.0f) + width, AndroidUtilities.dp(60.0f) + height);
         u6Var.draw(canvas);
         canvas.save();
         canvas.translate((getWidth() / 2.0f) - (AndroidUtilities.dp(6.166f) / 2.0f), getHeight() / 2.0f);
-        canvas.drawPath(this.f1287c, this.d);
+        canvas.drawPath(this.f1288c, this.d);
         canvas.restore();
-        ImageReceiver imageReceiver = this.f1286b;
+        ImageReceiver imageReceiver = this.f1287b;
         imageReceiver.setImageCoords(AndroidUtilities.dp(96.0f) + width, height, AndroidUtilities.dp(60.0f), AndroidUtilities.dp(60.0f));
         imageReceiver.draw(canvas);
     }
@@ -77,14 +77,14 @@ public final class f6 extends View {
     public f6(Context context, TL_stars.TL_starGiftUnique tL_starGiftUnique) {
         super(context);
         Path path = new Path();
-        this.f1287c = path;
+        this.f1288c = path;
         Paint paint = new Paint(1);
         this.d = paint;
         u6 u6Var = new u6(this, tL_starGiftUnique, 60, 0.27f);
-        this.f1285a = u6Var;
+        this.f1286a = u6Var;
         u6Var.K = 3;
         ImageReceiver imageReceiver = new ImageReceiver(this);
-        this.f1286b = imageReceiver;
+        this.f1287b = imageReceiver;
         imageReceiver.setRoundRadius(AndroidUtilities.dp(30.0f));
         imageReceiver.setImageBitmap(org.telegram.ui.Cells.t6.a(60, "fragment"));
         paint.setColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.E6, false));

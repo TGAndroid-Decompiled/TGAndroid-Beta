@@ -4,40 +4,40 @@ import android.view.KeyEvent;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.tl.TL_stars;
 public final class x4 implements Utilities.Callback {
-    public final int f2427a = 1;
-    public final int f2428b;
-    public final int f2429c;
+    public final int f2429a = 1;
+    public final int f2430b;
+    public final int f2431c;
     public final int d;
     public final KeyEvent.Callback e;
-    public final Object f2430f;
-    public final Object f2431g;
+    public final Object f2432f;
+    public final Object f2433g;
 
     public x4(int i10, int i11, org.telegram.ui.Components.r3 r3Var, org.telegram.ui.Components.t3 t3Var, int i12, org.telegram.ui.Components.s3 s3Var) {
-        this.f2428b = i10;
-        this.f2429c = i11;
+        this.f2430b = i10;
+        this.f2431c = i11;
         this.e = r3Var;
-        this.f2430f = t3Var;
+        this.f2432f = t3Var;
         this.d = i12;
-        this.f2431g = s3Var;
+        this.f2433g = s3Var;
     }
 
     @Override
     public final void run(Object obj) {
         int i10;
         int i11;
-        switch (this.f2427a) {
+        switch (this.f2429a) {
             case 0:
-                k7.T((k7) this.e, this.f2428b, this.f2429c, this.d, (ug.m1[]) this.f2430f, (TL_stars.TL_starGiftUnique) this.f2431g, (Long) obj);
+                k7.S((k7) this.e, this.f2430b, this.f2431c, this.d, (ug.m1[]) this.f2432f, (TL_stars.TL_starGiftUnique) this.f2433g, (Long) obj);
                 return;
             default:
                 org.telegram.ui.Components.r3 r3Var = (org.telegram.ui.Components.r3) this.e;
-                org.telegram.ui.Components.t3 t3Var = (org.telegram.ui.Components.t3) this.f2430f;
-                org.telegram.ui.Components.s3 s3Var = (org.telegram.ui.Components.s3) this.f2431g;
+                org.telegram.ui.Components.t3 t3Var = (org.telegram.ui.Components.t3) this.f2432f;
+                org.telegram.ui.Components.s3 s3Var = (org.telegram.ui.Components.s3) this.f2433g;
                 Boolean bool = (Boolean) obj;
-                int i12 = this.f2428b;
+                int i12 = this.f2430b;
                 int i13 = i12 % 60;
                 int i14 = (i12 - i13) / 60;
-                int i15 = this.f2429c;
+                int i15 = this.f2431c;
                 int i16 = i15 % 60;
                 int i17 = (i15 - i16) / 60;
                 int i18 = 59;
@@ -103,10 +103,10 @@ public final class x4 implements Utilities.Callback {
 
     public x4(k7 k7Var, int i10, int i11, int i12, ug.m1[] m1VarArr, TL_stars.TL_starGiftUnique tL_starGiftUnique) {
         this.e = k7Var;
-        this.f2428b = i10;
-        this.f2429c = i11;
+        this.f2430b = i10;
+        this.f2431c = i11;
         this.d = i12;
-        this.f2430f = m1VarArr;
-        this.f2431g = tL_starGiftUnique;
+        this.f2432f = m1VarArr;
+        this.f2433g = tL_starGiftUnique;
     }
 }

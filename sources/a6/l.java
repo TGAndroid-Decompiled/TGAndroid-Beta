@@ -59,7 +59,7 @@ public final class l extends b8.b {
                     v0 a10 = c9.a(revocationBoundService, googleSignInOptions);
                     if (b10 != null) {
                         s0 s0Var = a10.h;
-                        Context context = a10.f6530a;
+                        Context context = a10.f6528a;
                         if (a10.h() == 3) {
                             z10 = true;
                         } else {
@@ -82,7 +82,7 @@ public final class l extends b8.b {
                             }
                         } else {
                             g gVar = new g(s0Var, 1);
-                            s0Var.f6494b.d(1, gVar);
+                            s0Var.f6492b.d(1, gVar);
                             basePendingResult = gVar;
                         }
                         n6.l.n(basePendingResult, new rb.b(14));

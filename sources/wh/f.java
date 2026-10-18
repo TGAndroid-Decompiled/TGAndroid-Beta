@@ -15,27 +15,27 @@ import org.telegram.ui.Components.i60;
 import org.telegram.ui.Components.t50;
 import org.telegram.ui.l41;
 public final class f {
-    public static HashMap f49082n;
-    public final double f49083a;
-    public final double f49084b;
-    public final int f49085c;
+    public static HashMap f49035n;
+    public final double f49036a;
+    public final double f49037b;
+    public final int f49038c;
     public final l41 d;
     public final i60 e;
-    public e f49086f;
-    public final int f49087g;
+    public e f49039f;
+    public final int f49040g;
     public final int h;
-    public boolean f49088i;
-    public final ArrayList f49089j = new ArrayList();
-    public final HashMap f49090k = new HashMap();
-    public int f49091l = 0;
-    public final d f49092m = new d(this, 0);
+    public boolean f49041i;
+    public final ArrayList f49042j = new ArrayList();
+    public final HashMap f49043k = new HashMap();
+    public int f49044l = 0;
+    public final d f49045m = new d(this, 0);
 
     public f(int i10, l41 l41Var, int i11, int i12) {
         double d = 1.0d / ((int) AndroidUtilities.screenRefreshRate);
-        this.f49083a = d;
-        this.f49084b = d * 4.0d;
-        this.f49085c = i10;
-        this.f49087g = i11;
+        this.f49036a = d;
+        this.f49037b = d * 4.0d;
+        this.f49038c = i10;
+        this.f49040g = i11;
         this.h = i12;
         this.d = l41Var;
         i60 i60Var = new i60(this, l41Var.getContext(), 1);
@@ -48,10 +48,10 @@ public final class f {
     public static f d(int i10, View view, ViewGroup viewGroup) {
         int min;
         if (view != null) {
-            if (f49082n == null) {
-                f49082n = new HashMap();
+            if (f49035n == null) {
+                f49035n = new HashMap();
             }
-            f fVar = (f) f49082n.get(Integer.valueOf(i10));
+            f fVar = (f) f49035n.get(Integer.valueOf(i10));
             if (fVar == null) {
                 int devicePerformanceClass = SharedConfig.getDevicePerformanceClass();
                 if (devicePerformanceClass != 1) {
@@ -67,7 +67,7 @@ public final class f {
                     min = Math.min(900, (int) (((point3.x + point3.y) / 2.0f) * 0.8f));
                 }
                 if (viewGroup != null) {
-                    HashMap hashMap = f49082n;
+                    HashMap hashMap = f49035n;
                     Integer valueOf = Integer.valueOf(i10);
                     l41 l41Var = new l41(viewGroup.getContext(), 11);
                     viewGroup.addView(l41Var);
@@ -98,33 +98,33 @@ public final class f {
 
     public static void f(boolean z10) {
         e eVar;
-        HashMap hashMap = f49082n;
+        HashMap hashMap = f49035n;
         if (hashMap != null) {
             for (f fVar : hashMap.values()) {
-                if (fVar.f49085c == 0 && (eVar = fVar.f49086f) != null) {
-                    eVar.f49073b = z10;
+                if (fVar.f49038c == 0 && (eVar = fVar.f49039f) != null) {
+                    eVar.f49026b = z10;
                 }
             }
         }
     }
 
     public final void a(View view) {
-        if (!this.f49088i) {
-            ArrayList arrayList = this.f49089j;
+        if (!this.f49041i) {
+            ArrayList arrayList = this.f49042j;
             if (!arrayList.contains(view)) {
                 arrayList.add(view);
-                int i10 = this.f49091l;
-                this.f49091l = i10 + 1;
-                this.f49090k.put(view, Integer.valueOf(i10));
+                int i10 = this.f49044l;
+                this.f49044l = i10 + 1;
+                this.f49043k.put(view, Integer.valueOf(i10));
             }
         }
     }
 
     public final void b(View view) {
-        this.f49089j.remove(view);
-        this.f49090k.remove(view);
-        if (!this.f49088i) {
-            d dVar = this.f49092m;
+        this.f49042j.remove(view);
+        this.f49043k.remove(view);
+        if (!this.f49041i) {
+            d dVar = this.f49045m;
             AndroidUtilities.cancelRunOnUIThread(dVar);
             AndroidUtilities.runOnUIThread(dVar, 30L);
         }
@@ -133,11 +133,11 @@ public final class f {
     public final void c(Canvas canvas, View view, int i10, int i11, float f7, boolean z10) {
         if (canvas != null && view != null) {
             canvas.save();
-            Integer num = (Integer) this.f49090k.get(view);
+            Integer num = (Integer) this.f49043k.get(view);
             if (num == null) {
                 num = 0;
             }
-            int i12 = this.f49087g;
+            int i12 = this.f49040g;
             int i13 = this.h;
             if (i10 > i12 || i11 > i13) {
                 float max = Math.max(i10 / i12, i11 / i13);

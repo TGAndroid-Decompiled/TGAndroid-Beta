@@ -3,25 +3,25 @@ package org.telegram.ui;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 public final class av0 extends AnimatorListenerAdapter {
-    public final int f35527a;
-    public final hv0 f35528b;
+    public final int f35488a;
+    public final hv0 f35489b;
 
     public av0(hv0 hv0Var, int i10) {
-        this.f35527a = i10;
-        this.f35528b = hv0Var;
+        this.f35488a = i10;
+        this.f35489b = hv0Var;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f35527a) {
+        switch (this.f35488a) {
             case 0:
-                this.f35528b.R.setTranslationY(0.0f);
+                this.f35489b.R.setTranslationY(0.0f);
                 return;
             case 1:
-                this.f35528b.R.setTranslationY(0.0f);
+                this.f35489b.R.setTranslationY(0.0f);
                 return;
             default:
-                hv0 hv0Var = this.f35528b;
+                hv0 hv0Var = this.f35489b;
                 hv0Var.getClass();
                 hv0Var.R.setTranslationY(0.0f);
                 hv0Var.l0();

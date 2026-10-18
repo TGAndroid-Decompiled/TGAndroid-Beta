@@ -6,9 +6,9 @@ public interface kq0 {
 
     void b(Editable editable);
 
-    void c();
-
-    void d(int i10, boolean z10, boolean z11);
-
     boolean e();
+
+    void g();
+
+    void h(int i10, boolean z10, boolean z11);
 }

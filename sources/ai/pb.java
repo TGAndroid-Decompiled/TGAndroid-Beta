@@ -21,13 +21,13 @@ public final class pb implements View.OnClickListener {
     public final Object h;
     public final Object f2037n;
 
-    public pb(ei.d dVar, TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth, boolean[] zArr, org.telegram.ui.ActionBar.f3 f3Var, ei.d dVar2, org.telegram.ui.web.a1 a1Var, int i10) {
+    public pb(ei.d dVar, TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth, boolean[] zArr, org.telegram.ui.ActionBar.f3 f3Var, ei.d dVar2, org.telegram.ui.web.b1 b1Var, int i10) {
         this.f2035c = dVar;
         this.d = tL_messages_requestUrlAuth;
         this.h = zArr;
         this.e = f3Var;
         this.f2036f = dVar2;
-        this.f2037n = a1Var;
+        this.f2037n = b1Var;
         this.f2034b = i10;
     }
 
@@ -75,18 +75,18 @@ public final class pb implements View.OnClickListener {
                 boolean[] zArr2 = (boolean[]) obj6;
                 org.telegram.ui.ActionBar.f3 f3Var = (org.telegram.ui.ActionBar.f3) obj2;
                 ei.d dVar2 = (ei.d) obj4;
-                org.telegram.ui.web.a1 a1Var = (org.telegram.ui.web.a1) obj;
+                org.telegram.ui.web.b1 b1Var = (org.telegram.ui.web.b1) obj;
                 if (!((ei.d) obj5).N) {
                     if (tL_messages_requestUrlAuth != null && !TextUtils.isEmpty(tL_messages_requestUrlAuth.url)) {
                         if (!dVar2.N) {
                             dVar2.setLoading(true);
-                            if (a1Var != null) {
-                                boolean z10 = org.telegram.ui.web.a1.P0;
+                            if (b1Var != null) {
+                                boolean z10 = org.telegram.ui.web.b1.P0;
                                 try {
                                     jSONObject = new JSONObject();
                                 } catch (Exception unused) {
                                 }
-                                a1Var.y("oauth_result_failed", jSONObject);
+                                b1Var.y("oauth_result_failed", jSONObject);
                             }
                             TLRPC.TL_messages_declineUrlAuth tL_messages_declineUrlAuth = new TLRPC.TL_messages_declineUrlAuth();
                             tL_messages_declineUrlAuth.url = tL_messages_requestUrlAuth.url;

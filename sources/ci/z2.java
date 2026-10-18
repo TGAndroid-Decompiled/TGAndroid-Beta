@@ -1,32 +1,41 @@
 package ci;
 
-import java.util.ArrayList;
-import org.telegram.messenger.Utilities;
-public final class z2 implements Utilities.Callback {
-    public final int f6247a;
-    public final Object f6248b;
-    public final Object f6249c;
-    public final Object d;
-    public final Object e;
+import android.graphics.Paint;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.fb0;
+public final class z2 implements fb0 {
+    public final p4 f6173a;
 
-    public z2(Object obj, Object obj2, Object obj3, Object obj4, int i10) {
-        this.f6247a = i10;
-        this.f6248b = obj;
-        this.f6249c = obj2;
-        this.d = obj3;
-        this.e = obj4;
+    public z2(p4 p4Var) {
+        this.f6173a = p4Var;
     }
 
     @Override
-    public final void run(java.lang.Object r36) {
-        throw new UnsupportedOperationException("Method not decompiled: ci.z2.run(java.lang.Object):void");
+    public final void A(TLRPC.TL_document tL_document, String str, Object obj) {
+        p4 p4Var = this.f6173a;
+        org.telegram.ui.Components.f5.Z(p4Var.C2, 1, p4Var.B1, new y2(this, tL_document, str, obj, 0));
     }
 
-    public z2(Object obj, String str, ArrayList arrayList, Object obj2, int i10) {
-        this.f6247a = i10;
-        this.f6248b = obj;
-        this.d = str;
-        this.f6249c = arrayList;
-        this.e = obj2;
+    @Override
+    public final void H(int i10, int i11, CharSequence charSequence, boolean z10) {
+        this.f6173a.f5649b2.M0(i10, i11, charSequence, z10);
+    }
+
+    @Override
+    public final void P(String str) {
+        u2 u2Var = this.f6173a.f5649b2;
+        u2Var.S();
+        u2Var.U0.h(str);
+    }
+
+    @Override
+    public final void b(TLRPC.BotInlineResult botInlineResult, boolean z10, int i10) {
+        p4 p4Var = this.f6173a;
+        org.telegram.ui.Components.f5.Z(p4Var.C2, 1, p4Var.B1, new x2(i10, 0, this, botInlineResult, z10));
+    }
+
+    @Override
+    public final Paint.FontMetricsInt w() {
+        return this.f6173a.f5649b2.getEditField().getPaint().getFontMetricsInt();
     }
 }

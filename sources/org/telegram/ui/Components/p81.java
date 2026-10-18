@@ -34,24 +34,24 @@ public final class p81 extends View {
     public Path Q;
     public final Paint R;
     public boolean S;
-    public long f29236a;
-    public float f29237b;
-    public float f29238c;
+    public long f29229a;
+    public float f29230b;
+    public float f29231c;
     public final Paint d;
     public final Paint e;
-    public boolean f29239f;
+    public boolean f29232f;
     public boolean h;
-    public float f29240n;
-    public MediaMetadataRetriever f29241r;
-    public o81 f29242s;
+    public float f29233n;
+    public MediaMetadataRetriever f29234r;
+    public o81 f29235s;
     public final ArrayList v;
-    public m81 f29243w;
-    public long f29244x;
-    public int f29245y;
+    public m81 f29236w;
+    public long f29237x;
+    public int f29238y;
 
     public p81(Context context) {
         super(context);
-        this.f29238c = 1.0f;
+        this.f29231c = 1.0f;
         Paint paint = new Paint();
         this.d = paint;
         Paint paint2 = new Paint();
@@ -67,7 +67,7 @@ public final class p81 extends View {
         paint3.setStrokeWidth(AndroidUtilities.dpf2(2.0f));
         paint3.setStyle(Paint.Style.STROKE);
         paint3.setStrokeCap(Paint.Cap.ROUND);
-        paint2.setColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20935a7, false));
+        paint2.setColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20928a7, false));
         this.L = 0;
         n81 n81Var = this.P;
         if (n81Var != null) {
@@ -78,10 +78,10 @@ public final class p81 extends View {
     public final void a(boolean z10) {
         synchronized (T) {
             try {
-                MediaMetadataRetriever mediaMetadataRetriever = this.f29241r;
+                MediaMetadataRetriever mediaMetadataRetriever = this.f29234r;
                 if (mediaMetadataRetriever != null) {
                     mediaMetadataRetriever.release();
-                    this.f29241r = null;
+                    this.f29234r = null;
                 }
             } catch (Exception e) {
                 FileLog.e(e);
@@ -109,27 +109,27 @@ public final class p81 extends View {
         }
         this.N.clear();
         this.v.clear();
-        m81 m81Var = this.f29243w;
+        m81 m81Var = this.f29236w;
         if (m81Var != null) {
             m81Var.cancel(true);
-            this.f29243w = null;
+            this.f29236w = null;
         }
     }
 
     public final void b(int i10) {
-        if (this.f29241r != null) {
+        if (this.f29234r != null) {
             if (i10 == 0) {
                 if (this.I) {
                     int dp = AndroidUtilities.dp(56.0f);
-                    this.f29245y = dp;
+                    this.f29238y = dp;
                     this.E = dp;
                     this.F = Math.max(1, (int) Math.ceil((getMeasuredWidth() - AndroidUtilities.dp(16.0f)) / (this.E / 2.0f)));
                 } else {
                     this.E = AndroidUtilities.dp(40.0f);
                     this.F = Math.max(1, (getMeasuredWidth() - AndroidUtilities.dp(16.0f)) / this.E);
-                    this.f29245y = (int) Math.ceil((getMeasuredWidth() - AndroidUtilities.dp(16.0f)) / this.F);
+                    this.f29238y = (int) Math.ceil((getMeasuredWidth() - AndroidUtilities.dp(16.0f)) / this.F);
                 }
-                this.f29244x = this.f29236a / this.F;
+                this.f29237x = this.f29229a / this.F;
                 ArrayList arrayList = this.N;
                 if (!arrayList.isEmpty()) {
                     float size = arrayList.size() / this.F;
@@ -143,17 +143,17 @@ public final class p81 extends View {
             }
             this.O = false;
             m81 m81Var = new m81(this);
-            this.f29243w = m81Var;
+            this.f29236w = m81Var;
             m81Var.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, Integer.valueOf(i10), null, null);
         }
     }
 
     public float getLeftProgress() {
-        return this.f29237b;
+        return this.f29230b;
     }
 
     public float getRightProgress() {
-        return this.f29238c;
+        return this.f29231c;
     }
 
     @Override
@@ -167,12 +167,12 @@ public final class p81 extends View {
             }
         }
         float measuredWidth = getMeasuredWidth() - AndroidUtilities.dp(24.0f);
-        int dp = AndroidUtilities.dp(12.0f) + ((int) (this.f29237b * measuredWidth));
-        int dp2 = AndroidUtilities.dp(12.0f) + ((int) (measuredWidth * this.f29238c));
+        int dp = AndroidUtilities.dp(12.0f) + ((int) (this.f29230b * measuredWidth));
+        int dp2 = AndroidUtilities.dp(12.0f) + ((int) (measuredWidth * this.f29231c));
         float f7 = 32.0f;
         int measuredHeight = (getMeasuredHeight() - AndroidUtilities.dp(32.0f)) >> 1;
         ArrayList arrayList = this.v;
-        if (arrayList.isEmpty() && this.f29243w == null) {
+        if (arrayList.isEmpty() && this.f29236w == null) {
             b(0);
         }
         if (!arrayList.isEmpty()) {
@@ -185,7 +185,7 @@ public final class p81 extends View {
                 Bitmap bitmap = (Bitmap) arrayList.get(i11);
                 if (bitmap != null && !bitmap.isRecycled()) {
                     boolean z10 = this.I;
-                    int i13 = this.f29245y;
+                    int i13 = this.f29238y;
                     if (z10) {
                         i13 /= 2;
                     }
@@ -271,32 +271,32 @@ public final class p81 extends View {
             float y3 = motionEvent.getY();
             int measuredWidth = getMeasuredWidth() - AndroidUtilities.dp(24.0f);
             float f7 = measuredWidth;
-            int dp = AndroidUtilities.dp(12.0f) + ((int) (this.f29237b * f7));
-            int dp2 = AndroidUtilities.dp(12.0f) + ((int) (this.f29238c * f7));
+            int dp = AndroidUtilities.dp(12.0f) + ((int) (this.f29230b * f7));
+            int dp2 = AndroidUtilities.dp(12.0f) + ((int) (this.f29231c * f7));
             if (motionEvent.getAction() == 0) {
                 getParent().requestDisallowInterceptTouchEvent(true);
-                if (this.f29241r != null) {
+                if (this.f29234r != null) {
                     int dp3 = AndroidUtilities.dp(24.0f);
                     if (dp - dp3 <= x10 && x10 <= dp + dp3 && y3 >= 0.0f && y3 <= getMeasuredHeight()) {
-                        o81 o81Var = this.f29242s;
+                        o81 o81Var = this.f29235s;
                         if (o81Var != null) {
-                            ((df) o81Var).f25588a.Z2.U(0.0f, 1);
+                            ((df) o81Var).f25581a.Z2.U(0.0f, 1);
                         }
-                        this.f29239f = true;
-                        this.f29240n = (int) (x10 - dp);
-                        this.P.setTime((int) ((((float) this.f29236a) / 1000.0f) * this.f29237b));
+                        this.f29232f = true;
+                        this.f29233n = (int) (x10 - dp);
+                        this.P.setTime((int) ((((float) this.f29229a) / 1000.0f) * this.f29230b));
                         this.P.setCx(AndroidUtilities.dp(4.0f) + getLeft() + dp);
                         this.P.a(true);
                         invalidate();
                         return true;
                     } else if (dp2 - dp3 <= x10 && x10 <= dp3 + dp2 && y3 >= 0.0f && y3 <= getMeasuredHeight()) {
-                        o81 o81Var2 = this.f29242s;
+                        o81 o81Var2 = this.f29235s;
                         if (o81Var2 != null) {
-                            ((df) o81Var2).f25588a.Z2.U(0.0f, 1);
+                            ((df) o81Var2).f25581a.Z2.U(0.0f, 1);
                         }
                         this.h = true;
-                        this.f29240n = (int) (x10 - dp2);
-                        this.P.setTime((int) ((((float) this.f29236a) / 1000.0f) * this.f29238c));
+                        this.f29233n = (int) (x10 - dp2);
+                        this.P.setTime((int) ((((float) this.f29229a) / 1000.0f) * this.f29231c));
                         this.P.setCx((getLeft() + dp2) - AndroidUtilities.dp(4.0f));
                         this.P.a(true);
                         invalidate();
@@ -308,38 +308,38 @@ public final class p81 extends View {
                 }
             } else if (motionEvent.getAction() != 1 && motionEvent.getAction() != 3) {
                 if (motionEvent.getAction() == 2) {
-                    if (this.f29239f) {
-                        int i10 = (int) (x10 - this.f29240n);
+                    if (this.f29232f) {
+                        int i10 = (int) (x10 - this.f29233n);
                         if (i10 < AndroidUtilities.dp(16.0f)) {
                             dp2 = AndroidUtilities.dp(16.0f);
                         } else if (i10 <= dp2) {
                             dp2 = i10;
                         }
                         float dp4 = (dp2 - AndroidUtilities.dp(16.0f)) / f7;
-                        this.f29237b = dp4;
-                        float f10 = this.f29238c;
+                        this.f29230b = dp4;
+                        float f10 = this.f29231c;
                         float f11 = f10 - dp4;
                         float f12 = this.G;
                         if (f11 > f12) {
-                            this.f29238c = dp4 + f12;
+                            this.f29231c = dp4 + f12;
                         } else {
                             float f13 = this.H;
                             if (f13 != 0.0f && f11 < f13) {
                                 float f14 = f10 - f13;
-                                this.f29237b = f14;
+                                this.f29230b = f14;
                                 if (f14 < 0.0f) {
-                                    this.f29237b = 0.0f;
+                                    this.f29230b = 0.0f;
                                 }
                             }
                         }
-                        this.P.setCx(((AndroidUtilities.dpf2(12.0f) + (f7 * this.f29237b)) + getLeft()) - AndroidUtilities.dp(4.0f));
-                        this.P.setTime((int) ((((float) this.f29236a) / 1000.0f) * this.f29237b));
+                        this.P.setCx(((AndroidUtilities.dpf2(12.0f) + (f7 * this.f29230b)) + getLeft()) - AndroidUtilities.dp(4.0f));
+                        this.P.setTime((int) ((((float) this.f29229a) / 1000.0f) * this.f29230b));
                         this.P.a(true);
-                        o81 o81Var3 = this.f29242s;
+                        o81 o81Var3 = this.f29235s;
                         if (o81Var3 != null) {
-                            float f15 = this.f29237b;
-                            ChatActivityEnterView chatActivityEnterView = ((df) o81Var3).f25588a;
-                            VideoEditedInfo videoEditedInfo = chatActivityEnterView.f23941e3;
+                            float f15 = this.f29230b;
+                            ChatActivityEnterView chatActivityEnterView = ((df) o81Var3).f25581a;
+                            VideoEditedInfo videoEditedInfo = chatActivityEnterView.f23934e3;
                             if (videoEditedInfo != null) {
                                 videoEditedInfo.startTime = ((float) videoEditedInfo.estimatedDuration) * f15;
                                 chatActivityEnterView.Z2.U(f15, 2);
@@ -348,7 +348,7 @@ public final class p81 extends View {
                         invalidate();
                         return true;
                     } else if (this.h) {
-                        int i11 = (int) (x10 - this.f29240n);
+                        int i11 = (int) (x10 - this.f29233n);
                         if (i11 >= dp) {
                             if (i11 > AndroidUtilities.dp(16.0f) + measuredWidth) {
                                 dp = AndroidUtilities.dp(16.0f) + measuredWidth;
@@ -357,30 +357,30 @@ public final class p81 extends View {
                             }
                         }
                         float dp5 = (dp - AndroidUtilities.dp(16.0f)) / f7;
-                        this.f29238c = dp5;
-                        float f16 = this.f29237b;
+                        this.f29231c = dp5;
+                        float f16 = this.f29230b;
                         float f17 = dp5 - f16;
                         float f18 = this.G;
                         if (f17 > f18) {
-                            this.f29237b = dp5 - f18;
+                            this.f29230b = dp5 - f18;
                         } else {
                             float f19 = this.H;
                             if (f19 != 0.0f && f17 < f19) {
                                 float f20 = f16 + f19;
-                                this.f29238c = f20;
+                                this.f29231c = f20;
                                 if (f20 > 1.0f) {
-                                    this.f29238c = 1.0f;
+                                    this.f29231c = 1.0f;
                                 }
                             }
                         }
-                        this.P.setCx(AndroidUtilities.dpf2(12.0f) + (f7 * this.f29238c) + getLeft() + AndroidUtilities.dp(4.0f));
+                        this.P.setCx(AndroidUtilities.dpf2(12.0f) + (f7 * this.f29231c) + getLeft() + AndroidUtilities.dp(4.0f));
                         this.P.a(true);
-                        this.P.setTime((int) ((((float) this.f29236a) / 1000.0f) * this.f29238c));
-                        o81 o81Var4 = this.f29242s;
+                        this.P.setTime((int) ((((float) this.f29229a) / 1000.0f) * this.f29231c));
+                        o81 o81Var4 = this.f29235s;
                         if (o81Var4 != null) {
-                            float f21 = this.f29238c;
-                            ChatActivityEnterView chatActivityEnterView2 = ((df) o81Var4).f25588a;
-                            VideoEditedInfo videoEditedInfo2 = chatActivityEnterView2.f23941e3;
+                            float f21 = this.f29231c;
+                            ChatActivityEnterView chatActivityEnterView2 = ((df) o81Var4).f25581a;
+                            VideoEditedInfo videoEditedInfo2 = chatActivityEnterView2.f23934e3;
                             if (videoEditedInfo2 != null) {
                                 videoEditedInfo2.endTime = ((float) videoEditedInfo2.estimatedDuration) * f21;
                                 chatActivityEnterView2.Z2.U(f21, 2);
@@ -390,19 +390,19 @@ public final class p81 extends View {
                         return true;
                     }
                 }
-            } else if (this.f29239f) {
-                o81 o81Var5 = this.f29242s;
+            } else if (this.f29232f) {
+                o81 o81Var5 = this.f29235s;
                 if (o81Var5 != null) {
-                    ((df) o81Var5).f25588a.Z2.U(0.0f, 0);
+                    ((df) o81Var5).f25581a.Z2.U(0.0f, 0);
                 }
-                this.f29239f = false;
+                this.f29232f = false;
                 invalidate();
                 this.P.a(false);
                 return true;
             } else if (this.h) {
-                o81 o81Var6 = this.f29242s;
+                o81 o81Var6 = this.f29235s;
                 if (o81Var6 != null) {
-                    ((df) o81Var6).f25588a.Z2.U(0.0f, 0);
+                    ((df) o81Var6).f25581a.Z2.U(0.0f, 0);
                 }
                 this.h = false;
                 invalidate();
@@ -414,7 +414,7 @@ public final class p81 extends View {
     }
 
     public void setDelegate(o81 o81Var) {
-        this.f29242s = o81Var;
+        this.f29235s = o81Var;
     }
 
     public void setKeyframes(ArrayList<Bitmap> arrayList) {
@@ -425,10 +425,10 @@ public final class p81 extends View {
 
     public void setMaxProgressDiff(float f7) {
         this.G = f7;
-        float f10 = this.f29238c;
-        float f11 = this.f29237b;
+        float f10 = this.f29231c;
+        float f11 = this.f29230b;
         if (f10 - f11 > f7) {
-            this.f29238c = f11 + f7;
+            this.f29231c = f11 + f7;
             invalidate();
         }
     }
@@ -452,12 +452,12 @@ public final class p81 extends View {
     public void setVideoPath(String str) {
         a(false);
         MediaMetadataRetriever mediaMetadataRetriever = new MediaMetadataRetriever();
-        this.f29241r = mediaMetadataRetriever;
-        this.f29237b = 0.0f;
-        this.f29238c = 1.0f;
+        this.f29234r = mediaMetadataRetriever;
+        this.f29230b = 0.0f;
+        this.f29231c = 1.0f;
         try {
             mediaMetadataRetriever.setDataSource(str);
-            this.f29236a = Long.parseLong(this.f29241r.extractMetadata(9));
+            this.f29229a = Long.parseLong(this.f29234r.extractMetadata(9));
         } catch (Exception e) {
             FileLog.e(e);
         }

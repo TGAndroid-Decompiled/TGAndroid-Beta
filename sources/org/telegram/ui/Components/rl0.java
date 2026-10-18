@@ -5,33 +5,33 @@ import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewParent;
 public final class rl0 implements View.OnTouchListener {
-    public float f30000a;
-    public float f30001b;
-    public boolean f30002c;
+    public float f29994a;
+    public float f29995b;
+    public boolean f29996c;
 
     @Override
     public final boolean onTouch(View view, MotionEvent motionEvent) {
         ViewParent parent = view.getParent();
         if (parent != null) {
             if (motionEvent.getAction() == 0) {
-                this.f30000a = motionEvent.getX();
-                this.f30001b = motionEvent.getY();
-                this.f30002c = true;
+                this.f29994a = motionEvent.getX();
+                this.f29995b = motionEvent.getY();
+                this.f29996c = true;
                 parent.requestDisallowInterceptTouchEvent(true);
             }
             if (motionEvent.getAction() == 2) {
-                float x10 = this.f30000a - motionEvent.getX();
-                float y3 = this.f30001b - motionEvent.getY();
+                float x10 = this.f29994a - motionEvent.getX();
+                float y3 = this.f29995b - motionEvent.getY();
                 float scaledTouchSlop = ViewConfiguration.get(view.getContext()).getScaledTouchSlop();
-                if (this.f30002c) {
+                if (this.f29996c) {
                     if (Math.sqrt((y3 * y3) + (x10 * x10)) > scaledTouchSlop) {
-                        this.f30002c = false;
+                        this.f29996c = false;
                         parent.requestDisallowInterceptTouchEvent(false);
                         return false;
                     }
                 }
             } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                this.f30002c = false;
+                this.f29996c = false;
                 parent.requestDisallowInterceptTouchEvent(false);
                 return false;
             }

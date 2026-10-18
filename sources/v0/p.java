@@ -4,9 +4,9 @@ import android.os.Bundle;
 import java.util.Set;
 import org.json.JSONObject;
 public final class p {
-    public final Bundle f47907a;
-    public final Bundle f47908b;
-    public final Set f47909c;
+    public final Bundle f47860a;
+    public final Bundle f47861b;
+    public final Set f47862c;
     public final String d;
 
     public p(String requestJson) {
@@ -19,9 +19,9 @@ public final class p {
         bundle2.putString("androidx.credentials.BUNDLE_KEY_SUBTYPE", "androidx.credentials.BUNDLE_VALUE_SUBTYPE_GET_PUBLIC_KEY_CREDENTIAL_OPTION");
         bundle2.putString("androidx.credentials.BUNDLE_KEY_REQUEST_JSON", requestJson);
         bundle2.putByteArray("androidx.credentials.BUNDLE_KEY_CLIENT_DATA_HASH", null);
-        this.f47907a = bundle;
-        this.f47908b = bundle2;
-        this.f47909c = jd.q.f14394a;
+        this.f47860a = bundle;
+        this.f47861b = bundle2;
+        this.f47862c = jd.q.f14392a;
         bundle.putBoolean("androidx.credentials.BUNDLE_KEY_IS_AUTO_SELECT_ALLOWED", true);
         bundle2.putBoolean("androidx.credentials.BUNDLE_KEY_IS_AUTO_SELECT_ALLOWED", true);
         bundle.putInt("androidx.credentials.BUNDLE_KEY_TYPE_PRIORITY_VALUE", 100);

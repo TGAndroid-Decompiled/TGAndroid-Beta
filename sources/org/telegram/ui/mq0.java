@@ -4,10 +4,10 @@ import android.view.View;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class mq0 implements org.telegram.ui.Components.jn0 {
-    public final qq0 f39260a;
+    public final qq0 f39219a;
 
     public mq0(qq0 qq0Var) {
-        this.f39260a = qq0Var;
+        this.f39219a = qq0Var;
     }
 
     @Override
@@ -18,8 +18,8 @@ public final class mq0 implements org.telegram.ui.Components.jn0 {
     @Override
     public final void f(int i10, boolean z10) {
         boolean z11;
-        qq0 qq0Var = this.f39260a;
-        if (qq0Var.f40509n[0].e == i10) {
+        qq0 qq0Var = this.f39219a;
+        if (qq0Var.f40475n[0].e == i10) {
             return;
         }
         if (i10 == qq0Var.h.getFirstTabId()) {
@@ -28,36 +28,36 @@ public final class mq0 implements org.telegram.ui.Components.jn0 {
             z11 = false;
         }
         qq0Var.e = z11;
-        oq0 oq0Var = qq0Var.f40509n[1];
+        oq0 oq0Var = qq0Var.f40475n[1];
         oq0Var.e = i10;
         oq0Var.setVisibility(0);
         qq0Var.j0(true);
         qq0Var.v = z10;
         if (i10 == 0) {
-            qq0Var.f40507c.setSearchFieldHint(LocaleController.getString(R.string.SearchImagesTitle));
+            qq0Var.f40473c.setSearchFieldHint(LocaleController.getString(R.string.SearchImagesTitle));
         } else {
-            qq0Var.f40507c.setSearchFieldHint(LocaleController.getString(R.string.SearchGifsTitle));
+            qq0Var.f40473c.setSearchFieldHint(LocaleController.getString(R.string.SearchGifsTitle));
         }
     }
 
     @Override
     public final void k0(float f7) {
         int i10 = (f7 > 1.0f ? 1 : (f7 == 1.0f ? 0 : -1));
-        qq0 qq0Var = this.f39260a;
-        if (i10 != 0 || qq0Var.f40509n[1].getVisibility() == 0) {
+        qq0 qq0Var = this.f39219a;
+        if (i10 != 0 || qq0Var.f40475n[1].getVisibility() == 0) {
             if (qq0Var.v) {
-                oq0 oq0Var = qq0Var.f40509n[0];
+                oq0 oq0Var = qq0Var.f40475n[0];
                 oq0Var.setTranslationX((-f7) * oq0Var.getMeasuredWidth());
-                oq0[] oq0VarArr = qq0Var.f40509n;
-                oq0VarArr[1].setTranslationX(oq0VarArr[0].getMeasuredWidth() - (f7 * qq0Var.f40509n[0].getMeasuredWidth()));
+                oq0[] oq0VarArr = qq0Var.f40475n;
+                oq0VarArr[1].setTranslationX(oq0VarArr[0].getMeasuredWidth() - (f7 * qq0Var.f40475n[0].getMeasuredWidth()));
             } else {
-                oq0 oq0Var2 = qq0Var.f40509n[0];
+                oq0 oq0Var2 = qq0Var.f40475n[0];
                 oq0Var2.setTranslationX(oq0Var2.getMeasuredWidth() * f7);
-                oq0[] oq0VarArr2 = qq0Var.f40509n;
-                oq0VarArr2[1].setTranslationX((f7 * oq0VarArr2[0].getMeasuredWidth()) - qq0Var.f40509n[0].getMeasuredWidth());
+                oq0[] oq0VarArr2 = qq0Var.f40475n;
+                oq0VarArr2[1].setTranslationX((f7 * oq0VarArr2[0].getMeasuredWidth()) - qq0Var.f40475n[0].getMeasuredWidth());
             }
             if (i10 == 0) {
-                oq0[] oq0VarArr3 = qq0Var.f40509n;
+                oq0[] oq0VarArr3 = qq0Var.f40475n;
                 oq0 oq0Var3 = oq0VarArr3[0];
                 oq0VarArr3[0] = oq0VarArr3[1];
                 oq0VarArr3[1] = oq0Var3;

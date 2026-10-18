@@ -1,38 +1,63 @@
 package sg;
 
+import ai.de;
+import android.content.Context;
+import android.graphics.Canvas;
 import android.graphics.RectF;
-import org.telegram.messenger.Utilities;
-public final class s1 {
-    public float f46450a;
-    public float f46451b;
-    public float f46452c;
-    public float d;
-    public long e;
-    public float f46453f;
-    public final t1 f46454g;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LiteMode;
+import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.Cells.q8;
+import org.telegram.ui.Components.xj0;
+public final class s1 extends q8 {
+    public final de R;
+    public final int S;
+    public final org.telegram.ui.web.a2 T;
 
-    public s1(t1 t1Var) {
-        this.f46454g = t1Var;
+    public s1(Context context, int i10, d6 d6Var) {
+        super(context, d6Var);
+        int i11;
+        this.R = new de(1, 15);
+        this.T = new org.telegram.ui.web.a2(this, 25);
+        if (i10 == 1) {
+            i11 = h6.fk;
+        } else {
+            i11 = h6.Mj;
+        }
+        this.S = i11;
     }
 
-    public final void a(long j10, boolean z10) {
-        RectF rectF;
-        t1 t1Var = this.f46454g;
-        RectF rectF2 = t1Var.f46456a;
-        this.e = j10 + t1Var.h + Utilities.fastRandom.nextInt(1000);
-        if (z10) {
-            rectF = t1Var.f46457b;
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        boolean isEnabled = LiteMode.isEnabled(131072);
+        org.telegram.ui.web.a2 a2Var = this.T;
+        if (isEnabled) {
+            de deVar = this.R;
+            deVar.d();
+            deVar.a(canvas, h6.x0(null, this.S, false));
+            zf.h.d().a(15, a2Var);
         } else {
-            rectF = rectF2;
+            zf.h.d().f(a2Var);
         }
-        float abs = Math.abs(Utilities.fastRandom.nextInt() % rectF.width()) + rectF.left;
-        float f7 = rectF.top;
-        this.f46450a = abs;
-        this.f46451b = Math.abs(Utilities.fastRandom.nextInt() % rectF.height()) + f7;
-        double atan2 = Math.atan2(abs - rectF2.centerX(), this.f46451b - rectF2.centerY());
-        this.f46452c = (float) Math.sin(atan2);
-        this.d = (float) Math.cos(atan2);
-        Utilities.fastRandom.nextInt(50);
-        this.f46453f = 0.0f;
+        super.dispatchDraw(canvas);
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        zf.h.d().f(this.T);
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        xj0 xj0Var = this.e;
+        float width = (xj0Var.getWidth() / 2.0f) + xj0Var.getX();
+        float y3 = xj0Var.getY();
+        float height = ((xj0Var.getHeight() / 2.0f) + (y3 + xj0Var.getPaddingTop())) - AndroidUtilities.dp(3.0f);
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set(width - AndroidUtilities.dp(16.0f), height - AndroidUtilities.dp(16.0f), width + AndroidUtilities.dp(16.0f), height + AndroidUtilities.dp(16.0f));
+        this.R.g(rectF);
     }
 }

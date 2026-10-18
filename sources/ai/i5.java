@@ -15,38 +15,38 @@ import org.telegram.ui.q21;
 import org.telegram.ui.qg1;
 import org.telegram.ui.y50;
 public final class i5 extends u81 {
-    public final int f1479a;
-    public final Object f1480b;
-    public final Object f1481c;
+    public final int f1480a;
+    public final Object f1481b;
+    public final Object f1482c;
 
     public i5(Object obj, Context context, int i10) {
-        this.f1479a = i10;
-        this.f1481c = obj;
-        this.f1480b = context;
+        this.f1480a = i10;
+        this.f1482c = obj;
+        this.f1481b = context;
     }
 
     @Override
     public final void b(View view, int i10, int i11) {
         n5 n5Var;
         org.telegram.ui.ActionBar.n2 n2Var;
-        int i12 = this.f1479a;
-        Object obj = this.f1481c;
+        int i12 = this.f1480a;
+        Object obj = this.f1482c;
         switch (i12) {
             case 0:
                 k7 k7Var = (k7) obj;
                 if (i11 == 0) {
                     k7.t1(k7Var, false);
-                    yh.l2 l2Var = k7Var.f1655c0;
-                    if (l2Var != null) {
-                        n5Var = l2Var.Y;
+                    yh.k2 k2Var = k7Var.f1661c0;
+                    if (k2Var != null) {
+                        n5Var = k2Var.Y;
                     } else {
                         return;
                     }
                 } else if (i11 == 2) {
                     k7.t1(k7Var, true);
-                    yh.l2 l2Var2 = k7Var.f1657d0;
-                    if (l2Var2 != null) {
-                        n5Var = l2Var2.Y;
+                    yh.k2 k2Var2 = k7Var.f1663d0;
+                    if (k2Var2 != null) {
+                        n5Var = k2Var2.Y;
                     } else {
                         return;
                     }
@@ -67,10 +67,10 @@ public final class i5 extends u81 {
                 return;
             case 4:
                 qg1 qg1Var = (qg1) obj;
-                SparseArray sparseArray = qg1Var.f40431a;
+                SparseArray sparseArray = qg1Var.f40394a;
                 og1 og1Var = (og1) sparseArray.get(i10);
                 if (og1Var != null) {
-                    n2Var = og1Var.f39796a;
+                    n2Var = og1Var.f39786a;
                 } else {
                     org.telegram.ui.ActionBar.n2 V = qg1Var.V(i10);
                     og1 og1Var2 = new og1(V);
@@ -78,28 +78,28 @@ public final class i5 extends u81 {
                     n2Var = V;
                     og1Var = og1Var2;
                 }
-                if (!og1Var.f39797b) {
+                if (!og1Var.f39787b) {
                     n2Var.onFragmentCreate();
-                    og1Var.f39797b = true;
+                    og1Var.f39787b = true;
                 }
                 n2Var.setParentLayout(qg1Var.getParentLayout());
                 if (n2Var.getFragmentView() == null) {
-                    n2Var.performCreateView((Context) this.f1480b);
-                    n2Var.setTitleOverlayText(qg1Var.f40435n, qg1Var.f40436r, qg1Var.f40437s);
+                    n2Var.performCreateView((Context) this.f1481b);
+                    n2Var.setTitleOverlayText(qg1Var.f40398n, qg1Var.f40399r, qg1Var.f40400s);
                 }
                 FrameLayout frameLayout2 = (FrameLayout) view;
                 frameLayout2.removeAllViews();
                 View fragmentView = n2Var.getFragmentView();
                 AndroidUtilities.removeFromParent(fragmentView);
                 if (!n2Var.hasOwnBackground() && fragmentView.getBackground() == null) {
-                    fragmentView.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20993d6, false));
+                    fragmentView.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20986d6, false));
                 }
-                frameLayout2.addView(fragmentView, w7.z5.d(-1.0f, -1));
+                frameLayout2.addView(fragmentView, w7.z5.c(-1.0f, -1));
                 if (n2Var.getActionBar() != null && n2Var.getActionBar().K) {
                     AndroidUtilities.removeFromParent(n2Var.getActionBar());
                     frameLayout2.addView(n2Var.getActionBar());
                 }
-                WeakHashMap weakHashMap = r0.i0.f44864a;
+                WeakHashMap weakHashMap = r0.i0.f44818a;
                 r0.y.c(frameLayout2);
                 qg1Var.checkSystemBarColors();
                 qg1Var.U();
@@ -112,16 +112,16 @@ public final class i5 extends u81 {
     @Override
     public final View d(int i10) {
         n5 n5Var;
-        switch (this.f1479a) {
+        switch (this.f1480a) {
             case 0:
-                k7 k7Var = (k7) this.f1481c;
+                k7 k7Var = (k7) this.f1482c;
                 if (i10 == 0) {
                     k7.t1(k7Var, false);
-                    yh.l2 l2Var = k7Var.f1655c0;
-                    if (l2Var != null) {
-                        n5Var = l2Var.Y;
+                    yh.k2 k2Var = k7Var.f1661c0;
+                    if (k2Var != null) {
+                        n5Var = k2Var.Y;
                         AndroidUtilities.removeFromParent(n5Var);
-                        FrameLayout frameLayout = new FrameLayout((Context) this.f1480b);
+                        FrameLayout frameLayout = new FrameLayout((Context) this.f1481b);
                         frameLayout.addView(n5Var, w7.z5.e(-1, -1, 119));
                         return frameLayout;
                     }
@@ -132,42 +132,42 @@ public final class i5 extends u81 {
                 } else {
                     if (i10 == 2) {
                         k7.t1(k7Var, true);
-                        yh.l2 l2Var2 = k7Var.f1657d0;
-                        if (l2Var2 != null) {
-                            n5Var = l2Var2.Y;
+                        yh.k2 k2Var2 = k7Var.f1663d0;
+                        if (k2Var2 != null) {
+                            n5Var = k2Var2.Y;
                         }
                     }
                     return null;
                 }
                 AndroidUtilities.removeFromParent(n5Var);
-                FrameLayout frameLayout2 = new FrameLayout((Context) this.f1480b);
+                FrameLayout frameLayout2 = new FrameLayout((Context) this.f1481b);
                 frameLayout2.addView(n5Var, w7.z5.e(-1, -1, 119));
                 return frameLayout2;
             case 1:
-                FrameLayout frameLayout3 = new FrameLayout((Context) this.f1480b);
+                FrameLayout frameLayout3 = new FrameLayout((Context) this.f1481b);
                 frameLayout3.setOnClickListener(new y50(this, 22));
                 return frameLayout3;
             case 2:
-                return new p21((q21) this.f1481c, (Context) this.f1480b);
+                return new p21((q21) this.f1482c, (Context) this.f1481b);
             case 3:
-                FrameLayout frameLayout4 = new FrameLayout((Context) this.f1480b);
+                FrameLayout frameLayout4 = new FrameLayout((Context) this.f1481b);
                 frameLayout4.setOnClickListener(new i31(this, 5));
                 return frameLayout4;
             case 4:
-                return new l41((Context) this.f1480b, 7);
+                return new l41((Context) this.f1481b, 7);
             default:
                 if (i10 == 0) {
-                    return ((ug.z) this.f1480b).getContainerView();
+                    return ((ug.z) this.f1481b).getContainerView();
                 }
-                return ((ug.y0) this.f1481c).getContainerView();
+                return ((ug.y0) this.f1482c).getContainerView();
         }
     }
 
     @Override
     public final int e() {
-        switch (this.f1479a) {
+        switch (this.f1480a) {
             case 0:
-                k7 k7Var = (k7) this.f1481c;
+                k7 k7Var = (k7) this.f1482c;
                 return (k7Var.Z1(true) ? 1 : 0) + (k7Var.Z1(false) ? 1 : 0) + 1;
             case 1:
                 return 2;
@@ -176,7 +176,7 @@ public final class i5 extends u81 {
             case 3:
                 return 2;
             case 4:
-                ((qg1) this.f1481c).getClass();
+                ((qg1) this.f1482c).getClass();
                 return 4;
             default:
                 return 2;
@@ -185,9 +185,9 @@ public final class i5 extends u81 {
 
     @Override
     public int h(int i10) {
-        switch (this.f1479a) {
+        switch (this.f1480a) {
             case 0:
-                return (i10 - (((k7) this.f1481c).Z1(false) ? 1 : 0)) + 1;
+                return (i10 - (((k7) this.f1482c).Z1(false) ? 1 : 0)) + 1;
             case 2:
                 if (i10 == 0) {
                     return 0;
@@ -201,9 +201,9 @@ public final class i5 extends u81 {
     }
 
     public i5(ug.z zVar, ug.y0 y0Var) {
-        this.f1479a = 5;
-        this.f1480b = zVar;
-        this.f1481c = y0Var;
+        this.f1480a = 5;
+        this.f1481b = zVar;
+        this.f1482c = y0Var;
     }
 
     private final void i(View view, int i10, int i11) {

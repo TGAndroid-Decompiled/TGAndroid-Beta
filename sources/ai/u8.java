@@ -47,9 +47,9 @@ public final class u8 implements ToIntFunction {
             case 11:
                 return -((TLRPC.TL_forumTopic) obj).top_message;
             case 12:
-                return ((TLRPC.Message) obj).f20300id;
+                return ((TLRPC.Message) obj).f20293id;
             case 13:
-                return ((TLRPC.Message) obj).f20300id;
+                return ((TLRPC.Message) obj).f20293id;
             case 14:
                 return ((org.telegram.ui.Components.g6) obj).d;
             case 15:
@@ -74,7 +74,7 @@ public final class u8 implements ToIntFunction {
             case 19:
                 return ((String) ((Map.Entry) obj).getKey()).hashCode();
             default:
-                return ((zf.d) obj).f51576a;
+                return ((zf.d) obj).f51529a;
         }
     }
 }

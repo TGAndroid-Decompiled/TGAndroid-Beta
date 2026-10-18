@@ -1,30 +1,26 @@
 package org.telegram.ui.Wallet;
 
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.tl.TL_wallet;
+import java.util.concurrent.FutureTask;
+import java.util.concurrent.atomic.AtomicBoolean;
 public final class z6 implements Runnable {
-    public final int f35175a;
-    public final WalletEngine2 f35176b;
-    public final Utilities.Callback2 f35177c;
-    public final TL_wallet.walletTransaction d;
-    public final String e;
+    public final int f35185a;
+    public final AtomicBoolean f35186b;
+    public final FutureTask f35187c;
 
-    public z6(WalletEngine2 walletEngine2, Utilities.Callback2 callback2, TL_wallet.walletTransaction wallettransaction, String str, int i10) {
-        this.f35175a = i10;
-        this.f35176b = walletEngine2;
-        this.f35177c = callback2;
-        this.d = wallettransaction;
-        this.e = str;
+    public z6(AtomicBoolean atomicBoolean, FutureTask futureTask, int i10) {
+        this.f35185a = i10;
+        this.f35186b = atomicBoolean;
+        this.f35187c = futureTask;
     }
 
     @Override
     public final void run() {
-        switch (this.f35175a) {
+        switch (this.f35185a) {
             case 0:
-                this.f35176b.lambda$previewTonConnect$1(this.f35177c, this.d, this.e);
+                WalletEngine2.lambda$emulateSend$18(this.f35186b, this.f35187c);
                 return;
             default:
-                this.f35176b.lambda$emulateRotateKey$29(this.f35177c, this.d, this.e);
+                WalletEngine2.lambda$emulateSendNFT$23(this.f35186b, this.f35187c);
                 return;
         }
     }

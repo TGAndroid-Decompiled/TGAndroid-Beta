@@ -48,12 +48,12 @@ public final class j extends l {
         g3 g3Var = new g3(getClass().getSimpleName());
         n7.l0 l0Var = n7.n0.d;
         byte[] t10 = this.f4967a.t();
-        g3Var.T(l0Var.c(t10.length, t10), "keyHandle");
+        g3Var.Y(l0Var.c(t10.length, t10), "keyHandle");
         byte[] t11 = this.f4968b.t();
-        g3Var.T(l0Var.c(t11.length, t11), "clientDataJSON");
+        g3Var.Y(l0Var.c(t11.length, t11), "clientDataJSON");
         byte[] t12 = this.f4969c.t();
-        g3Var.T(l0Var.c(t12.length, t12), "attestationObject");
-        g3Var.T(Arrays.toString(this.d), "transports");
+        g3Var.Y(l0Var.c(t12.length, t12), "attestationObject");
+        g3Var.Y(Arrays.toString(this.d), "transports");
         return g3Var.toString();
     }
 

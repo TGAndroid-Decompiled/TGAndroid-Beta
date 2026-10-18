@@ -11,7 +11,7 @@ public final class i71 extends k20 {
     public i71(j71 j71Var, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context, d6Var);
         this.K = j71Var;
-        ei.e2 e2Var = this.f27719r;
+        ei.e2 e2Var = this.f27712r;
         this.J = e2Var;
         e2Var.setImeOptions(268435459);
         e2Var.setHint(LocaleController.getString(R.string.VoipGroupSearchMembers));

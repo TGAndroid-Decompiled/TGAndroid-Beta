@@ -24,7 +24,7 @@ public final class c {
         String[] strArr = (String[]) Arrays.copyOf(aVar.f3689g, 0);
         b[] bVarArr = aVar.h;
         d = new a(0, aVar.f3686b, copyOf, o0VarArr, copyOf2, strArr, (b[]) Arrays.copyOf(bVarArr, Math.max(0, bVarArr.length)));
-        String str = e2.m0.f8255a;
+        String str = e2.m0.f8253a;
         e = Integer.toString(1, 36);
         Integer.toString(2, 36);
         Integer.toString(3, 36);

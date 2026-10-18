@@ -32,20 +32,20 @@ public final class a implements gf.a {
         } else {
             gVar = new g(3);
         }
-        for (p pVar = (p) sVar.f7989f; pVar != null && pVar != sVar2; pVar = (p) pVar.f7989f) {
+        for (p pVar = (p) sVar.f7987f; pVar != null && pVar != sVar2; pVar = (p) pVar.f7987f) {
             gVar.b(pVar);
         }
         gVar.g();
-        p pVar2 = (p) sVar.f7989f;
-        gVar.f7989f = pVar2;
+        p pVar2 = (p) sVar.f7987f;
+        gVar.f7987f = pVar2;
         if (pVar2 != null) {
             pVar2.e = gVar;
         }
         gVar.e = sVar;
-        sVar.f7989f = gVar;
-        p pVar3 = (p) sVar.f7987b;
-        gVar.f7987b = pVar3;
-        if (((p) gVar.f7989f) == null) {
+        sVar.f7987f = gVar;
+        p pVar3 = (p) sVar.f7985b;
+        gVar.f7985b = pVar3;
+        if (((p) gVar.f7987f) == null) {
             pVar3.d = gVar;
         }
     }

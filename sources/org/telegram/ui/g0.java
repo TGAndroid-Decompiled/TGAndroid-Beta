@@ -3,28 +3,28 @@ package org.telegram.ui;
 import android.net.Uri;
 import org.telegram.messenger.Utilities;
 public final class g0 implements Utilities.Callback0Return {
-    public final l4 f37033a;
-    public final String f37034b;
-    public final boolean[] f37035c;
+    public final l4 f36998a;
+    public final String f36999b;
+    public final boolean[] f37000c;
     public final pf.c d;
 
     public g0(l4 l4Var, String str, boolean[] zArr, pf.c cVar) {
-        this.f37033a = l4Var;
-        this.f37034b = str;
-        this.f37035c = zArr;
+        this.f36998a = l4Var;
+        this.f36999b = str;
+        this.f37000c = zArr;
         this.d = cVar;
     }
 
     @Override
     public final Object run() {
-        String str = this.f37034b;
-        if (!pf.d.e(Uri.parse(str), false, this.f37035c)) {
+        String str = this.f36999b;
+        if (!pf.d.e(Uri.parse(str), false, this.f37000c)) {
             return Boolean.FALSE;
         }
-        l4 l4Var = this.f37033a;
+        l4 l4Var = this.f36998a;
         pf.c cVar = this.d;
         if (cVar != null) {
-            cVar.f44329c = new i0(0, l4Var, cVar);
+            cVar.f44286c = new i0(0, l4Var, cVar);
         } else {
             x3 x3Var = l4Var.K;
             if (x3Var != null) {

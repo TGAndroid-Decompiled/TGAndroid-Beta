@@ -1,11 +1,14 @@
 package p2;
-public final class i extends l {
-    public final boolean f44023w;
-    public final boolean f44024x;
 
-    public i(String str, k kVar, long j10, int i10, long j11, b2.s sVar, String str2, String str3, long j12, long j13, boolean z10, boolean z11, boolean z12) {
-        super(str, kVar, j10, i10, j11, sVar, str2, str3, j12, j13, z10);
-        this.f44023w = z11;
-        this.f44024x = z12;
+import android.net.Uri;
+public final class i {
+    public final Uri f43982a;
+    public final long f43983b;
+    public final int f43984c;
+
+    public i(Uri uri, long j10, int i10) {
+        this.f43982a = uri;
+        this.f43983b = j10;
+        this.f43984c = i10;
     }
 }

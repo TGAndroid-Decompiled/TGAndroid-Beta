@@ -10,19 +10,19 @@ import org.telegram.ui.Components.gh;
 import org.telegram.ui.Components.ri;
 import org.telegram.ui.Components.ti;
 public final class r1 implements ri {
-    public final ti f15483a;
-    public final d2 f15484b;
+    public final ti f15481a;
+    public final d2 f15482b;
 
     public r1(d2 d2Var, ti tiVar) {
-        this.f15484b = d2Var;
-        this.f15483a = tiVar;
+        this.f15482b = d2Var;
+        this.f15481a = tiVar;
     }
 
     @Override
     public final void b0(int i10, boolean z10, boolean z11, int i11, int i12, long j10, boolean z12, boolean z13, long j11) {
-        ti tiVar = this.f15483a;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = tiVar.f30593j0;
-        d2 d2Var = this.f15484b;
+        ti tiVar = this.f15481a;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = tiVar.f30586j0;
+        d2 d2Var = this.f15482b;
         if (i10 == 7 || i10 == 8) {
             HashMap<Object, Object> selectedPhotos = chatAttachAlertPhotoLayout.getSelectedPhotos();
             ArrayList<Object> selectedPhotosOrder = chatAttachAlertPhotoLayout.getSelectedPhotosOrder();
@@ -57,7 +57,7 @@ public final class r1 implements ri {
 
     @Override
     public final void r(gh ghVar) {
-        NotificationCenter.getInstance(this.f15484b.getCurrentAccount()).doOnIdle(ghVar);
+        NotificationCenter.getInstance(this.f15482b.getCurrentAccount()).doOnIdle(ghVar);
     }
 
     @Override

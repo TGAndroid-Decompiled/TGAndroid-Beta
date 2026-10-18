@@ -1,20 +1,20 @@
 package org.telegram.ui;
 public final class vj implements Runnable {
-    public final int f42239a;
-    public final sn f42240b;
+    public final int f42212a;
+    public final sn f42213b;
 
     public vj(sn snVar, int i10) {
-        this.f42239a = i10;
-        this.f42240b = snVar;
+        this.f42212a = i10;
+        this.f42213b = snVar;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f42239a;
-        sn snVar = this.f42240b;
+        int i10 = this.f42212a;
+        sn snVar = this.f42213b;
         switch (i10) {
             case 0:
-                int i11 = sn.Hc;
+                int i11 = sn.Ic;
                 snVar.c7();
                 return;
             case 1:
@@ -24,35 +24,35 @@ public final class vj implements Runnable {
                 sn.j2(snVar);
                 return;
             case 3:
-                int i12 = sn.Hc;
+                int i12 = sn.Ic;
                 snVar.Qa();
                 return;
             case 4:
-                int i13 = sn.Hc;
+                int i13 = sn.Ic;
                 snVar.Qa();
                 return;
             case 5:
-                int i14 = sn.Hc;
+                int i14 = sn.Ic;
                 snVar.Qa();
                 return;
             case 6:
-                int i15 = sn.Hc;
+                int i15 = sn.Ic;
                 snVar.Qa();
                 return;
             case 7:
-                int i16 = sn.Hc;
+                int i16 = sn.Ic;
                 snVar.Qa();
                 return;
             case 8:
-                int i17 = sn.Hc;
+                int i17 = sn.Ic;
                 snVar.Qa();
                 return;
             case 9:
-                int i18 = sn.Hc;
+                int i18 = sn.Ic;
                 snVar.Qa();
                 return;
             default:
-                int i19 = sn.Hc;
+                int i19 = sn.Ic;
                 snVar.Qa();
                 return;
         }

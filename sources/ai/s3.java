@@ -1,57 +1,40 @@
 package ai;
 
+import android.content.Context;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.io0;
-import org.telegram.ui.kp0;
-public final class s3 implements Utilities.Callback2 {
-    public final int f2137a;
-    public final TL_stars.TL_starGiftUnique f2138b;
-    public final long f2139c;
-    public final NotificationCenter.NotificationCenterDelegate d;
+import org.telegram.tgnet.tl.TL_wallet;
+import org.telegram.ui.Components.l70;
+public final class s3 implements Utilities.Callback {
+    public final int f2138a;
+    public final long f2139b;
+    public final org.telegram.ui.ActionBar.f3 f2140c;
+    public final Object d;
     public final Object e;
-    public final Object f2140f;
+    public final TLObject f2141f;
+    public final TLObject f2142g;
 
-    public s3(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, Object obj, TL_stars.TL_starGiftUnique tL_starGiftUnique, long j10, Object obj2, int i10) {
-        this.f2137a = i10;
-        this.d = notificationCenterDelegate;
-        this.e = obj;
-        this.f2138b = tL_starGiftUnique;
-        this.f2139c = j10;
-        this.f2140f = obj2;
+    public s3(org.telegram.ui.ActionBar.f3 f3Var, Object obj, Object obj2, long j10, TLObject tLObject, TLObject tLObject2, int i10) {
+        this.f2138a = i10;
+        this.f2140c = f3Var;
+        this.d = obj;
+        this.e = obj2;
+        this.f2139b = j10;
+        this.f2141f = tLObject;
+        this.f2142g = tLObject2;
     }
 
     @Override
-    public final void run(Object obj, Object obj2) {
-        boolean z10;
-        switch (this.f2137a) {
+    public final void run(Object obj) {
+        switch (this.f2138a) {
             case 0:
-                k7 k7Var = (k7) this.d;
-                yh.j0 j0Var = (yh.j0) this.f2140f;
-                String str = (String) obj2;
-                ((pf.c) this.e).b();
-                if (((Boolean) obj).booleanValue()) {
-                    m5 m5Var = k7Var.R0;
-                    if (m5Var != null) {
-                        if (j0Var != null) {
-                            z10 = true;
-                        } else {
-                            z10 = false;
-                        }
-                        m5Var.a(this.f2138b, this.f2139c, z10);
-                    }
-                    if (j0Var != null) {
-                        AndroidUtilities.runOnUIThread(new h4(j0Var, 0));
-                        k7Var.skipDismissAnimation();
-                    }
-                    k7Var.dismiss();
-                    return;
-                }
+                k7.Q0((k7) this.f2140c, (pf.c) this.d, (ug.m1) this.e, this.f2139b, (TL_stars.TL_starGiftUnique) this.f2141f, (TL_wallet.nftItem) this.f2142g, (TL_stars.starGiftDepositPayload) obj);
                 return;
             default:
-                kp0.U((kp0) this.d, (boolean[]) this.e, this.f2138b, this.f2139c, (io0) this.f2140f, (h6) obj, (pf.c) obj2);
+                AndroidUtilities.runOnUIThread(new org.telegram.messenger.voip.e((l70) this.f2140c, (org.telegram.ui.ActionBar.b2) this.d, (Context) this.e, this.f2139b, (TLRPC.TL_chatInviteExported) this.f2141f, (TLRPC.TL_chatInviteImporter) this.f2142g, (TLRPC.ChannelParticipant) obj));
                 return;
         }
     }

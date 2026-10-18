@@ -41,8 +41,8 @@ public final class wd extends View {
         Paint paint = this.f2393c;
         paint.setShader(linearGradient);
         d11 d11Var = this.e;
-        float dp = d11Var.f25444c + AndroidUtilities.dp(30.0f);
-        int w02 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20994d7, this.f2394f);
+        float dp = d11Var.f25437c + AndroidUtilities.dp(30.0f);
+        int w02 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20987d7, this.f2394f);
         Paint paint2 = this.d;
         paint2.setColor(w02);
         canvas.drawRect(AndroidUtilities.dp(24.0f), (getHeight() / 2.0f) - 1.0f, ((getWidth() - dp) / 2.0f) - AndroidUtilities.dp(8.0f), getHeight() / 2.0f, paint2);
@@ -50,6 +50,6 @@ public final class wd extends View {
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set((getWidth() - dp) / 2.0f, 0.0f, (getWidth() + dp) / 2.0f, getHeight());
         canvas.drawRoundRect(rectF, getHeight() / 2.0f, getHeight() / 2.0f, paint);
-        this.e.c((getWidth() - d11Var.f25444c) / 2.0f, getHeight() / 2.0f, 1.0f, -1, canvas);
+        this.e.c((getWidth() - d11Var.f25437c) / 2.0f, getHeight() / 2.0f, 1.0f, -1, canvas);
     }
 }

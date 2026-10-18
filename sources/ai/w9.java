@@ -12,10 +12,10 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.dy0;
 import org.telegram.ui.TwoStepVerificationActivity;
 import org.telegram.ui.go0;
-import org.telegram.ui.kh0;
+import org.telegram.ui.jh0;
 import org.telegram.ui.rx;
 import org.telegram.ui.s50;
-import org.telegram.ui.wg0;
+import org.telegram.ui.vg0;
 public final class w9 implements RequestDelegate {
     public final int f2381a;
     public final boolean f2382b;
@@ -43,11 +43,11 @@ public final class w9 implements RequestDelegate {
                 hg.a2 a2Var = (hg.a2) this.f2383c;
                 String str = (String) this.d;
                 a0.h hVar = a2Var.h;
-                ArrayList arrayList = a2Var.f11799g;
-                int i10 = a2Var.f11804m;
+                ArrayList arrayList = a2Var.f11797g;
+                int i10 = a2Var.f11802m;
                 if (tL_error == null) {
                     TLRPC.TL_channels_channelParticipants tL_channels_channelParticipants = (TLRPC.TL_channels_channelParticipants) tLObject;
-                    a2Var.f11805n = str.toLowerCase();
+                    a2Var.f11803n = str.toLowerCase();
                     MessagesController.getInstance(i10).putUsers(tL_channels_channelParticipants.users, false);
                     MessagesController.getInstance(i10).putChats(tL_channels_channelParticipants.chats, false);
                     arrayList.clear();
@@ -80,7 +80,7 @@ public final class w9 implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new x9((Object) ((s50) this.f2383c), tLObject, (Object) ((TLRPC.ChatFull) this.d), this.f2382b, 21));
                 return;
             case 7:
-                kh0 kh0Var = (kh0) this.f2383c;
+                jh0 jh0Var = (jh0) this.f2383c;
                 TLRPC.TL_chatInviteExported tL_chatInviteExported2 = (TLRPC.TL_chatInviteExported) this.d;
                 if (tL_error == null) {
                     TLRPC.TL_messages_exportedChatInvites tL_messages_exportedChatInvites = (TLRPC.TL_messages_exportedChatInvites) tLObject;
@@ -88,14 +88,14 @@ public final class w9 implements RequestDelegate {
                         for (int i12 = 0; i12 < tL_messages_exportedChatInvites.invites.size(); i12++) {
                             if (((TLRPC.TL_chatInviteExported) tL_messages_exportedChatInvites.invites.get(i12)).link.equals(tL_chatInviteExported2.link)) {
                                 tL_chatInviteExported = (TLRPC.TL_chatInviteExported) tL_messages_exportedChatInvites.invites.remove(i12);
-                                AndroidUtilities.runOnUIThread(new wg0(kh0Var, tL_chatInviteExported, tL_error, tLObject, this.f2382b, 0));
+                                AndroidUtilities.runOnUIThread(new vg0(jh0Var, tL_chatInviteExported, tL_error, tLObject, this.f2382b, 0));
                                 return;
                             }
                         }
                     }
                 }
                 tL_chatInviteExported = null;
-                AndroidUtilities.runOnUIThread(new wg0(kh0Var, tL_chatInviteExported, tL_error, tLObject, this.f2382b, 0));
+                AndroidUtilities.runOnUIThread(new vg0(jh0Var, tL_chatInviteExported, tL_error, tLObject, this.f2382b, 0));
                 return;
             default:
                 AndroidUtilities.runOnUIThread(new ei.s1((NotificationCenter.NotificationCenterDelegate) ((go0) this.f2383c), (TLObject) tL_error, this.f2382b, tLObject, (Object) ((String) this.d), 21));

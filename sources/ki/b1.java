@@ -1,18 +1,18 @@
 package ki;
 public final class b1 implements Runnable {
-    public final int f15138a;
-    public final h1 f15139b;
+    public final int f15136a;
+    public final h1 f15137b;
 
     public b1(h1 h1Var, int i10) {
-        this.f15138a = i10;
-        this.f15139b = h1Var;
+        this.f15136a = i10;
+        this.f15137b = h1Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f15138a) {
+        switch (this.f15136a) {
             case 0:
-                h1 h1Var = this.f15139b;
+                h1 h1Var = this.f15137b;
                 k4 k4Var = h1Var.R;
                 if (k4Var != null && h1Var.d != null) {
                     h1Var.S = true;
@@ -26,10 +26,10 @@ public final class b1 implements Runnable {
                 }
                 return;
             case 1:
-                this.f15139b.n();
+                this.f15137b.n();
                 return;
             default:
-                this.f15139b.s();
+                this.f15137b.s();
                 return;
         }
     }

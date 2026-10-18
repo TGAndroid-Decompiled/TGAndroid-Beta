@@ -12,22 +12,22 @@ import org.telegram.messenger.SvgHelper;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.WebFile;
 public final class vi implements Utilities.CallbackReturn {
-    public final int f31307a;
-    public final Object f31308b;
+    public final int f31300a;
+    public final Object f31301b;
 
     public vi(Object obj, int i10) {
-        this.f31307a = i10;
-        this.f31308b = obj;
+        this.f31300a = i10;
+        this.f31301b = obj;
     }
 
     @Override
     public final Object run(Object obj) {
         int i10;
-        switch (this.f31307a) {
+        switch (this.f31300a) {
             case 0:
-                return Boolean.valueOf(fj.N((fj) this.f31308b, (MessageObject) obj));
+                return Boolean.valueOf(fj.N((fj) this.f31301b, (MessageObject) obj));
             case 1:
-                sh.f fVar = (sh.f) this.f31308b;
+                sh.f fVar = (sh.f) this.f31301b;
                 View view = (View) obj;
                 ImageReceiver imageReceiver = new ImageReceiver(view);
                 int i11 = R.raw.map_placeholder;
@@ -39,13 +39,13 @@ public final class vi implements Utilities.CallbackReturn {
                 }
                 SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(i11, i12, i10 * 0.12f);
                 svgThumb.setAspectCenter(true);
-                svgThumb.setColorKey(org.telegram.ui.ActionBar.h6.f21238qe);
-                imageReceiver.setImage(ImageLocation.getForWebFile(WebFile.createWithGeoPoint(fVar.f46587b.geo, 300, 168, 15, Math.min(2, (int) Math.ceil(AndroidUtilities.density)))), (String) null, (ImageLocation) null, (String) null, new oq(svgThumb), (Object) null, 0);
+                svgThumb.setColorKey(org.telegram.ui.ActionBar.h6.f21231qe);
+                imageReceiver.setImage(ImageLocation.getForWebFile(WebFile.createWithGeoPoint(fVar.f46540b.geo, 300, 168, 15, Math.min(2, (int) Math.ceil(AndroidUtilities.density)))), (String) null, (ImageLocation) null, (String) null, new oq(svgThumb), (Object) null, 0);
                 view.addOnAttachStateChangeListener(new org.telegram.ui.Cells.p8(imageReceiver, 1));
                 imageReceiver.setRoundRadius(AndroidUtilities.dp(14.0f));
                 return new ed(imageReceiver, view.getContext().getResources().getDrawable(R.drawable.map_pin).mutate());
             case 2:
-                int i13 = ((SparseIntArray) this.f31308b).get(((Integer) obj).intValue(), -1);
+                int i13 = ((SparseIntArray) this.f31301b).get(((Integer) obj).intValue(), -1);
                 if (i13 == -1) {
                     return Boolean.TRUE;
                 }
@@ -55,13 +55,13 @@ public final class vi implements Utilities.CallbackReturn {
                 }
                 return Boolean.valueOf(z10);
             default:
-                a71 a71Var = (a71) this.f31308b;
+                a71 a71Var = (a71) this.f31301b;
                 View view2 = (View) obj;
                 a71Var.getClass();
                 if (view2.getParent() != a71Var) {
                     return Boolean.FALSE;
                 }
-                return Boolean.valueOf(!s61.K(a71Var.T(view2).f45961f));
+                return Boolean.valueOf(!s61.K(a71Var.T(view2).f45913f));
         }
     }
 }

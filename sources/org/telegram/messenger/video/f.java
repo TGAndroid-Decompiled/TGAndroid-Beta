@@ -21,7 +21,7 @@ import org.telegram.ui.Components.f5;
 import org.telegram.ui.Components.od0;
 import org.telegram.ui.Components.qc;
 import org.telegram.ui.Wallet.k2;
-import org.telegram.ui.Wallet.p4;
+import org.telegram.ui.Wallet.q4;
 import org.telegram.ui.b30;
 import org.telegram.ui.e3;
 import org.telegram.ui.ea;
@@ -30,36 +30,36 @@ import org.telegram.ui.w30;
 import org.telegram.ui.x30;
 import org.telegram.ui.z30;
 public final class f implements View.OnClickListener {
-    public final int f19790a;
-    public final Object f19791b;
-    public final Object f19792c;
+    public final int f19782a;
+    public final Object f19783b;
+    public final Object f19784c;
     public final Object d;
     public final Object e;
-    public final Object f19793f;
+    public final Object f19785f;
     public final Object h;
-    public final Object f19794n;
+    public final Object f19786n;
 
-    public f(ei.d dVar, p4 p4Var, Utilities.Callback3 callback3, String[] strArr, boolean[] zArr, k2[] k2VarArr, d6 d6Var) {
-        this.f19790a = 2;
-        this.f19791b = dVar;
-        this.f19792c = p4Var;
+    public f(ei.d dVar, q4 q4Var, Utilities.Callback3 callback3, String[] strArr, boolean[] zArr, k2[] k2VarArr, d6 d6Var) {
+        this.f19782a = 2;
+        this.f19783b = dVar;
+        this.f19784c = q4Var;
         this.d = callback3;
         this.e = strArr;
         this.h = zArr;
-        this.f19794n = k2VarArr;
-        this.f19793f = d6Var;
+        this.f19786n = k2VarArr;
+        this.f19785f = d6Var;
     }
 
     @Override
     public final void onClick(View view) {
-        int i10 = this.f19790a;
-        Object obj = this.f19793f;
-        Object obj2 = this.f19794n;
+        int i10 = this.f19782a;
+        Object obj = this.f19785f;
+        Object obj2 = this.f19786n;
         Object obj3 = this.h;
         Object obj4 = this.e;
         Object obj5 = this.d;
-        Object obj6 = this.f19792c;
-        Object obj7 = this.f19791b;
+        Object obj6 = this.f19784c;
+        Object obj7 = this.f19783b;
         switch (i10) {
             case 0:
                 ((VideoAds) obj7).lambda$show$17((qc) obj6, (TLRPC.TL_sponsoredMessage) obj5, (Context) obj4, (d6) obj, (VideoAds.AdLayout) obj3, (e) obj2, view);
@@ -72,7 +72,7 @@ public final class f implements View.OnClickListener {
                 TLRPC.Chat chat = (TLRPC.Chat) obj;
                 AccountInstance accountInstance = (AccountInstance) obj3;
                 TLRPC.InputPeer inputPeer = (TLRPC.InputPeer) obj2;
-                b30 b30Var = s50Var.f40951e1;
+                b30 b30Var = s50Var.f40913e1;
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
                 s50Var.X0 = ofFloat;
                 ofFloat.setDuration(600L);
@@ -92,12 +92,12 @@ public final class f implements View.OnClickListener {
                 if (f7) {
                     calendar.set(13, 0);
                 }
-                s50Var.f40977k2 = (int) (calendar.getTimeInMillis() / 1000);
+                s50Var.f40939k2 = (int) (calendar.getTimeInMillis() / 1000);
                 s50Var.M1(false);
                 TL_phone.createGroupCall creategroupcall = new TL_phone.createGroupCall();
                 creategroupcall.peer = MessagesController.getInputPeer(chat);
                 creategroupcall.random_id = Utilities.random.nextInt();
-                creategroupcall.schedule_date = s50Var.f40977k2;
+                creategroupcall.schedule_date = s50Var.f40939k2;
                 creategroupcall.flags |= 2;
                 accountInstance.getConnectionsManager().sendRequest(creategroupcall, new ea(s50Var, chat, inputPeer, 11), 2);
                 return;
@@ -123,13 +123,13 @@ public final class f implements View.OnClickListener {
     }
 
     public f(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, Object obj6, Object obj7, int i10) {
-        this.f19790a = i10;
-        this.f19791b = obj;
-        this.f19792c = obj2;
+        this.f19782a = i10;
+        this.f19783b = obj;
+        this.f19784c = obj2;
         this.d = obj3;
         this.e = obj4;
-        this.f19793f = obj5;
+        this.f19785f = obj5;
         this.h = obj6;
-        this.f19794n = obj7;
+        this.f19786n = obj7;
     }
 }

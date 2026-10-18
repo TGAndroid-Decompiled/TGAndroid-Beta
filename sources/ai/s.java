@@ -24,7 +24,7 @@ public final class s extends sd0 {
                     xVar.Q.setFocusable(true);
                     xVar.Q.setFocusableInTouchMode(true);
                     int y12 = xVar.e.y1(1);
-                    if (y12 >= 0 && y12 < xVar.e.W2.f30210x.size()) {
+                    if (y12 >= 0 && y12 < xVar.e.W2.f30204x.size()) {
                         xVar.e.B0();
                         xVar.e.x0(y12);
                     }
@@ -33,13 +33,13 @@ public final class s extends sd0 {
                 return super.dispatchTouchEvent(motionEvent);
             default:
                 org.telegram.ui.ke keVar = (org.telegram.ui.ke) this.M;
-                a71 a71Var = keVar.f38487a1;
+                a71 a71Var = keVar.f38473a1;
                 t tVar2 = keVar.Y0;
                 if (tVar2 != null && !tVar2.isFocusable()) {
                     tVar2.setFocusable(true);
                     tVar2.setFocusableInTouchMode(true);
                     int y13 = a71Var.y1(3);
-                    if (y13 >= 0 && y13 < a71Var.W2.f30210x.size()) {
+                    if (y13 >= 0 && y13 < a71Var.W2.f30204x.size()) {
                         a71Var.B0();
                         a71Var.x0(y13);
                     }

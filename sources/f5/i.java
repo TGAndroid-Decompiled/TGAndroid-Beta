@@ -6,9 +6,9 @@ import java.util.LinkedList;
 public final class i extends com.googlecode.mp4parser.a {
     public static final le.b d;
     public static final le.b e;
-    public String f10413a;
-    public long f10414b;
-    public LinkedList f10415c;
+    public String f10411a;
+    public long f10412b;
+    public LinkedList f10413c;
 
     static {
         te.a aVar = new te.a(i.class, "FileTypeBox.java");
@@ -22,37 +22,37 @@ public final class i extends com.googlecode.mp4parser.a {
 
     @Override
     public final void _parseDetails(ByteBuffer byteBuffer) {
-        this.f10413a = e5.b.d(byteBuffer);
-        this.f10414b = e5.b.i(byteBuffer);
+        this.f10411a = e5.b.d(byteBuffer);
+        this.f10412b = e5.b.i(byteBuffer);
         int remaining = byteBuffer.remaining() / 4;
-        this.f10415c = new LinkedList();
+        this.f10413c = new LinkedList();
         for (int i10 = 0; i10 < remaining; i10++) {
-            this.f10415c.add(e5.b.d(byteBuffer));
+            this.f10413c.add(e5.b.d(byteBuffer));
         }
     }
 
     @Override
     public final void getContent(ByteBuffer byteBuffer) {
-        byteBuffer.put(e5.c.d(this.f10413a));
-        byteBuffer.putInt((int) this.f10414b);
-        for (String str : this.f10415c) {
+        byteBuffer.put(e5.c.d(this.f10411a));
+        byteBuffer.putInt((int) this.f10412b);
+        for (String str : this.f10413c) {
             byteBuffer.put(e5.c.d(str));
         }
     }
 
     @Override
     public final long getContentSize() {
-        return (this.f10415c.size() * 4) + 8;
+        return (this.f10413c.size() * 4) + 8;
     }
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("FileTypeBox[majorBrand=");
         k3.p(te.a.b(d, this, this));
-        sb2.append(this.f10413a);
+        sb2.append(this.f10411a);
         sb2.append(";minorVersion=");
         k3.p(te.a.b(e, this, this));
-        sb2.append(this.f10414b);
-        for (String str : this.f10415c) {
+        sb2.append(this.f10412b);
+        for (String str : this.f10413c) {
             sb2.append(";compatibleBrand=");
             sb2.append(str);
         }

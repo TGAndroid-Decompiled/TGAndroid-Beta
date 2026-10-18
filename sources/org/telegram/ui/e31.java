@@ -4,17 +4,17 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class e31 implements org.telegram.ui.Components.bp0 {
-    public final org.telegram.ui.Components.cp0 f36387a;
-    public final h31 f36388b;
-    public final h31 f36389c;
+    public final org.telegram.ui.Components.cp0 f36350a;
+    public final h31 f36351b;
+    public final h31 f36352c;
     public final h31 d;
     public final f31 e;
 
     public e31(f31 f31Var, org.telegram.ui.Components.cp0 cp0Var, h31 h31Var, h31 h31Var2, h31 h31Var3) {
         this.e = f31Var;
-        this.f36387a = cp0Var;
-        this.f36388b = h31Var;
-        this.f36389c = h31Var2;
+        this.f36350a = cp0Var;
+        this.f36351b = h31Var;
+        this.f36352c = h31Var2;
         this.d = h31Var3;
     }
 
@@ -22,7 +22,7 @@ public final class e31 implements org.telegram.ui.Components.bp0 {
     public final void L(float f7, boolean z10) {
         long j10;
         SaveToGallerySettingsActivity saveToGallerySettingsActivity = this.e.d;
-        boolean isAttachedToWindow = this.f36387a.isAttachedToWindow();
+        boolean isAttachedToWindow = this.f36350a.isAttachedToWindow();
         if (f7 > 0.7f) {
             j10 = (((float) 4089446400L) * ((f7 - 0.7f) / 0.3f)) + ((float) 104857600);
         } else {
@@ -30,8 +30,8 @@ public final class e31 implements org.telegram.ui.Components.bp0 {
         }
         int i10 = (f7 > 1.0f ? 1 : (f7 == 1.0f ? 0 : -1));
         h31 h31Var = this.d;
-        h31 h31Var2 = this.f36388b;
-        h31 h31Var3 = this.f36389c;
+        h31 h31Var2 = this.f36351b;
+        h31 h31Var3 = this.f36352c;
         if (i10 >= 0) {
             h31Var2.e(false, isAttachedToWindow);
             h31Var3.e(false, isAttachedToWindow);

@@ -15,7 +15,7 @@ import org.telegram.ui.Components.f61;
 import org.telegram.ui.Components.im0;
 import org.telegram.ui.Components.s61;
 public final class m5 extends e61 {
-    public static final int f15392a = 0;
+    public static final int f15390a = 0;
 
     static {
         e61.setup(new e61());
@@ -29,16 +29,16 @@ public final class m5 extends e61 {
         c3 c3Var = (c3) f61Var.H;
         q5 q5Var = o5Var.v;
         boolean z12 = true;
-        if (o5Var.f15112a != aVar) {
+        if (o5Var.f15110a != aVar) {
             z11 = true;
         } else {
             z11 = false;
         }
-        o5Var.f15112a = aVar;
+        o5Var.f15110a = aVar;
         o5Var.E = c3Var;
-        o5Var.f15436y = LocaleController.isRTL;
+        o5Var.f15434y = LocaleController.isRTL;
         o5Var.c(aVar);
-        TL_iv.PageBlock pageBlock = aVar.f15096b;
+        TL_iv.PageBlock pageBlock = aVar.f15094b;
         if (!(pageBlock instanceof TL_iv.pageBlockTable)) {
             return;
         }
@@ -49,10 +49,10 @@ public final class m5 extends e61 {
         Objects.requireNonNull(linkedHashSet);
         q5Var.setSelectionProvider(new j5.b(linkedHashSet, 10));
         o5Var.y();
-        h1 h1Var = o5Var.f15432r;
-        a aVar2 = o5Var.f15112a;
+        h1 h1Var = o5Var.f15430r;
+        a aVar2 = o5Var.f15110a;
         if (aVar2 != null) {
-            TL_iv.PageBlock pageBlock2 = aVar2.f15096b;
+            TL_iv.PageBlock pageBlock2 = aVar2.f15094b;
             if (pageBlock2 instanceof TL_iv.pageBlockTable) {
                 TL_iv.pageBlockTable pageblocktable = (TL_iv.pageBlockTable) pageBlock2;
                 if (pageblocktable.title == null) {
@@ -60,15 +60,15 @@ public final class m5 extends e61 {
                 }
                 String l4 = e6.l(pageblocktable.title);
                 SpannableStringBuilder r10 = e6.r(pageblocktable.title, null, true);
-                a aVar3 = o5Var.f15112a;
-                if (!aVar3.f15110s) {
-                    aVar3.f15110s = true;
+                a aVar3 = o5Var.f15110a;
+                if (!aVar3.f15108s) {
+                    aVar3.f15108s = true;
                     if (r10.length() != 0 && (e6.q(0, r10.length(), r10) & 1) == 0) {
                         z12 = false;
                     }
-                    aVar3.f15109r = z12;
+                    aVar3.f15107r = z12;
                 }
-                h1Var.setAutoBold(o5Var.f15112a.f15109r);
+                h1Var.setAutoBold(o5Var.f15110a.f15107r);
                 if (z11 || !String.valueOf(h1Var.getText()).equals(l4)) {
                     h1Var.setTextSilently(Emoji.replaceEmoji(r10, h1Var.getPaint().getFontMetricsInt(), false));
                     h1Var.invalidateEffects();
@@ -76,13 +76,13 @@ public final class m5 extends e61 {
             }
         }
         o5Var.d();
-        o5Var.f15434w.requestLayout();
+        o5Var.f15432w.requestLayout();
     }
 
     @Override
     public final View createView(Context context, im0 im0Var, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
         o5 o5Var = new o5(context, d6Var);
-        o5Var.setBackground(new a2(h6.w0(h6.f20993d6, d6Var)));
+        o5Var.setBackground(new a2(h6.w0(h6.f20986d6, d6Var)));
         return o5Var;
     }
 

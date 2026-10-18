@@ -1,31 +1,96 @@
 package ci;
 
-import android.graphics.Canvas;
+import android.graphics.Outline;
 import android.view.View;
-import android.view.ViewGroup;
-public final class n1 extends ViewGroup {
-    @Override
-    public final void draw(Canvas canvas) {
-        if (p1.Z.W) {
-            return;
-        }
-        super.draw(canvas);
+import android.view.ViewOutlineProvider;
+import org.telegram.messenger.AndroidUtilities;
+public final class n1 extends ViewOutlineProvider {
+    public final int f5585a;
+
+    public n1(int i10) {
+        this.f5585a = i10;
     }
 
     @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        p1 p1Var = p1.Z;
-        if (p1Var.e.getParent() == this) {
-            p1Var.e.layout(0, 0, p1Var.J, p1Var.K);
-        }
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        setMeasuredDimension(View.MeasureSpec.getSize(i10), View.MeasureSpec.getSize(i11));
-        p1 p1Var = p1.Z;
-        if (p1Var.e.getParent() == this) {
-            p1Var.e.measure(View.MeasureSpec.makeMeasureSpec(p1Var.J, 1073741824), View.MeasureSpec.makeMeasureSpec(p1Var.K, 1073741824));
+    public final void getOutline(View view, Outline outline) {
+        switch (this.f5585a) {
+            case 0:
+                outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight(), AndroidUtilities.dp(10.0f));
+                return;
+            case 1:
+                outline.setRoundRect(0, 0, view.getWidth(), AndroidUtilities.dp(29.0f) + view.getHeight(), AndroidUtilities.dp(29.0f));
+                return;
+            case 2:
+                outline.setRoundRect(0, 0, view.getWidth(), view.getHeight(), AndroidUtilities.dp(18.0f));
+                return;
+            case 3:
+                outline.setRoundRect(0, 0, view.getWidth(), view.getHeight(), AndroidUtilities.dp(22.0f));
+                return;
+            case 4:
+                outline.setRoundRect(0, 0, view.getWidth(), view.getHeight(), AndroidUtilities.dp(22.0f));
+                return;
+            case 5:
+                outline.setRoundRect(0, 0, view.getWidth(), view.getHeight(), AndroidUtilities.dp(22.0f));
+                return;
+            case 6:
+                outline.setRoundRect(0, 0, view.getWidth(), view.getHeight(), AndroidUtilities.dp(22.0f));
+                return;
+            case 7:
+                outline.setRoundRect(AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f), view.getMeasuredWidth() - AndroidUtilities.dp(1.0f), view.getMeasuredHeight() - AndroidUtilities.dp(1.0f), AndroidUtilities.dp(6.0f));
+                return;
+            case 8:
+                int i10 = AndroidUtilities.roundMessageSize;
+                outline.setOval(0, 0, i10, i10);
+                return;
+            case 9:
+                outline.setRoundRect(0, 0, view.getMeasuredWidth(), AndroidUtilities.dp(6.0f) + view.getMeasuredHeight(), AndroidUtilities.dp(6.0f));
+                return;
+            case 10:
+                outline.setRoundRect(0, 0, view.getMeasuredWidth(), AndroidUtilities.dp(6.0f) + view.getMeasuredHeight(), AndroidUtilities.dpf2(6.0f));
+                return;
+            case 11:
+                outline.setRoundRect(0, 0, view.getMeasuredWidth(), AndroidUtilities.dp(6.0f) + view.getMeasuredHeight(), AndroidUtilities.dpf2(6.0f));
+                return;
+            case 12:
+                outline.setOval(0, 0, view.getWidth(), view.getHeight());
+                return;
+            case 13:
+                outline.setOval(0, 0, view.getWidth(), view.getHeight());
+                return;
+            case 14:
+                outline.setOval(0, 0, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f));
+                return;
+            case 15:
+                outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight(), AndroidUtilities.dp(12.0f));
+                return;
+            case 16:
+                outline.setRoundRect(0, AndroidUtilities.dp(50.0f), view.getWidth(), AndroidUtilities.dp(24.0f) + view.getHeight(), AndroidUtilities.dp(24.0f));
+                return;
+            case 17:
+                outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight(), AndroidUtilities.dp(10.0f));
+                return;
+            case 18:
+                outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight(), (1.0f / view.getScaleX()) * AndroidUtilities.dp(4.0f));
+                return;
+            case 19:
+                outline.setOval(0, 0, AndroidUtilities.dp(56.0f), AndroidUtilities.dp(56.0f));
+                return;
+            case 20:
+                outline.setOval(0, 0, AndroidUtilities.dp(56.0f), AndroidUtilities.dp(56.0f));
+                return;
+            case 21:
+                float dp = AndroidUtilities.dp(12.0f);
+                outline.setRoundRect(0, 0, view.getWidth(), (int) (view.getHeight() + dp), dp);
+                return;
+            case 22:
+                outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight(), AndroidUtilities.dp(6.0f));
+                return;
+            case 23:
+                outline.setOval(0, 0, view.getWidth(), view.getHeight());
+                return;
+            default:
+                outline.setRoundRect(0, 0, view.getWidth(), view.getHeight(), Math.min(view.getWidth(), view.getHeight()) / 2.0f);
+                return;
         }
     }
 }

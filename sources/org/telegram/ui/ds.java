@@ -6,10 +6,10 @@ import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.TLRPC;
 public final class ds extends org.telegram.ui.ActionBar.j {
-    public final hs f36321a;
+    public final hs f36284a;
 
     public ds(hs hsVar) {
-        this.f36321a = hsVar;
+        this.f36284a = hsVar;
     }
 
     @Override
@@ -17,14 +17,14 @@ public final class ds extends org.telegram.ui.ActionBar.j {
         boolean z10;
         int i11;
         int i12;
-        hs hsVar = this.f36321a;
+        hs hsVar = this.f36284a;
         if (i10 == -1) {
             hsVar.finishFragment();
-        } else if (i10 == 1 && hsVar.f37632b.getText().length() != 0) {
+        } else if (i10 == 1 && hsVar.f37594b.getText().length() != 0) {
             TLRPC.User user = hsVar.getMessagesController().getUser(Long.valueOf(hsVar.H));
             TLRPC.UserFull userFull = hsVar.getMessagesController().getUserFull(hsVar.H);
-            user.first_name = hsVar.f37632b.getText().toString();
-            user.last_name = hsVar.f37633c.getText().toString();
+            user.first_name = hsVar.f37594b.getText().toString();
+            user.last_name = hsVar.f37595c.getText().toString();
             user.contact = true;
             TLRPC.TL_textWithEntities textWithEntities = hsVar.d.getTextWithEntities();
             hsVar.getMessagesController().putUser(user, false);
@@ -49,7 +49,7 @@ public final class ds extends org.telegram.ui.ActionBar.j {
                 }
                 i12 = ((org.telegram.ui.ActionBar.n2) hsVar).currentAccount;
                 MessagesStorage.getInstance(i12).updateUserInfo(userFull, true);
-                hsVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.userInfoDidLoad, Long.valueOf(userFull.f20427id), userFull);
+                hsVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.userInfoDidLoad, Long.valueOf(userFull.f20420id), userFull);
             }
             hsVar.finishFragment();
             gs gsVar = hsVar.O;

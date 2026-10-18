@@ -2,16 +2,16 @@ package org.telegram.ui.Components;
 
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
 public final class lf extends org.telegram.ui.ActionBar.m1 {
-    public final ChatActivityEnterView f28229o;
+    public final ChatActivityEnterView f28222o;
 
     public lf(ChatActivityEnterView chatActivityEnterView, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout) {
         super(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
-        this.f28229o = chatActivityEnterView;
+        this.f28222o = chatActivityEnterView;
     }
 
     @Override
     public final void dismiss() {
         d(true);
-        this.f28229o.J0.invalidate();
+        this.f28222o.J0.invalidate();
     }
 }

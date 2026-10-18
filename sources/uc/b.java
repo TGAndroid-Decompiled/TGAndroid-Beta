@@ -18,17 +18,17 @@ import x9.k;
 import x9.m;
 import x9.w;
 public final class b implements s0, r {
-    public Object f47670a;
+    public Object f47626a;
 
     public b(Object obj) {
-        this.f47670a = obj;
+        this.f47626a = obj;
     }
 
     @Override
     public p0 W0(Class cls, v1.b bVar) {
         m0 m0Var = null;
-        for (v1.c cVar : (v1.c[]) this.f47670a) {
-            if (cVar.f47911a.equals(cls)) {
+        for (v1.c cVar : (v1.c[]) this.f47626a) {
+            if (cVar.f47864a.equals(cls)) {
                 m0Var = new m0();
             }
         }
@@ -39,7 +39,7 @@ public final class b implements s0, r {
     }
 
     public void a(ea.b bVar, Thread thread, Throwable th2) {
-        m mVar = (m) this.f47670a;
+        m mVar = (m) this.f47626a;
         synchronized (mVar) {
             String str = "Handling uncaught exception \"" + th2 + "\" from thread " + thread.getName();
             if (Log.isLoggable("FirebaseCrashlytics", 3)) {
@@ -59,7 +59,7 @@ public final class b implements s0, r {
 
     @Override
     public void accept(Object obj, Object obj2) {
-        e eVar = (e) this.f47670a;
+        e eVar = (e) this.f47626a;
         e8.b bVar = (e8.b) obj;
         bVar.getClass();
         e8.a aVar = new e8.a(1, (TaskCompletionSource) obj2);
@@ -68,18 +68,18 @@ public final class b implements s0, r {
             Bundle G = bVar.G();
             Parcel obtain = Parcel.obtain();
             obtain.writeInterfaceToken("com.google.android.gms.wallet.internal.IOwService");
-            int i10 = e8.c.f8400a;
+            int i10 = e8.c.f8398a;
             obtain.writeInt(1);
             eVar.writeToParcel(obtain, 0);
             obtain.writeInt(1);
             G.writeToParcel(obtain, 0);
             obtain.writeStrongBinder(aVar);
-            iVar.f8408a.transact(14, obtain, null, 1);
+            iVar.f8406a.transact(14, obtain, null, 1);
             obtain.recycle();
         } catch (RemoteException e) {
             Log.e("WalletClientImpl", "RemoteException during isReadyToPay", e);
             Bundle bundle = Bundle.EMPTY;
-            h5.a(Status.h, Boolean.FALSE, aVar.f8399b);
+            h5.a(Status.h, Boolean.FALSE, aVar.f8397b);
         }
     }
 

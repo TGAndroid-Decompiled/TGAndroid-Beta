@@ -15,18 +15,18 @@ import org.telegram.ui.Components.qu;
 public final class d3 extends qu {
     public final org.telegram.ui.ActionBar.d6 V;
     public final boolean W;
-    public final f3 f22123a0;
+    public final f3 f22116a0;
 
     public d3(f3 f3Var, Context context, jw0 jw0Var, org.telegram.ui.ActionBar.d6 d6Var, boolean z10) {
         super(context, jw0Var, null, 4, true, null);
-        this.f22123a0 = f3Var;
+        this.f22116a0 = f3Var;
         this.V = d6Var;
         this.W = z10;
     }
 
     @Override
     public final boolean a() {
-        if (this.f22123a0.f22235n && super.a()) {
+        if (this.f22116a0.f22228n && super.a()) {
             return true;
         }
         return false;
@@ -34,7 +34,7 @@ public final class d3 extends qu {
 
     @Override
     public final int h() {
-        return this.f22123a0.a();
+        return this.f22116a0.a();
     }
 
     @Override
@@ -52,7 +52,7 @@ public final class d3 extends qu {
         menu.add(R.id.menu_groupbolditalic, R.id.menu_italic, 8, spannableStringBuilder2);
         SpannableStringBuilder spannableStringBuilder3 = new SpannableStringBuilder(LocaleController.getString(R.string.Strike));
         ?? obj = new Object();
-        obj.f28056a |= 8;
+        obj.f28049a |= 8;
         spannableStringBuilder3.setSpan(new m11(obj, 0), 0, spannableStringBuilder3.length(), 33);
         menu.add(R.id.menu_groupbolditalic, R.id.menu_strike, 9, spannableStringBuilder3);
         menu.add(R.id.menu_groupbolditalic, R.id.menu_regular, 10, LocaleController.getString(R.string.Regular));
@@ -67,12 +67,12 @@ public final class d3 extends qu {
         canvas.clipRect(getPaddingLeft() + getScrollX(), 0, (getWidth() + getScrollX()) - getPaddingRight(), getHeight());
         super.onDraw(canvas);
         canvas.restore();
-        f3 f3Var = this.f22123a0;
+        f3 f3Var = this.f22116a0;
         org.telegram.ui.Components.p6 p6Var = f3Var.v;
-        org.telegram.ui.Components.i5 i5Var = f3Var.f22236r;
+        org.telegram.ui.Components.i5 i5Var = f3Var.f22229r;
         if (i5Var != null) {
-            if (f3Var.f22237s <= 0) {
-                i10 = org.telegram.ui.ActionBar.h6.f21214p7;
+            if (f3Var.f22230s <= 0) {
+                i10 = org.telegram.ui.ActionBar.h6.f21207p7;
             } else {
                 i10 = org.telegram.ui.ActionBar.h6.P5;
             }
@@ -97,7 +97,7 @@ public final class d3 extends qu {
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f22123a0.v && !super.verifyDrawable(drawable)) {
+        if (drawable != this.f22116a0.v && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

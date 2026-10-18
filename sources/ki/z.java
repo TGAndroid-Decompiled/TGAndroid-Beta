@@ -47,51 +47,51 @@ public final class z extends a0 implements org.telegram.ui.ActionBar.y5, m9, l0,
     public boolean S;
     public boolean T;
     public final k0 U;
-    public final int f15669n;
-    public final org.telegram.ui.ActionBar.d6 f15670r;
-    public final Paint f15671s;
+    public final int f15667n;
+    public final org.telegram.ui.ActionBar.d6 f15668r;
+    public final Paint f15669s;
     public final TextPaint v;
-    public final RadialProgress2 f15672w;
-    public final yo0 f15673x;
-    public final int f15674y;
+    public final RadialProgress2 f15670w;
+    public final yo0 f15671x;
+    public final int f15672y;
 
     public z(Context context, int i10, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
-        this.f15671s = new Paint(1);
+        this.f15669s = new Paint(1);
         this.v = new TextPaint(1);
         this.E = AndroidUtilities.dp(16.0f);
         int dp = AndroidUtilities.dp(10.0f);
         this.F = dp;
         int dp2 = AndroidUtilities.dp(44.0f);
         this.G = dp2;
-        this.f15669n = i10;
-        this.f15670r = d6Var;
+        this.f15667n = i10;
+        this.f15668r = d6Var;
         setWillNotDraw(false);
-        this.f15674y = DownloadController.getInstance(i10).generateObserverTag();
+        this.f15672y = DownloadController.getInstance(i10).generateObserverTag();
         RadialProgress2 radialProgress2 = new RadialProgress2(this, d6Var);
-        this.f15672w = radialProgress2;
+        this.f15670w = radialProgress2;
         radialProgress2.setCircleRadius(AndroidUtilities.dp(24.0f));
         int i11 = this.E;
         radialProgress2.q(i11, dp, i11 + dp2, dp2 + dp);
         yo0 yo0Var = new yo0(this);
-        this.f15673x = yo0Var;
+        this.f15671x = yo0Var;
         yo0Var.h = new a6.i(this, 29);
         setMinimumHeight(AndroidUtilities.dp(66.0f));
         k0 k0Var = new k0(context, d6Var, new ag.b(this, 25));
         this.U = k0Var;
-        addView(k0Var.f15352a, w7.z5.e(-2, -2, 51));
+        addView(k0Var.f15350a, w7.z5.e(-2, -2, 51));
         d();
     }
 
     private TLRPC.Document getDisplayDocument() {
         t tVar;
-        a aVar = this.f15112a;
-        if (aVar != null && (tVar = aVar.f15099g) != null) {
+        a aVar = this.f15110a;
+        if (aVar != null && (tVar = aVar.f15097g) != null) {
             TLRPC.Document document = tVar.h;
             if (document != null) {
                 return document;
             }
-            return tVar.f15514i;
+            return tVar.f15512i;
         }
         return null;
     }
@@ -125,7 +125,7 @@ public final class z extends a0 implements org.telegram.ui.ActionBar.y5, m9, l0,
 
     @Override
     public final void d() {
-        this.f15671s.setColor(h6.w0(h6.f21317uf, this.f15670r));
+        this.f15669s.setColor(h6.w0(h6.f21310uf, this.f15668r));
         k0 k0Var = this.U;
         if (k0Var != null) {
             k0Var.a();
@@ -136,7 +136,7 @@ public final class z extends a0 implements org.telegram.ui.ActionBar.y5, m9, l0,
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         MessageObject playingMessageObject;
         MessageObject messageObject = this.P;
-        if (messageObject != null && i11 == this.f15669n) {
+        if (messageObject != null && i11 == this.f15667n) {
             if (i10 != NotificationCenter.messagePlayingDidStart && i10 != NotificationCenter.messagePlayingDidReset && i10 != NotificationCenter.messagePlayingPlayStateChanged) {
                 if (i10 == NotificationCenter.messagePlayingProgressDidChanged && messageObject.getId() == ((Integer) objArr[0]).intValue() && (playingMessageObject = MediaController.getInstance().getPlayingMessageObject()) != null) {
                     MessageObject messageObject2 = this.P;
@@ -168,7 +168,7 @@ public final class z extends a0 implements org.telegram.ui.ActionBar.y5, m9, l0,
         this.E = i11;
         int i12 = this.G;
         int i13 = this.F;
-        this.f15672w.q(i11, i13, i11 + i12, i12 + i13);
+        this.f15670w.q(i11, i13, i11 + i12, i12 + i13);
         requestLayout();
         invalidate();
     }
@@ -180,7 +180,7 @@ public final class z extends a0 implements org.telegram.ui.ActionBar.y5, m9, l0,
 
     @Override
     public h1 getCaptionEditText() {
-        return this.U.f15352a;
+        return this.U.f15350a;
     }
 
     public int[] getColorKeys() {
@@ -189,12 +189,12 @@ public final class z extends a0 implements org.telegram.ui.ActionBar.y5, m9, l0,
 
     @Override
     public int getObserverTag() {
-        return this.f15674y;
+        return this.f15672y;
     }
 
     @Override
     public a getRow() {
-        return this.f15112a;
+        return this.f15110a;
     }
 
     public final TLRPC.TL_documentAttributeAudio h() {
@@ -212,10 +212,10 @@ public final class z extends a0 implements org.telegram.ui.ActionBar.y5, m9, l0,
 
     public final void i(a aVar, q3 q3Var) {
         t tVar;
-        this.f15112a = aVar;
+        this.f15110a = aVar;
         this.O = q3Var;
-        if (aVar != null && aVar.f15099g == null) {
-            aVar.f15099g = new t();
+        if (aVar != null && aVar.f15097g == null) {
+            aVar.f15097g = new t();
         }
         this.H = LocaleController.isRTL;
         c(aVar);
@@ -230,12 +230,12 @@ public final class z extends a0 implements org.telegram.ui.ActionBar.y5, m9, l0,
         if (j() && this.P == null && displayDocument != null) {
             TLRPC.TL_message tL_message = new TLRPC.TL_message();
             tL_message.out = true;
-            tL_message.f20300id = -Long.valueOf(displayDocument.f20285id).hashCode();
+            tL_message.f20293id = -Long.valueOf(displayDocument.f20278id).hashCode();
             tL_message.peer_id = new TLRPC.TL_peerUser();
             TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
             tL_message.from_id = tL_peerUser;
             TLRPC.Peer peer = tL_message.peer_id;
-            int i10 = this.f15669n;
+            int i10 = this.f15667n;
             long clientUserId = UserConfig.getInstance(i10).getClientUserId();
             peer.user_id = clientUserId;
             tL_peerUser.user_id = clientUserId;
@@ -246,9 +246,9 @@ public final class z extends a0 implements org.telegram.ui.ActionBar.y5, m9, l0,
             tL_messageMediaDocument.flags |= 3;
             tL_messageMediaDocument.document = displayDocument;
             tL_message.flags |= 768;
-            a aVar2 = this.f15112a;
-            if (aVar2 != null && (tVar = aVar2.f15099g) != null && !TextUtils.isEmpty(tVar.e)) {
-                tL_message.attachPath = this.f15112a.f15099g.e;
+            a aVar2 = this.f15110a;
+            if (aVar2 != null && (tVar = aVar2.f15097g) != null && !TextUtils.isEmpty(tVar.e)) {
+                tL_message.attachPath = this.f15110a.f15097g.e;
             }
             this.P = new MessageObject(i10, tL_message, false, true);
         }
@@ -262,8 +262,8 @@ public final class z extends a0 implements org.telegram.ui.ActionBar.y5, m9, l0,
 
     public final boolean j() {
         t tVar;
-        a aVar = this.f15112a;
-        if (aVar != null && (tVar = aVar.f15099g) != null && tVar.b()) {
+        a aVar = this.f15110a;
+        if (aVar != null && (tVar = aVar.f15097g) != null && tVar.b()) {
             return true;
         }
         return false;
@@ -271,8 +271,8 @@ public final class z extends a0 implements org.telegram.ui.ActionBar.y5, m9, l0,
 
     public final boolean k() {
         t tVar;
-        a aVar = this.f15112a;
-        if (aVar != null && (tVar = aVar.f15099g) != null && tVar.a()) {
+        a aVar = this.f15110a;
+        if (aVar != null && (tVar = aVar.f15097g) != null && tVar.a()) {
             return true;
         }
         return false;
@@ -293,7 +293,7 @@ public final class z extends a0 implements org.telegram.ui.ActionBar.y5, m9, l0,
             i10 = AndroidUtilities.displaySize.x;
         }
         if (this.H) {
-            i11 = this.f15114c;
+            i11 = this.f15112c;
         } else {
             i11 = 0;
         }
@@ -335,7 +335,7 @@ public final class z extends a0 implements org.telegram.ui.ActionBar.y5, m9, l0,
             this.L = new StaticLayout(TextUtils.ellipsize(spannableStringBuilder, textPaint, this.K, TextUtils.TruncateAt.END), textPaint, AndroidUtilities.dp(50.0f) + this.K, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             this.J = AndroidUtilities.dp(11.0f) + ((i12 - AndroidUtilities.dp(30.0f)) / 2) + i13;
         }
-        this.f15673x.j(this.K, AndroidUtilities.dp(30.0f));
+        this.f15671x.j(this.K, AndroidUtilities.dp(30.0f));
     }
 
     public final void m(boolean z10) {
@@ -344,31 +344,31 @@ public final class z extends a0 implements org.telegram.ui.ActionBar.y5, m9, l0,
         File pathToAttach;
         boolean z12;
         t tVar;
-        int i10 = h6.f21089ie;
-        int i11 = h6.f21108je;
-        int i12 = h6.f21314uc;
-        int i13 = h6.f21332vc;
-        RadialProgress2 radialProgress2 = this.f15672w;
+        int i10 = h6.f21082ie;
+        int i11 = h6.f21101je;
+        int i12 = h6.f21307uc;
+        int i13 = h6.f21325vc;
+        RadialProgress2 radialProgress2 = this.f15670w;
         radialProgress2.g(i10, i11, i12, i13);
-        radialProgress2.d = h6.w0(h6.Bd, this.f15670r);
+        radialProgress2.d = h6.w0(h6.Bd, this.f15668r);
         boolean k10 = k();
-        int i14 = this.f15669n;
+        int i14 = this.f15667n;
         if (k10) {
             DownloadController.getInstance(i14).removeLoadingFileObserver(this);
-            radialProgress2.o(this.f15112a.f15099g.f15512f, z10);
+            radialProgress2.o(this.f15110a.f15097g.f15510f, z10);
             radialProgress2.setIcon(3, false, z10);
             n();
             return;
         }
         if (j()) {
-            document = this.f15112a.f15099g.h;
+            document = this.f15110a.f15097g.h;
         } else {
             document = null;
         }
         String attachFileName = FileLoader.getAttachFileName(document);
-        a aVar = this.f15112a;
+        a aVar = this.f15110a;
         int i15 = 1;
-        if (aVar != null && (tVar = aVar.f15099g) != null && !TextUtils.isEmpty(tVar.e) && new File(this.f15112a.f15099g.e).exists()) {
+        if (aVar != null && (tVar = aVar.f15097g) != null && !TextUtils.isEmpty(tVar.e) && new File(this.f15110a.f15097g.e).exists()) {
             z11 = true;
         } else {
             z11 = false;
@@ -419,7 +419,7 @@ public final class z extends a0 implements org.telegram.ui.ActionBar.y5, m9, l0,
         double d;
         MessageObject messageObject;
         if (!k() && (messageObject = this.P) != null) {
-            yo0 yo0Var = this.f15673x;
+            yo0 yo0Var = this.f15671x;
             if (!yo0Var.e) {
                 yo0Var.i(messageObject.audioProgress);
             }
@@ -454,10 +454,10 @@ public final class z extends a0 implements org.telegram.ui.ActionBar.y5, m9, l0,
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
         this.T = true;
-        this.f15672w.m(this);
-        this.f15673x.f32736s = this;
+        this.f15670w.m(this);
+        this.f15671x.f32729s = this;
         m(false);
-        int i10 = this.f15669n;
+        int i10 = this.f15667n;
         NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.messagePlayingDidStart);
         NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.messagePlayingDidReset);
         NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.messagePlayingPlayStateChanged);
@@ -468,7 +468,7 @@ public final class z extends a0 implements org.telegram.ui.ActionBar.y5, m9, l0,
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         this.T = false;
-        int i10 = this.f15669n;
+        int i10 = this.f15667n;
         DownloadController.getInstance(i10).removeLoadingFileObserver(this);
         NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.messagePlayingDidStart);
         NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.messagePlayingDidReset);
@@ -481,16 +481,16 @@ public final class z extends a0 implements org.telegram.ui.ActionBar.y5, m9, l0,
         n9 textSelectionHelper;
         int i10;
         if (getDisplayDocument() != null) {
-            this.f15672w.draw(canvas);
-            int i11 = h6.f21315ud;
-            org.telegram.ui.ActionBar.d6 d6Var = this.f15670r;
+            this.f15670w.draw(canvas);
+            int i11 = h6.f21308ud;
+            org.telegram.ui.ActionBar.d6 d6Var = this.f15668r;
             int w02 = h6.w0(i11, d6Var);
-            int w03 = h6.w0(h6.f21333vd, d6Var);
-            int i12 = h6.f21370xd;
+            int w03 = h6.w0(h6.f21326vd, d6Var);
+            int i12 = h6.f21363xd;
             int w04 = h6.w0(i12, d6Var);
             int w05 = h6.w0(i12, d6Var);
-            int w06 = h6.w0(h6.f21351wd, d6Var);
-            yo0 yo0Var = this.f15673x;
+            int w06 = h6.w0(h6.f21344wd, d6Var);
+            yo0 yo0Var = this.f15671x;
             yo0Var.h(w02, w03, w04, w05, w06);
             if (!k()) {
                 canvas.save();
@@ -498,7 +498,7 @@ public final class z extends a0 implements org.telegram.ui.ActionBar.y5, m9, l0,
                 yo0Var.b(canvas);
                 canvas.restore();
             }
-            int w07 = h6.w0(h6.f21183nd, d6Var);
+            int w07 = h6.w0(h6.f21176nd, d6Var);
             TextPaint textPaint = this.v;
             textPaint.setColor(w07);
             if (this.M != null) {
@@ -515,23 +515,23 @@ public final class z extends a0 implements org.telegram.ui.ActionBar.y5, m9, l0,
                 canvas.restore();
             }
             q3 q3Var = this.O;
-            if (q3Var != null && (textSelectionHelper = q3Var.f15460a.getTextSelectionHelper()) != null && textSelectionHelper.x() && (getParent() instanceof RecyclerView)) {
+            if (q3Var != null && (textSelectionHelper = q3Var.f15458a.getTextSelectionHelper()) != null && textSelectionHelper.x() && (getParent() instanceof RecyclerView)) {
                 ((RecyclerView) getParent()).getClass();
                 int R = RecyclerView.R(this);
-                if (R >= 0 && R > textSelectionHelper.f22660p0 && R <= textSelectionHelper.f22663s0) {
+                if (R >= 0 && R > textSelectionHelper.f22653p0 && R <= textSelectionHelper.f22656s0) {
                     int i13 = 0;
                     if (this.H) {
                         i10 = 0;
                     } else {
-                        i10 = this.f15114c;
+                        i10 = this.f15112c;
                     }
                     float dp = AndroidUtilities.dp(8.0f) + i10;
                     float dp2 = AndroidUtilities.dp(2.0f);
                     int width = getWidth();
                     if (this.H) {
-                        i13 = this.f15114c;
+                        i13 = this.f15112c;
                     }
-                    canvas.drawRoundRect(dp, dp2, (width - i13) - AndroidUtilities.dp(8.0f), AndroidUtilities.dp(64.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.f15671s);
+                    canvas.drawRoundRect(dp, dp2, (width - i13) - AndroidUtilities.dp(8.0f), AndroidUtilities.dp(64.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.f15669s);
                 }
             }
         }
@@ -550,10 +550,10 @@ public final class z extends a0 implements org.telegram.ui.ActionBar.y5, m9, l0,
         if (z11) {
             i14 = 0;
         } else {
-            i14 = this.f15114c;
+            i14 = this.f15112c;
         }
         if (z11) {
-            i15 = this.f15114c;
+            i15 = this.f15112c;
         }
         this.U.g(i14, i15, i12 - i10, AndroidUtilities.dp(66.0f));
         l();
@@ -568,10 +568,10 @@ public final class z extends a0 implements org.telegram.ui.ActionBar.y5, m9, l0,
         if (z10) {
             i12 = 0;
         } else {
-            i12 = this.f15114c;
+            i12 = this.f15112c;
         }
         if (z10) {
-            i13 = this.f15114c;
+            i13 = this.f15112c;
         }
         setMeasuredDimension(size, AndroidUtilities.dp(66.0f) + this.U.h(i12, i13, size));
     }
@@ -584,7 +584,7 @@ public final class z extends a0 implements org.telegram.ui.ActionBar.y5, m9, l0,
         } else {
             f7 = ((float) j10) / ((float) j11);
         }
-        this.f15672w.o(Math.min(1.0f, f7), true);
+        this.f15670w.o(Math.min(1.0f, f7), true);
         if (this.R != 3) {
             m(true);
         }
@@ -592,7 +592,7 @@ public final class z extends a0 implements org.telegram.ui.ActionBar.y5, m9, l0,
 
     @Override
     public final void onSuccessDownload(String str) {
-        this.f15672w.o(1.0f, true);
+        this.f15670w.o(1.0f, true);
         m(true);
     }
 
@@ -603,7 +603,7 @@ public final class z extends a0 implements org.telegram.ui.ActionBar.y5, m9, l0,
         float x10 = motionEvent.getX();
         float y3 = motionEvent.getY();
         if (!k()) {
-            if (this.f15673x.f(x10 - this.I, y3 - this.J, actionMasked)) {
+            if (this.f15671x.f(x10 - this.I, y3 - this.J, actionMasked)) {
                 if (actionMasked == 0) {
                     getParent().requestDisallowInterceptTouchEvent(true);
                 }
@@ -631,10 +631,10 @@ public final class z extends a0 implements org.telegram.ui.ActionBar.y5, m9, l0,
                 if (k()) {
                     q3 q3Var = this.O;
                     if (q3Var != null) {
-                        a aVar = this.f15112a;
-                        w3 w3Var = q3Var.f15460a;
-                        ArrayList arrayList = w3Var.f15601j3;
-                        a5 a5Var = (a5) w3Var.X3.remove(aVar.f15099g);
+                        a aVar = this.f15110a;
+                        w3 w3Var = q3Var.f15458a;
+                        ArrayList arrayList = w3Var.f15599j3;
+                        a5 a5Var = (a5) w3Var.X3.remove(aVar.f15097g);
                         if (a5Var != null) {
                             a5Var.b();
                         }
@@ -651,16 +651,16 @@ public final class z extends a0 implements org.telegram.ui.ActionBar.y5, m9, l0,
                                 h2Var2.h();
                             }
                         }
-                        w3Var.f15593f3.onContentChanged();
+                        w3Var.f15591f3.onContentChanged();
                     }
                 } else if (this.P != null) {
                     if (j()) {
-                        document = this.f15112a.f15099g.h;
+                        document = this.f15110a.f15097g.h;
                     } else {
                         document = null;
                     }
                     int i13 = this.R;
-                    RadialProgress2 radialProgress2 = this.f15672w;
+                    RadialProgress2 radialProgress2 = this.f15670w;
                     if (i13 == 0) {
                         ArrayList<MessageObject> arrayList2 = new ArrayList<>();
                         arrayList2.add(this.P);
@@ -676,7 +676,7 @@ public final class z extends a0 implements org.telegram.ui.ActionBar.y5, m9, l0,
                             invalidate();
                         }
                     } else {
-                        int i14 = this.f15669n;
+                        int i14 = this.f15667n;
                         if (i13 == 2) {
                             radialProgress2.o(0.0f, false);
                             FileLoader.getInstance(i14).loadFile(document, this.P, 1, 1);

@@ -4,7 +4,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 public abstract class n {
-    public static final int f16644a = 0;
+    public static final int f16642a = 0;
 
     static {
         e9.y0.w("android.media.metadata.TITLE", "android.media.metadata.ARTIST", "android.media.metadata.DURATION", "android.media.metadata.ALBUM", "android.media.metadata.AUTHOR", "android.media.metadata.WRITER", "android.media.metadata.COMPOSER", "android.media.metadata.COMPILATION", "android.media.metadata.DATE", "android.media.metadata.YEAR", "android.media.metadata.GENRE", "android.media.metadata.TRACK_NUMBER", "android.media.metadata.NUM_TRACKS", "android.media.metadata.DISC_NUMBER", "android.media.metadata.ALBUM_ARTIST", "android.media.metadata.ART", "android.media.metadata.ART_URI", "android.media.metadata.ALBUM_ART", "android.media.metadata.ALBUM_ART_URI", "android.media.metadata.USER_RATING", "android.media.metadata.RATING", "android.media.metadata.DISPLAY_TITLE", "android.media.metadata.DISPLAY_SUBTITLE", "android.media.metadata.DISPLAY_DESCRIPTION", "android.media.metadata.DISPLAY_ICON", "android.media.metadata.DISPLAY_ICON_URI", "android.media.metadata.MEDIA_ID", "android.media.metadata.MEDIA_URI", "android.media.metadata.BT_FOLDER_TYPE", "android.media.metadata.ADVERTISEMENT", "android.media.metadata.DOWNLOAD_STATUS", "androidx.media3.session.EXTRAS_KEY_MEDIA_TYPE_COMPAT");
@@ -34,7 +34,7 @@ public abstract class n {
     public static n4.i b(b2.r0 r0Var, String str, Uri uri, long j10, Bitmap bitmap) {
         Long l4;
         ?? obj = new Object();
-        obj.f17136a = new Bundle();
+        obj.f17132a = new Bundle();
         obj.f("android.media.metadata.MEDIA_ID", str);
         CharSequence charSequence = r0Var.f3956a;
         Bundle bundle = r0Var.J;
@@ -125,13 +125,13 @@ public abstract class n {
                 }
             }
         }
-        return new n4.i((Bundle) obj.f17136a);
+        return new n4.i((Bundle) obj.f17132a);
     }
 
     public static b2.g1 c(n4.z zVar) {
         if (zVar != null) {
-            float f7 = zVar.f17149b;
-            int i10 = zVar.f17148a;
+            float f7 = zVar.f17145b;
+            int i10 = zVar.f17144a;
             boolean z10 = true;
             switch (i10) {
                 case 1:

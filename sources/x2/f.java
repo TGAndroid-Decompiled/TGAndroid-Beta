@@ -4,7 +4,7 @@ import b2.p1;
 import b2.w;
 public final class f extends l implements Comparable {
     public final int e;
-    public final int f49186f;
+    public final int f49139f;
 
     public f(int i10, p1 p1Var, int i11, i iVar, int i12) {
         super(i10, p1Var, i11);
@@ -16,7 +16,7 @@ public final class f extends l implements Comparable {
         if (i14 != -1 && (i13 = wVar.A) != -1) {
             i15 = i14 * i13;
         }
-        this.f49186f = i15;
+        this.f49139f = i15;
     }
 
     @Override
@@ -32,6 +32,6 @@ public final class f extends l implements Comparable {
 
     @Override
     public final int compareTo(Object obj) {
-        return Integer.compare(this.f49186f, ((f) obj).f49186f);
+        return Integer.compare(this.f49139f, ((f) obj).f49139f);
     }
 }

@@ -2,20 +2,20 @@ package v3;
 
 import c3.k;
 public final class a extends k implements h {
-    public final long f47954i;
-    public final int f47955j;
-    public final int f47956k;
-    public final boolean f47957l;
-    public final long f47958m;
+    public final long f47907i;
+    public final int f47908j;
+    public final int f47909k;
+    public final boolean f47910l;
+    public final long f47911m;
 
     public a(long j10, long j11, int i10, int i11, boolean z10, boolean z11) {
         super(j10, j11, i10, i11, z10, z11);
         long j12 = j10;
-        this.f47954i = j11;
-        this.f47955j = i10;
-        this.f47956k = i11;
-        this.f47957l = z10;
-        this.f47958m = j12 == -1 ? -1L : j12;
+        this.f47907i = j11;
+        this.f47908j = i10;
+        this.f47909k = i11;
+        this.f47910l = z10;
+        this.f47911m = j12 == -1 ? -1L : j12;
     }
 
     @Override
@@ -25,16 +25,16 @@ public final class a extends k implements h {
 
     @Override
     public final long b() {
-        return this.f47958m;
+        return this.f47911m;
     }
 
     @Override
     public final long c() {
-        return this.f47954i;
+        return this.f47907i;
     }
 
     @Override
     public final int g() {
-        return this.f47955j;
+        return this.f47908j;
     }
 }

@@ -12,12 +12,12 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_stories;
 public final class t5 implements Comparator {
-    public final int f2202a;
-    public final Object f2203b;
+    public final int f2203a;
+    public final Object f2204b;
 
     public t5(Object obj, int i10) {
-        this.f2202a = i10;
-        this.f2203b = obj;
+        this.f2203a = i10;
+        this.f2204b = obj;
     }
 
     @Override
@@ -27,23 +27,23 @@ public final class t5 implements Comparator {
         int i10;
         int indexOf;
         int indexOf2;
-        switch (this.f2202a) {
+        switch (this.f2203a) {
             case 0:
-                float[] fArr = ((w5) this.f2203b).f2370r;
+                float[] fArr = ((w5) this.f2204b).f2370r;
                 return Float.compare(fArr[((Integer) obj).intValue()], fArr[((Integer) obj2).intValue()]);
             case 1:
-                ci.i7 i7Var = (ci.i7) this.f2203b;
-                int i11 = i7Var.f5494a;
+                ci.h7 h7Var = (ci.h7) this.f2204b;
+                int i11 = h7Var.f5397a;
                 TL_stories.PeerStories peerStories = (TL_stories.PeerStories) obj;
                 TL_stories.PeerStories peerStories2 = (TL_stories.PeerStories) obj2;
                 long peerDialogId = DialogObject.getPeerDialogId(peerStories.peer);
                 long peerDialogId2 = DialogObject.getPeerDialogId(peerStories2.peer);
-                boolean K = i7Var.K(peerDialogId);
-                boolean K2 = i7Var.K(peerDialogId2);
-                boolean J = i7Var.J(peerDialogId);
-                boolean J2 = i7Var.J(peerDialogId2);
-                boolean F = i7Var.F(peerDialogId);
-                boolean F2 = i7Var.F(peerDialogId2);
+                boolean K = h7Var.K(peerDialogId);
+                boolean K2 = h7Var.K(peerDialogId2);
+                boolean J = h7Var.J(peerDialogId);
+                boolean J2 = h7Var.J(peerDialogId2);
+                boolean F = h7Var.F(peerDialogId);
+                boolean F2 = h7Var.F(peerDialogId2);
                 if (F != F2) {
                     return (F2 ? 1 : 0) - (F ? 1 : 0);
                 }
@@ -84,7 +84,7 @@ public final class t5 implements Comparator {
                 }
                 return (K2 ? 1 : 0) - (K ? 1 : 0);
             case 2:
-                ArrayList arrayList = (ArrayList) this.f2203b;
+                ArrayList arrayList = (ArrayList) this.f2204b;
                 MediaController.AlbumEntry albumEntry = (MediaController.AlbumEntry) obj;
                 MediaController.AlbumEntry albumEntry2 = (MediaController.AlbumEntry) obj2;
                 int i13 = albumEntry.bucketId;
@@ -98,7 +98,7 @@ public final class t5 implements Comparator {
                 }
                 return -1;
             case 3:
-                ki.g6 g6Var = (ki.g6) this.f2203b;
+                ki.g6 g6Var = (ki.g6) this.f2204b;
                 TL_iv.pageTableCell pagetablecell = (TL_iv.pageTableCell) obj;
                 TL_iv.pageTableCell pagetablecell2 = (TL_iv.pageTableCell) obj2;
                 int b10 = g6Var.b(pagetablecell);
@@ -108,13 +108,13 @@ public final class t5 implements Comparator {
                 }
                 return Integer.compare(g6Var.a(pagetablecell), g6Var.a(pagetablecell2));
             case 4:
-                r2.v vVar = (r2.v) this.f2203b;
+                r2.v vVar = (r2.v) this.f2204b;
                 return vVar.b(obj2) - vVar.b(obj);
             case 5:
-                SparseIntArray sparseIntArray = (SparseIntArray) this.f2203b;
+                SparseIntArray sparseIntArray = (SparseIntArray) this.f2204b;
                 return sparseIntArray.get(((sg.h) obj).e, Integer.MAX_VALUE) - sparseIntArray.get(((sg.h) obj2).e, Integer.MAX_VALUE);
             default:
-                return ((Collator) this.f2203b).compare((String) obj, (String) obj2);
+                return ((Collator) this.f2204b).compare((String) obj, (String) obj2);
         }
     }
 }

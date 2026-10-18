@@ -1,151 +1,124 @@
 package ci;
 
+import android.animation.ValueAnimator;
+import android.content.Context;
 import android.view.View;
-import android.widget.ImageView;
+import android.widget.FrameLayout;
 import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.SharedConfig;
-import org.telegram.ui.Components.UndoView;
-import org.telegram.ui.Components.a10;
-import org.telegram.ui.Components.cl0;
-import org.telegram.ui.Components.i80;
-import org.telegram.ui.Components.lb;
-import org.telegram.ui.Components.xc;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.a91;
-import org.telegram.ui.b91;
-import org.telegram.ui.nt;
-public final class m2 implements View.OnLongClickListener {
-    public final int f5607a;
-    public final Object f5608b;
-    public final Object f5609c;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.bs;
+public final class m2 extends x0 {
+    public final z9 f5530h0;
+    public final p4 f5531i0;
 
-    public m2(int i10, Object obj, Object obj2) {
-        this.f5607a = i10;
-        this.f5608b = obj;
-        this.f5609c = obj2;
+    public m2(p4 p4Var, Context context, z9 z9Var, o9 o9Var, View view, FrameLayout frameLayout, z9 z9Var2) {
+        super(context, z9Var, o9Var, view, frameLayout);
+        this.f5531i0 = p4Var;
+        this.f5530h0 = z9Var2;
     }
 
     @Override
-    public final boolean onLongClick(View view) {
-        switch (this.f5607a) {
-            case 0:
-                q4 q4Var = (q4) this.f5608b;
-                aa aaVar = (aa) this.f5609c;
-                d2 d2Var = q4Var.f5847z3;
-                if (d2Var != null) {
-                    AndroidUtilities.cancelRunOnUIThread(d2Var);
-                    q4Var.f5847z3 = null;
-                }
-                SharedConfig.setStoriesReactionsLongPressHintUsed(true);
-                ei.x3 x3Var = q4Var.H0;
-                if (x3Var != null) {
-                    x3Var.e(true);
-                }
-                cl0 cl0Var = q4Var.f5820r3;
-                if (cl0Var == null) {
-                    cl0 cl0Var2 = new cl0(2, q4Var.C2, q4Var.getContext(), LaunchActivity.R(), new t2(4, q4Var.B0));
-                    q4Var.f5820r3 = cl0Var2;
-                    cl0Var2.setPadding(0, 0, 0, AndroidUtilities.dp(22.0f));
-                    q4Var.addView(q4Var.f5820r3, q4Var.getChildCount() - 1, w7.z5.a(74.0f, 0.0f, 0.0f, 12.0f, 64.0f, -2, 53));
-                    q4Var.f5820r3.setVisibility(8);
-                    q4Var.f5820r3.setDelegate(new q3(q4Var));
-                    q4Var.f5820r3.p(null, null, true);
-                } else {
-                    q4Var.bringChildToFront(cl0Var);
-                    q4Var.f5820r3.n();
-                }
-                q4Var.f5820r3.setFragment(LaunchActivity.R());
-                aaVar.f5217s.dispatchTouchEvent(AndroidUtilities.emptyMotionEvent());
-                q4Var.b1(true);
-                return true;
-            case 1:
-                org.telegram.ui.Components.c0 c0Var = (org.telegram.ui.Components.c0) this.f5609c;
-                ei.e5 e5Var = ((org.telegram.ui.Components.d0) this.f5608b).f25422n;
-                if (e5Var != null) {
-                    return ((Boolean) e5Var.run(c0Var)).booleanValue();
-                }
-                return false;
-            case 2:
-                org.telegram.ui.Components.k8 k8Var = (org.telegram.ui.Components.k8) this.f5608b;
-                float playbackSpeed = MediaController.getInstance().getPlaybackSpeed(true);
-                org.telegram.ui.ActionBar.a1 a1Var = k8Var.X;
-                a1Var.d(playbackSpeed, false);
-                a1Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.G8, (org.telegram.ui.ActionBar.d6) this.f5609c));
-                k8Var.F0(false);
-                org.telegram.ui.ActionBar.u0 u0Var = k8Var.V;
-                u0Var.setDimMenu(0.15f);
-                u0Var.M(a1Var, null);
-                MessagesController.getGlobalNotificationsSettings().edit().putInt("speedhint", -15).apply();
-                return true;
-            case 3:
-                i80 i80Var = (i80) this.f5608b;
-                ((nt) this.f5609c).run();
-                if (i80Var.J) {
-                    i80Var.u();
-                    return true;
-                }
-                return true;
-            case 4:
-                PhotoViewer photoViewer = (PhotoViewer) this.f5608b;
-                b bVar = (b) this.f5609c;
-                MessageObject messageObject = photoViewer.T4;
-                if (messageObject == null) {
-                    return false;
-                }
-                if (AndroidUtilities.addToClipboard(messageObject.sponsoredUrl)) {
-                    new xc(lb.a(photoViewer.E), bVar).k(false).j();
-                }
-                return true;
-            case 5:
-                ProfileActivity profileActivity = (ProfileActivity) this.f5608b;
-                ImageView imageView = (ImageView) this.f5609c;
-                org.telegram.ui.ActionBar.m1 b10 = org.telegram.ui.Components.o9.b(profileActivity, imageView, profileActivity.a(), profileActivity.f33628h1, profileActivity.A0);
-                if (b10 != null) {
-                    b10.setOnDismissListener(new org.telegram.ui.f0(profileActivity, 3));
-                    profileActivity.f33739x0 = imageView;
-                    profileActivity.H3(0.3f);
-                    UndoView undoView = profileActivity.M;
-                    if (undoView == null) {
-                        return true;
-                    }
-                    undoView.e(1, true);
-                    return true;
-                }
-                return false;
-            default:
-                a91 a91Var = (a91) this.f5608b;
-                lg.f fVar = (lg.f) this.f5609c;
-                b91 b91Var = a91Var.d;
-                a10 a10Var = a91Var.f35363a;
-                boolean z10 = false;
-                if (a10Var.f24455c) {
-                    b91Var.f();
-                    ArrayList arrayList = b91Var.f35631n;
-                    jg.g gVar = b91Var.f35629c;
-                    int size = arrayList.size();
-                    for (int i10 = 0; i10 < size; i10++) {
-                        ((a91) arrayList.get(i10)).f35363a.setChecked(false);
-                        ((a91) arrayList.get(i10)).f35364b.f16064n = false;
-                        if (b91Var.f35632r.f36128c > 0 && i10 < gVar.d.size()) {
-                            ((lg.f) gVar.d.get(i10)).f16064n = false;
-                        }
-                    }
-                    z10 = true;
-                    a10Var.setChecked(true);
-                    fVar.f16064n = true;
-                    b91Var.f35628b.z();
-                    if (b91Var.f35632r.f36128c > 0) {
-                        ((lg.f) gVar.d.get(a91Var.f35365c)).f16064n = true;
-                        gVar.z();
-                    }
-                }
-                return z10;
+    public final TLRPC.Peer getDefaultSendAs() {
+        h1 h1Var = this.f5530h0.A0;
+        if (h1Var != null) {
+            return h1Var.i();
         }
+        return null;
+    }
+
+    @Override
+    public final void h(long j10) {
+        w1 w1Var = this.f5531i0.Y1;
+        if (w1Var != null) {
+            ArrayList arrayList = w1Var.h;
+            for (int i10 = 0; i10 < arrayList.size(); i10++) {
+                if (((v1) arrayList.get(i10)).f5999a == j10) {
+                    ((v1) arrayList.get(i10)).h = true;
+                }
+            }
+        }
+    }
+
+    @Override
+    public final void i(int i10, int i11, long j10) {
+        boolean z10;
+        w1 w1Var = this.f5531i0.Y1;
+        if (w1Var == null) {
+            return;
+        }
+        int i12 = w1Var.f6034a;
+        ArrayList arrayList = w1Var.h;
+        if (arrayList.size() < 5) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        arrayList.add(new v1(w1Var, w1Var, i12, j10, i11, z10));
+        w1Var.invalidate();
+    }
+
+    @Override
+    public final void j() {
+        boolean z10;
+        p4 p4Var = this.f5531i0;
+        p4Var.Z1.setCount((int) getStarsCount());
+        x1 x1Var = p4Var.Z1;
+        if (this.W != null) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        x1Var.setFilled(z10);
+    }
+
+    @Override
+    public final void q(boolean z10, boolean z11) {
+        float f7;
+        if (!z11 || this.f6081f0 != z10) {
+            this.f6081f0 = z10;
+            ValueAnimator valueAnimator = this.f6079e0;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
+                this.f6079e0 = null;
+            }
+            ai.u1 u1Var = this.f6076c;
+            u1Var.invalidate();
+            float f10 = 1.0f;
+            if (z11) {
+                float alpha = u1Var.getAlpha();
+                if (z10) {
+                    f10 = 0.0f;
+                }
+                ValueAnimator ofFloat = ValueAnimator.ofFloat(alpha, f10);
+                this.f6079e0 = ofFloat;
+                ofFloat.addUpdateListener(new ah.c0(this, 11));
+                this.f6079e0.addListener(new ah.p0(2, this, z10));
+                this.f6079e0.setDuration(420L);
+                this.f6079e0.setInterpolator(bs.h);
+                this.f6079e0.start();
+            } else {
+                if (z10) {
+                    f7 = 0.0f;
+                } else {
+                    f7 = 0.5f;
+                }
+                this.f6072a.setAlpha(f7);
+                if (z10) {
+                    f10 = 0.0f;
+                }
+                u1Var.setAlpha(f10);
+            }
+            invalidate();
+        }
+        a aVar = this.f5531i0.X1;
+        if (aVar != null) {
+            aVar.a(z10, z11);
+        }
+    }
+
+    @Override
+    public final void setVisibility(int i10) {
+        super.setVisibility(i10);
+        this.f5531i0.M0.setVisibility(i10);
     }
 }

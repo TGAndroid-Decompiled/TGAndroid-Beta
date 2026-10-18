@@ -1,17 +1,17 @@
 package ai;
 
 import android.view.animation.Interpolator;
-import org.telegram.messenger.kk;
+import org.telegram.messenger.lk;
 public final class be implements Interpolator {
-    public final int f1049a;
+    public final int f1050a;
 
     public be(int i10) {
-        this.f1049a = i10;
+        this.f1050a = i10;
     }
 
     @Override
     public final float getInterpolation(float f7) {
-        switch (this.f1049a) {
+        switch (this.f1050a) {
             case 0:
                 return (float) Math.pow(f7, 2.0d);
             case 1:
@@ -20,7 +20,7 @@ public final class be implements Interpolator {
                 }
                 float f10 = f7 - 0.33f;
                 if (f10 < 0.33f) {
-                    return kk.x(f10, 0.34f, 0.15f, 0.1f);
+                    return lk.x(f10, 0.34f, 0.15f, 0.1f);
                 }
                 return (((f10 - 0.34f) / 0.33f) * 0.05f) - 0.05f;
             case 2:

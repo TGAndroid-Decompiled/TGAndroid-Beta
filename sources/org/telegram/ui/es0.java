@@ -1,14 +1,14 @@
 package org.telegram.ui;
 public final class es0 extends org.telegram.ui.Cells.x9 {
-    public final int f36611q0 = 0;
+    public final int f36595q0 = 0;
 
-    public es0(ci.r8 r8Var, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(r8Var, d6Var);
+    public es0(ci.q8 q8Var, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(q8Var, d6Var);
     }
 
     @Override
     public final int o() {
-        switch (this.f36611q0) {
+        switch (this.f36595q0) {
             case 0:
                 return 0;
             default:

@@ -6,14 +6,14 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class ue implements Runnable {
-    public final int f41982a;
-    public final sn f41983b;
-    public final MessageObject f41984c;
+    public final int f41941a;
+    public final sn f41942b;
+    public final MessageObject f41943c;
 
     public ue(sn snVar, MessageObject messageObject, int i10) {
-        this.f41982a = i10;
-        this.f41983b = snVar;
-        this.f41984c = messageObject;
+        this.f41941a = i10;
+        this.f41942b = snVar;
+        this.f41943c = messageObject;
     }
 
     @Override
@@ -24,23 +24,23 @@ public final class ue implements Runnable {
         int i11;
         int i12;
         int i13;
-        switch (this.f41982a) {
+        switch (this.f41941a) {
             case 0:
-                MessageObject messageObject = this.f41984c;
+                MessageObject messageObject = this.f41943c;
                 TLRPC.MessageMedia messageMedia = messageObject.messageOwner.media;
                 if (messageMedia != null && (webPage = messageMedia.webpage) != null && webPage.cached_page != null) {
                     LaunchActivity launchActivity = LaunchActivity.H1;
                     if (launchActivity == null || launchActivity.P() == null || LaunchActivity.H1.P().l(messageObject) == null) {
-                        this.f41983b.createArticleViewer(false).N(messageObject, null, null, null);
+                        this.f41942b.createArticleViewer(false).N(messageObject, null, null, null);
                         return;
                     }
                     return;
                 }
                 return;
             case 1:
-                sn snVar = this.f41983b;
+                sn snVar = this.f41942b;
                 snVar.getClass();
-                MessageObject messageObject2 = this.f41984c;
+                MessageObject messageObject2 = this.f41943c;
                 TLRPC.Message message = messageObject2.messageOwner;
                 int i14 = message.ttl;
                 if (i14 != Integer.MAX_VALUE) {
@@ -63,11 +63,11 @@ public final class ue implements Runnable {
                     return;
                 }
             case 2:
-                sn snVar2 = this.f41983b;
+                sn snVar2 = this.f41942b;
                 snVar2.getClass();
-                MessageObject messageObject3 = this.f41984c;
+                MessageObject messageObject3 = this.f41943c;
                 int replyMsgId = messageObject3.getReplyMsgId();
-                int i15 = messageObject3.messageOwner.f20300id;
+                int i15 = messageObject3.messageOwner.f20293id;
                 if (messageObject3.getDialogId() == snVar2.L6) {
                     i11 = 1;
                 } else {
@@ -76,11 +76,11 @@ public final class ue implements Runnable {
                 snVar2.bb(replyMsgId, i15, true, i11, false, 0, null, ((TLRPC.TL_messageActionPollAppendAnswer) messageObject3.messageOwner.action).answer.option, null);
                 return;
             case 3:
-                sn snVar3 = this.f41983b;
+                sn snVar3 = this.f41942b;
                 snVar3.getClass();
-                MessageObject messageObject4 = this.f41984c;
+                MessageObject messageObject4 = this.f41943c;
                 int replyMsgId2 = messageObject4.getReplyMsgId();
-                int i16 = messageObject4.messageOwner.f20300id;
+                int i16 = messageObject4.messageOwner.f20293id;
                 if (messageObject4.getDialogId() == snVar3.L6) {
                     i12 = 1;
                 } else {
@@ -89,11 +89,11 @@ public final class ue implements Runnable {
                 snVar3.bb(replyMsgId2, i16, true, i12, false, 0, null, null, null);
                 return;
             case 4:
-                sn snVar4 = this.f41983b;
+                sn snVar4 = this.f41942b;
                 snVar4.getClass();
-                MessageObject messageObject5 = this.f41984c;
+                MessageObject messageObject5 = this.f41943c;
                 int replyMsgId3 = messageObject5.getReplyMsgId();
-                int i17 = messageObject5.messageOwner.f20300id;
+                int i17 = messageObject5.messageOwner.f20293id;
                 if (messageObject5.getDialogId() == snVar4.L6) {
                     i13 = 1;
                 } else {
@@ -102,18 +102,18 @@ public final class ue implements Runnable {
                 snVar4.j(replyMsgId3, i17, true, i13, false, 0);
                 return;
             case 5:
-                int id2 = this.f41984c.getId();
-                sn snVar5 = this.f41983b;
+                int id2 = this.f41943c.getId();
+                sn snVar5 = this.f41942b;
                 snVar5.bb(id2, 0, true, 0, true, 0, null, null, new mf(snVar5, 23));
-                if (snVar5.f41260h6.isEmpty()) {
+                if (snVar5.f41225h6.isEmpty()) {
                     snVar5.Pb(false);
                     return;
                 }
                 return;
             case 6:
-                sn snVar6 = this.f41983b;
+                sn snVar6 = this.f41942b;
                 snVar6.getClass();
-                MessageObject messageObject6 = this.f41984c;
+                MessageObject messageObject6 = this.f41943c;
                 if (messageObject6.isVideo()) {
                     snVar6.ma(null, messageObject6);
                     return;
@@ -122,14 +122,14 @@ public final class ue implements Runnable {
                     return;
                 }
             case 7:
-                sn snVar7 = this.f41983b;
-                snVar7.getMessagesController().pinMessage(snVar7.e, snVar7.f41229f, this.f41984c.getId(), true, false, false);
+                sn snVar7 = this.f41942b;
+                snVar7.getMessagesController().pinMessage(snVar7.e, snVar7.f41194f, this.f41943c.getId(), true, false, false);
                 snVar7.A3 = null;
                 return;
             default:
-                sn snVar8 = this.f41983b;
+                sn snVar8 = this.f41942b;
                 org.telegram.ui.Components.xc.a0(snVar8).c(LocaleController.getString(R.string.AdHidden)).j();
-                MessageObject messageObject7 = this.f41984c;
+                MessageObject messageObject7 = this.f41943c;
                 snVar8.Ja(messageObject7);
                 snVar8.La(messageObject7);
                 return;

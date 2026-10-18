@@ -3,13 +3,13 @@ package hb;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 public final class b extends eb.u {
-    public static final a f11712c = new a();
-    public final Class f11713a;
-    public final o f11714b;
+    public static final a f11710c = new a();
+    public final Class f11711a;
+    public final o f11712b;
 
     public b(eb.g gVar, eb.u uVar, Class cls) {
-        this.f11714b = new o(gVar, uVar, cls);
-        this.f11713a = cls;
+        this.f11712b = new o(gVar, uVar, cls);
+        this.f11711a = cls;
     }
 
     @Override
@@ -21,11 +21,11 @@ public final class b extends eb.u {
         ArrayList arrayList = new ArrayList();
         aVar.a();
         while (aVar.k()) {
-            arrayList.add(((eb.u) this.f11714b.f11752c).read(aVar));
+            arrayList.add(((eb.u) this.f11712b.f11750c).read(aVar));
         }
         aVar.e();
         int size = arrayList.size();
-        Class cls = this.f11713a;
+        Class cls = this.f11711a;
         if (cls.isPrimitive()) {
             Object newInstance = Array.newInstance(cls, size);
             for (int i10 = 0; i10 < size; i10++) {
@@ -45,7 +45,7 @@ public final class b extends eb.u {
         bVar.b();
         int length = Array.getLength(obj);
         for (int i10 = 0; i10 < length; i10++) {
-            this.f11714b.write(bVar, Array.get(obj, i10));
+            this.f11712b.write(bVar, Array.get(obj, i10));
         }
         bVar.e();
     }

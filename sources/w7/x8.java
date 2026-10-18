@@ -14,7 +14,7 @@ public abstract class x8 {
         b2.m0 a2 = r9.a.a(ya.a.class);
         a2.f3834b = 1;
         a2.a(r9.j.a(Context.class));
-        a2.f3836f = new org.telegram.ui.web.m(20, str, f0Var);
+        a2.f3836f = new org.telegram.ui.web.n(20, str, f0Var);
         return a2.b();
     }
 }

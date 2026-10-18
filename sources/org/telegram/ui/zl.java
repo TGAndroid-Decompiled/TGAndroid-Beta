@@ -10,23 +10,23 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.ui.Components.PipRoundVideoView;
 public final class zl implements ViewTreeObserver.OnPreDrawListener {
-    public final int f43786a;
-    public final Object f43787b;
-    public final Object f43788c;
+    public final int f43746a;
+    public final Object f43747b;
+    public final Object f43748c;
 
     public zl(int i10, Object obj, Object obj2) {
-        this.f43786a = i10;
-        this.f43788c = obj;
-        this.f43787b = obj2;
+        this.f43746a = i10;
+        this.f43748c = obj;
+        this.f43747b = obj2;
     }
 
     @Override
     public final boolean onPreDraw() {
         int[] iArr;
         float f7;
-        int i10 = this.f43786a;
-        Object obj = this.f43788c;
-        Object obj2 = this.f43787b;
+        int i10 = this.f43746a;
+        Object obj = this.f43748c;
+        Object obj2 = this.f43747b;
         switch (i10) {
             case 0:
                 sn snVar = ((fm) obj).Q;
@@ -38,14 +38,14 @@ public final class zl implements ViewTreeObserver.OnPreDrawListener {
                 u1Var.getViewTreeObserver().removeOnPreDrawListener(this);
                 ImageReceiver photoImage = u1Var.getPhotoImage();
                 float imageWidth = photoImage.getImageWidth();
-                RectF cameraRect = snVar.f41181b3.getCameraRect();
+                RectF cameraRect = snVar.f41146b3.getCameraRect();
                 float width = imageWidth / cameraRect.width();
-                u1Var.getTransitionParams().f23166x0 = true;
+                u1Var.getTransitionParams().f23159x0 = true;
                 u1Var.setAlpha(0.0f);
                 u1Var.setTimeAlpha(0.0f);
                 u1Var.getLocationOnScreen(r9);
                 int[] iArr2 = {(int) ((photoImage.getImageX() - u1Var.getAnimationOffsetX()) + iArr2[0]), (int) (((photoImage.getImageY() + u1Var.getPaddingTop()) - u1Var.getTranslationY()) + iArr2[1])};
-                org.telegram.ui.Components.o60 cameraContainer = snVar.f41181b3.getCameraContainer();
+                org.telegram.ui.Components.o60 cameraContainer = snVar.f41146b3.getCameraContainer();
                 cameraContainer.getLocationOnScreen(new int[2]);
                 cameraContainer.setPivotX(cameraRect.left - iArr[0]);
                 cameraContainer.setPivotY(cameraRect.top - iArr[1]);
@@ -55,15 +55,15 @@ public final class zl implements ViewTreeObserver.OnPreDrawListener {
                 ObjectAnimator ofFloat = ObjectAnimator.ofFloat(cameraContainer, View.SCALE_X, width);
                 ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(cameraContainer, View.SCALE_Y, width);
                 ObjectAnimator ofFloat3 = ObjectAnimator.ofFloat(cameraContainer, View.TRANSLATION_Y, iArr2[1] - cameraRect.top);
-                View buttonsLayout = snVar.f41181b3.getButtonsLayout();
+                View buttonsLayout = snVar.f41146b3.getButtonsLayout();
                 Property property = View.ALPHA;
-                animatorSet.playTogether(ofFloat, ofFloat2, ofFloat3, ObjectAnimator.ofFloat(buttonsLayout, property, 0.0f), ObjectAnimator.ofInt(snVar.f41181b3.getPaint(), org.telegram.ui.Components.t6.f30479b, 0), ObjectAnimator.ofFloat(snVar.f41181b3.getMuteImageView(), property, 0.0f));
+                animatorSet.playTogether(ofFloat, ofFloat2, ofFloat3, ObjectAnimator.ofFloat(buttonsLayout, property, 0.0f), ObjectAnimator.ofInt(snVar.f41146b3.getPaint(), org.telegram.ui.Components.t6.f30472b, 0), ObjectAnimator.ofFloat(snVar.f41146b3.getMuteImageView(), property, 0.0f));
                 animatorSet.setInterpolator(org.telegram.ui.Components.bs.h);
                 ObjectAnimator ofFloat4 = ObjectAnimator.ofFloat(cameraContainer, View.TRANSLATION_X, iArr2[0] - cameraRect.left);
-                ofFloat4.setInterpolator(org.telegram.ui.Components.bs.f25037f);
+                ofFloat4.setInterpolator(org.telegram.ui.Components.bs.f25030f);
                 animatorSet2.playTogether(ofFloat4, animatorSet);
                 animatorSet2.setDuration(300L);
-                org.telegram.ui.Components.r60 r60Var = snVar.f41181b3;
+                org.telegram.ui.Components.r60 r60Var = snVar.f41146b3;
                 if (r60Var != null) {
                     r60Var.setIsMessageTransition(true);
                 }
@@ -71,15 +71,15 @@ public final class zl implements ViewTreeObserver.OnPreDrawListener {
                 animatorSet2.start();
                 return true;
             case 1:
-                ((jx) obj).f38369b.f36653e0[0].f36337a.getViewTreeObserver().removeOnPreDrawListener(this);
-                AndroidUtilities.runOnUIThread((ai.r3) obj2, 100L);
+                ((jx) obj).f38354b.f36637e0[0].f36300a.getViewTreeObserver().removeOnPreDrawListener(this);
+                AndroidUtilities.runOnUIThread((ai.t3) obj2, 100L);
                 return false;
             default:
                 ((ViewTreeObserver) obj2).removeOnPreDrawListener(this);
                 vh.h hVar = (vh.h) obj;
                 org.telegram.ui.Components.yb ybVar = hVar.W;
                 if (ybVar != null) {
-                    int[] iArr3 = vh.h.f48473d0;
+                    int[] iArr3 = vh.h.f48426d0;
                     ybVar.getLocationInWindow(iArr3);
                     float f10 = iArr3[0];
                     float translationY = iArr3[1] - hVar.W.getTranslationY();
@@ -89,9 +89,9 @@ public final class zl implements ViewTreeObserver.OnPreDrawListener {
                     } else {
                         f7 = -ybVar2.getBottomOffset();
                     }
-                    hVar.f48476a.getLocationInWindow(iArr3);
-                    hVar.X = (hVar.W.f32605a.getMeasuredWidth() / 2.0f) + (f10 - iArr3[0]) + hVar.W.f32605a.getLeft();
-                    hVar.Y = (hVar.W.f32605a.getMeasuredHeight() / 2.0f) + ((translationY + f7) - iArr3[1]) + hVar.W.f32605a.getTop();
+                    hVar.f48429a.getLocationInWindow(iArr3);
+                    hVar.X = (hVar.W.f32598a.getMeasuredWidth() / 2.0f) + (f10 - iArr3[0]) + hVar.W.f32598a.getLeft();
+                    hVar.Y = (hVar.W.f32598a.getMeasuredHeight() / 2.0f) + ((translationY + f7) - iArr3[1]) + hVar.W.f32598a.getTop();
                 }
                 hVar.c();
                 return true;

@@ -1,16 +1,16 @@
 package pf;
 public class c {
-    public Runnable f44327a;
-    public Runnable f44328b;
-    public Runnable f44329c;
+    public Runnable f44284a;
+    public Runnable f44285b;
+    public Runnable f44286c;
 
     public c(Runnable runnable, Runnable runnable2) {
-        this.f44327a = runnable;
-        this.f44329c = runnable2;
+        this.f44284a = runnable;
+        this.f44286c = runnable2;
     }
 
     public final void a(boolean z10) {
-        Runnable runnable = this.f44328b;
+        Runnable runnable = this.f44285b;
         if (runnable != null) {
             runnable.run();
         }
@@ -22,21 +22,21 @@ public class c {
     }
 
     public void c(boolean z10) {
-        Runnable runnable = this.f44329c;
+        Runnable runnable = this.f44286c;
         if (runnable != null) {
             runnable.run();
         }
     }
 
     public void d() {
-        Runnable runnable = this.f44327a;
+        Runnable runnable = this.f44284a;
         if (runnable != null) {
             runnable.run();
-            this.f44327a = null;
+            this.f44284a = null;
         }
     }
 
     public final void e(Runnable runnable) {
-        this.f44328b = runnable;
+        this.f44285b = runnable;
     }
 }

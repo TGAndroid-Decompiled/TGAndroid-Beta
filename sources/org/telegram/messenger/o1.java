@@ -4,41 +4,29 @@ import java.text.Collator;
 import java.util.Comparator;
 import org.telegram.messenger.ContactsController;
 public final class o1 implements Comparator {
-    public final int f19136a;
-    public final Collator f19137b;
+    public final int f19096a;
+    public final Collator f19097b;
 
     public o1(Collator collator, int i10) {
-        this.f19136a = i10;
-        this.f19137b = collator;
+        this.f19096a = i10;
+        this.f19097b = collator;
     }
 
     @Override
     public final int compare(Object obj, Object obj2) {
-        int lambda$buildContactsSectionsArrays$44;
-        int lambda$mergePhonebookAndTelegramContacts$38;
-        int lambda$mergePhonebookAndTelegramContacts$39;
-        int lambda$processLoadedContacts$31;
-        int lambda$processLoadedContacts$32;
-        int lambda$updateUnregisteredContacts$42;
-        switch (this.f19136a) {
+        switch (this.f19096a) {
             case 0:
-                lambda$buildContactsSectionsArrays$44 = ContactsController.lambda$buildContactsSectionsArrays$44(this.f19137b, (String) obj, (String) obj2);
-                return lambda$buildContactsSectionsArrays$44;
+                return ContactsController.lambda$buildContactsSectionsArrays$44(this.f19097b, (String) obj, (String) obj2);
             case 1:
-                lambda$mergePhonebookAndTelegramContacts$38 = ContactsController.lambda$mergePhonebookAndTelegramContacts$38(this.f19137b, obj, obj2);
-                return lambda$mergePhonebookAndTelegramContacts$38;
+                return ContactsController.lambda$mergePhonebookAndTelegramContacts$38(this.f19097b, obj, obj2);
             case 2:
-                lambda$mergePhonebookAndTelegramContacts$39 = ContactsController.lambda$mergePhonebookAndTelegramContacts$39(this.f19137b, (String) obj, (String) obj2);
-                return lambda$mergePhonebookAndTelegramContacts$39;
+                return ContactsController.lambda$mergePhonebookAndTelegramContacts$39(this.f19097b, (String) obj, (String) obj2);
             case 3:
-                lambda$processLoadedContacts$31 = ContactsController.lambda$processLoadedContacts$31(this.f19137b, (String) obj, (String) obj2);
-                return lambda$processLoadedContacts$31;
+                return ContactsController.lambda$processLoadedContacts$31(this.f19097b, (String) obj, (String) obj2);
             case 4:
-                lambda$processLoadedContacts$32 = ContactsController.lambda$processLoadedContacts$32(this.f19137b, (String) obj, (String) obj2);
-                return lambda$processLoadedContacts$32;
+                return ContactsController.lambda$processLoadedContacts$32(this.f19097b, (String) obj, (String) obj2);
             default:
-                lambda$updateUnregisteredContacts$42 = ContactsController.lambda$updateUnregisteredContacts$42(this.f19137b, (ContactsController.Contact) obj, (ContactsController.Contact) obj2);
-                return lambda$updateUnregisteredContacts$42;
+                return ContactsController.lambda$updateUnregisteredContacts$42(this.f19097b, (ContactsController.Contact) obj, (ContactsController.Contact) obj2);
         }
     }
 }

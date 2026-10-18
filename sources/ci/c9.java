@@ -1,183 +1,41 @@
 package ci;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.LinearGradient;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.animation.LinearInterpolator;
-import j$.util.Objects;
-import org.telegram.messenger.AndroidUtilities;
+import android.widget.FrameLayout;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.uu;
-import org.telegram.ui.Components.yc;
-public class c9 extends View {
-    public boolean E;
-    public long F;
-    public final Path G;
-    public final androidx.fragment.app.d H;
-    public final org.telegram.ui.Components.f6 f5295a;
-    public final TL_stories.MediaArea f5296b;
-    public final Paint f5297c;
-    public final Paint d;
-    public LinearGradient e;
-    public LinearGradient f5298f;
-    public final Matrix h;
-    public final org.telegram.ui.Cells.z f5299n;
-    public final yc f5300r;
-    public final boolean f5301s;
-    public final boolean v;
-    public final boolean f5302w;
-    public final boolean f5303x;
-    public final boolean f5304y;
+public final class c9 extends FrameLayout {
+    public final TL_stories.MediaArea f5240a;
+    public final rg.s0 f5241b;
 
-    public c9(Context context, View view, TL_stories.MediaArea mediaArea) {
+    public c9(Context context, rg.s0 s0Var, TL_stories.MediaArea mediaArea) {
         super(context);
-        boolean z10;
-        boolean z11;
-        boolean z12 = true;
-        this.f5297c = new Paint(1);
-        Paint paint = new Paint(1);
-        this.d = paint;
-        this.h = new Matrix();
-        org.telegram.ui.Cells.z g02 = org.telegram.ui.ActionBar.h6.g0(1174405119, 2, -1);
-        this.f5299n = g02;
-        this.f5300r = new yc(this);
-        this.f5301s = false;
-        this.v = false;
-        this.E = false;
-        this.G = new Path();
-        this.H = new androidx.fragment.app.d(this, 25);
-        this.f5296b = mediaArea;
-        boolean z13 = mediaArea instanceof TL_stories.TL_mediaAreaGeoPoint;
-        if (!z13 && !(mediaArea instanceof TL_stories.TL_mediaAreaVenue) && !(mediaArea instanceof TL_stories.TL_mediaAreaUrl)) {
-            z10 = false;
-        } else {
-            z10 = true;
-        }
-        this.f5301s = z10;
-        if (!z13 && !(mediaArea instanceof TL_stories.TL_mediaAreaVenue)) {
-            z11 = false;
-        } else {
-            z11 = true;
-        }
-        this.v = z11;
-        if (!z13 && !(mediaArea instanceof TL_stories.TL_mediaAreaVenue) && (mediaArea.coordinates.flags & 1) == 0) {
-            z12 = false;
-        }
-        this.f5302w = z12;
-        this.f5304y = z12;
-        this.f5303x = z12;
-        this.f5295a = new org.telegram.ui.Components.f6(view, 0L, 120L, new LinearInterpolator());
-        paint.setStyle(Paint.Style.STROKE);
-        g02.setCallback(this);
-    }
-
-    public final void b(Canvas canvas) {
-        if (!this.f5304y) {
-            return;
-        }
-        float innerRadius = getInnerRadius();
-        RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-        Path path = this.G;
-        path.rewind();
-        path.addRoundRect(rectF, innerRadius, innerRadius, Path.Direction.CW);
-        canvas.save();
-        canvas.clipPath(path);
-        int width = getWidth();
-        int height = getHeight();
-        org.telegram.ui.Cells.z zVar = this.f5299n;
-        zVar.setBounds(0, 0, width, height);
-        zVar.draw(canvas);
-        canvas.restore();
+        this.f5240a = mediaArea;
+        this.f5241b = s0Var;
+        addView(s0Var);
     }
 
     @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        int action = motionEvent.getAction();
-        org.telegram.ui.Cells.z zVar = this.f5299n;
-        yc ycVar = this.f5300r;
-        if (action == 0) {
-            if (getParent() instanceof View) {
-                View view = (View) getParent();
-                Objects.requireNonNull(view);
-                ycVar.f32611f = new uu(1, view);
-            }
-            ycVar.c(true);
-            zVar.setHotspot(motionEvent.getX(), motionEvent.getY());
-            zVar.setState(new int[]{16842919, 16842910});
-        } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-            ycVar.c(false);
-            zVar.setState(new int[0]);
-        }
-        super.dispatchTouchEvent(motionEvent);
-        return true;
-    }
-
-    public float getInnerRadius() {
-        TL_stories.MediaArea mediaArea;
-        TL_stories.MediaAreaCoordinates mediaAreaCoordinates;
-        if ((getParent() instanceof View) && (mediaArea = this.f5296b) != null && (mediaAreaCoordinates = mediaArea.coordinates) != null) {
-            if ((mediaAreaCoordinates.flags & 1) != 0) {
-                return (float) (((mediaAreaCoordinates.radius / 100.0d) * getWidth()) / getScaleX());
-            }
-            return getMeasuredHeight() * 0.2f;
-        }
-        return getMeasuredHeight() * 0.2f;
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        float innerRadius = getInnerRadius();
-        b(canvas);
-        if (this.v && this.E && this.e != null) {
-            float measuredWidth = getMeasuredWidth() * 0.7f;
-            float currentTimeMillis = ((float) (System.currentTimeMillis() - this.F)) / 600.0f;
-            float measuredWidth2 = ((getMeasuredWidth() + measuredWidth) * currentTimeMillis) - measuredWidth;
-            if (currentTimeMillis >= 1.0f) {
-                this.E = false;
-                return;
-            }
-            Matrix matrix = this.h;
-            matrix.reset();
-            matrix.postScale(measuredWidth / 40.0f, 1.0f);
-            matrix.postTranslate(measuredWidth2, 0.0f);
-            this.e.setLocalMatrix(matrix);
-            LinearGradient linearGradient = this.e;
-            Paint paint = this.f5297c;
-            paint.setShader(linearGradient);
-            RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-            canvas.drawRoundRect(rectF, innerRadius, innerRadius, paint);
-            this.f5298f.setLocalMatrix(matrix);
-            LinearGradient linearGradient2 = this.f5298f;
-            Paint paint2 = this.d;
-            paint2.setShader(linearGradient2);
-            float dpf2 = AndroidUtilities.dpf2(1.5f);
-            paint2.setStrokeWidth(dpf2);
-            float f7 = dpf2 / 2.0f;
-            rectF.inset(f7, f7);
-            float f10 = innerRadius - f7;
-            canvas.drawRoundRect(rectF, f10, f10, paint2);
-            invalidate();
-        }
-    }
-
-    @Override
-    public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f5299n && !super.verifyDrawable(drawable)) {
-            return false;
-        }
-        return true;
-    }
-
-    public void a(Canvas canvas) {
+    public final void onMeasure(int i10, int i11) {
+        rg.s0 s0Var = this.f5241b;
+        s0Var.measure(i10, i11);
+        int measuredWidth = (s0Var.getMeasuredWidth() - s0Var.getPaddingLeft()) - s0Var.getPaddingRight();
+        int measuredHeight = (s0Var.getMeasuredHeight() - s0Var.getPaddingTop()) - s0Var.getPaddingBottom();
+        float f7 = measuredWidth;
+        float f10 = f7 / 2.0f;
+        s0Var.setPivotX(s0Var.getPaddingLeft() + f10);
+        float f11 = measuredHeight;
+        float f12 = f11 / 2.0f;
+        s0Var.setPivotY(s0Var.getPaddingTop() + f12);
+        int size = View.MeasureSpec.getSize(i10);
+        int size2 = View.MeasureSpec.getSize(i11);
+        setMeasuredDimension(size, size2);
+        float f13 = size;
+        float f14 = size2;
+        float min = Math.min(f13 / f7, f14 / f11);
+        s0Var.setTranslationX((f13 / 2.0f) - (f10 + s0Var.getPaddingLeft()));
+        s0Var.setTranslationY((f14 / 2.0f) - (f12 + s0Var.getPaddingTop()));
+        s0Var.setScaleX(min);
+        s0Var.setScaleY(min);
     }
 }

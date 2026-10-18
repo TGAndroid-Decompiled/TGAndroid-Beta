@@ -3,10 +3,10 @@ package hg;
 import java.util.ArrayList;
 import org.telegram.ui.os;
 public final class q1 implements z1 {
-    public final os f12025a;
+    public final os f12023a;
 
     public q1(os osVar) {
-        this.f12025a = osVar;
+        this.f12023a = osVar;
     }
 
     @Override
@@ -21,7 +21,7 @@ public final class q1 implements z1 {
 
     @Override
     public final void f(int i10) {
-        os osVar = this.f12025a;
+        os osVar = this.f12023a;
         osVar.l();
         if (i10 != 0) {
             osVar.F();

@@ -1,26 +1,48 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.TLRPC;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.ui.Components.ChatActivityEnterView;
 public final class ua implements Runnable {
-    public final int f19650a;
-    public final MessagesController f19651b;
-    public final TLRPC.TL_help_peerColors f19652c;
+    public final int f19644a;
+    public final NotificationCenter.NotificationCenterDelegate f19645b;
+    public final long f19646c;
+    public final int d;
+    public final int e;
+    public final boolean f19647f;
 
-    public ua(MessagesController messagesController, TLRPC.TL_help_peerColors tL_help_peerColors, int i10) {
-        this.f19650a = i10;
-        this.f19651b = messagesController;
-        this.f19652c = tL_help_peerColors;
+    public ua(int i10, int i11, int i12, long j10, MessagesController messagesController, boolean z10) {
+        this.f19644a = i12;
+        this.f19645b = messagesController;
+        this.f19646c = j10;
+        this.d = i10;
+        this.e = i11;
+        this.f19647f = z10;
     }
 
     @Override
     public final void run() {
-        switch (this.f19650a) {
+        int i10 = this.f19644a;
+        NotificationCenter.NotificationCenterDelegate notificationCenterDelegate = this.f19645b;
+        switch (i10) {
             case 0:
-                this.f19651b.lambda$checkPeerColors$493(this.f19652c);
+                ((MessagesController) notificationCenterDelegate).lambda$markDialogAsRead$240(this.f19646c, this.d, this.e, this.f19647f);
+                return;
+            case 1:
+                ((MessagesController) notificationCenterDelegate).lambda$markDialogAsRead$241(this.f19646c, this.d, this.e, this.f19647f);
                 return;
             default:
-                this.f19651b.lambda$checkPeerColors$495(this.f19652c);
+                int i11 = ChatActivityEnterView.f23904n5;
+                ((ChatActivityEnterView) notificationCenterDelegate).R0(this.d, this.f19647f, this.e, false, this.f19646c);
                 return;
         }
+    }
+
+    public ua(ChatActivityEnterView chatActivityEnterView, boolean z10, int i10, int i11, long j10) {
+        this.f19644a = 2;
+        this.f19645b = chatActivityEnterView;
+        this.f19647f = z10;
+        this.d = i10;
+        this.e = i11;
+        this.f19646c = j10;
     }
 }

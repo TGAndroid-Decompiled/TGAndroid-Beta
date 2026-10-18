@@ -2,33 +2,33 @@ package org.telegram.ui.Cells;
 
 import android.animation.ValueAnimator;
 public final class h2 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f22328a;
-    public final r2 f22329b;
+    public final int f22321a;
+    public final r2 f22322b;
 
     public h2(r2 r2Var, int i10) {
-        this.f22328a = i10;
-        this.f22329b = r2Var;
+        this.f22321a = i10;
+        this.f22322b = r2Var;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f22328a) {
+        switch (this.f22321a) {
             case 0:
-                r2 r2Var = this.f22329b;
+                r2 r2Var = this.f22322b;
                 r2Var.getClass();
                 r2Var.V3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 r2Var.invalidate();
                 return;
             case 1:
-                r2 r2Var2 = this.f22329b;
+                r2 r2Var2 = this.f22322b;
                 r2Var2.getClass();
                 r2Var2.W3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 r2Var2.invalidate();
                 return;
             default:
-                r2 r2Var3 = this.f22329b;
+                r2 r2Var3 = this.f22322b;
                 r2Var3.getClass();
-                r2Var3.f22934y4 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                r2Var3.f22927y4 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 r2Var3.invalidate();
                 return;
         }

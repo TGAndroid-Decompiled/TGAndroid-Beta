@@ -21,7 +21,7 @@ import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.kk;
+import org.telegram.messenger.lk;
 import org.telegram.messenger.voip.VideoCapturerDevice;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.bs;
@@ -30,30 +30,30 @@ import org.webrtc.SurfaceViewRenderer;
 import org.webrtc.TextureViewRenderer;
 import org.webrtc.VideoSink;
 public final class d4 extends FrameLayout implements RendererCommon.RendererEvents, NotificationCenter.NotificationCenterDelegate {
-    public int f8886a;
-    public final c4 f8887b;
-    public final SurfaceViewRenderer f8888c;
+    public int f8884a;
+    public final c4 f8885b;
+    public final SurfaceViewRenderer f8886c;
     public final TextureViewRenderer d;
     public final org.telegram.ui.Components.w9 e;
-    public final TextureView f8889f;
+    public final TextureView f8887f;
     public View h;
-    public Runnable f8890n;
-    public boolean f8891r;
-    public long f8892s;
-    public ci.p4 v;
-    public boolean f8893w;
-    public float f8894x;
-    public boolean f8895y;
+    public Runnable f8888n;
+    public boolean f8889r;
+    public long f8890s;
+    public ci.o4 v;
+    public boolean f8891w;
+    public float f8892x;
+    public boolean f8893y;
 
     public d4(Context context, int i10) {
         super(context);
-        this.f8886a = i10;
+        this.f8884a = i10;
         org.telegram.ui.Components.w9 w9Var = new org.telegram.ui.Components.w9(context);
         this.e = w9Var;
         w9Var.setAlpha(0.75f);
         addView(w9Var, w7.z5.e(-1, -1, 119));
         TextureView textureView = new TextureView(context);
-        this.f8889f = textureView;
+        this.f8887f = textureView;
         addView(textureView, w7.z5.e(-1, -1, 119));
         TextureViewRenderer textureViewRenderer = new TextureViewRenderer(context);
         this.d = textureViewRenderer;
@@ -64,9 +64,9 @@ public final class d4 extends FrameLayout implements RendererCommon.RendererEven
         textureViewRenderer.setScalingType(RendererCommon.ScalingType.SCALE_ASPECT_FIT);
         addView(textureViewRenderer, w7.z5.e(-1, -1, 119));
         textureViewRenderer.setAlpha(1.0f);
-        this.f8888c = null;
+        this.f8886c = null;
         c4 c4Var = new c4(context);
-        this.f8887b = c4Var;
+        this.f8885b = c4Var;
         c4Var.setAlpha(0.0f);
         c4Var.setVisibility(8);
         addView(c4Var, w7.z5.e(-1, -1, 119));
@@ -77,7 +77,7 @@ public final class d4 extends FrameLayout implements RendererCommon.RendererEven
         if (textureViewRenderer != null) {
             return textureViewRenderer.isAvailable();
         }
-        if (this.f8888c != null) {
+        if (this.f8886c != null) {
             return true;
         }
         return false;
@@ -88,27 +88,27 @@ public final class d4 extends FrameLayout implements RendererCommon.RendererEven
         if (textureViewRenderer != null) {
             textureViewRenderer.release();
         }
-        SurfaceViewRenderer surfaceViewRenderer = this.f8888c;
+        SurfaceViewRenderer surfaceViewRenderer = this.f8886c;
         if (surfaceViewRenderer != null) {
             surfaceViewRenderer.release();
         }
-        this.f8891r = false;
+        this.f8889r = false;
         e(false, false);
     }
 
     public final void c(Runnable runnable, boolean z10) {
         float f7;
         ai.z6 z6Var;
-        if (this.f8895y == z10) {
+        if (this.f8893y == z10) {
             return;
         }
-        this.f8895y = z10;
-        c4 c4Var = this.f8887b;
+        this.f8893y = z10;
+        c4 c4Var = this.f8885b;
         int i10 = 0;
         c4Var.setVisibility(0);
-        d dVar = c4Var.f8823b;
+        d dVar = c4Var.f8821b;
         ViewPropertyAnimator animate = c4Var.animate();
-        if (this.f8895y) {
+        if (this.f8893y) {
             f7 = 1.0f;
         } else {
             f7 = 0.0f;
@@ -123,7 +123,7 @@ public final class d4 extends FrameLayout implements RendererCommon.RendererEven
         dVar.setOnClickListener(z6Var);
     }
 
-    public final void d(long j10, ci.p4 p4Var) {
+    public final void d(long j10, ci.o4 o4Var) {
         ci.b1 b1Var;
         ci.h1 h1Var;
         ci.h1 h1Var2;
@@ -132,9 +132,9 @@ public final class d4 extends FrameLayout implements RendererCommon.RendererEven
         TextureViewRenderer textureViewRenderer;
         int dp;
         int width;
-        if (p4Var == null) {
-            long j11 = this.f8892s;
-            if (j11 != 0 && this.f8891r && (textureViewRenderer = this.d) != null) {
+        if (o4Var == null) {
+            long j11 = this.f8890s;
+            if (j11 != 0 && this.f8889r && (textureViewRenderer = this.d) != null) {
                 File file = new File(FileLoader.getDirectory(4), r4.c.g(j11, "live", ".jpg"));
                 Bitmap bitmap = textureViewRenderer.getBitmap();
                 if (bitmap != null) {
@@ -161,7 +161,7 @@ public final class d4 extends FrameLayout implements RendererCommon.RendererEven
             }
         }
         boolean z10 = true;
-        if (this.f8892s != j10) {
+        if (this.f8890s != j10) {
             int i10 = (j10 > 0L ? 1 : (j10 == 0L ? 0 : -1));
             org.telegram.ui.Components.w9 w9Var = this.e;
             if (i10 == 0) {
@@ -169,19 +169,19 @@ public final class d4 extends FrameLayout implements RendererCommon.RendererEven
             } else {
                 String absolutePath = new File(FileLoader.getDirectory(4), r4.c.g(j10, "live", ".jpg")).getAbsolutePath();
                 if (i10 > 0) {
-                    TLRPC.User user = MessagesController.getInstance(this.f8886a).getUser(Long.valueOf(j10));
-                    ImageLocation forUser = ImageLocation.getForUser(this.f8886a, user, 1);
+                    TLRPC.User user = MessagesController.getInstance(this.f8884a).getUser(Long.valueOf(j10));
+                    ImageLocation forUser = ImageLocation.getForUser(this.f8884a, user, 1);
                     if (user != null) {
-                        f10 = org.telegram.ui.Components.h9.d(user.f20426id);
+                        f10 = org.telegram.ui.Components.h9.d(user.f20419id);
                     } else {
                         f10 = i0.a.f(0.2f, -16777216, -1);
                     }
                     w9Var.getImageReceiver().setImage(ImageLocation.getForPath(absolutePath), "500_500_nocache", forUser, "50_50_b2", null, null, new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP, new int[]{i0.a.f(0.2f, f10, -16777216), i0.a.f(0.4f, f10, -16777216)}), 0L, null, user, 0);
                 } else {
-                    TLRPC.Chat chat = MessagesController.getInstance(this.f8886a).getChat(Long.valueOf(-j10));
-                    ImageLocation forChat = ImageLocation.getForChat(this.f8886a, chat, 1);
+                    TLRPC.Chat chat = MessagesController.getInstance(this.f8884a).getChat(Long.valueOf(-j10));
+                    ImageLocation forChat = ImageLocation.getForChat(this.f8884a, chat, 1);
                     if (chat != null) {
-                        f7 = org.telegram.ui.Components.h9.d(chat.f20279id);
+                        f7 = org.telegram.ui.Components.h9.d(chat.f20272id);
                     } else {
                         f7 = i0.a.f(0.2f, -16777216, -1);
                     }
@@ -189,15 +189,15 @@ public final class d4 extends FrameLayout implements RendererCommon.RendererEven
                 }
             }
         }
-        this.f8892s = j10;
-        this.v = p4Var;
-        if (this.f8891r && p4Var != null && !p4Var.f5728a) {
-            p4Var.f5728a = true;
-            p4Var.b();
+        this.f8890s = j10;
+        this.v = o4Var;
+        if (this.f8889r && o4Var != null && !o4Var.f5627a) {
+            o4Var.f5627a = true;
+            o4Var.b();
         }
-        z10 = (p4Var == null || (h1Var2 = (ci.h1) p4Var.f5729b) == null || !h1Var2.n()) ? false : false;
-        if (p4Var != null && (h1Var = (ci.h1) p4Var.f5729b) != null && h1Var.a()) {
-            ci.h1 h1Var3 = (ci.h1) p4Var.f5729b;
+        z10 = (o4Var == null || (h1Var2 = (ci.h1) o4Var.f5628b) == null || !h1Var2.n()) ? false : false;
+        if (o4Var != null && (h1Var = (ci.h1) o4Var.f5628b) != null && h1Var.a()) {
+            ci.h1 h1Var3 = (ci.h1) o4Var.f5628b;
             Objects.requireNonNull(h1Var3);
             b1Var = new ci.b1(h1Var3, 12);
         } else {
@@ -212,11 +212,11 @@ public final class d4 extends FrameLayout implements RendererCommon.RendererEven
         ci.b1 b1Var;
         if (i10 == NotificationCenter.liveStoryUpdated) {
             long longValue = ((Long) objArr[0]).longValue();
-            ci.p4 p4Var = this.v;
-            if (p4Var != null && (h1Var = (ci.h1) p4Var.f5729b) != null && h1Var.g() == longValue) {
-                boolean n10 = ((ci.h1) this.v.f5729b).n();
-                if (((ci.h1) this.v.f5729b).a()) {
-                    ci.h1 h1Var2 = (ci.h1) this.v.f5729b;
+            ci.o4 o4Var = this.v;
+            if (o4Var != null && (h1Var = (ci.h1) o4Var.f5628b) != null && h1Var.g() == longValue) {
+                boolean n10 = ((ci.h1) this.v.f5628b).n();
+                if (((ci.h1) this.v.f5628b).a()) {
+                    ci.h1 h1Var2 = (ci.h1) this.v.f5628b;
                     Objects.requireNonNull(h1Var2);
                     b1Var = new ci.b1(h1Var2, 12);
                 } else {
@@ -236,7 +236,7 @@ public final class d4 extends FrameLayout implements RendererCommon.RendererEven
     public final void draw(Canvas canvas) {
         Bitmap bitmap;
         if (AndroidUtilities.makingGlobalBlurBitmap) {
-            TextureView textureView = this.f8889f;
+            TextureView textureView = this.f8887f;
             if (textureView != null && (bitmap = textureView.getBitmap()) != null) {
                 canvas.save();
                 canvas.translate(textureView.getX(), textureView.getY());
@@ -265,7 +265,7 @@ public final class d4 extends FrameLayout implements RendererCommon.RendererEven
                 }
                 return true;
             }
-            TextureView textureView = this.f8889f;
+            TextureView textureView = this.f8887f;
             if (view == textureView) {
                 Bitmap bitmap2 = textureView.getBitmap();
                 if (bitmap2 != null) {
@@ -291,7 +291,7 @@ public final class d4 extends FrameLayout implements RendererCommon.RendererEven
             if (z10) {
                 f7 = 1.0f;
             }
-            kk.t(animate.alpha(f7), bs.h, 320L);
+            lk.t(animate.alpha(f7), bs.h, 320L);
             return;
         }
         getTextureView().animate().cancel();
@@ -308,9 +308,9 @@ public final class d4 extends FrameLayout implements RendererCommon.RendererEven
         if (isAttachedToWindow() && measuredWidth > 0 && measuredHeight > 0) {
             View view = this.d;
             if (view == null) {
-                view = this.f8888c;
+                view = this.f8886c;
             }
-            TextureView textureView = this.f8889f;
+            TextureView textureView = this.f8887f;
             int measuredWidth2 = textureView.getMeasuredWidth();
             int measuredHeight2 = textureView.getMeasuredHeight();
             textureView.setPivotX(0.0f);
@@ -323,14 +323,14 @@ public final class d4 extends FrameLayout implements RendererCommon.RendererEven
             textureView.setScaleX(max);
             textureView.setScaleY(max);
             textureView.setTranslationX((f7 - (f10 * max)) / 2.0f);
-            textureView.setTranslationY(((f11 - (f12 * max)) / 2.0f) - (this.f8894x / 2.0f));
+            textureView.setTranslationY(((f11 - (f12 * max)) / 2.0f) - (this.f8892x / 2.0f));
             float measuredWidth3 = view.getMeasuredWidth();
             float measuredHeight3 = view.getMeasuredHeight();
             float max2 = Math.max(measuredWidth3 / f7, measuredHeight3 / f11);
             view.setScaleX(max2);
             view.setScaleY(max2);
             view.setTranslationX((f7 - (measuredWidth3 * max2)) / 2.0f);
-            view.setTranslationY(((f11 - (measuredHeight3 * max2)) / 2.0f) - (this.f8894x / 2.0f));
+            view.setTranslationY(((f11 - (measuredHeight3 * max2)) / 2.0f) - (this.f8892x / 2.0f));
         }
     }
 
@@ -356,7 +356,7 @@ public final class d4 extends FrameLayout implements RendererCommon.RendererEven
         if (textureViewRenderer != null) {
             return textureViewRenderer;
         }
-        SurfaceViewRenderer surfaceViewRenderer = this.f8888c;
+        SurfaceViewRenderer surfaceViewRenderer = this.f8886c;
         if (surfaceViewRenderer != null) {
             return surfaceViewRenderer;
         }
@@ -368,7 +368,7 @@ public final class d4 extends FrameLayout implements RendererCommon.RendererEven
         if (textureViewRenderer != null) {
             return textureViewRenderer;
         }
-        SurfaceViewRenderer surfaceViewRenderer = this.f8888c;
+        SurfaceViewRenderer surfaceViewRenderer = this.f8886c;
         if (surfaceViewRenderer != null) {
             return surfaceViewRenderer;
         }
@@ -378,24 +378,24 @@ public final class d4 extends FrameLayout implements RendererCommon.RendererEven
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        SurfaceViewRenderer surfaceViewRenderer = this.f8888c;
+        SurfaceViewRenderer surfaceViewRenderer = this.f8886c;
         if (surfaceViewRenderer != null) {
             surfaceViewRenderer.init(VideoCapturerDevice.getEglBase().getEglBaseContext(), this);
         }
         TextureViewRenderer textureViewRenderer = this.d;
         if (textureViewRenderer != null) {
             textureViewRenderer.init(VideoCapturerDevice.getEglBase().getEglBaseContext(), this);
-            textureViewRenderer.setBackgroundRenderer(this.f8889f);
+            textureViewRenderer.setBackgroundRenderer(this.f8887f);
         }
-        NotificationCenter.getInstance(this.f8886a).addObserver(this, NotificationCenter.liveStoryUpdated);
+        NotificationCenter.getInstance(this.f8884a).addObserver(this, NotificationCenter.liveStoryUpdated);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f8891r = false;
+        this.f8889r = false;
         e(false, false);
-        SurfaceViewRenderer surfaceViewRenderer = this.f8888c;
+        SurfaceViewRenderer surfaceViewRenderer = this.f8886c;
         if (surfaceViewRenderer != null) {
             surfaceViewRenderer.release();
         }
@@ -403,7 +403,7 @@ public final class d4 extends FrameLayout implements RendererCommon.RendererEven
         if (textureViewRenderer != null) {
             textureViewRenderer.release();
         }
-        NotificationCenter.getInstance(this.f8886a).removeObserver(this, NotificationCenter.liveStoryUpdated);
+        NotificationCenter.getInstance(this.f8884a).removeObserver(this, NotificationCenter.liveStoryUpdated);
     }
 
     @Override
@@ -413,19 +413,19 @@ public final class d4 extends FrameLayout implements RendererCommon.RendererEven
 
     @Override
     public final void onFirstFrameRendered() {
-        if (!this.f8891r) {
-            ci.p4 p4Var = this.v;
-            if (p4Var != null && !p4Var.f5728a) {
-                p4Var.f5728a = true;
-                p4Var.b();
+        if (!this.f8889r) {
+            ci.o4 o4Var = this.v;
+            if (o4Var != null && !o4Var.f5627a) {
+                o4Var.f5627a = true;
+                o4Var.b();
             }
-            this.f8891r = true;
+            this.f8889r = true;
         }
         e(true, true);
-        Runnable runnable = this.f8890n;
+        Runnable runnable = this.f8888n;
         if (runnable != null) {
             runnable.run();
-            this.f8890n = null;
+            this.f8888n = null;
         }
     }
 
@@ -434,16 +434,16 @@ public final class d4 extends FrameLayout implements RendererCommon.RendererEven
         int i14 = i12 - i10;
         int i15 = i13 - i11;
         this.e.layout(0, 0, i14, i15);
-        this.f8887b.layout(0, 0, i14, i15);
+        this.f8885b.layout(0, 0, i14, i15);
         View view = this.h;
         if (view != null) {
             view.layout(0, 0, i14, i15);
         }
-        TextureView textureView = this.f8889f;
+        TextureView textureView = this.f8887f;
         textureView.layout(0, 0, textureView.getMeasuredWidth(), textureView.getMeasuredHeight());
         View view2 = this.d;
         if (view2 == null) {
-            view2 = this.f8888c;
+            view2 = this.f8886c;
         }
         view2.layout(0, 0, view2.getMeasuredWidth(), view2.getMeasuredHeight());
         f();
@@ -452,20 +452,20 @@ public final class d4 extends FrameLayout implements RendererCommon.RendererEven
     @Override
     public final void onMeasure(int i10, int i11) {
         View view;
-        this.f8893w = true;
+        this.f8891w = true;
         Display defaultDisplay = ((WindowManager) getContext().getSystemService("window")).getDefaultDisplay();
         TextureViewRenderer textureViewRenderer = this.d;
         if (textureViewRenderer != null) {
             textureViewRenderer.setScreenRotation(defaultDisplay.getRotation());
         }
-        this.f8893w = false;
+        this.f8891w = false;
         super.onMeasure(i10, i11);
         if (textureViewRenderer != null) {
             view = textureViewRenderer;
         } else {
-            view = this.f8888c;
+            view = this.f8886c;
         }
-        TextureView textureView = this.f8889f;
+        TextureView textureView = this.f8887f;
         textureView.getLayoutParams().width = view.getMeasuredWidth();
         textureView.getLayoutParams().height = view.getMeasuredHeight();
         super.onMeasure(i10, i11);
@@ -476,38 +476,38 @@ public final class d4 extends FrameLayout implements RendererCommon.RendererEven
 
     @Override
     public final void requestLayout() {
-        if (this.f8893w) {
+        if (this.f8891w) {
             return;
         }
         super.requestLayout();
     }
 
     public void setAccount(int i10) {
-        if (this.f8886a == i10) {
+        if (this.f8884a == i10) {
             return;
         }
         if (isAttachedToWindow()) {
-            NotificationCenter notificationCenter = NotificationCenter.getInstance(this.f8886a);
+            NotificationCenter notificationCenter = NotificationCenter.getInstance(this.f8884a);
             int i11 = NotificationCenter.liveStoryUpdated;
             notificationCenter.removeObserver(this, i11);
-            this.f8886a = i10;
+            this.f8884a = i10;
             NotificationCenter.getInstance(i10).addObserver(this, i11);
             return;
         }
-        this.f8886a = i10;
+        this.f8884a = i10;
     }
 
     public void setKeyboardOffset(float f7) {
-        this.f8894x = f7;
+        this.f8892x = f7;
         f();
     }
 
     public void setOnFirstFrameCallback(Runnable runnable) {
-        this.f8890n = runnable;
+        this.f8888n = runnable;
     }
 
     public void setSecure(boolean z10) {
-        SurfaceViewRenderer surfaceViewRenderer = this.f8888c;
+        SurfaceViewRenderer surfaceViewRenderer = this.f8886c;
         if (surfaceViewRenderer != null) {
             surfaceViewRenderer.setSecure(z10);
         }

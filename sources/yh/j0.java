@@ -1,411 +1,263 @@
 package yh;
 
-import ai.k7;
-import android.content.Context;
-import android.graphics.Matrix;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.LinearGradient;
 import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
+import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
-import android.text.InputFilter;
+import android.graphics.drawable.NinePatchDrawable;
+import android.text.Layout;
+import android.text.Spanned;
+import android.text.StaticLayout;
+import android.text.TextPaint;
+import android.text.TextUtils;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.TextView;
-import ei.r6;
-import java.util.Arrays;
-import java.util.WeakHashMap;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.DialogObject;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.ImageLocation;
+import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.ActionBar.u5;
-import org.telegram.ui.Components.pf;
-import org.telegram.ui.Components.q6;
-import org.telegram.ui.Components.qc;
-import org.telegram.ui.Components.s40;
-import org.telegram.ui.Components.vg;
-import org.telegram.ui.Components.xc;
-import org.telegram.ui.Components.xp;
-import org.telegram.ui.sn;
-import w7.b6;
-import w7.z5;
-public final class j0 extends org.telegram.ui.ActionBar.f3 {
-    public final int E;
-    public int F;
-    public boolean G;
-    public final i0 H;
-    public final TL_stars.TL_starGiftUnique I;
-    public final long J;
-    public ai.q4 K;
-    public boolean L;
-    public final z4 f50347b;
-    public final ih.k f50348c;
-    public final gh.e d;
-    public final bh.b e;
-    public final ih.f f50349f;
-    public final qh.i h;
-    public final g0 f50350n;
-    public final FrameLayout f50351r;
-    public final xp f50352s;
-    public final TextView v;
-    public final q6 f50353w;
-    public final ImageView f50354x;
-    public final Drawable f50355y;
+import org.telegram.ui.Components.a6;
+import org.telegram.ui.Components.bs;
+import org.telegram.ui.Components.h9;
+import org.telegram.ui.Components.w5;
+import v7.v7;
+public final class j0 extends Drawable {
+    public NinePatchDrawable f50301a;
+    public NinePatchDrawable f50302b;
+    public final TextPaint f50303c;
+    public final ImageReceiver d;
+    public final h9 e;
+    public final int f50304f;
+    public final int f50305g;
+    public final float h;
+    public final float f50306i;
+    public final int f50307j;
+    public final int f50308k;
+    public boolean f50309l;
+    public CharSequence f50310m;
+    public StaticLayout f50311n;
+    public float f50312o;
+    public float f50313p;
+    public w5 f50314q;
+    public View f50315r;
+    public int f50316s;
+    public int f50317t;
+    public int f50318u;
 
-    public j0(Context context, d6 d6Var, TL_stars.TL_starGiftUnique tL_starGiftUnique, long j10) {
-        super(context, (d6) null, true, true);
+    public j0() {
+        TextPaint textPaint = new TextPaint(1);
+        this.f50303c = textPaint;
+        ImageReceiver imageReceiver = new ImageReceiver();
+        this.d = imageReceiver;
+        this.e = new h9((d6) null);
+        int dp = AndroidUtilities.dp(10.66f);
+        this.f50304f = dp * 2;
+        this.f50305g = AndroidUtilities.dp(4.0f);
+        this.h = AndroidUtilities.dpf2(15.33f);
+        this.f50306i = AndroidUtilities.dpf2(7.33f);
+        this.f50307j = AndroidUtilities.dp(8.0f);
+        this.f50308k = (int) AndroidUtilities.dpf2(22.66f);
+        bs bsVar = bs.f25030f;
+        textPaint.setTextSize(AndroidUtilities.dp(12.0f));
+        textPaint.setColor(-1);
+        imageReceiver.setRoundRadius(dp);
+    }
+
+    public final void a() {
+        if (this.f50301a == null) {
+            Drawable drawable = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.gift_message_bubble_24);
+            int intrinsicWidth = drawable.getIntrinsicWidth();
+            int intrinsicHeight = drawable.getIntrinsicHeight();
+            Bitmap createBitmap = Bitmap.createBitmap(intrinsicWidth, intrinsicHeight, Bitmap.Config.ARGB_8888);
+            Canvas canvas = new Canvas(createBitmap);
+            drawable.setBounds(0, 0, intrinsicWidth, intrinsicHeight);
+            drawable.draw(canvas);
+            int i10 = (intrinsicHeight * 4) / 144;
+            this.f50301a = v7.a(createBitmap, new Rect((intrinsicWidth * 27) / 168, i10, (intrinsicWidth * 5) / 168, i10), (intrinsicWidth * 94) / 168, (intrinsicHeight * 71) / 144);
+        }
+        if (this.f50302b == null) {
+            Drawable drawable2 = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.gift_message_bubble_border_24);
+            int intrinsicWidth2 = drawable2.getIntrinsicWidth();
+            int intrinsicHeight2 = drawable2.getIntrinsicHeight();
+            Bitmap createBitmap2 = Bitmap.createBitmap(intrinsicWidth2, intrinsicHeight2, Bitmap.Config.ARGB_8888);
+            Canvas canvas2 = new Canvas(createBitmap2);
+            drawable2.setBounds(0, 0, intrinsicWidth2, intrinsicHeight2);
+            drawable2.draw(canvas2);
+            Paint paint = new Paint(1);
+            float f7 = intrinsicWidth2;
+            float f10 = intrinsicHeight2;
+            paint.setShader(new LinearGradient(f7, 0.0f, 0.0f, f10, new int[]{1090519039, -805306369, 1090519039}, (float[]) null, Shader.TileMode.CLAMP));
+            paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.MULTIPLY));
+            canvas2.drawRect(0.0f, 0.0f, f7, f10, paint);
+            int i11 = (intrinsicHeight2 * 4) / 144;
+            this.f50302b = v7.a(createBitmap2, new Rect((intrinsicWidth2 * 27) / 168, i11, (intrinsicWidth2 * 5) / 168, i11), (intrinsicWidth2 * 94) / 168, (intrinsicHeight2 * 71) / 144);
+        }
+    }
+
+    public final void b(int i10) {
+        int i11;
+        int ceil;
+        a();
+        if (i10 == this.f50316s && this.f50311n != null) {
+            return;
+        }
+        this.f50316s = i10;
+        if (!this.f50309l) {
+            i11 = 0;
+        } else {
+            i11 = this.f50305g + this.f50304f;
+        }
+        int i12 = this.f50307j;
+        int i13 = i11 + i12;
+        int i14 = (i10 - i13) - i12;
+        int i15 = this.f50308k;
+        if (i14 > 0 && !TextUtils.isEmpty(this.f50310m)) {
+            CharSequence charSequence = this.f50310m;
+            Layout.Alignment alignment = Layout.Alignment.ALIGN_NORMAL;
+            TextPaint textPaint = this.f50303c;
+            StaticLayout staticLayout = new StaticLayout(charSequence, textPaint, i14, alignment, 1.0f, 0.0f, false);
+            int lineCount = staticLayout.getLineCount();
+            float f7 = 0.0f;
+            float f10 = 0.0f;
+            for (int i16 = 0; i16 < lineCount; i16++) {
+                f10 = Math.max(f10, staticLayout.getLineWidth(i16));
+            }
+            if (lineCount > 1 && (ceil = (int) Math.ceil(f10)) < i14) {
+                StaticLayout staticLayout2 = new StaticLayout(this.f50310m, textPaint, ceil, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+                if (staticLayout2.getLineCount() == lineCount) {
+                    for (int i17 = 0; i17 < staticLayout2.getLineCount(); i17++) {
+                        f7 = Math.max(f7, staticLayout2.getLineWidth(i17));
+                    }
+                    f10 = f7;
+                    staticLayout = staticLayout2;
+                }
+            }
+            this.f50311n = staticLayout;
+            this.f50312o = i13;
+            this.f50317t = ((int) Math.ceil(f10)) + i13 + i12;
+            float lineBaseline = this.f50311n.getLineBaseline(0);
+            StaticLayout staticLayout3 = this.f50311n;
+            float f11 = this.h;
+            this.f50318u = Math.max(i15, (int) Math.ceil((staticLayout3.getLineBaseline(this.f50311n.getLineCount() - 1) - lineBaseline) + f11 + this.f50306i));
+            this.f50313p = f11 - lineBaseline;
+            return;
+        }
+        this.f50311n = null;
+        this.f50317t = i15;
+        this.f50318u = i15;
+    }
+
+    public final void c(TLObject tLObject) {
         boolean z10;
-        sn snVar;
-        this.f50348c = new ih.k();
-        qh.i iVar = new qh.i(new ai.h4(this, 1));
-        this.h = iVar;
-        AndroidUtilities.enableEdgeToEdge(getWindow());
-        this.I = tL_starGiftUnique;
-        this.J = j10;
-        this.E = MessagesController.getInstance(this.currentAccount).stargiftsMessageLengthMax;
-        ?? obj = new Object();
-        this.d = obj;
-        bh.b bVar = new bh.b(obj);
-        this.e = bVar;
-        f0 f0Var = new f0(this, context);
-        this.containerView = f0Var;
-        int i10 = this.backgroundPaddingLeft;
-        f0Var.setPadding(i10, 0, i10, 0);
-        ih.j jVar = new ih.j(this.containerView);
-        ViewGroup viewGroup = this.containerView;
-        bVar.f4362f = jVar;
-        bVar.f4363g = viewGroup;
-        qh.e eVar = new qh.e(this.container);
-        ViewGroup viewGroup2 = this.containerView;
-        iVar.f44782y = eVar;
-        iVar.E = viewGroup2;
-        eVar.d.add(iVar);
-        Drawable e = r6.e(null, this.currentAccount, j10, h6.I.q());
-        this.f50355y = e;
-        f0Var.V(e);
-        z4 z4Var = new z4(context, this.currentAccount, d6Var);
-        this.f50347b = z4Var;
-        z4Var.a(tL_starGiftUnique, UserConfig.getInstance(this.currentAccount).getClientUserId(), null, LocaleController.getString(R.string.GiftMessageSendNow), false);
-        z4Var.setPadding(0, AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f));
-        z4Var.setLayoutBackground(new u5(z4Var, this.containerView, AndroidUtilities.dp(18.0f), q("paintChatActionBackground")));
-        f0Var.addView(z4Var, z5.e(-2, -2, 48));
-        ih.f fVar = new ih.f(context);
-        this.f50349f = fVar;
-        fVar.setClipChildren(false);
-        fVar.setWindowInsetsProvider(iVar);
-        fVar.setInputIslandBubbleDrawable(bVar.c(fVar, fh.c.b(d6Var), false));
-        fVar.setUnderKeyboardBackgroundDrawable(bVar.c(fVar, fh.c.b(d6Var), false));
-        FrameLayout inputIslandBubbleContainer = fVar.getInputIslandBubbleContainer();
-        inputIslandBubbleContainer.setClipChildren(false);
-        FrameLayout inAppKeyboardBubbleContainer = fVar.getInAppKeyboardBubbleContainer();
-        g0 g0Var = new g0(this, AndroidUtilities.getActivity(), f0Var);
-        this.f50350n = g0Var;
-        g0Var.setInAppInsetsController(iVar);
-        g0Var.setOverrideHint(LocaleController.getString(R.string.GiftMessageAddHint));
-        g0Var.f24054y4 = false;
-        this.containerView.setClipChildren(false);
-        this.containerView.setClipToPadding(false);
-        g0Var.f24049x4 = false;
-        if (!AndroidUtilities.isInMultiwindow && ((snVar = g0Var.P2) == null || !snVar.isInBubbleMode())) {
+        if (tLObject != null) {
             z10 = true;
         } else {
             z10 = false;
         }
-        g0Var.f23965i2 = z10;
-        g0Var.S0(false, false, false);
-        g0Var.d1(true, false);
-        g0Var.f24056z1.setPadding(0, AndroidUtilities.dp(1.0f), AndroidUtilities.dp(20.0f), 0);
-        g0Var.getSendButton().setAlpha(0.0f);
-        g0Var.getEditField().setMaxLines(3);
-        g0Var.setCustomWindowView(this.container);
-        g0Var.setViewParentForEmoji(inAppKeyboardBubbleContainer);
-        inputIslandBubbleContainer.addView(g0Var, z5.a(-2.0f, 7.0f, 0.0f, 7.0f, 0.0f, -1, 83));
-        this.containerView.addView(fVar.getFadeView(), z5.d(-1.0f, -1));
-        this.containerView.addView(fVar, z5.d(-1.0f, -1));
-        g0Var.setDelegate(new h0(this, tL_starGiftUnique));
-        pf pfVar = g0Var.E0;
-        Object obj2 = new Object();
-        InputFilter[] filters = pfVar.getFilters();
-        if (filters == null) {
-            pfVar.setFilters(new InputFilter[]{obj2});
-        } else {
-            InputFilter[] inputFilterArr = (InputFilter[]) Arrays.copyOf(filters, filters.length + 1);
-            inputFilterArr[filters.length] = obj2;
-            pfVar.setFilters(inputFilterArr);
+        this.f50309l = z10;
+        if (z10) {
+            h9 h9Var = this.e;
+            h9Var.p(tLObject);
+            boolean z11 = tLObject instanceof TLRPC.User;
+            ImageReceiver imageReceiver = this.d;
+            if (z11) {
+                imageReceiver.setImage(ImageLocation.getForUser((TLRPC.User) tLObject, 1), "48_48", h9Var, null, null, 0);
+            } else if (tLObject instanceof TLRPC.Chat) {
+                imageReceiver.setImage(ImageLocation.getForChat((TLRPC.Chat) tLObject, 1), "48_48", h9Var, null, null, 0);
+            } else {
+                imageReceiver.setImageBitmap(h9Var);
+            }
         }
-        q6 q6Var = new q6(context, false, false, false);
-        this.f50353w = q6Var;
-        q6Var.setAllowCancel(true);
-        q6Var.setScaleProperty(0.6f);
-        q6Var.setVisibility(8);
-        q6Var.setTextSize(AndroidUtilities.dp(15.0f));
-        q6Var.setTextColor(getThemedColor(h6.f21381y6));
-        q6Var.setTypeface(AndroidUtilities.bold());
-        q6Var.setGravity(17);
-        this.containerView.addView(q6Var, z5.a(20.0f, 3.0f, 0.0f, 3.0f, 54.0f, 56, 85));
-        ?? vgVar = new vg(R.drawable.send_plane_24, context, d6Var, false);
-        this.H = vgVar;
-        int dp = AndroidUtilities.dp(38.0f);
-        int dp2 = AndroidUtilities.dp(38.0f);
-        vgVar.I = dp;
-        vgVar.J = dp2;
-        vgVar.M = AndroidUtilities.dp(6.0f);
-        vgVar.N = AndroidUtilities.dp(8.0f);
-        vgVar.f31272h0 = true;
-        this.containerView.addView((View) vgVar, z5.e(110, 50, 85));
-        vgVar.setScrimViewBackgroundColor(getThemedColor(h6.f20993d6));
-        vgVar.setOnClickListener(new View.OnClickListener(this) {
-            public final j0 f50251b;
-
-            {
-                this.f50251b = this;
-            }
-
-            @Override
-            public final void onClick(View view) {
-                switch (r2) {
-                    case 0:
-                        j0 j0Var = this.f50251b;
-                        if (j0Var.E - j0Var.F < 0) {
-                            AndroidUtilities.shakeView(j0Var.f50353w);
-                            return;
-                        }
-                        ai.q4 q4Var = j0Var.K;
-                        if (q4Var != null) {
-                            TLRPC.TL_textWithEntities textWithEntities = j0Var.f50350n.getTextWithEntities();
-                            boolean z11 = j0Var.G;
-                            k7 k7Var = (k7) q4Var.f2060c;
-                            j0 j0Var2 = (j0) q4Var.d;
-                            TL_stars.TL_starGiftUnique tL_starGiftUnique2 = (TL_stars.TL_starGiftUnique) q4Var.e;
-                            long j11 = q4Var.f2059b;
-                            ag.c cVar = (ag.c) q4Var.f2061f;
-                            if (!j0Var2.L) {
-                                k7Var.w2(tL_starGiftUnique2, j11, cVar, textWithEntities, z11, j0Var2);
-                                return;
-                            }
-                            return;
-                        }
-                        return;
-                    case 1:
-                        j0 j0Var3 = this.f50251b;
-                        boolean z12 = j0Var3.G;
-                        j0Var3.G = !z12;
-                        j0Var3.f50352s.a(z12, true);
-                        return;
-                    default:
-                        this.f50251b.dismiss();
-                        return;
-                }
-            }
-        });
-        TextView textView = new TextView(context);
-        this.v = textView;
-        int i11 = h6.f21087ic;
-        textView.setTextColor(getThemedColor(i11));
-        textView.setTextSize(1, 14.0f);
-        textView.setTypeface(AndroidUtilities.bold());
-        textView.setText(LocaleController.getString(R.string.GiftMessagePreviewInChat));
-        textView.setGravity(17);
-        textView.setPadding(AndroidUtilities.dp(10.0f), 0, AndroidUtilities.dp(10.0f), 0);
-        textView.setBackground(new u5(textView, this.containerView, AndroidUtilities.dp(23.0f) / 2, q("paintChatActionBackground")));
-        this.containerView.addView(textView, z5.e(-2, 23, 49));
-        FrameLayout frameLayout = new FrameLayout(context);
-        this.f50351r = frameLayout;
-        TextView textView2 = new TextView(context);
-        textView2.setTextColor(getThemedColor(i11));
-        textView2.setTextSize(1, 14.0f);
-        textView2.setTypeface(AndroidUtilities.bold());
-        textView2.setText(LocaleController.getString(R.string.GiftMessageMakeMessagePublic));
-        frameLayout.addView(textView2, z5.a(-2.0f, 36.0f, 0.0f, 14.0f, 0.0f, -2, 16));
-        xp xpVar = new xp(context, 18, d6Var);
-        this.f50352s = xpVar;
-        xpVar.getCheckBoxBase().j(true);
-        xpVar.getCheckBoxBase().e = 0.9f;
-        xpVar.b(i11, i11, h6.f21121k7);
-        xpVar.setDrawUnchecked(true);
-        xpVar.a(!this.G, false);
-        z4Var.getLayout().R = new ai.h4(this, 2);
-        xpVar.setDrawBackgroundAsArc(10);
-        frameLayout.addView(xpVar, z5.a(18.0f, 10.0f, 0.0f, 0.0f, 0.0f, 18, 19));
-        frameLayout.setBackground(new u5(frameLayout, this.containerView, AndroidUtilities.dp(16.0f), q("paintChatActionBackground")));
-        frameLayout.setOnClickListener(new View.OnClickListener(this) {
-            public final j0 f50251b;
-
-            {
-                this.f50251b = this;
-            }
-
-            @Override
-            public final void onClick(View view) {
-                switch (r2) {
-                    case 0:
-                        j0 j0Var = this.f50251b;
-                        if (j0Var.E - j0Var.F < 0) {
-                            AndroidUtilities.shakeView(j0Var.f50353w);
-                            return;
-                        }
-                        ai.q4 q4Var = j0Var.K;
-                        if (q4Var != null) {
-                            TLRPC.TL_textWithEntities textWithEntities = j0Var.f50350n.getTextWithEntities();
-                            boolean z11 = j0Var.G;
-                            k7 k7Var = (k7) q4Var.f2060c;
-                            j0 j0Var2 = (j0) q4Var.d;
-                            TL_stars.TL_starGiftUnique tL_starGiftUnique2 = (TL_stars.TL_starGiftUnique) q4Var.e;
-                            long j11 = q4Var.f2059b;
-                            ag.c cVar = (ag.c) q4Var.f2061f;
-                            if (!j0Var2.L) {
-                                k7Var.w2(tL_starGiftUnique2, j11, cVar, textWithEntities, z11, j0Var2);
-                                return;
-                            }
-                            return;
-                        }
-                        return;
-                    case 1:
-                        j0 j0Var3 = this.f50251b;
-                        boolean z12 = j0Var3.G;
-                        j0Var3.G = !z12;
-                        j0Var3.f50352s.a(z12, true);
-                        return;
-                    default:
-                        this.f50251b.dismiss();
-                        return;
-                }
-            }
-        });
-        this.containerView.addView(frameLayout, z5.e(-2, 32, 81));
-        ImageView imageView = new ImageView(context);
-        this.f50354x = imageView;
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
-        imageView.setImageResource(R.drawable.ic_close_white);
-        u5 u5Var = new u5(imageView, this.containerView, AndroidUtilities.dp(16.0f), q("paintChatActionBackground"));
-        int dp3 = AndroidUtilities.dp(32.0f);
-        int dp4 = AndroidUtilities.dp(32.0f);
-        Matrix matrix = hh.d.f12122a;
-        imageView.setBackground(new hh.c(dp3, dp4, u5Var));
-        imageView.setOnClickListener(new View.OnClickListener(this) {
-            public final j0 f50251b;
-
-            {
-                this.f50251b = this;
-            }
-
-            @Override
-            public final void onClick(View view) {
-                switch (r2) {
-                    case 0:
-                        j0 j0Var = this.f50251b;
-                        if (j0Var.E - j0Var.F < 0) {
-                            AndroidUtilities.shakeView(j0Var.f50353w);
-                            return;
-                        }
-                        ai.q4 q4Var = j0Var.K;
-                        if (q4Var != null) {
-                            TLRPC.TL_textWithEntities textWithEntities = j0Var.f50350n.getTextWithEntities();
-                            boolean z11 = j0Var.G;
-                            k7 k7Var = (k7) q4Var.f2060c;
-                            j0 j0Var2 = (j0) q4Var.d;
-                            TL_stars.TL_starGiftUnique tL_starGiftUnique2 = (TL_stars.TL_starGiftUnique) q4Var.e;
-                            long j11 = q4Var.f2059b;
-                            ag.c cVar = (ag.c) q4Var.f2061f;
-                            if (!j0Var2.L) {
-                                k7Var.w2(tL_starGiftUnique2, j11, cVar, textWithEntities, z11, j0Var2);
-                                return;
-                            }
-                            return;
-                        }
-                        return;
-                    case 1:
-                        j0 j0Var3 = this.f50251b;
-                        boolean z12 = j0Var3.G;
-                        j0Var3.G = !z12;
-                        j0Var3.f50352s.a(z12, true);
-                        return;
-                    default:
-                        this.f50251b.dismiss();
-                        return;
-                }
-            }
-        });
-        this.containerView.addView(imageView, z5.e(56, 56, 53));
-        b6.b(frameLayout, 0.05f, 1.2f);
-        b6.a(imageView);
-        ViewGroup viewGroup3 = this.containerView;
-        qg.g0 g0Var2 = new qg.g0(this, 29);
-        WeakHashMap weakHashMap = r0.i0.f44864a;
-        r0.a0.i(viewGroup3, g0Var2);
+        this.f50316s = -1;
     }
 
     @Override
-    public final boolean canDismissWithSwipe() {
-        return false;
+    public final void draw(Canvas canvas) {
+        float f7;
+        int i10;
+        int i11;
+        a();
+        Rect bounds = getBounds();
+        canvas.save();
+        boolean z10 = this.f50309l;
+        if (z10) {
+            f7 = 1.0f;
+        } else {
+            f7 = 0.0f;
+        }
+        NinePatchDrawable ninePatchDrawable = this.f50301a;
+        int i12 = bounds.left;
+        int i13 = this.f50305g;
+        int i14 = this.f50304f;
+        if (z10) {
+            i10 = i13 + i14;
+        } else {
+            i10 = 0;
+        }
+        zf.p.g(ninePatchDrawable, i12 + i10, bounds.top, bounds.right, bounds.bottom);
+        this.f50301a.draw(canvas);
+        NinePatchDrawable ninePatchDrawable2 = this.f50302b;
+        int i15 = bounds.left;
+        if (this.f50309l) {
+            i11 = i13 + i14;
+        } else {
+            i11 = 0;
+        }
+        zf.p.g(ninePatchDrawable2, i15 + i11, bounds.top, bounds.right, bounds.bottom);
+        this.f50302b.draw(canvas);
+        if (this.f50311n != null) {
+            canvas.save();
+            canvas.translate(bounds.left + this.f50312o, bounds.top + this.f50313p);
+            this.f50311n.draw(canvas);
+            View view = this.f50315r;
+            if (view != null && (this.f50310m instanceof Spanned)) {
+                w5 update = a6.update(0, view, false, this.f50314q, this.f50311n);
+                this.f50314q = update;
+                a6.drawAnimatedEmojis(canvas, this.f50311n, update, 0.0f, null, 0.0f, 0.0f, 0.0f, 1.0f, null);
+            }
+            canvas.restore();
+        }
+        if (f7 > 0.0f) {
+            int i16 = bounds.left;
+            ImageReceiver imageReceiver = this.d;
+            imageReceiver.setImageCoords(i16, bounds.bottom - i14, i14, i14);
+            canvas.save();
+            canvas.scale(f7, f7, imageReceiver.getCenterX(), imageReceiver.getCenterY());
+            imageReceiver.draw(canvas);
+            canvas.restore();
+        }
+        canvas.restore();
     }
 
     @Override
-    public final void onBackPressed() {
-        g0 g0Var = this.f50350n;
-        if (g0Var != null && g0Var.r0()) {
-            g0Var.k0(true);
-        } else {
-            super.onBackPressed();
-        }
+    public final int getMinimumHeight() {
+        return this.f50318u;
     }
 
     @Override
-    public final void onOpenAnimationEnd() {
-        super.onOpenAnimationEnd();
-        setAllowNestedScroll(false);
-        qc.a(this.container, new ah.m0(this, 11));
-        s40 s40Var = s40.f30193s;
-        if (s40Var.c()) {
-            s40Var.b();
-            TLObject userOrChat = MessagesController.getInstance(this.currentAccount).getUserOrChat(this.J);
-            StringBuilder sb2 = new StringBuilder();
-            TL_stars.TL_starGiftUnique tL_starGiftUnique = this.I;
-            sb2.append(tL_starGiftUnique.title);
-            sb2.append(" #");
-            new xc(this.container, this.resourcesProvider).V(Arrays.asList(userOrChat), LocaleController.getString(R.string.GiftMessageAddTitle), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.GiftMessageAddDescription, DialogObject.getShortName(userOrChat), org.telegram.messenger.g0.h(tL_starGiftUnique.num, ',', sb2))), null).k(true);
-        }
+    public final int getMinimumWidth() {
+        return this.f50317t;
     }
 
-    public final void p() {
-        qh.i iVar = this.h;
-        int i10 = iVar.f(647).f12287b;
-        float inputBubbleHeight = this.f50349f.getInputBubbleHeight() + iVar.d() + AndroidUtilities.dp(9.0f);
-        int height = this.containerView.getHeight();
-        z4 z4Var = this.f50347b;
-        FrameLayout frameLayout = this.f50351r;
-        z4Var.setTranslationY(Math.min((((AndroidUtilities.dp(36.0f) + i10) - (AndroidUtilities.dp(46.0f) + inputBubbleHeight)) / 2.0f) + ((height - z4Var.getHeight()) / 2.0f), ((((this.containerView.getHeight() - inputBubbleHeight) - AndroidUtilities.dp(14.0f)) - frameLayout.getHeight()) - AndroidUtilities.dp(10.0f)) - z4Var.getHeight()));
-        z4Var.invalidate();
-        float y3 = z4Var.getY() - AndroidUtilities.dp(33.0f);
-        TextView textView = this.v;
-        textView.setTranslationY(y3);
-        textView.invalidate();
-        frameLayout.setTranslationY(-(inputBubbleHeight + AndroidUtilities.dp(14.0f)));
-        frameLayout.invalidate();
-        float f7 = i10;
-        ImageView imageView = this.f50354x;
-        imageView.setTranslationY(f7);
-        imageView.invalidate();
+    @Override
+    public final int getOpacity() {
+        return -3;
     }
 
-    public final Paint q(String str) {
-        Paint paint;
-        d6 d6Var = this.resourcesProvider;
-        if (d6Var != null) {
-            paint = d6Var.n("paintChatActionBackground");
-        } else {
-            paint = null;
-        }
-        if (paint != null) {
-            return paint;
-        }
-        return h6.T0("paintChatActionBackground");
+    @Override
+    public final void setAlpha(int i10) {
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

@@ -8,9 +8,9 @@ import t7.u;
 import v7.b8;
 public final class c {
     public static final int[] d = {8, 13, 11, 2, 0, 1, 7};
-    public u f17577a;
-    public boolean f17578b;
-    public int f17579c;
+    public u f17573a;
+    public boolean f17574b;
+    public int f17575c;
 
     public static void a(int i10, ArrayList arrayList) {
         if (b8.d(i10, 0, 7, d) != -1 && !arrayList.contains(Integer.valueOf(i10))) {
@@ -20,11 +20,11 @@ public final class c {
 
     public final w b(w wVar) {
         String str;
-        if (this.f17578b && this.f17577a.a0(wVar)) {
+        if (this.f17574b && this.f17573a.a0(wVar)) {
             v a2 = wVar.a();
             String str2 = wVar.f4124k;
             a2.f4079r = v0.n("application/x-media3-cues");
-            a2.P = this.f17577a.L(wVar);
+            a2.P = this.f17573a.L(wVar);
             StringBuilder sb2 = new StringBuilder();
             sb2.append(wVar.f4132s);
             if (str2 != null) {

@@ -2,12 +2,12 @@ package org.telegram.ui.Components;
 
 import android.text.TextUtils;
 public final class gh implements Runnable {
-    public final int f26571a;
-    public final ti f26572b;
+    public final int f26564a;
+    public final ti f26565b;
 
     public gh(ti tiVar, int i10) {
-        this.f26571a = i10;
-        this.f26572b = tiVar;
+        this.f26564a = i10;
+        this.f26565b = tiVar;
     }
 
     @Override
@@ -16,10 +16,10 @@ public final class gh implements Runnable {
         boolean z10;
         long j10;
         boolean J1;
-        switch (this.f26571a) {
+        switch (this.f26564a) {
             case 0:
-                ti tiVar = this.f26572b;
-                if (tiVar.f30571c0) {
+                ti tiVar = this.f26565b;
+                if (tiVar.f30564c0) {
                     quVar = tiVar.S0;
                 } else {
                     quVar = tiVar.H0;
@@ -32,11 +32,11 @@ public final class gh implements Runnable {
                 tiVar.Q1(z10);
                 return;
             case 1:
-                ti.v(this.f26572b);
+                ti.v(this.f26565b);
                 return;
             case 2:
-                ti tiVar2 = this.f26572b;
-                mf mfVar = tiVar2.f30587h0;
+                ti tiVar2 = this.f26565b;
+                mf mfVar = tiVar2.f30580h0;
                 if (mfVar != null) {
                     j10 = mfVar.k();
                 } else {
@@ -47,7 +47,7 @@ public final class gh implements Runnable {
                 tiVar2.Q0 = j11;
                 eiVar.setEffect(j11);
                 li liVar = tiVar2.B0;
-                if (liVar != tiVar2.f30593j0 && liVar != tiVar2.f30613q0) {
+                if (liVar != tiVar2.f30586j0 && liVar != tiVar2.f30606q0) {
                     if (!liVar.K(0, false, 0, tiVar2.u1(), j11)) {
                         tiVar2.dismiss();
                     }
@@ -55,18 +55,18 @@ public final class gh implements Runnable {
                 } else {
                     J1 = tiVar2.J1(0, false, 0, tiVar2.u1(), j11);
                 }
-                mf mfVar2 = tiVar2.f30587h0;
+                mf mfVar2 = tiVar2.f30580h0;
                 if (mfVar2 != null) {
                     mfVar2.h(!J1);
-                    tiVar2.f30587h0 = null;
+                    tiVar2.f30580h0 = null;
                     return;
                 }
                 return;
             case 3:
-                this.f26572b.I1();
+                this.f26565b.I1();
                 return;
             default:
-                ti.z(this.f26572b);
+                ti.z(this.f26565b);
                 return;
         }
     }

@@ -15,22 +15,22 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.d11;
 public final class c0 extends Drawable {
-    public final RectF f22078a = new RectF();
-    public final int f22079b;
-    public final org.telegram.ui.ActionBar.d6 f22080c;
+    public final RectF f22071a = new RectF();
+    public final int f22072b;
+    public final org.telegram.ui.ActionBar.d6 f22073c;
     public final d11 d;
     public final d11 e;
-    public final Drawable f22081f;
-    public final Drawable f22082g;
+    public final Drawable f22074f;
+    public final Drawable f22075g;
     public int h;
-    public int f22083i;
-    public final Paint f22084j;
+    public int f22076i;
+    public final Paint f22077j;
 
     public c0(Context context, int i10, org.telegram.ui.ActionBar.d6 d6Var) {
         Paint paint = new Paint(1);
-        this.f22084j = paint;
-        this.f22079b = i10;
-        this.f22080c = d6Var;
+        this.f22077j = paint;
+        this.f22072b = i10;
+        this.f22073c = d6Var;
         d11 d11Var = new d11(LocaleController.getString(R.string.BotForumAskForStartNewChatTitle), 14.0f, AndroidUtilities.bold());
         this.d = d11Var;
         Layout.Alignment alignment = Layout.Alignment.ALIGN_CENTER;
@@ -40,11 +40,11 @@ public final class c0 extends Drawable {
         d11Var2.n(4);
         d11Var2.a();
         Drawable mutate = context.getResources().getDrawable(R.drawable.filled_topic_new_24).mutate();
-        this.f22081f = mutate;
+        this.f22074f = mutate;
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
         mutate.setColorFilter(new PorterDuffColorFilter(-1, mode));
         Drawable mutate2 = context.getResources().getDrawable(R.drawable.arrow_more).mutate();
-        this.f22082g = mutate2;
+        this.f22075g = mutate2;
         mutate2.setColorFilter(new PorterDuffColorFilter(-1, mode));
         mutate2.setAlpha(153);
         paint.setColor(-16777216);
@@ -54,9 +54,9 @@ public final class c0 extends Drawable {
     @Override
     public final void draw(Canvas canvas) {
         boolean b12;
-        org.telegram.ui.ActionBar.d6 d6Var = this.f22080c;
+        org.telegram.ui.ActionBar.d6 d6Var = this.f22073c;
         Paint U0 = org.telegram.ui.ActionBar.h6.U0("paintChatActionBackground", d6Var);
-        RectF rectF = this.f22078a;
+        RectF rectF = this.f22071a;
         canvas.drawRoundRect(rectF, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), U0);
         if (d6Var != null) {
             b12 = d6Var.s();
@@ -68,10 +68,10 @@ public final class c0 extends Drawable {
         }
         canvas.save();
         canvas.translate(0.0f, rectF.top + AndroidUtilities.dp(17.0f));
-        canvas.drawCircle(rectF.centerX(), AndroidUtilities.dp(35.0f), AndroidUtilities.dp(35.0f), this.f22084j);
+        canvas.drawCircle(rectF.centerX(), AndroidUtilities.dp(35.0f), AndroidUtilities.dp(35.0f), this.f22077j);
         int centerX = (int) (rectF.centerX() - AndroidUtilities.dp(20.0f));
         int dp = AndroidUtilities.dp(15.0f);
-        Drawable drawable = this.f22081f;
+        Drawable drawable = this.f22074f;
         drawable.setBounds(centerX, dp, AndroidUtilities.dp(40.0f) + centerX, AndroidUtilities.dp(40.0f) + dp);
         drawable.draw(canvas);
         canvas.translate(0.0f, AndroidUtilities.dp(70.0f));
@@ -88,7 +88,7 @@ public final class c0 extends Drawable {
         canvas.translate(0.0f, AndroidUtilities.dp(2.0f));
         int centerX4 = (int) (rectF.centerX() + AndroidUtilities.dp(10.0f));
         int dp2 = AndroidUtilities.dp(20.0f);
-        Drawable drawable2 = this.f22082g;
+        Drawable drawable2 = this.f22075g;
         drawable2.setBounds((int) (rectF.centerX() - AndroidUtilities.dp(10.0f)), 0, centerX4, dp2);
         drawable2.draw(canvas);
         canvas.restore();
@@ -102,7 +102,7 @@ public final class c0 extends Drawable {
     @Override
     public final void onBoundsChange(Rect rect) {
         super.onBoundsChange(rect);
-        this.f22078a.set(rect);
+        this.f22071a.set(rect);
     }
 
     @Override

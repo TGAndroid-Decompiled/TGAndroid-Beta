@@ -9,17 +9,17 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class z80 extends org.telegram.ui.sn {
-    public boolean Qc;
-    public final boolean Rc;
-    public final long Sc;
-    public final a90 Tc;
+    public boolean Rc;
+    public final boolean Sc;
+    public final long Tc;
+    public final a90 Uc;
 
     public z80(a90 a90Var, Bundle bundle, boolean z10, long j10) {
         super(bundle);
-        this.Tc = a90Var;
-        this.Rc = z10;
-        this.Sc = j10;
-        this.Qc = false;
+        this.Uc = a90Var;
+        this.Sc = z10;
+        this.Tc = j10;
+        this.Rc = false;
     }
 
     public static void bd(z80 z80Var, long j10, TLRPC.Chat chat) {
@@ -39,26 +39,26 @@ public final class z80 extends org.telegram.ui.sn {
         }
         boolean z11 = z10;
         boolean z12 = chat.creator;
-        d6Var = ((org.telegram.ui.ActionBar.f3) z80Var.Tc).resourcesProvider;
+        d6Var = ((org.telegram.ui.ActionBar.f3) z80Var.Uc).resourcesProvider;
         v01.c(parentActivity, i10, j11, currentUser, null, z11, z12, d6Var);
     }
 
     @Override
     public final void onBecomeFullyVisible() {
         super.onBecomeFullyVisible();
-        if (!this.Qc && this.Rc) {
-            this.Qc = true;
+        if (!this.Rc && this.Sc) {
+            this.Rc = true;
             MessagesController messagesController = getMessagesController();
-            long j10 = this.Sc;
+            long j10 = this.Tc;
             TLRPC.Chat chat = messagesController.getChat(Long.valueOf(j10));
             if (ChatObject.canManageMyTag(chat)) {
                 qc J = xc.a0(this).J(R.raw.contact_check, LocaleController.getString(R.string.JoinedGroup), LocaleController.getString(R.string.JoinedGroupAddTag), new a3.i0(this, j10, chat, 23));
-                J.f29653r = false;
+                J.f29646r = false;
                 J.k(true);
                 return;
             }
             qc Q = xc.a0(this).Q(R.raw.contact_check, 36, LocaleController.getString(R.string.JoinedGroup));
-            Q.f29653r = false;
+            Q.f29646r = false;
             Q.k(true);
         }
     }

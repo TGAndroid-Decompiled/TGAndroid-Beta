@@ -41,11 +41,11 @@ public final class k extends l {
         g3 g3Var2 = new g3(7, false);
         ((g3) g3Var.d).d = g3Var2;
         g3Var.d = g3Var2;
-        g3Var2.f16204c = valueOf;
-        g3Var2.f16203b = "errorCode";
+        g3Var2.f16202c = valueOf;
+        g3Var2.f16201b = "errorCode";
         String str = this.f4973b;
         if (str != null) {
-            g3Var.T(str, "errorMessage");
+            g3Var.Y(str, "errorMessage");
         }
         return g3Var.toString();
     }

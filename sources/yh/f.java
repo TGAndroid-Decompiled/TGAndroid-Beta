@@ -1,16 +1,16 @@
 package yh;
 public final class f implements ne.d, zf.m {
-    public final n f50277a;
+    public final m f50228a;
 
     @Override
     public void i(long j10) {
-        n nVar = this.f50277a;
-        nVar.c0(j10, nVar.f50452w0);
+        m mVar = this.f50228a;
+        mVar.c0(j10, mVar.f50392w0);
     }
 
     @Override
     public void u(int i10, float f7, float f10, ne.e eVar) {
-        this.f50277a.b0();
+        this.f50228a.b0();
     }
 
     @Override

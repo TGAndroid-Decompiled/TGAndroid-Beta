@@ -28,13 +28,13 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class py0 implements org.telegram.ui.Components.yl0 {
-    public int f40278a = 0;
-    public final Context f40279b;
-    public final ProfileActivity f40280c;
+    public int f40236a = 0;
+    public final Context f40237b;
+    public final ProfileActivity f40238c;
 
     public py0(ProfileActivity profileActivity, Context context) {
-        this.f40280c = profileActivity;
-        this.f40279b = context;
+        this.f40238c = profileActivity;
+        this.f40237b = context;
     }
 
     public static void b(py0 py0Var, Context context, int i10) {
@@ -56,23 +56,23 @@ public final class py0 implements org.telegram.ui.Components.yl0 {
         int i19;
         int i20 = 0;
         if (i10 == 0) {
-            py0Var.f40280c.getUserConfig().syncContacts = true;
-            py0Var.f40280c.getUserConfig().saveConfig(false);
-            py0Var.f40280c.getContactsController().forceImportContacts();
+            py0Var.f40238c.getUserConfig().syncContacts = true;
+            py0Var.f40238c.getUserConfig().saveConfig(false);
+            py0Var.f40238c.getContactsController().forceImportContacts();
             return;
         }
         long j11 = 0;
         if (i10 == 1) {
-            py0Var.f40280c.getContactsController().loadContacts(false, 0L);
+            py0Var.f40238c.getContactsController().loadContacts(false, 0L);
         } else if (i10 == 2) {
-            py0Var.f40280c.getContactsController().resetImportedContacts();
+            py0Var.f40238c.getContactsController().resetImportedContacts();
         } else if (i10 == 3) {
-            py0Var.f40280c.getMessagesController().forceResetDialogs();
+            py0Var.f40238c.getMessagesController().forceResetDialogs();
         } else if (i10 == 4) {
             BuildVars.LOGS_ENABLED = !BuildVars.LOGS_ENABLED;
             ApplicationLoader.applicationContext.getSharedPreferences("systemConfig", 0).edit().putBoolean("logsEnabled", BuildVars.LOGS_ENABLED).commit();
-            py0Var.f40280c.j5();
-            py0Var.f40280c.d.l();
+            py0Var.f40238c.j5();
+            py0Var.f40238c.d.l();
             if (BuildVars.LOGS_ENABLED) {
                 i2.d.x(new StringBuilder("app start time = "), ApplicationLoader.startTime);
                 try {
@@ -84,11 +84,11 @@ public final class py0 implements org.telegram.ui.Components.yl0 {
         } else if (i10 == 5) {
             SharedConfig.toggleInappCamera();
         } else if (i10 == 6) {
-            py0Var.f40280c.getMessagesStorage().clearSentMedia();
+            py0Var.f40238c.getMessagesStorage().clearSentMedia();
             SharedConfig.setNoSoundHintShowed(false);
             org.telegram.messenger.g0.d(org.telegram.messenger.g0.d(org.telegram.messenger.g0.d(org.telegram.messenger.g0.d(org.telegram.messenger.g0.d(org.telegram.messenger.g0.d(org.telegram.messenger.g0.d(org.telegram.messenger.g0.d(org.telegram.messenger.g0.d(MessagesController.getGlobalMainSettings().edit().remove("archivehint").remove("proximityhint").remove("archivehint_l"), "searchpostsnew", "speedhint", "gifhint", "reminderhint"), "soundHint", "themehint", "bganimationhint", "filterhint"), "n_0", "storyprvhint", "storyhint", "storyhint2"), "storydualhint", "storysvddualhint", "stories_camera", "dualcam"), "dualmatrix", "dual_available", "archivehint", "askNotificationsAfter"), "askNotificationsDuration", "viewoncehint", "voicepausehint", "taptostorysoundhint"), "nothanos", "voiceoncehint", "savedhint", "savedsearchhint"), "savedsearchtaghint", "newppsms", "monetizationadshint", "seekSpeedHintShowed"), "unsupport_video/av01", "statusgiftpage", "multistorieshint", "trimvoicehint").remove("taptostoryhighlighthint").apply();
             w7.y5.a();
-            i15 = ((org.telegram.ui.ActionBar.n2) py0Var.f40280c).currentAccount;
+            i15 = ((org.telegram.ui.ActionBar.n2) py0Var.f40238c).currentAccount;
             MessagesController.getEmojiSettings(i15).edit().remove("featured_hidden").remove("emoji_featured_hidden").commit();
             SharedConfig.textSelectionHintShows = 0;
             SharedConfig.lockRecordAudioVideoHint = 0;
@@ -104,13 +104,13 @@ public final class py0 implements org.telegram.ui.Components.yl0 {
             SharedConfig.setStoriesReactionsLongPressHintUsed(false);
             SharedConfig.setStoriesIntroShown(false);
             SharedConfig.setMultipleReactionsPromoShowed(false);
-            i16 = ((org.telegram.ui.ActionBar.n2) py0Var.f40280c).currentAccount;
+            i16 = ((org.telegram.ui.ActionBar.n2) py0Var.f40238c).currentAccount;
             ChatThemeController.getInstance(i16).clearCache();
-            py0Var.f40280c.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.newSuggestionsAvailable, new Object[0]);
+            py0Var.f40238c.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.newSuggestionsAvailable, new Object[0]);
             t21.W();
-            i17 = ((org.telegram.ui.ActionBar.n2) py0Var.f40280c).currentAccount;
+            i17 = ((org.telegram.ui.ActionBar.n2) py0Var.f40238c).currentAccount;
             qg.u0.e(i17).a();
-            SharedPreferences mainSettings = py0Var.f40280c.getMessagesController().getMainSettings();
+            SharedPreferences mainSettings = py0Var.f40238c.getMessagesController().getMainSettings();
             SharedPreferences.Editor edit = mainSettings.edit();
             org.telegram.messenger.g0.d(edit, "peerColors", "profilePeerColors", "boostingappearance", "bizbothint").remove("movecaptionhint");
             for (String str6 : mainSettings.getAll().keySet()) {
@@ -119,9 +119,9 @@ public final class py0 implements org.telegram.ui.Components.yl0 {
                 }
             }
             edit.apply();
-            i18 = ((org.telegram.ui.ActionBar.n2) py0Var.f40280c).currentAccount;
+            i18 = ((org.telegram.ui.ActionBar.n2) py0Var.f40238c).currentAccount;
             SharedPreferences.Editor edit2 = MessagesController.getNotificationsSettings(i18).edit();
-            i19 = ((org.telegram.ui.ActionBar.n2) py0Var.f40280c).currentAccount;
+            i19 = ((org.telegram.ui.ActionBar.n2) py0Var.f40238c).currentAccount;
             for (String str7 : MessagesController.getNotificationsSettings(i19).getAll().keySet()) {
                 if (str7.startsWith("dialog_bar_botver")) {
                     edit2.remove(str7);
@@ -129,13 +129,13 @@ public final class py0 implements org.telegram.ui.Components.yl0 {
             }
             edit2.apply();
         } else if (i10 == 7) {
-            org.telegram.ui.Components.voip.d2.i(py0Var.f40280c.getParentActivity());
+            org.telegram.ui.Components.voip.d2.i(py0Var.f40238c.getParentActivity());
         } else if (i10 == 8) {
             SharedConfig.toggleRoundCamera16to9();
         } else if (i10 == 9) {
-            ((LaunchActivity) py0Var.f40280c.getParentActivity()).z(true);
+            ((LaunchActivity) py0Var.f40238c.getParentActivity()).z(true);
         } else if (i10 == 10) {
-            py0Var.f40280c.getMessagesStorage().readAllDialogs(-1);
+            py0Var.f40238c.getMessagesStorage().readAllDialogs(-1);
         } else if (i10 == 11) {
             SharedConfig.toggleDisableVoiceAudioEffects();
         } else if (i10 == 12) {
@@ -143,10 +143,10 @@ public final class py0 implements org.telegram.ui.Components.yl0 {
             SharedConfig.saveConfig();
             NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.appUpdateAvailable, new Object[0]);
         } else if (i10 == 13) {
-            Set<String> set = py0Var.f40280c.getMessagesController().pendingSuggestions;
+            Set<String> set = py0Var.f40238c.getMessagesController().pendingSuggestions;
             set.add("VALIDATE_PHONE_NUMBER");
             set.add("VALIDATE_PASSWORD");
-            py0Var.f40280c.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.newSuggestionsAvailable, new Object[0]);
+            py0Var.f40238c.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.newSuggestionsAvailable, new Object[0]);
         } else {
             try {
                 if (i10 == 14) {
@@ -162,7 +162,7 @@ public final class py0 implements org.telegram.ui.Components.yl0 {
                     cookieManager.flush();
                 } else if (i10 == 16) {
                     SharedConfig.toggleDebugWebView();
-                    Activity parentActivity = py0Var.f40280c.getParentActivity();
+                    Activity parentActivity = py0Var.f40238c.getParentActivity();
                     if (SharedConfig.debugWebView) {
                         i14 = R.string.DebugMenuWebViewDebugEnabled;
                     } else {
@@ -177,13 +177,13 @@ public final class py0 implements org.telegram.ui.Components.yl0 {
                     findActivity.startActivity(launchIntentForPackage);
                     System.exit(0);
                 } else if (i10 == 18) {
-                    w7.d0.a((LaunchActivity) py0Var.f40280c.getParentActivity(), !SharedConfig.isFloatingDebugActive, true);
+                    w7.d0.a((LaunchActivity) py0Var.f40238c.getParentActivity(), !SharedConfig.isFloatingDebugActive, true);
                 } else if (i10 == 19) {
-                    py0Var.f40280c.getMessagesController().loadAppConfig();
+                    py0Var.f40238c.getMessagesController().loadAppConfig();
                     TLRPC.TL_help_dismissSuggestion tL_help_dismissSuggestion = new TLRPC.TL_help_dismissSuggestion();
                     tL_help_dismissSuggestion.suggestion = "VALIDATE_PHONE_NUMBER";
                     tL_help_dismissSuggestion.peer = new TLRPC.TL_inputPeerEmpty();
-                    py0Var.f40280c.getConnectionsManager().sendRequest(tL_help_dismissSuggestion, new my0(py0Var, 0));
+                    py0Var.f40238c.getConnectionsManager().sendRequest(tL_help_dismissSuggestion, new my0(py0Var, 0));
                 } else if (i10 == 20) {
                     int i21 = ConnectionsManager.CPU_COUNT;
                     int memoryClass = ((ActivityManager) ApplicationLoader.applicationContext.getSystemService("activity")).getMemoryClass();
@@ -331,14 +331,14 @@ public final class py0 implements org.telegram.ui.Components.yl0 {
                     }
                     sb3.append("\n");
                     sb3.append((CharSequence) sb2);
-                    ProfileActivity.S0(py0Var.f40280c, "video/avc", sb3);
-                    ProfileActivity.S0(py0Var.f40280c, "video/hevc", sb3);
-                    ProfileActivity.S0(py0Var.f40280c, "video/x-vnd.on2.vp8", sb3);
-                    ProfileActivity.S0(py0Var.f40280c, "video/x-vnd.on2.vp9", sb3);
-                    py0Var.f40280c.showDialog(new oy0(py0Var, py0Var.f40280c.getParentActivity(), sb3.toString()));
+                    ProfileActivity.S0(py0Var.f40238c, "video/avc", sb3);
+                    ProfileActivity.S0(py0Var.f40238c, "video/hevc", sb3);
+                    ProfileActivity.S0(py0Var.f40238c, "video/x-vnd.on2.vp8", sb3);
+                    ProfileActivity.S0(py0Var.f40238c, "video/x-vnd.on2.vp9", sb3);
+                    py0Var.f40238c.showDialog(new oy0(py0Var, py0Var.f40238c.getParentActivity(), sb3.toString()));
                 } else if (i10 == 21) {
-                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(py0Var.f40280c.getParentActivity(), 0, py0Var.f40280c.A0);
-                    alertDialog$Builder.f20608a.R = "Force performance class";
+                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(py0Var.f40238c.getParentActivity(), 0, py0Var.f40238c.A0);
+                    alertDialog$Builder.f20601a.R = "Force performance class";
                     int devicePerformanceClass = SharedConfig.getDevicePerformanceClass();
                     int measureDevicePerformanceClass = SharedConfig.measureDevicePerformanceClass();
                     if (devicePerformanceClass == 2) {
@@ -378,9 +378,9 @@ public final class py0 implements org.telegram.ui.Components.yl0 {
                 } else if (i10 == 22) {
                     SharedConfig.toggleRoundCamera();
                 } else if (i10 == 23) {
-                    boolean q6 = ei.c1.q(py0Var.f40280c.getParentActivity());
+                    boolean q6 = ei.c1.q(py0Var.f40238c.getParentActivity());
                     MessagesController.getGlobalMainSettings().edit().putBoolean("dual_available", !q6).apply();
-                    Activity parentActivity2 = py0Var.f40280c.getParentActivity();
+                    Activity parentActivity2 = py0Var.f40238c.getParentActivity();
                     if (!q6) {
                         i13 = R.string.DebugMenuDualOnToast;
                     } else {
@@ -389,8 +389,8 @@ public final class py0 implements org.telegram.ui.Components.yl0 {
                     Toast.makeText(parentActivity2, LocaleController.getString(i13), 0).show();
                 } else if (i10 == 24) {
                     SharedConfig.toggleSurfaceInStories();
-                    while (i20 < py0Var.f40280c.getParentLayout().getFragmentStack().size()) {
-                        ((org.telegram.ui.ActionBar.n2) py0Var.f40280c.getParentLayout().getFragmentStack().get(i20)).clearSheets();
+                    while (i20 < py0Var.f40238c.getParentLayout().getFragmentStack().size()) {
+                        ((org.telegram.ui.ActionBar.n2) py0Var.f40238c.getParentLayout().getFragmentStack().get(i20)).clearSheets();
                         i20++;
                     }
                 } else if (i10 == 25) {
@@ -398,9 +398,9 @@ public final class py0 implements org.telegram.ui.Components.yl0 {
                 } else if (i10 == 26) {
                     SharedConfig.togglePaymentByInvoice();
                 } else if (i10 == 27) {
-                    py0Var.f40280c.getMediaDataController().loadAttachMenuBots(false, true);
+                    py0Var.f40238c.getMediaDataController().loadAttachMenuBots(false, true);
                 } else if (i10 == 28) {
-                    i12 = ((org.telegram.ui.ActionBar.n2) py0Var.f40280c).currentAccount;
+                    i12 = ((org.telegram.ui.ActionBar.n2) py0Var.f40238c).currentAccount;
                     SharedConfig.toggleUseCamera2(i12);
                 } else if (i10 == 29) {
                     gi.r.b();
@@ -418,7 +418,7 @@ public final class py0 implements org.telegram.ui.Components.yl0 {
                 } else if (i10 == 34) {
                     SharedConfig.toggleUseSystemBoldFont();
                 } else if (i10 == 35) {
-                    i11 = ((org.telegram.ui.ActionBar.n2) py0Var.f40280c).currentAccount;
+                    i11 = ((org.telegram.ui.ActionBar.n2) py0Var.f40238c).currentAccount;
                     MessagesController.getInstance(i11).loadAppConfig(true);
                 } else if (i10 == 36) {
                     SharedConfig.toggleForceForumTabs();

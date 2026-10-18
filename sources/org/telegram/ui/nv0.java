@@ -11,33 +11,33 @@ import org.telegram.messenger.SharedConfig;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class nv0 implements View.OnClickListener {
-    public final sh0 f39588a;
-    public final sn f39589b;
-    public final org.telegram.ui.Components.im0 f39590c;
+    public final rh0 f39580a;
+    public final sn f39581b;
+    public final org.telegram.ui.Components.im0 f39582c;
     public final LinearLayout d;
     public final org.telegram.ui.Components.i80 e;
-    public final org.telegram.ui.Components.i80 f39591f;
+    public final org.telegram.ui.Components.i80 f39583f;
     public final sv0 h;
 
-    public nv0(sv0 sv0Var, sh0 sh0Var, sn snVar, org.telegram.ui.Components.im0 im0Var, LinearLayout linearLayout, org.telegram.ui.Components.i80 i80Var, org.telegram.ui.Components.i80 i80Var2) {
+    public nv0(sv0 sv0Var, rh0 rh0Var, sn snVar, org.telegram.ui.Components.im0 im0Var, LinearLayout linearLayout, org.telegram.ui.Components.i80 i80Var, org.telegram.ui.Components.i80 i80Var2) {
         this.h = sv0Var;
-        this.f39588a = sh0Var;
-        this.f39589b = snVar;
-        this.f39590c = im0Var;
+        this.f39580a = rh0Var;
+        this.f39581b = snVar;
+        this.f39582c = im0Var;
         this.d = linearLayout;
         this.e = i80Var;
-        this.f39591f = i80Var2;
+        this.f39583f = i80Var2;
     }
 
     @Override
     public final void onClick(View view) {
-        sh0 sh0Var = this.f39588a;
-        ArrayList arrayList = sh0Var.f41131b;
-        ArrayList arrayList2 = sh0Var.f41132c;
+        rh0 rh0Var = this.f39580a;
+        ArrayList arrayList = rh0Var.f40731b;
+        ArrayList arrayList2 = rh0Var.f40732c;
         if (!arrayList2.isEmpty()) {
             int size = arrayList2.size();
             sv0 sv0Var = this.h;
-            sn snVar = this.f39589b;
+            sn snVar = this.f39581b;
             if (size == 1 && (arrayList.size() <= 0 || ((Integer) arrayList.get(0)).intValue() <= 0)) {
                 TLObject tLObject = (TLObject) arrayList2.get(0);
                 if (tLObject == null) {
@@ -45,26 +45,26 @@ public final class nv0 implements View.OnClickListener {
                 }
                 Bundle bundle = new Bundle();
                 if (tLObject instanceof TLRPC.User) {
-                    bundle.putLong("user_id", ((TLRPC.User) tLObject).f20426id);
+                    bundle.putLong("user_id", ((TLRPC.User) tLObject).f20419id);
                 } else if (tLObject instanceof TLRPC.Chat) {
-                    bundle.putLong("chat_id", ((TLRPC.Chat) tLObject).f20279id);
+                    bundle.putLong("chat_id", ((TLRPC.Chat) tLObject).f20272id);
                 }
                 snVar.presentFragment(new ProfileActivity(bundle, null));
                 sv0Var.c(false);
                 return;
             }
             if (SharedConfig.messageSeenHintCount > 0 && snVar.X0.getKeyboardHeight() < AndroidUtilities.dp(20.0f)) {
-                org.telegram.ui.Components.qc t10 = new org.telegram.ui.Components.xc(org.telegram.ui.Components.lb.a(sv0Var.getContext()), sv0Var.f41534b).t(AndroidUtilities.replaceTags(LocaleController.getString(R.string.MessageSeenTooltipMessage)), null);
-                snVar.f41328n1 = t10;
-                t10.f29645j = 4000;
+                org.telegram.ui.Components.qc t10 = new org.telegram.ui.Components.xc(org.telegram.ui.Components.lb.a(sv0Var.getContext()), sv0Var.f41499b).t(AndroidUtilities.replaceTags(LocaleController.getString(R.string.MessageSeenTooltipMessage)), null);
+                snVar.f41293n1 = t10;
+                t10.f29638j = 4000;
                 t10.j();
                 SharedConfig.updateMessageSeenHintCount(SharedConfig.messageSeenHintCount - 1);
             }
-            org.telegram.ui.Components.im0 im0Var = this.f39590c;
+            org.telegram.ui.Components.im0 im0Var = this.f39582c;
             im0Var.requestLayout();
             this.d.requestLayout();
             im0Var.getAdapter().l();
-            this.e.K(this.f39591f);
+            this.e.K(this.f39583f);
         }
     }
 }

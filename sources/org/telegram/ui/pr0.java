@@ -7,24 +7,24 @@ import android.view.View;
 import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
 public final class pr0 extends AnimatorListenerAdapter {
-    public final int f40237a;
-    public final View f40238b;
-    public final PhotoViewer f40239c;
+    public final int f40195a;
+    public final View f40196b;
+    public final PhotoViewer f40197c;
 
     public pr0(PhotoViewer photoViewer, View view, int i10) {
-        this.f40237a = i10;
-        this.f40239c = photoViewer;
-        this.f40238b = view;
+        this.f40195a = i10;
+        this.f40197c = photoViewer;
+        this.f40196b = view;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f40237a) {
+        switch (this.f40195a) {
             case 0:
-                PhotoViewer photoViewer = this.f40239c;
+                PhotoViewer photoViewer = this.f40197c;
                 photoViewer.B3 = false;
-                this.f40238b.setOutlineProvider(null);
-                ImageView imageView = photoViewer.f33446x3;
+                this.f40196b.setOutlineProvider(null);
+                ImageView imageView = photoViewer.f33439x3;
                 if (imageView != null) {
                     imageView.setOutlineProvider(null);
                 }
@@ -39,10 +39,10 @@ public final class pr0 extends AnimatorListenerAdapter {
                 }
                 return;
             default:
-                PhotoViewer photoViewer2 = this.f40239c;
+                PhotoViewer photoViewer2 = this.f40197c;
                 photoViewer2.B3 = false;
-                photoViewer2.f33312i4.run();
-                AndroidUtilities.runOnUIThread(new zg0(23, this, this.f40238b), 100L);
+                photoViewer2.f33305i4.run();
+                AndroidUtilities.runOnUIThread(new yg0(23, this, this.f40196b), 100L);
                 return;
         }
     }

@@ -1,7 +1,7 @@
 package org.telegram.ui;
 
 import android.app.Activity;
-public final class kc extends sg.j0 {
+public final class kc extends sg.k0 {
     public final int W0;
 
     public kc(dd ddVar, Activity activity, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var, int i12) {

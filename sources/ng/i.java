@@ -38,20 +38,20 @@ import w7.r;
 public final class i extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
     public ArrayList E;
     public int F;
-    public v f17467a;
-    public zq f17468b;
-    public k f17469c;
+    public v f17463a;
+    public zq f17464b;
+    public k f17465c;
     public k d;
     public SharedPreferences e;
-    public boolean f17470f;
+    public boolean f17466f;
     public boolean h;
-    public boolean f17471n;
-    public c f17472r;
-    public boolean f17473s;
+    public boolean f17467n;
+    public c f17468r;
+    public boolean f17469s;
     public int v;
-    public LinearLayout f17474w;
-    public TextView f17475x;
-    public im0 f17476y;
+    public LinearLayout f17470w;
+    public TextView f17471x;
+    public im0 f17472y;
 
     public static float a(DisplayMetrics displayMetrics, float f7) {
         return r.a(f7, AndroidUtilities.dp(16.0f), displayMetrics.widthPixels - AndroidUtilities.dp(72.0f));
@@ -66,7 +66,7 @@ public final class i extends FrameLayout implements NotificationCenter.Notificat
         String str;
         ArrayList arrayList = new ArrayList();
         arrayList.add(new a("Theme"));
-        arrayList.add(new a("Draw action bar shadow", new j(19)));
+        arrayList.add(new a("Draw action bar shadow", new j(18)));
         arrayList.add(new a("Show blur settings", new c(this, 0)));
         arrayList.add(new a(LocaleController.getString(R.string.DebugGeneral)));
         if (SharedConfig.debugWebView) {
@@ -80,38 +80,38 @@ public final class i extends FrameLayout implements NotificationCenter.Notificat
         } else {
             str = "Switch to dark theme";
         }
-        arrayList.add(new a(str, new j(20)));
+        arrayList.add(new a(str, new j(19)));
         arrayList.add(new a(LocaleController.getString(R.string.DebugSendLogs), new c(this, 2)));
         return arrayList;
     }
 
     public final void c(final boolean z10) {
         float f7;
-        v vVar = this.f17467a;
+        v vVar = this.f17463a;
         ArrayList arrayList = this.E;
-        if (this.f17473s == z10) {
+        if (this.f17469s == z10) {
             return;
         }
-        this.f17473s = z10;
+        this.f17469s = z10;
         if (z10) {
-            this.f17474w.setVisibility(0);
+            this.f17470w.setVisibility(0);
             arrayList.clear();
             if (getContext() instanceof LaunchActivity) {
                 d5 O = ((LaunchActivity) getContext()).O();
                 if (O instanceof b) {
                     arrayList.addAll(((b) O).B());
                 }
-                ActionBarLayout actionBarLayout = ((LaunchActivity) getContext()).f33184s0;
+                ActionBarLayout actionBarLayout = ((LaunchActivity) getContext()).f33177s0;
                 if (actionBarLayout != null) {
                     arrayList.addAll(actionBarLayout.B());
                 }
-                ActionBarLayout actionBarLayout2 = ((LaunchActivity) getContext()).f33182r0;
+                ActionBarLayout actionBarLayout2 = ((LaunchActivity) getContext()).f33175r0;
                 if (actionBarLayout2 != null) {
                     arrayList.addAll(actionBarLayout2.B());
                 }
             }
             arrayList.addAll(getBuiltInDebugItems());
-            this.f17476y.getAdapter().l();
+            this.f17472y.getAdapter().l();
         }
         final Window window = ((Activity) getContext()).getWindow();
         if (z10) {
@@ -130,20 +130,20 @@ public final class i extends FrameLayout implements NotificationCenter.Notificat
         if (z10) {
             f10 = 1000.0f;
         }
-        l4.f17568i = f10;
-        kVar.f17562u = l4;
+        l4.f17564i = f10;
+        kVar.f17558u = l4;
         kVar.b(new o1.g() {
             @Override
             public final void a(o1.h hVar, float f11, float f12) {
                 float f13 = f11 / 1000.0f;
                 i iVar = i.this;
-                LinearLayout linearLayout = iVar.f17474w;
+                LinearLayout linearLayout = iVar.f17470w;
                 linearLayout.setAlpha(f13);
                 float f14 = translationX;
                 linearLayout.setTranslationX(AndroidUtilities.lerp(f14 - AndroidUtilities.dp(8.0f), 0.0f, f13));
                 float f15 = translationY;
                 linearLayout.setTranslationY(AndroidUtilities.lerp(f15 - AndroidUtilities.dp(8.0f), 0.0f, f13));
-                v vVar2 = iVar.f17467a;
+                v vVar2 = iVar.f17463a;
                 linearLayout.setPivotX(vVar2.getTranslationX() + AndroidUtilities.dp(28.0f));
                 linearLayout.setPivotY(vVar2.getTranslationY() + AndroidUtilities.dp(28.0f));
                 if (linearLayout.getWidth() != 0) {
@@ -163,11 +163,11 @@ public final class i extends FrameLayout implements NotificationCenter.Notificat
             @Override
             public final void a(o1.h hVar, boolean z11, float f11, float f12) {
                 i iVar = i.this;
-                v vVar2 = iVar.f17467a;
+                v vVar2 = iVar.f17463a;
                 vVar2.setTranslationX(translationX);
                 vVar2.setTranslationY(translationY);
                 if (!z10) {
-                    iVar.f17474w.setVisibility(8);
+                    iVar.f17470w.setVisibility(8);
                 }
             }
         });
@@ -183,12 +183,12 @@ public final class i extends FrameLayout implements NotificationCenter.Notificat
         int dp = AndroidUtilities.dp(56.0f);
         int dp2 = AndroidUtilities.dp(56.0f);
         zqVar.e = dp;
-        zqVar.f33002f = dp2;
-        this.f17468b = zqVar;
+        zqVar.f32995f = dp2;
+        this.f17464b = zqVar;
         Drawable drawable = getResources().getDrawable(R.drawable.popup_fixed_alert3);
-        drawable.setColorFilter(new PorterDuffColorFilter(h6.x0(null, h6.f21064h5, false), mode));
-        this.f17474w.setBackground(drawable);
-        this.f17475x.setTextColor(h6.x0(null, h6.f21099j5, false));
+        drawable.setColorFilter(new PorterDuffColorFilter(h6.x0(null, h6.f21057h5, false), mode));
+        this.f17470w.setBackground(drawable);
+        this.f17471x.setTextColor(h6.x0(null, h6.f21092j5, false));
         invalidate();
     }
 
@@ -196,13 +196,13 @@ public final class i extends FrameLayout implements NotificationCenter.Notificat
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         if (i10 == NotificationCenter.didSetNewTheme) {
             d();
-            this.f17476y.getAdapter().l();
+            this.f17472y.getAdapter().l();
         }
     }
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j10) {
-        LinearLayout linearLayout = this.f17474w;
+        LinearLayout linearLayout = this.f17470w;
         if (view == linearLayout) {
             canvas.drawColor(Color.argb((int) (linearLayout.getAlpha() * 122.0f), 0, 0, 0));
         }
@@ -218,7 +218,7 @@ public final class i extends FrameLayout implements NotificationCenter.Notificat
         float f7 = sharedPreferences.getFloat("x", -1.0f);
         float f10 = sharedPreferences.getFloat("y", -1.0f);
         DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
-        v vVar = this.f17467a;
+        v vVar = this.f17463a;
         if (f7 != -1.0f && f7 < displayMetrics.widthPixels / 2.0f) {
             a2 = a(displayMetrics, -2.1474836E9f);
         } else {
@@ -231,17 +231,17 @@ public final class i extends FrameLayout implements NotificationCenter.Notificat
             b10 = b(displayMetrics, f10);
         }
         vVar.setTranslationY(b10);
-        k kVar = new k(vVar, o1.h.f17544m, vVar.getTranslationX());
+        k kVar = new k(vVar, o1.h.f17540m, vVar.getTranslationX());
         l lVar = new l(vVar.getTranslationX());
         lVar.b(650.0f);
         lVar.a(0.75f);
-        kVar.f17562u = lVar;
-        this.f17469c = kVar;
-        k kVar2 = new k(vVar, o1.h.f17545n, vVar.getTranslationY());
+        kVar.f17558u = lVar;
+        this.f17465c = kVar;
+        k kVar2 = new k(vVar, o1.h.f17541n, vVar.getTranslationY());
         l lVar2 = new l(vVar.getTranslationY());
         lVar2.b(650.0f);
         lVar2.a(0.75f);
-        kVar2.f17562u = lVar2;
+        kVar2.f17558u = lVar2;
         this.d = kVar2;
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.didSetNewTheme);
     }
@@ -250,10 +250,10 @@ public final class i extends FrameLayout implements NotificationCenter.Notificat
     public final void onConfigurationChanged(Configuration configuration) {
         float f7;
         super.onConfigurationChanged(configuration);
-        this.f17469c.c();
+        this.f17465c.c();
         this.d.c();
         DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
-        v vVar = this.f17467a;
+        v vVar = this.f17463a;
         if (vVar.getTranslationX() >= displayMetrics.widthPixels / 2.0f) {
             f7 = 2.1474836E9f;
         } else {
@@ -261,14 +261,14 @@ public final class i extends FrameLayout implements NotificationCenter.Notificat
         }
         vVar.setTranslationX(a(displayMetrics, f7));
         vVar.setTranslationY(b(displayMetrics, vVar.getTranslationY()));
-        this.f17469c.f17562u.f17568i = vVar.getTranslationX();
-        this.d.f17562u.f17568i = vVar.getTranslationY();
+        this.f17465c.f17558u.f17564i = vVar.getTranslationX();
+        this.d.f17558u.f17564i = vVar.getTranslationY();
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f17469c.c();
+        this.f17465c.c();
         this.d.c();
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.didSetNewTheme);
     }
@@ -277,17 +277,17 @@ public final class i extends FrameLayout implements NotificationCenter.Notificat
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         canvas.save();
-        v vVar = this.f17467a;
+        v vVar = this.f17463a;
         canvas.translate(vVar.getTranslationX(), vVar.getTranslationY());
         canvas.scale(vVar.getScaleX(), vVar.getScaleY(), vVar.getPivotX(), vVar.getPivotY());
-        this.f17468b.setAlpha((int) (vVar.getAlpha() * 255.0f));
-        this.f17468b.setBounds(vVar.getLeft(), vVar.getTop(), vVar.getRight(), vVar.getBottom());
-        this.f17468b.draw(canvas);
+        this.f17464b.setAlpha((int) (vVar.getAlpha() * 255.0f));
+        this.f17464b.setBounds(vVar.getLeft(), vVar.getTop(), vVar.getRight(), vVar.getBottom());
+        this.f17464b.draw(canvas);
         canvas.restore();
     }
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        return this.f17473s;
+        return this.f17469s;
     }
 }

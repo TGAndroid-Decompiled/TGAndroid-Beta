@@ -7,15 +7,15 @@ import org.telegram.messenger.FileLog;
 import org.telegram.ui.ActionBar.a2;
 import org.telegram.ui.ActionBar.b2;
 public final class x implements a2 {
-    public final f0 f52189a;
+    public final f0 f52148a;
 
     public x(f0 f0Var) {
-        this.f52189a = f0Var;
+        this.f52148a = f0Var;
     }
 
     @Override
     public void g(b2 b2Var, int i10) {
-        f0 f0Var = this.f52189a;
+        f0 f0Var = this.f52148a;
         f0Var.getClass();
         try {
             Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");

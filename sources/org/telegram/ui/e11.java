@@ -6,43 +6,43 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
 public final class e11 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f36373a;
-    public final Object f36374b;
+    public final int f36336a;
+    public final Object f36337b;
 
     public e11(Object obj, int i10) {
-        this.f36373a = i10;
-        this.f36374b = obj;
+        this.f36336a = i10;
+        this.f36337b = obj;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f36373a) {
+        switch (this.f36336a) {
             case 0:
-                g11 g11Var = (g11) this.f36374b;
-                g11Var.f37083y = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                g11 g11Var = (g11) this.f36337b;
+                g11Var.f37048y = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 g11Var.b();
                 return;
             case 1:
-                u11 u11Var = (u11) this.f36374b;
-                u11Var.f41882y = AndroidUtilities.lerp(u11Var.E, valueAnimator.getAnimatedFraction());
-                u11Var.h.setTextColor(i0.a.f(u11Var.f41882y, org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21398z6, false), org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.q6, false)));
-                u11Var.f41878r.setAlpha((u11Var.f41882y / 2.0f) + 0.5f);
+                u11 u11Var = (u11) this.f36337b;
+                u11Var.f41841y = AndroidUtilities.lerp(u11Var.E, valueAnimator.getAnimatedFraction());
+                u11Var.h.setTextColor(i0.a.f(u11Var.f41841y, org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21391z6, false), org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.q6, false)));
+                u11Var.f41837r.setAlpha((u11Var.f41841y / 2.0f) + 0.5f);
                 return;
             case 2:
-                SecretMediaViewer secretMediaViewer = ((o31) this.f36374b).d;
-                secretMediaViewer.f33777a0.f42952k0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                secretMediaViewer.f33777a0.invalidate();
+                SecretMediaViewer secretMediaViewer = ((o31) this.f36337b).d;
+                secretMediaViewer.f33770a0.f42916k0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                secretMediaViewer.f33770a0.invalidate();
                 return;
             case 3:
-                SecretMediaViewer secretMediaViewer2 = ((o31) this.f36374b).d;
-                secretMediaViewer2.f33777a0.f42952k0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                secretMediaViewer2.f33777a0.invalidate();
+                SecretMediaViewer secretMediaViewer2 = ((o31) this.f36337b).d;
+                secretMediaViewer2.f33770a0.f42916k0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                secretMediaViewer2.f33770a0.invalidate();
                 return;
             case 4:
-                ((SecretMediaViewer) ((org.telegram.ui.Components.cn0) this.f36374b).f25318b).f33777a0.scrollTo(0, ((Integer) valueAnimator.getAnimatedValue()).intValue());
+                ((SecretMediaViewer) ((org.telegram.ui.Components.cn0) this.f36337b).f25311b).f33770a0.scrollTo(0, ((Integer) valueAnimator.getAnimatedValue()).intValue());
                 return;
             case 5:
-                z31 z31Var = (z31) this.f36374b;
+                z31 z31Var = (z31) this.f36337b;
                 z31Var.v = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 if (z31Var.S) {
                     z31Var.N.invalidate();
@@ -50,12 +50,12 @@ public final class e11 implements ValueAnimator.AnimatorUpdateListener {
                 }
                 return;
             case 6:
-                ((p41) this.f36374b).e.U0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                ((p41) this.f36337b).e.U0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 return;
             case 7:
-                o51 o51Var = (o51) this.f36374b;
+                o51 o51Var = (o51) this.f36337b;
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                o51Var.f39684r = floatValue;
+                o51Var.f39676r = floatValue;
                 View view = o51Var.e;
                 if (view != null) {
                     view.setAlpha(floatValue);
@@ -68,13 +68,13 @@ public final class e11 implements ValueAnimator.AnimatorUpdateListener {
                 }
                 return;
             case 8:
-                v51 v51Var = (v51) this.f36374b;
+                v51 v51Var = (v51) this.f36337b;
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 v51Var.L = floatValue2;
                 ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = v51Var.v;
                 actionBarPopupWindow$ActionBarPopupWindowLayout.setBackScaleY(floatValue2);
                 org.telegram.ui.ActionBar.i1 i1Var = actionBarPopupWindow$ActionBarPopupWindowLayout.L;
-                actionBarPopupWindow$ActionBarPopupWindowLayout.setAlpha(org.telegram.ui.Components.bs.f25038g.getInterpolation(v51Var.L));
+                actionBarPopupWindow$ActionBarPopupWindowLayout.setAlpha(org.telegram.ui.Components.bs.f25031g.getInterpolation(v51Var.L));
                 int itemsCount = actionBarPopupWindow$ActionBarPopupWindowLayout.getItemsCount();
                 for (int i10 = 0; i10 < itemsCount; i10++) {
                     float cascade = AndroidUtilities.cascade(v51Var.L, i10, itemsCount, 4.0f);
@@ -83,77 +83,77 @@ public final class e11 implements ValueAnimator.AnimatorUpdateListener {
                 }
                 return;
             case 9:
-                z71.a0((z71) this.f36374b, valueAnimator);
+                z71.a0((z71) this.f36337b, valueAnimator);
                 return;
             case 10:
-                b91 b91Var = (b91) this.f36374b;
+                b91 b91Var = (b91) this.f36337b;
                 b91Var.getClass();
                 float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 b91Var.e.setAlpha(1.0f - floatValue3);
-                jg.g gVar = b91Var.f35628b;
-                gVar.f14491z0.f16073f = floatValue3;
-                b91Var.f35629c.invalidate();
+                jg.g gVar = b91Var.f35589b;
+                gVar.f14489z0.f16071f = floatValue3;
+                b91Var.f35590c.invalidate();
                 gVar.invalidate();
                 return;
             case 11:
-                mc1 mc1Var = (mc1) this.f36374b;
+                mc1 mc1Var = (mc1) this.f36337b;
                 mc1Var.getClass();
-                mc1Var.f39163o1 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                mc1Var.f39184x0.invalidate();
+                mc1Var.f39119o1 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                mc1Var.f39140x0.invalidate();
                 mc1Var.C0.invalidate();
-                mc1Var.R1.setAlpha(mc1Var.f39163o1);
+                mc1Var.R1.setAlpha(mc1Var.f39119o1);
                 mc1Var.Q1.invalidate();
                 mc1Var.V0();
                 return;
             case 12:
-                mc1 mc1Var2 = ((ac1) this.f36374b).f35411a;
-                mc1Var2.f39163o1 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                mc1Var2.f39184x0.invalidate();
+                mc1 mc1Var2 = ((ac1) this.f36337b).f35363a;
+                mc1Var2.f39119o1 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                mc1Var2.f39140x0.invalidate();
                 mc1Var2.C0.invalidate();
-                mc1Var2.R1.setAlpha(mc1Var2.f39163o1);
+                mc1Var2.R1.setAlpha(mc1Var2.f39119o1);
                 mc1Var2.Q1.invalidate();
                 mc1Var2.V0();
                 return;
             case 13:
-                id1 id1Var = (id1) this.f36374b;
+                id1 id1Var = (id1) this.f36337b;
                 id1Var.E = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                int childCount = id1Var.f37866a.getChildCount();
+                int childCount = id1Var.f37828a.getChildCount();
                 for (int i11 = 0; i11 < childCount; i11++) {
-                    int R = RecyclerView.R(id1Var.f37866a.getChildAt(i11));
+                    int R = RecyclerView.R(id1Var.f37828a.getChildAt(i11));
                     int i12 = id1Var.d.e;
                     if (R >= i12 && i12 > 0) {
-                        id1Var.f37866a.getChildAt(i11).setAlpha(id1Var.E);
+                        id1Var.f37828a.getChildAt(i11).setAlpha(id1Var.E);
                     } else {
-                        id1Var.f37866a.getChildAt(i11).setAlpha(1.0f);
+                        id1Var.f37828a.getChildAt(i11).setAlpha(1.0f);
                     }
                 }
                 return;
             case 14:
-                nd1 nd1Var = (nd1) this.f36374b;
+                nd1 nd1Var = (nd1) this.f36337b;
                 nd1Var.getClass();
-                nd1Var.f39455c = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                nd1Var.f39414c = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 nd1Var.invalidate();
                 return;
             case 15:
-                te1 te1Var = (te1) this.f36374b;
+                te1 te1Var = (te1) this.f36337b;
                 te1Var.getClass();
                 te1Var.S0(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 return;
             case 16:
-                qe1 qe1Var = (qe1) this.f36374b;
+                qe1 qe1Var = (qe1) this.f36337b;
                 qe1Var.getClass();
-                qe1Var.f40417j5 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                qe1Var.f40375j5 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 qe1Var.f0();
                 return;
             case 17:
-                re1 re1Var = (re1) this.f36374b;
+                re1 re1Var = (re1) this.f36337b;
                 re1Var.getClass();
                 re1Var.setViewsOffset(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 return;
             default:
-                jh1 jh1Var = (jh1) this.f36374b;
+                jh1 jh1Var = (jh1) this.f36337b;
                 jh1Var.getClass();
-                jh1Var.f38233y0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                jh1Var.f38217y0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 jh1Var.F();
                 return;
         }

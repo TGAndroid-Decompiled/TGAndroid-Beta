@@ -3,22 +3,22 @@ package f5;
 import java.nio.ByteBuffer;
 import java.nio.channels.WritableByteChannel;
 public final class h extends com.googlecode.mp4parser.b {
-    public final int f10412f;
+    public final int f10410f;
 
     public h(String str, int i10) {
         super(str);
-        this.f10412f = i10;
+        this.f10410f = i10;
     }
 
     @Override
     public void getBox(WritableByteChannel writableByteChannel) {
-        switch (this.f10412f) {
+        switch (this.f10410f) {
             case 1:
                 writableByteChannel.write(d());
                 ByteBuffer allocate = ByteBuffer.allocate(8);
                 e5.b.r(0, allocate);
                 e5.b.q(0, allocate);
-                allocate.putInt(this.f7714b.size());
+                allocate.putInt(this.f7712b.size());
                 writableByteChannel.write((ByteBuffer) allocate.rewind());
                 c(writableByteChannel);
                 return;
@@ -31,7 +31,7 @@ public final class h extends com.googlecode.mp4parser.b {
     @Override
     public long getSize() {
         int i10;
-        switch (this.f10412f) {
+        switch (this.f10410f) {
             case 1:
                 long b10 = b();
                 long j10 = 8 + b10;

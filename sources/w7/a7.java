@@ -1,45 +1,98 @@
 package w7;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
 public abstract class a7 {
-    public static void a(int i10, int i11) {
-        String a2;
-        if (i10 >= 0 && i10 < i11) {
+    public static void a(ArrayList arrayList) {
+        boolean z10;
+        boolean z11;
+        HashMap hashMap = new HashMap(arrayList.size());
+        int size = arrayList.size();
+        int i10 = 0;
+        int i11 = 0;
+        while (i11 < size) {
+            Object obj = arrayList.get(i11);
+            i11++;
+            r9.a aVar = (r9.a) obj;
+            r9.h hVar = new r9.h(aVar);
+            for (r9.r rVar : aVar.f45119b) {
+                if (aVar.e == 0) {
+                    z11 = true;
+                } else {
+                    z11 = false;
+                }
+                r9.i iVar = new r9.i(rVar, !z11);
+                if (!hashMap.containsKey(iVar)) {
+                    hashMap.put(iVar, new HashSet());
+                }
+                Set set = (Set) hashMap.get(iVar);
+                if (!set.isEmpty() && z11) {
+                    throw new IllegalArgumentException("Multiple components provide " + rVar + ".");
+                }
+                set.add(hVar);
+            }
+        }
+        for (Set<r9.h> set2 : hashMap.values()) {
+            for (r9.h hVar2 : set2) {
+                for (r9.j jVar : hVar2.f45131a.f45120c) {
+                    if (jVar.f45138c == 0) {
+                        r9.r rVar2 = jVar.f45136a;
+                        if (jVar.f45137b == 2) {
+                            z10 = true;
+                        } else {
+                            z10 = false;
+                        }
+                        Set<r9.h> set3 = (Set) hashMap.get(new r9.i(rVar2, z10));
+                        if (set3 != null) {
+                            for (r9.h hVar3 : set3) {
+                                hVar2.f45132b.add(hVar3);
+                                hVar3.f45133c.add(hVar2);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        HashSet hashSet = new HashSet();
+        for (Set set4 : hashMap.values()) {
+            hashSet.addAll(set4);
+        }
+        HashSet hashSet2 = new HashSet();
+        Iterator it = hashSet.iterator();
+        while (it.hasNext()) {
+            r9.h hVar4 = (r9.h) it.next();
+            if (hVar4.f45133c.isEmpty()) {
+                hashSet2.add(hVar4);
+            }
+        }
+        while (!hashSet2.isEmpty()) {
+            r9.h hVar5 = (r9.h) hashSet2.iterator().next();
+            hashSet2.remove(hVar5);
+            i10++;
+            Iterator it2 = hVar5.f45132b.iterator();
+            while (it2.hasNext()) {
+                r9.h hVar6 = (r9.h) it2.next();
+                hVar6.f45133c.remove(hVar5);
+                if (hVar6.f45133c.isEmpty()) {
+                    hashSet2.add(hVar6);
+                }
+            }
+        }
+        if (i10 == arrayList.size()) {
             return;
         }
-        if (i10 >= 0) {
-            if (i11 < 0) {
-                throw new IllegalArgumentException(i2.d.j(i11, "negative size: "));
+        ArrayList arrayList2 = new ArrayList();
+        Iterator it3 = hashSet.iterator();
+        while (it3.hasNext()) {
+            r9.h hVar7 = (r9.h) it3.next();
+            if (!hVar7.f45133c.isEmpty() && !hVar7.f45132b.isEmpty()) {
+                arrayList2.add(hVar7.f45131a);
             }
-            a2 = b7.a("%s (%s) must be less than size (%s)", "index", Integer.valueOf(i10), Integer.valueOf(i11));
-        } else {
-            a2 = b7.a("%s (%s) must not be negative", "index", Integer.valueOf(i10));
         }
-        throw new IndexOutOfBoundsException(a2);
-    }
-
-    public static void b(int i10, int i11, int i12) {
-        String c10;
-        if (i10 >= 0 && i11 >= i10 && i11 <= i12) {
-            return;
-        }
-        if (i10 >= 0 && i10 <= i12) {
-            if (i11 >= 0 && i11 <= i12) {
-                c10 = b7.a("end index (%s) must not be less than start index (%s)", Integer.valueOf(i11), Integer.valueOf(i10));
-            } else {
-                c10 = c(i11, i12, "end index");
-            }
-        } else {
-            c10 = c(i10, i12, "start index");
-        }
-        throw new IndexOutOfBoundsException(c10);
-    }
-
-    public static String c(int i10, int i11, String str) {
-        if (i10 < 0) {
-            return b7.a("%s (%s) must not be negative", str, Integer.valueOf(i10));
-        }
-        if (i11 >= 0) {
-            return b7.a("%s (%s) must not be greater than size (%s)", str, Integer.valueOf(i10), Integer.valueOf(i11));
-        }
-        throw new IllegalArgumentException(i2.d.j(i11, "negative size: "));
+        throw new RuntimeException("Dependency cycle detected: " + Arrays.toString(arrayList2.toArray()));
     }
 }

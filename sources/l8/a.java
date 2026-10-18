@@ -8,8 +8,8 @@ import n6.l;
 import w7.f0;
 public final class a extends o6.a {
     public static final Parcelable.Creator<a> CREATOR = new j(21);
-    public String f15950a;
-    public String f15951b;
+    public String f15948a;
+    public String f15949b;
 
     public final boolean equals(Object obj) {
         if (this == obj) {
@@ -17,7 +17,7 @@ public final class a extends o6.a {
         }
         if (obj instanceof a) {
             a aVar = (a) obj;
-            if (l.l(this.f15950a, aVar.f15950a) && l.l(this.f15951b, aVar.f15951b)) {
+            if (l.l(this.f15948a, aVar.f15948a) && l.l(this.f15949b, aVar.f15949b)) {
                 return true;
             }
         }
@@ -25,14 +25,14 @@ public final class a extends o6.a {
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f15950a, this.f15951b});
+        return Arrays.hashCode(new Object[]{this.f15948a, this.f15949b});
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         int q6 = f0.q(parcel, 20293);
-        f0.l(parcel, 1, this.f15950a);
-        f0.l(parcel, 2, this.f15951b);
+        f0.l(parcel, 1, this.f15948a);
+        f0.l(parcel, 2, this.f15949b);
         f0.r(parcel, q6);
     }
 }

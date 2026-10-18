@@ -24,9 +24,9 @@ public final class c extends v implements f {
             return;
         }
         TaskCompletionSource taskCompletionSource = this.d;
-        String str = status.f6348b;
+        String str = status.f6346b;
         str = (str == null || str.isEmpty()) ? "User Action indexing error, please try again." : "User Action indexing error, please try again.";
-        switch (status.f6347a) {
+        switch (status.f6345a) {
             case 17510:
                 qVar2 = new com.google.firebase.messaging.q(str);
                 break;
@@ -54,12 +54,12 @@ public final class c extends v implements f {
         b7.b bVar = new b7.b(this);
         Parcel obtain = Parcel.obtain();
         obtain.writeInterfaceToken("com.google.android.gms.appdatasearch.internal.ILightweightAppDataSearch");
-        int i10 = p7.c.f44278a;
+        int i10 = p7.c.f44233a;
         obtain.writeStrongBinder(bVar);
         obtain.writeTypedArray(this.e, 0);
         Parcel obtain2 = Parcel.obtain();
         try {
-            aVar.f44277a.transact(7, obtain, obtain2, 0);
+            aVar.f44232a.transact(7, obtain, obtain2, 0);
             obtain2.readException();
         } finally {
             obtain.recycle();

@@ -7,7 +7,6 @@ import ah.t0;
 import ah.w;
 import ah.w0;
 import ah.y;
-import ai.d2;
 import ai.fa;
 import ai.ga;
 import ai.i0;
@@ -88,28 +87,28 @@ public final class f implements Runnable {
                 CredentialProviderPlayServicesImpl.onClearCredential$lambda$14$lambda$13$lambda$12((i) obj2, (p) obj);
                 return;
             case 2:
-                ((a3.f) ((qf.b) obj2).f44486c).h.onVideoSizeChanged((a2) obj);
+                ((a3.f) ((qf.b) obj2).f44443c).h.onVideoSizeChanged((a2) obj);
                 return;
             case 3:
-                String str = m0.f8255a;
-                s.i(((b0) ((a3.m0) ((s) obj2).f17129c)).f12324a.G, (i2.c) obj);
+                String str = m0.f8253a;
+                s.i(((b0) ((a3.m0) ((s) obj2).f17125c)).f12322a.G, (i2.c) obj);
                 return;
             case 4:
                 a2 a2Var = (a2) obj;
-                String str2 = m0.f8255a;
-                h0 h0Var = ((b0) ((a3.m0) ((s) obj2).f17129c)).f12324a;
-                h0Var.f12398k0 = a2Var;
-                h0Var.f12401m.e(25, new a0(a2Var));
+                String str2 = m0.f8253a;
+                h0 h0Var = ((b0) ((a3.m0) ((s) obj2).f17125c)).f12322a;
+                h0Var.f12396k0 = a2Var;
+                h0Var.f12399m.e(25, new a0(a2Var));
                 return;
             case 5:
-                String str3 = m0.f8255a;
-                j2.f fVar = ((b0) ((a3.m0) ((s) obj2).f17129c)).f12324a.f12412s;
+                String str3 = m0.f8253a;
+                j2.f fVar = ((b0) ((a3.m0) ((s) obj2).f17125c)).f12322a.f12410s;
                 j2.a p5 = fVar.p();
                 fVar.q(p5, 1030, new j2.c(p5, (Exception) obj, 0));
                 return;
             case 6:
-                String str4 = m0.f8255a;
-                j2.f fVar2 = ((b0) ((a3.m0) ((s) obj2).f17129c)).f12324a.f12412s;
+                String str4 = m0.f8253a;
+                j2.f fVar2 = ((b0) ((a3.m0) ((s) obj2).f17125c)).f12322a.f12410s;
                 j2.a p9 = fVar2.p();
                 fVar2.q(p9, 1019, new j2.c(p9, (String) obj, 7));
                 return;
@@ -179,7 +178,7 @@ public final class f implements Runnable {
                 cl0 cl0Var = (cl0) obj;
                 t0Var.f878l = true;
                 t0Var.f870a.invalidate();
-                cl0Var.f25269b1 = false;
+                cl0Var.f25262b1 = false;
                 cl0Var.invalidate();
                 t0Var.c(true);
                 return;
@@ -207,18 +206,18 @@ public final class f implements Runnable {
             case 13:
                 ai.h0 h0Var2 = (ai.h0) obj2;
                 TLObject tLObject = (TLObject) obj;
-                int i16 = h0Var2.f1388a;
+                int i16 = h0Var2.f1386a;
                 ArrayList arrayList2 = h0Var2.e;
-                h0Var2.f1393i = 0;
+                h0Var2.f1391i = 0;
                 if (tLObject instanceof TL_payments.connectedStarRefBots) {
                     TL_payments.connectedStarRefBots connectedstarrefbots = (TL_payments.connectedStarRefBots) tLObject;
                     MessagesController.getInstance(i16).putUsers(connectedstarrefbots.users, false);
-                    if (h0Var2.f1390c <= 0) {
+                    if (h0Var2.f1388c <= 0) {
                         arrayList2.clear();
                     }
-                    h0Var2.f1390c = connectedstarrefbots.count;
+                    h0Var2.f1388c = connectedstarrefbots.count;
                     arrayList2.addAll(connectedstarrefbots.connected_bots);
-                    if (!connectedstarrefbots.connected_bots.isEmpty() && arrayList2.size() < h0Var2.f1390c) {
+                    if (!connectedstarrefbots.connected_bots.isEmpty() && arrayList2.size() < h0Var2.f1388c) {
                         z10 = false;
                     } else {
                         z10 = true;
@@ -228,38 +227,38 @@ public final class f implements Runnable {
                     h0Var2.h = true;
                     h0Var2.d = true;
                 }
-                h0Var2.f1392g = false;
-                NotificationCenter.getInstance(i16).lambda$postNotificationNameOnUIThread$1(NotificationCenter.channelConnectedBotsUpdate, Long.valueOf(h0Var2.f1389b));
+                h0Var2.f1390g = false;
+                NotificationCenter.getInstance(i16).lambda$postNotificationNameOnUIThread$1(NotificationCenter.channelConnectedBotsUpdate, Long.valueOf(h0Var2.f1387b));
                 return;
             case 14:
                 i0 i0Var = (i0) obj2;
                 TLObject tLObject2 = (TLObject) obj;
-                int i17 = i0Var.f1454a;
+                int i17 = i0Var.f1453a;
                 ArrayList arrayList3 = i0Var.e;
                 if (tLObject2 instanceof TL_payments.suggestedStarRefBots) {
                     TL_payments.suggestedStarRefBots suggestedstarrefbots = (TL_payments.suggestedStarRefBots) tLObject2;
                     MessagesController.getInstance(i17).putUsers(suggestedstarrefbots.users, false);
-                    if (i0Var.f1456c <= 0) {
+                    if (i0Var.f1455c <= 0) {
                         arrayList3.clear();
                     }
-                    i0Var.f1456c = suggestedstarrefbots.count;
+                    i0Var.f1455c = suggestedstarrefbots.count;
                     arrayList3.addAll(suggestedstarrefbots.suggested_bots);
-                    i0Var.f1460j = suggestedstarrefbots.next_offset;
-                    if (!suggestedstarrefbots.suggested_bots.isEmpty() && arrayList3.size() < i0Var.f1456c) {
+                    i0Var.f1459j = suggestedstarrefbots.next_offset;
+                    if (!suggestedstarrefbots.suggested_bots.isEmpty() && arrayList3.size() < i0Var.f1455c) {
                         z11 = false;
                     } else {
                         z11 = true;
                     }
                     i0Var.d = z11;
                 } else {
-                    i0Var.f1459i = true;
+                    i0Var.f1458i = true;
                     i0Var.d = true;
                 }
                 i0Var.h = false;
-                NotificationCenter.getInstance(i17).lambda$postNotificationNameOnUIThread$1(NotificationCenter.channelSuggestedBotsUpdate, Long.valueOf(i0Var.f1455b));
+                NotificationCenter.getInstance(i17).lambda$postNotificationNameOnUIThread$1(NotificationCenter.channelSuggestedBotsUpdate, Long.valueOf(i0Var.f1454b));
                 return;
             case 15:
-                k7.C0((k7) obj2, (TL_stars.TL_payments_uniqueStarGift) obj);
+                k7.z0((k7) obj2, (TL_stars.TL_payments_uniqueStarGift) obj);
                 return;
             case 16:
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj;
@@ -280,17 +279,17 @@ public final class f implements Runnable {
                 }
                 return;
             case 17:
-                k7.O0((k7) obj2, (Long) obj);
+                k7.L0((k7) obj2, (Long) obj);
                 return;
             case 18:
                 k7 k7Var = (k7) obj2;
                 if (!((ga) obj).e) {
                     qc Q = k7Var.getBulletinFactory().Q(R.raw.error, 36, LocaleController.formatString(R.string.UnknownErrorCode, "NO_BALANCE"));
-                    Q.f29655t = true;
+                    Q.f29648t = true;
                     Q.j();
                     return;
                 }
-                k7Var.f1671k0.setLoading(false);
+                k7Var.f1677k0.setLoading(false);
                 k7Var.K1();
                 return;
             case 19:
@@ -301,13 +300,13 @@ public final class f implements Runnable {
                 return;
             case 21:
                 k7 k7Var2 = (k7) obj2;
-                xc.a0((sn) obj).K(R.raw.gift, LocaleController.getString(R.string.StarsGiftUpgradeCompleted), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.StarsGiftUpgradeCompletedText, DialogObject.getShortName(k7Var2.X))), LocaleController.getString(R.string.StarsGiftUpgradeCompletedMoreButton), new d2(k7Var2, 10)).k(true);
+                xc.a0((sn) obj).K(R.raw.gift, LocaleController.getString(R.string.StarsGiftUpgradeCompleted), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.StarsGiftUpgradeCompletedText, DialogObject.getShortName(k7Var2.X))), LocaleController.getString(R.string.StarsGiftUpgradeCompletedMoreButton), new ai.b2(k7Var2, 0)).k(true);
                 return;
             case 22:
                 k7 k7Var3 = (k7) obj2;
                 k7Var3.getClass();
                 ((boolean[]) obj)[0] = true;
-                k7Var3.f1671k0.setLoading(false);
+                k7Var3.f1677k0.setLoading(false);
                 k7Var3.K1();
                 return;
             case 23:
@@ -389,11 +388,11 @@ public final class f implements Runnable {
                     return;
                 }
                 return;
-            default:
+            case 28:
                 y9 y9Var = (y9) obj2;
                 TLObject tLObject4 = (TLObject) obj;
-                ArrayList arrayList5 = y9Var.f2498l;
-                int i18 = y9Var.f2490a;
+                ArrayList arrayList5 = y9Var.f2499l;
+                int i18 = y9Var.f2491a;
                 if (tLObject4 instanceof TL_stars.TL_payments_savedStarGifts) {
                     TL_stars.TL_payments_savedStarGifts tL_payments_savedStarGifts = (TL_stars.TL_payments_savedStarGifts) tLObject4;
                     MessagesController.getInstance(i18).putUsers(tL_payments_savedStarGifts.users, false);
@@ -405,11 +404,14 @@ public final class f implements Runnable {
                             i19++;
                         }
                         arrayList5.add(i19, savedStarGift);
-                        NotificationCenter.getInstance(i18).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starUserGiftsLoaded, Long.valueOf(y9Var.f2491b), y9Var);
+                        NotificationCenter.getInstance(i18).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starUserGiftsLoaded, Long.valueOf(y9Var.f2492b), y9Var);
                         return;
                     }
                     return;
                 }
+                return;
+            default:
+                ((MessagesController) obj2).lambda$processUpdates$377((TLRPC.Updates) ((TLObject) obj), false);
                 return;
         }
     }

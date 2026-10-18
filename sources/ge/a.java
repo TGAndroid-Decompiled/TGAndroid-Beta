@@ -14,27 +14,27 @@ import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 import v7.g8;
 import v7.i8;
 public abstract class a {
-    public static final com.google.android.gms.internal.clearcut.e f11014a = new com.google.android.gms.internal.clearcut.e("NO_DECISION", 1);
-    public static final com.google.android.gms.internal.clearcut.e f11015b = new com.google.android.gms.internal.clearcut.e("CLOSED", 1);
-    public static final com.google.android.gms.internal.clearcut.e f11016c = new com.google.android.gms.internal.clearcut.e("UNDEFINED", 1);
+    public static final com.google.android.gms.internal.clearcut.e f11012a = new com.google.android.gms.internal.clearcut.e("NO_DECISION", 1);
+    public static final com.google.android.gms.internal.clearcut.e f11013b = new com.google.android.gms.internal.clearcut.e("CLOSED", 1);
+    public static final com.google.android.gms.internal.clearcut.e f11014c = new com.google.android.gms.internal.clearcut.e("UNDEFINED", 1);
     public static final com.google.android.gms.internal.clearcut.e d = new com.google.android.gms.internal.clearcut.e("REUSABLE_CLAIMED", 1);
     public static final com.google.android.gms.internal.clearcut.e e = new com.google.android.gms.internal.clearcut.e("CONDITION_FALSE", 1);
-    public static final com.google.android.gms.internal.clearcut.e f11017f = new com.google.android.gms.internal.clearcut.e("NO_THREAD_ELEMENTS", 1);
+    public static final com.google.android.gms.internal.clearcut.e f11015f = new com.google.android.gms.internal.clearcut.e("NO_THREAD_ELEMENTS", 1);
 
     public static final Object a(t tVar, long j10, td.p pVar) {
         while (true) {
-            if (tVar.f11042c >= j10 && !tVar.d()) {
+            if (tVar.f11040c >= j10 && !tVar.d()) {
                 return tVar;
             }
-            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = d.f11020a;
+            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = d.f11018a;
             Object obj = atomicReferenceFieldUpdater.get(tVar);
-            com.google.android.gms.internal.clearcut.e eVar = f11015b;
+            com.google.android.gms.internal.clearcut.e eVar = f11013b;
             if (obj == eVar) {
                 return eVar;
             }
             t tVar2 = (t) ((d) obj);
             if (tVar2 == null) {
-                tVar2 = (t) pVar.invoke(Long.valueOf(tVar.f11042c + 1), tVar);
+                tVar2 = (t) pVar.invoke(Long.valueOf(tVar.f11040c + 1), tVar);
                 while (!atomicReferenceFieldUpdater.compareAndSet(tVar, null, tVar2)) {
                     if (atomicReferenceFieldUpdater.get(tVar) != null) {
                         break;
@@ -49,7 +49,7 @@ public abstract class a {
     }
 
     public static final t b(Object obj) {
-        if (obj != f11015b) {
+        if (obj != f11013b) {
             return (t) obj;
         }
         throw new IllegalStateException("Does not contain segment");
@@ -57,7 +57,7 @@ public abstract class a {
 
     public static final void c(Throwable th2, kd.h hVar) {
         Throwable runtimeException;
-        for (ce.b bVar : f.f11023a) {
+        for (ce.b bVar : f.f11021a) {
             try {
                 bVar.c(th2);
             } catch (Throwable th3) {
@@ -80,7 +80,7 @@ public abstract class a {
     }
 
     public static final boolean d(Object obj) {
-        if (obj == f11015b) {
+        if (obj == f11013b) {
             return true;
         }
         return false;
@@ -101,17 +101,17 @@ public abstract class a {
     }
 
     public static final void f(kd.h hVar, Object obj) {
-        if (obj != f11017f) {
+        if (obj != f11015f) {
             if (obj instanceof y) {
                 y yVar = (y) obj;
-                c2[] c2VarArr = yVar.f11050b;
+                c2[] c2VarArr = yVar.f11048b;
                 int length = c2VarArr.length - 1;
                 if (length < 0) {
                     return;
                 }
                 c2 c2Var = c2VarArr[length];
                 kotlin.jvm.internal.i.b(null);
-                Object obj2 = yVar.f11049a[length];
+                Object obj2 = yVar.f11047a[length];
                 throw null;
             }
             Object fold = hVar.fold(null, w.d);
@@ -136,14 +136,14 @@ public abstract class a {
             }
             cVar2.getContext();
             if (a0Var.d()) {
-                hVar.f11026f = vVar;
+                hVar.f11024f = vVar;
                 hVar.f4303c = 1;
                 a0Var.c(cVar2.getContext(), hVar);
                 return;
             }
             x0 a10 = d2.a();
             if (a10.f4341c >= 4294967296L) {
-                hVar.f11026f = vVar;
+                hVar.f11024f = vVar;
                 hVar.f4303c = 1;
                 jd.e eVar = a10.e;
                 if (eVar == null) {
@@ -164,7 +164,7 @@ public abstract class a {
                     Object obj2 = hVar.h;
                     kd.h context = cVar2.getContext();
                     Object k10 = k(context, obj2);
-                    if (k10 != f11017f) {
+                    if (k10 != f11015f) {
                         h2Var = f0.v(cVar2, context, k10);
                     } else {
                         h2Var = null;
@@ -203,11 +203,11 @@ public abstract class a {
 
     public static final Object k(kd.h hVar, Object obj) {
         if (obj == null) {
-            obj = hVar.fold(0, w.f11045c);
+            obj = hVar.fold(0, w.f11043c);
             kotlin.jvm.internal.i.b(obj);
         }
         if (obj == 0) {
-            return f11017f;
+            return f11015f;
         }
         if (obj instanceof Integer) {
             return hVar.fold(new y(((Number) obj).intValue(), hVar), w.e);

@@ -30,7 +30,7 @@ public final class k extends ff.a {
 
     @Override
     public final void d() {
-        this.f589a.f7980g = ((StringBuilder) this.d.f4704c).toString();
+        this.f589a.f7978g = ((StringBuilder) this.d.f4704c).toString();
         this.d = null;
     }
 

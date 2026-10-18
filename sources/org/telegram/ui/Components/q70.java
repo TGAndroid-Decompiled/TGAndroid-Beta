@@ -11,14 +11,14 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class q70 implements Runnable {
-    public final int f29592a;
-    public final r70 f29593b;
-    public final String f29594c;
+    public final int f29585a;
+    public final r70 f29586b;
+    public final String f29587c;
 
     public q70(r70 r70Var, String str, int i10) {
-        this.f29592a = i10;
-        this.f29593b = r70Var;
-        this.f29594c = str;
+        this.f29585a = i10;
+        this.f29586b = r70Var;
+        this.f29587c = str;
     }
 
     @Override
@@ -30,18 +30,18 @@ public final class q70 implements Runnable {
         boolean z10;
         int i11;
         Object obj;
-        switch (this.f29592a) {
+        switch (this.f29585a) {
             case 0:
-                r70 r70Var = this.f29593b;
-                String str2 = this.f29594c;
+                r70 r70Var = this.f29586b;
+                String str2 = this.f29587c;
                 r70Var.getClass();
                 AndroidUtilities.runOnUIThread(new q70(r70Var, str2, 1));
                 return;
             case 1:
-                r70 r70Var2 = this.f29593b;
-                String str3 = this.f29594c;
+                r70 r70Var2 = this.f29586b;
+                String str3 = this.f29587c;
                 hg.a2 a2Var = r70Var2.e;
-                org.telegram.ui.wt wtVar = r70Var2.f29867n.m0;
+                org.telegram.ui.wt wtVar = r70Var2.f29860n.m0;
                 boolean z11 = false;
                 boolean z12 = false;
                 if (wtVar != null) {
@@ -57,9 +57,9 @@ public final class q70 implements Runnable {
                 dispatchQueue.postRunnable(q70Var);
                 return;
             default:
-                r70 r70Var3 = this.f29593b;
-                String str4 = this.f29594c;
-                ArrayList arrayList2 = r70Var3.f29867n.f31204e0;
+                r70 r70Var3 = this.f29586b;
+                String str4 = this.f29587c;
+                ArrayList arrayList2 = r70Var3.f29860n.f31197e0;
                 String lowerCase = str4.trim().toLowerCase();
                 if (lowerCase.length() == 0) {
                     AndroidUtilities.runOnUIThread(new lg((Object) r70Var3, (Object) new ArrayList(), (Object) new ArrayList(), 12));

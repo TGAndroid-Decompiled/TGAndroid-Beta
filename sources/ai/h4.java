@@ -1,38 +1,49 @@
 package ai;
-public final class h4 implements Runnable {
-    public final int f1409a;
-    public final yh.j0 f1410b;
 
-    public h4(yh.j0 j0Var, int i10) {
-        this.f1409a = i10;
-        this.f1410b = j0Var;
+import org.telegram.messenger.AndroidUtilities;
+public final class h4 implements Runnable {
+    public final int f1407a;
+    public final k7 f1408b;
+    public final String f1409c;
+
+    public h4(k7 k7Var, String str, int i10) {
+        this.f1407a = i10;
+        this.f1408b = k7Var;
+        this.f1409c = str;
     }
 
     @Override
     public final void run() {
-        switch (this.f1409a) {
+        switch (this.f1407a) {
             case 0:
-                this.f1410b.dismiss();
+                k7.l0(this.f1408b, this.f1409c);
                 return;
             case 1:
-                yh.j0 j0Var = this.f1410b;
-                qh.i iVar = j0Var.h;
-                ih.f fVar = j0Var.f50349f;
-                if (fVar != null) {
-                    fVar.d();
-                }
-                yh.i0 i0Var = j0Var.H;
-                if (i0Var != null) {
-                    i0Var.setTranslationY(-iVar.d());
-                }
-                org.telegram.ui.Components.q6 q6Var = j0Var.f50353w;
-                if (q6Var != null) {
-                    q6Var.setTranslationY(-iVar.d());
-                }
-                j0Var.p();
+                k7.y0(this.f1408b, this.f1409c);
+                return;
+            case 2:
+                k7.m0(this.f1408b, this.f1409c);
+                return;
+            case 3:
+                k7.K0(this.f1408b, this.f1409c);
+                return;
+            case 4:
+                k7.g1(this.f1408b, this.f1409c);
+                return;
+            case 5:
+                k7.J0(this.f1408b, this.f1409c);
+                return;
+            case 6:
+                k7.Q(this.f1408b, this.f1409c);
+                return;
+            case 7:
+                AndroidUtilities.addToClipboard(this.f1409c);
+                org.telegram.ui.Components.qc k10 = this.f1408b.getBulletinFactory().k(false);
+                k10.f29648t = true;
+                k10.j();
                 return;
             default:
-                this.f1410b.H.performClick();
+                k7.k0(this.f1408b, this.f1409c);
                 return;
         }
     }

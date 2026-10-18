@@ -2,14 +2,14 @@ package ri;
 
 import java.io.File;
 public final class j {
-    public final long f45856a;
-    public final File f45857b;
-    public long f45858c;
+    public final long f45808a;
+    public final File f45809b;
+    public long f45810c;
     public boolean d = true;
     public boolean e;
 
     public j(long j10, File file) {
-        this.f45856a = j10;
-        this.f45857b = file;
+        this.f45808a = j10;
+        this.f45809b = file;
     }
 }

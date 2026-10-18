@@ -8,17 +8,17 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 public final class hl implements gm {
-    public final sn f37591a;
-    public final sn f37592b;
+    public final sn f37553a;
+    public final sn f37554b;
 
     public hl(sn snVar, sn snVar2) {
-        this.f37592b = snVar;
-        this.f37591a = snVar2;
+        this.f37554b = snVar;
+        this.f37553a = snVar2;
     }
 
     @Override
     public final void D0(int i10) {
-        this.f37592b.j(i10, 0, true, 0, true, 0);
+        this.f37554b.j(i10, 0, true, 0, true, 0);
     }
 
     @Override
@@ -27,7 +27,7 @@ public final class hl implements gm {
         ArrayList arrayList;
         org.telegram.ui.Components.yb ybVar;
         int i10;
-        sn snVar = this.f37592b;
+        sn snVar = this.f37554b;
         if (z10) {
             ArrayList arrayList2 = new ArrayList(snVar.H4);
             ArrayList arrayList3 = new ArrayList(snVar.J4.values());
@@ -53,41 +53,41 @@ public final class hl implements gm {
             snVar.B3 = true;
             int i11 = snVar.C3 + 1;
             snVar.C3 = i11;
-            boolean z12 = snVar.f41258h4;
-            sn snVar2 = this.f37591a;
+            boolean z12 = snVar.f41223h4;
+            sn snVar2 = this.f37553a;
             if (z12) {
                 L8 = snVar2.L8();
             } else {
                 L8 = snVar.L8();
             }
             int i12 = L8;
-            if (snVar.f41258h4) {
+            if (snVar.f41223h4) {
                 arrayList = snVar2.H4;
             } else {
                 arrayList = snVar.H4;
             }
             ArrayList arrayList4 = new ArrayList(arrayList);
-            org.telegram.messenger.w7 w7Var = new org.telegram.messenger.w7(this, z11, arrayList2, arrayList3, i12, i11);
-            org.telegram.messenger.voip.l0 l0Var = new org.telegram.messenger.voip.l0(this, z11, arrayList4, i11);
-            qn qnVar = snVar.f41226ea;
+            org.telegram.messenger.x7 x7Var = new org.telegram.messenger.x7(this, z11, arrayList2, arrayList3, i12, i11);
+            org.telegram.messenger.voip.k0 k0Var = new org.telegram.messenger.voip.k0(this, z11, arrayList4, i11);
+            qn qnVar = snVar.f41191ea;
             if (snVar.getParentActivity() == null) {
-                l0Var.run();
+                k0Var.run();
             } else {
                 if (z11) {
                     ?? ncVar = new org.telegram.ui.Components.nc(snVar.getParentActivity(), qnVar);
                     ncVar.c(R.raw.ic_unpin, 28, 28, "Pin", "Line");
-                    ncVar.f28737b.setText(LocaleController.getString(R.string.PinnedMessagesHidden));
-                    ncVar.f28738c.setText(LocaleController.getString(R.string.PinnedMessagesHiddenInfo));
+                    ncVar.f28730b.setText(LocaleController.getString(R.string.PinnedMessagesHidden));
+                    ncVar.f28731c.setText(LocaleController.getString(R.string.PinnedMessagesHiddenInfo));
                     ybVar = ncVar;
                 } else {
                     org.telegram.ui.Components.yb ybVar2 = new org.telegram.ui.Components.yb(snVar.getParentActivity(), qnVar);
                     ybVar2.c(R.raw.ic_unpin, 28, 28, "Pin", "Line");
-                    ybVar2.f32606b.setText(LocaleController.formatPluralString("MessagesUnpinned", i12, new Object[0]));
+                    ybVar2.f32599b.setText(LocaleController.formatPluralString("MessagesUnpinned", i12, new Object[0]));
                     ybVar = ybVar2;
                 }
                 org.telegram.ui.Components.oc ocVar = new org.telegram.ui.Components.oc(snVar.getParentActivity(), qnVar, true);
-                ocVar.f28925a = w7Var;
-                ocVar.f28926b = l0Var;
+                ocVar.f28918a = x7Var;
+                ocVar.f28919b = k0Var;
                 ybVar.setButton(ocVar);
                 qcVar = org.telegram.ui.Components.qc.g(snVar, ybVar, 5000);
             }
@@ -96,13 +96,13 @@ public final class hl implements gm {
         }
         MessageObject messageObject = (MessageObject) snVar.J4.get(Integer.valueOf(snVar.L4));
         if (messageObject == null) {
-            messageObject = (MessageObject) snVar.f41346o6[0].get(snVar.L4);
+            messageObject = (MessageObject) snVar.f41311o6[0].get(snVar.L4);
         }
         snVar.gc(messageObject);
     }
 
     @Override
     public final void b0(String str) {
-        this.f37592b.ia(str, false);
+        this.f37554b.ia(str, false);
     }
 }

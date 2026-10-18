@@ -1,28 +1,19 @@
 package yh;
 public final class s1 implements Runnable {
-    public final int f50541a;
-    public final m2 f50542b;
-    public final int f50543c;
+    public final int f50492a;
+    public final Object f50493b;
+    public final Object f50494c;
+    public final Object d;
 
-    public s1(m2 m2Var, int i10, int i11) {
-        this.f50541a = i11;
-        this.f50542b = m2Var;
-        this.f50543c = i10;
+    public s1(Object obj, Object obj2, Object obj3, int i10) {
+        this.f50492a = i10;
+        this.f50493b = obj;
+        this.f50494c = obj2;
+        this.d = obj3;
     }
 
     @Override
     public final void run() {
-        switch (this.f50541a) {
-            case 0:
-                this.f50542b.f50422f.scrollBy(0, this.f50543c);
-                return;
-            default:
-                h2 h2Var = this.f50542b.f50422f;
-                if (h2Var != null) {
-                    h2Var.setSpanCount(this.f50543c);
-                    return;
-                }
-                return;
-        }
+        throw new UnsupportedOperationException("Method not decompiled: yh.s1.run():void");
     }
 }

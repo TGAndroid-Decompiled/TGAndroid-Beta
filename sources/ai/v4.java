@@ -23,10 +23,10 @@ public final class v4 implements RequestDelegate {
                     public final void run() {
                         switch (r4) {
                             case 0:
-                                k7.h1(k7Var, tLObject, tL_error);
+                                k7.e1(k7Var, tLObject, tL_error);
                                 return;
                             default:
-                                k7.z0(k7Var, tLObject, tL_error);
+                                k7.x0(k7Var, tLObject, tL_error);
                                 return;
                         }
                     }
@@ -39,10 +39,10 @@ public final class v4 implements RequestDelegate {
                     public final void run() {
                         switch (r4) {
                             case 0:
-                                k7.h1(k7Var2, tLObject, tL_error);
+                                k7.e1(k7Var2, tLObject, tL_error);
                                 return;
                             default:
-                                k7.z0(k7Var2, tLObject, tL_error);
+                                k7.x0(k7Var2, tLObject, tL_error);
                                 return;
                         }
                     }

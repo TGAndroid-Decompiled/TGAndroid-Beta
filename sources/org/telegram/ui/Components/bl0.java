@@ -4,7 +4,7 @@ import android.graphics.Canvas;
 import android.graphics.RectF;
 import android.view.View;
 public interface bl0 {
-    boolean h();
+    boolean j();
 
     boolean k();
 
@@ -14,5 +14,5 @@ public interface bl0 {
 
     void q();
 
-    boolean r();
+    boolean s();
 }

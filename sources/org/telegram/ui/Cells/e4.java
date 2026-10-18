@@ -7,12 +7,12 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 public final class e4 extends FrameLayout {
-    public Drawable f22184a;
-    public TextView f22185b;
+    public Drawable f22177a;
+    public TextView f22178b;
 
     @Override
     public final void onDraw(Canvas canvas) {
-        Drawable drawable = this.f22184a;
+        Drawable drawable = this.f22177a;
         drawable.setBounds(0, getMeasuredHeight() - AndroidUtilities.dp(3.0f), getMeasuredWidth(), getMeasuredHeight());
         drawable.draw(canvas);
     }
@@ -23,6 +23,6 @@ public final class e4 extends FrameLayout {
     }
 
     public void setText(String str) {
-        this.f22185b.setText(str);
+        this.f22178b.setText(str);
     }
 }

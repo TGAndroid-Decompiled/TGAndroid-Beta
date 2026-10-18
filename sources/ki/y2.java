@@ -1,23 +1,23 @@
 package ki;
 public final class y2 implements Runnable {
-    public final int f15660a;
-    public final w3 f15661b;
-    public final s4.l0 f15662c;
+    public final int f15658a;
+    public final w3 f15659b;
+    public final s4.l0 f15660c;
 
     public y2(w3 w3Var, s4.l0 l0Var, int i10) {
-        this.f15660a = i10;
-        this.f15661b = w3Var;
-        this.f15662c = l0Var;
+        this.f15658a = i10;
+        this.f15659b = w3Var;
+        this.f15660c = l0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f15660a) {
+        switch (this.f15658a) {
             case 0:
-                this.f15661b.setItemAnimator(this.f15662c);
+                this.f15659b.setItemAnimator(this.f15660c);
                 return;
             default:
-                this.f15661b.setItemAnimator(this.f15662c);
+                this.f15659b.setItemAnimator(this.f15660c);
                 return;
         }
     }

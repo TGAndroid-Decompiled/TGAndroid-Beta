@@ -24,14 +24,14 @@ public final class j extends md.i implements p {
 
     @Override
     public final Object invoke(Object obj, Object obj2) {
-        id.i iVar = id.i.f12777a;
+        id.i iVar = id.i.f12775a;
         ((j) create((n1.b) obj, (kd.c) obj2)).invokeSuspend(iVar);
         return iVar;
     }
 
     @Override
     public final Object invokeSuspend(Object obj) {
-        ld.a aVar = ld.a.f16000a;
+        ld.a aVar = ld.a.f15998a;
         i8.b(obj);
         n1.b bVar = (n1.b) this.f5076a;
         n1.d key = this.f5078c;
@@ -43,13 +43,13 @@ public final class j extends md.i implements p {
         } else {
             bVar.getClass();
             kotlin.jvm.internal.i.e(key, "key");
-            if (!bVar.f17006b.get()) {
-                bVar.f17005a.remove(key);
+            if (!bVar.f17002b.get()) {
+                bVar.f17001a.remove(key);
             } else {
                 throw new IllegalStateException("Do mutate preferences once returned to DataStore.");
             }
         }
         k.a(this.d, bVar);
-        return id.i.f12777a;
+        return id.i.f12775a;
     }
 }

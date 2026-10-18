@@ -1,64 +1,26 @@
 package yh;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import org.telegram.ui.Components.jw0;
-import org.telegram.ui.Components.wc0;
-public final class f0 extends jw0 {
-    public final j0 f50278w0;
+import android.app.Activity;
+import android.view.Menu;
+import org.telegram.ui.Components.ChatActivityEnterView;
+import org.telegram.ui.sn;
+public final class f0 extends ChatActivityEnterView {
+    public final i0 f50229o5;
 
-    public f0(j0 j0Var, Context context) {
-        super(context, null);
-        this.f50278w0 = j0Var;
+    public f0(i0 i0Var, Activity activity, e0 e0Var) {
+        super(activity, e0Var, null, false, null);
+        this.f50229o5 = i0Var;
     }
 
     @Override
-    public final boolean P() {
-        return false;
+    public final void f0(Menu menu) {
+        sn.n8(menu, null, false, false, false, false);
     }
 
     @Override
-    public final boolean Q() {
-        return false;
-    }
-
-    @Override
-    public final void U(Drawable drawable) {
-        if (drawable instanceof wc0) {
-            ((wc0) drawable).p();
-        }
-        j0 j0Var = this.f50278w0;
-        j0Var.d.f11066a = j0Var.f50348c.c(drawable);
-    }
-
-    @Override
-    public final boolean drawChild(Canvas canvas, View view, long j10) {
-        if (view == this.L) {
-            j0 j0Var = this.f50278w0;
-            gh.a aVar = j0Var.d.f11066a;
-            if (aVar instanceof gh.b) {
-                ((gh.b) aVar).c(getWidth(), getHeight());
-            }
-            j0Var.d.y(canvas, 0.0f, 0.0f, getWidth(), getHeight());
-            return false;
-        }
-        return super.drawChild(canvas, view, j10);
-    }
-
-    @Override
-    public final Drawable getNewDrawable() {
-        Drawable drawable = this.f50278w0.f50355y;
-        if (drawable != null) {
-            return drawable;
-        }
-        return super.getNewDrawable();
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        this.f50278w0.p();
+    public final void y0(float f7) {
+        i0 i0Var = this.f50229o5;
+        i0Var.f50289f.setInputBubbleHeight(f7);
+        i0Var.p();
     }
 }

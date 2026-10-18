@@ -1,34 +1,17 @@
 package ci;
 
-import android.animation.ValueAnimator;
-public final class e2 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f5353a;
-    public final q4 f5354b;
+import android.view.View;
+public final class e2 implements View.OnClickListener {
+    public final int f5280a;
+    public final p4 f5281b;
 
-    public e2(q4 q4Var, int i10) {
-        this.f5353a = i10;
-        this.f5354b = q4Var;
+    public e2(p4 p4Var, int i10) {
+        this.f5280a = i10;
+        this.f5281b = p4Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f5353a) {
-            case 0:
-                q4 q4Var = this.f5354b;
-                q4Var.getClass();
-                q4Var.H2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                q4Var.invalidate();
-                return;
-            case 1:
-                q4 q4Var2 = this.f5354b;
-                q4Var2.getClass();
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                q4Var2.f5826t3 = floatValue;
-                q4Var2.f5820r3.setTransitionProgress(floatValue);
-                return;
-            default:
-                q4.Z(this.f5354b, valueAnimator);
-                return;
-        }
+    public final void onClick(android.view.View r20) {
+        throw new UnsupportedOperationException("Method not decompiled: ci.e2.onClick(android.view.View):void");
     }
 }

@@ -1,34 +1,28 @@
 package org.telegram.messenger;
 
-import android.animation.ValueAnimator;
-import android.view.View;
-import android.view.Window;
-import org.telegram.messenger.AndroidUtilities;
+import android.text.Spanned;
+import java.util.Comparator;
 import org.telegram.messenger.RichMessageLayout;
-import org.telegram.ui.Components.a81;
-public final class qh implements ValueAnimator.AnimatorUpdateListener {
+public final class qh implements Comparator {
     public final int f19368a;
-    public final Object f19369b;
-    public final Object f19370c;
+    public final Spanned f19369b;
 
-    public qh(int i10, Object obj, Object obj2) {
+    public qh(Spanned spanned, int i10) {
         this.f19368a = i10;
-        this.f19369b = obj;
-        this.f19370c = obj2;
+        this.f19369b = spanned;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+    public final int compare(Object obj, Object obj2) {
+        int lambda$withReplacements$0;
+        int lambda$new$0;
         switch (this.f19368a) {
             case 0:
-                ((RichMessageLayout.SpoilerReveal) this.f19369b).lambda$start$0((View) this.f19370c, valueAnimator);
-                return;
-            case 1:
-                AndroidUtilities.lambda$setNavigationBarColor$23((AndroidUtilities.IntColorCallback) this.f19369b, (Window) this.f19370c, valueAnimator);
-                return;
+                lambda$withReplacements$0 = RichMessageLayout.RichBlock.lambda$withReplacements$0(this.f19369b, (org.telegram.ui.Cells.t9) obj, (org.telegram.ui.Cells.t9) obj2);
+                return lambda$withReplacements$0;
             default:
-                ((MediaController) this.f19369b).lambda$cleanupPlayer$10((a81) this.f19370c, valueAnimator);
-                return;
+                lambda$new$0 = RichMessageLayout.Text.lambda$new$0(this.f19369b, (RichMessageLayout.RichButtonSpan) obj, (RichMessageLayout.RichButtonSpan) obj2);
+                return lambda$new$0;
         }
     }
 }

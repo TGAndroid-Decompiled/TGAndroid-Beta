@@ -7,17 +7,17 @@ import android.view.ViewGroup;
 import j$.util.Objects;
 import org.telegram.ui.Components.im0;
 public final class m7 implements ch.a {
-    public final int f9474a;
-    public final Object f9475b;
+    public final int f9472a;
+    public final Object f9473b;
 
     public m7(Object obj, int i10) {
-        this.f9474a = i10;
-        this.f9475b = obj;
+        this.f9472a = i10;
+        this.f9473b = obj;
     }
 
     @Override
     public final void e(bh.a aVar, RectF rectF) {
-        switch (this.f9474a) {
+        switch (this.f9472a) {
             case 0:
             default:
                 aVar.f4357a = true;
@@ -28,24 +28,24 @@ public final class m7 implements ch.a {
     @Override
     public final void f(Canvas canvas, RectF rectF) {
         View[] viewPages;
-        switch (this.f9474a) {
+        switch (this.f9472a) {
             case 0:
-                s7 s7Var = (s7) this.f9475b;
+                s7 s7Var = (s7) this.f9473b;
                 im0 im0Var = s7Var.d;
                 hh.d.b(im0Var, canvas, rectF, im0Var, s7Var.getContainerView(), 255);
                 return;
             default:
-                yh.q2 q2Var = (yh.q2) this.f9475b;
-                for (View view : q2Var.h.getViewPages()) {
-                    if (view instanceof yh.m2) {
-                        yh.m2 m2Var = (yh.m2) view;
-                        if (m2Var.h == null) {
-                            yh.h2 h2Var = m2Var.f50422f;
-                            ViewGroup viewGroup = q2Var.S;
-                            Objects.requireNonNull(h2Var);
-                            m2Var.h = new bh.l(h2Var, viewGroup, new org.telegram.ui.x8(h2Var, 0));
+                yh.p2 p2Var = (yh.p2) this.f9473b;
+                for (View view : p2Var.h.getViewPages()) {
+                    if (view instanceof yh.l2) {
+                        yh.l2 l2Var = (yh.l2) view;
+                        if (l2Var.h == null) {
+                            yh.g2 g2Var = l2Var.f50362f;
+                            ViewGroup viewGroup = p2Var.S;
+                            Objects.requireNonNull(g2Var);
+                            l2Var.h = new bh.l(g2Var, viewGroup, new org.telegram.ui.x8(g2Var, 0));
                         }
-                        m2Var.h.f(canvas, rectF);
+                        l2Var.h.f(canvas, rectF);
                     }
                 }
                 return;

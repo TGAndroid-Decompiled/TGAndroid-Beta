@@ -2,28 +2,34 @@ package org.telegram.messenger;
 
 import org.telegram.tgnet.TLRPC;
 public final class qf implements Runnable {
-    public final int f19363a;
-    public final MessagesStorage f19364b;
-    public final TLRPC.EncryptedChat f19365c;
+    public final int f19361a = 0;
+    public final int f19362b;
+    public final MessagesStorage f19363c;
+    public final long d;
+    public final long e;
+    public final int f19364f;
+    public final Object h;
 
-    public qf(MessagesStorage messagesStorage, TLRPC.EncryptedChat encryptedChat, int i10) {
-        this.f19363a = i10;
-        this.f19364b = messagesStorage;
-        this.f19365c = encryptedChat;
+    public qf(int i10, int i11, long j10, long j11, MessagesStorage messagesStorage, TLRPC.InputChannel inputChannel) {
+        this.f19363c = messagesStorage;
+        this.d = j10;
+        this.f19362b = i10;
+        this.h = inputChannel;
+        this.f19364f = i11;
+        this.e = j11;
     }
 
     @Override
     public final void run() {
-        switch (this.f19363a) {
-            case 0:
-                this.f19364b.lambda$updateEncryptedChat$174(this.f19365c);
-                return;
-            case 1:
-                this.f19364b.lambda$updateEncryptedChatLayer$173(this.f19365c);
-                return;
-            default:
-                this.f19364b.lambda$updateEncryptedChatTTL$172(this.f19365c);
-                return;
-        }
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.qf.run():void");
+    }
+
+    public qf(org.telegram.ui.Cells.f6 f6Var, int i10, MessagesStorage messagesStorage, long j10, long j11, int i11) {
+        this.h = f6Var;
+        this.f19362b = i10;
+        this.f19363c = messagesStorage;
+        this.d = j10;
+        this.e = j11;
+        this.f19364f = i11;
     }
 }

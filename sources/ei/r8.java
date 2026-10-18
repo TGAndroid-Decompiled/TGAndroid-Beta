@@ -3,16 +3,16 @@ package ei;
 import android.view.ViewGroup;
 import androidx.recyclerview.widget.RecyclerView;
 public final class r8 extends s4.r0 {
-    public final t8 f9744a;
+    public final t8 f9742a;
 
     public r8(t8 t8Var) {
-        this.f9744a = t8Var;
+        this.f9742a = t8Var;
     }
 
     @Override
     public final void b(RecyclerView recyclerView, int i10, int i11) {
         ViewGroup viewGroup;
-        viewGroup = ((org.telegram.ui.ActionBar.f3) this.f9744a).containerView;
+        viewGroup = ((org.telegram.ui.ActionBar.f3) this.f9742a).containerView;
         viewGroup.invalidate();
     }
 }

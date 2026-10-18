@@ -211,7 +211,7 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
                         if (runnable != null) {
                             AndroidUtilities.cancelRunOnUIThread(runnable);
                         }
-                        hg.n nVar = new hg.n(this, i12, i14, 13);
+                        hg.n nVar = new hg.n(this, i12, i14, 14);
                         this.updateScreenRunnable = nVar;
                         postOrRun(nVar);
                     } catch (Throwable th2) {

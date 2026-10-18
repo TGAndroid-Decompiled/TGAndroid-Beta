@@ -13,33 +13,33 @@ import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PremiumPreviewFragment;
 import org.telegram.ui.x10;
 public final class w implements Runnable {
-    public final int f46512a;
-    public final j0 f46513b;
+    public final int f46464a;
+    public final k0 f46465b;
 
-    public w(j0 j0Var, int i10) {
-        this.f46512a = i10;
-        this.f46513b = j0Var;
+    public w(k0 k0Var, int i10) {
+        this.f46464a = i10;
+        this.f46465b = k0Var;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f46512a;
-        j0 j0Var = this.f46513b;
+        int i10 = this.f46464a;
+        k0 k0Var = this.f46465b;
         switch (i10) {
             case 0:
                 if (LaunchActivity.R() != null) {
                     ?? obj = new Object();
-                    obj.f21559a = true;
-                    j0Var.K0.showAsSheet(new PremiumPreviewFragment(0, "noncontacts"), obj);
+                    obj.f21552a = true;
+                    k0Var.K0.showAsSheet(new PremiumPreviewFragment(0, "noncontacts"), obj);
                     return;
                 }
                 return;
             case 1:
-                j0Var.f46320x0.e(j0Var.f46299b0, false);
-                j0Var.A1();
+                k0Var.f46301x0.e(k0Var.f46280b0, false);
+                k0Var.A1();
                 return;
             case 2:
-                HashSet hashSet = j0Var.f46321y0;
+                HashSet hashSet = k0Var.f46302y0;
                 xc X = xc.X();
                 if (X != null) {
                     if (hashSet.size() == 1) {
@@ -52,20 +52,20 @@ public final class w implements Runnable {
                 }
                 return;
             case 3:
-                ei.d dVar = j0Var.S0;
-                TLRPC.ChatFull u12 = j0Var.u1();
+                ei.d dVar = k0Var.S0;
+                TLRPC.ChatFull u12 = k0Var.u1();
                 dVar.b(Math.max(u12.boosts_unrestrict - u12.boosts_applied, 0), false);
                 return;
             default:
-                if (ChatObject.hasAdminRights(j0Var.t1())) {
-                    if (j0Var.E0.getParent() != null) {
-                        ((ViewGroup) j0Var.E0.getParent()).removeView(j0Var.E0);
+                if (ChatObject.hasAdminRights(k0Var.t1())) {
+                    if (k0Var.E0.getParent() != null) {
+                        ((ViewGroup) k0Var.E0.getParent()).removeView(k0Var.E0);
                     }
-                    x10 x10Var = j0Var.L0;
+                    x10 x10Var = k0Var.L0;
                     if (x10Var != null && x10Var.getParent() != null) {
-                        ((ViewGroup) j0Var.L0.getParent()).removeView(j0Var.L0);
+                        ((ViewGroup) k0Var.L0.getParent()).removeView(k0Var.L0);
                     }
-                    j0Var.d.setPadding(0, 0, 0, 0);
+                    k0Var.d.setPadding(0, 0, 0, 0);
                     return;
                 }
                 return;

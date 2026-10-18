@@ -15,7 +15,7 @@ public class sj0 extends uj0 {
     public volatile boolean X0;
     public boolean Y0;
     public final int Z0;
-    public int f30290a1;
+    public int f30283a1;
 
     public sj0(String str, int i10, int i11) {
         super(i10, i11);
@@ -46,12 +46,12 @@ public class sj0 extends uj0 {
         } else if (i10 == 2) {
             rLottieNative = this.U0;
             if (this.X0) {
-                this.f31008a0 = this.f30290a1 - 1;
+                this.f31001a0 = this.f30283a1 - 1;
             }
         } else {
             rLottieNative = this.m0;
         }
-        if (rLottieNative.c(this.f31008a0, bitmap, z10) < 0) {
+        if (rLottieNative.c(this.f31001a0, bitmap, z10) < 0) {
             return 2;
         }
         return 1;
@@ -59,25 +59,25 @@ public class sj0 extends uj0 {
 
     @Override
     public void C(boolean z10) {
-        this.f31021k0 = false;
-        this.f31022l0 = true;
+        this.f31014k0 = false;
+        this.f31015l0 = true;
         n();
         l();
         if (!this.Y0 && !this.V0) {
-            if (this.P == null && !this.f31038x0) {
+            if (this.P == null && !this.f31031x0) {
                 D(z10);
                 zf.e eVar = this.B0;
                 if (eVar != null) {
-                    RandomAccessFile randomAccessFile = eVar.f51598s;
+                    RandomAccessFile randomAccessFile = eVar.f51551s;
                     if (randomAccessFile != null) {
                         try {
                             randomAccessFile.close();
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                        eVar.f51598s = null;
+                        eVar.f51551s = null;
                     }
-                    eVar.f51597r = true;
+                    eVar.f51550r = true;
                     this.B0 = null;
                 }
                 E();
@@ -110,28 +110,28 @@ public class sj0 extends uj0 {
     public void i() {
         int i10 = this.J;
         if (i10 == 1) {
-            int i11 = this.f31008a0 + 1;
+            int i11 = this.f31001a0 + 1;
             int i12 = this.Z0;
             if (i12 == -1) {
                 i12 = this.e[0];
             }
             if (i11 < i12) {
-                this.f31008a0 = i11;
+                this.f31001a0 = i11;
                 return;
             }
-            this.f31008a0 = 0;
+            this.f31001a0 = 0;
             this.N = false;
             if (this.U0 != null) {
                 this.J = 2;
             }
-            if (this.f31039y) {
-                this.f31037x = null;
-                this.f31039y = false;
+            if (this.f31032y) {
+                this.f31030x = null;
+                this.f31032y = false;
             }
         } else if (i10 == 2) {
-            int i13 = this.f31008a0 + 1;
-            if (i13 < this.f30290a1) {
-                this.f31008a0 = i13;
+            int i13 = this.f31001a0 + 1;
+            if (i13 < this.f30283a1) {
+                this.f31001a0 = i13;
                 return;
             }
             this.N = true;
@@ -141,7 +141,7 @@ public class sj0 extends uj0 {
 
     @Override
     public int j() {
-        if (this.f31022l0) {
+        if (this.f31015l0) {
             return 3;
         }
         if (this.m0 == null || (this.J == 2 && this.U0 == null)) {
@@ -166,7 +166,7 @@ public class sj0 extends uj0 {
         if (!v()) {
             stop();
         }
-        if (this.f31021k0) {
+        if (this.f31014k0) {
             I();
         }
     }

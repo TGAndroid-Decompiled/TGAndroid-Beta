@@ -7,26 +7,26 @@ import java.io.Writer;
 import java.util.Collection;
 import java.util.Map;
 public final class e implements ja.e, g {
-    public final boolean f15991a = true;
-    public final JsonWriter f15992b;
-    public final Map f15993c;
+    public final boolean f15989a = true;
+    public final JsonWriter f15990b;
+    public final Map f15991c;
     public final Map d;
     public final ja.d e;
-    public final boolean f15994f;
+    public final boolean f15992f;
 
     public e(Writer writer, Map map, Map map2, ja.d dVar, boolean z10) {
-        this.f15992b = new JsonWriter(writer);
-        this.f15993c = map;
+        this.f15990b = new JsonWriter(writer);
+        this.f15991c = map;
         this.d = map2;
         this.e = dVar;
-        this.f15994f = z10;
+        this.f15992f = z10;
     }
 
     @Override
     public final ja.e a(ja.c cVar, boolean z10) {
-        String str = cVar.f14367a;
+        String str = cVar.f14365a;
         j();
-        JsonWriter jsonWriter = this.f15992b;
+        JsonWriter jsonWriter = this.f15990b;
         jsonWriter.name(str);
         j();
         jsonWriter.value(z10);
@@ -36,28 +36,28 @@ public final class e implements ja.e, g {
     @Override
     public final g b(String str) {
         j();
-        this.f15992b.value(str);
+        this.f15990b.value(str);
         return this;
     }
 
     @Override
     public final g c(boolean z10) {
         j();
-        this.f15992b.value(z10);
+        this.f15990b.value(z10);
         return this;
     }
 
     @Override
     public final ja.e d(ja.c cVar, Object obj) {
-        i(obj, cVar.f14367a);
+        i(obj, cVar.f14365a);
         return this;
     }
 
     @Override
     public final ja.e e(ja.c cVar, double d) {
-        String str = cVar.f14367a;
+        String str = cVar.f14365a;
         j();
-        JsonWriter jsonWriter = this.f15992b;
+        JsonWriter jsonWriter = this.f15990b;
         jsonWriter.name(str);
         j();
         jsonWriter.value(d);
@@ -66,9 +66,9 @@ public final class e implements ja.e, g {
 
     @Override
     public final ja.e f(ja.c cVar, long j10) {
-        String str = cVar.f14367a;
+        String str = cVar.f14365a;
         j();
-        JsonWriter jsonWriter = this.f15992b;
+        JsonWriter jsonWriter = this.f15990b;
         jsonWriter.name(str);
         j();
         jsonWriter.value(j10);
@@ -77,9 +77,9 @@ public final class e implements ja.e, g {
 
     @Override
     public final ja.e g(ja.c cVar, int i10) {
-        String str = cVar.f14367a;
+        String str = cVar.f14365a;
         j();
-        JsonWriter jsonWriter = this.f15992b;
+        JsonWriter jsonWriter = this.f15990b;
         jsonWriter.name(str);
         j();
         jsonWriter.value(i10);
@@ -87,7 +87,7 @@ public final class e implements ja.e, g {
     }
 
     public final e h(Object obj) {
-        JsonWriter jsonWriter = this.f15992b;
+        JsonWriter jsonWriter = this.f15990b;
         if (obj == null) {
             jsonWriter.nullValue();
             return this;
@@ -170,7 +170,7 @@ public final class e implements ja.e, g {
                 jsonWriter.endObject();
                 return this;
             } else {
-                ja.d dVar = (ja.d) this.f15993c.get(obj.getClass());
+                ja.d dVar = (ja.d) this.f15991c.get(obj.getClass());
                 if (dVar != null) {
                     jsonWriter.beginObject();
                     dVar.a(obj, this);
@@ -203,8 +203,8 @@ public final class e implements ja.e, g {
     }
 
     public final e i(Object obj, String str) {
-        boolean z10 = this.f15994f;
-        JsonWriter jsonWriter = this.f15992b;
+        boolean z10 = this.f15992f;
+        JsonWriter jsonWriter = this.f15990b;
         if (z10) {
             if (obj == null) {
                 return this;
@@ -225,7 +225,7 @@ public final class e implements ja.e, g {
     }
 
     public final void j() {
-        if (this.f15991a) {
+        if (this.f15989a) {
             return;
         }
         throw new IllegalStateException("Parent context used since this context was created. Cannot use this context anymore.");

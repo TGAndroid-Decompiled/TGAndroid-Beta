@@ -1,84 +1,166 @@
 package ci;
 
-import android.content.Context;
-import android.view.MotionEvent;
+import android.animation.ValueAnimator;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-public final class w5 extends z4.g {
-    public boolean f6118w0;
-    public final c6 f6119x0;
-    public final c6 f6120y0;
+import org.telegram.ui.Components.bi0;
+import org.telegram.ui.Components.xd0;
+public final class w5 implements z4.e {
+    public final int f6054a;
+    public final Object f6055b;
 
-    public w5(c6 c6Var, Context context) {
-        super(context);
-        this.f6120y0 = c6Var;
-        this.f6119x0 = c6Var;
-    }
-
-    public final boolean A(MotionEvent motionEvent) {
-        if (motionEvent.getAction() == 0) {
-            this.f6118w0 = true;
-        }
-        if (this.f6118w0 && this.f6119x0.f5288x <= 0) {
-            try {
-                return super.onInterceptTouchEvent(motionEvent);
-            } catch (Exception unused) {
-            }
-        }
-        return false;
-    }
-
-    public final boolean B(MotionEvent motionEvent) {
-        if (motionEvent.getAction() == 0) {
-            this.f6118w0 = true;
-        }
-        if (this.f6118w0 && this.f6119x0.f5288x <= 0) {
-            return super.onTouchEvent(motionEvent);
-        }
-        return false;
+    public w5(Object obj, int i10) {
+        this.f6054a = i10;
+        this.f6055b = obj;
     }
 
     @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        float currentTopOffset;
-        float y3 = motionEvent.getY();
-        currentTopOffset = this.f6120y0.getCurrentTopOffset();
-        if (y3 < currentTopOffset && motionEvent.getAction() == 0) {
-            return false;
+    public final void a(float f7, int i10, int i11) {
+        int i12;
+        int i13;
+        float f10;
+        int i14;
+        switch (this.f6054a) {
+            case 0:
+                b6 b6Var = (b6) this.f6055b;
+                if (b6Var.f5183w) {
+                    u5 u5Var = b6Var.h;
+                    u5Var.d.abortAnimation();
+                    if (Math.abs(f7) <= 1.0f) {
+                        ValueAnimator valueAnimator = u5Var.M;
+                        if (valueAnimator != null) {
+                            valueAnimator.cancel();
+                            u5Var.M = null;
+                        }
+                        float f11 = (u5Var.f6050s / 2.0f) + ((-u5Var.getMeasuredWidth()) / 2.0f) + ((i12 + u5Var.f6048n) * i10);
+                        if (f7 > 0.0f) {
+                            f10 = (u5Var.f6050s / 2.0f) + ((-u5Var.getMeasuredWidth()) / 2.0f) + ((i10 + 1) * (i14 + u5Var.f6048n));
+                        } else {
+                            f10 = (u5Var.f6050s / 2.0f) + ((-u5Var.getMeasuredWidth()) / 2.0f) + ((i10 - 1) * (i13 + u5Var.f6048n));
+                            f7 = -f7;
+                        }
+                        if (f7 == 0.0f) {
+                            u5Var.e = f11;
+                        } else {
+                            u5Var.e = AndroidUtilities.lerp(f11, f10, f7);
+                        }
+                        u5Var.L = false;
+                        u5Var.invalidate();
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 1:
+                ((ni.e) this.f6055b).f17484f++;
+                return;
+            case 2:
+                xd0 xd0Var = (xd0) this.f6055b;
+                xd0Var.h = i10;
+                xd0Var.f32370n = f7;
+                if (xd0Var.d.getChildAt(i10) != null) {
+                    xd0.a(xd0Var, i10, (int) (xd0Var.d.getChildAt(i10).getWidth() * f7));
+                    xd0Var.invalidate();
+                    z4.e eVar = xd0Var.f32368c;
+                    if (eVar != null) {
+                        eVar.a(f7, i10, i11);
+                        return;
+                    }
+                    return;
+                }
+                return;
+            default:
+                bi0 bi0Var = (bi0) this.f6055b;
+                if (!bi0Var.f24975a && Math.abs(i10 - bi0Var.f24982w) == 1) {
+                    int i15 = bi0Var.f24982w;
+                    if (i10 > i15) {
+                        bi0.a(bi0Var, 0, 1, 1);
+                    } else if (i10 < i15) {
+                        bi0.a(bi0Var, 1, 0, 0);
+                        bi0.a(bi0Var, 2, 0, -1);
+                    }
+                }
+                int i16 = bi0Var.f24982w;
+                int i17 = bi0Var.f24983x;
+                bi0Var.f24982w = i10;
+                bi0Var.f24983x = i11;
+                if (i16 != i10 || i17 != i11) {
+                    bi0Var.H = true;
+                    bi0Var.postInvalidateOnAnimation();
+                    return;
+                }
+                return;
         }
-        return super.dispatchTouchEvent(motionEvent);
     }
 
     @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        float currentTopOffset;
-        float currentTopOffset2;
-        float y3 = motionEvent.getY();
-        c6 c6Var = this.f6120y0;
-        currentTopOffset = c6Var.getCurrentTopOffset();
-        if (y3 >= currentTopOffset) {
-            currentTopOffset2 = c6Var.getCurrentTopOffset();
-            if (Math.abs(currentTopOffset2 - c6Var.d) > AndroidUtilities.dp(1.0f)) {
-                return false;
-            }
-            return A(motionEvent);
+    public final void b(int i10) {
+        boolean z10;
+        switch (this.f6054a) {
+            case 0:
+            case 1:
+                return;
+            case 2:
+                xd0 xd0Var = (xd0) this.f6055b;
+                z4.e eVar = xd0Var.f32368c;
+                if (eVar != null) {
+                    eVar.b(i10);
+                }
+                for (int i11 = 0; i11 < xd0Var.d.getChildCount(); i11++) {
+                    View childAt = xd0Var.d.getChildAt(i11);
+                    if (i11 == i10) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    childAt.setSelected(z10);
+                }
+                return;
+            default:
+                return;
         }
-        return false;
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        float currentTopOffset;
-        float currentTopOffset2;
-        float y3 = motionEvent.getY();
-        c6 c6Var = this.f6120y0;
-        currentTopOffset = c6Var.getCurrentTopOffset();
-        if (y3 >= currentTopOffset) {
-            currentTopOffset2 = c6Var.getCurrentTopOffset();
-            if (Math.abs(currentTopOffset2 - c6Var.d) > AndroidUtilities.dp(1.0f)) {
-                return false;
-            }
-            return B(motionEvent);
+    public final void c(int i10) {
+        switch (this.f6054a) {
+            case 0:
+                b6 b6Var = (b6) this.f6055b;
+                if (i10 == 1) {
+                    b6Var.f5183w = true;
+                    return;
+                }
+                return;
+            case 1:
+                return;
+            case 2:
+                xd0 xd0Var = (xd0) this.f6055b;
+                if (i10 == 0) {
+                    xd0.a(xd0Var, xd0Var.e.getCurrentItem(), 0);
+                }
+                z4.e eVar = xd0Var.f32368c;
+                if (eVar != null) {
+                    eVar.c(i10);
+                    return;
+                }
+                return;
+            default:
+                return;
         }
-        return false;
+    }
+
+    private final void d(int i10) {
+    }
+
+    private final void e(int i10) {
+    }
+
+    private final void f(int i10) {
+    }
+
+    private final void g(int i10) {
+    }
+
+    private final void h(int i10) {
     }
 }

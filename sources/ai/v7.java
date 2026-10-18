@@ -66,7 +66,7 @@ public final class v7 implements DialogInterface.OnDismissListener {
                     f3Var.dismiss();
                     f3VarArr[0] = null;
                 }
-                wk0.f42912a = null;
+                wk0.f42876a = null;
                 org.telegram.ui.ActionBar.f3 f3Var2 = f3VarArr2[0];
                 if (f3Var2 != null) {
                     f3Var2.dismiss();
@@ -75,25 +75,25 @@ public final class v7 implements DialogInterface.OnDismissListener {
                 }
                 return;
             default:
-                org.telegram.ui.web.a1 a1Var = (org.telegram.ui.web.a1) this.f2317b;
-                ci.z7 z7Var = (ci.z7) this.d;
+                org.telegram.ui.web.b1 b1Var = (org.telegram.ui.web.b1) this.f2317b;
+                ci.y7 y7Var = (ci.y7) this.d;
                 String str = (String) this.e;
-                a1Var.getClass();
+                b1Var.getClass();
                 boolean[] zArr3 = this.f2318c;
                 if (!zArr3[0]) {
                     zArr3[0] = true;
-                    a1Var.x(z7Var, "requested_chat_failed", org.telegram.ui.web.a1.A(str, "req_id"));
+                    b1Var.x(y7Var, "requested_chat_failed", org.telegram.ui.web.b1.A(str, "req_id"));
                     return;
                 }
                 return;
         }
     }
 
-    public v7(org.telegram.ui.web.a1 a1Var, boolean[] zArr, ci.z7 z7Var, String str) {
+    public v7(org.telegram.ui.web.b1 b1Var, boolean[] zArr, ci.y7 y7Var, String str) {
         this.f2316a = 3;
-        this.f2317b = a1Var;
+        this.f2317b = b1Var;
         this.f2318c = zArr;
-        this.d = z7Var;
+        this.d = y7Var;
         this.e = str;
     }
 

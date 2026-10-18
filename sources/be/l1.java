@@ -39,14 +39,14 @@ public abstract class l1 extends ge.k implements e1, p0, b1 {
                         }
                         kotlin.jvm.internal.i.c(f7, "null cannot be cast to non-null type kotlinx.coroutines.internal.LockFreeLinkedListNode{ kotlinx.coroutines.internal.LockFreeLinkedListKt.Node }");
                         ge.k kVar2 = (ge.k) f7;
-                        AtomicReferenceFieldUpdater atomicReferenceFieldUpdater3 = ge.k.f11032c;
+                        AtomicReferenceFieldUpdater atomicReferenceFieldUpdater3 = ge.k.f11030c;
                         ge.q qVar = (ge.q) atomicReferenceFieldUpdater3.get(kVar2);
                         if (qVar == null) {
                             qVar = new ge.q(kVar2);
                             atomicReferenceFieldUpdater3.set(kVar2, qVar);
                         }
                         do {
-                            atomicReferenceFieldUpdater = ge.k.f11030a;
+                            atomicReferenceFieldUpdater = ge.k.f11028a;
                             if (atomicReferenceFieldUpdater.compareAndSet(this, f7, qVar)) {
                                 kVar2.d();
                                 return;

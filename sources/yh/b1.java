@@ -1,23 +1,26 @@
 package yh;
 
-import ai.k7;
-import android.content.Context;
+import android.view.ViewTreeObserver;
 import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.Components.xc;
-public final class b1 extends k7 {
-    public final p1 B1;
+public final class b1 extends g4 {
+    public final ViewTreeObserver N;
+    public final m0 O;
 
-    public b1(p1 p1Var, Context context, int i10, long j10, d6 d6Var) {
-        super(context, i10, j10, d6Var, null);
-        this.B1 = p1Var;
+    public b1(long j10, String str, long j11, d6 d6Var, ViewTreeObserver viewTreeObserver, m0 m0Var) {
+        super(j10, str, j11, d6Var);
+        this.N = viewTreeObserver;
+        this.O = m0Var;
     }
 
     @Override
-    public final xc getBulletinFactory() {
-        d6 d6Var;
-        p1 p1Var = this.B1;
-        org.telegram.ui.ActionBar.d3 d3Var = p1Var.container;
-        d6Var = p1Var.resourcesProvider;
-        return new xc(d3Var, d6Var);
+    public final void onPause() {
+        super.onPause();
+        this.N.removeOnPreDrawListener(this.O);
+    }
+
+    @Override
+    public final void onResume() {
+        super.onResume();
+        this.N.addOnPreDrawListener(this.O);
     }
 }

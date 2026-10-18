@@ -2,6 +2,7 @@ package k0;
 
 import a1.g;
 import a6.m;
+import ai.t3;
 import android.content.ComponentName;
 import android.content.Context;
 import android.graphics.Canvas;
@@ -78,29 +79,28 @@ import org.telegram.ui.Components.m60;
 import org.telegram.ui.Components.ti;
 import org.telegram.ui.Components.x71;
 import org.telegram.ui.n9;
-import org.telegram.ui.web.a1;
+import org.telegram.ui.web.b1;
 import org.telegram.ui.x9;
 import qf.e;
 import r2.j;
 import r4.d;
 import rg.m2;
 import rg.v1;
-import s4.b1;
 import s4.d0;
 import s4.g0;
 import s4.o0;
 import td.p;
 import x2.n;
 public final class b implements x, j0, g1, w, i, f, n5.b, e5, h, x71, oe.a, x9, d, o, v1, d0 {
-    public final int f14565a;
-    public Object f14566b;
+    public final int f14563a;
+    public Object f14564b;
 
     public b(Object obj, int i10) {
-        this.f14565a = i10;
-        this.f14566b = obj;
+        this.f14563a = i10;
+        this.f14564b = obj;
     }
 
-    public static FingerprintManager q(Context context) {
+    public static FingerprintManager w(Context context) {
         int i10 = Build.VERSION.SDK_INT;
         if (i10 == 23) {
             return (FingerprintManager) context.getSystemService(FingerprintManager.class);
@@ -114,8 +114,8 @@ public final class b implements x, j0, g1, w, i, f, n5.b, e5, h, x71, oe.a, x9, 
     @Override
     public void A() {
         n nVar;
-        w0 w0Var = (w0) this.f14566b;
-        synchronized (w0Var.f12314a) {
+        w0 w0Var = (w0) this.f14564b;
+        synchronized (w0Var.f12312a) {
             nVar = w0Var.H;
         }
         if (nVar != null) {
@@ -125,22 +125,22 @@ public final class b implements x, j0, g1, w, i, f, n5.b, e5, h, x71, oe.a, x9, 
 
     @Override
     public m9 B() {
-        return (z0) this.f14566b;
+        return (z0) this.f14564b;
     }
 
     @Override
     public void C(int i10, int i11, boolean z10) {
-        e0 e0Var = (e0) this.f14566b;
+        e0 e0Var = (e0) this.f14564b;
         e0Var.m0(i10, i11, z10);
         e0Var.dismiss();
     }
 
     @Override
     public void E(String str) {
-        a1 a1Var = (a1) this.f14566b;
+        b1 b1Var = (b1) this.f14564b;
         try {
-            a1Var.P = System.currentTimeMillis();
-            a1Var.y("qr_text_received", new JSONObject().put("data", str));
+            b1Var.P = System.currentTimeMillis();
+            b1Var.y("qr_text_received", new JSONObject().put("data", str));
         } catch (JSONException e) {
             FileLog.e(e);
         }
@@ -148,16 +148,16 @@ public final class b implements x, j0, g1, w, i, f, n5.b, e5, h, x71, oe.a, x9, 
 
     @Override
     public ki.a F() {
-        return ((z0) this.f14566b).f15112a;
+        return ((z0) this.f14564b).f15110a;
     }
 
     @Override
     public boolean G() {
-        z0 z0Var = (z0) this.f14566b;
+        z0 z0Var = (z0) this.f14564b;
         r3 r3Var = z0Var.S;
         if (r3Var != null) {
-            ki.a aVar = z0Var.f15112a;
-            if (r3Var.f15489a.T4()) {
+            ki.a aVar = z0Var.f15110a;
+            if (r3Var.f15487a.T4()) {
                 return true;
             }
             return false;
@@ -167,13 +167,13 @@ public final class b implements x, j0, g1, w, i, f, n5.b, e5, h, x71, oe.a, x9, 
 
     @Override
     public void H(bh.a aVar) {
-        switch (this.f14565a) {
+        switch (this.f14563a) {
             case 13:
-                aVar.a(((ti) this.f14566b).getThemedColor(h6.f20993d6));
+                aVar.a(((ti) this.f14564b).getThemedColor(h6.f20986d6));
                 aVar.b(SharedConfig.chatBlurEnabled());
                 return;
             default:
-                aVar.a(((dr0) this.f14566b).getThemedColor(h6.f20993d6));
+                aVar.a(((dr0) this.f14564b).getThemedColor(h6.f20986d6));
                 aVar.b(SharedConfig.chatBlurEnabled());
                 return;
         }
@@ -182,8 +182,8 @@ public final class b implements x, j0, g1, w, i, f, n5.b, e5, h, x71, oe.a, x9, 
     @Override
     public void I(Exception exc) {
         e2.a.d("MediaCodecAudioRenderer", "Audio sink error", exc);
-        qf.b bVar = ((w0) this.f14566b).f14831a1;
-        Handler handler = (Handler) bVar.f44485b;
+        qf.b bVar = ((w0) this.f14564b).f14829a1;
+        Handler handler = (Handler) bVar.f44442b;
         if (handler != null) {
             handler.post(new q(bVar, exc, 1));
         }
@@ -192,32 +192,32 @@ public final class b implements x, j0, g1, w, i, f, n5.b, e5, h, x71, oe.a, x9, 
     public void J(int i10, int i11, Object obj) {
         int i12;
         int i13;
-        RecyclerView recyclerView = (RecyclerView) this.f14566b;
-        int G = recyclerView.e.G();
+        RecyclerView recyclerView = (RecyclerView) this.f14564b;
+        int L = recyclerView.e.L();
         int i14 = i11 + i10;
-        for (int i15 = 0; i15 < G; i15++) {
-            View F = recyclerView.e.F(i15);
-            b1 U = RecyclerView.U(F);
-            if (U != null && !U.r() && (i13 = U.f45960c) >= i10 && i13 < i14) {
+        for (int i15 = 0; i15 < L; i15++) {
+            View K = recyclerView.e.K(i15);
+            s4.b1 U = RecyclerView.U(K);
+            if (U != null && !U.r() && (i13 = U.f45912c) >= i10 && i13 < i14) {
                 U.a(2);
                 if (obj == null) {
                     U.a(1024);
-                } else if ((1024 & U.f45966l) == 0) {
-                    if (U.f45967m == null) {
+                } else if ((1024 & U.f45918l) == 0) {
+                    if (U.f45919m == null) {
                         ArrayList arrayList = new ArrayList();
-                        U.f45967m = arrayList;
-                        U.f45968n = DesugarCollections.unmodifiableList(arrayList);
+                        U.f45919m = arrayList;
+                        U.f45920n = DesugarCollections.unmodifiableList(arrayList);
                     }
-                    U.f45967m.add(obj);
+                    U.f45919m.add(obj);
                 }
-                ((o0) F.getLayoutParams()).f46064c = true;
+                ((o0) K.getLayoutParams()).f46016c = true;
             }
         }
         e eVar = recyclerView.f3607b;
         ArrayList arrayList2 = (ArrayList) eVar.e;
         for (int size = arrayList2.size() - 1; size >= 0; size--) {
-            b1 b1Var = (b1) arrayList2.get(size);
-            if (b1Var != null && (i12 = b1Var.f45960c) >= i10 && i12 < i14) {
+            s4.b1 b1Var = (s4.b1) arrayList2.get(size);
+            if (b1Var != null && (i12 = b1Var.f45912c) >= i10 && i12 < i14) {
                 b1Var.a(2);
                 eVar.f(size);
             }
@@ -227,11 +227,11 @@ public final class b implements x, j0, g1, w, i, f, n5.b, e5, h, x71, oe.a, x9, 
 
     @Override
     public void K(int i10, int i11) {
-        z0 z0Var = (z0) this.f14566b;
+        z0 z0Var = (z0) this.f14564b;
         r3 r3Var = z0Var.S;
         if (r3Var != null) {
-            ki.a aVar = z0Var.f15112a;
-            h2 h2Var = r3Var.f15489a.H3;
+            ki.a aVar = z0Var.f15110a;
+            h2 h2Var = r3Var.f15487a.H3;
             if (h2Var != null) {
                 h2Var.f(i10, i11);
             }
@@ -240,44 +240,44 @@ public final class b implements x, j0, g1, w, i, f, n5.b, e5, h, x71, oe.a, x9, 
 
     @Override
     public void L() {
-        ((w0) this.f14566b).f14840j1 = true;
+        ((w0) this.f14564b).f14838j1 = true;
     }
 
     @Override
     public void M(Editable editable) {
-        ((g5) this.f14566b).h();
+        ((g5) this.f14564b).h();
     }
 
     @Override
     public void N() {
-        z0 z0Var = (z0) this.f14566b;
+        z0 z0Var = (z0) this.f14564b;
         r3 r3Var = z0Var.S;
         if (r3Var != null) {
-            ki.a aVar = z0Var.f15112a;
-            w3 w3Var = r3Var.f15489a;
+            ki.a aVar = z0Var.f15110a;
+            w3 w3Var = r3Var.f15487a;
             h2 h2Var = w3Var.H3;
             if (h2Var != null) {
                 h2Var.g();
             }
-            w3Var.f15593f3.onContentChanged();
+            w3Var.f15591f3.onContentChanged();
         }
     }
 
     public void O(int i10, int i11) {
-        RecyclerView recyclerView = (RecyclerView) this.f14566b;
-        int G = recyclerView.e.G();
-        for (int i12 = 0; i12 < G; i12++) {
-            b1 U = RecyclerView.U(recyclerView.e.F(i12));
-            if (U != null && !U.r() && U.f45960c >= i10) {
+        RecyclerView recyclerView = (RecyclerView) this.f14564b;
+        int L = recyclerView.e.L();
+        for (int i12 = 0; i12 < L; i12++) {
+            s4.b1 U = RecyclerView.U(recyclerView.e.K(i12));
+            if (U != null && !U.r() && U.f45912c >= i10) {
                 U.n(i11, false);
-                recyclerView.f3631u0.f46117f = true;
+                recyclerView.f3631u0.f46069f = true;
             }
         }
         ArrayList arrayList = (ArrayList) recyclerView.f3607b.e;
         int size = arrayList.size();
         for (int i13 = 0; i13 < size; i13++) {
-            b1 b1Var = (b1) arrayList.get(i13);
-            if (b1Var != null && b1Var.f45960c >= i10) {
+            s4.b1 b1Var = (s4.b1) arrayList.get(i13);
+            if (b1Var != null && b1Var.f45912c >= i10) {
                 b1Var.n(i11, true);
             }
         }
@@ -287,8 +287,8 @@ public final class b implements x, j0, g1, w, i, f, n5.b, e5, h, x71, oe.a, x9, 
 
     @Override
     public void P(u0 u0Var) {
-        qf.b bVar = ((w0) this.f14566b).f14831a1;
-        Handler handler = (Handler) bVar.f44485b;
+        qf.b bVar = ((w0) this.f14564b).f14829a1;
+        Handler handler = (Handler) bVar.f44442b;
         if (handler != null) {
             handler.post(new t(bVar, u0Var, 1));
         }
@@ -306,8 +306,8 @@ public final class b implements x, j0, g1, w, i, f, n5.b, e5, h, x71, oe.a, x9, 
 
     @Override
     public void S(u0 u0Var) {
-        qf.b bVar = ((w0) this.f14566b).f14831a1;
-        Handler handler = (Handler) bVar.f44485b;
+        qf.b bVar = ((w0) this.f14564b).f14829a1;
+        Handler handler = (Handler) bVar.f44442b;
         if (handler != null) {
             handler.post(new t(bVar, u0Var, 0));
         }
@@ -315,7 +315,7 @@ public final class b implements x, j0, g1, w, i, f, n5.b, e5, h, x71, oe.a, x9, 
 
     @Override
     public void T() {
-        k0 k0Var = ((w0) this.f14566b).Y;
+        k0 k0Var = ((w0) this.f14564b).Y;
         if (k0Var != null) {
             k0Var.a();
         }
@@ -323,7 +323,7 @@ public final class b implements x, j0, g1, w, i, f, n5.b, e5, h, x71, oe.a, x9, 
 
     @Override
     public void U(float f7) {
-        ((m2) this.f14566b).setOutlineWidth(f7);
+        ((m2) this.f14564b).setOutlineWidth(f7);
     }
 
     @Override
@@ -335,25 +335,25 @@ public final class b implements x, j0, g1, w, i, f, n5.b, e5, h, x71, oe.a, x9, 
     public void V(h1 h1Var, int i10, int i11) {
         ki.e5 e5Var;
         org.telegram.ui.Cells.n9 textSelectionHelper;
-        g5 g5Var = (g5) this.f14566b;
-        if (!g5Var.f15288w && i10 != i11 && (e5Var = g5Var.f15287s) != null && (textSelectionHelper = ((b3) e5Var).f15145a.getTextSelectionHelper()) != null) {
+        g5 g5Var = (g5) this.f14564b;
+        if (!g5Var.f15286w && i10 != i11 && (e5Var = g5Var.f15285s) != null && (textSelectionHelper = ((b3) e5Var).f15143a.getTextSelectionHelper()) != null) {
             h1Var.post(new m4(this, h1Var, i11, textSelectionHelper, i10, 3));
         }
     }
 
     @Override
     public void W() {
-        z0 z0Var = (z0) this.f14566b;
+        z0 z0Var = (z0) this.f14564b;
         r3 r3Var = z0Var.S;
         if (r3Var != null) {
-            ki.a aVar = z0Var.f15112a;
-            w3.P1(r3Var.f15489a);
+            ki.a aVar = z0Var.f15110a;
+            w3.P1(r3Var.f15487a);
         }
     }
 
     @Override
     public void X(int i10, int i11) {
-        ((g0) this.f14566b).s(i10, i11);
+        ((g0) this.f14564b).s(i10, i11);
     }
 
     public void Y(int i10, int i11) {
@@ -364,8 +364,8 @@ public final class b implements x, j0, g1, w, i, f, n5.b, e5, h, x71, oe.a, x9, 
         int i16;
         int i17;
         int i18;
-        RecyclerView recyclerView = (RecyclerView) this.f14566b;
-        int G = recyclerView.e.G();
+        RecyclerView recyclerView = (RecyclerView) this.f14564b;
+        int L = recyclerView.e.L();
         int i19 = -1;
         if (i10 < i11) {
             i13 = i10;
@@ -376,15 +376,15 @@ public final class b implements x, j0, g1, w, i, f, n5.b, e5, h, x71, oe.a, x9, 
             i13 = i11;
             i14 = 1;
         }
-        for (int i20 = 0; i20 < G; i20++) {
-            b1 U = RecyclerView.U(recyclerView.e.F(i20));
-            if (U != null && (i18 = U.f45960c) >= i13 && i18 <= i12) {
+        for (int i20 = 0; i20 < L; i20++) {
+            s4.b1 U = RecyclerView.U(recyclerView.e.K(i20));
+            if (U != null && (i18 = U.f45912c) >= i13 && i18 <= i12) {
                 if (i18 == i10) {
                     U.n(i11 - i10, false);
                 } else {
                     U.n(i14, false);
                 }
-                recyclerView.f3631u0.f46117f = true;
+                recyclerView.f3631u0.f46069f = true;
             }
         }
         ArrayList arrayList = (ArrayList) recyclerView.f3607b.e;
@@ -398,8 +398,8 @@ public final class b implements x, j0, g1, w, i, f, n5.b, e5, h, x71, oe.a, x9, 
         }
         int size = arrayList.size();
         for (int i21 = 0; i21 < size; i21++) {
-            b1 b1Var = (b1) arrayList.get(i21);
-            if (b1Var != null && (i17 = b1Var.f45960c) >= i16 && i17 <= i15) {
+            s4.b1 b1Var = (s4.b1) arrayList.get(i21);
+            if (b1Var != null && (i17 = b1Var.f45912c) >= i16 && i17 <= i15) {
                 if (i17 == i10) {
                     b1Var.n(i11 - i10, false);
                 } else {
@@ -412,7 +412,7 @@ public final class b implements x, j0, g1, w, i, f, n5.b, e5, h, x71, oe.a, x9, 
     }
 
     public byte Z() {
-        int read = ((com.google.firebase.messaging.d) this.f14566b).read();
+        int read = ((com.google.firebase.messaging.d) this.f14564b).read();
         if (read >= 0) {
             return (byte) read;
         }
@@ -421,7 +421,7 @@ public final class b implements x, j0, g1, w, i, f, n5.b, e5, h, x71, oe.a, x9, 
 
     @Override
     public Object a(p pVar, c cVar) {
-        return ((z) this.f14566b).a(new n1.c(pVar, null, 0), cVar);
+        return ((z) this.f14564b).a(new n1.c(pVar, null, 0), cVar);
     }
 
     public int a0() {
@@ -430,17 +430,17 @@ public final class b implements x, j0, g1, w, i, f, n5.b, e5, h, x71, oe.a, x9, 
 
     @Override
     public void a1(int i10, int i11) {
-        ((g0) this.f14566b).r(i10, i11, null);
+        ((g0) this.f14564b).r(i10, i11, null);
     }
 
     @Override
     public void b(k kVar) {
-        Toolbar toolbar = (Toolbar) this.f14566b;
+        Toolbar toolbar = (Toolbar) this.f14564b;
         m.i iVar = toolbar.f2791a.J;
         if (iVar != null && iVar.g()) {
             return;
         }
-        Iterator it = ((CopyOnWriteArrayList) toolbar.W.f16204c).iterator();
+        Iterator it = ((CopyOnWriteArrayList) toolbar.W.f16202c).iterator();
         while (it.hasNext()) {
             ((b0) it.next()).f3168a.t();
         }
@@ -452,22 +452,22 @@ public final class b implements x, j0, g1, w, i, f, n5.b, e5, h, x71, oe.a, x9, 
 
     @Override
     public void c(h1 h1Var) {
-        switch (this.f14565a) {
+        switch (this.f14563a) {
             case 2:
-                r3 r3Var = ((z0) this.f14566b).S;
+                r3 r3Var = ((z0) this.f14564b).S;
                 if (r3Var != null) {
-                    w3 w3Var = r3Var.f15489a;
+                    w3 w3Var = r3Var.f15487a;
                     w3.N1(w3Var, h1Var);
-                    w3Var.f15593f3.n(h1Var, true);
+                    w3Var.f15591f3.n(h1Var, true);
                     return;
                 }
                 return;
             default:
-                ki.e5 e5Var = ((g5) this.f14566b).f15287s;
+                ki.e5 e5Var = ((g5) this.f14564b).f15285s;
                 if (e5Var != null) {
-                    w3 w3Var2 = ((b3) e5Var).f15145a;
+                    w3 w3Var2 = ((b3) e5Var).f15143a;
                     w3.N1(w3Var2, h1Var);
-                    w3Var2.f15593f3.n(h1Var, true);
+                    w3Var2.f15591f3.n(h1Var, true);
                     return;
                 }
                 return;
@@ -477,7 +477,7 @@ public final class b implements x, j0, g1, w, i, f, n5.b, e5, h, x71, oe.a, x9, 
     public void c0(long j10) {
         long j11 = 0;
         while (j11 < j10) {
-            long skip = ((com.google.firebase.messaging.d) this.f14566b).skip(j10 - j11);
+            long skip = ((com.google.firebase.messaging.d) this.f14564b).skip(j10 - j11);
             if (skip > 0) {
                 j11 += skip;
             } else {
@@ -489,9 +489,9 @@ public final class b implements x, j0, g1, w, i, f, n5.b, e5, h, x71, oe.a, x9, 
     @Override
     public void d(k kVar, boolean z10) {
         if (kVar instanceof l.d0) {
-            ((l.d0) kVar).f15733z.k().c(false);
+            ((l.d0) kVar).f15731z.k().c(false);
         }
-        w wVar = ((m.i) this.f14566b).e;
+        w wVar = ((m.i) this.f14564b).e;
         if (wVar != null) {
             wVar.d(kVar, z10);
         }
@@ -499,12 +499,12 @@ public final class b implements x, j0, g1, w, i, f, n5.b, e5, h, x71, oe.a, x9, 
 
     @Override
     public void e(long j10) {
-        w0 w0Var = (w0) this.f14566b;
-        w0Var.f14842m1 = true;
-        qf.b bVar = w0Var.f14831a1;
-        Handler handler = (Handler) bVar.f44485b;
+        w0 w0Var = (w0) this.f14564b;
+        w0Var.f14840m1 = true;
+        qf.b bVar = w0Var.f14829a1;
+        Handler handler = (Handler) bVar.f44442b;
         if (handler != null) {
-            handler.post(new ai.r3(bVar, j10, 13));
+            handler.post(new t3(bVar, j10, 13));
         }
     }
 
@@ -520,20 +520,20 @@ public final class b implements x, j0, g1, w, i, f, n5.b, e5, h, x71, oe.a, x9, 
 
     @Override
     public void g() {
-        z0 z0Var = (z0) this.f14566b;
+        z0 z0Var = (z0) this.f14564b;
         r3 r3Var = z0Var.S;
         if (r3Var != null) {
-            w3.Q1(r3Var.f15489a, z0Var.f15112a);
+            w3.Q1(r3Var.f15487a, z0Var.f15110a);
         }
     }
 
     @Override
     public Object mo27get() {
-        switch (this.f14565a) {
+        switch (this.f14563a) {
             case 8:
-                return this.f14566b;
+                return this.f14564b;
             default:
-                String packageName = ((Context) ((hd.a) this.f14566b).mo27get()).getPackageName();
+                String packageName = ((Context) ((hd.a) this.f14564b).mo27get()).getPackageName();
                 if (packageName != null) {
                     return packageName;
                 }
@@ -543,7 +543,7 @@ public final class b implements x, j0, g1, w, i, f, n5.b, e5, h, x71, oe.a, x9, 
 
     @Override
     public ee.b getData() {
-        return ((z) this.f14566b).f14635c;
+        return ((z) this.f14564b).f14633c;
     }
 
     @Override
@@ -573,8 +573,8 @@ public final class b implements x, j0, g1, w, i, f, n5.b, e5, h, x71, oe.a, x9, 
         } else {
             cancellationSignal = null;
         }
-        FingerprintManager q6 = q((Context) this.f14566b);
-        if (q6 != null) {
+        FingerprintManager w9 = w((Context) this.f14564b);
+        if (w9 != null) {
             if (eVar != null) {
                 Mac mac = (Mac) eVar.d;
                 Signature signature = (Signature) eVar.f2819b;
@@ -587,7 +587,7 @@ public final class b implements x, j0, g1, w, i, f, n5.b, e5, h, x71, oe.a, x9, 
                     cryptoObject = new FingerprintManager.CryptoObject(mac);
                 }
             }
-            q6.authenticate(cryptoObject, cancellationSignal, 0, new a(mVar), null);
+            w9.authenticate(cryptoObject, cancellationSignal, 0, new a(mVar), null);
         }
     }
 
@@ -598,30 +598,30 @@ public final class b implements x, j0, g1, w, i, f, n5.b, e5, h, x71, oe.a, x9, 
 
     @Override
     public void j() {
-        ((w0) this.f14566b).l1 = true;
+        ((w0) this.f14564b).l1 = true;
     }
 
     @Override
     public void k() {
-        k0 k0Var = ((w0) this.f14566b).Y;
+        k0 k0Var = ((w0) this.f14564b).Y;
         if (k0Var != null) {
-            k0Var.f12473a.f12553i0 = true;
+            k0Var.f12471a.f12551i0 = true;
         }
     }
 
     @Override
     public void l(h1 h1Var) {
         ki.a aVar;
-        g5 g5Var = (g5) this.f14566b;
-        ki.e5 e5Var = g5Var.f15287s;
-        if (e5Var != null && (aVar = g5Var.f15112a) != null) {
-            w3 w3Var = ((b3) e5Var).f15145a;
-            ArrayList arrayList = w3Var.f15601j3;
-            long j10 = aVar.f15111t;
+        g5 g5Var = (g5) this.f14564b;
+        ki.e5 e5Var = g5Var.f15285s;
+        if (e5Var != null && (aVar = g5Var.f15110a) != null) {
+            w3 w3Var = ((b3) e5Var).f15143a;
+            ArrayList arrayList = w3Var.f15599j3;
+            long j10 = aVar.f15109t;
             if (j10 != 0) {
                 int i10 = -1;
                 for (int i11 = 0; i11 < arrayList.size(); i11++) {
-                    if (((ki.a) arrayList.get(i11)).f15102k.contains(Long.valueOf(j10))) {
+                    if (((ki.a) arrayList.get(i11)).f15100k.contains(Long.valueOf(j10))) {
                         i10 = i11;
                     }
                 }
@@ -631,8 +631,8 @@ public final class b implements x, j0, g1, w, i, f, n5.b, e5, h, x71, oe.a, x9, 
                         h2Var.d();
                     }
                     ki.a aVar2 = new ki.a(new TL_iv.pageBlockParagraph(), 0, 0);
-                    ArrayList arrayList2 = aVar.f15102k;
-                    ArrayList arrayList3 = aVar2.f15102k;
+                    ArrayList arrayList2 = aVar.f15100k;
+                    ArrayList arrayList3 = aVar2.f15100k;
                     arrayList3.addAll(arrayList2);
                     if (!arrayList3.isEmpty()) {
                         g.y(1, arrayList3);
@@ -651,24 +651,24 @@ public final class b implements x, j0, g1, w, i, f, n5.b, e5, h, x71, oe.a, x9, 
     }
 
     public void n(s4.a aVar) {
-        RecyclerView recyclerView = (RecyclerView) this.f14566b;
-        int i10 = aVar.f45930a;
+        RecyclerView recyclerView = (RecyclerView) this.f14564b;
+        int i10 = aVar.f45882a;
         if (i10 != 1) {
             if (i10 != 2) {
                 if (i10 != 4) {
                     if (i10 != 8) {
                         return;
                     }
-                    recyclerView.f3635x.X(recyclerView, aVar.f45931b, aVar.d);
+                    recyclerView.f3635x.X(recyclerView, aVar.f45883b, aVar.d);
                     return;
                 }
-                recyclerView.f3635x.a0(recyclerView, aVar.f45931b, aVar.d, aVar.f45932c);
+                recyclerView.f3635x.a0(recyclerView, aVar.f45883b, aVar.d, aVar.f45884c);
                 return;
             }
-            recyclerView.f3635x.Y(recyclerView, aVar.f45931b, aVar.d);
+            recyclerView.f3635x.Y(recyclerView, aVar.f45883b, aVar.d);
             return;
         }
-        recyclerView.f3635x.V(recyclerView, aVar.f45931b, aVar.d);
+        recyclerView.f3635x.V(recyclerView, aVar.f45883b, aVar.d);
     }
 
     @Override
@@ -679,12 +679,12 @@ public final class b implements x, j0, g1, w, i, f, n5.b, e5, h, x71, oe.a, x9, 
     @Override
     public boolean needClickAt(View view, float f7, float f10) {
         int dp = AndroidUtilities.dp(9.0f);
-        c71 c71Var = (c71) this.f14566b;
+        c71 c71Var = (c71) this.f14564b;
         float f11 = -dp;
-        c71Var.f25120g.inset(f11, f11);
-        boolean contains = c71Var.f25120g.contains(f7, f10);
+        c71Var.f25113g.inset(f11, f11);
+        boolean contains = c71Var.f25113g.contains(f7, f10);
         float f12 = dp;
-        c71Var.f25120g.inset(f12, f12);
+        c71Var.f25113g.inset(f12, f12);
         return contains;
     }
 
@@ -697,10 +697,10 @@ public final class b implements x, j0, g1, w, i, f, n5.b, e5, h, x71, oe.a, x9, 
     public void o(Object obj) {
         com.google.android.gms.common.api.internal.n nVar;
         g8.c cVar = (g8.c) obj;
-        androidx.activity.o oVar = ((r7.i) this.f14566b).f45086b;
+        androidx.activity.o oVar = ((r7.i) this.f14564b).f45040b;
         synchronized (oVar) {
             oVar.f2671a = false;
-            nVar = ((com.google.android.gms.common.api.internal.p) oVar.f2672b).f6480c;
+            nVar = ((com.google.android.gms.common.api.internal.p) oVar.f2672b).f6478c;
         }
         if (nVar != null) {
             ((r7.c) oVar.f2673c).c(nVar, 2441);
@@ -710,12 +710,12 @@ public final class b implements x, j0, g1, w, i, f, n5.b, e5, h, x71, oe.a, x9, 
     @Override
     public void onAudioSessionIdChanged(int i10) {
         j jVar;
-        w0 w0Var = (w0) this.f14566b;
-        if (Build.VERSION.SDK_INT >= 35 && (jVar = w0Var.f14833c1) != null) {
+        w0 w0Var = (w0) this.f14564b;
+        if (Build.VERSION.SDK_INT >= 35 && (jVar = w0Var.f14831c1) != null) {
             jVar.d(i10);
         }
-        qf.b bVar = w0Var.f14831a1;
-        Handler handler = (Handler) bVar.f44485b;
+        qf.b bVar = w0Var.f14829a1;
+        Handler handler = (Handler) bVar.f44442b;
         if (handler != null) {
             handler.post(new ah.g(bVar, i10, 14));
         }
@@ -723,7 +723,7 @@ public final class b implements x, j0, g1, w, i, f, n5.b, e5, h, x71, oe.a, x9, 
 
     @Override
     public void onClickAt(View view, float f7, float f10) {
-        Runnable runnable = ((c71) this.f14566b).f25122j;
+        Runnable runnable = ((c71) this.f14564b).f25115j;
         if (runnable != null) {
             runnable.run();
         }
@@ -731,19 +731,19 @@ public final class b implements x, j0, g1, w, i, f, n5.b, e5, h, x71, oe.a, x9, 
 
     @Override
     public void onClickTouchDown(View view, float f7, float f10) {
-        ((c71) this.f14566b).h.c(true);
+        ((c71) this.f14564b).h.c(true);
     }
 
     @Override
     public void onClickTouchUp(View view, float f7, float f10) {
-        ((c71) this.f14566b).h.c(false);
+        ((c71) this.f14564b).h.c(false);
     }
 
     @Override
     public void onDismiss() {
-        a1 a1Var = (a1) this.f14566b;
-        a1Var.y("scan_qr_popup_closed", null);
-        a1Var.f42549h0 = false;
+        b1 b1Var = (b1) this.f14564b;
+        b1Var.y("scan_qr_popup_closed", null);
+        b1Var.f42530h0 = false;
     }
 
     @Override
@@ -762,8 +762,8 @@ public final class b implements x, j0, g1, w, i, f, n5.b, e5, h, x71, oe.a, x9, 
 
     @Override
     public void onSkipSilenceEnabledChanged(boolean z10) {
-        qf.b bVar = ((w0) this.f14566b).f14831a1;
-        Handler handler = (Handler) bVar.f44485b;
+        qf.b bVar = ((w0) this.f14564b).f14829a1;
+        Handler handler = (Handler) bVar.f44442b;
         if (handler != null) {
             handler.post(new ah.t(12, bVar, z10));
         }
@@ -773,7 +773,7 @@ public final class b implements x, j0, g1, w, i, f, n5.b, e5, h, x71, oe.a, x9, 
     public void onStateChanged(boolean z10, int i10) {
         m60 m60Var;
         VideoEditedInfo videoEditedInfo;
-        f60 f60Var = (f60) this.f14566b;
+        f60 f60Var = (f60) this.f14564b;
         a81 a81Var = f60Var.H0.T;
         if (a81Var != null && a81Var.y() && i10 == 4 && (videoEditedInfo = (m60Var = f60Var.H0).S) != null) {
             a81 a81Var2 = m60Var.T;
@@ -792,29 +792,34 @@ public final class b implements x, j0, g1, w, i, f, n5.b, e5, h, x71, oe.a, x9, 
 
     @Override
     public boolean p(k kVar, MenuItem menuItem) {
-        ((Toolbar) this.f14566b).getClass();
+        ((Toolbar) this.f14564b).getClass();
         return false;
     }
 
     @Override
     public String p0() {
-        return ((a1) this.f14566b).f42550i0;
+        return ((b1) this.f14564b).f42531i0;
+    }
+
+    @Override
+    public boolean q(h1 h1Var) {
+        return false;
     }
 
     @Override
     public void r(Canvas canvas) {
-        switch (this.f14565a) {
+        switch (this.f14563a) {
             case 13:
-                ti tiVar = (ti) this.f14566b;
-                canvas.drawColor(tiVar.getThemedColor(h6.f20993d6));
+                ti tiVar = (ti) this.f14564b;
+                canvas.drawColor(tiVar.getThemedColor(h6.f20986d6));
                 if (SharedConfig.chatBlurEnabled()) {
                     tiVar.F2.b(canvas, -3);
                     return;
                 }
                 return;
             default:
-                dr0 dr0Var = (dr0) this.f14566b;
-                canvas.drawColor(dr0Var.getThemedColor(h6.f20993d6));
+                dr0 dr0Var = (dr0) this.f14564b;
+                canvas.drawColor(dr0Var.getThemedColor(h6.f20986d6));
                 if (SharedConfig.chatBlurEnabled()) {
                     dr0Var.O0.b(canvas, -2);
                     return;
@@ -825,8 +830,8 @@ public final class b implements x, j0, g1, w, i, f, n5.b, e5, h, x71, oe.a, x9, 
 
     @Override
     public void s(int i10, long j10, long j11) {
-        qf.b bVar = ((w0) this.f14566b).f14831a1;
-        Handler handler = (Handler) bVar.f44485b;
+        qf.b bVar = ((w0) this.f14564b).f14829a1;
+        Handler handler = (Handler) bVar.f44442b;
         if (handler != null) {
             handler.post(new s(bVar, i10, j10, j11, 0));
         }
@@ -834,22 +839,22 @@ public final class b implements x, j0, g1, w, i, f, n5.b, e5, h, x71, oe.a, x9, 
 
     @Override
     public org.telegram.ui.Cells.n9 t() {
-        r3 r3Var = ((z0) this.f14566b).S;
+        r3 r3Var = ((z0) this.f14564b).S;
         if (r3Var == null) {
             return null;
         }
-        return r3Var.f15489a.getTextSelectionHelper();
+        return r3Var.f15487a.getTextSelectionHelper();
     }
 
     @Override
     public void t0(int i10, int i11) {
-        ((g0) this.f14566b).t(i10, i11);
+        ((g0) this.f14564b).t(i10, i11);
     }
 
     public String toString() {
-        switch (this.f14565a) {
+        switch (this.f14563a) {
             case 19:
-                return "ProviderMetadata{ componentName=" + ((ComponentName) this.f14566b).flattenToShortString() + " }";
+                return "ProviderMetadata{ componentName=" + ((ComponentName) this.f14564b).flattenToShortString() + " }";
             default:
                 return super.toString();
         }
@@ -857,8 +862,8 @@ public final class b implements x, j0, g1, w, i, f, n5.b, e5, h, x71, oe.a, x9, 
 
     @Override
     public boolean u(k kVar) {
-        m.i iVar = (m.i) this.f14566b;
-        if (kVar == iVar.f16219c) {
+        m.i iVar = (m.i) this.f14564b;
+        if (kVar == iVar.f16217c) {
             return false;
         }
         ((l.d0) kVar).A.getClass();
@@ -872,18 +877,13 @@ public final class b implements x, j0, g1, w, i, f, n5.b, e5, h, x71, oe.a, x9, 
 
     @Override
     public void v(CharSequence charSequence) {
-        r3 r3Var = ((z0) this.f14566b).S;
+        r3 r3Var = ((z0) this.f14564b).S;
         if (r3Var != null) {
             r3Var.getClass();
             if (charSequence != null && charSequence.length() > 0) {
-                r3Var.f15489a.u4(charSequence.toString());
+                r3Var.f15487a.u4(charSequence.toString());
             }
         }
-    }
-
-    @Override
-    public boolean w(h1 h1Var) {
-        return false;
     }
 
     @Override
@@ -893,7 +893,7 @@ public final class b implements x, j0, g1, w, i, f, n5.b, e5, h, x71, oe.a, x9, 
 
     @Override
     public void y(int i10, int i11) {
-        ((g0) this.f14566b).p(i10, i11);
+        ((g0) this.f14564b).p(i10, i11);
     }
 
     @Override
@@ -940,16 +940,16 @@ public final class b implements x, j0, g1, w, i, f, n5.b, e5, h, x71, oe.a, x9, 
         } else {
             Log.e("ProfileInstaller", str, (Throwable) obj);
         }
-        ((ProfileInstallReceiver) this.f14566b).setResultCode(i10);
+        ((ProfileInstallReceiver) this.f14564b).setResultCode(i10);
     }
 
     public b(int i10) {
-        this.f14565a = i10;
+        this.f14563a = i10;
         switch (i10) {
             case 29:
                 return;
             default:
-                this.f14566b = new SparseArray();
+                this.f14564b = new SparseArray();
                 return;
         }
     }
@@ -959,23 +959,23 @@ public final class b implements x, j0, g1, w, i, f, n5.b, e5, h, x71, oe.a, x9, 
     }
 
     public b(Context context, GestureDetector.OnGestureListener onGestureListener) {
-        this.f14565a = 21;
-        this.f14566b = new GestureDetector(context, onGestureListener, null);
+        this.f14563a = 21;
+        this.f14564b = new GestureDetector(context, onGestureListener, null);
     }
 
     @Override
     public float get() {
-        return ((m2) this.f14566b).F;
+        return ((m2) this.f14564b).F;
     }
 
     public b(EditText editText) {
-        this.f14565a = 20;
-        this.f14566b = new mi.q(editText);
+        this.f14563a = 20;
+        this.f14564b = new mi.q(editText);
     }
 
     public b(int i10, int i11) {
-        this.f14565a = 15;
-        this.f14566b = ApplicationLoader.applicationContext.getSharedPreferences(g.l(i10, i11, "pip_layout_", "_"), 0);
+        this.f14563a = 15;
+        this.f14564b = ApplicationLoader.applicationContext.getSharedPreferences(g.l(i10, i11, "pip_layout_", "_"), 0);
     }
 
     @Override

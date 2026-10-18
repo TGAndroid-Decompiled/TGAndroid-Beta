@@ -46,13 +46,13 @@ public final class h0 implements Runnable {
                 String str = (String) this.e;
                 long j10 = this.f120b;
                 long j11 = this.f121c;
-                String str2 = e2.m0.f8255a;
-                j2.f fVar = ((i2.b0) ((m0) ((n4.s) this.d).f17129c)).f12324a.f12412s;
+                String str2 = e2.m0.f8253a;
+                j2.f fVar = ((i2.b0) ((m0) ((n4.s) this.d).f17125c)).f12322a.f12410s;
                 j2.a p5 = fVar.p();
                 fVar.q(p5, 1016, new j2.c(p5, str, j11, j10, 17));
                 return;
             case 1:
-                k7.f0((k7) this.d, this.f120b, this.f121c, (Utilities.Callback) this.e);
+                k7.n0((k7) this.d, this.f120b, this.f121c, (Utilities.Callback) this.e);
                 return;
             case 2:
                 ((x0) this.d).n(this.f120b, (TLRPC.TL_textWithEntities) this.e, this.f121c);
@@ -61,8 +61,8 @@ public final class h0 implements Runnable {
                 String str3 = (String) this.e;
                 long j12 = this.f120b;
                 long j13 = this.f121c;
-                String str4 = e2.m0.f8255a;
-                j2.f fVar2 = ((i2.b0) ((k2.u) ((qf.b) this.d).f44486c)).f12324a.f12412s;
+                String str4 = e2.m0.f8253a;
+                j2.f fVar2 = ((i2.b0) ((k2.u) ((qf.b) this.d).f44443c)).f12322a.f12410s;
                 j2.a p9 = fVar2.p();
                 fVar2.q(p9, 1008, new j2.c(p9, str3, j13, j12, 5));
                 return;
@@ -105,7 +105,7 @@ public final class h0 implements Runnable {
                     ArrayList arrayList = new ArrayList();
                     arrayList.add(MessagesStorage.TopicKey.of(j14, j15));
                     eyVar.C2.w(eyVar, arrayList, null, false, eyVar.J2, eyVar.K2, eyVar.L2, te1Var);
-                    if (eyVar.f36676i2) {
+                    if (eyVar.f36660i2) {
                         eyVar.C2 = null;
                         return;
                     }
@@ -125,7 +125,7 @@ public final class h0 implements Runnable {
                 t10.append(" TL_forumTopic ");
                 t10.append(findTopic);
                 FileLog.d(t10.toString());
-                if (launchActivity.f33180q0 != null) {
+                if (launchActivity.f33173q0 != null) {
                     og.d.a(snVar, MessagesStorage.TopicKey.of(-j16, j17));
                     ((ActionBarLayout) launchActivity.O()).P(snVar);
                     return;
@@ -136,9 +136,9 @@ public final class h0 implements Runnable {
                 si.o0 o0Var = (si.o0) this.e;
                 long j18 = this.f120b;
                 long j19 = this.f121c;
-                synchronized (s0Var.f46808g) {
+                synchronized (s0Var.f46759g) {
                     if (!o0Var.d && !o0Var.e) {
-                        ((y01) s0Var.e).a(o0Var.f46783a, o0Var.f46784b, j18, j19);
+                        ((y01) s0Var.e).a(o0Var.f46737a, o0Var.f46738b, j18, j19);
                         return;
                     }
                     return;

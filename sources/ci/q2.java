@@ -2,87 +2,49 @@ package ci;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.widget.ImageView;
-import org.telegram.messenger.AndroidUtilities;
 public final class q2 extends AnimatorListenerAdapter {
-    public final int f5761a;
-    public final boolean f5762b;
-    public final q4 f5763c;
+    public final int f5771a;
+    public final p4 f5772b;
 
-    public q2(q4 q4Var, boolean z10, int i10) {
-        this.f5761a = i10;
-        this.f5763c = q4Var;
-        this.f5762b = z10;
+    public q2(p4 p4Var, int i10) {
+        this.f5771a = i10;
+        this.f5772b = p4Var;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        float f7;
-        float hideInterfaceAlpha;
-        switch (this.f5761a) {
+        w2 w2Var;
+        Runnable runnable;
+        switch (this.f5771a) {
             case 0:
-                if (!this.f5762b) {
-                    q4 q4Var = this.f5763c;
-                    q4Var.f5820r3.setVisibility(8);
-                    q4Var.f5820r3.n();
-                    return;
-                }
+                p4 p4Var = this.f5772b;
+                p4Var.f5706t3 = 0.0f;
+                p4Var.f5700r3.setAlpha(1.0f);
+                p4Var.f5700r3.setVisibility(8);
+                p4Var.f5700r3.n();
                 return;
             default:
-                q4 q4Var2 = this.f5763c;
-                f9 f9Var = q4Var2.C0;
-                i4 i4Var = q4Var2.f5841y0;
-                ImageView imageView = q4Var2.f5837x0;
-                ImageView imageView2 = q4Var2.f5833w0;
-                m4 m4Var = q4Var2.f5809o1;
-                float f10 = 0.0f;
-                if (this.f5762b) {
-                    f7 = 1.0f;
-                } else {
-                    f7 = 0.0f;
+                super.onAnimationEnd(animator);
+                p4 p4Var2 = this.f5772b;
+                p4Var2.N2.unlock();
+                p4Var2.H2 = p4Var2.f5690o2;
+                u2 u2Var = p4Var2.f5649b2;
+                if (u2Var != null && (runnable = u2Var.f24031w) != null) {
+                    runnable.run();
+                    u2Var.f24031w = null;
                 }
-                q4Var2.f5779d4 = f7;
-                m4Var.setTranslationY((-AndroidUtilities.dp(8.0f)) * q4Var2.f5779d4);
-                m4Var.setAlpha(1.0f - q4Var2.f5779d4);
-                imageView2.setTranslationY((-AndroidUtilities.dp(8.0f)) * q4Var2.f5779d4);
-                imageView2.setAlpha(1.0f - q4Var2.f5779d4);
-                imageView.setTranslationY((-AndroidUtilities.dp(8.0f)) * q4Var2.f5779d4);
-                imageView.setAlpha(1.0f - q4Var2.f5779d4);
-                i4Var.setTranslationY((-AndroidUtilities.dp(8.0f)) * q4Var2.f5779d4);
-                i4Var.setAlpha((1.0f - q4Var2.f5779d4) * q4Var2.f5782e3);
-                h3 h3Var = q4Var2.W1;
-                if (h3Var != null) {
-                    h3Var.setTranslationY(AndroidUtilities.dp(8.0f) * q4Var2.f5779d4);
-                    q4Var2.W1.setAlpha(1.0f - q4Var2.f5779d4);
+                if (p4Var2.K1 && !p4Var2.f5711v2) {
+                    z9 z9Var = ((q9) p4Var2.Q1).d;
+                    if (z9Var.f6261x) {
+                        z9Var.f6261x = false;
+                        z9Var.P();
+                    }
                 }
-                if (f9Var != null) {
-                    f9Var.setTranslationY((-AndroidUtilities.dp(8.0f)) * q4Var2.f5779d4);
-                    f9Var.setAlpha(1.0f - q4Var2.f5779d4);
+                if (!p4Var2.f5711v2 && (w2Var = p4Var2.f5658d3) != null) {
+                    w2Var.setVisibility(8);
                 }
-                q4Var2.K0.setAlpha(1.0f - q4Var2.f5779d4);
-                j4 j4Var = q4Var2.Q1;
-                if (j4Var != null) {
-                    f10 = ((r9) j4Var).d.V;
-                }
-                hideInterfaceAlpha = q4Var2.getHideInterfaceAlpha();
-                h3 h3Var2 = q4Var2.D0;
-                if (h3Var2 != null) {
-                    h3Var2.setAlpha((1.0f - q4Var2.f5779d4) * (1.0f - f10) * hideInterfaceAlpha);
-                }
-                ImageView imageView3 = q4Var2.N0;
-                if (imageView3 != null) {
-                    imageView3.setAlpha((1.0f - q4Var2.f5779d4) * (1.0f - f10) * hideInterfaceAlpha);
-                }
-                h3 h3Var3 = q4Var2.P0;
-                if (h3Var3 != null) {
-                    h3Var3.setAlpha((1.0f - q4Var2.f5779d4) * (1.0f - f10) * hideInterfaceAlpha);
-                }
-                v2 v2Var = q4Var2.f5769b2;
-                if (v2Var != null) {
-                    v2Var.setAlpha(1.0f - q4Var2.f5779d4);
-                    q4Var2.invalidate();
-                }
-                q4Var2.f5772c1.invalidate();
+                p4Var2.V2 = true;
+                p4Var2.invalidate();
                 return;
         }
     }

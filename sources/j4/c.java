@@ -5,9 +5,9 @@ import e9.n0;
 import e9.x1;
 import java.util.List;
 public final class c implements c3.o {
-    public final b f14001a = new b(0, 1, null, "audio/ac4");
-    public final e2.x f14002b = new e2.x(16384);
-    public boolean f14003c;
+    public final b f13999a = new b(0, 1, null, "audio/ac4");
+    public final e2.x f14000b = new e2.x(16384);
+    public boolean f14001c;
 
     @Override
     public final boolean a(c3.p r15) {
@@ -16,37 +16,37 @@ public final class c implements c3.o {
 
     @Override
     public final void c(c3.q qVar) {
-        this.f14001a.d(qVar, new f0(0, 1));
+        this.f13999a.d(qVar, new f0(0, 1));
         qVar.H();
         qVar.g0(new c3.t(-9223372036854775807L));
     }
 
     @Override
     public final void d(long j10, long j11) {
-        this.f14003c = false;
-        this.f14001a.c();
+        this.f14001c = false;
+        this.f13999a.c();
     }
 
     @Override
     public final List e() {
-        l0 l0Var = n0.f8477b;
+        l0 l0Var = n0.f8475b;
         return x1.e;
     }
 
     @Override
     public final int f(c3.p pVar, c3.s sVar) {
-        e2.x xVar = this.f14002b;
-        int read = pVar.read(xVar.f8294a, 0, 16384);
+        e2.x xVar = this.f14000b;
+        int read = pVar.read(xVar.f8292a, 0, 16384);
         if (read == -1) {
             return -1;
         }
         xVar.N(0);
         xVar.M(read);
-        boolean z10 = this.f14003c;
-        b bVar = this.f14001a;
+        boolean z10 = this.f14001c;
+        b bVar = this.f13999a;
         if (!z10) {
-            bVar.f13996o = 0L;
-            this.f14003c = true;
+            bVar.f13994o = 0L;
+            this.f14001c = true;
         }
         bVar.a(xVar);
         return 0;

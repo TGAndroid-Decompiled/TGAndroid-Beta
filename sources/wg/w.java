@@ -12,7 +12,7 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.kk;
+import org.telegram.messenger.lk;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
@@ -23,64 +23,64 @@ import org.telegram.ui.Components.f6;
 import org.telegram.ui.Components.q6;
 import w7.z5;
 public final class w extends FrameLayout {
-    public final RadioButton f49048a;
-    public final Drawable f49049b;
-    public final Drawable f49050c;
+    public final RadioButton f49001a;
+    public final Drawable f49002b;
+    public final Drawable f49003c;
     public final q6 d;
     public final q6 e;
-    public final TextView f49051f;
+    public final TextView f49004f;
     public final SpannableString h;
-    public final SpannableString f49052n;
-    public TL_stars.TL_starsGiveawayOption f49053r;
-    public int f49054s;
+    public final SpannableString f49005n;
+    public TL_stars.TL_starsGiveawayOption f49006r;
+    public int f49007s;
     public final f6 v;
 
     public w(Context context, d6 d6Var) {
         super(context);
         this.v = new f6(this, 0L, 500L, bs.h);
         Drawable mutate = context.getResources().getDrawable(R.drawable.star_small_outline).mutate();
-        this.f49049b = mutate;
-        mutate.setColorFilter(new PorterDuffColorFilter(h6.w0(h6.f21064h5, d6Var), PorterDuff.Mode.SRC_IN));
-        this.f49050c = context.getResources().getDrawable(R.drawable.star_small_inner).mutate();
+        this.f49002b = mutate;
+        mutate.setColorFilter(new PorterDuffColorFilter(h6.w0(h6.f21057h5, d6Var), PorterDuff.Mode.SRC_IN));
+        this.f49003c = context.getResources().getDrawable(R.drawable.star_small_inner).mutate();
         setWillNotDraw(false);
         q6 q6Var = new q6(context, false, false, false);
         this.d = q6Var;
         q6Var.setTextColor(h6.w0(h6.G6, d6Var));
         q6Var.setTypeface(AndroidUtilities.bold());
         q6Var.setTextSize(AndroidUtilities.dp(16.0f));
-        addView(q6Var, z5.a(20.0f, 64.0f, 8.0f, 80.0f, 0.0f, -1, 51));
+        addView(q6Var, z5.d(-1, 20.0f, 51, 64.0f, 8.0f, 80.0f, 0.0f));
         SpannableString spannableString = new SpannableString("x");
         this.h = spannableString;
         spannableString.setSpan(new ca0(AndroidUtilities.dp(90.0f), q6Var), 0, 1, 33);
         q6 q6Var2 = new q6(context, false, true, true);
         this.e = q6Var2;
-        int i10 = h6.f21398z6;
+        int i10 = h6.f21391z6;
         q6Var2.setTextColor(h6.w0(i10, d6Var));
         q6Var2.setTextSize(AndroidUtilities.dp(13.0f));
-        addView(q6Var2, z5.a(14.0f, 64.0f, 31.0f, 80.0f, 0.0f, -1, 51));
+        addView(q6Var2, z5.d(-1, 14.0f, 51, 64.0f, 31.0f, 80.0f, 0.0f));
         SpannableString spannableString2 = new SpannableString("x");
-        this.f49052n = spannableString2;
+        this.f49005n = spannableString2;
         spannableString2.setSpan(new ca0(AndroidUtilities.dp(70.0f), q6Var2), 0, 1, 33);
         TextView textView = new TextView(context);
-        this.f49051f = textView;
-        kk.o(i10, d6Var, textView, 1, 16.0f);
+        this.f49004f = textView;
+        lk.o(i10, d6Var, textView, 1, 16.0f);
         textView.setGravity(5);
-        addView(textView, z5.a(-2.0f, 0.0f, 0.0f, 19.0f, 0.0f, -2, 21));
+        addView(textView, z5.d(-2, -2.0f, 21, 0.0f, 0.0f, 19.0f, 0.0f));
         RadioButton radioButton = new RadioButton(context);
-        this.f49048a = radioButton;
+        this.f49001a = radioButton;
         radioButton.setSize(AndroidUtilities.dp(20.0f));
-        radioButton.b(h6.w0(h6.f21101j7, d6Var), h6.w0(h6.E5, d6Var));
-        addView(radioButton, z5.a(20.0f, 22.0f, 0.0f, 0.0f, 0.0f, 20, 19));
+        radioButton.b(h6.w0(h6.f21094j7, d6Var), h6.w0(h6.E5, d6Var));
+        addView(radioButton, z5.d(20, 20.0f, 19, 22.0f, 0.0f, 0.0f, 0.0f));
     }
 
     public TL_stars.TL_starsGiveawayOption getOption() {
-        return this.f49053r;
+        return this.f49006r;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        float d = this.v.d(this.f49054s, false);
+        float d = this.v.d(this.f49007s, false);
         float dp = AndroidUtilities.dp(24.0f);
         float dp2 = AndroidUtilities.dp(24.0f);
         float dp3 = AndroidUtilities.dp(2.5f);
@@ -93,12 +93,12 @@ public final class w extends FrameLayout {
             int i11 = (int) dp5;
             int i12 = (int) (f7 + dp);
             int i13 = (int) (dp5 + dp2);
-            Drawable drawable = this.f49049b;
+            Drawable drawable = this.f49002b;
             drawable.setBounds(i10, i11, i12, i13);
             int i14 = (int) (clamp * 255.0f);
             drawable.setAlpha(i14);
             drawable.draw(canvas);
-            Drawable drawable2 = this.f49050c;
+            Drawable drawable2 = this.f49003c;
             drawable2.setBounds(i10, i11, i12, i13);
             drawable2.setAlpha(i14);
             drawable2.draw(canvas);

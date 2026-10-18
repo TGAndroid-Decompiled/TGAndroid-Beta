@@ -4,21 +4,21 @@ import android.content.DialogInterface;
 import java.util.regex.Pattern;
 import org.telegram.messenger.AndroidUtilities;
 public final class m80 implements DialogInterface.OnDismissListener {
-    public final int f39052a;
-    public final LaunchActivity f39053b;
+    public final int f39008a;
+    public final LaunchActivity f39009b;
 
     public m80(LaunchActivity launchActivity, int i10) {
-        this.f39052a = i10;
-        this.f39053b = launchActivity;
+        this.f39008a = i10;
+        this.f39009b = launchActivity;
     }
 
     @Override
     public final void onDismiss(DialogInterface dialogInterface) {
-        int i10 = this.f39052a;
-        LaunchActivity launchActivity = this.f39053b;
+        int i10 = this.f39008a;
+        LaunchActivity launchActivity = this.f39009b;
         switch (i10) {
             case 0:
-                launchActivity.f33193w1 = false;
+                launchActivity.f33186w1 = false;
                 return;
             case 1:
                 Pattern pattern = LaunchActivity.C1;

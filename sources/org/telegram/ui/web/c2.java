@@ -1,90 +1,28 @@
 package org.telegram.ui.web;
 
-import android.webkit.WebResourceResponse;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.HashMap;
+import android.graphics.Canvas;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.R;
-public final class c2 extends WebViewClient {
-    public boolean f42593a = true;
-    public boolean f42594b;
-    public final InputStream f42595c;
-    public final h2 d;
-
-    public c2(h2 h2Var, InputStream inputStream) {
-        this.d = h2Var;
-        this.f42595c = inputStream;
+public final class c2 extends FrameLayout {
+    @Override
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        return false;
     }
 
     @Override
-    public final WebResourceResponse shouldInterceptRequest(WebView webView, String str) {
-        j1 j1Var;
-        String str2;
-        InputStream a2;
-        String str3;
-        j1 j1Var2;
-        if (this.f42593a) {
-            this.f42593a = false;
-            return new WebResourceResponse("text/html", "UTF-8", new ByteArrayInputStream(a1.g.p("<script>\n", AndroidUtilities.readRes(R.raw.instant).replace("$DEBUG$", "" + BuildVars.DEBUG_VERSION), "\n</script>").getBytes(StandardCharsets.UTF_8)));
-        }
-        h2 h2Var = this.d;
-        if (str != null && str.endsWith("/index.html")) {
-            str3 = "application/octet-stream";
-            if (this.f42594b) {
-                qi.e eVar = h2Var.f42646b;
-                if (eVar != null) {
-                    j1Var2 = (j1) ((ArrayList) eVar.f44798b).get(0);
-                } else {
-                    j1Var2 = null;
-                }
-                if (j1Var2 == null) {
-                    return new WebResourceResponse("text/plain", "utf-8", 404, "Not Found", null, null);
-                }
-                try {
-                    a2 = j1Var2.a();
-                } catch (IOException e) {
-                    FileLog.e(e);
-                    return new WebResourceResponse("text/plain", "utf-8", 503, "Server error", null, null);
-                }
-            } else {
-                this.f42594b = true;
-                a2 = this.f42595c;
-            }
-        } else {
-            qi.e eVar2 = h2Var.f42646b;
-            if (eVar2 != null) {
-                j1Var = (j1) ((HashMap) eVar2.f44799c).get(str);
-            } else {
-                j1Var = null;
-            }
-            if (j1Var == null) {
-                return new WebResourceResponse("text/plain", "utf-8", 404, "Not Found", null, null);
-            }
-            k1 k1Var = (k1) j1Var.f42665a.get("content-type");
-            if (k1Var == null) {
-                str2 = null;
-            } else {
-                str2 = k1Var.f42682a;
-            }
-            if (!"text/html".equalsIgnoreCase(str2) && !"text/css".equalsIgnoreCase(str2)) {
-                return new WebResourceResponse("text/plain", "utf-8", 404, "Not Found", null, null);
-            }
-            try {
-                a2 = j1Var.a();
-                str3 = str2;
-            } catch (IOException e7) {
-                FileLog.e(e7);
-                return new WebResourceResponse("text/plain", "utf-8", 503, "Server error", null, null);
-            }
-        }
-        return new WebResourceResponse(str3, null, a2);
+    public final boolean drawChild(Canvas canvas, View view, long j10) {
+        return false;
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(500.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(500.0f), 1073741824));
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        return false;
     }
 }

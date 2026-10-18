@@ -7,7 +7,7 @@ import java.util.zip.Deflater;
 import java.util.zip.DeflaterOutputStream;
 public final class o extends w {
     public static final byte[] e = {0, 0, -1, -1};
-    public int f46999c;
+    public int f46949c;
     public b0 d;
 
     public static byte[] a(byte[] r13) {
@@ -15,7 +15,7 @@ public final class o extends w {
     }
 
     public final byte[] b(byte[] bArr) {
-        int i10 = this.f46999c;
+        int i10 = this.f46949c;
         if (i10 == 32768 || bArr.length < i10) {
             try {
                 ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
@@ -33,28 +33,28 @@ public final class o extends w {
     }
 
     public final byte[] c(byte[] bArr) {
-        b0 b0Var = new b0(bArr.length + 4, 10);
-        b0Var.q(bArr);
-        b0Var.q(e);
+        b0 b0Var = new b0(bArr.length + 4, 11);
+        b0Var.r(bArr);
+        b0Var.r(e);
         if (this.d == null) {
-            this.d = new b0(0, 10);
+            this.d = new b0(0, 11);
         }
         b0 b0Var2 = this.d;
         int i10 = b0Var2.f4703b;
         try {
             c.a(b0Var, b0Var2);
             b0 b0Var3 = this.d;
-            byte[] w9 = b0Var3.w(i10, b0Var3.f4703b);
+            byte[] x10 = b0Var3.x(i10, b0Var3.f4703b);
             b0 b0Var4 = this.d;
             if (((ByteBuffer) b0Var4.f4704c).capacity() > 0) {
                 int i11 = b0Var4.f4703b;
-                byte[] w10 = b0Var4.w(i11, i11);
-                ByteBuffer wrap = ByteBuffer.wrap(w10);
+                byte[] x11 = b0Var4.x(i11, i11);
+                ByteBuffer wrap = ByteBuffer.wrap(x11);
                 b0Var4.f4704c = wrap;
-                wrap.position(w10.length);
-                b0Var4.f4703b = w10.length;
+                wrap.position(x11.length);
+                b0Var4.f4703b = x11.length;
             }
-            return w9;
+            return x10;
         } catch (Exception e7) {
             throw new v(43, r4.c.h("Failed to decompress the message: ", e7.getMessage()), e7);
         }

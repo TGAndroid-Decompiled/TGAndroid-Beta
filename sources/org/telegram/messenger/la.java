@@ -1,55 +1,72 @@
 package org.telegram.messenger;
 
 import java.util.ArrayList;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class la implements RequestDelegate {
+public final class la implements Runnable {
     public final int f18860a;
-    public final BaseController f18861b;
+    public final MessagesController f18861b;
     public final long f18862c;
-    public final Object d;
-    public final Object e;
+    public final long d;
+    public final int e;
+    public final ArrayList f18863f;
 
-    public la(MessagesController messagesController, long j10, Object obj, TLObject tLObject, int i10) {
-        this.f18860a = i10;
+    public la(MessagesController messagesController, long j10, int i10, long j11, ArrayList arrayList, int i11) {
+        this.f18860a = i11;
         this.f18861b = messagesController;
         this.f18862c = j10;
-        this.d = obj;
-        this.e = tLObject;
+        this.e = i10;
+        this.d = j11;
+        this.f18863f = arrayList;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+    public final void run() {
         switch (this.f18860a) {
             case 0:
-                ((MessagesController) this.f18861b).lambda$getSavedReactionTags$489(this.f18862c, (TLRPC.messages_SavedReactionTags) this.d, (TLRPC.TL_messages_getSavedReactionTags) this.e, tLObject, tL_error);
+                long j10 = this.d;
+                ArrayList arrayList = this.f18863f;
+                int i10 = this.e;
+                this.f18861b.lambda$checkUnreadReactionsInternal2$425(this.f18862c, i10, j10, arrayList);
                 return;
             case 1:
-                ((MessagesController) this.f18861b).lambda$deleteSavedDialog$142(this.f18862c, (int[]) this.d, (TLRPC.InputPeer) this.e, tLObject, tL_error);
+                int i11 = this.e;
+                ArrayList arrayList2 = this.f18863f;
+                this.f18861b.lambda$checkUnreadPollVotesInternal2$436(this.f18862c, this.d, i11, arrayList2);
                 return;
             case 2:
-                ((MessagesController) this.f18861b).lambda$addUsersToChannel$273((org.telegram.ui.ActionBar.n2) this.d, (TLRPC.TL_channels_inviteToChannel) this.e, this.f18862c, tLObject, tL_error);
+                int i12 = this.e;
+                ArrayList arrayList3 = this.f18863f;
+                this.f18861b.lambda$checkUnreadReactionsInternal2$427(this.f18862c, this.d, i12, arrayList3);
+                return;
+            case 3:
+                int i13 = this.e;
+                ArrayList arrayList4 = this.f18863f;
+                this.f18861b.lambda$checkUnreadPollVotesInternal2$438(this.f18862c, this.d, i13, arrayList4);
+                return;
+            case 4:
+                long j11 = this.d;
+                ArrayList arrayList5 = this.f18863f;
+                int i14 = this.e;
+                this.f18861b.lambda$checkUnreadPollVotesInternal2$432(this.f18862c, i14, j11, arrayList5);
+                return;
+            case 5:
+                int i15 = this.e;
+                ArrayList arrayList6 = this.f18863f;
+                this.f18861b.lambda$checkUnreadReactionsInternal2$431(this.f18862c, this.d, i15, arrayList6);
                 return;
             default:
-                ((TopicsController) this.f18861b).lambda$pinTopic$20((org.telegram.ui.ActionBar.n2) this.d, this.f18862c, (ArrayList) this.e, tLObject, tL_error);
+                int i16 = this.e;
+                ArrayList arrayList7 = this.f18863f;
+                this.f18861b.lambda$checkUnreadReactionsInternal2$429(this.f18862c, this.d, i16, arrayList7);
                 return;
         }
     }
 
-    public la(MessagesController messagesController, org.telegram.ui.ActionBar.n2 n2Var, TLRPC.TL_channels_inviteToChannel tL_channels_inviteToChannel, long j10) {
-        this.f18860a = 2;
+    public la(MessagesController messagesController, long j10, long j11, int i10, ArrayList arrayList, int i11) {
+        this.f18860a = i11;
         this.f18861b = messagesController;
-        this.d = n2Var;
-        this.e = tL_channels_inviteToChannel;
         this.f18862c = j10;
-    }
-
-    public la(TopicsController topicsController, org.telegram.ui.ActionBar.n2 n2Var, long j10, ArrayList arrayList) {
-        this.f18860a = 3;
-        this.f18861b = topicsController;
-        this.d = n2Var;
-        this.f18862c = j10;
-        this.e = arrayList;
+        this.d = j11;
+        this.e = i10;
+        this.f18863f = arrayList;
     }
 }

@@ -1,49 +1,30 @@
 package org.telegram.messenger;
+public final class k7 implements Runnable {
+    public final int f18771a;
+    public final MediaDataController f18772b;
+    public final long f18773c;
+    public final long d;
+    public final int[] e;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class k7 implements RequestDelegate {
-    public final int f18768a;
-    public final MediaDataController f18769b;
-
-    public k7(MediaDataController mediaDataController, int i10) {
-        this.f18768a = i10;
-        this.f18769b = mediaDataController;
+    public k7(MediaDataController mediaDataController, long j10, long j11, int[] iArr, int i10) {
+        this.f18771a = i10;
+        this.f18772b = mediaDataController;
+        this.f18773c = j10;
+        this.d = j11;
+        this.e = iArr;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f18768a) {
+    public final void run() {
+        switch (this.f18771a) {
             case 0:
-                this.f18769b.lambda$checkGenericAnimations$80(tLObject, tL_error);
+                this.f18772b.lambda$getMediaCounts$128(this.f18773c, this.d, this.e);
                 return;
             case 1:
-                this.f18769b.lambda$preloadPremiumPreviewStickers$207(tLObject, tL_error);
-                return;
-            case 2:
-                this.f18769b.lambda$clearRecentStickers$19(tLObject, tL_error);
-                return;
-            case 3:
-                this.f18769b.lambda$loadPremiumPromo$8(tLObject, tL_error);
-                return;
-            case 4:
-                this.f18769b.lambda$loadReactions$14(tLObject, tL_error);
-                return;
-            case 5:
-                this.f18769b.lambda$checkPremiumGiftStickers$76(tLObject, tL_error);
-                return;
-            case 6:
-                this.f18769b.lambda$loadDraftsIfNeed$188(tLObject, tL_error);
-                return;
-            case 7:
-                this.f18769b.lambda$checkDefaultTopicIcons$82(tLObject, tL_error);
-                return;
-            case 8:
-                this.f18769b.lambda$loadGroupStickerSet$46(tLObject, tL_error);
+                this.f18772b.lambda$getMediaCounts$127(this.f18773c, this.d, this.e);
                 return;
             default:
-                this.f18769b.lambda$checkTonGiftStickers$78(tLObject, tL_error);
+                this.f18772b.lambda$getMediaCounts$130(this.f18773c, this.d, this.e);
                 return;
         }
     }

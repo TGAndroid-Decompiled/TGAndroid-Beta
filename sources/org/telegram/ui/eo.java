@@ -5,36 +5,36 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class eo implements Runnable {
-    public final int f36577a;
-    public final ko f36578b;
+    public final int f36561a;
+    public final ko f36562b;
 
     public eo(ko koVar, int i10) {
-        this.f36577a = i10;
-        this.f36578b = koVar;
+        this.f36561a = i10;
+        this.f36562b = koVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f36577a) {
+        switch (this.f36561a) {
             case 0:
-                ko.V(this.f36578b);
+                ko.V(this.f36562b);
                 return;
             case 1:
-                ko.a0(this.f36578b);
+                ko.a0(this.f36562b);
                 return;
             case 2:
-                ko koVar = this.f36578b;
-                koVar.f38593b.dismiss();
+                ko koVar = this.f36562b;
+                koVar.f38548b.dismiss();
                 koVar.finishFragment();
                 return;
             case 3:
-                ko koVar2 = this.f36578b;
-                koVar2.M.setChecked(koVar2.f38622x0.autotranslation);
+                ko koVar2 = this.f36562b;
+                koVar2.M.setChecked(koVar2.f38577x0.autotranslation);
                 return;
             default:
-                ko koVar3 = this.f36578b;
-                koVar3.e.setImageDrawable(koVar3.f38612r);
-                koVar3.f38594b0.m(R.drawable.msg_addphoto, LocaleController.getString("ChatSetPhotoOrVideo", R.string.ChatSetPhotoOrVideo), true);
+                ko koVar3 = this.f36562b;
+                koVar3.e.setImageDrawable(koVar3.f38567r);
+                koVar3.f38549b0.m(R.drawable.msg_addphoto, LocaleController.getString("ChatSetPhotoOrVideo", R.string.ChatSetPhotoOrVideo), true);
                 TLRPC.User user = koVar3.D0;
                 if (user != null) {
                     user.photo = null;
@@ -44,8 +44,8 @@ public final class eo implements Runnable {
                 if (koVar3.R0 == null) {
                     koVar3.R0 = new org.telegram.ui.Components.uj0(R.raw.camera_outline, AndroidUtilities.dp(50.0f), AndroidUtilities.dp(50.0f), false, null);
                 }
-                koVar3.f38594b0.e.setTranslationX(-AndroidUtilities.dp(8.0f));
-                koVar3.f38594b0.e.setAnimation(koVar3.R0);
+                koVar3.f38549b0.e.setTranslationX(-AndroidUtilities.dp(8.0f));
+                koVar3.f38549b0.e.setAnimation(koVar3.R0);
                 return;
         }
     }

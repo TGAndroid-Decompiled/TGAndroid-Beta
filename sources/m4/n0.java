@@ -13,16 +13,16 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.atomic.AtomicInteger;
 import v7.q8;
 public final class n0 implements j9.t, u {
-    public b2.r0 f16645a;
-    public String f16646b;
-    public Uri f16647c;
+    public b2.r0 f16643a;
+    public String f16644b;
+    public Uri f16645c;
     public long d;
     public final Object e;
 
     public n0(p0 p0Var) {
         this.e = p0Var;
-        this.f16645a = b2.r0.L;
-        this.f16646b = "";
+        this.f16643a = b2.r0.L;
+        this.f16644b = "";
         this.d = -9223372036854775807L;
     }
 
@@ -30,22 +30,22 @@ public final class n0 implements j9.t, u {
     public void c(int i10, b2.b1 b1Var) {
         int i11;
         p0 p0Var = (p0) this.e;
-        m1 m1Var = p0Var.f16662g.f16535t;
+        m1 m1Var = p0Var.f16660g.f16533t;
         if (m1Var.o0(20)) {
             i11 = 4;
         } else {
             i11 = 0;
         }
-        if (p0Var.f16673s != i11) {
-            p0Var.f16673s = i11;
-            ((n4.n) p0Var.f16667m.f17128b).f17111a.setFlags(i11 | 3);
+        if (p0Var.f16671s != i11) {
+            p0Var.f16671s = i11;
+            ((n4.n) p0Var.f16665m.f17124b).f17107a.setFlags(i11 | 3);
         }
         p0Var.O(m1Var);
     }
 
     @Override
     public void e(int i10, o1 o1Var) {
-        Bundle bundle = o1Var.f16659c;
+        Bundle bundle = o1Var.f16657c;
         Bundle bundle2 = Bundle.EMPTY;
         if (!bundle2.isEmpty()) {
             if (bundle.isEmpty()) {
@@ -56,11 +56,11 @@ public final class n0 implements j9.t, u {
                 bundle = bundle3;
             }
         }
-        n4.s sVar = ((p0) this.e).f16667m;
-        String str = o1Var.f16658b;
+        n4.s sVar = ((p0) this.e).f16665m;
+        String str = o1Var.f16656b;
         sVar.getClass();
         if (!TextUtils.isEmpty(str)) {
-            ((n4.n) sVar.f17128b).f17111a.sendSessionEvent(str, bundle);
+            ((n4.n) sVar.f17124b).f17107a.sendSessionEvent(str, bundle);
             return;
         }
         throw new IllegalArgumentException("event cannot be null or empty");
@@ -69,12 +69,12 @@ public final class n0 implements j9.t, u {
     @Override
     public void f(int i10, r1 r1Var, boolean z10, boolean z11, int i11) {
         p0 p0Var = (p0) this.e;
-        p0Var.O(p0Var.f16662g.f16535t);
+        p0Var.O(p0Var.f16660g.f16533t);
     }
 
     @Override
     public void i(Throwable th2) {
-        if (this != ((p0) ((n0) this.e).e).f16672r) {
+        if (this != ((p0) ((n0) this.e).e).f16670r) {
             return;
         }
         e2.a.l("MediaSessionLegacyStub", "Failed to load bitmap: " + th2.getMessage());
@@ -83,27 +83,27 @@ public final class n0 implements j9.t, u {
     public void k() {
         b2.f fVar;
         p0 p0Var = (p0) this.e;
-        m1 m1Var = p0Var.f16662g.f16535t;
+        m1 m1Var = p0Var.f16660g.f16533t;
         m1Var.J().getClass();
-        n4.s sVar = p0Var.f16667m;
+        n4.s sVar = p0Var.f16665m;
         if (m1Var.o0(21)) {
             fVar = m1Var.H();
         } else {
             fVar = b2.f.f3741i;
         }
-        ((n4.n) sVar.f17128b).f17111a.setPlaybackToLocal(fVar.b());
+        ((n4.n) sVar.f17124b).f17107a.setPlaybackToLocal(fVar.b());
     }
 
     public void l(b2.o0 o0Var) {
         p0 p0Var = (p0) this.e;
-        n4.s sVar = p0Var.f16667m;
+        n4.s sVar = p0Var.f16665m;
         r();
         if (o0Var == null) {
-            ((n4.n) sVar.f17128b).f17111a.setRatingType(0);
+            ((n4.n) sVar.f17124b).f17107a.setRatingType(0);
         } else {
-            ((n4.n) sVar.f17128b).f17111a.setRatingType(n.e(o0Var.d.f3961i));
+            ((n4.n) sVar.f17124b).f17107a.setRatingType(n.e(o0Var.d.f3961i));
         }
-        p0Var.O(p0Var.f16662g.f16535t);
+        p0Var.O(p0Var.f16660g.f16533t);
     }
 
     public void m(int r3, m4.m1 r4, m4.m1 r5) {
@@ -112,15 +112,15 @@ public final class n0 implements j9.t, u {
 
     public void n(b2.r0 r0Var) {
         p0 p0Var = (p0) this.e;
-        n4.s sVar = p0Var.f16667m;
-        if (!TextUtils.equals(((n4.f) ((n4.w) sVar.f17129c).f17136a).f17092a.getQueueTitle(), r0Var.f3956a)) {
-            ((n4.n) sVar.f17128b).f17111a.setQueueTitle((p0Var.f16677x.a(17) && p0Var.f16662g.f16535t.s().a(17)) ? null : null);
+        n4.s sVar = p0Var.f16665m;
+        if (!TextUtils.equals(((n4.f) ((n4.w) sVar.f17125c).f17132a).f17088a.getQueueTitle(), r0Var.f3956a)) {
+            ((n4.n) sVar.f17124b).f17107a.setQueueTitle((p0Var.f16675x.a(17) && p0Var.f16660g.f16533t.s().a(17)) ? null : null);
         }
     }
 
     public void o(int i10) {
-        n4.s sVar = ((p0) this.e).f16667m;
-        int i11 = n.f16644a;
+        n4.s sVar = ((p0) this.e).f16665m;
+        int i11 = n.f16642a;
         int i12 = 0;
         if (i10 != 0) {
             if (i10 != 1) {
@@ -133,18 +133,18 @@ public final class n0 implements j9.t, u {
                 i12 = 1;
             }
         }
-        n4.n nVar = (n4.n) sVar.f17128b;
-        if (nVar.f17117j != i12) {
-            nVar.f17117j = i12;
+        n4.n nVar = (n4.n) sVar.f17124b;
+        if (nVar.f17113j != i12) {
+            nVar.f17113j = i12;
             synchronized (nVar.d) {
-                for (int beginBroadcast = nVar.f17114f.beginBroadcast() - 1; beginBroadcast >= 0; beginBroadcast--) {
+                for (int beginBroadcast = nVar.f17110f.beginBroadcast() - 1; beginBroadcast >= 0; beginBroadcast--) {
                     try {
-                        ((n4.b) nVar.f17114f.getBroadcastItem(beginBroadcast)).onRepeatModeChanged(i12);
+                        ((n4.b) nVar.f17110f.getBroadcastItem(beginBroadcast)).onRepeatModeChanged(i12);
                     } catch (RemoteException | SecurityException e) {
                         e2.a.d("MediaSessionCompat", "Dead object in setRepeatMode.", e);
                     }
                 }
-                nVar.f17114f.finishBroadcast();
+                nVar.f17110f.finishBroadcast();
             }
         }
     }
@@ -153,29 +153,29 @@ public final class n0 implements j9.t, u {
     public void onSuccess(Object obj) {
         Bitmap bitmap = (Bitmap) obj;
         p0 p0Var = (p0) ((n0) this.e).e;
-        if (this != p0Var.f16672r) {
+        if (this != p0Var.f16670r) {
             return;
         }
-        p0.E(p0Var.f16667m, n.b(this.f16645a, this.f16646b, this.f16647c, this.d, bitmap));
-        f0 f0Var = p0Var.f16662g;
-        e2.m0.W(f0Var.f16530o, new y(f0Var, 1));
+        p0.E(p0Var.f16665m, n.b(this.f16643a, this.f16644b, this.f16645c, this.d, bitmap));
+        f0 f0Var = p0Var.f16660g;
+        e2.m0.W(f0Var.f16528o, new y(f0Var, 1));
     }
 
     public void p(boolean z10) {
-        n4.s sVar = ((p0) this.e).f16667m;
-        int i10 = n.f16644a;
-        n4.n nVar = (n4.n) sVar.f17128b;
-        if (nVar.f17118k != z10) {
-            nVar.f17118k = z10 ? 1 : 0;
+        n4.s sVar = ((p0) this.e).f16665m;
+        int i10 = n.f16642a;
+        n4.n nVar = (n4.n) sVar.f17124b;
+        if (nVar.f17114k != z10) {
+            nVar.f17114k = z10 ? 1 : 0;
             synchronized (nVar.d) {
-                for (int beginBroadcast = nVar.f17114f.beginBroadcast() - 1; beginBroadcast >= 0; beginBroadcast--) {
+                for (int beginBroadcast = nVar.f17110f.beginBroadcast() - 1; beginBroadcast >= 0; beginBroadcast--) {
                     try {
-                        ((n4.b) nVar.f17114f.getBroadcastItem(beginBroadcast)).h(z10 ? 1 : 0);
+                        ((n4.b) nVar.f17110f.getBroadcastItem(beginBroadcast)).h(z10 ? 1 : 0);
                     } catch (RemoteException | SecurityException e) {
                         e2.a.d("MediaSessionCompat", "Dead object in setShuffleMode.", e);
                     }
                 }
-                nVar.f17114f.finishBroadcast();
+                nVar.f17110f.finishBroadcast();
             }
         }
     }
@@ -193,8 +193,8 @@ public final class n0 implements j9.t, u {
         b2.r0 r0Var;
         Uri uri3;
         p0 p0Var = (p0) this.e;
-        f0 f0Var = p0Var.f16662g;
-        m1 m1Var = f0Var.f16535t;
+        f0 f0Var = p0Var.f16660g;
+        m1 m1Var = f0Var.f16533t;
         b2.o0 S0 = m1Var.S0();
         b2.r0 U0 = m1Var.U0();
         long j11 = -9223372036854775807L;
@@ -213,16 +213,16 @@ public final class n0 implements j9.t, u {
         } else {
             uri = null;
         }
-        if (Objects.equals(this.f16645a, U0) && Objects.equals(this.f16646b, str2) && Objects.equals(this.f16647c, uri) && this.d == j11) {
+        if (Objects.equals(this.f16643a, U0) && Objects.equals(this.f16644b, str2) && Objects.equals(this.f16645c, uri) && this.d == j11) {
             return;
         }
-        this.f16646b = str2;
-        this.f16647c = uri;
-        this.f16645a = U0;
+        this.f16644b = str2;
+        this.f16645c = uri;
+        this.f16643a = U0;
         this.d = j11;
-        j9.y e = f0Var.f16528m.e(U0);
+        j9.y e = f0Var.f16526m.e(U0);
         if (e != null) {
-            p0Var.f16672r = null;
+            p0Var.f16670r = null;
             if (e.isDone()) {
                 try {
                     bitmap = (Bitmap) q8.a(e);
@@ -235,25 +235,25 @@ public final class n0 implements j9.t, u {
                 r0Var = U0;
                 n0 n0Var = new n0(this, r0Var, str2, uri2, j10);
                 str2 = str2;
-                p0Var.f16672r = n0Var;
-                Handler handler = f0Var.f16527l;
+                p0Var.f16670r = n0Var;
+                Handler handler = f0Var.f16525l;
                 Objects.requireNonNull(handler);
                 e.a(new j9.u(0, e, n0Var), new i2.f0(handler, 1));
-                p0.E(p0Var.f16667m, n.b(r0Var, str2, uri2, j10, bitmap));
+                p0.E(p0Var.f16665m, n.b(r0Var, str2, uri2, j10, bitmap));
             }
         }
         j10 = j11;
         uri2 = uri;
         r0Var = U0;
-        p0.E(p0Var.f16667m, n.b(r0Var, str2, uri2, j10, bitmap));
+        p0.E(p0Var.f16665m, n.b(r0Var, str2, uri2, j10, bitmap));
     }
 
     public void s(b2.o1 o1Var) {
         p0 p0Var = (p0) this.e;
-        f0 f0Var = p0Var.f16662g;
-        m1 m1Var = f0Var.f16535t;
-        if (p0Var.f16677x.a(17) && m1Var.s().a(17) && !o1Var.p()) {
-            int i10 = n.f16644a;
+        f0 f0Var = p0Var.f16660g;
+        m1 m1Var = f0Var.f16533t;
+        if (p0Var.f16675x.a(17) && m1Var.s().a(17) && !o1Var.p()) {
+            int i10 = n.f16642a;
             ArrayList arrayList = new ArrayList();
             b2.n1 n1Var = new b2.n1();
             for (int i11 = 0; i11 < o1Var.o(); i11++) {
@@ -267,23 +267,23 @@ public final class n0 implements j9.t, u {
                     arrayList2.add(null);
                     y0Var.run();
                 } else {
-                    j9.y v = f0Var.f16528m.v(bArr);
+                    j9.y v = f0Var.f16526m.v(bArr);
                     arrayList2.add(v);
-                    Handler handler = f0Var.f16527l;
+                    Handler handler = f0Var.f16525l;
                     Objects.requireNonNull(handler);
                     v.a(y0Var, new i2.f0(handler, 1));
                 }
             }
             return;
         }
-        p0.D(p0Var.f16667m, null);
+        p0.D(p0Var.f16665m, null);
     }
 
     public n0(n0 n0Var, b2.r0 r0Var, String str, Uri uri, long j10) {
         this.e = n0Var;
-        this.f16645a = r0Var;
-        this.f16646b = str;
-        this.f16647c = uri;
+        this.f16643a = r0Var;
+        this.f16644b = str;
+        this.f16645c = uri;
         this.d = j10;
     }
 

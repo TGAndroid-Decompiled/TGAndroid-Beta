@@ -10,32 +10,32 @@ import zf.f0;
 public final class c {
     public int d;
     public boolean e;
-    public int f8002f;
-    public float f8004i;
-    public float f8005j;
-    public final Rect f7999a = new Rect();
-    public final float[] f8000b = new float[8];
-    public final float[] f8001c = new float[8];
-    public float f8003g = 0.75f;
+    public int f8000f;
+    public float f8002i;
+    public float f8003j;
+    public final Rect f7997a = new Rect();
+    public final float[] f7998b = new float[8];
+    public final float[] f7999c = new float[8];
+    public float f8001g = 0.75f;
     public final float h = 1.5f;
-    public final Path f8006k = new Path();
-    public boolean f8007l = true;
-    public final Rect f8008m = new Rect();
-    public final Path f8009n = new Path();
-    public final Path f8010o = new Path();
+    public final Path f8004k = new Path();
+    public boolean f8005l = true;
+    public final Rect f8006m = new Rect();
+    public final Path f8007n = new Path();
+    public final Path f8008o = new Path();
 
     public final void a() {
-        float[] fArr = this.f8000b;
-        this.f8007l = f0.c(fArr);
-        Rect rect = this.f7999a;
-        Rect rect2 = this.f8008m;
+        float[] fArr = this.f7998b;
+        this.f8005l = f0.c(fArr);
+        Rect rect = this.f7997a;
+        Rect rect2 = this.f8006m;
         rect2.set(rect);
         int i10 = this.d;
         rect2.inset(i10, i10);
-        Path path = this.f8006k;
+        Path path = this.f8004k;
         path.rewind();
         Path.Direction direction = Path.Direction.CW;
-        path.addRoundRect(rect2.left, rect2.top, rect2.right, rect2.bottom, this.f8000b, direction);
+        path.addRoundRect(rect2.left, rect2.top, rect2.right, rect2.bottom, this.f7998b, direction);
         path.close();
         float min = Math.min(rect2.width(), rect2.height()) / 2.0f;
         float[] fArr2 = d.E;
@@ -44,13 +44,13 @@ public final class c {
         fArr2[1] = fArr[1];
         fArr2[2] = fArr[2];
         fArr2[3] = fArr[3];
-        if (this.f8007l && fArr[0] > min) {
+        if (this.f8005l && fArr[0] > min) {
             fArr2[3] = min;
             fArr2[2] = min;
             fArr2[1] = min;
             fArr2[0] = min;
         }
-        Path path2 = this.f8009n;
+        Path path2 = this.f8007n;
         path2.rewind();
         float f7 = rect2.left;
         int i11 = rect2.top;
@@ -58,45 +58,45 @@ public final class c {
         int i12 = rect2.top;
         float min2 = Math.min(i12 + fArr[0], rect2.bottom);
         Path.Direction direction2 = Path.Direction.CCW;
-        path2.addRoundRect(rect2.left, i12 + this.f8004i, rect2.right, min2, fArr2, direction2);
+        path2.addRoundRect(rect2.left, i12 + this.f8002i, rect2.right, min2, fArr2, direction2);
         path2.close();
         Arrays.fill(fArr2, 0.0f);
         fArr2[4] = fArr[4];
         fArr2[5] = fArr[5];
         fArr2[6] = fArr[6];
         fArr2[7] = fArr[7];
-        if (this.f8007l && fArr[0] > min) {
+        if (this.f8005l && fArr[0] > min) {
             fArr2[7] = min;
             fArr2[6] = min;
             fArr2[5] = min;
             fArr2[4] = min;
         }
-        Path path3 = this.f8010o;
+        Path path3 = this.f8008o;
         path3.rewind();
         path3.addRoundRect(rect2.left, Math.max(rect2.bottom - fArr[4], rect2.top), rect2.right, rect2.bottom, fArr2, direction);
-        path3.addRoundRect(rect2.left, Math.max(rect2.bottom - fArr[4], rect2.top), rect2.right, rect2.bottom - this.f8005j, fArr2, direction2);
+        path3.addRoundRect(rect2.left, Math.max(rect2.bottom - fArr[4], rect2.top), rect2.right, rect2.bottom - this.f8003j, fArr2, direction2);
         path3.close();
     }
 
     public final void b(Canvas canvas, Paint paint) {
         Rect rect;
-        if (this.f8007l) {
-            float f7 = this.f8008m.bottom;
-            float f10 = this.f8000b[0];
+        if (this.f8005l) {
+            float f7 = this.f8006m.bottom;
+            float f10 = this.f7998b[0];
             canvas.drawRoundRect(rect.left, rect.top, rect.right, f7, f10, f10, paint);
             return;
         }
-        canvas.drawPath(this.f8006k, paint);
+        canvas.drawPath(this.f8004k, paint);
     }
 
     public final void c(Canvas canvas, Paint paint, boolean z10) {
         Rect rect;
         if (z10) {
-            float f7 = this.f8008m.top;
-            float[] fArr = this.f8000b;
+            float f7 = this.f8006m.top;
+            float[] fArr = this.f7998b;
             float a2 = r.a((fArr[0] * 2.0f) + f7, f7, rect.bottom);
             canvas.save();
-            Rect rect2 = this.f7999a;
+            Rect rect2 = this.f7997a;
             canvas.clipRect(rect2.left, rect2.top, rect2.right, a2);
             float f10 = fArr[0];
             canvas.drawRoundRect(rect.left, rect.top, rect.right, a2, f10, f10, paint);

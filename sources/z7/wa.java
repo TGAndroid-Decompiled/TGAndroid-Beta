@@ -1,12 +1,12 @@
 package z7;
 public final class wa {
-    public final Long f51263a;
-    public final hb f51264b;
-    public final Boolean f51265c;
+    public final Long f51216a;
+    public final hb f51217b;
+    public final Boolean f51218c;
 
-    public wa(t0.h hVar) {
-        this.f51263a = (Long) hVar.f46911b;
-        this.f51264b = (hb) hVar.f46912c;
-        this.f51265c = (Boolean) hVar.d;
+    public wa(u2.c cVar) {
+        this.f51216a = (Long) cVar.f47260b;
+        this.f51217b = (hb) cVar.f47261c;
+        this.f51218c = (Boolean) cVar.d;
     }
 }

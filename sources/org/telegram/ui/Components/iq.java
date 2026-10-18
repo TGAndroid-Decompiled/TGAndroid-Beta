@@ -8,33 +8,33 @@ import androidx.core.widget.NestedScrollView;
 import org.telegram.messenger.AndroidUtilities;
 public final class iq extends NestedScrollView {
     public boolean W;
-    public final mq f27326a0;
+    public final mq f27319a0;
 
     public iq(mq mqVar, Context context) {
         super(context);
-        this.f27326a0 = mqVar;
+        this.f27319a0 = mqVar;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         int i10;
         int i11;
-        mq mqVar = this.f27326a0;
-        int i12 = mqVar.f28577f;
+        mq mqVar = this.f27319a0;
+        int i12 = mqVar.f28570f;
         i10 = ((org.telegram.ui.ActionBar.f3) mqVar).backgroundPaddingTop;
         int scrollY = (int) ((getScrollY() + (i12 - i10)) - getTranslationY());
-        Drawable drawable = mqVar.f28575b;
+        Drawable drawable = mqVar.f28568b;
         int measuredWidth = getMeasuredWidth();
         i11 = ((org.telegram.ui.ActionBar.f3) mqVar).backgroundPaddingTop;
-        drawable.setBounds(0, scrollY, measuredWidth, AndroidUtilities.dp(19.0f) + i11 + mqVar.f28576c.getMeasuredHeight() + scrollY);
+        drawable.setBounds(0, scrollY, measuredWidth, AndroidUtilities.dp(19.0f) + i11 + mqVar.f28569c.getMeasuredHeight() + scrollY);
         drawable.draw(canvas);
     }
 
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         if (motionEvent.getAction() == 0) {
-            mq mqVar = this.f27326a0;
-            if (mqVar.f28577f != 0 && motionEvent.getY() < mqVar.f28577f) {
+            mq mqVar = this.f27319a0;
+            if (mqVar.f28570f != 0 && motionEvent.getY() < mqVar.f28570f) {
                 mqVar.dismiss();
                 return true;
             }
@@ -45,7 +45,7 @@ public final class iq extends NestedScrollView {
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
-        mq.n(this.f27326a0);
+        mq.n(this.f27319a0);
     }
 
     @Override
@@ -56,12 +56,12 @@ public final class iq extends NestedScrollView {
     @Override
     public final void onScrollChanged(int i10, int i11, int i12, int i13) {
         super.onScrollChanged(i10, i11, i12, i13);
-        mq.n(this.f27326a0);
+        mq.n(this.f27319a0);
     }
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (!this.f27326a0.isDismissed() && super.onTouchEvent(motionEvent)) {
+        if (!this.f27319a0.isDismissed() && super.onTouchEvent(motionEvent)) {
             return true;
         }
         return false;
@@ -78,6 +78,6 @@ public final class iq extends NestedScrollView {
     @Override
     public final void setTranslationY(float f7) {
         super.setTranslationY(f7);
-        mq.n(this.f27326a0);
+        mq.n(this.f27319a0);
     }
 }

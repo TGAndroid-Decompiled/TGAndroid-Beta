@@ -5,19 +5,19 @@ import android.database.ContentObserver;
 import android.net.Uri;
 import android.os.Handler;
 public final class d extends ContentObserver {
-    public final ContentResolver f14668a;
-    public final Uri f14669b;
-    public final e f14670c;
+    public final ContentResolver f14666a;
+    public final Uri f14667b;
+    public final e f14668c;
 
     public d(e eVar, Handler handler, ContentResolver contentResolver, Uri uri) {
         super(handler);
-        this.f14670c = eVar;
-        this.f14668a = contentResolver;
-        this.f14669b = uri;
+        this.f14668c = eVar;
+        this.f14666a = contentResolver;
+        this.f14667b = uri;
     }
 
     @Override
     public final void onChange(boolean z10) {
-        this.f14670c.c();
+        this.f14668c.c();
     }
 }

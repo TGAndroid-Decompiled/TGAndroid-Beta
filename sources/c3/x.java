@@ -54,7 +54,7 @@ public final class x {
             }
             int A = xVar.A() & 3;
             int A2 = xVar.A();
-            int i12 = xVar.f8295b;
+            int i12 = xVar.f8293b;
             int i13 = 0;
             int i14 = 0;
             int i15 = 0;
@@ -98,29 +98,29 @@ public final class x {
                     boolean z12 = z11;
                     int H4 = xVar.H();
                     int i30 = A;
-                    System.arraycopy(f2.q.f10338a, i13, bArr, i28, i11);
+                    System.arraycopy(f2.q.f10336a, i13, bArr, i28, i11);
                     int i31 = i28 + 4;
-                    System.arraycopy(xVar.f8294a, xVar.f8295b, bArr, i31, H4);
+                    System.arraycopy(xVar.f8292a, xVar.f8293b, bArr, i31, H4);
                     if (A3 == 32 && i29 == 0) {
                         eVar3 = f2.q.l(i31, i31 + H4, bArr);
                     } else {
                         if (A3 == 33 && i29 == 0) {
                             f2.m k10 = f2.q.k(bArr, i31, i31 + H4, eVar3);
-                            i17 = k10.f10307a + 1;
-                            i18 = k10.f10311g;
+                            i17 = k10.f10305a + 1;
+                            i18 = k10.f10309g;
                             int i32 = k10.h;
-                            i20 = k10.f10309c + 8;
+                            i20 = k10.f10307c + 8;
                             i21 = k10.d + 8;
-                            int i33 = k10.f10314k;
+                            int i33 = k10.f10312k;
                             i19 = i32;
-                            int i34 = k10.f10315l;
-                            int i35 = k10.f10316m;
-                            float f10 = k10.f10312i;
-                            int i36 = k10.f10313j;
-                            f2.j jVar = k10.f10308b;
+                            int i34 = k10.f10313l;
+                            int i35 = k10.f10314m;
+                            float f10 = k10.f10310i;
+                            int i36 = k10.f10311j;
+                            f2.j jVar = k10.f10306b;
                             if (jVar != null) {
                                 i10 = i36;
-                                str2 = e2.g.a(jVar.f10298a, jVar.f10300c, jVar.d, jVar.f10301f, jVar.f10299b, jVar.e);
+                                str2 = e2.g.a(jVar.f10296a, jVar.f10298c, jVar.d, jVar.f10299f, jVar.f10297b, jVar.e);
                             } else {
                                 i10 = i36;
                             }
@@ -131,7 +131,7 @@ public final class x {
                             i22 = i33;
                         } else if (A3 == 39 && i29 == 0 && (j10 = f2.q.j(i31, i31 + H4, bArr)) != null && eVar3 != null) {
                             i13 = 0;
-                            if (j10.f6566a == ((f2.i) ((n0) eVar3.f44797a).get(0)).f10297b) {
+                            if (j10.f6564a == ((f2.i) ((n0) eVar3.f44752a).get(0)).f10295b) {
                                 i25 = 4;
                             } else {
                                 i25 = 5;

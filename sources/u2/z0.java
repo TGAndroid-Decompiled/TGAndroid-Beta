@@ -1,10 +1,144 @@
 package u2;
-public final class z0 {
-    public final b2.w f47540a;
-    public final n2.m f47541b;
 
-    public z0(b2.w wVar, n2.m mVar) {
-        this.f47540a = wVar;
-        this.f47541b = mVar;
+import android.net.Uri;
+import android.os.Looper;
+import j$.util.Objects;
+public final class z0 extends a {
+    public final g2.g h;
+    public final qg.g0 f47486i;
+    public final n2.n f47487j;
+    public final oa.d f47488k;
+    public final int f47489l;
+    public final b2.w f47490m;
+    public boolean f47491n = true;
+    public long f47492o = -9223372036854775807L;
+    public boolean f47493p;
+    public boolean f47494q;
+    public boolean f47495r;
+    public g2.c0 f47496s;
+    public b2.o0 f47497t;
+
+    public z0(b2.o0 o0Var, g2.g gVar, qg.g0 g0Var, n2.n nVar, oa.d dVar, int i10, b2.w wVar) {
+        this.f47497t = o0Var;
+        this.h = gVar;
+        this.f47486i = g0Var;
+        this.f47487j = nVar;
+        this.f47488k = dVar;
+        this.f47489l = i10;
+        this.f47490m = wVar;
+    }
+
+    @Override
+    public final boolean a(b2.o0 o0Var) {
+        b2.j0 j0Var = i().f3891b;
+        j0Var.getClass();
+        b2.j0 j0Var2 = o0Var.f3891b;
+        if (j0Var2 != null && j0Var2.f3801a.equals(j0Var.f3801a) && j0Var2.h == j0Var.h && Objects.equals(j0Var2.f3804f, j0Var.f3804f)) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final e0 c(g0 g0Var, androidx.biometric.e eVar, long j10) {
+        g2.h createDataSource = this.h.createDataSource();
+        g2.c0 c0Var = this.f47496s;
+        if (c0Var != null) {
+            createDataSource.addTransferListener(c0Var);
+        }
+        b2.j0 j0Var = i().f3891b;
+        j0Var.getClass();
+        Uri uri = j0Var.f3801a;
+        this.f47245g.getClass();
+        return new x0(uri, createDataSource, new c((c3.r) this.f47486i.f44526b), this.f47487j, new n2.k(this.d.f17058c, 0, g0Var), this.f47488k, b(g0Var), this, eVar, j0Var.f3804f, this.f47489l, this.f47490m, e2.m0.S(j0Var.h), null);
+    }
+
+    @Override
+    public final synchronized b2.o0 i() {
+        return this.f47497t;
+    }
+
+    @Override
+    public final void m(g2.c0 c0Var) {
+        this.f47496s = c0Var;
+        Looper myLooper = Looper.myLooper();
+        myLooper.getClass();
+        j2.k kVar = this.f47245g;
+        kVar.getClass();
+        n2.n nVar = this.f47487j;
+        nVar.E(myLooper, kVar);
+        nVar.b();
+        u();
+    }
+
+    @Override
+    public final void o(e0 e0Var) {
+        d1[] d1VarArr;
+        x0 x0Var = (x0) e0Var;
+        if (x0Var.O) {
+            for (d1 d1Var : x0Var.L) {
+                d1Var.l();
+                n2.h hVar = d1Var.h;
+                if (hVar != null) {
+                    hVar.a(d1Var.e);
+                    d1Var.h = null;
+                    d1Var.f47274g = null;
+                }
+            }
+        }
+        x0Var.f47475x.e(x0Var);
+        x0Var.H.removeCallbacksAndMessages(null);
+        x0Var.I = null;
+        x0Var.f47470h0 = true;
+    }
+
+    @Override
+    public final void q() {
+        this.f47487j.release();
+    }
+
+    @Override
+    public final synchronized void t(b2.o0 o0Var) {
+        this.f47497t = o0Var;
+    }
+
+    public final void u() {
+        b2.i0 i0Var;
+        long j10 = this.f47492o;
+        boolean z10 = this.f47493p;
+        boolean z11 = this.f47494q;
+        b2.o0 i10 = i();
+        if (z11) {
+            i0Var = i10.f3892c;
+        } else {
+            i0Var = null;
+        }
+        b2.o1 k1Var = new k1(-9223372036854775807L, -9223372036854775807L, j10, j10, 0L, 0L, z10, false, false, null, i10, i0Var);
+        if (this.f47491n) {
+            k1Var = new v(k1Var, 1);
+        }
+        n(k1Var);
+    }
+
+    public final void v(long j10, c3.c0 c0Var, boolean z10) {
+        if (!this.f47495r || !c0Var.e()) {
+            this.f47495r = !c0Var.e();
+            if (j10 == -9223372036854775807L) {
+                j10 = this.f47492o;
+            }
+            boolean d = c0Var.d();
+            if (!this.f47491n && this.f47492o == j10 && this.f47493p == d && this.f47494q == z10) {
+                return;
+            }
+            this.f47492o = j10;
+            this.f47493p = d;
+            this.f47494q = z10;
+            this.f47491n = false;
+            u();
+        }
+    }
+
+    @Override
+    public final void k() {
     }
 }

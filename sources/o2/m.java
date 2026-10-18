@@ -5,23 +5,23 @@ import e2.m0;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
-import u2.c1;
+import u2.e1;
 import v7.b8;
 import v7.u6;
-public final class m implements c1 {
-    public final int f17630a;
-    public final q f17631b;
-    public int f17632c = -1;
+public final class m implements e1 {
+    public final int f17626a;
+    public final q f17627b;
+    public int f17628c = -1;
 
     public m(q qVar, int i10) {
-        this.f17631b = qVar;
-        this.f17630a = i10;
+        this.f17627b = qVar;
+        this.f17626a = i10;
     }
 
     @Override
     public final void a() {
-        int i10 = this.f17632c;
-        q qVar = this.f17631b;
+        int i10 = this.f17628c;
+        q qVar = this.f17627b;
         if (i10 != -2) {
             if (i10 == -1) {
                 qVar.C();
@@ -35,22 +35,22 @@ public final class m implements c1 {
             }
         }
         qVar.e();
-        throw new IOException(a1.g.p("Unable to bind a sample queue to TrackGroup with MIME type ", qVar.Y.a(this.f17630a).d[0].f4132s, "."));
+        throw new IOException(a1.g.p("Unable to bind a sample queue to TrackGroup with MIME type ", qVar.Y.a(this.f17626a).d[0].f4132s, "."));
     }
 
     public final void b() {
         boolean z10;
-        if (this.f17632c == -1) {
+        if (this.f17628c == -1) {
             z10 = true;
         } else {
             z10 = false;
         }
         u6.g(z10);
-        q qVar = this.f17631b;
+        q qVar = this.f17627b;
         qVar.e();
-        qVar.f17642a0.getClass();
-        int[] iArr = qVar.f17642a0;
-        int i10 = this.f17630a;
+        qVar.f17638a0.getClass();
+        int[] iArr = qVar.f17638a0;
+        int i10 = this.f17626a;
         int i11 = iArr[i10];
         if (i11 == -1) {
             if (qVar.Z.contains(qVar.Y.a(i10))) {
@@ -58,17 +58,17 @@ public final class m implements c1 {
             }
             i11 = -2;
         } else {
-            boolean[] zArr = qVar.f17647d0;
+            boolean[] zArr = qVar.f17643d0;
             if (!zArr[i11]) {
                 zArr[i11] = true;
             }
             i11 = -2;
         }
-        this.f17632c = i11;
+        this.f17628c = i11;
     }
 
     public final boolean c() {
-        int i10 = this.f17632c;
+        int i10 = this.f17628c;
         if (i10 != -1 && i10 != -3 && i10 != -2) {
             return true;
         }
@@ -77,11 +77,11 @@ public final class m implements c1 {
 
     @Override
     public final boolean e() {
-        if (this.f17632c != -3) {
+        if (this.f17628c != -3) {
             if (c()) {
-                int i10 = this.f17632c;
-                q qVar = this.f17631b;
-                if (qVar.A() || !qVar.L[i10].A(qVar.f17654j0)) {
+                int i10 = this.f17628c;
+                q qVar = this.f17627b;
+                if (qVar.A() || !qVar.L[i10].A(qVar.f17650j0)) {
                     return false;
                 }
                 return true;
@@ -94,14 +94,14 @@ public final class m implements c1 {
     @Override
     public final int f(qf.b bVar, h2.h hVar, int i10) {
         w wVar;
-        if (this.f17632c == -3) {
+        if (this.f17628c == -3) {
             hVar.addFlag(4);
             return -4;
         }
         if (c()) {
-            int i11 = this.f17632c;
-            q qVar = this.f17631b;
-            ArrayList arrayList = qVar.f17664y;
+            int i11 = this.f17628c;
+            q qVar = this.f17627b;
+            ArrayList arrayList = qVar.f17660y;
             if (!qVar.A()) {
                 int i12 = 0;
                 if (!arrayList.isEmpty()) {
@@ -110,7 +110,7 @@ public final class m implements c1 {
                         int i14 = ((j) arrayList.get(i13)).v;
                         int length = qVar.L.length;
                         for (int i15 = 0; i15 < length; i15++) {
-                            if (qVar.f17647d0[i15] && qVar.L[i15].E() == i14) {
+                            if (qVar.f17643d0[i15] && qVar.L[i15].E() == i14) {
                                 break loop0;
                             }
                         }
@@ -120,14 +120,14 @@ public final class m implements c1 {
                     j jVar = (j) arrayList.get(0);
                     w wVar2 = jVar.d;
                     if (!wVar2.equals(qVar.W)) {
-                        qVar.v.m(qVar.f17643b, wVar2, jVar.e, jVar.f47934f, jVar.h);
+                        qVar.v.m(qVar.f17639b, wVar2, jVar.e, jVar.f47887f, jVar.h);
                     }
                     qVar.W = wVar2;
                 }
                 if (arrayList.isEmpty() || ((j) arrayList.get(0)).g()) {
-                    int F = qVar.L[i11].F(bVar, hVar, i10, qVar.f17654j0);
+                    int F = qVar.L[i11].F(bVar, hVar, i10, qVar.f17650j0);
                     if (F == -5) {
-                        w wVar3 = (w) bVar.f44486c;
+                        w wVar3 = (w) bVar.f44443c;
                         wVar3.getClass();
                         if (i11 == qVar.R) {
                             int b10 = b8.b(qVar.L[i11].E());
@@ -142,7 +142,7 @@ public final class m implements c1 {
                             }
                             wVar3 = wVar3.d(wVar);
                         }
-                        bVar.f44486c = wVar3;
+                        bVar.f44443c = wVar3;
                     }
                     return F;
                 }
@@ -156,12 +156,12 @@ public final class m implements c1 {
         Object next;
         Object obj;
         if (c()) {
-            int i10 = this.f17632c;
-            q qVar = this.f17631b;
+            int i10 = this.f17628c;
+            q qVar = this.f17627b;
             if (!qVar.A()) {
                 p pVar = qVar.L[i10];
-                int x10 = pVar.x(j10, qVar.f17654j0);
-                ArrayList arrayList = qVar.f17664y;
+                int x10 = pVar.x(j10, qVar.f17650j0);
+                ArrayList arrayList = qVar.f17660y;
                 if (arrayList != null) {
                     if (!arrayList.isEmpty()) {
                         obj = i2.d.h(1, arrayList);

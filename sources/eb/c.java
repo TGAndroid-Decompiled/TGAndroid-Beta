@@ -1,9 +1,9 @@
 package eb;
 public final class c {
     public static final c d = new c("", "", false);
-    public final String f8561a;
-    public final String f8562b;
-    public final boolean f8563c;
+    public final String f8559a;
+    public final String f8560b;
+    public final boolean f8561c;
 
     static {
         new c("\n", "  ", true);
@@ -12,9 +12,9 @@ public final class c {
     public c(String str, String str2, boolean z10) {
         if (str.matches("[\r\n]*")) {
             if (str2.matches("[ \t]*")) {
-                this.f8561a = str;
-                this.f8562b = str2;
-                this.f8563c = z10;
+                this.f8559a = str;
+                this.f8560b = str2;
+                this.f8561c = z10;
                 return;
             }
             throw new IllegalArgumentException("Only combinations of spaces and tabs are allowed in indent.");

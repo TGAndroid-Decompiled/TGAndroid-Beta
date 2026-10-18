@@ -7,42 +7,42 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 public final class ur implements View.OnClickListener {
-    public final int f31079a;
-    public final long f31080b;
-    public final Object f31081c;
+    public final int f31072a;
+    public final long f31073b;
+    public final Object f31074c;
     public final Object d;
     public final Object e;
 
     public ur(Object obj, Object obj2, Object obj3, long j10, int i10) {
-        this.f31079a = i10;
-        this.f31081c = obj;
+        this.f31072a = i10;
+        this.f31074c = obj;
         this.d = obj2;
         this.e = obj3;
-        this.f31080b = j10;
+        this.f31073b = j10;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f31079a) {
+        switch (this.f31072a) {
             case 0:
-                xr.T((xr) this.f31081c, (Context) this.d, (ei.d) this.e, this.f31080b);
+                xr.T((xr) this.f31074c, (Context) this.d, (ei.d) this.e, this.f31073b);
                 return;
             case 1:
-                org.telegram.ui.ey eyVar = (org.telegram.ui.ey) this.f31081c;
+                org.telegram.ui.ey eyVar = (org.telegram.ui.ey) this.f31074c;
                 eyVar.finishPreviewFragment();
-                AndroidUtilities.runOnUIThread(new ai.b2(eyVar, (MessagesController.DialogFilter) this.d, (TLRPC.Dialog) this.e, this.f31080b, 19), 100L);
+                AndroidUtilities.runOnUIThread(new ai.b3(eyVar, (MessagesController.DialogFilter) this.d, (TLRPC.Dialog) this.e, this.f31073b, 19), 100L);
                 return;
             default:
-                ug.z.Q((ug.z) this.f31081c, (TL_stories.PrepaidGiveaway) this.d, this.f31080b, (org.telegram.ui.ActionBar.n2) this.e);
+                ug.z.Q((ug.z) this.f31074c, (TL_stories.PrepaidGiveaway) this.d, this.f31073b, (org.telegram.ui.ActionBar.n2) this.e);
                 return;
         }
     }
 
     public ur(ug.z zVar, TL_stories.PrepaidGiveaway prepaidGiveaway, long j10, org.telegram.ui.ActionBar.n2 n2Var) {
-        this.f31079a = 2;
-        this.f31081c = zVar;
+        this.f31072a = 2;
+        this.f31074c = zVar;
         this.d = prepaidGiveaway;
-        this.f31080b = j10;
+        this.f31073b = j10;
         this.e = n2Var;
     }
 }

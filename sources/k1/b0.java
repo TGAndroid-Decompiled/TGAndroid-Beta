@@ -1,4 +1,4 @@
 package k1;
 public final class b0 extends a0 {
-    public static final b0 f14569a = new Object();
+    public static final b0 f14567a = new Object();
 }

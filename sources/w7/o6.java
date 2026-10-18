@@ -1,10 +1,16 @@
 package w7;
 
-import android.text.InputFilter;
+import android.util.Log;
 public abstract class o6 {
-    public abstract InputFilter[] a(InputFilter[] inputFilterArr);
-
-    public abstract void b(boolean z10);
-
-    public abstract void c(boolean z10);
+    public static void a(String str) {
+        boolean isLoggable;
+        if (Log.isLoggable("FirebaseAppIndex", 3)) {
+            isLoggable = true;
+        } else {
+            isLoggable = Log.isLoggable("FirebaseAppIndex", 3);
+        }
+        if (isLoggable) {
+            Log.d("FirebaseAppIndex", str);
+        }
+    }
 }

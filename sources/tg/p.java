@@ -1,11 +1,11 @@
 package tg;
 public final class p implements Runnable {
-    public final int f47194a;
-    public final Object f47195b;
+    public final int f47144a;
+    public final Object f47145b;
 
     public p(Object obj, int i10) {
-        this.f47194a = i10;
-        this.f47195b = obj;
+        this.f47144a = i10;
+        this.f47145b = obj;
     }
 
     @Override

@@ -8,23 +8,23 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.x90;
 import org.telegram.ui.n80;
 public final class l implements Utilities.Callback {
-    public final int f34425a;
-    public final Object f34426b;
+    public final int f34413a;
+    public final Object f34414b;
 
     public l(Object obj, int i10) {
-        this.f34425a = i10;
-        this.f34426b = obj;
+        this.f34413a = i10;
+        this.f34414b = obj;
     }
 
     @Override
     public final void run(Object obj) {
         String str;
-        int i10;
         CharSequence formatSpannable;
-        int i11 = this.f34425a;
+        int i10 = this.f34413a;
+        int i11 = 12;
         boolean z10 = false;
-        Object obj2 = this.f34426b;
-        switch (i11) {
+        Object obj2 = this.f34414b;
+        switch (i10) {
             case 0:
                 ai.x8 x8Var = (ai.x8) obj2;
                 if (((String) obj) == null) {
@@ -53,25 +53,23 @@ public final class l implements Utilities.Callback {
                 ((Utilities.Callback) obj2).run(str3);
                 return;
             case 4:
-                AndroidUtilities.runOnUIThread(new u3(11, (z7) obj2, (TLRPC.UserFull) obj));
+                AndroidUtilities.runOnUIThread(new v3(12, (t7) obj2, (TLRPC.UserFull) obj));
                 return;
             default:
-                c8 c8Var = (c8) obj2;
-                c8Var.getClass();
-                if (((Integer) obj).intValue() == 0) {
-                    i10 = 12;
-                } else {
-                    i10 = 24;
+                w7 w7Var = (w7) obj2;
+                w7Var.getClass();
+                if (((Integer) obj).intValue() != 0) {
+                    i11 = 24;
                 }
-                if (c8Var.f34100a != i10) {
-                    c8Var.f34100a = i10;
-                    c8Var.W(c8Var.getParentActivity());
-                    c8Var.Y();
-                    x90 x90Var = c8Var.h;
-                    if (c8Var.f34106s != null) {
-                        formatSpannable = LocaleController.formatSpannable(R.string.WalletImportCurrentPhraseInfo, Integer.valueOf(i10));
+                if (w7Var.f35047a != i11) {
+                    w7Var.f35047a = i11;
+                    w7Var.W(w7Var.getParentActivity());
+                    w7Var.Y();
+                    x90 x90Var = w7Var.h;
+                    if (w7Var.f35053s != null) {
+                        formatSpannable = LocaleController.formatSpannable(R.string.WalletImportCurrentPhraseInfo, Integer.valueOf(i11));
                     } else {
-                        formatSpannable = LocaleController.formatSpannable(R.string.WalletImportPhraseInfo, Integer.valueOf(i10));
+                        formatSpannable = LocaleController.formatSpannable(R.string.WalletImportPhraseInfo, Integer.valueOf(i11));
                     }
                     x90Var.setText(formatSpannable);
                     return;

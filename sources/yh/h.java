@@ -1,28 +1,44 @@
 package yh;
 
-import android.view.View;
-public final class h implements View.OnClickListener {
-    public final int f50304a;
-    public final n f50305b;
+import ai.ie;
+import android.content.Context;
+import android.view.MotionEvent;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.ActionBar.d6;
+public final class h extends ie {
+    public final m m0;
 
-    public h(n nVar, int i10) {
-        this.f50304a = i10;
-        this.f50305b = nVar;
+    public h(m mVar, Context context, d6 d6Var) {
+        super(context, d6Var);
+        this.m0 = mVar;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f50304a) {
-            case 0:
-                this.f50305b.dismiss();
-                return;
-            case 1:
-                n.R(this.f50305b);
-                return;
-            default:
-                n nVar = this.f50305b;
-                nVar.f50433c0.setValueAnimated((int) nVar.f50442l0.getMinimumBid());
-                return;
+    public final boolean d(float f7) {
+        if (getProgress() <= 0.99d && f7 <= getMeasuredWidth() * 0.9f) {
+            return false;
         }
+        m.V(this.m0);
+        return true;
+    }
+
+    @Override
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (motionEvent.getAction() == 0 && motionEvent.getY() > getMeasuredHeight() - AndroidUtilities.dp(48.0f)) {
+            return false;
+        }
+        super.dispatchTouchEvent(motionEvent);
+        return true;
+    }
+
+    @Override
+    public final void e(int i10) {
+        m.U(this.m0, i10);
+    }
+
+    @Override
+    public final void setValue(int i10) {
+        super.setValue(i10);
+        m.U(this.m0, i10);
     }
 }

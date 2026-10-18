@@ -26,16 +26,16 @@ public final class g extends i2.b {
     public Bitmap X;
     public boolean Y;
     public j5.c Z;
-    public j5.c f44395a0;
-    public int f44396b0;
-    public boolean f44397c0;
+    public j5.c f44352a0;
+    public int f44353b0;
+    public boolean f44354c0;
 
     public g(b bVar) {
         super(4);
         this.I = bVar;
-        this.V = e.f44391a;
+        this.V = e.f44348a;
         this.J = new h(0, 0);
-        this.N = f.f44392c;
+        this.N = f.f44349c;
         this.K = new ArrayDeque();
         this.P = -9223372036854775807L;
         this.O = -9223372036854775807L;
@@ -58,7 +58,7 @@ public final class g extends i2.b {
     }
 
     public final void H() {
-        if (!this.f44397c0) {
+        if (!this.f44354c0) {
             return;
         }
         w wVar = this.S;
@@ -73,8 +73,8 @@ public final class g extends i2.b {
         if (cVar != null) {
             cVar.release();
         }
-        this.T = new c(bVar.f44388a);
-        this.f44397c0 = false;
+        this.T = new c(bVar.f44345a);
+        this.f44354c0 = false;
     }
 
     public final void I() {
@@ -104,7 +104,7 @@ public final class g extends i2.b {
             eVar = null;
         }
         if (eVar == null) {
-            eVar = e.f44391a;
+            eVar = e.f44348a;
         }
         this.V = eVar;
     }
@@ -134,7 +134,7 @@ public final class g extends i2.b {
     @Override
     public final void n() {
         this.S = null;
-        this.N = f.f44392c;
+        this.N = f.f44349c;
         this.K.clear();
         I();
         this.V.getClass();
@@ -152,7 +152,7 @@ public final class g extends i2.b {
         this.L = false;
         this.X = null;
         this.Z = null;
-        this.f44395a0 = null;
+        this.f44352a0 = null;
         this.Y = false;
         this.U = null;
         c cVar = this.T;
@@ -174,24 +174,24 @@ public final class g extends i2.b {
     }
 
     @Override
-    public final void u(b2.w[] r5, long r6, long r8, u2.f0 r10) {
-        throw new UnsupportedOperationException("Method not decompiled: q2.g.u(b2.w[], long, long, u2.f0):void");
+    public final void u(b2.w[] r5, long r6, long r8, u2.g0 r10) {
+        throw new UnsupportedOperationException("Method not decompiled: q2.g.u(b2.w[], long, long, u2.g0):void");
     }
 
     @Override
     public final void x(long j10, long j11) {
         if (!this.M) {
             if (this.S == null) {
-                qf.b bVar = this.f12316c;
+                qf.b bVar = this.f12314c;
                 bVar.z();
                 h hVar = this.J;
                 hVar.clear();
                 int w9 = w(bVar, hVar, 2);
                 if (w9 == -5) {
-                    w wVar = (w) bVar.f44486c;
+                    w wVar = (w) bVar.f44443c;
                     wVar.getClass();
                     this.S = wVar;
-                    this.f44397c0 = true;
+                    this.f44354c0 = true;
                 } else if (w9 == -4) {
                     u6.p(hVar.isEndOfStream());
                     this.L = true;

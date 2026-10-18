@@ -7,20 +7,20 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.bs;
 public final class q7 implements q0.a {
-    public final int f2066a;
-    public final Object f2067b;
+    public final int f2064a;
+    public final Object f2065b;
 
     public q7(Object obj, int i10) {
-        this.f2066a = i10;
-        this.f2067b = obj;
+        this.f2064a = i10;
+        this.f2065b = obj;
     }
 
     @Override
     public final void accept(Object obj) {
         String responseCodeString;
-        int i10 = this.f2066a;
+        int i10 = this.f2064a;
         boolean z10 = true;
-        Object obj2 = this.f2067b;
+        Object obj2 = this.f2065b;
         switch (i10) {
             case 0:
                 Utilities.Callback2 callback2 = (Utilities.Callback2) obj2;
@@ -42,10 +42,10 @@ public final class q7 implements q0.a {
             case 2:
                 gi.d3 d3Var = (gi.d3) obj2;
                 Float f7 = (Float) obj;
-                d3Var.f11169y.setLoadProgressAnimated(f7.floatValue());
+                d3Var.f11167y.setLoadProgressAnimated(f7.floatValue());
                 if (f7.floatValue() == 1.0f) {
                     ValueAnimator duration = ValueAnimator.ofFloat(1.0f, 0.0f).setDuration(200L);
-                    duration.setInterpolator(bs.f25037f);
+                    duration.setInterpolator(bs.f25030f);
                     duration.addUpdateListener(new gi.x1(d3Var, 1));
                     duration.addListener(new ah.b(d3Var, 26));
                     duration.start();
@@ -58,7 +58,7 @@ public final class q7 implements q0.a {
                 f4Var.I.setLoadProgressAnimated(f10.floatValue());
                 if (f10.floatValue() == 1.0f) {
                     ValueAnimator duration2 = ValueAnimator.ofFloat(1.0f, 0.0f).setDuration(200L);
-                    duration2.setInterpolator(bs.f25037f);
+                    duration2.setInterpolator(bs.f25030f);
                     duration2.addUpdateListener(new gi.x3(f4Var, 0));
                     duration2.addListener(new ah.b(f4Var, 27));
                     duration2.start();
@@ -70,12 +70,12 @@ public final class q7 implements q0.a {
                 ((hg.m) obj2).R.x4(((Float) obj).floatValue());
                 return;
             case 5:
-                ((qg.v) obj2).h(((Integer) obj).intValue());
+                ((qg.u) obj2).h(((Integer) obj).intValue());
                 return;
             default:
-                yh.y4 y4Var = (yh.y4) obj2;
+                yh.x4 x4Var = (yh.x4) obj2;
                 if (((c5.i) obj).f4757a == 0) {
-                    AndroidUtilities.runOnUIThread(new yh.o4(y4Var, 1));
+                    AndroidUtilities.runOnUIThread(new yh.n4(x4Var, 1));
                     return;
                 }
                 return;

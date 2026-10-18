@@ -1,47 +1,28 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.TLObject;
 public final class k9 implements Runnable {
-    public final int f18775a = 0;
-    public final int f18776b;
-    public final boolean f18777c;
-    public final boolean d;
-    public final int e;
-    public final BaseController f18778f;
-    public final Object h;
+    public final int f18777a;
+    public final MediaDataController f18778b;
+    public final String f18779c;
+    public final TLObject d;
 
-    public k9(MediaDataController mediaDataController, boolean z10, int i10, ArrayList arrayList, boolean z11, int i11) {
-        this.f18778f = mediaDataController;
-        this.f18777c = z10;
-        this.f18776b = i10;
-        this.h = arrayList;
-        this.d = z11;
-        this.e = i11;
+    public k9(MediaDataController mediaDataController, String str, TLObject tLObject, int i10) {
+        this.f18777a = i10;
+        this.f18778b = mediaDataController;
+        this.f18779c = str;
+        this.d = tLObject;
     }
 
     @Override
     public final void run() {
-        switch (this.f18775a) {
+        switch (this.f18777a) {
             case 0:
-                boolean z10 = this.d;
-                int i10 = this.e;
-                ((MediaDataController) this.f18778f).lambda$processLoadedRecentDocuments$52(this.f18777c, this.f18776b, (ArrayList) this.h, z10, i10);
+                this.f18778b.lambda$fetchStickerSetInternal$41(this.f18779c, this.d);
                 return;
             default:
-                boolean z11 = this.d;
-                int i11 = this.e;
-                ((MessagesController) this.f18778f).lambda$processLoadedMessages$188(this.f18776b, (TLRPC.messages_Messages) this.h, this.f18777c, z11, i11);
+                this.f18778b.lambda$verifyAnimatedStickerMessageInternal$69(this.f18779c, this.d);
                 return;
         }
-    }
-
-    public k9(MessagesController messagesController, int i10, TLRPC.messages_Messages messages_messages, boolean z10, boolean z11, int i11) {
-        this.f18778f = messagesController;
-        this.f18776b = i10;
-        this.h = messages_messages;
-        this.f18777c = z10;
-        this.d = z11;
-        this.e = i11;
     }
 }

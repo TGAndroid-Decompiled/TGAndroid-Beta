@@ -19,7 +19,7 @@ import androidx.fragment.app.j0;
 import androidx.lifecycle.a0;
 import b2.a2;
 import b5.p;
-import ci.q4;
+import ci.p4;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.cast.MediaInfo;
 import com.google.android.gms.common.api.internal.i0;
@@ -111,7 +111,7 @@ public final class i implements n0, r, sq0, a0, androidx.activity.result.b, p, O
         a8 a8Var = r6Var.d;
         if (a8Var != null) {
             a8Var.Z = f7;
-            a8Var.f8717j = true;
+            a8Var.f8715j = true;
             a81 a81Var = r6Var.e;
             if (a81Var != null && a81Var.p() != -9223372036854775807L) {
                 r6Var.m(f7 * ((float) r6Var.e.p()));
@@ -134,8 +134,8 @@ public final class i implements n0, r, sq0, a0, androidx.activity.result.b, p, O
         if (a8Var == null) {
             return;
         }
-        a8Var.f8733r0 = j10;
-        a8Var.f8717j = true;
+        a8Var.f8731r0 = j10;
+        a8Var.f8715j = true;
         r6Var.y(true);
     }
 
@@ -143,13 +143,13 @@ public final class i implements n0, r, sq0, a0, androidx.activity.result.b, p, O
     public void E(boolean z10) {
         b2 b2Var;
         vb vbVar = ((jb) ((r6) this.f306b)).C0;
-        xa xaVar = vbVar.f10018v1;
+        xa xaVar = vbVar.f10016v1;
         if (xaVar != null) {
             b2 b2Var2 = null;
             if (!z10 && (xaVar.getSelectedEntity() instanceof b2)) {
-                vbVar.f10018v1.C0(null, true);
-            } else if (z10 && !(vbVar.f10018v1.getSelectedEntity() instanceof b2)) {
-                z5 z5Var = vbVar.f10018v1.R0;
+                vbVar.f10016v1.C0(null, true);
+            } else if (z10 && !(vbVar.f10016v1.getSelectedEntity() instanceof b2)) {
+                z5 z5Var = vbVar.f10016v1.R0;
                 int i10 = 0;
                 int i11 = 0;
                 while (true) {
@@ -166,7 +166,7 @@ public final class i implements n0, r, sq0, a0, androidx.activity.result.b, p, O
                     }
                 }
                 if (b2Var != null) {
-                    xa xaVar2 = vbVar.f10018v1;
+                    xa xaVar2 = vbVar.f10016v1;
                     z5 z5Var2 = xaVar2.R0;
                     while (true) {
                         if (i10 >= z5Var2.getChildCount()) {
@@ -223,7 +223,7 @@ public final class i implements n0, r, sq0, a0, androidx.activity.result.b, p, O
             return;
         }
         a8Var.F = f7;
-        a8Var.f8717j = true;
+        a8Var.f8715j = true;
         r6Var.w(true);
     }
 
@@ -235,7 +235,7 @@ public final class i implements n0, r, sq0, a0, androidx.activity.result.b, p, O
             return;
         }
         a8Var.E = f7;
-        a8Var.f8717j = true;
+        a8Var.f8715j = true;
         r6Var.w(true);
     }
 
@@ -260,8 +260,8 @@ public final class i implements n0, r, sq0, a0, androidx.activity.result.b, p, O
         if (a8Var == null) {
             return;
         }
-        a8Var.f8698a0 = f7;
-        a8Var.f8717j = true;
+        a8Var.f8696a0 = f7;
+        a8Var.f8715j = true;
     }
 
     @Override
@@ -276,8 +276,8 @@ public final class i implements n0, r, sq0, a0, androidx.activity.result.b, p, O
         if (a8Var == null) {
             return;
         }
-        a8Var.f8737t0 = f7;
-        a8Var.f8717j = true;
+        a8Var.f8735t0 = f7;
+        a8Var.f8715j = true;
         r6Var.y(true);
     }
 
@@ -307,7 +307,7 @@ public final class i implements n0, r, sq0, a0, androidx.activity.result.b, p, O
             return;
         }
         a8Var.D = j10;
-        a8Var.f8717j = true;
+        a8Var.f8715j = true;
         r6Var.w(true);
     }
 
@@ -346,9 +346,9 @@ public final class i implements n0, r, sq0, a0, androidx.activity.result.b, p, O
             default:
                 i7.a aVar = new i7.a((TaskCompletionSource) obj2);
                 i7.i iVar = (i7.i) ((i7.c) obj).u();
-                String str = ((i7.b) this.f306b).f12731k;
+                String str = ((i7.b) this.f306b).f12729k;
                 Parcel J0 = iVar.J0();
-                int i11 = i7.f.f12735a;
+                int i11 = i7.f.f12733a;
                 J0.writeStrongBinder(aVar);
                 J0.writeString(str);
                 iVar.K0(J0, 2);
@@ -426,7 +426,7 @@ public final class i implements n0, r, sq0, a0, androidx.activity.result.b, p, O
         }
         if (qVar != null) {
             if (z11) {
-                rVar.g(qVar.f10690a, qVar, k10);
+                rVar.g(qVar.f10688a, qVar, k10);
                 rVar.i(qVar, true);
                 return;
             }
@@ -445,8 +445,8 @@ public final class i implements n0, r, sq0, a0, androidx.activity.result.b, p, O
                 Object obj = arrayList.get(i11);
                 i11++;
                 d0 d0Var = (d0) obj;
-                if (d0Var.f8868a == i10) {
-                    d0Var.f8869b.d(1.0f, true);
+                if (d0Var.f8866a == i10) {
+                    d0Var.f8867b.d(1.0f, true);
                     e0Var.invalidate();
                     return;
                 }
@@ -479,8 +479,8 @@ public final class i implements n0, r, sq0, a0, androidx.activity.result.b, p, O
         if (a8Var == null) {
             return;
         }
-        a8Var.f8739u0 = f7;
-        a8Var.f8717j = true;
+        a8Var.f8737u0 = f7;
+        a8Var.f8715j = true;
         r6Var.c();
     }
 
@@ -489,11 +489,11 @@ public final class i implements n0, r, sq0, a0, androidx.activity.result.b, p, O
         switch (this.f305a) {
             case 4:
                 qc k10 = ((k7) this.f306b).getBulletinFactory().k(false);
-                k10.f29655t = true;
+                k10.f29648t = true;
                 k10.j();
                 return;
             default:
-                q4.j0((q4) this.f306b);
+                p4.j0((p4) this.f306b);
                 return;
         }
     }
@@ -568,7 +568,7 @@ public final class i implements n0, r, sq0, a0, androidx.activity.result.b, p, O
             return;
         }
         a8Var.G = f7;
-        a8Var.f8717j = true;
+        a8Var.f8715j = true;
         r6Var.c();
     }
 
@@ -593,7 +593,7 @@ public final class i implements n0, r, sq0, a0, androidx.activity.result.b, p, O
         } else if (r6Var.j()) {
             r6Var.E.m(j10, true);
         } else {
-            a81 a81Var2 = r6Var.f9740y;
+            a81 a81Var2 = r6Var.f9738y;
             if (a81Var2 != null) {
                 a81Var2.L(j10, false);
             }
@@ -602,7 +602,7 @@ public final class i implements n0, r, sq0, a0, androidx.activity.result.b, p, O
 
     @Override
     public void onComplete(Task task) {
-        d6.c.h((d6.c) ((d6.j) this.f306b).f7870c, "joinApplication", task);
+        d6.c.h((d6.c) ((d6.j) this.f306b).f7868c, "joinApplication", task);
     }
 
     @Override
@@ -624,30 +624,30 @@ public final class i implements n0, r, sq0, a0, androidx.activity.result.b, p, O
         if (jbVar != null) {
             jbVar.s(null, null, true);
         }
-        xa xaVar = vbVar.f10018v1;
+        xa xaVar = vbVar.f10016v1;
         if (xaVar != null) {
             xaVar.p0();
         }
-        lb lbVar = vbVar.f9959c1;
+        lb lbVar = vbVar.f9957c1;
         if (lbVar != null) {
             lbVar.setHasRoundVideo(false);
         }
         a8 a8Var = vbVar.K1;
         if (a8Var != null) {
-            File file = a8Var.f8727o0;
+            File file = a8Var.f8725o0;
             if (file != null) {
                 try {
                     file.delete();
                 } catch (Exception unused) {
                 }
-                vbVar.K1.f8727o0 = null;
+                vbVar.K1.f8725o0 = null;
             }
-            if (vbVar.K1.f8729p0 != null) {
+            if (vbVar.K1.f8727p0 != null) {
                 try {
-                    new File(vbVar.K1.f8729p0).delete();
+                    new File(vbVar.K1.f8727p0).delete();
                 } catch (Exception unused2) {
                 }
-                vbVar.K1.f8729p0 = null;
+                vbVar.K1.f8727p0 = null;
             }
         }
     }
@@ -664,8 +664,8 @@ public final class i implements n0, r, sq0, a0, androidx.activity.result.b, p, O
         if (a8Var == null) {
             return;
         }
-        a8Var.f8735s0 = f7;
-        a8Var.f8717j = true;
+        a8Var.f8733s0 = f7;
+        a8Var.f8715j = true;
         r6Var.y(true);
     }
 
@@ -675,9 +675,9 @@ public final class i implements n0, r, sq0, a0, androidx.activity.result.b, p, O
         FileWriter fileWriter;
         Void r13 = (Void) obj;
         ea.b bVar = (ea.b) this.f306b;
-        d9.l lVar = (d9.l) bVar.f8551f;
-        ea.d dVar = (ea.d) bVar.f8549b;
-        String str = lVar.f7895a;
+        d9.l lVar = (d9.l) bVar.f8549f;
+        ea.d dVar = (ea.d) bVar.f8547b;
+        String str = lVar.f7893a;
         FileWriter fileWriter2 = null;
         try {
             HashMap c10 = d9.l.c(dVar);
@@ -699,9 +699,9 @@ public final class i implements n0, r, sq0, a0, androidx.activity.result.b, p, O
             jSONObject = null;
         }
         if (jSONObject != null) {
-            ea.a M = ((ag.b) bVar.f8550c).M(jSONObject);
+            ea.a M = ((ag.b) bVar.f8548c).M(jSONObject);
             m mVar = (m) bVar.e;
-            long j10 = M.f8546c;
+            long j10 = M.f8544c;
             mVar.getClass();
             if (Log.isLoggable("FirebaseCrashlytics", 2)) {
                 Log.v("FirebaseCrashlytics", "Writing settings to cache file...", null);
@@ -718,12 +718,12 @@ public final class i implements n0, r, sq0, a0, androidx.activity.result.b, p, O
                         Log.e("FirebaseCrashlytics", "Failed to cache settings", e);
                         x9.h.c(fileWriter, "Failed to close settings writer.");
                         ea.b.f("Loaded settings: ", jSONObject);
-                        String str4 = dVar.f8557f;
-                        SharedPreferences.Editor edit = ((Context) bVar.f8548a).getSharedPreferences("com.google.firebase.crashlytics", 0).edit();
+                        String str4 = dVar.f8555f;
+                        SharedPreferences.Editor edit = ((Context) bVar.f8546a).getSharedPreferences("com.google.firebase.crashlytics", 0).edit();
                         edit.putString("existing_instance_identifier", str4);
                         edit.apply();
                         ((AtomicReference) bVar.h).set(M);
-                        ((TaskCompletionSource) ((AtomicReference) bVar.f8553i).get()).trySetResult(M);
+                        ((TaskCompletionSource) ((AtomicReference) bVar.f8551i).get()).trySetResult(M);
                         return Tasks.forResult(null);
                     }
                 } catch (Throwable th2) {
@@ -742,12 +742,12 @@ public final class i implements n0, r, sq0, a0, androidx.activity.result.b, p, O
             }
             x9.h.c(fileWriter, "Failed to close settings writer.");
             ea.b.f("Loaded settings: ", jSONObject);
-            String str42 = dVar.f8557f;
-            SharedPreferences.Editor edit2 = ((Context) bVar.f8548a).getSharedPreferences("com.google.firebase.crashlytics", 0).edit();
+            String str42 = dVar.f8555f;
+            SharedPreferences.Editor edit2 = ((Context) bVar.f8546a).getSharedPreferences("com.google.firebase.crashlytics", 0).edit();
             edit2.putString("existing_instance_identifier", str42);
             edit2.apply();
             ((AtomicReference) bVar.h).set(M);
-            ((TaskCompletionSource) ((AtomicReference) bVar.f8553i).get()).trySetResult(M);
+            ((TaskCompletionSource) ((AtomicReference) bVar.f8551i).get()).trySetResult(M);
         }
         return Tasks.forResult(null);
     }
@@ -756,7 +756,7 @@ public final class i implements n0, r, sq0, a0, androidx.activity.result.b, p, O
     public boolean u(l.k kVar) {
         Window.Callback callback;
         g.r rVar = (g.r) this.f306b;
-        if (kVar == kVar.k() && rVar.O && (callback = rVar.f10711f.getCallback()) != null && !rVar.Z) {
+        if (kVar == kVar.k() && rVar.O && (callback = rVar.f10709f.getCallback()) != null && !rVar.Z) {
             callback.onMenuOpened(108, kVar);
             return true;
         }
@@ -810,9 +810,9 @@ public final class i implements n0, r, sq0, a0, androidx.activity.result.b, p, O
         r6Var.c();
     }
 
-    public i(ya.c cVar) {
+    public i(ya.d dVar) {
         this.f305a = 9;
-        this.f306b = (com.google.android.gms.internal.play_billing.r) cVar.f50161b;
+        this.f306b = (com.google.android.gms.internal.play_billing.r) dVar.f50115b;
     }
 
     public i(Context context, int i10) {

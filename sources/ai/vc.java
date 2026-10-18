@@ -51,21 +51,21 @@ public final class vc extends org.telegram.ui.Components.bb implements Notificat
         im0Var.setPadding(i10, 0, i10, 0);
         this.d.setOnItemClickListener(new wa(this, 1));
         s4.k kVar = new s4.k();
-        kVar.f45992m = false;
+        kVar.f45944m = false;
         kVar.C = false;
         kVar.o(bs.h);
         kVar.n(350L);
         this.d.setItemAnimator(kVar);
-        setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21081i5, d6Var));
+        setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21074i5, d6Var));
         uc ucVar = new uc(context, 0, d6Var);
         this.X = ucVar;
         ((TextView) ucVar.f2279c).setText(LocaleController.getString(R.string.GiftStarsTitle));
         x90 x90Var = (x90) ucVar.d;
         x90Var.setText(TextUtils.concat(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.GiftStarsSubtitle, UserObject.getForcedFirstName(user))), " ", AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.GiftStarsSubtitleLinkName).replace(' ', (char) 160), new Runnable(this) {
-            public final vc f2183b;
+            public final vc f2185b;
 
             {
-                this.f2183b = this;
+                this.f2185b = this;
             }
 
             @Override
@@ -73,7 +73,7 @@ public final class vc extends org.telegram.ui.Components.bb implements Notificat
                 org.telegram.ui.ActionBar.n2 n2Var;
                 switch (r2) {
                     case 0:
-                        vc vcVar = this.f2183b;
+                        vc vcVar = this.f2185b;
                         yw0 yw0Var = new yw0(vcVar.getContext());
                         if (!AndroidUtilities.isTablet() && !AndroidUtilities.hasDialogOnTop(vcVar.attachedFragment) && (n2Var = vcVar.attachedFragment) != null) {
                             yw0Var.makeAttached(n2Var);
@@ -81,7 +81,7 @@ public final class vc extends org.telegram.ui.Components.bb implements Notificat
                         yw0Var.show();
                         return;
                     default:
-                        pf.d.r(this.f2183b.getContext(), LocaleController.getString(R.string.StarsTOSLink));
+                        pf.d.r(this.f2185b.getContext(), LocaleController.getString(R.string.StarsTOSLink));
                         return;
                 }
             }
@@ -97,12 +97,12 @@ public final class vc extends org.telegram.ui.Components.bb implements Notificat
         frameLayout.setPadding(0, AndroidUtilities.dp(11.0f), 0, AndroidUtilities.dp(11.0f));
         x90Var2.setTextSize(1, 12.0f);
         x90Var2.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.B6, d6Var));
-        x90Var2.setLinkTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21052gc, d6Var));
+        x90Var2.setLinkTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21045gc, d6Var));
         x90Var2.setText(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.StarsTOS), new Runnable(this) {
-            public final vc f2183b;
+            public final vc f2185b;
 
             {
-                this.f2183b = this;
+                this.f2185b = this;
             }
 
             @Override
@@ -110,7 +110,7 @@ public final class vc extends org.telegram.ui.Components.bb implements Notificat
                 org.telegram.ui.ActionBar.n2 n2Var;
                 switch (r2) {
                     case 0:
-                        vc vcVar = this.f2183b;
+                        vc vcVar = this.f2185b;
                         yw0 yw0Var = new yw0(vcVar.getContext());
                         if (!AndroidUtilities.isTablet() && !AndroidUtilities.hasDialogOnTop(vcVar.attachedFragment) && (n2Var = vcVar.attachedFragment) != null) {
                             yw0Var.makeAttached(n2Var);
@@ -118,7 +118,7 @@ public final class vc extends org.telegram.ui.Components.bb implements Notificat
                         yw0Var.show();
                         return;
                     default:
-                        pf.d.r(this.f2183b.getContext(), LocaleController.getString(R.string.StarsTOSLink));
+                        pf.d.r(this.f2185b.getContext(), LocaleController.getString(R.string.StarsTOSLink));
                         return;
                 }
             }
@@ -126,8 +126,8 @@ public final class vc extends org.telegram.ui.Components.bb implements Notificat
         x90Var2.setGravity(17);
         x90Var2.setMaxWidth(ei.x3.a(x90Var2.getText(), x90Var2.getPaint()));
         frameLayout.addView(x90Var2, w7.z5.e(-2, -1, 17));
-        frameLayout.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21064h5, d6Var));
-        this.containerView.addView(new z00(getContext()), w7.z5.d(-1.0f, -1));
+        frameLayout.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21057h5, d6Var));
+        this.containerView.addView(new z00(getContext()), w7.z5.c(-1.0f, -1));
         s61 s61Var = this.f2345b0;
         if (s61Var != null) {
             s61Var.N(false);
@@ -142,7 +142,7 @@ public final class vc extends org.telegram.ui.Components.bb implements Notificat
             if (G.d == -1) {
                 vcVar.f2346c0 = !vcVar.f2346c0;
                 s61Var2.N(true);
-                vcVar.d.v0(0, AndroidUtilities.dp(200.0f), bs.f25038g);
+                vcVar.d.v0(0, AndroidUtilities.dp(200.0f), bs.f25031g);
             } else if (G.G(xc.class) && (G.G instanceof TL_stars.TL_starsGiftOption)) {
                 Context findActivity = AndroidUtilities.findActivity(vcVar.getContext());
                 if (findActivity == null) {
@@ -150,11 +150,11 @@ public final class vc extends org.telegram.ui.Components.bb implements Notificat
                 }
                 Context context = findActivity;
                 if (context != null) {
-                    long j10 = vcVar.Z.f20426id;
+                    long j10 = vcVar.Z.f20419id;
                     ga y3 = ga.y(vcVar.currentAccount, false);
                     TL_stars.TL_starsGiftOption tL_starsGiftOption = (TL_stars.TL_starsGiftOption) G.G;
                     tc tcVar = new tc(vcVar, G, j10, 0);
-                    int i11 = y3.f1354a;
+                    int i11 = y3.f1352a;
                     if (!MessagesController.getInstance(i11).starsPurchaseAvailable()) {
                         org.telegram.ui.ActionBar.n2 R = LaunchActivity.R();
                         if (R != null && R.getContext() != null) {
@@ -189,7 +189,7 @@ public final class vc extends org.telegram.ui.Components.bb implements Notificat
                             tL_payments_getPaymentForm.flags |= 1;
                         }
                         tL_payments_getPaymentForm.invoice = tL_inputInvoiceStars;
-                        ConnectionsManager.getInstance(i11).sendRequest(tL_payments_getPaymentForm, new q2(y3, tcVar, tL_inputInvoiceStars, 2));
+                        ConnectionsManager.getInstance(i11).sendRequest(tL_payments_getPaymentForm, new k2(y3, tcVar, tL_inputInvoiceStars, 2));
                     }
                 }
             }
@@ -204,11 +204,11 @@ public final class vc extends org.telegram.ui.Components.bb implements Notificat
             }
             super.dismiss();
             org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
-            la0 la0Var = LaunchActivity.H1.f33194x0;
+            la0 la0Var = LaunchActivity.H1.f33187x0;
             if (U != null) {
                 if (bool.booleanValue()) {
-                    org.telegram.ui.Components.qc K = org.telegram.ui.Components.xc.a0(U).K(R.raw.stars_send, LocaleController.getString(R.string.StarsGiftSentPopup), AndroidUtilities.replaceTags(LocaleController.formatPluralString("StarsGiftSentPopupInfo", (int) f61Var.B, UserObject.getForcedFirstName(vcVar.Z))), LocaleController.getString(R.string.ViewInChat), new o4(j10, 1));
-                    K.f29645j = 5000;
+                    org.telegram.ui.Components.qc K = org.telegram.ui.Components.xc.a0(U).K(R.raw.stars_send, LocaleController.getString(R.string.StarsGiftSentPopup), AndroidUtilities.replaceTags(LocaleController.formatPluralString("StarsGiftSentPopupInfo", (int) f61Var.B, UserObject.getForcedFirstName(vcVar.Z))), LocaleController.getString(R.string.ViewInChat), new l4(j10, 1));
+                    K.f29638j = 5000;
                     K.k(true);
                     if (la0Var != null) {
                         la0Var.c(true);
@@ -245,19 +245,19 @@ public final class vc extends org.telegram.ui.Components.bb implements Notificat
                     i11++;
                 } else {
                     int i14 = i12 + 1;
-                    int i15 = xc.f2453a;
+                    int i15 = xc.f2455a;
                     f61 J = f61.J(xc.class);
                     J.d = i13;
-                    J.f26160z = i12;
+                    J.f26153z = i12;
                     long j10 = tL_starsGiftOption.stars;
                     J.B = j10;
-                    J.f26147l = LocaleController.formatPluralStringSpaced("StarsCount", (int) j10);
+                    J.f26140l = LocaleController.formatPluralStringSpaced("StarsCount", (int) j10);
                     if (tL_starsGiftOption.loadingStorePrice) {
                         formatCurrency = null;
                     } else {
                         formatCurrency = BillingController.getInstance().formatCurrency(tL_starsGiftOption.amount, tL_starsGiftOption.currency);
                     }
-                    J.f26148m = formatCurrency;
+                    J.f26141m = formatCurrency;
                     J.G = tL_starsGiftOption;
                     arrayList.add(J);
                     i12 = i14;
@@ -271,12 +271,12 @@ public final class vc extends org.telegram.ui.Components.bb implements Notificat
                     i10 = R.string.NotifyMoreOptions;
                 }
                 String string = LocaleController.getString(i10);
-                int i16 = qc.f2089a;
+                int i16 = qc.f2087a;
                 f61 J2 = f61.J(qc.class);
                 J2.d = -1;
-                J2.f26147l = string;
-                J2.f26142f = !this.f2346c0;
-                J2.f26152q = true;
+                J2.f26140l = string;
+                J2.f26135f = !this.f2346c0;
+                J2.f26145q = true;
                 arrayList.add(J2);
             }
         } else {

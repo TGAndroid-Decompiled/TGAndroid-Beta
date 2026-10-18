@@ -13,7 +13,7 @@ public final class lk extends kh.e {
     public final void setVisibility(int i10) {
         boolean z10;
         super.setVisibility(i10);
-        j6.l lVar = this.L.Bc;
+        j6.l lVar = this.L.Cc;
         boolean z11 = false;
         if (i10 == 0) {
             z10 = true;
@@ -23,6 +23,6 @@ public final class lk extends kh.e {
         if (getMeasuredWidth() > 0) {
             z11 = true;
         }
-        lVar.i(3, z10, z11);
+        lVar.h(3, z10, z11);
     }
 }

@@ -3,9 +3,9 @@ package zf;
 import android.graphics.RectF;
 import java.util.ArrayList;
 import java.util.Collections;
-import org.telegram.ui.lg0;
+import org.telegram.ui.kg0;
 public abstract class f0 {
-    public static final lg0 f51604a = new lg0(29);
+    public static final kg0 f51557a = new kg0(29);
 
     public static int a(ArrayList arrayList, int i10, ArrayList arrayList2) {
         boolean z10;
@@ -83,7 +83,7 @@ public abstract class f0 {
             rectF5.top = Float.MAX_VALUE;
             rectF5.left = Float.MAX_VALUE;
         }
-        Collections.sort(arrayList2, f51604a);
+        Collections.sort(arrayList2, f51557a);
         return i10;
     }
 

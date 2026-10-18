@@ -1,174 +1,129 @@
 package sg;
 
-import android.animation.AnimatorSet;
-import android.animation.ValueAnimator;
-import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.LinearGradient;
 import android.graphics.Matrix;
 import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.Shader;
-import android.view.View;
-import ei.i6;
+import android.graphics.RectF;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LiteMode;
-import org.telegram.messenger.SharedConfig;
-public class w1 extends View {
-    public v1 f46519a;
-    public int f46520b;
-    public ig.l0 f46521c;
-    public boolean d;
-    public Paint e;
-    public LinearGradient f46522f;
-    public Matrix h;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.h6;
+public class w1 {
+    public boolean B;
+    public Matrix[] C;
+    public float[][] D;
+    public int[] E;
+    public float[] F;
+    public boolean G;
+    public boolean N;
+    public d6 P;
+    public long R;
+    public long S;
+    public boolean f46472g;
+    public boolean h;
+    public Utilities.CallbackReturn f46476l;
+    public boolean f46477m;
+    public final int f46480p;
+    public boolean f46481q;
+    public int f46489z;
+    public final RectF f46468a = new RectF();
+    public final RectF f46469b = new RectF();
+    public final RectF f46470c = new RectF();
+    public Bitmap[] d = new Bitmap[3];
+    public boolean[] e = new boolean[3];
+    public boolean[] f46471f = new boolean[3];
+    public final Paint f46473i = new Paint();
+    public float f46474j = 0.0f;
+    public float f46475k = 0.0f;
+    public final ArrayList f46478n = new ArrayList();
+    public float f46479o = 1.0f;
+    public int f46482r = 14;
+    public int f46483s = 12;
+    public int f46484t = 10;
+    public float f46485u = 0.85f;
+    public float v = 0.85f;
+    public float f46486w = 0.9f;
+    public long f46487x = 2000;
+    public int f46488y = 1000;
+    public final float A = 1000.0f / AndroidUtilities.screenRefreshRate;
+    public boolean H = false;
+    public boolean I = true;
+    public boolean J = true;
+    public boolean K = false;
+    public boolean L = false;
+    public boolean M = true;
+    public int O = -1;
+    public int Q = h6.Uj;
+    public int T = 0;
 
-    public w1(Context context) {
-        super(context);
-        int i10;
-        if (SharedConfig.getDevicePerformanceClass() == 2) {
-            i10 = 200;
-        } else if (SharedConfig.getDevicePerformanceClass() == 1) {
-            i10 = 100;
-        } else {
-            i10 = 50;
-        }
-        this.d = true;
-        this.f46519a = new v1(i10);
-        a();
+    public w1(int i10) {
+        this.f46480p = i10;
+        this.B = i10 < 50;
     }
 
-    public void a() {
-        v1 v1Var = this.f46519a;
-        v1Var.O = 100;
-        v1Var.M = true;
-        v1Var.G = true;
-        v1Var.K = true;
-        v1Var.H = true;
-        v1Var.f46504r = 4;
-        v1Var.f46508w = 0.98f;
-        v1Var.v = 0.98f;
-        v1Var.f46507u = 0.98f;
-        v1Var.c();
+    public final void a() {
+        throw new UnsupportedOperationException("Method not decompiled: sg.w1.a():void");
     }
 
-    public final void b(float f7) {
-        float f10;
-        if (f7 < 60.0f) {
-            f10 = 5.0f;
-        } else if (f7 < 180.0f) {
-            f10 = 9.0f;
-        } else {
-            f10 = 15.0f;
+    public int b() {
+        if (this.O == 100) {
+            return i0.a.o(h6.w0(this.Q, this.P), 200);
         }
-        AnimatorSet animatorSet = new AnimatorSet();
-        i6 i6Var = new i6(this, 24);
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(1.0f, f10);
-        ofFloat.addUpdateListener(i6Var);
-        ofFloat.setDuration(600L);
-        ValueAnimator ofFloat2 = ValueAnimator.ofFloat(f10, 1.0f);
-        ofFloat2.addUpdateListener(i6Var);
-        ofFloat2.setDuration(2000L);
-        animatorSet.playTogether(ofFloat, ofFloat2);
-        animatorSet.start();
+        return h6.w0(this.Q, this.P);
     }
 
     public final void c() {
-        Paint paint = new Paint(1);
-        this.e = paint;
-        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
-        LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(12.0f), new int[]{16777215, -1}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
-        this.f46522f = linearGradient;
-        this.e.setShader(linearGradient);
-        this.h = new Matrix();
-    }
-
-    public int getStarsRectWidth() {
-        return AndroidUtilities.dp(140.0f);
-    }
-
-    @Override
-    public void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        ig.l0 l0Var = new ig.l0(this, 18);
-        this.f46521c = l0Var;
-        LiteMode.addOnPowerSaverAppliedListener(l0Var);
-        boolean isEnabled = LiteMode.isEnabled(131072);
-        if (this.d != isEnabled) {
-            this.d = isEnabled;
-            invalidate();
-        }
-    }
-
-    @Override
-    public void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        ig.l0 l0Var = this.f46521c;
-        if (l0Var != null) {
-            LiteMode.removeOnPowerSaverAppliedListener(l0Var);
-        }
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        Canvas canvas2;
-        super.onDraw(canvas);
-        if (this.d) {
-            if (this.e != null) {
-                canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
-                canvas2 = canvas;
-            } else {
-                canvas2 = canvas;
-            }
-            this.f46519a.d(canvas2);
-            if (this.e != null) {
-                canvas2.save();
-                this.h.reset();
-                this.h.postTranslate(0.0f, (getHeight() + 1) - AndroidUtilities.dp(12.0f));
-                this.f46522f.setLocalMatrix(this.h);
-                canvas2.drawRect(0.0f, getHeight() - AndroidUtilities.dp(12.0f), getWidth(), getHeight(), this.e);
-                this.h.reset();
-                this.h.postRotate(180.0f);
-                this.h.postTranslate(0.0f, AndroidUtilities.dp(12.0f));
-                this.f46522f.setLocalMatrix(this.h);
-                canvas2.drawRect(0.0f, 0.0f, getWidth(), AndroidUtilities.dp(12.0f), this.e);
-                canvas2.restore();
-                canvas2.restore();
-            }
-            if (!this.f46519a.f46494g) {
-                invalidate();
-            }
-        }
-    }
-
-    @Override
-    public void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        int measuredHeight = getMeasuredHeight() + (getMeasuredWidth() << 16);
-        this.f46519a.f46490a.set(0.0f, 0.0f, getStarsRectWidth(), AndroidUtilities.dp(140.0f));
-        this.f46519a.f46490a.offset((getMeasuredWidth() - this.f46519a.f46490a.width()) / 2.0f, (getMeasuredHeight() - this.f46519a.f46490a.height()) / 2.0f);
-        this.f46519a.f46491b.set(-AndroidUtilities.dp(15.0f), -AndroidUtilities.dp(15.0f), AndroidUtilities.dp(15.0f) + getMeasuredWidth(), AndroidUtilities.dp(15.0f) + getMeasuredHeight());
-        if (this.f46520b != measuredHeight) {
-            this.f46520b = measuredHeight;
-            this.f46519a.f();
-        }
-    }
-
-    public void setPaused(boolean z10) {
-        v1 v1Var = this.f46519a;
-        if (z10 == v1Var.f46494g) {
-            return;
-        }
-        v1Var.f46494g = z10;
+        a();
+        boolean z10 = this.G;
+        int i10 = this.f46480p;
         if (z10) {
-            v1Var.R = System.currentTimeMillis();
-            return;
+            int length = this.d.length;
+            this.C = new Matrix[length];
+            this.D = new float[length];
+            this.E = new int[length];
+            this.F = new float[length];
+            for (int i11 = 0; i11 < length; i11++) {
+                this.C[i11] = new Matrix();
+                this.D[i11] = new float[i10 * 2];
+            }
         }
-        for (int i10 = 0; i10 < this.f46519a.f46500n.size(); i10++) {
-            u1 u1Var = (u1) this.f46519a.f46500n.get(i10);
-            u1Var.f46469a = (System.currentTimeMillis() - this.f46519a.R) + u1Var.f46469a;
+        ArrayList arrayList = this.f46478n;
+        if (arrayList.isEmpty()) {
+            for (int i12 = 0; i12 < i10; i12++) {
+                arrayList.add(new v1(this));
+            }
         }
-        invalidate();
+    }
+
+    public final void d(Canvas canvas) {
+        e(canvas, 1.0f);
+    }
+
+    public final void e(android.graphics.Canvas r19, float r20) {
+        throw new UnsupportedOperationException("Method not decompiled: sg.w1.e(android.graphics.Canvas, float):void");
+    }
+
+    public final void f() {
+        long currentTimeMillis = System.currentTimeMillis();
+        int i10 = 0;
+        while (true) {
+            ArrayList arrayList = this.f46478n;
+            if (i10 < arrayList.size()) {
+                ((v1) arrayList.get(i10)).b(currentTimeMillis);
+                i10++;
+            } else {
+                return;
+            }
+        }
+    }
+
+    public final void g() {
+        int w02 = h6.w0(this.Q, this.P);
+        if (this.f46489z != w02) {
+            this.f46489z = w02;
+            a();
+        }
     }
 }

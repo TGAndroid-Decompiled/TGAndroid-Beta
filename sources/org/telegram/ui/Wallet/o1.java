@@ -3,32 +3,32 @@ package org.telegram.ui.Wallet;
 import android.view.ViewTreeObserver;
 import android.widget.PopupWindow;
 public final class o1 implements ViewTreeObserver.OnScrollChangedListener {
-    public final int f34666a;
-    public final Object f34667b;
+    public final int f34638a;
+    public final Object f34639b;
 
     public o1(Object obj, int i10) {
-        this.f34666a = i10;
-        this.f34667b = obj;
+        this.f34638a = i10;
+        this.f34639b = obj;
     }
 
     @Override
     public final void onScrollChanged() {
-        switch (this.f34666a) {
+        switch (this.f34638a) {
             case 0:
-                ((h) this.f34667b).run();
+                ((h) this.f34639b).run();
                 return;
             case 1:
-                z7 z7Var = (z7) this.f34667b;
-                if (z7Var.f35186c1) {
-                    z7Var.h0();
+                t7 t7Var = (t7) this.f34639b;
+                if (t7Var.f34911h1) {
+                    t7Var.f0();
                     return;
                 }
                 return;
             default:
-                la laVar = (la) this.f34667b;
-                PopupWindow popupWindow = laVar.f34523s;
+                ga gaVar = (ga) this.f34639b;
+                PopupWindow popupWindow = gaVar.f34247s;
                 if (popupWindow != null && popupWindow.isShowing()) {
-                    laVar.c();
+                    gaVar.c();
                     return;
                 }
                 return;

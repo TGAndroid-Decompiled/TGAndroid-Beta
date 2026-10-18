@@ -1,19 +1,23 @@
 package ci;
 
-import org.telegram.messenger.MessagesStorage;
-public final class y6 implements Runnable {
-    public final int f6209a;
-    public final a7 f6210b;
-    public final MessagesStorage f6211c;
+import java.util.List;
+import org.telegram.messenger.Utilities;
+public final class y6 implements Utilities.CallbackReturn {
+    public final z6 f6150a;
+    public final boolean f6151b;
+    public final int f6152c;
+    public final List d;
 
-    public y6(a7 a7Var, MessagesStorage messagesStorage, int i10) {
-        this.f6209a = i10;
-        this.f6210b = a7Var;
-        this.f6211c = messagesStorage;
+    public y6(z6 z6Var, boolean z10, int i10, List list) {
+        this.f6150a = z6Var;
+        this.f6151b = z10;
+        this.f6152c = i10;
+        this.d = list;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: ci.y6.run():void");
+    public final Object run(Object obj) {
+        Integer num = (Integer) obj;
+        return Boolean.valueOf(this.f6150a.q(this.f6152c, this.d, this.f6151b));
     }
 }

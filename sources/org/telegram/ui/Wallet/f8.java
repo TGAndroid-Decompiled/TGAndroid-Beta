@@ -1,77 +1,71 @@
 package org.telegram.ui.Wallet;
 
-import java.util.ArrayList;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.xc;
-public final class f8 implements Utilities.Callback2 {
-    public final int f34247a;
-    public final n8 f34248b;
-    public final pf.c f34249c;
-    public final m0 d;
+import android.content.Context;
+import android.text.SpannableStringBuilder;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.Components.a71;
+import org.telegram.ui.Components.ca0;
+import org.telegram.ui.Components.e61;
+import org.telegram.ui.Components.f61;
+import org.telegram.ui.Components.im0;
+import org.telegram.ui.Components.s61;
+public final class f8 extends e61 {
+    public static final int f34205a = 0;
 
-    public f8(n8 n8Var, pf.c cVar, m0 m0Var, int i10) {
-        this.f34247a = i10;
-        this.f34248b = n8Var;
-        this.f34249c = cVar;
-        this.d = m0Var;
+    static {
+        e61.setup(new e61());
     }
 
     @Override
-    public final void run(Object obj, Object obj2) {
-        switch (this.f34247a) {
-            case 0:
-                j0 j0Var = (j0) obj;
-                String str = (String) obj2;
-                this.f34249c.c(false);
-                n8 n8Var = this.f34248b;
-                if (j0Var == null) {
-                    xc a02 = xc.a0(n8Var);
-                    if (str == null) {
-                        str = "NULL_ERROR";
-                    }
-                    a02.e0(str, false);
-                    return;
-                }
-                v8 v8Var = new v8();
-                v8Var.h = true;
-                ArrayList arrayList = v8Var.f35007a;
-                arrayList.clear();
-                if (!j0Var.e()) {
-                    arrayList.addAll(j0Var.g());
-                }
-                v8Var.V();
-                v8Var.f35010f = new u3(14, n8Var, this.d);
-                n8Var.presentFragment(v8Var);
-                return;
-            default:
-                h0 h0Var = (h0) obj;
-                String str2 = (String) obj2;
-                this.f34249c.c(false);
-                n8 n8Var2 = this.f34248b;
-                if (h0Var == null) {
-                    xc a03 = xc.a0(n8Var2);
-                    if (str2 == null) {
-                        str2 = "NULL_ERROR";
-                    }
-                    a03.e0(str2, false);
-                    return;
-                } else if (n8Var2.e) {
-                    h0Var.close();
-                    return;
-                } else {
-                    n8Var2.d.add(h0Var);
-                    v8 v8Var2 = new v8();
-                    j0 j0Var2 = h0Var.f34288b;
-                    ArrayList arrayList2 = v8Var2.f35007a;
-                    arrayList2.clear();
-                    if (!j0Var2.e()) {
-                        arrayList2.addAll(j0Var2.g());
-                    }
-                    v8Var2.V();
-                    v8Var2.f35010f = new h(n8Var2, this.d, h0Var, 18);
-                    n8Var2.presentFragment(v8Var2);
-                    return;
-                }
+    public final void bindView(View view, f61 f61Var, boolean z10, s61 s61Var, a71 a71Var) {
+        float f7;
+        float f10;
+        g8 g8Var = (g8) view;
+        String charSequence = f61Var.f26140l.toString();
+        long j10 = f61Var.B;
+        int i10 = f61Var.f26153z;
+        boolean z11 = f61Var.f26145q;
+        TextView textView = g8Var.f34235c;
+        TextView textView2 = g8Var.f34234b;
+        textView2.setText(w7.X(charSequence));
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+        if (j10 < 0) {
+            spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.Loading));
+            spannableStringBuilder.setSpan(new ca0(AndroidUtilities.dp(35.0f), textView), 0, spannableStringBuilder.length(), 33);
+        } else {
+            spannableStringBuilder.append((CharSequence) m0.r(j10, false));
         }
+        if (i10 > 0) {
+            spannableStringBuilder = new SpannableStringBuilder(LocaleController.formatSpannable(R.string.WalletPreviousWalletLastUsed, spannableStringBuilder, LocaleController.formatShortDateTime(i10)));
+        }
+        textView.setText(spannableStringBuilder);
+        float f11 = 1.0f;
+        if (z11) {
+            f7 = 0.5f;
+        } else {
+            f7 = 1.0f;
+        }
+        textView2.setAlpha(f7);
+        if (z11) {
+            f10 = 0.5f;
+        } else {
+            f10 = 1.0f;
+        }
+        textView.setAlpha(f10);
+        ImageView imageView = g8Var.d;
+        if (z11) {
+            f11 = 0.5f;
+        }
+        imageView.setAlpha(f11);
+    }
+
+    @Override
+    public final View createView(Context context, im0 im0Var, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
+        return new g8(context, d6Var);
     }
 }

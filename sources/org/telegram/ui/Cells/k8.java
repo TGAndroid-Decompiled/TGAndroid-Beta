@@ -8,7 +8,7 @@ import org.telegram.ui.Components.e61;
 import org.telegram.ui.Components.f61;
 import org.telegram.ui.Components.im0;
 public final class k8 extends e61 {
-    public static final int f22516a = 0;
+    public static final int f22509a = 0;
 
     static {
         e61.setup(new e61());
@@ -25,7 +25,7 @@ public final class k8 extends e61 {
             z10 = false;
         }
         l8Var.b(z10, true);
-        if ((im0Var instanceof a71) && ((a71) im0Var).f24520a3) {
+        if ((im0Var instanceof a71) && ((a71) im0Var).f24513a3) {
             z11 = true;
         }
         l8Var.c(z11);

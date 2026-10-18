@@ -1,35 +1,19 @@
 package ci;
 
-import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.MessagesStorage;
 public final class x6 implements Runnable {
-    public final int f6171a;
-    public final a7 f6172b;
+    public final int f6109a;
+    public final z6 f6110b;
+    public final MessagesStorage f6111c;
 
-    public x6(a7 a7Var, int i10) {
-        this.f6171a = i10;
-        this.f6172b = a7Var;
+    public x6(z6 z6Var, MessagesStorage messagesStorage, int i10) {
+        this.f6109a = i10;
+        this.f6110b = z6Var;
+        this.f6111c = messagesStorage;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f6171a;
-        a7 a7Var = this.f6172b;
-        switch (i10) {
-            case 0:
-                NotificationCenter.getInstance(a7Var.f5149c).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesListUpdated, a7Var);
-                return;
-            case 1:
-                a7Var.f5164u = false;
-                a7Var.f5165w = true;
-                NotificationCenter.getInstance(a7Var.f5149c).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesListUpdated, a7Var, Boolean.FALSE);
-                return;
-            case 2:
-                a7Var.f5168z = false;
-                return;
-            default:
-                a7Var.f5154k.clear();
-                a7Var.d(true);
-                return;
-        }
+        throw new UnsupportedOperationException("Method not decompiled: ci.x6.run():void");
     }
 }

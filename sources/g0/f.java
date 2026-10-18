@@ -23,8 +23,8 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 public abstract class f {
-    public static volatile e f10756a;
-    public static volatile ArrayList f10757b;
+    public static volatile e f10754a;
+    public static volatile ArrayList f10755b;
 
     public static void a(Context context, ArrayList arrayList) {
         List p5 = p(arrayList);
@@ -145,16 +145,16 @@ public abstract class f {
     }
 
     public static e j(Context context) {
-        if (f10756a == null) {
+        if (f10754a == null) {
             try {
-                f10756a = (e) Class.forName("androidx.sharetarget.ShortcutInfoCompatSaverImpl", false, f.class.getClassLoader()).getMethod("getInstance", Context.class).invoke(null, context);
+                f10754a = (e) Class.forName("androidx.sharetarget.ShortcutInfoCompatSaverImpl", false, f.class.getClassLoader()).getMethod("getInstance", Context.class).invoke(null, context);
             } catch (Exception unused) {
             }
-            if (f10756a == null) {
-                f10756a = new Object();
+            if (f10754a == null) {
+                f10754a = new Object();
             }
         }
-        return f10756a;
+        return f10754a;
     }
 
     public static List k(Context context) {
@@ -211,9 +211,9 @@ public abstract class f {
                 if (b10.size() >= g10) {
                     String str2 = null;
                     for (c cVar2 : b10) {
-                        int i13 = cVar2.f10754m;
+                        int i13 = cVar2.f10752m;
                         if (i13 > i11) {
-                            str2 = cVar2.f10746b;
+                            str2 = cVar2.f10744b;
                             i11 = i13;
                         }
                     }
@@ -246,10 +246,10 @@ public abstract class f {
                     }
                     throw new ClassCastException();
                 }
-                q(context, cVar.f10746b);
+                q(context, cVar.f10744b);
                 throw th2;
             }
-            q(context, cVar.f10746b);
+            q(context, cVar.f10744b);
         }
     }
 

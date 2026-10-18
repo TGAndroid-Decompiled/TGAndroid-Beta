@@ -1,5 +1,45 @@
 package zh;
-public abstract class v0 {
-    public static final float[][] f52157a = {new float[]{1.1f, 27.0f, 1.05f, 23.0f, 1.15f, 33.0f, 3.8f, 1.0f, -1.0f, 1.0f, 1.0f, 2.0f, 3.0f}, new float[]{0.83f, 27.0f, 0.79f, 23.0f, 0.86f, 33.0f, 3.8f, 1.0f, -1.0f, 0.6f, 1.0f, 2.0f, 3.0f}, new float[]{1.1f, 27.0f, 1.05f, 23.0f, 1.15f, 18.0f, 3.8f, 1.0f, -1.0f, 1.2f, 1.0f, 2.0f, 3.0f}, new float[]{0.83f, 13.0f, 0.79f, 11.0f, 0.86f, 16.0f, 3.8f, 1.0f, -1.0f, 0.6f, 1.0f, 1.0f, 1.5f}};
-    public static final float[] f52158b = {20.0f, 10.0f, 17.5f, 6.0f, 85.0f, 55.0f, 26.0f, 50.0f, 40.0f, 5.0f, 7.0f, 9.0f, 33.0f, 46.0f, 24.0f, 0.0f, 30.0f, 45.0f, 67.0f, 15.0f, 70.0f, 139.0f, 100.0f, 61.0f, 193.0f, 4.0f, 2.0f, 100.0f, 55.0f, 0.3f, 100.0f, 30.0f, 1.5f, 2.5f, 0.0f, 1.0f, 1.3f, 200.0f, 0.7f, 207.0f, 0.0f, 0.0f, 3.5f, 0.0f, 1.5f, 2.5f, 34.0f, 27.0f, 360.0f, 780.0f, 1.1f, 920.0f, 1.0f, 10.0f};
+
+import android.util.LongSparseArray;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.SerializedData;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class v0 {
+    public static final v0[] d = new v0[4];
+    public final int f52113a;
+    public final LongSparseArray f52114b = new LongSparseArray();
+    public boolean f52115c;
+
+    public v0(int i10) {
+        this.f52113a = i10;
+    }
+
+    public static byte[] b(TLObject tLObject) {
+        try {
+            SerializedData serializedData = new SerializedData(tLObject.getObjectSize());
+            tLObject.serializeToStream(serializedData);
+            byte[] byteArray = serializedData.toByteArray();
+            serializedData.cleanup();
+            return byteArray;
+        } catch (Exception e) {
+            FileLog.e(e);
+            return null;
+        }
+    }
+
+    public final void a(long j10, TLRPC.ShareTheme shareTheme) {
+        this.f52114b.put(j10, shareTheme);
+        int i10 = this.f52113a;
+        if (j10 == UserConfig.getInstance(i10).getClientUserId()) {
+            this.f52115c = true;
+            byte[] b10 = b(shareTheme);
+            if (b10 != null) {
+                MessagesController.getMainSettings(i10).edit().putString("qrShareTheme", Utilities.bytesToHex(b10)).apply();
+            }
+        }
+    }
 }

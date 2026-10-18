@@ -19,10 +19,10 @@ import org.telegram.ui.vr;
 import org.telegram.utils.code.highlight.PrismaHighlighter;
 import v7.q8;
 public final class v0 implements e2.j, g1, n2.m, d9.k, a2, mw0, Utilities.Callback2Return, ih.h, vl0, aw0, bw0 {
-    public final int f16762a;
+    public final int f16760a;
 
     public v0(int i10) {
-        this.f16762a = i10;
+        this.f16760a = i10;
     }
 
     public static mi.b a() {
@@ -60,7 +60,7 @@ public final class v0 implements e2.j, g1, n2.m, d9.k, a2, mw0, Utilities.Callba
     @Override
     public void accept(Object obj) {
         m1 m1Var = (m1) obj;
-        switch (this.f16762a) {
+        switch (this.f16760a) {
             case 0:
                 m1Var.stop();
                 return;
@@ -84,22 +84,22 @@ public final class v0 implements e2.j, g1, n2.m, d9.k, a2, mw0, Utilities.Callba
     public Object apply(Object obj) {
         o2.q qVar = (o2.q) obj;
         qVar.e();
-        return e9.n0.u(e9.s.x(qVar.Y.f47461b, new si.a(9)));
+        return e9.n0.u(e9.s.x(qVar.Y.f47422b, new sg.y(10)));
     }
 
     @Override
     public void b(Object obj, float f7) {
         vr vrVar = (vr) obj;
-        switch (this.f16762a) {
+        switch (this.f16760a) {
             case 27:
-                vrVar.f42280b = f7;
+                vrVar.f42253b = f7;
                 if (vrVar.getParent() != null) {
                     ((View) vrVar.getParent()).invalidate();
                     return;
                 }
                 return;
             default:
-                vrVar.f42281c = f7;
+                vrVar.f42254c = f7;
                 if (vrVar.getParent() != null) {
                     ((View) vrVar.getParent()).invalidate();
                     return;
@@ -110,7 +110,7 @@ public final class v0 implements e2.j, g1, n2.m, d9.k, a2, mw0, Utilities.Callba
 
     @Override
     public Object e(f0 f0Var, v vVar, int i10) {
-        switch (this.f16762a) {
+        switch (this.f16760a) {
             case 3:
                 f0Var.getClass();
                 throw new ClassCastException();
@@ -132,7 +132,7 @@ public final class v0 implements e2.j, g1, n2.m, d9.k, a2, mw0, Utilities.Callba
 
     @Override
     public void g(b2 b2Var, int i10) {
-        switch (this.f16762a) {
+        switch (this.f16760a) {
             case 17:
                 b2Var.dismiss();
                 return;
@@ -148,11 +148,11 @@ public final class v0 implements e2.j, g1, n2.m, d9.k, a2, mw0, Utilities.Callba
     @Override
     public float get(Object obj) {
         vr vrVar = (vr) obj;
-        switch (this.f16762a) {
+        switch (this.f16760a) {
             case 26:
-                return vrVar.f42280b;
+                return vrVar.f42253b;
             default:
-                return vrVar.f42281c;
+                return vrVar.f42254c;
         }
     }
 
@@ -178,7 +178,7 @@ public final class v0 implements e2.j, g1, n2.m, d9.k, a2, mw0, Utilities.Callba
     public Object run(Object obj, Object obj2) {
         Integer num = (Integer) obj;
         Integer num2 = (Integer) obj2;
-        switch (this.f16762a) {
+        switch (this.f16760a) {
             case 20:
                 if (num.intValue() == 0) {
                     return LocaleController.formatPluralString("MaximumReactionsValue", num2.intValue(), new Object[0]);

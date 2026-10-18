@@ -2,7 +2,7 @@ package ic;
 
 import ec.h;
 public abstract class b {
-    public static final char[] f12746a = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ $%*+-./:".toCharArray();
+    public static final char[] f12744a = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ $%*+-./:".toCharArray();
 
     public static void a(b4.d dVar, StringBuilder sb2, int i10, boolean z10) {
         while (i10 > 1) {
@@ -43,7 +43,7 @@ public abstract class b {
 
     public static void c(b4.d dVar, StringBuilder sb2, int i10) {
         int i11;
-        if (h.f8605c != null) {
+        if (h.f8603c != null) {
             if (i10 * 13 <= dVar.d()) {
                 byte[] bArr = new byte[i10 * 2];
                 int i12 = 0;
@@ -61,7 +61,7 @@ public abstract class b {
                     i12 += 2;
                     i10--;
                 }
-                sb2.append(new String(bArr, h.f8605c));
+                sb2.append(new String(bArr, h.f8603c));
                 return;
             }
             throw dc.c.a();
@@ -71,7 +71,7 @@ public abstract class b {
 
     public static void d(b4.d dVar, StringBuilder sb2, int i10) {
         int i11;
-        if (h.f8604b != null) {
+        if (h.f8602b != null) {
             if (i10 * 13 <= dVar.d()) {
                 byte[] bArr = new byte[i10 * 2];
                 int i12 = 0;
@@ -89,7 +89,7 @@ public abstract class b {
                     i12 += 2;
                     i10--;
                 }
-                sb2.append(new String(bArr, h.f8604b));
+                sb2.append(new String(bArr, h.f8602b));
                 return;
             }
             throw dc.c.a();
@@ -138,7 +138,7 @@ public abstract class b {
     }
 
     public static char f(int i10) {
-        char[] cArr = f12746a;
+        char[] cArr = f12744a;
         if (i10 < cArr.length) {
             return cArr[i10];
         }

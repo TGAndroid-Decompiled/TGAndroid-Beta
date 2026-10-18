@@ -5,33 +5,33 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class sn0 implements eo0 {
-    public final Runnable f41491a;
-    public final go0 f41492b;
+    public final Runnable f41456a;
+    public final go0 f41457b;
 
     public sn0(go0 go0Var, Runnable runnable) {
-        this.f41492b = go0Var;
-        this.f41491a = runnable;
+        this.f41457b = go0Var;
+        this.f41456a = runnable;
     }
 
     @Override
     public final boolean c(String str, String str2, boolean z10, TLRPC.TL_inputPaymentCredentialsGooglePay tL_inputPaymentCredentialsGooglePay, TLRPC.TL_paymentSavedCredentialsCard tL_paymentSavedCredentialsCard) {
         String str3;
-        go0 go0Var = this.f41492b;
-        go0Var.f37292y0 = tL_paymentSavedCredentialsCard;
-        go0Var.f37288w0 = str;
+        go0 go0Var = this.f41457b;
+        go0Var.f37254y0 = tL_paymentSavedCredentialsCard;
+        go0Var.f37250w0 = str;
         go0Var.U0 = z10;
-        go0Var.f37290x0 = str2;
+        go0Var.f37252x0 = str2;
         go0Var.J0 = tL_inputPaymentCredentialsGooglePay;
         org.telegram.ui.Cells.c9[] c9VarArr = go0Var.Y;
         org.telegram.ui.Cells.c9 c9Var = c9VarArr[0];
         if (c9Var != null) {
             c9Var.setVisibility(0);
             org.telegram.ui.Cells.c9 c9Var2 = c9VarArr[0];
-            String str4 = go0Var.f37290x0;
+            String str4 = go0Var.f37252x0;
             if (str4 != null && str4.length() > 1) {
-                str3 = go0Var.f37290x0.substring(0, 1).toUpperCase() + go0Var.f37290x0.substring(1);
+                str3 = go0Var.f37252x0.substring(0, 1).toUpperCase() + go0Var.f37252x0.substring(1);
             } else {
-                str3 = go0Var.f37290x0;
+                str3 = go0Var.f37252x0;
             }
             c9Var2.b(R.drawable.msg_payment_card, str3, LocaleController.getString(R.string.PaymentCheckoutMethod), true);
             org.telegram.ui.Cells.c9 c9Var3 = c9VarArr[1];
@@ -39,7 +39,7 @@ public final class sn0 implements eo0 {
                 c9Var3.setVisibility(0);
             }
         }
-        Runnable runnable = this.f41491a;
+        Runnable runnable = this.f41456a;
         if (runnable != null) {
             runnable.run();
         }

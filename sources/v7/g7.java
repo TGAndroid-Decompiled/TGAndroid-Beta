@@ -1,12 +1,12 @@
 package v7;
 public final class g7 {
-    public final b6 f48077a;
-    public final f6 f48078b;
-    public final e7 f48079c;
+    public final b6 f48030a;
+    public final f6 f48031b;
+    public final e7 f48032c;
 
-    public g7(t0.h hVar) {
-        this.f48077a = (b6) hVar.f46911b;
-        this.f48078b = (f6) hVar.f46912c;
-        this.f48079c = (e7) hVar.d;
+    public g7(u2.c cVar) {
+        this.f48030a = (b6) cVar.f47260b;
+        this.f48031b = (f6) cVar.f47261c;
+        this.f48032c = (e7) cVar.d;
     }
 }

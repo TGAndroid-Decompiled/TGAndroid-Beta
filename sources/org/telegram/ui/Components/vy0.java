@@ -19,32 +19,32 @@ public abstract class vy0 extends View implements NotificationCenter.Notificatio
     public bi.c F;
     public float G;
     public ValueAnimator H;
-    public RectF f31934a;
-    public uy0[] f31935b;
-    public float[] f31936c;
+    public RectF f31927a;
+    public uy0[] f31928b;
+    public float[] f31929c;
     public float[] d;
     public float[] e;
-    public float f31937f;
+    public float f31930f;
     public ImageReceiver h;
-    public Long f31938n;
-    public p6 f31939r;
-    public p6 f31940s;
+    public Long f31931n;
+    public p6 f31932r;
+    public p6 f31933s;
     public CharSequence v;
-    public TextPaint f31941w;
-    public StaticLayout f31942x;
-    public int f31943y;
+    public TextPaint f31934w;
+    public StaticLayout f31935x;
+    public int f31936y;
 
     public final long a() {
-        if (this.f31935b == null) {
+        if (this.f31928b == null) {
             return 0L;
         }
         long j10 = 0;
-        for (int i10 = 0; i10 < this.f31935b.length; i10++) {
+        for (int i10 = 0; i10 < this.f31928b.length; i10++) {
             long f7 = this.F.f(i10);
-            uy0 uy0Var = this.f31935b[i10];
-            if (uy0Var != null && (uy0Var.f31114c || f7 > 0)) {
+            uy0 uy0Var = this.f31928b[i10];
+            if (uy0Var != null && (uy0Var.f31107c || f7 > 0)) {
                 if (f7 <= 0) {
-                    f7 = uy0Var.f31112a;
+                    f7 = uy0Var.f31105a;
                 }
                 j10 += f7;
             }
@@ -56,7 +56,7 @@ public abstract class vy0 extends View implements NotificationCenter.Notificatio
 
     public final void c(boolean z10) {
         boolean z11;
-        uy0[] uy0VarArr = this.f31935b;
+        uy0[] uy0VarArr = this.f31928b;
         if (uy0VarArr == null) {
             return;
         }
@@ -64,26 +64,26 @@ public abstract class vy0 extends View implements NotificationCenter.Notificatio
         for (int i10 = 0; i10 < uy0VarArr.length; i10++) {
             long f7 = this.F.f(i10);
             uy0 uy0Var = uy0VarArr[i10];
-            if (uy0Var != null && (uy0Var.f31114c || f7 > 0)) {
+            if (uy0Var != null && (uy0Var.f31107c || f7 > 0)) {
                 if (f7 <= 0) {
-                    f7 = uy0Var.f31112a;
+                    f7 = uy0Var.f31105a;
                 }
                 j10 += f7;
             }
         }
-        this.f31943y = 0;
+        this.f31936y = 0;
         float f10 = 0.0f;
         float f11 = 0.0f;
         for (int i11 = 0; i11 < uy0VarArr.length; i11++) {
             long f12 = this.F.f(i11);
             uy0 uy0Var2 = uy0VarArr[i11];
-            if (uy0Var2 != null && (uy0Var2.f31114c || f12 > 0)) {
-                this.f31943y++;
+            if (uy0Var2 != null && (uy0Var2.f31107c || f12 > 0)) {
+                this.f31936y++;
             }
-            if (uy0Var2 != null && ((z11 = uy0Var2.f31114c) || f12 > 0)) {
+            if (uy0Var2 != null && ((z11 = uy0Var2.f31107c) || f12 > 0)) {
                 int i12 = (f12 > 0L ? 1 : (f12 == 0L ? 0 : -1));
                 if (i12 <= 0) {
-                    f12 = uy0Var2.f31112a;
+                    f12 = uy0Var2.f31105a;
                 }
                 float f13 = ((float) f12) / ((float) j10);
                 if (f13 < 0.02777f) {
@@ -108,10 +108,10 @@ public abstract class vy0 extends View implements NotificationCenter.Notificatio
             }
         }
         if (!z10) {
-            System.arraycopy(this.d, 0, this.f31936c, 0, uy0VarArr.length);
+            System.arraycopy(this.d, 0, this.f31929c, 0, uy0VarArr.length);
             return;
         }
-        System.arraycopy(this.f31936c, 0, this.e, 0, uy0VarArr.length);
+        System.arraycopy(this.f31929c, 0, this.e, 0, uy0VarArr.length);
         ValueAnimator valueAnimator = this.E;
         if (valueAnimator != null) {
             valueAnimator.removeAllListeners();
@@ -132,7 +132,7 @@ public abstract class vy0 extends View implements NotificationCenter.Notificatio
         String str2 = " ";
         String[] split = AndroidUtilities.formatFileSize(a2).split(" ");
         if (split.length > 1) {
-            p6 p6Var = this.f31939r;
+            p6 p6Var = this.f31932r;
             int i10 = (a2 > 0L ? 1 : (a2 == 0L ? 0 : -1));
             if (i10 == 0) {
                 str = " ";
@@ -140,7 +140,7 @@ public abstract class vy0 extends View implements NotificationCenter.Notificatio
                 str = split[0];
             }
             p6Var.t(str, true, false);
-            p6 p6Var2 = this.f31940s;
+            p6 p6Var2 = this.f31933s;
             if (i10 != 0) {
                 str2 = split[1];
             }
@@ -185,11 +185,11 @@ public abstract class vy0 extends View implements NotificationCenter.Notificatio
         float f11;
         float f12;
         int i12;
-        p6 p6Var = this.f31940s;
+        p6 p6Var = this.f31933s;
         ImageReceiver imageReceiver = this.h;
-        p6 p6Var2 = this.f31939r;
-        RectF rectF = this.f31934a;
-        if (this.f31935b != null) {
+        p6 p6Var2 = this.f31932r;
+        RectF rectF = this.f31927a;
+        if (this.f31928b != null) {
             float f13 = 1.0f;
             float f14 = 0.0f;
             if (imageReceiver != null) {
@@ -206,22 +206,22 @@ public abstract class vy0 extends View implements NotificationCenter.Notificatio
                 float y3 = com.google.android.gms.internal.play_billing.k3.y(1.0f, this.G, 0.15f, 0.85f);
                 canvas.scale(y3, y3, imageReceiver.getCenterX(), imageReceiver.getCenterY());
             }
-            if (this.f31943y > 1) {
-                float f16 = this.f31937f;
+            if (this.f31936y > 1) {
+                float f16 = this.f31930f;
                 if (f16 > 0.0f) {
                     float f17 = (float) (f16 - 0.04d);
-                    this.f31937f = f17;
+                    this.f31930f = f17;
                     if (f17 < 0.0f) {
-                        this.f31937f = 0.0f;
+                        this.f31930f = 0.0f;
                     }
                 }
             } else {
-                float f18 = this.f31937f;
+                float f18 = this.f31930f;
                 if (f18 < 1.0f) {
                     float f19 = (float) (f18 + 0.04d);
-                    this.f31937f = f19;
+                    this.f31930f = f19;
                     if (f19 > 1.0f) {
-                        this.f31937f = 1.0f;
+                        this.f31930f = 1.0f;
                     }
                 }
             }
@@ -229,7 +229,7 @@ public abstract class vy0 extends View implements NotificationCenter.Notificatio
             float f20 = 0.0f;
             int i13 = 0;
             while (true) {
-                uy0[] uy0VarArr = this.f31935b;
+                uy0[] uy0VarArr = this.f31928b;
                 i10 = 255;
                 f7 = 10.0f;
                 f10 = f14;
@@ -238,23 +238,23 @@ public abstract class vy0 extends View implements NotificationCenter.Notificatio
                 }
                 uy0 uy0Var = uy0VarArr[i13];
                 if (uy0Var != null) {
-                    float f21 = this.f31936c[i13];
+                    float f21 = this.f31929c[i13];
                     if (f21 != f10) {
                         if (uy0Var.d) {
-                            float y10 = com.google.android.gms.internal.play_billing.k3.y(f13, this.f31937f, 10.0f, f21 * (-360.0f));
+                            float y10 = com.google.android.gms.internal.play_billing.k3.y(f13, this.f31930f, 10.0f, f21 * (-360.0f));
                             if (y10 > f10) {
                                 y10 = f10;
                             }
-                            ((Paint) uy0Var.e).setColor(org.telegram.ui.ActionBar.h6.x0(null, uy0Var.f31113b, z10));
-                            ((Paint) this.f31935b[i13].e).setAlpha(255);
+                            ((Paint) uy0Var.e).setColor(org.telegram.ui.ActionBar.h6.x0(null, uy0Var.f31106b, z10));
+                            ((Paint) this.f31928b[i13].e).setAlpha(255);
                             double width = rectF.width() / 2.0f;
                             i12 = i13;
                             if (Math.abs((float) (((3.141592653589793d * width) / 180.0d) * y10)) <= f13) {
                                 double d = (-90.0f) - (360.0f * f20);
-                                canvas.drawPoint(rectF.centerX() + ((float) (Math.cos(Math.toRadians(d)) * width)), rectF.centerY() + ((float) (Math.sin(Math.toRadians(d)) * width)), (Paint) this.f31935b[i12].e);
+                                canvas.drawPoint(rectF.centerX() + ((float) (Math.cos(Math.toRadians(d)) * width)), rectF.centerY() + ((float) (Math.sin(Math.toRadians(d)) * width)), (Paint) this.f31928b[i12].e);
                             } else {
-                                ((Paint) this.f31935b[i12].e).setStyle(Paint.Style.STROKE);
-                                canvas.drawArc(rectF, (-90.0f) - (360.0f * f20), y10, false, (Paint) this.f31935b[i12].e);
+                                ((Paint) this.f31928b[i12].e).setStyle(Paint.Style.STROKE);
+                                canvas.drawArc(rectF, (-90.0f) - (360.0f * f20), y10, false, (Paint) this.f31928b[i12].e);
                             }
                         } else {
                             i12 = i13;
@@ -275,33 +275,33 @@ public abstract class vy0 extends View implements NotificationCenter.Notificatio
             float f22 = f10;
             int i14 = 0;
             while (true) {
-                uy0[] uy0VarArr2 = this.f31935b;
+                uy0[] uy0VarArr2 = this.f31928b;
                 if (i14 >= uy0VarArr2.length) {
                     break;
                 }
                 uy0 uy0Var2 = uy0VarArr2[i14];
                 if (uy0Var2 != null) {
-                    float f23 = this.f31936c[i14];
+                    float f23 = this.f31929c[i14];
                     if (f23 != f10) {
                         if (!uy0Var2.d) {
-                            float y11 = com.google.android.gms.internal.play_billing.k3.y(1.0f, this.f31937f, f7, f23 * (-360.0f));
+                            float y11 = com.google.android.gms.internal.play_billing.k3.y(1.0f, this.f31930f, f7, f23 * (-360.0f));
                             if (y11 > f10) {
                                 y11 = f10;
                             }
-                            ((Paint) uy0Var2.e).setColor(org.telegram.ui.ActionBar.h6.x0(null, uy0Var2.f31113b, false));
-                            ((Paint) this.f31935b[i14].e).setAlpha(i10);
+                            ((Paint) uy0Var2.e).setColor(org.telegram.ui.ActionBar.h6.x0(null, uy0Var2.f31106b, false));
+                            ((Paint) this.f31928b[i14].e).setAlpha(i10);
                             double width2 = rectF.width() / 2.0f;
                             f12 = f23;
                             if (Math.abs((float) (y11 * ((width2 * 3.141592653589793d) / 180.0d))) <= 1.0f) {
                                 double d10 = (-90.0f) - (f22 * 360.0f);
-                                canvas.drawPoint(rectF.centerX() + ((float) (Math.cos(Math.toRadians(d10)) * width2)), rectF.centerY() + ((float) (Math.sin(Math.toRadians(d10)) * width2)), (Paint) this.f31935b[i14].e);
+                                canvas.drawPoint(rectF.centerX() + ((float) (Math.cos(Math.toRadians(d10)) * width2)), rectF.centerY() + ((float) (Math.sin(Math.toRadians(d10)) * width2)), (Paint) this.f31928b[i14].e);
                                 f11 = 10.0f;
                                 i11 = 255;
                             } else {
-                                ((Paint) this.f31935b[i14].e).setStyle(Paint.Style.STROKE);
+                                ((Paint) this.f31928b[i14].e).setStyle(Paint.Style.STROKE);
                                 f11 = 10.0f;
                                 i11 = 255;
-                                canvas.drawArc(rectF, (-90.0f) - (f22 * 360.0f), y11, false, (Paint) this.f31935b[i14].e);
+                                canvas.drawArc(rectF, (-90.0f) - (f22 * 360.0f), y11, false, (Paint) this.f31928b[i14].e);
                             }
                         } else {
                             i11 = i10;
@@ -325,10 +325,10 @@ public abstract class vy0 extends View implements NotificationCenter.Notificatio
                 canvas.restore();
             }
             if (p6Var2 != null) {
-                int i15 = org.telegram.ui.ActionBar.h6.f21099j5;
+                int i15 = org.telegram.ui.ActionBar.h6.f21092j5;
                 p6Var2.u(org.telegram.ui.ActionBar.h6.x0(null, i15, false));
                 p6Var.u(org.telegram.ui.ActionBar.h6.x0(null, i15, false));
-                if (this.f31938n != null) {
+                if (this.f31931n != null) {
                     float c10 = p6Var.c() + p6Var2.c() + AndroidUtilities.dp(4.0f);
                     float width3 = (getWidth() - c10) / 2.0f;
                     p6Var2.setBounds(0, AndroidUtilities.dp(115.0f), (int) (p6Var2.c() + width3), AndroidUtilities.dp(145.0f));
@@ -337,11 +337,11 @@ public abstract class vy0 extends View implements NotificationCenter.Notificatio
                 p6Var2.draw(canvas);
                 p6Var.draw(canvas);
             }
-            if (this.f31942x != null) {
+            if (this.f31935x != null) {
                 canvas.save();
-                canvas.translate(AndroidUtilities.dp(30.0f), AndroidUtilities.dp(148.0f) - ((this.f31942x.getHeight() - AndroidUtilities.dp(13.0f)) / 2.0f));
-                this.f31941w.setColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21099j5, false));
-                this.f31942x.draw(canvas);
+                canvas.translate(AndroidUtilities.dp(30.0f), AndroidUtilities.dp(148.0f) - ((this.f31935x.getHeight() - AndroidUtilities.dp(13.0f)) / 2.0f));
+                this.f31934w.setColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21092j5, false));
+                this.f31935x.draw(canvas);
                 canvas.restore();
             }
         }
@@ -352,13 +352,13 @@ public abstract class vy0 extends View implements NotificationCenter.Notificatio
         int i12;
         CharSequence charSequence = this.v;
         ImageReceiver imageReceiver = this.h;
-        RectF rectF = this.f31934a;
-        p6 p6Var = this.f31940s;
-        p6 p6Var2 = this.f31939r;
-        Long l4 = this.f31938n;
+        RectF rectF = this.f31927a;
+        p6 p6Var = this.f31933s;
+        p6 p6Var2 = this.f31932r;
+        Long l4 = this.f31931n;
         if (l4 != null) {
             super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(166.0f), 1073741824));
-            i12 = org.telegram.messenger.kk.A(110.0f, View.MeasureSpec.getSize(i10), 2);
+            i12 = org.telegram.messenger.lk.A(110.0f, View.MeasureSpec.getSize(i10), 2);
             rectF.set(AndroidUtilities.dp(3.0f) + i12, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(107.0f) + i12, AndroidUtilities.dp(107.0f));
         } else {
             super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(110.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(110.0f), 1073741824));
@@ -372,29 +372,29 @@ public abstract class vy0 extends View implements NotificationCenter.Notificatio
         p6Var.n(0.18f, 300L, bsVar);
         if (l4 != null) {
             p6Var.w(AndroidUtilities.dp(16.0f));
-            p6Var2.f29199b = 5;
-            p6Var.f29199b = 3;
+            p6Var2.f29192b = 5;
+            p6Var.f29192b = 3;
         } else {
             p6Var.w(AndroidUtilities.dp(13.0f));
-            int textSize = (int) p6Var2.f29197a.getTextSize();
-            int textSize2 = (int) p6Var.f29197a.getTextSize();
+            int textSize = (int) p6Var2.f29190a.getTextSize();
+            int textSize2 = (int) p6Var.f29190a.getTextSize();
             int dp = ((AndroidUtilities.dp(110.0f) - textSize) - textSize2) / 2;
             int i13 = textSize + dp;
             p6Var2.setBounds(0, dp, getMeasuredWidth(), i13);
             p6Var.setBounds(0, AndroidUtilities.dp(2.0f) + i13, getMeasuredWidth(), AndroidUtilities.dp(2.0f) + i13 + textSize2);
-            p6Var2.f29199b = 17;
-            p6Var.f29199b = 17;
+            p6Var2.f29192b = 17;
+            p6Var.f29192b = 17;
         }
         if (charSequence != null) {
-            if (this.f31941w == null) {
-                this.f31941w = new TextPaint(1);
+            if (this.f31934w == null) {
+                this.f31934w = new TextPaint(1);
             }
-            this.f31941w.setTextSize(AndroidUtilities.dp(13.0f));
+            this.f31934w.setTextSize(AndroidUtilities.dp(13.0f));
             int size = View.MeasureSpec.getSize(i10) - AndroidUtilities.dp(60.0f);
-            TextPaint textPaint = this.f31941w;
+            TextPaint textPaint = this.f31934w;
             Layout.Alignment alignment = Layout.Alignment.ALIGN_CENTER;
             TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
-            this.f31942x = dx0.d(charSequence, textPaint, false, size, 1);
+            this.f31935x = dx0.d(charSequence, textPaint, false, size, 1);
         }
         if (imageReceiver != null) {
             imageReceiver.setImageCoords(AndroidUtilities.dp(10.0f) + i12, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(90.0f), AndroidUtilities.dp(90.0f));
@@ -408,7 +408,7 @@ public abstract class vy0 extends View implements NotificationCenter.Notificatio
         boolean z10;
         Long l4;
         ImageReceiver imageReceiver = this.h;
-        if (imageReceiver != null && (l4 = this.f31938n) != null && l4.longValue() != Long.MAX_VALUE && motionEvent.getX() > imageReceiver.getImageX() && motionEvent.getX() <= imageReceiver.getImageX2() && motionEvent.getY() > imageReceiver.getImageY() && motionEvent.getY() <= imageReceiver.getImageY2()) {
+        if (imageReceiver != null && (l4 = this.f31931n) != null && l4.longValue() != Long.MAX_VALUE && motionEvent.getX() > imageReceiver.getImageX() && motionEvent.getX() <= imageReceiver.getImageX2() && motionEvent.getY() > imageReceiver.getImageY() && motionEvent.getY() <= imageReceiver.getImageY2()) {
             z10 = true;
         } else {
             z10 = false;
@@ -449,7 +449,7 @@ public abstract class vy0 extends View implements NotificationCenter.Notificatio
                     this.H = ofFloat;
                     ofFloat.addUpdateListener(new b80(this, 26));
                     this.H.addListener(new c80(this, 25));
-                    org.telegram.messenger.kk.l(2.0f, this.H);
+                    org.telegram.messenger.lk.l(2.0f, this.H);
                     this.H.setDuration(350L);
                     this.H.start();
                 }

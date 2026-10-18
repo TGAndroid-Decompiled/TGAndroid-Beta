@@ -1,26 +1,26 @@
 package ec;
 public class e {
     public static final byte[] d = new byte[0];
-    public final dc.d f8594a;
-    public byte[] f8595b = d;
-    public final int[] f8596c = new int[32];
+    public final dc.d f8592a;
+    public byte[] f8593b = d;
+    public final int[] f8594c = new int[32];
 
     public e(dc.d dVar) {
-        this.f8594a = dVar;
+        this.f8592a = dVar;
     }
 
     public b a() {
         int[] iArr;
-        dc.d dVar = this.f8594a;
-        int i10 = dVar.f7930a;
-        int i11 = dVar.f7931b;
+        dc.d dVar = this.f8592a;
+        int i10 = dVar.f7928a;
+        int i11 = dVar.f7929b;
         b bVar = new b(i10, i11);
-        if (this.f8595b.length < i10) {
-            this.f8595b = new byte[i10];
+        if (this.f8593b.length < i10) {
+            this.f8593b = new byte[i10];
         }
         int i12 = 0;
         while (true) {
-            iArr = this.f8596c;
+            iArr = this.f8594c;
             if (i12 >= 32) {
                 break;
             }
@@ -28,7 +28,7 @@ public class e {
             i12++;
         }
         for (int i13 = 1; i13 < 5; i13++) {
-            byte[] b10 = dVar.b((i11 * i13) / 5, this.f8595b);
+            byte[] b10 = dVar.b((i11 * i13) / 5, this.f8593b);
             int i14 = (i10 * 4) / 5;
             for (int i15 = i10 / 5; i15 < i14; i15++) {
                 int i16 = (b10[i15] & 255) >> 3;

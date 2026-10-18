@@ -6,15 +6,15 @@ import java.util.Arrays;
 public final class a {
     public boolean d;
     public boolean e;
-    public int[] f11669f;
-    public int f11670g;
+    public int[] f11667f;
+    public int f11668g;
     public int h;
-    public Rect f11671i;
-    public long f11667b = -9223372036854775807L;
-    public long f11668c = -9223372036854775807L;
-    public final int[] f11666a = new int[4];
-    public int f11672j = -1;
-    public int f11673k = -1;
+    public Rect f11669i;
+    public long f11665b = -9223372036854775807L;
+    public long f11666c = -9223372036854775807L;
+    public final int[] f11664a = new int[4];
+    public int f11670j = -1;
+    public int f11671k = -1;
 
     public static int a(int i10, int[] iArr) {
         if (i10 >= 0 && i10 < iArr.length) {
@@ -55,7 +55,7 @@ public final class a {
                 int min = Math.min(i11, width - i14);
                 if (min > 0) {
                     int i17 = i13 + min;
-                    Arrays.fill(iArr, i13, i17, this.f11666a[i10]);
+                    Arrays.fill(iArr, i13, i17, this.f11664a[i10]);
                     i14 += min;
                     i13 = i17;
                     continue;

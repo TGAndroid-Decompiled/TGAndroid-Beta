@@ -5,15 +5,15 @@ import e2.j0;
 import java.nio.ByteBuffer;
 public abstract class c {
     public static void a(b0 b0Var, b0 b0Var2) {
-        boolean n10;
+        boolean o10;
         int[] iArr = {0};
         do {
-            n10 = b0Var.n(iArr[0]);
+            o10 = b0Var.o(iArr[0]);
             iArr[0] = iArr[0] + 1;
-            int r10 = b0Var.r(2, iArr);
-            if (r10 != 0) {
-                if (r10 != 1) {
-                    if (r10 == 2) {
+            int s10 = b0Var.s(2, iArr);
+            if (s10 != 0) {
+                if (s10 != 1) {
+                    if (s10 == 2) {
                         j0[] j0VarArr = new j0[2];
                         d.e(b0Var, iArr, j0VarArr);
                         b(b0Var, iArr, b0Var2, j0VarArr[0], j0VarArr[1]);
@@ -25,24 +25,24 @@ public abstract class c {
                 }
             } else {
                 int i10 = ((iArr[0] + 7) & (-8)) / 8;
-                int l4 = ((b0Var.l(i10 + 1) & 255) * 256) + (b0Var.l(i10) & 255);
+                int m10 = ((b0Var.m(i10 + 1) & 255) * 256) + (b0Var.m(i10) & 255);
                 int i11 = i10 + 4;
                 b0Var2.getClass();
                 byte[] array = ((ByteBuffer) b0Var.f4704c).array();
                 int capacity = ((ByteBuffer) b0Var2.f4704c).capacity();
-                int i12 = b0Var2.f4703b + l4;
+                int i12 = b0Var2.f4703b + m10;
                 if (capacity < i12) {
-                    b0Var2.j(i12 + 1024);
+                    b0Var2.l(i12 + 1024);
                 }
-                ((ByteBuffer) b0Var2.f4704c).put(array, i11, l4);
-                b0Var2.f4703b += l4;
-                iArr[0] = (i11 + l4) * 8;
+                ((ByteBuffer) b0Var2.f4704c).put(array, i11, m10);
+                b0Var2.f4703b += m10;
+                iArr[0] = (i11 + m10) * 8;
             }
             if (b0Var.f4703b <= iArr[0] / 8) {
-                n10 = true;
+                o10 = true;
                 continue;
             }
-        } while (!n10);
+        } while (!o10);
     }
 
     public static void b(b0 b0Var, int[] iArr, b0 b0Var2, j0 j0Var, j0 j0Var2) {
@@ -52,7 +52,7 @@ public abstract class c {
                 return;
             }
             if (i10 >= 0 && i10 <= 255) {
-                b0Var2.p(i10);
+                b0Var2.q(i10);
             } else {
                 int f7 = d.f(b0Var, iArr, i10);
                 int d = d.d(b0Var, iArr, j0Var2);
@@ -65,11 +65,11 @@ public abstract class c {
                     if (i11 <= i14) {
                         i14 = i12;
                     }
-                    bArr[i13] = b0Var2.l(i14);
+                    bArr[i13] = b0Var2.m(i14);
                     i13++;
                     i14++;
                 }
-                b0Var2.q(bArr);
+                b0Var2.r(bArr);
             }
         }
     }

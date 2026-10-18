@@ -4,23 +4,23 @@ import android.text.SpannableStringBuilder;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.kk;
+import org.telegram.messenger.lk;
 import org.telegram.ui.Components.yq;
 public final class d implements Runnable {
-    public final int f1118a;
-    public final x f1119b;
+    public final int f1119a;
+    public final x f1120b;
 
     public d(x xVar, int i10) {
-        this.f1118a = i10;
-        this.f1119b = xVar;
+        this.f1119a = i10;
+        this.f1120b = xVar;
     }
 
     @Override
     public final void run() {
         boolean z10;
         String formatPluralStringSpaced;
-        int i10 = this.f1118a;
-        x xVar = this.f1119b;
+        int i10 = this.f1119a;
+        x xVar = this.f1120b;
         switch (i10) {
             case 0:
                 d dVar = xVar.f2412n0;
@@ -47,7 +47,7 @@ public final class d implements Runnable {
                     if (qcVar != null) {
                         org.telegram.ui.Components.ub ubVar = qcVar.e;
                         if ((ubVar instanceof org.telegram.ui.Components.yb) && ubVar.isAttachedToWindow()) {
-                            kk.r(R.string.BotStarsWithdrawalToast, new Object[]{x.j0(xVar.G - currentTime)}, ((org.telegram.ui.Components.yb) xVar.f2396a0.e).f32606b);
+                            lk.r(R.string.BotStarsWithdrawalToast, new Object[]{x.j0(xVar.G - currentTime)}, ((org.telegram.ui.Components.yb) xVar.f2396a0.e).f32599b);
                         }
                     }
                     AndroidUtilities.cancelRunOnUIThread(dVar);

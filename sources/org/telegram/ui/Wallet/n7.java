@@ -1,337 +1,419 @@
 package org.telegram.ui.Wallet;
 
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.DashPathEffect;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.view.View;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.tl.TL_stars;
-public abstract class n7 {
-    public static final float[] f34644a = {0.017513232f, 0.2844959f, 1.2347647f, 0.012535676f, 0.21663007f, 0.8356014f, 0.02682078f, 0.40080056f, 2.4040875f, 0.0032399998f, 0.171f, 0.47039998f};
-    public static final float[] f34645b = {0.0f, 0.47809f, 1.0f};
+public final class n7 extends View {
+    public final t7 f34614a;
 
-    public static int a(float[] fArr, int i10) {
-        int i11 = i10 * 4;
-        int i12 = i11 + 10;
-        if (fArr != null && fArr.length >= 18 && fArr[i12] >= 0.0f) {
-            return i0.a.f(0.2f, ((int) fArr[i11 + 12]) | (-16777216), ((int) fArr[i11 + 11]) | (-16777216));
-        }
-        return i0.a.f(0.2f, -16611884, -16748084);
+    public n7(t7 t7Var, Context context) {
+        super(context);
+        this.f34614a = t7Var;
     }
 
-    public static int b(float f7) {
-        float pow;
-        float max = Math.max(0.0f, Math.min(1.0f, f7));
-        if (max <= 0.0031308f) {
-            pow = max * 12.92f;
-        } else {
-            pow = (((float) Math.pow(max, 0.4166666666666667d)) * 1.055f) - 0.055f;
-        }
-        return Math.max(0, Math.min(255, (int) ((pow * 255.0f) + 0.5f)));
-    }
-
-    public static float[] c(int i10) {
-        float radians;
-        double[] s10 = org.telegram.ui.ActionBar.g5.s(org.telegram.ui.ActionBar.g5.t(org.telegram.ui.ActionBar.g5.r(i10)));
-        float f7 = (float) s10[0];
-        float f10 = (float) s10[1];
-        if (Double.isNaN(s10[2])) {
-            radians = 0.0f;
-        } else {
-            radians = (float) Math.toRadians(s10[2]);
-        }
-        return new float[]{f7, f10, radians};
-    }
-
-    public static float d(float f7) {
-        if (f7 <= 0.04045f) {
-            return f7 / 12.92f;
-        }
-        return (float) Math.pow((f7 + 0.055f) / 1.055f, 2.4d);
-    }
-
-    public static float e(int i10, int i11) {
-        float f7 = ((i10 >> i11) & 255) / 255.0f;
-        if (f7 <= 0.04045f) {
-            return f7 / 12.92f;
-        }
-        return (float) Math.pow((f7 + 0.055f) / 1.055f, 2.4d);
-    }
-
-    public static float[] f(float[] fArr) {
+    @Override
+    public final void onDraw(Canvas canvas) {
         int i10;
         float f7;
         float f10;
         float f11;
-        float[] fArr2 = new float[42];
-        int i11 = 0;
-        int i12 = 0;
-        while (i12 < 2) {
-            int i13 = i12 * 4;
-            int i14 = i13 + 10;
-            int length = fArr.length;
-            float[] fArr3 = f34645b;
-            if (length >= 18 && fArr[i14] >= 0.0f) {
-                fArr2[i12 + 28] = 0.6f;
-                int i15 = (int) fArr[i14];
-                int i16 = i12 * 3;
-                int i17 = i16 + 30;
-                float f12 = ((i15 >> 16) & 255) / 255.0f;
-                float f13 = ((i15 >> 8) & 255) / 255.0f;
-                float f14 = (i15 & 255) / 255.0f;
-                float min = Math.min(f12, Math.min(f13, f14));
-                float max = Math.max(f12, Math.max(f13, f14)) - min;
-                float f15 = (fArr3[2] * 0.0722f) + (fArr3[1] * 0.7152f) + (fArr3[i11] * 0.2126f);
-                float min2 = Math.min(1.0f, max / 0.15f);
-                int i18 = (max > 0.0f ? 1 : (max == 0.0f ? 0 : -1));
-                if (i18 > 0) {
-                    f7 = (f12 - min) / max;
-                } else {
-                    f7 = 0.0f;
-                }
-                fArr2[i17] = com.google.android.gms.internal.play_billing.k3.y(f7, f15, min2, f15);
-                int i19 = i16 + 31;
-                if (i18 > 0) {
-                    f10 = (f13 - min) / max;
-                } else {
-                    f10 = 0.0f;
-                }
-                fArr2[i19] = com.google.android.gms.internal.play_billing.k3.y(f10, f15, min2, f15);
-                int i20 = i16 + 32;
-                if (i18 > 0) {
-                    f11 = (f14 - min) / max;
-                } else {
-                    f11 = 0.0f;
-                }
-                fArr2[i20] = com.google.android.gms.internal.play_billing.k3.y(f11, f15, min2, f15);
-                int i21 = (int) fArr[i14];
-                int i22 = (int) fArr[i13 + 11];
-                int l4 = l(-16216082, i21, i22);
-                int l10 = l(-15291399, i21, i22);
-                for (int i23 = 0; i23 < 3; i23++) {
-                    int i24 = 16 - (i23 * 8);
-                    float e = e(l4, i24) * 0.73f;
-                    float e7 = e(l10, i24) * 0.73f;
-                    int i25 = i12 * 12;
-                    fArr2[i25 + i23] = (e + e7) / 2.0f;
-                    fArr2[i25 + 3 + i23] = e;
-                    fArr2[i25 + 6 + i23] = e7;
-                    fArr2[i25 + 9 + i23] = e;
-                }
-                i10 = 0;
-            } else {
-                i10 = 0;
-                System.arraycopy(f34644a, 0, fArr2, i12 * 12, 12);
-                fArr2[i12 + 28] = 1.0f;
-                System.arraycopy(fArr3, 0, fArr2, (i12 * 3) + 30, 3);
-            }
-            i12++;
-            i11 = i10;
-        }
-        while (i11 < 2) {
-            int a2 = a(fArr, i11);
-            int i26 = i11 * 3;
-            fArr2[i26 + 36] = ((a2 >> 16) & 255) / 255.0f;
-            fArr2[i26 + 37] = ((a2 >> 8) & 255) / 255.0f;
-            fArr2[i26 + 38] = (a2 & 255) / 255.0f;
-            i11++;
-        }
-        System.arraycopy(fArr, 6, fArr2, 24, 4);
-        return fArr2;
-    }
-
-    public static float[] g(TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop) {
-        if (stargiftattributebackdrop == null) {
-            return new float[]{0.0f, 1.0f, 1.0f};
-        }
-        float[] c10 = c(i0.a.f(0.5f, stargiftattributebackdrop.center_color | (-16777216), (-16777216) | stargiftattributebackdrop.edge_color));
-        float[] c11 = c(-16216082);
-        float exp = (float) Math.exp(-Math.pow((((float) ((Math.toDegrees(c10[2]) + 360.0d) % 360.0d)) - 300.0f) / 38.0f, 2.0d));
-        return new float[]{c10[2] - c11[2], Math.min(com.google.android.gms.internal.play_billing.k3.A(exp, 0.18f, 1.0f, Math.max(0.15f, Math.min(1.0f, (c10[1] * 1.5f) / 0.155f))), (c(stargiftattributebackdrop.center_color)[1] * 1.2f) / 0.173f), ((((Math.max(0.1f, c10[0] - 0.02f) / c11[0]) - 1.0f) * Math.max(0.0f, Math.min(1.0f, (0.6f - c10[0]) / 0.15f))) + 1.0f) - (exp * 0.025f)};
-    }
-
-    public static float[] h(int i10) {
-        float d = d(Color.red(i10) / 255.0f);
-        float d10 = d(Color.green(i10) / 255.0f);
-        float d11 = d(Color.blue(i10) / 255.0f);
-        float cbrt = (float) Math.cbrt((0.051445995f * d11) + (0.53633255f * d10) + (0.41222146f * d));
-        float cbrt2 = (float) Math.cbrt((0.10739696f * d11) + (0.6806995f * d10) + (0.2119035f * d));
-        float cbrt3 = (float) Math.cbrt((d11 * 0.6299787f) + (d10 * 0.28171885f) + (d * 0.08830246f));
-        double d12 = (0.4505937f * cbrt3) + ((1.9779985f * cbrt) - (2.4285922f * cbrt2));
-        double d13 = ((cbrt2 * 0.78277177f) + (cbrt * 0.025904037f)) - (cbrt3 * 0.80867577f);
-        return new float[]{((0.7936178f * cbrt2) + (0.21045426f * cbrt)) - (0.004072047f * cbrt3), (float) Math.hypot(d12, d13), (float) Math.atan2(d13, d12)};
-    }
-
-    public static float[] i(float f7, float f10, float f11) {
-        double d = f11;
-        float cos = ((float) Math.cos(d)) * f10;
-        float sin = f10 * ((float) Math.sin(d));
-        float f12 = (0.21580376f * sin) + (0.39633778f * cos) + f7;
-        float f13 = (f7 - (0.105561346f * cos)) - (0.06385417f * sin);
-        float f14 = (f7 - (cos * 0.08948418f)) - (sin * 1.2914855f);
-        float f15 = f12 * f12 * f12;
-        float f16 = f13 * f13 * f13;
-        float f17 = f14 * f14 * f14;
-        return new float[]{(0.23096994f * f17) + ((4.0767417f * f15) - (3.3077116f * f16)), ((2.6097574f * f16) + ((-1.268438f) * f15)) - (0.34131938f * f17), (f17 * 1.7076147f) + ((f15 * (-0.0041960864f)) - (f16 * 0.7034186f))};
-    }
-
-    public static int j(float f7, float f10, float f11) {
-        float[] i10 = i(f7, f10, f11);
-        loop0: for (int i11 = 0; i11 < 40; i11++) {
-            for (float f12 : i10) {
-                if (f12 < -0.001f || f12 > 1.001f) {
-                    f10 *= 0.95f;
-                    i10 = i(f7, f10, f11);
-                }
-            }
-        }
-        return Color.rgb(b(i10[0]), b(i10[1]), b(i10[2]));
-    }
-
-    public static void k(float[] fArr, int i10, TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop) {
-        float f7;
-        float f10;
-        float f11;
-        int i11 = i10 * 4;
-        int i12 = i11 + 10;
-        float f12 = -1.0f;
-        if (stargiftattributebackdrop == null) {
-            f7 = -1.0f;
-        } else {
-            f7 = stargiftattributebackdrop.center_color & 16777215;
-        }
-        fArr[i12] = f7;
-        int i13 = i11 + 11;
-        if (stargiftattributebackdrop == null) {
-            f10 = -1.0f;
-        } else {
-            f10 = stargiftattributebackdrop.edge_color & 16777215;
-        }
-        fArr[i13] = f10;
-        int i14 = i11 + 12;
-        if (stargiftattributebackdrop == null) {
-            f11 = -1.0f;
-        } else {
-            f11 = stargiftattributebackdrop.pattern_color & 16777215;
-        }
-        fArr[i14] = f11;
-        int i15 = i11 + 13;
-        if (stargiftattributebackdrop != null) {
-            f12 = stargiftattributebackdrop.text_color & 16777215;
-        }
-        fArr[i15] = f12;
-    }
-
-    public static int l(int i10, int i11, int i12) {
-        int i13 = i11 | (-16777216);
-        int i14 = i12 | (-16777216);
-        float[] h = h(i0.a.f(0.5f, i13, i14));
-        float exp = (float) Math.exp(-Math.pow((((float) ((Math.toDegrees(h[2]) + 360.0d) % 360.0d)) - 300.0f) / 38.0f, 2.0d));
-        float A = com.google.android.gms.internal.play_billing.k3.A(exp, 0.18f, 1.0f, Math.max(0.15f, Math.min(1.0f, (h[1] * 1.5f) / 0.155f)));
-        float[] h10 = h(i13);
-        float[] h11 = h(i14);
-        float max = Math.max(0.0f, Math.min(1.0f, (0.6f - ((h10[0] + h11[0]) / 2.0f)) / 0.15f));
-        float f7 = h(-16216082)[0];
-        float f10 = h(-15291399)[0];
-        float[] h12 = h(i10);
-        float max2 = Math.max(-2.0f, Math.min(3.0f, (h12[0] - f7) / (f10 - f7)));
-        float f11 = h11[0];
-        float y3 = com.google.android.gms.internal.play_billing.k3.y(h10[0], f11, max2, f11 - 0.02f);
-        float f12 = h12[0];
-        float f13 = ((y3 - f12) * max) + f12 + (exp * (-0.025f));
-        float f14 = h12[1];
-        float f15 = f14 / 0.173f;
-        float f16 = 1.0f - max;
-        return j(Math.max(0.05f, Math.min(0.97f, f13)), com.google.android.gms.internal.play_billing.k3.t(h10[1], 1.1f, max, f16 * Math.min(f14 * A, f15 * h10[1] * 1.2f)), h[2]);
-    }
-
-    public static int m(float[] fArr, int i10, int i11) {
-        double d;
-        double d10;
-        double d11;
+        float f12;
+        float f13;
+        float f14;
+        float max;
+        RectF rectF;
+        int i11;
+        RectF rectF2;
+        RectF rectF3;
+        RectF rectF4;
+        RectF rectF5;
+        RectF rectF6;
+        Canvas canvas2;
+        Paint paint;
         int i12;
-        double cos;
-        double sin;
-        int i13 = ((i11 / 3) * 4) + 10;
-        int i14 = 0;
-        if (fArr.length >= 18 && fArr[i13] >= 0.0f) {
-            int i15 = i10 & 16777215;
-            if (i15 == 165332) {
-                i14 = 2;
-            } else if (i15 != 29132 && i15 != 561134) {
-                if (i15 != 2267888 && i15 != 1485817) {
-                    i14 = 3;
-                }
-            } else {
-                i14 = 1;
-            }
-            return (((int) fArr[i13 + i14]) & 16777215) | (Color.alpha(i10) << 24);
-        } else if (fArr[i11] == 0.0f && fArr[i11 + 1] == 1.0f && fArr[i11 + 2] == 1.0f) {
-            return i10;
-        } else {
-            double[] s10 = org.telegram.ui.ActionBar.g5.s(org.telegram.ui.ActionBar.g5.t(org.telegram.ui.ActionBar.g5.r(i10)));
-            double d12 = s10[0];
-            double d13 = 0.8d;
-            if (d12 < 0.8d) {
-                d13 = 0.0d;
-            }
-            s10[0] = Math.max(d13, d12 * fArr[i11 + 2]);
-            s10[1] = s10[1] * fArr[i11 + 1];
-            if (Double.isNaN(s10[2])) {
-                d = 0.0d;
-            } else {
-                d = s10[2];
-            }
-            s10[2] = Math.toDegrees(fArr[i11]) + d;
-            double[] dArr = null;
-            for (int i16 = 0; i16 < 40; i16++) {
-                double d14 = s10[0];
-                double d15 = s10[1];
-                double d16 = s10[2];
-                if (Double.isNaN(d16)) {
-                    cos = 0.0d;
+        t7 t7Var;
+        Path path;
+        x5 x5Var;
+        float f15;
+        t7 t7Var2 = this.f34614a;
+        RectF rectF7 = t7Var2.D1;
+        Path path2 = t7Var2.I;
+        x5 x5Var2 = t7Var2.f34898c;
+        Matrix matrix = t7Var2.W;
+        Paint paint2 = t7Var2.F;
+        RectF rectF8 = t7Var2.H;
+        Paint paint3 = t7Var2.f34944x;
+        Path path3 = t7Var2.T;
+        if (t7Var2.Y0 > 0.0f) {
+            paint3.setShader(null);
+            paint3.setColorFilter(null);
+            ArrayList arrayList = t7Var2.S;
+            int size = arrayList.size();
+            int i13 = 0;
+            while (i13 < size) {
+                Object obj = arrayList.get(i13);
+                int i14 = i13 + 1;
+                q7 q7Var = (q7) obj;
+                float f16 = q7Var.h / q7Var.f34756f;
+                if (f16 < 0.1f) {
+                    f15 = f16 / 0.1f;
                 } else {
-                    cos = Math.cos((d16 * 3.141592653589793d) / 180.0d) * d15;
+                    float f17 = 1.0f - ((f16 - 0.1f) / 0.9f);
+                    f15 = f17 * f17;
                 }
-                if (Double.isNaN(d16)) {
-                    sin = 0.0d;
-                } else {
-                    sin = Math.sin((d16 * 3.141592653589793d) / 180.0d) * d15;
+                ArrayList arrayList2 = arrayList;
+                float A = com.google.android.gms.internal.play_billing.k3.A(f15, 0.4f, 0.6f, q7Var.e);
+                paint3.setColor(-1);
+                paint3.setAlpha((int) (Utilities.clamp01(f15) * 130.0f));
+                canvas.save();
+                canvas.translate(q7Var.f34753a, q7Var.f34754b);
+                canvas.rotate(q7Var.f34757g);
+                path3.rewind();
+                float f18 = -A;
+                float f19 = f18 * 2.0f;
+                path3.moveTo(0.0f, f19);
+                float f20 = A * 0.35f;
+                float f21 = f18 * 0.35f;
+                path3.lineTo(f20, f21);
+                float f22 = A * 2.0f;
+                path3.lineTo(f22, 0.0f);
+                path3.lineTo(f20, f20);
+                path3.lineTo(0.0f, f22);
+                path3.lineTo(f21, f20);
+                path3.lineTo(f19, 0.0f);
+                path3.lineTo(f21, f21);
+                path3.close();
+                canvas.drawPath(path3, paint3);
+                canvas.restore();
+                i13 = i14;
+                arrayList = arrayList2;
+            }
+            float f23 = 1.0f;
+            paint3.setAlpha(255);
+            ArrayList arrayList3 = t7Var2.f34920n;
+            int size2 = arrayList3.size();
+            int i15 = 0;
+            while (i15 < size2) {
+                Object obj2 = arrayList3.get(i15);
+                i15++;
+                p7 p7Var = (p7) obj2;
+                float clamp01 = f23 - Utilities.clamp01(p7Var.f34714c / 0.42f);
+                float z10 = org.telegram.ui.Cells.c1.z(clamp01, clamp01, clamp01, f23);
+                paint2.setColor(-1);
+                paint2.setAlpha((int) (clamp01 * 90.0f));
+                paint2.setStrokeWidth(AndroidUtilities.dp(2.4f) * clamp01);
+                canvas.drawCircle(p7Var.f34712a, p7Var.f34713b, com.google.android.gms.internal.play_billing.k3.A(z10, 0.43f, 0.42f, t7Var2.U()), paint2);
+                arrayList3 = arrayList3;
+                size2 = size2;
+                f23 = 1.0f;
+            }
+            Paint paint4 = t7Var2.f34934s1;
+            Path path4 = t7Var2.f34938u1;
+            Paint paint5 = t7Var2.f34931r1;
+            float clamp012 = Utilities.clamp01(t7Var2.f34928q1.f34785a);
+            if (clamp012 < 0.01f || !t7Var2.C()) {
+                i10 = 1;
+            } else {
+                paint4.setAlpha((int) (22.0f * clamp012));
+                canvas.drawPath(path4, paint4);
+                float dp = AndroidUtilities.dp(6.0f);
+                float dp2 = AndroidUtilities.dp(4.5f);
+                float f24 = dp + dp2;
+                i10 = 1;
+                paint5.setPathEffect(new DashPathEffect(new float[]{dp, dp2}, f24 - ((t7Var2.f34922n1 * AndroidUtilities.dp(18.0f)) % f24)));
+                paint5.setStrokeWidth(AndroidUtilities.dp(3.2f));
+                paint5.setColor(Color.argb((int) (40.0f * clamp012), 0, 18, 48));
+                canvas.drawPath(path4, paint5);
+                paint5.setStrokeWidth(AndroidUtilities.dp(1.8f));
+                paint5.setColor(Color.argb((int) (clamp012 * 180.0f), 255, 255, 255));
+                canvas.drawPath(path4, paint5);
+            }
+            float w9 = com.google.android.gms.internal.play_billing.k3.w(t7Var2.f34893a0, 0.6f, t7Var2.f34896b0, 10.0f);
+            matrix.setScale(t7Var2.Y0 * 1.5f, 1.0f);
+            matrix.postRotate(-24.0f);
+            float f25 = t7Var2.Y0;
+            matrix.postTranslate(com.google.android.gms.internal.play_billing.k3.t(w9, f25, 0.45f, (-f25) * 0.25f), 0.0f);
+            t7Var2.V.setLocalMatrix(matrix);
+            ArrayList<RectF> stickerObstacles = x5Var2.getStickerObstacles();
+            RectF rectF9 = stickerObstacles.get(0);
+            RectF rectF10 = stickerObstacles.get(i10);
+            RectF rectF11 = stickerObstacles.get(2);
+            RectF rectF12 = stickerObstacles.get(3);
+            RectF rectF13 = stickerObstacles.get(4);
+            RectF rectF14 = stickerObstacles.get(5);
+            ArrayList G = t7Var2.G();
+            Path path5 = path2;
+            int size3 = G.size();
+            int i16 = 0;
+            Paint paint6 = paint3;
+            x5 x5Var3 = x5Var2;
+            float f26 = 0.0f;
+            float f27 = 0.0f;
+            float f28 = 0.0f;
+            float f29 = 0.0f;
+            while (i16 < size3) {
+                int i17 = i16 + 1;
+                s7 s7Var = (s7) G.get(i16);
+                int i18 = s7Var.H;
+                int i19 = size3;
+                r7 r7Var = s7Var.f34847i;
+                ArrayList arrayList4 = G;
+                r7 r7Var2 = s7Var.f34845f;
+                r7 r7Var3 = s7Var.e;
+                RectF rectF15 = rectF11;
+                r7 r7Var4 = s7Var.f34848j;
+                float f30 = f28;
+                r7 r7Var5 = s7Var.f34849k;
+                RectF rectF16 = rectF14;
+                r7 r7Var6 = s7Var.f34854p;
+                float f31 = f26;
+                if (i18 != 2 && (i18 != 1 || (s7Var.O && r7Var4.f34785a > 0.3f))) {
+                    rectF4 = rectF9;
+                    rectF2 = rectF10;
+                    rectF6 = rectF12;
+                    rectF5 = rectF13;
+                    max = f27;
+                    rectF = rectF7;
+                    path = path5;
+                    x5Var = x5Var3;
+                    paint = paint6;
+                    rectF3 = rectF16;
+                    t7Var = t7Var2;
+                    path5 = path;
+                    t7Var2 = t7Var;
+                    paint6 = paint;
+                    x5Var3 = x5Var;
+                    rectF7 = rectF;
+                    rectF9 = rectF4;
+                    rectF12 = rectF6;
+                    rectF13 = rectF5;
+                    f27 = max;
+                    i16 = i17;
+                    size3 = i19;
+                    G = arrayList4;
+                    rectF11 = rectF15;
+                    f28 = f30;
+                    f26 = f31;
+                    rectF10 = rectF2;
+                    rectF14 = rectF3;
                 }
-                double[] j10 = org.telegram.ui.ActionBar.g5.j(org.telegram.ui.ActionBar.g5.d, new double[]{d14, cos, sin});
-                for (int i17 = 0; i17 < 3; i17++) {
-                    j10[i17] = Math.pow(j10[i17], 3.0d);
-                }
-                dArr = org.telegram.ui.ActionBar.g5.j(org.telegram.ui.ActionBar.g5.f20882f, org.telegram.ui.ActionBar.g5.j(org.telegram.ui.ActionBar.g5.f20880b, j10));
-                double d17 = dArr[0];
-                if (d17 >= 0.0d) {
-                    double d18 = dArr[1];
-                    if (d18 >= 0.0d) {
-                        double d19 = dArr[2];
-                        if (d19 >= 0.0d && d17 <= 1.0d && d18 <= 1.0d && d19 <= 1.0d) {
-                            break;
+                Bitmap a2 = s7Var.a();
+                float f32 = s7Var.f34850l.f34785a;
+                float clamp013 = Utilities.clamp01(s7Var.f34856r.f34785a);
+                RectF rectF17 = rectF10;
+                float f33 = f27;
+                float A2 = com.google.android.gms.internal.play_billing.k3.A(clamp013, 0.2f, 0.8f, (((1.0f - (s7Var.f34855q.f34785a * 0.9f)) * 0.04f * f32) + 1.0f) * t7Var2.U() * s7Var.f34846g.f34785a * s7Var.h.f34785a);
+                if (a2 != null && A2 >= 1.0f) {
+                    float max2 = Math.max(r7Var4.f34785a, 0.7f * f32);
+                    float dp3 = (AndroidUtilities.dp(9.0f) * max2) + AndroidUtilities.dp(1.5f);
+                    float sin = ((float) Math.sin(Math.toRadians(t7Var2.f34896b0))) * dp3 * 2.2f;
+                    float sin2 = ((float) Math.sin(Math.toRadians(t7Var2.f34893a0))) * dp3 * 2.2f;
+                    t7 t7Var3 = t7Var2;
+                    float f34 = r7Var3.f34785a + s7Var.f34852n.f34785a + sin;
+                    float dp4 = ((r7Var2.f34785a + s7Var.f34853o.f34785a) + sin2) - (AndroidUtilities.dp(4.0f) * max2);
+                    float f35 = r7Var3.f34785a - (sin * 0.3f);
+                    float f36 = (dp3 * 0.22f) + (r7Var2.f34785a - (sin2 * 0.3f));
+                    float clamp014 = Utilities.clamp01((f32 * 1.5f) + (3.0f * max2) + r7Var6.f34785a + r7Var5.f34785a);
+                    rectF7.set(Math.min(f34, f35) - A2, Math.min(dp4, f36) - A2, Math.max(f34, f35) + A2, Math.max(dp4, f36) + A2);
+                    boolean intersects = RectF.intersects(rectF7, rectF12);
+                    float f37 = A2 * 0.4f;
+                    rectF8.set(f34 - f37, dp4 - f37, f34 + f37, dp4 + f37);
+                    max = Math.max(f33, Math.max(t7.n(rectF8, rectF9), t7.n(rectF8, rectF13)) * clamp013);
+                    f31 = Math.max(f31, t7.n(rectF8, rectF17) * clamp013);
+                    f30 = Math.max(f30, t7.n(rectF8, rectF16) * clamp013);
+                    RectF rectF18 = rectF12;
+                    f29 = Math.max(f29, t7.n(rectF8, rectF15) * clamp013);
+                    if (intersects) {
+                        rectF = rectF7;
+                        i11 = canvas.saveLayer(rectF7, null);
+                    } else {
+                        rectF = rectF7;
+                        i11 = -1;
+                    }
+                    canvas.save();
+                    canvas.rotate(r7Var.f34785a, f35, f36);
+                    rectF2 = rectF17;
+                    rectF3 = rectF16;
+                    rectF4 = rectF9;
+                    rectF5 = rectF13;
+                    rectF6 = rectF18;
+                    rectF15 = rectF15;
+                    t7Var3.t(canvas, s7Var, f35, f36, com.google.android.gms.internal.play_billing.k3.A(r7Var6.f34785a, 0.07f, (0.08f * max2) + 0.97f, A2), Math.max(max2, r7Var5.f34785a * 0.5f), r7Var6.f34785a, clamp014 * clamp013);
+                    canvas.restore();
+                    float f38 = f34 - A2;
+                    float f39 = dp4 - A2;
+                    float f40 = f34 + A2;
+                    float f41 = dp4 + A2;
+                    int saveLayer = canvas.saveLayer(f38, f39, f40, f41, null);
+                    Paint paint7 = paint6;
+                    paint7.setAlpha((int) (clamp013 * 255.0f));
+                    float f42 = r7Var5.f34785a;
+                    if (f42 > 0.004f) {
+                        t7Var3.r(canvas, a2, f34, dp4, A2, f42, 1.0f, r7Var.f34785a, s7Var.U, s7Var.V);
+                        t7Var = t7Var3;
+                        canvas2 = canvas;
+                        i12 = saveLayer;
+                        paint = paint7;
+                    } else {
+                        canvas2 = canvas;
+                        paint = paint7;
+                        i12 = saveLayer;
+                        t7Var = t7Var3;
+                        canvas2.save();
+                        canvas2.rotate(r7Var.f34785a, f34, dp4);
+                        float f43 = A2 / 2.0f;
+                        rectF8.set(f34 - f43, dp4 - f43, f34 + f43, dp4 + f43);
+                        canvas2.drawBitmap(a2, (Rect) null, rectF8, paint);
+                        canvas2.restore();
+                    }
+                    paint.setAlpha(255);
+                    canvas2.drawRect(f38, f39, f40, f41, t7Var.U);
+                    canvas2.restoreToCount(i12);
+                    if (intersects) {
+                        if (intersects) {
+                            path = path5;
+                            x5Var = x5Var3;
+                            x5Var.h(path, t7Var.Y0, t7Var.Z0);
+                            canvas2.drawPath(path, t7Var.E1);
+                        } else {
+                            path = path5;
+                            x5Var = x5Var3;
                         }
+                        canvas2.restoreToCount(i11);
                     } else {
-                        continue;
+                        path = path5;
+                        x5Var = x5Var3;
                     }
-                }
-                s10[1] = s10[1] * 0.95d;
-            }
-            double[] dArr2 = new double[3];
-            for (int i18 = 0; i18 < dArr.length; i18++) {
-                if (Math.abs(dArr[i18]) > 0.0031308d) {
-                    double d20 = dArr[i18];
-                    if (d20 < 0.0d) {
-                        i12 = -1;
-                    } else {
-                        i12 = 1;
-                    }
-                    d11 = i12;
-                    d10 = (Math.pow(Math.abs(d20), 0.4166666666666667d) * 1.055d) - 0.055d;
+                    path5 = path;
+                    t7Var2 = t7Var;
+                    paint6 = paint;
+                    x5Var3 = x5Var;
+                    rectF7 = rectF;
+                    rectF9 = rectF4;
+                    rectF12 = rectF6;
+                    rectF13 = rectF5;
+                    f27 = max;
+                    i16 = i17;
+                    size3 = i19;
+                    G = arrayList4;
+                    rectF11 = rectF15;
+                    f28 = f30;
+                    f26 = f31;
+                    rectF10 = rectF2;
+                    rectF14 = rectF3;
                 } else {
-                    d10 = 12.92d;
-                    d11 = dArr[i18];
+                    f28 = f30;
+                    path5 = path5;
+                    f29 = f29;
+                    paint6 = paint6;
+                    x5Var3 = x5Var3;
+                    rectF7 = rectF7;
+                    rectF9 = rectF9;
+                    rectF12 = rectF12;
+                    i16 = i17;
+                    size3 = i19;
+                    rectF11 = rectF15;
+                    rectF10 = rectF17;
+                    rectF14 = rectF16;
+                    f27 = f33;
+                    f26 = f31;
+                    t7Var2 = t7Var2;
+                    rectF13 = rectF13;
+                    G = arrayList4;
                 }
-                dArr2[i18] = d10 * d11;
             }
-            return i0.a.o(Color.rgb((int) Math.round(Utilities.clamp(dArr2[0], 1.0d, 0.0d) * 255.0d), (int) Math.round(Utilities.clamp(dArr2[1], 1.0d, 0.0d) * 255.0d), (int) Math.round(Utilities.clamp(dArr2[2], 1.0d, 0.0d) * 255.0d)), Color.alpha(i10));
+            t7 t7Var4 = t7Var2;
+            float f44 = f26;
+            float f45 = f27;
+            float f46 = f28;
+            x5 x5Var4 = x5Var3;
+            float f47 = f29;
+            Paint paint8 = t7Var4.f34916k0;
+            Paint paint9 = t7Var4.f34918l0;
+            Paint paint10 = t7Var4.f34914j0;
+            s7 s7Var2 = t7Var4.f34910h0;
+            if (s7Var2 == null || s7Var2.H != 2) {
+                f7 = f45;
+                f10 = f44;
+                f11 = f46;
+                f12 = f47;
+            } else {
+                float f48 = s7Var2.f34852n.f34785a + s7Var2.e.f34785a;
+                float f49 = s7Var2.f34853o.f34785a + s7Var2.f34845f.f34785a;
+                float P = (t7Var4.P(s7Var2) * 0.5f) + AndroidUtilities.dp(9.0f);
+                paint10.setColor(-1);
+                Paint.Style style = Paint.Style.STROKE;
+                paint10.setStyle(style);
+                paint10.setStrokeCap(Paint.Cap.ROUND);
+                paint10.setStrokeWidth(AndroidUtilities.dp(2.0f));
+                if (paint10.getPathEffect() == null) {
+                    f14 = f45;
+                    paint10.setPathEffect(new DashPathEffect(new float[]{AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f)}, 0.5f));
+                } else {
+                    f14 = f45;
+                }
+                paint10.setShadowLayer(AndroidUtilities.dp(0.75f), 0.0f, 0.0f, 1342177280);
+                paint9.setColor(-1);
+                paint9.setStyle(style);
+                paint9.setStrokeWidth(AndroidUtilities.dp(2.66f));
+                paint9.setShadowLayer(AndroidUtilities.dp(0.75f), 0.0f, 0.0f, 1342177280);
+                paint8.setColor(-15033089);
+                canvas.save();
+                canvas.rotate(s7Var2.f34847i.f34785a, f48, f49);
+                float f50 = f48 - P;
+                float f51 = f49 - P;
+                f10 = f44;
+                float f52 = f48 + P;
+                float f53 = f49 + P;
+                f12 = f47;
+                f11 = f46;
+                f7 = f14;
+                canvas.drawArc(f50, f51, f52, f53, 0.0f, 180.0f, false, paint10);
+                canvas.drawArc(f50, f51, f52, f53, 180.0f, 180.0f, false, paint10);
+                for (int i20 = -1; i20 <= 1; i20 += 2) {
+                    float f54 = (i20 * P) + f48;
+                    canvas.drawCircle(f54, f49, AndroidUtilities.dp(5.66f), paint9);
+                    canvas.drawCircle(f54, f49, AndroidUtilities.dp(4.66f), paint8);
+                }
+                canvas.restore();
+            }
+            v5 v5Var = x5Var4.O;
+            float round = Math.round(f12 * 20.0f) / 20.0f;
+            if (round != x5Var4.K) {
+                x5Var4.K = round;
+                x5Var4.I.invalidate();
+            }
+            if (Math.max(f11, f7) > 0.0f) {
+                f13 = 1.0f;
+            } else {
+                f13 = 0.0f;
+            }
+            if (f13 != x5Var4.h) {
+                x5Var4.h = f13;
+                v5Var.invalidate();
+            }
+            float round2 = Math.round(f7 * 20.0f) / 20.0f;
+            float round3 = Math.round(f10 * 20.0f) / 20.0f;
+            if (round2 != x5Var4.f35093h0) {
+                x5Var4.f35093h0 = round2;
+                v5Var.invalidate();
+                x5Var4.P.invalidate();
+            }
+            if (round3 != x5Var4.f35094i0) {
+                x5Var4.f35094i0 = round3;
+                x5Var4.H.invalidate();
+            }
         }
     }
 }

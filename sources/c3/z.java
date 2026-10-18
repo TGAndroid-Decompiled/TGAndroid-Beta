@@ -22,14 +22,14 @@ public final class z implements c0 {
             this.f4689a = b0Var;
             c5.b0 b0Var2 = new c5.b0(i10, 3);
             this.f4690b = b0Var2;
-            b0Var.c(0L);
-            b0Var2.c(0L);
+            b0Var.d(0L);
+            b0Var2.d(0L);
         } else {
             this.f4689a = new c5.b0(length, 3);
             this.f4690b = new c5.b0(length, 3);
         }
-        this.f4689a.d(jArr);
-        this.f4690b.d(jArr2);
+        this.f4689a.g(jArr);
+        this.f4690b.g(jArr2);
         this.f4691c = j10;
     }
 
@@ -54,12 +54,12 @@ public final class z implements c0 {
             return new b0(d0Var, d0Var);
         }
         int c10 = m0.c(b0Var, j10);
-        long m10 = b0Var.m(c10);
+        long n10 = b0Var.n(c10);
         c5.b0 b0Var2 = this.f4689a;
-        d0 d0Var2 = new d0(m10, b0Var2.m(c10));
-        if (m10 != j10 && c10 != b0Var.f4703b - 1) {
+        d0 d0Var2 = new d0(n10, b0Var2.n(c10));
+        if (n10 != j10 && c10 != b0Var.f4703b - 1) {
             int i10 = c10 + 1;
-            return new b0(d0Var2, new d0(b0Var.m(i10), b0Var2.m(i10)));
+            return new b0(d0Var2, new d0(b0Var.n(i10), b0Var2.n(i10)));
         }
         return new b0(d0Var2, d0Var2);
     }

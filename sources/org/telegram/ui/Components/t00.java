@@ -16,16 +16,16 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 public final class t00 extends FrameLayout {
-    public final int f30425a = 1;
-    public boolean f30426b;
-    public final Object f30427c;
+    public final int f30418a = 1;
+    public boolean f30419b;
+    public final Object f30420c;
     public Object d;
     public final KeyEvent.Callback e;
 
     public t00(v00 v00Var, Activity activity) {
         super(activity);
         this.e = v00Var;
-        this.f30427c = new RectF();
+        this.f30420c = new RectF();
     }
 
     public void a(String str, boolean z10) {
@@ -38,7 +38,7 @@ public final class t00 extends FrameLayout {
         ((r80) this.e).E = true;
         AnimatorSet animatorSet = new AnimatorSet();
         animatorSet.setDuration(180L);
-        animatorSet.setInterpolator(bs.f25038g);
+        animatorSet.setInterpolator(bs.f25031g);
         Property property = View.ALPHA;
         ObjectAnimator ofFloat = ObjectAnimator.ofFloat(textViewArr[0], property, 1.0f, 0.0f);
         TextView textView = textViewArr[0];
@@ -56,15 +56,15 @@ public final class t00 extends FrameLayout {
         boolean z10;
         boolean z11;
         int min;
-        switch (this.f30425a) {
+        switch (this.f30418a) {
             case 0:
-                RectF rectF = (RectF) this.f30427c;
+                RectF rectF = (RectF) this.f30420c;
                 v00 v00Var = (v00) this.e;
                 getMeasuredHeight();
                 AndroidUtilities.dp(36.0f);
                 int I = ((v00Var.h - v00.I(v00Var)) - AndroidUtilities.dp(8.0f)) + AndroidUtilities.statusBarHeight;
                 boolean z12 = false;
-                if (this.f30426b) {
+                if (this.f30419b) {
                     int n10 = v00.n(v00Var) + I;
                     int i11 = AndroidUtilities.statusBarHeight;
                     int i12 = i11 * 2;
@@ -88,13 +88,13 @@ public final class t00 extends FrameLayout {
                 v00.r(v00Var).setBounds(0, I, getMeasuredWidth(), getMeasuredHeight());
                 v00.s(v00Var).draw(canvas);
                 if (f7 != 1.0f) {
-                    org.telegram.ui.ActionBar.h6.f21283t0.setColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21064h5, false));
+                    org.telegram.ui.ActionBar.h6.f21276t0.setColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21057h5, false));
                     rectF.set(v00.t(v00Var), v00.v(v00Var) + I, getMeasuredWidth() - v00.w(v00Var), AndroidUtilities.dp(24.0f) + v00.y(v00Var) + I);
-                    canvas.drawRoundRect(rectF, AndroidUtilities.dp(12.0f) * f7, AndroidUtilities.dp(12.0f) * f7, org.telegram.ui.ActionBar.h6.f21283t0);
+                    canvas.drawRoundRect(rectF, AndroidUtilities.dp(12.0f) * f7, AndroidUtilities.dp(12.0f) * f7, org.telegram.ui.ActionBar.h6.f21276t0);
                 }
                 if (i10 > 0) {
-                    org.telegram.ui.ActionBar.h6.f21283t0.setColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21064h5, false));
-                    canvas.drawRect(v00.z(v00Var), AndroidUtilities.statusBarHeight - i10, getMeasuredWidth() - v00.A(v00Var), AndroidUtilities.statusBarHeight, org.telegram.ui.ActionBar.h6.f21283t0);
+                    org.telegram.ui.ActionBar.h6.f21276t0.setColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21057h5, false));
+                    canvas.drawRect(v00.z(v00Var), AndroidUtilities.statusBarHeight - i10, getMeasuredWidth() - v00.A(v00Var), AndroidUtilities.statusBarHeight, org.telegram.ui.ActionBar.h6.f21276t0);
                 }
                 if (i10 > AndroidUtilities.statusBarHeight / 2) {
                     z10 = true;
@@ -103,12 +103,12 @@ public final class t00 extends FrameLayout {
                 }
                 Boolean bool = (Boolean) this.d;
                 if (bool == null || bool.booleanValue() != z10) {
-                    if (AndroidUtilities.computePerceivedBrightness(v00Var.getThemedColor(org.telegram.ui.ActionBar.h6.f21064h5)) > 0.721f) {
+                    if (AndroidUtilities.computePerceivedBrightness(v00Var.getThemedColor(org.telegram.ui.ActionBar.h6.f21057h5)) > 0.721f) {
                         z11 = true;
                     } else {
                         z11 = false;
                     }
-                    if (AndroidUtilities.computePerceivedBrightness(org.telegram.ui.ActionBar.h6.v(v00Var.getThemedColor(org.telegram.ui.ActionBar.h6.f21272s8), 855638016)) > 0.721f) {
+                    if (AndroidUtilities.computePerceivedBrightness(org.telegram.ui.ActionBar.h6.v(v00Var.getThemedColor(org.telegram.ui.ActionBar.h6.f21265s8), 855638016)) > 0.721f) {
                         z12 = true;
                     }
                     this.d = Boolean.valueOf(z10);
@@ -127,7 +127,7 @@ public final class t00 extends FrameLayout {
 
     @Override
     public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        switch (this.f30425a) {
+        switch (this.f30418a) {
             case 1:
                 super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
                 accessibilityNodeInfo.setClassName("android.widget.Button");
@@ -141,7 +141,7 @@ public final class t00 extends FrameLayout {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        switch (this.f30425a) {
+        switch (this.f30418a) {
             case 0:
                 v00 v00Var = (v00) this.e;
                 if (motionEvent.getAction() == 0 && v00Var.h != 0 && motionEvent.getY() < v00Var.h) {
@@ -156,7 +156,7 @@ public final class t00 extends FrameLayout {
 
     @Override
     public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        switch (this.f30425a) {
+        switch (this.f30418a) {
             case 0:
                 super.onLayout(z10, i10, i11, i12, i13);
                 v00.H((v00) this.e);
@@ -171,16 +171,16 @@ public final class t00 extends FrameLayout {
     public final void onMeasure(int i10, int i11) {
         int i12;
         float f7;
-        switch (this.f30425a) {
+        switch (this.f30418a) {
             case 0:
                 int size = View.MeasureSpec.getSize(i11);
                 v00 v00Var = (v00) this.e;
-                ai.u1 u1Var = v00Var.f31128b;
+                ai.u1 u1Var = v00Var.f31121b;
                 boolean z10 = true;
-                v00Var.f31131n = true;
+                v00Var.f31124n = true;
                 setPadding(v00.x(v00Var), AndroidUtilities.statusBarHeight, v00.C(v00Var), 0);
-                v00Var.f31131n = false;
-                int F = v00.F(v00Var) + (v00Var.f31129c.h() * AndroidUtilities.dp(48.0f)) + AndroidUtilities.dp(48.0f) + AndroidUtilities.statusBarHeight;
+                v00Var.f31124n = false;
+                int F = v00.F(v00Var) + (v00Var.f31122c.h() * AndroidUtilities.dp(48.0f)) + AndroidUtilities.dp(48.0f) + AndroidUtilities.statusBarHeight;
                 int i13 = size / 5;
                 if (F < i13 * 3.2d) {
                     i12 = 0;
@@ -194,18 +194,18 @@ public final class t00 extends FrameLayout {
                     i12 = v00.G(v00Var);
                 }
                 if (u1Var.getPaddingTop() != i12) {
-                    v00Var.f31131n = true;
+                    v00Var.f31124n = true;
                     u1Var.setPadding(AndroidUtilities.dp(10.0f), i12, AndroidUtilities.dp(10.0f), 0);
-                    v00Var.f31131n = false;
+                    v00Var.f31124n = false;
                 }
                 if (F < size) {
                     z10 = false;
                 }
-                this.f30426b = z10;
+                this.f30419b = z10;
                 super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(Math.min(F, size), 1073741824));
                 return;
             case 1:
-                if (this.f30426b) {
+                if (this.f30419b) {
                     f7 = 80.0f;
                 } else {
                     f7 = 50.0f;
@@ -213,17 +213,17 @@ public final class t00 extends FrameLayout {
                 super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(f7), 1073741824));
                 return;
             default:
-                org.telegram.ui.ActionBar.j5 j5Var = (org.telegram.ui.ActionBar.j5) this.f30427c;
+                org.telegram.ui.ActionBar.j5 j5Var = (org.telegram.ui.ActionBar.j5) this.f30420c;
                 View view = (View) getParent();
                 if (view != null && view.getWidth() > 0) {
                     i10 = View.MeasureSpec.makeMeasureSpec(view.getWidth(), 1073741824);
                 }
-                this.f30426b = true;
+                this.f30419b = true;
                 j5Var.setVisibility(8);
                 super.onMeasure(i10, i11);
                 j5Var.setVisibility(0);
                 j5Var.getLayoutParams().width = getMeasuredWidth();
-                this.f30426b = false;
+                this.f30419b = false;
                 ((org.telegram.ui.x70) this.e).f();
                 super.onMeasure(i10, i11);
                 return;
@@ -232,7 +232,7 @@ public final class t00 extends FrameLayout {
 
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f30425a) {
+        switch (this.f30418a) {
             case 0:
                 if (!((v00) this.e).isDismissed() && super.onTouchEvent(motionEvent)) {
                     return true;
@@ -245,9 +245,9 @@ public final class t00 extends FrameLayout {
 
     @Override
     public void requestLayout() {
-        switch (this.f30425a) {
+        switch (this.f30418a) {
             case 0:
-                if (!((v00) this.e).f31131n) {
+                if (!((v00) this.e).f31124n) {
                     super.requestLayout();
                     return;
                 }
@@ -257,7 +257,7 @@ public final class t00 extends FrameLayout {
                 super.requestLayout();
                 return;
             case 2:
-                if (!this.f30426b) {
+                if (!this.f30419b) {
                     super.requestLayout();
                     return;
                 }
@@ -269,14 +269,14 @@ public final class t00 extends FrameLayout {
         super(context);
         this.e = r80Var;
         this.d = new TextView[2];
-        this.f30426b = !z10;
+        this.f30419b = !z10;
         setBackground(null);
         View view = new View(context);
-        this.f30427c = view;
+        this.f30420c = view;
         if (!z10) {
             view.setBackground(org.telegram.ui.ActionBar.x5.f(new float[]{4.0f}, org.telegram.ui.ActionBar.h6.Oh));
         }
-        addView(view, w7.z5.a(-1.0f, 16.0f, z10 ? 0.0f : 16.0f, 16.0f, 16.0f, -1, 0));
+        addView(view, w7.z5.d(-1, -1.0f, 0, 16.0f, z10 ? 0.0f : 16.0f, 16.0f, 16.0f));
         for (int i10 = 0; i10 < 2; i10++) {
             ((TextView[]) this.d)[i10] = new TextView(context);
             ((TextView[]) this.d)[i10].setFocusable(false);
@@ -285,7 +285,7 @@ public final class t00 extends FrameLayout {
             ((TextView[]) this.d)[i10].setGravity(1);
             ((TextView[]) this.d)[i10].setEllipsize(TextUtils.TruncateAt.END);
             ((TextView[]) this.d)[i10].setGravity(17);
-            if (this.f30426b) {
+            if (this.f30419b) {
                 ((TextView[]) this.d)[i10].setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.Sh, false));
                 ((TextView[]) this.d)[i10].setTypeface(AndroidUtilities.bold());
             } else {
@@ -293,8 +293,8 @@ public final class t00 extends FrameLayout {
             }
             ((TextView[]) this.d)[i10].setImportantForAccessibility(2);
             ((TextView[]) this.d)[i10].setTextSize(1, 14.0f);
-            ((TextView[]) this.d)[i10].setPadding(0, 0, 0, this.f30426b ? 0 : AndroidUtilities.dp(13.0f));
-            addView(((TextView[]) this.d)[i10], w7.z5.a(-2.0f, 24.0f, 0.0f, 24.0f, 0.0f, -2, 17));
+            ((TextView[]) this.d)[i10].setPadding(0, 0, 0, this.f30419b ? 0 : AndroidUtilities.dp(13.0f));
+            addView(((TextView[]) this.d)[i10], w7.z5.d(-2, -2.0f, 17, 24.0f, 0.0f, 24.0f, 0.0f));
             if (i10 == 1) {
                 ((TextView[]) this.d)[i10].setAlpha(0.0f);
             }
@@ -305,18 +305,18 @@ public final class t00 extends FrameLayout {
         super(context);
         this.e = x70Var;
         org.telegram.ui.ActionBar.j5 j5Var = new org.telegram.ui.ActionBar.j5(context);
-        this.f30427c = j5Var;
+        this.f30420c = j5Var;
         j5Var.setTextSize(16);
         j5Var.setEllipsizeByGradient(true);
         j5Var.setRightPadding(AndroidUtilities.dp(68.0f));
-        j5Var.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21099j5, false));
-        addView(j5Var, w7.z5.a(-2.0f, 19.0f, 0.0f, 19.0f, 0.0f, 0, 19));
+        j5Var.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21092j5, false));
+        addView(j5Var, w7.z5.d(0, -2.0f, 19, 19.0f, 0.0f, 19.0f, 0.0f));
         k9 k9Var = new k9(context, false);
         this.d = k9Var;
-        k9Var.f27808a.f27456a = true;
+        k9Var.f27801a.f27449a = true;
         k9Var.setStyle(11);
         k9Var.setAvatarsTextSize(AndroidUtilities.dp(22.0f));
-        addView(k9Var, w7.z5.a(-1.0f, 0.0f, 0.0f, 4.0f, 0.0f, 56, 21));
-        setBackground(org.telegram.ui.ActionBar.h6.Z(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21082i6, false), 0, 4));
+        addView(k9Var, w7.z5.d(56, -1.0f, 21, 0.0f, 0.0f, 4.0f, 0.0f));
+        setBackground(org.telegram.ui.ActionBar.h6.Z(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21075i6, false), 0, 4));
     }
 }

@@ -27,7 +27,7 @@ public final class k {
             try {
                 e9.n0 a2 = h.a(binder);
                 if (a2.isEmpty()) {
-                    return e2.m0.f8256b;
+                    return e2.m0.f8254b;
                 }
                 byte[] byteArray = ((Bundle) e9.s.m(a2)).getByteArray("bytes");
                 if (byteArray != null) {

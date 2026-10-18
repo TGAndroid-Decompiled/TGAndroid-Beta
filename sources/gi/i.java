@@ -11,50 +11,50 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
-import org.telegram.messenger.kk;
+import org.telegram.messenger.lk;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
 import w7.z5;
 public final class i extends FrameLayout {
-    public final ImageView f11249a;
-    public final FrameLayout.LayoutParams f11250b;
-    public final FrameLayout.LayoutParams f11251c;
+    public final ImageView f11247a;
+    public final FrameLayout.LayoutParams f11248b;
+    public final FrameLayout.LayoutParams f11249c;
     public final TextView d;
     public final TextView e;
-    public final TextView f11252f;
+    public final TextView f11250f;
 
     public i(Context context, d6 d6Var) {
         super(context);
         ImageView imageView = new ImageView(context);
-        this.f11249a = imageView;
+        this.f11247a = imageView;
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
         imageView.setColorFilter(new PorterDuffColorFilter(-1, mode));
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
         imageView.setScaleType(scaleType);
-        FrameLayout.LayoutParams a2 = z5.a(28.0f, 17.0f, 14.33f, 0.0f, 0.0f, 28, 51);
-        this.f11250b = a2;
-        addView(imageView, a2);
+        FrameLayout.LayoutParams d = z5.d(28, 28.0f, 51, 17.0f, 14.33f, 0.0f, 0.0f);
+        this.f11248b = d;
+        addView(imageView, d);
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
-        FrameLayout.LayoutParams a10 = z5.a(-2.0f, 62.0f, 10.0f, 40.0f, 8.66f, -1, 55);
-        this.f11251c = a10;
-        addView(linearLayout, a10);
+        FrameLayout.LayoutParams d10 = z5.d(-1, -2.0f, 55, 62.0f, 10.0f, 40.0f, 8.66f);
+        this.f11249c = d10;
+        addView(linearLayout, d10);
         TextView textView = new TextView(context);
         this.d = textView;
-        kk.k(15.0f, 1, textView);
+        lk.k(15.0f, 1, textView);
         textView.setTextColor(h6.w0(h6.G6, d6Var));
         TextView i10 = com.google.android.gms.internal.play_billing.k3.i(linearLayout, textView, z5.t(-1, -2, 55, 0, 0, 0, 0), context);
         this.e = i10;
         i10.setTextSize(1, 14.0f);
-        i10.setTextColor(h6.w0(h6.f21398z6, d6Var));
+        i10.setTextColor(h6.w0(h6.f21391z6, d6Var));
         linearLayout.addView(i10, z5.t(-1, -2, 55, 0, 3, 0, 0));
         ImageView imageView2 = new ImageView(context);
         imageView2.setColorFilter(new PorterDuffColorFilter(h6.w0(h6.M6, d6Var), mode));
         imageView2.setImageResource(R.drawable.msg_arrowright);
         imageView2.setScaleType(scaleType);
-        addView(imageView2, z5.a(24.0f, 0.0f, 0.0f, 10.0f, 0.0f, 24, 21));
+        addView(imageView2, z5.d(24, 24.0f, 21, 0.0f, 0.0f, 10.0f, 0.0f));
         TextView textView2 = new TextView(context);
-        this.f11252f = textView2;
+        this.f11250f = textView2;
         textView2.setTextColor(-1);
         textView2.setBackground(h6.c0(AndroidUtilities.dp(4.0f), h6.w0(h6.uj, d6Var)));
         textView2.setTextSize(1, 13.0f);
@@ -62,19 +62,19 @@ public final class i extends FrameLayout {
         textView2.setPadding(AndroidUtilities.dp(5.0f), 0, AndroidUtilities.dp(4.0f), 0);
         textView2.setGravity(17);
         textView2.setVisibility(8);
-        addView(textView2, z5.a(18.0f, 0.0f, 0.0f, 35.33f, 0.0f, -2, 21));
+        addView(textView2, z5.d(-2, 18.0f, 21, 0.0f, 0.0f, 35.33f, 0.0f));
     }
 
     public final void a(int i10, int i11, CharSequence charSequence, CharSequence charSequence2) {
-        ImageView imageView = this.f11249a;
+        ImageView imageView = this.f11247a;
         imageView.setImageResource(i11);
         imageView.setBackground(h6.c0(AndroidUtilities.dp(9.0f), i10));
         TextView textView = this.d;
         textView.setText(charSequence);
         boolean isEmpty = TextUtils.isEmpty(charSequence2);
         TextView textView2 = this.e;
-        FrameLayout.LayoutParams layoutParams = this.f11251c;
-        FrameLayout.LayoutParams layoutParams2 = this.f11250b;
+        FrameLayout.LayoutParams layoutParams = this.f11249c;
+        FrameLayout.LayoutParams layoutParams2 = this.f11248b;
         if (isEmpty) {
             layoutParams2.topMargin = AndroidUtilities.dp(10.0f);
             layoutParams2.bottomMargin = AndroidUtilities.dp(10.0f);
@@ -104,7 +104,7 @@ public final class i extends FrameLayout {
 
     public void setPercent(CharSequence charSequence) {
         boolean isEmpty = TextUtils.isEmpty(charSequence);
-        TextView textView = this.f11252f;
+        TextView textView = this.f11250f;
         if (isEmpty) {
             textView.setVisibility(8);
             return;

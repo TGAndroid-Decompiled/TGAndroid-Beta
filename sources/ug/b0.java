@@ -1,9 +1,9 @@
 package ug;
 
-import ai.q2;
+import ai.k2;
 import android.content.Intent;
 import android.net.Uri;
-import ci.z2;
+import ci.y2;
 import ei.o8;
 import java.util.concurrent.atomic.AtomicBoolean;
 import org.telegram.messenger.LocaleController;
@@ -25,7 +25,7 @@ public final class b0 extends bb {
     public final TLRPC.TL_payments_checkedGiftCode X;
     public final boolean Y;
     public a0 Z;
-    public final String f47693a0;
+    public final String f47646a0;
 
     public b0(n2 n2Var, TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode, String str) {
         super(n2Var, true);
@@ -37,7 +37,7 @@ public final class b0 extends bb {
         }
         this.Y = z10;
         this.X = tL_payments_checkedGiftCode;
-        this.f47693a0 = str;
+        this.f47646a0 = str;
         setApplyTopPadding(false);
         setApplyBottomPadding(false);
         fixNavigationBar();
@@ -47,9 +47,9 @@ public final class b0 extends bb {
         a0Var.getClass();
         a0Var.d = tL_payments_checkedGiftCode.used_date == 0;
         a0Var.e = n2Var;
-        a0Var.f48405f = tL_payments_checkedGiftCode;
+        a0Var.f48358f = tL_payments_checkedGiftCode;
         a0Var.h = str;
-        a0Var.f48406n = d3Var;
+        a0Var.f48359n = d3Var;
     }
 
     public static d6 Q(b0 b0Var) {
@@ -94,15 +94,15 @@ public final class b0 extends bb {
         AtomicBoolean atomicBoolean = new AtomicBoolean(false);
         if (cVar != null) {
             cVar.d();
-            cVar.f44328b = new d(atomicBoolean, 1);
+            cVar.f44285b = new d(atomicBoolean, 1);
         }
-        z2 z2Var = new z2(atomicBoolean, n2Var, str, cVar, 16);
+        y2 y2Var = new y2(atomicBoolean, n2Var, str, cVar, 16);
         f fVar = new f(atomicBoolean, cVar, 1);
         ConnectionsManager connectionsManager = ConnectionsManager.getInstance(UserConfig.selectedAccount);
         MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
         TLRPC.TL_payments_checkGiftCode tL_payments_checkGiftCode = new TLRPC.TL_payments_checkGiftCode();
         tL_payments_checkGiftCode.slug = str;
-        connectionsManager.sendRequest(tL_payments_checkGiftCode, new q2(messagesController, z2Var, fVar, 24));
+        connectionsManager.sendRequest(tL_payments_checkGiftCode, new k2(messagesController, y2Var, fVar, 24));
     }
 
     @Override

@@ -80,13 +80,13 @@ public final class u7 implements Runnable {
         this.f2265n = callback2;
     }
 
-    public u7(sn snVar, TLRPC.TL_error tL_error, TLObject tLObject, TLObject tLObject2, t3 t3Var, String str, pf.c cVar) {
+    public u7(sn snVar, TLRPC.TL_error tL_error, TLObject tLObject, TLObject tLObject2, v3 v3Var, String str, pf.c cVar) {
         this.f2261a = 5;
         this.f2262b = snVar;
         this.d = tL_error;
         this.e = tLObject;
         this.h = tLObject2;
-        this.f2265n = t3Var;
+        this.f2265n = v3Var;
         this.f2264f = str;
         this.f2263c = cVar;
     }

@@ -7,24 +7,24 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 public final class jb0 extends sn {
-    public boolean Qc;
-    public final TLRPC.User Rc;
-    public final TLRPC.User[] Sc;
-    public final long Tc;
+    public boolean Rc;
+    public final TLRPC.User Sc;
+    public final TLRPC.User[] Tc;
+    public final long Uc;
 
     public jb0(Bundle bundle, TLRPC.User user, TLRPC.User[] userArr, long j10) {
         super(bundle);
-        this.Rc = user;
-        this.Sc = userArr;
-        this.Tc = j10;
+        this.Sc = user;
+        this.Tc = userArr;
+        this.Uc = j10;
     }
 
     @Override
     public final void onBecomeFullyVisible() {
         super.onBecomeFullyVisible();
-        if (!this.Qc) {
-            this.Qc = true;
-            org.telegram.ui.Components.xc.a0(this).M(LocaleController.formatString(R.string.CreateManagedBotCreatedTitle, UserObject.getUserName(this.Rc)), AndroidUtilities.replaceSingleTag(LocaleController.formatString(R.string.CreateManagedBotCreatedText, UserObject.getUserName(this.Sc[0])), new ai.r3(this, this.Tc, 29)), R.raw.contact_check).j();
+        if (!this.Rc) {
+            this.Rc = true;
+            org.telegram.ui.Components.xc.a0(this).M(LocaleController.formatString(R.string.CreateManagedBotCreatedTitle, UserObject.getUserName(this.Sc)), AndroidUtilities.replaceSingleTag(LocaleController.formatString(R.string.CreateManagedBotCreatedText, UserObject.getUserName(this.Tc[0])), new ai.t3(this, this.Uc, 29)), R.raw.contact_check).j();
         }
     }
 }

@@ -14,8 +14,8 @@ public final class k {
                 int[] iArr = this.f23a;
                 int[] iArr2 = kVar.f23a;
                 wd.e a2 = h8.a(0, i11);
-                int i12 = a2.f48970a;
-                int i13 = a2.f48971b;
+                int i12 = a2.f48923a;
+                int i13 = a2.f48924b;
                 if (i12 <= i13) {
                     while (iArr[i12] == iArr2[i12]) {
                         if (i12 != i13) {

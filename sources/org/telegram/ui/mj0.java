@@ -1,79 +1,233 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Rect;
-import android.view.KeyEvent;
-import org.telegram.ui.Components.AnimatedPhoneNumberEditText;
-public final class mj0 extends AnimatedPhoneNumberEditText {
-    public final int G;
-    public final Object H;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
+import android.os.Looper;
+import android.util.LongSparseArray;
+import com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.lang.ref.WeakReference;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.concurrent.CopyOnWriteArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.R;
+import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.Utilities;
+import org.telegram.messenger.voip.VoIPService;
+import org.telegram.tgnet.SerializedData;
+import org.telegram.tgnet.TLObject;
+public final class mj0 implements Runnable {
+    public final int f39187a;
 
-    public mj0(Object obj, Context context, int i10) {
-        super(context);
-        this.G = i10;
-        this.H = obj;
+    public mj0(int i10) {
+        this.f39187a = i10;
     }
 
     @Override
-    public final void onFocusChanged(boolean z10, int i10, Rect rect) {
-        float f7;
-        float f10;
-        float f11;
-        switch (this.G) {
+    public final void run() {
+        org.telegram.ui.Components.xc a02;
+        int i10 = 0;
+        switch (this.f39187a) {
             case 0:
-                super.onFocusChanged(z10, i10, rect);
-                oj0 oj0Var = (oj0) this.H;
-                org.telegram.ui.Components.sd0 sd0Var = oj0Var.f39854s;
-                if (!z10 && !oj0Var.Q.isFocused()) {
-                    f7 = 0.0f;
-                } else {
-                    f7 = 1.0f;
-                }
-                sd0Var.b(f7, f7, true);
+                org.telegram.ui.Components.xc.X().N(LocaleController.getString(R.string.ScanQrCode), LocaleController.getString(R.string.ErrorOccurred)).j();
                 return;
             case 1:
-                super.onFocusChanged(z10, i10, rect);
-                oj0 oj0Var2 = (oj0) this.H;
-                org.telegram.ui.Components.sd0 sd0Var2 = oj0Var2.f39854s;
-                if (!z10 && !oj0Var2.O.isFocused()) {
-                    f10 = 0.0f;
-                } else {
-                    f10 = 1.0f;
-                }
-                sd0Var2.b(f10, f10, true);
+                org.telegram.ui.Components.xc.X().N(LocaleController.getString(R.string.ScanQrCode), LocaleController.getString(R.string.ErrorOccurred)).j();
                 return;
-            default:
-                super.onFocusChanged(z10, i10, rect);
-                eg0 eg0Var = (eg0) this.H;
-                org.telegram.ui.Components.sd0 sd0Var3 = eg0Var.f36528f;
-                if (!z10 && !eg0Var.f36526b.isFocused()) {
-                    f11 = 0.0f;
-                } else {
-                    f11 = 1.0f;
-                }
-                sd0Var3.b(f11, f11, true);
-                if (z10) {
-                    eg0Var.V.f36930c.setEditText(this);
+            case 2:
+                Drawable[] drawableArr = PhotoViewer.U8;
+                return;
+            case 3:
+                org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
+                if (U != null && (a02 = org.telegram.ui.Components.xc.a0(U)) != null) {
+                    org.telegram.ui.Components.qc M = a02.M(LocaleController.getString(R.string.ReportChatSent), LocaleController.getString(R.string.Reported2), R.raw.msg_antispam);
+                    M.f29638j = 5000;
+                    M.j();
                     return;
                 }
                 return;
+            case 4:
+                int i11 = j81.f38082d0;
+                return;
+            case 5:
+                org.telegram.ui.ActionBar.h6.N = false;
+                org.telegram.ui.ActionBar.h6.E(false);
+                return;
+            case 6:
+                if (VoIPService.getSharedState() != null) {
+                    VoIPService.getSharedState().acceptIncomingCall();
+                    return;
+                }
+                return;
+            case 7:
+                org.telegram.ui.ActionBar.n2 U2 = LaunchActivity.U();
+                if (U2 != null) {
+                    org.telegram.ui.Components.qc M2 = org.telegram.ui.Components.xc.a0(U2).M(LocaleController.getString(R.string.WalletBackupDisabled), LocaleController.getString(R.string.WalletBackupDisabledInfo), R.raw.contact_check);
+                    M2.f29638j = 5000;
+                    M2.j();
+                    return;
+                }
+                return;
+            case 8:
+                CopyOnWriteArrayList copyOnWriteArrayList = org.telegram.ui.Wallet.q0.f34726i;
+                Iterator it = copyOnWriteArrayList.iterator();
+                while (it.hasNext()) {
+                    WeakReference weakReference = (WeakReference) it.next();
+                    Runnable runnable = (Runnable) weakReference.get();
+                    if (runnable == null) {
+                        copyOnWriteArrayList.remove(weakReference);
+                    } else {
+                        runnable.run();
+                    }
+                }
+                return;
+            case 9:
+                boolean z10 = org.telegram.ui.Wallet.o5.f34647j0;
+                return;
+            case 10:
+                int[][] iArr = WallpapersListActivity.f35195k0;
+                PhotoViewer.t1().G0(false, false);
+                return;
+            case 11:
+                Utilities.globalQueue.postRunnable(new mj0(13));
+                return;
+            case 12:
+                ArrayList arrayList = new ArrayList();
+                LongSparseArray longSparseArray = new LongSparseArray();
+                try {
+                    File file = new File(FileLoader.getDirectory(4), "webhistory.dat");
+                    if (file.exists()) {
+                        SerializedData serializedData = new SerializedData(file);
+                        long readInt64 = serializedData.readInt64(true);
+                        for (long j10 = 0; j10 < readInt64; j10++) {
+                            ?? tLObject = new TLObject();
+                            tLObject.readParams(serializedData, true);
+                            arrayList.add(tLObject);
+                            longSparseArray.put(tLObject.f42564a, tLObject);
+                        }
+                    }
+                } catch (Exception e) {
+                    FileLog.e(e);
+                }
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.Wallet.v3(24, arrayList, longSparseArray));
+                return;
+            case 13:
+                try {
+                    File file2 = new File(FileLoader.getDirectory(4), "webhistory.dat");
+                    if (!file2.exists()) {
+                        file2.createNewFile();
+                    }
+                    long size = org.telegram.ui.web.d1.f42573c.size();
+                    SerializedData serializedData2 = new SerializedData(true);
+                    serializedData2.writeInt64(size);
+                    ArrayList arrayList2 = org.telegram.ui.web.d1.f42573c;
+                    int size2 = arrayList2.size();
+                    int i12 = 0;
+                    while (i12 < size2) {
+                        Object obj = arrayList2.get(i12);
+                        i12++;
+                        ((org.telegram.ui.web.c1) obj).serializeToStream(serializedData2);
+                    }
+                    SerializedData serializedData3 = new SerializedData(serializedData2.length());
+                    serializedData3.writeInt64(size);
+                    ArrayList arrayList3 = org.telegram.ui.web.d1.f42573c;
+                    int size3 = arrayList3.size();
+                    while (i10 < size3) {
+                        Object obj2 = arrayList3.get(i10);
+                        i10++;
+                        ((org.telegram.ui.web.c1) obj2).serializeToStream(serializedData3);
+                    }
+                    try {
+                        FileOutputStream fileOutputStream = new FileOutputStream(file2);
+                        fileOutputStream.write(serializedData3.toByteArray());
+                        fileOutputStream.close();
+                        return;
+                    } catch (Exception e7) {
+                        FileLog.e(e7);
+                        return;
+                    }
+                } catch (Exception e10) {
+                    FileLog.e(e10);
+                    return;
+                }
+            case 14:
+                return;
+            case 15:
+                qg.l0.b();
+                return;
+            case 16:
+                int i13 = AlarmManagerSchedulerBroadcastReceiver.f6273a;
+                return;
+            case 17:
+                Looper myLooper = Looper.myLooper();
+                if (myLooper != null) {
+                    myLooper.quit();
+                    return;
+                }
+                return;
+            case 18:
+                Looper myLooper2 = Looper.myLooper();
+                if (myLooper2 != null) {
+                    myLooper2.quit();
+                    return;
+                }
+                return;
+            case 19:
+                NotificationCenter.getInstance(UserConfig.selectedAccount).postNotificationNameOnUIThread(NotificationCenter.customStickerCreated, new Object[0]);
+                return;
+            case 20:
+                float[] fArr = sg.a2.U;
+                return;
+            case 21:
+                ug.m1.f0(0, null);
+                return;
+            case 22:
+                org.telegram.ui.ActionBar.n2 R = LaunchActivity.R();
+                if (R != 0) {
+                    ?? obj3 = new Object();
+                    obj3.f21552a = true;
+                    R.showAsSheet(new PremiumPreviewFragment(0, "gifts"), obj3);
+                    return;
+                }
+                return;
+            case 23:
+                a5.a aVar = zf.e.B;
+                if (aVar != null) {
+                    ArrayList arrayList4 = null;
+                    while (i10 < zf.e.f51534y) {
+                        if (((Bitmap[]) aVar.d)[i10] != null) {
+                            if (arrayList4 == null) {
+                                arrayList4 = new ArrayList();
+                            }
+                            arrayList4.add(((Bitmap[]) aVar.d)[i10]);
+                        }
+                        ((Bitmap[]) aVar.d)[i10] = null;
+                        ((zf.z[]) aVar.f281c)[i10] = null;
+                        i10++;
+                    }
+                    if (!arrayList4.isEmpty()) {
+                        Utilities.globalQueue.postRunnable(new qg.f0(arrayList4, 1));
+                    }
+                    zf.e.B = null;
+                    return;
+                }
+                return;
+            default:
+                org.telegram.ui.Components.xc.X().N(LocaleController.getString(R.string.ScanQrCode), LocaleController.getString(R.string.ErrorOccurred)).j();
+                return;
         }
     }
 
-    @Override
-    public boolean onKeyDown(int i10, KeyEvent keyEvent) {
-        switch (this.G) {
-            case 1:
-                oj0 oj0Var = (oj0) this.H;
-                if (i10 == 67 && oj0Var.Q.length() == 0) {
-                    oj0Var.O.requestFocus();
-                    mj0 mj0Var = oj0Var.O;
-                    mj0Var.setSelection(mj0Var.length());
-                    oj0Var.O.dispatchKeyEvent(keyEvent);
-                }
-                return super.onKeyDown(i10, keyEvent);
-            default:
-                return super.onKeyDown(i10, keyEvent);
-        }
+    public mj0(n0 n0Var) {
+        this.f39187a = 14;
+    }
+
+    private final void a() {
     }
 }

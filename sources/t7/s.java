@@ -3,7 +3,7 @@ package t7;
 import android.os.Parcel;
 import android.os.Parcelable;
 public abstract class s {
-    public static r f46946a;
+    public static r f46896a;
 
     public static Object a(Parcel parcel, Parcelable.Creator creator) {
         if (parcel.readInt() != 0) {
@@ -25,10 +25,10 @@ public abstract class s {
         q qVar;
         synchronized (s.class) {
             try {
-                if (f46946a == null) {
-                    f46946a = new r(0);
+                if (f46896a == null) {
+                    f46896a = new r(0);
                 }
-                qVar = (q) f46946a.R0(oVar);
+                qVar = (q) f46896a.R0(oVar);
             } catch (Throwable th2) {
                 throw th2;
             }

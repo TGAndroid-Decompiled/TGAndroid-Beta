@@ -1,48 +1,52 @@
 package org.telegram.messenger.voip;
 
-import ai.db;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
+import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.at;
-import org.telegram.ui.Components.ct;
+import org.telegram.ui.Cells.u1;
+import org.telegram.ui.Components.rw0;
 import org.telegram.ui.Components.s61;
-public final class k0 implements RequestDelegate {
-    public final int f19881a;
-    public final int f19882b;
-    public final boolean f19883c;
+import org.telegram.ui.hl;
+public final class k0 implements Runnable {
+    public final int f19874a;
+    public final int f19875b;
+    public final boolean f19876c;
     public final Object d;
     public final Object e;
 
-    public k0(int i10, String str, VoIPService voIPService, boolean z10) {
-        this.f19881a = 0;
-        this.d = voIPService;
-        this.f19882b = i10;
-        this.f19883c = z10;
-        this.e = str;
+    public k0(int i10, int i11, Object obj, Object obj2, boolean z10) {
+        this.f19874a = i11;
+        this.d = obj;
+        this.e = obj2;
+        this.f19875b = i10;
+        this.f19876c = z10;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f19881a) {
-            case 0:
-                ((VoIPService) this.d).lambda$startConferenceGroupCall$54(this.f19882b, this.f19883c, (String) this.e, tLObject, tL_error);
-                return;
-            case 1:
-                AndroidUtilities.runOnUIThread(new db((at) this.d, this.f19882b, (TLRPC.TL_messages_searchGlobal) this.e, this.f19883c, tLObject, 3));
-                return;
-            default:
-                AndroidUtilities.runOnUIThread(new db((ct) this.d, this.f19882b, (TLRPC.TL_messages_searchGlobal) this.e, this.f19883c, tLObject, 4));
-                return;
-        }
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.voip.k0.run():void");
+    }
+
+    public k0(hl hlVar, boolean z10, ArrayList arrayList, int i10) {
+        this.f19874a = 2;
+        this.d = hlVar;
+        this.f19876c = z10;
+        this.e = arrayList;
+        this.f19875b = i10;
+    }
+
+    public k0(rw0 rw0Var, boolean z10, int i10, u1 u1Var) {
+        this.f19874a = 5;
+        this.d = rw0Var;
+        this.f19876c = z10;
+        this.f19875b = i10;
+        this.e = u1Var;
     }
 
     public k0(s61 s61Var, int i10, TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal, boolean z10, int i11) {
-        this.f19881a = i11;
+        this.f19874a = i11;
         this.d = s61Var;
-        this.f19882b = i10;
+        this.f19875b = i10;
         this.e = tL_messages_searchGlobal;
-        this.f19883c = z10;
+        this.f19876c = z10;
     }
 }

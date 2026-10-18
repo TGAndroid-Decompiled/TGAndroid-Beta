@@ -70,7 +70,7 @@ public final class i1 {
         ?? obj = new Object();
         boolean z10 = true;
         obj.f783b = true;
-        long j10 = tL_availableEffect.f20310id;
+        long j10 = tL_availableEffect.f20303id;
         obj.f784c = j10;
         if (tL_availableEffect.effect_animation_id != 0) {
             z10 = false;

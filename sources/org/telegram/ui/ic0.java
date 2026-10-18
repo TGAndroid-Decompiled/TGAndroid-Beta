@@ -16,13 +16,13 @@ public final class ic0 extends hg.t0 {
     @Override
     public final void l() {
         pc0 pc0Var = this.N;
-        org.telegram.ui.ActionBar.u0 u0Var = pc0Var.f40084w;
+        org.telegram.ui.ActionBar.u0 u0Var = pc0Var.f40045w;
         if (u0Var != null) {
             u0Var.setShowSearchProgress(pc0Var.W.J);
         }
-        TextView textView = pc0Var.f40077r;
+        TextView textView = pc0Var.f40038r;
         if (textView != null) {
-            textView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("NoPlacesFoundInfo", R.string.NoPlacesFoundInfo, pc0Var.W.f11823x)));
+            textView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("NoPlacesFoundInfo", R.string.NoPlacesFoundInfo, pc0Var.W.f11821x)));
         }
         super.l();
     }

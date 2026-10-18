@@ -6,12 +6,12 @@ import android.os.Bundle;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 public final class q60 extends org.telegram.ui.ActionBar.j {
-    public final int f40329a;
-    public final Object f40330b;
+    public final int f40287a;
+    public final Object f40288b;
 
     public q60(Object obj, int i10) {
-        this.f40329a = i10;
-        this.f40330b = obj;
+        this.f40287a = i10;
+        this.f40288b = obj;
     }
 
     @Override
@@ -19,8 +19,8 @@ public final class q60 extends org.telegram.ui.ActionBar.j {
         int i11;
         int i12;
         Bitmap bitmap;
-        int i13 = this.f40329a;
-        Object obj = this.f40330b;
+        int i13 = this.f40287a;
+        Object obj = this.f40288b;
         switch (i13) {
             case 0:
                 if (i10 == -1) {
@@ -73,43 +73,43 @@ public final class q60 extends org.telegram.ui.ActionBar.j {
                 }
                 return;
             case 8:
-                fg0 fg0Var = (fg0) obj;
+                eg0 eg0Var = (eg0) obj;
                 if (i10 == 1) {
-                    fg0Var.p1();
+                    eg0Var.p1();
                     return;
-                } else if (i10 == -1 && fg0Var.onBackPressed(true)) {
-                    fg0Var.finishFragment();
+                } else if (i10 == -1 && eg0Var.onBackPressed(true)) {
+                    eg0Var.finishFragment();
                     return;
                 } else {
                     return;
                 }
             case 9:
                 if (i10 == -1) {
-                    ((ig0) obj).finishFragment();
+                    ((hg0) obj).finishFragment();
                     return;
                 }
                 return;
             case 10:
                 if (i10 == -1) {
-                    ((kh0) obj).finishFragment();
+                    ((jh0) obj).finishFragment();
                     return;
                 }
                 return;
             case 11:
                 if (i10 == -1) {
-                    ((lh0) obj).finishFragment();
+                    ((kh0) obj).finishFragment();
                     return;
                 }
                 return;
             case 12:
-                wi0 wi0Var = (wi0) obj;
+                vi0 vi0Var = (vi0) obj;
                 if (i10 == -1) {
-                    wi0Var.finishFragment();
+                    vi0Var.finishFragment();
                     return;
                 } else if (i10 == 1) {
                     Bundle bundle = new Bundle();
-                    bundle.putLong("chat_id", wi0Var.f42889b);
-                    wi0Var.presentFragment(new r91(bundle));
+                    bundle.putLong("chat_id", vi0Var.f42199b);
+                    vi0Var.presentFragment(new r91(bundle));
                     return;
                 } else {
                     return;
@@ -144,18 +144,18 @@ public final class q60 extends org.telegram.ui.ActionBar.j {
                     xp0Var.finishFragment();
                     return;
                 } else if (i10 == 1) {
-                    if (xp0Var.f43252c != null && !xp0Var.f43253f) {
+                    if (xp0Var.f43214c != null && !xp0Var.f43215f) {
                         vp0 vp0Var = xp0Var.d;
-                        float f7 = vp0Var.f42268f - vp0Var.f42273x;
+                        float f7 = vp0Var.f42241f - vp0Var.f42246x;
                         float f10 = vp0Var.v;
-                        float f11 = (vp0Var.h - vp0Var.f42274y) / vp0Var.f42272w;
+                        float f11 = (vp0Var.h - vp0Var.f42247y) / vp0Var.f42245w;
                         float f12 = vp0Var.d / f10;
                         float f13 = vp0Var.e / f10;
                         xp0 xp0Var2 = vp0Var.H;
-                        int width = (int) ((f7 / f10) * xp0Var2.f43250a.getWidth());
-                        int height = (int) (f11 * xp0Var2.f43250a.getHeight());
-                        int width2 = (int) (f12 * xp0Var2.f43250a.getWidth());
-                        int width3 = (int) (f13 * xp0Var2.f43250a.getWidth());
+                        int width = (int) ((f7 / f10) * xp0Var2.f43212a.getWidth());
+                        int height = (int) (f11 * xp0Var2.f43212a.getHeight());
+                        int width2 = (int) (f12 * xp0Var2.f43212a.getWidth());
+                        int width3 = (int) (f13 * xp0Var2.f43212a.getWidth());
                         if (width < 0) {
                             i11 = 0;
                         } else {
@@ -166,31 +166,31 @@ public final class q60 extends org.telegram.ui.ActionBar.j {
                         } else {
                             i12 = height;
                         }
-                        if (i11 + width2 > xp0Var2.f43250a.getWidth()) {
-                            width2 = xp0Var2.f43250a.getWidth() - i11;
+                        if (i11 + width2 > xp0Var2.f43212a.getWidth()) {
+                            width2 = xp0Var2.f43212a.getWidth() - i11;
                         }
                         int i14 = width2;
-                        if (i12 + width3 > xp0Var2.f43250a.getHeight()) {
-                            width3 = xp0Var2.f43250a.getHeight() - i12;
+                        if (i12 + width3 > xp0Var2.f43212a.getHeight()) {
+                            width3 = xp0Var2.f43212a.getHeight() - i12;
                         }
                         int i15 = width3;
                         try {
-                            bitmap = Bitmap.createBitmap(xp0Var2.f43250a, i11, i12, i14, i15, (Matrix) null, false);
+                            bitmap = Bitmap.createBitmap(xp0Var2.f43212a, i11, i12, i14, i15, (Matrix) null, false);
                         } catch (Throwable th2) {
                             FileLog.e(th2);
                             System.gc();
                             try {
-                                bitmap = Bitmap.createBitmap(xp0Var2.f43250a, i11, i12, i14, i15, (Matrix) null, false);
+                                bitmap = Bitmap.createBitmap(xp0Var2.f43212a, i11, i12, i14, i15, (Matrix) null, false);
                             } catch (Throwable th3) {
                                 FileLog.e(th3);
                                 bitmap = null;
                             }
                         }
-                        if (bitmap == xp0Var.f43250a) {
+                        if (bitmap == xp0Var.f43212a) {
                             xp0Var.e = true;
                         }
-                        ((org.telegram.ui.Components.e50) xp0Var.f43252c).r(false, bitmap, null);
-                        xp0Var.f43253f = true;
+                        ((org.telegram.ui.Components.e50) xp0Var.f43214c).r(false, bitmap, null);
+                        xp0Var.f43215f = true;
                     }
                     xp0Var.finishFragment();
                     return;
@@ -215,9 +215,9 @@ public final class q60 extends org.telegram.ui.ActionBar.j {
                     lq0Var.L.l();
                     return;
                 } else if (i10 == 2) {
-                    kq0 kq0Var = lq0Var.f38935s0;
+                    kq0 kq0Var = lq0Var.f38891s0;
                     if (kq0Var != null) {
-                        kq0Var.c();
+                        kq0Var.g();
                     }
                     lq0Var.finishFragment();
                     return;
@@ -237,11 +237,11 @@ public final class q60 extends org.telegram.ui.ActionBar.j {
                     popupNotificationActivity.finish();
                     return;
                 } else if (i10 == 1) {
-                    int i16 = PopupNotificationActivity.f33480b0;
+                    int i16 = PopupNotificationActivity.f33473b0;
                     popupNotificationActivity.k();
                     return;
                 } else if (i10 == 2) {
-                    int i17 = PopupNotificationActivity.f33480b0;
+                    int i17 = PopupNotificationActivity.f33473b0;
                     popupNotificationActivity.p();
                     return;
                 } else {

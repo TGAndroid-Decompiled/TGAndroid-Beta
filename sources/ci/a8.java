@@ -1,71 +1,60 @@
 package ci;
 
-import android.graphics.Paint;
-import android.graphics.RectF;
 import android.view.View;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.UserConfig;
-import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.uu;
-import org.telegram.ui.Components.x20;
-public final class a8 {
-    public final int f5169a;
-    public final uu f5170b;
-    public final x20 f5171c;
-    public int d;
-    public int e;
-    public final org.telegram.ui.Components.i5 f5172f;
-    public final org.telegram.ui.Components.i5 f5173g;
+import org.telegram.messenger.voip.ConferenceCall;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_phone;
+import org.telegram.ui.sn;
+public final class a8 implements RequestDelegate {
+    public final int f5153a = 0;
+    public final long f5154b;
+    public final Object f5155c;
+    public final Object d;
+    public final Object e;
+    public final Object f5156f;
 
-    public a8(View view) {
-        uu uuVar = new uu(1, view);
-        this.f5169a = UserConfig.selectedAccount;
-        this.f5170b = uuVar;
-        bs bsVar = bs.h;
-        this.f5172f = new org.telegram.ui.Components.i5(uuVar, 350L, bsVar);
-        this.f5173g = new org.telegram.ui.Components.i5(uuVar, 350L, bsVar);
-        x20 x20Var = new x20();
-        this.f5171c = x20Var;
-        x20Var.f32290a = true;
-        x20Var.f32291b = true;
-        b(false);
-        x20Var.f32292c.setStrokeWidth(AndroidUtilities.dpf2(2.0f));
-        x20Var.f32292c.setStyle(Paint.Style.STROKE);
-        x20Var.f32292c.setStrokeCap(Paint.Cap.ROUND);
+    public a8(b8 b8Var, long j10, View view, x7 x7Var, MessagesController messagesController) {
+        this.f5155c = b8Var;
+        this.f5154b = j10;
+        this.d = view;
+        this.e = x7Var;
+        this.f5156f = messagesController;
     }
 
-    public final Paint a(RectF rectF) {
-        int a2 = this.f5172f.a(this.d, false);
-        int a10 = this.f5173g.a(this.e, false);
-        x20 x20Var = this.f5171c;
-        x20Var.d(a2, a10, 0, 0);
-        x20Var.b(rectF.left, rectF.top, rectF.right, rectF.bottom);
-        return x20Var.f32292c;
-    }
-
-    public final void b(boolean z10) {
-        d(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.hk, false), org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.ik, false), z10);
-    }
-
-    public final void c(MessagesController.PeerColor peerColor, boolean z10) {
-        if (peerColor != null) {
-            d(peerColor.getStoryColor1(org.telegram.ui.ActionBar.h6.I.q()), peerColor.getStoryColor2(org.telegram.ui.ActionBar.h6.I.q()), z10);
-        } else {
-            b(z10);
+    @Override
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f5153a) {
+            case 0:
+                AndroidUtilities.runOnUIThread(new ai.a4((b8) this.f5155c, tLObject, this.f5154b, (View) this.d, (x7) this.e, (MessagesController) this.f5156f, 3));
+                return;
+            case 1:
+                ((ConferenceCall) this.f5155c).lambda$poll$8((TL_phone.getGroupCallChainBlocks) this.d, this.f5154b, (AtomicBoolean) this.e, (AtomicInteger) this.f5156f, tLObject, tL_error);
+                return;
+            default:
+                AndroidUtilities.runOnUIThread(new org.telegram.messenger.voip.e(tL_error, (sn) this.f5155c, tLObject, (TLRPC.FileLocation[]) this.d, (String) this.e, (TLRPC.FileLocation[]) this.f5156f, this.f5154b));
+                return;
         }
     }
 
-    public final void d(int i10, int i11, boolean z10) {
-        this.d = i10;
-        this.e = i11;
-        if (!z10) {
-            this.f5172f.a(i10, true);
-            this.f5173g.a(i11, true);
-        }
-        uu uuVar = this.f5170b;
-        if (uuVar != null) {
-            uuVar.run();
-        }
+    public a8(ConferenceCall conferenceCall, TL_phone.getGroupCallChainBlocks getgroupcallchainblocks, long j10, AtomicBoolean atomicBoolean, AtomicInteger atomicInteger) {
+        this.f5155c = conferenceCall;
+        this.d = getgroupcallchainblocks;
+        this.f5154b = j10;
+        this.e = atomicBoolean;
+        this.f5156f = atomicInteger;
+    }
+
+    public a8(sn snVar, TLRPC.FileLocation[] fileLocationArr, String str, TLRPC.FileLocation[] fileLocationArr2, long j10) {
+        this.f5155c = snVar;
+        this.d = fileLocationArr;
+        this.e = str;
+        this.f5156f = fileLocationArr2;
+        this.f5154b = j10;
     }
 }

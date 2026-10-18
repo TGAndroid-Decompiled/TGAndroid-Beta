@@ -2,66 +2,130 @@ package org.telegram.ui.Wallet;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.text.style.ReplacementSpan;
-public final class k9 extends ReplacementSpan {
-    public final String f34418a;
-    public final String f34419b;
-    public final boolean f34420c;
-    public float d;
-    public int e;
-    public int f34421f;
-    public m9 h;
-    public m9 f34422n;
-    public final n9 f34423r;
+import android.graphics.Path;
+import android.os.SystemClock;
+import java.util.ArrayList;
+import java.util.Random;
+import org.telegram.messenger.AndroidUtilities;
+public final class k9 {
+    public static final int[] f34409f = {-16106272, -16754689, -14779393, -13326081, -10235137, -6559233};
+    public final ArrayList f34410a = new ArrayList();
+    public final Random f34411b = new Random();
+    public final Paint f34412c = new Paint(1);
+    public final Path d;
+    public long e;
 
-    public k9(n9 n9Var, String str, boolean z10, boolean z11) {
-        String str2;
-        this.f34423r = n9Var;
-        this.f34418a = str;
-        if (z10) {
-            str2 = n9Var.O;
-        } else {
-            str2 = "";
-        }
-        this.f34419b = str2;
-        this.f34420c = z11;
+    public k9() {
+        Path path = new Path();
+        this.d = path;
+        path.moveTo(0.0f, -1.0f);
+        path.quadTo(0.12f, -0.12f, 1.0f, 0.0f);
+        path.quadTo(0.12f, 0.12f, 0.0f, 1.0f);
+        path.quadTo(-0.12f, 0.12f, -1.0f, 0.0f);
+        path.quadTo(-0.12f, -0.12f, 0.0f, -1.0f);
+        path.close();
     }
 
-    public final int a() {
-        int i10 = this.e;
-        return Math.round((n9.R.getInterpolation(this.f34423r.H) * (this.f34421f - i10)) + i10);
+    public final j9 a(float f7, float f10, float f11, float f12, float f13, float f14, float f15) {
+        ArrayList arrayList = this.f34410a;
+        if (arrayList.isEmpty()) {
+            this.e = SystemClock.uptimeMillis();
+        }
+        ?? obj = new Object();
+        obj.f34384l = 1.0f;
+        obj.f34376a = f7;
+        obj.f34377b = f10;
+        double d = f11;
+        obj.f34378c = ((float) Math.cos(d)) * f12;
+        obj.d = ((float) Math.sin(d)) * f12;
+        obj.e = f13;
+        obj.f34379f = f14;
+        obj.f34380g = f15;
+        obj.f34383k = f34409f[this.f34411b.nextInt(6)];
+        obj.h = e(0.0f, 90.0f);
+        obj.f34381i = e(-180.0f, 180.0f);
+        arrayList.add(obj);
+        return obj;
     }
 
-    @Override
-    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
-        Canvas canvas2;
-        Paint paint2;
-        int i15;
-        float textSize = paint.getTextSize();
-        if (this.f34420c) {
-            paint.setTextSize((28.0f * textSize) / 44.0f);
+    public final void b(float f7, float f10) {
+        float f11 = AndroidUtilities.density;
+        for (int i10 = 0; i10 < 28; i10++) {
+            a(f7, f10, e(0.0f, 6.2831855f), e(60.0f, 300.0f) * f11, e(2.5f, 6.0f) * f11, e(0.5f, 0.9f), 3.0f);
         }
-        float f10 = f7 - this.d;
-        m9 m9Var = this.f34422n;
-        if (m9Var != null) {
-            paint2 = paint;
-            i15 = i13;
-            canvas2 = canvas;
-            m9Var.b(canvas2, paint2, this.f34419b, f10, i15);
-        } else {
-            canvas2 = canvas;
-            paint2 = paint;
-            i15 = i13;
-        }
-        this.h.b(canvas2, paint2, this.f34418a, f10, i15);
-        paint2.setTextSize(textSize);
     }
 
-    @Override
-    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
-        if (fontMetricsInt != null) {
-            paint.getFontMetricsInt(fontMetricsInt);
+    public final void c(Canvas canvas) {
+        long uptimeMillis = SystemClock.uptimeMillis();
+        float min = Math.min(0.033f, ((float) (uptimeMillis - this.e)) / 1000.0f);
+        this.e = uptimeMillis;
+        ArrayList arrayList = this.f34410a;
+        for (int size = arrayList.size() - 1; size >= 0; size--) {
+            j9 j9Var = (j9) arrayList.get(size);
+            float f7 = j9Var.f34382j + min;
+            j9Var.f34382j = f7;
+            if (f7 >= 0.0f) {
+                if (f7 >= j9Var.f34379f) {
+                    arrayList.remove(size);
+                } else {
+                    float exp = (float) Math.exp((-j9Var.f34380g) * min);
+                    float f10 = j9Var.f34378c * exp;
+                    j9Var.f34378c = f10;
+                    float f11 = j9Var.d * exp;
+                    j9Var.d = f11;
+                    j9Var.f34376a = (f10 * min) + j9Var.f34376a;
+                    j9Var.f34377b = (f11 * min) + j9Var.f34377b;
+                    j9Var.h = (j9Var.f34381i * min) + j9Var.h;
+                    float f12 = j9Var.f34382j / j9Var.f34379f;
+                    float max = Math.max(0.0f, Math.min(1.0f, (f12 - 0.35f) / 0.65f));
+                    float min2 = (1.0f - ((3.0f - (max * 2.0f)) * (max * max))) * Math.min(1.0f, 8.0f * f12) * j9Var.f34384l;
+                    float B = com.google.android.gms.internal.play_billing.k3.B(f12, 0.5f, 1.0f, j9Var.e);
+                    int save = canvas.save();
+                    canvas.translate(j9Var.f34376a, j9Var.f34377b);
+                    canvas.rotate(j9Var.h);
+                    canvas.scale(B, B);
+                    int i10 = j9Var.f34383k;
+                    Paint paint = this.f34412c;
+                    paint.setColor(i10);
+                    paint.setAlpha(Math.round(20.4f * min2));
+                    canvas.drawCircle(0.0f, 0.0f, 1.4f, paint);
+                    paint.setAlpha(Math.round(min2 * 255.0f));
+                    canvas.drawPath(this.d, paint);
+                    canvas.restoreToCount(save);
+                }
+            }
         }
-        return a();
+    }
+
+    public final boolean d() {
+        return !this.f34410a.isEmpty();
+    }
+
+    public final float e(float f7, float f10) {
+        return com.google.android.gms.internal.play_billing.k3.y(f10, f7, this.f34411b.nextFloat(), f7);
+    }
+
+    public final void f() {
+        float f7;
+        this.f34410a.clear();
+        float f10 = AndroidUtilities.density;
+        for (int i10 = 0; i10 < 48; i10++) {
+            for (int i11 = -1; i11 <= 1; i11 += 2) {
+                if (i11 < 0) {
+                    f7 = 3.1415927f;
+                } else {
+                    f7 = 0.0f;
+                }
+                j9 a2 = a(0.0f, (e(-3.0f, 3.0f) * f10) + 0.0f, e(-0.6f, 0.6f) + f7, e(150.0f, 310.0f) * f10, e(1.3f, 3.2f) * f10, e(0.65f, 1.05f), 1.8f);
+                a2.f34383k = -6562049;
+                a2.f34384l = e(0.3f, 1.0f);
+                a2.f34382j = (-i10) * 0.006f;
+            }
+        }
+    }
+
+    public final void g(float f7, float f10) {
+        float f11 = AndroidUtilities.density;
+        a(f7, f10, e(0.0f, 6.2831855f), e(0.0f, 28.0f) * f11, e(1.5f, 3.5f) * f11, e(0.35f, 0.6f), 2.0f);
     }
 }

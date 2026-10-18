@@ -39,13 +39,13 @@ public final class j31 extends org.telegram.ui.Components.bb {
         imageView.setImageResource(R.drawable.large_ads_info);
         imageView.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
         imageView.setBackground(org.telegram.ui.ActionBar.h6.K(AndroidUtilities.dp(80.0f), org.telegram.ui.ActionBar.h6.w0(i11, d6Var)));
-        frameLayout.addView(imageView, w7.z5.a(80.0f, 0.0f, 20.0f, 0.0f, 0.0f, 80, 1));
+        frameLayout.addView(imageView, w7.z5.d(80, 80.0f, 1, 0.0f, 20.0f, 0.0f, 0.0f));
         linearLayout.addView(frameLayout, w7.z5.k(0.0f, 0.0f, 0.0f, 0.0f, -1, 100));
         TextView textView = new TextView(context);
         textView.setText(LocaleController.getString(R.string.SearchAdsAboutTitle));
         textView.setTypeface(AndroidUtilities.bold());
         int i12 = org.telegram.ui.ActionBar.h6.G6;
-        org.telegram.messenger.kk.o(i12, d6Var, textView, 1, 20.0f);
+        org.telegram.messenger.lk.o(i12, d6Var, textView, 1, 20.0f);
         textView.setGravity(1);
         TextView i13 = com.google.android.gms.internal.play_billing.k3.i(linearLayout, textView, w7.z5.t(-2, -2, 1, 22, 14, 22, 0), context);
         i13.setText(LocaleController.getString(R.string.SearchAdsAboutSubtitle));
@@ -53,7 +53,7 @@ public final class j31 extends org.telegram.ui.Components.bb {
         i13.setTextSize(1, 14.0f);
         i13.setGravity(1);
         linearLayout.addView(i13, w7.z5.t(-2, -2, 1, 22, 8, 22, 0));
-        linearLayout.addView(new ci.i4(this, context, R.drawable.menu_privacy, LocaleController.getString(R.string.SearchAdsAbout1Title), LocaleController.getString(R.string.SearchAdsAbout1Subtitle)), w7.z5.p(-1, -2, 0.0f, 0, 0, 20, 0, 0));
+        linearLayout.addView(new ci.h4(this, context, R.drawable.menu_privacy, LocaleController.getString(R.string.SearchAdsAbout1Title), LocaleController.getString(R.string.SearchAdsAbout1Subtitle)), w7.z5.p(-1, -2, 0.0f, 0, 0, 20, 0, 0));
         boolean isPremium = UserConfig.getInstance(this.currentAccount).isPremium();
         int i14 = R.drawable.menu_feature_noads;
         String string = LocaleController.getString(R.string.SearchAdsAbout2Title);
@@ -62,9 +62,9 @@ public final class j31 extends org.telegram.ui.Components.bb {
         } else {
             i10 = R.string.SearchAdsAbout2Subtitle;
         }
-        linearLayout.addView(new ci.i4(this, context, i14, string, AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(i10), new z70(this, isPremium, go0Var, 10)), true)), w7.z5.p(-1, -2, 0.0f, 0, 0, 16, 0, 0));
+        linearLayout.addView(new ci.h4(this, context, i14, string, AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(i10), new z70(this, isPremium, go0Var, 10)), true)), w7.z5.p(-1, -2, 0.0f, 0, 0, 16, 0, 0));
         View view = new View(getContext());
-        view.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20994d7, d6Var));
+        view.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20987d7, d6Var));
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(-1, 1);
         layoutParams.setMargins(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(20.0f));
         linearLayout.addView(view, layoutParams);
@@ -80,7 +80,7 @@ public final class j31 extends org.telegram.ui.Components.bb {
         org.telegram.ui.Components.x90 x90Var = new org.telegram.ui.Components.x90(context, null);
         x90Var.setText(replaceCharSequence);
         x90Var.setTextColor(org.telegram.ui.ActionBar.h6.w0(i12, d6Var));
-        x90Var.setLinkTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21052gc, d6Var));
+        x90Var.setLinkTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21045gc, d6Var));
         x90Var.setTextSize(1, 14.0f);
         x90Var.setGravity(1);
         x90Var.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);

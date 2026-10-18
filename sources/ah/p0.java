@@ -10,10 +10,10 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
-import ci.aa;
-import ci.n2;
-import ci.p1;
-import ci.q4;
+import ci.m2;
+import ci.o1;
+import ci.p4;
+import ci.z9;
 import ei.f6;
 import ei.i9;
 import ei.l4;
@@ -53,7 +53,7 @@ public final class p0 extends AnimatorListenerAdapter {
     public void onAnimationCancel(Animator animator) {
         switch (this.f846a) {
             case 17:
-                ((hi.o) this.f848c).f12201w = null;
+                ((hi.o) this.f848c).f12199w = null;
                 return;
             case 23:
                 f2 f2Var = (f2) this.f848c;
@@ -73,14 +73,14 @@ public final class p0 extends AnimatorListenerAdapter {
                 return;
             case 26:
                 za zaVar = (za) this.f848c;
-                AnimatorSet animatorSet3 = zaVar.f23893f;
+                AnimatorSet animatorSet3 = zaVar.f23886f;
                 if (animatorSet3 != null && animatorSet3.equals(animator)) {
-                    zaVar.f23893f = null;
+                    zaVar.f23886f = null;
                     return;
                 }
                 return;
             case 28:
-                ((od) this.f848c).f39747n = null;
+                ((od) this.f848c).f39739n = null;
                 return;
             case 29:
                 sn snVar = (sn) this.f848c;
@@ -163,12 +163,12 @@ public final class p0 extends AnimatorListenerAdapter {
                 } else {
                     f10 = 0.0f;
                 }
-                rVar.f5875d0 = f10;
+                rVar.f5813d0 = f10;
                 rVar.b();
                 return;
             case 2:
-                n2 n2Var = (n2) this.f848c;
-                u1 u1Var = n2Var.f6136c;
+                m2 m2Var = (m2) this.f848c;
+                u1 u1Var = m2Var.f6076c;
                 float f26 = 0.0f;
                 boolean z14 = this.f847b;
                 if (z14) {
@@ -177,40 +177,40 @@ public final class p0 extends AnimatorListenerAdapter {
                     f11 = 1.0f;
                 }
                 u1Var.setAlpha(f11);
-                View view2 = n2Var.f6132a;
+                View view2 = m2Var.f6072a;
                 if (!z14) {
                     f26 = 0.5f;
                 }
                 view2.setAlpha(f26);
-                n2Var.invalidate();
+                m2Var.invalidate();
                 return;
             case 3:
-                p1 p1Var = (p1) this.f848c;
-                p1Var.f5715b.removeViewImmediate(p1Var.d);
-                p1Var.f5717f.b();
-                if (this.f847b && (h1Var = p1Var.v) != null && h1Var != ci.h1.W) {
+                o1 o1Var = (o1) this.f848c;
+                o1Var.f5614b.removeViewImmediate(o1Var.d);
+                o1Var.f5616f.b();
+                if (this.f847b && (h1Var = o1Var.v) != null && h1Var != ci.h1.W) {
                     h1Var.e();
                 }
-                p1Var.v = null;
-                p1Var.f5720s = true;
-                p1Var.G = null;
-                p1Var.E = false;
+                o1Var.v = null;
+                o1Var.f5619s = true;
+                o1Var.G = null;
+                o1Var.E = false;
                 return;
             case 4:
-                aa aaVar = (aa) this.f848c;
-                aaVar.J0.unlock();
+                z9 z9Var = (z9) this.f848c;
+                z9Var.J0.unlock();
                 if (this.f847b) {
-                    f12 = aaVar.f5226w.f5282c;
+                    f12 = z9Var.f6258w.f5178c;
                 } else {
                     f12 = 0.0f;
                 }
-                aaVar.f5188e0 = f12;
-                q4 currentPeerView = aaVar.f5206n0.getCurrentPeerView();
+                z9Var.f6220e0 = f12;
+                p4 currentPeerView = z9Var.f6238n0.getCurrentPeerView();
                 if (currentPeerView != null) {
                     currentPeerView.invalidate();
                 }
-                aaVar.v.invalidate();
-                aaVar.f5225v1 = null;
+                z9Var.v.invalidate();
+                z9Var.f6257v1 = null;
                 return;
             case 5:
                 di.v vVar = (di.v) this.f848c;
@@ -221,15 +221,15 @@ public final class p0 extends AnimatorListenerAdapter {
                 } else {
                     f13 = 0.0f;
                 }
-                vVar.f8078w = f13;
-                b91 b91Var = vVar.f8076r;
+                vVar.f8076w = f13;
+                b91 b91Var = vVar.f8074r;
                 if (z15) {
                     f14 = 0.0f;
                 } else {
                     f14 = -42.0f;
                 }
                 b91Var.setTranslationY(AndroidUtilities.dp(f14));
-                di.a aVar = vVar.f8075n;
+                di.a aVar = vVar.f8073n;
                 if (z15) {
                     f27 = 42.0f;
                 }
@@ -238,14 +238,14 @@ public final class p0 extends AnimatorListenerAdapter {
             case 6:
                 di.r rVar2 = (di.r) this.f848c;
                 di.h hVar = rVar2.h;
-                di.i iVar = rVar2.f8060f;
+                di.i iVar = rVar2.f8058f;
                 di.l lVar = rVar2.v;
-                rVar2.f8058b = false;
+                rVar2.f8056b = false;
                 boolean z16 = this.f847b;
                 if (z16) {
                     int i14 = rVar2.e;
                     rVar2.d = i14;
-                    rVar2.W.f8080y = i14;
+                    rVar2.W.f8078y = i14;
                     SharedConfig.setStoriesColumnsCount(i14);
                 }
                 int h = lVar.h();
@@ -258,10 +258,10 @@ public final class p0 extends AnimatorListenerAdapter {
                         lVar.l();
                     }
                 }
-                rVar2.f8062r.setVisibility(8);
+                rVar2.f8060r.setVisibility(8);
                 int i15 = rVar2.S;
                 if (i15 >= 0) {
-                    if (z16 && (m10 = rVar2.f8063s.m(i15)) != null) {
+                    if (z16 && (m10 = rVar2.f8061s.m(i15)) != null) {
                         rVar2.T = m10.getTop();
                     }
                     hVar.h1(rVar2.S, (-iVar.getPaddingTop()) + rVar2.T);
@@ -282,20 +282,20 @@ public final class p0 extends AnimatorListenerAdapter {
                 ei.m mVar = (ei.m) this.f848c;
                 boolean z17 = this.f847b;
                 if (!z17) {
-                    mVar.f9415r.setVisibility(8);
+                    mVar.f9413r.setVisibility(8);
                     ei.i iVar2 = mVar.M;
                     if (iVar2 != null) {
                         iVar2.setVisibility(8);
                     }
                 }
                 if (z17) {
-                    mVar.f9402f.getEditText().setAllowDrawCursor(true);
+                    mVar.f9400f.getEditText().setAllowDrawCursor(true);
                 }
                 mVar.c(z17);
                 return;
             case 9:
                 ei.y yVar = (ei.y) this.f848c;
-                ei.v vVar2 = yVar.f10122a;
+                ei.v vVar2 = yVar.f10120a;
                 boolean z18 = this.f847b;
                 if (z18) {
                     f16 = 1.0f;
@@ -319,7 +319,7 @@ public final class p0 extends AnimatorListenerAdapter {
                 return;
             case 11:
                 if (!this.f847b) {
-                    ((l4) this.f848c).f9368b.setVisibility(8);
+                    ((l4) this.f848c).f9366b.setVisibility(8);
                     return;
                 }
                 return;
@@ -336,14 +336,14 @@ public final class p0 extends AnimatorListenerAdapter {
                 if (this.f847b) {
                     i9Var.setVisibility(8);
                 }
-                i9Var.f9210c = null;
+                i9Var.f9208c = null;
                 return;
             case 14:
                 vb vbVar = (vb) this.f848c;
                 if (!this.f847b) {
                     vbVar.V0.setVisibility(8);
                 }
-                vbVar.f9970f2 = null;
+                vbVar.f9968f2 = null;
                 return;
             case 15:
                 d3 d3Var = (d3) this.f848c;
@@ -366,8 +366,8 @@ public final class p0 extends AnimatorListenerAdapter {
                 m1Var.e = f18;
                 m1Var.invalidate();
                 for (int i16 = 0; i16 < 2; i16++) {
-                    m1Var.f11985c[i16].setTranslationX(AndroidUtilities.lerp(0, -AndroidUtilities.dp(62.0f), m1Var.e));
-                    TextView textView = m1Var.f11985c[i16];
+                    m1Var.f11983c[i16].setTranslationX(AndroidUtilities.lerp(0, -AndroidUtilities.dp(62.0f), m1Var.e));
+                    TextView textView = m1Var.f11983c[i16];
                     if (i16 == 1) {
                         z10 = true;
                     } else {
@@ -380,7 +380,7 @@ public final class p0 extends AnimatorListenerAdapter {
                         i11 = 8;
                     }
                     textView.setVisibility(i11);
-                    TextView textView2 = m1Var.f11985c[i16];
+                    TextView textView2 = m1Var.f11983c[i16];
                     if (i16 == 0) {
                         f19 = 1.0f;
                     } else {
@@ -419,12 +419,12 @@ public final class p0 extends AnimatorListenerAdapter {
                 return;
             case 17:
                 hi.o oVar = (hi.o) this.f848c;
-                if (oVar.f12201w != null && (radialProgressView = oVar.f12202x) != null) {
+                if (oVar.f12199w != null && (radialProgressView = oVar.f12200x) != null) {
                     if (!this.f847b) {
                         radialProgressView.setVisibility(4);
-                        oVar.f12200s.setVisibility(4);
+                        oVar.f12198s.setVisibility(4);
                     }
-                    oVar.f12201w = null;
+                    oVar.f12199w = null;
                     return;
                 }
                 return;
@@ -453,9 +453,9 @@ public final class p0 extends AnimatorListenerAdapter {
                     f24 = 0.0f;
                 }
                 l4Var.Y0 = f24;
-                l4Var.f38766q0.setTranslationY(((1.0f - f24) * AndroidUtilities.dp(51.0f)) + l4Var.f38765p0);
+                l4Var.f38721q0.setTranslationY(((1.0f - f24) * AndroidUtilities.dp(51.0f)) + l4Var.f38720p0);
                 if (!z20) {
-                    l4Var.f38766q0.setVisibility(8);
+                    l4Var.f38721q0.setVisibility(8);
                     return;
                 }
                 return;
@@ -471,13 +471,13 @@ public final class p0 extends AnimatorListenerAdapter {
                         }
                         x4 x4Var = (x4) bVar.d;
                         x4Var.E = true;
-                        e5 e5Var = x4Var.f37450y;
+                        e5 e5Var = x4Var.f37412y;
                         if (e5Var != null) {
-                            if (e5Var.f36401g) {
-                                e5Var.f36401g = false;
-                                e5Var.f36398b.removeObserver(e5Var.f36397a, e5Var.e);
+                            if (e5Var.f36364g) {
+                                e5Var.f36364g = false;
+                                e5Var.f36361b.removeObserver(e5Var.f36360a, e5Var.e);
                             }
-                            x4Var.f37450y = null;
+                            x4Var.f37412y = null;
                         }
                         bVar.d = null;
                         ((ViewGroup) bVar.f4494b).requestDisallowInterceptTouchEvent(false);
@@ -492,12 +492,12 @@ public final class p0 extends AnimatorListenerAdapter {
                 org.telegram.ui.Cells.u1 u1Var2 = (org.telegram.ui.Cells.u1) this.f848c;
                 t1 t1Var = u1Var2.Zc;
                 int g10 = t1Var.g();
-                int i18 = u1Var2.f23331hd;
+                int i18 = u1Var2.f23324hd;
                 if (i18 != g10) {
                     u1Var2.t1(i18, g10, this.f847b);
                     return;
                 }
-                u1Var2.f23374kd = false;
+                u1Var2.f23367kd = false;
                 t1Var.a2 = i18;
                 return;
             case 23:
@@ -540,9 +540,9 @@ public final class p0 extends AnimatorListenerAdapter {
                 return;
             case 26:
                 za zaVar = (za) this.f848c;
-                AnimatorSet animatorSet3 = zaVar.f23893f;
+                AnimatorSet animatorSet3 = zaVar.f23886f;
                 if (animatorSet3 != null && animatorSet3.equals(animator)) {
-                    zaVar.f23893f = null;
+                    zaVar.f23886f = null;
                     if (!this.f847b) {
                         zaVar.setBackgroundColor(0);
                         return;
@@ -561,13 +561,13 @@ public final class p0 extends AnimatorListenerAdapter {
                 return;
             case 28:
                 od odVar = (od) this.f848c;
-                if (odVar.f39747n != null && (ldVar = odVar.h) != null) {
+                if (odVar.f39739n != null && (ldVar = odVar.h) != null) {
                     if (this.f847b) {
                         ldVar.setVisibility(4);
                     } else {
-                        odVar.f39752r.setVisibility(4);
+                        odVar.f39744r.setVisibility(4);
                     }
-                    odVar.f39747n = null;
+                    odVar.f39739n = null;
                     return;
                 }
                 return;

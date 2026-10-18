@@ -3,10 +3,10 @@ package org.telegram.ui.Components;
 import android.webkit.JavascriptInterface;
 import org.telegram.messenger.AndroidUtilities;
 public final class bv {
-    public final cv f25055a;
+    public final cv f25048a;
 
     public bv(cv cvVar) {
-        this.f25055a = cvVar;
+        this.f25048a = cvVar;
     }
 
     @JavascriptInterface

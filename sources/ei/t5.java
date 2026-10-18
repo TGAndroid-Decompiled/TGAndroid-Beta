@@ -6,11 +6,11 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
 public final class t5 implements org.telegram.ui.ActionBar.d6 {
-    public PorterDuffColorFilter f9852a;
-    public final org.telegram.ui.ActionBar.d6 f9853b;
+    public PorterDuffColorFilter f9850a;
+    public final org.telegram.ui.ActionBar.d6 f9851b;
 
     public t5(org.telegram.ui.ActionBar.d6 d6Var) {
-        this.f9853b = d6Var;
+        this.f9851b = d6Var;
     }
 
     @Override
@@ -35,15 +35,15 @@ public final class t5 implements org.telegram.ui.ActionBar.d6 {
 
     @Override
     public final ColorFilter j() {
-        if (this.f9852a == null) {
-            this.f9852a = new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN);
+        if (this.f9850a == null) {
+            this.f9850a = new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN);
         }
-        return this.f9852a;
+        return this.f9850a;
     }
 
     @Override
     public final Paint n(String str) {
-        return this.f9853b.n(str);
+        return this.f9851b.n(str);
     }
 
     @Override
@@ -64,13 +64,13 @@ public final class t5 implements org.telegram.ui.ActionBar.d6 {
         if (i10 == org.telegram.ui.ActionBar.h6.E8) {
             return -1;
         }
-        if (i10 == org.telegram.ui.ActionBar.h6.f21064h5) {
+        if (i10 == org.telegram.ui.ActionBar.h6.f21057h5) {
             return -14737633;
         }
-        if (i10 == org.telegram.ui.ActionBar.h6.f21099j5) {
+        if (i10 == org.telegram.ui.ActionBar.h6.f21092j5) {
             return -592138;
         }
-        if (i10 == org.telegram.ui.ActionBar.h6.f21249r5) {
+        if (i10 == org.telegram.ui.ActionBar.h6.f21242r5) {
             return -8553091;
         }
         if (i10 == org.telegram.ui.ActionBar.h6.He) {
@@ -89,7 +89,7 @@ public final class t5 implements org.telegram.ui.ActionBar.d6 {
         if (i10 == i11) {
             return -11754001;
         }
-        if (i10 == org.telegram.ui.ActionBar.h6.f21082i6) {
+        if (i10 == org.telegram.ui.ActionBar.h6.f21075i6) {
             return 536870911;
         }
         if (i10 == org.telegram.ui.ActionBar.h6.Fh || i10 == org.telegram.ui.ActionBar.h6.Eh || i10 == org.telegram.ui.ActionBar.h6.Gh) {
@@ -102,10 +102,10 @@ public final class t5 implements org.telegram.ui.ActionBar.d6 {
             if (i10 == org.telegram.ui.ActionBar.h6.Ie) {
                 return 780633991;
             }
-            if (i10 == org.telegram.ui.ActionBar.h6.f20935a7) {
+            if (i10 == org.telegram.ui.ActionBar.h6.f20928a7) {
                 return -15921907;
             }
-            org.telegram.ui.ActionBar.d6 d6Var = this.f9853b;
+            org.telegram.ui.ActionBar.d6 d6Var = this.f9851b;
             if (d6Var != null) {
                 return d6Var.u(i10);
             }

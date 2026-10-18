@@ -1,21 +1,21 @@
 package org.telegram.ui.Components;
 public final class qe implements e5 {
-    public final int f29677a;
-    public final ChatActivityEnterView f29678b;
+    public final int f29670a;
+    public final ChatActivityEnterView f29671b;
 
     public qe(ChatActivityEnterView chatActivityEnterView, int i10) {
-        this.f29677a = i10;
-        this.f29678b = chatActivityEnterView;
+        this.f29670a = i10;
+        this.f29671b = chatActivityEnterView;
     }
 
     @Override
     public final void C(int i10, int i11, boolean z10) {
-        switch (this.f29677a) {
+        switch (this.f29670a) {
             case 0:
-                this.f29678b.R0(i10, z10, i11, true, 0L);
+                this.f29671b.R0(i10, z10, i11, true, 0L);
                 return;
             default:
-                ChatActivityEnterView chatActivityEnterView = this.f29678b;
+                ChatActivityEnterView chatActivityEnterView = this.f29671b;
                 chatActivityEnterView.R0(i10, z10, i11, true, 0L);
                 mf mfVar = chatActivityEnterView.L0;
                 if (mfVar != null) {

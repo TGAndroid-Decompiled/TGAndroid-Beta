@@ -1,35 +1,91 @@
 package ci;
 
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.text.TextPaint;
+import android.util.TypedValue;
 import android.view.View;
-import android.view.ViewTreeObserver;
-import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-public final class k7 implements ViewTreeObserver.OnGlobalLayoutListener {
-    public final TextView f5570a;
-    public final View f5571b;
-    public final TextView f5572c;
-    public final m7 d;
+import org.telegram.ui.Components.uj0;
+public final class k7 extends View {
+    public final String f5492a;
+    public final String f5493b;
+    public final uj0 f5494c;
+    public final Paint d;
+    public final TextPaint e;
+    public final TextPaint f5495f;
+    public final RectF h;
+    public float f5496n;
+    public final Rect f5497r;
 
-    public k7(m7 m7Var, TextView textView, View view, TextView textView2) {
-        this.d = m7Var;
-        this.f5570a = textView;
-        this.f5571b = view;
-        this.f5572c = textView2;
+    public k7(Context context, int i10, String str, String str2) {
+        super(context);
+        this.f5497r = new Rect();
+        this.f5492a = str;
+        this.f5493b = str2;
+        uj0 uj0Var = new uj0(i10, AndroidUtilities.dp(36.0f), AndroidUtilities.dp(36.0f), true, null);
+        this.f5494c = uj0Var;
+        uj0Var.K(1);
+        uj0Var.R(this);
+        Paint paint = new Paint(1);
+        this.d = paint;
+        paint.setColor(383310040);
+        TextPaint textPaint = new TextPaint(1);
+        this.e = textPaint;
+        textPaint.setColor(-1);
+        textPaint.setTextSize(TypedValue.applyDimension(1, 16.0f, getResources().getDisplayMetrics()));
+        textPaint.setTypeface(AndroidUtilities.bold());
+        TextPaint textPaint2 = new TextPaint(1);
+        this.f5495f = textPaint2;
+        textPaint2.setColor(-1761607681);
+        textPaint2.setTextSize(TypedValue.applyDimension(1, 14.0f, getResources().getDisplayMetrics()));
+        this.h = new RectF();
     }
 
     @Override
-    public final void onGlobalLayout() {
-        int[] iArr = new int[2];
-        TextView textView = this.f5570a;
-        textView.getLocationOnScreen(iArr);
-        int dp = AndroidUtilities.dp(24.0f) + iArr[1];
-        int measuredHeight = this.f5571b.getMeasuredHeight();
-        m7 m7Var = this.d;
-        if (dp > measuredHeight) {
-            textView.setLayoutParams(w7.z5.k(0.0f, 13.0f, 0.0f, 0.0f, -2, -2));
-            this.f5572c.setLayoutParams(w7.z5.k(68.0f, 8.0f, 68.0f, 13.0f, -2, -2));
-            m7Var.requestLayout();
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        int dp = AndroidUtilities.dp(40.0f);
+        int dp2 = (int) ((AndroidUtilities.dp(8.0f) * this.f5496n) + AndroidUtilities.dp(36.0f));
+        int i10 = dp2 / 2;
+        int i11 = dp - i10;
+        int measuredHeight = (getMeasuredHeight() / 2) - i10;
+        uj0 uj0Var = this.f5494c;
+        uj0Var.setBounds(i11, measuredHeight, i11 + dp2, dp2 + measuredHeight);
+        uj0Var.draw(canvas);
+        if (this.f5496n > 0.0f) {
+            float dpf2 = (1.0f - this.f5496n) * AndroidUtilities.dpf2(4.0f);
+            float f7 = dpf2 * 2.0f;
+            float measuredWidth = getMeasuredWidth() - f7;
+            float measuredHeight2 = getMeasuredHeight() - f7;
+            RectF rectF = this.h;
+            rectF.set(dpf2, dpf2, measuredWidth, measuredHeight2);
+            int i12 = (int) (this.f5496n * 30.0f);
+            Paint paint = this.d;
+            paint.setAlpha(i12);
+            canvas.drawRoundRect(rectF, AndroidUtilities.dpf2(12.0f), AndroidUtilities.dpf2(12.0f), paint);
+            canvas.save();
+            float f10 = this.f5496n;
+            canvas.scale((f10 * 0.05f) + 1.0f, (f10 * 0.05f) + 1.0f, getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f);
         }
-        m7Var.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+        canvas.drawText(this.f5492a, AndroidUtilities.dpf2(80.0f), (getMeasuredHeight() / 2.0f) - AndroidUtilities.dpf2(4.0f), this.e);
+        canvas.drawText(this.f5493b, AndroidUtilities.dpf2(80.0f), AndroidUtilities.dpf2(18.0f) + (getMeasuredHeight() / 2.0f), this.f5495f);
+        if (this.f5496n > 0.0f) {
+            canvas.restore();
+        }
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
+        int dp = AndroidUtilities.dp(40.0f);
+        int dp2 = AndroidUtilities.dp(36.0f);
+        int i12 = dp2 / 2;
+        int i13 = dp - i12;
+        int measuredHeight = (getMeasuredHeight() / 2) - i12;
+        this.f5494c.setBounds(i13, measuredHeight, i13 + dp2, dp2 + measuredHeight);
     }
 }

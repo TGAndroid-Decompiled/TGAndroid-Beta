@@ -1,12 +1,12 @@
 package x7;
 public final class s0 {
-    public final r0 f49578a;
-    public final Integer f49579b;
-    public final a7 f49580c;
+    public final r0 f49531a;
+    public final Integer f49532b;
+    public final a7 f49533c;
 
-    public s0(t0.h hVar) {
-        this.f49578a = (r0) hVar.f46911b;
-        this.f49579b = (Integer) hVar.f46912c;
-        this.f49580c = (a7) hVar.d;
+    public s0(u2.c cVar) {
+        this.f49531a = (r0) cVar.f47260b;
+        this.f49532b = (Integer) cVar.f47261c;
+        this.f49533c = (a7) cVar.d;
     }
 }

@@ -86,7 +86,7 @@ public final class b extends bb {
     public final hm0 x(im0 im0Var) {
         s61 s61Var = new s61(this.d, getContext(), this.currentAccount, 0, true, new o(this, 12), this.resourcesProvider);
         this.Y = s61Var;
-        s61Var.f30207r = false;
+        s61Var.f30201r = false;
         return s61Var;
     }
 }

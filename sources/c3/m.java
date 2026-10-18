@@ -63,7 +63,7 @@ public final class m implements r {
                     i11 = 32;
                 }
                 int i15 = g10 | i11;
-                e9.l0 l0Var = n0.f8477b;
+                e9.l0 l0Var = n0.f8475b;
                 arrayList.add(new w3.h(uVar2, i15, null, x1.e, null));
                 t7.u uVar3 = this.f4655c;
                 int i16 = this.d;
@@ -86,17 +86,17 @@ public final class m implements r {
                 return;
             case 11:
                 if (this.f4653a == null) {
-                    e9.l0 l0Var2 = n0.f8477b;
+                    e9.l0 l0Var2 = n0.f8475b;
                     this.f4653a = x1.e;
                 }
                 arrayList.add(new j4.d0(1, !this.f4654b ? 1 : 0, this.f4655c, new e2.k0(0L), new j4.f(0, this.f4653a)));
                 return;
             case 12:
                 ?? obj = new Object();
-                obj.f14894c = 0;
+                obj.f14892c = 0;
                 obj.d = -1L;
-                obj.f14895f = -1;
-                obj.f14896g = -1L;
+                obj.f14893f = -1;
+                obj.f14894g = -1L;
                 arrayList.add(obj);
                 return;
             case 13:

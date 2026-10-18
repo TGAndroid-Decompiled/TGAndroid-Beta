@@ -19,7 +19,7 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.kk;
+import org.telegram.messenger.lk;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.d6;
@@ -34,12 +34,12 @@ public final class l1 extends bb {
     public final int X;
     public final String Y;
     public s61 Z;
-    public final i1 f11317a0;
-    public boolean f11318b0;
-    public boolean f11319c0;
-    public final ai.s0 f11320d0;
+    public final i1 f11315a0;
+    public boolean f11316b0;
+    public boolean f11317c0;
+    public final ai.s0 f11318d0;
 
-    public l1(Context context, int i10, long j10, TLRPC.TL_messages_preparedInlineMessage tL_messages_preparedInlineMessage, File file, TLRPC.WebPage webPage, d6 d6Var, org.telegram.ui.web.t tVar, ai.s0 s0Var) {
+    public l1(Context context, int i10, long j10, TLRPC.TL_messages_preparedInlineMessage tL_messages_preparedInlineMessage, File file, TLRPC.WebPage webPage, d6 d6Var, org.telegram.ui.web.u uVar, ai.s0 s0Var) {
         super(context, null, false, false, d6Var);
         ?? r11;
         int i11;
@@ -50,11 +50,11 @@ public final class l1 extends bb {
         TLRPC.TL_photo tL_photo;
         int lastIndexOf;
         TLRPC.TL_photo tL_photo2;
-        this.f11318b0 = false;
-        this.f11319c0 = false;
+        this.f11316b0 = false;
+        this.f11317c0 = false;
         this.X = i10;
         this.Y = UserObject.getUserName(MessagesController.getInstance(i10).getUser(Long.valueOf(j10)));
-        this.f11320d0 = s0Var;
+        this.f11318d0 = s0Var;
         L();
         this.I = AndroidUtilities.dp(4.0f);
         this.J = AndroidUtilities.dp(-10.0f);
@@ -130,7 +130,7 @@ public final class l1 extends bb {
                 case 5:
                 case 6:
                     TLRPC.TL_document tL_document2 = new TLRPC.TL_document();
-                    tL_document2.f20285id = 0L;
+                    tL_document2.f20278id = 0L;
                     tL_document2.size = 0L;
                     tL_document2.dc_id = 0;
                     tL_document2.mime_type = botInlineResult.content.mime_type;
@@ -193,7 +193,7 @@ public final class l1 extends bb {
                             tL_document2.attributes.add(tL_documentAttributeSticker);
                             TLRPC.TL_documentAttributeImageSize tL_documentAttributeImageSize = new TLRPC.TL_documentAttributeImageSize();
                             int[] inlineResultWidthAndHeight = MessageObject.getInlineResultWidthAndHeight(botInlineResult);
-                            tL_documentAttributeImageSize.f20286w = inlineResultWidthAndHeight[0];
+                            tL_documentAttributeImageSize.f20279w = inlineResultWidthAndHeight[0];
                             tL_documentAttributeImageSize.h = inlineResultWidthAndHeight[1];
                             tL_document2.attributes.add(tL_documentAttributeImageSize);
                             tL_documentAttributeFilename.file_name = "sticker.webp";
@@ -251,7 +251,7 @@ public final class l1 extends bb {
                             tL_documentAttributeFilename.file_name = "video.mp4";
                             TLRPC.TL_documentAttributeVideo tL_documentAttributeVideo = new TLRPC.TL_documentAttributeVideo();
                             int[] inlineResultWidthAndHeight2 = MessageObject.getInlineResultWidthAndHeight(botInlineResult);
-                            tL_documentAttributeVideo.f20286w = inlineResultWidthAndHeight2[0];
+                            tL_documentAttributeVideo.f20279w = inlineResultWidthAndHeight2[0];
                             tL_documentAttributeVideo.h = inlineResultWidthAndHeight2[1];
                             tL_documentAttributeVideo.duration = MessageObject.getInlineResultDuration(botInlineResult);
                             tL_documentAttributeVideo.supports_streaming = true;
@@ -291,7 +291,7 @@ public final class l1 extends bb {
                     if (tL_document2.thumbs.isEmpty()) {
                         TLRPC.TL_photoSize tL_photoSize = new TLRPC.TL_photoSize();
                         int[] inlineResultWidthAndHeight3 = MessageObject.getInlineResultWidthAndHeight(botInlineResult);
-                        tL_photoSize.f20304w = inlineResultWidthAndHeight3[0];
+                        tL_photoSize.f20297w = inlineResultWidthAndHeight3[0];
                         z10 = true;
                         tL_photoSize.h = inlineResultWidthAndHeight3[1];
                         tL_photoSize.size = 0;
@@ -317,7 +317,7 @@ public final class l1 extends bb {
                         tL_photo2.file_reference = new byte[0];
                         TLRPC.TL_photoSize tL_photoSize2 = new TLRPC.TL_photoSize();
                         int[] inlineResultWidthAndHeight4 = MessageObject.getInlineResultWidthAndHeight(botInlineResult);
-                        tL_photoSize2.f20304w = inlineResultWidthAndHeight4[0];
+                        tL_photoSize2.f20297w = inlineResultWidthAndHeight4[0];
                         tL_photoSize2.h = inlineResultWidthAndHeight4[1];
                         tL_photoSize2.size = 1;
                         tL_photoSize2.location = new TLRPC.TL_fileLocationUnavailable();
@@ -344,18 +344,18 @@ public final class l1 extends bb {
         org.telegram.ui.Cells.u1 u1Var = new org.telegram.ui.Cells.u1(context, i11);
         u1Var.setDelegate(new Object());
         u1Var.X3(k1Var, null, false, false, false, false);
-        LinearLayout e = kk.e(context, r11);
+        LinearLayout e = lk.e(context, r11);
         e.addView(w0Var, z5.n(-1, -2));
         e.addView(u1Var, z5.n(-1, -2));
         ?? jw0Var = new jw0(context, null);
-        this.f11317a0 = jw0Var;
+        this.f11315a0 = jw0Var;
         jw0Var.V(r6.e(null, i11, j10, h6.I.q()));
-        jw0Var.addView(e, z5.a(-1.0f, 4.0f, 8.0f, 4.0f, 8.0f, -1, 119));
+        jw0Var.addView(e, z5.d(-1, -1.0f, 119, 4.0f, 8.0f, 4.0f, 8.0f));
         FrameLayout frameLayout = new FrameLayout(context);
-        ei.d f7 = kk.f(24, context, d6Var, r11);
+        ei.d f7 = lk.f(24, context, d6Var, r11);
         f7.g(LocaleController.getString(R.string.BotShareMessageShare), false, r11);
-        f7.setOnClickListener(new ai.e1(this, tL_messages_preparedInlineMessage, s0Var, i11, j10, tVar));
-        frameLayout.addView(f7, z5.a(48.0f, 10.0f, 10.0f, 10.0f, 10.0f, -1, 119));
+        f7.setOnClickListener(new ai.e1(this, tL_messages_preparedInlineMessage, s0Var, i11, j10, uVar));
+        frameLayout.addView(f7, z5.d(-1, 48.0f, 119, 10.0f, 10.0f, 10.0f, 10.0f));
         ViewGroup viewGroup = this.containerView;
         int i13 = this.backgroundPaddingLeft;
         viewGroup.addView(frameLayout, z5.f(-2.0f, 87, i13, 0, i13, 0));
@@ -363,7 +363,7 @@ public final class l1 extends bb {
         int i14 = this.backgroundPaddingLeft;
         im0Var.setPadding(i14, 0, i14, AndroidUtilities.dp(68.0f) + r11);
         this.d.p1();
-        int i15 = h6.f20935a7;
+        int i15 = h6.f20928a7;
         setBackgroundColor(getThemedColor(i15));
         fixNavigationBar(getThemedColor(i15));
         this.Z.N(false);
@@ -373,13 +373,13 @@ public final class l1 extends bb {
         throw new UnsupportedOperationException("Method not decompiled: gi.l1.Q(int, long, org.telegram.tgnet.TLRPC$BotInlineResult, org.telegram.tgnet.TLRPC$TL_photo, org.telegram.tgnet.TLRPC$TL_document, org.telegram.tgnet.TLRPC$WebPage):gi.k1");
     }
 
-    public static void R(Context context, int i10, long j10, String str, d6 d6Var, org.telegram.ui.web.t tVar, ai.s0 s0Var) {
+    public static void R(Context context, int i10, long j10, String str, d6 d6Var, org.telegram.ui.web.u uVar, ai.s0 s0Var) {
         org.telegram.ui.ActionBar.b2 b2Var = new org.telegram.ui.ActionBar.b2(context, 3, null);
         b2Var.q(500L);
         TLRPC.TL_messages_getPreparedInlineMessage tL_messages_getPreparedInlineMessage = new TLRPC.TL_messages_getPreparedInlineMessage();
         tL_messages_getPreparedInlineMessage.bot = MessagesController.getInstance(i10).getInputUser(j10);
-        tL_messages_getPreparedInlineMessage.f20377id = str;
-        ConnectionsManager.getInstance(i10).sendRequest(tL_messages_getPreparedInlineMessage, new z0(i10, b2Var, context, j10, d6Var, tVar, s0Var));
+        tL_messages_getPreparedInlineMessage.f20370id = str;
+        ConnectionsManager.getInstance(i10).sendRequest(tL_messages_getPreparedInlineMessage, new z0(i10, b2Var, context, j10, d6Var, uVar, s0Var));
     }
 
     @Override
@@ -390,9 +390,9 @@ public final class l1 extends bb {
     @Override
     public final void dismiss() {
         super.dismiss();
-        if (!this.f11318b0 && !this.f11319c0) {
-            this.f11319c0 = true;
-            ai.s0 s0Var = this.f11320d0;
+        if (!this.f11316b0 && !this.f11317c0) {
+            this.f11317c0 = true;
+            ai.s0 s0Var = this.f11318d0;
             if (s0Var != null) {
                 s0Var.run("USER_DECLINED", null);
             }

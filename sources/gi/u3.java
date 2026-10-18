@@ -9,7 +9,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import ci.y4;
+import ci.x4;
 import ei.p6;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
@@ -19,7 +19,7 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserObject;
-import org.telegram.messenger.kk;
+import org.telegram.messenger.lk;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_payments;
@@ -68,7 +68,7 @@ public final class u3 extends a20 implements NotificationCenter.NotificationCent
             TL_payments.connectedStarRefBots connectedstarrefbots = (TL_payments.connectedStarRefBots) tLObject;
             ai.h0 d = ai.k0.g(u3Var.currentAccount).d(j10);
             ArrayList arrayList = d.e;
-            int i10 = d.f1388a;
+            int i10 = d.f1386a;
             MessagesController.getInstance(i10).putUsers(connectedstarrefbots.users, false);
             for (int i11 = 0; i11 < connectedstarrefbots.connected_bots.size(); i11++) {
                 TL_payments.connectedBotStarRef connectedbotstarref = connectedstarrefbots.connected_bots.get(i11);
@@ -79,7 +79,7 @@ public final class u3 extends a20 implements NotificationCenter.NotificationCent
                     } else if (((TL_payments.connectedBotStarRef) arrayList.get(i12)).bot_id == connectedbotstarref.bot_id) {
                         if (connectedbotstarref.revoked) {
                             arrayList.remove(i12);
-                            d.f1390c = Math.max(d.f1390c - 1, 0);
+                            d.f1388c = Math.max(d.f1388c - 1, 0);
                         } else {
                             arrayList.set(i12, connectedbotstarref);
                         }
@@ -88,14 +88,14 @@ public final class u3 extends a20 implements NotificationCenter.NotificationCent
                     }
                 }
             }
-            NotificationCenter.getInstance(i10).lambda$postNotificationNameOnUIThread$1(NotificationCenter.channelConnectedBotsUpdate, Long.valueOf(d.f1389b));
+            NotificationCenter.getInstance(i10).lambda$postNotificationNameOnUIThread$1(NotificationCenter.channelConnectedBotsUpdate, Long.valueOf(d.f1387b));
             d.a();
             ai.i0 e = ai.k0.g(u3Var.currentAccount).e(j10);
-            e.f1456c = 0;
+            e.f1455c = 0;
             e.d = false;
-            e.f1459i = false;
-            e.f1457f = 0L;
-            e.f1460j = null;
+            e.f1458i = false;
+            e.f1456f = 0L;
+            e.f1459j = null;
             e.h = false;
             e.a();
             u3Var.T.N(true);
@@ -164,9 +164,9 @@ public final class u3 extends a20 implements NotificationCenter.NotificationCent
         if (connectedbotstarref == null || context == null) {
             return null;
         }
-        org.telegram.ui.ActionBar.f3 i18 = kk.i(1, context, d6Var, false);
+        org.telegram.ui.ActionBar.f3 i18 = lk.i(1, context, d6Var, false);
         TLRPC.User user2 = MessagesController.getInstance(i10).getUser(Long.valueOf(connectedbotstarref.bot_id));
-        LinearLayout e = kk.e(context, 1);
+        LinearLayout e = lk.e(context, 1);
         e.setPadding(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(8.0f));
         e.setClipChildren(false);
         e.setClipToPadding(false);
@@ -179,7 +179,7 @@ public final class u3 extends a20 implements NotificationCenter.NotificationCent
             i11 = h6.Oh;
         }
         view.setBackground(h6.K(dp, h6.w0(i11, d6Var)));
-        frameLayout.addView(view, z5.a(80.0f, 0.0f, 0.0f, 0.0f, 0.0f, 80, 49));
+        frameLayout.addView(view, z5.d(80, 80.0f, 49, 0.0f, 0.0f, 0.0f, 0.0f));
         ImageView imageView = new ImageView(context);
         ImageView.ScaleType scaleType2 = ImageView.ScaleType.CENTER;
         imageView.setScaleType(scaleType2);
@@ -201,11 +201,11 @@ public final class u3 extends a20 implements NotificationCenter.NotificationCent
             f10 = 1.8f;
         }
         imageView.setScaleY(f10);
-        frameLayout.addView(imageView, z5.a(80.0f, 0.0f, 0.0f, 0.0f, 0.0f, 80, 49));
+        frameLayout.addView(imageView, z5.d(80, 80.0f, 49, 0.0f, 0.0f, 0.0f, 0.0f));
         if (connectedbotstarref.participants > 0) {
             FrameLayout frameLayout2 = new FrameLayout(context);
-            frameLayout2.setBackground(h6.c0(AndroidUtilities.dp(50.0f), h6.w0(h6.f21064h5, d6Var)));
-            frameLayout.addView(frameLayout2, z5.a(-2.0f, 0.0f, 66.0f, 0.0f, 0.0f, -2, 49));
+            frameLayout2.setBackground(h6.c0(AndroidUtilities.dp(50.0f), h6.w0(h6.f21057h5, d6Var)));
+            frameLayout.addView(frameLayout2, z5.d(-2, -2.0f, 49, 0.0f, 66.0f, 0.0f, 0.0f));
             TextView textView = new TextView(context);
             textView.setTypeface(AndroidUtilities.bold());
             textView.setTextSize(1, 12.0f);
@@ -229,14 +229,14 @@ public final class u3 extends a20 implements NotificationCenter.NotificationCent
             spannableStringBuilder.append((CharSequence) String.valueOf(connectedbotstarref.participants));
             textView.setText(spannableStringBuilder);
             textView.setGravity(17);
-            frameLayout2.addView(textView, z5.a(19.0f, 1.33f, 1.33f, 1.33f, 1.33f, -1, 119));
+            frameLayout2.addView(textView, z5.d(-1, 19.0f, 119, 1.33f, 1.33f, 1.33f, 1.33f));
         } else {
             scaleType = scaleType2;
         }
         e.addView(frameLayout, z5.t(-2, -2, 1, 0, 0, 0, 0));
         TextView textView2 = new TextView(context);
         int i19 = h6.G6;
-        kk.o(i19, d6Var, textView2, 1, 20.0f);
+        lk.o(i19, d6Var, textView2, 1, 20.0f);
         textView2.setGravity(17);
         textView2.setText(LocaleController.getString(R.string.ChannelAffiliateProgramLinkTitle));
         textView2.setTypeface(AndroidUtilities.bold());
@@ -244,7 +244,7 @@ public final class u3 extends a20 implements NotificationCenter.NotificationCent
         LinearLayout linearLayout3 = new LinearLayout(context);
         linearLayout3.setOrientation(0);
         int dp3 = AndroidUtilities.dp(28.0f);
-        int i20 = h6.f20935a7;
+        int i20 = h6.f20928a7;
         linearLayout3.setBackground(h6.c0(dp3, h6.w0(i20, d6Var)));
         w9 w9Var = new w9(context);
         w9Var.setRoundRadius(AndroidUtilities.dp(14.0f));
@@ -260,7 +260,7 @@ public final class u3 extends a20 implements NotificationCenter.NotificationCent
         ImageView imageView2 = new ImageView(context);
         ImageView.ScaleType scaleType3 = scaleType;
         imageView2.setScaleType(scaleType3);
-        int i21 = h6.f21249r5;
+        int i21 = h6.f21242r5;
         int w02 = h6.w0(i21, d6Var);
         PorterDuff.Mode mode2 = PorterDuff.Mode.SRC_IN;
         imageView2.setColorFilter(new PorterDuffColorFilter(w02, mode2));
@@ -271,7 +271,7 @@ public final class u3 extends a20 implements NotificationCenter.NotificationCent
         e.addView(linearLayout3, z5.t(-2, 28, 1, 4, 0, 4, 0));
         b6.a(linearLayout3);
         TextView textView4 = new TextView(context);
-        kk.o(i19, d6Var, textView4, 1, 14.0f);
+        lk.o(i19, d6Var, textView4, 1, 14.0f);
         textView4.setGravity(17);
         if (connectedbotstarref.revoked) {
             org.telegram.messenger.g0.n(R.string.ChannelAffiliateProgramLinkTextRevoked, textView4);
@@ -302,7 +302,7 @@ public final class u3 extends a20 implements NotificationCenter.NotificationCent
                 objArr[c11] = H0;
                 objArr[1] = userName;
                 objArr[2] = formatPluralString2;
-                kk.r(i22, objArr, textView4);
+                lk.r(i22, objArr, textView4);
             } else {
                 linearLayout = linearLayout3;
                 int i24 = R.string.ChannelAffiliateProgramLinkTextUser;
@@ -329,13 +329,13 @@ public final class u3 extends a20 implements NotificationCenter.NotificationCent
                 objArr2[c10] = H02;
                 objArr2[1] = str;
                 objArr2[2] = formatPluralString;
-                kk.r(i24, objArr2, textView4);
+                lk.r(i24, objArr2, textView4);
             }
         }
         e.addView(textView4, z5.k(20.0f, 19.0f, 20.0f, 18.0f, -1, -2));
         if (!connectedbotstarref.revoked) {
             TextView textView5 = new TextView(context);
-            kk.o(i19, d6Var, textView5, 1, 14.0f);
+            lk.o(i19, d6Var, textView5, 1, 14.0f);
             textView5.setGravity(17);
             textView5.setText(LocaleController.getString(R.string.ChannelAffiliateProgramLinkSendTo));
             e.addView(textView5, z5.k(20.0f, 0.0f, 20.0f, 0.0f, -1, -2));
@@ -392,7 +392,7 @@ public final class u3 extends a20 implements NotificationCenter.NotificationCent
         textView7.setTextColor(h6.w0(i14, d6Var));
         int dp4 = AndroidUtilities.dp(8.0f);
         int w03 = h6.w0(i20, d6Var);
-        int v = h6.v(h6.w0(i20, d6Var), h6.w0(h6.f21082i6, d6Var));
+        int v = h6.v(h6.w0(i20, d6Var), h6.w0(h6.f21075i6, d6Var));
         textView7.setBackground(h6.j0(dp4, dp4, dp4, dp4, w03, v, v));
         textView7.setPadding(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(14.66f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(14.66f));
         String str4 = connectedbotstarref.url;
@@ -402,7 +402,7 @@ public final class u3 extends a20 implements NotificationCenter.NotificationCent
             str2 = connectedbotstarref.url;
         }
         textView7.setText(str2);
-        e.addView(textView7, z5.a(-2.0f, 0.0f, 0.0f, 0.0f, 12.0f, -1, 7));
+        e.addView(textView7, z5.d(-1, -2.0f, 7, 0.0f, 0.0f, 0.0f, 12.0f));
         ei.d dVar = new ei.d(context, d6Var, true);
         if (!connectedbotstarref.revoked) {
             SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder();
@@ -427,7 +427,7 @@ public final class u3 extends a20 implements NotificationCenter.NotificationCent
         x90Var.setGravity(17);
         x90Var.setTextSize(i15, 12.0f);
         x90Var.setTextColor(h6.w0(h6.B6, d6Var));
-        x90Var.setLinkTextColor(h6.w0(h6.f21052gc, d6Var));
+        x90Var.setLinkTextColor(h6.w0(h6.f21045gc, d6Var));
         e.addView(x90Var, z5.t(-1, -2, 49, 14, 12, 14, 2));
         i18.customView = e;
         ai.y0 y0Var = new ai.y0(connectedbotstarref, i18, d6Var, user, 14);
@@ -448,7 +448,7 @@ public final class u3 extends a20 implements NotificationCenter.NotificationCent
             d6Var2 = d6Var;
         }
         linearLayout.setOnClickListener(new ai.p(19, i18, connectedbotstarref2));
-        i18.fixNavigationBar(h6.w0(h6.f21064h5, d6Var2));
+        i18.fixNavigationBar(h6.w0(h6.f21057h5, d6Var2));
         org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
         if (!AndroidUtilities.isTablet() && U != null && !AndroidUtilities.hasDialogOnTop(U)) {
             i18.makeAttached(U);
@@ -460,7 +460,7 @@ public final class u3 extends a20 implements NotificationCenter.NotificationCent
     public static void y0(u3 u3Var, Context context, TLRPC.User user, TL_payments.connectedBotStarRef connectedbotstarref) {
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, u3Var.resourceProvider);
         String string = LocaleController.getString(R.string.LeaveAffiliateLink);
-        org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20608a;
+        org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20601a;
         b2Var.R = string;
         b2Var.T = AndroidUtilities.replaceTags(LocaleController.formatString(R.string.LeaveAffiliateLinkAlert, UserObject.getUserName(user)));
         alertDialog$Builder.k(LocaleController.getString(R.string.LeaveAffiliateLinkButton), new ah.h0(13, u3Var, connectedbotstarref));
@@ -489,28 +489,28 @@ public final class u3 extends a20 implements NotificationCenter.NotificationCent
         this.E = AndroidUtilities.dp(238.0f);
         un unVar = new un(context, 3);
         this.S = unVar;
-        unVar.setBackgroundColor(h6.x0(null, h6.f21081i5, false));
+        unVar.setBackgroundColor(h6.x0(null, h6.f21074i5, false));
         super.createView(context);
         this.Q = new FrameLayout(context);
         tg.n nVar = new tg.n(context, 1, 3);
         this.R = nVar;
         nVar.setImportantForAccessibility(4);
-        tg.g gVar = this.R.f47149b;
-        gVar.f47133z = h6.fk;
+        tg.g gVar = this.R.f47099b;
+        gVar.f47083z = h6.fk;
         gVar.A = h6.gk;
         gVar.b();
         this.R.setStarParticlesView(this.e);
-        this.Q.addView(this.R, z5.a(190.0f, 0.0f, 32.0f, 0.0f, 12.0f, 190, 17));
+        this.Q.addView(this.R, z5.d(190, 190.0f, 17, 0.0f, 32.0f, 0.0f, 12.0f));
         m0(LocaleController.getString(R.string.ChannelAffiliateProgramTitle), AndroidUtilities.replaceTags(LocaleController.getString(R.string.ChannelAffiliateProgramText)), this.Q, null);
-        this.f35290c.setOnItemClickListener(new y4(2, this, context));
-        this.f35290c.setOnItemLongClickListener(new ah.h0(14, this, context));
+        this.f35242c.setOnItemClickListener(new x4(2, this, context));
+        this.f35242c.setOnItemLongClickListener(new ah.h0(14, this, context));
         s4.k kVar = new s4.k();
-        kVar.f45992m = false;
+        kVar.f45944m = false;
         kVar.C = false;
         kVar.o(bs.h);
         kVar.n(350L);
-        this.f35290c.setItemAnimator(kVar);
-        this.f35290c.setOnScrollListener(new ah.d0(this, 9));
+        this.f35242c.setItemAnimator(kVar);
+        this.f35242c.setOnScrollListener(new ah.d0(this, 9));
         return this.fragmentView;
     }
 
@@ -534,7 +534,7 @@ public final class u3 extends a20 implements NotificationCenter.NotificationCent
 
     @Override
     public final s4.g0 n0() {
-        m3 m3Var = new m3(this, this.f35290c, getParentActivity(), this.currentAccount, this.classGuid, new ai.q(this, 28), getResourceProvider());
+        m3 m3Var = new m3(this, this.f35242c, getParentActivity(), this.currentAccount, this.classGuid, new ai.q(this, 28), getResourceProvider());
         this.T = m3Var;
         return m3Var;
     }
@@ -574,7 +574,7 @@ public final class u3 extends a20 implements NotificationCenter.NotificationCent
     }
 
     @Override
-    public final sg.w1 p0() {
+    public final sg.x1 p0() {
         f fVar = new f(getParentActivity(), 1);
         fVar.c();
         return fVar;

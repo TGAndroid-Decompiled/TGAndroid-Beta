@@ -5,31 +5,31 @@ import android.view.View;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 public final class n3 extends View {
-    public int f9511a;
-    public final q3 f9512b;
+    public int f9509a;
+    public final q3 f9510b;
 
     public n3(q3 q3Var, Context context) {
         super(context);
-        this.f9512b = q3Var;
+        this.f9510b = q3Var;
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
         int i12;
         int i13;
-        q3 q3Var = this.f9512b;
+        q3 q3Var = this.f9510b;
         a3 a3Var = q3Var.e;
-        ArrayList arrayList = q3Var.f9627b0;
+        ArrayList arrayList = q3Var.f9625b0;
         int size = View.MeasureSpec.getSize(i10);
-        int i14 = this.f9511a;
+        int i14 = this.f9509a;
         if (i14 == -1) {
-            if (q3Var.f9631e0 == q3.f9623j0) {
+            if (q3Var.f9629e0 == q3.f9621j0) {
                 i12 = arrayList.size();
             } else {
-                ArrayList arrayList2 = q3Var.f9633f0;
+                ArrayList arrayList2 = q3Var.f9631f0;
                 if (arrayList2 != null) {
-                    int size2 = arrayList2.size() + (q3Var.f9629c0 ? 1 : 0);
-                    if (q3Var.f9630d0) {
+                    int size2 = arrayList2.size() + (q3Var.f9627c0 ? 1 : 0);
+                    if (q3Var.f9628d0) {
                         i13 = arrayList.size();
                     } else {
                         i13 = 0;

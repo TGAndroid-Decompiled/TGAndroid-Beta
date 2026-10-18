@@ -12,20 +12,20 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LanguageDetector;
 import org.telegram.ui.Components.of0;
 public final class j9 implements LanguageDetector.StringCallback, LanguageDetector.ExceptionCallback, of0 {
-    public final Object f22494a;
-    public final Object f22495b;
+    public final Object f22487a;
+    public final Object f22488b;
 
     public j9(Object obj, Object obj2) {
-        this.f22494a = obj;
-        this.f22495b = obj2;
+        this.f22487a = obj;
+        this.f22488b = obj2;
     }
 
     @Override
     public void l(int i10, int i11) {
-        u5 u5Var = (u5) this.f22494a;
+        u5 u5Var = (u5) this.f22487a;
         androidx.activity.i iVar = u5Var.e;
-        TextView textView = u5Var.f23599b;
-        ((of0) this.f22495b).l(i10, i11);
+        TextView textView = u5Var.f23592b;
+        ((of0) this.f22488b).l(i10, i11);
         if (i11 > 0) {
             textView.setText("+" + i11);
         } else {
@@ -40,7 +40,7 @@ public final class j9 implements LanguageDetector.StringCallback, LanguageDetect
             AnimatorSet animatorSet2 = new AnimatorSet();
             u5Var.d = animatorSet2;
             Property property = View.ALPHA;
-            animatorSet2.playTogether(ObjectAnimator.ofFloat(textView, property, 1.0f), ObjectAnimator.ofFloat(u5Var.f23598a, property, 0.0f));
+            animatorSet2.playTogether(ObjectAnimator.ofFloat(textView, property, 1.0f), ObjectAnimator.ofFloat(u5Var.f23591a, property, 0.0f));
             u5Var.d.setDuration(250L);
             u5Var.d.setInterpolator(new DecelerateInterpolator());
             u5Var.d.addListener(new m.a(u5Var, 15));
@@ -53,18 +53,18 @@ public final class j9 implements LanguageDetector.StringCallback, LanguageDetect
 
     @Override
     public void run(String str) {
-        k9 k9Var = (k9) this.f22494a;
-        k9Var.f22517a = str;
-        k9Var.a((Menu) this.f22495b);
+        k9 k9Var = (k9) this.f22487a;
+        k9Var.f22510a = str;
+        k9Var.a((Menu) this.f22488b);
     }
 
     @Override
     public void run(Exception exc) {
-        k9 k9Var = (k9) this.f22494a;
+        k9 k9Var = (k9) this.f22487a;
         k9Var.getClass();
         FileLog.e("mlkit: failed to detect language in selection");
         FileLog.e(exc);
-        k9Var.f22517a = null;
-        k9Var.a((Menu) this.f22495b);
+        k9Var.f22510a = null;
+        k9Var.a((Menu) this.f22488b);
     }
 }

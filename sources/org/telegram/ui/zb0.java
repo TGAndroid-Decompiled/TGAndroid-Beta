@@ -16,12 +16,12 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 public final class zb0 implements q0.a {
-    public final int f43738a;
-    public final pc0 f43739b;
+    public final int f43703a;
+    public final pc0 f43704b;
 
     public zb0(pc0 pc0Var, int i10) {
-        this.f43738a = i10;
-        this.f43739b = pc0Var;
+        this.f43703a = i10;
+        this.f43704b = pc0Var;
     }
 
     @Override
@@ -31,17 +31,17 @@ public final class zb0 implements q0.a {
         ImageView imageView;
         LocationController.SharingLocationInfo sharingLocationInfo;
         int i11;
-        switch (this.f43738a) {
+        switch (this.f43703a) {
             case 0:
-                pc0 pc0Var = this.f43739b;
+                pc0 pc0Var = this.f43704b;
                 pc0Var.I = (IMapsProvider.IMap) obj;
-                if (AndroidUtilities.computePerceivedBrightness(pc0Var.getThemedColor(org.telegram.ui.ActionBar.h6.f20993d6)) < 0.721f) {
+                if (AndroidUtilities.computePerceivedBrightness(pc0Var.getThemedColor(org.telegram.ui.ActionBar.h6.f20986d6)) < 0.721f) {
                     i10 = R.raw.mapstyle_night;
                 } else {
                     i10 = 0;
                 }
                 if (i10 != 0) {
-                    pc0Var.f40057a0 = true;
+                    pc0Var.f40018a0 = true;
                     pc0Var.I.setMapStyle(ApplicationLoader.getMapsProvider().loadRawResourceStyle(ApplicationLoader.applicationContext, i10));
                 }
                 pc0Var.I.setPadding(AndroidUtilities.dp(70.0f), 0, AndroidUtilities.dp(70.0f), AndroidUtilities.dp(10.0f));
@@ -52,17 +52,17 @@ public final class zb0 implements q0.a {
                     } else {
                         maxZoomLevel = pc0Var.I.getMaxZoomLevel() - 4.0f;
                     }
-                    TLRPC.TL_channelLocation tL_channelLocation = pc0Var.f40090z0;
+                    TLRPC.TL_channelLocation tL_channelLocation = pc0Var.f40051z0;
                     if (tL_channelLocation != null) {
                         TLRPC.GeoPoint geoPoint = tL_channelLocation.geo_point;
                         IMapsProvider.LatLng latLng = new IMapsProvider.LatLng(geoPoint.lat, geoPoint._long);
                         ?? obj2 = new Object();
-                        if (DialogObject.isUserDialog(pc0Var.f40063e0)) {
-                            obj2.f38129c = pc0Var.getMessagesController().getUser(Long.valueOf(pc0Var.f40063e0));
+                        if (DialogObject.isUserDialog(pc0Var.f40024e0)) {
+                            obj2.f38111c = pc0Var.getMessagesController().getUser(Long.valueOf(pc0Var.f40024e0));
                         } else {
-                            obj2.d = pc0Var.getMessagesController().getChat(Long.valueOf(-pc0Var.f40063e0));
+                            obj2.d = pc0Var.getMessagesController().getChat(Long.valueOf(-pc0Var.f40024e0));
                         }
-                        obj2.f38127a = pc0Var.f40063e0;
+                        obj2.f38109a = pc0Var.f40024e0;
                         pc0Var.u0(obj2);
                         try {
                             IMapsProvider.IMarkerOptions position = ApplicationLoader.getMapsProvider().onCreateMarkerOptions().position(latLng);
@@ -71,14 +71,14 @@ public final class zb0 implements q0.a {
                                 position.icon(f02);
                                 position.anchor(0.5f, 0.907f);
                                 obj2.e = pc0Var.I.addMarker(position);
-                                if (!UserObject.isUserSelf(obj2.f38129c)) {
+                                if (!UserObject.isUserSelf(obj2.f38111c)) {
                                     IMapsProvider.IMarkerOptions flat = ApplicationLoader.getMapsProvider().onCreateMarkerOptions().position(latLng).flat(true);
                                     flat.icon(R.drawable.map_pin_circle);
                                     flat.anchor(0.5f, 0.5f);
-                                    obj2.f38130f = pc0Var.I.addMarker(flat);
+                                    obj2.f38112f = pc0Var.I.addMarker(flat);
                                 }
-                                pc0Var.f40066g0.add(obj2);
-                                pc0Var.f40067h0.k(obj2, obj2.f38127a);
+                                pc0Var.f40027g0.add(obj2);
+                                pc0Var.f40028h0.k(obj2, obj2.f38109a);
                             }
                         } catch (Exception e) {
                             FileLog.e(e);
@@ -93,30 +93,30 @@ public final class zb0 implements q0.a {
                                     pc0Var.I.moveCamera(ApplicationLoader.getMapsProvider().newCameraUpdateLatLngZoom(b02.e.getPosition(), maxZoomLevel));
                                 }
                             } else {
-                                IMapsProvider.LatLng latLng2 = new IMapsProvider.LatLng(pc0Var.f40087x0.getLatitude(), pc0Var.f40087x0.getLongitude());
+                                IMapsProvider.LatLng latLng2 = new IMapsProvider.LatLng(pc0Var.f40048x0.getLatitude(), pc0Var.f40048x0.getLongitude());
                                 try {
                                     pc0Var.I.addMarker(ApplicationLoader.getMapsProvider().onCreateMarkerOptions().position(latLng2).icon(R.drawable.map_pin2));
                                 } catch (Exception e7) {
                                     FileLog.e(e7);
                                 }
                                 pc0Var.I.moveCamera(ApplicationLoader.getMapsProvider().newCameraUpdateLatLngZoom(latLng2, maxZoomLevel));
-                                pc0Var.f40065f0 = false;
+                                pc0Var.f40026f0 = false;
                                 pc0Var.k0();
                             }
                         } else {
                             Location location = new Location("network");
-                            pc0Var.f40087x0 = location;
+                            pc0Var.f40048x0 = location;
                             TLRPC.TL_channelLocation tL_channelLocation2 = pc0Var.A0;
                             if (tL_channelLocation2 != null) {
                                 TLRPC.GeoPoint geoPoint2 = tL_channelLocation2.geo_point;
                                 pc0Var.I.moveCamera(ApplicationLoader.getMapsProvider().newCameraUpdateLatLngZoom(new IMapsProvider.LatLng(geoPoint2.lat, geoPoint2._long), maxZoomLevel));
-                                pc0Var.f40087x0.setLatitude(pc0Var.A0.geo_point.lat);
-                                pc0Var.f40087x0.setLongitude(pc0Var.A0.geo_point._long);
-                                pc0Var.f40087x0.setAccuracy(pc0Var.A0.geo_point.accuracy_radius);
-                                pc0Var.T.L(pc0Var.f40087x0);
+                                pc0Var.f40048x0.setLatitude(pc0Var.A0.geo_point.lat);
+                                pc0Var.f40048x0.setLongitude(pc0Var.A0.geo_point._long);
+                                pc0Var.f40048x0.setAccuracy(pc0Var.A0.geo_point.accuracy_radius);
+                                pc0Var.T.L(pc0Var.f40048x0);
                             } else {
                                 location.setLatitude(20.659322d);
-                                pc0Var.f40087x0.setLongitude(-11.40625d);
+                                pc0Var.f40048x0.setLongitude(-11.40625d);
                             }
                         }
                     }
@@ -138,27 +138,27 @@ public final class zb0 implements q0.a {
                     for (int size = providers.size() - 1; size >= 0; size--) {
                         location2 = locationManager.getLastKnownLocation(providers.get(size));
                         if (location2 != null) {
-                            pc0Var.f40085w0 = location2;
+                            pc0Var.f40046w0 = location2;
                             pc0Var.s0(location2);
-                            if (pc0Var.f40059b0 && pc0Var.getParentActivity() != null) {
-                                pc0Var.f40059b0 = false;
+                            if (pc0Var.f40020b0 && pc0Var.getParentActivity() != null) {
+                                pc0Var.f40020b0 = false;
                                 pc0Var.c0();
                             }
-                            imageView = pc0Var.f40060c;
-                            if (imageView == null && imageView.getVisibility() == 0 && (sharingLocationInfo = pc0Var.getLocationController().getSharingLocationInfo(pc0Var.f40063e0)) != null && (i11 = sharingLocationInfo.proximityMeters) > 0) {
+                            imageView = pc0Var.f40021c;
+                            if (imageView == null && imageView.getVisibility() == 0 && (sharingLocationInfo = pc0Var.getLocationController().getSharingLocationInfo(pc0Var.f40024e0)) != null && (i11 = sharingLocationInfo.proximityMeters) > 0) {
                                 pc0Var.d0(i11);
                                 return;
                             }
                             return;
                         }
                     }
-                    pc0Var.f40085w0 = location2;
+                    pc0Var.f40046w0 = location2;
                     pc0Var.s0(location2);
-                    if (pc0Var.f40059b0) {
-                        pc0Var.f40059b0 = false;
+                    if (pc0Var.f40020b0) {
+                        pc0Var.f40020b0 = false;
                         pc0Var.c0();
                     }
-                    imageView = pc0Var.f40060c;
+                    imageView = pc0Var.f40021c;
                     if (imageView == null) {
                         return;
                     }
@@ -166,11 +166,11 @@ public final class zb0 implements q0.a {
                 }
                 return;
             default:
-                pc0 pc0Var2 = this.f43739b;
+                pc0 pc0Var2 = this.f43704b;
                 Location location3 = (Location) obj;
                 pc0Var2.s0(location3);
-                pc0Var2.getLocationController().setMapLocation(location3, pc0Var2.f40062d0);
-                pc0Var2.f40062d0 = false;
+                pc0Var2.getLocationController().setMapLocation(location3, pc0Var2.f40023d0);
+                pc0Var2.f40023d0 = false;
                 return;
         }
     }

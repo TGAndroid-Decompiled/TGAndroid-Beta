@@ -1,385 +1,129 @@
 package ci;
 
-import android.animation.ValueAnimator;
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Point;
-import android.graphics.RectF;
-import android.graphics.drawable.GradientDrawable;
-import android.text.style.CharacterStyle;
-import android.text.style.URLSpan;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.OverScroller;
-import androidx.core.widget.NestedScrollView;
-import java.lang.reflect.Field;
+import ai.cb;
+import ai.sb;
+import ai.ub;
+import ai.vb;
+import android.content.SharedPreferences;
+import android.net.Uri;
+import java.util.regex.Pattern;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.FileRefController;
+import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.h80;
-public class s8 extends NestedScrollView implements h80 {
-    public final org.telegram.ui.Cells.x9 W;
-    public final o1.k f5979a0;
-    public final r8 f5980b0;
-    public boolean f5981c0;
-    public float f5982d0;
-    public float f5983e0;
-    public float f5984f0;
-    public float f5985g0;
-    public float f5986h0;
-    public float f5987i0;
-    public float f5988j0;
-    public final OverScroller f5989k0;
-    public boolean f5990l0;
-    public int m0;
-    public int f5991n0;
-    public int f5992o0;
-    public int f5993p0;
-    public int f5994q0;
-    public final FrameLayout f5995r0;
-    public boolean f5996s0;
-    public boolean f5997t0;
-    public int f5998u0;
-    public boolean f5999v0;
-    public boolean f6000w0;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.ui.Components.az0;
+import org.telegram.ui.Components.ps;
+import org.telegram.ui.Components.sv0;
+import org.telegram.ui.Components.vs;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.ci0;
+import org.telegram.ui.d70;
+public final class s8 implements RequestDelegate {
+    public final int f5929a;
+    public final int f5930b;
+    public final Object f5931c;
+    public final Object d;
+    public final Object e;
 
-    public s8(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context);
-        Paint paint = new Paint(1);
-        this.f5994q0 = -1;
-        new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, new int[]{0, i0.a.o(-16777216, 51)});
-        FrameLayout frameLayout = new FrameLayout(context);
-        this.f5995r0 = frameLayout;
-        setClipChildren(false);
-        setOverScrollMode(2);
-        NotificationCenter.listenEmojiLoading(this);
-        r8 r8Var = new r8(this, getContext());
-        this.f5980b0 = r8Var;
-        org.telegram.ui.Cells.x9 x9Var = new org.telegram.ui.Cells.x9(r8Var, d6Var);
-        this.W = x9Var;
-        x9Var.f21997h0 = false;
-        frameLayout.addView(r8Var, -1, -2);
-        addView(frameLayout, new ViewGroup.LayoutParams(-1, -2));
-        paint.setColor(-16777216);
-        setFadingEdgeLength(AndroidUtilities.dp(12.0f));
-        setVerticalFadingEdgeEnabled(true);
-        setWillNotDraw(false);
-        o1.k kVar = new o1.k(r8Var, o1.h.f17545n, 0.0f);
-        this.f5979a0 = kVar;
-        kVar.f17562u.b(100.0f);
-        kVar.e(1.0f);
-        kVar.b(new l8(0, this));
-        kVar.f17562u.a(1.0f);
-        try {
-            NestedScrollView.class.getDeclaredMethod("d", null).setAccessible(true);
-        } catch (Exception e) {
-            FileLog.e(e);
-        }
-        try {
-            Field declaredField = NestedScrollView.class.getDeclaredField("d");
-            declaredField.setAccessible(true);
-            this.f5989k0 = (OverScroller) declaredField.get(this);
-        } catch (Exception e7) {
-            this.f5989k0 = null;
-            FileLog.e(e7);
-        }
+    public s8(int i10, ci0 ci0Var, org.telegram.ui.ActionBar.n2 n2Var, TLRPC.TL_payments_assignPlayMarketTransaction tL_payments_assignPlayMarketTransaction) {
+        this.f5929a = 7;
+        this.f5930b = i10;
+        this.f5931c = ci0Var;
+        this.d = n2Var;
+        this.e = tL_payments_assignPlayMarketTransaction;
     }
 
     @Override
-    public final void B(int i10) {
-        OverScroller overScroller;
-        if (this.f5981c0 && i10 == 0) {
-            this.f5981c0 = false;
-            if (this.f5982d0 != 0.0f && (overScroller = this.f5989k0) != null && overScroller.isFinished()) {
-                K(this.f5984f0);
-            }
-        }
-    }
-
-    public final void C() {
-        if (!this.f5999v0) {
-            return;
-        }
-        this.f5999v0 = false;
-        float f7 = this.f5980b0.f5938w;
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-        ofFloat.addUpdateListener(new k8(this, getScrollY(), f7, 0));
-        ofFloat.setDuration(250L);
-        ofFloat.setInterpolator(bs.f25037f);
-        ofFloat.start();
-    }
-
-    public final void D(boolean z10) {
-        if (this.f5999v0 && !z10) {
-            return;
-        }
-        this.f5999v0 = true;
-        float f7 = this.f5980b0.f5938w;
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-        ofFloat.addUpdateListener(new k8(this, getScrollY(), f7, 1));
-        ofFloat.setDuration(250L);
-        ofFloat.setInterpolator(bs.f25037f);
-        ofFloat.start();
-    }
-
-    public final void J() {
-        scrollTo(0, 0);
-        this.f5999v0 = false;
-        r8 r8Var = this.f5980b0;
-        r8Var.f5938w = 0.0f;
-        r8Var.invalidate();
-    }
-
-    public final void K(float f7) {
-        o1.k kVar = this.f5979a0;
-        if (!kVar.f17555f) {
-            kVar.f17552a = f7;
-            kVar.h();
-        }
-        if (getScrollY() < AndroidUtilities.dp(2.0f)) {
-            C();
-        }
-    }
-
-    public final void L(int r10, int r11) {
-        throw new UnsupportedOperationException("Method not decompiled: ci.s8.L(int, int):void");
-    }
-
-    @Override
-    public final void a(RectF rectF) {
-        q8 q8Var;
-        r8 r8Var = this.f5980b0;
-        q8[] q8VarArr = r8Var.f5936r;
-        if (q8VarArr != null && (q8Var = q8VarArr[0]) != null && q8Var.f5863p != null) {
-            int i10 = r8Var.F;
-            int i11 = r8Var.F;
-            q8 q8Var2 = r8Var.f5936r[0];
-            rectF.set(r8Var.E, (AndroidUtilities.lerp(q8Var.f5860m, q8Var.f5859l, r8Var.f5938w) + i10) - r8Var.f5936r[0].f5863p.b(), getWidth() - r8Var.E, AndroidUtilities.lerp(q8Var2.f5860m, q8Var2.f5859l, r8Var.f5938w) + i11);
-            float x10 = r8Var.getX() - getScrollX();
-            FrameLayout frameLayout = this.f5995r0;
-            rectF.offset(frameLayout.getX() + x10, frameLayout.getY() + (r8Var.getY() - getScrollY()));
-        }
-    }
-
-    @Override
-    public final void c(Canvas canvas, float f7) {
-        q8 q8Var;
-        r8 r8Var = this.f5980b0;
-        q8[] q8VarArr = r8Var.f5936r;
-        q8[] q8VarArr2 = r8Var.f5936r;
-        if (q8VarArr != null && (q8Var = q8VarArr[0]) != null && q8Var.f5863p != null) {
-            canvas.save();
-            float x10 = r8Var.getX() - getScrollX();
-            FrameLayout frameLayout = this.f5995r0;
-            float x11 = frameLayout.getX() + x10 + r8Var.E;
-            float y3 = frameLayout.getY() + (r8Var.getY() - getScrollY()) + r8Var.F;
-            q8 q8Var2 = q8VarArr2[0];
-            canvas.translate(x11, (y3 + AndroidUtilities.lerp(q8Var2.f5860m, q8Var2.f5859l, r8Var.f5938w)) - q8VarArr2[0].f5863p.b());
-            n8 n8Var = q8VarArr2[0].f5863p;
-            int width = getWidth();
-            int i10 = r8Var.E;
-            n8Var.a(canvas, (width - i10) - i10);
-            canvas.restore();
-            return;
-        }
-        draw(canvas);
-    }
-
-    @Override
-    public final void computeScroll() {
-        OverScroller overScroller;
-        super.computeScroll();
-        if (!this.f5981c0 && this.f5982d0 != 0.0f && (overScroller = this.f5989k0) != null && overScroller.isFinished()) {
-            K(0.0f);
-        }
-    }
-
-    @Override
-    public final void draw(Canvas canvas) {
-        if (this.f5997t0) {
-            return;
-        }
-        int width = getWidth();
-        int height = getHeight();
-        int scrollY = getScrollY();
-        int save = canvas.save();
-        int i10 = height + scrollY;
-        canvas.clipRect(0, scrollY, width, this.f5998u0 + i10);
-        canvas.clipRect(0, scrollY, width, i10);
-        super.draw(canvas);
-        canvas.restoreToCount(save);
-    }
-
-    @Override
-    public final boolean g(int i10, int i11, int i12, int[] iArr, int[] iArr2) {
-        float f7;
-        int i13;
-        iArr[1] = 0;
-        if (!this.f5981c0 || (((this.f5982d0) <= 0.0f || i11 <= 0) && (f7 >= 0.0f || i11 >= 0))) {
-            return false;
-        }
-        float f10 = i11;
-        float f11 = f7 - f10;
-        if (i13 > 0) {
-            if (f11 < 0.0f) {
-                this.f5982d0 = 0.0f;
-                iArr[1] = (int) (f10 + f11 + 0);
-            } else {
-                this.f5982d0 = f11;
-                iArr[1] = i11;
-            }
-        } else if (f11 > 0.0f) {
-            this.f5982d0 = 0.0f;
-            iArr[1] = (int) (f10 + f11 + 0);
-        } else {
-            this.f5982d0 = f11;
-            iArr[1] = i11;
-        }
-        this.f5980b0.setTranslationY(this.f5982d0);
-        this.W.w();
-        return true;
-    }
-
-    @Override
-    public float getBottomFadingEdgeStrength() {
-        return 1.0f;
-    }
-
-    public float getMaxTop() {
-        FrameLayout frameLayout = this.f5995r0;
-        return frameLayout.getTop() - (frameLayout.getBottom() - getMeasuredHeight());
-    }
-
-    public int getPendingMarginTopDiff() {
-        int i10 = this.f5994q0;
-        if (i10 >= 0) {
-            return i10 - ((ViewGroup.MarginLayoutParams) this.f5995r0.getLayoutParams()).topMargin;
-        }
-        return 0;
-    }
-
-    public float getProgressToBlackout() {
-        return Utilities.clamp((getScrollY() - this.f5980b0.getTranslationY()) / Math.min(this.f5993p0, AndroidUtilities.dp(40.0f)), 1.0f, 0.0f);
-    }
-
-    public float getTextTop() {
-        return (this.f5980b0.getTranslationY() + this.f5995r0.getTop()) - getScrollY();
-    }
-
-    @Override
-    public float getTopFadingEdgeStrength() {
-        return 1.0f;
-    }
-
-    @Override
-    public final void h(int i10, int i11, int i12, int i13, int[] iArr, int i14, int[] iArr2) {
-        float f7;
-        float f10;
-        float f11;
-        if (i13 != 0) {
-            int round = Math.round((1.0f - Math.abs((-this.f5982d0) / this.f5995r0.getTop())) * i13);
-            if (round != 0) {
-                boolean z10 = this.f5981c0;
-                r8 r8Var = this.f5980b0;
-                if (!z10) {
-                    if (!this.f5979a0.f17555f) {
-                        OverScroller overScroller = this.f5989k0;
-                        if (overScroller != null) {
-                            f7 = overScroller.getCurrVelocity();
-                        } else {
-                            f7 = Float.NaN;
-                        }
-                        if (!Float.isNaN(f7)) {
-                            Point point = AndroidUtilities.displaySize;
-                            if (point.x > point.y) {
-                                f11 = 3000.0f;
-                            } else {
-                                f11 = 5000.0f;
-                            }
-                            float min = Math.min(f11, f7);
-                            round = (int) ((round * min) / f7);
-                            f10 = min * (-this.f5983e0);
-                        } else {
-                            f10 = 0.0f;
-                        }
-                        if (round != 0) {
-                            float f12 = this.f5982d0 - round;
-                            this.f5982d0 = f12;
-                            r8Var.setTranslationY(f12);
-                        }
-                        K(f10);
-                    }
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        int i10 = this.f5929a;
+        int i11 = this.f5930b;
+        Object obj = this.e;
+        Object obj2 = this.d;
+        Object obj3 = this.f5931c;
+        switch (i10) {
+            case 0:
+                TLRPC.TL_messages_getAttachedStickers tL_messages_getAttachedStickers = (TLRPC.TL_messages_getAttachedStickers) obj2;
+                sb sbVar = (sb) obj;
+                if (tL_error != null && FileRefController.isFileRefError(tL_error.text) && obj3 != null) {
+                    FileRefController.getInstance(i11).requestReference(obj3, tL_messages_getAttachedStickers, sbVar);
+                    return;
                 } else {
-                    float f13 = this.f5982d0 - round;
-                    this.f5982d0 = f13;
-                    r8Var.setTranslationY(f13);
+                    sbVar.run(tLObject, tL_error);
+                    return;
                 }
-            }
+            case 1:
+                AndroidUtilities.runOnUIThread(new ub(tLObject, (boolean[]) obj3, (Utilities.Callback) obj2, this.f5930b, (TL_account.updateEmojiStatus) obj));
+                return;
+            case 2:
+                AndroidUtilities.runOnUIThread(new vb((d70) obj3, (org.telegram.ui.j4) obj2, tL_error, tLObject, this.f5930b, (org.telegram.ui.f1) obj));
+                return;
+            case 3:
+                SharedPreferences sharedPreferences = (SharedPreferences) obj3;
+                org.telegram.ui.ActionBar.b2 b2Var = (org.telegram.ui.ActionBar.b2) obj2;
+                org.telegram.ui.ActionBar.n2 n2Var = (org.telegram.ui.ActionBar.n2) obj;
+                if (tL_error == null) {
+                    AndroidUtilities.runOnUIThread(new ub((Object) sharedPreferences, (Object) ((TLRPC.TL_help_support) tLObject), (Object) b2Var, this.f5930b, (Object) n2Var, 22));
+                    return;
+                } else {
+                    AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.c2(b2Var, 0));
+                    return;
+                }
+            case 4:
+                AndroidUtilities.runOnUIThread(new ub((Object) ((ps) obj3), tLObject, (Object) ((TLRPC.InputPeer) obj2), this.f5930b, (Object) ((int[]) obj), 23));
+                return;
+            case 5:
+                sv0 sv0Var = (sv0) obj3;
+                TLRPC.TL_messages_editMessage tL_messages_editMessage = (TLRPC.TL_messages_editMessage) obj;
+                AndroidUtilities.runOnUIThread(new vs((org.telegram.ui.ActionBar.b2[]) obj2, 2));
+                int i12 = this.f5930b;
+                if (tL_error == null) {
+                    MessagesController.getInstance(i12).lambda$processUpdates$377((TLRPC.Updates) tLObject, false);
+                    return;
+                } else {
+                    AndroidUtilities.runOnUIThread(new cb(sv0Var, i12, tL_error, tL_messages_editMessage, 27));
+                    return;
+                }
+            case 6:
+                Pattern pattern = LaunchActivity.C1;
+                AndroidUtilities.runOnUIThread(new ub((Object) ((LaunchActivity) obj3), tLObject, (Object) ((Uri) obj2), this.f5930b, (Object) ((org.telegram.ui.ActionBar.b2) obj), 25), 2L);
+                return;
+            case 7:
+                ci0 ci0Var = (ci0) obj3;
+                org.telegram.ui.ActionBar.n2 n2Var2 = (org.telegram.ui.ActionBar.n2) obj2;
+                TLRPC.TL_payments_assignPlayMarketTransaction tL_payments_assignPlayMarketTransaction = (TLRPC.TL_payments_assignPlayMarketTransaction) obj;
+                if (tLObject instanceof TLRPC.Updates) {
+                    MessagesController.getInstance(i11).lambda$processUpdates$377((TLRPC.Updates) tLObject, false);
+                    AndroidUtilities.runOnUIThread(ci0Var);
+                    return;
+                } else if (tL_error != null) {
+                    AndroidUtilities.runOnUIThread(new az0(i11, tL_error, n2Var2, tL_payments_assignPlayMarketTransaction));
+                    return;
+                } else {
+                    return;
+                }
+            default:
+                AndroidUtilities.runOnUIThread(new vb((org.telegram.ui.web.b1) obj3, tLObject, this.f5930b, (org.telegram.ui.web.y0) obj2, (y7) obj, tL_error));
+                return;
         }
-        this.W.w();
     }
 
-    @Override
-    public final void invalidate() {
-        super.invalidate();
-        if (getParent() != null) {
-            ((View) getParent()).invalidate();
-        }
-        this.W.w();
+    public s8(Object obj, int i10, Object obj2, Object obj3, int i11) {
+        this.f5929a = i11;
+        this.f5931c = obj;
+        this.f5930b = i10;
+        this.d = obj2;
+        this.e = obj3;
     }
 
-    @Override
-    public final void k(int i10) {
-        super.k(i10);
-        this.f5983e0 = Math.signum(i10);
-        this.f5984f0 = 0.0f;
-    }
-
-    @Override
-    public final boolean onInterceptTouchEvent(android.view.MotionEvent r6) {
-        throw new UnsupportedOperationException("Method not decompiled: ci.s8.onInterceptTouchEvent(android.view.MotionEvent):boolean");
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        L(View.MeasureSpec.getSize(i10), View.MeasureSpec.getSize(i11));
-        super.onMeasure(i10, i11);
-    }
-
-    @Override
-    public boolean onTouchEvent(android.view.MotionEvent r6) {
-        throw new UnsupportedOperationException("Method not decompiled: ci.s8.onTouchEvent(android.view.MotionEvent):boolean");
-    }
-
-    @Override
-    public final void scrollBy(int i10, int i11) {
-        super.scrollBy(i10, i11);
-        invalidate();
-    }
-
-    @Override
-    public final boolean z(int i10, int i11) {
-        if (i11 == 0) {
-            this.f5979a0.c();
-            this.f5981c0 = true;
-            this.f5982d0 = this.f5980b0.getTranslationY();
-        }
-        return true;
-    }
-
-    public void F(org.telegram.ui.Components.a6 a6Var) {
-    }
-
-    public void I(n8 n8Var) {
-    }
-
-    public void G(CharacterStyle characterStyle, View view) {
-    }
-
-    public void H(URLSpan uRLSpan, View view, androidx.fragment.app.d dVar) {
+    public s8(Object obj, Object obj2, int i10, Object obj3, int i11) {
+        this.f5929a = i11;
+        this.f5931c = obj;
+        this.d = obj2;
+        this.f5930b = i10;
+        this.e = obj3;
     }
 }

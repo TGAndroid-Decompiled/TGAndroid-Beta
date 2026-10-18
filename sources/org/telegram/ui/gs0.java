@@ -6,30 +6,30 @@ import android.graphics.Path;
 import android.graphics.RectF;
 import org.telegram.messenger.SharedConfig;
 public final class gs0 extends org.telegram.ui.Components.l81 {
-    public final org.telegram.ui.Components.na f37324g0;
-    public final PhotoViewer f37325h0;
+    public final org.telegram.ui.Components.na f37286g0;
+    public final PhotoViewer f37287h0;
 
     public gs0(Context context, PhotoViewer photoViewer) {
         super(context);
-        this.f37325h0 = photoViewer;
+        this.f37287h0 = photoViewer;
         new Path();
-        this.f37324g0 = new org.telegram.ui.Components.na(photoViewer.f33245b0, this, 0, false);
+        this.f37286g0 = new org.telegram.ui.Components.na(photoViewer.f33238b0, this, 0, false);
     }
 
     @Override
     public final void b(Canvas canvas, RectF rectF) {
         canvas.save();
         canvas.clipRect(rectF);
-        PhotoViewer photoViewer = this.f37325h0;
+        PhotoViewer photoViewer = this.f37287h0;
         canvas.translate((-getX()) - photoViewer.R7.getX(), (-getY()) - photoViewer.R7.getY());
-        photoViewer.U0(canvas, this.f37324g0, -14803426, 855638016, false, true, false);
+        photoViewer.U0(canvas, this.f37286g0, -14803426, 855638016, false, true, false);
         canvas.restore();
     }
 
     @Override
     public final void invalidate() {
         int i10;
-        if (SharedConfig.photoViewerBlur && ((i10 = this.f37325h0.f33355n4) == 1 || i10 == 2 || i10 == 3)) {
+        if (SharedConfig.photoViewerBlur && ((i10 = this.f37287h0.f33348n4) == 1 || i10 == 2 || i10 == 3)) {
             return;
         }
         super.invalidate();
@@ -39,7 +39,7 @@ public final class gs0 extends org.telegram.ui.Components.l81 {
     public final void setTranslationY(float f7) {
         if (getTranslationY() != f7) {
             super.setTranslationY(f7);
-            this.f37325h0.f33273e0.invalidate();
+            this.f37287h0.f33266e0.invalidate();
         }
     }
 }

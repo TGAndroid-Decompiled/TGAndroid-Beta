@@ -2,22 +2,22 @@ package fd;
 
 import java.util.Locale;
 public abstract class j extends f2.f {
-    public String f10560c;
+    public String f10558c;
     public String d;
     public String e;
-    public final StringBuilder f10561f;
-    public String f10562g;
+    public final StringBuilder f10559f;
+    public String f10560g;
     public boolean h;
-    public boolean f10563i;
-    public boolean f10564j;
-    public ed.c f10565k;
+    public boolean f10561i;
+    public boolean f10562j;
+    public ed.c f10563k;
 
     public j(int i10) {
         super(i10, 1);
-        this.f10561f = new StringBuilder();
+        this.f10559f = new StringBuilder();
         this.h = false;
-        this.f10563i = false;
-        this.f10564j = false;
+        this.f10561i = false;
+        this.f10562j = false;
     }
 
     public final void d(char c10) {
@@ -30,38 +30,38 @@ public abstract class j extends f2.f {
     }
 
     public final void e(char c10) {
-        this.f10563i = true;
-        String str = this.f10562g;
-        StringBuilder sb2 = this.f10561f;
+        this.f10561i = true;
+        String str = this.f10560g;
+        StringBuilder sb2 = this.f10559f;
         if (str != null) {
             sb2.append(str);
-            this.f10562g = null;
+            this.f10560g = null;
         }
         sb2.append(c10);
     }
 
     public final void f(String str) {
-        this.f10563i = true;
-        String str2 = this.f10562g;
-        StringBuilder sb2 = this.f10561f;
+        this.f10561i = true;
+        String str2 = this.f10560g;
+        StringBuilder sb2 = this.f10559f;
         if (str2 != null) {
             sb2.append(str2);
-            this.f10562g = null;
+            this.f10560g = null;
         }
         if (sb2.length() == 0) {
-            this.f10562g = str;
+            this.f10560g = str;
         } else {
             sb2.append(str);
         }
     }
 
     public final void g(int[] iArr) {
-        this.f10563i = true;
-        String str = this.f10562g;
-        StringBuilder sb2 = this.f10561f;
+        this.f10561i = true;
+        String str = this.f10560g;
+        StringBuilder sb2 = this.f10559f;
         if (str != null) {
             sb2.append(str);
-            this.f10562g = null;
+            this.f10560g = null;
         }
         for (int i10 : iArr) {
             sb2.appendCodePoint(i10);
@@ -70,11 +70,11 @@ public abstract class j extends f2.f {
 
     public final void h(String str) {
         String str2;
-        String str3 = this.f10560c;
+        String str3 = this.f10558c;
         if (str3 != null) {
             str = str3.concat(str);
         }
-        this.f10560c = str;
+        this.f10558c = str;
         if (str != null) {
             str2 = str.toLowerCase(Locale.ENGLISH);
         } else {
@@ -84,45 +84,45 @@ public abstract class j extends f2.f {
     }
 
     public final String i() {
-        String str = this.f10560c;
+        String str = this.f10558c;
         if (str != null && str.length() != 0) {
-            return this.f10560c;
+            return this.f10558c;
         }
         throw new IllegalArgumentException("Must be false");
     }
 
     public final void j() {
         String str;
-        if (this.f10565k == null) {
-            this.f10565k = new ed.c();
+        if (this.f10563k == null) {
+            this.f10563k = new ed.c();
         }
         String str2 = this.e;
-        StringBuilder sb2 = this.f10561f;
+        StringBuilder sb2 = this.f10559f;
         if (str2 != null) {
             String trim = str2.trim();
             this.e = trim;
             if (trim.length() > 0) {
-                if (this.f10563i) {
+                if (this.f10561i) {
                     if (sb2.length() > 0) {
                         str = sb2.toString();
                     } else {
-                        str = this.f10562g;
+                        str = this.f10560g;
                     }
                 } else if (this.h) {
                     str = "";
                 } else {
                     str = null;
                 }
-                ed.c cVar = this.f10565k;
+                ed.c cVar = this.f10563k;
                 String str3 = this.e;
                 int h = cVar.h(str3);
                 if (h != -1) {
-                    cVar.f8614c[h] = str;
+                    cVar.f8612c[h] = str;
                 } else {
-                    int i10 = cVar.f8612a;
+                    int i10 = cVar.f8610a;
                     int i11 = i10 + 1;
                     if (i11 >= i10) {
-                        String[] strArr = cVar.f8613b;
+                        String[] strArr = cVar.f8611b;
                         int length = strArr.length;
                         if (length < i11) {
                             int i12 = 4;
@@ -134,17 +134,17 @@ public abstract class j extends f2.f {
                             }
                             String[] strArr2 = new String[i11];
                             System.arraycopy(strArr, 0, strArr2, 0, Math.min(strArr.length, i11));
-                            cVar.f8613b = strArr2;
-                            String[] strArr3 = cVar.f8614c;
+                            cVar.f8611b = strArr2;
+                            String[] strArr3 = cVar.f8612c;
                             String[] strArr4 = new String[i11];
                             System.arraycopy(strArr3, 0, strArr4, 0, Math.min(strArr3.length, i11));
-                            cVar.f8614c = strArr4;
+                            cVar.f8612c = strArr4;
                         }
-                        String[] strArr5 = cVar.f8613b;
-                        int i13 = cVar.f8612a;
+                        String[] strArr5 = cVar.f8611b;
+                        int i13 = cVar.f8610a;
                         strArr5[i13] = str3;
-                        cVar.f8614c[i13] = str;
-                        cVar.f8612a = i13 + 1;
+                        cVar.f8612c[i13] = str;
+                        cVar.f8610a = i13 + 1;
                     } else {
                         throw new IllegalArgumentException("Must be true");
                     }
@@ -153,22 +153,22 @@ public abstract class j extends f2.f {
         }
         this.e = null;
         this.h = false;
-        this.f10563i = false;
+        this.f10561i = false;
         f2.f.c(sb2);
-        this.f10562g = null;
+        this.f10560g = null;
     }
 
     @Override
     public j b() {
-        this.f10560c = null;
+        this.f10558c = null;
         this.d = null;
         this.e = null;
-        f2.f.c(this.f10561f);
-        this.f10562g = null;
+        f2.f.c(this.f10559f);
+        this.f10560g = null;
         this.h = false;
-        this.f10563i = false;
-        this.f10564j = false;
-        this.f10565k = null;
+        this.f10561i = false;
+        this.f10562j = false;
+        this.f10563k = null;
         return this;
     }
 }

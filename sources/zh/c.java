@@ -14,8 +14,8 @@ import java.util.WeakHashMap;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.q10;
 public final class c extends View {
-    public static final long f51687f0 = System.currentTimeMillis();
-    public static final String[] f51688g0 = new String[100];
+    public static final long f51640f0 = System.currentTimeMillis();
+    public static final String[] f51641g0 = new String[100];
     public long E;
     public final RectF F;
     public float G;
@@ -35,39 +35,39 @@ public final class c extends View {
     public float U;
     public float V;
     public float W;
-    public final uc.b f51689a;
-    public long f51690a0;
-    public d0 f51691b;
-    public long f51692b0;
-    public final Paint f51693c;
-    public boolean f51694c0;
+    public final uc.b f51642a;
+    public long f51643a0;
+    public d0 f51644b;
+    public long f51645b0;
+    public final Paint f51646c;
+    public boolean f51647c0;
     public final Paint d;
-    public final int[] f51695d0;
+    public final int[] f51648d0;
     public final TextPaint e;
-    public final RectF f51696e0;
-    public final int[] f51697f;
+    public final RectF f51649e0;
+    public final int[] f51650f;
     public final int[] h;
-    public final HashMap f51698n;
-    public final ArrayList f51699r;
-    public final ArrayList f51700s;
+    public final HashMap f51651n;
+    public final ArrayList f51652r;
+    public final ArrayList f51653s;
     public final ArrayList v;
-    public float f51701w;
-    public float f51702x;
-    public float f51703y;
+    public float f51654w;
+    public float f51655x;
+    public float f51656y;
 
     public c(Activity activity, uc.b bVar) {
         super(activity);
-        this.f51693c = new Paint(1);
+        this.f51646c = new Paint(1);
         Paint paint = new Paint(1);
         this.d = paint;
         TextPaint textPaint = new TextPaint(1);
         this.e = textPaint;
         new RectF();
-        this.f51697f = new int[2];
+        this.f51650f = new int[2];
         this.h = new int[2];
-        this.f51698n = new HashMap();
-        this.f51699r = new ArrayList();
-        this.f51700s = new ArrayList();
+        this.f51651n = new HashMap();
+        this.f51652r = new ArrayList();
+        this.f51653s = new ArrayList();
         this.v = new ArrayList();
         this.F = new RectF();
         this.G = Float.NaN;
@@ -84,9 +84,9 @@ public final class c extends View {
         this.S = new Paint.FontMetrics();
         this.U = Float.NaN;
         this.W = 0.45f;
-        this.f51695d0 = new int[2];
-        this.f51696e0 = new RectF();
-        this.f51689a = bVar;
+        this.f51648d0 = new int[2];
+        this.f51649e0 = new RectF();
+        this.f51642a = bVar;
         textPaint.setTypeface(AndroidUtilities.bold());
         textPaint.setTextSize(AndroidUtilities.dp(10.0f));
         textPaint.setTextAlign(Paint.Align.CENTER);
@@ -94,7 +94,7 @@ public final class c extends View {
     }
 
     public static long b() {
-        return System.currentTimeMillis() - f51687f0;
+        return System.currentTimeMillis() - f51640f0;
     }
 
     public static float c(float[] fArr, long j10) {
@@ -121,24 +121,24 @@ public final class c extends View {
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
         int i10 = 0;
-        if (this.f51702x >= 0.5f) {
+        if (this.f51655x >= 0.5f) {
             if (this.F.contains(motionEvent.getX(), motionEvent.getY())) {
                 if (motionEvent.getActionMasked() == 1) {
                     int i11 = 0;
                     while (true) {
-                        ArrayList arrayList = this.f51699r;
+                        ArrayList arrayList = this.f51652r;
                         if (i10 >= arrayList.size()) {
                             break;
                         }
                         b bVar = (b) arrayList.get(i10);
                         if (!bVar.d) {
-                            if (Math.abs(motionEvent.getX() - bVar.f51683b) < AndroidUtilities.dp(34.0f) / 2.0f) {
-                                t0 t0Var = ((f0) this.f51689a.f47670a).d;
-                                ArrayList arrayList2 = t0Var.I;
+                            if (Math.abs(motionEvent.getX() - bVar.f51636b) < AndroidUtilities.dp(34.0f) / 2.0f) {
+                                u0 u0Var = ((f0) this.f51642a.f47626a).d;
+                                ArrayList arrayList2 = u0Var.I;
                                 if (i11 >= 0 && i11 < arrayList2.size()) {
                                     arrayList2.remove(i11);
-                                    t0Var.c();
-                                    t0Var.i0();
+                                    u0Var.c();
+                                    u0Var.i0();
                                 }
                                 invalidate();
                                 return true;

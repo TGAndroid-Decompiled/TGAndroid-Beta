@@ -23,8 +23,8 @@ public final class c extends c1 {
         g gVar = this.f5089b;
         Context b11 = gVar.b();
         ?? obj2 = new Object();
-        obj2.f51188b = new AtomicLong(-1L);
-        obj2.f51187a = new j(b11, p6.b.f44276k, new p("mlkit:vision"), i.f6359c);
+        obj2.f51141b = new AtomicLong(-1L);
+        obj2.f51140a = new j(b11, p6.b.f44231k, new p("mlkit:vision"), i.f6357c);
         return new f(gVar, (bc.e) obj, b10, obj2);
     }
 }

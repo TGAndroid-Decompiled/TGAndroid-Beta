@@ -7,44 +7,44 @@ import java.math.RoundingMode;
 import java.util.List;
 import m.g3;
 public final class p extends n {
-    public final g3 f16461j;
-    public final g3 f16462k;
-    public final long f16463l;
+    public final g3 f16459j;
+    public final g3 f16460k;
+    public final long f16461l;
 
     public p(j jVar, long j10, long j11, long j12, long j13, long j14, List list, long j15, g3 g3Var, g3 g3Var2, long j16, long j17) {
         super(jVar, j10, j11, j12, j14, list, j15, j16, j17);
-        this.f16461j = g3Var;
-        this.f16462k = g3Var2;
-        this.f16463l = j13;
+        this.f16459j = g3Var;
+        this.f16460k = g3Var2;
+        this.f16461l = j13;
     }
 
     @Override
     public final j a(m mVar) {
-        g3 g3Var = this.f16461j;
+        g3 g3Var = this.f16459j;
         if (g3Var != null) {
-            w wVar = mVar.f16453a;
-            return new j(0L, -1L, g3Var.n(wVar.f4123j, wVar.f4117a, 0L, 0L));
+            w wVar = mVar.f16451a;
+            return new j(0L, -1L, g3Var.u(wVar.f4123j, wVar.f4117a, 0L, 0L));
         }
-        return this.f16466a;
+        return this.f16464a;
     }
 
     @Override
     public final long d(long j10) {
-        List list = this.f16457f;
+        List list = this.f16455f;
         if (list != null) {
             return list.size();
         }
-        long j11 = this.f16463l;
+        long j11 = this.f16461l;
         if (j11 != -1) {
             return (j11 - this.d) + 1;
         }
         if (j10 == -9223372036854775807L) {
             return -1L;
         }
-        BigInteger multiply = BigInteger.valueOf(j10).multiply(BigInteger.valueOf(this.f16467b));
+        BigInteger multiply = BigInteger.valueOf(j10).multiply(BigInteger.valueOf(this.f16465b));
         BigInteger multiply2 = BigInteger.valueOf(this.e).multiply(BigInteger.valueOf(1000000L));
         RoundingMode roundingMode = RoundingMode.CEILING;
-        int i10 = g9.a.f10943a;
+        int i10 = g9.a.f10941a;
         return new BigDecimal(multiply).divide(new BigDecimal(multiply2), 0, roundingMode).toBigIntegerExact().longValue();
     }
 
@@ -52,15 +52,15 @@ public final class p extends n {
     public final j h(k kVar, long j10) {
         long j11;
         long j12 = this.d;
-        List list = this.f16457f;
+        List list = this.f16455f;
         if (list != null) {
-            j11 = ((q) list.get((int) (j10 - j12))).f16464a;
+            j11 = ((q) list.get((int) (j10 - j12))).f16462a;
         } else {
             j11 = (j10 - j12) * this.e;
         }
         long j13 = j11;
-        w wVar = kVar.f16453a;
+        w wVar = kVar.f16451a;
         String str = wVar.f4117a;
-        return new j(0L, -1L, this.f16462k.n(wVar.f4123j, str, j10, j13));
+        return new j(0L, -1L, this.f16460k.u(wVar.f4123j, str, j10, j13));
     }
 }

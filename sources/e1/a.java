@@ -2,19 +2,19 @@ package e1;
 
 import v0.i;
 public final class a implements Runnable {
-    public final int f8176a;
-    public final e f8177b;
+    public final int f8174a;
+    public final e f8175b;
 
     public a(e eVar, int i10) {
-        this.f8176a = i10;
-        this.f8177b = eVar;
+        this.f8174a = i10;
+        this.f8175b = eVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f8176a) {
+        switch (this.f8174a) {
             case 0:
-                i iVar = this.f8177b.f8186f;
+                i iVar = this.f8175b.f8184f;
                 if (iVar != null) {
                     iVar.onError(new w0.c("Failed to launch the selector UI. Hint: ensure the `context` parameter is an Activity-based context.", 2));
                     return;
@@ -23,7 +23,7 @@ public final class a implements Runnable {
                     throw null;
                 }
             default:
-                i iVar2 = this.f8177b.f8186f;
+                i iVar2 = this.f8175b.f8184f;
                 if (iVar2 != null) {
                     iVar2.onError(new w0.c("No provider data returned.", 2));
                     return;

@@ -6,15 +6,15 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.tl.TL_stories;
 public final class o80 implements Utilities.Callback {
-    public final int f39705a;
-    public final LaunchActivity f39706b;
-    public final b80 f39707c;
+    public final int f39697a;
+    public final LaunchActivity f39698b;
+    public final b80 f39699c;
     public final Long d;
 
     public o80(LaunchActivity launchActivity, b80 b80Var, Long l4, int i10) {
-        this.f39705a = i10;
-        this.f39706b = launchActivity;
-        this.f39707c = b80Var;
+        this.f39697a = i10;
+        this.f39698b = launchActivity;
+        this.f39699c = b80Var;
         this.d = l4;
     }
 
@@ -26,10 +26,10 @@ public final class o80 implements Utilities.Callback {
         org.telegram.ui.Components.xc X2;
         int i12;
         int i13;
-        int i14 = this.f39705a;
+        int i14 = this.f39697a;
         Long l4 = this.d;
-        b80 b80Var = this.f39707c;
-        LaunchActivity launchActivity = this.f39706b;
+        b80 b80Var = this.f39699c;
+        LaunchActivity launchActivity = this.f39698b;
         TL_stories.StoryItem storyItem = (TL_stories.StoryItem) obj;
         switch (i14) {
             case 0:
@@ -58,7 +58,7 @@ public final class o80 implements Utilities.Callback {
                     }
                 } else if (R != null) {
                     storyItem.dialogId = l4.longValue();
-                    ci.aa createOverlayStoryViewer = R.createOverlayStoryViewer();
+                    ci.z9 createOverlayStoryViewer = R.createOverlayStoryViewer();
                     createOverlayStoryViewer.v();
                     createOverlayStoryViewer.F(launchActivity, storyItem, null);
                     return;
@@ -93,7 +93,7 @@ public final class o80 implements Utilities.Callback {
                     }
                 } else if (R2 != null) {
                     storyItem.dialogId = l4.longValue();
-                    ci.aa createOverlayStoryViewer2 = R2.createOverlayStoryViewer();
+                    ci.z9 createOverlayStoryViewer2 = R2.createOverlayStoryViewer();
                     createOverlayStoryViewer2.v();
                     createOverlayStoryViewer2.F(launchActivity, storyItem, null);
                     return;

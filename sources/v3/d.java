@@ -17,27 +17,27 @@ import e9.x1;
 import java.io.EOFException;
 import java.util.List;
 public final class d implements o {
-    public final int f47962a;
-    public final long f47963b;
-    public final x f47964c;
+    public final int f47915a;
+    public final long f47916b;
+    public final x f47917c;
     public final a0 d;
     public final w e;
-    public final y f47965f;
-    public final n f47966g;
+    public final y f47918f;
+    public final n f47919g;
     public q h;
-    public j0 f47967i;
-    public j0 f47968j;
-    public int f47969k;
-    public t0 f47970l;
-    public t0 f47971m;
-    public long f47972n;
-    public long f47973o;
-    public long f47974p;
-    public long f47975q;
-    public int f47976r;
-    public h f47977s;
-    public boolean f47978t;
-    public boolean f47979u;
+    public j0 f47920i;
+    public j0 f47921j;
+    public int f47922k;
+    public t0 f47923l;
+    public t0 f47924m;
+    public long f47925n;
+    public long f47926o;
+    public long f47927p;
+    public long f47928q;
+    public int f47929r;
+    public h f47930s;
+    public boolean f47931t;
+    public boolean f47932u;
     public long v;
 
     public d(int i10) {
@@ -53,20 +53,20 @@ public final class d implements o {
     public final void c(q qVar) {
         this.h = qVar;
         j0 j02 = qVar.j0(0, 1);
-        this.f47967i = j02;
-        this.f47968j = j02;
+        this.f47920i = j02;
+        this.f47921j = j02;
         this.h.H();
     }
 
     @Override
     public final void d(long j10, long j11) {
-        this.f47969k = 0;
-        this.f47972n = -9223372036854775807L;
-        this.f47973o = 0L;
-        this.f47976r = 0;
-        this.f47975q = -1L;
+        this.f47922k = 0;
+        this.f47925n = -9223372036854775807L;
+        this.f47926o = 0L;
+        this.f47929r = 0;
+        this.f47928q = -1L;
         this.v = j11;
-        if (!(this.f47977s instanceof b)) {
+        if (!(this.f47930s instanceof b)) {
             return;
         }
         throw null;
@@ -74,7 +74,7 @@ public final class d implements o {
 
     @Override
     public final List e() {
-        l0 l0Var = n0.f8477b;
+        l0 l0Var = n0.f8475b;
         return x1.e;
     }
 
@@ -84,8 +84,8 @@ public final class d implements o {
     }
 
     public final a g(p pVar, boolean z10) {
-        x xVar = this.f47964c;
-        pVar.b(0, 4, xVar.f8294a);
+        x xVar = this.f47917c;
+        pVar.b(0, 4, xVar.f8292a);
         xVar.N(0);
         int m10 = xVar.m();
         a0 a0Var = this.d;
@@ -94,18 +94,18 @@ public final class d implements o {
     }
 
     public final void h() {
-        h hVar = this.f47977s;
+        h hVar = this.f47930s;
         if ((hVar instanceof a) && ((k) hVar).d()) {
-            long j10 = this.f47975q;
-            if (j10 != -1 && j10 != this.f47977s.b()) {
-                a aVar = (a) this.f47977s;
-                this.f47977s = new a(this.f47975q, aVar.f47954i, aVar.f47955j, aVar.f47956k, aVar.f47957l, false);
+            long j10 = this.f47928q;
+            if (j10 != -1 && j10 != this.f47930s.b()) {
+                a aVar = (a) this.f47930s;
+                this.f47930s = new a(this.f47928q, aVar.f47907i, aVar.f47908j, aVar.f47909k, aVar.f47910l, false);
                 q qVar = this.h;
                 qVar.getClass();
-                qVar.g0(this.f47977s);
-                j0 j0Var = this.f47967i;
+                qVar.g0(this.f47930s);
+                j0 j0Var = this.f47920i;
                 j0Var.getClass();
-                j0Var.e(this.f47977s.h());
+                j0Var.e(this.f47930s.h());
             }
         }
     }
@@ -120,8 +120,8 @@ public final class d implements o {
         int h;
         pVar.q();
         if (pVar.getPosition() == 0) {
-            t0 b10 = this.f47965f.b(pVar, null, 131072);
-            this.f47970l = b10;
+            t0 b10 = this.f47918f.b(pVar, null, 131072);
+            this.f47923l = b10;
             if (b10 != null) {
                 this.e.b(b10);
             }
@@ -143,7 +143,7 @@ public final class d implements o {
                     throw new EOFException();
                 }
             } else {
-                x xVar = this.f47964c;
+                x xVar = this.f47917c;
                 xVar.N(0);
                 int m10 = xVar.m();
                 if ((i11 != 0 && ((-128000) & m10) != (i11 & (-128000))) || (h = c3.b.h(m10)) == -1) {
@@ -181,22 +181,22 @@ public final class d implements o {
         } else {
             pVar.q();
         }
-        this.f47969k = i11;
+        this.f47922k = i11;
         return true;
     }
 
     public d(int i10, long j10) {
-        this.f47962a = i10;
-        this.f47963b = j10;
-        this.f47964c = new x(10);
+        this.f47915a = i10;
+        this.f47916b = j10;
+        this.f47917c = new x(10);
         this.d = new Object();
         this.e = new w();
-        this.f47972n = -9223372036854775807L;
-        this.f47965f = new y(0);
+        this.f47925n = -9223372036854775807L;
+        this.f47918f = new y(0);
         n nVar = new n();
-        this.f47966g = nVar;
-        this.f47968j = nVar;
-        this.f47975q = -1L;
+        this.f47919g = nVar;
+        this.f47921j = nVar;
+        this.f47928q = -1L;
     }
 
     @Override

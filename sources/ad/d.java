@@ -242,15 +242,15 @@ public final class d implements p, q, OnFailureListener, l2.i, yo {
         n2Var.d = new ArrayList();
         n2Var.e = new HashSet();
         ProfileActivity profileActivity = (ProfileActivity) this.f506c;
-        n2Var.e = profileActivity.f33646j5;
+        n2Var.e = profileActivity.f33639j5;
         profileActivity.presentFragment((n2) n2Var);
     }
 
     @Override
     public void n() {
         ProfileActivity profileActivity = (ProfileActivity) this.f506c;
-        boolean z10 = !profileActivity.getMessagesController().isDialogMuted(this.f505b, profileActivity.f33628h1);
-        profileActivity.getNotificationsController().muteDialog(this.f505b, profileActivity.f33628h1, z10);
+        boolean z10 = !profileActivity.getMessagesController().isDialogMuted(this.f505b, profileActivity.f33621h1);
+        profileActivity.getNotificationsController().muteDialog(this.f505b, profileActivity.f33621h1, z10);
         if (profileActivity.fragmentView != null) {
             xc.A(profileActivity, z10, null).j();
         }
@@ -274,18 +274,18 @@ public final class d implements p, q, OnFailureListener, l2.i, yo {
                     i10 = 13;
                 }
                 long j10 = this.f505b;
-                for (o oVar : ((e6.h) ((androidx.biometric.e) this.f506c).d).f8374c.d) {
+                for (o oVar : ((e6.h) ((androidx.biometric.e) this.f506c).d).f8372c.d) {
                     oVar.b(j10, i10, null);
                 }
                 return;
             case 8:
-                ((z8) this.f506c).f48291b.set(this.f505b);
+                ((z8) this.f506c).f48244b.set(this.f505b);
                 return;
             case 9:
-                ((z8) this.f506c).f48291b.set(this.f505b);
+                ((z8) this.f506c).f48244b.set(this.f505b);
                 return;
             default:
-                ((AtomicLong) ((qa) this.f506c).f51188b).set(this.f505b);
+                ((AtomicLong) ((qa) this.f506c).f51141b).set(this.f505b);
                 return;
         }
     }
@@ -297,7 +297,7 @@ public final class d implements p, q, OnFailureListener, l2.i, yo {
         if (j10 != 0) {
             Bundle bundle = new Bundle();
             bundle.putLong("dialog_id", j10);
-            bundle.putLong("topic_id", profileActivity.f33628h1);
+            bundle.putLong("topic_id", profileActivity.f33621h1);
             profileActivity.presentFragment(new b11(bundle, profileActivity.A0));
         }
     }
@@ -338,9 +338,9 @@ public final class d implements p, q, OnFailureListener, l2.i, yo {
         SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(ProfileActivity.c1(profileActivity));
         StringBuilder sb2 = new StringBuilder("sound_enabled_");
         long j10 = this.f505b;
-        boolean z10 = notificationsSettings.getBoolean(g0.i(j10, profileActivity.f33628h1, sb2), true);
+        boolean z10 = notificationsSettings.getBoolean(g0.i(j10, profileActivity.f33621h1, sb2), true);
         boolean z11 = !z10 ? 1 : 0;
-        notificationsSettings.edit().putBoolean(g0.i(j10, profileActivity.f33628h1, new StringBuilder("sound_enabled_")), z11).apply();
+        notificationsSettings.edit().putBoolean(g0.i(j10, profileActivity.f33621h1, new StringBuilder("sound_enabled_")), z11).apply();
         if (xc.a(profileActivity)) {
             xc.S(z10 ? 1 : 0, profileActivity, profileActivity.A0).j();
         }
@@ -382,7 +382,7 @@ public final class d implements p, q, OnFailureListener, l2.i, yo {
     public void y(int i10) {
         ProfileActivity profileActivity = (ProfileActivity) this.f506c;
         if (i10 == 0) {
-            if (profileActivity.getMessagesController().isDialogMuted(this.f505b, profileActivity.f33628h1)) {
+            if (profileActivity.getMessagesController().isDialogMuted(this.f505b, profileActivity.f33621h1)) {
                 n();
             }
             if (xc.a(profileActivity)) {
@@ -391,7 +391,7 @@ public final class d implements p, q, OnFailureListener, l2.i, yo {
             }
             return;
         }
-        profileActivity.getNotificationsController().muteUntil(this.f505b, profileActivity.f33628h1, i10);
+        profileActivity.getNotificationsController().muteUntil(this.f505b, profileActivity.f33621h1, i10);
         if (xc.a(profileActivity)) {
             xc.z(profileActivity, 5, i10, profileActivity.A0).j();
         }

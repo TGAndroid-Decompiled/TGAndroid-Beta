@@ -15,7 +15,7 @@ import java.util.SortedSet;
 import v7.b8;
 import v7.u6;
 public abstract class s {
-    public final int f8498a = 2;
+    public final int f8496a = 2;
 
     public static int c(int i10) {
         if (i10 < 3) {
@@ -102,16 +102,16 @@ public abstract class s {
             SortedSet sortedSet = (SortedSet) set;
             if (sortedSet instanceof h2) {
                 h2 h2Var = (h2) sortedSet;
-                d9.m mVar2 = h2Var.f8458b;
+                d9.m mVar2 = h2Var.f8456b;
                 mVar2.getClass();
-                return new h2((SortedSet) h2Var.f8457a, new d9.n(Arrays.asList(mVar2, mVar)));
+                return new h2((SortedSet) h2Var.f8455a, new d9.n(Arrays.asList(mVar2, mVar)));
             }
             return new h2(sortedSet, mVar);
         } else if (set instanceof h2) {
             h2 h2Var2 = (h2) set;
-            d9.m mVar3 = h2Var2.f8458b;
+            d9.m mVar3 = h2Var2.f8456b;
             mVar3.getClass();
-            return new h2(h2Var2.f8457a, new d9.n(Arrays.asList(mVar3, mVar)));
+            return new h2(h2Var2.f8455a, new d9.n(Arrays.asList(mVar3, mVar)));
         } else {
             set.getClass();
             return new h2(set, mVar);
@@ -233,7 +233,7 @@ public abstract class s {
     public abstract Object h();
 
     public String toString() {
-        switch (this.f8498a) {
+        switch (this.f8496a) {
             case 2:
                 return h().toString();
             default:

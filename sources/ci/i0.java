@@ -2,10 +2,10 @@ package ci;
 
 import android.view.View;
 public final class i0 extends s4.k {
-    public final n2 F;
+    public final m2 F;
 
-    public i0(n2 n2Var) {
-        this.F = n2Var;
+    public i0(m2 m2Var) {
+        this.F = m2Var;
     }
 
     @Override
@@ -15,11 +15,11 @@ public final class i0 extends s4.k {
 
     @Override
     public final void M() {
-        this.F.f6136c.invalidate();
+        this.F.f6076c.invalidate();
     }
 
     @Override
     public final void P(s4.b1 b1Var) {
-        this.F.f6136c.invalidate();
+        this.F.f6076c.invalidate();
     }
 }

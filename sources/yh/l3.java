@@ -1,5 +1,15 @@
 package yh;
 
-import android.widget.FrameLayout;
-public final class l3 extends FrameLayout {
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.r5;
+public final class l3 extends r5 {
+    @Override
+    public final int getIntrinsicHeight() {
+        return AndroidUtilities.dp(24.0f);
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return AndroidUtilities.dp(24.0f);
+    }
 }

@@ -8,9 +8,9 @@ import android.graphics.RectF;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class lu extends View {
-    public Path f38958a;
-    public Paint f38959b;
-    public boolean f38960c;
+    public Path f38914a;
+    public Paint f38915b;
+    public boolean f38916c;
 
     @Override
     public final void onConfigurationChanged(Configuration configuration) {
@@ -21,19 +21,19 @@ public final class lu extends View {
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        canvas.drawPath(this.f38958a, this.f38959b);
+        canvas.drawPath(this.f38914a, this.f38915b);
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
         super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(13.0f), 1073741824));
-        setTop(this.f38960c);
+        setTop(this.f38916c);
     }
 
     public void setTop(boolean z10) {
-        Path path = this.f38958a;
+        Path path = this.f38914a;
         path.rewind();
-        this.f38960c = z10;
+        this.f38916c = z10;
         if (z10) {
             float dp = AndroidUtilities.dp(14.0f);
             RectF rectF = AndroidUtilities.rectTmp;

@@ -5,7 +5,7 @@ import android.view.View;
 import org.telegram.ui.Components.e61;
 import org.telegram.ui.Components.im0;
 public final class gd extends e61 {
-    public static final int f1382a = 0;
+    public static final int f1380a = 0;
 
     static {
         e61.setup(new e61());

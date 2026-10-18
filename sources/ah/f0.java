@@ -42,7 +42,7 @@ public final class f0 extends FrameLayout {
         this.f725a = snVar;
         setClipToPadding(false);
         setClipChildren(false);
-        snVar.f41454x0.j(new d0(this, 0));
+        snVar.f41419x0.j(new d0(this, 0));
     }
 
     public final void a(boolean z10) {
@@ -105,7 +105,7 @@ public final class f0 extends FrameLayout {
                 AndroidUtilities.runOnUIThread(new b0(this, 0));
             }
             sn snVar = this.f725a;
-            pj pjVar = snVar.f41454x0;
+            pj pjVar = snVar.f41419x0;
             int[] iArr = this.f734y;
             pjVar.getLocationInWindow(iArr);
             boolean z13 = true;
@@ -176,7 +176,7 @@ public final class f0 extends FrameLayout {
                         if (!z10) {
                             this.f729n = this.f730r;
                         }
-                        float interpolation = (bs.f25037f.getInterpolation(this.f729n) * this.f731s) + y3;
+                        float interpolation = (bs.f25030f.getInterpolation(this.f729n) * this.f731s) + y3;
                         e0 e0Var3 = this.f726b;
                         if (e0Var3 != null) {
                             if (z11 != e0Var3.N) {

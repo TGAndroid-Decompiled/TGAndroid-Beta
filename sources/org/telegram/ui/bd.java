@@ -12,32 +12,32 @@ import org.telegram.messenger.ChatThemeController;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class bd extends FrameLayout {
-    public final int f35669a;
-    public final org.telegram.ui.ActionBar.d6 f35670b;
-    public final ArrayList f35671c;
+    public final int f35630a;
+    public final org.telegram.ui.ActionBar.d6 f35631b;
+    public final ArrayList f35632c;
     public final ua1 d;
     public final org.telegram.ui.Components.b10 e;
-    public boolean f35672f;
+    public boolean f35633f;
     public final zc h;
-    public boolean f35673n;
-    public Utilities.Callback f35674r;
-    public String f35675s;
+    public boolean f35634n;
+    public Utilities.Callback f35635r;
+    public String f35636s;
     public TLRPC.WallPaper v;
-    public final HashMap f35676w;
-    public final HashMap f35677x;
+    public final HashMap f35637w;
+    public final HashMap f35638x;
 
     public bd(int i10, Activity activity, org.telegram.ui.ActionBar.d6 d6Var) {
         super(activity);
-        this.f35671c = new ArrayList();
-        this.f35676w = new HashMap();
-        this.f35677x = new HashMap();
-        this.f35669a = i10;
-        this.f35670b = d6Var;
+        this.f35632c = new ArrayList();
+        this.f35637w = new HashMap();
+        this.f35638x = new HashMap();
+        this.f35630a = i10;
+        this.f35631b = d6Var;
         org.telegram.ui.Components.b10 b10Var = new org.telegram.ui.Components.b10(getContext(), d6Var);
         this.e = b10Var;
         b10Var.setViewType(14);
         b10Var.setVisibility(0);
-        addView(b10Var, w7.z5.a(104.0f, 16.0f, 13.0f, 16.0f, 6.0f, -1, 8388611));
+        addView(b10Var, w7.z5.d(-1, 104.0f, 8388611, 16.0f, 13.0f, 16.0f, 6.0f));
         ua1 ua1Var = new ua1(activity, 4, d6Var);
         this.d = ua1Var;
         ua1Var.setClipToPadding(false);
@@ -50,7 +50,7 @@ public final class bd extends FrameLayout {
         zc zcVar = new zc(this, i10, d6Var);
         this.h = zcVar;
         ua1Var.setAdapter(zcVar);
-        addView(ua1Var, w7.z5.d(130.0f, -1));
+        addView(ua1Var, w7.z5.c(130.0f, -1));
         ua1Var.setOnItemClickListener(new i(this, 3));
         ChatThemeController chatThemeController = ChatThemeController.getInstance(i10);
         chatThemeController.preloadAllWallpaperThumbs(true);
@@ -58,7 +58,7 @@ public final class bd extends FrameLayout {
         chatThemeController.preloadAllWallpaperImages(true);
         chatThemeController.preloadAllWallpaperImages(false);
         chatThemeController.requestAllChatThemes(new ad(this, i10), true);
-        if (!this.f35673n) {
+        if (!this.f35634n) {
             AndroidUtilities.updateViewVisibilityAnimated(b10Var, true, 1.0f, true, false);
         } else {
             AndroidUtilities.updateViewVisibilityAnimated(b10Var, false, 1.0f, true, false);
@@ -68,17 +68,17 @@ public final class bd extends FrameLayout {
     public final void a(String str, boolean z10) {
         ArrayList arrayList;
         int R;
-        this.f35675s = str;
+        this.f35636s = str;
         int i10 = -1;
         int i11 = 0;
         while (true) {
-            arrayList = this.f35671c;
+            arrayList = this.f35632c;
             boolean z11 = true;
             if (i11 >= arrayList.size()) {
                 break;
             }
             org.telegram.ui.Components.vp vpVar = (org.telegram.ui.Components.vp) arrayList.get(i11);
-            if (!TextUtils.equals(this.f35675s, vpVar.a()) && (!TextUtils.isEmpty(str) || !vpVar.f31896a.f20726a)) {
+            if (!TextUtils.equals(this.f35636s, vpVar.a()) && (!TextUtils.isEmpty(str) || !vpVar.f31889a.f20719a)) {
                 z11 = false;
             }
             vpVar.d = z11;
@@ -108,19 +108,19 @@ public final class bd extends FrameLayout {
         this.v = wallPaper;
         AndroidUtilities.forEachViews((RecyclerView) this.d, (Utilities.Callback<View>) new wc(this, 1));
         if (this.v != null) {
-            ArrayList arrayList = this.f35671c;
-            if ((arrayList.isEmpty() || ((org.telegram.ui.Components.vp) arrayList.get(0)).f31896a.f20726a) && this.f35672f) {
-                arrayList.add(0, new org.telegram.ui.Components.vp(org.telegram.ui.ActionBar.c4.a(this.f35669a)));
+            ArrayList arrayList = this.f35632c;
+            if ((arrayList.isEmpty() || ((org.telegram.ui.Components.vp) arrayList.get(0)).f31889a.f20719a) && this.f35633f) {
+                arrayList.add(0, new org.telegram.ui.Components.vp(org.telegram.ui.ActionBar.c4.a(this.f35630a)));
                 this.h.l();
             }
         }
     }
 
     public void setOnEmoticonSelected(Utilities.Callback<String> callback) {
-        this.f35674r = callback;
+        this.f35635r = callback;
     }
 
     public void setWithRemovedStub(boolean z10) {
-        this.f35672f = z10;
+        this.f35633f = z10;
     }
 }

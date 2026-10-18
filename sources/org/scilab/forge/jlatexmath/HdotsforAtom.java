@@ -15,9 +15,9 @@ public class HdotsforAtom extends MulticolumnAtom {
         HorizontalBox horizontalBox = new HorizontalBox(strutBox);
         horizontalBox.add(ldotp.createBox(teXEnvironment));
         horizontalBox.add(strutBox);
-        if (this.f17776w != 0.0f) {
+        if (this.f17772w != 0.0f) {
             float width = horizontalBox.getWidth();
-            float f7 = this.f17776w;
+            float f7 = this.f17772w;
             if (width <= 0.0f || Float.isInfinite(width) || Float.isNaN(width) || f7 > 65536.0f) {
                 f7 = 0.0f;
             }

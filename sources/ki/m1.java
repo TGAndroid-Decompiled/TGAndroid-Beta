@@ -4,28 +4,28 @@ import android.view.View;
 import java.util.ArrayList;
 import org.telegram.tgnet.tl.TL_iv;
 public final class m1 implements Runnable {
-    public final int f15383a;
-    public final d2 f15384b;
-    public final a f15385c;
+    public final int f15381a;
+    public final d2 f15382b;
+    public final a f15383c;
 
     public m1(d2 d2Var, a aVar, int i10) {
-        this.f15383a = i10;
-        this.f15384b = d2Var;
-        this.f15385c = aVar;
+        this.f15381a = i10;
+        this.f15382b = d2Var;
+        this.f15383c = aVar;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f15383a;
-        a aVar = this.f15385c;
-        d2 d2Var = this.f15384b;
+        int i10 = this.f15381a;
+        a aVar = this.f15383c;
+        d2 d2Var = this.f15382b;
         switch (i10) {
             case 0:
                 w3 w3Var = d2Var.P;
-                ArrayList arrayList = w3.f15585q4;
+                ArrayList arrayList = w3.f15583q4;
                 TL_iv.pageBlockPullquote pageblockpullquote = new TL_iv.pageBlockPullquote();
                 pageblockpullquote.caption = new TL_iv.textEmpty();
-                w3Var.V4(this.f15385c, pageblockpullquote, 0, 0, false, false);
+                w3Var.V4(this.f15383c, pageblockpullquote, 0, 0, false, false);
                 return;
             case 1:
                 d2Var.P.W4(aVar, new TL_iv.pageBlockPreformatted());
@@ -38,10 +38,10 @@ public final class m1 implements Runnable {
                 return;
             case 4:
                 w3 w3Var2 = d2Var.P;
-                ArrayList arrayList2 = w3.f15585q4;
+                ArrayList arrayList2 = w3.f15583q4;
                 TL_iv.pageBlockBlockquote pageblockblockquote = new TL_iv.pageBlockBlockquote();
                 pageblockblockquote.caption = new TL_iv.textEmpty();
-                w3Var2.V4(this.f15385c, pageblockblockquote, 0, 0, false, false);
+                w3Var2.V4(this.f15383c, pageblockblockquote, 0, 0, false, false);
                 return;
             case 5:
                 d2Var.P.X4(aVar, 0);

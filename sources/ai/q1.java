@@ -32,7 +32,7 @@ public final class q1 extends g.o {
                 t1 t1Var = a2Var.f937k0;
                 if (t1Var != null && i10 != 0) {
                     f61 G = t1Var.G(i10 - 1);
-                    if (G == null || (i11 = G.f26156u) == -1) {
+                    if (G == null || (i11 = G.f26149u) == -1) {
                         return wzVar.J;
                     }
                     return i11;
@@ -40,21 +40,21 @@ public final class q1 extends g.o {
                 return wzVar.J;
             case 1:
                 ei.u1 u1Var = (ei.u1) this.d;
-                if (u1Var.Y.f9931c.F(i10) == null) {
+                if (u1Var.Y.f9929c.F(i10) == null) {
                     return u1Var.J;
                 }
                 u1Var.B1();
                 return u1Var.R.get(i10);
             case 2:
                 ei.b2 b2Var = (ei.b2) this.d;
-                if (b2Var.f8773c.j(i10) != 2) {
+                if (b2Var.f8771c.j(i10) != 2) {
                     return b2Var.h;
                 }
                 return 1;
             case 3:
                 ij ijVar = (ij) this.d;
-                int i15 = ijVar.f27247r;
-                int i16 = ijVar.f27249w;
+                int i15 = ijVar.f27240r;
+                int i16 = ijVar.f27242w;
                 if (i10 % i16 != i16 - 1) {
                     i12 = AndroidUtilities.dp(5.0f);
                 } else {
@@ -63,7 +63,7 @@ public final class q1 extends g.o {
                 return i15 + i12;
             case 4:
                 ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = (ChatAttachAlertPhotoLayout) this.d;
-                if (i10 != chatAttachAlertPhotoLayout.G.f30298n - 1 && ((!chatAttachAlertPhotoLayout.P0 && !chatAttachAlertPhotoLayout.O0) || i10 != 0)) {
+                if (i10 != chatAttachAlertPhotoLayout.G.f30291n - 1 && ((!chatAttachAlertPhotoLayout.P0 && !chatAttachAlertPhotoLayout.O0) || i10 != 0)) {
                     if (chatAttachAlertPhotoLayout.O0) {
                         i10--;
                     }
@@ -81,14 +81,14 @@ public final class q1 extends g.o {
                 zy zyVar = (zy) this.d;
                 tz tzVar = zyVar.Y;
                 if (i10 == 0) {
-                    tzVar.f30786n0.getClass();
+                    tzVar.f30779n0.getClass();
                 }
-                s4.g0 adapter = tzVar.f30769h0.getAdapter();
-                yy yyVar = tzVar.f30775j0;
-                if (adapter == yyVar && yyVar.f32785x.isEmpty()) {
+                s4.g0 adapter = tzVar.f30762h0.getAdapter();
+                yy yyVar = tzVar.f30768j0;
+                if (adapter == yyVar && yyVar.f32778x.isEmpty()) {
                     return zyVar.J;
                 }
-                tzVar.f30786n0.getClass();
+                tzVar.f30779n0.getClass();
                 zyVar.B1();
                 return zyVar.R.get(i10);
             case 6:
@@ -99,23 +99,23 @@ public final class q1 extends g.o {
                 return 1;
             case 7:
                 ep0 ep0Var = (ep0) this.d;
-                if (i10 >= ep0Var.f36583b0 && i10 < ep0Var.f36585c0) {
+                if (i10 >= ep0Var.f36567b0 && i10 < ep0Var.f36569c0) {
                     return 1;
                 }
-                if (i10 >= ep0Var.f36586d0 && i10 < ep0Var.f36587e0) {
+                if (i10 >= ep0Var.f36570d0 && i10 < ep0Var.f36571e0) {
                     return 1;
                 }
                 return 3;
             case 8:
-                f61 G2 = ((yh.g4) this.d).f50302i0.G(i10 - 1);
-                if (G2 == null || (i14 = G2.f26156u) == -1) {
+                f61 G2 = ((yh.f4) this.d).f50242i0.G(i10 - 1);
+                if (G2 == null || (i14 = G2.f26149u) == -1) {
                     return 3;
                 }
                 return i14;
             default:
                 zh.d0 d0Var = (zh.d0) this.d;
                 if (d0Var.e.j(i10) == 0) {
-                    return d0Var.f51863r;
+                    return d0Var.f51800r;
                 }
                 return 1;
         }

@@ -65,9 +65,9 @@ public final class y implements z3.m {
                     int m11 = xVar.m();
                     int m12 = xVar.m();
                     int i13 = m11 - 8;
-                    byte[] bArr2 = xVar.f8294a;
-                    int i14 = xVar.f8295b;
-                    String str = m0.f8255a;
+                    byte[] bArr2 = xVar.f8292a;
+                    int i14 = xVar.f8293b;
+                    String str = m0.f8253a;
                     String str2 = new String(bArr2, i14, i13, StandardCharsets.UTF_8);
                     xVar.O(i13);
                     i12 = (i12 - 8) - i13;
@@ -83,13 +83,13 @@ public final class y implements z3.m {
                     charSequence = "";
                 }
                 if (aVar != null) {
-                    aVar.f7735a = charSequence;
-                    aVar.f7736b = null;
+                    aVar.f7733a = charSequence;
+                    aVar.f7734b = null;
                     a2 = aVar.a();
                 } else {
-                    Pattern pattern = i4.h.f12701a;
+                    Pattern pattern = i4.h.f12699a;
                     i4.g gVar2 = new i4.g();
-                    gVar2.f12695c = charSequence;
+                    gVar2.f12693c = charSequence;
                     a2 = gVar2.a().a();
                 }
                 arrayList.add(a2);

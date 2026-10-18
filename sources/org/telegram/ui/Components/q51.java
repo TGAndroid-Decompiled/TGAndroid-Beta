@@ -16,7 +16,7 @@ public final class q51 extends un0 {
     public final void a(String str) {
         hg.e2 e2Var = this.h.v;
         hg.c2 c2Var = e2Var.S;
-        int i10 = e2Var.f11852c;
+        int i10 = e2Var.f11850c;
         if (e2Var.N != 0) {
             ConnectionsManager.getInstance(i10).cancelRequest(e2Var.N, true);
             e2Var.N = 0;

@@ -6,26 +6,26 @@ import android.os.Bundle;
 import android.os.RemoteCallbackList;
 import java.util.List;
 public class n {
-    public final MediaSession f17111a;
-    public final m f17112b;
-    public final r f17113c;
+    public final MediaSession f17107a;
+    public final m f17108b;
+    public final r f17109c;
     public final Bundle e;
-    public y f17115g;
+    public y f17111g;
     public List h;
-    public i f17116i;
-    public int f17117j;
-    public int f17118k;
-    public l f17119l;
-    public t f17120m;
+    public i f17112i;
+    public int f17113j;
+    public int f17114k;
+    public l f17115l;
+    public t f17116m;
     public final Object d = new Object();
-    public final RemoteCallbackList f17114f = new RemoteCallbackList();
+    public final RemoteCallbackList f17110f = new RemoteCallbackList();
 
     public n(Context context, String str, Bundle bundle) {
         MediaSession a2 = a(context, str, bundle);
-        this.f17111a = a2;
+        this.f17107a = a2;
         m mVar = new m(this);
-        this.f17112b = mVar;
-        this.f17113c = new r(a2.getSessionToken(), mVar);
+        this.f17108b = mVar;
+        this.f17109c = new r(a2.getSessionToken(), mVar);
         this.e = bundle;
         a2.setFlags(3);
     }
@@ -37,7 +37,7 @@ public class n {
     public final l b() {
         l lVar;
         synchronized (this.d) {
-            lVar = this.f17119l;
+            lVar = this.f17115l;
         }
         return lVar;
     }
@@ -45,14 +45,14 @@ public class n {
     public t c() {
         t tVar;
         synchronized (this.d) {
-            tVar = this.f17120m;
+            tVar = this.f17116m;
         }
         return tVar;
     }
 
     public void d(t tVar) {
         synchronized (this.d) {
-            this.f17120m = tVar;
+            this.f17116m = tVar;
         }
     }
 }

@@ -7,39 +7,39 @@ import i2.n0;
 import java.util.Collections;
 import v7.u6;
 public final class s implements i {
-    public final c0 f14166a;
-    public String f14167b;
-    public j0 f14168c;
+    public final c0 f14164a;
+    public String f14165b;
+    public j0 f14166c;
     public r d;
     public boolean e;
-    public long f14174l;
-    public final boolean[] f14169f = new boolean[3];
-    public final n0 f14170g = new n0(32);
+    public long f14172l;
+    public final boolean[] f14167f = new boolean[3];
+    public final n0 f14168g = new n0(32);
     public final n0 h = new n0(33);
-    public final n0 f14171i = new n0(34);
-    public final n0 f14172j = new n0(39);
-    public final n0 f14173k = new n0(40);
-    public long f14175m = -9223372036854775807L;
-    public final e2.x f14176n = new e2.x();
+    public final n0 f14169i = new n0(34);
+    public final n0 f14170j = new n0(39);
+    public final n0 f14171k = new n0(40);
+    public long f14173m = -9223372036854775807L;
+    public final e2.x f14174n = new e2.x();
 
     public s(c0 c0Var) {
-        this.f14166a = c0Var;
+        this.f14164a = c0Var;
     }
 
     @Override
     public final void a(e2.x xVar) {
         int i10;
         int i11;
-        this.f14168c.getClass();
-        String str = m0.f8255a;
+        this.f14166c.getClass();
+        String str = m0.f8253a;
         while (xVar.a() > 0) {
-            int i12 = xVar.f8295b;
-            int i13 = xVar.f8296c;
-            byte[] bArr = xVar.f8294a;
-            this.f14174l += xVar.a();
-            this.f14168c.d(xVar.a(), xVar);
+            int i12 = xVar.f8293b;
+            int i13 = xVar.f8294c;
+            byte[] bArr = xVar.f8292a;
+            this.f14172l += xVar.a();
+            this.f14166c.d(xVar.a(), xVar);
             while (i12 < i13) {
-                int c10 = f2.q.c(bArr, i12, i13, this.f14169f);
+                int c10 = f2.q.c(bArr, i12, i13, this.f14167f);
                 if (c10 == i13) {
                     g(i12, i13, bArr);
                     return;
@@ -58,55 +58,55 @@ public final class s implements i {
                     g(i12, i15, bArr);
                 }
                 int i18 = i13 - i15;
-                long j10 = this.f14174l - i18;
+                long j10 = this.f14172l - i18;
                 if (i17 < 0) {
                     i11 = -i17;
                 } else {
                     i11 = 0;
                 }
-                b(j10, i18, i11, this.f14175m);
-                h(j10, i18, i14, this.f14175m);
+                b(j10, i18, i11, this.f14173m);
+                h(j10, i18, i14, this.f14173m);
                 i12 = i15 + i16;
             }
         }
     }
 
     public final void b(long j10, int i10, int i11, long j11) {
-        e2.c cVar = this.f14166a.d;
+        e2.c cVar = this.f14164a.d;
         r rVar = this.d;
         boolean z10 = this.e;
         boolean z11 = false;
-        if (rVar.f14162j && rVar.f14160g) {
-            rVar.f14165m = rVar.f14158c;
-            rVar.f14162j = false;
-        } else if (rVar.h || rVar.f14160g) {
-            if (z10 && rVar.f14161i) {
-                rVar.a(i10 + ((int) (j10 - rVar.f14157b)));
+        if (rVar.f14160j && rVar.f14158g) {
+            rVar.f14163m = rVar.f14156c;
+            rVar.f14160j = false;
+        } else if (rVar.h || rVar.f14158g) {
+            if (z10 && rVar.f14159i) {
+                rVar.a(i10 + ((int) (j10 - rVar.f14155b)));
             }
-            rVar.f14163k = rVar.f14157b;
-            rVar.f14164l = rVar.e;
-            rVar.f14165m = rVar.f14158c;
-            rVar.f14161i = true;
+            rVar.f14161k = rVar.f14155b;
+            rVar.f14162l = rVar.e;
+            rVar.f14163m = rVar.f14156c;
+            rVar.f14159i = true;
         }
         if (!this.e) {
-            n0 n0Var = this.f14170g;
+            n0 n0Var = this.f14168g;
             n0Var.e(i11);
             n0 n0Var2 = this.h;
             n0Var2.e(i11);
-            n0 n0Var3 = this.f14171i;
+            n0 n0Var3 = this.f14169i;
             n0Var3.e(i11);
             if (n0Var.d && n0Var2.d && n0Var3.d) {
-                String str = this.f14167b;
+                String str = this.f14165b;
                 int i12 = n0Var.e;
                 byte[] bArr = new byte[n0Var2.e + i12 + n0Var3.e];
-                System.arraycopy((byte[]) n0Var.f12494f, 0, bArr, 0, i12);
-                System.arraycopy((byte[]) n0Var2.f12494f, 0, bArr, n0Var.e, n0Var2.e);
-                System.arraycopy((byte[]) n0Var3.f12494f, 0, bArr, n0Var.e + n0Var2.e, n0Var3.e);
+                System.arraycopy((byte[]) n0Var.f12492f, 0, bArr, 0, i12);
+                System.arraycopy((byte[]) n0Var2.f12492f, 0, bArr, n0Var.e, n0Var2.e);
+                System.arraycopy((byte[]) n0Var3.f12492f, 0, bArr, n0Var.e + n0Var2.e, n0Var3.e);
                 String str2 = null;
-                f2.m k10 = f2.q.k((byte[]) n0Var2.f12494f, 3, n0Var2.e, null);
-                f2.j jVar = k10.f10308b;
+                f2.m k10 = f2.q.k((byte[]) n0Var2.f12492f, 3, n0Var2.e, null);
+                f2.j jVar = k10.f10306b;
                 if (jVar != null) {
-                    str2 = e2.g.a(jVar.f10298a, jVar.f10300c, jVar.d, jVar.f10301f, jVar.f10299b, jVar.e);
+                    str2 = e2.g.a(jVar.f10296a, jVar.f10298c, jVar.d, jVar.f10299f, jVar.f10297b, jVar.e);
                 }
                 b2.v vVar = new b2.v();
                 vVar.f4065a = str;
@@ -114,16 +114,16 @@ public final class s implements i {
                 vVar.f4079r = v0.n("video/hevc");
                 vVar.f4071j = str2;
                 vVar.f4085y = k10.e;
-                vVar.f4086z = k10.f10310f;
-                vVar.A = k10.f10311g;
+                vVar.f4086z = k10.f10308f;
+                vVar.A = k10.f10309g;
                 vVar.B = k10.h;
-                vVar.H = new b2.n(k10.f10314k, k10.f10315l, k10.f10316m, null, k10.f10309c + 8, k10.d + 8);
-                vVar.E = k10.f10312i;
-                vVar.f4081t = k10.f10313j;
-                vVar.I = k10.f10307a + 1;
+                vVar.H = new b2.n(k10.f10312k, k10.f10313l, k10.f10314m, null, k10.f10307c + 8, k10.d + 8);
+                vVar.E = k10.f10310i;
+                vVar.f4081t = k10.f10311j;
+                vVar.I = k10.f10305a + 1;
                 vVar.f4082u = Collections.singletonList(bArr);
                 b2.w wVar = new b2.w(vVar);
-                this.f14168c.b(wVar);
+                this.f14166c.b(wVar);
                 int i13 = wVar.f4134u;
                 if (i13 != -1) {
                     z11 = true;
@@ -133,17 +133,17 @@ public final class s implements i {
                 this.e = true;
             }
         }
-        n0 n0Var4 = this.f14172j;
+        n0 n0Var4 = this.f14170j;
         boolean e = n0Var4.e(i11);
-        e2.x xVar = this.f14176n;
+        e2.x xVar = this.f14174n;
         if (e) {
-            xVar.L(f2.q.p(n0Var4.e, (byte[]) n0Var4.f12494f), (byte[]) n0Var4.f12494f);
+            xVar.L(f2.q.p(n0Var4.e, (byte[]) n0Var4.f12492f), (byte[]) n0Var4.f12492f);
             xVar.O(5);
             cVar.a(j11, xVar);
         }
-        n0 n0Var5 = this.f14173k;
+        n0 n0Var5 = this.f14171k;
         if (n0Var5.e(i11)) {
-            xVar.L(f2.q.p(n0Var5.e, (byte[]) n0Var5.f12494f), (byte[]) n0Var5.f12494f);
+            xVar.L(f2.q.p(n0Var5.e, (byte[]) n0Var5.f12492f), (byte[]) n0Var5.f12492f);
             xVar.O(5);
             cVar.a(j11, xVar);
         }
@@ -151,22 +151,22 @@ public final class s implements i {
 
     @Override
     public final void c() {
-        this.f14174l = 0L;
-        this.f14175m = -9223372036854775807L;
-        f2.q.b(this.f14169f);
-        this.f14170g.g();
+        this.f14172l = 0L;
+        this.f14173m = -9223372036854775807L;
+        f2.q.b(this.f14167f);
+        this.f14168g.g();
         this.h.g();
-        this.f14171i.g();
-        this.f14172j.g();
-        this.f14173k.g();
-        this.f14166a.d.c(0);
+        this.f14169i.g();
+        this.f14170j.g();
+        this.f14171k.g();
+        this.f14164a.d.c(0);
         r rVar = this.d;
         if (rVar != null) {
-            rVar.f14159f = false;
-            rVar.f14160g = false;
+            rVar.f14157f = false;
+            rVar.f14158g = false;
             rVar.h = false;
-            rVar.f14161i = false;
-            rVar.f14162j = false;
+            rVar.f14159i = false;
+            rVar.f14160j = false;
         }
     }
 
@@ -174,34 +174,34 @@ public final class s implements i {
     public final void d(c3.q qVar, f0 f0Var) {
         f0Var.b();
         f0Var.c();
-        this.f14167b = (String) f0Var.e;
+        this.f14165b = (String) f0Var.e;
         f0Var.c();
-        j0 j02 = qVar.j0(f0Var.f14059c, 2);
-        this.f14168c = j02;
+        j0 j02 = qVar.j0(f0Var.f14057c, 2);
+        this.f14166c = j02;
         this.d = new r(j02);
-        this.f14166a.b(qVar, f0Var);
+        this.f14164a.b(qVar, f0Var);
     }
 
     @Override
     public final void e(boolean z10) {
-        this.f14168c.getClass();
-        String str = m0.f8255a;
+        this.f14166c.getClass();
+        String str = m0.f8253a;
         if (z10) {
-            this.f14166a.d.c(0);
-            b(this.f14174l, 0, 0, this.f14175m);
-            h(this.f14174l, 0, 48, this.f14175m);
+            this.f14164a.d.c(0);
+            b(this.f14172l, 0, 0, this.f14173m);
+            h(this.f14172l, 0, 48, this.f14173m);
         }
     }
 
     @Override
     public final void f(int i10, long j10) {
-        this.f14175m = j10;
+        this.f14173m = j10;
     }
 
     public final void g(int i10, int i11, byte[] bArr) {
         boolean z10;
         r rVar = this.d;
-        if (rVar.f14159f) {
+        if (rVar.f14157f) {
             int i12 = rVar.d;
             int i13 = (i10 + 2) - i12;
             if (i13 < i11) {
@@ -210,19 +210,19 @@ public final class s implements i {
                 } else {
                     z10 = false;
                 }
-                rVar.f14160g = z10;
-                rVar.f14159f = false;
+                rVar.f14158g = z10;
+                rVar.f14157f = false;
             } else {
                 rVar.d = (i11 - i10) + i12;
             }
         }
         if (!this.e) {
-            this.f14170g.a(i10, i11, bArr);
+            this.f14168g.a(i10, i11, bArr);
             this.h.a(i10, i11, bArr);
-            this.f14171i.a(i10, i11, bArr);
+            this.f14169i.a(i10, i11, bArr);
         }
-        this.f14172j.a(i10, i11, bArr);
-        this.f14173k.a(i10, i11, bArr);
+        this.f14170j.a(i10, i11, bArr);
+        this.f14171k.a(i10, i11, bArr);
     }
 
     public final void h(long j10, int i10, int i11, long j11) {
@@ -230,21 +230,21 @@ public final class s implements i {
         r rVar = this.d;
         boolean z11 = this.e;
         boolean z12 = false;
-        rVar.f14160g = false;
+        rVar.f14158g = false;
         rVar.h = false;
         rVar.e = j11;
         rVar.d = 0;
-        rVar.f14157b = j10;
+        rVar.f14155b = j10;
         if (i11 >= 32 && i11 != 40) {
-            if (rVar.f14161i && !rVar.f14162j) {
+            if (rVar.f14159i && !rVar.f14160j) {
                 if (z11) {
                     rVar.a(i10);
                 }
-                rVar.f14161i = false;
+                rVar.f14159i = false;
             }
             if ((32 <= i11 && i11 <= 35) || i11 == 39) {
-                rVar.h = !rVar.f14162j;
-                rVar.f14162j = true;
+                rVar.h = !rVar.f14160j;
+                rVar.f14160j = true;
             }
         }
         if (i11 >= 16 && i11 <= 21) {
@@ -252,17 +252,17 @@ public final class s implements i {
         } else {
             z10 = false;
         }
-        rVar.f14158c = z10;
+        rVar.f14156c = z10;
         if (z10 || i11 <= 9) {
             z12 = true;
         }
-        rVar.f14159f = z12;
+        rVar.f14157f = z12;
         if (!this.e) {
-            this.f14170g.h(i11);
+            this.f14168g.h(i11);
             this.h.h(i11);
-            this.f14171i.h(i11);
+            this.f14169i.h(i11);
         }
-        this.f14172j.h(i11);
-        this.f14173k.h(i11);
+        this.f14170j.h(i11);
+        this.f14171k.h(i11);
     }
 }

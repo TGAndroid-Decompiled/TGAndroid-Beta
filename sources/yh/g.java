@@ -1,43 +1,28 @@
 package yh;
 
-import org.telegram.messenger.GenericProvider;
-import org.telegram.tgnet.InputSerializedData;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.Vector;
-public final class g implements org.telegram.ui.ActionBar.a2, GenericProvider, d9.k, Vector.TLDeserializer {
-    public final int f50288a;
+import android.view.View;
+public final class g implements View.OnClickListener {
+    public final int f50244a;
+    public final m f50245b;
 
-    public g(int i10) {
-        this.f50288a = i10;
+    public g(m mVar, int i10) {
+        this.f50244a = i10;
+        this.f50245b = mVar;
     }
 
     @Override
-    public java.lang.Object apply(java.lang.Object r26) {
-        throw new UnsupportedOperationException("Method not decompiled: yh.g.apply(java.lang.Object):java.lang.Object");
-    }
-
-    @Override
-    public TLObject deserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
-        return TLRPC.MessageReplyHeader.TLdeserialize(inputSerializedData, i10, z10);
-    }
-
-    @Override
-    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f50288a) {
+    public final void onClick(View view) {
+        switch (this.f50244a) {
             case 0:
-                b2Var.dismiss();
+                this.f50245b.dismiss();
+                return;
+            case 1:
+                m.R(this.f50245b);
                 return;
             default:
-                b2Var.dismiss();
+                m mVar = this.f50245b;
+                mVar.f50373c0.setValueAnimated((int) mVar.f50382l0.getMinimumBid());
                 return;
         }
-    }
-
-    @Override
-    public Object provide(Object obj) {
-        Integer num = (Integer) obj;
-        int i10 = g4.f50293k0;
-        return 0;
     }
 }

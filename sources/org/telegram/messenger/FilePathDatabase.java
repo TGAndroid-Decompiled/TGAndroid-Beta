@@ -36,13 +36,13 @@ public class FilePathDatabase {
     }
 
     public static class PathData {
-        public final int f17792dc;
-        public final long f17793id;
+        public final int f17788dc;
+        public final long f17789id;
         public final int type;
 
         public PathData(long j10, int i10, int i11) {
-            this.f17793id = j10;
-            this.f17792dc = i10;
+            this.f17789id = j10;
+            this.f17788dc = i10;
             this.type = i11;
         }
     }
@@ -297,7 +297,7 @@ public class FilePathDatabase {
             CountDownLatch countDownLatch = new CountDownLatch(1);
             long currentTimeMillis = System.currentTimeMillis();
             long[] jArr = new long[1];
-            postToFrontRunnable(new lk(this, arrayList2, jArr, countDownLatch, 6));
+            postToFrontRunnable(new mk(this, arrayList2, jArr, countDownLatch, 6));
             try {
                 countDownLatch.await();
             } catch (InterruptedException e) {
@@ -478,7 +478,7 @@ public class FilePathDatabase {
     public LongSparseArray<ArrayList<CacheByChatsController.KeepMediaFile>> lookupFiles(ArrayList<? extends CacheByChatsController.KeepMediaFile> arrayList) {
         CountDownLatch countDownLatch = new CountDownLatch(1);
         LongSparseArray<ArrayList<CacheByChatsController.KeepMediaFile>> longSparseArray = new LongSparseArray<>();
-        postRunnable(new lk(this, arrayList, longSparseArray, countDownLatch, 5));
+        postRunnable(new mk(this, arrayList, longSparseArray, countDownLatch, 5));
         try {
             countDownLatch.await();
             return longSparseArray;

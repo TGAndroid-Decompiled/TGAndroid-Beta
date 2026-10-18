@@ -7,9 +7,9 @@ import java.util.HashSet;
 import java.util.Iterator;
 import org.telegram.messenger.SharedConfig;
 public abstract class w extends FrameLayout {
-    public static final HashSet f6097b = new HashSet();
-    public static boolean f6098c = false;
-    public final boolean f6099a;
+    public static final HashSet f6027b = new HashSet();
+    public static boolean f6028c = false;
+    public final boolean f6029a;
 
     public w(Context context) {
         super(context);
@@ -19,15 +19,15 @@ public abstract class w extends FrameLayout {
         } else {
             z10 = false;
         }
-        this.f6099a = z10;
+        this.f6029a = z10;
     }
 
     public final void a(boolean z10) {
-        f6098c = false;
+        f6028c = false;
         if (z10) {
             setLayerType(0, null);
         }
-        HashSet hashSet = f6097b;
+        HashSet hashSet = f6027b;
         Iterator it = hashSet.iterator();
         while (it.hasNext()) {
             ((View) it.next()).invalidate();
@@ -37,8 +37,8 @@ public abstract class w extends FrameLayout {
 
     @Override
     public final void invalidate() {
-        if (f6098c) {
-            f6097b.add(this);
+        if (f6028c) {
+            f6027b.add(this);
         } else {
             super.invalidate();
         }
@@ -46,8 +46,8 @@ public abstract class w extends FrameLayout {
 
     @Override
     public final void invalidate(int i10, int i11, int i12, int i13) {
-        if (f6098c) {
-            f6097b.add(this);
+        if (f6028c) {
+            f6027b.add(this);
         } else {
             super.invalidate(i10, i11, i12, i13);
         }

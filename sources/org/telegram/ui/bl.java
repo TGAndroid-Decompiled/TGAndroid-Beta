@@ -1,18 +1,18 @@
 package org.telegram.ui;
 public final class bl implements Runnable {
-    public final int f35727a;
-    public final cl f35728b;
+    public final int f35681a;
+    public final cl f35682b;
 
     public bl(cl clVar, int i10) {
-        this.f35727a = i10;
-        this.f35728b = clVar;
+        this.f35681a = i10;
+        this.f35682b = clVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f35727a) {
+        switch (this.f35681a) {
             case 0:
-                hk hkVar = this.f35728b.H.Y;
+                hk hkVar = this.f35682b.H.Y;
                 if (hkVar != null) {
                     hkVar.T0 = false;
                     org.telegram.ui.Components.dg dgVar = hkVar.U0;
@@ -24,7 +24,7 @@ public final class bl implements Runnable {
                 }
                 return;
             default:
-                hk hkVar2 = this.f35728b.H.Y;
+                hk hkVar2 = this.f35682b.H.Y;
                 if (hkVar2 != null) {
                     hkVar2.F0();
                     return;

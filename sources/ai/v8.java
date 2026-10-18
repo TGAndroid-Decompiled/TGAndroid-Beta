@@ -40,7 +40,7 @@ public final class v8 implements Utilities.Callback {
     public final void run(Object obj) {
         Utilities.Callback callback = (Utilities.Callback) obj;
         ga gaVar = this.f2319a;
-        long j10 = gaVar.f1357f.amount;
+        long j10 = gaVar.f1355f.amount;
         long j11 = this.f2320b;
         int i10 = (j10 > j11 ? 1 : (j10 == j11 ? 0 : -1));
         boolean[] zArr = this.f2321c;
@@ -50,7 +50,7 @@ public final class v8 implements Utilities.Callback {
         TLRPC.TL_payments_paymentFormStars tL_payments_paymentFormStars = this.f2326k;
         int i11 = this.f2327l;
         if (i10 < 0) {
-            boolean starsPurchaseAvailable = MessagesController.getInstance(gaVar.f1354a).starsPurchaseAvailable();
+            boolean starsPurchaseAvailable = MessagesController.getInstance(gaVar.f1352a).starsPurchaseAvailable();
             Context context = this.e;
             org.telegram.ui.ActionBar.d6 d6Var = this.f2322f;
             int i12 = 0;

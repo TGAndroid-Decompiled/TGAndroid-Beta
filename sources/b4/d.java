@@ -107,7 +107,7 @@ public final class d implements w3.b {
         }
         Context context = (Context) this.f4171c;
         PackageManager packageManager = context.getPackageManager();
-        if (w6.b.a(context).f44388a.getPackageManager().checkPermission("com.google.android.c2dm.permission.SEND", "com.google.android.gms") == -1) {
+        if (w6.b.a(context).f44345a.getPackageManager().checkPermission("com.google.android.c2dm.permission.SEND", "com.google.android.gms") == -1) {
             Log.e("Metadata", "Google Play services missing or without correct permission.");
             return 0;
         }
@@ -148,7 +148,7 @@ public final class d implements w3.b {
     }
 
     public d(f2.e eVar, w wVar) {
-        x xVar = eVar.f10288c;
+        x xVar = eVar.f10286c;
         this.f4171c = xVar;
         xVar.N(12);
         int E = xVar.E();

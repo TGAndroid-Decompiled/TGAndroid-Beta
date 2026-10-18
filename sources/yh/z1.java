@@ -1,43 +1,36 @@
 package yh;
 
-import android.view.KeyEvent;
-import android.view.View;
-import android.widget.TextView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-public final class z1 implements TextView.OnEditorActionListener {
-    public final y1 f50660a;
-    public final Utilities.Callback f50661b;
-    public final org.telegram.ui.ActionBar.b2[] f50662c;
-    public final View d;
+public final class z1 implements TextWatcher {
+    public boolean f50616a;
+    public final x1 f50617b;
 
-    public z1(y1 y1Var, Utilities.Callback callback, org.telegram.ui.ActionBar.b2[] b2VarArr, View view) {
-        this.f50660a = y1Var;
-        this.f50661b = callback;
-        this.f50662c = b2VarArr;
-        this.d = view;
+    public z1(x1 x1Var) {
+        this.f50617b = x1Var;
     }
 
     @Override
-    public final boolean onEditorAction(TextView textView, int i10, KeyEvent keyEvent) {
-        if (i10 != 6) {
-            return false;
-        }
-        y1 y1Var = this.f50660a;
-        String obj = y1Var.getText().toString();
-        if (obj.length() > 0 && obj.length() <= 12) {
-            this.f50661b.run(obj);
-            org.telegram.ui.ActionBar.b2 b2Var = this.f50662c[0];
-            if (b2Var != null) {
-                b2Var.dismiss();
+    public final void afterTextChanged(Editable editable) {
+        if (!this.f50616a && editable.length() > 12) {
+            this.f50616a = true;
+            editable.delete(12, editable.length());
+            x1 x1Var = this.f50617b;
+            AndroidUtilities.shakeView(x1Var);
+            try {
+                x1Var.performHapticFeedback(3, 2);
+            } catch (Exception unused) {
             }
-            View view = this.d;
-            if (view != null) {
-                view.requestFocus();
-            }
-            return true;
+            this.f50616a = false;
         }
-        AndroidUtilities.shakeView(y1Var);
-        return true;
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

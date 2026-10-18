@@ -2,22 +2,22 @@ package ei;
 
 import android.animation.ValueAnimator;
 public final class wa implements ValueAnimator.AnimatorUpdateListener {
-    public final int f10057a;
-    public final vb f10058b;
+    public final int f10055a;
+    public final vb f10056b;
 
     public wa(vb vbVar, int i10) {
-        this.f10057a = i10;
-        this.f10058b = vbVar;
+        this.f10055a = i10;
+        this.f10056b = vbVar;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f10057a) {
+        switch (this.f10055a) {
             case 0:
-                this.f10058b.f9959c1.m();
+                this.f10056b.f9957c1.m();
                 return;
             default:
-                this.f10058b.m0();
+                this.f10056b.m0();
                 return;
         }
     }

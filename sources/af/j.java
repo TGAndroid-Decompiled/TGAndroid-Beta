@@ -64,7 +64,7 @@ public final class j extends ff.a {
                     sb2.append((CharSequence) arrayList.get(i10));
                     sb2.append('\n');
                 }
-                ((df.l) this.f587b).f7983g = sb2.toString();
+                ((df.l) this.f587b).f7981g = sb2.toString();
                 return;
             default:
                 return;
@@ -112,7 +112,7 @@ public final class j extends ff.a {
         this.f586a = 0;
         ?? pVar = new df.p();
         this.f587b = pVar;
-        pVar.f7979g = i10;
+        pVar.f7977g = i10;
         this.f588c = str;
     }
 }

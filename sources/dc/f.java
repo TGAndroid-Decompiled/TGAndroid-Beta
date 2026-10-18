@@ -1,17 +1,17 @@
 package dc;
 public final class f extends d {
-    public final int f7933c;
+    public final int f7931c;
     public final int d;
     public final int e;
-    public final int f7934f;
+    public final int f7932f;
 
     public f(int i10, int i11, int i12, int i13, int i14, int i15) {
         super(i14, i15);
         if (i14 + i12 <= i10 && i15 + i13 <= i11) {
-            this.f7933c = i10;
+            this.f7931c = i10;
             this.d = i11;
             this.e = i12;
-            this.f7934f = i13;
+            this.f7932f = i13;
             return;
         }
         throw new IllegalArgumentException("Crop rectangle does not fit within image data.");
@@ -19,15 +19,15 @@ public final class f extends d {
 
     @Override
     public final byte[] a() {
-        int i10 = this.f7930a;
-        int i11 = this.f7931b;
-        int i12 = this.f7933c;
+        int i10 = this.f7928a;
+        int i11 = this.f7929b;
+        int i12 = this.f7931c;
         if (i10 == i12 && i11 == this.d) {
             return null;
         }
         int i13 = i10 * i11;
         byte[] bArr = new byte[i13];
-        int i14 = (this.f7934f * i12) + this.e;
+        int i14 = (this.f7932f * i12) + this.e;
         if (i10 == i12) {
             System.arraycopy(null, i14, bArr, 0, i13);
             return bArr;
@@ -41,12 +41,12 @@ public final class f extends d {
 
     @Override
     public final byte[] b(int i10, byte[] bArr) {
-        if (i10 >= 0 && i10 < this.f7931b) {
-            int i11 = this.f7930a;
+        if (i10 >= 0 && i10 < this.f7929b) {
+            int i11 = this.f7928a;
             if (bArr == null || bArr.length < i11) {
                 bArr = new byte[i11];
             }
-            System.arraycopy(null, ((i10 + this.f7934f) * this.f7933c) + this.e, bArr, 0, i11);
+            System.arraycopy(null, ((i10 + this.f7932f) * this.f7931c) + this.e, bArr, 0, i11);
             return bArr;
         }
         throw new IllegalArgumentException(i2.d.j(i10, "Requested row is outside the image: "));

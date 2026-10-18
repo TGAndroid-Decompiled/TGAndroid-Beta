@@ -11,16 +11,16 @@ import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
 import w7.z5;
 public final class d extends FrameLayout {
-    public final d6 f50184a;
-    public final TextView f50185b;
+    public final d6 f50138a;
+    public final TextView f50139b;
 
     public d(Context context, d6 d6Var) {
         super(context);
         int i10;
-        this.f50184a = d6Var;
+        this.f50138a = d6Var;
         setBackgroundColor(h6.w0(h6.e7, d6Var));
         TextView textView = new TextView(getContext());
-        this.f50185b = textView;
+        this.f50139b = textView;
         k3.m(14.0f, 1, textView);
         textView.setTextColor(h6.w0(h6.f7, d6Var));
         if (LocaleController.isRTL) {
@@ -29,7 +29,7 @@ public final class d extends FrameLayout {
             i10 = 3;
         }
         textView.setGravity(i10 | 16);
-        addView(textView, z5.a(-1.0f, 16.0f, 0.0f, 16.0f, 0.0f, -1, (LocaleController.isRTL ? 5 : 3) | 48));
+        addView(textView, z5.d(-1, -1.0f, (LocaleController.isRTL ? 5 : 3) | 48, 16.0f, 0.0f, 16.0f, 0.0f));
     }
 
     @Override
@@ -38,10 +38,10 @@ public final class d extends FrameLayout {
     }
 
     public void setLetter(CharSequence charSequence) {
-        this.f50185b.setText(charSequence);
+        this.f50139b.setText(charSequence);
     }
 
     public void setTextColor(int i10) {
-        this.f50185b.setTextColor(h6.w0(i10, this.f50184a));
+        this.f50139b.setTextColor(h6.w0(i10, this.f50138a));
     }
 }

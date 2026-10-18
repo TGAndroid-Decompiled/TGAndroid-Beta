@@ -79,13 +79,13 @@ public final class i extends l {
         g3 g3Var = new g3(getClass().getSimpleName());
         n7.l0 l0Var = n7.n0.d;
         byte[] t11 = this.f4963a.t();
-        g3Var.T(l0Var.c(t11.length, t11), "keyHandle");
+        g3Var.Y(l0Var.c(t11.length, t11), "keyHandle");
         byte[] t12 = this.f4964b.t();
-        g3Var.T(l0Var.c(t12.length, t12), "clientDataJSON");
+        g3Var.Y(l0Var.c(t12.length, t12), "clientDataJSON");
         byte[] t13 = this.f4965c.t();
-        g3Var.T(l0Var.c(t13.length, t13), "authenticatorData");
+        g3Var.Y(l0Var.c(t13.length, t13), "authenticatorData");
         byte[] t14 = this.d.t();
-        g3Var.T(l0Var.c(t14.length, t14), "signature");
+        g3Var.Y(l0Var.c(t14.length, t14), "signature");
         n7.t0 t0Var = this.e;
         if (t0Var == null) {
             t10 = null;
@@ -93,7 +93,7 @@ public final class i extends l {
             t10 = t0Var.t();
         }
         if (t10 != null) {
-            g3Var.T(l0Var.c(t10.length, t10), "userHandle");
+            g3Var.Y(l0Var.c(t10.length, t10), "userHandle");
         }
         return g3Var.toString();
     }

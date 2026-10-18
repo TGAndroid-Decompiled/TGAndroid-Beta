@@ -15,7 +15,7 @@ import i2.b0;
 import i2.d;
 import i2.h0;
 import java.util.ArrayList;
-import u2.f0;
+import u2.g0;
 import v7.u6;
 import w7.m;
 public final class b extends i2.b implements Handler.Callback {
@@ -37,11 +37,11 @@ public final class b extends i2.b implements Handler.Callback {
         if (looper == null) {
             handler = null;
         } else {
-            String str = m0.f8255a;
+            String str = m0.f8253a;
             handler = new Handler(looper, this);
         }
         this.K = handler;
-        this.I = a.f45919a;
+        this.I = a.f45871a;
         this.L = new l3.a();
         this.R = -9223372036854775807L;
     }
@@ -75,7 +75,7 @@ public final class b extends i2.b implements Handler.Callback {
                         l3.a aVar2 = this.L;
                         aVar2.clear();
                         aVar2.b(c10.length);
-                        aVar2.f11637c.put(c10);
+                        aVar2.f11635c.put(c10);
                         aVar2.f();
                         t0 a11 = a10.a(aVar2);
                         if (a11 != null) {
@@ -110,9 +110,9 @@ public final class b extends i2.b implements Handler.Callback {
 
     public final void H(t0 t0Var) {
         b0 b0Var = this.J;
-        h0 h0Var = b0Var.f12324a;
-        r0 r0Var = h0Var.f12405o0;
-        r rVar = h0Var.f12401m;
+        h0 h0Var = b0Var.f12322a;
+        r0 r0Var = h0Var.f12403o0;
+        r rVar = h0Var.f12399m;
         q0 a2 = r0Var.a();
         int i10 = 0;
         while (true) {
@@ -123,7 +123,7 @@ public final class b extends i2.b implements Handler.Callback {
             s0VarArr[i10].b(a2);
             i10++;
         }
-        h0Var.f12405o0 = new r0(a2);
+        h0Var.f12403o0 = new r0(a2);
         r0 f12 = h0Var.f1();
         if (!f12.equals(h0Var.Q)) {
             h0Var.Q = f12;
@@ -172,7 +172,7 @@ public final class b extends i2.b implements Handler.Callback {
     }
 
     @Override
-    public final void u(w[] wVarArr, long j10, long j11, f0 f0Var) {
+    public final void u(w[] wVarArr, long j10, long j11, g0 g0Var) {
         this.M = this.I.a(wVarArr[0]);
         t0 t0Var = this.Q;
         if (t0Var != null) {
@@ -193,17 +193,17 @@ public final class b extends i2.b implements Handler.Callback {
             if (!this.N && this.Q == null) {
                 l3.a aVar = this.L;
                 aVar.clear();
-                qf.b bVar = this.f12316c;
+                qf.b bVar = this.f12314c;
                 bVar.z();
                 int w9 = w(bVar, aVar, 0);
                 if (w9 == -4) {
                     if (aVar.isEndOfStream()) {
                         this.N = true;
-                    } else if (aVar.e >= this.f12321w) {
-                        aVar.f15894r = this.P;
+                    } else if (aVar.e >= this.f12319w) {
+                        aVar.f15892r = this.P;
                         aVar.f();
                         m mVar = this.M;
-                        String str = m0.f8255a;
+                        String str = m0.f8253a;
                         t0 a2 = mVar.a(aVar);
                         if (a2 != null) {
                             ArrayList arrayList = new ArrayList(a2.f4011a.length);
@@ -214,7 +214,7 @@ public final class b extends i2.b implements Handler.Callback {
                         }
                     }
                 } else if (w9 == -5) {
-                    w wVar = (w) bVar.f44486c;
+                    w wVar = (w) bVar.f44443c;
                     wVar.getClass();
                     this.P = wVar.f4136x;
                 }

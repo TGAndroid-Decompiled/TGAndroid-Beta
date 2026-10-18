@@ -10,19 +10,19 @@ import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
 import org.telegram.ui.LaunchActivity;
 public final class j0 implements org.telegram.ui.ActionBar.a2 {
-    public final int f27390a;
-    public final Context f27391b;
+    public final int f27383a;
+    public final Context f27384b;
 
     public j0(Context context, int i10) {
-        this.f27390a = i10;
-        this.f27391b = context;
+        this.f27383a = i10;
+        this.f27384b = context;
     }
 
     @Override
     public final void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f27390a) {
+        switch (this.f27383a) {
             case 0:
-                Context context = this.f27391b;
+                Context context = this.f27384b;
                 try {
                     context.startActivity(new Intent("android.settings.MANAGE_UNKNOWN_APP_SOURCES", Uri.parse("package:" + context.getPackageName())));
                     return;
@@ -31,7 +31,7 @@ public final class j0 implements org.telegram.ui.ActionBar.a2 {
                     return;
                 }
             case 1:
-                Context context2 = this.f27391b;
+                Context context2 = this.f27384b;
                 try {
                     Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
                     intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
@@ -42,10 +42,10 @@ public final class j0 implements org.telegram.ui.ActionBar.a2 {
                     return;
                 }
             case 2:
-                pf.d.r(this.f27391b, BuildVars.PLAYSTORE_APP_URL);
+                pf.d.r(this.f27384b, BuildVars.PLAYSTORE_APP_URL);
                 return;
             default:
-                Context context3 = this.f27391b;
+                Context context3 = this.f27384b;
                 if (context3 != null) {
                     try {
                         Intent intent2 = new Intent("android.settings.action.MANAGE_OVERLAY_PERMISSION", Uri.parse("package:" + context3.getPackageName()));

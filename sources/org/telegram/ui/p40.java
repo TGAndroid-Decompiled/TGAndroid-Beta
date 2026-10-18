@@ -10,17 +10,17 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
 public final class p40 implements org.telegram.ui.ActionBar.a2, org.telegram.ui.Components.p80 {
-    public final v40 f39974a;
+    public final v40 f39935a;
 
     public p40(v40 v40Var) {
-        this.f39974a = v40Var;
+        this.f39935a = v40Var;
     }
 
     @Override
     public void a(TLRPC.InputPeer inputPeer, boolean z10, boolean z11, boolean z12) {
         TLObject chat;
-        s50 s50Var = this.f39974a.f42135b;
-        ChatObject.Call call = s50Var.f40934a1;
+        s50 s50Var = this.f39935a.f42093b;
+        ChatObject.Call call = s50Var.f40896a1;
         AccountInstance accountInstance = s50Var.d;
         if (call != null) {
             boolean z13 = inputPeer instanceof TLRPC.TL_inputPeerUser;
@@ -32,7 +32,7 @@ public final class p40 implements org.telegram.ui.ActionBar.a2, org.telegram.ui.
                 chat = accountInstance.getMessagesController().getChat(Long.valueOf(inputPeer.channel_id));
             }
             TLObject tLObject = chat;
-            if (s50Var.f40934a1.isScheduled()) {
+            if (s50Var.f40896a1.isScheduled()) {
                 s50Var.l1().k(0L, 37, tLObject, s50Var.Z0, null, null);
                 if (inputPeer instanceof TLRPC.TL_inputPeerChannel) {
                     TLRPC.TL_peerChannel tL_peerChannel = new TLRPC.TL_peerChannel();
@@ -60,10 +60,10 @@ public final class p40 implements org.telegram.ui.ActionBar.a2, org.telegram.ui.
                 TL_phone.saveDefaultGroupCallJoinAs savedefaultgroupcalljoinas = new TL_phone.saveDefaultGroupCallJoinAs();
                 savedefaultgroupcalljoinas.peer = MessagesController.getInputPeer(s50Var.Z0);
                 savedefaultgroupcalljoinas.join_as = inputPeer;
-                accountInstance.getConnectionsManager().sendRequest(savedefaultgroupcalljoinas, new ci.e6(8));
+                accountInstance.getConnectionsManager().sendRequest(savedefaultgroupcalljoinas, new ci.d6(8));
                 s50Var.J1();
             } else if (VoIPService.getSharedInstance() != null && z10) {
-                TLRPC.GroupCallParticipant groupCallParticipant = (TLRPC.GroupCallParticipant) s50Var.f40934a1.participants.f(MessageObject.getPeerId(s50Var.A0));
+                TLRPC.GroupCallParticipant groupCallParticipant = (TLRPC.GroupCallParticipant) s50Var.f40896a1.participants.f(MessageObject.getPeerId(s50Var.A0));
                 VoIPService.getSharedInstance().setGroupCallPeer(inputPeer);
                 s50Var.B0 = tLObject;
             }
@@ -72,19 +72,19 @@ public final class p40 implements org.telegram.ui.ActionBar.a2, org.telegram.ui.
 
     @Override
     public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        v40 v40Var = this.f39974a;
-        s50 s50Var = v40Var.f42135b;
-        ChatObject.Call call = s50Var.f40934a1;
+        v40 v40Var = this.f39935a;
+        s50 s50Var = v40Var.f42093b;
+        ChatObject.Call call = s50Var.f40896a1;
         AccountInstance accountInstance = s50Var.d;
         if (call.isScheduled()) {
             TLRPC.ChatFull chatFull = accountInstance.getMessagesController().getChatFull(s50Var.j1());
             if (chatFull != null) {
                 chatFull.flags &= -2097153;
                 chatFull.call = null;
-                accountInstance.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.groupCallUpdated, Long.valueOf(s50Var.j1()), Long.valueOf(s50Var.f40934a1.call.f20289id), Boolean.FALSE);
+                accountInstance.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.groupCallUpdated, Long.valueOf(s50Var.j1()), Long.valueOf(s50Var.f40896a1.call.f20282id), Boolean.FALSE);
             }
             TL_phone.discardGroupCall discardgroupcall = new TL_phone.discardGroupCall();
-            discardgroupcall.call = s50Var.f40934a1.getInputGroupCall();
+            discardgroupcall.call = s50Var.f40896a1.getInputGroupCall();
             accountInstance.getConnectionsManager().sendRequest(discardgroupcall, new m(v40Var, 8));
         } else if (VoIPService.getSharedInstance() != null) {
             VoIPService.getSharedInstance().hangUp(1);

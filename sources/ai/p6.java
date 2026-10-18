@@ -15,8 +15,8 @@ public final class p6 extends n6 {
     public final int h;
 
     public p6(TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop) {
-        this.f1896a = stargiftattributebackdrop.name;
-        this.f1897b = stargiftattributebackdrop.getRarityPermille();
+        this.f1894a = stargiftattributebackdrop.name;
+        this.f1895b = stargiftattributebackdrop.getRarityPermille();
         Paint paint = new Paint(1);
         this.f2011c = paint;
         this.d = new Matrix();

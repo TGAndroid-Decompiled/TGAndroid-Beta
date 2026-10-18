@@ -19,7 +19,7 @@ public final class ev0 extends org.telegram.ui.Cells.c6 {
     public final boolean e() {
         s4.b1 T;
         hv0 hv0Var = this.F.d;
-        ua1 ua1Var = hv0Var.f37666c;
+        ua1 ua1Var = hv0Var.f37628c;
         View F = ua1Var.F(this);
         if (F == null) {
             T = null;
@@ -28,8 +28,8 @@ public final class ev0 extends org.telegram.ui.Cells.c6 {
         }
         if (T != null) {
             int b10 = T.b();
-            int i10 = hv0Var.f37694y;
-            if (i10 == hv0Var.f37678n && b10 == (hv0Var.f37679n0 + i10) - 1) {
+            int i10 = hv0Var.f37656y;
+            if (i10 == hv0Var.f37640n && b10 == (hv0Var.f37641n0 + i10) - 1) {
                 return false;
             }
         }
@@ -41,7 +41,7 @@ public final class ev0 extends org.telegram.ui.Cells.c6 {
         s4.b1 T;
         int b10;
         hv0 hv0Var = this.F.d;
-        ua1 ua1Var = hv0Var.f37666c;
+        ua1 ua1Var = hv0Var.f37628c;
         View F = ua1Var.F(c6Var);
         if (F == null) {
             T = null;
@@ -49,7 +49,7 @@ public final class ev0 extends org.telegram.ui.Cells.c6 {
             T = ua1Var.T(F);
         }
         if (T != null && (b10 = T.b()) != -1) {
-            return hv0Var.f37690w[b10 - hv0Var.f37679n0];
+            return hv0Var.f37652w[b10 - hv0Var.f37641n0];
         }
         return false;
     }
@@ -59,7 +59,7 @@ public final class ev0 extends org.telegram.ui.Cells.c6 {
         if (b6Var.isFocused() && b6Var.hasSelection()) {
             Menu menu = actionMode.getMenu();
             if (menu.findItem(16908321) != null) {
-                sn.n8(menu, this.F.d.f37670f.h, false, true, true, true);
+                sn.n8(menu, this.F.d.f37632f.h, false, true, true, true);
             }
         }
     }
@@ -70,20 +70,20 @@ public final class ev0 extends org.telegram.ui.Cells.c6 {
         int b10;
         hv0 hv0Var = this.F.d;
         if (z10 && hv0Var.L) {
-            Arrays.fill(hv0Var.f37690w, false);
-            hv0Var.f37666c.getChildCount();
-            for (int i10 = hv0Var.f37679n0; i10 < hv0Var.f37679n0 + hv0Var.f37694y; i10++) {
-                s4.b1 K = hv0Var.f37666c.K(i10);
+            Arrays.fill(hv0Var.f37652w, false);
+            hv0Var.f37628c.getChildCount();
+            for (int i10 = hv0Var.f37641n0; i10 < hv0Var.f37641n0 + hv0Var.f37656y; i10++) {
+                s4.b1 K = hv0Var.f37628c.K(i10);
                 if (K != null) {
-                    View view = K.f45958a;
+                    View view = K.f45910a;
                     if (view instanceof org.telegram.ui.Cells.c6) {
-                        ((org.telegram.ui.Cells.c6) view).f22099r.a(false, true);
+                        ((org.telegram.ui.Cells.c6) view).f22092r.a(false, true);
                     }
                 }
             }
         }
         super.h(c6Var, z10);
-        ua1 ua1Var = hv0Var.f37666c;
+        ua1 ua1Var = hv0Var.f37628c;
         View F = ua1Var.F(c6Var);
         if (F == null) {
             T = null;
@@ -91,7 +91,7 @@ public final class ev0 extends org.telegram.ui.Cells.c6 {
             T = ua1Var.T(F);
         }
         if (T != null && (b10 = T.b()) != -1) {
-            hv0Var.f37690w[b10 - hv0Var.f37679n0] = z10;
+            hv0Var.f37652w[b10 - hv0Var.f37641n0] = z10;
         }
         hv0Var.i0();
     }
@@ -110,24 +110,24 @@ public final class ev0 extends org.telegram.ui.Cells.c6 {
     public final boolean l(ArrayList arrayList) {
         hv0 hv0Var = this.F.d;
         if (!arrayList.isEmpty()) {
-            hv0Var.f37666c.getClass();
-            int R = RecyclerView.R(this) - hv0Var.f37679n0;
+            hv0Var.f37628c.getClass();
+            int R = RecyclerView.R(this) - hv0Var.f37641n0;
             if (R >= 0) {
                 org.telegram.ui.Cells.b6 b6Var = this.d;
                 b6Var.getText().replace(b6Var.getSelectionStart(), b6Var.getSelectionEnd(), (CharSequence) arrayList.remove(0));
                 int i10 = R + 1;
-                while (!arrayList.isEmpty() && i10 < hv0Var.f37678n) {
+                while (!arrayList.isEmpty() && i10 < hv0Var.f37640n) {
                     for (int length = hv0Var.v.length - 1; length > i10; length--) {
                         CharSequence[] charSequenceArr = hv0Var.v;
                         charSequenceArr[length] = charSequenceArr[length - 1];
                     }
                     hv0Var.v[i10] = (CharSequence) arrayList.remove(0);
-                    hv0Var.f37694y++;
+                    hv0Var.f37656y++;
                     i10++;
                 }
                 hv0Var.r0();
-                hv0Var.f37672g0 = (hv0Var.f37679n0 + i10) - 1;
-                hv0Var.f37664b.l();
+                hv0Var.f37634g0 = (hv0Var.f37641n0 + i10) - 1;
+                hv0Var.f37626b.l();
                 return true;
             }
         }

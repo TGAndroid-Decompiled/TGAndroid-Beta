@@ -6,15 +6,15 @@ import android.view.MotionEvent;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class pf0 extends View {
-    public Paint f29288a;
-    public Paint f29289b;
-    public int f29290c;
+    public Paint f29281a;
+    public Paint f29282b;
+    public int f29283c;
     public int d;
     public float e;
-    public boolean f29291f;
+    public boolean f29284f;
     public int h;
-    public int f29292n;
-    public of0 f29293r;
+    public int f29285n;
+    public of0 f29286r;
 
     public final void a(int i10, boolean z10) {
         of0 of0Var;
@@ -22,33 +22,33 @@ public final class pf0 extends View {
         if (i10 < i11) {
             i10 = i11;
         } else {
-            int i12 = this.f29292n;
+            int i12 = this.f29285n;
             if (i10 > i12) {
                 i10 = i12;
             }
         }
-        this.e = (i10 - i11) / (this.f29292n - i11);
+        this.e = (i10 - i11) / (this.f29285n - i11);
         invalidate();
-        if (z10 && (of0Var = this.f29293r) != null) {
+        if (z10 && (of0Var = this.f29286r) != null) {
             of0Var.l(((Integer) getTag()).intValue(), getProgress());
         }
     }
 
     public int getProgress() {
         int i10 = this.h;
-        return (int) ((this.e * (this.f29292n - i10)) + i10);
+        return (int) ((this.e * (this.f29285n - i10)) + i10);
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         int i10;
-        Paint paint = this.f29289b;
+        Paint paint = this.f29282b;
         int measuredHeight = getMeasuredHeight();
-        int i11 = this.f29290c;
+        int i11 = this.f29283c;
         int i12 = (measuredHeight - i11) / 2;
         int measuredWidth = (int) ((getMeasuredWidth() - i11) * this.e);
         float f7 = i11 / 2;
-        canvas.drawRect(f7, (getMeasuredHeight() / 2) - AndroidUtilities.dp(1.0f), getMeasuredWidth() - i10, AndroidUtilities.dp(1.0f) + (getMeasuredHeight() / 2), this.f29288a);
+        canvas.drawRect(f7, (getMeasuredHeight() / 2) - AndroidUtilities.dp(1.0f), getMeasuredWidth() - i10, AndroidUtilities.dp(1.0f) + (getMeasuredHeight() / 2), this.f29281a);
         if (this.h == 0) {
             canvas.drawRect(f7, (getMeasuredHeight() / 2) - AndroidUtilities.dp(1.0f), measuredWidth, AndroidUtilities.dp(1.0f) + (getMeasuredHeight() / 2), paint);
         } else if (this.e > 0.5f) {
@@ -63,7 +63,7 @@ public final class pf0 extends View {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        int i10 = this.f29290c;
+        int i10 = this.f29283c;
         if (motionEvent != null) {
             float x10 = motionEvent.getX();
             float y3 = motionEvent.getY();
@@ -72,14 +72,14 @@ public final class pf0 extends View {
             if (motionEvent.getAction() == 0) {
                 float measuredHeight = (getMeasuredHeight() - i10) / 2;
                 if (measuredWidth - measuredHeight <= x10 && x10 <= i10 + measuredWidth + measuredHeight && y3 >= 0.0f && y3 <= getMeasuredHeight()) {
-                    this.f29291f = true;
+                    this.f29284f = true;
                     this.d = (int) (x10 - measuredWidth);
                     getParent().requestDisallowInterceptTouchEvent(true);
                     invalidate();
                     return true;
                 }
             } else if (motionEvent.getAction() != 1 && motionEvent.getAction() != 3) {
-                if (motionEvent.getAction() == 2 && this.f29291f) {
+                if (motionEvent.getAction() == 2 && this.f29284f) {
                     float f10 = (int) (x10 - this.d);
                     if (f10 >= 0.0f) {
                         if (f10 > getMeasuredWidth() - i10) {
@@ -89,15 +89,15 @@ public final class pf0 extends View {
                         }
                     }
                     this.e = f7 / (getMeasuredWidth() - i10);
-                    of0 of0Var = this.f29293r;
+                    of0 of0Var = this.f29286r;
                     if (of0Var != null) {
                         of0Var.l(((Integer) getTag()).intValue(), getProgress());
                     }
                     invalidate();
                     return true;
                 }
-            } else if (this.f29291f) {
-                this.f29291f = false;
+            } else if (this.f29284f) {
+                this.f29284f = false;
                 invalidate();
                 return true;
             }
@@ -106,7 +106,7 @@ public final class pf0 extends View {
     }
 
     public void setDelegate(of0 of0Var) {
-        this.f29293r = of0Var;
+        this.f29286r = of0Var;
     }
 
     public void setProgress(int i10) {

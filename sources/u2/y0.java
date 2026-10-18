@@ -1,51 +1,42 @@
 package u2;
 
-import v7.u6;
-public final class y0 implements x3.g {
-    public long f47537a;
-    public long f47538b;
-    public Object f47539c;
-    public Object d;
+import m.g3;
+public final class y0 implements f0 {
+    public final g2.g f47481a;
+    public final qg.g0 f47482b;
+    public final g3 f47483c;
+    public final oa.d d;
+    public final int e;
 
-    public y0(long j10, int i10) {
-        u6.p(((y2.a) this.f47539c) == null);
-        this.f47537a = j10;
-        this.f47538b = j10 + i10;
+    public y0(g2.g gVar, c3.m mVar) {
+        qg.g0 g0Var = new qg.g0(mVar, 17);
+        g3 g3Var = new g3(5);
+        oa.d dVar = new oa.d(27);
+        this.f47481a = gVar;
+        this.f47482b = g0Var;
+        this.f47483c = g3Var;
+        this.d = dVar;
+        this.e = 1048576;
     }
 
     @Override
-    public void X(long j10) {
-        long[] jArr = (long[]) ((n4.s) this.d).f17128b;
-        this.f47538b = jArr[e2.m0.f(jArr, j10, true)];
+    public final z0 a(b2.o0 o0Var) {
+        o0Var.f3891b.getClass();
+        return new z0(o0Var, this.f47481a, this.f47482b, this.f47483c.B(o0Var), this.d, this.e, null);
     }
 
     @Override
-    public long k(c3.p pVar) {
-        long j10 = this.f47538b;
-        if (j10 < 0) {
-            return -1L;
-        }
-        long j11 = -(j10 + 2);
-        this.f47538b = -1L;
-        return j11;
+    public final f0 b(boolean z10) {
+        return this;
     }
 
     @Override
-    public c3.c0 x() {
-        boolean z10;
-        if (this.f47537a != -1) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        u6.p(z10);
-        return new c3.t((c3.u) this.f47539c, this.f47537a, 0);
+    public final f0 c(int i10) {
+        return this;
     }
 
-    public y0(String str, byte[] bArr, long j10, long j11) {
-        this.f47539c = str;
-        this.d = bArr;
-        this.f47537a = j10;
-        this.f47538b = j11;
+    @Override
+    public final f0 d(t7.u uVar) {
+        return this;
     }
 }

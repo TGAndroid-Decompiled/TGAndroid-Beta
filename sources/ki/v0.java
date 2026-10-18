@@ -7,20 +7,20 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.h6;
 public final class v0 extends View implements org.telegram.ui.ActionBar.y5 {
-    public final org.telegram.ui.ActionBar.d6 f15566a;
-    public final Paint f15567b;
-    public a f15568c;
+    public final org.telegram.ui.ActionBar.d6 f15564a;
+    public final Paint f15565b;
+    public a f15566c;
 
     public v0(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
-        this.f15567b = new Paint();
-        this.f15566a = d6Var;
+        this.f15565b = new Paint();
+        this.f15564a = d6Var;
         d();
     }
 
     @Override
     public final void d() {
-        this.f15567b.setColor(h6.w0(h6.Fk, this.f15566a));
+        this.f15565b.setColor(h6.w0(h6.Fk, this.f15564a));
     }
 
     public int[] getColorKeys() {
@@ -28,12 +28,12 @@ public final class v0 extends View implements org.telegram.ui.ActionBar.y5 {
     }
 
     public a getRow() {
-        return this.f15568c;
+        return this.f15566c;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        canvas.drawRect(0.0f, AndroidUtilities.dp(6.0f), getMeasuredWidth(), AndroidUtilities.dp(6.0f) + 1, this.f15567b);
+        canvas.drawRect(0.0f, AndroidUtilities.dp(6.0f), getMeasuredWidth(), AndroidUtilities.dp(6.0f) + 1, this.f15565b);
     }
 
     @Override

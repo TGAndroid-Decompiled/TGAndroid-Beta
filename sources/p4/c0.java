@@ -2,19 +2,19 @@ package p4;
 
 import android.media.MediaRouter;
 public final class c0 extends MediaRouter.VolumeCallback {
-    public final b0 f44134a;
+    public final b0 f44091a;
 
     public c0(b0 b0Var) {
-        this.f44134a = b0Var;
+        this.f44091a = b0Var;
     }
 
     @Override
     public final void onVolumeSetRequest(MediaRouter.RouteInfo routeInfo, int i10) {
-        this.f44134a.a(routeInfo, i10);
+        this.f44091a.a(routeInfo, i10);
     }
 
     @Override
     public final void onVolumeUpdateRequest(MediaRouter.RouteInfo routeInfo, int i10) {
-        this.f44134a.b(routeInfo, i10);
+        this.f44091a.b(routeInfo, i10);
     }
 }

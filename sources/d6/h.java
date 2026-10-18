@@ -6,15 +6,15 @@ public interface h {
 
     void i(f fVar, boolean z10);
 
-    void n(f fVar, int i10);
+    void j(f fVar, int i10);
 
-    void q(f fVar);
+    void n(f fVar);
 
-    void r(f fVar, int i10);
+    void s(f fVar, int i10);
 
-    void t(f fVar);
+    void u(f fVar);
 
-    void u(f fVar, String str);
+    void w(f fVar, String str);
 
     void x(f fVar, int i10);
 }

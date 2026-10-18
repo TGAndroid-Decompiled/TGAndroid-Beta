@@ -15,7 +15,7 @@ public final class cg extends e9.d implements ListIterator {
         e9.m mVar = this.e;
         boolean isEmpty = mVar.isEmpty();
         b();
-        ((ListIterator) this.f8429b).add(obj);
+        ((ListIterator) this.f8427b).add(obj);
         if (isEmpty) {
             mVar.o();
         }
@@ -24,35 +24,35 @@ public final class cg extends e9.d implements ListIterator {
     @Override
     public final boolean hasPrevious() {
         b();
-        return ((ListIterator) this.f8429b).hasPrevious();
+        return ((ListIterator) this.f8427b).hasPrevious();
     }
 
     @Override
     public final int nextIndex() {
         b();
-        return ((ListIterator) this.f8429b).nextIndex();
+        return ((ListIterator) this.f8427b).nextIndex();
     }
 
     @Override
     public final Object previous() {
         b();
-        return ((ListIterator) this.f8429b).previous();
+        return ((ListIterator) this.f8427b).previous();
     }
 
     @Override
     public final int previousIndex() {
         b();
-        return ((ListIterator) this.f8429b).previousIndex();
+        return ((ListIterator) this.f8427b).previousIndex();
     }
 
     @Override
     public final void set(Object obj) {
         b();
-        ((ListIterator) this.f8429b).set(obj);
+        ((ListIterator) this.f8427b).set(obj);
     }
 
     public cg(e9.m mVar, int i10) {
-        super(mVar, ((List) mVar.f8472c).listIterator(i10), (char) 0);
+        super(mVar, ((List) mVar.f8470c).listIterator(i10), (char) 0);
         this.e = mVar;
     }
 }

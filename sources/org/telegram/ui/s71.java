@@ -4,11 +4,11 @@ import android.app.Activity;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLRPC;
 public final class s71 extends org.telegram.ui.Components.dr0 {
-    public final z71 f41054b1;
+    public final z71 f41016b1;
 
     public s71(z71 z71Var, Activity activity, String str) {
         super(activity, null, str, false, null, false, null);
-        this.f41054b1 = z71Var;
+        this.f41016b1 = z71Var;
     }
 
     @Override

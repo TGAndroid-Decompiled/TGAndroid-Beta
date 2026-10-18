@@ -12,27 +12,28 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.ui.Components.bs;
+import org.telegram.ui.Components.w31;
 import org.telegram.ui.Components.x90;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.b80;
 import org.telegram.ui.it0;
 public final class j implements Runnable {
-    public final int f34348a;
-    public final int f34349b;
-    public final Object f34350c;
+    public final int f34342a;
+    public final int f34343b;
+    public final Object f34344c;
 
     public j(int i10, Object obj, int i11) {
-        this.f34348a = i11;
-        this.f34349b = i10;
-        this.f34350c = obj;
+        this.f34342a = i11;
+        this.f34343b = i10;
+        this.f34344c = obj;
     }
 
     @Override
     public final void run() {
         CharSequence text;
-        int i10 = this.f34348a;
-        Object obj = this.f34350c;
-        final int i11 = this.f34349b;
+        int i10 = this.f34342a;
+        Object obj = this.f34344c;
+        final int i11 = this.f34343b;
         switch (i10) {
             case 0:
                 m0 m0Var = (m0) obj;
@@ -56,39 +57,43 @@ public final class j implements Runnable {
                 b0Var.a();
                 return;
             case 2:
-                s6 s6Var = (s6) obj;
-                if (s6Var.f34914r && !s6Var.f34917x && i11 == s6Var.f34911k0) {
-                    s6Var.postDelayed(s6Var.f34912l0, 500L);
+                o5 o5Var = (o5) obj;
+                AndroidUtilities.runOnUIThread(new w31(o5Var, i11, o5.h(o5Var.R, i11), 19));
+                return;
+            case 3:
+                m6 m6Var = (m6) obj;
+                if (m6Var.f34552r && !m6Var.f34555x && i11 == m6Var.f34549k0) {
+                    m6Var.postDelayed(m6Var.f34550l0, 500L);
                     return;
                 }
                 return;
-            case 3:
-                c8 c8Var = (c8) obj;
-                ArrayList arrayList = c8Var.v;
+            case 4:
+                w7 w7Var = (w7) obj;
+                ArrayList arrayList = w7Var.v;
                 try {
-                    ClipboardManager clipboardManager = (ClipboardManager) c8Var.getParentActivity().getSystemService("clipboard");
+                    ClipboardManager clipboardManager = (ClipboardManager) w7Var.getParentActivity().getSystemService("clipboard");
                     if (clipboardManager != null && clipboardManager.getPrimaryClip() != null && clipboardManager.getPrimaryClip().getItemCount() != 0 && (text = clipboardManager.getPrimaryClip().getItemAt(0).getText()) != null) {
                         String[] split = text.toString().trim().toLowerCase().split("\\s+");
                         for (int i12 = 0; i11 < arrayList.size() && i12 < split.length; i12++) {
-                            ((la) arrayList.get(i11)).setText(split[i12]);
+                            ((ga) arrayList.get(i11)).setText(split[i12]);
                             i11++;
                         }
-                        c8Var.Y();
+                        w7Var.Y();
                         return;
                     }
                     return;
                 } catch (Exception unused) {
                     return;
                 }
-            case 4:
-                w9 w9Var = (w9) obj;
-                if (!w9Var.f35047n && i11 == w9Var.I) {
-                    w9Var.K = false;
-                    w9Var.f31197a.W2.N(true);
+            case 5:
+                r9 r9Var = (r9) obj;
+                if (!r9Var.f34791n && i11 == r9Var.I) {
+                    r9Var.K = false;
+                    r9Var.f31190a.W2.N(true);
                     return;
                 }
                 return;
-            case 5:
+            case 6:
                 org.telegram.ui.ActionBar.b2[] b2VarArr = (org.telegram.ui.ActionBar.b2[]) obj;
                 org.telegram.ui.ActionBar.b2 b2Var = b2VarArr[0];
                 if (b2Var != null) {
@@ -105,7 +110,7 @@ public final class j implements Runnable {
                     }
                 }
                 return;
-            case 6:
+            case 7:
                 rg.j jVar = (rg.j) obj;
                 jVar.L = i11;
                 jVar.K = true;
@@ -123,24 +128,24 @@ public final class j implements Runnable {
                 }
                 ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(150L);
                 jVar.P = duration;
-                duration.setInterpolator(bs.f25037f);
+                duration.setInterpolator(bs.f25030f);
                 jVar.P.addUpdateListener(new rg.f(jVar, 5));
                 jVar.P.addListener(new rg.g(jVar, 2));
                 jVar.P.start();
                 return;
-            case 7:
+            case 8:
                 it0 it0Var = (it0) obj;
                 qg.s1 s1Var = it0Var.K1;
                 it0Var.t0(s1Var, null);
-                qg.u0.e(i11).j(s1Var.f44689c);
+                qg.u0.e(i11).j(s1Var.f44647c);
                 return;
-            case 8:
+            case 9:
                 rg.m2 m2Var = (rg.m2) obj;
                 m2Var.getClass();
                 NotificationCenter.getInstance(i11).lambda$postNotificationNameOnUIThread$1(NotificationCenter.customStickerCreated, Boolean.FALSE);
                 m2Var.h();
                 return;
-            case 9:
+            case 10:
                 x90 x90Var = ((ug.q0) obj).e;
                 try {
                     if (x90Var.getLayout().getLineForOffset(i11) == 0) {
@@ -161,8 +166,8 @@ public final class j implements Runnable {
     }
 
     public j(Object obj, int i10, int i11) {
-        this.f34348a = i11;
-        this.f34350c = obj;
-        this.f34349b = i10;
+        this.f34342a = i11;
+        this.f34344c = obj;
+        this.f34343b = i10;
     }
 }

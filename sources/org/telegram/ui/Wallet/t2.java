@@ -4,49 +4,49 @@ import android.app.Activity;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class t2 implements View.OnClickListener {
-    public final int f34932a;
-    public final Object f34933b;
+    public final int f34877a;
+    public final Object f34878b;
 
     public t2(Object obj, int i10) {
-        this.f34932a = i10;
-        this.f34933b = obj;
+        this.f34877a = i10;
+        this.f34878b = obj;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f34932a) {
+        switch (this.f34877a) {
             case 0:
-                ((y2) this.f34933b).dismiss();
+                ((z2) this.f34878b).dismiss();
                 return;
             case 1:
-                pf.d.t((Activity) this.f34933b, "https://fragment.com/");
+                pf.d.t((Activity) this.f34878b, "https://fragment.com/");
                 return;
             case 2:
-                ((j4) this.f34933b).dismiss();
+                ((k4) this.f34878b).dismiss();
                 return;
             case 3:
-                ((Runnable) this.f34933b).run();
+                ((Runnable) this.f34878b).run();
                 return;
             case 4:
-                s6 s6Var = (s6) this.f34933b;
-                if (!s6Var.f34917x && s6Var.f34914r && !s6Var.h.b()) {
-                    s6Var.h.setProgress(0.0f);
-                    s6Var.h.d();
+                m6 m6Var = (m6) this.f34878b;
+                if (!m6Var.f34555x && m6Var.f34552r && !m6Var.h.b()) {
+                    m6Var.h.setProgress(0.0f);
+                    m6Var.h.d();
                     return;
                 }
                 return;
             case 5:
-                t8 t8Var = (t8) this.f34933b;
-                t8Var.b(!t8Var.f34953x);
+                n8 n8Var = (n8) this.f34878b;
+                n8Var.b(!n8Var.f34623x);
                 return;
             case 6:
-                org.telegram.ui.Cells.a2 a2Var = (org.telegram.ui.Cells.a2) this.f34933b;
+                org.telegram.ui.Cells.a2 a2Var = (org.telegram.ui.Cells.a2) this.f34878b;
                 a2Var.c(!a2Var.b(), true);
                 return;
             default:
-                j9 j9Var = ((n9) this.f34933b).f34647b;
-                j9Var.requestFocus();
-                AndroidUtilities.showKeyboard(j9Var);
+                d9 d9Var = ((h9) this.f34878b).f34278b;
+                d9Var.requestFocus();
+                AndroidUtilities.showKeyboard(d9Var);
                 return;
         }
     }

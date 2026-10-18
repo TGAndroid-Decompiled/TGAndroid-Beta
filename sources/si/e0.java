@@ -1,29 +1,29 @@
 package si;
 public final class e0 implements Runnable {
-    public final int f46634a;
-    public final s0 f46635b;
-    public final Exception f46636c;
+    public final int f46587a;
+    public final s0 f46588b;
+    public final Exception f46589c;
 
     public e0(s0 s0Var, Exception exc, int i10) {
-        this.f46634a = i10;
-        this.f46635b = s0Var;
-        this.f46636c = exc;
+        this.f46587a = i10;
+        this.f46588b = s0Var;
+        this.f46589c = exc;
     }
 
     @Override
     public final void run() {
-        switch (this.f46634a) {
+        switch (this.f46587a) {
             case 0:
-                this.f46635b.h(this.f46636c);
+                this.f46588b.h(this.f46589c);
                 return;
             case 1:
-                this.f46635b.h(this.f46636c);
+                this.f46588b.h(this.f46589c);
                 return;
             case 2:
-                this.f46635b.h(this.f46636c);
+                this.f46588b.h(this.f46589c);
                 return;
             default:
-                this.f46635b.h(this.f46636c);
+                this.f46588b.h(this.f46589c);
                 return;
         }
     }

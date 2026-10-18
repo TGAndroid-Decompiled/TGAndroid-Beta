@@ -18,20 +18,20 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_chatlists;
 public abstract class i00 extends FrameLayout {
-    public final org.telegram.ui.ActionBar.n2 f37718a;
-    public final int f37719b;
-    public final int f37720c;
+    public final org.telegram.ui.ActionBar.n2 f37680a;
+    public final int f37681b;
+    public final int f37682c;
     public final Drawable d;
     public final Drawable e;
-    public final org.telegram.ui.Components.q6 f37721f;
+    public final org.telegram.ui.Components.q6 f37683f;
     public final org.telegram.ui.Components.q6 h;
-    public final Paint f37722n;
-    public final Paint f37723r;
-    public float f37724s;
+    public final Paint f37684n;
+    public final Paint f37685r;
+    public float f37686s;
     public boolean v;
-    public ValueAnimator f37725w;
-    public String f37726x;
-    public TL_chatlists.TL_exportedChatlistInvite f37727y;
+    public ValueAnimator f37687w;
+    public String f37688x;
+    public TL_chatlists.TL_exportedChatlistInvite f37689y;
 
     public i00(Context context, org.telegram.ui.ActionBar.n2 n2Var, int i10, int i11) {
         super(context);
@@ -43,12 +43,12 @@ public abstract class i00 extends FrameLayout {
         float f12;
         float f13;
         float f14;
-        this.f37718a = n2Var;
-        this.f37719b = i10;
-        this.f37720c = i11;
+        this.f37680a = n2Var;
+        this.f37681b = i10;
+        this.f37682c = i11;
         setImportantForAccessibility(1);
         org.telegram.ui.Components.q6 q6Var = new org.telegram.ui.Components.q6(context, true, true, false);
-        this.f37721f = q6Var;
+        this.f37683f = q6Var;
         q6Var.setTextSize(AndroidUtilities.dp(15.66f));
         q6Var.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.G6, false));
         if (LocaleController.isRTL) {
@@ -69,11 +69,11 @@ public abstract class i00 extends FrameLayout {
         } else {
             f10 = 56.0f;
         }
-        addView(q6Var, w7.z5.a(20.0f, f7, 10.33f, f10, 0.0f, -1, 55));
+        addView(q6Var, w7.z5.d(-1, 20.0f, 55, f7, 10.33f, f10, 0.0f));
         org.telegram.ui.Components.q6 q6Var2 = new org.telegram.ui.Components.q6(context, false, false, false);
         this.h = q6Var2;
         q6Var2.setTextSize(AndroidUtilities.dp(13.0f));
-        q6Var2.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21398z6, false));
+        q6Var2.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21391z6, false));
         if (LocaleController.isRTL) {
             i13 = 5;
         } else {
@@ -91,11 +91,11 @@ public abstract class i00 extends FrameLayout {
         } else {
             f12 = 56.0f;
         }
-        addView(q6Var2, w7.z5.a(16.0f, f11, 33.33f, f12, 0.0f, -1, 55));
+        addView(q6Var2, w7.z5.d(-1, 16.0f, 55, f11, 33.33f, f12, 0.0f));
         ImageView imageView = new ImageView(context);
         imageView.setImageDrawable(getContext().getResources().getDrawable(R.drawable.ic_ab_other));
         imageView.setScaleType(ImageView.ScaleType.CENTER);
-        imageView.setBackground(org.telegram.ui.ActionBar.h6.g0(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21082i6, false), 1, -1));
+        imageView.setBackground(org.telegram.ui.ActionBar.h6.g0(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21075i6, false), 1, -1));
         int x02 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.Uh, false);
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
         imageView.setColorFilter(new PorterDuffColorFilter(x02, mode));
@@ -113,12 +113,12 @@ public abstract class i00 extends FrameLayout {
         } else {
             f14 = 8.0f;
         }
-        addView(imageView, w7.z5.a(40.0f, f13, 4.0f, f14, 4.0f, 40, i14));
+        addView(imageView, w7.z5.d(40, 40.0f, i14, f13, 4.0f, f14, 4.0f));
         Paint paint = new Paint();
-        this.f37722n = paint;
+        this.f37684n = paint;
         paint.setColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.Oh, false));
         Paint paint2 = new Paint();
-        this.f37723r = paint2;
+        this.f37685r = paint2;
         paint2.setColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.wj, false));
         Drawable mutate = getContext().getResources().getDrawable(R.drawable.msg_link_1).mutate();
         this.d = mutate;
@@ -131,7 +131,7 @@ public abstract class i00 extends FrameLayout {
 
     public final void a() {
         String substring;
-        String str = this.f37726x;
+        String str = this.f37688x;
         if (str == null) {
             substring = null;
         } else {
@@ -143,50 +143,50 @@ public abstract class i00 extends FrameLayout {
         TL_chatlists.TL_chatlists_deleteExportedInvite tL_chatlists_deleteExportedInvite = new TL_chatlists.TL_chatlists_deleteExportedInvite();
         TL_chatlists.TL_inputChatlistDialogFilter tL_inputChatlistDialogFilter = new TL_chatlists.TL_inputChatlistDialogFilter();
         tL_chatlists_deleteExportedInvite.chatlist = tL_inputChatlistDialogFilter;
-        tL_inputChatlistDialogFilter.filter_id = this.f37720c;
+        tL_inputChatlistDialogFilter.filter_id = this.f37682c;
         tL_chatlists_deleteExportedInvite.slug = substring;
         h00 h00Var = new h00(this, 2);
-        ConnectionsManager.getInstance(this.f37719b).sendRequest(tL_chatlists_deleteExportedInvite, new xc(28, this, h00Var));
+        ConnectionsManager.getInstance(this.f37681b).sendRequest(tL_chatlists_deleteExportedInvite, new xc(28, this, h00Var));
         AndroidUtilities.runOnUIThread(h00Var, 150L);
     }
 
     public abstract void b(TL_chatlists.TL_exportedChatlistInvite tL_exportedChatlistInvite);
 
     public void c() {
-        org.telegram.ui.ActionBar.n2 n2Var = this.f37718a;
+        org.telegram.ui.ActionBar.n2 n2Var = this.f37680a;
         if (!(n2Var instanceof p00)) {
             return;
         }
-        ai.u1 u1Var = ((p00) n2Var).f39939a;
+        ai.u1 u1Var = ((p00) n2Var).f39900a;
         org.telegram.ui.Components.i80 H = org.telegram.ui.Components.i80.H(n2Var, this);
         H.W(u1Var.V0(this, false));
         H.c(R.drawable.msg_qrcode, LocaleController.getString(R.string.GetQRCode), new h00(this, 0), false);
         H.c(R.drawable.msg_delete, LocaleController.getString(R.string.DeleteLink), new h00(this, 1), true);
         if (LocaleController.isRTL) {
-            H.f27123i = 3;
+            H.f27116i = 3;
         }
         H.Z();
     }
 
     public final void d() {
-        if (this.f37726x == null) {
+        if (this.f37688x == null) {
             return;
         }
-        org.telegram.ui.Components.fj0 fj0Var = new org.telegram.ui.Components.fj0(getContext(), LocaleController.getString(R.string.InviteByQRCode), this.f37726x, LocaleController.getString(R.string.QRCodeLinkHelpFolder), false);
+        org.telegram.ui.Components.fj0 fj0Var = new org.telegram.ui.Components.fj0(getContext(), LocaleController.getString(R.string.InviteByQRCode), this.f37688x, LocaleController.getString(R.string.QRCodeLinkHelpFolder), false);
         fj0Var.n(R.raw.qr_code_logo);
         fj0Var.show();
     }
 
     public final void e(TL_chatlists.TL_exportedChatlistInvite tL_exportedChatlistInvite, boolean z10) {
         boolean z11;
-        if (this.f37727y == tL_exportedChatlistInvite) {
+        if (this.f37689y == tL_exportedChatlistInvite) {
             z11 = true;
         } else {
             z11 = false;
         }
-        this.f37727y = tL_exportedChatlistInvite;
+        this.f37689y = tL_exportedChatlistInvite;
         String str = tL_exportedChatlistInvite.url;
-        this.f37726x = str;
+        this.f37688x = str;
         if (str.startsWith("http://")) {
             str = str.substring(7);
         }
@@ -194,7 +194,7 @@ public abstract class i00 extends FrameLayout {
             str = str.substring(8);
         }
         boolean isEmpty = TextUtils.isEmpty(tL_exportedChatlistInvite.title);
-        org.telegram.ui.Components.q6 q6Var = this.f37721f;
+        org.telegram.ui.Components.q6 q6Var = this.f37683f;
         if (isEmpty) {
             q6Var.c(str, z11, true);
         } else {
@@ -206,31 +206,31 @@ public abstract class i00 extends FrameLayout {
             invalidate();
         }
         boolean z12 = tL_exportedChatlistInvite.revoked;
-        if ((z12 ? 1.0f : 0.0f) != this.f37724s) {
-            ValueAnimator valueAnimator = this.f37725w;
+        if ((z12 ? 1.0f : 0.0f) != this.f37686s) {
+            ValueAnimator valueAnimator = this.f37687w;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
-                this.f37725w = null;
+                this.f37687w = null;
             }
             float f7 = 0.0f;
             if (z11) {
-                float f10 = this.f37724s;
+                float f10 = this.f37686s;
                 if (z12) {
                     f7 = 1.0f;
                 }
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, f7);
-                this.f37725w = ofFloat;
+                this.f37687w = ofFloat;
                 ofFloat.addUpdateListener(new e3(this, 13));
-                this.f37725w.addListener(new ho(29, this, z12));
-                this.f37725w.setInterpolator(org.telegram.ui.Components.bs.h);
-                this.f37725w.setDuration(350L);
-                this.f37725w.start();
+                this.f37687w.addListener(new ho(29, this, z12));
+                this.f37687w.setInterpolator(org.telegram.ui.Components.bs.h);
+                this.f37687w.setDuration(350L);
+                this.f37687w.start();
                 return;
             }
             if (z12) {
                 f7 = 1.0f;
             }
-            this.f37724s = f7;
+            this.f37686s = f7;
             invalidate();
         }
     }
@@ -246,19 +246,19 @@ public abstract class i00 extends FrameLayout {
             dp = AndroidUtilities.dp(32.0f);
         }
         float f7 = dp;
-        canvas.drawCircle(f7, getMeasuredHeight() / 2.0f, AndroidUtilities.dp(16.0f), this.f37722n);
+        canvas.drawCircle(f7, getMeasuredHeight() / 2.0f, AndroidUtilities.dp(16.0f), this.f37684n);
         float f10 = 0.0f;
-        if (this.f37724s > 0.0f) {
-            canvas.drawCircle(f7, getMeasuredHeight() / 2.0f, AndroidUtilities.dp(16.0f) * this.f37724s, this.f37723r);
+        if (this.f37686s > 0.0f) {
+            canvas.drawCircle(f7, getMeasuredHeight() / 2.0f, AndroidUtilities.dp(16.0f) * this.f37686s, this.f37685r);
         }
-        float f11 = this.f37724s;
+        float f11 = this.f37686s;
         if (f11 < 1.0f) {
             Drawable drawable = this.d;
             drawable.setAlpha((int) ((1.0f - f11) * 255.0f));
             drawable.setBounds(dp - AndroidUtilities.dp(14.0f), (getMeasuredHeight() / 2) - AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f) + dp, AndroidUtilities.dp(14.0f) + (getMeasuredHeight() / 2));
             drawable.draw(canvas);
         }
-        float f12 = this.f37724s;
+        float f12 = this.f37686s;
         if (f12 > 0.0f) {
             Drawable drawable2 = this.e;
             drawable2.setAlpha((int) (f12 * 255.0f));
@@ -277,7 +277,7 @@ public abstract class i00 extends FrameLayout {
             } else {
                 i10 = 0;
             }
-            canvas.drawRect(f13, measuredHeight, measuredWidth - i10, getMeasuredHeight(), org.telegram.ui.ActionBar.h6.f21114k0);
+            canvas.drawRect(f13, measuredHeight, measuredWidth - i10, getMeasuredHeight(), org.telegram.ui.ActionBar.h6.f21107k0);
         }
     }
 
@@ -286,19 +286,19 @@ public abstract class i00 extends FrameLayout {
         String str;
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         StringBuilder sb2 = new StringBuilder();
-        TL_chatlists.TL_exportedChatlistInvite tL_exportedChatlistInvite = this.f37727y;
+        TL_chatlists.TL_exportedChatlistInvite tL_exportedChatlistInvite = this.f37689y;
         String str2 = "";
         if (tL_exportedChatlistInvite == null || TextUtils.isEmpty(tL_exportedChatlistInvite.title)) {
             str = "";
         } else {
-            str = a1.g.s(new StringBuilder(), this.f37727y.title, "\n ");
+            str = a1.g.s(new StringBuilder(), this.f37689y.title, "\n ");
         }
         sb2.append(str);
         org.telegram.ui.Cells.c1.n(R.string.InviteLink, ", ", sb2);
         sb2.append((Object) this.h.getText());
-        TL_chatlists.TL_exportedChatlistInvite tL_exportedChatlistInvite2 = this.f37727y;
+        TL_chatlists.TL_exportedChatlistInvite tL_exportedChatlistInvite2 = this.f37689y;
         if (tL_exportedChatlistInvite2 != null && TextUtils.isEmpty(tL_exportedChatlistInvite2.title)) {
-            str2 = "\n\n" + this.f37727y.url;
+            str2 = "\n\n" + this.f37689y.url;
         }
         sb2.append(str2);
         accessibilityNodeInfo.setContentDescription(sb2.toString());

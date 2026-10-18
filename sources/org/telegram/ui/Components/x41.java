@@ -12,43 +12,43 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class x41 extends FrameLayout implements org.telegram.ui.ActionBar.y5 {
-    public final org.telegram.ui.ActionBar.d6 f32315a;
-    public final LinearLayout f32316b;
-    public final TextView f32317c;
+    public final org.telegram.ui.ActionBar.d6 f32308a;
+    public final LinearLayout f32309b;
+    public final TextView f32310c;
     public final TextView d;
     public final TextView e;
-    public final ImageView f32318f;
+    public final ImageView f32311f;
     public final LinearLayout h;
-    public final xp f32319n;
-    public final LinearLayout f32320r;
-    public final ImageView f32321s;
+    public final xp f32312n;
+    public final LinearLayout f32313r;
+    public final ImageView f32314s;
     public final TextView v;
 
     public x41(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
-        this.f32315a = d6Var;
+        this.f32308a = d6Var;
         setClipToPadding(false);
         setPadding(AndroidUtilities.dp(20.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(6.0f));
-        LinearLayout e = org.telegram.messenger.kk.e(context, 0);
+        LinearLayout e = org.telegram.messenger.lk.e(context, 0);
         addView(e, w7.z5.e(-2, -2, 19));
         TextView textView = new TextView(context);
-        this.f32317c = textView;
+        this.f32310c = textView;
         textView.setTextSize(1, 14.0f);
         textView.setTypeface(AndroidUtilities.getTypeface("fonts/rextrabold.ttf"));
         e.addView(textView, w7.z5.t(-2, -2, 19, 0, 0, 0, 0));
         LinearLayout linearLayout = new LinearLayout(context);
-        this.f32316b = linearLayout;
+        this.f32309b = linearLayout;
         linearLayout.setOrientation(0);
         linearLayout.setPadding(AndroidUtilities.dp(6.0f), AndroidUtilities.dp(1.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(1.0f));
         w7.b6.a(linearLayout);
-        e.addView(linearLayout, w7.z5.a(-2.0f, -6.0f, 0.0f, 0.0f, 0.0f, -2, 19));
+        e.addView(linearLayout, w7.z5.d(-2, -2.0f, 19, -6.0f, 0.0f, 0.0f, 0.0f));
         TextView textView2 = new TextView(context);
         this.d = textView2;
         textView2.setTextSize(1, 14.0f);
         textView2.setTypeface(AndroidUtilities.getTypeface("fonts/rextrabold.ttf"));
         linearLayout.addView(textView2, w7.z5.t(-2, -2, 19, 0, 0, 0, 0));
         ImageView imageView = new ImageView(context);
-        this.f32318f = imageView;
+        this.f32311f = imageView;
         imageView.setImageResource(R.drawable.arrows_select);
         linearLayout.addView(imageView, w7.z5.t(16, 16, 19, 1, 0, 0, 0));
         imageView.setTranslationY(AndroidUtilities.dp(1.0f));
@@ -63,27 +63,27 @@ public final class x41 extends FrameLayout implements org.telegram.ui.ActionBar.
         linearLayout2.setClipToPadding(false);
         linearLayout2.setOrientation(0);
         xp xpVar = new xp(context, 20, d6Var);
-        this.f32319n = xpVar;
-        xpVar.b(org.telegram.ui.ActionBar.h6.f21066h7, org.telegram.ui.ActionBar.h6.f21101j7, org.telegram.ui.ActionBar.h6.f21121k7);
+        this.f32312n = xpVar;
+        xpVar.b(org.telegram.ui.ActionBar.h6.f21059h7, org.telegram.ui.ActionBar.h6.f21094j7, org.telegram.ui.ActionBar.h6.f21114k7);
         xpVar.setDrawUnchecked(true);
         xpVar.a(false, false);
         xpVar.setDrawBackgroundAsArc(10);
         linearLayout2.addView(xpVar, w7.z5.t(22, 22, 16, 0, 0, 0, 0));
         TextView textView4 = new TextView(context);
-        org.telegram.ui.Cells.c1.r(org.telegram.ui.ActionBar.h6.f21099j5, d6Var, textView4, 1, 14.0f);
+        org.telegram.ui.Cells.c1.r(org.telegram.ui.ActionBar.h6.f21092j5, d6Var, textView4, 1, 14.0f);
         textView4.setText(LocaleController.getString(R.string.AIEditorEmojify));
         linearLayout2.addView(textView4, w7.z5.t(-2, -2, 16, 3, -1, 2, 0));
-        addView(linearLayout2, w7.z5.a(-2.0f, 0.0f, -3.0f, -6.0f, -3.0f, -2, 21));
+        addView(linearLayout2, w7.z5.d(-2, -2.0f, 21, 0.0f, -3.0f, -6.0f, -3.0f));
         w7.b6.b(linearLayout2, 0.025f, 1.5f);
         LinearLayout linearLayout3 = new LinearLayout(context);
-        this.f32320r = linearLayout3;
+        this.f32313r = linearLayout3;
         linearLayout3.setPadding(AndroidUtilities.dp(6.0f), AndroidUtilities.dp(3.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(3.0f));
         linearLayout3.setOrientation(0);
         linearLayout3.setVisibility(8);
-        addView(linearLayout3, w7.z5.a(-2.0f, 0.0f, 0.0f, -6.0f, 0.0f, -2, 53));
+        addView(linearLayout3, w7.z5.d(-2, -2.0f, 53, 0.0f, 0.0f, -6.0f, 0.0f));
         w7.b6.b(linearLayout3, 0.025f, 1.5f);
         ImageView imageView2 = new ImageView(context);
-        this.f32321s = imageView2;
+        this.f32314s = imageView2;
         imageView2.setImageResource(R.drawable.mini_replace2);
         linearLayout3.addView(imageView2, w7.z5.t(-2, -2, 16, 0, 0, 4, 0));
         TextView textView5 = new TextView(context);
@@ -98,13 +98,13 @@ public final class x41 extends FrameLayout implements org.telegram.ui.ActionBar.
     public final void d() {
         org.telegram.ui.Cells.z zVar;
         int i10 = org.telegram.ui.ActionBar.h6.G6;
-        org.telegram.ui.ActionBar.d6 d6Var = this.f32315a;
-        this.f32317c.setTextColor(org.telegram.ui.ActionBar.h6.w0(i10, d6Var));
+        org.telegram.ui.ActionBar.d6 d6Var = this.f32308a;
+        this.f32310c.setTextColor(org.telegram.ui.ActionBar.h6.w0(i10, d6Var));
         int i11 = org.telegram.ui.ActionBar.h6.L6;
         this.d.setTextColor(org.telegram.ui.ActionBar.h6.w0(i11, d6Var));
         this.e.setTextColor(org.telegram.ui.ActionBar.h6.w0(i10, d6Var));
-        this.f32318f.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(i11, d6Var), PorterDuff.Mode.MULTIPLY));
-        LinearLayout linearLayout = this.f32316b;
+        this.f32311f.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(i11, d6Var), PorterDuff.Mode.MULTIPLY));
+        LinearLayout linearLayout = this.f32309b;
         if (linearLayout.isClickable()) {
             zVar = org.telegram.ui.ActionBar.h6.Z(org.telegram.ui.ActionBar.h6.m1(0.1f, org.telegram.ui.ActionBar.h6.x0(null, i11, false)), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f));
         } else {
@@ -116,11 +116,11 @@ public final class x41 extends FrameLayout implements org.telegram.ui.ActionBar.
         } else {
             linearLayout.setStateListAnimator(null);
         }
-        this.h.setBackground(org.telegram.ui.ActionBar.h6.Z(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21082i6, d6Var), 24, 24));
+        this.h.setBackground(org.telegram.ui.ActionBar.h6.Z(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21075i6, d6Var), 24, 24));
         int i12 = org.telegram.ui.ActionBar.h6.Oh;
-        this.f32321s.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(i12, d6Var), PorterDuff.Mode.SRC_IN));
+        this.f32314s.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(i12, d6Var), PorterDuff.Mode.SRC_IN));
         this.v.setTextColor(org.telegram.ui.ActionBar.h6.w0(i12, d6Var));
-        this.f32320r.setBackground(org.telegram.ui.ActionBar.h6.Z(org.telegram.ui.ActionBar.h6.m1(0.1f, org.telegram.ui.ActionBar.h6.w0(i12, d6Var)), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f)));
+        this.f32313r.setBackground(org.telegram.ui.ActionBar.h6.Z(org.telegram.ui.ActionBar.h6.m1(0.1f, org.telegram.ui.ActionBar.h6.w0(i12, d6Var)), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f)));
     }
 
     public int[] getColorKeys() {

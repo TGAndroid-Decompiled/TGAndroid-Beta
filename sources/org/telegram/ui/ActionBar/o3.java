@@ -2,31 +2,31 @@ package org.telegram.ui.ActionBar;
 
 import android.animation.ValueAnimator;
 public final class o3 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f21656a;
-    public final w3 f21657b;
+    public final int f21649a;
+    public final w3 f21650b;
 
     public o3(w3 w3Var, int i10) {
-        this.f21656a = i10;
-        this.f21657b = w3Var;
+        this.f21649a = i10;
+        this.f21650b = w3Var;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f21656a) {
+        switch (this.f21649a) {
             case 0:
-                w3 w3Var = this.f21657b;
+                w3 w3Var = this.f21650b;
                 w3Var.getClass();
                 w3Var.V = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 w3Var.invalidate();
                 return;
             case 1:
-                w3 w3Var2 = this.f21657b;
+                w3 w3Var2 = this.f21650b;
                 w3Var2.getClass();
                 w3Var2.e = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 w3Var2.invalidate();
                 return;
             default:
-                w3 w3Var3 = this.f21657b;
+                w3 w3Var3 = this.f21650b;
                 w3Var3.getClass();
                 w3Var3.L = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 return;

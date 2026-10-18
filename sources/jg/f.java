@@ -14,44 +14,44 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
 import t7.u;
-import u2.e0;
+import u2.f0;
 public final class f {
-    public boolean f14427a;
-    public int f14428b;
-    public Object f14429c;
+    public boolean f14425a;
+    public int f14426b;
+    public Object f14427c;
     public Object d;
     public final Object e;
-    public Object f14430f;
-    public Object f14431g;
+    public Object f14428f;
+    public Object f14429g;
 
     public f(c3.m mVar, u uVar) {
-        this.f14429c = mVar;
-        this.f14431g = uVar;
+        this.f14427c = mVar;
+        this.f14429g = uVar;
         this.d = new HashMap();
         this.e = new HashMap();
-        this.f14427a = true;
-        this.f14428b = 3;
+        this.f14425a = true;
+        this.f14426b = 3;
     }
 
     public static void a(f fVar) {
-        c3.m mVar = (c3.m) fVar.f14429c;
+        c3.m mVar = (c3.m) fVar.f14427c;
         synchronized (mVar) {
             mVar.f4656f = 1;
         }
     }
 
-    public e0 b(int i10) {
+    public f0 b(int i10) {
         d9.u uVar;
         d9.u nVar;
         HashMap hashMap = (HashMap) this.e;
-        e0 e0Var = (e0) hashMap.get(Integer.valueOf(i10));
-        if (e0Var != null) {
-            return e0Var;
+        f0 f0Var = (f0) hashMap.get(Integer.valueOf(i10));
+        if (f0Var != null) {
+            return f0Var;
         }
         HashMap hashMap2 = (HashMap) this.d;
         d9.u uVar2 = (d9.u) hashMap2.get(Integer.valueOf(i10));
         if (uVar2 == null) {
-            final qf.b bVar = (qf.b) this.f14430f;
+            final qf.b bVar = (qf.b) this.f14428f;
             bVar.getClass();
             if (i10 != 0) {
                 if (i10 != 1) {
@@ -63,13 +63,13 @@ public final class f {
                                     public final Object get() {
                                         switch (r3) {
                                             case 0:
-                                                return p.e((Class) this, bVar);
+                                                return q.e((Class) this, bVar);
                                             case 1:
-                                                return p.e((Class) this, bVar);
+                                                return q.e((Class) this, bVar);
                                             case 2:
-                                                return p.e((Class) this, bVar);
+                                                return q.e((Class) this, bVar);
                                             default:
-                                                return new w0(bVar, (c3.m) ((jg.f) this).f14429c);
+                                                return new y0(bVar, (c3.m) ((jg.f) this).f14427c);
                                         }
                                     }
                                 };
@@ -77,97 +77,97 @@ public final class f {
                                 throw new IllegalArgumentException(i2.d.j(i10, "Unrecognized contentType: "));
                             }
                         } else {
-                            nVar = new i2.n(Class.forName("androidx.media3.exoplayer.rtsp.RtspMediaSource$Factory").asSubclass(e0.class), 3);
+                            nVar = new i2.n(Class.forName("androidx.media3.exoplayer.rtsp.RtspMediaSource$Factory").asSubclass(f0.class), 3);
                         }
                         uVar2 = nVar;
                     } else {
-                        final Class asSubclass = HlsMediaSource$Factory.class.asSubclass(e0.class);
+                        final Class asSubclass = HlsMediaSource$Factory.class.asSubclass(f0.class);
                         uVar = new d9.u() {
                             @Override
                             public final Object get() {
                                 switch (r3) {
                                     case 0:
-                                        return p.e((Class) asSubclass, bVar);
+                                        return q.e((Class) asSubclass, bVar);
                                     case 1:
-                                        return p.e((Class) asSubclass, bVar);
+                                        return q.e((Class) asSubclass, bVar);
                                     case 2:
-                                        return p.e((Class) asSubclass, bVar);
+                                        return q.e((Class) asSubclass, bVar);
                                     default:
-                                        return new w0(bVar, (c3.m) ((jg.f) asSubclass).f14429c);
+                                        return new y0(bVar, (c3.m) ((jg.f) asSubclass).f14427c);
                                 }
                             }
                         };
                     }
                 } else {
-                    final GenericDeclaration asSubclass2 = Class.forName("androidx.media3.exoplayer.smoothstreaming.SsMediaSource$Factory").asSubclass(e0.class);
+                    final GenericDeclaration asSubclass2 = Class.forName("androidx.media3.exoplayer.smoothstreaming.SsMediaSource$Factory").asSubclass(f0.class);
                     uVar = new d9.u() {
                         @Override
                         public final Object get() {
                             switch (r3) {
                                 case 0:
-                                    return p.e((Class) asSubclass2, bVar);
+                                    return q.e((Class) asSubclass2, bVar);
                                 case 1:
-                                    return p.e((Class) asSubclass2, bVar);
+                                    return q.e((Class) asSubclass2, bVar);
                                 case 2:
-                                    return p.e((Class) asSubclass2, bVar);
+                                    return q.e((Class) asSubclass2, bVar);
                                 default:
-                                    return new w0(bVar, (c3.m) ((jg.f) asSubclass2).f14429c);
+                                    return new y0(bVar, (c3.m) ((jg.f) asSubclass2).f14427c);
                             }
                         }
                     };
                 }
                 uVar2 = uVar;
             } else {
-                final Class asSubclass3 = DashMediaSource$Factory.class.asSubclass(e0.class);
+                final Class asSubclass3 = DashMediaSource$Factory.class.asSubclass(f0.class);
                 uVar2 = new d9.u() {
                     @Override
                     public final Object get() {
                         switch (r3) {
                             case 0:
-                                return p.e((Class) asSubclass3, bVar);
+                                return q.e((Class) asSubclass3, bVar);
                             case 1:
-                                return p.e((Class) asSubclass3, bVar);
+                                return q.e((Class) asSubclass3, bVar);
                             case 2:
-                                return p.e((Class) asSubclass3, bVar);
+                                return q.e((Class) asSubclass3, bVar);
                             default:
-                                return new w0(bVar, (c3.m) ((jg.f) asSubclass3).f14429c);
+                                return new y0(bVar, (c3.m) ((jg.f) asSubclass3).f14427c);
                         }
                     }
                 };
             }
             hashMap2.put(Integer.valueOf(i10), uVar2);
         }
-        e0 e0Var2 = (e0) uVar2.get();
-        e0Var2.d((u) this.f14431g);
-        e0Var2.b(this.f14427a);
-        e0Var2.c(this.f14428b);
-        hashMap.put(Integer.valueOf(i10), e0Var2);
-        return e0Var2;
+        f0 f0Var2 = (f0) uVar2.get();
+        f0Var2.d((u) this.f14429g);
+        f0Var2.b(this.f14425a);
+        f0Var2.c(this.f14426b);
+        hashMap.put(Integer.valueOf(i10), f0Var2);
+        return f0Var2;
     }
 
     public Bitmap c(int i10, int i11) {
         RectF rectF = (RectF) this.e;
         int i12 = (i10 + i11) << 10;
-        if (i12 != this.f14428b || this.f14427a) {
-            this.f14427a = false;
-            this.f14428b = i12;
-            this.f14429c = Bitmap.createBitmap(i11, i10, Bitmap.Config.ARGB_8888);
-            this.d = new Canvas((Bitmap) this.f14429c);
+        if (i12 != this.f14426b || this.f14425a) {
+            this.f14425a = false;
+            this.f14426b = i12;
+            this.f14427c = Bitmap.createBitmap(i11, i10, Bitmap.Config.ARGB_8888);
+            this.d = new Canvas((Bitmap) this.f14427c);
             rectF.set(0.0f, 0.0f, i11, i10);
-            ((Canvas) this.d).drawColor(h6.w0(h6.f20993d6, (d6) this.f14431g));
-            ((Canvas) this.d).drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), (Paint) this.f14430f);
+            ((Canvas) this.d).drawColor(h6.w0(h6.f20986d6, (d6) this.f14429g));
+            ((Canvas) this.d).drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), (Paint) this.f14428f);
         }
-        return (Bitmap) this.f14429c;
+        return (Bitmap) this.f14427c;
     }
 
     public f(d6 d6Var) {
         this.e = new RectF();
         Paint paint = new Paint(1);
-        this.f14430f = paint;
-        this.f14428b = 0;
-        this.f14427a = true;
+        this.f14428f = paint;
+        this.f14426b = 0;
+        this.f14425a = true;
         paint.setColor(0);
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-        this.f14431g = d6Var;
+        this.f14429g = d6Var;
     }
 }

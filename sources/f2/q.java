@@ -8,9 +8,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import v7.u6;
 public abstract class q {
-    public static final byte[] f10338a = {0, 0, 0, 1};
-    public static final float[] f10339b = {1.0f, 1.0f, 1.0909091f, 0.90909094f, 1.4545455f, 1.2121212f, 2.1818182f, 1.8181819f, 2.909091f, 2.4242425f, 1.6363636f, 1.3636364f, 1.939394f, 1.6161616f, 1.3333334f, 1.5f, 2.0f};
-    public static final Object f10340c = new Object();
+    public static final byte[] f10336a = {0, 0, 0, 1};
+    public static final float[] f10337b = {1.0f, 1.0f, 1.0909091f, 0.90909094f, 1.4545455f, 1.2121212f, 2.1818182f, 1.8181819f, 2.909091f, 2.4242425f, 1.6363636f, 1.3636364f, 1.939394f, 1.6161616f, 1.3333334f, 1.5f, 2.0f};
+    public static final Object f10338c = new Object();
     public static int[] d = new int[10];
 
     public static ArrayList a(byte[] bArr) {
@@ -314,7 +314,7 @@ public abstract class q {
 
     public static int p(int i10, byte[] bArr) {
         int i11;
-        synchronized (f10340c) {
+        synchronized (f10338c) {
             int i12 = 0;
             int i13 = 0;
             while (i12 < i10) {

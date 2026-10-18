@@ -3,7 +3,7 @@ package ug;
 import ai.bd;
 import android.view.View;
 import android.view.ViewGroup;
-import ci.y4;
+import ci.x4;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.DialogObject;
@@ -25,9 +25,9 @@ public final class r0 extends bb {
     public final ArrayList X;
     public final ArrayList Y;
     public final TLRPC.Chat Z;
-    public final c0 f47796a0;
-    public q0 f47797b0;
-    public k0 f47798c0;
+    public final c0 f47749a0;
+    public q0 f47750b0;
+    public k0 f47751c0;
 
     public r0(n2 n2Var, TL_stories.TL_premium_myBoosts tL_premium_myBoosts, TLRPC.Chat chat) {
         super(n2Var, false);
@@ -43,7 +43,7 @@ public final class r0 extends bb {
             i10++;
             TL_stories.TL_myBoost tL_myBoost2 = tL_myBoost;
             TLRPC.Peer peer = tL_myBoost2.peer;
-            if (peer != null && DialogObject.getPeerDialogId(peer) != (-chat.f20279id)) {
+            if (peer != null && DialogObject.getPeerDialogId(peer) != (-chat.f20272id)) {
                 this.Y.add(tL_myBoost2);
             }
         }
@@ -51,12 +51,12 @@ public final class r0 extends bb {
         bdVar.setClickable(true);
         bdVar.setOrientation(1);
         bdVar.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
-        bdVar.setBackgroundColor(h6.w0(h6.f21064h5, this.resourcesProvider));
+        bdVar.setBackgroundColor(h6.w0(h6.f21057h5, this.resourcesProvider));
         c0 c0Var = new c0(getContext(), this.resourcesProvider);
-        this.f47796a0 = c0Var;
+        this.f47749a0 = c0Var;
         c0Var.k();
         c0Var.setCounterColor(-6785796);
-        c0Var.setOnClickListener(new qg.n(4, this, chat));
+        c0Var.setOnClickListener(new org.telegram.ui.web.c(5, this, chat));
         bdVar.addView(c0Var, z5.q(-1, 48, 87));
         ViewGroup viewGroup = this.containerView;
         int i11 = this.backgroundPaddingLeft;
@@ -64,7 +64,7 @@ public final class r0 extends bb {
         im0 im0Var = this.d;
         int i12 = this.backgroundPaddingLeft;
         im0Var.setPadding(i12, 0, i12, AndroidUtilities.dp(64.0f));
-        this.d.setOnItemClickListener(new y4(24, this, chat));
+        this.d.setOnItemClickListener(new x4(24, this, chat));
         fixNavigationBar();
         O();
         T(false);
@@ -86,7 +86,7 @@ public final class r0 extends bb {
             }
             kVar.c(arrayList.contains(kVar.getBoost()), true);
             r0Var.T(true);
-            r0Var.f47797b0.a(arrayList, chat);
+            r0Var.f47750b0.a(arrayList, chat);
         }
     }
 
@@ -96,7 +96,7 @@ public final class r0 extends bb {
     }
 
     public final void T(boolean z10) {
-        c0 c0Var = this.f47796a0;
+        c0 c0Var = this.f47749a0;
         boolean z11 = false;
         c0Var.setShowZero(false);
         ArrayList arrayList = this.X;
@@ -115,18 +115,18 @@ public final class r0 extends bb {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f47798c0 = new k0(this);
+        this.f47751c0 = new k0(this);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f47798c0.cancel();
+        this.f47751c0.cancel();
     }
 
     @Override
     public final void onOpenAnimationEnd() {
-        this.f47798c0.start();
+        this.f47751c0.start();
     }
 
     @Override

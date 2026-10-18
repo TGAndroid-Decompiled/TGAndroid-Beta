@@ -11,6 +11,10 @@ public final class f1 implements Drawable.Callback {
     public final int f735a;
     public Object f736b;
 
+    public f1() {
+        this.f735a = 2;
+    }
+
     @Override
     public final void invalidateDrawable(Drawable drawable) {
         switch (this.f735a) {
@@ -32,13 +36,13 @@ public final class f1 implements Drawable.Callback {
             case 2:
                 return;
             case 3:
-                ((ki.t0) this.f736b).f15521b.invalidate();
+                ((ki.t0) this.f736b).f15519b.invalidate();
                 return;
             case 4:
                 ((oq) this.f736b).invalidateSelf();
                 return;
             case 5:
-                ((gp0) this.f736b).f26640b.run();
+                ((gp0) this.f736b).f26633b.run();
                 return;
             case 6:
                 ((ed) this.f736b).invalidateSelf();
@@ -50,10 +54,10 @@ public final class f1 implements Drawable.Callback {
                 ((x4.d) this.f736b).invalidateSelf();
                 return;
             case 9:
-                ((xg.a) this.f736b).f49828c.invalidate();
+                ((xg.a) this.f736b).f49781c.invalidate();
                 return;
             default:
-                ((xg.c) this.f736b).f49853c.invalidate();
+                ((xg.c) this.f736b).f49806c.invalidate();
                 return;
         }
     }
@@ -93,10 +97,10 @@ public final class f1 implements Drawable.Callback {
                 ((x4.d) this.f736b).scheduleSelf(runnable, j10);
                 return;
             case 9:
-                ((xg.a) this.f736b).f49828c.invalidate();
+                ((xg.a) this.f736b).f49781c.invalidate();
                 return;
             default:
-                ((xg.c) this.f736b).f49853c.invalidate();
+                ((xg.c) this.f736b).f49806c.invalidate();
                 return;
         }
     }
@@ -136,10 +140,10 @@ public final class f1 implements Drawable.Callback {
                 ((x4.d) this.f736b).unscheduleSelf(runnable);
                 return;
             case 9:
-                ((xg.a) this.f736b).f49828c.invalidate();
+                ((xg.a) this.f736b).f49781c.invalidate();
                 return;
             default:
-                ((xg.c) this.f736b).f49853c.invalidate();
+                ((xg.c) this.f736b).f49806c.invalidate();
                 return;
         }
     }

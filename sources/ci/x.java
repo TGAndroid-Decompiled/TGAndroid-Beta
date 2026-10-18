@@ -1,9 +1,9 @@
 package ci;
-public abstract class x extends i8 {
+public abstract class x extends h8 {
     @Override
     public final void invalidate() {
-        if (w.f6098c) {
-            w.f6097b.add(this);
+        if (w.f6028c) {
+            w.f6027b.add(this);
         } else {
             super.invalidate();
         }
@@ -11,8 +11,8 @@ public abstract class x extends i8 {
 
     @Override
     public final void invalidate(int i10, int i11, int i12, int i13) {
-        if (w.f6098c) {
-            w.f6097b.add(this);
+        if (w.f6028c) {
+            w.f6027b.add(this);
         } else {
             super.invalidate(i10, i11, i12, i13);
         }

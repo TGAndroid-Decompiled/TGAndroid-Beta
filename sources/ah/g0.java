@@ -2,19 +2,20 @@ package ah;
 
 import ai.a2;
 import ai.ad;
-import ai.b4;
 import ai.bd;
 import ai.dd;
 import ai.g7;
 import ai.k6;
 import ai.la;
 import ai.md;
+import ai.p3;
 import android.view.View;
-import ci.aa;
-import ci.e9;
-import ci.g6;
-import ci.j9;
-import ci.t9;
+import ci.d9;
+import ci.f6;
+import ci.i9;
+import ci.m2;
+import ci.s9;
+import ci.z9;
 import ei.a9;
 import ei.j6;
 import ei.lb;
@@ -63,21 +64,21 @@ public final class g0 implements View.OnClickListener {
                     cVar2 = ag.c.f635a;
                 }
                 l1Var.o(ag.a.i(0L, cVar2), true, false, true);
-                l1Var.f1739c.setText("");
+                l1Var.f1745c.setText("");
                 return;
             case 4:
                 ((a2) this.f741b).dismiss();
                 return;
             case 5:
-                ((b4) this.f741b).run();
+                ((p3) this.f741b).run();
                 return;
             case 6:
-                ((b4) this.f741b).run();
+                ((p3) this.f741b).run();
                 return;
             case 7:
                 k6 k6Var = (k6) this.f741b;
                 k6Var.getClass();
-                new dd(k6Var.f1637b, k6Var.f1640g).show();
+                new dd(k6Var.f1643b, k6Var.f1646g).show();
                 return;
             case 8:
                 ((g7) this.f741b).dismiss();
@@ -86,9 +87,9 @@ public final class g0 implements View.OnClickListener {
                 ((la) this.f741b).run();
                 return;
             case 10:
-                if (((ad) ((bd) this.f741b).d).f981f > 0 && (R = LaunchActivity.R()) != 0) {
+                if (((ad) ((bd) this.f741b).d).f983f > 0 && (R = LaunchActivity.R()) != 0) {
                     ?? obj = new Object();
-                    obj.f21559a = true;
+                    obj.f21552a = true;
                     R.showAsSheet(new md(), obj);
                     return;
                 }
@@ -97,37 +98,37 @@ public final class g0 implements View.OnClickListener {
                 ((androidx.mediarouter.app.g) this.f741b).dismiss();
                 return;
             case 12:
-                ci.n2 n2Var = (ci.n2) this.f741b;
-                n2Var.q(!n2Var.f6141f0, true);
+                m2 m2Var = (m2) this.f741b;
+                m2Var.q(!m2Var.f6081f0, true);
                 return;
             case 13:
-                ((aa) this.f741b).N();
+                ((z9) this.f741b).N();
                 return;
             case 14:
-                ((g6) this.f741b).dismiss();
+                ((f6) this.f741b).dismiss();
                 n2 R2 = LaunchActivity.R();
                 if (R2 != null) {
-                    R2.showDialog(new sg.x0(R2, 14, false));
+                    R2.showDialog(new sg.y0(R2, 14, false));
                     return;
                 }
                 return;
             case 15:
-                e9 e9Var = (e9) this.f741b;
-                e9Var.onClick(e9Var.f5364b);
+                d9 d9Var = (d9) this.f741b;
+                d9Var.onClick(d9Var.f5260b);
                 return;
             case 16:
-                j9 j9Var = (j9) this.f741b;
-                j9Var.f5555b.f5223u1.animate().alpha(0.0f).setDuration(150L).setListener(new t9(j9Var, 0)).start();
+                i9 i9Var = (i9) this.f741b;
+                i9Var.f5456b.f6255u1.animate().alpha(0.0f).setDuration(150L).setListener(new s9(i9Var, 0)).start();
                 return;
             case 17:
                 ((com.google.firebase.messaging.s) this.f741b).run();
                 return;
             case 18:
                 ei.m mVar = (ei.m) this.f741b;
-                ei.g gVar = mVar.f9402f;
+                ei.g gVar = mVar.f9400f;
                 gVar.d();
                 gVar.k(true);
-                ei.e eVar = mVar.f9399c0;
+                ei.e eVar = mVar.f9397c0;
                 AndroidUtilities.cancelRunOnUIThread(eVar);
                 eVar.run();
                 return;
@@ -141,8 +142,8 @@ public final class g0 implements View.OnClickListener {
                 ((o) this.f741b).run();
                 return;
             case 22:
-                ei.k6 k6Var2 = ((j6) this.f741b).f9259x;
-                if (k6Var2.f9322r && (callback = k6Var2.f9320f) != null) {
+                ei.k6 k6Var2 = ((j6) this.f741b).f9257x;
+                if (k6Var2.f9320r && (callback = k6Var2.f9318f) != null) {
                     callback.run(5);
                     return;
                 }
@@ -161,7 +162,7 @@ public final class g0 implements View.OnClickListener {
                 ((mf) this.f741b).run();
                 return;
             case 26:
-                ChatActivityEnterView.g(((zd) ((gi.n0) this.f741b).d).f32889a, (TL_keyboard.KeyboardButton) view.getTag());
+                ChatActivityEnterView.g(((zd) ((gi.n0) this.f741b).d).f32882a, (TL_keyboard.KeyboardButton) view.getTag());
                 return;
             case 27:
                 ((ai.y0) this.f741b).run();

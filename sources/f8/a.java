@@ -5,7 +5,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import i2.d;
 public abstract class a {
-    public static final int f10507a = 0;
+    public static final int f10505a = 0;
 
     static {
         a.class.getClassLoader();

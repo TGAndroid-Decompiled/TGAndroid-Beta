@@ -5,7 +5,7 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.view.View;
 import android.widget.ImageView;
-import ci.l4;
+import ci.k4;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.Emoji;
@@ -18,10 +18,10 @@ import org.telegram.ui.Components.h9;
 import org.telegram.ui.Components.w9;
 import w7.z5;
 public final class g extends c {
-    public final ImageView f49015s;
+    public final ImageView f48968s;
     public f v;
-    public TLRPC.Chat f49016w;
-    public boolean f49017x;
+    public TLRPC.Chat f48969w;
+    public boolean f48970x;
 
     public g(Context context, d6 d6Var) {
         super(context, d6Var);
@@ -31,12 +31,12 @@ public final class g extends c {
         float f11;
         this.d.setTypeface(AndroidUtilities.bold());
         ImageView imageView = new ImageView(context);
-        this.f49015s = imageView;
+        this.f48968s = imageView;
         imageView.setFocusable(false);
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         imageView.setBackground(h6.g0(h6.x0(null, h6.Vh, false), 1, -1));
         imageView.setImageResource(R.drawable.poll_remove);
-        imageView.setColorFilter(new PorterDuffColorFilter(h6.x0(null, h6.f21156m6, false), PorterDuff.Mode.MULTIPLY));
+        imageView.setColorFilter(new PorterDuffColorFilter(h6.x0(null, h6.f21149m6, false), PorterDuff.Mode.MULTIPLY));
         imageView.setContentDescription(LocaleController.getString(R.string.Delete));
         boolean z10 = LocaleController.isRTL;
         if (z10) {
@@ -55,14 +55,14 @@ public final class g extends c {
         } else {
             f10 = 3.0f;
         }
-        addView(imageView, z5.a(50.0f, f7, 0.0f, f10, 0.0f, 48, i11));
-        l4 l4Var = this.d;
+        addView(imageView, z5.d(48, 50.0f, i11, f7, 0.0f, f10, 0.0f));
+        k4 k4Var = this.d;
         if (LocaleController.isRTL) {
             f11 = 24.0f;
         } else {
             f11 = 0.0f;
         }
-        l4Var.setPadding(AndroidUtilities.dp(f11), 0, AndroidUtilities.dp(LocaleController.isRTL ? 0.0f : 24.0f), 0);
+        k4Var.setPadding(AndroidUtilities.dp(f11), 0, AndroidUtilities.dp(LocaleController.isRTL ? 0.0f : 24.0f), 0);
     }
 
     @Override
@@ -75,17 +75,17 @@ public final class g extends c {
         int i12;
         String string;
         String str2;
-        this.f49017x = z10;
-        this.f49016w = chat;
-        h9 h9Var = this.f48999b;
+        this.f48970x = z10;
+        this.f48969w = chat;
+        h9 h9Var = this.f48952b;
         h9Var.q(chat);
         int dp = AndroidUtilities.dp(20.0f);
-        w9 w9Var = this.f49000c;
+        w9 w9Var = this.f48953c;
         w9Var.setRoundRadius(dp);
         w9Var.e(chat, h9Var);
         String str3 = chat.title;
-        l4 l4Var = this.d;
-        l4Var.k(Emoji.replaceEmoji(str3, l4Var.getPaint().getFontMetricsInt(), false));
+        k4 k4Var = this.d;
+        k4Var.k(Emoji.replaceEmoji(str3, k4Var.getPaint().getFontMetricsInt(), false));
         boolean isChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(chat);
         if (z10) {
             if (i11 >= 1) {
@@ -112,25 +112,25 @@ public final class g extends c {
             }
             setSubtitle(LocaleController.formatPluralString(str, i10, new Object[0]));
         }
-        this.e.setTextColor(h6.w0(h6.f21249r5, this.f48998a));
+        this.e.setTextColor(h6.w0(h6.f21242r5, this.f48951a));
         setDivider(true);
-        ImageView imageView = this.f49015s;
+        ImageView imageView = this.f48968s;
         if (z10) {
             imageView.setVisibility(0);
         } else {
             imageView.setVisibility(4);
         }
-        imageView.setOnClickListener(new qg.n(8, this, chat));
+        imageView.setOnClickListener(new org.telegram.ui.web.c(9, this, chat));
     }
 
     public TLRPC.Chat getChat() {
-        return this.f49016w;
+        return this.f48969w;
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
         super.onMeasure(i10, i11);
-        this.f49015s.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
+        this.f48968s.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
     }
 
     public void setChatDeleteListener(f fVar) {

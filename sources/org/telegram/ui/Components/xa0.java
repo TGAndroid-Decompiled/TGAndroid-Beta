@@ -5,9 +5,9 @@ public final class xa0 extends xh.k {
     public final int E = 1;
     public final Object F;
 
-    public xa0(org.telegram.ui.lh0 lh0Var, org.telegram.ui.lh0 lh0Var2, FrameLayout frameLayout, long j10) {
-        super(lh0Var2, frameLayout, j10, true);
-        this.F = lh0Var;
+    public xa0(org.telegram.ui.kh0 kh0Var, org.telegram.ui.kh0 kh0Var2, FrameLayout frameLayout, long j10) {
+        super(kh0Var2, frameLayout, j10, true);
+        this.F = kh0Var;
     }
 
     @Override
@@ -23,7 +23,7 @@ public final class xa0 extends xh.k {
                     }
                     return;
                 } else if (z11) {
-                    bVar.f27442w.J.setText("");
+                    bVar.f27435w.J.setText("");
                     return;
                 } else {
                     super.f(str, z10, z11);
@@ -31,7 +31,7 @@ public final class xa0 extends xh.k {
                 }
             default:
                 if (z11) {
-                    org.telegram.ui.lh0.U((org.telegram.ui.lh0) this.F).setSearchFieldText("");
+                    org.telegram.ui.kh0.U((org.telegram.ui.kh0) this.F).setSearchFieldText("");
                     return;
                 } else {
                     super.f(str, z10, z11);

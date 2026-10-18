@@ -39,8 +39,8 @@ public final class v9 {
         long j10 = this.f2330b;
         int i12 = this.f2329a;
         if (e != null) {
-            e.f2498l.addAll(0, arrayList);
-            e.f2500n = arrayList.size() + e.f2500n;
+            e.f2499l.addAll(0, arrayList);
+            e.f2501n = arrayList.size() + e.f2501n;
             NotificationCenter.getInstance(i12).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starUserGiftsLoaded, Long.valueOf(j10), e);
             n(i10);
         }
@@ -83,15 +83,15 @@ public final class v9 {
         int i10 = this.f2329a;
         long j10 = this.f2330b;
         y9 y9Var = new y9(i10, j10, false);
-        y9Var.f2492c = true;
+        y9Var.f2493c = true;
         y9Var.d = -1;
-        y9Var.f2500n = 0;
-        y9Var.f2496j = true;
+        y9Var.f2501n = 0;
+        y9Var.f2497j = true;
         this.h.put(-1, y9Var);
         TL_stars.createStarGiftCollection createstargiftcollection = new TL_stars.createStarGiftCollection();
         createstargiftcollection.peer = MessagesController.getInstance(i10).getInputPeer(j10);
         createstargiftcollection.title = str;
-        ConnectionsManager.getInstance(i10).sendRequest(createstargiftcollection, new y2(this, tL_starGiftCollection, y9Var, callback, 4));
+        ConnectionsManager.getInstance(i10).sendRequest(createstargiftcollection, new w2(this, tL_starGiftCollection, y9Var, callback, 4));
     }
 
     public final TL_stars.TL_starGiftCollection c(int i10) {
@@ -211,7 +211,7 @@ public final class v9 {
         char c11 = 1;
         boolean z11 = false;
         if (e != null) {
-            ArrayList arrayList2 = e.f2498l;
+            ArrayList arrayList2 = e.f2499l;
             if (!arrayList2.isEmpty()) {
                 int i11 = 0;
                 while (i11 < arrayList2.size()) {
@@ -222,7 +222,7 @@ public final class v9 {
                             break;
                         } else if (ga.k(savedStarGift2, (TL_stars.SavedStarGift) arrayList.get(i12))) {
                             arrayList2.remove(i11);
-                            e.f2500n = Math.max(0, e.f2500n - 1);
+                            e.f2501n = Math.max(0, e.f2501n - 1);
                             i11--;
                             break;
                         } else {
@@ -305,7 +305,7 @@ public final class v9 {
         y9 e = e(i10);
         TL_stars.TL_starGiftCollection c10 = c(i10);
         if (e != null) {
-            ArrayList arrayList = e.f2498l;
+            ArrayList arrayList = e.f2499l;
             if (c10 != null) {
                 if (arrayList.isEmpty()) {
                     savedStarGift = null;

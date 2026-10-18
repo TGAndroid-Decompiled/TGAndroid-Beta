@@ -1,76 +1,35 @@
 package ci;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.UserConfig;
-public final class g8 implements z4.e {
-    public final aa f5427a;
-    public final q9 f5428b;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.widget.FrameLayout;
+import java.util.ArrayList;
+public final class g8 extends FrameLayout {
+    public p4 f5372a;
+    public long f5373b;
+    public ArrayList f5374c;
+    public boolean d;
+    public final p9 e;
 
-    public g8(q9 q9Var, aa aaVar) {
-        this.f5428b = q9Var;
-        this.f5427a = aaVar;
+    public g8(p9 p9Var, Context context) {
+        super(context);
+        this.e = p9Var;
+    }
+
+    public final void a(boolean z10) {
+        if (this.d != z10) {
+            this.d = z10;
+            invalidate();
+            this.f5372a.setIsVisible(z10);
+            this.e.A();
+        }
     }
 
     @Override
-    public final void a(float f7, int i10, int i11) {
-        int i12;
-        q9 q9Var = this.f5428b;
-        q9Var.I0 = i10;
-        if (i11 > 0) {
-            i12 = i10 + 1;
-        } else {
-            i12 = i10 - 1;
-        }
-        q9Var.J0 = i12;
-        q9Var.K0 = f7;
-        long j10 = UserConfig.getInstance(q9Var.f5518y0).clientUserId;
-        int i13 = q9Var.I0;
-        if (i13 >= 0 && (q9Var.f5517x0 != null ? q9Var.f5516w0 == j10 : !(i13 >= q9Var.A0.size() || ((Long) q9Var.A0.get(q9Var.I0)).longValue() != j10))) {
-            ((r9) q9Var.B0).d(1.0f - q9Var.K0);
+    public final void dispatchDraw(Canvas canvas) {
+        if (!this.d) {
             return;
         }
-        int i14 = q9Var.J0;
-        if (i14 >= 0 && (q9Var.f5517x0 != null ? q9Var.f5516w0 == j10 : !(i14 >= q9Var.A0.size() || ((Long) q9Var.A0.get(q9Var.J0)).longValue() != j10))) {
-            ((r9) q9Var.B0).d(q9Var.K0);
-            return;
-        }
-        ((r9) q9Var.B0).d(0.0f);
-    }
-
-    @Override
-    public final void b(int i10) {
-        q9 q9Var = this.f5428b;
-        q4 currentPeerView = q9Var.getCurrentPeerView();
-        if (currentPeerView != null) {
-            j4 j4Var = q9Var.B0;
-            r9 r9Var = (r9) j4Var;
-            r9Var.a(currentPeerView.getSelectedPosition(), currentPeerView.getCurrentPeer());
-            q9Var.F();
-            aa aaVar = this.f5427a;
-            w9 w9Var = aaVar.f5220t0;
-            if (w9Var != null) {
-                if (i10 < 3) {
-                    w9Var.b(false);
-                } else if (i10 > q9Var.f5519z0.b() - 4) {
-                    aaVar.f5220t0.b(true);
-                }
-            }
-        }
-    }
-
-    @Override
-    public final void c(int i10) {
-        q9 q9Var = this.f5428b;
-        ((r9) q9Var.B0).d.P();
-        Runnable runnable = q9Var.G0;
-        if (runnable != null && i10 == 0) {
-            runnable.run();
-            q9Var.G0 = null;
-        }
-        q9Var.F0 = i10;
-        aa aaVar = q9Var.Q0;
-        if (aaVar.f5206n0.F0 == 1) {
-            AndroidUtilities.cancelRunOnUIThread(aaVar.f5182b1);
-        }
+        super.dispatchDraw(canvas);
     }
 }

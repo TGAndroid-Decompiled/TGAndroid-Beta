@@ -8,26 +8,26 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_wallet;
 public final class t implements Utilities.Callback3 {
-    public final m0 f34922a;
-    public final c7 f34923b;
-    public final SendMessagesHelper f34924c;
+    public final m0 f34867a;
+    public final w6 f34868b;
+    public final SendMessagesHelper f34869c;
     public final MessageObject d;
     public final TL_wallet.walletTransaction e;
-    public final String f34925f;
-    public final l0 f34926g;
+    public final String f34870f;
+    public final l0 f34871g;
     public final long h;
-    public final TLRPC.User f34927i;
+    public final TLRPC.User f34872i;
 
-    public t(m0 m0Var, c7 c7Var, SendMessagesHelper sendMessagesHelper, MessageObject messageObject, TL_wallet.walletTransaction wallettransaction, String str, l0 l0Var, long j10, TLRPC.User user) {
-        this.f34922a = m0Var;
-        this.f34923b = c7Var;
-        this.f34924c = sendMessagesHelper;
+    public t(m0 m0Var, w6 w6Var, SendMessagesHelper sendMessagesHelper, MessageObject messageObject, TL_wallet.walletTransaction wallettransaction, String str, l0 l0Var, long j10, TLRPC.User user) {
+        this.f34867a = m0Var;
+        this.f34868b = w6Var;
+        this.f34869c = sendMessagesHelper;
         this.d = messageObject;
         this.e = wallettransaction;
-        this.f34925f = str;
-        this.f34926g = l0Var;
+        this.f34870f = str;
+        this.f34871g = l0Var;
         this.h = j10;
-        this.f34927i = user;
+        this.f34872i = user;
     }
 
     @Override
@@ -35,14 +35,14 @@ public final class t implements Utilities.Callback3 {
         TL_wallet.sendTransfer sendtransfer = (TL_wallet.sendTransfer) obj;
         String str = (String) obj2;
         String str2 = (String) obj3;
-        m0 m0Var = this.f34922a;
-        int i10 = m0Var.f34530a;
-        c7 c7Var = this.f34923b;
-        SendMessagesHelper sendMessagesHelper = this.f34924c;
+        m0 m0Var = this.f34867a;
+        int i10 = m0Var.f34451a;
+        w6 w6Var = this.f34868b;
+        SendMessagesHelper sendMessagesHelper = this.f34869c;
         MessageObject messageObject = this.d;
         boolean z10 = false;
         if (sendtransfer == null) {
-            c7Var.run();
+            w6Var.run();
             sendMessagesHelper.completeSendingGramTransfer(messageObject, null, false);
             if (str2 == null) {
                 str2 = "NULL_ERROR";
@@ -55,7 +55,7 @@ public final class t implements Utilities.Callback3 {
             wallettransaction.comment = str;
             wallettransaction.comment_encrypted = true;
         }
-        if (m0.a(m0Var.s(), this.f34925f)) {
+        if (m0.a(m0Var.s(), this.f34870f)) {
             sendtransfer.data_gasless = null;
         }
         wallettransaction.comment_encrypted_preparing = false;
@@ -66,13 +66,13 @@ public final class t implements Utilities.Callback3 {
         wallettransaction.gasless = z10;
         wallettransaction.gaslessMessageBodyHash = sendtransfer.gaslessMessageBodyHash;
         wallettransaction.normalMessageBodyHash = sendtransfer.normalMessageBodyHash;
-        l0 l0Var = this.f34926g;
+        l0 l0Var = this.f34871g;
         l0Var.j();
         l0Var.h();
         sendtransfer.random_id = this.h;
-        sendtransfer.user_id = MessagesController.getInstance(i10).getInputUser(this.f34927i);
+        sendtransfer.user_id = MessagesController.getInstance(i10).getInputUser(this.f34872i);
         m0Var.Q();
         m0.F("prepared sendTransfer, sending");
-        ConnectionsManager.getInstance(i10).sendRequestTyped(sendtransfer, new Object(), new ai.t3(m0Var, wallettransaction, sendMessagesHelper, messageObject, c7Var, 5));
+        ConnectionsManager.getInstance(i10).sendRequestTyped(sendtransfer, new Object(), new ai.v3(m0Var, wallettransaction, sendMessagesHelper, messageObject, w6Var, 5));
     }
 }

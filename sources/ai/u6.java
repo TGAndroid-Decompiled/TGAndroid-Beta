@@ -101,7 +101,7 @@ public final class u6 extends br {
             float f15 = 0.45f * f13;
             deVar.f(-AndroidUtilities.dp(f15), -AndroidUtilities.dp(f15), AndroidUtilities.dp(f15), AndroidUtilities.dp(f13 * 0.25f));
             float dp = AndroidUtilities.dp(30.0f);
-            RectF rectF = deVar.f1177c;
+            RectF rectF = deVar.f1180c;
             int width = (int) rectF.width();
             int height = (int) rectF.height();
             ArrayList arrayList = new ArrayList();
@@ -210,33 +210,33 @@ public final class u6 extends br {
                 i17 = 0;
             }
             int size = arrayList.size();
-            ArrayList arrayList3 = deVar.f1176b;
+            ArrayList arrayList3 = deVar.f1179b;
             int size2 = size - arrayList3.size();
             for (int i29 = 0; i29 < size2; i29++) {
                 arrayList3.add(new ce(deVar));
             }
             int size3 = arrayList.size();
-            deVar.f1181j = size3;
-            if (deVar.f1183l != null) {
+            deVar.f1184j = size3;
+            if (deVar.f1186l != null) {
                 e0.f0 f0Var = new e0.f0(size3);
-                deVar.f1183l = f0Var;
+                deVar.f1186l = f0Var;
                 Bitmap bitmap = deVar.d;
                 float width2 = bitmap.getWidth();
                 float height2 = bitmap.getHeight();
                 int i30 = 0;
-                while (i30 < f0Var.f8098b) {
+                while (i30 < f0Var.f8096b) {
                     int i31 = i30;
                     e0.f0.c((float[]) f0Var.d, i31, 0.0f, 0.0f, width2, height2);
                     i30 = i31 + 1;
                 }
             }
             long currentTimeMillis = System.currentTimeMillis();
-            for (int i32 = 0; i32 < deVar.f1181j; i32++) {
+            for (int i32 = 0; i32 < deVar.f1184j; i32++) {
                 ce ceVar = (ce) arrayList3.get(i32);
                 PointF pointF5 = (PointF) arrayList.get(i32);
                 deVar.c(ceVar, currentTimeMillis, true);
-                ceVar.f1111a = pointF5.x + rectF.left;
-                ceVar.f1112b = pointF5.y + rectF.top;
+                ceVar.f1112a = pointF5.x + rectF.left;
+                ceVar.f1113b = pointF5.y + rectF.top;
                 ceVar.h = AndroidUtilities.lerp(0.4f, 1.0f, Utilities.fastRandom.nextFloat());
                 ceVar.e *= 1.25f;
             }
@@ -255,7 +255,7 @@ public final class u6 extends br {
                 md.a1(imageReceiver, stargiftattributemodel.document, (int) (i10 * 0.75f));
             }
         }
-        ((Paint) this.f25034b).setShader(this.f2257s);
+        ((Paint) this.f25027b).setShader(this.f2257s);
         if (view.isAttachedToWindow()) {
             a();
         }
@@ -319,7 +319,7 @@ public final class u6 extends br {
     @Override
     public final void draw(Canvas canvas) {
         d11 d11Var;
-        Paint paint = (Paint) this.f25034b;
+        Paint paint = (Paint) this.f25027b;
         Rect bounds = getBounds();
         RectF rectF = this.d;
         rectF.set(bounds);
@@ -374,7 +374,7 @@ public final class u6 extends br {
     public final void e(int i10, int i11) {
         RadialGradient radialGradient = new RadialGradient(0.0f, 0.0f, AndroidUtilities.dpf2(this.f2254f) / 2.0f, new int[]{i10 | (-16777216), i11 | (-16777216)}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
         this.f2257s = radialGradient;
-        ((Paint) this.f25034b).setShader(radialGradient);
+        ((Paint) this.f25027b).setShader(radialGradient);
     }
 
     public final void f() {

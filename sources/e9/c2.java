@@ -7,12 +7,12 @@ public final class c2 extends q0 {
     public static final c2 h = new c2(null, new Object[0], 0);
     public final transient Object d;
     public final transient Object[] e;
-    public final transient int f8427f;
+    public final transient int f8425f;
 
     public c2(Object obj, Object[] objArr, int i10) {
         this.d = obj;
         this.e = objArr;
-        this.f8427f = i10;
+        this.f8425f = i10;
     }
 
     public static c2 f(int i10, Object[] objArr, a5.a aVar) {
@@ -253,22 +253,22 @@ public final class c2 extends q0 {
 
     @Override
     public final z1 b() {
-        return new z1(this, this.e, 0, this.f8427f);
+        return new z1(this, this.e, 0, this.f8425f);
     }
 
     @Override
     public final a2 c() {
-        return new a2(this, new b2(0, this.f8427f, this.e));
+        return new a2(this, new b2(0, this.f8425f, this.e));
     }
 
     @Override
     public final i0 d() {
-        return new b2(1, this.f8427f, this.e);
+        return new b2(1, this.f8425f, this.e);
     }
 
     @Override
     public final Object get(Object obj) {
-        Object h10 = h(this.d, this.e, this.f8427f, 0, obj);
+        Object h10 = h(this.d, this.e, this.f8425f, 0, obj);
         if (h10 == null) {
             return null;
         }
@@ -277,6 +277,6 @@ public final class c2 extends q0 {
 
     @Override
     public final int size() {
-        return this.f8427f;
+        return this.f8425f;
     }
 }

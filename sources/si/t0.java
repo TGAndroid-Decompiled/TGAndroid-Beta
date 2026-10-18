@@ -4,14 +4,14 @@ import android.content.SharedPreferences;
 import java.lang.reflect.Array;
 import org.telegram.messenger.ApplicationLoader;
 public abstract class t0 {
-    public static final String[] f46826a = {"round_video_switch_back_to_front_ms", "round_video_switch_front_to_back_ms"};
-    public static final int[][] f46827b = (int[][]) Array.newInstance(Integer.TYPE, 2, 8);
-    public static final int[] f46828c = new int[2];
+    public static final String[] f46822a = {"round_video_switch_back_to_front_ms", "round_video_switch_front_to_back_ms"};
+    public static final int[][] f46823b = (int[][]) Array.newInstance(Integer.TYPE, 2, 8);
+    public static final int[] f46824c = new int[2];
     public static final int[] d = new int[2];
     public static boolean e;
 
     public static int a(int i10) {
-        int i11 = f46828c[i10];
+        int i11 = f46824c[i10];
         if (i11 == 0) {
             if (i10 == 0) {
                 return 680;
@@ -20,19 +20,19 @@ public abstract class t0 {
         }
         int i12 = 0;
         for (int i13 = 0; i13 < i11; i13++) {
-            i12 += f46827b[i10][i13];
+            i12 += f46823b[i10][i13];
         }
         return Math.round(i12 / i11);
     }
 
     public static void b() {
-        int[] iArr = f46828c;
+        int[] iArr = f46824c;
         if (!e) {
             e = true;
             SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", 0);
             int i10 = 0;
             while (true) {
-                String[] strArr = f46826a;
+                String[] strArr = f46822a;
                 if (i10 < 2) {
                     String string = sharedPreferences.getString(strArr[i10], null);
                     if (string != null && !string.isEmpty()) {
@@ -40,7 +40,7 @@ public abstract class t0 {
                         for (int max = Math.max(0, split.length - 8); max < split.length; max++) {
                             try {
                                 int max2 = Math.max(200, Math.min(2000, Integer.parseInt(split[max])));
-                                int[] iArr2 = f46827b[i10];
+                                int[] iArr2 = f46823b[i10];
                                 int i11 = iArr[i10];
                                 iArr[i10] = i11 + 1;
                                 iArr2[i11] = max2;
@@ -59,7 +59,7 @@ public abstract class t0 {
 
     public static void c(int i10) {
         int i11;
-        int i12 = f46828c[i10];
+        int i12 = f46824c[i10];
         if (i12 == 8) {
             i11 = d[i10];
         } else {
@@ -70,9 +70,9 @@ public abstract class t0 {
             if (i13 > 0) {
                 sb2.append(',');
             }
-            sb2.append(f46827b[i10][(i11 + i13) % 8]);
+            sb2.append(f46823b[i10][(i11 + i13) % 8]);
         }
-        ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", 0).edit().putString(f46826a[i10], sb2.toString()).apply();
+        ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", 0).edit().putString(f46822a[i10], sb2.toString()).apply();
     }
 
     public static synchronized int d(l0 l0Var, l0 l0Var2, int i10) {
@@ -82,17 +82,17 @@ public abstract class t0 {
             try {
                 b();
                 if (l0Var != l0Var2) {
-                    if (l0Var == l0.f46748b) {
+                    if (l0Var == l0.f46701b) {
                         i11 = 0;
                     } else {
                         i11 = 1;
                     }
                     int max = Math.max(200, Math.min(2000, i10));
-                    int[] iArr = f46827b[i11];
+                    int[] iArr = f46823b[i11];
                     int[] iArr2 = d;
                     iArr[iArr2[i11]] = max;
                     iArr2[i11] = (iArr2[i11] + 1) % 8;
-                    int[] iArr3 = f46828c;
+                    int[] iArr3 = f46824c;
                     int i12 = iArr3[i11];
                     if (i12 < 8) {
                         iArr3[i11] = i12 + 1;

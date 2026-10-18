@@ -12,20 +12,20 @@ public enum y1 extends a2 {
                 if (i10 != '?') {
                     if (aVar.o()) {
                         kVar.d(true);
-                        kVar.f10570c = a2.f10543r;
+                        kVar.f10568c = a2.f10541r;
                         return;
                     }
                     kVar.m(this);
                     kVar.f('<');
-                    kVar.f10570c = a2.f10522a;
+                    kVar.f10568c = a2.f10520a;
                     return;
                 }
-                kVar.a(a2.f10531f0);
+                kVar.a(a2.f10529f0);
                 return;
             }
-            kVar.a(a2.f10538n);
+            kVar.a(a2.f10536n);
             return;
         }
-        kVar.a(a2.f10532g0);
+        kVar.a(a2.f10530g0);
     }
 }

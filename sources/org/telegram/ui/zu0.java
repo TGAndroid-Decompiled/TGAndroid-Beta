@@ -7,10 +7,10 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.tgnet.TLRPC;
 public final class zu0 extends org.telegram.ui.ActionBar.j {
-    public final hv0 f43830a;
+    public final hv0 f43790a;
 
     public zu0(hv0 hv0Var) {
-        this.f43830a = hv0Var;
+        this.f43790a = hv0Var;
     }
 
     @Override
@@ -22,17 +22,17 @@ public final class zu0 extends org.telegram.ui.ActionBar.j {
         int i15;
         int i16;
         int i17;
-        hv0 hv0Var = this.f43830a;
-        boolean[] zArr = hv0Var.f37690w;
+        hv0 hv0Var = this.f43790a;
+        boolean[] zArr = hv0Var.f37652w;
         CharSequence[] charSequenceArr = hv0Var.v;
-        sn snVar = hv0Var.f37670f;
+        sn snVar = hv0Var.f37632f;
         if (i10 == -1) {
             if (hv0Var.h0(true)) {
                 hv0Var.finishFragment();
             }
         } else if (i10 == 1) {
             int i18 = 0;
-            if (hv0Var.f37668d0) {
+            if (hv0Var.f37630d0) {
                 CharSequence[] charSequenceArr2 = {org.telegram.ui.Components.fo.b0(hv0Var.E)};
                 i15 = ((org.telegram.ui.ActionBar.n2) hv0Var).currentAccount;
                 ArrayList<TLRPC.MessageEntity> entities = MediaDataController.getInstance(i15).getEntities(charSequenceArr2, true);
@@ -52,11 +52,11 @@ public final class zu0 extends org.telegram.ui.ActionBar.j {
                 todoList.title = new TLRPC.TL_textWithEntities();
                 tL_messageMediaToDo.todo.title.text = charSequence.toString();
                 tL_messageMediaToDo.todo.title.entities = entities;
-                if (hv0Var.f37683r != null) {
+                if (hv0Var.f37645r != null) {
                     int i20 = 0;
                     i16 = 0;
                     while (true) {
-                        int[] iArr = hv0Var.f37683r;
+                        int[] iArr = hv0Var.f37645r;
                         if (i20 >= iArr.length) {
                             break;
                         }
@@ -84,12 +84,12 @@ public final class zu0 extends org.telegram.ui.ActionBar.j {
                         todoItem.title = tL_textWithEntities;
                         tL_textWithEntities.text = charSequence2.toString();
                         todoItem.title.entities = entities2;
-                        int[] iArr2 = hv0Var.f37683r;
+                        int[] iArr2 = hv0Var.f37645r;
                         if (iArr2 != null && i21 < iArr2.length) {
-                            todoItem.f20424id = iArr2[i21];
+                            todoItem.f20417id = iArr2[i21];
                         } else {
                             i16++;
-                            todoItem.f20424id = i16;
+                            todoItem.f20417id = i16;
                         }
                         tL_messageMediaToDo.todo.list.add(todoItem);
                     }
@@ -98,9 +98,9 @@ public final class zu0 extends org.telegram.ui.ActionBar.j {
                     org.telegram.ui.Components.f5.K(snVar.getParentActivity(), snVar.a(), new gn0(5, this, tL_messageMediaToDo));
                     return;
                 }
-                hv0Var.f37669e0.b(tL_messageMediaToDo);
+                hv0Var.f37631e0.b(tL_messageMediaToDo);
                 hv0Var.finishFragment();
-            } else if (!hv0Var.L || hv0Var.f37662a.getAlpha() == 1.0f) {
+            } else if (!hv0Var.L || hv0Var.f37624a.getAlpha() == 1.0f) {
                 CharSequence[] charSequenceArr4 = {org.telegram.ui.Components.fo.b0(hv0Var.E)};
                 i11 = ((org.telegram.ui.ActionBar.n2) hv0Var).currentAccount;
                 ArrayList<TLRPC.MessageEntity> entities3 = MediaDataController.getInstance(i11).getEntities(charSequenceArr4, true);
@@ -121,7 +121,7 @@ public final class zu0 extends org.telegram.ui.ActionBar.j {
                 tL_poll.question = new TLRPC.TL_textWithEntities();
                 tL_messageMediaPoll.poll.question.text = charSequence3.toString();
                 tL_messageMediaPoll.poll.question.entities = entities3;
-                ArrayList arrayList = new ArrayList(hv0Var.f37678n);
+                ArrayList arrayList = new ArrayList(hv0Var.f37640n);
                 int i24 = 0;
                 while (i24 < charSequenceArr.length) {
                     if (TextUtils.isEmpty(org.telegram.ui.Components.fo.b0(charSequenceArr[i24]))) {
@@ -180,7 +180,7 @@ public final class zu0 extends org.telegram.ui.ActionBar.j {
                     org.telegram.ui.Components.f5.K(snVar.getParentActivity(), snVar.a(), new gn0(this, tL_messageMediaPoll, arrayList));
                     return;
                 }
-                hv0Var.f37669e0.b(tL_messageMediaPoll);
+                hv0Var.f37631e0.b(tL_messageMediaPoll);
                 hv0Var.finishFragment();
             } else {
                 int i28 = 0;
@@ -191,11 +191,11 @@ public final class zu0 extends org.telegram.ui.ActionBar.j {
                     i18++;
                 }
                 if (i28 <= 0) {
-                    hv0Var.f37666c.getChildCount();
-                    for (int i29 = hv0Var.f37679n0; i29 < hv0Var.f37679n0 + hv0Var.f37694y; i29++) {
-                        s4.b1 K = hv0Var.f37666c.K(i29);
+                    hv0Var.f37628c.getChildCount();
+                    for (int i29 = hv0Var.f37641n0; i29 < hv0Var.f37641n0 + hv0Var.f37656y; i29++) {
+                        s4.b1 K = hv0Var.f37628c.K(i29);
                         if (K != null) {
-                            View view = K.f45958a;
+                            View view = K.f45910a;
                             if (view instanceof org.telegram.ui.Cells.c6) {
                                 org.telegram.ui.Cells.c6 c6Var = (org.telegram.ui.Cells.c6) view;
                                 if (c6Var.getTop() > AndroidUtilities.dp(40.0f)) {

@@ -8,15 +8,15 @@ import ru.noties.jlatexmath.JLatexMathAndroid;
 import ru.noties.jlatexmath.JLatexMathDrawable;
 public final class r {
     public static volatile boolean e = false;
-    public final Bitmap f15477a;
-    public final int f15478b;
-    public final int f15479c;
+    public final Bitmap f15475a;
+    public final int f15476b;
+    public final int f15477c;
     public final int d;
 
     public r(Bitmap bitmap, int i10, int i11, int i12) {
-        this.f15477a = bitmap;
-        this.f15478b = i10;
-        this.f15479c = i11;
+        this.f15475a = bitmap;
+        this.f15476b = i10;
+        this.f15477c = i11;
         this.d = i12;
     }
 

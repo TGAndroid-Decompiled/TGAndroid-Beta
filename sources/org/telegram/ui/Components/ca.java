@@ -29,14 +29,14 @@ import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ua1;
 public final class ca implements View.OnClickListener {
-    public final int f25183a;
-    public final Object f25184b;
-    public final Object f25185c;
+    public final int f25176a;
+    public final Object f25177b;
+    public final Object f25178c;
 
     public ca(int i10, Object obj, Object obj2) {
-        this.f25183a = i10;
-        this.f25184b = obj;
-        this.f25185c = obj2;
+        this.f25176a = i10;
+        this.f25177b = obj;
+        this.f25178c = obj2;
     }
 
     @Override
@@ -52,12 +52,12 @@ public final class ca implements View.OnClickListener {
         ps psVar;
         s4.b1 T;
         long j10;
-        int i11 = this.f25183a;
+        int i11 = this.f25176a;
         int i12 = -1;
         s4.b1 b1Var = null;
         int i13 = 0;
-        Object obj = this.f25185c;
-        Object obj2 = this.f25184b;
+        Object obj = this.f25178c;
+        Object obj2 = this.f25177b;
         switch (i11) {
             case 0:
                 da daVar = (da) obj2;
@@ -71,16 +71,16 @@ public final class ca implements View.OnClickListener {
                         return;
                     }
                 } else if (ApplicationLoader.applicationLoaderInstance.checkApkInstallPermissions(daVar.getContext())) {
-                    TLRPC.TL_help_appUpdate tL_help_appUpdate = daVar.f25548n;
+                    TLRPC.TL_help_appUpdate tL_help_appUpdate = daVar.f25541n;
                     if (tL_help_appUpdate.document instanceof TLRPC.TL_document) {
-                        if (!ApplicationLoader.applicationLoaderInstance.openApkInstall((Activity) daVar.getContext(), daVar.f25548n.document)) {
-                            FileLoader.getInstance(daVar.f25550s).loadFile(daVar.f25548n.document, "update", 3, 1);
+                        if (!ApplicationLoader.applicationLoaderInstance.openApkInstall((Activity) daVar.getContext(), daVar.f25541n.document)) {
+                            FileLoader.getInstance(daVar.f25543s).loadFile(daVar.f25541n.document, "update", 3, 1);
                             daVar.a(true);
                             return;
                         }
                         return;
                     } else if (tL_help_appUpdate.url != null) {
-                        pf.d.r(daVar.getContext(), daVar.f25548n.url);
+                        pf.d.r(daVar.getContext(), daVar.f25541n.url);
                         return;
                     } else {
                         return;
@@ -97,13 +97,13 @@ public final class ca implements View.OnClickListener {
                     kdVar.X0 = null;
                     return;
                 }
-                kdVar.f27846d1.e(true);
+                kdVar.f27839d1.e(true);
                 i80 F = i80.F(frameLayout, new ci.b(), kdVar.V0);
                 kdVar.X0 = F;
-                F.f27141s = 0;
+                F.f27134s = 0;
                 F.p(13, AndroidUtilities.dp(200.0f), LocaleController.getString(R.string.TimerPeriodHint));
                 kdVar.X0.k();
-                for (int i14 : kdVar.f27845c1) {
+                for (int i14 : kdVar.f27838c1) {
                     if (i14 == 0) {
                         formatPluralString = LocaleController.getString(R.string.TimerPeriodDoNotDelete);
                     } else if (i14 == Integer.MAX_VALUE) {
@@ -112,7 +112,7 @@ public final class ca implements View.OnClickListener {
                         formatPluralString = LocaleController.formatPluralString("Seconds", i14, new Object[0]);
                     }
                     kdVar.X0.c(0, formatPluralString, new e2(kdVar, i14, 3), false);
-                    if (kdVar.f27844b1 == i14) {
+                    if (kdVar.f27837b1 == i14) {
                         kdVar.X0.L();
                     }
                 }
@@ -121,24 +121,24 @@ public final class ca implements View.OnClickListener {
             case 2:
                 ol olVar = (ol) obj2;
                 ql qlVar = (ql) obj;
-                rl rlVar = olVar.f28999b;
-                ti tiVar = rlVar.f28245b;
-                org.telegram.ui.sn snVar = (org.telegram.ui.sn) tiVar.f30581f0;
+                rl rlVar = olVar.f28992b;
+                ti tiVar = rlVar.f28238b;
+                org.telegram.ui.sn snVar = (org.telegram.ui.sn) tiVar.f30574f0;
                 if (snVar.c()) {
                     parentActivity = rlVar.getParentActivity();
-                    f5.L(parentActivity, snVar.a(), new q2(8, olVar, qlVar), rlVar.f28244a);
+                    f5.L(parentActivity, snVar.a(), new q2(8, olVar, qlVar), rlVar.f28237a);
                     return;
                 }
                 f5.Z(tiVar.M1, tiVar.l1() + 1, tiVar.p1(), new org.telegram.ui.ActionBar.j3(26, olVar, qlVar));
                 return;
             case 3:
                 fo foVar = ((co) obj2).d;
-                ua1 ua1Var = foVar.f26315s;
+                ua1 ua1Var = foVar.f26308s;
                 View F2 = ua1Var.F((bo) obj);
                 if (F2 != null) {
                     b1Var = ua1Var.T(F2);
                 }
-                if (b1Var != null && (b10 = b1Var.b() - foVar.f26317t0) >= 0 && b10 < foVar.K.length) {
+                if (b1Var != null && (b10 = b1Var.b() - foVar.f26310t0) >= 0 && b10 < foVar.K.length) {
                     fo.R(foVar, b10);
                     return;
                 }
@@ -148,21 +148,21 @@ public final class ca implements View.OnClickListener {
                 org.telegram.ui.ActionBar.d6 d6Var = (org.telegram.ui.ActionBar.d6) obj;
                 org.telegram.ui.sn snVar2 = ooVar.G;
                 if (ooVar.T) {
-                    snVar2.showDialog(f5.U(ooVar.getContext(), snVar2.h, d6Var).f20608a);
+                    snVar2.showDialog(f5.U(ooVar.getContext(), snVar2.h, d6Var).f20601a);
                     return;
                 }
                 ko koVar = ooVar.e;
                 if (snVar2.getParentActivity() != null) {
                     TLRPC.Chat chat = snVar2.e;
                     if (chat != null && !ChatObject.canUserDoAdminAction(chat, 13)) {
-                        if (ooVar.f29019a.f17387f && snVar2.getParentActivity() != null && snVar2.fragmentView != null && snVar2.Z7 != null) {
-                            if (snVar2.f41342o2 == null) {
-                                r40 r40Var = new r40(7, snVar2.getParentActivity(), snVar2.f41226ea, true);
-                                snVar2.f41342o2 = r40Var;
+                        if (ooVar.f29012a.f17383f && snVar2.getParentActivity() != null && snVar2.fragmentView != null && snVar2.Z7 != null) {
+                            if (snVar2.f41307o2 == null) {
+                                r40 r40Var = new r40(7, snVar2.getParentActivity(), snVar2.f41191ea, true);
+                                snVar2.f41307o2 = r40Var;
                                 r40Var.setAlpha(0.0f);
-                                snVar2.f41342o2.setVisibility(4);
-                                snVar2.f41342o2.setShowingDuration(4000L);
-                                snVar2.X0.addView(snVar2.f41342o2, w7.z5.a(-2.0f, 19.0f, 0.0f, 19.0f, 0.0f, -2, 51));
+                                snVar2.f41307o2.setVisibility(4);
+                                snVar2.f41307o2.setShowingDuration(4000L);
+                                snVar2.X0.addView(snVar2.f41307o2, w7.z5.d(-2, -2.0f, 51, 19.0f, 0.0f, 19.0f, 0.0f));
                             }
                             int i15 = snVar2.Z7.ttl_period;
                             if (i15 > 86400) {
@@ -174,14 +174,14 @@ public final class ca implements View.OnClickListener {
                             } else {
                                 formatPluralString2 = LocaleController.formatPluralString("Seconds", i15, new Object[0]);
                             }
-                            snVar2.f41342o2.setText(LocaleController.formatString("AutoDeleteSetInfo", R.string.AutoDeleteSetInfo, formatPluralString2));
-                            snVar2.f41342o2.f(snVar2.f41166a1.getTimeItem(), true);
+                            snVar2.f41307o2.setText(LocaleController.formatString("AutoDeleteSetInfo", R.string.AutoDeleteSetInfo, formatPluralString2));
+                            snVar2.f41307o2.f(snVar2.f41131a1.getTimeItem(), true);
                             return;
                         }
                         return;
                     }
                     TLRPC.ChatFull chatFull = snVar2.Z7;
-                    TLRPC.UserFull userFull = snVar2.f41172a8;
+                    TLRPC.UserFull userFull = snVar2.f41137a8;
                     if (userFull != null) {
                         i10 = userFull.ttl_period;
                     } else if (chatFull != null) {
@@ -189,13 +189,13 @@ public final class ca implements View.OnClickListener {
                     } else {
                         i10 = 0;
                     }
-                    p8 p8Var = new p8(ooVar.getContext(), null, new lo(ooVar, r5), true, 0, ooVar.f29025d0);
+                    p8 p8Var = new p8(ooVar.getContext(), null, new lo(ooVar, r5), true, 0, ooVar.f29018d0);
                     p8Var.b(i10);
-                    ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = p8Var.f29233a;
+                    ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = p8Var.f29226a;
                     mo moVar = new mo(ooVar, actionBarPopupWindow$ActionBarPopupWindowLayout);
                     org.telegram.ui.ActionBar.m1[] m1VarArr = {moVar};
                     moVar.e = true;
-                    moVar.f21580c = 220;
+                    moVar.f21573c = 220;
                     moVar.setOutsideTouchable(true);
                     m1VarArr[0].setClippingEnabled(true);
                     m1VarArr[0].setAnimationStyle(R.style.PopupContextAnimation);
@@ -217,41 +217,41 @@ public final class ca implements View.OnClickListener {
             case 7:
                 fs fsVar = (fs) obj2;
                 String str = (String) obj;
-                if (fsVar.f26387b == null && (view2 = fsVar.d) != null) {
+                if (fsVar.f26380b == null && (view2 = fsVar.d) != null) {
                     View findFocus = view2.findFocus();
                     if (findFocus instanceof EditText) {
-                        fsVar.f26387b = (EditText) findFocus;
+                        fsVar.f26380b = (EditText) findFocus;
                     }
                 }
-                if (fsVar.f26387b != null) {
+                if (fsVar.f26380b != null) {
                     try {
                         fsVar.performHapticFeedback(3, 2);
                     } catch (Exception unused) {
                     }
-                    EditText editText = fsVar.f26387b;
+                    EditText editText = fsVar.f26380b;
                     if (editText instanceof EditTextBoldCursor) {
                         ((EditTextBoldCursor) editText).setTextWatchersSuppressed(true, false);
                     }
-                    Editable text = fsVar.f26387b.getText();
-                    if (fsVar.f26387b.getSelectionEnd() == fsVar.f26387b.length()) {
+                    Editable text = fsVar.f26380b.getText();
+                    if (fsVar.f26380b.getSelectionEnd() == fsVar.f26380b.length()) {
                         length = -1;
                     } else {
-                        length = str.length() + fsVar.f26387b.getSelectionStart();
+                        length = str.length() + fsVar.f26380b.getSelectionStart();
                     }
-                    if (fsVar.f26387b.getSelectionStart() != -1 && fsVar.f26387b.getSelectionEnd() != -1) {
-                        EditText editText2 = fsVar.f26387b;
-                        editText2.setText(text.replace(editText2.getSelectionStart(), fsVar.f26387b.getSelectionEnd(), str));
-                        EditText editText3 = fsVar.f26387b;
+                    if (fsVar.f26380b.getSelectionStart() != -1 && fsVar.f26380b.getSelectionEnd() != -1) {
+                        EditText editText2 = fsVar.f26380b;
+                        editText2.setText(text.replace(editText2.getSelectionStart(), fsVar.f26380b.getSelectionEnd(), str));
+                        EditText editText3 = fsVar.f26380b;
                         if (length == -1) {
                             length = editText3.length();
                         }
                         editText3.setSelection(length);
                     } else {
-                        fsVar.f26387b.setText(str);
-                        EditText editText4 = fsVar.f26387b;
+                        fsVar.f26380b.setText(str);
+                        EditText editText4 = fsVar.f26380b;
                         editText4.setSelection(editText4.length());
                     }
-                    EditText editText5 = fsVar.f26387b;
+                    EditText editText5 = fsVar.f26380b;
                     if (editText5 instanceof EditTextBoldCursor) {
                         ((EditTextBoldCursor) editText5).setTextWatchersSuppressed(false, true);
                         return;
@@ -263,8 +263,8 @@ public final class ca implements View.OnClickListener {
                 ps psVar2 = (ps) obj2;
                 os osVar = (os) obj;
                 psVar2.K();
-                osVar.f29066f = !osVar.f29066f;
-                osVar.f29069j.X.N(true);
+                osVar.f29059f = !osVar.f29059f;
+                osVar.f29062j.X.N(true);
                 psVar2.t();
                 return;
             case 9:
@@ -284,35 +284,35 @@ public final class ca implements View.OnClickListener {
                 tz tzVar = kzVar.v;
                 ax axVar = tzVar.D0;
                 if (axVar.indexOfChild(n8Var) != -1 && (T = axVar.T(n8Var)) != null) {
-                    if (T.b() == tzVar.f30764f1) {
-                        if (tzVar.f30770h1 != null) {
-                            uy uyVar = tzVar.f30807t1;
+                    if (T.b() == tzVar.f30757f1) {
+                        if (tzVar.f30763h1 != null) {
+                            uy uyVar = tzVar.f30800t1;
                             if (uyVar != null) {
-                                uyVar.y(tzVar.J1.f20280id);
+                                uyVar.y(tzVar.J1.f20273id);
                                 return;
                             }
                             return;
                         }
-                        SharedPreferences.Editor edit = MessagesController.getEmojiSettings(tzVar.f30754c1).edit();
-                        String str2 = "group_hide_stickers_" + tzVar.J1.f20280id;
+                        SharedPreferences.Editor edit = MessagesController.getEmojiSettings(tzVar.f30747c1).edit();
+                        String str2 = "group_hide_stickers_" + tzVar.J1.f20273id;
                         TLRPC.StickerSet stickerSet = tzVar.J1.stickerset;
                         if (stickerSet != null) {
-                            j10 = stickerSet.f20306id;
+                            j10 = stickerSet.f20299id;
                         } else {
                             j10 = 0;
                         }
                         edit.putLong(str2, j10).apply();
                         tzVar.X(false);
-                        kz kzVar2 = tzVar.f30824y0;
+                        kz kzVar2 = tzVar.f30817y0;
                         if (kzVar2 != null) {
                             kzVar2.l();
                             return;
                         }
                         return;
-                    } else if (kzVar.h.get(T.b()) == tzVar.f30776j1) {
-                        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(kzVar.f28035c);
+                    } else if (kzVar.h.get(T.b()) == tzVar.f30769j1) {
+                        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(kzVar.f28028c);
                         String string = LocaleController.getString(R.string.ClearRecentStickersAlertTitle);
-                        org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20608a;
+                        org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20601a;
                         b2Var.R = string;
                         b2Var.T = LocaleController.getString(R.string.ClearRecentStickersAlertMessage);
                         alertDialog$Builder.k(LocaleController.getString(R.string.ClearButton), new tv(kzVar, 2));
@@ -320,7 +320,7 @@ public final class ca implements View.OnClickListener {
                         b2Var.show();
                         TextView textView = (TextView) b2Var.d(-1);
                         if (textView != null) {
-                            textView.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21231q7, false));
+                            textView.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21224q7, false));
                             return;
                         }
                         return;
@@ -379,7 +379,7 @@ public final class ca implements View.OnClickListener {
                     k20Var.f();
                     return;
                 } else if (t0Var.getFilter().h) {
-                    if (!t0Var.f21718a.f17387f) {
+                    if (!t0Var.f21711a.f17383f) {
                         t0Var.setSelectedForDelete(true);
                         return;
                     }
@@ -424,12 +424,12 @@ public final class ca implements View.OnClickListener {
                 org.telegram.ui.zu zuVar = (org.telegram.ui.zu) obj;
                 if (aj0Var.J.getTag() == null) {
                     int max = (int) Math.max(1.0f, aj0Var.getValue());
-                    org.telegram.ui.pc0 pc0Var = (org.telegram.ui.pc0) zuVar.f43829c;
-                    TLRPC.User user = (TLRPC.User) zuVar.f43828b;
-                    if (pc0Var.getLocationController().getSharingLocationInfo(pc0Var.f40063e0) == null) {
+                    org.telegram.ui.pc0 pc0Var = (org.telegram.ui.pc0) zuVar.f43789c;
+                    TLRPC.User user = (TLRPC.User) zuVar.f43788b;
+                    if (pc0Var.getLocationController().getSharingLocationInfo(pc0Var.f40024e0) == null) {
                         AlertDialog$Builder alertDialog$Builder2 = new AlertDialog$Builder(pc0Var.getParentActivity());
                         String string2 = LocaleController.getString(R.string.ShareLocationAlertTitle);
-                        org.telegram.ui.ActionBar.b2 b2Var2 = alertDialog$Builder2.f20608a;
+                        org.telegram.ui.ActionBar.b2 b2Var2 = alertDialog$Builder2.f20601a;
                         b2Var2.R = string2;
                         b2Var2.T = LocaleController.getString(R.string.ShareLocationAlertText);
                         alertDialog$Builder2.k(LocaleController.getString(R.string.ShareLocationAlertButton), new hg.b2(pc0Var, user, max, 13));
@@ -437,9 +437,9 @@ public final class ca implements View.OnClickListener {
                         pc0Var.showDialog(b2Var2);
                     } else {
                         pc0Var.R.L = true;
-                        pc0Var.f40060c.setImageResource(R.drawable.msg_location_alert2);
+                        pc0Var.f40021c.setImageResource(R.drawable.msg_location_alert2);
                         pc0Var.l0().k(0L, 24, Integer.valueOf(max), user, null, null);
-                        pc0Var.getLocationController().setProximityLocation(pc0Var.f40063e0, max, true);
+                        pc0Var.getLocationController().setProximityLocation(pc0Var.f40024e0, max, true);
                         i13 = 1;
                     }
                     if (i13 != 0) {
@@ -452,7 +452,7 @@ public final class ca implements View.OnClickListener {
             case 22:
                 fj0 fj0Var = (fj0) obj2;
                 Context context = (Context) obj;
-                Uri bitmapShareUri = AndroidUtilities.getBitmapShareUri(fj0Var.f26266b, "qr_tmp.png", Bitmap.CompressFormat.PNG);
+                Uri bitmapShareUri = AndroidUtilities.getBitmapShareUri(fj0Var.f26259b, "qr_tmp.png", Bitmap.CompressFormat.PNG);
                 if (bitmapShareUri != null) {
                     Intent intent = new Intent("android.intent.action.SEND");
                     intent.setType("image/*");
@@ -477,11 +477,11 @@ public final class ca implements View.OnClickListener {
             case 24:
                 ai.y9 y9Var = (ai.y9) obj2;
                 y9Var.e = !y9Var.e;
-                ((org.telegram.messenger.uj) obj).run();
+                ((org.telegram.messenger.vj) obj).run();
                 y9Var.j(true);
                 return;
             case 25:
-                org.telegram.ui.gt.q().v(((ky0) obj2).f28034r.m0);
+                org.telegram.ui.gt.q().v(((ky0) obj2).f28027r.m0);
                 org.telegram.ui.gt.q().y((org.telegram.ui.Cells.e8) obj);
                 return;
             case 26:
@@ -499,14 +499,14 @@ public final class ca implements View.OnClickListener {
                 return;
             case 28:
                 c51 c51Var = (c51) obj2;
-                c51Var.f25105k0 = false;
+                c51Var.f25098k0 = false;
                 c51Var.K();
                 ((s61) obj).N(true);
                 c51Var.t();
                 return;
             default:
                 View.OnClickListener onClickListener = (View.OnClickListener) obj;
-                ImageView imageView = ((x41) obj2).f32321s;
+                ImageView imageView = ((x41) obj2).f32314s;
                 imageView.animate().rotation(imageView.getRotation() + 180.0f).setDuration(380L).setInterpolator(bs.h).start();
                 if (onClickListener != null) {
                     onClickListener.onClick(view);

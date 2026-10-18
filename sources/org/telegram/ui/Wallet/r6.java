@@ -1,20 +1,29 @@
 package org.telegram.ui.Wallet;
 
-import android.content.Context;
-import android.view.MotionEvent;
-public final class r6 extends tg.f {
-    public final s6 L;
+import org.telegram.messenger.Utilities;
+public final class r6 implements Runnable {
+    public final int f34782a;
+    public final WalletEngine2 f34783b;
+    public final Utilities.Callback2 f34784c;
 
-    public r6(s6 s6Var, Context context) {
-        super(context);
-        this.L = s6Var;
+    public r6(WalletEngine2 walletEngine2, Utilities.Callback2 callback2, int i10) {
+        this.f34782a = i10;
+        this.f34783b = walletEngine2;
+        this.f34784c = callback2;
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (!this.L.f34917x && super.onTouchEvent(motionEvent)) {
-            return true;
+    public final void run() {
+        switch (this.f34782a) {
+            case 0:
+                this.f34783b.lambda$emulateRotateKey$30(this.f34784c);
+                return;
+            case 1:
+                this.f34783b.lambda$balance$14(this.f34784c);
+                return;
+            default:
+                this.f34783b.lambda$prepareSendNFT$24(this.f34784c);
+                return;
         }
-        return false;
     }
 }

@@ -8,6 +8,7 @@ import android.view.Surface;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import ki.t1;
+import org.telegram.ui.web.g2;
 public interface l {
     void a(long j10, int i10, int i11, int i12);
 
@@ -19,11 +20,11 @@ public interface l {
 
     void e(a3.m mVar, Handler handler);
 
-    void f(p2.b bVar);
+    void f();
 
     void flush();
 
-    void g();
+    void g(g2 g2Var);
 
     ByteBuffer getInputBuffer(int i10);
 

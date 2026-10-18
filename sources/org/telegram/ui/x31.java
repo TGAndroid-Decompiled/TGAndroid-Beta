@@ -49,7 +49,7 @@ public final class x31 extends org.telegram.ui.Cells.u1 {
         Paint paint = this.Ke;
         z31 z31Var = this.Te;
         if (paint != null) {
-            float f7 = z31Var.f43577s;
+            float f7 = z31Var.f43541s;
             RectF rectF = z31Var.R;
             if (f7 > 0.0f) {
                 if (z31Var.Q) {
@@ -78,7 +78,7 @@ public final class x31 extends org.telegram.ui.Cells.u1 {
                         }
                         canvas.drawCircle(centerX, centerY, width, this.Ne);
                     }
-                    getPhotoImage().setAlpha(Math.max(1.0f - this.Qe.e(z31Var.Q), 1.0f - z31Var.f43577s));
+                    getPhotoImage().setAlpha(Math.max(1.0f - this.Qe.e(z31Var.Q), 1.0f - z31Var.f43541s));
                     getPhotoImage().draw(canvas);
                 } else {
                     getPhotoImage().draw(canvas);
@@ -108,14 +108,14 @@ public final class x31 extends org.telegram.ui.Cells.u1 {
         RectF rectF2 = AndroidUtilities.rectTmp;
         rectF2.set(z31Var.R);
         rectF2.inset(AndroidUtilities.dp(7.0f), AndroidUtilities.dp(7.0f));
-        canvas.drawArc(rectF2, -90.0f, (1.0f - z31Var.f43567a0) * (-360.0f), false, paint3);
+        canvas.drawArc(rectF2, -90.0f, (1.0f - z31Var.f43531a0) * (-360.0f), false, paint3);
         if (this.Pe == null) {
             org.telegram.ui.Components.s21 s21Var = new org.telegram.ui.Components.s21(120);
             this.Pe = s21Var;
-            s21Var.f30177b = true;
+            s21Var.f30171b = true;
         }
         paint3.setStrokeWidth(AndroidUtilities.dp(2.8f));
-        this.Pe.a((1.0f - z31Var.f43567a0) * (-360.0f), 1.0f, canvas, paint3, rectF2);
+        this.Pe.a((1.0f - z31Var.f43531a0) * (-360.0f), 1.0f, canvas, paint3, rectF2);
         canvas.restore();
     }
 
@@ -130,8 +130,8 @@ public final class x31 extends org.telegram.ui.Cells.u1 {
         canvas.save();
         ah.j1 j1Var = this.N;
         z31 z31Var = this.Te;
-        canvas.translate(AndroidUtilities.lerp(0, -j1Var.f795c, z31Var.f43577s), AndroidUtilities.lerp(z31Var.O.getBackgroundDrawableBottom() - getBackgroundDrawableBottom(), j1Var.f805p, z31Var.f43577s));
-        super.d2(canvas, (1.0f - z31Var.f43577s) * f7, num);
+        canvas.translate(AndroidUtilities.lerp(0, -j1Var.f795c, z31Var.f43541s), AndroidUtilities.lerp(z31Var.O.getBackgroundDrawableBottom() - getBackgroundDrawableBottom(), j1Var.f805p, z31Var.f43541s));
+        super.d2(canvas, (1.0f - z31Var.f43541s) * f7, num);
         canvas.restore();
     }
 
@@ -150,7 +150,7 @@ public final class x31 extends org.telegram.ui.Cells.u1 {
         canvas.save();
         z31 z31Var = this.Te;
         if (z31Var.S) {
-            int i10 = this.f23441pb;
+            int i10 = this.f23434pb;
             MessageObject messageObject = z31Var.M;
             int i11 = 0;
             if (messageObject != null && messageObject.isOutOwner()) {
@@ -160,7 +160,7 @@ public final class x31 extends org.telegram.ui.Cells.u1 {
                 }
                 i11 += 20;
             }
-            canvas.translate(((this.Ie.right - (AndroidUtilities.dp(8 + i11) + i10)) - this.f23470rb) * z31Var.f43577s, 0.0f);
+            canvas.translate(((this.Ie.right - (AndroidUtilities.dp(8 + i11) + i10)) - this.f23463rb) * z31Var.f43541s, 0.0f);
         }
         super.m2(f7, canvas, z10);
         canvas.restore();
@@ -188,21 +188,21 @@ public final class x31 extends org.telegram.ui.Cells.u1 {
                 this.Ke.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
                 this.Le = new Matrix();
             }
-            AndroidUtilities.lerp(rectF3, rectF2, z31Var.f43577s, rectF);
+            AndroidUtilities.lerp(rectF3, rectF2, z31Var.f43541s, rectF);
             U3(rectF.left, rectF.top, rectF.width(), rectF.height());
             getPhotoImage().setRoundRadius((int) rectF.width());
-            if (z31Var.f43577s > 0.0f && z31Var.Q) {
+            if (z31Var.f43541s > 0.0f && z31Var.Q) {
                 canvas2 = canvas;
                 canvas2.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
             } else {
                 canvas2 = canvas;
             }
-            this.f23547we = 1.0f - z31Var.f43577s;
+            this.f23540we = 1.0f - z31Var.f43541s;
         } else {
             canvas2 = canvas;
         }
         S1(canvas2);
-        if (z31Var.S && z31Var.f43577s > 0.0f && z31Var.Q) {
+        if (z31Var.S && z31Var.f43541s > 0.0f && z31Var.Q) {
             canvas2.restore();
         }
     }

@@ -40,7 +40,7 @@ public final class s implements d9.u {
                 return new i2.i(new y2.d(), 1000, 1000, 1000, 2000, 1000, true, c2.h);
             case 4:
                 byte[] bArr = new byte[12];
-                j2.h.f13952i.nextBytes(bArr);
+                j2.h.f13950i.nextBytes(bArr);
                 return Base64.encodeToString(bArr, 10);
             default:
                 Resources system = Resources.getSystem();

@@ -1,121 +1,38 @@
 package ci;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagePreviewParams;
-import org.telegram.messenger.MessagesController;
-import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-import org.telegram.ui.Components.ac0;
-import org.telegram.ui.Components.ic0;
-import org.telegram.ui.Components.oc0;
-import org.telegram.ui.in;
-import org.telegram.ui.kl;
-import org.telegram.ui.sn;
-public final class o2 extends w7.j0 {
-    public final int f5686a;
-    public final Object f5687b;
+import android.graphics.ColorFilter;
+import android.graphics.drawable.Drawable;
+import org.telegram.ui.Components.zq;
+public final class o2 extends zq {
+    public final int f5623y;
 
-    public o2(Object obj, int i10) {
-        this.f5686a = i10;
-        this.f5687b = obj;
+    public o2(Drawable drawable, Drawable drawable2, int i10) {
+        super(drawable, drawable2);
+        this.f5623y = i10;
     }
 
     @Override
-    public final void a(boolean z10) {
-        MessageObject messageObject;
-        switch (this.f5686a) {
-            case 0:
-                q4 q4Var = (q4) this.f5687b;
-                j4 j4Var = q4Var.Q1;
-                boolean x10 = q4Var.K0.W.x();
-                aa aaVar = ((r9) j4Var).d;
-                aaVar.f5200j1 = x10;
-                aaVar.P();
-                return;
-            case 1:
-                org.telegram.ui.ActionBar.f3 f3Var = ((org.telegram.ui.l4) this.f5687b).I;
-                if (f3Var != null) {
-                    f3Var.setDisableScroll(z10);
-                    return;
-                }
-                return;
-            case 2:
-                sn snVar = (sn) this.f5687b;
-                snVar.f41336n9 = !z10;
-                if (z10) {
-                    if (snVar.f41214d9 != null) {
-                        sn.W1(snVar, 0.0f);
-                        snVar.f41214d9 = null;
-                    }
-                    snVar.f41225e9 = false;
-                    snVar.f41238f9 = false;
-                    kl klVar = snVar.f41263h9;
-                    if (klVar != null) {
-                        AndroidUtilities.cancelRunOnUIThread(klVar.H);
-                        klVar.a();
-                    }
-                }
-                snVar.zc();
-                return;
-            default:
-                ic0 ic0Var = (ic0) this.f5687b;
-                ac0 ac0Var = ic0Var.e;
-                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = ic0Var.f27196s;
-                oc0 oc0Var = ic0Var.f27192c0;
-                if (oc0Var.f28934s) {
-                    if (!z10 && actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().f29310b > 0.0f) {
-                        actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().b(true);
-                        return;
-                    } else if (z10) {
-                        if (ac0Var.v - ac0Var.f22016u > MessagesController.getInstance(oc0Var.f28935w).quoteLengthMax) {
-                            ic0Var.g();
-                            return;
-                        }
-                        org.telegram.ui.Cells.v9 v9Var = ac0Var.W;
-                        if (v9Var != null) {
-                            messageObject = ((org.telegram.ui.Cells.u1) v9Var).getMessageObject();
-                        } else {
-                            messageObject = null;
-                        }
-                        MessageObject c10 = ic0Var.c(messageObject);
-                        MessagePreviewParams messagePreviewParams = oc0Var.d;
-                        if (messagePreviewParams.quote == null) {
-                            int i10 = ac0Var.f22016u;
-                            messagePreviewParams.quoteStart = i10;
-                            int i11 = ac0Var.v;
-                            messagePreviewParams.quoteEnd = i11;
-                            messagePreviewParams.quote = in.c(c10, i10, i11);
-                            actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().e(ic0Var.I);
-                            return;
-                        }
-                        return;
-                    } else {
-                        return;
-                    }
-                }
-                return;
-        }
+    public final void setColorFilter(ColorFilter colorFilter) {
+        int i10 = this.f5623y;
     }
 
-    @Override
-    public void b() {
-        org.telegram.ui.ActionBar.k kVar;
-        org.telegram.ui.ActionBar.k kVar2;
-        switch (this.f5686a) {
-            case 2:
-                sn snVar = (sn) this.f5687b;
-                kVar = ((org.telegram.ui.ActionBar.n2) snVar).actionBar;
-                if (kVar != null) {
-                    kVar2 = ((org.telegram.ui.ActionBar.n2) snVar).actionBar;
-                    if (kVar2.s()) {
-                        snVar.C7(false);
-                    }
-                }
-                snVar.T7();
-                snVar.y3.j(58, 0L, null);
-                return;
-            default:
-                return;
-        }
+    public o2(Drawable drawable, Drawable drawable2, int i10, int i11) {
+        super(drawable, drawable2, i10, i11);
+        this.f5623y = 3;
+    }
+
+    private final void a(ColorFilter colorFilter) {
+    }
+
+    private final void b(ColorFilter colorFilter) {
+    }
+
+    private final void c(ColorFilter colorFilter) {
+    }
+
+    private final void d(ColorFilter colorFilter) {
+    }
+
+    private final void e(ColorFilter colorFilter) {
     }
 }

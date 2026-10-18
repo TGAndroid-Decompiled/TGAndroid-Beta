@@ -1,17 +1,21 @@
 package yh;
 
 import android.content.Context;
-import android.view.View;
-public final class b0 extends View {
-    public final float f50227a;
+import android.graphics.Canvas;
+import android.widget.FrameLayout;
+public final class b0 extends FrameLayout {
+    public final float f50171a;
 
     public b0(Context context, float f7) {
         super(context);
-        this.f50227a = f7;
+        this.f50171a = f7;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) (View.MeasureSpec.getSize(i10) * this.f50227a), 1073741824), i11);
+    public final void dispatchDraw(Canvas canvas) {
+        canvas.save();
+        canvas.clipRect(0.0f, 0.0f, getWidth() * this.f50171a, getHeight());
+        super.dispatchDraw(canvas);
+        canvas.restore();
     }
 }

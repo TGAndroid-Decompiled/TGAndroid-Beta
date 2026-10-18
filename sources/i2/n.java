@@ -1,25 +1,25 @@
 package i2;
 public final class n implements d9.u {
-    public final int f12489a;
-    public final Object f12490b;
+    public final int f12487a;
+    public final Object f12488b;
 
     public n(Object obj, int i10) {
-        this.f12489a = i10;
-        this.f12490b = obj;
+        this.f12487a = i10;
+        this.f12488b = obj;
     }
 
     @Override
     public final Object get() {
-        switch (this.f12489a) {
+        switch (this.f12487a) {
             case 0:
-                return (i) this.f12490b;
+                return (i) this.f12488b;
             case 1:
-                return (x2.s) this.f12490b;
+                return (x2.s) this.f12488b;
             case 2:
-                return (k) this.f12490b;
+                return (k) this.f12488b;
             default:
                 try {
-                    return (u2.e0) ((Class) this.f12490b).getConstructor(null).newInstance(null);
+                    return (u2.f0) ((Class) this.f12488b).getConstructor(null).newInstance(null);
                 } catch (Exception e) {
                     throw new IllegalStateException(e);
                 }

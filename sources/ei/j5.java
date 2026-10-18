@@ -1,27 +1,27 @@
 package ei;
 public final class j5 implements rg.v1 {
-    public final int f9248a;
-    public final rg.v2 f9249b;
-    public final float f9250c;
+    public final int f9246a;
+    public final rg.u2 f9247b;
+    public final float f9248c;
 
-    public j5(rg.v2 v2Var, float f7, int i10) {
-        this.f9248a = i10;
-        this.f9249b = v2Var;
-        this.f9250c = f7;
+    public j5(rg.u2 u2Var, float f7, int i10) {
+        this.f9246a = i10;
+        this.f9247b = u2Var;
+        this.f9248c = f7;
     }
 
     @Override
     public final void U(float f7) {
-        switch (this.f9248a) {
+        switch (this.f9246a) {
             case 0:
-                rg.v2 v2Var = this.f9249b;
-                v2Var.f45716z0 = true;
-                v2Var.setBaseFontSize((int) (this.f9250c * f7));
+                rg.u2 u2Var = this.f9247b;
+                u2Var.f45667z0 = true;
+                u2Var.setBaseFontSize((int) (this.f9248c * f7));
                 return;
             default:
-                rg.v2 v2Var2 = this.f9249b;
-                v2Var2.f45716z0 = true;
-                v2Var2.setBaseFontSize((int) (this.f9250c * f7));
+                rg.u2 u2Var2 = this.f9247b;
+                u2Var2.f45667z0 = true;
+                u2Var2.setBaseFontSize((int) (this.f9248c * f7));
                 return;
         }
     }
@@ -30,14 +30,14 @@ public final class j5 implements rg.v1 {
     public final float get() {
         float baseFontSize;
         float f7;
-        switch (this.f9248a) {
+        switch (this.f9246a) {
             case 0:
-                baseFontSize = this.f9249b.getBaseFontSize();
-                f7 = this.f9250c;
+                baseFontSize = this.f9247b.getBaseFontSize();
+                f7 = this.f9248c;
                 break;
             default:
-                baseFontSize = this.f9249b.getBaseFontSize();
-                f7 = this.f9250c;
+                baseFontSize = this.f9247b.getBaseFontSize();
+                f7 = this.f9248c;
                 break;
         }
         return baseFontSize / f7;

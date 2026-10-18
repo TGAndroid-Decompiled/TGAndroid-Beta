@@ -5,14 +5,14 @@ import df.p;
 import java.util.ArrayList;
 import ye.c;
 public final class a extends ff.a {
-    public final ArrayList f51562c;
+    public final ArrayList f51515c;
     public final ArrayList d;
-    public final ye.a f51560a = new p();
-    public final ArrayList f51561b = new ArrayList();
+    public final ye.a f51513a = new p();
+    public final ArrayList f51514b = new ArrayList();
     public boolean e = true;
 
     public a(ArrayList arrayList, ArrayList arrayList2) {
-        this.f51562c = arrayList;
+        this.f51515c = arrayList;
         this.d = arrayList2;
     }
 
@@ -55,13 +55,13 @@ public final class a extends ff.a {
         if (this.e) {
             this.e = false;
         } else {
-            this.f51561b.add(charSequence);
+            this.f51514b.add(charSequence);
         }
     }
 
     @Override
     public final df.a e() {
-        return this.f51560a;
+        return this.f51513a;
     }
 
     @Override
@@ -71,13 +71,13 @@ public final class a extends ff.a {
         ArrayList arrayList2 = this.d;
         int size = arrayList2.size();
         ?? pVar = new p();
-        ?? r32 = this.f51560a;
+        ?? r32 = this.f51513a;
         r32.b(pVar);
         ?? pVar2 = new p();
         pVar.b(pVar2);
         int i10 = 0;
         while (true) {
-            arrayList = this.f51562c;
+            arrayList = this.f51515c;
             if (i10 >= size) {
                 break;
             }
@@ -87,11 +87,11 @@ public final class a extends ff.a {
                 pVar3.h = (c) arrayList.get(i10);
             }
             aVar.a(str2.trim(), pVar3);
-            pVar3.f50175g = true;
+            pVar3.f50129g = true;
             pVar2.b(pVar3);
             i10++;
         }
-        ArrayList arrayList3 = this.f51561b;
+        ArrayList arrayList3 = this.f51514b;
         int size2 = arrayList3.size();
         ?? r52 = 0;
         int i11 = 0;

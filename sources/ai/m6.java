@@ -7,35 +7,35 @@ import org.telegram.ui.Components.br;
 import org.telegram.ui.Components.pm0;
 import org.telegram.ui.Components.zo0;
 public final class m6 implements View.OnAttachStateChangeListener {
-    public final int f1820a;
-    public final Object f1821b;
+    public final int f1816a;
+    public final Object f1817b;
 
     public m6(Object obj, int i10) {
-        this.f1820a = i10;
-        this.f1821b = obj;
+        this.f1816a = i10;
+        this.f1817b = obj;
     }
 
     @Override
     public final void onViewAttachedToWindow(View view) {
-        switch (this.f1820a) {
+        switch (this.f1816a) {
             case 0:
-                ArrayList arrayList = ((s6) this.f1821b).e;
+                ArrayList arrayList = ((s6) this.f1817b).e;
                 int size = arrayList.size();
                 int i10 = 0;
                 while (i10 < size) {
                     Object obj = arrayList.get(i10);
                     i10++;
                     q6 q6Var = (q6) obj;
-                    if (q6Var.f2065c) {
+                    if (q6Var.f2063c) {
                         q6Var.d.onAttachedToWindow();
                     }
                 }
                 return;
             case 1:
-                ((ci.w1) this.f1821b).f6107f.onAttachedToWindow();
+                ((ci.v1) this.f1817b).f6002f.onAttachedToWindow();
                 return;
             case 2:
-                androidx.biometric.e eVar = (androidx.biometric.e) this.f1821b;
+                androidx.biometric.e eVar = (androidx.biometric.e) this.f1817b;
                 ih.j jVar = (ih.j) eVar.f2820c;
                 ViewTreeObserver viewTreeObserver = ((View) eVar.f2819b).getViewTreeObserver();
                 ViewTreeObserver viewTreeObserver2 = (ViewTreeObserver) eVar.d;
@@ -58,13 +58,13 @@ public final class m6 implements View.OnAttachStateChangeListener {
             case 4:
                 return;
             case 5:
-                ((yh.k2) this.f1821b).a(view);
+                ((yh.j2) this.f1817b).a(view);
                 return;
             case 6:
-                org.telegram.ui.Components.ja jaVar = (org.telegram.ui.Components.ja) this.f1821b;
-                ArrayList arrayList2 = jaVar.f27485c;
+                org.telegram.ui.Components.ja jaVar = (org.telegram.ui.Components.ja) this.f1817b;
+                ArrayList arrayList2 = jaVar.f27478c;
                 arrayList2.clear();
-                for (View view2 = jaVar.f27484b; view2 != null; view2 = (View) view2.getParent()) {
+                for (View view2 = jaVar.f27477b; view2 != null; view2 = (View) view2.getParent()) {
                     arrayList2.add(0, view2);
                     if (!(view2.getParent() instanceof View)) {
                         return;
@@ -74,15 +74,15 @@ public final class m6 implements View.OnAttachStateChangeListener {
             case 7:
                 return;
             case 8:
-                ((br) this.f1821b).a();
+                ((br) this.f1817b).a();
                 return;
             case 9:
-                pm0 pm0Var = (pm0) this.f1821b;
-                org.telegram.ui.Components.p5 p5Var = pm0Var.f29385t;
+                pm0 pm0Var = (pm0) this.f1817b;
+                org.telegram.ui.Components.p5 p5Var = pm0Var.f29378t;
                 if (p5Var != null) {
                     p5Var.a();
                 }
-                org.telegram.ui.Components.p5 p5Var2 = pm0Var.f29386u;
+                org.telegram.ui.Components.p5 p5Var2 = pm0Var.f29379u;
                 if (p5Var2 != null) {
                     p5Var2.a();
                     return;
@@ -91,31 +91,31 @@ public final class m6 implements View.OnAttachStateChangeListener {
             case 10:
                 return;
             case 11:
-                ((org.telegram.ui.Components.p5) this.f1821b).a();
+                ((org.telegram.ui.Components.p5) this.f1817b).a();
                 return;
             case 12:
-                com.google.firebase.messaging.r rVar = (com.google.firebase.messaging.r) this.f1821b;
-                if (view == ((View) rVar.f7664c)) {
+                com.google.firebase.messaging.r rVar = (com.google.firebase.messaging.r) this.f1817b;
+                if (view == ((View) rVar.f7662c)) {
                     rVar.u(view.getViewTreeObserver());
                     return;
                 }
                 return;
             case 13:
-                ((yh.e1) this.f1821b).f50260l.a();
+                ((yh.d1) this.f1817b).f50199l.a();
                 return;
             case 14:
-                yh.o3 o3Var = (yh.o3) this.f1821b;
-                yh.m3 m3Var = o3Var.N;
-                if (m3Var != null) {
-                    m3Var.a(o3Var.f20766c);
+                yh.n3 n3Var = (yh.n3) this.f1817b;
+                yh.l3 l3Var = n3Var.N;
+                if (l3Var != null) {
+                    l3Var.a(n3Var.f20759c);
                     return;
                 }
                 return;
             default:
-                yh.r3 r3Var = (yh.r3) this.f1821b;
-                yh.p3 p3Var = r3Var.N;
-                if (p3Var != null) {
-                    p3Var.a(r3Var.f20766c);
+                yh.q3 q3Var = (yh.q3) this.f1817b;
+                yh.o3 o3Var = q3Var.N;
+                if (o3Var != null) {
+                    o3Var.a(q3Var.f20759c);
                     return;
                 }
                 return;
@@ -124,9 +124,9 @@ public final class m6 implements View.OnAttachStateChangeListener {
 
     @Override
     public final void onViewDetachedFromWindow(View view) {
-        switch (this.f1820a) {
+        switch (this.f1816a) {
             case 0:
-                ArrayList arrayList = ((s6) this.f1821b).e;
+                ArrayList arrayList = ((s6) this.f1817b).e;
                 int size = arrayList.size();
                 int i10 = 0;
                 while (i10 < size) {
@@ -136,10 +136,10 @@ public final class m6 implements View.OnAttachStateChangeListener {
                 }
                 return;
             case 1:
-                ((ci.w1) this.f1821b).f6107f.onDetachedFromWindow();
+                ((ci.v1) this.f1817b).f6002f.onDetachedFromWindow();
                 return;
             case 2:
-                androidx.biometric.e eVar = (androidx.biometric.e) this.f1821b;
+                androidx.biometric.e eVar = (androidx.biometric.e) this.f1817b;
                 ViewTreeObserver viewTreeObserver = (ViewTreeObserver) eVar.d;
                 if (viewTreeObserver != null) {
                     if (viewTreeObserver.isAlive()) {
@@ -150,83 +150,83 @@ public final class m6 implements View.OnAttachStateChangeListener {
                 }
                 return;
             case 3:
-                l.e eVar2 = (l.e) this.f1821b;
+                l.e eVar2 = (l.e) this.f1817b;
                 ViewTreeObserver viewTreeObserver2 = eVar2.N;
                 if (viewTreeObserver2 != null) {
                     if (!viewTreeObserver2.isAlive()) {
                         eVar2.N = view.getViewTreeObserver();
                     }
-                    eVar2.N.removeGlobalOnLayoutListener(eVar2.f15738r);
+                    eVar2.N.removeGlobalOnLayoutListener(eVar2.f15736r);
                 }
                 view.removeOnAttachStateChangeListener(this);
                 return;
             case 4:
-                l.c0 c0Var = (l.c0) this.f1821b;
+                l.c0 c0Var = (l.c0) this.f1817b;
                 ViewTreeObserver viewTreeObserver3 = c0Var.E;
                 if (viewTreeObserver3 != null) {
                     if (!viewTreeObserver3.isAlive()) {
                         c0Var.E = view.getViewTreeObserver();
                     }
-                    c0Var.E.removeGlobalOnLayoutListener(c0Var.f15725r);
+                    c0Var.E.removeGlobalOnLayoutListener(c0Var.f15723r);
                 }
                 view.removeOnAttachStateChangeListener(this);
                 return;
             case 5:
-                ((yh.k2) this.f1821b).o(view);
+                ((yh.j2) this.f1817b).o(view);
                 return;
             case 6:
-                ((org.telegram.ui.Components.ja) this.f1821b).f27485c.clear();
+                ((org.telegram.ui.Components.ja) this.f1817b).f27478c.clear();
                 return;
             case 7:
-                org.telegram.ui.Components.qc qcVar = (org.telegram.ui.Components.qc) this.f1821b;
+                org.telegram.ui.Components.qc qcVar = (org.telegram.ui.Components.qc) this.f1817b;
                 qcVar.e.removeOnAttachStateChangeListener(this);
                 qcVar.c(0L, false);
                 return;
             case 8:
-                ((br) this.f1821b).b();
+                ((br) this.f1817b).b();
                 return;
             case 9:
-                pm0 pm0Var = (pm0) this.f1821b;
-                org.telegram.ui.Components.p5 p5Var = pm0Var.f29385t;
+                pm0 pm0Var = (pm0) this.f1817b;
+                org.telegram.ui.Components.p5 p5Var = pm0Var.f29378t;
                 if (p5Var != null) {
                     p5Var.b();
                 }
-                org.telegram.ui.Components.p5 p5Var2 = pm0Var.f29386u;
+                org.telegram.ui.Components.p5 p5Var2 = pm0Var.f29379u;
                 if (p5Var2 != null) {
                     p5Var2.a();
                     return;
                 }
                 return;
             case 10:
-                view.removeCallbacks((Runnable) ((zo0) this.f1821b).f32993a.remove(view));
+                view.removeCallbacks((Runnable) ((zo0) this.f1817b).f32986a.remove(view));
                 view.removeOnAttachStateChangeListener(this);
                 return;
             case 11:
-                ((org.telegram.ui.Components.p5) this.f1821b).b();
+                ((org.telegram.ui.Components.p5) this.f1817b).b();
                 return;
             case 12:
-                com.google.firebase.messaging.r rVar = (com.google.firebase.messaging.r) this.f1821b;
-                if (view == ((View) rVar.f7664c)) {
+                com.google.firebase.messaging.r rVar = (com.google.firebase.messaging.r) this.f1817b;
+                if (view == ((View) rVar.f7662c)) {
                     rVar.u(null);
                     return;
                 }
                 return;
             case 13:
-                ((yh.e1) this.f1821b).f50260l.b();
+                ((yh.d1) this.f1817b).f50199l.b();
                 return;
             case 14:
-                yh.o3 o3Var = (yh.o3) this.f1821b;
-                yh.m3 m3Var = o3Var.N;
-                if (m3Var != null) {
-                    m3Var.o(o3Var.f20766c);
+                yh.n3 n3Var = (yh.n3) this.f1817b;
+                yh.l3 l3Var = n3Var.N;
+                if (l3Var != null) {
+                    l3Var.o(n3Var.f20759c);
                     return;
                 }
                 return;
             default:
-                yh.r3 r3Var = (yh.r3) this.f1821b;
-                yh.p3 p3Var = r3Var.N;
-                if (p3Var != null) {
-                    p3Var.o(r3Var.f20766c);
+                yh.q3 q3Var = (yh.q3) this.f1817b;
+                yh.o3 o3Var = q3Var.N;
+                if (o3Var != null) {
+                    o3Var.o(q3Var.f20759c);
                     return;
                 }
                 return;

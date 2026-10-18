@@ -13,7 +13,7 @@ public final class n extends mb.b {
     public n() {
         super(H);
         this.E = new ArrayList();
-        this.G = eb.k.f8576a;
+        this.G = eb.k.f8574a;
     }
 
     @Override
@@ -81,13 +81,13 @@ public final class n extends mb.b {
 
     @Override
     public final mb.b i() {
-        w(eb.k.f8576a);
+        w(eb.k.f8574a);
         return this;
     }
 
     @Override
     public final void n(double d) {
-        if (this.f16844n == 1 || (!Double.isNaN(d) && !Double.isInfinite(d))) {
+        if (this.f16842n == 1 || (!Double.isNaN(d) && !Double.isInfinite(d))) {
             w(new eb.m(Double.valueOf(d)));
             return;
         }
@@ -102,7 +102,7 @@ public final class n extends mb.b {
     @Override
     public final void p(Boolean bool) {
         if (bool == null) {
-            w(eb.k.f8576a);
+            w(eb.k.f8574a);
         } else {
             w(new eb.m(bool));
         }
@@ -111,10 +111,10 @@ public final class n extends mb.b {
     @Override
     public final void q(Number number) {
         if (number == null) {
-            w(eb.k.f8576a);
+            w(eb.k.f8574a);
             return;
         }
-        if (this.f16844n != 1) {
+        if (this.f16842n != 1) {
             double doubleValue = number.doubleValue();
             if (Double.isNaN(doubleValue) || Double.isInfinite(doubleValue)) {
                 throw new IllegalArgumentException("JSON forbids NaN and infinities: " + number);
@@ -126,7 +126,7 @@ public final class n extends mb.b {
     @Override
     public final void r(String str) {
         if (str == null) {
-            w(eb.k.f8576a);
+            w(eb.k.f8574a);
         } else {
             w(new eb.m(str));
         }
@@ -160,7 +160,7 @@ public final class n extends mb.b {
         } else {
             eb.i v = v();
             if (v instanceof eb.h) {
-                ((eb.h) v).f8575a.add(iVar);
+                ((eb.h) v).f8573a.add(iVar);
                 return;
             }
             throw new IllegalStateException();

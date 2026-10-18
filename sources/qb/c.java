@@ -8,13 +8,13 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 public final class c {
-    public final HashMap f44473a = new HashMap();
+    public final HashMap f44430a = new HashMap();
 
     public c() {
     }
 
     public void a(IBinder iBinder) {
-        synchronized (this.f44473a) {
+        synchronized (this.f44430a) {
             if (iBinder != null) {
                 try {
                     iBinder.queryLocalInterface("com.google.android.gms.wearable.internal.IWearableService");
@@ -23,7 +23,7 @@ public final class c {
                 }
             }
             new y8.a();
-            for (Map.Entry entry : this.f44473a.entrySet()) {
+            for (Map.Entry entry : this.f44430a.entrySet()) {
                 if (entry.getValue() == null) {
                     try {
                         throw null;
@@ -43,9 +43,9 @@ public final class c {
         Iterator it = set.iterator();
         while (it.hasNext()) {
             b bVar = (b) it.next();
-            HashMap hashMap = this.f44473a;
+            HashMap hashMap = this.f44430a;
             bVar.getClass();
-            hashMap.put(a.class, bVar.f44472a);
+            hashMap.put(a.class, bVar.f44429a);
         }
     }
 }

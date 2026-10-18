@@ -11,38 +11,38 @@ import android.util.AttributeSet;
 import android.widget.ImageView;
 import v7.q7;
 public class w extends ImageView {
-    public final e2.c f16361a;
-    public final a5.a f16362b;
-    public boolean f16363c;
+    public final e2.c f16359a;
+    public final a5.a f16360b;
+    public boolean f16361c;
 
     public w(Context context, AttributeSet attributeSet, int i10) {
         super(context, attributeSet, i10);
         d3.a(context);
-        this.f16363c = false;
+        this.f16361c = false;
         c3.a(this, getContext());
         e2.c cVar = new e2.c(this);
-        this.f16361a = cVar;
+        this.f16359a = cVar;
         cVar.f(attributeSet, i10);
         a5.a aVar = new a5.a(this);
-        this.f16362b = aVar;
+        this.f16360b = aVar;
         aVar.u(attributeSet, i10);
     }
 
     @Override
     public final void drawableStateChanged() {
         super.drawableStateChanged();
-        e2.c cVar = this.f16361a;
+        e2.c cVar = this.f16359a;
         if (cVar != null) {
             cVar.b();
         }
-        a5.a aVar = this.f16362b;
+        a5.a aVar = this.f16360b;
         if (aVar != null) {
             aVar.c();
         }
     }
 
     public ColorStateList getSupportBackgroundTintList() {
-        e2.c cVar = this.f16361a;
+        e2.c cVar = this.f16359a;
         if (cVar != null) {
             return cVar.d();
         }
@@ -50,7 +50,7 @@ public class w extends ImageView {
     }
 
     public PorterDuff.Mode getSupportBackgroundTintMode() {
-        e2.c cVar = this.f16361a;
+        e2.c cVar = this.f16359a;
         if (cVar != null) {
             return cVar.e();
         }
@@ -59,16 +59,16 @@ public class w extends ImageView {
 
     public ColorStateList getSupportImageTintList() {
         e3 e3Var;
-        a5.a aVar = this.f16362b;
+        a5.a aVar = this.f16360b;
         if (aVar == null || (e3Var = (e3) aVar.d) == null) {
             return null;
         }
-        return (ColorStateList) e3Var.f16197c;
+        return (ColorStateList) e3Var.f16195c;
     }
 
     public PorterDuff.Mode getSupportImageTintMode() {
         e3 e3Var;
-        a5.a aVar = this.f16362b;
+        a5.a aVar = this.f16360b;
         if (aVar == null || (e3Var = (e3) aVar.d) == null) {
             return null;
         }
@@ -77,7 +77,7 @@ public class w extends ImageView {
 
     @Override
     public final boolean hasOverlappingRendering() {
-        if (!(((ImageView) this.f16362b.f281c).getBackground() instanceof RippleDrawable) && super.hasOverlappingRendering()) {
+        if (!(((ImageView) this.f16360b.f281c).getBackground() instanceof RippleDrawable) && super.hasOverlappingRendering()) {
             return true;
         }
         return false;
@@ -86,7 +86,7 @@ public class w extends ImageView {
     @Override
     public void setBackgroundDrawable(Drawable drawable) {
         super.setBackgroundDrawable(drawable);
-        e2.c cVar = this.f16361a;
+        e2.c cVar = this.f16359a;
         if (cVar != null) {
             cVar.g();
         }
@@ -95,7 +95,7 @@ public class w extends ImageView {
     @Override
     public void setBackgroundResource(int i10) {
         super.setBackgroundResource(i10);
-        e2.c cVar = this.f16361a;
+        e2.c cVar = this.f16359a;
         if (cVar != null) {
             cVar.h(i10);
         }
@@ -104,7 +104,7 @@ public class w extends ImageView {
     @Override
     public void setImageBitmap(Bitmap bitmap) {
         super.setImageBitmap(bitmap);
-        a5.a aVar = this.f16362b;
+        a5.a aVar = this.f16360b;
         if (aVar != null) {
             aVar.c();
         }
@@ -112,14 +112,14 @@ public class w extends ImageView {
 
     @Override
     public void setImageDrawable(Drawable drawable) {
-        a5.a aVar = this.f16362b;
-        if (aVar != null && drawable != null && !this.f16363c) {
+        a5.a aVar = this.f16360b;
+        if (aVar != null && drawable != null && !this.f16361c) {
             aVar.f280b = drawable.getLevel();
         }
         super.setImageDrawable(drawable);
         if (aVar != null) {
             aVar.c();
-            if (!this.f16363c) {
+            if (!this.f16361c) {
                 ImageView imageView = (ImageView) aVar.f281c;
                 if (imageView.getDrawable() != null) {
                     imageView.getDrawable().setLevel(aVar.f280b);
@@ -131,12 +131,12 @@ public class w extends ImageView {
     @Override
     public void setImageLevel(int i10) {
         super.setImageLevel(i10);
-        this.f16363c = true;
+        this.f16361c = true;
     }
 
     @Override
     public void setImageResource(int i10) {
-        a5.a aVar = this.f16362b;
+        a5.a aVar = this.f16360b;
         if (aVar != null) {
             ImageView imageView = (ImageView) aVar.f281c;
             if (i10 != 0) {
@@ -155,48 +155,48 @@ public class w extends ImageView {
     @Override
     public void setImageURI(Uri uri) {
         super.setImageURI(uri);
-        a5.a aVar = this.f16362b;
+        a5.a aVar = this.f16360b;
         if (aVar != null) {
             aVar.c();
         }
     }
 
     public void setSupportBackgroundTintList(ColorStateList colorStateList) {
-        e2.c cVar = this.f16361a;
+        e2.c cVar = this.f16359a;
         if (cVar != null) {
             cVar.l(colorStateList);
         }
     }
 
     public void setSupportBackgroundTintMode(PorterDuff.Mode mode) {
-        e2.c cVar = this.f16361a;
+        e2.c cVar = this.f16359a;
         if (cVar != null) {
             cVar.m(mode);
         }
     }
 
     public void setSupportImageTintList(ColorStateList colorStateList) {
-        a5.a aVar = this.f16362b;
+        a5.a aVar = this.f16360b;
         if (aVar != null) {
             if (((e3) aVar.d) == null) {
                 aVar.d = new Object();
             }
             e3 e3Var = (e3) aVar.d;
-            e3Var.f16197c = colorStateList;
-            e3Var.f16196b = true;
+            e3Var.f16195c = colorStateList;
+            e3Var.f16194b = true;
             aVar.c();
         }
     }
 
     public void setSupportImageTintMode(PorterDuff.Mode mode) {
-        a5.a aVar = this.f16362b;
+        a5.a aVar = this.f16360b;
         if (aVar != null) {
             if (((e3) aVar.d) == null) {
                 aVar.d = new Object();
             }
             e3 e3Var = (e3) aVar.d;
             e3Var.d = mode;
-            e3Var.f16195a = true;
+            e3Var.f16193a = true;
             aVar.c();
         }
     }

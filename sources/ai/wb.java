@@ -41,9 +41,9 @@ public final class wb implements Runnable {
         this.d = i10;
     }
 
-    public wb(si.s0 s0Var, si.x xVar, boolean z10, File file, boolean z11, int i10, si.o0 o0Var) {
+    public wb(si.s0 s0Var, si.w wVar, boolean z10, File file, boolean z11, int i10, si.o0 o0Var) {
         this.e = s0Var;
-        this.f2389f = xVar;
+        this.f2389f = wVar;
         this.f2387b = z10;
         this.h = file;
         this.f2388c = z11;

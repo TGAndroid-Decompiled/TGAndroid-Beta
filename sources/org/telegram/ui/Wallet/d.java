@@ -14,12 +14,12 @@ import org.telegram.ui.Components.u61;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.Wallet.WalletEngine2;
 public final class d implements Utilities.Callback2 {
-    public final int f34112a;
-    public final Object f34113b;
+    public final int f34070a;
+    public final Object f34071b;
 
     public d(Object obj, int i10) {
-        this.f34112a = i10;
-        this.f34113b = obj;
+        this.f34070a = i10;
+        this.f34071b = obj;
     }
 
     @Override
@@ -27,9 +27,9 @@ public final class d implements Utilities.Callback2 {
         String str;
         String x10;
         s61 s61Var;
-        switch (this.f34112a) {
+        switch (this.f34070a) {
             case 0:
-                f fVar = (f) this.f34113b;
+                f fVar = (f) this.f34071b;
                 TL_wallet.currencyRates currencyrates = (TL_wallet.currencyRates) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
                 if (tL_error != null) {
@@ -40,7 +40,7 @@ public final class d implements Utilities.Callback2 {
                     return;
                 }
             case 1:
-                k kVar = (k) this.f34113b;
+                k kVar = (k) this.f34071b;
                 TL_wallet.walletTransaction wallettransaction = (TL_wallet.walletTransaction) obj;
                 String str2 = (String) obj2;
                 if (wallettransaction == null) {
@@ -59,10 +59,10 @@ public final class d implements Utilities.Callback2 {
                 kVar.run(Long.valueOf(wallettransaction.fee), null);
                 return;
             case 2:
-                ((Utilities.Callback2) this.f34113b).run((j0) obj, (String) obj2);
+                ((Utilities.Callback2) this.f34071b).run((j0) obj, (String) obj2);
                 return;
             case 3:
-                x xVar = (x) this.f34113b;
+                x xVar = (x) this.f34071b;
                 TLRPC.Bool bool = (TLRPC.Bool) obj;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
                 if (tL_error2 == null && (bool instanceof TLRPC.TL_boolTrue)) {
@@ -73,10 +73,10 @@ public final class d implements Utilities.Callback2 {
                 xVar.run(x10);
                 return;
             case 4:
-                f2 f2Var = (f2) this.f34113b;
+                f2 f2Var = (f2) this.f34071b;
                 TL_wallet.tonConnectSessions tonconnectsessions = (TL_wallet.tonConnectSessions) obj;
                 TLRPC.TL_error tL_error3 = (TLRPC.TL_error) obj2;
-                m0 m0Var = f2Var.f34224b;
+                m0 m0Var = f2Var.f34169b;
                 ArrayList arrayList = f2Var.d;
                 f2Var.e = -1;
                 if (tL_error3 == null && tonconnectsessions != null) {
@@ -93,30 +93,30 @@ public final class d implements Utilities.Callback2 {
                 return;
             case 5:
                 s61 s61Var2 = (s61) obj2;
-                ((ArrayList) obj).add(f61.k(((k2) this.f34113b).Y));
+                ((ArrayList) obj).add(f61.k(((k2) this.f34071b).Y));
                 return;
             case 6:
-                y2 y2Var = (y2) this.f34113b;
+                z2 z2Var = (z2) this.f34071b;
                 Bitmap bitmap = (Bitmap) obj;
                 Bitmap bitmap2 = (Bitmap) obj2;
-                if (!y2Var.P && !y2Var.O) {
-                    y2Var.G = bitmap;
-                    y2Var.f35117n.invalidate();
-                    y2Var.E.a(bitmap2);
-                    y2Var.h.post(new n(y2Var, 6));
+                if (!z2Var.Q && !z2Var.P) {
+                    z2Var.G = bitmap;
+                    z2Var.f35168n.invalidate();
+                    z2Var.E.a(bitmap2);
+                    z2Var.h.post(new u2(z2Var, 1));
                     return;
                 }
                 bitmap.recycle();
                 bitmap2.recycle();
                 return;
             case 7:
-                m5 m5Var = (m5) this.f34113b;
+                n5 n5Var = (n5) this.f34071b;
                 TL_account.Password password = (TL_account.Password) obj;
                 TLRPC.TL_error tL_error4 = (TLRPC.TL_error) obj2;
                 if (password != null) {
-                    m5Var.Q0 = true;
-                    m5Var.R0 = password.has_password;
-                    u61 u61Var = m5Var.f31197a;
+                    n5Var.O0 = true;
+                    n5Var.P0 = password.has_password;
+                    u61 u61Var = n5Var.f31190a;
                     if (u61Var != null && (s61Var = u61Var.W2) != null) {
                         s61Var.N(true);
                         return;
@@ -125,7 +125,7 @@ public final class d implements Utilities.Callback2 {
                 }
                 return;
             case 8:
-                Utilities.Callback callback = (Utilities.Callback) this.f34113b;
+                Utilities.Callback callback = (Utilities.Callback) this.f34071b;
                 TL_toncenter.onrampSession onrampsession = (TL_toncenter.onrampSession) obj;
                 TLRPC.TL_error tL_error5 = (TLRPC.TL_error) obj2;
                 if (onrampsession != null && !TextUtils.isEmpty(onrampsession.url)) {
@@ -140,18 +140,18 @@ public final class d implements Utilities.Callback2 {
                 callback.run((tL_error5 == null || (r5 = tL_error5.text) == null) ? "NO_SESSION" : "NO_SESSION");
                 return;
             case 9:
-                WalletEngine2.HttpTransport.lambda$execute$0((h7) this.f34113b, (TL_toncenter.apiResponse) obj, (TLRPC.TL_error) obj2);
+                WalletEngine2.HttpTransport.lambda$execute$0((b7) this.f34071b, (TL_toncenter.apiResponse) obj, (TLRPC.TL_error) obj2);
                 return;
             default:
                 String str3 = (String) obj;
                 Boolean bool2 = (Boolean) obj2;
-                ((w9) this.f34113b).f35046f = false;
+                ((r9) this.f34071b).f34790f = false;
                 return;
         }
     }
 
     public d(m0 m0Var, k kVar) {
-        this.f34112a = 1;
-        this.f34113b = kVar;
+        this.f34070a = 1;
+        this.f34071b = kVar;
     }
 }

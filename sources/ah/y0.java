@@ -5,7 +5,7 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.Rect;
 import android.view.View;
-import ci.g3;
+import ci.f3;
 import j$.util.Objects;
 import org.telegram.messenger.DocumentObject;
 import org.telegram.messenger.ImageLocation;
@@ -39,9 +39,9 @@ public final class y0 {
         r5 r5Var = this.f910b;
         Rect rect = this.f911c;
         if (r5Var != null) {
-            g3 g3Var = r5Var.f29849k;
-            if (g3Var != null) {
-                g3Var.setRoundRadius((int) (rect.width() * 0.1f));
+            f3 f3Var = r5Var.f29842k;
+            if (f3Var != null) {
+                f3Var.setRoundRadius((int) (rect.width() * 0.1f));
             }
             this.f910b.setColorFilter(this.f916k);
             this.f910b.setBounds(rect);
@@ -111,7 +111,7 @@ public final class y0 {
             if (i1Var.f785f != null) {
                 TLRPC.TL_availableReaction tL_availableReaction = MediaDataController.getInstance(this.d).getReactionsMap().get(i1Var.f785f);
                 if (tL_availableReaction != null) {
-                    imageReceiver.setImage(ImageLocation.getForDocument(tL_availableReaction.select_animation), str2, null, null, DocumentObject.getSvgThumb(tL_availableReaction.select_animation, h6.f21156m6, 0.2f), 0L, "tgs", i1Var, 0);
+                    imageReceiver.setImage(ImageLocation.getForDocument(tL_availableReaction.select_animation), str2, null, null, DocumentObject.getSvgThumb(tL_availableReaction.select_animation, h6.f21149m6, 0.2f), 0L, "tgs", i1Var, 0);
                     return;
                 }
                 return;

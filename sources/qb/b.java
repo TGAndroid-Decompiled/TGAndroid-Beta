@@ -1,8 +1,8 @@
 package qb;
 public final class b {
-    public final qa.b f44472a;
+    public final qa.b f44429a;
 
     public b(qa.b bVar) {
-        this.f44472a = bVar;
+        this.f44429a = bVar;
     }
 }

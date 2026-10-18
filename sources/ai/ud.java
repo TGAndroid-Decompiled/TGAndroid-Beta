@@ -20,13 +20,13 @@ public final class ud extends ie {
         long j10 = i10;
         le leVar = this.f2281o0;
         leVar.t(j10);
-        ei.d dVar = leVar.f1797x;
+        ei.d dVar = leVar.f1799x;
         if (dVar != null) {
             dVar.g(md.W0(false, LocaleController.formatString(R.string.StarsReactionSend, LocaleController.formatNumber(j10, ',')), leVar.R), true, true);
         }
         if (this.m0) {
             ci.v0 v0Var = leVar.G;
-            v0Var.f6071g = j10;
+            v0Var.f5998g = j10;
             leVar.H.set(v0Var);
             int i11 = this.f2280n0;
             f(ci.u.b(i11, i10, 3), ci.u.b(i11, i10, 4), true);

@@ -16,13 +16,13 @@ public final class qb0 extends c91 {
         boolean z10;
         int i10 = 0;
         while (true) {
-            View[] viewArr = this.T.f28931f.e;
+            View[] viewArr = this.T.f28924f.e;
             if (i10 < viewArr.length) {
                 View view = viewArr[i10];
                 if (view != null) {
                     ic0 ic0Var = (ic0) view;
-                    if (ic0Var.f27187a == 0) {
-                        z10 = ic0Var.e.f21998i;
+                    if (ic0Var.f27180a == 0) {
+                        z10 = ic0Var.e.f21991i;
                         break;
                     }
                 }
@@ -49,7 +49,7 @@ public final class qb0 extends c91 {
     @Override
     public final void w(boolean z10) {
         oc0 oc0Var = this.T;
-        oc0Var.e.setSelectedTab(oc0Var.f28931f.getPositionAnimated());
+        oc0Var.e.setSelectedTab(oc0Var.f28924f.getPositionAnimated());
         View[] viewArr = this.e;
         View view = viewArr[0];
         if (view instanceof ic0) {

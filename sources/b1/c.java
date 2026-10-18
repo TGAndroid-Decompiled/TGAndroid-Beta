@@ -18,12 +18,12 @@ public final class c implements td.a {
     public final Object invoke() {
         switch (this.f3657a) {
             case 0:
-                this.f3658b.invoke(this.f3659c.f15704a);
+                this.f3658b.invoke(this.f3659c.f15702a);
                 break;
             default:
-                this.f3658b.invoke(this.f3659c.f15704a);
+                this.f3658b.invoke(this.f3659c.f15702a);
                 break;
         }
-        return i.f12777a;
+        return i.f12775a;
     }
 }

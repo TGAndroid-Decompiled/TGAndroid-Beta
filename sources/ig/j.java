@@ -14,26 +14,26 @@ import org.telegram.ui.Components.f6;
 import org.telegram.ui.Components.ti;
 import org.telegram.ui.u10;
 public final class j extends FrameLayout {
-    public final int f12933a = 0;
-    public int f12934b;
-    public final Object f12935c;
+    public final int f12931a = 0;
+    public int f12932b;
+    public final Object f12933c;
     public final Object d;
     public final NotificationCenter.NotificationCenterDelegate e;
 
     public j(m mVar, Context context) {
         super(context);
         this.e = mVar;
-        this.f12934b = -1;
-        this.f12935c = new Rect();
+        this.f12932b = -1;
+        this.f12933c = new Rect();
         this.d = new f6(this, 220L, bs.h);
     }
 
     @Override
     public void dispatchDraw(Canvas canvas) {
-        switch (this.f12933a) {
+        switch (this.f12931a) {
             case 1:
                 u10 u10Var = (u10) this.d;
-                Path path = (Path) this.f12935c;
+                Path path = (Path) this.f12933c;
                 ti tiVar = (ti) this.e;
                 dh.d dVar = tiVar.E0;
                 if (dVar != null) {
@@ -67,16 +67,16 @@ public final class j extends FrameLayout {
 
     @Override
     public boolean drawChild(Canvas canvas, View view, long j10) {
-        switch (this.f12933a) {
+        switch (this.f12931a) {
             case 0:
                 float width = getWidth() / 2.0f;
                 m mVar = (m) this.e;
-                float d = ((f6) this.d).d(mVar.f12959n.getWidth(), false);
-                Rect rect = (Rect) this.f12935c;
+                float d = ((f6) this.d).d(mVar.f12957n.getWidth(), false);
+                Rect rect = (Rect) this.f12933c;
                 float f7 = d / 2.0f;
-                rect.set((int) (width - (mVar.f12959n.getScaleX() * f7)), (int) (((1.0f - mVar.f12959n.getScaleY()) * mVar.f12959n.getHeight()) + mVar.f12959n.getY()), (int) ((mVar.f12959n.getScaleX() * f7) + width), (int) (mVar.f12959n.getY() + mVar.f12959n.getHeight()));
-                mVar.f12960r.setBounds(rect);
-                mVar.f12960r.draw(canvas);
+                rect.set((int) (width - (mVar.f12957n.getScaleX() * f7)), (int) (((1.0f - mVar.f12957n.getScaleY()) * mVar.f12957n.getHeight()) + mVar.f12957n.getY()), (int) ((mVar.f12957n.getScaleX() * f7) + width), (int) (mVar.f12957n.getY() + mVar.f12957n.getHeight()));
+                mVar.f12958r.setBounds(rect);
+                mVar.f12958r.draw(canvas);
                 return super.drawChild(canvas, view, j10);
             default:
                 return super.drawChild(canvas, view, j10);
@@ -85,16 +85,16 @@ public final class j extends FrameLayout {
 
     @Override
     public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        switch (this.f12933a) {
+        switch (this.f12931a) {
             case 1:
-                int i14 = this.f12934b;
+                int i14 = this.f12932b;
                 ti tiVar = (ti) this.e;
-                int top = i14 - tiVar.f30633w.getTop();
+                int top = i14 - tiVar.f30626w.getTop();
                 super.onLayout(z10, i10, i11, i12, i13);
-                this.f12934b = getHeight();
-                if (tiVar.f30633w.getVisibility() == 0 && getHeight() - tiVar.f30633w.getTop() != top) {
-                    tiVar.f30633w.setTranslationY(tiVar.f30633w.getTranslationY() + ((getHeight() - tiVar.f30633w.getTop()) - top));
-                    tiVar.f30633w.animate().translationY(0.0f).setDuration(320L).setInterpolator(bs.h).start();
+                this.f12932b = getHeight();
+                if (tiVar.f30626w.getVisibility() == 0 && getHeight() - tiVar.f30626w.getTop() != top) {
+                    tiVar.f30626w.setTranslationY(tiVar.f30626w.getTranslationY() + ((getHeight() - tiVar.f30626w.getTop()) - top));
+                    tiVar.f30626w.animate().translationY(0.0f).setDuration(320L).setInterpolator(bs.h).start();
                     return;
                 }
                 return;
@@ -106,14 +106,14 @@ public final class j extends FrameLayout {
 
     @Override
     public void onMeasure(int i10, int i11) {
-        switch (this.f12933a) {
+        switch (this.f12931a) {
             case 0:
                 m mVar = (m) this.e;
-                mVar.f12959n.measure(i10, i11);
+                mVar.f12957n.measure(i10, i11);
                 invalidate();
-                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(Math.max(this.f12934b, AndroidUtilities.dp(36.0f) + mVar.f12959n.getMeasuredHeight()), 1073741824));
-                if (this.f12934b < 0) {
-                    this.f12934b = getMeasuredHeight();
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(Math.max(this.f12932b, AndroidUtilities.dp(36.0f) + mVar.f12957n.getMeasuredHeight()), 1073741824));
+                if (this.f12932b < 0) {
+                    this.f12932b = getMeasuredHeight();
                     return;
                 }
                 return;
@@ -126,7 +126,7 @@ public final class j extends FrameLayout {
     public j(ti tiVar, Context context) {
         super(context);
         this.e = tiVar;
-        this.f12935c = new Path();
+        this.f12933c = new Path();
         this.d = new u10();
     }
 }

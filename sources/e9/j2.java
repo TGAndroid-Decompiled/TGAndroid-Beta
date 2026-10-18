@@ -7,11 +7,11 @@ import java.util.Set;
 import w7.g9;
 import w7.m8;
 public abstract class j2 extends AbstractSet {
-    public final int f8467a;
+    public final int f8465a;
 
     @Override
     public boolean removeAll(Collection collection) {
-        switch (this.f8467a) {
+        switch (this.f8465a) {
             case 0:
                 collection.getClass();
                 if (collection instanceof r1) {
@@ -41,7 +41,7 @@ public abstract class j2 extends AbstractSet {
 
     @Override
     public boolean retainAll(Collection collection) {
-        switch (this.f8467a) {
+        switch (this.f8465a) {
             case 0:
                 collection.getClass();
                 return super.retainAll(collection);

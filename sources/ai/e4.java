@@ -1,73 +1,39 @@
 package ai;
+public final class e4 implements Runnable {
+    public final int f1208a;
+    public final yh.i0 f1209b;
 
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.sv0;
-import org.telegram.ui.gh;
-public final class e4 implements Utilities.Callback {
-    public final int f1204a = 0;
-    public final int f1205b;
-    public final long f1206c;
-    public final Object d;
-
-    public e4(int i10, long j10, TLRPC.Document document) {
-        this.f1205b = i10;
-        this.f1206c = j10;
-        this.d = document;
+    public e4(yh.i0 i0Var, int i10) {
+        this.f1208a = i10;
+        this.f1209b = i0Var;
     }
 
     @Override
-    public final void run(Object obj) {
-        Object string;
-        TLRPC.StickerSet stickerSet;
-        int i10 = this.f1204a;
-        int i11 = this.f1205b;
-        long j10 = this.f1206c;
-        Object obj2 = this.d;
-        switch (i10) {
+    public final void run() {
+        switch (this.f1208a) {
             case 0:
-                TLRPC.Document document = (TLRPC.Document) obj2;
-                if (((Boolean) obj).booleanValue()) {
-                    ga.y(i11, false).Q(j10);
-                    AndroidUtilities.runOnUIThread(new a3.l0(document, LocaleController.getString(R.string.Gift2MovedToProfile), new o4(j10, 0), 8));
-                    return;
-                }
+                this.f1209b.dismiss();
                 return;
             case 1:
-                org.telegram.ui.Components.qc qcVar = (org.telegram.ui.Components.qc) obj2;
-                TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) obj;
-                if (tL_messages_stickerSet != null && (stickerSet = tL_messages_stickerSet.set) != null) {
-                    if (i11 == 1) {
-                        string = AndroidUtilities.replaceTags(LocaleController.formatString("TopicContainsEmojiPackSingle", R.string.TopicContainsEmojiPackSingle, stickerSet.title));
-                    } else if (i11 == 2) {
-                        string = AndroidUtilities.replaceTags(LocaleController.formatString("StoryContainsEmojiPackSingle", R.string.StoryContainsEmojiPackSingle, stickerSet.title));
-                    } else {
-                        string = AndroidUtilities.replaceTags(LocaleController.formatString("MessageContainsEmojiPackSingle", R.string.MessageContainsEmojiPackSingle, stickerSet.title));
-                    }
-                } else {
-                    string = LocaleController.getString(R.string.AddEmojiNotFound);
+                yh.i0 i0Var = this.f1209b;
+                qh.i iVar = i0Var.h;
+                ih.f fVar = i0Var.f50289f;
+                if (fVar != null) {
+                    fVar.d();
                 }
-                AndroidUtilities.runOnUIThread(new gh(26, qcVar, string), Math.max(1L, 750 - (System.currentTimeMillis() - j10)));
+                yh.h0 h0Var = i0Var.H;
+                if (h0Var != null) {
+                    h0Var.setTranslationY(-iVar.d());
+                }
+                org.telegram.ui.Components.q6 q6Var = i0Var.f50293w;
+                if (q6Var != null) {
+                    q6Var.setTranslationY(-iVar.d());
+                }
+                i0Var.p();
                 return;
             default:
-                ((sv0) obj2).getStoriesController().b(i11, j10, (ArrayList) obj);
+                this.f1209b.H.performClick();
                 return;
         }
-    }
-
-    public e4(int i10, org.telegram.ui.Components.qc qcVar, long j10) {
-        this.f1205b = i10;
-        this.d = qcVar;
-        this.f1206c = j10;
-    }
-
-    public e4(sv0 sv0Var, long j10, int i10) {
-        this.d = sv0Var;
-        this.f1206c = j10;
-        this.f1205b = i10;
     }
 }

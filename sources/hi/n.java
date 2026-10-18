@@ -11,21 +11,21 @@ import org.telegram.ui.ActionBar.y5;
 import org.telegram.ui.Components.w9;
 import w7.z5;
 public final class n extends FrameLayout implements y5 {
-    public final w9 f12190a;
+    public final w9 f12188a;
 
     public n(Context context) {
         super(context);
         w9 w9Var = new w9(context);
-        this.f12190a = w9Var;
+        this.f12188a = w9Var;
         w9Var.setRoundRadius(AndroidUtilities.dp(20.0f));
-        addView(w9Var, z5.a(72.0f, 0.0f, 0.0f, 0.0f, 28.0f, 72, 81));
+        addView(w9Var, z5.d(72, 72.0f, 81, 0.0f, 0.0f, 0.0f, 28.0f));
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
         Drawable drawable = h6.S0;
-        w9 w9Var = this.f12190a;
+        w9 w9Var = this.f12188a;
         zf.p.a(canvas, drawable, (w9Var.getWidth() / 2.0f) + w9Var.getLeft(), (w9Var.getHeight() / 2.0f) + w9Var.getTop(), w9Var.getHeight());
     }
 

@@ -20,24 +20,24 @@ import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class ns0 implements et {
-    public final String f39560a;
-    public final VideoEditedInfo f39561b;
-    public final MediaController.PhotoEntry f39562c;
+    public final String f39552a;
+    public final VideoEditedInfo f39553b;
+    public final MediaController.PhotoEntry f39554c;
     public final boolean d;
     public final int e;
-    public final int f39563f;
-    public final boolean f39564g;
+    public final int f39555f;
+    public final boolean f39556g;
     public final PhotoViewer h;
 
     public ns0(PhotoViewer photoViewer, String str, VideoEditedInfo videoEditedInfo, MediaController.PhotoEntry photoEntry, boolean z10, int i10, int i11, boolean z11) {
         this.h = photoViewer;
-        this.f39560a = str;
-        this.f39561b = videoEditedInfo;
-        this.f39562c = photoEntry;
+        this.f39552a = str;
+        this.f39553b = videoEditedInfo;
+        this.f39554c = photoEntry;
         this.d = z10;
         this.e = i10;
-        this.f39563f = i11;
-        this.f39564g = z11;
+        this.f39555f = i11;
+        this.f39556g = z11;
     }
 
     @Override
@@ -47,7 +47,7 @@ public final class ns0 implements et {
 
     @Override
     public final boolean B() {
-        if (this.h.f33450x7 != null) {
+        if (this.h.f33443x7 != null) {
             return true;
         }
         return false;
@@ -75,7 +75,7 @@ public final class ns0 implements et {
 
     @Override
     public final boolean J() {
-        if (this.h.f33412t7 != null) {
+        if (this.h.f33405t7 != null) {
             return true;
         }
         return false;
@@ -89,9 +89,9 @@ public final class ns0 implements et {
     @Override
     public final void O(String str) {
         PhotoViewer photoViewer = this.h;
-        photoViewer.f33440w7 = true;
+        photoViewer.f33433w7 = true;
         R();
-        photoViewer.p5.p(this.f39560a, this.f39561b, str, null, true, 0L, null, null, photoViewer.v1(), this.f39562c.thumbPath, null, null);
+        photoViewer.p5.p(this.f39552a, this.f39553b, str, null, true, 0L, null, null, photoViewer.v1(), this.f39554c.thumbPath, null, null);
     }
 
     @Override
@@ -107,7 +107,7 @@ public final class ns0 implements et {
     public final void R() {
         gt q6 = gt.q();
         ImageReceiver imageReceiver = q6.A;
-        MediaController.PhotoEntry photoEntry = this.f39562c;
+        MediaController.PhotoEntry photoEntry = this.f39554c;
         if (photoEntry.thumbPath != null) {
             try {
                 new File(photoEntry.thumbPath).delete();
@@ -194,9 +194,9 @@ public final class ns0 implements et {
     @Override
     public final void m(String str) {
         PhotoViewer photoViewer = this.h;
-        photoViewer.f33440w7 = true;
+        photoViewer.f33433w7 = true;
         R();
-        photoViewer.p5.p(this.f39560a, this.f39561b, str, null, false, 0L, null, null, photoViewer.v1(), this.f39562c.thumbPath, null, photoViewer.f33450x7);
+        photoViewer.p5.p(this.f39552a, this.f39553b, str, null, false, 0L, null, null, photoViewer.v1(), this.f39554c.thumbPath, null, photoViewer.f33443x7);
     }
 
     @Override
@@ -207,9 +207,9 @@ public final class ns0 implements et {
     @Override
     public final void t(CharSequence charSequence, String str, org.telegram.ui.Components.qy qyVar) {
         PhotoViewer photoViewer = this.h;
-        photoViewer.f33440w7 = true;
+        photoViewer.f33433w7 = true;
         R();
-        photoViewer.p5.p(this.f39560a, this.f39561b, str, charSequence, false, 0L, null, null, photoViewer.v1(), this.f39562c.thumbPath, qyVar, null);
+        photoViewer.p5.p(this.f39552a, this.f39553b, str, charSequence, false, 0L, null, null, photoViewer.v1(), this.f39554c.thumbPath, qyVar, null);
     }
 
     @Override
@@ -220,9 +220,9 @@ public final class ns0 implements et {
     @Override
     public final void w(TLRPC.StickerSet stickerSet, String str) {
         PhotoViewer photoViewer = this.h;
-        photoViewer.f33440w7 = true;
+        photoViewer.f33433w7 = true;
         R();
-        photoViewer.p5.p(this.f39560a, this.f39561b, str, null, false, 0L, stickerSet, photoViewer.f33412t7, photoViewer.v1(), this.f39562c.thumbPath, null, null);
+        photoViewer.p5.p(this.f39552a, this.f39553b, str, null, false, 0L, stickerSet, photoViewer.f33405t7, photoViewer.v1(), this.f39554c.thumbPath, null, null);
     }
 
     @Override
@@ -244,20 +244,20 @@ public final class ns0 implements et {
         ju0 ju0Var = photoViewer.d;
         if (ju0Var != null) {
             boolean Q = ju0Var.Q();
-            MediaController.PhotoEntry photoEntry = this.f39562c;
+            MediaController.PhotoEntry photoEntry = this.f39554c;
             if (Q) {
                 if (photoViewer.l4 == null) {
                     return;
                 }
-                photoViewer.f33440w7 = true;
+                photoViewer.f33433w7 = true;
                 R();
-                photoViewer.p5.p(this.f39560a, this.f39561b, str, null, false, photoViewer.l4.a(), null, null, photoViewer.v1(), photoEntry.thumbPath, null, null);
+                photoViewer.p5.p(this.f39552a, this.f39553b, str, null, false, photoViewer.l4.a(), null, null, photoViewer.v1(), photoEntry.thumbPath, null, null);
                 return;
             }
-            photoViewer.f33440w7 = true;
+            photoViewer.f33433w7 = true;
             R();
-            photoEntry.imagePath = this.f39560a;
-            photoViewer.d.o(photoViewer.P4, this.f39561b, this.d, this.e, this.f39563f, this.f39564g);
+            photoEntry.imagePath = this.f39552a;
+            photoViewer.d.o(photoViewer.P4, this.f39553b, this.d, this.e, this.f39555f, this.f39556g);
             NotificationCenter.getInstance(UserConfig.selectedAccount).postNotificationNameOnUIThread(NotificationCenter.customStickerCreated, Boolean.TRUE);
         }
     }

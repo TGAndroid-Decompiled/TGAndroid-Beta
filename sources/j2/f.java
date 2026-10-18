@@ -35,119 +35,118 @@ import i2.y;
 import java.io.IOException;
 import java.util.List;
 import n2.l;
-import u2.b0;
-import u2.f0;
-import u2.j0;
-import u2.t;
+import u2.c0;
+import u2.k0;
+import u2.u;
 import v7.u6;
-public final class f implements d1, j0, l {
-    public final g0 f13941a;
-    public final l1 f13942b;
-    public final n1 f13943c;
+public final class f implements d1, k0, l {
+    public final g0 f13939a;
+    public final l1 f13940b;
+    public final n1 f13941c;
     public final com.google.firebase.messaging.l d;
     public final SparseArray e;
-    public r f13944f;
+    public r f13942f;
     public f1 h;
-    public i0 f13945n;
-    public boolean f13946r;
+    public i0 f13943n;
+    public boolean f13944r;
 
     public f(g0 g0Var) {
         g0Var.getClass();
-        this.f13941a = g0Var;
-        String str = m0.f8255a;
+        this.f13939a = g0Var;
+        String str = m0.f8253a;
         Looper myLooper = Looper.myLooper();
-        this.f13944f = new r((myLooper == null ? Looper.getMainLooper() : myLooper).getThread());
+        this.f13942f = new r((myLooper == null ? Looper.getMainLooper() : myLooper).getThread());
         l1 l1Var = new l1();
-        this.f13942b = l1Var;
-        this.f13943c = new n1();
+        this.f13940b = l1Var;
+        this.f13941c = new n1();
         ?? obj = new Object();
-        obj.f7648a = l1Var;
-        l0 l0Var = n0.f8477b;
-        obj.f7649b = x1.e;
-        obj.f7650c = c2.h;
+        obj.f7646a = l1Var;
+        l0 l0Var = n0.f8475b;
+        obj.f7647b = x1.e;
+        obj.f7648c = c2.h;
         this.d = obj;
         this.e = new SparseArray();
     }
 
     @Override
-    public final void a(int i10, f0 f0Var, int i11) {
-        a o10 = o(i10, f0Var);
+    public final void a(int i10, u2.g0 g0Var, int i11) {
+        a o10 = o(i10, g0Var);
         q(o10, 1022, new c(o10, i11, 27, (char) 0));
     }
 
     @Override
-    public final void b(int i10, f0 f0Var, Exception exc) {
-        a o10 = o(i10, f0Var);
+    public final void b(int i10, u2.g0 g0Var, Exception exc) {
+        a o10 = o(i10, g0Var);
         q(o10, 1024, new c(o10, exc, 28));
     }
 
     @Override
-    public final void c(int i10, f0 f0Var, oa.d dVar) {
-        a o10 = o(i10, f0Var);
+    public final void c(int i10, u2.g0 g0Var, oa.d dVar) {
+        a o10 = o(i10, g0Var);
         q(o10, 1023, new e(o10, dVar, 14));
     }
 
     @Override
-    public final void d(int i10, f0 f0Var, b0 b0Var) {
-        a o10 = o(i10, f0Var);
-        q(o10, 1005, new e(o10, b0Var, 6));
+    public final void d(int i10, u2.g0 g0Var, c0 c0Var) {
+        a o10 = o(i10, g0Var);
+        q(o10, 1005, new e(o10, c0Var, 6));
     }
 
     @Override
-    public final void e(int i10, f0 f0Var, b0 b0Var) {
-        a o10 = o(i10, f0Var);
-        q(o10, 1004, new h0(20, o10, b0Var));
+    public final void e(int i10, u2.g0 g0Var, c0 c0Var) {
+        a o10 = o(i10, g0Var);
+        q(o10, 1004, new h0(20, o10, c0Var));
     }
 
     @Override
-    public final void f(int i10, f0 f0Var, t tVar, b0 b0Var) {
-        a o10 = o(i10, f0Var);
-        q(o10, 1001, new c(o10, tVar, b0Var, 29, (byte) 0));
+    public final void f(int i10, u2.g0 g0Var, u uVar, c0 c0Var) {
+        a o10 = o(i10, g0Var);
+        q(o10, 1001, new c(o10, uVar, c0Var, 29, (byte) 0));
     }
 
     @Override
-    public final void g(int i10, f0 f0Var, t tVar, b0 b0Var, IOException iOException, boolean z10) {
-        a o10 = o(i10, f0Var);
-        q(o10, 1003, new e1.c(o10, tVar, b0Var, iOException, z10));
+    public final void g(int i10, u2.g0 g0Var, u uVar, c0 c0Var, IOException iOException, boolean z10) {
+        a o10 = o(i10, g0Var);
+        q(o10, 1003, new e1.c(o10, uVar, c0Var, iOException, z10));
     }
 
     @Override
-    public final void h(int i10, f0 f0Var) {
-        a o10 = o(i10, f0Var);
+    public final void h(int i10, u2.g0 g0Var) {
+        a o10 = o(i10, g0Var);
         q(o10, 1027, new e(o10, 7));
     }
 
     @Override
-    public final void i(int i10, f0 f0Var, t tVar, b0 b0Var, int i11) {
-        a o10 = o(i10, f0Var);
-        q(o10, 1000, new c(o10, tVar, b0Var, i11));
+    public final void i(int i10, u2.g0 g0Var, u uVar, c0 c0Var, int i11) {
+        a o10 = o(i10, g0Var);
+        q(o10, 1000, new c(o10, uVar, c0Var, i11));
     }
 
     @Override
-    public final void j(int i10, f0 f0Var) {
-        a o10 = o(i10, f0Var);
+    public final void j(int i10, u2.g0 g0Var) {
+        a o10 = o(i10, g0Var);
         q(o10, 1025, new e(o10, 15));
     }
 
     @Override
-    public final void k(int i10, f0 f0Var, t tVar, b0 b0Var) {
-        a o10 = o(i10, f0Var);
-        q(o10, 1002, new c(o10, tVar, b0Var, 25, (byte) 0));
+    public final void k(int i10, u2.g0 g0Var, u uVar, c0 c0Var) {
+        a o10 = o(i10, g0Var);
+        q(o10, 1002, new c(o10, uVar, c0Var, 25, (byte) 0));
     }
 
     public final a l() {
-        return n((f0) this.d.d);
+        return n((u2.g0) this.d.d);
     }
 
-    public final a m(o1 o1Var, int i10, f0 f0Var) {
-        f0 f0Var2;
+    public final a m(o1 o1Var, int i10, u2.g0 g0Var) {
+        u2.g0 g0Var2;
         boolean z10;
         if (o1Var.p()) {
-            f0Var2 = null;
+            g0Var2 = null;
         } else {
-            f0Var2 = f0Var;
+            g0Var2 = g0Var;
         }
-        this.f13941a.getClass();
+        this.f13939a.getClass();
         long elapsedRealtime = SystemClock.elapsedRealtime();
         if (o1Var.equals(this.h.y0()) && i10 == this.h.n0()) {
             z10 = true;
@@ -155,28 +154,28 @@ public final class f implements d1, j0, l {
             z10 = false;
         }
         long j10 = 0;
-        if (f0Var2 != null && f0Var2.b()) {
-            if (z10 && this.h.m0() == f0Var2.f47348b && this.h.N() == f0Var2.f47349c) {
+        if (g0Var2 != null && g0Var2.b()) {
+            if (z10 && this.h.m0() == g0Var2.f47306b && this.h.N() == g0Var2.f47307c) {
                 j10 = this.h.M0();
             }
         } else if (z10) {
             j10 = this.h.a0();
         } else if (!o1Var.p()) {
-            j10 = m0.h0(o1Var.m(i10, this.f13943c, 0L).f3879l);
+            j10 = m0.h0(o1Var.m(i10, this.f13941c, 0L).f3879l);
         }
-        return new a(elapsedRealtime, o1Var, i10, f0Var2, j10, this.h.y0(), this.h.n0(), (f0) this.d.d, this.h.M0(), this.h.q());
+        return new a(elapsedRealtime, o1Var, i10, g0Var2, j10, this.h.y0(), this.h.n0(), (u2.g0) this.d.d, this.h.M0(), this.h.q());
     }
 
-    public final a n(f0 f0Var) {
+    public final a n(u2.g0 g0Var) {
         o1 o1Var;
         this.h.getClass();
-        if (f0Var == null) {
+        if (g0Var == null) {
             o1Var = null;
         } else {
-            o1Var = (o1) ((c2) this.d.f7650c).get(f0Var);
+            o1Var = (o1) ((c2) this.d.f7648c).get(g0Var);
         }
-        if (f0Var != null && o1Var != null) {
-            return m(o1Var, o1Var.g(f0Var.f47347a, this.f13942b).f3826c, f0Var);
+        if (g0Var != null && o1Var != null) {
+            return m(o1Var, o1Var.g(g0Var.f47305a, this.f13940b).f3826c, g0Var);
         }
         int n02 = this.h.n0();
         o1 y02 = this.h.y0();
@@ -186,13 +185,13 @@ public final class f implements d1, j0, l {
         return m(y02, n02, null);
     }
 
-    public final a o(int i10, f0 f0Var) {
+    public final a o(int i10, u2.g0 g0Var) {
         this.h.getClass();
-        if (f0Var != null) {
-            if (((o1) ((c2) this.d.f7650c).get(f0Var)) != null) {
-                return n(f0Var);
+        if (g0Var != null) {
+            if (((o1) ((c2) this.d.f7648c).get(g0Var)) != null) {
+                return n(g0Var);
             }
-            return m(o1.f3894a, i10, f0Var);
+            return m(o1.f3894a, i10, g0Var);
         }
         o1 y02 = this.h.y0();
         if (i10 >= y02.o()) {
@@ -282,9 +281,9 @@ public final class f implements d1, j0, l {
     @Override
     public final void onPlayerError(y0 y0Var) {
         a l4;
-        f0 f0Var;
-        if ((y0Var instanceof m) && (f0Var = ((m) y0Var).E) != null) {
-            l4 = n(f0Var);
+        u2.g0 g0Var;
+        if ((y0Var instanceof m) && (g0Var = ((m) y0Var).E) != null) {
+            l4 = n(g0Var);
         } else {
             l4 = l();
         }
@@ -294,9 +293,9 @@ public final class f implements d1, j0, l {
     @Override
     public final void onPlayerErrorChanged(y0 y0Var) {
         a l4;
-        f0 f0Var;
-        if ((y0Var instanceof m) && (f0Var = ((m) y0Var).E) != null) {
-            l4 = n(f0Var);
+        u2.g0 g0Var;
+        if ((y0Var instanceof m) && (g0Var = ((m) y0Var).E) != null) {
+            l4 = n(g0Var);
         } else {
             l4 = l();
         }
@@ -348,7 +347,7 @@ public final class f implements d1, j0, l {
         f1 f1Var = this.h;
         f1Var.getClass();
         com.google.firebase.messaging.l lVar = this.d;
-        lVar.d = com.google.firebase.messaging.l.t(f1Var, (n0) lVar.f7649b, (f0) lVar.e, (l1) lVar.f7648a);
+        lVar.d = com.google.firebase.messaging.l.t(f1Var, (n0) lVar.f7647b, (u2.g0) lVar.e, (l1) lVar.f7646a);
         lVar.M(f1Var.y0());
         a l4 = l();
         q(l4, 0, new e(l4, i10, 20));
@@ -379,18 +378,18 @@ public final class f implements d1, j0, l {
     }
 
     public final a p() {
-        return n((f0) this.d.f7651f);
+        return n((u2.g0) this.d.f7649f);
     }
 
     public final void q(a aVar, int i10, o oVar) {
         this.e.put(i10, aVar);
-        this.f13944f.e(i10, oVar);
+        this.f13942f.e(i10, oVar);
     }
 
     public final void r(i2.h0 h0Var, Looper looper) {
         boolean z10;
         boolean z11 = true;
-        if (this.h != null && !((n0) this.d.f7649b).isEmpty()) {
+        if (this.h != null && !((n0) this.d.f7647b).isEmpty()) {
             z10 = false;
         } else {
             z10 = true;
@@ -398,27 +397,27 @@ public final class f implements d1, j0, l {
         u6.p(z10);
         h0Var.getClass();
         this.h = h0Var;
-        this.f13945n = this.f13941a.a(looper, null);
-        r rVar = this.f13944f;
+        this.f13943n = this.f13939a.a(looper, null);
+        r rVar = this.f13942f;
         h0 h0Var2 = new h0(19, this, h0Var);
         rVar.getClass();
-        g0 g0Var = this.f13941a;
+        g0 g0Var = this.f13939a;
         if (g0Var == null) {
             z11 = false;
         }
         u6.p(z11);
-        this.f13944f = new r(rVar.d, looper, looper.getThread(), g0Var, h0Var2, rVar.f8280i);
+        this.f13942f = new r(rVar.d, looper, looper.getThread(), g0Var, h0Var2, rVar.f8278i);
     }
 
     @Override
     public final void onPositionDiscontinuity(e1 e1Var, e1 e1Var2, int i10) {
         if (i10 == 1) {
-            this.f13946r = false;
+            this.f13944r = false;
         }
         f1 f1Var = this.h;
         f1Var.getClass();
         com.google.firebase.messaging.l lVar = this.d;
-        lVar.d = com.google.firebase.messaging.l.t(f1Var, (n0) lVar.f7649b, (f0) lVar.e, (l1) lVar.f7648a);
+        lVar.d = com.google.firebase.messaging.l.t(f1Var, (n0) lVar.f7647b, (u2.g0) lVar.e, (l1) lVar.f7646a);
         a l4 = l();
         q(l4, 11, new i2.r(l4, i10, e1Var, e1Var2));
     }

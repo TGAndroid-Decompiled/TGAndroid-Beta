@@ -12,12 +12,12 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class z01 extends org.telegram.ui.Components.hm0 {
-    public final Context f43538c;
+    public final Context f43502c;
     public final b11 d;
 
     public z01(b11 b11Var, Context context) {
         this.d = b11Var;
-        this.f43538c = context;
+        this.f43502c = context;
     }
 
     @Override
@@ -25,12 +25,12 @@ public final class z01 extends org.telegram.ui.Components.hm0 {
         int b10 = b1Var.b();
         b11 b11Var = this.d;
         if (b10 == b11Var.E) {
-            return b11Var.f35558n;
+            return b11Var.f35519n;
         }
         if (b1Var.b() == b11Var.W) {
             return true;
         }
-        switch (b1Var.f45961f) {
+        switch (b1Var.f45913f) {
             case 0:
             case 2:
             case 5:
@@ -39,7 +39,7 @@ public final class z01 extends org.telegram.ui.Components.hm0 {
             case 1:
             case 3:
             case 4:
-                return b11Var.f35558n;
+                return b11Var.f35519n;
             default:
                 return true;
         }
@@ -62,11 +62,11 @@ public final class z01 extends org.telegram.ui.Components.hm0 {
                     return 3;
                 }
                 if (i10 != b11Var.L && i10 != b11Var.M) {
-                    if (i10 == b11Var.f35561w) {
+                    if (i10 == b11Var.f35522w) {
                         return 5;
                     }
-                    if (i10 != b11Var.f35562x && i10 != b11Var.X) {
-                        if (i10 != b11Var.f35563y && i10 != b11Var.E && i10 != b11Var.O) {
+                    if (i10 != b11Var.f35523x && i10 != b11Var.X) {
+                        if (i10 != b11Var.f35524y && i10 != b11Var.E && i10 != b11Var.O) {
                             return 0;
                         }
                         return 7;
@@ -93,10 +93,10 @@ public final class z01 extends org.telegram.ui.Components.hm0 {
         boolean z10;
         int i17;
         b11 b11Var = this.d;
-        long j10 = b11Var.f35557f;
+        long j10 = b11Var.f35518f;
         long j11 = b11Var.e;
-        int i18 = b1Var.f45961f;
-        View view = b1Var.f45958a;
+        int i18 = b1Var.f45913f;
+        View view = b1Var.f45910a;
         boolean z11 = true;
         boolean z12 = false;
         switch (i18) {
@@ -124,7 +124,7 @@ public final class z01 extends org.telegram.ui.Components.hm0 {
                 SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(i11);
                 if (i10 == b11Var.W) {
                     baVar.b(LocaleController.getString(R.string.ResetCustomNotifications), false);
-                    baVar.setTextColor(b11Var.getThemedColor(org.telegram.ui.ActionBar.h6.f21231q7));
+                    baVar.setTextColor(b11Var.getThemedColor(org.telegram.ui.ActionBar.h6.f21224q7));
                     return;
                 }
                 baVar.setTextColor(b11Var.getThemedColor(org.telegram.ui.ActionBar.h6.G6));
@@ -291,7 +291,7 @@ public final class z01 extends org.telegram.ui.Components.hm0 {
                 int i19 = 0;
                 while (true) {
                     if (i19 < 9) {
-                        if (org.telegram.ui.Cells.x8.f23814f[i19] == i13) {
+                        if (org.telegram.ui.Cells.x8.f23807f[i19] == i13) {
                             i13 = org.telegram.ui.Cells.x8.e[i19];
                         } else {
                             i19++;
@@ -357,10 +357,10 @@ public final class z01 extends org.telegram.ui.Components.hm0 {
                 if (i10 >= b11Var.Y - 1) {
                     z11 = false;
                 }
-                if (z6Var.f23881c != z10 || z6Var.d != z11) {
-                    z6Var.f23881c = z10;
+                if (z6Var.f23874c != z10 || z6Var.d != z11) {
+                    z6Var.f23874c = z10;
                     z6Var.d = z11;
-                    int i20 = z6Var.f23880b;
+                    int i20 = z6Var.f23873b;
                     if (i20 == 0) {
                         z6Var.setBackground(null);
                         return;
@@ -374,8 +374,8 @@ public final class z01 extends org.telegram.ui.Components.hm0 {
                 org.telegram.ui.Cells.v8 v8Var = (org.telegram.ui.Cells.v8) view;
                 i17 = ((org.telegram.ui.ActionBar.n2) b11Var).currentAccount;
                 SharedPreferences notificationsSettings4 = MessagesController.getNotificationsSettings(i17);
-                if (i10 == b11Var.f35563y) {
-                    v8Var.f(LocaleController.getString(R.string.Notifications), b11Var.f35558n, true);
+                if (i10 == b11Var.f35524y) {
+                    v8Var.f(LocaleController.getString(R.string.Notifications), b11Var.f35519n, true);
                     return;
                 } else if (i10 == b11Var.E) {
                     String sharedPrefKey3 = NotificationsController.getSharedPrefKey(j11, j10);
@@ -401,37 +401,37 @@ public final class z01 extends org.telegram.ui.Components.hm0 {
         View l4Var;
         b11 b11Var = this.d;
         org.telegram.ui.ActionBar.d6 d6Var = b11Var.d;
-        Context context = this.f43538c;
+        Context context = this.f43502c;
         switch (i10) {
             case 0:
                 l4Var = new org.telegram.ui.Cells.l4(context, d6Var);
-                l4Var.setBackgroundColor(b11Var.getThemedColor(org.telegram.ui.ActionBar.h6.f20993d6));
+                l4Var.setBackgroundColor(b11Var.getThemedColor(org.telegram.ui.ActionBar.h6.f20986d6));
                 break;
             case 1:
                 l4Var = new org.telegram.ui.Cells.ba(context, 0, d6Var);
-                l4Var.setBackgroundColor(b11Var.getThemedColor(org.telegram.ui.ActionBar.h6.f20993d6));
+                l4Var.setBackgroundColor(b11Var.getThemedColor(org.telegram.ui.ActionBar.h6.f20986d6));
                 break;
             case 2:
                 l4Var = new org.telegram.ui.Cells.d9(context, d6Var);
                 break;
             case 3:
                 l4Var = new org.telegram.ui.Cells.x8(context, d6Var);
-                l4Var.setBackgroundColor(b11Var.getThemedColor(org.telegram.ui.ActionBar.h6.f20993d6));
+                l4Var.setBackgroundColor(b11Var.getThemedColor(org.telegram.ui.ActionBar.h6.f20986d6));
                 break;
             case 4:
                 l4Var = new org.telegram.ui.Cells.j6(context, d6Var);
-                l4Var.setBackgroundColor(b11Var.getThemedColor(org.telegram.ui.ActionBar.h6.f20993d6));
+                l4Var.setBackgroundColor(b11Var.getThemedColor(org.telegram.ui.ActionBar.h6.f20986d6));
                 break;
             case 5:
                 l4Var = new org.telegram.ui.Cells.ua(context, d6Var);
-                l4Var.setBackgroundColor(b11Var.getThemedColor(org.telegram.ui.ActionBar.h6.f20993d6));
+                l4Var.setBackgroundColor(b11Var.getThemedColor(org.telegram.ui.ActionBar.h6.f20986d6));
                 break;
             case 6:
                 l4Var = new org.telegram.ui.Cells.z6(context, (org.telegram.ui.Cells.c1) null);
                 break;
             default:
                 l4Var = new org.telegram.ui.Cells.v8(context, d6Var);
-                l4Var.setBackgroundColor(b11Var.getThemedColor(org.telegram.ui.ActionBar.h6.f20993d6));
+                l4Var.setBackgroundColor(b11Var.getThemedColor(org.telegram.ui.ActionBar.h6.f20986d6));
                 break;
         }
         return com.google.android.gms.internal.play_billing.k3.l(l4Var, l4Var, -1, -2);
@@ -439,8 +439,8 @@ public final class z01 extends org.telegram.ui.Components.hm0 {
 
     @Override
     public final void y(s4.b1 b1Var) {
-        int i10 = b1Var.f45961f;
-        View view = b1Var.f45958a;
+        int i10 = b1Var.f45913f;
+        View view = b1Var.f45910a;
         b11 b11Var = this.d;
         if (i10 != 0) {
             if (i10 != 1) {
@@ -452,23 +452,23 @@ public final class z01 extends org.telegram.ui.Components.hm0 {
                             }
                             org.telegram.ui.Cells.v8 v8Var = (org.telegram.ui.Cells.v8) view;
                             if (b1Var.b() == b11Var.E) {
-                                v8Var.e(null, b11Var.f35558n);
+                                v8Var.e(null, b11Var.f35519n);
                                 return;
                             } else if (b1Var.b() == b11Var.O) {
-                                v8Var.e(null, b11Var.f35558n);
+                                v8Var.e(null, b11Var.f35519n);
                                 return;
                             } else {
                                 v8Var.e(null, true);
                                 return;
                             }
                         }
-                        ((org.telegram.ui.Cells.j6) view).b(null, b11Var.f35558n);
+                        ((org.telegram.ui.Cells.j6) view).b(null, b11Var.f35519n);
                         return;
                     }
-                    ((org.telegram.ui.Cells.x8) view).a(null, b11Var.f35558n);
+                    ((org.telegram.ui.Cells.x8) view).a(null, b11Var.f35519n);
                     return;
                 }
-                ((org.telegram.ui.Cells.d9) view).c(null, b11Var.f35558n);
+                ((org.telegram.ui.Cells.d9) view).c(null, b11Var.f35519n);
                 return;
             }
             org.telegram.ui.Cells.ba baVar = (org.telegram.ui.Cells.ba) view;
@@ -476,10 +476,10 @@ public final class z01 extends org.telegram.ui.Components.hm0 {
                 baVar.a(null, true);
                 return;
             } else {
-                baVar.a(null, b11Var.f35558n);
+                baVar.a(null, b11Var.f35519n);
                 return;
             }
         }
-        ((org.telegram.ui.Cells.l4) view).a(null, b11Var.f35558n);
+        ((org.telegram.ui.Cells.l4) view).a(null, b11Var.f35519n);
     }
 }

@@ -1,23 +1,46 @@
 package org.telegram.messenger;
 
 import org.telegram.messenger.MessagesController;
-public final class ke implements Runnable {
-    public final int f18797a;
-    public final MessagesController.DialogPhotos f18798b;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.tgnet.tl.TL_aicompose;
+import org.telegram.tgnet.tl.TL_payments;
+public final class ke implements Utilities.Callback2 {
+    public final int f18791a;
+    public final Object f18792b;
 
-    public ke(MessagesController.DialogPhotos dialogPhotos, int i10) {
-        this.f18797a = i10;
-        this.f18798b = dialogPhotos;
+    public ke(Object obj, int i10) {
+        this.f18791a = i10;
+        this.f18792b = obj;
     }
 
     @Override
-    public final void run() {
-        switch (this.f18797a) {
+    public final void run(Object obj, Object obj2) {
+        switch (this.f18791a) {
             case 0:
-                this.f18798b.lambda$loadCache$5();
+                MessagesController.AnonymousClass5.lambda$getRemote$0((Utilities.Callback4) this.f18792b, (TL_account.WebBrowserSettings) obj, (TLRPC.TL_error) obj2);
+                return;
+            case 1:
+                ((AiTonesController) this.f18792b).lambda$request$0((TL_aicompose.Tones) obj, (TLRPC.TL_error) obj2);
+                return;
+            case 2:
+                ((ChatThemeController) this.f18792b).lambda$setDialogTheme$4((TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
+                return;
+            case 3:
+                ((GiftAuctionController) this.f18792b).lambda$requestUserAuctions$10((TL_payments.StarGiftActiveAuctions) obj, (TLRPC.TL_error) obj2);
+                return;
+            case 4:
+                ((MediaDataController) this.f18792b).lambda$loadHints$148((TLRPC.contacts_TopPeers) obj, (TLRPC.TL_error) obj2);
+                return;
+            case 5:
+                MessagesController.lambda$getNextReactionMentionInternal$3((q0.a) this.f18792b, (TLRPC.messages_Messages) obj, (TLRPC.TL_error) obj2);
+                return;
+            case 6:
+                MessagesController.lambda$createCommunity$254((Utilities.Callback2) this.f18792b, (TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
                 return;
             default:
-                this.f18798b.lambda$saveCache$6();
+                ((SendMessagesHelper) this.f18792b).lambda$deletePollOption$30((TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
                 return;
         }
     }

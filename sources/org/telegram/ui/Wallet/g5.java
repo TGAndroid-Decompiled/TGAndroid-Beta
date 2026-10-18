@@ -1,55 +1,24 @@
 package org.telegram.ui.Wallet;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-public final class g5 extends LinearLayout {
-    public final RectF f34270a;
-    public final RectF f34271b;
-    public final RectF f34272c;
-    public final Paint d;
-    public final org.telegram.ui.ActionBar.d6 e;
-    public final h5 f34273f;
+public final class g5 implements Runnable {
+    public final int f34224a;
+    public final i5 f34225b;
 
-    public g5(h5 h5Var, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context);
-        this.f34273f = h5Var;
-        this.e = d6Var;
-        this.f34270a = new RectF();
-        this.f34271b = new RectF();
-        this.f34272c = new RectF();
-        this.d = new Paint(1);
+    public g5(i5 i5Var, int i10) {
+        this.f34224a = i10;
+        this.f34225b = i5Var;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        h5 h5Var = this.f34273f;
-        float d = h5Var.f34302f.d(h5Var.d, false);
-        double d10 = d;
-        TextView[] textViewArr = h5Var.f34301c;
-        int clamp = Utilities.clamp((int) Math.floor(d10), textViewArr.length, 0);
-        int clamp2 = Utilities.clamp((int) Math.ceil(d10), textViewArr.length, 0);
-        RectF rectF = this.f34270a;
-        if (clamp >= 0 && clamp < textViewArr.length) {
-            TextView textView = textViewArr[clamp];
-            rectF.set(textView.getX(), textView.getY(), textView.getX() + textView.getWidth(), textView.getY() + textView.getHeight());
+    public final void run() {
+        switch (this.f34224a) {
+            case 0:
+                AndroidUtilities.runOnUIThread(new g5(this.f34225b, 1));
+                return;
+            default:
+                this.f34225b.a();
+                return;
         }
-        RectF rectF2 = this.f34271b;
-        if (clamp2 >= 0 && clamp2 < textViewArr.length) {
-            TextView textView2 = textViewArr[clamp2];
-            rectF2.set(textView2.getX(), textView2.getY(), textView2.getX() + textView2.getWidth(), textView2.getY() + textView2.getHeight());
-        }
-        RectF rectF3 = this.f34272c;
-        AndroidUtilities.lerp(rectF, rectF2, d - clamp, rectF3);
-        int m12 = org.telegram.ui.ActionBar.h6.m1(0.1f, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Oh, this.e));
-        Paint paint = this.d;
-        paint.setColor(m12);
-        canvas.drawRoundRect(rectF3, AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f), paint);
-        super.dispatchDraw(canvas);
     }
 }

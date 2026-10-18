@@ -23,9 +23,9 @@ public final class k extends org.telegram.ui.ActionBar.m {
             default:
                 super.e(lVar);
                 float totalVisibility = getTotalVisibility();
-                i4 i4Var = ((org.telegram.ui.ActionBar.k) this.e).F0;
-                if (i4Var != null) {
-                    i4Var.setTranslationY(totalVisibility * AndroidUtilities.dp(-11.0f));
+                h4 h4Var = ((org.telegram.ui.ActionBar.k) this.e).F0;
+                if (h4Var != null) {
+                    h4Var.setTranslationY(totalVisibility * AndroidUtilities.dp(-11.0f));
                     return;
                 }
                 return;

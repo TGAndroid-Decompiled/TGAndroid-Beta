@@ -24,14 +24,14 @@ import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_stories;
 public final class g implements RequestDelegate {
-    public final int f1323a;
-    public final Object f1324b;
-    public final Object f1325c;
+    public final int f1324a;
+    public final Object f1325b;
+    public final Object f1326c;
 
     public g(int i10, Object obj, Object obj2) {
-        this.f1323a = i10;
-        this.f1324b = obj;
-        this.f1325c = obj2;
+        this.f1324a = i10;
+        this.f1325b = obj;
+        this.f1326c = obj2;
     }
 
     @Override
@@ -39,106 +39,106 @@ public final class g implements RequestDelegate {
         ArrayList arrayList;
         ArrayList arrayList2;
         org.telegram.ui.ActionBar.b6 b6Var;
-        switch (this.f1323a) {
+        switch (this.f1324a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new a3.l0((x) this.f1324b, tLObject, (Context) this.f1325c, 1));
+                AndroidUtilities.runOnUIThread(new a3.l0((x) this.f1325b, tLObject, (Context) this.f1326c, 1));
                 return;
             case 1:
-                k7.S0((k7) this.f1324b, (org.telegram.ui.ActionBar.b2) this.f1325c, tLObject, tL_error);
+                k7.O0((k7) this.f1325b, (org.telegram.ui.ActionBar.b2) this.f1326c, tLObject, tL_error);
                 return;
             case 2:
-                AndroidUtilities.runOnUIThread(new y0((Object) ((k7) this.f1324b), tLObject, (Object) ((a3.l0) this.f1325c), tL_error, 2));
+                AndroidUtilities.runOnUIThread(new y0((Object) ((k7) this.f1325b), tLObject, (Object) ((a3.l0) this.f1326c), tL_error, 2));
                 return;
             case 3:
-                k7.d1((k7) this.f1324b, (TL_stars.InputSavedStarGift) this.f1325c, tLObject, tL_error);
+                k7.b1((k7) this.f1325b, (TL_stars.InputSavedStarGift) this.f1326c, tLObject, tL_error);
                 return;
             case 4:
-                AndroidUtilities.runOnUIThread(new a3.l0(tLObject, (u0) this.f1324b, (String) this.f1325c, 11));
+                AndroidUtilities.runOnUIThread(new a3.l0(tLObject, (u0) this.f1325b, (String) this.f1326c, 11));
                 return;
             case 5:
-                AndroidUtilities.runOnUIThread(new a3.l0((ga) this.f1324b, tLObject, tL_error, (Utilities.Callback) this.f1325c, 12));
+                AndroidUtilities.runOnUIThread(new a3.l0((ga) this.f1325b, tLObject, tL_error, (Utilities.Callback) this.f1326c, 12));
                 return;
             case 6:
-                AndroidUtilities.runOnUIThread(new a3.l0((ga) this.f1324b, tLObject, (Runnable) this.f1325c, 13));
+                AndroidUtilities.runOnUIThread(new a3.l0((ga) this.f1325b, tLObject, (Runnable) this.f1326c, 13));
                 return;
             case 7:
-                ci.h1 h1Var = (ci.h1) this.f1324b;
-                TLRPC.Updates updates = (TLRPC.Updates) this.f1325c;
+                ci.h1 h1Var = (ci.h1) this.f1325b;
+                TLRPC.Updates updates = (TLRPC.Updates) this.f1326c;
                 if (tLObject instanceof TLRPC.Updates) {
                     MessagesController.getInstance(h1Var.e).lambda$processUpdates$377(updates, false);
                     return;
                 }
                 return;
             case 8:
-                ci.h4 h4Var = (ci.h4) this.f1324b;
-                ei.r9 r9Var = (ei.r9) this.f1325c;
+                ci.g4 g4Var = (ci.g4) this.f1325b;
+                ei.r9 r9Var = (ei.r9) this.f1326c;
                 if (tLObject instanceof TLRPC.Updates) {
-                    MessagesController.getInstance(h4Var.f5464l.C2).lambda$processUpdates$377((TLRPC.Updates) tLObject, false);
+                    MessagesController.getInstance(g4Var.f5357l.C2).lambda$processUpdates$377((TLRPC.Updates) tLObject, false);
                 }
-                AndroidUtilities.runOnUIThread(new ci.e4(r9Var, 0));
+                AndroidUtilities.runOnUIThread(new ci.d4(r9Var, 0));
                 return;
             case 9:
-                AndroidUtilities.runOnUIThread(new a3.l0((ci.t6) this.f1324b, tLObject, (Runnable) this.f1325c, 24));
+                AndroidUtilities.runOnUIThread(new a3.l0((ci.s6) this.f1325b, tLObject, (Runnable) this.f1326c, 24));
                 return;
             case 10:
-                AndroidUtilities.runOnUIThread(new y0((Object) ((ci.w6) this.f1324b), tLObject, (Object) ((Utilities.Callback) this.f1325c), tL_error, 9));
+                AndroidUtilities.runOnUIThread(new y0((Object) ((ci.v6) this.f1325b), tLObject, (Object) ((Utilities.Callback) this.f1326c), tL_error, 9));
                 return;
             case 11:
-                AndroidUtilities.runOnUIThread(new a3.l0((ci.ja) this.f1324b, tLObject, (TL_stories.TL_stories_getStoriesViews) this.f1325c, 26));
+                AndroidUtilities.runOnUIThread(new a3.l0((ci.ia) this.f1325b, tLObject, (TL_stories.TL_stories_getStoriesViews) this.f1326c, 26));
                 return;
             case 12:
-                AndroidUtilities.runOnUIThread(new ei.z1((ei.a2) this.f1324b, (String) this.f1325c, tLObject, 0));
+                AndroidUtilities.runOnUIThread(new ei.z1((ei.a2) this.f1325b, (String) this.f1326c, tLObject, 0));
                 return;
             case 13:
-                AndroidUtilities.runOnUIThread(new ei.z1((ei.p3) this.f1324b, tLObject, (MessagesController) this.f1325c, false, 3));
+                AndroidUtilities.runOnUIThread(new ei.z1((ei.p3) this.f1325b, tLObject, (MessagesController) this.f1326c, false, 3));
                 return;
             case 14:
-                AndroidUtilities.runOnUIThread(new ei.z1((ei.k9) this.f1324b, tLObject, (MessagesController) this.f1325c, false, 6));
+                AndroidUtilities.runOnUIThread(new ei.z1((ei.k9) this.f1325b, tLObject, (MessagesController) this.f1326c, false, 6));
                 return;
             case 15:
-                AndroidUtilities.runOnUIThread(new ei.z1((boolean[]) this.f1324b, tLObject, (gi.r1) this.f1325c, false, 10));
+                AndroidUtilities.runOnUIThread(new ei.z1((boolean[]) this.f1325b, tLObject, (gi.r1) this.f1326c, false, 10));
                 return;
             case 16:
-                AndroidUtilities.runOnUIThread(new ei.z1((gi.u3) this.f1324b, tLObject, (org.telegram.ui.ActionBar.b2) this.f1325c, false, 13));
+                AndroidUtilities.runOnUIThread(new ei.z1((gi.u3) this.f1325b, tLObject, (org.telegram.ui.ActionBar.b2) this.f1326c, false, 13));
                 return;
             case 17:
-                AndroidUtilities.runOnUIThread(new y0((hg.c) this.f1324b, tL_error, (String) this.f1325c, tLObject, 18));
+                AndroidUtilities.runOnUIThread(new y0((hg.c) this.f1325b, tL_error, (String) this.f1326c, tLObject, 18));
                 return;
             case 18:
-                AndroidUtilities.runOnUIThread(new ei.z1((hg.j1) this.f1324b, (String) this.f1325c, tLObject, 16));
+                AndroidUtilities.runOnUIThread(new ei.z1((hg.j1) this.f1325b, (String) this.f1326c, tLObject, 16));
                 return;
             case 19:
-                hg.c2 c2Var = (hg.c2) this.f1324b;
-                TLRPC.TL_messages_searchStickerSets tL_messages_searchStickerSets = (TLRPC.TL_messages_searchStickerSets) this.f1325c;
+                hg.c2 c2Var = (hg.c2) this.f1325b;
+                TLRPC.TL_messages_searchStickerSets tL_messages_searchStickerSets = (TLRPC.TL_messages_searchStickerSets) this.f1326c;
                 if (tLObject instanceof TLRPC.TL_messages_foundStickerSets) {
                     AndroidUtilities.runOnUIThread(new ei.z1(c2Var, tL_messages_searchStickerSets, (TLRPC.TL_messages_foundStickerSets) tLObject, 19));
                     return;
                 }
                 return;
             case 20:
-                AndroidUtilities.runOnUIThread(new ei.z1((ig.y) this.f1324b, tLObject, (TL_account.TL_businessChatLink) this.f1325c, false, 25));
+                AndroidUtilities.runOnUIThread(new ei.z1((ig.y) this.f1325b, tLObject, (TL_account.TL_businessChatLink) this.f1326c, false, 25));
                 return;
             case 21:
-                AndroidUtilities.runOnUIThread(new hi.t(4, (ig.k0) this.f1324b, (org.telegram.ui.Components.e2) this.f1325c));
+                AndroidUtilities.runOnUIThread(new hi.t(4, (ig.k0) this.f1325b, (org.telegram.ui.Components.e2) this.f1326c));
                 return;
             case 22:
-                AndroidUtilities.runOnUIThread(new ig.e2((ig.f2) this.f1324b, tLObject, (SharedPreferences) this.f1325c, 0));
+                AndroidUtilities.runOnUIThread(new ig.e2((ig.f2) this.f1325b, tLObject, (SharedPreferences) this.f1326c, 0));
                 return;
             case 23:
-                VoIPPreNotificationService.lambda$acknowledge$3((Context) this.f1325c, (Runnable) this.f1324b, tLObject, tL_error);
+                VoIPPreNotificationService.lambda$acknowledge$3((Context) this.f1326c, (Runnable) this.f1325b, tLObject, tL_error);
                 return;
             case 24:
-                ((VoIPService) this.f1324b).lambda$startGroupCheckShortpoll$64((TL_phone.checkGroupCall) this.f1325c, tLObject, tL_error);
+                ((VoIPService) this.f1325b).lambda$startGroupCheckShortpoll$64((TL_phone.checkGroupCall) this.f1326c, tLObject, tL_error);
                 return;
             case 25:
-                ((VoIPService) this.f1324b).lambda$startOutgoingCall$10((byte[]) this.f1325c, tLObject, tL_error);
+                ((VoIPService) this.f1325b).lambda$startOutgoingCall$10((byte[]) this.f1326c, tLObject, tL_error);
                 return;
             case 26:
-                ((VoIPService) this.f1324b).lambda$startConferenceGroupCall$32((AccountInstance) this.f1325c, tLObject, tL_error);
+                ((VoIPService) this.f1325b).lambda$startConferenceGroupCall$32((AccountInstance) this.f1326c, tLObject, tL_error);
                 return;
             case 27:
-                org.telegram.ui.ActionBar.c6 c6Var = (org.telegram.ui.ActionBar.c6) this.f1324b;
-                ArrayList arrayList3 = (ArrayList) this.f1325c;
+                org.telegram.ui.ActionBar.c6 c6Var = (org.telegram.ui.ActionBar.c6) this.f1325b;
+                ArrayList arrayList3 = (ArrayList) this.f1326c;
                 if (tLObject instanceof Vector) {
                     Vector vector = (Vector) tLObject;
                     int size = vector.objects.size();
@@ -156,7 +156,7 @@ public final class g implements RequestDelegate {
                                 Boolean bool = null;
                                 while (i11 < size2) {
                                     org.telegram.ui.ActionBar.f6 f6Var = (org.telegram.ui.ActionBar.f6) arrayList3.get(i11);
-                                    if (f6Var.f20846o.equals(tL_wallPaper.slug)) {
+                                    if (f6Var.f20839o.equals(tL_wallPaper.slug)) {
                                         if (bool == null) {
                                             bool = Boolean.valueOf(pathToAttach.exists());
                                         }
@@ -169,22 +169,22 @@ public final class g implements RequestDelegate {
                                             arrayList4.add(f6Var);
                                         } else {
                                             String attachFileName = FileLoader.getAttachFileName(tL_wallPaper.document);
-                                            if (c6Var.f20743b == null) {
-                                                c6Var.f20743b = new HashMap();
+                                            if (c6Var.f20736b == null) {
+                                                c6Var.f20736b = new HashMap();
                                             }
-                                            org.telegram.ui.ActionBar.b6 b6Var2 = (org.telegram.ui.ActionBar.b6) c6Var.f20743b.get(attachFileName);
+                                            org.telegram.ui.ActionBar.b6 b6Var2 = (org.telegram.ui.ActionBar.b6) c6Var.f20736b.get(attachFileName);
                                             if (b6Var2 == null) {
                                                 ?? obj = new Object();
                                                 arrayList2 = arrayList3;
-                                                obj.f20713b = new ArrayList();
-                                                obj.f20712a = tL_wallPaper;
-                                                c6Var.f20743b.put(attachFileName, obj);
+                                                obj.f20706b = new ArrayList();
+                                                obj.f20705a = tL_wallPaper;
+                                                c6Var.f20736b.put(attachFileName, obj);
                                                 b6Var = obj;
                                             } else {
                                                 arrayList2 = arrayList3;
                                                 b6Var = b6Var2;
                                             }
-                                            b6Var.f20713b.add(f6Var);
+                                            b6Var.f20706b.add(f6Var);
                                         }
                                     } else {
                                         arrayList2 = arrayList3;
@@ -209,17 +209,17 @@ public final class g implements RequestDelegate {
                 }
                 return;
             case 28:
-                AndroidUtilities.runOnUIThread(new ig.e2((org.telegram.ui.ActionBar.g6) this.f1324b, tLObject, (org.telegram.ui.ActionBar.g6) this.f1325c, 22));
+                AndroidUtilities.runOnUIThread(new ig.e2((org.telegram.ui.ActionBar.g6) this.f1325b, tLObject, (org.telegram.ui.ActionBar.g6) this.f1326c, 22));
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new org.telegram.messenger.camera.i((org.telegram.ui.k8) this.f1324b, tL_error, tLObject, (Calendar) this.f1325c, 7));
+                AndroidUtilities.runOnUIThread(new org.telegram.messenger.camera.i((org.telegram.ui.k8) this.f1325b, tL_error, tLObject, (Calendar) this.f1326c, 7));
                 return;
         }
     }
 
     public g(Context context, Runnable runnable) {
-        this.f1323a = 23;
-        this.f1325c = context;
-        this.f1324b = runnable;
+        this.f1324a = 23;
+        this.f1326c = context;
+        this.f1325b = runnable;
     }
 }

@@ -49,17 +49,17 @@ public final class v21 extends org.telegram.ui.Components.bb {
         imageView.setImageResource(R.drawable.large_ads_info);
         imageView.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
         imageView.setBackground(org.telegram.ui.ActionBar.h6.K(AndroidUtilities.dp(80.0f), org.telegram.ui.ActionBar.h6.w0(i17, d6Var)));
-        frameLayout.addView(imageView, w7.z5.a(80.0f, 0.0f, 20.0f, 0.0f, 0.0f, 80, 1));
+        frameLayout.addView(imageView, w7.z5.d(80, 80.0f, 1, 0.0f, 20.0f, 0.0f, 0.0f));
         if (callback != null) {
             ImageView imageView2 = new ImageView(context);
             imageView2.setImageDrawable(context.getDrawable(R.drawable.ic_ab_other));
             imageView2.setContentDescription(LocaleController.getString(R.string.AccDescrMoreOptions));
             imageView2.setScaleType(scaleType);
-            imageView2.setColorFilter(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21249r5, false));
-            imageView2.setBackground(org.telegram.ui.ActionBar.h6.g0(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21082i6, false), 1, -1));
+            imageView2.setColorFilter(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21242r5, false));
+            imageView2.setBackground(org.telegram.ui.ActionBar.h6.g0(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21075i6, false), 1, -1));
             d6Var2 = d6Var;
-            imageView2.setOnClickListener(new ci.c4(this, callback, d6Var, imageView2, 15));
-            frameLayout.addView(imageView2, w7.z5.a(24.0f, 12.0f, 14.0f, 14.0f, 12.0f, 24, 53));
+            imageView2.setOnClickListener(new ci.b4(this, callback, d6Var, imageView2, 15));
+            frameLayout.addView(imageView2, w7.z5.d(24, 24.0f, 53, 12.0f, 14.0f, 14.0f, 12.0f));
         } else {
             d6Var2 = d6Var;
         }
@@ -68,7 +68,7 @@ public final class v21 extends org.telegram.ui.Components.bb {
         textView.setText(LocaleController.getString(R.string.AboutRevenueSharingAds));
         textView.setTypeface(AndroidUtilities.bold());
         int i18 = org.telegram.ui.ActionBar.h6.G6;
-        org.telegram.messenger.kk.o(i18, d6Var2, textView, 1, 20.0f);
+        org.telegram.messenger.lk.o(i18, d6Var2, textView, 1, 20.0f);
         textView.setGravity(1);
         TextView i19 = com.google.android.gms.internal.play_billing.k3.i(linearLayout, textView, w7.z5.t(-2, -2, 1, 22, 14, 22, 0), context);
         i19.setText(LocaleController.getString(R.string.RevenueSharingAdsAlertSubtitle));
@@ -88,7 +88,7 @@ public final class v21 extends org.telegram.ui.Components.bb {
         } else {
             i11 = R.string.RevenueSharingAdsInfo1Subtitle;
         }
-        linearLayout.addView(new ci.i4(this, context, i20, string, LocaleController.getString(i11)), w7.z5.p(-1, -2, 0.0f, 0, 0, 20, 0, 0));
+        linearLayout.addView(new ci.h4(this, context, i20, string, LocaleController.getString(i11)), w7.z5.p(-1, -2, 0.0f, 0, 0, 20, 0, 0));
         int i21 = R.drawable.menu_feature_split;
         if (z10) {
             i12 = R.string.RevenueSharingAdsInfo2TitleBot;
@@ -101,26 +101,26 @@ public final class v21 extends org.telegram.ui.Components.bb {
         } else {
             i13 = R.string.RevenueSharingAdsInfo2Subtitle;
         }
-        linearLayout.addView(new ci.i4(this, context, i21, string2, LocaleController.getString(i13)), w7.z5.p(-1, -2, 0.0f, 0, 0, 16, 0, 0));
+        linearLayout.addView(new ci.h4(this, context, i21, string2, LocaleController.getString(i13)), w7.z5.p(-1, -2, 0.0f, 0, 0, 16, 0, 0));
         if (z10) {
             i14 = R.string.RevenueSharingAdsInfo3SubtitleBot;
         } else {
             i14 = R.string.RevenueSharingAdsInfo3Subtitle;
         }
         String formatString = LocaleController.formatString(i14, Integer.valueOf(MessagesController.getInstance(UserConfig.selectedAccount).channelRestrictSponsoredLevelMin));
-        int i22 = org.telegram.ui.ActionBar.h6.f21052gc;
-        linearLayout.addView(new ci.i4(this, context, R.drawable.menu_feature_noads, LocaleController.getString(R.string.RevenueSharingAdsInfo3Title), AndroidUtilities.replaceSingleTag(formatString, i22, 0, new Runnable(this) {
-            public final v21 f41888b;
+        int i22 = org.telegram.ui.ActionBar.h6.f21045gc;
+        linearLayout.addView(new ci.h4(this, context, R.drawable.menu_feature_noads, LocaleController.getString(R.string.RevenueSharingAdsInfo3Title), AndroidUtilities.replaceSingleTag(formatString, i22, 0, new Runnable(this) {
+            public final v21 f41847b;
 
             {
-                this.f41888b = this;
+                this.f41847b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        v21 v21Var = this.f41888b;
+                        v21 v21Var = this.f41847b;
                         v21Var.getClass();
                         org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
                         if (U != null) {
@@ -130,7 +130,7 @@ public final class v21 extends org.telegram.ui.Components.bb {
                         }
                         return;
                     default:
-                        v21 v21Var2 = this.f41888b;
+                        v21 v21Var2 = this.f41847b;
                         v21Var2.dismiss();
                         pf.d.r(v21Var2.getContext(), LocaleController.getString(R.string.PromoteUrl));
                         return;
@@ -138,7 +138,7 @@ public final class v21 extends org.telegram.ui.Components.bb {
             }
         })), w7.z5.p(-1, -2, 0.0f, 0, 0, 16, 0, 0));
         View view = new View(getContext());
-        view.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20994d7, d6Var2));
+        view.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20987d7, d6Var2));
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(-1, 1);
         layoutParams.setMargins(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(20.0f));
         linearLayout.addView(view, layoutParams);
@@ -162,17 +162,17 @@ public final class v21 extends org.telegram.ui.Components.bb {
         }
         SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.getString(i16));
         SpannableStringBuilder replaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.RevenueSharingAdsInfo4SubtitleLearnMore), i22, 0, new Runnable(this) {
-            public final v21 f41888b;
+            public final v21 f41847b;
 
             {
-                this.f41888b = this;
+                this.f41847b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        v21 v21Var = this.f41888b;
+                        v21 v21Var = this.f41847b;
                         v21Var.getClass();
                         org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
                         if (U != null) {
@@ -182,7 +182,7 @@ public final class v21 extends org.telegram.ui.Components.bb {
                         }
                         return;
                     default:
-                        v21 v21Var2 = this.f41888b;
+                        v21 v21Var2 = this.f41847b;
                         v21Var2.dismiss();
                         pf.d.r(v21Var2.getContext(), LocaleController.getString(R.string.PromoteUrl));
                         return;

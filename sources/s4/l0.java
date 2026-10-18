@@ -8,21 +8,21 @@ import java.util.List;
 import m.g3;
 import org.telegram.ui.Components.gl0;
 public abstract class l0 {
-    public l2.f f46035a;
-    public ArrayList f46036b;
-    public long f46037c;
+    public l2.f f45987a;
+    public ArrayList f45988b;
+    public long f45989c;
     public long d;
     public long e;
-    public long f46038f;
-    public long f46039g;
+    public long f45990f;
+    public long f45991g;
     public TimeInterpolator h;
-    public TimeInterpolator f46040i;
-    public TimeInterpolator f46041j;
-    public TimeInterpolator f46042k;
-    public long f46043l;
+    public TimeInterpolator f45992i;
+    public TimeInterpolator f45993j;
+    public TimeInterpolator f45994k;
+    public long f45995l;
 
     public static int b(b1 b1Var) {
-        int i10 = b1Var.f45966l;
+        int i10 = b1Var.f45918l;
         int i11 = i10 & 14;
         if (b1Var.h()) {
             return 4;
@@ -42,28 +42,28 @@ public abstract class l0 {
     public abstract boolean c(b1 b1Var, List list);
 
     public final void d(b1 b1Var) {
-        l2.f fVar = this.f46035a;
+        l2.f fVar = this.f45987a;
         if (fVar != null) {
-            RecyclerView recyclerView = (RecyclerView) fVar.f15844b;
+            RecyclerView recyclerView = (RecyclerView) fVar.f15842b;
             boolean z10 = true;
             b1Var.q(true);
-            View view = b1Var.f45958a;
-            if (b1Var.f45964j != null && b1Var.f45965k == null) {
-                b1Var.f45964j = null;
+            View view = b1Var.f45910a;
+            if (b1Var.f45916j != null && b1Var.f45917k == null) {
+                b1Var.f45916j = null;
             }
-            b1Var.f45965k = null;
-            if ((b1Var.f45966l & 16) == 0) {
+            b1Var.f45917k = null;
+            if ((b1Var.f45918l & 16) == 0) {
                 qf.e eVar = recyclerView.f3607b;
                 recyclerView.y0();
                 g3 g3Var = recyclerView.e;
-                ad.d dVar = (ad.d) g3Var.f16204c;
-                ih.g gVar = (ih.g) g3Var.f16203b;
-                int indexOfChild = gVar.f13141a.indexOfChild(view);
+                ad.d dVar = (ad.d) g3Var.f16202c;
+                ih.g gVar = (ih.g) g3Var.f16201b;
+                int indexOfChild = gVar.f13139a.indexOfChild(view);
                 if (indexOfChild == -1) {
-                    g3Var.S(view);
+                    g3Var.X(view);
                 } else if (dVar.D(indexOfChild)) {
                     dVar.F(indexOfChild);
-                    g3Var.S(view);
+                    g3Var.X(view);
                     gVar.a(indexOfChild);
                 } else {
                     z10 = false;
@@ -82,11 +82,11 @@ public abstract class l0 {
     }
 
     public final void e() {
-        ArrayList arrayList = this.f46036b;
+        ArrayList arrayList = this.f45988b;
         int size = arrayList.size();
         for (int i10 = 0; i10 < size; i10++) {
             gl0 gl0Var = (gl0) arrayList.get(i10);
-            gl0Var.f26592a.c(gl0Var.f26593b, gl0Var.f26594c, gl0Var.d, false);
+            gl0Var.f26585a.c(gl0Var.f26586b, gl0Var.f26587c, gl0Var.d, false);
         }
         arrayList.clear();
     }
@@ -96,11 +96,11 @@ public abstract class l0 {
     public abstract void g();
 
     public long h() {
-        return this.f46037c;
+        return this.f45989c;
     }
 
     public long i() {
-        return Math.max(this.f46038f, this.f46039g);
+        return Math.max(this.f45990f, this.f45991g);
     }
 
     public long j() {
@@ -111,7 +111,7 @@ public abstract class l0 {
 
     public b2.u0 l(y0 y0Var, b1 b1Var, int i10, List list) {
         ?? obj = new Object();
-        View view = b1Var.f45958a;
+        View view = b1Var.f45910a;
         obj.f4057a = view.getLeft();
         obj.f4058b = view.getTop();
         view.getRight();
@@ -122,17 +122,17 @@ public abstract class l0 {
     public abstract void m();
 
     public final void n(long j10) {
-        this.f46037c = j10;
+        this.f45989c = j10;
         this.e = j10;
         this.d = j10;
-        this.f46038f = j10;
-        this.f46039g = j10;
+        this.f45990f = j10;
+        this.f45991g = j10;
     }
 
     public final void o(TimeInterpolator timeInterpolator) {
         this.h = timeInterpolator;
-        this.f46040i = timeInterpolator;
-        this.f46041j = timeInterpolator;
-        this.f46042k = timeInterpolator;
+        this.f45992i = timeInterpolator;
+        this.f45993j = timeInterpolator;
+        this.f45994k = timeInterpolator;
     }
 }

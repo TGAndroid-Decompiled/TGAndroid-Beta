@@ -6,15 +6,15 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 public final class xk extends org.telegram.ui.Components.cl0 {
     public final int[] l1;
-    public ValueAnimator f43175m1;
-    public boolean f43176n1;
-    public final sn f43177o1;
+    public ValueAnimator f43137m1;
+    public boolean f43138n1;
+    public final sn f43139o1;
 
     public xk(sn snVar, sn snVar2, Activity activity, int i10, org.telegram.ui.ActionBar.d6 d6Var) {
         super(3, i10, activity, snVar2, d6Var);
-        this.f43177o1 = snVar;
+        this.f43139o1 = snVar;
         this.l1 = new int[2];
-        this.f43176n1 = true;
+        this.f43138n1 = true;
     }
 
     @Override
@@ -22,7 +22,7 @@ public final class xk extends org.telegram.ui.Components.cl0 {
         org.telegram.ui.ActionBar.k kVar;
         int i14;
         super.onLayout(z10, i10, i11, i12, i13);
-        kVar = ((org.telegram.ui.ActionBar.n2) this.f43177o1).actionBar;
+        kVar = ((org.telegram.ui.ActionBar.n2) this.f43139o1).actionBar;
         org.telegram.ui.ActionBar.u0 k10 = kVar.j(null).k(28);
         if (k10 != null) {
             int[] iArr = this.l1;
@@ -40,29 +40,29 @@ public final class xk extends org.telegram.ui.Components.cl0 {
             }
             float f7 = width2 + (dp * i14);
             if (z11) {
-                s(f7 - x10, !this.f43176n1);
+                s(f7 - x10, !this.f43138n1);
             } else {
-                s(f7 - width, !this.f43176n1);
+                s(f7 - width, !this.f43138n1);
             }
-            this.f43176n1 = false;
+            this.f43138n1 = false;
         }
     }
 
     public final void s(float f7, boolean z10) {
-        ValueAnimator valueAnimator = this.f43175m1;
+        ValueAnimator valueAnimator = this.f43137m1;
         if (valueAnimator != null) {
             valueAnimator.cancel();
-            this.f43175m1 = null;
+            this.f43137m1 = null;
         }
         if (!z10) {
             setBubbleOffset(f7);
             return;
         }
         ValueAnimator ofFloat = ValueAnimator.ofFloat(this.U0, f7);
-        this.f43175m1 = ofFloat;
+        this.f43137m1 = ofFloat;
         ofFloat.addUpdateListener(new e3(this, 6));
-        this.f43175m1.setInterpolator(org.telegram.ui.Components.bs.h);
-        this.f43175m1.setDuration(420L);
-        this.f43175m1.start();
+        this.f43137m1.setInterpolator(org.telegram.ui.Components.bs.h);
+        this.f43137m1.setDuration(420L);
+        this.f43137m1.start();
     }
 }

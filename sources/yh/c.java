@@ -22,7 +22,7 @@ import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
 import w7.z5;
 public final class c extends bb {
-    public static final int f50230a0 = 0;
+    public static final int f50175a0 = 0;
     public final List X;
     public final GiftAuctionController.Auction Y;
     public s61 Z;
@@ -42,12 +42,12 @@ public final class c extends bb {
         ei.d dVar = new ei.d(context, d6Var, true);
         dVar.setOnClickListener(new hg.r0(this, 26));
         dVar.g(LocaleController.getString(R.string.OK), false, true);
-        FrameLayout.LayoutParams a2 = z5.a(48.0f, 16.0f, 16.0f, 16.0f, 16.0f, -1, 80);
-        int i10 = a2.leftMargin;
+        FrameLayout.LayoutParams d = z5.d(-1, 48.0f, 80, 16.0f, 16.0f, 16.0f, 16.0f);
+        int i10 = d.leftMargin;
         int i11 = this.backgroundPaddingLeft;
-        a2.leftMargin = i10 + i11;
-        a2.rightMargin += i11;
-        this.containerView.addView(dVar, a2);
+        d.leftMargin = i10 + i11;
+        d.rightMargin += i11;
+        this.containerView.addView(dVar, d);
         this.Z.N(false);
     }
 
@@ -83,7 +83,7 @@ public final class c extends bb {
     public final hm0 x(im0 im0Var) {
         s61 s61Var = new s61(this.d, getContext(), this.currentAccount, 0, true, new hg.o(this, 22), this.resourcesProvider);
         this.Z = s61Var;
-        s61Var.f30207r = false;
+        s61Var.f30201r = false;
         return s61Var;
     }
 }

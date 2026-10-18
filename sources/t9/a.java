@@ -4,18 +4,19 @@ import android.os.Bundle;
 import android.util.Log;
 import androidx.emoji2.text.f;
 import java.util.ArrayList;
+import sg.y;
 import t7.u;
 public final class a implements v9.a {
-    public final f f46957a;
+    public final f f46907a;
 
     public a(f fVar) {
-        this.f46957a = fVar;
+        this.f46907a = fVar;
     }
 
-    public void a(si.a aVar) {
-        f fVar = this.f46957a;
+    public void a(y yVar) {
+        f fVar = this.f46907a;
         synchronized (fVar) {
-            ((ArrayList) fVar.f3097b).add(aVar);
+            ((ArrayList) fVar.f3097b).add(yVar);
             ((u) fVar.f3098c).getClass();
             if (Log.isLoggable("FirebaseCrashlytics", 3)) {
                 Log.d("FirebaseCrashlytics", "Could not register handler for breadcrumbs events.", null);
@@ -25,6 +26,6 @@ public final class a implements v9.a {
 
     @Override
     public void o(Bundle bundle) {
-        ((rb.b) this.f46957a.f3096a).o(bundle);
+        ((rb.b) this.f46907a.f3096a).o(bundle);
     }
 }

@@ -1,5 +1,5 @@
 package o1;
 public final class e {
-    public float f17542a;
-    public float f17543b;
+    public float f17538a;
+    public float f17539b;
 }

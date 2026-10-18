@@ -1,218 +1,107 @@
 package sg;
 
-import android.content.Context;
-import android.graphics.Color;
-import android.graphics.LinearGradient;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.graphics.Shader;
-import android.widget.ImageView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageReceiver;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.d6;
+import org.telegram.messenger.UserConfig;
 import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.r5;
-public class b1 extends ImageView {
-    public static final int L = 0;
-    public ImageReceiver E;
-    public r5 F;
-    public float G;
-    public boolean H;
-    public boolean I;
-    public org.telegram.ui.Components.voip.h J;
-    public Integer K;
-    public final int f46242a;
-    public final float[] f46243b;
-    public final v1 f46244c;
-    public final d6 d;
-    public boolean e;
-    public final float f46245f;
-    public boolean h;
-    public int f46246n;
-    public int f46247r;
-    public int f46248s;
-    public LinearGradient v;
-    public final Path f46249w;
-    public Paint f46250x;
-    public Paint f46251y;
+public final class b1 {
+    public static b1 f46210j;
+    public final a1 f46211a;
+    public final Paint f46212b;
+    public Paint f46213c;
+    public final Drawable d;
+    public final Drawable e;
+    public z0 f46214f;
+    public z0 f46215g;
+    public final z0 h;
+    public int f46216i;
 
-    public b1(Context context, int i10, d6 d6Var) {
-        super(context);
-        int i11;
-        this.f46243b = new float[3];
-        this.f46245f = 1.0f;
-        this.h = false;
-        this.f46246n = -1;
-        this.v = null;
-        this.f46249w = new Path();
-        this.f46250x = new Paint(1);
-        this.G = 1.0f;
-        this.f46242a = i10;
-        this.d = d6Var;
-        if (i10 == 0) {
-            i11 = R.drawable.msg_premium_lock2;
-        } else {
-            i11 = R.drawable.msg_mini_premiumlock;
-        }
-        setImageResource(i11);
-        if (i10 == 0) {
-            v1 v1Var = new v1(5);
-            this.f46244c = v1Var;
-            v1Var.g();
-            v1Var.M = false;
-            v1Var.f46505s = 4;
-            v1Var.f46506t = 4;
-            v1Var.f46504r = 2;
-            v1Var.f46501o = 0.1f;
-            v1Var.c();
-        } else if (i10 == 2) {
-            this.f46245f = 0.8f;
-            this.f46250x.setColor(h6.x0(null, h6.f20935a7, false));
-        } else if (i10 == 3) {
-            setScaleType(ImageView.ScaleType.CENTER);
-            setImageResource(R.drawable.msg_archive_hide);
-        } else if (i10 == 4) {
-            setScaleType(ImageView.ScaleType.CENTER);
-            setImageResource(R.drawable.msg_limit_pin);
-        }
+    public b1() {
+        a1 a1Var = new a1(h6.Lj, h6.Mj, h6.Nj, h6.Oj, null);
+        this.f46211a = a1Var;
+        a1 a1Var2 = new a1(h6.fk, h6.gk, -1, -1, null);
+        this.f46212b = a1Var.f46184f;
+        this.e = ApplicationLoader.applicationContext.getDrawable(R.drawable.msg_premium_liststar).mutate();
+        this.f46214f = c(ApplicationLoader.applicationContext.getDrawable(R.drawable.msg_settings_premium), a1Var);
+        this.h = c(ApplicationLoader.applicationContext.getDrawable(R.drawable.msg_settings_premium), a1Var2);
+        this.f46215g = c(ApplicationLoader.applicationContext.getDrawable(R.drawable.msg_premium_normal), a1Var);
+        this.d = ApplicationLoader.applicationContext.getDrawable(R.drawable.msg_premium_liststar).mutate();
+        a1Var.a();
+        b();
     }
 
-    public final void a() {
-        if (this.e && getMeasuredHeight() != 0 && getMeasuredWidth() != 0) {
-            int i10 = this.f46246n;
-            float[] fArr = this.f46243b;
-            Color.colorToHSV(i10, fArr);
-            fArr[1] = fArr[1] * 1.0f;
-            if (fArr[2] > 0.7f) {
-                fArr[2] = 0.7f;
+    public static z0 c(Drawable drawable, a1 a1Var) {
+        if (drawable == null) {
+            return null;
+        }
+        int intrinsicWidth = drawable.getIntrinsicWidth();
+        int minimumHeight = drawable.getMinimumHeight();
+        Bitmap createBitmap = Bitmap.createBitmap(intrinsicWidth, minimumHeight, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(createBitmap);
+        drawable.setBounds(0, 0, intrinsicWidth, minimumHeight);
+        drawable.draw(canvas);
+        a1Var.f46184f.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
+        a1Var.d(0, -intrinsicWidth, 0, intrinsicWidth, 0.0f, minimumHeight);
+        canvas.drawRect(0.0f, 0.0f, intrinsicWidth, minimumHeight, a1Var.f46184f);
+        a1Var.f46184f.setXfermode(null);
+        int[] iArr = a1Var.f46189l;
+        ?? bitmapDrawable = new BitmapDrawable(ApplicationLoader.applicationContext.getResources(), createBitmap);
+        bitmapDrawable.f46516b = drawable;
+        int[] iArr2 = new int[iArr.length];
+        bitmapDrawable.f46515a = iArr2;
+        System.arraycopy(iArr, 0, iArr2, 0, iArr.length);
+        return bitmapDrawable;
+    }
+
+    public static b1 d() {
+        if (f46210j == null) {
+            f46210j = new b1();
+        }
+        return f46210j;
+    }
+
+    public final z0 a(z0 z0Var) {
+        a1 a1Var = this.f46211a;
+        int[] iArr = a1Var.f46189l;
+        int i10 = iArr[0];
+        int[] iArr2 = z0Var.f46515a;
+        if (i10 == iArr2[0] && iArr[1] == iArr2[1] && iArr[2] == iArr2[2] && iArr[3] == iArr2[3]) {
+            return z0Var;
+        }
+        return c(z0Var.f46516b, a1Var);
+    }
+
+    public final void b() {
+        int i10 = h6.f21394z9;
+        if (h6.x0(null, i10, false) != this.f46216i) {
+            this.f46216i = h6.x0(null, i10, false);
+            this.e.setColorFilter(new PorterDuffColorFilter(this.f46216i, PorterDuff.Mode.MULTIPLY));
+        }
+        this.f46214f = a(this.f46214f);
+        this.f46215g = a(this.f46215g);
+    }
+
+    public final Paint e() {
+        if (MessagesController.getInstance(UserConfig.selectedAccount).premiumFeaturesBlocked()) {
+            if (this.f46213c == null) {
+                this.f46213c = new Paint(1);
             }
-            int HSVToColor = Color.HSVToColor(fArr);
-            int i11 = h6.f20993d6;
-            d6 d6Var = this.d;
-            int f7 = i0.a.f(0.5f, HSVToColor, h6.w0(i11, d6Var));
-            int f10 = i0.a.f(0.4f, HSVToColor, h6.w0(i11, d6Var));
-            if (this.v == null || this.f46247r != f10 || this.f46248s != f7) {
-                if (this.I) {
-                    Paint paint = this.f46250x;
-                    this.f46251y = paint;
-                    paint.setAlpha(255);
-                    this.G = 0.0f;
-                }
-                this.f46250x = new Paint(1);
-                this.f46247r = f10;
-                this.f46248s = f7;
-                LinearGradient linearGradient = new LinearGradient(0.0f, getMeasuredHeight(), 0.0f, 0.0f, new int[]{f10, f7}, (float[]) null, Shader.TileMode.CLAMP);
-                this.v = linearGradient;
-                this.f46250x.setShader(linearGradient);
-                invalidate();
-            }
+            this.f46213c.setColor(h6.x0(null, h6.Oh, false));
+            return this.f46213c;
         }
+        return this.f46212b;
     }
 
-    public ImageReceiver getImageReceiver() {
-        return this.E;
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.e = true;
-        if (this.f46242a != 0) {
-            a();
-        }
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.e = false;
-        Paint paint = this.f46250x;
-        if (paint != null && this.f46242a != 2) {
-            paint.setShader(null);
-            this.f46250x = null;
-        }
-        this.v = null;
-        this.I = false;
-    }
-
-    @Override
-    public final void onDraw(android.graphics.Canvas r11) {
-        throw new UnsupportedOperationException("Method not decompiled: sg.b1.onDraw(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        if (this.f46242a == 0) {
-            Path path = this.f46249w;
-            path.rewind();
-            RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-            Path.Direction direction = Path.Direction.CW;
-            path.addCircle(rectF.width() / 2.0f, rectF.centerY(), rectF.width() / 2.0f, direction);
-            rectF.set((getMeasuredWidth() / 2.0f) + AndroidUtilities.dp(2.5f), AndroidUtilities.dpf2(5.7f) + (getMeasuredHeight() / 2.0f), getMeasuredWidth() - AndroidUtilities.dpf2(0.2f), getMeasuredHeight());
-            path.addRoundRect(rectF, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), direction);
-            path.close();
-            v1 v1Var = this.f46244c;
-            v1Var.f46490a.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-            v1Var.f46490a.inset(AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f));
-            return;
-        }
-        a();
-    }
-
-    public void setAnimatedEmojiDrawable(r5 r5Var) {
-        this.F = r5Var;
-        if (r5Var != null) {
-            this.H = true;
-            invalidate();
-        }
-    }
-
-    public void setBlendWithColor(Integer num) {
-        this.K = num;
-    }
-
-    public void setColor(int i10) {
-        this.h = true;
-        Integer num = this.K;
-        if (num != null) {
-            i10 = h6.v(i10, num.intValue());
-        }
-        if (this.f46246n != i10) {
-            this.f46246n = i10;
-            int i11 = this.f46242a;
-            if (i11 != 0 && i11 != 2) {
-                a();
-            } else {
-                Paint paint = this.f46250x;
-                if (paint != null) {
-                    paint.setColor(i10);
-                }
-            }
-            invalidate();
-        }
-    }
-
-    public void setImageReceiver(ImageReceiver imageReceiver) {
-        this.E = imageReceiver;
-        if (imageReceiver != null) {
-            this.H = true;
-            invalidate();
-        }
-    }
-
-    public void setLocked(boolean z10) {
-        int i10;
-        if (this.f46242a != 0) {
-            if (z10) {
-                i10 = R.drawable.msg_mini_premiumlock;
-            } else {
-                i10 = R.drawable.msg_mini_stickerstar;
-            }
-            setImageResource(i10);
-        }
+    public final void f(float f7, float f10, int i10, int i11) {
+        this.f46211a.d(0, f7, 0, i10, f10, i11);
     }
 }

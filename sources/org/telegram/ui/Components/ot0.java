@@ -7,25 +7,25 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import androidx.recyclerview.widget.RecyclerView;
 public final class ot0 implements ViewTreeObserver.OnPreDrawListener {
-    public final int f29072a;
-    public final int f29073b;
-    public final KeyEvent.Callback f29074c;
+    public final int f29065a;
+    public final int f29066b;
+    public final KeyEvent.Callback f29067c;
 
     public ot0(KeyEvent.Callback callback, int i10, int i11) {
-        this.f29072a = i11;
-        this.f29074c = callback;
-        this.f29073b = i10;
+        this.f29065a = i11;
+        this.f29067c = callback;
+        this.f29066b = i10;
     }
 
     @Override
     public final boolean onPreDraw() {
-        int i10 = this.f29072a;
-        int i11 = this.f29073b;
-        KeyEvent.Callback callback = this.f29074c;
+        int i10 = this.f29065a;
+        int i11 = this.f29066b;
+        KeyEvent.Callback callback = this.f29067c;
         switch (i10) {
             case 0:
                 sv0 sv0Var = (sv0) callback;
-                sv0Var.f30371k0[i11].getViewTreeObserver().removeOnPreDrawListener(this);
+                sv0Var.f30364k0[i11].getViewTreeObserver().removeOnPreDrawListener(this);
                 sv0Var.U(i11);
                 return true;
             default:

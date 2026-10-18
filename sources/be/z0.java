@@ -16,14 +16,14 @@ public final class z0 extends y0 implements k0 {
         ScheduledThreadPoolExecutor scheduledThreadPoolExecutor;
         Method method;
         this.f4346c = executor;
-        Method method2 = ge.c.f11019a;
+        Method method2 = ge.c.f11017a;
         try {
             if (executor instanceof ScheduledThreadPoolExecutor) {
                 scheduledThreadPoolExecutor = (ScheduledThreadPoolExecutor) executor;
             } else {
                 scheduledThreadPoolExecutor = null;
             }
-            if (scheduledThreadPoolExecutor != null && (method = ge.c.f11019a) != null) {
+            if (scheduledThreadPoolExecutor != null && (method = ge.c.f11017a) != null) {
                 method.invoke(scheduledThreadPoolExecutor, Boolean.TRUE);
             }
         } catch (Throwable unused) {

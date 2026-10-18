@@ -15,7 +15,7 @@ public enum f0 extends a2 {
                         return;
                     }
                     kVar.l(this);
-                    kVar.f10570c = a2.f10522a;
+                    kVar.f10568c = a2.f10520a;
                     return;
                 }
                 kVar.f(i10);

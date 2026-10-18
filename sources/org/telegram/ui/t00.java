@@ -7,15 +7,15 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
 public final class t00 extends bu0 {
-    public final g10 f41579a;
+    public final g10 f41544a;
 
     public t00(g10 g10Var) {
-        this.f41579a = g10Var;
+        this.f41544a = g10Var;
     }
 
     @Override
     public final CharSequence C(int i10) {
-        return LocaleController.formatDateAudio(((MessageObject) this.f41579a.f37059f.get(i10)).messageOwner.date, false);
+        return LocaleController.formatDateAudio(((MessageObject) this.f41544a.f37024f.get(i10)).messageOwner.date, false);
     }
 
     @Override
@@ -26,7 +26,7 @@ public final class t00 extends bu0 {
         MessageObject messageObject2;
         org.telegram.ui.Components.w9 w9Var;
         if (messageObject != null) {
-            ai.u1 u1Var = this.f41579a.f37053b;
+            ai.u1 u1Var = this.f41544a.f37018b;
             int childCount = u1Var.getChildCount();
             for (int i12 = 0; i12 < childCount; i12++) {
                 View childAt = u1Var.getChildAt(i12);
@@ -38,7 +38,7 @@ public final class t00 extends bu0 {
                         if (i13 >= t7Var.e) {
                             messageObject2 = null;
                         } else {
-                            messageObject2 = t7Var.f23204b[i13];
+                            messageObject2 = t7Var.f23197b[i13];
                         }
                         if (messageObject2 == null) {
                             break;
@@ -47,7 +47,7 @@ public final class t00 extends bu0 {
                             if (i13 >= t7Var.e) {
                                 w9Var = null;
                             } else {
-                                w9Var = t7Var.f23203a[i13].f22756a;
+                                w9Var = t7Var.f23196a[i13].f22749a;
                             }
                             ImageReceiver imageReceiver = w9Var.getImageReceiver();
                             w9Var.getLocationInWindow(iArr);
@@ -76,29 +76,29 @@ public final class t00 extends bu0 {
                 }
                 if (photoImage != null) {
                     lu0 lu0Var = new lu0();
-                    lu0Var.f38962b = iArr[0];
-                    lu0Var.f38963c = iArr[1];
+                    lu0Var.f38918b = iArr[0];
+                    lu0Var.f38919c = iArr[1];
                     lu0Var.d = u1Var;
                     u1Var.getLocationInWindow(iArr);
-                    lu0Var.f38971n = -iArr[1];
-                    lu0Var.f38961a = photoImage;
-                    lu0Var.f38972o = false;
+                    lu0Var.f38927n = -iArr[1];
+                    lu0Var.f38917a = photoImage;
+                    lu0Var.f38928o = false;
                     lu0Var.h = photoImage.getRoundRadius(true);
-                    lu0Var.e = lu0Var.f38961a.getBitmapSafe();
+                    lu0Var.e = lu0Var.f38917a.getBitmapSafe();
                     lu0Var.d.getLocationInWindow(iArr);
-                    lu0Var.f38967j = 0;
+                    lu0Var.f38923j = 0;
                     if (PhotoViewer.N1(messageObject) && (pinnedHeader = u1Var.getPinnedHeader()) != null) {
                         if (childAt instanceof org.telegram.ui.Cells.i7) {
                             i11 = AndroidUtilities.dp(8.0f);
                         } else {
                             i11 = 0;
                         }
-                        int i14 = i11 - lu0Var.f38963c;
+                        int i14 = i11 - lu0Var.f38919c;
                         if (i14 > childAt.getHeight()) {
                             u1Var.scrollBy(0, -(pinnedHeader.getHeight() + i14));
                             return lu0Var;
                         }
-                        int height = lu0Var.f38963c - u1Var.getHeight();
+                        int height = lu0Var.f38919c - u1Var.getHeight();
                         if (childAt instanceof org.telegram.ui.Cells.i7) {
                             height -= AndroidUtilities.dp(8.0f);
                         }
@@ -115,9 +115,9 @@ public final class t00 extends bu0 {
 
     @Override
     public final boolean Z() {
-        g10 g10Var = this.f41579a;
+        g10 g10Var = this.f41544a;
         if (!g10Var.N) {
-            g10Var.h(g10Var.E, g10Var.F, g10Var.H, g10Var.G, g10Var.f37077y, g10Var.J, g10Var.f37075w, false);
+            g10Var.h(g10Var.E, g10Var.F, g10Var.H, g10Var.G, g10Var.f37042y, g10Var.J, g10Var.f37040w, false);
             return true;
         }
         return true;
@@ -125,11 +125,11 @@ public final class t00 extends bu0 {
 
     @Override
     public final CharSequence c0(int i10) {
-        return g10.d((MessageObject) this.f41579a.f37059f.get(i10), true, 0, null);
+        return g10.d((MessageObject) this.f41544a.f37024f.get(i10), true, 0, null);
     }
 
     @Override
     public final int y() {
-        return this.f41579a.O;
+        return this.f41544a.O;
     }
 }

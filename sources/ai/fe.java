@@ -8,38 +8,38 @@ import android.graphics.Shader;
 import android.view.View;
 import org.telegram.ui.Components.z20;
 public final class fe implements ValueAnimator.AnimatorUpdateListener {
-    public final int f1319a;
-    public final int f1320b;
-    public final int f1321c;
+    public final int f1320a;
+    public final int f1321b;
+    public final int f1322c;
     public final int d;
     public final int e;
-    public final View f1322f;
+    public final View f1323f;
 
     public fe(View view, int i10, int i11, int i12, int i13, int i14) {
-        this.f1319a = i14;
-        this.f1322f = view;
-        this.f1320b = i10;
-        this.f1321c = i11;
+        this.f1320a = i14;
+        this.f1323f = view;
+        this.f1321b = i10;
+        this.f1322c = i11;
         this.d = i12;
         this.e = i13;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        int i10 = this.f1319a;
+        int i10 = this.f1320a;
         int i11 = this.e;
         int i12 = this.d;
-        int i13 = this.f1321c;
-        int i14 = this.f1320b;
-        View view = this.f1322f;
+        int i13 = this.f1322c;
+        int i14 = this.f1321b;
+        View view = this.f1323f;
         switch (i10) {
             case 0:
                 ie ieVar = (ie) view;
                 ieVar.getClass();
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                ieVar.f1526r = i0.a.f(floatValue, i14, i13);
-                ieVar.f1527s = i0.a.f(floatValue, i12, i11);
-                ieVar.f1530y = new LinearGradient(0.0f, 0.0f, 255.0f, 0.0f, new int[]{ieVar.f1526r, ieVar.f1527s}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
+                ieVar.f1527r = i0.a.f(floatValue, i14, i13);
+                ieVar.f1528s = i0.a.f(floatValue, i12, i11);
+                ieVar.f1531y = new LinearGradient(0.0f, 0.0f, 255.0f, 0.0f, new int[]{ieVar.f1527r, ieVar.f1528s}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
                 ieVar.invalidate();
                 return;
             case 1:
@@ -48,7 +48,7 @@ public final class fe implements ValueAnimator.AnimatorUpdateListener {
                 z20Var.M = i0.a.f(((Float) valueAnimator.getAnimatedValue()).floatValue(), i12, i11);
                 z20Var.F.setColorFilter(new PorterDuffColorFilter(z20Var.L, PorterDuff.Mode.MULTIPLY));
                 z20Var.E.setColor(z20Var.L);
-                z20Var.f32821r.setColor(z20Var.M);
+                z20Var.f32814r.setColor(z20Var.M);
                 z20Var.J.d(i0.a.o(z20Var.M, 38));
                 z20Var.invalidate();
                 return;

@@ -1,7 +1,7 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-public final class mf extends org.telegram.ui.oi0 {
+public final class mf extends org.telegram.ui.ni0 {
     public final int A0;
     public final Object B0;
 

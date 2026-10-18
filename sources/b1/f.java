@@ -27,7 +27,7 @@ public final class f implements l {
                 i e = (i) obj;
                 kotlin.jvm.internal.i.e(e, "e");
                 ((Executor) this.f3665b).execute(new h((v0.i) this.f3666c, e, 1));
-                return id.i.f12777a;
+                return id.i.f12775a;
             case 1:
                 CancellationSignal cancellationSignal = (CancellationSignal) this.f3665b;
                 c1.e eVar = (c1.e) this.f3666c;
@@ -37,7 +37,7 @@ public final class f implements l {
                 if (!a1.h.a(cancellationSignal)) {
                     Intent intent = new Intent(context, HiddenActivity.class);
                     d.a(eVar.f4489i, intent, "BEGIN_SIGN_IN");
-                    intent.putExtra("EXTRA_FLOW_PENDING_INTENT", fVar.f49345a);
+                    intent.putExtra("EXTRA_FLOW_PENDING_INTENT", fVar.f49298a);
                     try {
                         context.startActivity(intent);
                     } catch (Exception unused) {
@@ -47,7 +47,7 @@ public final class f implements l {
                         }
                     }
                 }
-                return id.i.f12777a;
+                return id.i.f12775a;
             default:
                 CancellationSignal cancellationSignal2 = (CancellationSignal) this.f3665b;
                 d1.e eVar2 = (d1.e) this.f3666c;
@@ -57,14 +57,14 @@ public final class f implements l {
                 CredentialProviderPlayServicesImpl.Companion.getClass();
                 if (!a1.h.a(cancellationSignal2)) {
                     Intent intent2 = new Intent(context2, HiddenActivity.class);
-                    d.a(eVar2.f7733i, intent2, "CREATE_PUBLIC_KEY_CREDENTIAL");
+                    d.a(eVar2.f7731i, intent2, "CREATE_PUBLIC_KEY_CREDENTIAL");
                     intent2.putExtra("EXTRA_FLOW_PENDING_INTENT", result);
                     try {
                         context2.startActivity(intent2);
                     } catch (Exception unused2) {
                         CredentialProviderPlayServicesImpl.Companion.getClass();
                         if (!a1.h.a(cancellationSignal2)) {
-                            Executor executor = eVar2.f7732g;
+                            Executor executor = eVar2.f7730g;
                             if (executor != null) {
                                 executor.execute(new d1.d(eVar2, 0));
                             } else {
@@ -74,7 +74,7 @@ public final class f implements l {
                         }
                     }
                 }
-                return id.i.f12777a;
+                return id.i.f12775a;
         }
     }
 }

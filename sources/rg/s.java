@@ -10,24 +10,24 @@ import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.h6;
 import w7.z5;
 public final class s implements Runnable {
-    public final int f45667a;
-    public final m0 f45668b;
-    public final j f45669c;
+    public final int f45620a;
+    public final m0 f45621b;
+    public final j f45622c;
 
     public s(m0 m0Var, j jVar, int i10) {
-        this.f45667a = i10;
-        this.f45668b = m0Var;
-        this.f45669c = jVar;
+        this.f45620a = i10;
+        this.f45621b = m0Var;
+        this.f45622c = jVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f45667a) {
+        switch (this.f45620a) {
             case 0:
-                this.f45668b.r0(this.f45669c);
+                this.f45621b.r0(this.f45622c);
                 return;
             default:
-                final m0 m0Var = this.f45668b;
+                final m0 m0Var = this.f45621b;
                 LinearLayout linearLayout = new LinearLayout(m0Var.getContext());
                 linearLayout.setOrientation(0);
                 TextView textView = new TextView(m0Var.getContext());
@@ -42,7 +42,7 @@ public final class s implements Runnable {
                 textView.setText(LocaleController.getString(R.string.PaintDelete));
                 TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
                 textView.setEllipsize(truncateAt);
-                final j jVar = this.f45669c;
+                final j jVar = this.f45622c;
                 textView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
@@ -60,7 +60,7 @@ public final class s implements Runnable {
                             default:
                                 m0 m0Var3 = m0Var;
                                 m0Var3.getClass();
-                                ((o2) jVar).r(true);
+                                ((n2) jVar).r(true);
                                 org.telegram.ui.ActionBar.m1 m1Var2 = m0Var3.R1;
                                 if (m1Var2 != null && m1Var2.isShowing()) {
                                     m0Var3.R1.d(true);
@@ -71,7 +71,7 @@ public final class s implements Runnable {
                     }
                 });
                 linearLayout.addView(textView, z5.n(-2, 48));
-                if (jVar instanceof v2) {
+                if (jVar instanceof u2) {
                     TextView textView2 = new TextView(m0Var.getContext());
                     textView2.setTextColor(h6.w0(i10, aVar));
                     textView2.setBackground(h6.L0(false));
@@ -84,7 +84,7 @@ public final class s implements Runnable {
                     textView2.setOnClickListener(new k(m0Var, 2));
                     linearLayout.addView(textView2, z5.n(-2, 48));
                 }
-                if (jVar instanceof o2) {
+                if (jVar instanceof n2) {
                     TextView textView3 = new TextView(m0Var.getContext());
                     textView3.setTextColor(h6.w0(i10, aVar));
                     textView3.setBackgroundDrawable(h6.L0(false));
@@ -111,7 +111,7 @@ public final class s implements Runnable {
                                 default:
                                     m0 m0Var3 = m0Var;
                                     m0Var3.getClass();
-                                    ((o2) jVar).r(true);
+                                    ((n2) jVar).r(true);
                                     org.telegram.ui.ActionBar.m1 m1Var2 = m0Var3.R1;
                                     if (m1Var2 != null && m1Var2.isShowing()) {
                                         m0Var3.R1.d(true);

@@ -59,7 +59,7 @@ public final class a extends o6.a {
         try {
             jSONObject.put("id", this.f4803a);
             long j10 = this.f4805c;
-            Pattern pattern = g6.a.f10843a;
+            Pattern pattern = g6.a.f10841a;
             jSONObject.put("duration", j10 / 1000.0d);
             long j11 = this.f4809s;
             if (j11 != -1) {

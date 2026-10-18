@@ -2,24 +2,24 @@ package ei;
 
 import org.telegram.ui.qz0;
 public final class ob extends qb {
-    public final int f9573g;
+    public final int f9571g;
     public final Object h;
 
     public ob(Object obj, int i10) {
-        this.f9573g = i10;
+        this.f9571g = i10;
         this.h = obj;
     }
 
     @Override
     public final void e() {
-        switch (this.f9573g) {
+        switch (this.f9571g) {
             case 0:
                 qz0 qz0Var = (qz0) this.h;
                 qz0Var.Q = false;
                 qz0Var.invalidate();
                 return;
             case 1:
-                ci.q4 t10 = ((ci.aa) this.h).t();
+                ci.p4 t10 = ((ci.z9) this.h).t();
                 if (t10 != null) {
                     t10.m0(true);
                     return;
@@ -34,21 +34,21 @@ public final class ob extends qb {
 
     @Override
     public final void f(boolean z10) {
-        switch (this.f9573g) {
+        switch (this.f9571g) {
             case 0:
                 qz0 qz0Var = (qz0) this.h;
                 qz0Var.Q = true;
                 qz0Var.invalidate();
                 return;
             case 1:
-                ci.q4 t10 = ((ci.aa) this.h).t();
+                ci.p4 t10 = ((ci.z9) this.h).t();
                 if (t10 != null) {
                     t10.m0(false);
                 }
-                ci.r3 r3Var = this.f9669f;
-                if (r3Var != null) {
-                    r3Var.setTranslationX(0.0f);
-                    this.f9669f.setTranslationY(0.0f);
+                ci.q3 q3Var = this.f9667f;
+                if (q3Var != null) {
+                    q3Var.setTranslationX(0.0f);
+                    this.f9667f.setTranslationY(0.0f);
                     return;
                 }
                 return;

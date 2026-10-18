@@ -14,24 +14,24 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotchInfoUtils;
 public final class mi0 implements ni0 {
-    public final float f28529f;
-    public final Paint f28531i;
-    public final RectF f28532j;
-    public final oi0 f28533k;
-    public final Paint f28526a = new Paint(1);
-    public final RenderNode f28527b = new RenderNode("render");
-    public final RenderNode f28528c = new RenderNode("effectNotch");
+    public final float f28522f;
+    public final Paint f28524i;
+    public final RectF f28525j;
+    public final oi0 f28526k;
+    public final Paint f28519a = new Paint(1);
+    public final RenderNode f28520b = new RenderNode("render");
+    public final RenderNode f28521c = new RenderNode("effectNotch");
     public final RenderNode d = new RenderNode("effect");
     public final RenderNode e = new RenderNode("blur");
-    public final RectF f28530g = new RectF();
+    public final RectF f28523g = new RectF();
     public final RectF h = new RectF();
 
     public mi0(oi0 oi0Var, float f7) {
-        this.f28533k = oi0Var;
+        this.f28526k = oi0Var;
         Paint paint = new Paint();
-        this.f28531i = paint;
-        this.f28532j = new RectF();
-        this.f28529f = f7;
+        this.f28524i = paint;
+        this.f28525j = new RectF();
+        this.f28522f = f7;
         paint.setColor(-16777216);
         paint.setBlendMode(BlendMode.SRC_IN);
     }
@@ -41,8 +41,8 @@ public final class mi0 implements ni0 {
         RenderNode renderNode = this.d;
         Shader.TileMode tileMode = Shader.TileMode.CLAMP;
         renderNode.setRenderEffect(RenderEffect.createBlurEffect(f7, f7, tileMode));
-        this.f28528c.setRenderEffect(RenderEffect.createBlurEffect(f7, f7, tileMode));
-        this.f28526a.setColorFilter(new ColorMatrixColorFilter(new float[]{1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 51.0f, -6375.0f}));
+        this.f28521c.setRenderEffect(RenderEffect.createBlurEffect(f7, f7, tileMode));
+        this.f28519a.setColorFilter(new ColorMatrixColorFilter(new float[]{1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 51.0f, -6375.0f}));
     }
 
     @Override
@@ -53,8 +53,8 @@ public final class mi0 implements ni0 {
             return;
         }
         RenderNode renderNode = this.e;
-        float f10 = this.f28533k.d;
-        float f11 = this.f28529f;
+        float f10 = this.f28526k.d;
+        float f11 = this.f28522f;
         tileMode = Shader.TileMode.DECAL;
         renderNode.setRenderEffect(RenderEffect.createBlurEffect((f7 * f10) / f11, (f7 * f10) / f11, tileMode));
     }
@@ -67,16 +67,16 @@ public final class mi0 implements ni0 {
         float f12;
         float f13;
         Paint paint;
-        oi0 oi0Var = this.f28533k;
-        Paint paint2 = oi0Var.f28986a;
-        Path path = oi0Var.f28987b;
+        oi0 oi0Var = this.f28526k;
+        Paint paint2 = oi0Var.f28979a;
+        Path path = oi0Var.f28980b;
         if (!canvas.isHardwareAccelerated()) {
             return;
         }
-        RectF rectF = this.f28530g;
+        RectF rectF = this.f28523g;
         rectF.set(0.0f, 0.0f, oi0Var.getWidth(), oi0Var.getHeight());
         int childCount = oi0Var.getChildCount();
-        RectF rectF2 = this.f28532j;
+        RectF rectF2 = this.f28525j;
         if (childCount > 0) {
             View childAt = oi0Var.getChildAt(0);
             float scaleX = childAt.getScaleX() * childAt.getWidth();
@@ -84,7 +84,7 @@ public final class mi0 implements ni0 {
             float x10 = childAt.getX();
             float y3 = childAt.getY();
             rectF2.set(x10, y3, scaleX + x10, scaleY + y3);
-            NotchInfoUtils.NotchInfo notchInfo = oi0Var.f28990n;
+            NotchInfoUtils.NotchInfo notchInfo = oi0Var.f28983n;
             if (notchInfo != null) {
                 rectF2.union(notchInfo.bounds);
             }
@@ -99,36 +99,36 @@ public final class mi0 implements ni0 {
         int ceil2 = (int) Math.ceil(rectF2.height());
         float f14 = rectF2.left;
         float f15 = rectF2.top;
-        this.f28527b.setPosition(0, 0, ceil, ceil2);
+        this.f28520b.setPosition(0, 0, ceil, ceil2);
         this.e.setPosition(0, 0, ceil, ceil2);
         this.d.setPosition(0, 0, ceil, ceil2);
-        this.f28528c.setPosition(0, 0, ceil, ceil2);
+        this.f28521c.setPosition(0, 0, ceil, ceil2);
         float f16 = ceil;
         float f17 = ceil2;
         rectF2.set(0.0f, 0.0f, f16, f17);
-        RecordingCanvas beginRecording = this.f28527b.beginRecording();
+        RecordingCanvas beginRecording = this.f28520b.beginRecording();
         float f18 = -f14;
         float f19 = -f15;
         beginRecording.translate(f18, f19);
         int ilerp = (int) ((1.0f - AndroidUtilities.ilerp(oi0Var.e, 0.5f, 1.0f)) * 255.0f);
         int b10 = w7.r.b(ilerp, 0, 255);
-        oi0.a((oi0) tvVar.f30724b, beginRecording);
-        this.f28527b.endRecording();
-        float f20 = this.f28529f;
-        float y10 = com.google.android.gms.internal.play_billing.k3.y(f20, 1.0f, 2.0f, com.google.android.gms.internal.play_billing.k3.t(oi0Var.f28989f, 0.5f, f20, (f20 / 4.0f) + 1.0f));
+        oi0.a((oi0) tvVar.f30717b, beginRecording);
+        this.f28520b.endRecording();
+        float f20 = this.f28522f;
+        float y10 = com.google.android.gms.internal.play_billing.k3.y(f20, 1.0f, 2.0f, com.google.android.gms.internal.play_billing.k3.t(oi0Var.f28982f, 0.5f, f20, (f20 / 4.0f) + 1.0f));
         RecordingCanvas beginRecording2 = this.e.beginRecording();
         float f21 = 1.0f / y10;
         beginRecording2.scale(f21, f21, 0.0f, 0.0f);
-        beginRecording2.drawRenderNode(this.f28527b);
+        beginRecording2.drawRenderNode(this.f28520b);
         this.e.endRecording();
         float f22 = f20 + 2.0f;
         RecordingCanvas beginRecording3 = this.d.beginRecording();
         float f23 = 1.0f / f22;
         beginRecording3.scale(f23, f23, 0.0f, 0.0f);
-        Paint paint3 = this.f28531i;
+        Paint paint3 = this.f28524i;
         if (b10 < 255) {
             beginRecording3.saveLayer(rectF2, null);
-            beginRecording3.drawRenderNode(this.f28527b);
+            beginRecording3.drawRenderNode(this.f28520b);
             beginRecording3.drawRect(rectF2, paint3);
             beginRecording3.restore();
         }
@@ -154,35 +154,35 @@ public final class mi0 implements ni0 {
             if (b10 != 255) {
                 beginRecording3.saveLayerAlpha(rectF2, b10);
             }
-            beginRecording3.drawRenderNode(this.f28527b);
+            beginRecording3.drawRenderNode(this.f28520b);
             if (b10 != 255) {
                 beginRecording3.restore();
             }
         }
         this.d.endRecording();
-        RecordingCanvas beginRecording4 = this.f28528c.beginRecording();
+        RecordingCanvas beginRecording4 = this.f28521c.beginRecording();
         beginRecording4.scale(f23, f23, 0.0f, 0.0f);
-        if (oi0Var.f28990n != null) {
+        if (oi0Var.f28983n != null) {
             beginRecording4.translate(f18, f19);
             beginRecording4.translate(0.0f, AndroidUtilities.dp(32.0f));
-            NotchInfoUtils.NotchInfo notchInfo2 = oi0Var.f28990n;
+            NotchInfoUtils.NotchInfo notchInfo2 = oi0Var.f28983n;
             if (notchInfo2.isLikelyCircle) {
-                float min = Math.min(notchInfo2.bounds.width(), oi0Var.f28990n.bounds.height()) / 2.0f;
-                RectF rectF3 = oi0Var.f28990n.bounds;
+                float min = Math.min(notchInfo2.bounds.width(), oi0Var.f28983n.bounds.height()) / 2.0f;
+                RectF rectF3 = oi0Var.f28983n.bounds;
                 float width = rectF3.bottom - (rectF3.width() / 2.0f);
-                beginRecording4.drawCircle(oi0Var.f28990n.bounds.centerX(), width, min, paint2);
+                beginRecording4.drawCircle(oi0Var.f28983n.bounds.centerX(), width, min, paint2);
                 path.rewind();
                 float f24 = f7 / 2.0f;
-                path.moveTo(oi0Var.f28990n.bounds.centerX() - f24, width);
-                path.lineTo(oi0Var.f28990n.bounds.centerX(), min + width + f7);
-                path.lineTo(oi0Var.f28990n.bounds.centerX() + f24, width);
+                path.moveTo(oi0Var.f28983n.bounds.centerX() - f24, width);
+                path.lineTo(oi0Var.f28983n.bounds.centerX(), min + width + f7);
+                path.lineTo(oi0Var.f28983n.bounds.centerX() + f24, width);
                 path.close();
                 beginRecording4.drawPath(path, paint2);
             } else if (notchInfo2.isAccurate) {
                 beginRecording4.drawPath(notchInfo2.path, paint2);
             } else {
-                float max = Math.max(notchInfo2.bounds.width(), oi0Var.f28990n.bounds.height()) / 2.0f;
-                RectF rectF4 = oi0Var.f28990n.bounds;
+                float max = Math.max(notchInfo2.bounds.width(), oi0Var.f28983n.bounds.height()) / 2.0f;
+                RectF rectF4 = oi0Var.f28983n.bounds;
                 RectF rectF5 = this.h;
                 rectF5.set(rectF4);
                 beginRecording4.drawRoundRect(rectF5, max, max, paint2);
@@ -211,29 +211,29 @@ public final class mi0 implements ni0 {
             path.close();
             beginRecording4.drawPath(path, paint2);
         }
-        this.f28528c.endRecording();
+        this.f28521c.endRecording();
         canvas.save();
         canvas.translate(f10, f15 - AndroidUtilities.dp(32.0f));
-        NotchInfoUtils.NotchInfo notchInfo3 = oi0Var.f28990n;
+        NotchInfoUtils.NotchInfo notchInfo3 = oi0Var.f28983n;
         if (notchInfo3 != null) {
             canvas.clipRect(0.0f, notchInfo3.bounds.top, f12, f11);
         }
-        Paint paint4 = this.f28526a;
+        Paint paint4 = this.f28519a;
         canvas.saveLayer(rectF2, paint4);
         canvas.scale(f22, f22);
-        canvas.drawRenderNode(this.f28528c);
+        canvas.drawRenderNode(this.f28521c);
         canvas.drawRenderNode(this.d);
         canvas.restore();
         int b11 = w7.r.b((ilerp * 3) / 4, 0, 255);
         if (b11 < 255) {
             canvas.saveLayer(rectF2, null);
-            if (oi0Var.f28989f != 0.0f) {
+            if (oi0Var.f28982f != 0.0f) {
                 canvas.saveLayer(rectF2, paint4);
                 canvas.scale(f13, f13);
                 canvas.drawRenderNode(this.e);
                 canvas.restore();
             } else {
-                canvas.drawRenderNode(this.f28527b);
+                canvas.drawRenderNode(this.f28520b);
             }
             canvas.drawRect(rectF2, paint);
             canvas.restore();
@@ -242,13 +242,13 @@ public final class mi0 implements ni0 {
             if (b11 != 255) {
                 canvas.saveLayerAlpha(rectF2, b11);
             }
-            if (oi0Var.f28989f != 0.0f) {
+            if (oi0Var.f28982f != 0.0f) {
                 canvas.saveLayer(rectF2, paint4);
                 canvas.scale(f13, f13);
                 canvas.drawRenderNode(this.e);
                 canvas.restore();
             } else {
-                canvas.drawRenderNode(this.f28527b);
+                canvas.drawRenderNode(this.f28520b);
             }
             if (b11 != 255) {
                 canvas.restore();

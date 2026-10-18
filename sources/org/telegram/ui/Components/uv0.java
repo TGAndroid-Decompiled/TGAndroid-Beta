@@ -9,17 +9,17 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.LocationController;
 import org.telegram.messenger.R;
 public final class uv0 extends hm0 {
-    public final Context f31095c;
+    public final Context f31088c;
     public final wv0 d;
 
     public uv0(wv0 wv0Var, Context context) {
         this.d = wv0Var;
-        this.f31095c = context;
+        this.f31088c = context;
     }
 
     @Override
     public final boolean D(s4.b1 b1Var) {
-        if (b1Var.f45961f == 0) {
+        if (b1Var.f45913f == 0) {
             return true;
         }
         return false;
@@ -41,7 +41,7 @@ public final class uv0 extends hm0 {
     @Override
     public final void v(s4.b1 b1Var, int i10) {
         TextView textView;
-        int i11 = b1Var.f45961f;
+        int i11 = b1Var.f45913f;
         if (i11 != 0) {
             if (i11 == 1 && (textView = this.d.e) != null) {
                 textView.setText(LocaleController.formatString("SharingLiveLocationTitle", R.string.SharingLiveLocationTitle, LocaleController.formatPluralString("Chats", LocationController.getLocationsCount(), new Object[0])));
@@ -49,20 +49,20 @@ public final class uv0 extends hm0 {
             }
             return;
         }
-        ((org.telegram.ui.Cells.v7) b1Var.f45958a).setDialog(wv0.q(i10 - 1));
+        ((org.telegram.ui.Cells.v7) b1Var.f45910a).setDialog(wv0.q(i10 - 1));
     }
 
     @Override
     public final s4.b1 x(ViewGroup viewGroup, int i10) {
         FrameLayout v7Var;
         org.telegram.ui.ActionBar.d6 d6Var;
-        Context context = this.f31095c;
+        Context context = this.f31088c;
         wv0 wv0Var = this.d;
         if (i10 == 0) {
             d6Var = ((org.telegram.ui.ActionBar.f3) wv0Var).resourcesProvider;
             v7Var = new org.telegram.ui.Cells.v7(54, context, d6Var, false);
         } else {
-            v7Var = new ci.i4(context, 18);
+            v7Var = new ci.h4(context, 18);
             v7Var.setWillNotDraw(false);
             TextView textView = new TextView(context);
             wv0Var.e = textView;
@@ -70,7 +70,7 @@ public final class uv0 extends hm0 {
             wv0Var.e.setTextSize(1, 14.0f);
             wv0Var.e.setGravity(17);
             wv0Var.e.setPadding(0, 0, 0, AndroidUtilities.dp(8.0f));
-            v7Var.addView(wv0Var.e, w7.z5.d(40.0f, -1));
+            v7Var.addView(wv0Var.e, w7.z5.c(40.0f, -1));
         }
         return new s4.b1(v7Var);
     }

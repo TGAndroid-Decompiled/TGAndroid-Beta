@@ -1,21 +1,21 @@
 package i2;
 public final class j implements v0 {
-    public final s1 f12465a;
-    public final q0 f12466b;
-    public b f12467c;
+    public final s1 f12463a;
+    public final q0 f12464b;
+    public b f12465c;
     public v0 d;
     public boolean e = true;
-    public boolean f12468f;
+    public boolean f12466f;
 
     public j(q0 q0Var, e2.g0 g0Var) {
-        this.f12466b = q0Var;
-        this.f12465a = new s1(g0Var);
+        this.f12464b = q0Var;
+        this.f12463a = new s1(g0Var);
     }
 
     @Override
     public final long a() {
         if (this.e) {
-            return this.f12465a.a();
+            return this.f12463a.a();
         }
         v0 v0Var = this.d;
         v0Var.getClass();
@@ -25,7 +25,7 @@ public final class j implements v0 {
     @Override
     public final boolean b() {
         if (this.e) {
-            this.f12465a.getClass();
+            this.f12463a.getClass();
             return false;
         }
         v0 v0Var = this.d;
@@ -39,8 +39,8 @@ public final class j implements v0 {
         if (i10 != null && i10 != (v0Var = this.d)) {
             if (v0Var == null) {
                 this.d = i10;
-                this.f12467c = bVar;
-                i10.f((b2.z0) this.f12465a.e);
+                this.f12465c = bVar;
+                i10.f((b2.z0) this.f12463a.e);
                 return;
             }
             throw new m(2, new IllegalStateException("Multiple renderer media clocks enabled."), 1000);
@@ -54,7 +54,7 @@ public final class j implements v0 {
             v0Var.f(z0Var);
             z0Var = this.d.h();
         }
-        this.f12465a.f(z0Var);
+        this.f12463a.f(z0Var);
     }
 
     @Override
@@ -63,6 +63,6 @@ public final class j implements v0 {
         if (v0Var != null) {
             return v0Var.h();
         }
-        return (b2.z0) this.f12465a.e;
+        return (b2.z0) this.f12463a.e;
     }
 }

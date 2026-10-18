@@ -1,16 +1,10 @@
 package w7;
-public abstract class m6 {
-    public static boolean a(int i10, int i11) {
-        if ((i10 & i11) != 0) {
-            return true;
-        }
-        return false;
-    }
 
-    public static int b(int i10, int i11, boolean z10) {
-        if (z10) {
-            return i10 | i11;
-        }
-        return i10 & (~i11);
-    }
+import android.text.InputFilter;
+public abstract class m6 {
+    public abstract InputFilter[] a(InputFilter[] inputFilterArr);
+
+    public abstract void b(boolean z10);
+
+    public abstract void c(boolean z10);
 }

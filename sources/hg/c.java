@@ -1,6 +1,6 @@
 package hg;
 
-import ai.l3;
+import ai.j3;
 import android.location.Location;
 import android.text.TextUtils;
 import java.util.ArrayList;
@@ -24,14 +24,14 @@ public abstract class c extends pg.b {
     public final boolean d;
     public final boolean e;
     public boolean h;
-    public boolean f11819n;
+    public boolean f11817n;
     public Location v;
-    public String f11822w;
-    public String f11823x;
-    public b f11824y;
-    public boolean f11818f = false;
-    public final ArrayList f11820r = new ArrayList();
-    public final ArrayList f11821s = new ArrayList();
+    public String f11820w;
+    public String f11821x;
+    public b f11822y;
+    public boolean f11816f = false;
+    public final ArrayList f11818r = new ArrayList();
+    public final ArrayList f11819s = new ArrayList();
     public final int G = UserConfig.selectedAccount;
 
     public c(boolean z10, boolean z11) {
@@ -59,8 +59,8 @@ public abstract class c extends pg.b {
             dispatchQueue.postRunnable(aVar, 400L);
             return;
         }
-        this.f11821s.clear();
-        this.f11820r.clear();
+        this.f11819s.clear();
+        this.f11818r.clear();
         this.J = false;
         l();
     }
@@ -83,7 +83,7 @@ public abstract class c extends pg.b {
                 location3 = new Location(location);
             }
             this.v = location3;
-            this.f11822w = str;
+            this.f11820w = str;
             if (this.h) {
                 this.h = false;
                 if (this.F != 0) {
@@ -93,7 +93,7 @@ public abstract class c extends pg.b {
             }
             h();
             this.h = true;
-            this.f11818f = true;
+            this.f11816f = true;
             MessagesController messagesController = MessagesController.getInstance(this.G);
             if (this.d) {
                 str2 = MessagesController.getInstance(this.G).storyVenueSearchBot;
@@ -143,9 +143,9 @@ public abstract class c extends pg.b {
                     cVar = this;
                     str4 = str;
                     location4 = location;
-                    cVar.f11819n = false;
+                    cVar.f11817n = false;
                 } else {
-                    this.f11819n = true;
+                    this.f11817n = true;
                     Locale currentLocale = LocaleController.getInstance().getCurrentLocale();
                     if (this.d) {
                         if (currentLocale.getLanguage().contains("en")) {
@@ -153,7 +153,7 @@ public abstract class c extends pg.b {
                             cVar = this;
                             str4 = str;
                             location4 = location;
-                            Utilities.globalQueue.postRunnable(new l3(cVar, currentLocale, str4, locale, location4, str, 9));
+                            Utilities.globalQueue.postRunnable(new j3(cVar, currentLocale, str4, locale, location4, str, 9));
                         } else {
                             locale2 = Locale.US;
                         }
@@ -162,7 +162,7 @@ public abstract class c extends pg.b {
                     cVar = this;
                     str4 = str;
                     location4 = location;
-                    Utilities.globalQueue.postRunnable(new l3(cVar, currentLocale, str4, locale, location4, str, 9));
+                    Utilities.globalQueue.postRunnable(new j3(cVar, currentLocale, str4, locale, location4, str, 9));
                 }
                 if (location4 == null) {
                     return;

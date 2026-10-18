@@ -15,13 +15,13 @@ public final class d0 extends r {
     public final void dispatchDraw(Canvas canvas) {
         f0 f0Var = this.M;
         float min = Math.min(getHeight(), f0Var.v - (getTranslationY() + getTop()));
-        c cVar = f0Var.f51771x;
+        c cVar = f0Var.f51726x;
         if (cVar != null) {
             cVar.G = min;
         }
-        f0Var.I = min;
+        f0Var.K = min;
         if (cVar != null) {
-            cVar.U = f0Var.f51769s - cVar.getLeft();
+            cVar.U = f0Var.f51724s - cVar.getLeft();
         }
         super.dispatchDraw(canvas);
     }
@@ -29,12 +29,12 @@ public final class d0 extends r {
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
         f0 f0Var = this.M;
-        t0 t0Var = f0Var.d;
-        if (t0Var != null && (t0Var.l1 > 0.5f || t0Var.f51995k1 > 0.5f)) {
+        u0 u0Var = f0Var.d;
+        if (u0Var != null && (u0Var.l1 > 0.5f || u0Var.f51954k1 > 0.5f)) {
             if (motionEvent.getActionMasked() == 1) {
-                t0 t0Var2 = f0Var.d;
-                t0Var2.l1 = 0.0f;
-                t0Var2.invalidate();
+                u0 u0Var2 = f0Var.d;
+                u0Var2.l1 = 0.0f;
+                u0Var2.invalidate();
             }
             return true;
         }

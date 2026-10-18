@@ -1,30 +1,105 @@
 package org.telegram.messenger.voip;
-
-import java.util.ArrayList;
-import org.telegram.tgnet.TLObject;
 public final class r implements Runnable {
-    public final int f19910a;
-    public final TLObject f19911b;
-    public final ArrayList f19912c;
-    public final ArrayList d;
-    public final Runnable e;
+    public final int f19902a;
+    public final VoIPService f19903b;
 
-    public r(TLObject tLObject, ArrayList arrayList, ArrayList arrayList2, Runnable runnable, int i10) {
-        this.f19910a = i10;
-        this.f19911b = tLObject;
-        this.f19912c = arrayList;
-        this.d = arrayList2;
-        this.e = runnable;
+    public r(VoIPService voIPService, int i10) {
+        this.f19902a = i10;
+        this.f19903b = voIPService;
     }
 
     @Override
     public final void run() {
-        switch (this.f19910a) {
+        switch (this.f19902a) {
             case 0:
-                VoIPService.lambda$startConferenceGroupCall$48(this.f19911b, this.f19912c, this.d, this.e);
+                this.f19903b.lambda$updateConnectionState$83();
+                return;
+            case 1:
+                this.f19903b.lambda$playConnectedSound$88();
+                return;
+            case 2:
+                this.f19903b.lambda$playStartRecordSound$120();
+                return;
+            case 3:
+                this.f19903b.lambda$playAllowTalkSound$121();
+                return;
+            case 4:
+                this.f19903b.lambda$getConnectionAndStartCall$106();
+                return;
+            case 5:
+                this.f19903b.lambda$callFailed$115();
+                return;
+            case 6:
+                this.f19903b.lambda$callFailed$116();
+                return;
+            case 7:
+                this.f19903b.lambda$callEnded$123();
+                return;
+            case 8:
+                this.f19903b.lambda$callEnded$124();
+                return;
+            case 9:
+                this.f19903b.lambda$callEnded$125();
+                return;
+            case 10:
+                this.f19903b.lambda$callEnded$126();
+                return;
+            case 11:
+                this.f19903b.lambda$onCallUpdated$16();
+                return;
+            case 12:
+                this.f19903b.lambda$onCallUpdated$17();
+                return;
+            case 13:
+                this.f19903b.lambda$onCallUpdated$18();
+                return;
+            case 14:
+                this.f19903b.lambda$setMicMute$0();
+                return;
+            case 15:
+                this.f19903b.lambda$endConnectionServiceCall$127();
+                return;
+            case 16:
+                this.f19903b.lambda$switchToSpeaker$92();
+                return;
+            case 17:
+                this.f19903b.lambda$convertToConferenceCall$30();
+                return;
+            case 18:
+                this.f19903b.lambda$initiateActualEncryptedCall$84();
+                return;
+            case 19:
+                this.f19903b.lambda$loadResources$109();
+                return;
+            case 20:
+                this.f19903b.lambda$setupCaptureDevice$14();
+                return;
+            case 21:
+                this.f19903b.lambda$startOutgoingCall$8();
+                return;
+            case 22:
+                this.f19903b.lambda$onStartCommand$2();
+                return;
+            case 23:
+                this.f19903b.lambda$onStartCommand$3();
+                return;
+            case 24:
+                this.f19903b.lambda$declineIncomingCall$104();
+                return;
+            case 25:
+                this.f19903b.callFailed();
+                return;
+            case 26:
+                this.f19903b.lambda$startGroupCheckShortpoll$65();
+                return;
+            case 27:
+                this.f19903b.lambda$onDestroy$99();
+                return;
+            case 28:
+                this.f19903b.lambda$onConnectionStateChanged$117();
                 return;
             default:
-                VoIPService.lambda$startConferenceGroupCall$40(this.f19911b, this.f19912c, this.d, this.e);
+                this.f19903b.lambda$startConnectingSound$89();
                 return;
         }
     }

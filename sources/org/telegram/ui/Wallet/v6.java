@@ -2,31 +2,32 @@ package org.telegram.ui.Wallet;
 
 import org.telegram.messenger.Utilities;
 public final class v6 implements Runnable {
-    public final int f35000a;
-    public final WalletEngine2 f35001b;
-    public final byte[] f35002c;
-    public final e2 d;
-    public final String e;
-    public final Utilities.Callback2 f35003f;
+    public final int f34997a = 1;
+    public final WalletEngine2 f34998b;
+    public final String f34999c;
+    public final Utilities.Callback d;
 
-    public v6(WalletEngine2 walletEngine2, byte[] bArr, e2 e2Var, String str, Utilities.Callback2 callback2, int i10) {
-        this.f35000a = i10;
-        this.f35001b = walletEngine2;
-        this.f35002c = bArr;
-        this.d = e2Var;
-        this.e = str;
-        this.f35003f = callback2;
+    public v6(WalletEngine2 walletEngine2, String str, Utilities.Callback callback) {
+        this.f34998b = walletEngine2;
+        this.f34999c = str;
+        this.d = callback;
     }
 
     @Override
     public final void run() {
-        switch (this.f35000a) {
+        switch (this.f34997a) {
             case 0:
-                this.f35001b.lambda$signMessage$11(this.f35002c, this.d, this.e, this.f35003f);
+                this.f34998b.lambda$previewSignMessage$7(this.d, this.f34999c);
                 return;
             default:
-                this.f35001b.lambda$prepareTonConnectTransfer$5(this.f35002c, this.d, this.e, this.f35003f);
+                this.f34998b.lambda$getTransactionByHash$39(this.f34999c, this.d);
                 return;
         }
+    }
+
+    public v6(WalletEngine2 walletEngine2, Utilities.Callback callback, String str) {
+        this.f34998b = walletEngine2;
+        this.d = callback;
+        this.f34999c = str;
     }
 }

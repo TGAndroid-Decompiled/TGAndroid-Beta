@@ -7,26 +7,26 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.TLRPC;
 public final class fk0 extends s4.g0 {
-    public final int f26271c;
+    public final int f26264c;
     public final Context d;
     public final org.telegram.ui.ActionBar.d6 e;
-    public final boolean f26272f;
+    public final boolean f26265f;
     public final mk0 h;
 
     public fk0(mk0 mk0Var, int i10, Context context, org.telegram.ui.ActionBar.d6 d6Var, boolean z10) {
         this.h = mk0Var;
-        this.f26271c = i10;
+        this.f26264c = i10;
         this.d = context;
         this.e = d6Var;
-        this.f26272f = z10;
+        this.f26265f = z10;
     }
 
     @Override
     public final int h() {
         int i10;
         mk0 mk0Var = this.h;
-        int size = mk0Var.f28548n.size();
-        if (!mk0Var.H.isEmpty() && !MessagesController.getInstance(this.f26271c).premiumFeaturesBlocked()) {
+        int size = mk0Var.f28541n.size();
+        if (!mk0Var.H.isEmpty() && !MessagesController.getInstance(this.f26264c).premiumFeaturesBlocked()) {
             i10 = 1;
         } else {
             i10 = 0;
@@ -36,7 +36,7 @@ public final class fk0 extends s4.g0 {
 
     @Override
     public final int j(int i10) {
-        if (i10 < this.h.f28548n.size()) {
+        if (i10 < this.h.f28541n.size()) {
             return 0;
         }
         return 1;
@@ -44,8 +44,8 @@ public final class fk0 extends s4.g0 {
 
     @Override
     public final void v(s4.b1 b1Var, int i10) {
-        if (b1Var.f45961f == 0) {
-            ((org.telegram.ui.Cells.n6) b1Var.f45958a).setUserReaction((TLRPC.MessagePeerReaction) this.h.f28548n.get(i10));
+        if (b1Var.f45913f == 0) {
+            ((org.telegram.ui.Cells.n6) b1Var.f45910a).setUserReaction((TLRPC.MessagePeerReaction) this.h.f28541n.get(i10));
         }
     }
 
@@ -66,10 +66,10 @@ public final class fk0 extends s4.g0 {
             n6Var = new FrameLayout(context);
             View view = new View(context);
             view.setBackgroundColor(org.telegram.ui.ActionBar.h6.m1(0.06f, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.E8, this.e)));
-            n6Var.addView(view, w7.z5.d(8.0f, -1));
-            n6Var.addView(mk0Var.J, w7.z5.a(-1.0f, 0.0f, 8.0f, 0.0f, 0.0f, -1, 0));
+            n6Var.addView(view, w7.z5.c(8.0f, -1));
+            n6Var.addView(mk0Var.J, w7.z5.d(-1, -1.0f, 0, 0.0f, 8.0f, 0.0f, 0.0f));
         } else {
-            n6Var = new org.telegram.ui.Cells.n6(0, this.f26271c, this.d, this.e, true, this.f26272f);
+            n6Var = new org.telegram.ui.Cells.n6(0, this.f26264c, this.d, this.e, true, this.f26265f);
         }
         return new s4.b1(n6Var);
     }

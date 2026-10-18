@@ -12,11 +12,11 @@ public final class ty0 extends qz0 {
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        ci.g3 g3Var;
+        ci.f3 f3Var;
         super.dispatchDraw(canvas);
         org.telegram.ui.Components.r5 r5Var = this.e;
-        if (r5Var != null && (g3Var = r5Var.f29849k) != null) {
-            g3Var.startAnimation();
+        if (r5Var != null && (f3Var = r5Var.f29842k) != null) {
+            f3Var.startAnimation();
         }
     }
 

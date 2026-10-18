@@ -47,19 +47,19 @@ public final class zb implements Runnable {
                 }
                 return;
             case 1:
-                ci.i7 i7Var = (ci.i7) this.d;
-                LongSparseIntArray longSparseIntArray = i7Var.f5497f;
+                ci.h7 h7Var = (ci.h7) this.d;
+                LongSparseIntArray longSparseIntArray = h7Var.f5400f;
                 long j10 = this.f2557b;
                 int i10 = longSparseIntArray.get(j10, 0);
                 int i11 = this.f2558c;
                 int max = Math.max(i10, i11);
-                i7Var.f5497f.put(j10, max);
-                i7Var.f5501k.i(max, j10);
-                TL_stories.PeerStories y3 = i7Var.y(j10);
+                h7Var.f5400f.put(j10, max);
+                h7Var.f5404k.i(max, j10);
+                TL_stories.PeerStories y3 = h7Var.y(j10);
                 if (y3 != null && i11 > y3.max_read_id) {
                     y3.max_read_id = i11;
-                    Collections.sort(i7Var.f5498g, i7Var.J);
-                    NotificationCenter.getInstance(i7Var.f5494a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesUpdated, new Object[0]);
+                    Collections.sort(h7Var.f5401g, h7Var.J);
+                    NotificationCenter.getInstance(h7Var.f5397a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesUpdated, new Object[0]);
                     return;
                 }
                 return;

@@ -1,43 +1,76 @@
 package ai;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class z2 implements RequestDelegate {
-    public final int f2522a = 1;
-    public final k7 f2523b;
-    public final long f2524c;
-    public final long d;
-    public final long e;
-    public final Object f2525f;
+import android.view.View;
+public final class z2 implements View.OnClickListener {
+    public final int f2523a;
+    public final k7 f2524b;
+    public final int f2525c;
 
-    public z2(k7 k7Var, long j10, long j11, Utilities.Callback callback, long j12) {
-        this.f2523b = k7Var;
-        this.f2524c = j10;
-        this.d = j11;
-        this.f2525f = callback;
-        this.e = j12;
+    public z2(k7 k7Var, int i10, int i11) {
+        this.f2523a = i11;
+        this.f2524b = k7Var;
+        this.f2525c = i10;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f2522a) {
+    public final void onClick(View view) {
+        int i10;
+        int i11;
+        int i12;
+        int i13;
+        switch (this.f2523a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new g3(this.f2523b, (org.telegram.ui.ActionBar.b2) this.f2525f, tLObject, this.f2524c, this.d, this.e, tL_error));
+                k7 k7Var = this.f2524b;
+                int i14 = this.f2525c;
+                k7Var.U0 = i14;
+                h5 h5Var = k7Var.Z;
+                int currentPosition = h5Var.getCurrentPosition();
+                if (i14 > k7Var.U1()) {
+                    i10 = 1;
+                } else {
+                    i10 = -1;
+                }
+                h5Var.D(currentPosition + i10);
+                return;
+            case 1:
+                k7 k7Var2 = this.f2524b;
+                int i15 = this.f2525c;
+                k7Var2.U0 = i15;
+                h5 h5Var2 = k7Var2.Z;
+                int currentPosition2 = h5Var2.getCurrentPosition();
+                if (i15 > k7Var2.U1()) {
+                    i11 = 1;
+                } else {
+                    i11 = -1;
+                }
+                h5Var2.D(currentPosition2 + i11);
+                return;
+            case 2:
+                k7 k7Var3 = this.f2524b;
+                int i16 = this.f2525c;
+                k7Var3.U0 = i16;
+                h5 h5Var3 = k7Var3.Z;
+                int currentPosition3 = h5Var3.getCurrentPosition();
+                if (i16 > k7Var3.U1()) {
+                    i12 = 1;
+                } else {
+                    i12 = -1;
+                }
+                h5Var3.D(currentPosition3 + i12);
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new g3(this.f2523b, tLObject, this.f2524c, this.d, (Utilities.Callback) this.f2525f, tL_error, this.e));
+                k7 k7Var4 = this.f2524b;
+                int i17 = this.f2525c;
+                k7Var4.U0 = i17;
+                h5 h5Var4 = k7Var4.Z;
+                int currentPosition4 = h5Var4.getCurrentPosition();
+                if (i17 > k7Var4.U1()) {
+                    i13 = 1;
+                } else {
+                    i13 = -1;
+                }
+                h5Var4.D(currentPosition4 + i13);
                 return;
         }
-    }
-
-    public z2(k7 k7Var, org.telegram.ui.ActionBar.b2 b2Var, long j10, long j11, long j12) {
-        this.f2523b = k7Var;
-        this.f2525f = b2Var;
-        this.f2524c = j10;
-        this.d = j11;
-        this.e = j12;
     }
 }

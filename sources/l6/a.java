@@ -4,26 +4,26 @@ import com.google.android.gms.common.data.DataHolder;
 import java.util.Arrays;
 import n6.l;
 public abstract class a {
-    public final DataHolder f15946a;
-    public final int f15947b;
-    public final int f15948c;
+    public final DataHolder f15944a;
+    public final int f15945b;
+    public final int f15946c;
 
     public a(DataHolder dataHolder, int i10) {
         l.h(dataHolder);
-        this.f15946a = dataHolder;
+        this.f15944a = dataHolder;
         boolean z10 = false;
-        if (i10 >= 0 && i10 < dataHolder.f6546n) {
+        if (i10 >= 0 && i10 < dataHolder.f6544n) {
             z10 = true;
         }
         l.k(z10);
-        this.f15947b = i10;
-        this.f15948c = dataHolder.b(i10);
+        this.f15945b = i10;
+        this.f15946c = dataHolder.b(i10);
     }
 
     public final boolean equals(Object obj) {
         if (obj instanceof a) {
             a aVar = (a) obj;
-            if (l.l(Integer.valueOf(aVar.f15947b), Integer.valueOf(this.f15947b)) && l.l(Integer.valueOf(aVar.f15948c), Integer.valueOf(this.f15948c)) && aVar.f15946a == this.f15946a) {
+            if (l.l(Integer.valueOf(aVar.f15945b), Integer.valueOf(this.f15945b)) && l.l(Integer.valueOf(aVar.f15946c), Integer.valueOf(this.f15946c)) && aVar.f15944a == this.f15944a) {
                 return true;
             }
         }
@@ -31,6 +31,6 @@ public abstract class a {
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Integer.valueOf(this.f15947b), Integer.valueOf(this.f15948c), this.f15946a});
+        return Arrays.hashCode(new Object[]{Integer.valueOf(this.f15945b), Integer.valueOf(this.f15946c), this.f15944a});
     }
 }

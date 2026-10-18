@@ -11,22 +11,22 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
 public final class ux0 extends Drawable {
-    public final int f31107a;
-    public final int f31108b;
-    public final r5[] f31109c;
+    public final int f31100a;
+    public final int f31101b;
+    public final r5[] f31102c;
     public final boolean e;
     public int d = 255;
-    public final RectF f31110f = new RectF();
-    public boolean f31111g = false;
+    public final RectF f31103f = new RectF();
+    public boolean f31104g = false;
 
     public ux0(int i10, ArrayList arrayList, boolean z10) {
         int i11;
         this.e = z10;
         int max = (int) Math.max(1.0d, Math.sqrt(arrayList.size()));
-        this.f31107a = max;
+        this.f31100a = max;
         int min = Math.min(max * max, arrayList.size());
-        this.f31108b = min;
-        this.f31109c = new r5[min];
+        this.f31101b = min;
+        this.f31102c = new r5[min];
         if (!arrayList.isEmpty()) {
             MessageObject.isAnimatedEmoji((TLRPC.Document) arrayList.get(0));
         }
@@ -35,33 +35,33 @@ public final class ux0 extends Drawable {
         } else {
             i11 = 0;
         }
-        for (int i12 = 0; i12 < this.f31108b; i12++) {
-            this.f31109c[i12] = r5.m(i10, i11, (TLRPC.Document) arrayList.get(i12));
+        for (int i12 = 0; i12 < this.f31101b; i12++) {
+            this.f31102c[i12] = r5.m(i10, i11, (TLRPC.Document) arrayList.get(i12));
         }
     }
 
     public final void a(org.telegram.ui.Cells.u1 u1Var) {
-        for (int i10 = 0; i10 < this.f31108b; i10++) {
-            this.f31109c[i10].o(u1Var);
+        for (int i10 = 0; i10 < this.f31101b; i10++) {
+            this.f31102c[i10].o(u1Var);
         }
     }
 
     public final boolean b() {
-        return this.f31111g;
+        return this.f31104g;
     }
 
     public final boolean c(ArrayList arrayList) {
         long j10;
-        r5[] r5VarArr = this.f31109c;
+        r5[] r5VarArr = this.f31102c;
         if (r5VarArr.length == arrayList.size()) {
             for (int i10 = 0; i10 < r5VarArr.length; i10++) {
                 TLRPC.Document document = r5VarArr[i10].e;
                 if (document == null) {
                     j10 = 0;
                 } else {
-                    j10 = document.f20285id;
+                    j10 = document.f20278id;
                 }
-                if (j10 == ((TLRPC.Document) arrayList.get(i10)).f20285id) {
+                if (j10 == ((TLRPC.Document) arrayList.get(i10)).f20278id) {
                 }
             }
             return true;
@@ -70,7 +70,7 @@ public final class ux0 extends Drawable {
     }
 
     public final void d() {
-        this.f31111g = false;
+        this.f31104g = false;
     }
 
     @Override
@@ -81,12 +81,12 @@ public final class ux0 extends Drawable {
             return;
         }
         Rect bounds = getBounds();
-        RectF rectF = this.f31110f;
+        RectF rectF = this.f31103f;
         rectF.set(bounds);
         float centerX = rectF.centerX() - (AndroidUtilities.dp(48.0f) / 2.0f);
         float centerY = rectF.centerY() - (AndroidUtilities.dp(48.0f) / 2.0f);
         int dp = AndroidUtilities.dp(48.0f);
-        int i10 = this.f31107a;
+        int i10 = this.f31100a;
         float f7 = dp / i10;
         float dp2 = AndroidUtilities.dp(48.0f) / i10;
         canvas.save();
@@ -95,15 +95,15 @@ public final class ux0 extends Drawable {
             for (int i12 = 0; i12 < i10; i12++) {
                 int i13 = (i11 * i10) + i12;
                 if (i13 >= 0) {
-                    r5[] r5VarArr = this.f31109c;
+                    r5[] r5VarArr = this.f31102c;
                     if (i13 < r5VarArr.length && (r5Var = r5VarArr[i13]) != null) {
                         r5Var.setBounds((int) ((i12 * f7) + centerX), (int) ((i11 * dp2) + centerY), (int) (((i12 + 1) * f7) + centerX), (int) (((i11 + 1) * dp2) + centerY));
                         r5VarArr[i13].setAlpha(this.d);
                         r5 r5Var2 = r5VarArr[i13];
                         if (this.e) {
-                            porterDuffColorFilter = org.telegram.ui.ActionBar.h6.f21342w3;
+                            porterDuffColorFilter = org.telegram.ui.ActionBar.h6.f21335w3;
                         } else {
-                            porterDuffColorFilter = org.telegram.ui.ActionBar.h6.f21323v3;
+                            porterDuffColorFilter = org.telegram.ui.ActionBar.h6.f21316v3;
                         }
                         r5Var2.setColorFilter(porterDuffColorFilter);
                         r5VarArr[i13].draw(canvas);
@@ -115,7 +115,7 @@ public final class ux0 extends Drawable {
     }
 
     public final void e() {
-        this.f31111g = true;
+        this.f31104g = true;
     }
 
     @Override

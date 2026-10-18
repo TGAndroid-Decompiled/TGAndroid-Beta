@@ -1,88 +1,31 @@
 package org.telegram.ui.web;
 
-import android.text.TextUtils;
-import android.widget.EditText;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.g5;
-import org.telegram.ui.Components.u61;
-public final class e1 extends g5 {
-    public final ki.u f42603r = new ki.u(this, 26);
-    public final f1 f42604s;
+import org.telegram.messenger.Utilities;
+public final class e1 extends org.telegram.ui.ActionBar.j {
+    public final g1 f42580a;
 
-    public e1(f1 f1Var) {
-        this.f42604s = f1Var;
-    }
-
-    public static boolean w(String str, String str2) {
-        if (str != null && str2 != null) {
-            String lowerCase = str.toLowerCase();
-            String lowerCase2 = str2.toLowerCase();
-            if (!lowerCase.startsWith(lowerCase2) && !org.telegram.messenger.g0.w(" ", lowerCase2, lowerCase) && !org.telegram.messenger.g0.w(".", lowerCase2, lowerCase)) {
-                String translitSafe = AndroidUtilities.translitSafe(lowerCase);
-                String translitSafe2 = AndroidUtilities.translitSafe(lowerCase2);
-                if (translitSafe.startsWith(translitSafe2) || org.telegram.messenger.g0.w(" ", translitSafe2, translitSafe) || org.telegram.messenger.g0.w(".", translitSafe2, translitSafe)) {
-                    return true;
-                }
-                return false;
-            }
-            return true;
-        }
-        return false;
+    public e1(g1 g1Var) {
+        this.f42580a = g1Var;
     }
 
     @Override
-    public final void m() {
-        int i10;
-        f1 f1Var = this.f42604s;
-        f1Var.f42611n = null;
-        f1Var.h = false;
-        AndroidUtilities.cancelRunOnUIThread(this.f42603r);
-        u61 u61Var = f1Var.f31197a;
-        if (u61Var != null) {
-            u61Var.W2.N(true);
-            f1Var.f31197a.V2.h1(0, 0);
-        }
-        wh.n nVar = f1Var.f42614w.d;
-        if (TextUtils.isEmpty(f1Var.f42611n)) {
-            i10 = R.string.WebNoHistory;
-        } else {
-            i10 = R.string.WebNoSearchedHistory;
-        }
-        nVar.setText(LocaleController.getString(i10));
-    }
-
-    @Override
-    public final void q(EditText editText) {
-        int i10;
-        f1 f1Var = this.f42604s;
-        boolean z10 = !TextUtils.isEmpty(f1Var.f42611n);
-        String obj = editText.getText().toString();
-        if (!TextUtils.equals(f1Var.f42611n, obj)) {
-            f1Var.f42611n = obj;
-            f1Var.h = true;
-            ki.u uVar = this.f42603r;
-            AndroidUtilities.cancelRunOnUIThread(uVar);
-            AndroidUtilities.runOnUIThread(uVar, 500L);
-            wh.n nVar = f1Var.f42614w.d;
-            if (TextUtils.isEmpty(obj)) {
-                i10 = R.string.WebNoHistory;
-            } else {
-                i10 = R.string.WebNoSearchedHistory;
+    public final void b(int i10) {
+        org.telegram.ui.ActionBar.k kVar;
+        org.telegram.ui.ActionBar.k kVar2;
+        if (i10 == -1) {
+            g1 g1Var = this.f42580a;
+            kVar = ((org.telegram.ui.ActionBar.n2) g1Var).actionBar;
+            if (kVar.s()) {
+                kVar2 = ((org.telegram.ui.ActionBar.n2) g1Var).actionBar;
+                kVar2.r();
+                g1Var.f42594s.clear();
+                AndroidUtilities.forEachViews((RecyclerView) g1Var.f31190a, (Utilities.Callback<View>) new ci.e(23));
+                return;
             }
-            nVar.setText(LocaleController.getString(i10));
+            g1Var.finishFragment();
         }
-        u61 u61Var = f1Var.f31197a;
-        if (u61Var != null) {
-            u61Var.W2.N(true);
-            if (z10 != (!TextUtils.isEmpty(obj))) {
-                f1Var.f31197a.V2.h1(0, 0);
-            }
-        }
-    }
-
-    @Override
-    public final void n() {
     }
 }

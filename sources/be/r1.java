@@ -20,7 +20,7 @@ public final class r1 extends md.h implements td.p {
 
     @Override
     public final Object invoke(Object obj, Object obj2) {
-        return ((r1) create((yd.c) obj, (kd.c) obj2)).invokeSuspend(id.i.f12777a);
+        return ((r1) create((yd.c) obj, (kd.c) obj2)).invokeSuspend(id.i.f12775a);
     }
 
     @Override

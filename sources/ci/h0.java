@@ -4,11 +4,11 @@ import android.content.Context;
 import android.view.View;
 import org.telegram.ui.Components.s61;
 public final class h0 extends s61 {
-    public final n2 N;
+    public final m2 N;
 
-    public h0(n2 n2Var, ai.u1 u1Var, Context context, int i10, f0 f0Var, b bVar) {
+    public h0(m2 m2Var, ai.u1 u1Var, Context context, int i10, f0 f0Var, b bVar) {
         super(u1Var, context, i10, 0, false, f0Var, bVar);
-        this.N = n2Var;
+        this.N = m2Var;
     }
 
     @Override
@@ -16,12 +16,12 @@ public final class h0 extends s61 {
         q0 q0Var;
         v0 v0Var;
         super.v(b1Var, i10);
-        n2 n2Var = this.N;
-        if (n2Var.f6148y) {
-            View view = b1Var.f45958a;
-            if ((view instanceof q0) && (v0Var = (q0Var = (q0) view).K) != null && v0Var.f6067a == n2Var.f6147x) {
+        m2 m2Var = this.N;
+        if (m2Var.f6088y) {
+            View view = b1Var.f45910a;
+            if ((view instanceof q0) && (v0Var = (q0Var = (q0) view).K) != null && v0Var.f5994a == m2Var.f6087x) {
                 q0Var.b();
-                n2Var.f6148y = false;
+                m2Var.f6088y = false;
             }
         }
     }
@@ -31,12 +31,12 @@ public final class h0 extends s61 {
         q0 q0Var;
         v0 v0Var;
         super.y(b1Var);
-        n2 n2Var = this.N;
-        if (n2Var.f6148y) {
-            View view = b1Var.f45958a;
-            if ((view instanceof q0) && (v0Var = (q0Var = (q0) view).K) != null && v0Var.f6067a == n2Var.f6147x) {
+        m2 m2Var = this.N;
+        if (m2Var.f6088y) {
+            View view = b1Var.f45910a;
+            if ((view instanceof q0) && (v0Var = (q0Var = (q0) view).K) != null && v0Var.f5994a == m2Var.f6087x) {
                 q0Var.b();
-                n2Var.f6148y = false;
+                m2Var.f6088y = false;
             }
         }
     }

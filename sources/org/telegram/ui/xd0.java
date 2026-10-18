@@ -11,23 +11,23 @@ import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class xd0 extends org.telegram.ui.Components.ow0 {
-    public final EditTextBoldCursor f43110a;
-    public final TextView f43111b;
-    public final TextView f43112c;
+    public final EditTextBoldCursor f43074a;
+    public final TextView f43075b;
+    public final TextView f43076c;
     public final TextView d;
     public final org.telegram.ui.Components.xj0 e;
-    public Bundle f43113f;
+    public Bundle f43077f;
     public boolean h;
-    public TL_account.Password f43114n;
-    public String f43115r;
-    public String f43116s;
+    public TL_account.Password f43078n;
+    public String f43079r;
+    public String f43080s;
     public String v;
-    public String f43117w;
-    public final org.telegram.ui.Components.sd0 f43118x;
-    public final fg0 f43119y;
+    public String f43081w;
+    public final org.telegram.ui.Components.sd0 f43082x;
+    public final eg0 f43083y;
 
-    public xd0(org.telegram.ui.fg0 r20, android.content.Context r21) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.xd0.<init>(org.telegram.ui.fg0, android.content.Context):void");
+    public xd0(org.telegram.ui.eg0 r20, android.content.Context r21) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.xd0.<init>(org.telegram.ui.eg0, android.content.Context):void");
     }
 
     @Override
@@ -38,8 +38,8 @@ public final class xd0 extends org.telegram.ui.Components.ow0 {
     @Override
     public final boolean c(boolean z10) {
         this.h = false;
-        this.f43119y.k1(true, true);
-        this.f43113f = null;
+        this.f43083y.k1(true, true);
+        this.f43077f = null;
         return true;
     }
 
@@ -55,47 +55,47 @@ public final class xd0 extends org.telegram.ui.Components.ow0 {
 
     @Override
     public final void h(String str) {
-        if (!this.h && this.f43114n != null) {
-            String obj = this.f43110a.getText().toString();
+        if (!this.h && this.f43078n != null) {
+            String obj = this.f43074a.getText().toString();
             if (obj.length() == 0) {
-                fg0 fg0Var = this.f43119y;
-                if (fg0Var.getParentActivity() == null) {
+                eg0 eg0Var = this.f43083y;
+                if (eg0Var.getParentActivity() == null) {
                     return;
                 }
-                fg0.U0(fg0Var, this.f43118x, true);
+                eg0.U0(eg0Var, this.f43082x, true);
                 return;
             }
             this.h = true;
-            this.f43119y.n1(0, true);
+            this.f43083y.n1(0, true);
             Utilities.globalQueue.postRunnable(new b80(18, this, obj));
         }
     }
 
     @Override
     public final void j() {
-        AndroidUtilities.runOnUIThread(new fz(this, 20), fg0.f36925t0);
+        AndroidUtilities.runOnUIThread(new fz(this, 20), eg0.f36488t0);
     }
 
     @Override
     public final void k(Bundle bundle) {
         Bundle bundle2 = bundle.getBundle("passview_params");
-        this.f43113f = bundle2;
+        this.f43077f = bundle2;
         if (bundle2 != null) {
             m(bundle2, true);
         }
         String string = bundle.getString("passview_code");
         if (string != null) {
-            this.f43110a.setText(string);
+            this.f43074a.setText(string);
         }
     }
 
     @Override
     public final void l(Bundle bundle) {
-        String obj = this.f43110a.getText().toString();
+        String obj = this.f43074a.getText().toString();
         if (obj.length() != 0) {
             bundle.putString("passview_code", obj);
         }
-        Bundle bundle2 = this.f43113f;
+        Bundle bundle2 = this.f43077f;
         if (bundle2 != null) {
             bundle.putBundle("passview_params", bundle2);
         }
@@ -107,25 +107,25 @@ public final class xd0 extends org.telegram.ui.Components.ow0 {
             return;
         }
         boolean isEmpty = bundle.isEmpty();
-        EditTextBoldCursor editTextBoldCursor = this.f43110a;
+        EditTextBoldCursor editTextBoldCursor = this.f43074a;
         if (isEmpty) {
             AndroidUtilities.hideKeyboard(editTextBoldCursor);
             return;
         }
         editTextBoldCursor.setText("");
-        this.f43113f = bundle;
+        this.f43077f = bundle;
         String string = bundle.getString("password");
-        this.f43115r = string;
+        this.f43079r = string;
         if (string != null) {
             SerializedData serializedData = new SerializedData(Utilities.hexToBytes(string));
-            this.f43114n = TL_account.Password.TLdeserialize(serializedData, serializedData.readInt32(false), false);
+            this.f43078n = TL_account.Password.TLdeserialize(serializedData, serializedData.readInt32(false), false);
         }
-        this.f43116s = bundle.getString("phoneFormated");
+        this.f43080s = bundle.getString("phoneFormated");
         this.v = bundle.getString("phoneHash");
-        this.f43117w = bundle.getString("code");
-        TL_account.Password password = this.f43114n;
+        this.f43081w = bundle.getString("code");
+        TL_account.Password password = this.f43078n;
         if (password != null && !TextUtils.isEmpty(password.hint)) {
-            editTextBoldCursor.setHint(this.f43114n.hint);
+            editTextBoldCursor.setHint(this.f43078n.hint);
         } else {
             editTextBoldCursor.setHint((CharSequence) null);
         }
@@ -135,13 +135,13 @@ public final class xd0 extends org.telegram.ui.Components.ow0 {
     public final void n() {
         int i10 = org.telegram.ui.ActionBar.h6.G6;
         this.d.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, i10, false));
-        this.f43111b.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.D6, false));
+        this.f43075b.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.D6, false));
         int x02 = org.telegram.ui.ActionBar.h6.x0(null, i10, false);
-        EditTextBoldCursor editTextBoldCursor = this.f43110a;
+        EditTextBoldCursor editTextBoldCursor = this.f43074a;
         editTextBoldCursor.setTextColor(x02);
         editTextBoldCursor.setCursorColor(org.telegram.ui.ActionBar.h6.x0(null, i10, false));
         editTextBoldCursor.setHintTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.H6, false));
-        this.f43112c.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.q6, false));
-        this.f43118x.f();
+        this.f43076c.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.q6, false));
+        this.f43082x.f();
     }
 }

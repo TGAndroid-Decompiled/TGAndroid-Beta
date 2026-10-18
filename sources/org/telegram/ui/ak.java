@@ -5,10 +5,10 @@ import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class ak implements et {
-    public final sn f35473a;
+    public final sn f35434a;
 
     public ak(sn snVar) {
-        this.f35473a = snVar;
+        this.f35434a = snVar;
     }
 
     @Override
@@ -49,14 +49,14 @@ public final class ak implements et {
     @Override
     public final void M(TLRPC.InputStickerSet inputStickerSet, boolean z10) {
         if (inputStickerSet != null) {
-            sn snVar = this.f35473a;
+            sn snVar = this.f35434a;
             if (snVar.getParentActivity() != null) {
                 TLRPC.TL_inputStickerSetID tL_inputStickerSetID = new TLRPC.TL_inputStickerSetID();
                 tL_inputStickerSetID.access_hash = inputStickerSet.access_hash;
-                tL_inputStickerSetID.f20299id = inputStickerSet.f20299id;
-                org.telegram.ui.Components.oy0 oy0Var = new org.telegram.ui.Components.oy0(snVar.getParentActivity(), snVar, tL_inputStickerSetID, null, snVar.Y, snVar.f41226ea);
+                tL_inputStickerSetID.f20292id = inputStickerSet.f20292id;
+                org.telegram.ui.Components.oy0 oy0Var = new org.telegram.ui.Components.oy0(snVar.getParentActivity(), snVar, tL_inputStickerSetID, null, snVar.Y, snVar.f41191ea);
                 oy0Var.setCalcMandatoryInsets(snVar.C9());
-                oy0Var.f29098i0 = z10;
+                oy0Var.f29091i0 = z10;
                 snVar.showDialog(oy0Var);
             }
         }
@@ -79,17 +79,17 @@ public final class ak implements et {
 
     @Override
     public final long a() {
-        return this.f35473a.T5;
+        return this.f35434a.T5;
     }
 
     @Override
     public final boolean b() {
-        return this.f35473a.G6();
+        return this.f35434a.G6();
     }
 
     @Override
     public final boolean c() {
-        if (this.f35473a.R3 == 1) {
+        if (this.f35434a.R3 == 1) {
             return true;
         }
         return false;
@@ -132,7 +132,7 @@ public final class ak implements et {
 
     @Override
     public final void l(TLRPC.Document document, String str, Object obj, boolean z10, int i10, int i11) {
-        this.f35473a.Y.e(document, str, obj, null, true, z10, i10, i11);
+        this.f35434a.Y.e(document, str, obj, null, true, z10, i10, i11);
     }
 
     @Override

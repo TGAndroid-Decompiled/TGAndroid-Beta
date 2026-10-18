@@ -3,7 +3,7 @@ package org.telegram.ui.Cells;
 import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ey;
-public final class k2 extends ci.y7 {
+public final class k2 extends ci.x7 {
     public final r2 S;
 
     public k2(r2 r2Var) {
@@ -46,7 +46,7 @@ public final class k2 extends ci.y7 {
     @Override
     public final void e() {
         r2 r2Var = this.S;
-        n2 n2Var = r2Var.f22822d0;
+        n2 n2Var = r2Var.f22815d0;
         if (n2Var == null) {
             return;
         }
@@ -56,7 +56,7 @@ public final class k2 extends ci.y7 {
     @Override
     public final void f(long j10) {
         r2 r2Var = this.S;
-        n2 n2Var = r2Var.f22822d0;
+        n2 n2Var = r2Var.f22815d0;
         if (n2Var == null) {
             return;
         }

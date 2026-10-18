@@ -4,13 +4,13 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
 public final class fn extends w7.a6 {
-    public MessageObject f36981a;
-    public int f36982b = 0;
-    public boolean f36983c = true;
+    public MessageObject f36946a;
+    public int f36947b = 0;
+    public boolean f36948c = true;
     public int d = 0;
     public int e;
-    public boolean f36984f;
-    public int f36985g;
+    public boolean f36949f;
+    public int f36950g;
     public final sn h;
 
     public fn(sn snVar) {
@@ -19,20 +19,20 @@ public final class fn extends w7.a6 {
 
     @Override
     public final void a() {
-        MessageObject messageObject = this.f36981a;
+        MessageObject messageObject = this.f36946a;
         sn snVar = this.h;
         if (messageObject != null) {
             snVar.A0.T();
-            int indexOf = snVar.f41421u6.indexOf(this.f36981a) + snVar.A0.J;
+            int indexOf = snVar.f41386u6.indexOf(this.f36946a) + snVar.A0.J;
             if (indexOf >= 0) {
-                snVar.f41479z0.i1(indexOf, (int) ((this.e + this.f36985g) - snVar.f41398s9), this.f36984f);
+                snVar.f41444z0.i1(indexOf, (int) ((this.e + this.f36950g) - snVar.f41363s9), this.f36949f);
             }
         } else {
             snVar.A0.T();
-            snVar.f41479z0.i1(this.f36982b, this.d, this.f36983c);
+            snVar.f41444z0.i1(this.f36947b, this.d, this.f36948c);
         }
-        this.f36981a = null;
-        snVar.f41316m3 = true;
+        this.f36946a = null;
+        snVar.f41281m3 = true;
         snVar.ad(false);
         AndroidUtilities.runOnUIThread(new vi(this, 9));
     }
@@ -40,9 +40,9 @@ public final class fn extends w7.a6 {
     @Override
     public final void c() {
         sn snVar = this.h;
-        snVar.I9 = snVar.getNotificationCenter().setAnimationInProgress(snVar.I9, sn.Nc);
-        qk qkVar = snVar.f41450wa;
-        if (qkVar.f43290n) {
+        snVar.I9 = snVar.getNotificationCenter().setAnimationInProgress(snVar.I9, sn.Oc);
+        qk qkVar = snVar.f41415wa;
+        if (qkVar.f43252n) {
             qkVar.d();
         }
     }

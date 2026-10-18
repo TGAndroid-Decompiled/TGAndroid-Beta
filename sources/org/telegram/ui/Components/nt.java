@@ -23,56 +23,56 @@ public final class nt extends org.telegram.ui.ActionBar.f3 {
             final ?? f3Var = new org.telegram.ui.ActionBar.f3(activity, false);
             f3Var.setApplyBottomPadding(false);
             f3Var.setApplyTopPadding(false);
-            int i10 = org.telegram.ui.ActionBar.h6.f20993d6;
+            int i10 = org.telegram.ui.ActionBar.h6.f20986d6;
             f3Var.fixNavigationBar(f3Var.getThemedColor(i10));
             LinearLayout linearLayout = new LinearLayout(activity);
             linearLayout.setOrientation(1);
             FrameLayout frameLayout = new FrameLayout(activity);
             frameLayout.addView(linearLayout);
             ImageView imageView = new ImageView(activity);
-            imageView.setBackground(org.telegram.ui.ActionBar.h6.g0(f3Var.getThemedColor(org.telegram.ui.ActionBar.h6.f21082i6), 1, -1));
+            imageView.setBackground(org.telegram.ui.ActionBar.h6.g0(f3Var.getThemedColor(org.telegram.ui.ActionBar.h6.f21075i6), 1, -1));
             imageView.setColorFilter(f3Var.getThemedColor(org.telegram.ui.ActionBar.h6.Ji));
             imageView.setImageResource(R.drawable.ic_layer_close);
             imageView.setOnClickListener(new View.OnClickListener(f3Var) {
-                public final nt f28594b;
+                public final nt f28587b;
 
                 {
-                    this.f28594b = f3Var;
+                    this.f28587b = f3Var;
                 }
 
                 @Override
                 public final void onClick(View view) {
                     switch (r2) {
                         case 0:
-                            this.f28594b.dismiss();
+                            this.f28587b.dismiss();
                             return;
                         default:
-                            nt.n(this.f28594b);
+                            nt.n(this.f28587b);
                             return;
                     }
                 }
             });
             int dp = AndroidUtilities.dp(8.0f);
             imageView.setPadding(dp, dp, dp, dp);
-            frameLayout.addView(imageView, w7.z5.a(36.0f, 6.0f, 8.0f, 8.0f, 0.0f, 36, 8388661));
+            frameLayout.addView(imageView, w7.z5.d(36, 36.0f, 8388661, 6.0f, 8.0f, 8.0f, 0.0f));
             sx0 sx0Var = new sx0(activity, f3Var.currentAccount);
             sx0Var.setStickerNum(9);
             sx0Var.getImageReceiver().setAutoRepeat(1);
             linearLayout.addView(sx0Var, w7.z5.t(110, 110, 1, 0, 26, 0, 0));
             TextView textView = new TextView(activity);
             textView.setGravity(1);
-            int i11 = org.telegram.ui.ActionBar.h6.f21099j5;
+            int i11 = org.telegram.ui.ActionBar.h6.f21092j5;
             textView.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, i11, false));
             textView.setTextSize(1, 20.0f);
             textView.setText(LocaleController.getString(R.string.DownloadedFiles));
-            linearLayout.addView(textView, w7.z5.a(-2.0f, 21.0f, 20.0f, 21.0f, 0.0f, -1, 0));
+            linearLayout.addView(textView, w7.z5.d(-1, -2.0f, 0, 21.0f, 20.0f, 21.0f, 0.0f));
             TextView textView2 = new TextView(activity);
             textView2.setGravity(1);
             textView2.setTextSize(1, 14.0f);
             textView2.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, i11, false));
             textView2.setLineSpacing(textView2.getLineSpacingExtra(), textView2.getLineSpacingMultiplier() * 1.1f);
             textView2.setText(LocaleController.formatString("DownloadedFilesMessage", R.string.DownloadedFilesMessage, new Object[0]));
-            linearLayout.addView(textView2, w7.z5.a(-2.0f, 28.0f, 7.0f, 28.0f, 0.0f, -1, 0));
+            linearLayout.addView(textView2, w7.z5.d(-1, -2.0f, 0, 28.0f, 7.0f, 28.0f, 0.0f));
             TextView textView3 = new TextView(activity);
             textView3.setGravity(17);
             TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
@@ -87,7 +87,7 @@ public final class nt extends org.telegram.ui.ActionBar.f3 {
             int x02 = org.telegram.ui.ActionBar.h6.x0(null, i12, false);
             int o10 = i0.a.o(org.telegram.ui.ActionBar.h6.x0(null, i10, false), 120);
             textView3.setBackground(org.telegram.ui.ActionBar.h6.j0(dp2, dp2, dp2, dp2, x02, o10, o10));
-            linearLayout.addView(textView3, w7.z5.a(48.0f, 14.0f, 28.0f, 14.0f, 6.0f, -1, 0));
+            linearLayout.addView(textView3, w7.z5.d(-1, 48.0f, 0, 14.0f, 28.0f, 14.0f, 6.0f));
             TextView textView4 = new TextView(activity);
             textView4.setGravity(17);
             textView4.setEllipsize(truncateAt);
@@ -100,26 +100,26 @@ public final class nt extends org.telegram.ui.ActionBar.f3 {
             int o11 = i0.a.o(org.telegram.ui.ActionBar.h6.x0(null, i12, false), 120);
             textView4.setBackground(org.telegram.ui.ActionBar.h6.j0(dp3, dp3, dp3, dp3, 0, o11, o11));
             textView4.setLetterSpacing(0.025f);
-            linearLayout.addView(textView4, w7.z5.a(48.0f, 14.0f, 0.0f, 14.0f, 6.0f, -1, 0));
+            linearLayout.addView(textView4, w7.z5.d(-1, 48.0f, 0, 14.0f, 0.0f, 14.0f, 6.0f));
             NestedScrollView nestedScrollView = new NestedScrollView(activity);
             nestedScrollView.addView(frameLayout);
             f3Var.setCustomView(nestedScrollView);
             textView3.setOnClickListener(new ca(10, f3Var, n2Var));
             textView4.setOnClickListener(new View.OnClickListener(f3Var) {
-                public final nt f28594b;
+                public final nt f28587b;
 
                 {
-                    this.f28594b = f3Var;
+                    this.f28587b = f3Var;
                 }
 
                 @Override
                 public final void onClick(View view) {
                     switch (r2) {
                         case 0:
-                            this.f28594b.dismiss();
+                            this.f28587b.dismiss();
                             return;
                         default:
-                            nt.n(this.f28594b);
+                            nt.n(this.f28587b);
                             return;
                     }
                 }

@@ -3,14 +3,14 @@ package y9;
 import ki.t1;
 import org.json.JSONObject;
 public abstract class l {
-    public static final t1 f50154a;
+    public static final t1 f50107a;
 
     static {
         la.d dVar = new la.d();
-        a aVar = a.f50126a;
-        dVar.d(l.class, aVar);
-        dVar.d(b.class, aVar);
-        f50154a = new t1(dVar, 4);
+        a aVar = a.f50079a;
+        dVar.a(l.class, aVar);
+        dVar.a(b.class, aVar);
+        f50107a = new t1(dVar, 4);
     }
 
     public static b a(String str) {

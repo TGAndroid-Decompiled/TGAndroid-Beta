@@ -12,23 +12,23 @@ import java.util.concurrent.Executors;
 import m4.v0;
 import m4.z;
 public final class r implements AutoCloseable {
-    public final v0 f16977b;
-    public final v0 f16978c;
-    public long f16981r;
-    public boolean f16982s;
+    public final v0 f16975b;
+    public final v0 f16976c;
+    public long f16979r;
+    public boolean f16980s;
     public b v;
-    public Throwable f16983w;
-    public volatile Set f16984x;
-    public final Object f16976a = new Object();
+    public Throwable f16981w;
+    public volatile Set f16982x;
+    public final Object f16974a = new Object();
     public final LinkedHashMap h = new LinkedHashMap(16, 0.75f, true);
-    public final HashMap f16980n = new HashMap();
+    public final HashMap f16978n = new HashMap();
     public final int e = 256;
-    public final long f16979f = 8388608;
+    public final long f16977f = 8388608;
     public final ExecutorService d = Executors.newSingleThreadExecutor(new l0(1));
 
     public r(v0 v0Var, v0 v0Var2) {
-        this.f16977b = v0Var;
-        this.f16978c = v0Var2;
+        this.f16975b = v0Var;
+        this.f16976c = v0Var2;
     }
 
     public static String b(String str) {
@@ -94,16 +94,16 @@ public final class r implements AutoCloseable {
         m mVar = new m(oVar, qVar);
         int i10 = this.e;
         if (i10 != 0) {
-            long j10 = mVar.f16968b;
-            long j11 = this.f16979f;
+            long j10 = mVar.f16966b;
+            long j11 = this.f16977f;
             if (j10 <= j11) {
                 LinkedHashMap linkedHashMap = this.h;
                 linkedHashMap.put(oVar, mVar);
-                this.f16981r += j10;
+                this.f16979r += j10;
                 while (true) {
-                    if (linkedHashMap.size() > i10 || this.f16981r > j11) {
+                    if (linkedHashMap.size() > i10 || this.f16979r > j11) {
                         Map.Entry entry = (Map.Entry) linkedHashMap.entrySet().iterator().next();
-                        this.f16981r -= ((m) entry.getValue()).f16968b;
+                        this.f16979r -= ((m) entry.getValue()).f16966b;
                         linkedHashMap.remove(entry.getKey());
                     } else {
                         return;
@@ -115,24 +115,24 @@ public final class r implements AutoCloseable {
 
     @Override
     public final void close() {
-        synchronized (this.f16976a) {
+        synchronized (this.f16974a) {
             try {
-                if (this.f16982s) {
+                if (this.f16980s) {
                     return;
                 }
-                this.f16982s = true;
-                for (ArrayList arrayList : this.f16980n.values()) {
+                this.f16980s = true;
+                for (ArrayList arrayList : this.f16978n.values()) {
                     int size = arrayList.size();
                     int i10 = 0;
                     while (i10 < size) {
                         Object obj = arrayList.get(i10);
                         i10++;
-                        ((p) obj).f16972a = null;
+                        ((p) obj).f16970a = null;
                     }
                 }
-                this.f16980n.clear();
+                this.f16978n.clear();
                 this.h.clear();
-                this.f16981r = 0L;
+                this.f16979r = 0L;
                 this.d.execute(new l(this, 0));
                 this.d.shutdown();
             } catch (Throwable th2) {
@@ -145,18 +145,18 @@ public final class r implements AutoCloseable {
         if (str != null) {
             o oVar = new o(str, b(str2));
             ?? obj = new Object();
-            obj.f16972a = nVar;
-            synchronized (this.f16976a) {
+            obj.f16970a = nVar;
+            synchronized (this.f16974a) {
                 try {
-                    if (!this.f16982s) {
-                        ArrayList arrayList = (ArrayList) this.f16980n.get(oVar);
+                    if (!this.f16980s) {
+                        ArrayList arrayList = (ArrayList) this.f16978n.get(oVar);
                         if (arrayList != null) {
                             arrayList.add(obj);
                             return obj;
                         }
                         ArrayList arrayList2 = new ArrayList();
                         arrayList2.add(obj);
-                        this.f16980n.put(oVar, arrayList2);
+                        this.f16978n.put(oVar, arrayList2);
                         this.d.execute(new z(5, this, oVar));
                         return obj;
                     }

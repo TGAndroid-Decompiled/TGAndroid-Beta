@@ -4,44 +4,44 @@ import android.view.View;
 import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.TLRPC;
 public final class sd1 implements xh.c, MessagesController.ErrorDelegate, r0.n, org.telegram.ui.Components.zl0 {
-    public final te1 f41105a;
+    public final te1 f41067a;
 
     public sd1(te1 te1Var) {
-        this.f41105a = te1Var;
+        this.f41067a = te1Var;
     }
 
     @Override
     public r0.k1 B0(View view, r0.k1 k1Var) {
-        int i10 = k1Var.f44873a.f(519).d;
-        te1 te1Var = this.f41105a;
-        te1Var.f41717e1 = i10;
-        pe1 pe1Var = te1Var.f41739r0;
+        int i10 = k1Var.f44827a.f(519).d;
+        te1 te1Var = this.f41067a;
+        te1Var.f41682e1 = i10;
+        pe1 pe1Var = te1Var.f41704r0;
         if (pe1Var != null) {
             pe1Var.setPadding(0, 0, 0, i10);
         }
-        je1 je1Var = te1Var.f41733n;
+        je1 je1Var = te1Var.f41698n;
         if (je1Var != null) {
-            je1Var.f38144a.setTranslationY((-te1Var.f41717e1) - te1Var.f41715d1);
+            je1Var.f38126a.setTranslationY((-te1Var.f41682e1) - te1Var.f41680d1);
         }
-        te1Var.h.setTranslationY(((-te1Var.X0) - te1Var.f41717e1) - te1Var.f41715d1);
+        te1Var.h.setTranslationY(((-te1Var.X0) - te1Var.f41682e1) - te1Var.f41680d1);
         te1Var.B0();
-        return r0.k1.f44872b;
+        return r0.k1.f44826b;
     }
 
     @Override
     public boolean mo17d(float f7, float f10, int i10, View view) {
-        return te1.W(this.f41105a, view, f7);
+        return te1.W(this.f41067a, view, f7);
     }
 
     @Override
     public void f(boolean z10, boolean z11) {
-        te1 te1Var = this.f41105a;
+        te1 te1Var = this.f41067a;
         te1Var.U0.i(te1Var.R0.c(), z10, z11);
     }
 
     @Override
     public boolean run(TLRPC.TL_error tL_error) {
-        return te1.U(this.f41105a, tL_error);
+        return te1.U(this.f41067a, tL_error);
     }
 
     @Override

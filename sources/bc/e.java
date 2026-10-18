@@ -17,9 +17,9 @@ public final class e {
     public final we a() {
         ?? obj = new Object();
         Boolean bool = Boolean.FALSE;
-        obj.f6884b = bool;
-        obj.f6885c = Boolean.valueOf(this.f4253a);
-        obj.f6883a = Boolean.valueOf(this.f4254b);
+        obj.f6882b = bool;
+        obj.f6883c = Boolean.valueOf(this.f4253a);
+        obj.f6881a = Boolean.valueOf(this.f4254b);
         obj.d = bool;
         obj.e = Boolean.valueOf(this.f4255c);
         return new we(obj);

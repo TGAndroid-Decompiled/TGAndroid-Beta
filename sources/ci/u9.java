@@ -3,5 +3,5 @@ package ci;
 import android.graphics.Canvas;
 import android.graphics.RectF;
 public interface u9 {
-    void e(float f7, Canvas canvas, RectF rectF, boolean z10);
+    void i(Canvas canvas, RectF rectF, float f7);
 }

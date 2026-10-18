@@ -6,7 +6,7 @@ public final class b0 {
     public final Uri f3701a;
 
     static {
-        String str = e2.m0.f8255a;
+        String str = e2.m0.f8253a;
         f3700b = Integer.toString(0, 36);
     }
 

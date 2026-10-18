@@ -14,16 +14,16 @@ import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.cg0;
 import org.telegram.ui.Components.g80;
 public final class nb extends FrameLayout {
-    public float f9532a;
-    public float f9533b;
-    public final Paint f9534c;
+    public float f9530a;
+    public float f9531b;
+    public final Paint f9532c;
     public LinearGradient d;
     public final vb e;
 
     public nb(vb vbVar, Activity activity) {
         super(activity);
         this.e = vbVar;
-        this.f9534c = new Paint(1);
+        this.f9532c = new Paint(1);
     }
 
     public static void a(View view, int i10, int i11) {
@@ -31,8 +31,8 @@ public final class nb extends FrameLayout {
     }
 
     public final void b(float f7) {
-        float f10 = this.f9532a;
-        this.f9533b = f7;
+        float f10 = this.f9530a;
+        this.f9531b = f7;
         super.setTranslationY(f10 + f7);
     }
 
@@ -49,14 +49,14 @@ public final class nb extends FrameLayout {
         float f7;
         boolean drawChild = super.drawChild(canvas, view, j10);
         vb vbVar = this.e;
-        if (view == vbVar.f9974h0) {
+        if (view == vbVar.f9972h0) {
             if (vbVar.V) {
                 f7 = AndroidUtilities.statusBarHeight;
             } else {
                 f7 = 0.0f;
             }
             LinearGradient linearGradient = this.d;
-            Paint paint = this.f9534c;
+            Paint paint = this.f9532c;
             if (linearGradient == null) {
                 LinearGradient linearGradient2 = new LinearGradient(0.0f, f7, 0.0f, f7 + AndroidUtilities.dp(72.0f), new int[]{1073741824, 0}, new float[]{f7 / (AndroidUtilities.dp(72.0f) + f7), 1.0f}, Shader.TileMode.CLAMP);
                 this.d = linearGradient2;
@@ -90,33 +90,33 @@ public final class nb extends FrameLayout {
         }
         int measuredWidth = getMeasuredWidth();
         int measuredHeight = getMeasuredHeight();
-        vbVar.f9974h0.layout(0, 0, vbVar.S, vbVar.T);
-        vbVar.f9974h0.setPivotX(vbVar.S * 0.5f);
-        FrameLayout frameLayout = vbVar.f9977i0;
+        vbVar.f9972h0.layout(0, 0, vbVar.S, vbVar.T);
+        vbVar.f9972h0.setPivotX(vbVar.S * 0.5f);
+        FrameLayout frameLayout = vbVar.f9975i0;
         frameLayout.layout(0, i14, vbVar.S, frameLayout.getMeasuredHeight() + i14);
-        FrameLayout frameLayout2 = vbVar.f9983k0;
+        FrameLayout frameLayout2 = vbVar.f9981k0;
         frameLayout2.layout(0, vbVar.T - frameLayout2.getMeasuredHeight(), vbVar.S, vbVar.T);
         FrameLayout frameLayout3 = vbVar.m0;
         int i15 = vbVar.T;
         frameLayout3.layout(0, i15, vbVar.S, frameLayout3.getMeasuredHeight() + i15);
-        vbVar.f9986l0.layout(0, 0, vbVar.S, vbVar.T);
-        ai.ic icVar = vbVar.f10011t0;
+        vbVar.f9984l0.layout(0, 0, vbVar.S, vbVar.T);
+        ai.ic icVar = vbVar.f10009t0;
         if (icVar != null) {
             icVar.layout(0, 0, measuredWidth, measuredHeight);
         }
-        vbVar.f10007s.f9771c.layout(0, 0, measuredWidth, measuredHeight);
-        i iVar = vbVar.f9959c1.M;
+        vbVar.f10005s.f9769c.layout(0, 0, measuredWidth, measuredHeight);
+        i iVar = vbVar.f9957c1.M;
         if (iVar != null) {
             iVar.layout(0, 0, vbVar.S, vbVar.T);
-            vbVar.f9959c1.y();
+            vbVar.f9957c1.y();
         }
         cg0 cg0Var = vbVar.B1;
         if (cg0Var != null) {
             cg0Var.layout(0, 0, cg0Var.getMeasuredWidth(), vbVar.B1.getMeasuredHeight());
         }
-        xa xaVar = vbVar.f10018v1;
+        xa xaVar = vbVar.f10016v1;
         if (xaVar != null) {
-            xaVar.layout(0, 0, xaVar.getMeasuredWidth(), vbVar.f10018v1.getMeasuredHeight());
+            xaVar.layout(0, 0, xaVar.getMeasuredWidth(), vbVar.f10016v1.getMeasuredHeight());
         }
         for (int i16 = 0; i16 < getChildCount(); i16++) {
             View childAt = getChildAt(i16);
@@ -133,18 +133,18 @@ public final class nb extends FrameLayout {
         int size = View.MeasureSpec.getSize(i10);
         int size2 = View.MeasureSpec.getSize(i11);
         vb vbVar = this.e;
-        a(vbVar.f9974h0, vbVar.S, vbVar.T);
+        a(vbVar.f9972h0, vbVar.S, vbVar.T);
         vbVar.i();
-        a(vbVar.f9977i0, vbVar.S, AndroidUtilities.dp(150.0f));
-        a(vbVar.f9983k0, vbVar.S, AndroidUtilities.dp(220.0f));
+        a(vbVar.f9975i0, vbVar.S, AndroidUtilities.dp(150.0f));
+        a(vbVar.f9981k0, vbVar.S, AndroidUtilities.dp(220.0f));
         a(vbVar.m0, vbVar.S, vbVar.U);
-        a(vbVar.f9986l0, vbVar.S, vbVar.T);
-        a(vbVar.f10007s.f9771c, size, size2);
-        ai.ic icVar = vbVar.f10011t0;
+        a(vbVar.f9984l0, vbVar.S, vbVar.T);
+        a(vbVar.f10005s.f9769c, size, size2);
+        ai.ic icVar = vbVar.f10009t0;
         if (icVar != null) {
             a(icVar, size, size2);
         }
-        i iVar = vbVar.f9959c1.M;
+        i iVar = vbVar.f9957c1.M;
         if (iVar != null) {
             a(iVar, vbVar.S, vbVar.T);
         }
@@ -152,7 +152,7 @@ public final class nb extends FrameLayout {
         if (cg0Var != null) {
             a(cg0Var, size, size2);
         }
-        xa xaVar = vbVar.f10018v1;
+        xa xaVar = vbVar.f10016v1;
         if (xaVar != null) {
             a(xaVar, size, size2);
         }
@@ -167,13 +167,13 @@ public final class nb extends FrameLayout {
 
     @Override
     public final void setTranslationY(float f7) {
-        this.f9532a = f7;
-        super.setTranslationY(this.f9533b + f7);
+        this.f9530a = f7;
+        super.setTranslationY(this.f9531b + f7);
         float clamp = Utilities.clamp((f7 / getMeasuredHeight()) * 4.0f, 1.0f, 0.0f);
         vb vbVar = this.e;
         vbVar.K = clamp;
         vbVar.n();
-        vbVar.f9990n.invalidate();
+        vbVar.f9988n.invalidate();
         float clamp2 = 1.0f - (Utilities.clamp(getTranslationY() / AndroidUtilities.dp(320.0f), 1.0f, 0.0f) * 0.1f);
         setScaleX(clamp2);
         setScaleY(clamp2);

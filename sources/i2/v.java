@@ -7,28 +7,28 @@ import org.telegram.messenger.R;
 import org.telegram.ui.Components.kd0;
 import org.telegram.ui.Components.tl0;
 public final class v implements e2.o, d9.k, e2.j, tl0, kd0 {
-    public final int f12598a;
-    public final int f12599b;
+    public final int f12596a;
+    public final int f12597b;
 
     public v(int i10, int i11) {
-        this.f12598a = i11;
-        this.f12599b = i10;
+        this.f12596a = i11;
+        this.f12597b = i10;
     }
 
     @Override
     public void accept(Object obj) {
-        switch (this.f12598a) {
+        switch (this.f12596a) {
             case 3:
-                ((m4.m1) obj).g0(this.f12599b);
+                ((m4.m1) obj).g0(this.f12597b);
                 return;
             case 4:
-                ((m4.m1) obj).M(this.f12599b);
+                ((m4.m1) obj).M(this.f12597b);
                 return;
             case 5:
-                ((m4.m1) obj).j(this.f12599b);
+                ((m4.m1) obj).j(this.f12597b);
                 return;
             default:
-                ((m4.m1) obj).G0(this.f12599b);
+                ((m4.m1) obj).G0(this.f12597b);
                 return;
         }
     }
@@ -36,13 +36,13 @@ public final class v implements e2.o, d9.k, e2.j, tl0, kd0 {
     @Override
     public Object apply(Object obj) {
         Integer num = (Integer) obj;
-        return Integer.valueOf(this.f12599b);
+        return Integer.valueOf(this.f12597b);
     }
 
     @Override
     public String e(int i10) {
-        int i11 = this.f12598a;
-        int i12 = this.f12599b;
+        int i11 = this.f12596a;
+        int i12 = this.f12597b;
         switch (i11) {
             case 8:
                 if (i10 == 0) {
@@ -65,18 +65,18 @@ public final class v implements e2.o, d9.k, e2.j, tl0, kd0 {
 
     @Override
     public void invoke(Object obj) {
-        switch (this.f12598a) {
+        switch (this.f12596a) {
             case 0:
-                ((b2.d1) obj).onRepeatModeChanged(this.f12599b);
+                ((b2.d1) obj).onRepeatModeChanged(this.f12597b);
                 return;
             default:
-                ((b2.d1) obj).onAudioSessionIdChanged(this.f12599b);
+                ((b2.d1) obj).onAudioSessionIdChanged(this.f12597b);
                 return;
         }
     }
 
     @Override
     public int run() {
-        return this.f12599b;
+        return this.f12597b;
     }
 }

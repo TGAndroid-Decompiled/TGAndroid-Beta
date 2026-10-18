@@ -1,15 +1,15 @@
 package org.telegram.ui;
 public final class hn0 implements Runnable {
-    public final int f37607a;
-    public final Object f37608b;
-    public final Object f37609c;
+    public final int f37569a;
+    public final Object f37570b;
+    public final Object f37571c;
     public final Object d;
     public final Object e;
 
     public hn0(Object obj, Object obj2, Object obj3, Object obj4, int i10) {
-        this.f37607a = i10;
-        this.f37608b = obj;
-        this.f37609c = obj2;
+        this.f37569a = i10;
+        this.f37570b = obj;
+        this.f37571c = obj2;
         this.d = obj3;
         this.e = obj4;
     }

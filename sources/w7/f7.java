@@ -1,9 +1,12 @@
 package w7;
+
+import java.util.Date;
 public abstract class f7 {
-    public static void a(Object obj, String str) {
-        if (obj != null) {
-            return;
-        }
-        throw new NullPointerException(str);
+    public static long a(Date date) {
+        return (date.getTime() / 1000) + 2082844800;
+    }
+
+    public static Date b(long j10) {
+        return new Date((j10 - 2082844800) * 1000);
     }
 }

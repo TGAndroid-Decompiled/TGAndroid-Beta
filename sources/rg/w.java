@@ -7,11 +7,11 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.sn;
 public final class w extends sn {
-    public final m0 Qc;
+    public final m0 Rc;
 
     public w(m0 m0Var) {
         super(null);
-        this.Qc = m0Var;
+        this.Rc = m0Var;
     }
 
     @Override
@@ -26,12 +26,12 @@ public final class w extends sn {
 
     @Override
     public final Activity getParentActivity() {
-        return AndroidUtilities.findActivity(this.Qc.getContext());
+        return AndroidUtilities.findActivity(this.Rc.getContext());
     }
 
     @Override
     public final d6 getResourceProvider() {
-        return this.Qc.Q1;
+        return this.Rc.Q1;
     }
 
     @Override

@@ -6,16 +6,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.kk;
+import org.telegram.messenger.lk;
 public final class m5 extends FrameLayout {
-    public ImageView f22587a;
-    public ImageView f22588b;
-    public TextView f22589c;
+    public ImageView f22580a;
+    public ImageView f22581b;
+    public TextView f22582c;
     public int d;
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.d, 1073741824), kk.C(2.0f, this.d, 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.d, 1073741824), lk.C(2.0f, this.d, 1073741824));
     }
 
     public void setItemSize(int i10) {
@@ -23,21 +23,21 @@ public final class m5 extends FrameLayout {
     }
 
     public void setType(int i10) {
-        TextView textView = this.f22589c;
-        ImageView imageView = this.f22588b;
-        ImageView imageView2 = this.f22587a;
+        TextView textView = this.f22582c;
+        ImageView imageView = this.f22581b;
+        ImageView imageView2 = this.f22580a;
         if (i10 == 0) {
             imageView2.setImageResource(R.drawable.permissions_camera1);
             imageView.setImageResource(R.drawable.permissions_camera2);
             textView.setText(LocaleController.getString(R.string.CameraPermissionText));
-            imageView2.setLayoutParams(w7.z5.a(44.0f, 5.0f, 0.0f, 0.0f, 27.0f, 44, 17));
-            imageView.setLayoutParams(w7.z5.a(44.0f, 5.0f, 0.0f, 0.0f, 27.0f, 44, 17));
+            imageView2.setLayoutParams(w7.z5.d(44, 44.0f, 17, 5.0f, 0.0f, 0.0f, 27.0f));
+            imageView.setLayoutParams(w7.z5.d(44, 44.0f, 17, 5.0f, 0.0f, 0.0f, 27.0f));
             return;
         }
         imageView2.setImageResource(R.drawable.permissions_gallery1);
         imageView.setImageResource(R.drawable.permissions_gallery2);
         textView.setText(LocaleController.getString(R.string.GalleryPermissionText));
-        imageView2.setLayoutParams(w7.z5.a(44.0f, 0.0f, 0.0f, 2.0f, 27.0f, 44, 17));
-        imageView.setLayoutParams(w7.z5.a(44.0f, 0.0f, 0.0f, 2.0f, 27.0f, 44, 17));
+        imageView2.setLayoutParams(w7.z5.d(44, 44.0f, 17, 0.0f, 0.0f, 2.0f, 27.0f));
+        imageView.setLayoutParams(w7.z5.d(44, 44.0f, 17, 0.0f, 0.0f, 2.0f, 27.0f));
     }
 }

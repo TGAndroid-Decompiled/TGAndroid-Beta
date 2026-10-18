@@ -1,15 +1,15 @@
 package org.telegram.ui.Components;
 public final class p51 {
-    public final y51 f29194a;
-    public final b61 f29195b;
+    public final y51 f29187a;
+    public final b61 f29188b;
 
     public p51(b61 b61Var, y51 y51Var) {
-        this.f29195b = b61Var;
-        this.f29194a = y51Var;
+        this.f29188b = b61Var;
+        this.f29187a = y51Var;
     }
 
     public final int a() {
-        return this.f29195b.f24825s.v;
+        return this.f29188b.f24818s.v;
     }
 
     public final void b(boolean r5) {

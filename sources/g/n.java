@@ -9,7 +9,7 @@ import android.os.Process;
 import android.util.Log;
 import java.util.Calendar;
 public final class n extends o {
-    public final int f10686c = 0;
+    public final int f10684c = 0;
     public final r d;
     public final Object e;
 
@@ -21,7 +21,7 @@ public final class n extends o {
 
     @Override
     public final IntentFilter d() {
-        switch (this.f10686c) {
+        switch (this.f10684c) {
             case 0:
                 IntentFilter intentFilter = new IntentFilter();
                 intentFilter.addAction("android.os.action.POWER_SAVE_MODE_CHANGED");
@@ -41,7 +41,7 @@ public final class n extends o {
         boolean z10;
         long j10;
         Location location2;
-        switch (this.f10686c) {
+        switch (this.f10684c) {
             case 0:
                 if (((PowerManager) this.e).isPowerSaveMode()) {
                     return 2;
@@ -91,13 +91,13 @@ public final class n extends o {
                         x xVar = x.d;
                         xVar.a(location.getLatitude(), location.getLongitude(), currentTimeMillis - 86400000);
                         xVar.a(location.getLatitude(), location.getLongitude(), currentTimeMillis);
-                        if (xVar.f10739c == 1) {
+                        if (xVar.f10737c == 1) {
                             z10 = true;
                         }
-                        long j11 = xVar.f10738b;
-                        long j12 = xVar.f10737a;
+                        long j11 = xVar.f10736b;
+                        long j12 = xVar.f10735a;
                         xVar.a(location.getLatitude(), location.getLongitude(), currentTimeMillis + 86400000);
-                        long j13 = xVar.f10738b;
+                        long j13 = xVar.f10736b;
                         if (j11 != -1 && j12 != -1) {
                             if (currentTimeMillis > j12) {
                                 j11 = j13;
@@ -127,7 +127,7 @@ public final class n extends o {
 
     @Override
     public final void k() {
-        switch (this.f10686c) {
+        switch (this.f10684c) {
             case 0:
                 this.d.e(true);
                 return;

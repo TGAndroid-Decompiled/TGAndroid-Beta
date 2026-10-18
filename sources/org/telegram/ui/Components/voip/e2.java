@@ -11,28 +11,28 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import w7.z5;
 public final class e2 extends FrameLayout {
-    public String f31443a;
-    public final ImageView f31444b;
-    public final TextView f31445c;
+    public String f31436a;
+    public final ImageView f31437b;
+    public final TextView f31438c;
     public boolean d;
     public final o1 e;
-    public final RectF f31446f;
+    public final RectF f31439f;
 
     public e2(Context context, o1 o1Var, int i10) {
         super(context);
-        this.f31446f = new RectF();
+        this.f31439f = new RectF();
         setFocusable(true);
         setFocusableInTouchMode(true);
         this.e = o1Var;
         o1Var.a(this);
         ImageView imageView = new ImageView(context);
-        this.f31444b = imageView;
-        addView(imageView, z5.a(24.0f, 8.0f, 2.0f, 8.0f, 2.0f, 24, 16));
+        this.f31437b = imageView;
+        addView(imageView, z5.d(24, 24.0f, 16, 8.0f, 2.0f, 8.0f, 2.0f));
         TextView textView = new TextView(context);
-        this.f31445c = textView;
+        this.f31438c = textView;
         textView.setTextColor(-1);
         textView.setTextSize(1, 14.0f);
-        addView(textView, z5.a(-2.0f, i10 != 0 ? 36.0f : 14.0f, 2.0f, 14.0f, 2.0f, -2, 16));
+        addView(textView, z5.d(-2, -2.0f, 16, i10 != 0 ? 36.0f : 14.0f, 2.0f, 14.0f, 2.0f));
     }
 
     @Override
@@ -40,13 +40,13 @@ public final class e2 extends FrameLayout {
         Paint b10;
         Paint b11;
         Paint b12;
-        RectF rectF = this.f31446f;
+        RectF rectF = this.f31439f;
         rectF.set(0.0f, 0.0f, getWidth(), getHeight());
         float x10 = ((View) getParent()).getX() + getX();
         float y3 = ((View) getParent()).getY() + getY();
         o1 o1Var = this.e;
         o1Var.d(x10, y3);
-        Paint paint = o1Var.f31665l;
+        Paint paint = o1Var.f31658l;
         if (this.d) {
             b10 = paint;
         } else {
@@ -73,10 +73,10 @@ public final class e2 extends FrameLayout {
         }
         paint.setAlpha(alpha);
         if (o1Var.e) {
-            int alpha2 = ((Paint) o1Var.d.f7648a).getAlpha();
-            ((Paint) o1Var.d.f7648a).setAlpha(255);
-            canvas.drawRoundRect(rectF, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), (Paint) o1Var.d.f7648a);
-            ((Paint) o1Var.d.f7648a).setAlpha(alpha2);
+            int alpha2 = ((Paint) o1Var.d.f7646a).getAlpha();
+            ((Paint) o1Var.d.f7646a).setAlpha(255);
+            canvas.drawRoundRect(rectF, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), (Paint) o1Var.d.f7646a);
+            ((Paint) o1Var.d.f7646a).setAlpha(alpha2);
         }
         canvas.restore();
         super.dispatchDraw(canvas);

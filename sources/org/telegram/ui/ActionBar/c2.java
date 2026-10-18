@@ -4,29 +4,29 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.DialogInterface;
 public final class c2 extends AnimatorListenerAdapter {
-    public final int f20722a;
-    public final f2 f20723b;
+    public final int f20715a;
+    public final f2 f20716b;
 
     public c2(f2 f2Var, int i10) {
-        this.f20722a = i10;
-        this.f20723b = f2Var;
+        this.f20715a = i10;
+        this.f20716b = f2Var;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f20722a) {
+        switch (this.f20715a) {
             case 0:
-                f2 f2Var = this.f20723b;
-                DialogInterface.OnShowListener onShowListener = f2Var.f20806i1;
+                f2 f2Var = this.f20716b;
+                DialogInterface.OnShowListener onShowListener = f2Var.f20799i1;
                 if (onShowListener != null) {
                     onShowListener.onShow(f2Var);
                     return;
                 }
                 return;
             default:
-                f2 f2Var2 = this.f20723b;
-                f2Var2.s().removeView(f2Var2.f20803f1);
-                DialogInterface.OnDismissListener onDismissListener = f2Var2.f20807j1;
+                f2 f2Var2 = this.f20716b;
+                f2Var2.s().removeView(f2Var2.f20796f1);
+                DialogInterface.OnDismissListener onDismissListener = f2Var2.f20800j1;
                 if (onDismissListener != null) {
                     onDismissListener.onDismiss(f2Var2);
                     return;

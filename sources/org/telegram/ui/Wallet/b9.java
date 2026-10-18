@@ -1,31 +1,40 @@
 package org.telegram.ui.Wallet;
 
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.tl.TL_wallet;
-public final class b9 implements Utilities.Callback {
-    public final int f34063a;
-    public final o9 f34064b;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
+import android.widget.TextView;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class b9 implements TextWatcher {
+    public boolean f34025a;
+    public final TextView f34026b;
 
-    public b9(o9 o9Var, int i10) {
-        this.f34063a = i10;
-        this.f34064b = o9Var;
+    public b9(ig.a1 a1Var, TextView textView) {
+        this.f34026b = textView;
+        this.f34025a = TextUtils.isEmpty(a1Var.getText());
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f34063a) {
-            case 0:
-                o9.a0(this.f34064b, (String) obj);
-                return;
-            case 1:
-                this.f34064b.m0 = (TL_wallet.walletTransaction) obj;
-                return;
-            case 2:
-                this.f34064b.m0 = (TL_wallet.walletTransaction) obj;
-                return;
-            default:
-                this.f34064b.m0 = (TL_wallet.walletTransaction) obj;
-                return;
+    public final void afterTextChanged(Editable editable) {
+        int i10;
+        boolean isEmpty = TextUtils.isEmpty(editable);
+        if (isEmpty != this.f34025a) {
+            this.f34025a = isEmpty;
+            if (isEmpty) {
+                i10 = R.string.Remove;
+            } else {
+                i10 = R.string.Add;
+            }
+            this.f34026b.setText(LocaleController.getString(i10));
         }
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

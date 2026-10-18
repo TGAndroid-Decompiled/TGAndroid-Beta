@@ -24,12 +24,12 @@ public abstract class r {
             c(linkedHashMap, dVarArr);
             return linkedHashMap;
         }
-        return p.f14393a;
+        return p.f14391a;
     }
 
     public static final void c(LinkedHashMap linkedHashMap, id.d[] dVarArr) {
         for (id.d dVar : dVarArr) {
-            linkedHashMap.put(dVar.f12769a, dVar.f12770b);
+            linkedHashMap.put(dVar.f12767a, dVar.f12768b);
         }
     }
 
@@ -44,16 +44,16 @@ public abstract class r {
                     Object obj = arrayList.get(i10);
                     i10++;
                     id.d dVar = (id.d) obj;
-                    linkedHashMap.put(dVar.f12769a, dVar.f12770b);
+                    linkedHashMap.put(dVar.f12767a, dVar.f12768b);
                 }
                 return linkedHashMap;
             }
             id.d pair = (id.d) arrayList.get(0);
             kotlin.jvm.internal.i.e(pair, "pair");
-            Map singletonMap = Collections.singletonMap(pair.f12769a, pair.f12770b);
+            Map singletonMap = Collections.singletonMap(pair.f12767a, pair.f12768b);
             kotlin.jvm.internal.i.d(singletonMap, "singletonMap(...)");
             return singletonMap;
         }
-        return p.f14393a;
+        return p.f14391a;
     }
 }

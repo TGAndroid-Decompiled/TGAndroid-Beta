@@ -28,71 +28,71 @@ import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.TwoStepVerificationActivity;
 import org.telegram.ui.am0;
 import org.telegram.ui.bm0;
-import org.telegram.ui.eg0;
+import org.telegram.ui.dg0;
 import org.telegram.ui.en;
 import org.telegram.ui.fz;
 import org.telegram.ui.j61;
-import org.telegram.ui.lf0;
+import org.telegram.ui.kf0;
 import org.telegram.ui.mm0;
-import org.telegram.ui.of0;
+import org.telegram.ui.nf0;
 import org.telegram.ui.sn;
 import org.telegram.ui.xe0;
 public final class s9 implements RequestDelegate {
-    public final int f2172a;
-    public final Object f2173b;
-    public final Object f2174c;
+    public final int f2174a;
+    public final Object f2175b;
+    public final Object f2176c;
     public final Object d;
     public final Object e;
-    public final Object f2175f;
+    public final Object f2177f;
 
     public s9(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, int i10) {
-        this.f2172a = i10;
-        this.f2173b = obj;
-        this.f2174c = obj2;
+        this.f2174a = i10;
+        this.f2175b = obj;
+        this.f2176c = obj2;
         this.d = obj3;
         this.e = obj4;
-        this.f2175f = obj5;
+        this.f2177f = obj5;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        int i10 = this.f2172a;
-        Object obj = this.f2175f;
+        int i10 = this.f2174a;
+        Object obj = this.f2177f;
         Object obj2 = this.d;
-        Object obj3 = this.f2174c;
-        Object obj4 = this.f2173b;
+        Object obj3 = this.f2176c;
+        Object obj4 = this.f2175b;
         Object obj5 = this.e;
         switch (i10) {
             case 0:
                 AndroidUtilities.runOnUIThread(new u7((ga) obj4, tLObject, (MessageObject) obj3, (TLRPC.InputInvoice) obj2, (Utilities.Callback) obj5, (org.telegram.ui.Components.xc) obj, tL_error));
                 return;
             case 1:
-                AndroidUtilities.runOnUIThread(new l3((int[]) obj4, tLObject, (MessagesController) obj3, (TLRPC.User[]) obj2, (ei.qc) obj5, (ei.oc) obj, 8));
+                AndroidUtilities.runOnUIThread(new j3((int[]) obj4, tLObject, (MessagesController) obj3, (TLRPC.User[]) obj2, (ei.qc) obj5, (ei.oc) obj, 8));
                 return;
             case 2:
-                AndroidUtilities.runOnUIThread(new l3(tLObject, (Object) ((String[]) obj4), (Object) ((FrameLayout) obj3), (Object) ((x90) obj2), (Object) ((org.telegram.ui.ActionBar.f3) obj5), (Object) ((org.telegram.ui.ActionBar.d6) obj), 11));
+                AndroidUtilities.runOnUIThread(new j3(tLObject, (Object) ((String[]) obj4), (Object) ((FrameLayout) obj3), (Object) ((x90) obj2), (Object) ((org.telegram.ui.ActionBar.f3) obj5), (Object) ((org.telegram.ui.ActionBar.d6) obj), 11));
                 return;
             case 3:
-                AndroidUtilities.runOnUIThread(new l3((sn) obj4, (pf.c) obj3, (org.telegram.ui.Cells.u1) obj2, (String) obj5, tLObject, (CharacterStyle) obj));
+                AndroidUtilities.runOnUIThread(new j3((sn) obj4, (pf.c) obj3, (org.telegram.ui.Cells.u1) obj2, (String) obj5, tLObject, (CharacterStyle) obj));
                 return;
             case 4:
-                AndroidUtilities.runOnUIThread(new u7((sn) obj4, tL_error, (TLObject) obj3, tLObject, (t3) obj2, (String) obj5, (pf.c) obj));
+                AndroidUtilities.runOnUIThread(new u7((sn) obj4, tL_error, (TLObject) obj3, tLObject, (v3) obj2, (String) obj5, (pf.c) obj));
                 return;
             case 5:
                 AndroidUtilities.runOnUIThread(new u7((en) obj4, (org.telegram.ui.ActionBar.b2) obj2, tLObject, (HashSet) obj5, (TLRPC.TL_inputGroupCallInviteMessage) obj, (MessageObject) obj3, tL_error, 6));
                 return;
             case 6:
-                AndroidUtilities.runOnUIThread(new l3(tL_error, (Context) obj4, (org.telegram.ui.ActionBar.d6) obj3, (ei.d) obj2, (org.telegram.ui.ActionBar.f3) obj5, (Runnable) obj));
+                AndroidUtilities.runOnUIThread(new j3(tL_error, (Context) obj4, (org.telegram.ui.ActionBar.d6) obj3, (ei.d) obj2, (org.telegram.ui.ActionBar.f3) obj5, (Runnable) obj));
                 return;
             case 7:
-                AndroidUtilities.runOnUIThread(new l3((oy0) obj4, tLObject, (EditTextBoldCursor) obj3, (TextView) obj2, (TextView) obj5, (int[]) obj, 15));
+                AndroidUtilities.runOnUIThread(new j3((oy0) obj4, tLObject, (EditTextBoldCursor) obj3, (TextView) obj2, (TextView) obj5, (int[]) obj, 15));
                 return;
             case 8:
                 Pattern pattern = LaunchActivity.C1;
                 AndroidUtilities.runOnUIThread(new u7((LaunchActivity) obj4, (org.telegram.ui.ActionBar.b2) obj3, tL_error, (String) obj2, (Bundle) obj5, tLObject, (TL_account.sendConfirmPhoneCode) obj, 7));
                 return;
             case 9:
-                of0 of0Var = (of0) obj4;
+                nf0 nf0Var = (nf0) obj4;
                 TLRPC.TL_inputStorePaymentAuthCode tL_inputStorePaymentAuthCode = (TLRPC.TL_inputStorePaymentAuthCode) obj3;
                 Purchase purchase = (Purchase) obj2;
                 TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore = (TLRPC.TL_payments_canPurchaseStore) obj5;
@@ -105,11 +105,11 @@ public final class s9 implements RequestDelegate {
                     while (i11 < size) {
                         Object obj6 = findUpdatesAndRemove.get(i11);
                         i11++;
-                        AndroidUtilities.runOnUIThread(new xe0(of0Var, tL_inputStorePaymentAuthCode, (TL_update.TL_updateSentPhoneCode) obj6, 4));
+                        AndroidUtilities.runOnUIThread(new xe0(nf0Var, tL_inputStorePaymentAuthCode, (TL_update.TL_updateSentPhoneCode) obj6, 4));
                     }
-                    of0Var.v.getMessagesController().lambda$processUpdates$377(updates, false);
+                    nf0Var.v.getMessagesController().lambda$processUpdates$377(updates, false);
                     BillingController.getInstance().consumeGiftPurchase(purchase, tL_payments_canPurchaseStore.purpose, null);
-                    AndroidUtilities.runOnUIThread(new lf0(of0Var, 3));
+                    AndroidUtilities.runOnUIThread(new kf0(nf0Var, 3));
                     return;
                 } else if (tL_error != null) {
                     AndroidUtilities.runOnUIThread(new fz(i90Var, 26));
@@ -118,13 +118,13 @@ public final class s9 implements RequestDelegate {
                     return;
                 }
             case 10:
-                AndroidUtilities.runOnUIThread(new u7((NotificationCenter.NotificationCenterDelegate) ((eg0) obj4), (Object) tL_error, (Object) tLObject, (Object) ((Bundle) obj3), (String) obj2, (Object) ((m.g3) obj5), (Object) ((TLObject) obj), 9));
+                AndroidUtilities.runOnUIThread(new u7((NotificationCenter.NotificationCenterDelegate) ((dg0) obj4), (Object) tL_error, (Object) tLObject, (Object) ((Bundle) obj3), (String) obj2, (Object) ((m.g3) obj5), (Object) ((TLObject) obj), 9));
                 return;
             case 11:
                 AndroidUtilities.runOnUIThread(new u7((am0) obj4, tLObject, (String) obj3, (TLRPC.TL_secureRequiredType) obj2, (bm0) obj5, tL_error, (mm0) obj));
                 return;
             case 12:
-                AndroidUtilities.runOnUIThread(new l3((j61) obj4, tL_error, (TLRPC.InputCheckPasswordSRP) obj3, (TLRPC.User) obj2, (TwoStepVerificationActivity) obj5, (TLRPC.TL_channels_editCreator) obj));
+                AndroidUtilities.runOnUIThread(new j3((j61) obj4, tL_error, (TLRPC.InputCheckPasswordSRP) obj3, (TLRPC.User) obj2, (TwoStepVerificationActivity) obj5, (TLRPC.TL_channels_editCreator) obj));
                 return;
             case 13:
                 AndroidUtilities.runOnUIThread(new u7(tL_error, (ug.u) obj4, tLObject, (MessagesController) obj3, (TLRPC.TL_inputInvoicePremiumGiftCode) obj2, (org.telegram.ui.ActionBar.n2) obj5, (ug.u) obj, 15));
@@ -136,20 +136,20 @@ public final class s9 implements RequestDelegate {
     }
 
     public s9(Utilities.Callback callback, MessagesController messagesController, TLRPC.TL_inputInvoicePremiumGiftCode tL_inputInvoicePremiumGiftCode, org.telegram.ui.ActionBar.n2 n2Var, Utilities.Callback callback2) {
-        this.f2172a = 14;
+        this.f2174a = 14;
         this.e = callback;
-        this.f2173b = messagesController;
-        this.f2174c = tL_inputInvoicePremiumGiftCode;
+        this.f2175b = messagesController;
+        this.f2176c = tL_inputInvoicePremiumGiftCode;
         this.d = n2Var;
-        this.f2175f = callback2;
+        this.f2177f = callback2;
     }
 
     public s9(en enVar, org.telegram.ui.ActionBar.b2 b2Var, HashSet hashSet, TLRPC.TL_inputGroupCallInviteMessage tL_inputGroupCallInviteMessage, MessageObject messageObject) {
-        this.f2172a = 5;
-        this.f2173b = enVar;
+        this.f2174a = 5;
+        this.f2175b = enVar;
         this.d = b2Var;
         this.e = hashSet;
-        this.f2175f = tL_inputGroupCallInviteMessage;
-        this.f2174c = messageObject;
+        this.f2177f = tL_inputGroupCallInviteMessage;
+        this.f2176c = messageObject;
     }
 }

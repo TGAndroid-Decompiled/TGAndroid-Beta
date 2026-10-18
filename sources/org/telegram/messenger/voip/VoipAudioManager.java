@@ -123,7 +123,7 @@ public class VoipAudioManager {
     public void stopBluetooth() {
         AudioManager audioManager = getAudioManager();
         if (Build.VERSION.SDK_INT >= 31) {
-            Utilities.globalQueue.postRunnable(new s0(audioManager, 2));
+            Utilities.globalQueue.postRunnable(new r0(audioManager, 2));
         } else {
             audioManager.stopBluetoothSco();
         }

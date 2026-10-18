@@ -1,20 +1,38 @@
 package ci;
 
-import android.content.Context;
-public final class s9 extends y {
-    public final aa f6001a;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class s9 extends AnimatorListenerAdapter {
+    public final int f5932a;
+    public final i9 f5933b;
 
-    public s9(Context context, aa aaVar) {
-        super(context);
-        this.f6001a = aaVar;
+    public s9(i9 i9Var, int i10) {
+        this.f5932a = i10;
+        this.f5933b = i9Var;
     }
 
     @Override
-    public final void invalidate() {
-        super.invalidate();
-        p4 p4Var = this.f6001a.G0;
-        if (p4Var != null) {
-            p4Var.b();
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f5932a) {
+            case 0:
+                super.onAnimationEnd(animator);
+                z9 z9Var = this.f5933b.f5456b;
+                l7 l7Var = z9Var.f6255u1;
+                if (l7Var != null) {
+                    l7Var.b();
+                    z9Var.v.removeView(z9Var.f6255u1);
+                }
+                z9Var.f6255u1 = null;
+                z9Var.P();
+                return;
+            default:
+                super.onAnimationEnd(animator);
+                l7 l7Var2 = this.f5933b.f5456b.f6255u1;
+                if (l7Var2 != null) {
+                    l7Var2.a(true);
+                    return;
+                }
+                return;
         }
     }
 }

@@ -6,39 +6,39 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 public final class ad0 implements o1.g {
-    public final int f35414a;
-    public final Object f35415b;
+    public final int f35366a;
+    public final Object f35367b;
 
     public ad0(Object obj, int i10) {
-        this.f35414a = i10;
-        this.f35415b = obj;
+        this.f35366a = i10;
+        this.f35367b = obj;
     }
 
     @Override
     public final void a(o1.h hVar, float f7, float f10) {
-        int i10 = this.f35414a;
+        int i10 = this.f35366a;
         int i11 = 0;
-        Object obj = this.f35415b;
+        Object obj = this.f35367b;
         switch (i10) {
             case 0:
-                tf0 tf0Var = ((fg0) obj).f36929b0;
-                if (tf0Var != null) {
-                    int i12 = tf0.E;
-                    View view = tf0Var.f41760c;
-                    ViewGroup viewGroup = tf0Var.f41759b;
-                    PointF pointF = tf0Var.f41767y;
+                sf0 sf0Var = ((eg0) obj).f36492b0;
+                if (sf0Var != null) {
+                    int i12 = sf0.E;
+                    View view = sf0Var.f41078c;
+                    ViewGroup viewGroup = sf0Var.f41077b;
+                    PointF pointF = sf0Var.f41085y;
                     ih.j.b(view, viewGroup, pointF);
-                    org.telegram.ui.Components.h20 h20Var = tf0Var.h;
+                    org.telegram.ui.Components.h20 h20Var = sf0Var.h;
                     h20Var.setTranslationX(pointF.x);
                     h20Var.setTranslationY(pointF.y);
-                    tf0Var.requestLayout();
+                    sf0Var.requestLayout();
                     return;
                 }
                 return;
             case 1:
                 co0 co0Var = (co0) obj;
                 float f11 = f7 / 100.0f;
-                co0Var.f35981b = f11;
+                co0Var.f35953b = f11;
                 TextView textView = co0Var.d.U;
                 if (textView != null) {
                     textView.setAlpha((f11 * 0.2f) + 0.8f);
@@ -47,20 +47,20 @@ public final class ad0 implements o1.g {
                 return;
             case 2:
                 wt0 wt0Var = (wt0) obj;
-                wt0Var.f42944c0 = f7;
-                wt0Var.f42946e0 = f10;
+                wt0Var.f42908c0 = f7;
+                wt0Var.f42910e0 = f10;
                 wt0Var.G();
                 return;
             case 3:
                 su0 su0Var = (su0) obj;
-                if (su0Var.e > su0Var.f41526f) {
+                if (su0Var.e > su0Var.f41491f) {
                     i11 = AndroidUtilities.dp(48.0f);
                 }
-                org.telegram.ui.Components.c81 c81Var = su0Var.f41529s.f33380q3;
+                org.telegram.ui.Components.c81 c81Var = su0Var.f41494s.f33373q3;
                 int measuredWidth = (int) (((su0Var.getMeasuredWidth() - AndroidUtilities.dp(16.0f)) - f7) - i11);
                 int measuredHeight = su0Var.getMeasuredHeight();
                 c81Var.h = measuredWidth;
-                c81Var.f25145i = measuredHeight;
+                c81Var.f25138i = measuredHeight;
                 View view2 = c81Var.v;
                 if (view2 != null) {
                     view2.invalidate();
@@ -69,16 +69,16 @@ public final class ad0 implements o1.g {
                 return;
             case 4:
                 z21 z21Var = (z21) obj;
-                z21Var.f43564y = f7 / 1000.0f;
+                z21Var.f43528y = f7 / 1000.0f;
                 z21Var.invalidate();
                 return;
             default:
                 t31 t31Var = (t31) obj;
-                org.telegram.ui.Components.c81 c81Var2 = t31Var.f41611r.Q;
+                org.telegram.ui.Components.c81 c81Var2 = t31Var.f41576r.Q;
                 int measuredWidth2 = (int) (((t31Var.getMeasuredWidth() - AndroidUtilities.dp(16.0f)) - f7) - 0);
                 int measuredHeight2 = t31Var.getMeasuredHeight();
                 c81Var2.h = measuredWidth2;
-                c81Var2.f25145i = measuredHeight2;
+                c81Var2.f25138i = measuredHeight2;
                 View view3 = c81Var2.v;
                 if (view3 != null) {
                     view3.invalidate();

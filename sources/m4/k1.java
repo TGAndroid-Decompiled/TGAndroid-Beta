@@ -29,21 +29,21 @@ public final class k1 {
     public static final String X;
     public static final String Y;
     public static final String Z;
-    public static final String f16599a0;
-    public static final String f16600b0;
-    public static final String f16601c0;
-    public static final String f16602d0;
-    public static final String f16603e0;
-    public static final String f16604f0;
-    public static final String f16605g0;
-    public static final String f16606h0;
-    public static final String f16607i0;
-    public static final String f16608j0;
-    public static final String f16609k0;
-    public static final String f16610l0;
+    public static final String f16597a0;
+    public static final String f16598b0;
+    public static final String f16599c0;
+    public static final String f16600d0;
+    public static final String f16601e0;
+    public static final String f16602f0;
+    public static final String f16603g0;
+    public static final String f16604h0;
+    public static final String f16605i0;
+    public static final String f16606j0;
+    public static final String f16607k0;
+    public static final String f16608l0;
     public static final String m0;
-    public static final String f16611n0;
-    public static final String f16612o0;
+    public static final String f16609n0;
+    public static final String f16610o0;
     public final int A;
     public final b2.r0 B;
     public final long C;
@@ -51,42 +51,42 @@ public final class k1 {
     public final long E;
     public final v1 F;
     public final b2.t1 G;
-    public final b2.y0 f16613a;
-    public final int f16614b;
-    public final r1 f16615c;
+    public final b2.y0 f16611a;
+    public final int f16612b;
+    public final r1 f16613c;
     public final b2.e1 d;
     public final b2.e1 e;
-    public final int f16616f;
-    public final b2.z0 f16617g;
+    public final int f16614f;
+    public final b2.z0 f16615g;
     public final int h;
-    public final boolean f16618i;
-    public final b2.o1 f16619j;
-    public final int f16620k;
-    public final a2 f16621l;
-    public final b2.r0 f16622m;
-    public final float f16623n;
-    public final float f16624o;
-    public final int f16625p;
-    public final b2.f f16626q;
-    public final d2.c f16627r;
-    public final b2.p f16628s;
-    public final int f16629t;
-    public final boolean f16630u;
+    public final boolean f16616i;
+    public final b2.o1 f16617j;
+    public final int f16618k;
+    public final a2 f16619l;
+    public final b2.r0 f16620m;
+    public final float f16621n;
+    public final float f16622o;
+    public final int f16623p;
+    public final b2.f f16624q;
+    public final d2.c f16625r;
+    public final b2.p f16626s;
+    public final int f16627t;
+    public final boolean f16628u;
     public final boolean v;
-    public final int f16631w;
-    public final boolean f16632x;
-    public final boolean f16633y;
-    public final int f16634z;
+    public final int f16629w;
+    public final boolean f16630x;
+    public final boolean f16631y;
+    public final int f16632z;
 
     static {
-        r1 r1Var = r1.f16705l;
-        b2.e1 e1Var = r1.f16704k;
+        r1 r1Var = r1.f16703l;
+        b2.e1 e1Var = r1.f16702k;
         b2.z0 z0Var = b2.z0.d;
         a2 a2Var = a2.d;
         b2.k1 k1Var = b2.o1.f3894a;
         b2.r0 r0Var = b2.r0.L;
         H = new k1(null, 0, r1Var, e1Var, e1Var, 0, z0Var, 0, false, a2Var, k1Var, 0, r0Var, 1.0f, 1.0f, b2.f.f3741i, 0, d2.c.d, b2.p.f3897c, 0, false, false, 1, 0, 1, false, false, r0Var, 5000L, 15000L, 3000L, v1.f4089b, b2.t1.J);
-        String str = e2.m0.f8255a;
+        String str = e2.m0.f8253a;
         I = Integer.toString(1, 36);
         J = Integer.toString(2, 36);
         K = Integer.toString(3, 36);
@@ -105,52 +105,52 @@ public final class k1 {
         X = Integer.toString(15, 36);
         Y = Integer.toString(16, 36);
         Z = Integer.toString(17, 36);
-        f16599a0 = Integer.toString(18, 36);
-        f16600b0 = Integer.toString(19, 36);
-        f16601c0 = Integer.toString(20, 36);
-        f16602d0 = Integer.toString(21, 36);
-        f16603e0 = Integer.toString(22, 36);
-        f16604f0 = Integer.toString(23, 36);
-        f16605g0 = Integer.toString(24, 36);
-        f16606h0 = Integer.toString(25, 36);
-        f16607i0 = Integer.toString(26, 36);
-        f16608j0 = Integer.toString(27, 36);
-        f16609k0 = Integer.toString(28, 36);
-        f16610l0 = Integer.toString(29, 36);
+        f16597a0 = Integer.toString(18, 36);
+        f16598b0 = Integer.toString(19, 36);
+        f16599c0 = Integer.toString(20, 36);
+        f16600d0 = Integer.toString(21, 36);
+        f16601e0 = Integer.toString(22, 36);
+        f16602f0 = Integer.toString(23, 36);
+        f16603g0 = Integer.toString(24, 36);
+        f16604h0 = Integer.toString(25, 36);
+        f16605i0 = Integer.toString(26, 36);
+        f16606j0 = Integer.toString(27, 36);
+        f16607k0 = Integer.toString(28, 36);
+        f16608l0 = Integer.toString(29, 36);
         m0 = Integer.toString(30, 36);
-        f16611n0 = Integer.toString(31, 36);
+        f16609n0 = Integer.toString(31, 36);
         Integer.toString(32, 36);
-        f16612o0 = Integer.toString(34, 36);
+        f16610o0 = Integer.toString(34, 36);
     }
 
     public k1(b2.y0 y0Var, int i10, r1 r1Var, b2.e1 e1Var, b2.e1 e1Var2, int i11, b2.z0 z0Var, int i12, boolean z10, a2 a2Var, b2.o1 o1Var, int i13, b2.r0 r0Var, float f7, float f10, b2.f fVar, int i14, d2.c cVar, b2.p pVar, int i15, boolean z11, boolean z12, int i16, int i17, int i18, boolean z13, boolean z14, b2.r0 r0Var2, long j10, long j11, long j12, v1 v1Var, b2.t1 t1Var) {
-        this.f16613a = y0Var;
-        this.f16614b = i10;
-        this.f16615c = r1Var;
+        this.f16611a = y0Var;
+        this.f16612b = i10;
+        this.f16613c = r1Var;
         this.d = e1Var;
         this.e = e1Var2;
-        this.f16616f = i11;
-        this.f16617g = z0Var;
+        this.f16614f = i11;
+        this.f16615g = z0Var;
         this.h = i12;
-        this.f16618i = z10;
-        this.f16621l = a2Var;
-        this.f16619j = o1Var;
-        this.f16620k = i13;
-        this.f16622m = r0Var;
-        this.f16623n = f7;
-        this.f16624o = f10;
-        this.f16625p = i14;
-        this.f16626q = fVar;
-        this.f16627r = cVar;
-        this.f16628s = pVar;
-        this.f16629t = i15;
-        this.f16630u = z11;
+        this.f16616i = z10;
+        this.f16619l = a2Var;
+        this.f16617j = o1Var;
+        this.f16618k = i13;
+        this.f16620m = r0Var;
+        this.f16621n = f7;
+        this.f16622o = f10;
+        this.f16623p = i14;
+        this.f16624q = fVar;
+        this.f16625r = cVar;
+        this.f16626s = pVar;
+        this.f16627t = i15;
+        this.f16628u = z11;
         this.v = z12;
-        this.f16631w = i16;
-        this.f16634z = i17;
+        this.f16629w = i16;
+        this.f16632z = i17;
         this.A = i18;
-        this.f16632x = z13;
-        this.f16633y = z14;
+        this.f16630x = z13;
+        this.f16631y = z14;
         this.B = r0Var2;
         this.C = j10;
         this.D = j11;
@@ -161,16 +161,16 @@ public final class k1 {
 
     public final k1 a(v1 v1Var) {
         boolean z10;
-        b2.o1 o1Var = this.f16619j;
+        b2.o1 o1Var = this.f16617j;
         boolean p5 = o1Var.p();
-        r1 r1Var = this.f16615c;
-        if (!p5 && r1Var.f16715a.f3736b >= o1Var.o()) {
+        r1 r1Var = this.f16613c;
+        if (!p5 && r1Var.f16713a.f3736b >= o1Var.o()) {
             z10 = false;
         } else {
             z10 = true;
         }
         u6.p(z10);
-        return new k1(this.f16613a, this.f16614b, r1Var, this.d, this.e, this.f16616f, this.f16617g, this.h, this.f16618i, this.f16621l, o1Var, this.f16620k, this.f16622m, this.f16623n, this.f16624o, this.f16626q, this.f16625p, this.f16627r, this.f16628s, this.f16629t, this.f16630u, this.v, this.f16631w, this.f16634z, this.A, this.f16632x, this.f16633y, this.B, this.C, this.D, this.E, v1Var, this.G);
+        return new k1(this.f16611a, this.f16612b, r1Var, this.d, this.e, this.f16614f, this.f16615g, this.h, this.f16616i, this.f16619l, o1Var, this.f16618k, this.f16620m, this.f16621n, this.f16622o, this.f16624q, this.f16623p, this.f16625r, this.f16626s, this.f16627t, this.f16628u, this.v, this.f16629w, this.f16632z, this.A, this.f16630x, this.f16631y, this.B, this.C, this.D, this.E, v1Var, this.G);
     }
 
     public final k1 b(int i10, int i11, boolean z10) {
@@ -182,39 +182,39 @@ public final class k1 {
         } else {
             z11 = false;
         }
-        b2.o1 o1Var = this.f16619j;
+        b2.o1 o1Var = this.f16617j;
         boolean p5 = o1Var.p();
-        r1 r1Var = this.f16615c;
-        if (p5 || r1Var.f16715a.f3736b < o1Var.o()) {
+        r1 r1Var = this.f16613c;
+        if (p5 || r1Var.f16713a.f3736b < o1Var.o()) {
             z12 = true;
         }
         u6.p(z12);
-        return new k1(this.f16613a, this.f16614b, r1Var, this.d, this.e, this.f16616f, this.f16617g, this.h, this.f16618i, this.f16621l, o1Var, this.f16620k, this.f16622m, this.f16623n, this.f16624o, this.f16626q, this.f16625p, this.f16627r, this.f16628s, this.f16629t, this.f16630u, z10, i10, i11, i12, z11, this.f16633y, this.B, this.C, this.D, this.E, this.F, this.G);
+        return new k1(this.f16611a, this.f16612b, r1Var, this.d, this.e, this.f16614f, this.f16615g, this.h, this.f16616i, this.f16619l, o1Var, this.f16618k, this.f16620m, this.f16621n, this.f16622o, this.f16624q, this.f16623p, this.f16625r, this.f16626s, this.f16627t, this.f16628u, z10, i10, i11, i12, z11, this.f16631y, this.B, this.C, this.D, this.E, this.F, this.G);
     }
 
     public final k1 c(b2.o1 o1Var, r1 r1Var, int i10) {
         boolean z10;
-        if (!o1Var.p() && r1Var.f16715a.f3736b >= o1Var.o()) {
+        if (!o1Var.p() && r1Var.f16713a.f3736b >= o1Var.o()) {
             z10 = false;
         } else {
             z10 = true;
         }
         u6.p(z10);
-        return new k1(this.f16613a, this.f16614b, r1Var, this.d, this.e, this.f16616f, this.f16617g, this.h, this.f16618i, this.f16621l, o1Var, i10, this.f16622m, this.f16623n, this.f16624o, this.f16626q, this.f16625p, this.f16627r, this.f16628s, this.f16629t, this.f16630u, this.v, this.f16631w, this.f16634z, this.A, this.f16632x, this.f16633y, this.B, this.C, this.D, this.E, this.F, this.G);
+        return new k1(this.f16611a, this.f16612b, r1Var, this.d, this.e, this.f16614f, this.f16615g, this.h, this.f16616i, this.f16619l, o1Var, i10, this.f16620m, this.f16621n, this.f16622o, this.f16624q, this.f16623p, this.f16625r, this.f16626s, this.f16627t, this.f16628u, this.v, this.f16629w, this.f16632z, this.A, this.f16630x, this.f16631y, this.B, this.C, this.D, this.E, this.F, this.G);
     }
 
     public final k1 d(b2.t1 t1Var) {
         boolean z10;
-        b2.o1 o1Var = this.f16619j;
+        b2.o1 o1Var = this.f16617j;
         boolean p5 = o1Var.p();
-        r1 r1Var = this.f16615c;
-        if (!p5 && r1Var.f16715a.f3736b >= o1Var.o()) {
+        r1 r1Var = this.f16613c;
+        if (!p5 && r1Var.f16713a.f3736b >= o1Var.o()) {
             z10 = false;
         } else {
             z10 = true;
         }
         u6.p(z10);
-        return new k1(this.f16613a, this.f16614b, r1Var, this.d, this.e, this.f16616f, this.f16617g, this.h, this.f16618i, this.f16621l, o1Var, this.f16620k, this.f16622m, this.f16623n, this.f16624o, this.f16626q, this.f16625p, this.f16627r, this.f16628s, this.f16629t, this.f16630u, this.v, this.f16631w, this.f16634z, this.A, this.f16632x, this.f16633y, this.B, this.C, this.D, this.E, this.F, t1Var);
+        return new k1(this.f16611a, this.f16612b, r1Var, this.d, this.e, this.f16614f, this.f16615g, this.h, this.f16616i, this.f16619l, o1Var, this.f16618k, this.f16620m, this.f16621n, this.f16622o, this.f16624q, this.f16623p, this.f16625r, this.f16626s, this.f16627t, this.f16628u, this.v, this.f16629w, this.f16632z, this.A, this.f16630x, this.f16631y, this.B, this.C, this.D, this.E, this.F, t1Var);
     }
 
     public final k1 e(b2.b1 b1Var, boolean z10, boolean z11) {
@@ -230,14 +230,14 @@ public final class k1 {
         int i11;
         boolean a2 = b1Var.a(16);
         boolean a10 = b1Var.a(17);
-        r1 r1Var = this.f16615c;
+        r1 r1Var = this.f16613c;
         r1 a11 = r1Var.a(a2, a10);
         b2.e1 b10 = this.d.b(a2, a10);
         b2.e1 b11 = this.e.b(a2, a10);
         boolean z13 = true;
-        b2.o1 o1Var = this.f16619j;
+        b2.o1 o1Var = this.f16617j;
         if (!a10 && a2 && !o1Var.p()) {
-            int i12 = r1Var.f16715a.f3736b;
+            int i12 = r1Var.f16713a.f3736b;
             if (o1Var.o() != 1) {
                 b2.n1 m10 = o1Var.m(i12, new b2.n1(), 0L);
                 e9.k0 t10 = e9.n0.t();
@@ -263,34 +263,34 @@ public final class k1 {
         if (!b1Var.a(18)) {
             r0Var = b2.r0.L;
         } else {
-            r0Var = this.f16622m;
+            r0Var = this.f16620m;
         }
         b2.r0 r0Var3 = r0Var;
         if (!b1Var.a(22)) {
             f7 = 1.0f;
             f10 = 1.0f;
         } else {
-            f7 = this.f16623n;
-            f10 = this.f16624o;
+            f7 = this.f16621n;
+            f10 = this.f16622o;
         }
         if (!b1Var.a(21)) {
             fVar = b2.f.f3741i;
         } else {
-            fVar = this.f16626q;
+            fVar = this.f16624q;
         }
         b2.f fVar2 = fVar;
         if (!b1Var.a(28)) {
             cVar = d2.c.d;
         } else {
-            cVar = this.f16627r;
+            cVar = this.f16625r;
         }
         d2.c cVar2 = cVar;
         if (!b1Var.a(23)) {
             i10 = 0;
             z12 = false;
         } else {
-            i10 = this.f16629t;
-            z12 = this.f16630u;
+            i10 = this.f16627t;
+            z12 = this.f16628u;
         }
         if (!b1Var.a(18)) {
             r0Var2 = b2.r0.L;
@@ -304,11 +304,11 @@ public final class k1 {
             v1Var = v1.f4089b;
         }
         v1 v1Var2 = v1Var;
-        if (!o1Var2.p() && a11.f16715a.f3736b >= o1Var2.o()) {
+        if (!o1Var2.p() && a11.f16713a.f3736b >= o1Var2.o()) {
             z13 = false;
         }
         u6.p(z13);
-        return new k1(this.f16613a, this.f16614b, a11, b10, b11, this.f16616f, this.f16617g, this.h, this.f16618i, this.f16621l, o1Var2, this.f16620k, r0Var3, f7, f10, fVar2, this.f16625p, cVar2, this.f16628s, i10, z12, this.v, this.f16631w, this.f16634z, this.A, this.f16632x, this.f16633y, r0Var4, this.C, this.D, this.E, v1Var2, this.G);
+        return new k1(this.f16611a, this.f16612b, a11, b10, b11, this.f16614f, this.f16615g, this.h, this.f16616i, this.f16619l, o1Var2, this.f16618k, r0Var3, f7, f10, fVar2, this.f16623p, cVar2, this.f16626s, i10, z12, this.v, this.f16629w, this.f16632z, this.A, this.f16630x, this.f16631y, r0Var4, this.C, this.D, this.E, v1Var2, this.G);
     }
 
     public final Bundle f(int i10) {
@@ -327,7 +327,7 @@ public final class k1 {
         int i14;
         Bundle c10;
         Bundle bundle3 = new Bundle();
-        b2.y0 y0Var = this.f16613a;
+        b2.y0 y0Var = this.f16611a;
         if (y0Var != null) {
             Bundle bundle4 = new Bundle();
             bundle4.putInt(b2.y0.d, y0Var.f4151a);
@@ -339,30 +339,30 @@ public final class k1 {
                 bundle4.putString(b2.y0.h, cause.getClass().getName());
                 bundle4.putString(b2.y0.f4149n, cause.getMessage());
             }
-            bundle3.putBundle(f16599a0, bundle4);
+            bundle3.putBundle(f16597a0, bundle4);
         }
-        int i15 = this.f16614b;
+        int i15 = this.f16612b;
         if (i15 != 0) {
-            bundle3.putInt(f16601c0, i15);
+            bundle3.putInt(f16599c0, i15);
         }
-        r1 r1Var = this.f16615c;
-        if (i10 < 3 || !r1Var.equals(r1.f16705l)) {
-            bundle3.putBundle(f16600b0, r1Var.b(i10));
+        r1 r1Var = this.f16613c;
+        if (i10 < 3 || !r1Var.equals(r1.f16703l)) {
+            bundle3.putBundle(f16598b0, r1Var.b(i10));
         }
         b2.e1 e1Var = this.d;
-        if (i10 < 3 || !r1.f16704k.a(e1Var)) {
-            bundle3.putBundle(f16602d0, e1Var.c(i10));
+        if (i10 < 3 || !r1.f16702k.a(e1Var)) {
+            bundle3.putBundle(f16600d0, e1Var.c(i10));
         }
         b2.e1 e1Var2 = this.e;
-        if (i10 < 3 || !r1.f16704k.a(e1Var2)) {
-            bundle3.putBundle(f16603e0, e1Var2.c(i10));
+        if (i10 < 3 || !r1.f16702k.a(e1Var2)) {
+            bundle3.putBundle(f16601e0, e1Var2.c(i10));
         }
-        int i16 = this.f16616f;
+        int i16 = this.f16614f;
         if (i16 != 0) {
-            bundle3.putInt(f16604f0, i16);
+            bundle3.putInt(f16602f0, i16);
         }
         b2.z0 z0Var = b2.z0.d;
-        b2.z0 z0Var2 = this.f16617g;
+        b2.z0 z0Var2 = this.f16615g;
         if (!z0Var2.equals(z0Var)) {
             Bundle bundle5 = new Bundle();
             bundle5.putFloat(b2.z0.e, z0Var2.f4156a);
@@ -373,12 +373,12 @@ public final class k1 {
         if (i17 != 0) {
             bundle3.putInt(J, i17);
         }
-        boolean z11 = this.f16618i;
+        boolean z11 = this.f16616i;
         if (z11) {
             bundle3.putBoolean(K, z11);
         }
         b2.k1 k1Var = b2.o1.f3894a;
-        b2.o1 o1Var = this.f16619j;
+        b2.o1 o1Var = this.f16617j;
         boolean z12 = false;
         long j13 = 0;
         if (!o1Var.equals(k1Var)) {
@@ -583,12 +583,12 @@ public final class k1 {
         } else {
             bundle = bundle3;
         }
-        int i30 = this.f16620k;
+        int i30 = this.f16618k;
         if (i30 != 0) {
-            bundle.putInt(f16611n0, i30);
+            bundle.putInt(f16609n0, i30);
         }
         a2 a2Var = a2.d;
-        a2 a2Var2 = this.f16621l;
+        a2 a2Var2 = this.f16619l;
         if (!a2Var2.equals(a2Var)) {
             Bundle bundle13 = new Bundle();
             int i31 = a2Var2.f3697a;
@@ -606,24 +606,24 @@ public final class k1 {
             bundle.putBundle(M, bundle13);
         }
         b2.r0 r0Var = b2.r0.L;
-        b2.r0 r0Var2 = this.f16622m;
+        b2.r0 r0Var2 = this.f16620m;
         if (!r0Var2.equals(r0Var)) {
             bundle.putBundle(N, r0Var2.c(i10));
         }
-        float f11 = this.f16623n;
+        float f11 = this.f16621n;
         if (f11 != 1.0f) {
             bundle.putFloat(O, f11);
         }
-        float f12 = this.f16624o;
+        float f12 = this.f16622o;
         if (f12 != 1.0f) {
             bundle.putFloat(P, f12);
         }
-        int i33 = this.f16625p;
+        int i33 = this.f16623p;
         if (i33 != 0) {
-            bundle.putInt(f16612o0, i33);
+            bundle.putInt(f16610o0, i33);
         }
         b2.f fVar = b2.f.f3741i;
-        b2.f fVar2 = this.f16626q;
+        b2.f fVar2 = this.f16624q;
         if (!fVar2.equals(fVar)) {
             Bundle bundle14 = new Bundle();
             int i34 = fVar2.f3749a;
@@ -657,11 +657,11 @@ public final class k1 {
             bundle.putBundle(Q, bundle14);
         }
         d2.c cVar2 = d2.c.d;
-        d2.c cVar3 = this.f16627r;
+        d2.c cVar3 = this.f16625r;
         if (!cVar3.equals(cVar2)) {
             Bundle bundle15 = new Bundle();
             String str4 = d2.c.e;
-            x1 x1Var = cVar3.f7773a;
+            x1 x1Var = cVar3.f7771a;
             e9.k0 t10 = e9.n0.t();
             for (int i39 = 0; i39 < x1Var.d; i39++) {
                 if (((d2.b) x1Var.get(i39)).d == null) {
@@ -676,16 +676,16 @@ public final class k1 {
                 Bundle a2 = bVar2.a();
                 Bitmap bitmap = bVar2.d;
                 if (bitmap != null) {
-                    a2.putParcelable(d2.b.f7752w, bitmap);
+                    a2.putParcelable(d2.b.f7750w, bitmap);
                 }
                 arrayList9.add(a2);
             }
             bundle15.putParcelableArrayList(str4, arrayList9);
-            bundle15.putLong(d2.c.f7772f, cVar3.f7774b);
-            bundle.putBundle(f16605g0, bundle15);
+            bundle15.putLong(d2.c.f7770f, cVar3.f7772b);
+            bundle.putBundle(f16603g0, bundle15);
         }
         b2.p pVar = b2.p.f3897c;
-        b2.p pVar2 = this.f16628s;
+        b2.p pVar2 = this.f16626s;
         if (!pVar2.equals(pVar)) {
             Bundle bundle16 = new Bundle();
             int i40 = pVar2.f3898a;
@@ -698,11 +698,11 @@ public final class k1 {
             }
             bundle.putBundle(R, bundle16);
         }
-        int i42 = this.f16629t;
+        int i42 = this.f16627t;
         if (i42 != 0) {
             bundle.putInt(S, i42);
         }
-        boolean z19 = this.f16630u;
+        boolean z19 = this.f16628u;
         if (z19) {
             bundle.putBoolean(T, z19);
         }
@@ -710,11 +710,11 @@ public final class k1 {
         if (z20) {
             bundle.putBoolean(U, z20);
         }
-        int i43 = this.f16631w;
+        int i43 = this.f16629w;
         if (i43 != 1) {
             bundle.putInt(V, i43);
         }
-        int i44 = this.f16634z;
+        int i44 = this.f16632z;
         if (i44 != 0) {
             bundle.putInt(W, i44);
         }
@@ -722,18 +722,18 @@ public final class k1 {
         if (i45 != 1) {
             bundle.putInt(X, i45);
         }
-        boolean z21 = this.f16632x;
+        boolean z21 = this.f16630x;
         if (z21) {
             bundle.putBoolean(Y, z21);
         }
-        boolean z22 = this.f16633y;
+        boolean z22 = this.f16631y;
         if (z22) {
             bundle.putBoolean(Z, z22);
         }
         b2.r0 r0Var3 = b2.r0.L;
         b2.r0 r0Var4 = this.B;
         if (!r0Var4.equals(r0Var3)) {
-            bundle.putBundle(f16606h0, r0Var4.c(i10));
+            bundle.putBundle(f16604h0, r0Var4.c(i10));
         }
         if (i10 < 6) {
             j10 = 0;
@@ -742,7 +742,7 @@ public final class k1 {
         }
         long j23 = this.C;
         if (j23 != j10) {
-            bundle.putLong(f16607i0, j23);
+            bundle.putLong(f16605i0, j23);
         }
         if (i10 < 6) {
             j11 = 0;
@@ -751,7 +751,7 @@ public final class k1 {
         }
         long j24 = this.D;
         if (j24 != j11) {
-            bundle.putLong(f16608j0, j24);
+            bundle.putLong(f16606j0, j24);
         }
         if (i10 < 6) {
             j12 = 0;
@@ -760,7 +760,7 @@ public final class k1 {
         }
         long j25 = this.E;
         if (j25 != j12) {
-            bundle.putLong(f16609k0, j25);
+            bundle.putLong(f16607k0, j25);
         }
         v1 v1Var = v1.f4089b;
         v1 v1Var2 = this.F;
@@ -772,7 +772,7 @@ public final class k1 {
         b2.t1 t1Var = b2.t1.J;
         b2.t1 t1Var2 = this.G;
         if (!t1Var2.equals(t1Var)) {
-            bundle.putBundle(f16610l0, t1Var2.c());
+            bundle.putBundle(f16608l0, t1Var2.c());
         }
         return bundle;
     }

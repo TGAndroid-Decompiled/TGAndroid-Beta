@@ -24,24 +24,24 @@ import org.telegram.tgnet.TLRPC;
 public class o01 extends org.telegram.ui.Components.hm0 {
     public TLRPC.WebPage E;
     public boolean F;
-    public n01[] f39629c;
+    public n01[] f39621c;
     public final org.telegram.ui.ActionBar.n2 e;
-    public final int f39630f;
+    public final int f39622f;
     public final Context h;
-    public boolean f39634w;
-    public lv0 f39635x;
-    public String f39636y;
+    public boolean f39626w;
+    public lv0 f39627x;
+    public String f39628y;
     public final ArrayList d = new ArrayList();
-    public ArrayList f39631n = new ArrayList();
-    public ArrayList f39632r = new ArrayList();
-    public ArrayList f39633s = new ArrayList();
+    public ArrayList f39623n = new ArrayList();
+    public ArrayList f39624r = new ArrayList();
+    public ArrayList f39625s = new ArrayList();
     public final ArrayList v = new ArrayList();
 
     public o01(Context context, org.telegram.ui.ActionBar.n2 n2Var) {
         this.e = n2Var;
-        this.f39630f = n2Var.getCurrentAccount();
+        this.f39622f = n2Var.getCurrentAccount();
         this.h = context;
-        this.f39629c = H(n2Var);
+        this.f39621c = H(n2Var);
         J();
     }
 
@@ -135,10 +135,10 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         n2Var.presentFragment(sb0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = sb0Var8.f41082s;
+                            ArrayList arrayList = sb0Var8.f41044s;
                             if (i10 < arrayList.size()) {
-                                if (((mb0) arrayList.get(i10)).f39110f == 1) {
-                                    sb0Var8.f41077b.e1(new i2.r(sb0Var8, i10, 13), 700, true);
+                                if (((mb0) arrayList.get(i10)).f39066f == 1) {
+                                    sb0Var8.f41039b.e1(new i2.r(sb0Var8, i10, 13), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -157,9 +157,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 13:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 0, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 0, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
@@ -191,9 +191,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 23:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var4, 11, false);
-                        x0Var2.D();
-                        n2Var4.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var4, 11, false);
+                        y0Var2.D();
+                        n2Var4.showDialog(y0Var2);
                         return;
                     case 24:
                         n2Var.presentFragment(new h(3));
@@ -237,9 +237,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 4:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 1, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 1, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 5:
                         n2Var.presentFragment(new PrivacyControlActivity(1, true));
@@ -256,7 +256,7 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                             }
                         }
                         if (i10 >= 0) {
-                            n2Var.presentFragment(new fg0(i10));
+                            n2Var.presentFragment(new eg0(i10));
                             return;
                         }
                         return;
@@ -283,9 +283,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var3, 2, false);
-                        x0Var2.D();
-                        n2Var3.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var3, 2, false);
+                        y0Var2.D();
+                        n2Var3.showDialog(y0Var2);
                         return;
                     case 15:
                         n2Var.presentFragment(new PrivacySettingsActivity());
@@ -321,9 +321,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 25:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                        sg.x0 x0Var3 = new sg.x0(n2Var4, 8, false);
-                        x0Var3.D();
-                        n2Var4.showDialog(x0Var3);
+                        sg.y0 y0Var3 = new sg.y0(n2Var4, 8, false);
+                        y0Var3.D();
+                        n2Var4.showDialog(y0Var3);
                         return;
                     case 26:
                         n2Var.presentFragment(new c7());
@@ -359,9 +359,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 4:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 1, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 1, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 5:
                         n2Var.presentFragment(new PrivacyControlActivity(1, true));
@@ -378,7 +378,7 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                             }
                         }
                         if (i10 >= 0) {
-                            n2Var.presentFragment(new fg0(i10));
+                            n2Var.presentFragment(new eg0(i10));
                             return;
                         }
                         return;
@@ -405,9 +405,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var3, 2, false);
-                        x0Var2.D();
-                        n2Var3.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var3, 2, false);
+                        y0Var2.D();
+                        n2Var3.showDialog(y0Var2);
                         return;
                     case 15:
                         n2Var.presentFragment(new PrivacySettingsActivity());
@@ -443,9 +443,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 25:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                        sg.x0 x0Var3 = new sg.x0(n2Var4, 8, false);
-                        x0Var3.D();
-                        n2Var4.showDialog(x0Var3);
+                        sg.y0 y0Var3 = new sg.y0(n2Var4, 8, false);
+                        y0Var3.D();
+                        n2Var4.showDialog(y0Var3);
                         return;
                     case 26:
                         n2Var.presentFragment(new c7());
@@ -481,9 +481,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 4:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 1, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 1, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 5:
                         n2Var.presentFragment(new PrivacyControlActivity(1, true));
@@ -500,7 +500,7 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                             }
                         }
                         if (i10 >= 0) {
-                            n2Var.presentFragment(new fg0(i10));
+                            n2Var.presentFragment(new eg0(i10));
                             return;
                         }
                         return;
@@ -527,9 +527,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var3, 2, false);
-                        x0Var2.D();
-                        n2Var3.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var3, 2, false);
+                        y0Var2.D();
+                        n2Var3.showDialog(y0Var2);
                         return;
                     case 15:
                         n2Var.presentFragment(new PrivacySettingsActivity());
@@ -565,9 +565,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 25:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                        sg.x0 x0Var3 = new sg.x0(n2Var4, 8, false);
-                        x0Var3.D();
-                        n2Var4.showDialog(x0Var3);
+                        sg.y0 y0Var3 = new sg.y0(n2Var4, 8, false);
+                        y0Var3.D();
+                        n2Var4.showDialog(y0Var3);
                         return;
                     case 26:
                         n2Var.presentFragment(new c7());
@@ -609,9 +609,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 6:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 3, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 3, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 7:
                         n2Var.presentFragment(new DataSettingsActivity());
@@ -645,17 +645,17 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     default:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var3, 4, false);
-                        x0Var2.D();
-                        n2Var3.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var3, 4, false);
+                        y0Var2.D();
+                        n2Var3.showDialog(y0Var2);
                         return;
                 }
             }
         });
         n01Var29.a("tg://settings/notifications/groups");
-        n01 n01Var30 = new n01(4, LocaleController.getString(R.string.NotificationsChannels), LocaleController.getString(R.string.NotificationsAndSounds), R.drawable.msg_notifications, new di0(7, n2Var));
+        n01 n01Var30 = new n01(4, LocaleController.getString(R.string.NotificationsChannels), LocaleController.getString(R.string.NotificationsAndSounds), R.drawable.msg_notifications, new ci0(7, n2Var));
         n01Var30.a("tg://settings/notifications/channels");
-        n01 n01Var31 = new n01(5, LocaleController.getString(R.string.VoipNotificationSettings), "callsSectionRow", LocaleController.getString(R.string.NotificationsAndSounds), R.drawable.msg_notifications, new di0(19, n2Var));
+        n01 n01Var31 = new n01(5, LocaleController.getString(R.string.VoipNotificationSettings), "callsSectionRow", LocaleController.getString(R.string.NotificationsAndSounds), R.drawable.msg_notifications, new ci0(19, n2Var));
         n01 n01Var32 = new n01(6, LocaleController.getString(R.string.BadgeNumber), "badgeNumberSection", LocaleController.getString(R.string.NotificationsAndSounds), R.drawable.msg_notifications, new Runnable() {
             @Override
             public final void run() {
@@ -674,9 +674,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 4:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 9, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 9, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 5:
                         n2Var.presentFragment(new p(1));
@@ -707,27 +707,27 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var3, 6, false);
-                        x0Var2.D();
-                        n2Var3.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var3, 6, false);
+                        y0Var2.D();
+                        n2Var3.showDialog(y0Var2);
                         return;
                     case 15:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                        sg.x0 x0Var3 = new sg.x0(n2Var4, 7, false);
-                        x0Var3.D();
-                        n2Var4.showDialog(x0Var3);
+                        sg.y0 y0Var3 = new sg.y0(n2Var4, 7, false);
+                        y0Var3.D();
+                        n2Var4.showDialog(y0Var3);
                         return;
                     case 16:
                         org.telegram.ui.ActionBar.n2 n2Var5 = n2Var;
-                        sg.x0 x0Var4 = new sg.x0(n2Var5, 10, false);
-                        x0Var4.D();
-                        n2Var5.showDialog(x0Var4);
+                        sg.y0 y0Var4 = new sg.y0(n2Var5, 10, false);
+                        y0Var4.D();
+                        n2Var5.showDialog(y0Var4);
                         return;
                     case 17:
                         org.telegram.ui.ActionBar.n2 n2Var6 = n2Var;
-                        sg.x0 x0Var5 = new sg.x0(n2Var6, 12, false);
-                        x0Var5.D();
-                        n2Var6.showDialog(x0Var5);
+                        sg.y0 y0Var5 = new sg.y0(n2Var6, 12, false);
+                        y0Var5.D();
+                        n2Var6.showDialog(y0Var5);
                         return;
                     case 18:
                         n2Var.presentFragment(new sb0());
@@ -810,9 +810,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 4:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 9, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 9, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 5:
                         n2Var.presentFragment(new p(1));
@@ -843,27 +843,27 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var3, 6, false);
-                        x0Var2.D();
-                        n2Var3.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var3, 6, false);
+                        y0Var2.D();
+                        n2Var3.showDialog(y0Var2);
                         return;
                     case 15:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                        sg.x0 x0Var3 = new sg.x0(n2Var4, 7, false);
-                        x0Var3.D();
-                        n2Var4.showDialog(x0Var3);
+                        sg.y0 y0Var3 = new sg.y0(n2Var4, 7, false);
+                        y0Var3.D();
+                        n2Var4.showDialog(y0Var3);
                         return;
                     case 16:
                         org.telegram.ui.ActionBar.n2 n2Var5 = n2Var;
-                        sg.x0 x0Var4 = new sg.x0(n2Var5, 10, false);
-                        x0Var4.D();
-                        n2Var5.showDialog(x0Var4);
+                        sg.y0 y0Var4 = new sg.y0(n2Var5, 10, false);
+                        y0Var4.D();
+                        n2Var5.showDialog(y0Var4);
                         return;
                     case 17:
                         org.telegram.ui.ActionBar.n2 n2Var6 = n2Var;
-                        sg.x0 x0Var5 = new sg.x0(n2Var6, 12, false);
-                        x0Var5.D();
-                        n2Var6.showDialog(x0Var5);
+                        sg.y0 y0Var5 = new sg.y0(n2Var6, 12, false);
+                        y0Var5.D();
+                        n2Var6.showDialog(y0Var5);
                         return;
                     case 18:
                         n2Var.presentFragment(new sb0());
@@ -928,7 +928,7 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                 }
             }
         });
-        n01 n01Var34 = new n01(8, LocaleController.getString(R.string.ContactJoined), "contactJoinedRow", LocaleController.getString(R.string.NotificationsAndSounds), R.drawable.msg_notifications, new di0(23, n2Var));
+        n01 n01Var34 = new n01(8, LocaleController.getString(R.string.ContactJoined), "contactJoinedRow", LocaleController.getString(R.string.NotificationsAndSounds), R.drawable.msg_notifications, new ci0(23, n2Var));
         n01Var34.a("tg://settings/notifications/new-contacts");
         n01 n01Var35 = new n01(9, LocaleController.getString(R.string.PinnedMessages), "pinnedMessageRow", LocaleController.getString(R.string.NotificationsAndSounds), R.drawable.msg_notifications, new Runnable() {
             @Override
@@ -948,9 +948,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 4:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 9, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 9, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 5:
                         n2Var.presentFragment(new p(1));
@@ -981,27 +981,27 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var3, 6, false);
-                        x0Var2.D();
-                        n2Var3.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var3, 6, false);
+                        y0Var2.D();
+                        n2Var3.showDialog(y0Var2);
                         return;
                     case 15:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                        sg.x0 x0Var3 = new sg.x0(n2Var4, 7, false);
-                        x0Var3.D();
-                        n2Var4.showDialog(x0Var3);
+                        sg.y0 y0Var3 = new sg.y0(n2Var4, 7, false);
+                        y0Var3.D();
+                        n2Var4.showDialog(y0Var3);
                         return;
                     case 16:
                         org.telegram.ui.ActionBar.n2 n2Var5 = n2Var;
-                        sg.x0 x0Var4 = new sg.x0(n2Var5, 10, false);
-                        x0Var4.D();
-                        n2Var5.showDialog(x0Var4);
+                        sg.y0 y0Var4 = new sg.y0(n2Var5, 10, false);
+                        y0Var4.D();
+                        n2Var5.showDialog(y0Var4);
                         return;
                     case 17:
                         org.telegram.ui.ActionBar.n2 n2Var6 = n2Var;
-                        sg.x0 x0Var5 = new sg.x0(n2Var6, 12, false);
-                        x0Var5.D();
-                        n2Var6.showDialog(x0Var5);
+                        sg.y0 y0Var5 = new sg.y0(n2Var6, 12, false);
+                        y0Var5.D();
+                        n2Var6.showDialog(y0Var5);
                         return;
                     case 18:
                         n2Var.presentFragment(new sb0());
@@ -1121,10 +1121,10 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         n2Var.presentFragment(sb0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = sb0Var8.f41082s;
+                            ArrayList arrayList = sb0Var8.f41044s;
                             if (i10 < arrayList.size()) {
-                                if (((mb0) arrayList.get(i10)).f39110f == 1) {
-                                    sb0Var8.f41077b.e1(new i2.r(sb0Var8, i10, 13), 700, true);
+                                if (((mb0) arrayList.get(i10)).f39066f == 1) {
+                                    sb0Var8.f41039b.e1(new i2.r(sb0Var8, i10, 13), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -1143,9 +1143,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 13:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 0, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 0, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
@@ -1177,9 +1177,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 23:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var4, 11, false);
-                        x0Var2.D();
-                        n2Var4.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var4, 11, false);
+                        y0Var2.D();
+                        n2Var4.showDialog(y0Var2);
                         return;
                     case 24:
                         n2Var.presentFragment(new h(3));
@@ -1259,10 +1259,10 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         n2Var.presentFragment(sb0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = sb0Var8.f41082s;
+                            ArrayList arrayList = sb0Var8.f41044s;
                             if (i10 < arrayList.size()) {
-                                if (((mb0) arrayList.get(i10)).f39110f == 1) {
-                                    sb0Var8.f41077b.e1(new i2.r(sb0Var8, i10, 13), 700, true);
+                                if (((mb0) arrayList.get(i10)).f39066f == 1) {
+                                    sb0Var8.f41039b.e1(new i2.r(sb0Var8, i10, 13), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -1281,9 +1281,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 13:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 0, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 0, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
@@ -1315,9 +1315,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 23:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var4, 11, false);
-                        x0Var2.D();
-                        n2Var4.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var4, 11, false);
+                        y0Var2.D();
+                        n2Var4.showDialog(y0Var2);
                         return;
                     case 24:
                         n2Var.presentFragment(new h(3));
@@ -1396,10 +1396,10 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         n2Var.presentFragment(sb0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = sb0Var8.f41082s;
+                            ArrayList arrayList = sb0Var8.f41044s;
                             if (i10 < arrayList.size()) {
-                                if (((mb0) arrayList.get(i10)).f39110f == 1) {
-                                    sb0Var8.f41077b.e1(new i2.r(sb0Var8, i10, 13), 700, true);
+                                if (((mb0) arrayList.get(i10)).f39066f == 1) {
+                                    sb0Var8.f41039b.e1(new i2.r(sb0Var8, i10, 13), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -1418,9 +1418,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 13:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 0, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 0, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
@@ -1452,9 +1452,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 23:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var4, 11, false);
-                        x0Var2.D();
-                        n2Var4.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var4, 11, false);
+                        y0Var2.D();
+                        n2Var4.showDialog(y0Var2);
                         return;
                     case 24:
                         n2Var.presentFragment(new h(3));
@@ -1533,10 +1533,10 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         n2Var.presentFragment(sb0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = sb0Var8.f41082s;
+                            ArrayList arrayList = sb0Var8.f41044s;
                             if (i10 < arrayList.size()) {
-                                if (((mb0) arrayList.get(i10)).f39110f == 1) {
-                                    sb0Var8.f41077b.e1(new i2.r(sb0Var8, i10, 13), 700, true);
+                                if (((mb0) arrayList.get(i10)).f39066f == 1) {
+                                    sb0Var8.f41039b.e1(new i2.r(sb0Var8, i10, 13), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -1555,9 +1555,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 13:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 0, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 0, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
@@ -1589,9 +1589,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 23:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var4, 11, false);
-                        x0Var2.D();
-                        n2Var4.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var4, 11, false);
+                        y0Var2.D();
+                        n2Var4.showDialog(y0Var2);
                         return;
                     case 24:
                         n2Var.presentFragment(new h(3));
@@ -1670,10 +1670,10 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         n2Var.presentFragment(sb0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = sb0Var8.f41082s;
+                            ArrayList arrayList = sb0Var8.f41044s;
                             if (i10 < arrayList.size()) {
-                                if (((mb0) arrayList.get(i10)).f39110f == 1) {
-                                    sb0Var8.f41077b.e1(new i2.r(sb0Var8, i10, 13), 700, true);
+                                if (((mb0) arrayList.get(i10)).f39066f == 1) {
+                                    sb0Var8.f41039b.e1(new i2.r(sb0Var8, i10, 13), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -1692,9 +1692,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 13:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 0, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 0, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
@@ -1726,9 +1726,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 23:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var4, 11, false);
-                        x0Var2.D();
-                        n2Var4.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var4, 11, false);
+                        y0Var2.D();
+                        n2Var4.showDialog(y0Var2);
                         return;
                     case 24:
                         n2Var.presentFragment(new h(3));
@@ -1808,10 +1808,10 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         n2Var.presentFragment(sb0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = sb0Var8.f41082s;
+                            ArrayList arrayList = sb0Var8.f41044s;
                             if (i10 < arrayList.size()) {
-                                if (((mb0) arrayList.get(i10)).f39110f == 1) {
-                                    sb0Var8.f41077b.e1(new i2.r(sb0Var8, i10, 13), 700, true);
+                                if (((mb0) arrayList.get(i10)).f39066f == 1) {
+                                    sb0Var8.f41039b.e1(new i2.r(sb0Var8, i10, 13), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -1830,9 +1830,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 13:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 0, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 0, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
@@ -1864,9 +1864,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 23:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var4, 11, false);
-                        x0Var2.D();
-                        n2Var4.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var4, 11, false);
+                        y0Var2.D();
+                        n2Var4.showDialog(y0Var2);
                         return;
                     case 24:
                         n2Var.presentFragment(new h(3));
@@ -1918,9 +1918,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                                 spannableStringBuilder.replace(indexOf, lastIndexOf + 1, (CharSequence) string.substring(indexOf + 1, lastIndexOf));
                                 spannableStringBuilder.setSpan(new ei.kb(a02, 5), indexOf, lastIndexOf - 1, 33);
                             }
-                            ybVar.f32606b.setText(spannableStringBuilder);
-                            ybVar.f32606b.setSingleLine(false);
-                            ybVar.f32606b.setMaxLines(2);
+                            ybVar.f32599b.setText(spannableStringBuilder);
+                            ybVar.f32599b.setSingleLine(false);
+                            ybVar.f32599b.setMaxLines(2);
                             a02.b(ybVar, 2750).j();
                             return;
                         }
@@ -1984,10 +1984,10 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         n2Var.presentFragment(sb0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = sb0Var8.f41082s;
+                            ArrayList arrayList = sb0Var8.f41044s;
                             if (i10 < arrayList.size()) {
-                                if (((mb0) arrayList.get(i10)).f39110f == 1) {
-                                    sb0Var8.f41077b.e1(new i2.r(sb0Var8, i10, 13), 700, true);
+                                if (((mb0) arrayList.get(i10)).f39066f == 1) {
+                                    sb0Var8.f41039b.e1(new i2.r(sb0Var8, i10, 13), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -2006,9 +2006,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 13:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 0, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 0, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
@@ -2040,9 +2040,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 23:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var4, 11, false);
-                        x0Var2.D();
-                        n2Var4.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var4, 11, false);
+                        y0Var2.D();
+                        n2Var4.showDialog(y0Var2);
                         return;
                     case 24:
                         n2Var.presentFragment(new h(3));
@@ -2125,10 +2125,10 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                             n2Var.presentFragment(sb0Var8);
                             int i10 = 0;
                             while (true) {
-                                ArrayList arrayList = sb0Var8.f41082s;
+                                ArrayList arrayList = sb0Var8.f41044s;
                                 if (i10 < arrayList.size()) {
-                                    if (((mb0) arrayList.get(i10)).f39110f == 1) {
-                                        sb0Var8.f41077b.e1(new i2.r(sb0Var8, i10, 13), 700, true);
+                                    if (((mb0) arrayList.get(i10)).f39066f == 1) {
+                                        sb0Var8.f41039b.e1(new i2.r(sb0Var8, i10, 13), 700, true);
                                         return;
                                     }
                                     i10++;
@@ -2147,9 +2147,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                             return;
                         case 13:
                             org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                            sg.x0 x0Var = new sg.x0(n2Var2, 0, false);
-                            x0Var.D();
-                            n2Var2.showDialog(x0Var);
+                            sg.y0 y0Var = new sg.y0(n2Var2, 0, false);
+                            y0Var.D();
+                            n2Var2.showDialog(y0Var);
                             return;
                         case 14:
                             org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
@@ -2181,9 +2181,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                             return;
                         case 23:
                             org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                            sg.x0 x0Var2 = new sg.x0(n2Var4, 11, false);
-                            x0Var2.D();
-                            n2Var4.showDialog(x0Var2);
+                            sg.y0 y0Var2 = new sg.y0(n2Var4, 11, false);
+                            y0Var2.D();
+                            n2Var4.showDialog(y0Var2);
                             return;
                         case 24:
                             n2Var.presentFragment(new h(3));
@@ -2267,10 +2267,10 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         n2Var.presentFragment(sb0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = sb0Var8.f41082s;
+                            ArrayList arrayList = sb0Var8.f41044s;
                             if (i10 < arrayList.size()) {
-                                if (((mb0) arrayList.get(i10)).f39110f == 1) {
-                                    sb0Var8.f41077b.e1(new i2.r(sb0Var8, i10, 13), 700, true);
+                                if (((mb0) arrayList.get(i10)).f39066f == 1) {
+                                    sb0Var8.f41039b.e1(new i2.r(sb0Var8, i10, 13), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -2289,9 +2289,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 13:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 0, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 0, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
@@ -2323,9 +2323,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 23:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var4, 11, false);
-                        x0Var2.D();
-                        n2Var4.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var4, 11, false);
+                        y0Var2.D();
+                        n2Var4.showDialog(y0Var2);
                         return;
                     case 24:
                         n2Var.presentFragment(new h(3));
@@ -2405,10 +2405,10 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         n2Var.presentFragment(sb0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = sb0Var8.f41082s;
+                            ArrayList arrayList = sb0Var8.f41044s;
                             if (i10 < arrayList.size()) {
-                                if (((mb0) arrayList.get(i10)).f39110f == 1) {
-                                    sb0Var8.f41077b.e1(new i2.r(sb0Var8, i10, 13), 700, true);
+                                if (((mb0) arrayList.get(i10)).f39066f == 1) {
+                                    sb0Var8.f41039b.e1(new i2.r(sb0Var8, i10, 13), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -2427,9 +2427,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 13:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 0, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 0, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
@@ -2461,9 +2461,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 23:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var4, 11, false);
-                        x0Var2.D();
-                        n2Var4.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var4, 11, false);
+                        y0Var2.D();
+                        n2Var4.showDialog(y0Var2);
                         return;
                     case 24:
                         n2Var.presentFragment(new h(3));
@@ -2543,10 +2543,10 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         n2Var.presentFragment(sb0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = sb0Var8.f41082s;
+                            ArrayList arrayList = sb0Var8.f41044s;
                             if (i10 < arrayList.size()) {
-                                if (((mb0) arrayList.get(i10)).f39110f == 1) {
-                                    sb0Var8.f41077b.e1(new i2.r(sb0Var8, i10, 13), 700, true);
+                                if (((mb0) arrayList.get(i10)).f39066f == 1) {
+                                    sb0Var8.f41039b.e1(new i2.r(sb0Var8, i10, 13), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -2565,9 +2565,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 13:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 0, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 0, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
@@ -2599,9 +2599,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 23:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var4, 11, false);
-                        x0Var2.D();
-                        n2Var4.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var4, 11, false);
+                        y0Var2.D();
+                        n2Var4.showDialog(y0Var2);
                         return;
                     case 24:
                         n2Var.presentFragment(new h(3));
@@ -2681,10 +2681,10 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         n2Var.presentFragment(sb0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = sb0Var8.f41082s;
+                            ArrayList arrayList = sb0Var8.f41044s;
                             if (i10 < arrayList.size()) {
-                                if (((mb0) arrayList.get(i10)).f39110f == 1) {
-                                    sb0Var8.f41077b.e1(new i2.r(sb0Var8, i10, 13), 700, true);
+                                if (((mb0) arrayList.get(i10)).f39066f == 1) {
+                                    sb0Var8.f41039b.e1(new i2.r(sb0Var8, i10, 13), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -2703,9 +2703,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 13:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 0, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 0, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
@@ -2737,9 +2737,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 23:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var4, 11, false);
-                        x0Var2.D();
-                        n2Var4.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var4, 11, false);
+                        y0Var2.D();
+                        n2Var4.showDialog(y0Var2);
                         return;
                     case 24:
                         n2Var.presentFragment(new h(3));
@@ -2783,9 +2783,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 4:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 1, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 1, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 5:
                         n2Var.presentFragment(new PrivacyControlActivity(1, true));
@@ -2802,7 +2802,7 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                             }
                         }
                         if (i10 >= 0) {
-                            n2Var.presentFragment(new fg0(i10));
+                            n2Var.presentFragment(new eg0(i10));
                             return;
                         }
                         return;
@@ -2829,9 +2829,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var3, 2, false);
-                        x0Var2.D();
-                        n2Var3.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var3, 2, false);
+                        y0Var2.D();
+                        n2Var3.showDialog(y0Var2);
                         return;
                     case 15:
                         n2Var.presentFragment(new PrivacySettingsActivity());
@@ -2867,9 +2867,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 25:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                        sg.x0 x0Var3 = new sg.x0(n2Var4, 8, false);
-                        x0Var3.D();
-                        n2Var4.showDialog(x0Var3);
+                        sg.y0 y0Var3 = new sg.y0(n2Var4, 8, false);
+                        y0Var3.D();
+                        n2Var4.showDialog(y0Var3);
                         return;
                     case 26:
                         n2Var.presentFragment(new c7());
@@ -2905,9 +2905,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 4:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 1, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 1, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 5:
                         n2Var.presentFragment(new PrivacyControlActivity(1, true));
@@ -2924,7 +2924,7 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                             }
                         }
                         if (i10 >= 0) {
-                            n2Var.presentFragment(new fg0(i10));
+                            n2Var.presentFragment(new eg0(i10));
                             return;
                         }
                         return;
@@ -2951,9 +2951,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var3, 2, false);
-                        x0Var2.D();
-                        n2Var3.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var3, 2, false);
+                        y0Var2.D();
+                        n2Var3.showDialog(y0Var2);
                         return;
                     case 15:
                         n2Var.presentFragment(new PrivacySettingsActivity());
@@ -2989,9 +2989,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 25:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                        sg.x0 x0Var3 = new sg.x0(n2Var4, 8, false);
-                        x0Var3.D();
-                        n2Var4.showDialog(x0Var3);
+                        sg.y0 y0Var3 = new sg.y0(n2Var4, 8, false);
+                        y0Var3.D();
+                        n2Var4.showDialog(y0Var3);
                         return;
                     case 26:
                         n2Var.presentFragment(new c7());
@@ -3027,9 +3027,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 4:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 1, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 1, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 5:
                         n2Var.presentFragment(new PrivacyControlActivity(1, true));
@@ -3046,7 +3046,7 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                             }
                         }
                         if (i10 >= 0) {
-                            n2Var.presentFragment(new fg0(i10));
+                            n2Var.presentFragment(new eg0(i10));
                             return;
                         }
                         return;
@@ -3073,9 +3073,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var3, 2, false);
-                        x0Var2.D();
-                        n2Var3.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var3, 2, false);
+                        y0Var2.D();
+                        n2Var3.showDialog(y0Var2);
                         return;
                     case 15:
                         n2Var.presentFragment(new PrivacySettingsActivity());
@@ -3111,9 +3111,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 25:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                        sg.x0 x0Var3 = new sg.x0(n2Var4, 8, false);
-                        x0Var3.D();
-                        n2Var4.showDialog(x0Var3);
+                        sg.y0 y0Var3 = new sg.y0(n2Var4, 8, false);
+                        y0Var3.D();
+                        n2Var4.showDialog(y0Var3);
                         return;
                     case 26:
                         n2Var.presentFragment(new c7());
@@ -3149,9 +3149,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 4:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 1, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 1, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 5:
                         n2Var.presentFragment(new PrivacyControlActivity(1, true));
@@ -3168,7 +3168,7 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                             }
                         }
                         if (i10 >= 0) {
-                            n2Var.presentFragment(new fg0(i10));
+                            n2Var.presentFragment(new eg0(i10));
                             return;
                         }
                         return;
@@ -3195,9 +3195,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var3, 2, false);
-                        x0Var2.D();
-                        n2Var3.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var3, 2, false);
+                        y0Var2.D();
+                        n2Var3.showDialog(y0Var2);
                         return;
                     case 15:
                         n2Var.presentFragment(new PrivacySettingsActivity());
@@ -3233,9 +3233,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 25:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                        sg.x0 x0Var3 = new sg.x0(n2Var4, 8, false);
-                        x0Var3.D();
-                        n2Var4.showDialog(x0Var3);
+                        sg.y0 y0Var3 = new sg.y0(n2Var4, 8, false);
+                        y0Var3.D();
+                        n2Var4.showDialog(y0Var3);
                         return;
                     case 26:
                         n2Var.presentFragment(new c7());
@@ -3271,9 +3271,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 4:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 1, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 1, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 5:
                         n2Var.presentFragment(new PrivacyControlActivity(1, true));
@@ -3290,7 +3290,7 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                             }
                         }
                         if (i10 >= 0) {
-                            n2Var.presentFragment(new fg0(i10));
+                            n2Var.presentFragment(new eg0(i10));
                             return;
                         }
                         return;
@@ -3317,9 +3317,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var3, 2, false);
-                        x0Var2.D();
-                        n2Var3.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var3, 2, false);
+                        y0Var2.D();
+                        n2Var3.showDialog(y0Var2);
                         return;
                     case 15:
                         n2Var.presentFragment(new PrivacySettingsActivity());
@@ -3355,9 +3355,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 25:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                        sg.x0 x0Var3 = new sg.x0(n2Var4, 8, false);
-                        x0Var3.D();
-                        n2Var4.showDialog(x0Var3);
+                        sg.y0 y0Var3 = new sg.y0(n2Var4, 8, false);
+                        y0Var3.D();
+                        n2Var4.showDialog(y0Var3);
                         return;
                     case 26:
                         n2Var.presentFragment(new c7());
@@ -3401,9 +3401,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                                 spannableStringBuilder.replace(indexOf, lastIndexOf + 1, (CharSequence) string.substring(indexOf + 1, lastIndexOf));
                                 spannableStringBuilder.setSpan(new ei.kb(a02, 5), indexOf, lastIndexOf - 1, 33);
                             }
-                            ybVar.f32606b.setText(spannableStringBuilder);
-                            ybVar.f32606b.setSingleLine(false);
-                            ybVar.f32606b.setMaxLines(2);
+                            ybVar.f32599b.setText(spannableStringBuilder);
+                            ybVar.f32599b.setSingleLine(false);
+                            ybVar.f32599b.setMaxLines(2);
                             a02.b(ybVar, 2750).j();
                             return;
                         }
@@ -3433,9 +3433,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                             return;
                         case 4:
                             org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                            sg.x0 x0Var = new sg.x0(n2Var2, 1, false);
-                            x0Var.D();
-                            n2Var2.showDialog(x0Var);
+                            sg.y0 y0Var = new sg.y0(n2Var2, 1, false);
+                            y0Var.D();
+                            n2Var2.showDialog(y0Var);
                             return;
                         case 5:
                             n2Var.presentFragment(new PrivacyControlActivity(1, true));
@@ -3452,7 +3452,7 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                                 }
                             }
                             if (i10 >= 0) {
-                                n2Var.presentFragment(new fg0(i10));
+                                n2Var.presentFragment(new eg0(i10));
                                 return;
                             }
                             return;
@@ -3479,9 +3479,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                             return;
                         case 14:
                             org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                            sg.x0 x0Var2 = new sg.x0(n2Var3, 2, false);
-                            x0Var2.D();
-                            n2Var3.showDialog(x0Var2);
+                            sg.y0 y0Var2 = new sg.y0(n2Var3, 2, false);
+                            y0Var2.D();
+                            n2Var3.showDialog(y0Var2);
                             return;
                         case 15:
                             n2Var.presentFragment(new PrivacySettingsActivity());
@@ -3517,9 +3517,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                             return;
                         case 25:
                             org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                            sg.x0 x0Var3 = new sg.x0(n2Var4, 8, false);
-                            x0Var3.D();
-                            n2Var4.showDialog(x0Var3);
+                            sg.y0 y0Var3 = new sg.y0(n2Var4, 8, false);
+                            y0Var3.D();
+                            n2Var4.showDialog(y0Var3);
                             return;
                         case 26:
                             n2Var.presentFragment(new c7());
@@ -3559,9 +3559,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 4:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 1, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 1, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 5:
                         n2Var.presentFragment(new PrivacyControlActivity(1, true));
@@ -3578,7 +3578,7 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                             }
                         }
                         if (i10 >= 0) {
-                            n2Var.presentFragment(new fg0(i10));
+                            n2Var.presentFragment(new eg0(i10));
                             return;
                         }
                         return;
@@ -3605,9 +3605,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var3, 2, false);
-                        x0Var2.D();
-                        n2Var3.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var3, 2, false);
+                        y0Var2.D();
+                        n2Var3.showDialog(y0Var2);
                         return;
                     case 15:
                         n2Var.presentFragment(new PrivacySettingsActivity());
@@ -3643,9 +3643,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 25:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                        sg.x0 x0Var3 = new sg.x0(n2Var4, 8, false);
-                        x0Var3.D();
-                        n2Var4.showDialog(x0Var3);
+                        sg.y0 y0Var3 = new sg.y0(n2Var4, 8, false);
+                        y0Var3.D();
+                        n2Var4.showDialog(y0Var3);
                         return;
                     case 26:
                         n2Var.presentFragment(new c7());
@@ -3681,9 +3681,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 4:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 1, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 1, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 5:
                         n2Var.presentFragment(new PrivacyControlActivity(1, true));
@@ -3700,7 +3700,7 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                             }
                         }
                         if (i10 >= 0) {
-                            n2Var.presentFragment(new fg0(i10));
+                            n2Var.presentFragment(new eg0(i10));
                             return;
                         }
                         return;
@@ -3727,9 +3727,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var3, 2, false);
-                        x0Var2.D();
-                        n2Var3.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var3, 2, false);
+                        y0Var2.D();
+                        n2Var3.showDialog(y0Var2);
                         return;
                     case 15:
                         n2Var.presentFragment(new PrivacySettingsActivity());
@@ -3765,9 +3765,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 25:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                        sg.x0 x0Var3 = new sg.x0(n2Var4, 8, false);
-                        x0Var3.D();
-                        n2Var4.showDialog(x0Var3);
+                        sg.y0 y0Var3 = new sg.y0(n2Var4, 8, false);
+                        y0Var3.D();
+                        n2Var4.showDialog(y0Var3);
                         return;
                     case 26:
                         n2Var.presentFragment(new c7());
@@ -3803,9 +3803,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 4:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 1, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 1, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 5:
                         n2Var.presentFragment(new PrivacyControlActivity(1, true));
@@ -3822,7 +3822,7 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                             }
                         }
                         if (i10 >= 0) {
-                            n2Var.presentFragment(new fg0(i10));
+                            n2Var.presentFragment(new eg0(i10));
                             return;
                         }
                         return;
@@ -3849,9 +3849,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var3, 2, false);
-                        x0Var2.D();
-                        n2Var3.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var3, 2, false);
+                        y0Var2.D();
+                        n2Var3.showDialog(y0Var2);
                         return;
                     case 15:
                         n2Var.presentFragment(new PrivacySettingsActivity());
@@ -3887,9 +3887,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 25:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                        sg.x0 x0Var3 = new sg.x0(n2Var4, 8, false);
-                        x0Var3.D();
-                        n2Var4.showDialog(x0Var3);
+                        sg.y0 y0Var3 = new sg.y0(n2Var4, 8, false);
+                        y0Var3.D();
+                        n2Var4.showDialog(y0Var3);
                         return;
                     case 26:
                         n2Var.presentFragment(new c7());
@@ -3925,9 +3925,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 4:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 1, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 1, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 5:
                         n2Var.presentFragment(new PrivacyControlActivity(1, true));
@@ -3944,7 +3944,7 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                             }
                         }
                         if (i10 >= 0) {
-                            n2Var.presentFragment(new fg0(i10));
+                            n2Var.presentFragment(new eg0(i10));
                             return;
                         }
                         return;
@@ -3971,9 +3971,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var3, 2, false);
-                        x0Var2.D();
-                        n2Var3.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var3, 2, false);
+                        y0Var2.D();
+                        n2Var3.showDialog(y0Var2);
                         return;
                     case 15:
                         n2Var.presentFragment(new PrivacySettingsActivity());
@@ -4009,9 +4009,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 25:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                        sg.x0 x0Var3 = new sg.x0(n2Var4, 8, false);
-                        x0Var3.D();
-                        n2Var4.showDialog(x0Var3);
+                        sg.y0 y0Var3 = new sg.y0(n2Var4, 8, false);
+                        y0Var3.D();
+                        n2Var4.showDialog(y0Var3);
                         return;
                     case 26:
                         n2Var.presentFragment(new c7());
@@ -4047,9 +4047,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 4:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 1, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 1, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 5:
                         n2Var.presentFragment(new PrivacyControlActivity(1, true));
@@ -4066,7 +4066,7 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                             }
                         }
                         if (i10 >= 0) {
-                            n2Var.presentFragment(new fg0(i10));
+                            n2Var.presentFragment(new eg0(i10));
                             return;
                         }
                         return;
@@ -4093,9 +4093,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var3, 2, false);
-                        x0Var2.D();
-                        n2Var3.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var3, 2, false);
+                        y0Var2.D();
+                        n2Var3.showDialog(y0Var2);
                         return;
                     case 15:
                         n2Var.presentFragment(new PrivacySettingsActivity());
@@ -4131,9 +4131,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 25:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                        sg.x0 x0Var3 = new sg.x0(n2Var4, 8, false);
-                        x0Var3.D();
-                        n2Var4.showDialog(x0Var3);
+                        sg.y0 y0Var3 = new sg.y0(n2Var4, 8, false);
+                        y0Var3.D();
+                        n2Var4.showDialog(y0Var3);
                         return;
                     case 26:
                         n2Var.presentFragment(new c7());
@@ -4169,9 +4169,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 4:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 1, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 1, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 5:
                         n2Var.presentFragment(new PrivacyControlActivity(1, true));
@@ -4188,7 +4188,7 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                             }
                         }
                         if (i10 >= 0) {
-                            n2Var.presentFragment(new fg0(i10));
+                            n2Var.presentFragment(new eg0(i10));
                             return;
                         }
                         return;
@@ -4215,9 +4215,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var3, 2, false);
-                        x0Var2.D();
-                        n2Var3.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var3, 2, false);
+                        y0Var2.D();
+                        n2Var3.showDialog(y0Var2);
                         return;
                     case 15:
                         n2Var.presentFragment(new PrivacySettingsActivity());
@@ -4253,9 +4253,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 25:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                        sg.x0 x0Var3 = new sg.x0(n2Var4, 8, false);
-                        x0Var3.D();
-                        n2Var4.showDialog(x0Var3);
+                        sg.y0 y0Var3 = new sg.y0(n2Var4, 8, false);
+                        y0Var3.D();
+                        n2Var4.showDialog(y0Var3);
                         return;
                     case 26:
                         n2Var.presentFragment(new c7());
@@ -4291,9 +4291,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 4:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 1, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 1, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 5:
                         n2Var.presentFragment(new PrivacyControlActivity(1, true));
@@ -4310,7 +4310,7 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                             }
                         }
                         if (i10 >= 0) {
-                            n2Var.presentFragment(new fg0(i10));
+                            n2Var.presentFragment(new eg0(i10));
                             return;
                         }
                         return;
@@ -4337,9 +4337,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var3, 2, false);
-                        x0Var2.D();
-                        n2Var3.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var3, 2, false);
+                        y0Var2.D();
+                        n2Var3.showDialog(y0Var2);
                         return;
                     case 15:
                         n2Var.presentFragment(new PrivacySettingsActivity());
@@ -4375,9 +4375,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 25:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                        sg.x0 x0Var3 = new sg.x0(n2Var4, 8, false);
-                        x0Var3.D();
-                        n2Var4.showDialog(x0Var3);
+                        sg.y0 y0Var3 = new sg.y0(n2Var4, 8, false);
+                        y0Var3.D();
+                        n2Var4.showDialog(y0Var3);
                         return;
                     case 26:
                         n2Var.presentFragment(new c7());
@@ -4413,9 +4413,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 4:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 1, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 1, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 5:
                         n2Var.presentFragment(new PrivacyControlActivity(1, true));
@@ -4432,7 +4432,7 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                             }
                         }
                         if (i10 >= 0) {
-                            n2Var.presentFragment(new fg0(i10));
+                            n2Var.presentFragment(new eg0(i10));
                             return;
                         }
                         return;
@@ -4459,9 +4459,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var3, 2, false);
-                        x0Var2.D();
-                        n2Var3.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var3, 2, false);
+                        y0Var2.D();
+                        n2Var3.showDialog(y0Var2);
                         return;
                     case 15:
                         n2Var.presentFragment(new PrivacySettingsActivity());
@@ -4497,9 +4497,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 25:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                        sg.x0 x0Var3 = new sg.x0(n2Var4, 8, false);
-                        x0Var3.D();
-                        n2Var4.showDialog(x0Var3);
+                        sg.y0 y0Var3 = new sg.y0(n2Var4, 8, false);
+                        y0Var3.D();
+                        n2Var4.showDialog(y0Var3);
                         return;
                     case 26:
                         n2Var.presentFragment(new c7());
@@ -4535,9 +4535,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 4:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 1, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 1, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 5:
                         n2Var.presentFragment(new PrivacyControlActivity(1, true));
@@ -4554,7 +4554,7 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                             }
                         }
                         if (i10 >= 0) {
-                            n2Var.presentFragment(new fg0(i10));
+                            n2Var.presentFragment(new eg0(i10));
                             return;
                         }
                         return;
@@ -4581,9 +4581,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var3, 2, false);
-                        x0Var2.D();
-                        n2Var3.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var3, 2, false);
+                        y0Var2.D();
+                        n2Var3.showDialog(y0Var2);
                         return;
                     case 15:
                         n2Var.presentFragment(new PrivacySettingsActivity());
@@ -4619,9 +4619,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 25:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                        sg.x0 x0Var3 = new sg.x0(n2Var4, 8, false);
-                        x0Var3.D();
-                        n2Var4.showDialog(x0Var3);
+                        sg.y0 y0Var3 = new sg.y0(n2Var4, 8, false);
+                        y0Var3.D();
+                        n2Var4.showDialog(y0Var3);
                         return;
                     case 26:
                         n2Var.presentFragment(new c7());
@@ -4657,9 +4657,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 4:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 1, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 1, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 5:
                         n2Var.presentFragment(new PrivacyControlActivity(1, true));
@@ -4676,7 +4676,7 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                             }
                         }
                         if (i10 >= 0) {
-                            n2Var.presentFragment(new fg0(i10));
+                            n2Var.presentFragment(new eg0(i10));
                             return;
                         }
                         return;
@@ -4703,9 +4703,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var3, 2, false);
-                        x0Var2.D();
-                        n2Var3.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var3, 2, false);
+                        y0Var2.D();
+                        n2Var3.showDialog(y0Var2);
                         return;
                     case 15:
                         n2Var.presentFragment(new PrivacySettingsActivity());
@@ -4741,9 +4741,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 25:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                        sg.x0 x0Var3 = new sg.x0(n2Var4, 8, false);
-                        x0Var3.D();
-                        n2Var4.showDialog(x0Var3);
+                        sg.y0 y0Var3 = new sg.y0(n2Var4, 8, false);
+                        y0Var3.D();
+                        n2Var4.showDialog(y0Var3);
                         return;
                     case 26:
                         n2Var.presentFragment(new c7());
@@ -4779,9 +4779,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 4:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 1, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 1, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 5:
                         n2Var.presentFragment(new PrivacyControlActivity(1, true));
@@ -4798,7 +4798,7 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                             }
                         }
                         if (i10 >= 0) {
-                            n2Var.presentFragment(new fg0(i10));
+                            n2Var.presentFragment(new eg0(i10));
                             return;
                         }
                         return;
@@ -4825,9 +4825,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var3, 2, false);
-                        x0Var2.D();
-                        n2Var3.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var3, 2, false);
+                        y0Var2.D();
+                        n2Var3.showDialog(y0Var2);
                         return;
                     case 15:
                         n2Var.presentFragment(new PrivacySettingsActivity());
@@ -4863,9 +4863,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 25:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                        sg.x0 x0Var3 = new sg.x0(n2Var4, 8, false);
-                        x0Var3.D();
-                        n2Var4.showDialog(x0Var3);
+                        sg.y0 y0Var3 = new sg.y0(n2Var4, 8, false);
+                        y0Var3.D();
+                        n2Var4.showDialog(y0Var3);
                         return;
                     case 26:
                         n2Var.presentFragment(new c7());
@@ -4901,9 +4901,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 4:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 1, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 1, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 5:
                         n2Var.presentFragment(new PrivacyControlActivity(1, true));
@@ -4920,7 +4920,7 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                             }
                         }
                         if (i10 >= 0) {
-                            n2Var.presentFragment(new fg0(i10));
+                            n2Var.presentFragment(new eg0(i10));
                             return;
                         }
                         return;
@@ -4947,9 +4947,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var3, 2, false);
-                        x0Var2.D();
-                        n2Var3.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var3, 2, false);
+                        y0Var2.D();
+                        n2Var3.showDialog(y0Var2);
                         return;
                     case 15:
                         n2Var.presentFragment(new PrivacySettingsActivity());
@@ -4985,9 +4985,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 25:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                        sg.x0 x0Var3 = new sg.x0(n2Var4, 8, false);
-                        x0Var3.D();
-                        n2Var4.showDialog(x0Var3);
+                        sg.y0 y0Var3 = new sg.y0(n2Var4, 8, false);
+                        y0Var3.D();
+                        n2Var4.showDialog(y0Var3);
                         return;
                     case 26:
                         n2Var.presentFragment(new c7());
@@ -5023,9 +5023,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 4:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 1, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 1, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 5:
                         n2Var.presentFragment(new PrivacyControlActivity(1, true));
@@ -5042,7 +5042,7 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                             }
                         }
                         if (i10 >= 0) {
-                            n2Var.presentFragment(new fg0(i10));
+                            n2Var.presentFragment(new eg0(i10));
                             return;
                         }
                         return;
@@ -5069,9 +5069,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var3, 2, false);
-                        x0Var2.D();
-                        n2Var3.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var3, 2, false);
+                        y0Var2.D();
+                        n2Var3.showDialog(y0Var2);
                         return;
                     case 15:
                         n2Var.presentFragment(new PrivacySettingsActivity());
@@ -5107,9 +5107,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 25:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                        sg.x0 x0Var3 = new sg.x0(n2Var4, 8, false);
-                        x0Var3.D();
-                        n2Var4.showDialog(x0Var3);
+                        sg.y0 y0Var3 = new sg.y0(n2Var4, 8, false);
+                        y0Var3.D();
+                        n2Var4.showDialog(y0Var3);
                         return;
                     case 26:
                         n2Var.presentFragment(new c7());
@@ -5144,9 +5144,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 4:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 1, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 1, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 5:
                         n2Var.presentFragment(new PrivacyControlActivity(1, true));
@@ -5163,7 +5163,7 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                             }
                         }
                         if (i10 >= 0) {
-                            n2Var.presentFragment(new fg0(i10));
+                            n2Var.presentFragment(new eg0(i10));
                             return;
                         }
                         return;
@@ -5190,9 +5190,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var3, 2, false);
-                        x0Var2.D();
-                        n2Var3.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var3, 2, false);
+                        y0Var2.D();
+                        n2Var3.showDialog(y0Var2);
                         return;
                     case 15:
                         n2Var.presentFragment(new PrivacySettingsActivity());
@@ -5228,9 +5228,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 25:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                        sg.x0 x0Var3 = new sg.x0(n2Var4, 8, false);
-                        x0Var3.D();
-                        n2Var4.showDialog(x0Var3);
+                        sg.y0 y0Var3 = new sg.y0(n2Var4, 8, false);
+                        y0Var3.D();
+                        n2Var4.showDialog(y0Var3);
                         return;
                     case 26:
                         n2Var.presentFragment(new c7());
@@ -5266,9 +5266,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 4:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 1, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 1, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 5:
                         n2Var.presentFragment(new PrivacyControlActivity(1, true));
@@ -5285,7 +5285,7 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                             }
                         }
                         if (i10 >= 0) {
-                            n2Var.presentFragment(new fg0(i10));
+                            n2Var.presentFragment(new eg0(i10));
                             return;
                         }
                         return;
@@ -5312,9 +5312,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var3, 2, false);
-                        x0Var2.D();
-                        n2Var3.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var3, 2, false);
+                        y0Var2.D();
+                        n2Var3.showDialog(y0Var2);
                         return;
                     case 15:
                         n2Var.presentFragment(new PrivacySettingsActivity());
@@ -5350,9 +5350,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 25:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                        sg.x0 x0Var3 = new sg.x0(n2Var4, 8, false);
-                        x0Var3.D();
-                        n2Var4.showDialog(x0Var3);
+                        sg.y0 y0Var3 = new sg.y0(n2Var4, 8, false);
+                        y0Var3.D();
+                        n2Var4.showDialog(y0Var3);
                         return;
                     case 26:
                         n2Var.presentFragment(new c7());
@@ -5387,9 +5387,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 4:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 1, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 1, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 5:
                         n2Var.presentFragment(new PrivacyControlActivity(1, true));
@@ -5406,7 +5406,7 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                             }
                         }
                         if (i10 >= 0) {
-                            n2Var.presentFragment(new fg0(i10));
+                            n2Var.presentFragment(new eg0(i10));
                             return;
                         }
                         return;
@@ -5433,9 +5433,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var3, 2, false);
-                        x0Var2.D();
-                        n2Var3.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var3, 2, false);
+                        y0Var2.D();
+                        n2Var3.showDialog(y0Var2);
                         return;
                     case 15:
                         n2Var.presentFragment(new PrivacySettingsActivity());
@@ -5471,9 +5471,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 25:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                        sg.x0 x0Var3 = new sg.x0(n2Var4, 8, false);
-                        x0Var3.D();
-                        n2Var4.showDialog(x0Var3);
+                        sg.y0 y0Var3 = new sg.y0(n2Var4, 8, false);
+                        y0Var3.D();
+                        n2Var4.showDialog(y0Var3);
                         return;
                     case 26:
                         n2Var.presentFragment(new c7());
@@ -5508,9 +5508,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 4:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 1, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 1, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 5:
                         n2Var.presentFragment(new PrivacyControlActivity(1, true));
@@ -5527,7 +5527,7 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                             }
                         }
                         if (i10 >= 0) {
-                            n2Var.presentFragment(new fg0(i10));
+                            n2Var.presentFragment(new eg0(i10));
                             return;
                         }
                         return;
@@ -5554,9 +5554,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var3, 2, false);
-                        x0Var2.D();
-                        n2Var3.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var3, 2, false);
+                        y0Var2.D();
+                        n2Var3.showDialog(y0Var2);
                         return;
                     case 15:
                         n2Var.presentFragment(new PrivacySettingsActivity());
@@ -5592,9 +5592,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 25:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                        sg.x0 x0Var3 = new sg.x0(n2Var4, 8, false);
-                        x0Var3.D();
-                        n2Var4.showDialog(x0Var3);
+                        sg.y0 y0Var3 = new sg.y0(n2Var4, 8, false);
+                        y0Var3.D();
+                        n2Var4.showDialog(y0Var3);
                         return;
                     case 26:
                         n2Var.presentFragment(new c7());
@@ -5629,9 +5629,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 4:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 1, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 1, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 5:
                         n2Var.presentFragment(new PrivacyControlActivity(1, true));
@@ -5648,7 +5648,7 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                             }
                         }
                         if (i10 >= 0) {
-                            n2Var.presentFragment(new fg0(i10));
+                            n2Var.presentFragment(new eg0(i10));
                             return;
                         }
                         return;
@@ -5675,9 +5675,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var3, 2, false);
-                        x0Var2.D();
-                        n2Var3.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var3, 2, false);
+                        y0Var2.D();
+                        n2Var3.showDialog(y0Var2);
                         return;
                     case 15:
                         n2Var.presentFragment(new PrivacySettingsActivity());
@@ -5713,9 +5713,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 25:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                        sg.x0 x0Var3 = new sg.x0(n2Var4, 8, false);
-                        x0Var3.D();
-                        n2Var4.showDialog(x0Var3);
+                        sg.y0 y0Var3 = new sg.y0(n2Var4, 8, false);
+                        y0Var3.D();
+                        n2Var4.showDialog(y0Var3);
                         return;
                     case 26:
                         n2Var.presentFragment(new c7());
@@ -5757,9 +5757,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 6:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 3, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 3, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 7:
                         n2Var.presentFragment(new DataSettingsActivity());
@@ -5793,9 +5793,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     default:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var3, 4, false);
-                        x0Var2.D();
-                        n2Var3.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var3, 4, false);
+                        y0Var2.D();
+                        n2Var3.showDialog(y0Var2);
                         return;
                 }
             }
@@ -5824,9 +5824,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 6:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 3, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 3, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 7:
                         n2Var.presentFragment(new DataSettingsActivity());
@@ -5860,9 +5860,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     default:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var3, 4, false);
-                        x0Var2.D();
-                        n2Var3.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var3, 4, false);
+                        y0Var2.D();
+                        n2Var3.showDialog(y0Var2);
                         return;
                 }
             }
@@ -5891,9 +5891,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 6:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 3, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 3, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 7:
                         n2Var.presentFragment(new DataSettingsActivity());
@@ -5927,9 +5927,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     default:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var3, 4, false);
-                        x0Var2.D();
-                        n2Var3.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var3, 4, false);
+                        y0Var2.D();
+                        n2Var3.showDialog(y0Var2);
                         return;
                 }
             }
@@ -5958,9 +5958,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 6:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 3, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 3, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 7:
                         n2Var.presentFragment(new DataSettingsActivity());
@@ -5994,9 +5994,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     default:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var3, 4, false);
-                        x0Var2.D();
-                        n2Var3.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var3, 4, false);
+                        y0Var2.D();
+                        n2Var3.showDialog(y0Var2);
                         return;
                 }
             }
@@ -6025,9 +6025,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 6:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 3, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 3, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 7:
                         n2Var.presentFragment(new DataSettingsActivity());
@@ -6061,9 +6061,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     default:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var3, 4, false);
-                        x0Var2.D();
-                        n2Var3.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var3, 4, false);
+                        y0Var2.D();
+                        n2Var3.showDialog(y0Var2);
                         return;
                 }
             }
@@ -6093,9 +6093,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 6:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 3, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 3, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 7:
                         n2Var.presentFragment(new DataSettingsActivity());
@@ -6129,9 +6129,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     default:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var3, 4, false);
-                        x0Var2.D();
-                        n2Var3.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var3, 4, false);
+                        y0Var2.D();
+                        n2Var3.showDialog(y0Var2);
                         return;
                 }
             }
@@ -6160,9 +6160,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 6:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 3, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 3, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 7:
                         n2Var.presentFragment(new DataSettingsActivity());
@@ -6196,9 +6196,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     default:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var3, 4, false);
-                        x0Var2.D();
-                        n2Var3.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var3, 4, false);
+                        y0Var2.D();
+                        n2Var3.showDialog(y0Var2);
                         return;
                 }
             }
@@ -6227,9 +6227,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 6:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 3, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 3, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 7:
                         n2Var.presentFragment(new DataSettingsActivity());
@@ -6263,9 +6263,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     default:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var3, 4, false);
-                        x0Var2.D();
-                        n2Var3.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var3, 4, false);
+                        y0Var2.D();
+                        n2Var3.showDialog(y0Var2);
                         return;
                 }
             }
@@ -6294,9 +6294,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 6:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 3, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 3, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 7:
                         n2Var.presentFragment(new DataSettingsActivity());
@@ -6330,9 +6330,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     default:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var3, 4, false);
-                        x0Var2.D();
-                        n2Var3.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var3, 4, false);
+                        y0Var2.D();
+                        n2Var3.showDialog(y0Var2);
                         return;
                 }
             }
@@ -6362,9 +6362,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 6:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 3, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 3, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 7:
                         n2Var.presentFragment(new DataSettingsActivity());
@@ -6398,9 +6398,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     default:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var3, 4, false);
-                        x0Var2.D();
-                        n2Var3.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var3, 4, false);
+                        y0Var2.D();
+                        n2Var3.showDialog(y0Var2);
                         return;
                 }
             }
@@ -6429,9 +6429,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 6:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 3, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 3, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 7:
                         n2Var.presentFragment(new DataSettingsActivity());
@@ -6465,9 +6465,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     default:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var3, 4, false);
-                        x0Var2.D();
-                        n2Var3.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var3, 4, false);
+                        y0Var2.D();
+                        n2Var3.showDialog(y0Var2);
                         return;
                 }
             }
@@ -6497,9 +6497,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 6:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 3, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 3, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 7:
                         n2Var.presentFragment(new DataSettingsActivity());
@@ -6533,9 +6533,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     default:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var3, 4, false);
-                        x0Var2.D();
-                        n2Var3.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var3, 4, false);
+                        y0Var2.D();
+                        n2Var3.showDialog(y0Var2);
                         return;
                 }
             }
@@ -6565,9 +6565,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 6:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 3, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 3, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 7:
                         n2Var.presentFragment(new DataSettingsActivity());
@@ -6601,9 +6601,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     default:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var3, 4, false);
-                        x0Var2.D();
-                        n2Var3.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var3, 4, false);
+                        y0Var2.D();
+                        n2Var3.showDialog(y0Var2);
                         return;
                 }
             }
@@ -6632,9 +6632,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 6:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 3, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 3, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 7:
                         n2Var.presentFragment(new DataSettingsActivity());
@@ -6668,9 +6668,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     default:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var3, 4, false);
-                        x0Var2.D();
-                        n2Var3.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var3, 4, false);
+                        y0Var2.D();
+                        n2Var3.showDialog(y0Var2);
                         return;
                 }
             }
@@ -6700,9 +6700,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 6:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 3, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 3, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 7:
                         n2Var.presentFragment(new DataSettingsActivity());
@@ -6736,50 +6736,50 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     default:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var3, 4, false);
-                        x0Var2.D();
-                        n2Var3.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var3, 4, false);
+                        y0Var2.D();
+                        n2Var3.showDialog(y0Var2);
                         return;
                 }
             }
         });
         n01Var87.a("tg://settings/data/save-to-photos/groups");
-        n01 n01Var88 = new n01(225, LocaleController.getString(R.string.SaveToGalleryChannels), "saveToGalleryChannelsRow", LocaleController.getString(R.string.DataSettings), LocaleController.getString(R.string.SaveToGallery), R.drawable.msg2_data, new di0(2, n2Var));
+        n01 n01Var88 = new n01(225, LocaleController.getString(R.string.SaveToGalleryChannels), "saveToGalleryChannelsRow", LocaleController.getString(R.string.DataSettings), LocaleController.getString(R.string.SaveToGallery), R.drawable.msg2_data, new ci0(2, n2Var));
         n01Var88.a("tg://settings/data/save-to-photos/channels");
-        n01 n01Var89 = new n01(LocaleController.getString(R.string.ChatSettings), 300, R.drawable.msg2_discussion, new di0(3, n2Var));
+        n01 n01Var89 = new n01(LocaleController.getString(R.string.ChatSettings), 300, R.drawable.msg2_discussion, new ci0(3, n2Var));
         n01Var89.a("tg://settings/appearance/themes");
-        n01 n01Var90 = new n01(301, LocaleController.getString(R.string.TextSizeHeader), "textSizeHeaderRow", LocaleController.getString(R.string.ChatSettings), R.drawable.msg2_discussion, new di0(4, n2Var));
+        n01 n01Var90 = new n01(301, LocaleController.getString(R.string.TextSizeHeader), "textSizeHeaderRow", LocaleController.getString(R.string.ChatSettings), R.drawable.msg2_discussion, new ci0(4, n2Var));
         n01Var90.a("tg://settings/appearance/text-size");
-        n01 n01Var91 = new n01(302, LocaleController.getString(R.string.ChangeChatBackground), LocaleController.getString(R.string.ChatSettings), R.drawable.msg2_discussion, new di0(5, n2Var));
+        n01 n01Var91 = new n01(302, LocaleController.getString(R.string.ChangeChatBackground), LocaleController.getString(R.string.ChatSettings), R.drawable.msg2_discussion, new ci0(5, n2Var));
         n01Var91.a("tg://settings/appearance/wallpapers");
-        n01 n01Var92 = new n01(303, LocaleController.getString(R.string.SetColor), null, LocaleController.getString(R.string.ChatSettings), LocaleController.getString(R.string.ChatBackground), R.drawable.msg2_discussion, new di0(6, n2Var));
-        n01 n01Var93 = new n01(304, LocaleController.getString(R.string.ResetChatBackgrounds), "resetRow", LocaleController.getString(R.string.ChatSettings), LocaleController.getString(R.string.ChatBackground), R.drawable.msg2_discussion, new di0(8, n2Var));
-        n01 n01Var94 = new n01(306, LocaleController.getString(R.string.ColorTheme), "themeHeaderRow", LocaleController.getString(R.string.ChatSettings), R.drawable.msg2_discussion, new di0(9, n2Var));
-        n01 n01Var95 = new n01(319, LocaleController.getString(R.string.BrowseThemes), null, LocaleController.getString(R.string.ChatSettings), R.drawable.msg2_discussion, new di0(10, n2Var));
-        n01 n01Var96 = new n01(320, LocaleController.getString(R.string.CreateNewTheme), "createNewThemeRow", LocaleController.getString(R.string.ChatSettings), LocaleController.getString(R.string.BrowseThemes), R.drawable.msg2_discussion, new di0(11, n2Var));
+        n01 n01Var92 = new n01(303, LocaleController.getString(R.string.SetColor), null, LocaleController.getString(R.string.ChatSettings), LocaleController.getString(R.string.ChatBackground), R.drawable.msg2_discussion, new ci0(6, n2Var));
+        n01 n01Var93 = new n01(304, LocaleController.getString(R.string.ResetChatBackgrounds), "resetRow", LocaleController.getString(R.string.ChatSettings), LocaleController.getString(R.string.ChatBackground), R.drawable.msg2_discussion, new ci0(8, n2Var));
+        n01 n01Var94 = new n01(306, LocaleController.getString(R.string.ColorTheme), "themeHeaderRow", LocaleController.getString(R.string.ChatSettings), R.drawable.msg2_discussion, new ci0(9, n2Var));
+        n01 n01Var95 = new n01(319, LocaleController.getString(R.string.BrowseThemes), null, LocaleController.getString(R.string.ChatSettings), R.drawable.msg2_discussion, new ci0(10, n2Var));
+        n01 n01Var96 = new n01(320, LocaleController.getString(R.string.CreateNewTheme), "createNewThemeRow", LocaleController.getString(R.string.ChatSettings), LocaleController.getString(R.string.BrowseThemes), R.drawable.msg2_discussion, new ci0(11, n2Var));
         n01Var96.a("tg://settings/appearance/themes/create");
-        n01 n01Var97 = new n01(321, LocaleController.getString(R.string.BubbleRadius), "bubbleRadiusHeaderRow", LocaleController.getString(R.string.ChatSettings), R.drawable.msg2_discussion, new di0(13, n2Var));
+        n01 n01Var97 = new n01(321, LocaleController.getString(R.string.BubbleRadius), "bubbleRadiusHeaderRow", LocaleController.getString(R.string.ChatSettings), R.drawable.msg2_discussion, new ci0(13, n2Var));
         n01Var97.a("tg://settings/appearance/message-corners");
-        n01 n01Var98 = new n01(322, LocaleController.getString(R.string.ChatList), "chatListHeaderRow", LocaleController.getString(R.string.ChatSettings), R.drawable.msg2_discussion, new di0(14, n2Var));
-        n01 n01Var99 = new n01(323, LocaleController.getString(R.string.ChatListSwipeGesture), "swipeGestureHeaderRow", LocaleController.getString(R.string.ChatSettings), R.drawable.msg2_discussion, new di0(15, n2Var));
-        n01 n01Var100 = new n01(324, LocaleController.getString(R.string.AppIcon), "appIconHeaderRow", LocaleController.getString(R.string.ChatSettings), R.drawable.msg2_discussion, new di0(16, n2Var));
+        n01 n01Var98 = new n01(322, LocaleController.getString(R.string.ChatList), "chatListHeaderRow", LocaleController.getString(R.string.ChatSettings), R.drawable.msg2_discussion, new ci0(14, n2Var));
+        n01 n01Var99 = new n01(323, LocaleController.getString(R.string.ChatListSwipeGesture), "swipeGestureHeaderRow", LocaleController.getString(R.string.ChatSettings), R.drawable.msg2_discussion, new ci0(15, n2Var));
+        n01 n01Var100 = new n01(324, LocaleController.getString(R.string.AppIcon), "appIconHeaderRow", LocaleController.getString(R.string.ChatSettings), R.drawable.msg2_discussion, new ci0(16, n2Var));
         n01Var100.a("tg://settings/appearance/app-icon");
-        n01 n01Var101 = new n01(305, LocaleController.getString(R.string.AutoNightTheme), LocaleController.getString(R.string.ChatSettings), R.drawable.msg2_discussion, new di0(17, n2Var));
-        n01 n01Var102 = new n01(328, LocaleController.getString(R.string.NextMediaTap), "nextMediaTapRow", LocaleController.getString(R.string.ChatSettings), R.drawable.msg2_discussion, new di0(18, n2Var));
+        n01 n01Var101 = new n01(305, LocaleController.getString(R.string.AutoNightTheme), LocaleController.getString(R.string.ChatSettings), R.drawable.msg2_discussion, new ci0(17, n2Var));
+        n01 n01Var102 = new n01(328, LocaleController.getString(R.string.NextMediaTap), "nextMediaTapRow", LocaleController.getString(R.string.ChatSettings), R.drawable.msg2_discussion, new ci0(18, n2Var));
         n01Var102.a("tg://settings/appearance/tap-for-next-media");
-        n01 n01Var103 = new n01(327, LocaleController.getString(R.string.RaiseToListen), "raiseToListenRow", LocaleController.getString(R.string.ChatSettings), R.drawable.msg2_discussion, new di0(20, n2Var));
+        n01 n01Var103 = new n01(327, LocaleController.getString(R.string.RaiseToListen), "raiseToListenRow", LocaleController.getString(R.string.ChatSettings), R.drawable.msg2_discussion, new ci0(20, n2Var));
         n01Var103.a("tg://settings/data/raise-to-listen");
-        n01 n01Var104 = new n01(310, LocaleController.getString(R.string.RaiseToSpeak), "raiseToSpeakRow", LocaleController.getString(R.string.ChatSettings), R.drawable.msg2_discussion, new di0(21, n2Var));
+        n01 n01Var104 = new n01(310, LocaleController.getString(R.string.RaiseToSpeak), "raiseToSpeakRow", LocaleController.getString(R.string.ChatSettings), R.drawable.msg2_discussion, new ci0(21, n2Var));
         n01Var104.a("tg://settings/data/raise-to-speak");
-        n01 n01Var105 = new n01(326, LocaleController.getString(R.string.PauseMusicOnMedia), "pauseOnMediaRow", LocaleController.getString(R.string.ChatSettings), R.drawable.msg2_discussion, new di0(22, n2Var));
+        n01 n01Var105 = new n01(326, LocaleController.getString(R.string.PauseMusicOnMedia), "pauseOnMediaRow", LocaleController.getString(R.string.ChatSettings), R.drawable.msg2_discussion, new ci0(22, n2Var));
         n01Var105.a("tg://settings/data/pause-music");
-        n01 n01Var106 = new n01(325, LocaleController.getString(R.string.MicrophoneForVoiceMessages), "bluetoothScoRow", LocaleController.getString(R.string.ChatSettings), R.drawable.msg2_discussion, new di0(24, n2Var));
-        n01 n01Var107 = new n01(308, LocaleController.getString(R.string.DirectShare), "directShareRow", LocaleController.getString(R.string.ChatSettings), R.drawable.msg2_discussion, new di0(25, n2Var));
-        n01 n01Var108 = new n01(311, LocaleController.getString(R.string.SendByEnter), "sendByEnterRow", LocaleController.getString(R.string.ChatSettings), R.drawable.msg2_discussion, new di0(26, n2Var));
-        n01 n01Var109 = new n01(318, LocaleController.getString(R.string.DistanceUnits), "distanceRow", LocaleController.getString(R.string.ChatSettings), R.drawable.msg2_discussion, new di0(27, n2Var));
-        n01 n01Var110 = new n01(LocaleController.getString(R.string.StickersName), 600, R.drawable.msg2_sticker, new di0(28, n2Var));
+        n01 n01Var106 = new n01(325, LocaleController.getString(R.string.MicrophoneForVoiceMessages), "bluetoothScoRow", LocaleController.getString(R.string.ChatSettings), R.drawable.msg2_discussion, new ci0(24, n2Var));
+        n01 n01Var107 = new n01(308, LocaleController.getString(R.string.DirectShare), "directShareRow", LocaleController.getString(R.string.ChatSettings), R.drawable.msg2_discussion, new ci0(25, n2Var));
+        n01 n01Var108 = new n01(311, LocaleController.getString(R.string.SendByEnter), "sendByEnterRow", LocaleController.getString(R.string.ChatSettings), R.drawable.msg2_discussion, new ci0(26, n2Var));
+        n01 n01Var109 = new n01(318, LocaleController.getString(R.string.DistanceUnits), "distanceRow", LocaleController.getString(R.string.ChatSettings), R.drawable.msg2_discussion, new ci0(27, n2Var));
+        n01 n01Var110 = new n01(LocaleController.getString(R.string.StickersName), 600, R.drawable.msg2_sticker, new ci0(28, n2Var));
         n01Var110.a("tg://settings/appearance/stickers-and-emoji");
-        n01 n01Var111 = new n01(601, LocaleController.getString(R.string.SuggestStickers), "suggestRow", LocaleController.getString(R.string.StickersName), R.drawable.msg2_sticker, new di0(29, n2Var));
+        n01 n01Var111 = new n01(601, LocaleController.getString(R.string.SuggestStickers), "suggestRow", LocaleController.getString(R.string.StickersName), R.drawable.msg2_sticker, new ci0(29, n2Var));
         n01 n01Var112 = new n01(602, LocaleController.getString(R.string.FeaturedStickers), "featuredStickersHeaderRow", LocaleController.getString(R.string.StickersName), R.drawable.msg2_sticker, new Runnable() {
             @Override
             public final void run() {
@@ -6798,9 +6798,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 4:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 9, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 9, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 5:
                         n2Var.presentFragment(new p(1));
@@ -6831,27 +6831,27 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var3, 6, false);
-                        x0Var2.D();
-                        n2Var3.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var3, 6, false);
+                        y0Var2.D();
+                        n2Var3.showDialog(y0Var2);
                         return;
                     case 15:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                        sg.x0 x0Var3 = new sg.x0(n2Var4, 7, false);
-                        x0Var3.D();
-                        n2Var4.showDialog(x0Var3);
+                        sg.y0 y0Var3 = new sg.y0(n2Var4, 7, false);
+                        y0Var3.D();
+                        n2Var4.showDialog(y0Var3);
                         return;
                     case 16:
                         org.telegram.ui.ActionBar.n2 n2Var5 = n2Var;
-                        sg.x0 x0Var4 = new sg.x0(n2Var5, 10, false);
-                        x0Var4.D();
-                        n2Var5.showDialog(x0Var4);
+                        sg.y0 y0Var4 = new sg.y0(n2Var5, 10, false);
+                        y0Var4.D();
+                        n2Var5.showDialog(y0Var4);
                         return;
                     case 17:
                         org.telegram.ui.ActionBar.n2 n2Var6 = n2Var;
-                        sg.x0 x0Var5 = new sg.x0(n2Var6, 12, false);
-                        x0Var5.D();
-                        n2Var6.showDialog(x0Var5);
+                        sg.y0 y0Var5 = new sg.y0(n2Var6, 12, false);
+                        y0Var5.D();
+                        n2Var6.showDialog(y0Var5);
                         return;
                     case 18:
                         n2Var.presentFragment(new sb0());
@@ -6934,9 +6934,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 4:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 9, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 9, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 5:
                         n2Var.presentFragment(new p(1));
@@ -6967,27 +6967,27 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var3, 6, false);
-                        x0Var2.D();
-                        n2Var3.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var3, 6, false);
+                        y0Var2.D();
+                        n2Var3.showDialog(y0Var2);
                         return;
                     case 15:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                        sg.x0 x0Var3 = new sg.x0(n2Var4, 7, false);
-                        x0Var3.D();
-                        n2Var4.showDialog(x0Var3);
+                        sg.y0 y0Var3 = new sg.y0(n2Var4, 7, false);
+                        y0Var3.D();
+                        n2Var4.showDialog(y0Var3);
                         return;
                     case 16:
                         org.telegram.ui.ActionBar.n2 n2Var5 = n2Var;
-                        sg.x0 x0Var4 = new sg.x0(n2Var5, 10, false);
-                        x0Var4.D();
-                        n2Var5.showDialog(x0Var4);
+                        sg.y0 y0Var4 = new sg.y0(n2Var5, 10, false);
+                        y0Var4.D();
+                        n2Var5.showDialog(y0Var4);
                         return;
                     case 17:
                         org.telegram.ui.ActionBar.n2 n2Var6 = n2Var;
-                        sg.x0 x0Var5 = new sg.x0(n2Var6, 12, false);
-                        x0Var5.D();
-                        n2Var6.showDialog(x0Var5);
+                        sg.y0 y0Var5 = new sg.y0(n2Var6, 12, false);
+                        y0Var5.D();
+                        n2Var6.showDialog(y0Var5);
                         return;
                     case 18:
                         n2Var.presentFragment(new sb0());
@@ -7070,9 +7070,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 4:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 9, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 9, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 5:
                         n2Var.presentFragment(new p(1));
@@ -7103,27 +7103,27 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var3, 6, false);
-                        x0Var2.D();
-                        n2Var3.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var3, 6, false);
+                        y0Var2.D();
+                        n2Var3.showDialog(y0Var2);
                         return;
                     case 15:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                        sg.x0 x0Var3 = new sg.x0(n2Var4, 7, false);
-                        x0Var3.D();
-                        n2Var4.showDialog(x0Var3);
+                        sg.y0 y0Var3 = new sg.y0(n2Var4, 7, false);
+                        y0Var3.D();
+                        n2Var4.showDialog(y0Var3);
                         return;
                     case 16:
                         org.telegram.ui.ActionBar.n2 n2Var5 = n2Var;
-                        sg.x0 x0Var4 = new sg.x0(n2Var5, 10, false);
-                        x0Var4.D();
-                        n2Var5.showDialog(x0Var4);
+                        sg.y0 y0Var4 = new sg.y0(n2Var5, 10, false);
+                        y0Var4.D();
+                        n2Var5.showDialog(y0Var4);
                         return;
                     case 17:
                         org.telegram.ui.ActionBar.n2 n2Var6 = n2Var;
-                        sg.x0 x0Var5 = new sg.x0(n2Var6, 12, false);
-                        x0Var5.D();
-                        n2Var6.showDialog(x0Var5);
+                        sg.y0 y0Var5 = new sg.y0(n2Var6, 12, false);
+                        y0Var5.D();
+                        n2Var6.showDialog(y0Var5);
                         return;
                     case 18:
                         n2Var.presentFragment(new sb0());
@@ -7207,9 +7207,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 4:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 9, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 9, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 5:
                         n2Var.presentFragment(new p(1));
@@ -7240,27 +7240,27 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var3, 6, false);
-                        x0Var2.D();
-                        n2Var3.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var3, 6, false);
+                        y0Var2.D();
+                        n2Var3.showDialog(y0Var2);
                         return;
                     case 15:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                        sg.x0 x0Var3 = new sg.x0(n2Var4, 7, false);
-                        x0Var3.D();
-                        n2Var4.showDialog(x0Var3);
+                        sg.y0 y0Var3 = new sg.y0(n2Var4, 7, false);
+                        y0Var3.D();
+                        n2Var4.showDialog(y0Var3);
                         return;
                     case 16:
                         org.telegram.ui.ActionBar.n2 n2Var5 = n2Var;
-                        sg.x0 x0Var4 = new sg.x0(n2Var5, 10, false);
-                        x0Var4.D();
-                        n2Var5.showDialog(x0Var4);
+                        sg.y0 y0Var4 = new sg.y0(n2Var5, 10, false);
+                        y0Var4.D();
+                        n2Var5.showDialog(y0Var4);
                         return;
                     case 17:
                         org.telegram.ui.ActionBar.n2 n2Var6 = n2Var;
-                        sg.x0 x0Var5 = new sg.x0(n2Var6, 12, false);
-                        x0Var5.D();
-                        n2Var6.showDialog(x0Var5);
+                        sg.y0 y0Var5 = new sg.y0(n2Var6, 12, false);
+                        y0Var5.D();
+                        n2Var6.showDialog(y0Var5);
                         return;
                     case 18:
                         n2Var.presentFragment(new sb0());
@@ -7343,9 +7343,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 4:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 9, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 9, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 5:
                         n2Var.presentFragment(new p(1));
@@ -7376,27 +7376,27 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var3, 6, false);
-                        x0Var2.D();
-                        n2Var3.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var3, 6, false);
+                        y0Var2.D();
+                        n2Var3.showDialog(y0Var2);
                         return;
                     case 15:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                        sg.x0 x0Var3 = new sg.x0(n2Var4, 7, false);
-                        x0Var3.D();
-                        n2Var4.showDialog(x0Var3);
+                        sg.y0 y0Var3 = new sg.y0(n2Var4, 7, false);
+                        y0Var3.D();
+                        n2Var4.showDialog(y0Var3);
                         return;
                     case 16:
                         org.telegram.ui.ActionBar.n2 n2Var5 = n2Var;
-                        sg.x0 x0Var4 = new sg.x0(n2Var5, 10, false);
-                        x0Var4.D();
-                        n2Var5.showDialog(x0Var4);
+                        sg.y0 y0Var4 = new sg.y0(n2Var5, 10, false);
+                        y0Var4.D();
+                        n2Var5.showDialog(y0Var4);
                         return;
                     case 17:
                         org.telegram.ui.ActionBar.n2 n2Var6 = n2Var;
-                        sg.x0 x0Var5 = new sg.x0(n2Var6, 12, false);
-                        x0Var5.D();
-                        n2Var6.showDialog(x0Var5);
+                        sg.y0 y0Var5 = new sg.y0(n2Var6, 12, false);
+                        y0Var5.D();
+                        n2Var6.showDialog(y0Var5);
                         return;
                     case 18:
                         n2Var.presentFragment(new sb0());
@@ -7480,9 +7480,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 4:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 9, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 9, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 5:
                         n2Var.presentFragment(new p(1));
@@ -7513,27 +7513,27 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var3, 6, false);
-                        x0Var2.D();
-                        n2Var3.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var3, 6, false);
+                        y0Var2.D();
+                        n2Var3.showDialog(y0Var2);
                         return;
                     case 15:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                        sg.x0 x0Var3 = new sg.x0(n2Var4, 7, false);
-                        x0Var3.D();
-                        n2Var4.showDialog(x0Var3);
+                        sg.y0 y0Var3 = new sg.y0(n2Var4, 7, false);
+                        y0Var3.D();
+                        n2Var4.showDialog(y0Var3);
                         return;
                     case 16:
                         org.telegram.ui.ActionBar.n2 n2Var5 = n2Var;
-                        sg.x0 x0Var4 = new sg.x0(n2Var5, 10, false);
-                        x0Var4.D();
-                        n2Var5.showDialog(x0Var4);
+                        sg.y0 y0Var4 = new sg.y0(n2Var5, 10, false);
+                        y0Var4.D();
+                        n2Var5.showDialog(y0Var4);
                         return;
                     case 17:
                         org.telegram.ui.ActionBar.n2 n2Var6 = n2Var;
-                        sg.x0 x0Var5 = new sg.x0(n2Var6, 12, false);
-                        x0Var5.D();
-                        n2Var6.showDialog(x0Var5);
+                        sg.y0 y0Var5 = new sg.y0(n2Var6, 12, false);
+                        y0Var5.D();
+                        n2Var6.showDialog(y0Var5);
                         return;
                     case 18:
                         n2Var.presentFragment(new sb0());
@@ -7616,9 +7616,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 4:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 9, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 9, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 5:
                         n2Var.presentFragment(new p(1));
@@ -7649,27 +7649,27 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var3, 6, false);
-                        x0Var2.D();
-                        n2Var3.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var3, 6, false);
+                        y0Var2.D();
+                        n2Var3.showDialog(y0Var2);
                         return;
                     case 15:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                        sg.x0 x0Var3 = new sg.x0(n2Var4, 7, false);
-                        x0Var3.D();
-                        n2Var4.showDialog(x0Var3);
+                        sg.y0 y0Var3 = new sg.y0(n2Var4, 7, false);
+                        y0Var3.D();
+                        n2Var4.showDialog(y0Var3);
                         return;
                     case 16:
                         org.telegram.ui.ActionBar.n2 n2Var5 = n2Var;
-                        sg.x0 x0Var4 = new sg.x0(n2Var5, 10, false);
-                        x0Var4.D();
-                        n2Var5.showDialog(x0Var4);
+                        sg.y0 y0Var4 = new sg.y0(n2Var5, 10, false);
+                        y0Var4.D();
+                        n2Var5.showDialog(y0Var4);
                         return;
                     case 17:
                         org.telegram.ui.ActionBar.n2 n2Var6 = n2Var;
-                        sg.x0 x0Var5 = new sg.x0(n2Var6, 12, false);
-                        x0Var5.D();
-                        n2Var6.showDialog(x0Var5);
+                        sg.y0 y0Var5 = new sg.y0(n2Var6, 12, false);
+                        y0Var5.D();
+                        n2Var6.showDialog(y0Var5);
                         return;
                     case 18:
                         n2Var.presentFragment(new sb0());
@@ -7753,9 +7753,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 4:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 9, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 9, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 5:
                         n2Var.presentFragment(new p(1));
@@ -7786,27 +7786,27 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var3, 6, false);
-                        x0Var2.D();
-                        n2Var3.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var3, 6, false);
+                        y0Var2.D();
+                        n2Var3.showDialog(y0Var2);
                         return;
                     case 15:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                        sg.x0 x0Var3 = new sg.x0(n2Var4, 7, false);
-                        x0Var3.D();
-                        n2Var4.showDialog(x0Var3);
+                        sg.y0 y0Var3 = new sg.y0(n2Var4, 7, false);
+                        y0Var3.D();
+                        n2Var4.showDialog(y0Var3);
                         return;
                     case 16:
                         org.telegram.ui.ActionBar.n2 n2Var5 = n2Var;
-                        sg.x0 x0Var4 = new sg.x0(n2Var5, 10, false);
-                        x0Var4.D();
-                        n2Var5.showDialog(x0Var4);
+                        sg.y0 y0Var4 = new sg.y0(n2Var5, 10, false);
+                        y0Var4.D();
+                        n2Var5.showDialog(y0Var4);
                         return;
                     case 17:
                         org.telegram.ui.ActionBar.n2 n2Var6 = n2Var;
-                        sg.x0 x0Var5 = new sg.x0(n2Var6, 12, false);
-                        x0Var5.D();
-                        n2Var6.showDialog(x0Var5);
+                        sg.y0 y0Var5 = new sg.y0(n2Var6, 12, false);
+                        y0Var5.D();
+                        n2Var6.showDialog(y0Var5);
                         return;
                     case 18:
                         n2Var.presentFragment(new sb0());
@@ -7890,9 +7890,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 4:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 9, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 9, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 5:
                         n2Var.presentFragment(new p(1));
@@ -7923,27 +7923,27 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var3, 6, false);
-                        x0Var2.D();
-                        n2Var3.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var3, 6, false);
+                        y0Var2.D();
+                        n2Var3.showDialog(y0Var2);
                         return;
                     case 15:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                        sg.x0 x0Var3 = new sg.x0(n2Var4, 7, false);
-                        x0Var3.D();
-                        n2Var4.showDialog(x0Var3);
+                        sg.y0 y0Var3 = new sg.y0(n2Var4, 7, false);
+                        y0Var3.D();
+                        n2Var4.showDialog(y0Var3);
                         return;
                     case 16:
                         org.telegram.ui.ActionBar.n2 n2Var5 = n2Var;
-                        sg.x0 x0Var4 = new sg.x0(n2Var5, 10, false);
-                        x0Var4.D();
-                        n2Var5.showDialog(x0Var4);
+                        sg.y0 y0Var4 = new sg.y0(n2Var5, 10, false);
+                        y0Var4.D();
+                        n2Var5.showDialog(y0Var4);
                         return;
                     case 17:
                         org.telegram.ui.ActionBar.n2 n2Var6 = n2Var;
-                        sg.x0 x0Var5 = new sg.x0(n2Var6, 12, false);
-                        x0Var5.D();
-                        n2Var6.showDialog(x0Var5);
+                        sg.y0 y0Var5 = new sg.y0(n2Var6, 12, false);
+                        y0Var5.D();
+                        n2Var6.showDialog(y0Var5);
                         return;
                     case 18:
                         n2Var.presentFragment(new sb0());
@@ -8026,9 +8026,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 4:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 9, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 9, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 5:
                         n2Var.presentFragment(new p(1));
@@ -8059,27 +8059,27 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var3, 6, false);
-                        x0Var2.D();
-                        n2Var3.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var3, 6, false);
+                        y0Var2.D();
+                        n2Var3.showDialog(y0Var2);
                         return;
                     case 15:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                        sg.x0 x0Var3 = new sg.x0(n2Var4, 7, false);
-                        x0Var3.D();
-                        n2Var4.showDialog(x0Var3);
+                        sg.y0 y0Var3 = new sg.y0(n2Var4, 7, false);
+                        y0Var3.D();
+                        n2Var4.showDialog(y0Var3);
                         return;
                     case 16:
                         org.telegram.ui.ActionBar.n2 n2Var5 = n2Var;
-                        sg.x0 x0Var4 = new sg.x0(n2Var5, 10, false);
-                        x0Var4.D();
-                        n2Var5.showDialog(x0Var4);
+                        sg.y0 y0Var4 = new sg.y0(n2Var5, 10, false);
+                        y0Var4.D();
+                        n2Var5.showDialog(y0Var4);
                         return;
                     case 17:
                         org.telegram.ui.ActionBar.n2 n2Var6 = n2Var;
-                        sg.x0 x0Var5 = new sg.x0(n2Var6, 12, false);
-                        x0Var5.D();
-                        n2Var6.showDialog(x0Var5);
+                        sg.y0 y0Var5 = new sg.y0(n2Var6, 12, false);
+                        y0Var5.D();
+                        n2Var6.showDialog(y0Var5);
                         return;
                     case 18:
                         n2Var.presentFragment(new sb0());
@@ -8163,9 +8163,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 4:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 9, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 9, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 5:
                         n2Var.presentFragment(new p(1));
@@ -8196,27 +8196,27 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var3, 6, false);
-                        x0Var2.D();
-                        n2Var3.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var3, 6, false);
+                        y0Var2.D();
+                        n2Var3.showDialog(y0Var2);
                         return;
                     case 15:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                        sg.x0 x0Var3 = new sg.x0(n2Var4, 7, false);
-                        x0Var3.D();
-                        n2Var4.showDialog(x0Var3);
+                        sg.y0 y0Var3 = new sg.y0(n2Var4, 7, false);
+                        y0Var3.D();
+                        n2Var4.showDialog(y0Var3);
                         return;
                     case 16:
                         org.telegram.ui.ActionBar.n2 n2Var5 = n2Var;
-                        sg.x0 x0Var4 = new sg.x0(n2Var5, 10, false);
-                        x0Var4.D();
-                        n2Var5.showDialog(x0Var4);
+                        sg.y0 y0Var4 = new sg.y0(n2Var5, 10, false);
+                        y0Var4.D();
+                        n2Var5.showDialog(y0Var4);
                         return;
                     case 17:
                         org.telegram.ui.ActionBar.n2 n2Var6 = n2Var;
-                        sg.x0 x0Var5 = new sg.x0(n2Var6, 12, false);
-                        x0Var5.D();
-                        n2Var6.showDialog(x0Var5);
+                        sg.y0 y0Var5 = new sg.y0(n2Var6, 12, false);
+                        y0Var5.D();
+                        n2Var6.showDialog(y0Var5);
                         return;
                     case 18:
                         n2Var.presentFragment(new sb0());
@@ -8300,9 +8300,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 4:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 9, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 9, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 5:
                         n2Var.presentFragment(new p(1));
@@ -8333,27 +8333,27 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var3, 6, false);
-                        x0Var2.D();
-                        n2Var3.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var3, 6, false);
+                        y0Var2.D();
+                        n2Var3.showDialog(y0Var2);
                         return;
                     case 15:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                        sg.x0 x0Var3 = new sg.x0(n2Var4, 7, false);
-                        x0Var3.D();
-                        n2Var4.showDialog(x0Var3);
+                        sg.y0 y0Var3 = new sg.y0(n2Var4, 7, false);
+                        y0Var3.D();
+                        n2Var4.showDialog(y0Var3);
                         return;
                     case 16:
                         org.telegram.ui.ActionBar.n2 n2Var5 = n2Var;
-                        sg.x0 x0Var4 = new sg.x0(n2Var5, 10, false);
-                        x0Var4.D();
-                        n2Var5.showDialog(x0Var4);
+                        sg.y0 y0Var4 = new sg.y0(n2Var5, 10, false);
+                        y0Var4.D();
+                        n2Var5.showDialog(y0Var4);
                         return;
                     case 17:
                         org.telegram.ui.ActionBar.n2 n2Var6 = n2Var;
-                        sg.x0 x0Var5 = new sg.x0(n2Var6, 12, false);
-                        x0Var5.D();
-                        n2Var6.showDialog(x0Var5);
+                        sg.y0 y0Var5 = new sg.y0(n2Var6, 12, false);
+                        y0Var5.D();
+                        n2Var6.showDialog(y0Var5);
                         return;
                     case 18:
                         n2Var.presentFragment(new sb0());
@@ -8478,10 +8478,10 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                             n2Var.presentFragment(sb0Var8);
                             int i10 = 0;
                             while (true) {
-                                ArrayList arrayList = sb0Var8.f41082s;
+                                ArrayList arrayList = sb0Var8.f41044s;
                                 if (i10 < arrayList.size()) {
-                                    if (((mb0) arrayList.get(i10)).f39110f == 1) {
-                                        sb0Var8.f41077b.e1(new i2.r(sb0Var8, i10, 13), 700, true);
+                                    if (((mb0) arrayList.get(i10)).f39066f == 1) {
+                                        sb0Var8.f41039b.e1(new i2.r(sb0Var8, i10, 13), 700, true);
                                         return;
                                     }
                                     i10++;
@@ -8500,9 +8500,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                             return;
                         case 13:
                             org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                            sg.x0 x0Var = new sg.x0(n2Var2, 0, false);
-                            x0Var.D();
-                            n2Var2.showDialog(x0Var);
+                            sg.y0 y0Var = new sg.y0(n2Var2, 0, false);
+                            y0Var.D();
+                            n2Var2.showDialog(y0Var);
                             return;
                         case 14:
                             org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
@@ -8534,9 +8534,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                             return;
                         case 23:
                             org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                            sg.x0 x0Var2 = new sg.x0(n2Var4, 11, false);
-                            x0Var2.D();
-                            n2Var4.showDialog(x0Var2);
+                            sg.y0 y0Var2 = new sg.y0(n2Var4, 11, false);
+                            y0Var2.D();
+                            n2Var4.showDialog(y0Var2);
                             return;
                         case 24:
                             n2Var.presentFragment(new h(3));
@@ -8623,10 +8623,10 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                             n2Var.presentFragment(sb0Var8);
                             int i10 = 0;
                             while (true) {
-                                ArrayList arrayList = sb0Var8.f41082s;
+                                ArrayList arrayList = sb0Var8.f41044s;
                                 if (i10 < arrayList.size()) {
-                                    if (((mb0) arrayList.get(i10)).f39110f == 1) {
-                                        sb0Var8.f41077b.e1(new i2.r(sb0Var8, i10, 13), 700, true);
+                                    if (((mb0) arrayList.get(i10)).f39066f == 1) {
+                                        sb0Var8.f41039b.e1(new i2.r(sb0Var8, i10, 13), 700, true);
                                         return;
                                     }
                                     i10++;
@@ -8645,9 +8645,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                             return;
                         case 13:
                             org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                            sg.x0 x0Var = new sg.x0(n2Var2, 0, false);
-                            x0Var.D();
-                            n2Var2.showDialog(x0Var);
+                            sg.y0 y0Var = new sg.y0(n2Var2, 0, false);
+                            y0Var.D();
+                            n2Var2.showDialog(y0Var);
                             return;
                         case 14:
                             org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
@@ -8679,9 +8679,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                             return;
                         case 23:
                             org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                            sg.x0 x0Var2 = new sg.x0(n2Var4, 11, false);
-                            x0Var2.D();
-                            n2Var4.showDialog(x0Var2);
+                            sg.y0 y0Var2 = new sg.y0(n2Var4, 11, false);
+                            y0Var2.D();
+                            n2Var4.showDialog(y0Var2);
                             return;
                         case 24:
                             n2Var.presentFragment(new h(3));
@@ -8764,10 +8764,10 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                             n2Var.presentFragment(sb0Var8);
                             int i10 = 0;
                             while (true) {
-                                ArrayList arrayList = sb0Var8.f41082s;
+                                ArrayList arrayList = sb0Var8.f41044s;
                                 if (i10 < arrayList.size()) {
-                                    if (((mb0) arrayList.get(i10)).f39110f == 1) {
-                                        sb0Var8.f41077b.e1(new i2.r(sb0Var8, i10, 13), 700, true);
+                                    if (((mb0) arrayList.get(i10)).f39066f == 1) {
+                                        sb0Var8.f41039b.e1(new i2.r(sb0Var8, i10, 13), 700, true);
                                         return;
                                     }
                                     i10++;
@@ -8786,9 +8786,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                             return;
                         case 13:
                             org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                            sg.x0 x0Var = new sg.x0(n2Var2, 0, false);
-                            x0Var.D();
-                            n2Var2.showDialog(x0Var);
+                            sg.y0 y0Var = new sg.y0(n2Var2, 0, false);
+                            y0Var.D();
+                            n2Var2.showDialog(y0Var);
                             return;
                         case 14:
                             org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
@@ -8820,9 +8820,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                             return;
                         case 23:
                             org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                            sg.x0 x0Var2 = new sg.x0(n2Var4, 11, false);
-                            x0Var2.D();
-                            n2Var4.showDialog(x0Var2);
+                            sg.y0 y0Var2 = new sg.y0(n2Var4, 11, false);
+                            y0Var2.D();
+                            n2Var4.showDialog(y0Var2);
                             return;
                         case 24:
                             n2Var.presentFragment(new h(3));
@@ -8869,9 +8869,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                             return;
                         case 4:
                             org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                            sg.x0 x0Var = new sg.x0(n2Var2, 1, false);
-                            x0Var.D();
-                            n2Var2.showDialog(x0Var);
+                            sg.y0 y0Var = new sg.y0(n2Var2, 1, false);
+                            y0Var.D();
+                            n2Var2.showDialog(y0Var);
                             return;
                         case 5:
                             n2Var.presentFragment(new PrivacyControlActivity(1, true));
@@ -8888,7 +8888,7 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                                 }
                             }
                             if (i10 >= 0) {
-                                n2Var.presentFragment(new fg0(i10));
+                                n2Var.presentFragment(new eg0(i10));
                                 return;
                             }
                             return;
@@ -8915,9 +8915,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                             return;
                         case 14:
                             org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                            sg.x0 x0Var2 = new sg.x0(n2Var3, 2, false);
-                            x0Var2.D();
-                            n2Var3.showDialog(x0Var2);
+                            sg.y0 y0Var2 = new sg.y0(n2Var3, 2, false);
+                            y0Var2.D();
+                            n2Var3.showDialog(y0Var2);
                             return;
                         case 15:
                             n2Var.presentFragment(new PrivacySettingsActivity());
@@ -8953,9 +8953,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                             return;
                         case 25:
                             org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                            sg.x0 x0Var3 = new sg.x0(n2Var4, 8, false);
-                            x0Var3.D();
-                            n2Var4.showDialog(x0Var3);
+                            sg.y0 y0Var3 = new sg.y0(n2Var4, 8, false);
+                            y0Var3.D();
+                            n2Var4.showDialog(y0Var3);
                             return;
                         case 26:
                             n2Var.presentFragment(new c7());
@@ -8994,9 +8994,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                             return;
                         case 4:
                             org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                            sg.x0 x0Var = new sg.x0(n2Var2, 1, false);
-                            x0Var.D();
-                            n2Var2.showDialog(x0Var);
+                            sg.y0 y0Var = new sg.y0(n2Var2, 1, false);
+                            y0Var.D();
+                            n2Var2.showDialog(y0Var);
                             return;
                         case 5:
                             n2Var.presentFragment(new PrivacyControlActivity(1, true));
@@ -9013,7 +9013,7 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                                 }
                             }
                             if (i10 >= 0) {
-                                n2Var.presentFragment(new fg0(i10));
+                                n2Var.presentFragment(new eg0(i10));
                                 return;
                             }
                             return;
@@ -9040,9 +9040,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                             return;
                         case 14:
                             org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                            sg.x0 x0Var2 = new sg.x0(n2Var3, 2, false);
-                            x0Var2.D();
-                            n2Var3.showDialog(x0Var2);
+                            sg.y0 y0Var2 = new sg.y0(n2Var3, 2, false);
+                            y0Var2.D();
+                            n2Var3.showDialog(y0Var2);
                             return;
                         case 15:
                             n2Var.presentFragment(new PrivacySettingsActivity());
@@ -9078,9 +9078,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                             return;
                         case 25:
                             org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                            sg.x0 x0Var3 = new sg.x0(n2Var4, 8, false);
-                            x0Var3.D();
-                            n2Var4.showDialog(x0Var3);
+                            sg.y0 y0Var3 = new sg.y0(n2Var4, 8, false);
+                            y0Var3.D();
+                            n2Var4.showDialog(y0Var3);
                             return;
                         case 26:
                             n2Var.presentFragment(new c7());
@@ -9119,9 +9119,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                             return;
                         case 4:
                             org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                            sg.x0 x0Var = new sg.x0(n2Var2, 1, false);
-                            x0Var.D();
-                            n2Var2.showDialog(x0Var);
+                            sg.y0 y0Var = new sg.y0(n2Var2, 1, false);
+                            y0Var.D();
+                            n2Var2.showDialog(y0Var);
                             return;
                         case 5:
                             n2Var.presentFragment(new PrivacyControlActivity(1, true));
@@ -9138,7 +9138,7 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                                 }
                             }
                             if (i10 >= 0) {
-                                n2Var.presentFragment(new fg0(i10));
+                                n2Var.presentFragment(new eg0(i10));
                                 return;
                             }
                             return;
@@ -9165,9 +9165,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                             return;
                         case 14:
                             org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                            sg.x0 x0Var2 = new sg.x0(n2Var3, 2, false);
-                            x0Var2.D();
-                            n2Var3.showDialog(x0Var2);
+                            sg.y0 y0Var2 = new sg.y0(n2Var3, 2, false);
+                            y0Var2.D();
+                            n2Var3.showDialog(y0Var2);
                             return;
                         case 15:
                             n2Var.presentFragment(new PrivacySettingsActivity());
@@ -9203,9 +9203,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                             return;
                         case 25:
                             org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                            sg.x0 x0Var3 = new sg.x0(n2Var4, 8, false);
-                            x0Var3.D();
-                            n2Var4.showDialog(x0Var3);
+                            sg.y0 y0Var3 = new sg.y0(n2Var4, 8, false);
+                            y0Var3.D();
+                            n2Var4.showDialog(y0Var3);
                             return;
                         case 26:
                             n2Var.presentFragment(new c7());
@@ -9250,9 +9250,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                             return;
                         case 6:
                             org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                            sg.x0 x0Var = new sg.x0(n2Var2, 3, false);
-                            x0Var.D();
-                            n2Var2.showDialog(x0Var);
+                            sg.y0 y0Var = new sg.y0(n2Var2, 3, false);
+                            y0Var.D();
+                            n2Var2.showDialog(y0Var);
                             return;
                         case 7:
                             n2Var.presentFragment(new DataSettingsActivity());
@@ -9286,9 +9286,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                             return;
                         default:
                             org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                            sg.x0 x0Var2 = new sg.x0(n2Var3, 4, false);
-                            x0Var2.D();
-                            n2Var3.showDialog(x0Var2);
+                            sg.y0 y0Var2 = new sg.y0(n2Var3, 4, false);
+                            y0Var2.D();
+                            n2Var3.showDialog(y0Var2);
                             return;
                     }
                 }
@@ -9321,9 +9321,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                             return;
                         case 6:
                             org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                            sg.x0 x0Var = new sg.x0(n2Var2, 3, false);
-                            x0Var.D();
-                            n2Var2.showDialog(x0Var);
+                            sg.y0 y0Var = new sg.y0(n2Var2, 3, false);
+                            y0Var.D();
+                            n2Var2.showDialog(y0Var);
                             return;
                         case 7:
                             n2Var.presentFragment(new DataSettingsActivity());
@@ -9357,9 +9357,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                             return;
                         default:
                             org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                            sg.x0 x0Var2 = new sg.x0(n2Var3, 4, false);
-                            x0Var2.D();
-                            n2Var3.showDialog(x0Var2);
+                            sg.y0 y0Var2 = new sg.y0(n2Var3, 4, false);
+                            y0Var2.D();
+                            n2Var3.showDialog(y0Var2);
                             return;
                     }
                 }
@@ -9368,7 +9368,7 @@ public class o01 extends org.telegram.ui.Components.hm0 {
             n01Var16 = null;
         }
         if (F(currentAccount, 5)) {
-            n01Var17 = new n01(808, LocaleController.getString(R.string.PremiumPreviewStickers), LocaleController.getString(R.string.TelegramPremium), R.drawable.msg_settings_premium, new di0(12, n2Var));
+            n01Var17 = new n01(808, LocaleController.getString(R.string.PremiumPreviewStickers), LocaleController.getString(R.string.TelegramPremium), R.drawable.msg_settings_premium, new ci0(12, n2Var));
         } else {
             n01Var17 = null;
         }
@@ -9391,9 +9391,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                             return;
                         case 4:
                             org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                            sg.x0 x0Var = new sg.x0(n2Var2, 9, false);
-                            x0Var.D();
-                            n2Var2.showDialog(x0Var);
+                            sg.y0 y0Var = new sg.y0(n2Var2, 9, false);
+                            y0Var.D();
+                            n2Var2.showDialog(y0Var);
                             return;
                         case 5:
                             n2Var.presentFragment(new p(1));
@@ -9424,27 +9424,27 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                             return;
                         case 14:
                             org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                            sg.x0 x0Var2 = new sg.x0(n2Var3, 6, false);
-                            x0Var2.D();
-                            n2Var3.showDialog(x0Var2);
+                            sg.y0 y0Var2 = new sg.y0(n2Var3, 6, false);
+                            y0Var2.D();
+                            n2Var3.showDialog(y0Var2);
                             return;
                         case 15:
                             org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                            sg.x0 x0Var3 = new sg.x0(n2Var4, 7, false);
-                            x0Var3.D();
-                            n2Var4.showDialog(x0Var3);
+                            sg.y0 y0Var3 = new sg.y0(n2Var4, 7, false);
+                            y0Var3.D();
+                            n2Var4.showDialog(y0Var3);
                             return;
                         case 16:
                             org.telegram.ui.ActionBar.n2 n2Var5 = n2Var;
-                            sg.x0 x0Var4 = new sg.x0(n2Var5, 10, false);
-                            x0Var4.D();
-                            n2Var5.showDialog(x0Var4);
+                            sg.y0 y0Var4 = new sg.y0(n2Var5, 10, false);
+                            y0Var4.D();
+                            n2Var5.showDialog(y0Var4);
                             return;
                         case 17:
                             org.telegram.ui.ActionBar.n2 n2Var6 = n2Var;
-                            sg.x0 x0Var5 = new sg.x0(n2Var6, 12, false);
-                            x0Var5.D();
-                            n2Var6.showDialog(x0Var5);
+                            sg.y0 y0Var5 = new sg.y0(n2Var6, 12, false);
+                            y0Var5.D();
+                            n2Var6.showDialog(y0Var5);
                             return;
                         case 18:
                             n2Var.presentFragment(new sb0());
@@ -9531,9 +9531,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                             return;
                         case 4:
                             org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                            sg.x0 x0Var = new sg.x0(n2Var2, 9, false);
-                            x0Var.D();
-                            n2Var2.showDialog(x0Var);
+                            sg.y0 y0Var = new sg.y0(n2Var2, 9, false);
+                            y0Var.D();
+                            n2Var2.showDialog(y0Var);
                             return;
                         case 5:
                             n2Var.presentFragment(new p(1));
@@ -9564,27 +9564,27 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                             return;
                         case 14:
                             org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                            sg.x0 x0Var2 = new sg.x0(n2Var3, 6, false);
-                            x0Var2.D();
-                            n2Var3.showDialog(x0Var2);
+                            sg.y0 y0Var2 = new sg.y0(n2Var3, 6, false);
+                            y0Var2.D();
+                            n2Var3.showDialog(y0Var2);
                             return;
                         case 15:
                             org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                            sg.x0 x0Var3 = new sg.x0(n2Var4, 7, false);
-                            x0Var3.D();
-                            n2Var4.showDialog(x0Var3);
+                            sg.y0 y0Var3 = new sg.y0(n2Var4, 7, false);
+                            y0Var3.D();
+                            n2Var4.showDialog(y0Var3);
                             return;
                         case 16:
                             org.telegram.ui.ActionBar.n2 n2Var5 = n2Var;
-                            sg.x0 x0Var4 = new sg.x0(n2Var5, 10, false);
-                            x0Var4.D();
-                            n2Var5.showDialog(x0Var4);
+                            sg.y0 y0Var4 = new sg.y0(n2Var5, 10, false);
+                            y0Var4.D();
+                            n2Var5.showDialog(y0Var4);
                             return;
                         case 17:
                             org.telegram.ui.ActionBar.n2 n2Var6 = n2Var;
-                            sg.x0 x0Var5 = new sg.x0(n2Var6, 12, false);
-                            x0Var5.D();
-                            n2Var6.showDialog(x0Var5);
+                            sg.y0 y0Var5 = new sg.y0(n2Var6, 12, false);
+                            y0Var5.D();
+                            n2Var6.showDialog(y0Var5);
                             return;
                         case 18:
                             n2Var.presentFragment(new sb0());
@@ -9671,9 +9671,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                             return;
                         case 4:
                             org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                            sg.x0 x0Var = new sg.x0(n2Var2, 9, false);
-                            x0Var.D();
-                            n2Var2.showDialog(x0Var);
+                            sg.y0 y0Var = new sg.y0(n2Var2, 9, false);
+                            y0Var.D();
+                            n2Var2.showDialog(y0Var);
                             return;
                         case 5:
                             n2Var.presentFragment(new p(1));
@@ -9704,27 +9704,27 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                             return;
                         case 14:
                             org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                            sg.x0 x0Var2 = new sg.x0(n2Var3, 6, false);
-                            x0Var2.D();
-                            n2Var3.showDialog(x0Var2);
+                            sg.y0 y0Var2 = new sg.y0(n2Var3, 6, false);
+                            y0Var2.D();
+                            n2Var3.showDialog(y0Var2);
                             return;
                         case 15:
                             org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                            sg.x0 x0Var3 = new sg.x0(n2Var4, 7, false);
-                            x0Var3.D();
-                            n2Var4.showDialog(x0Var3);
+                            sg.y0 y0Var3 = new sg.y0(n2Var4, 7, false);
+                            y0Var3.D();
+                            n2Var4.showDialog(y0Var3);
                             return;
                         case 16:
                             org.telegram.ui.ActionBar.n2 n2Var5 = n2Var;
-                            sg.x0 x0Var4 = new sg.x0(n2Var5, 10, false);
-                            x0Var4.D();
-                            n2Var5.showDialog(x0Var4);
+                            sg.y0 y0Var4 = new sg.y0(n2Var5, 10, false);
+                            y0Var4.D();
+                            n2Var5.showDialog(y0Var4);
                             return;
                         case 17:
                             org.telegram.ui.ActionBar.n2 n2Var6 = n2Var;
-                            sg.x0 x0Var5 = new sg.x0(n2Var6, 12, false);
-                            x0Var5.D();
-                            n2Var6.showDialog(x0Var5);
+                            sg.y0 y0Var5 = new sg.y0(n2Var6, 12, false);
+                            y0Var5.D();
+                            n2Var6.showDialog(y0Var5);
                             return;
                         case 18:
                             n2Var.presentFragment(new sb0());
@@ -9811,9 +9811,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                             return;
                         case 4:
                             org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                            sg.x0 x0Var = new sg.x0(n2Var2, 9, false);
-                            x0Var.D();
-                            n2Var2.showDialog(x0Var);
+                            sg.y0 y0Var = new sg.y0(n2Var2, 9, false);
+                            y0Var.D();
+                            n2Var2.showDialog(y0Var);
                             return;
                         case 5:
                             n2Var.presentFragment(new p(1));
@@ -9844,27 +9844,27 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                             return;
                         case 14:
                             org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                            sg.x0 x0Var2 = new sg.x0(n2Var3, 6, false);
-                            x0Var2.D();
-                            n2Var3.showDialog(x0Var2);
+                            sg.y0 y0Var2 = new sg.y0(n2Var3, 6, false);
+                            y0Var2.D();
+                            n2Var3.showDialog(y0Var2);
                             return;
                         case 15:
                             org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                            sg.x0 x0Var3 = new sg.x0(n2Var4, 7, false);
-                            x0Var3.D();
-                            n2Var4.showDialog(x0Var3);
+                            sg.y0 y0Var3 = new sg.y0(n2Var4, 7, false);
+                            y0Var3.D();
+                            n2Var4.showDialog(y0Var3);
                             return;
                         case 16:
                             org.telegram.ui.ActionBar.n2 n2Var5 = n2Var;
-                            sg.x0 x0Var4 = new sg.x0(n2Var5, 10, false);
-                            x0Var4.D();
-                            n2Var5.showDialog(x0Var4);
+                            sg.y0 y0Var4 = new sg.y0(n2Var5, 10, false);
+                            y0Var4.D();
+                            n2Var5.showDialog(y0Var4);
                             return;
                         case 17:
                             org.telegram.ui.ActionBar.n2 n2Var6 = n2Var;
-                            sg.x0 x0Var5 = new sg.x0(n2Var6, 12, false);
-                            x0Var5.D();
-                            n2Var6.showDialog(x0Var5);
+                            sg.y0 y0Var5 = new sg.y0(n2Var6, 12, false);
+                            y0Var5.D();
+                            n2Var6.showDialog(y0Var5);
                             return;
                         case 18:
                             n2Var.presentFragment(new sb0());
@@ -9951,9 +9951,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                             return;
                         case 4:
                             org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                            sg.x0 x0Var = new sg.x0(n2Var2, 9, false);
-                            x0Var.D();
-                            n2Var2.showDialog(x0Var);
+                            sg.y0 y0Var = new sg.y0(n2Var2, 9, false);
+                            y0Var.D();
+                            n2Var2.showDialog(y0Var);
                             return;
                         case 5:
                             n2Var.presentFragment(new p(1));
@@ -9984,27 +9984,27 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                             return;
                         case 14:
                             org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                            sg.x0 x0Var2 = new sg.x0(n2Var3, 6, false);
-                            x0Var2.D();
-                            n2Var3.showDialog(x0Var2);
+                            sg.y0 y0Var2 = new sg.y0(n2Var3, 6, false);
+                            y0Var2.D();
+                            n2Var3.showDialog(y0Var2);
                             return;
                         case 15:
                             org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                            sg.x0 x0Var3 = new sg.x0(n2Var4, 7, false);
-                            x0Var3.D();
-                            n2Var4.showDialog(x0Var3);
+                            sg.y0 y0Var3 = new sg.y0(n2Var4, 7, false);
+                            y0Var3.D();
+                            n2Var4.showDialog(y0Var3);
                             return;
                         case 16:
                             org.telegram.ui.ActionBar.n2 n2Var5 = n2Var;
-                            sg.x0 x0Var4 = new sg.x0(n2Var5, 10, false);
-                            x0Var4.D();
-                            n2Var5.showDialog(x0Var4);
+                            sg.y0 y0Var4 = new sg.y0(n2Var5, 10, false);
+                            y0Var4.D();
+                            n2Var5.showDialog(y0Var4);
                             return;
                         case 17:
                             org.telegram.ui.ActionBar.n2 n2Var6 = n2Var;
-                            sg.x0 x0Var5 = new sg.x0(n2Var6, 12, false);
-                            x0Var5.D();
-                            n2Var6.showDialog(x0Var5);
+                            sg.y0 y0Var5 = new sg.y0(n2Var6, 12, false);
+                            y0Var5.D();
+                            n2Var6.showDialog(y0Var5);
                             return;
                         case 18:
                             n2Var.presentFragment(new sb0());
@@ -10090,9 +10090,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 4:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 9, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 9, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 5:
                         n2Var.presentFragment(new p(1));
@@ -10123,27 +10123,27 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var3, 6, false);
-                        x0Var2.D();
-                        n2Var3.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var3, 6, false);
+                        y0Var2.D();
+                        n2Var3.showDialog(y0Var2);
                         return;
                     case 15:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                        sg.x0 x0Var3 = new sg.x0(n2Var4, 7, false);
-                        x0Var3.D();
-                        n2Var4.showDialog(x0Var3);
+                        sg.y0 y0Var3 = new sg.y0(n2Var4, 7, false);
+                        y0Var3.D();
+                        n2Var4.showDialog(y0Var3);
                         return;
                     case 16:
                         org.telegram.ui.ActionBar.n2 n2Var5 = n2Var;
-                        sg.x0 x0Var4 = new sg.x0(n2Var5, 10, false);
-                        x0Var4.D();
-                        n2Var5.showDialog(x0Var4);
+                        sg.y0 y0Var4 = new sg.y0(n2Var5, 10, false);
+                        y0Var4.D();
+                        n2Var5.showDialog(y0Var4);
                         return;
                     case 17:
                         org.telegram.ui.ActionBar.n2 n2Var6 = n2Var;
-                        sg.x0 x0Var5 = new sg.x0(n2Var6, 12, false);
-                        x0Var5.D();
-                        n2Var6.showDialog(x0Var5);
+                        sg.y0 y0Var5 = new sg.y0(n2Var6, 12, false);
+                        y0Var5.D();
+                        n2Var6.showDialog(y0Var5);
                         return;
                     case 18:
                         n2Var.presentFragment(new sb0());
@@ -10227,9 +10227,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 4:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 9, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 9, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 5:
                         n2Var.presentFragment(new p(1));
@@ -10260,27 +10260,27 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var3, 6, false);
-                        x0Var2.D();
-                        n2Var3.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var3, 6, false);
+                        y0Var2.D();
+                        n2Var3.showDialog(y0Var2);
                         return;
                     case 15:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                        sg.x0 x0Var3 = new sg.x0(n2Var4, 7, false);
-                        x0Var3.D();
-                        n2Var4.showDialog(x0Var3);
+                        sg.y0 y0Var3 = new sg.y0(n2Var4, 7, false);
+                        y0Var3.D();
+                        n2Var4.showDialog(y0Var3);
                         return;
                     case 16:
                         org.telegram.ui.ActionBar.n2 n2Var5 = n2Var;
-                        sg.x0 x0Var4 = new sg.x0(n2Var5, 10, false);
-                        x0Var4.D();
-                        n2Var5.showDialog(x0Var4);
+                        sg.y0 y0Var4 = new sg.y0(n2Var5, 10, false);
+                        y0Var4.D();
+                        n2Var5.showDialog(y0Var4);
                         return;
                     case 17:
                         org.telegram.ui.ActionBar.n2 n2Var6 = n2Var;
-                        sg.x0 x0Var5 = new sg.x0(n2Var6, 12, false);
-                        x0Var5.D();
-                        n2Var6.showDialog(x0Var5);
+                        sg.y0 y0Var5 = new sg.y0(n2Var6, 12, false);
+                        y0Var5.D();
+                        n2Var6.showDialog(y0Var5);
                         return;
                     case 18:
                         n2Var.presentFragment(new sb0());
@@ -10364,9 +10364,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 4:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 9, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 9, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 5:
                         n2Var.presentFragment(new p(1));
@@ -10397,27 +10397,27 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var3, 6, false);
-                        x0Var2.D();
-                        n2Var3.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var3, 6, false);
+                        y0Var2.D();
+                        n2Var3.showDialog(y0Var2);
                         return;
                     case 15:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                        sg.x0 x0Var3 = new sg.x0(n2Var4, 7, false);
-                        x0Var3.D();
-                        n2Var4.showDialog(x0Var3);
+                        sg.y0 y0Var3 = new sg.y0(n2Var4, 7, false);
+                        y0Var3.D();
+                        n2Var4.showDialog(y0Var3);
                         return;
                     case 16:
                         org.telegram.ui.ActionBar.n2 n2Var5 = n2Var;
-                        sg.x0 x0Var4 = new sg.x0(n2Var5, 10, false);
-                        x0Var4.D();
-                        n2Var5.showDialog(x0Var4);
+                        sg.y0 y0Var4 = new sg.y0(n2Var5, 10, false);
+                        y0Var4.D();
+                        n2Var5.showDialog(y0Var4);
                         return;
                     case 17:
                         org.telegram.ui.ActionBar.n2 n2Var6 = n2Var;
-                        sg.x0 x0Var5 = new sg.x0(n2Var6, 12, false);
-                        x0Var5.D();
-                        n2Var6.showDialog(x0Var5);
+                        sg.y0 y0Var5 = new sg.y0(n2Var6, 12, false);
+                        y0Var5.D();
+                        n2Var6.showDialog(y0Var5);
                         return;
                     case 18:
                         n2Var.presentFragment(new sb0());
@@ -10500,9 +10500,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 4:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 9, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 9, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 5:
                         n2Var.presentFragment(new p(1));
@@ -10533,27 +10533,27 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var3, 6, false);
-                        x0Var2.D();
-                        n2Var3.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var3, 6, false);
+                        y0Var2.D();
+                        n2Var3.showDialog(y0Var2);
                         return;
                     case 15:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                        sg.x0 x0Var3 = new sg.x0(n2Var4, 7, false);
-                        x0Var3.D();
-                        n2Var4.showDialog(x0Var3);
+                        sg.y0 y0Var3 = new sg.y0(n2Var4, 7, false);
+                        y0Var3.D();
+                        n2Var4.showDialog(y0Var3);
                         return;
                     case 16:
                         org.telegram.ui.ActionBar.n2 n2Var5 = n2Var;
-                        sg.x0 x0Var4 = new sg.x0(n2Var5, 10, false);
-                        x0Var4.D();
-                        n2Var5.showDialog(x0Var4);
+                        sg.y0 y0Var4 = new sg.y0(n2Var5, 10, false);
+                        y0Var4.D();
+                        n2Var5.showDialog(y0Var4);
                         return;
                     case 17:
                         org.telegram.ui.ActionBar.n2 n2Var6 = n2Var;
-                        sg.x0 x0Var5 = new sg.x0(n2Var6, 12, false);
-                        x0Var5.D();
-                        n2Var6.showDialog(x0Var5);
+                        sg.y0 y0Var5 = new sg.y0(n2Var6, 12, false);
+                        y0Var5.D();
+                        n2Var6.showDialog(y0Var5);
                         return;
                     case 18:
                         n2Var.presentFragment(new sb0());
@@ -10636,9 +10636,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 4:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 9, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 9, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 5:
                         n2Var.presentFragment(new p(1));
@@ -10669,27 +10669,27 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var3, 6, false);
-                        x0Var2.D();
-                        n2Var3.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var3, 6, false);
+                        y0Var2.D();
+                        n2Var3.showDialog(y0Var2);
                         return;
                     case 15:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                        sg.x0 x0Var3 = new sg.x0(n2Var4, 7, false);
-                        x0Var3.D();
-                        n2Var4.showDialog(x0Var3);
+                        sg.y0 y0Var3 = new sg.y0(n2Var4, 7, false);
+                        y0Var3.D();
+                        n2Var4.showDialog(y0Var3);
                         return;
                     case 16:
                         org.telegram.ui.ActionBar.n2 n2Var5 = n2Var;
-                        sg.x0 x0Var4 = new sg.x0(n2Var5, 10, false);
-                        x0Var4.D();
-                        n2Var5.showDialog(x0Var4);
+                        sg.y0 y0Var4 = new sg.y0(n2Var5, 10, false);
+                        y0Var4.D();
+                        n2Var5.showDialog(y0Var4);
                         return;
                     case 17:
                         org.telegram.ui.ActionBar.n2 n2Var6 = n2Var;
-                        sg.x0 x0Var5 = new sg.x0(n2Var6, 12, false);
-                        x0Var5.D();
-                        n2Var6.showDialog(x0Var5);
+                        sg.y0 y0Var5 = new sg.y0(n2Var6, 12, false);
+                        y0Var5.D();
+                        n2Var6.showDialog(y0Var5);
                         return;
                     case 18:
                         n2Var.presentFragment(new sb0());
@@ -10773,9 +10773,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 4:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 9, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 9, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 5:
                         n2Var.presentFragment(new p(1));
@@ -10806,27 +10806,27 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var3, 6, false);
-                        x0Var2.D();
-                        n2Var3.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var3, 6, false);
+                        y0Var2.D();
+                        n2Var3.showDialog(y0Var2);
                         return;
                     case 15:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                        sg.x0 x0Var3 = new sg.x0(n2Var4, 7, false);
-                        x0Var3.D();
-                        n2Var4.showDialog(x0Var3);
+                        sg.y0 y0Var3 = new sg.y0(n2Var4, 7, false);
+                        y0Var3.D();
+                        n2Var4.showDialog(y0Var3);
                         return;
                     case 16:
                         org.telegram.ui.ActionBar.n2 n2Var5 = n2Var;
-                        sg.x0 x0Var4 = new sg.x0(n2Var5, 10, false);
-                        x0Var4.D();
-                        n2Var5.showDialog(x0Var4);
+                        sg.y0 y0Var4 = new sg.y0(n2Var5, 10, false);
+                        y0Var4.D();
+                        n2Var5.showDialog(y0Var4);
                         return;
                     case 17:
                         org.telegram.ui.ActionBar.n2 n2Var6 = n2Var;
-                        sg.x0 x0Var5 = new sg.x0(n2Var6, 12, false);
-                        x0Var5.D();
-                        n2Var6.showDialog(x0Var5);
+                        sg.y0 y0Var5 = new sg.y0(n2Var6, 12, false);
+                        y0Var5.D();
+                        n2Var6.showDialog(y0Var5);
                         return;
                     case 18:
                         n2Var.presentFragment(new sb0());
@@ -10909,9 +10909,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 4:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 9, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 9, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 5:
                         n2Var.presentFragment(new p(1));
@@ -10942,27 +10942,27 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var3, 6, false);
-                        x0Var2.D();
-                        n2Var3.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var3, 6, false);
+                        y0Var2.D();
+                        n2Var3.showDialog(y0Var2);
                         return;
                     case 15:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                        sg.x0 x0Var3 = new sg.x0(n2Var4, 7, false);
-                        x0Var3.D();
-                        n2Var4.showDialog(x0Var3);
+                        sg.y0 y0Var3 = new sg.y0(n2Var4, 7, false);
+                        y0Var3.D();
+                        n2Var4.showDialog(y0Var3);
                         return;
                     case 16:
                         org.telegram.ui.ActionBar.n2 n2Var5 = n2Var;
-                        sg.x0 x0Var4 = new sg.x0(n2Var5, 10, false);
-                        x0Var4.D();
-                        n2Var5.showDialog(x0Var4);
+                        sg.y0 y0Var4 = new sg.y0(n2Var5, 10, false);
+                        y0Var4.D();
+                        n2Var5.showDialog(y0Var4);
                         return;
                     case 17:
                         org.telegram.ui.ActionBar.n2 n2Var6 = n2Var;
-                        sg.x0 x0Var5 = new sg.x0(n2Var6, 12, false);
-                        x0Var5.D();
-                        n2Var6.showDialog(x0Var5);
+                        sg.y0 y0Var5 = new sg.y0(n2Var6, 12, false);
+                        y0Var5.D();
+                        n2Var6.showDialog(y0Var5);
                         return;
                     case 18:
                         n2Var.presentFragment(new sb0());
@@ -11045,9 +11045,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 4:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 9, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 9, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 5:
                         n2Var.presentFragment(new p(1));
@@ -11078,27 +11078,27 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var3, 6, false);
-                        x0Var2.D();
-                        n2Var3.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var3, 6, false);
+                        y0Var2.D();
+                        n2Var3.showDialog(y0Var2);
                         return;
                     case 15:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                        sg.x0 x0Var3 = new sg.x0(n2Var4, 7, false);
-                        x0Var3.D();
-                        n2Var4.showDialog(x0Var3);
+                        sg.y0 y0Var3 = new sg.y0(n2Var4, 7, false);
+                        y0Var3.D();
+                        n2Var4.showDialog(y0Var3);
                         return;
                     case 16:
                         org.telegram.ui.ActionBar.n2 n2Var5 = n2Var;
-                        sg.x0 x0Var4 = new sg.x0(n2Var5, 10, false);
-                        x0Var4.D();
-                        n2Var5.showDialog(x0Var4);
+                        sg.y0 y0Var4 = new sg.y0(n2Var5, 10, false);
+                        y0Var4.D();
+                        n2Var5.showDialog(y0Var4);
                         return;
                     case 17:
                         org.telegram.ui.ActionBar.n2 n2Var6 = n2Var;
-                        sg.x0 x0Var5 = new sg.x0(n2Var6, 12, false);
-                        x0Var5.D();
-                        n2Var6.showDialog(x0Var5);
+                        sg.y0 y0Var5 = new sg.y0(n2Var6, 12, false);
+                        y0Var5.D();
+                        n2Var6.showDialog(y0Var5);
                         return;
                     case 18:
                         n2Var.presentFragment(new sb0());
@@ -11181,9 +11181,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 4:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 9, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 9, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 5:
                         n2Var.presentFragment(new p(1));
@@ -11214,27 +11214,27 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var3, 6, false);
-                        x0Var2.D();
-                        n2Var3.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var3, 6, false);
+                        y0Var2.D();
+                        n2Var3.showDialog(y0Var2);
                         return;
                     case 15:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                        sg.x0 x0Var3 = new sg.x0(n2Var4, 7, false);
-                        x0Var3.D();
-                        n2Var4.showDialog(x0Var3);
+                        sg.y0 y0Var3 = new sg.y0(n2Var4, 7, false);
+                        y0Var3.D();
+                        n2Var4.showDialog(y0Var3);
                         return;
                     case 16:
                         org.telegram.ui.ActionBar.n2 n2Var5 = n2Var;
-                        sg.x0 x0Var4 = new sg.x0(n2Var5, 10, false);
-                        x0Var4.D();
-                        n2Var5.showDialog(x0Var4);
+                        sg.y0 y0Var4 = new sg.y0(n2Var5, 10, false);
+                        y0Var4.D();
+                        n2Var5.showDialog(y0Var4);
                         return;
                     case 17:
                         org.telegram.ui.ActionBar.n2 n2Var6 = n2Var;
-                        sg.x0 x0Var5 = new sg.x0(n2Var6, 12, false);
-                        x0Var5.D();
-                        n2Var6.showDialog(x0Var5);
+                        sg.y0 y0Var5 = new sg.y0(n2Var6, 12, false);
+                        y0Var5.D();
+                        n2Var6.showDialog(y0Var5);
                         return;
                     case 18:
                         n2Var.presentFragment(new sb0());
@@ -11318,9 +11318,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 4:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 9, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 9, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 5:
                         n2Var.presentFragment(new p(1));
@@ -11351,27 +11351,27 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var3, 6, false);
-                        x0Var2.D();
-                        n2Var3.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var3, 6, false);
+                        y0Var2.D();
+                        n2Var3.showDialog(y0Var2);
                         return;
                     case 15:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                        sg.x0 x0Var3 = new sg.x0(n2Var4, 7, false);
-                        x0Var3.D();
-                        n2Var4.showDialog(x0Var3);
+                        sg.y0 y0Var3 = new sg.y0(n2Var4, 7, false);
+                        y0Var3.D();
+                        n2Var4.showDialog(y0Var3);
                         return;
                     case 16:
                         org.telegram.ui.ActionBar.n2 n2Var5 = n2Var;
-                        sg.x0 x0Var4 = new sg.x0(n2Var5, 10, false);
-                        x0Var4.D();
-                        n2Var5.showDialog(x0Var4);
+                        sg.y0 y0Var4 = new sg.y0(n2Var5, 10, false);
+                        y0Var4.D();
+                        n2Var5.showDialog(y0Var4);
                         return;
                     case 17:
                         org.telegram.ui.ActionBar.n2 n2Var6 = n2Var;
-                        sg.x0 x0Var5 = new sg.x0(n2Var6, 12, false);
-                        x0Var5.D();
-                        n2Var6.showDialog(x0Var5);
+                        sg.y0 y0Var5 = new sg.y0(n2Var6, 12, false);
+                        y0Var5.D();
+                        n2Var6.showDialog(y0Var5);
                         return;
                     case 18:
                         n2Var.presentFragment(new sb0());
@@ -11491,10 +11491,10 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         n2Var.presentFragment(sb0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = sb0Var8.f41082s;
+                            ArrayList arrayList = sb0Var8.f41044s;
                             if (i10 < arrayList.size()) {
-                                if (((mb0) arrayList.get(i10)).f39110f == 1) {
-                                    sb0Var8.f41077b.e1(new i2.r(sb0Var8, i10, 13), 700, true);
+                                if (((mb0) arrayList.get(i10)).f39066f == 1) {
+                                    sb0Var8.f41039b.e1(new i2.r(sb0Var8, i10, 13), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -11513,9 +11513,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 13:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 0, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 0, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
@@ -11547,9 +11547,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 23:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var4, 11, false);
-                        x0Var2.D();
-                        n2Var4.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var4, 11, false);
+                        y0Var2.D();
+                        n2Var4.showDialog(y0Var2);
                         return;
                     case 24:
                         n2Var.presentFragment(new h(3));
@@ -11628,10 +11628,10 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         n2Var.presentFragment(sb0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = sb0Var8.f41082s;
+                            ArrayList arrayList = sb0Var8.f41044s;
                             if (i10 < arrayList.size()) {
-                                if (((mb0) arrayList.get(i10)).f39110f == 1) {
-                                    sb0Var8.f41077b.e1(new i2.r(sb0Var8, i10, 13), 700, true);
+                                if (((mb0) arrayList.get(i10)).f39066f == 1) {
+                                    sb0Var8.f41039b.e1(new i2.r(sb0Var8, i10, 13), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -11650,9 +11650,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 13:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 0, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 0, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
@@ -11684,9 +11684,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 23:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var4, 11, false);
-                        x0Var2.D();
-                        n2Var4.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var4, 11, false);
+                        y0Var2.D();
+                        n2Var4.showDialog(y0Var2);
                         return;
                     case 24:
                         n2Var.presentFragment(new h(3));
@@ -11766,10 +11766,10 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                             n2Var.presentFragment(sb0Var8);
                             int i10 = 0;
                             while (true) {
-                                ArrayList arrayList = sb0Var8.f41082s;
+                                ArrayList arrayList = sb0Var8.f41044s;
                                 if (i10 < arrayList.size()) {
-                                    if (((mb0) arrayList.get(i10)).f39110f == 1) {
-                                        sb0Var8.f41077b.e1(new i2.r(sb0Var8, i10, 13), 700, true);
+                                    if (((mb0) arrayList.get(i10)).f39066f == 1) {
+                                        sb0Var8.f41039b.e1(new i2.r(sb0Var8, i10, 13), 700, true);
                                         return;
                                     }
                                     i10++;
@@ -11788,9 +11788,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                             return;
                         case 13:
                             org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                            sg.x0 x0Var = new sg.x0(n2Var2, 0, false);
-                            x0Var.D();
-                            n2Var2.showDialog(x0Var);
+                            sg.y0 y0Var = new sg.y0(n2Var2, 0, false);
+                            y0Var.D();
+                            n2Var2.showDialog(y0Var);
                             return;
                         case 14:
                             org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
@@ -11822,9 +11822,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                             return;
                         case 23:
                             org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                            sg.x0 x0Var2 = new sg.x0(n2Var4, 11, false);
-                            x0Var2.D();
-                            n2Var4.showDialog(x0Var2);
+                            sg.y0 y0Var2 = new sg.y0(n2Var4, 11, false);
+                            y0Var2.D();
+                            n2Var4.showDialog(y0Var2);
                             return;
                         case 24:
                             n2Var.presentFragment(new h(3));
@@ -11906,10 +11906,10 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         n2Var.presentFragment(sb0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = sb0Var8.f41082s;
+                            ArrayList arrayList = sb0Var8.f41044s;
                             if (i10 < arrayList.size()) {
-                                if (((mb0) arrayList.get(i10)).f39110f == 1) {
-                                    sb0Var8.f41077b.e1(new i2.r(sb0Var8, i10, 13), 700, true);
+                                if (((mb0) arrayList.get(i10)).f39066f == 1) {
+                                    sb0Var8.f41039b.e1(new i2.r(sb0Var8, i10, 13), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -11928,9 +11928,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 13:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 0, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 0, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
@@ -11962,9 +11962,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 23:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var4, 11, false);
-                        x0Var2.D();
-                        n2Var4.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var4, 11, false);
+                        y0Var2.D();
+                        n2Var4.showDialog(y0Var2);
                         return;
                     case 24:
                         n2Var.presentFragment(new h(3));
@@ -12043,10 +12043,10 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         n2Var.presentFragment(sb0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = sb0Var8.f41082s;
+                            ArrayList arrayList = sb0Var8.f41044s;
                             if (i10 < arrayList.size()) {
-                                if (((mb0) arrayList.get(i10)).f39110f == 1) {
-                                    sb0Var8.f41077b.e1(new i2.r(sb0Var8, i10, 13), 700, true);
+                                if (((mb0) arrayList.get(i10)).f39066f == 1) {
+                                    sb0Var8.f41039b.e1(new i2.r(sb0Var8, i10, 13), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -12065,9 +12065,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 13:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 0, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 0, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
@@ -12099,9 +12099,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 23:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var4, 11, false);
-                        x0Var2.D();
-                        n2Var4.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var4, 11, false);
+                        y0Var2.D();
+                        n2Var4.showDialog(y0Var2);
                         return;
                     case 24:
                         n2Var.presentFragment(new h(3));
@@ -12181,10 +12181,10 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         n2Var.presentFragment(sb0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = sb0Var8.f41082s;
+                            ArrayList arrayList = sb0Var8.f41044s;
                             if (i10 < arrayList.size()) {
-                                if (((mb0) arrayList.get(i10)).f39110f == 1) {
-                                    sb0Var8.f41077b.e1(new i2.r(sb0Var8, i10, 13), 700, true);
+                                if (((mb0) arrayList.get(i10)).f39066f == 1) {
+                                    sb0Var8.f41039b.e1(new i2.r(sb0Var8, i10, 13), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -12203,9 +12203,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 13:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 0, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 0, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
@@ -12237,9 +12237,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 23:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var4, 11, false);
-                        x0Var2.D();
-                        n2Var4.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var4, 11, false);
+                        y0Var2.D();
+                        n2Var4.showDialog(y0Var2);
                         return;
                     case 24:
                         n2Var.presentFragment(new h(3));
@@ -12319,10 +12319,10 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         n2Var.presentFragment(sb0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = sb0Var8.f41082s;
+                            ArrayList arrayList = sb0Var8.f41044s;
                             if (i10 < arrayList.size()) {
-                                if (((mb0) arrayList.get(i10)).f39110f == 1) {
-                                    sb0Var8.f41077b.e1(new i2.r(sb0Var8, i10, 13), 700, true);
+                                if (((mb0) arrayList.get(i10)).f39066f == 1) {
+                                    sb0Var8.f41039b.e1(new i2.r(sb0Var8, i10, 13), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -12341,9 +12341,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 13:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 0, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 0, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
@@ -12375,9 +12375,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 23:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var4, 11, false);
-                        x0Var2.D();
-                        n2Var4.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var4, 11, false);
+                        y0Var2.D();
+                        n2Var4.showDialog(y0Var2);
                         return;
                     case 24:
                         n2Var.presentFragment(new h(3));
@@ -12457,10 +12457,10 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         n2Var.presentFragment(sb0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = sb0Var8.f41082s;
+                            ArrayList arrayList = sb0Var8.f41044s;
                             if (i10 < arrayList.size()) {
-                                if (((mb0) arrayList.get(i10)).f39110f == 1) {
-                                    sb0Var8.f41077b.e1(new i2.r(sb0Var8, i10, 13), 700, true);
+                                if (((mb0) arrayList.get(i10)).f39066f == 1) {
+                                    sb0Var8.f41039b.e1(new i2.r(sb0Var8, i10, 13), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -12479,9 +12479,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 13:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 0, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 0, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
@@ -12513,9 +12513,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 23:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var4, 11, false);
-                        x0Var2.D();
-                        n2Var4.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var4, 11, false);
+                        y0Var2.D();
+                        n2Var4.showDialog(y0Var2);
                         return;
                     case 24:
                         n2Var.presentFragment(new h(3));
@@ -12595,10 +12595,10 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         n2Var.presentFragment(sb0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = sb0Var8.f41082s;
+                            ArrayList arrayList = sb0Var8.f41044s;
                             if (i10 < arrayList.size()) {
-                                if (((mb0) arrayList.get(i10)).f39110f == 1) {
-                                    sb0Var8.f41077b.e1(new i2.r(sb0Var8, i10, 13), 700, true);
+                                if (((mb0) arrayList.get(i10)).f39066f == 1) {
+                                    sb0Var8.f41039b.e1(new i2.r(sb0Var8, i10, 13), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -12617,9 +12617,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 13:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 0, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 0, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
@@ -12651,9 +12651,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 23:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var4, 11, false);
-                        x0Var2.D();
-                        n2Var4.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var4, 11, false);
+                        y0Var2.D();
+                        n2Var4.showDialog(y0Var2);
                         return;
                     case 24:
                         n2Var.presentFragment(new h(3));
@@ -12733,10 +12733,10 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         n2Var.presentFragment(sb0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = sb0Var8.f41082s;
+                            ArrayList arrayList = sb0Var8.f41044s;
                             if (i10 < arrayList.size()) {
-                                if (((mb0) arrayList.get(i10)).f39110f == 1) {
-                                    sb0Var8.f41077b.e1(new i2.r(sb0Var8, i10, 13), 700, true);
+                                if (((mb0) arrayList.get(i10)).f39066f == 1) {
+                                    sb0Var8.f41039b.e1(new i2.r(sb0Var8, i10, 13), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -12755,9 +12755,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 13:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 0, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 0, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
@@ -12789,9 +12789,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 23:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var4, 11, false);
-                        x0Var2.D();
-                        n2Var4.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var4, 11, false);
+                        y0Var2.D();
+                        n2Var4.showDialog(y0Var2);
                         return;
                     case 24:
                         n2Var.presentFragment(new h(3));
@@ -12872,10 +12872,10 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                             n2Var.presentFragment(sb0Var8);
                             int i10 = 0;
                             while (true) {
-                                ArrayList arrayList = sb0Var8.f41082s;
+                                ArrayList arrayList = sb0Var8.f41044s;
                                 if (i10 < arrayList.size()) {
-                                    if (((mb0) arrayList.get(i10)).f39110f == 1) {
-                                        sb0Var8.f41077b.e1(new i2.r(sb0Var8, i10, 13), 700, true);
+                                    if (((mb0) arrayList.get(i10)).f39066f == 1) {
+                                        sb0Var8.f41039b.e1(new i2.r(sb0Var8, i10, 13), 700, true);
                                         return;
                                     }
                                     i10++;
@@ -12894,9 +12894,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                             return;
                         case 13:
                             org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                            sg.x0 x0Var = new sg.x0(n2Var2, 0, false);
-                            x0Var.D();
-                            n2Var2.showDialog(x0Var);
+                            sg.y0 y0Var = new sg.y0(n2Var2, 0, false);
+                            y0Var.D();
+                            n2Var2.showDialog(y0Var);
                             return;
                         case 14:
                             org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
@@ -12928,9 +12928,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                             return;
                         case 23:
                             org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                            sg.x0 x0Var2 = new sg.x0(n2Var4, 11, false);
-                            x0Var2.D();
-                            n2Var4.showDialog(x0Var2);
+                            sg.y0 y0Var2 = new sg.y0(n2Var4, 11, false);
+                            y0Var2.D();
+                            n2Var4.showDialog(y0Var2);
                             return;
                         case 24:
                             n2Var.presentFragment(new h(3));
@@ -13012,10 +13012,10 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         n2Var.presentFragment(sb0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = sb0Var8.f41082s;
+                            ArrayList arrayList = sb0Var8.f41044s;
                             if (i10 < arrayList.size()) {
-                                if (((mb0) arrayList.get(i10)).f39110f == 1) {
-                                    sb0Var8.f41077b.e1(new i2.r(sb0Var8, i10, 13), 700, true);
+                                if (((mb0) arrayList.get(i10)).f39066f == 1) {
+                                    sb0Var8.f41039b.e1(new i2.r(sb0Var8, i10, 13), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -13034,9 +13034,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 13:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 0, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 0, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
@@ -13068,9 +13068,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 23:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var4, 11, false);
-                        x0Var2.D();
-                        n2Var4.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var4, 11, false);
+                        y0Var2.D();
+                        n2Var4.showDialog(y0Var2);
                         return;
                     case 24:
                         n2Var.presentFragment(new h(3));
@@ -13150,10 +13150,10 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         n2Var.presentFragment(sb0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = sb0Var8.f41082s;
+                            ArrayList arrayList = sb0Var8.f41044s;
                             if (i10 < arrayList.size()) {
-                                if (((mb0) arrayList.get(i10)).f39110f == 1) {
-                                    sb0Var8.f41077b.e1(new i2.r(sb0Var8, i10, 13), 700, true);
+                                if (((mb0) arrayList.get(i10)).f39066f == 1) {
+                                    sb0Var8.f41039b.e1(new i2.r(sb0Var8, i10, 13), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -13172,9 +13172,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 13:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 0, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 0, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
@@ -13206,9 +13206,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 23:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var4, 11, false);
-                        x0Var2.D();
-                        n2Var4.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var4, 11, false);
+                        y0Var2.D();
+                        n2Var4.showDialog(y0Var2);
                         return;
                     case 24:
                         n2Var.presentFragment(new h(3));
@@ -13288,10 +13288,10 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         n2Var.presentFragment(sb0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = sb0Var8.f41082s;
+                            ArrayList arrayList = sb0Var8.f41044s;
                             if (i10 < arrayList.size()) {
-                                if (((mb0) arrayList.get(i10)).f39110f == 1) {
-                                    sb0Var8.f41077b.e1(new i2.r(sb0Var8, i10, 13), 700, true);
+                                if (((mb0) arrayList.get(i10)).f39066f == 1) {
+                                    sb0Var8.f41039b.e1(new i2.r(sb0Var8, i10, 13), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -13310,9 +13310,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 13:
                         org.telegram.ui.ActionBar.n2 n2Var2 = n2Var;
-                        sg.x0 x0Var = new sg.x0(n2Var2, 0, false);
-                        x0Var.D();
-                        n2Var2.showDialog(x0Var);
+                        sg.y0 y0Var = new sg.y0(n2Var2, 0, false);
+                        y0Var.D();
+                        n2Var2.showDialog(y0Var);
                         return;
                     case 14:
                         org.telegram.ui.ActionBar.n2 n2Var3 = n2Var;
@@ -13344,9 +13344,9 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         return;
                     case 23:
                         org.telegram.ui.ActionBar.n2 n2Var4 = n2Var;
-                        sg.x0 x0Var2 = new sg.x0(n2Var4, 11, false);
-                        x0Var2.D();
-                        n2Var4.showDialog(x0Var2);
+                        sg.y0 y0Var2 = new sg.y0(n2Var4, 11, false);
+                        y0Var2.D();
+                        n2Var4.showDialog(y0Var2);
                         return;
                     case 24:
                         n2Var.presentFragment(new h(3));
@@ -13377,7 +13377,7 @@ public class o01 extends org.telegram.ui.Components.hm0 {
 
     @Override
     public final boolean D(s4.b1 b1Var) {
-        if (b1Var.f45961f == 0) {
+        if (b1Var.f45913f == 0) {
             return true;
         }
         return false;
@@ -13390,7 +13390,7 @@ public class o01 extends org.telegram.ui.Components.hm0 {
             arrayList.remove(indexOf);
         }
         arrayList.add(0, obj);
-        if (!this.f39634w) {
+        if (!this.f39626w) {
             l();
         }
         if (arrayList.size() > 20) {
@@ -13401,7 +13401,7 @@ public class o01 extends org.telegram.ui.Components.hm0 {
         for (int i10 = 0; i10 < size; i10++) {
             Object obj2 = arrayList.get(i10);
             if (obj2 instanceof n01) {
-                ((n01) obj2).f39319g = i10;
+                ((n01) obj2).f39278g = i10;
             } else if (obj2 instanceof MessagesController.FaqSearchResult) {
                 ((MessagesController.FaqSearchResult) obj2).num = i10;
             }
@@ -13411,7 +13411,7 @@ public class o01 extends org.telegram.ui.Components.hm0 {
     }
 
     public final void G() {
-        int i10 = this.f39630f;
+        int i10 = this.f39622f;
         TLRPC.WebPage webPage = MessagesController.getInstance(i10).faqWebPage;
         this.E = webPage;
         if (webPage != null) {
@@ -13427,20 +13427,20 @@ public class o01 extends org.telegram.ui.Components.hm0 {
     }
 
     public final void I(String str) {
-        this.f39636y = str;
-        if (this.f39635x != null) {
-            Utilities.searchQueue.cancelRunnable(this.f39635x);
-            this.f39635x = null;
+        this.f39628y = str;
+        if (this.f39627x != null) {
+            Utilities.searchQueue.cancelRunnable(this.f39627x);
+            this.f39627x = null;
         }
         if (TextUtils.isEmpty(str)) {
-            this.f39634w = false;
-            this.f39632r.clear();
-            this.f39633s.clear();
-            this.f39631n.clear();
+            this.f39626w = false;
+            this.f39624r.clear();
+            this.f39625s.clear();
+            this.f39623n.clear();
             org.telegram.ui.ActionBar.n2 n2Var = this.e;
             if (n2Var instanceof ProfileActivity) {
                 try {
-                    ((ProfileActivity) n2Var).P.f30079b.getImageReceiver().startAnimation();
+                    ((ProfileActivity) n2Var).P.f30073b.getImageReceiver().startAnimation();
                     ((ProfileActivity) this.e).P.d.setText(LocaleController.getString(R.string.SettingsNoRecent));
                 } catch (Exception e) {
                     FileLog.e(e);
@@ -13451,7 +13451,7 @@ public class o01 extends org.telegram.ui.Components.hm0 {
         }
         DispatchQueue dispatchQueue = Utilities.searchQueue;
         lv0 lv0Var = new lv0(19, this, str);
-        this.f39635x = lv0Var;
+        this.f39627x = lv0Var;
         dispatchQueue.postRunnable(lv0Var, 300L);
     }
 
@@ -13461,13 +13461,13 @@ public class o01 extends org.telegram.ui.Components.hm0 {
         HashMap hashMap = new HashMap();
         int i10 = 0;
         while (true) {
-            n01[] n01VarArr = this.f39629c;
+            n01[] n01VarArr = this.f39621c;
             if (i10 >= n01VarArr.length) {
                 break;
             }
             n01 n01Var2 = n01VarArr[i10];
             if (n01Var2 != null) {
-                hashMap.put(Integer.valueOf(n01Var2.f39318f), this.f39629c[i10]);
+                hashMap.put(Integer.valueOf(n01Var2.f39277f), this.f39621c[i10]);
             }
             i10++;
         }
@@ -13494,24 +13494,24 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                         faqSearchResult.num = readInt32;
                         arrayList.add(faqSearchResult);
                     } else if (readInt322 == 1 && (n01Var = (n01) hashMap.get(Integer.valueOf(serializedData.readInt32(false)))) != null) {
-                        n01Var.f39319g = readInt32;
+                        n01Var.f39278g = readInt32;
                         arrayList.add(n01Var);
                     }
                 } catch (Exception unused) {
                 }
             }
         }
-        Collections.sort(arrayList, new lg0(this));
+        Collections.sort(arrayList, new kg0(this));
     }
 
     @Override
     public final int h() {
         int size;
         int i10 = 0;
-        if (this.f39634w) {
-            int size2 = this.f39632r.size();
-            if (!this.f39633s.isEmpty()) {
-                i10 = this.f39633s.size() + 1;
+        if (this.f39626w) {
+            int size2 = this.f39624r.size();
+            if (!this.f39625s.isEmpty()) {
+                i10 = this.f39625s.size() + 1;
             }
             return size2 + i10;
         }
@@ -13530,8 +13530,8 @@ public class o01 extends org.telegram.ui.Components.hm0 {
 
     @Override
     public final int j(int i10) {
-        if (this.f39634w) {
-            if (i10 < this.f39632r.size() || i10 != this.f39632r.size()) {
+        if (this.f39626w) {
+            if (i10 < this.f39624r.size() || i10 != this.f39624r.size()) {
                 return 0;
             }
         } else {
@@ -13551,8 +13551,8 @@ public class o01 extends org.telegram.ui.Components.hm0 {
     public final void v(s4.b1 b1Var, int i10) {
         n01 n01Var;
         int i11;
-        int i12 = b1Var.f45961f;
-        View view = b1Var.f45958a;
+        int i12 = b1Var.f45913f;
+        View view = b1Var.f45910a;
         boolean z10 = true;
         if (i12 != 0) {
             if (i12 != 1) {
@@ -13567,11 +13567,11 @@ public class o01 extends org.telegram.ui.Components.hm0 {
         }
         org.telegram.ui.Cells.w6 w6Var = (org.telegram.ui.Cells.w6) view;
         boolean z11 = false;
-        if (this.f39634w) {
-            if (i10 < this.f39632r.size()) {
-                n01 n01Var2 = (n01) this.f39632r.get(i10);
+        if (this.f39626w) {
+            if (i10 < this.f39624r.size()) {
+                n01 n01Var2 = (n01) this.f39624r.get(i10);
                 if (i10 > 0) {
-                    n01Var = (n01) this.f39632r.get(i10 - 1);
+                    n01Var = (n01) this.f39624r.get(i10 - 1);
                 } else {
                     n01Var = null;
                 }
@@ -13580,18 +13580,18 @@ public class o01 extends org.telegram.ui.Components.hm0 {
                 } else {
                     i11 = n01Var2.e;
                 }
-                CharSequence charSequence = (CharSequence) this.f39631n.get(i10);
+                CharSequence charSequence = (CharSequence) this.f39623n.get(i10);
                 String[] strArr = n01Var2.d;
-                if (i10 >= this.f39632r.size() - 1) {
+                if (i10 >= this.f39624r.size() - 1) {
                     z10 = false;
                 }
                 w6Var.b(charSequence, strArr, i11, z10);
                 return;
             }
-            int g10 = com.google.android.gms.internal.play_billing.k3.g(1, i10, this.f39632r);
-            CharSequence charSequence2 = (CharSequence) this.f39631n.get(this.f39632r.size() + g10);
-            String[] strArr2 = ((MessagesController.FaqSearchResult) this.f39633s.get(g10)).path;
-            if (g10 < this.f39632r.size() - 1) {
+            int g10 = com.google.android.gms.internal.play_billing.k3.g(1, i10, this.f39624r);
+            CharSequence charSequence2 = (CharSequence) this.f39623n.get(this.f39624r.size() + g10);
+            String[] strArr2 = ((MessagesController.FaqSearchResult) this.f39625s.get(g10)).path;
+            if (g10 < this.f39624r.size() - 1) {
                 z11 = true;
             }
             w6Var.a(charSequence2, strArr2, true, z11);
@@ -13605,7 +13605,7 @@ public class o01 extends org.telegram.ui.Components.hm0 {
             Object obj = arrayList.get(i10);
             if (obj instanceof n01) {
                 n01 n01Var3 = (n01) obj;
-                String str = n01Var3.f39315a;
+                String str = n01Var3.f39274a;
                 String[] strArr3 = n01Var3.d;
                 if (i10 >= arrayList.size() - 1) {
                     z10 = false;

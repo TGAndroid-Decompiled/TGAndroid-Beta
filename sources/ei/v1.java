@@ -7,26 +7,26 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
 public final class v1 extends w1 implements NotificationCenter.NotificationCenterDelegate {
-    public final ai.u1 f9930b;
-    public final t1 f9931c;
+    public final ai.u1 f9928b;
+    public final t1 f9929c;
     public final h2 d;
     public final u1 e;
-    public final r1 f9932f;
+    public final r1 f9930f;
     public final ArrayList h;
-    public final ArrayList f9933n;
-    public final n2 f9934r;
+    public final ArrayList f9931n;
+    public final n2 f9932r;
 
     public v1(n2 n2Var, Context context) {
         super(context);
         org.telegram.ui.ActionBar.d6 d6Var;
-        this.f9934r = n2Var;
-        this.f9932f = new Object();
+        this.f9932r = n2Var;
+        this.f9930f = new Object();
         this.h = new ArrayList();
-        this.f9933n = new ArrayList();
+        this.f9931n = new ArrayList();
         ai.u1 u1Var = new ai.u1(this, context, 2);
-        this.f9930b = u1Var;
+        this.f9928b = u1Var;
         t1 t1Var = new t1(this);
-        this.f9931c = t1Var;
+        this.f9929c = t1Var;
         u1Var.setAdapter(t1Var);
         u1 u1Var2 = new u1(this);
         this.e = u1Var2;
@@ -38,7 +38,7 @@ public final class v1 extends w1 implements NotificationCenter.NotificationCente
         u1Var.setOnTouchListener(new p1(0, this, waVar));
         u1Var.setOnItemClickListener(waVar);
         u1Var.setOnScrollListener(new ah.d0(this, 6));
-        addView(u1Var, w7.z5.a(-1.0f, 0.0f, 58.0f, 0.0f, 40.0f, -1, 119));
+        addView(u1Var, w7.z5.d(-1, -1.0f, 119, 0.0f, 58.0f, 0.0f, 40.0f));
         d6Var = ((org.telegram.ui.ActionBar.f3) n2Var).resourcesProvider;
         h2 h2Var = new h2(context, d6Var);
         this.d = h2Var;
@@ -49,9 +49,9 @@ public final class v1 extends w1 implements NotificationCenter.NotificationCente
 
     @Override
     public final void a(int i10) {
-        t1 t1Var = this.f9931c;
+        t1 t1Var = this.f9929c;
         t1.E(t1Var, false);
-        if (this.f9933n.isEmpty() && TextUtils.isEmpty(this.f9934r.f9502b)) {
+        if (this.f9931n.isEmpty() && TextUtils.isEmpty(this.f9932r.f9500b)) {
             t1Var.G();
         }
         t1Var.H(null);
@@ -62,7 +62,7 @@ public final class v1 extends w1 implements NotificationCenter.NotificationCente
         View childAt;
         int i10 = 0;
         while (true) {
-            ai.u1 u1Var = this.f9930b;
+            ai.u1 u1Var = this.f9928b;
             if (i10 < u1Var.getChildCount()) {
                 Object tag = u1Var.getChildAt(i10).getTag();
                 if ((tag instanceof Integer) && ((Integer) tag).intValue() == 34) {
@@ -83,7 +83,7 @@ public final class v1 extends w1 implements NotificationCenter.NotificationCente
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         if (i10 == NotificationCenter.recentDocumentsDidLoad) {
-            t1.E(this.f9931c, true);
+            t1.E(this.f9929c, true);
         }
     }
 
@@ -91,7 +91,7 @@ public final class v1 extends w1 implements NotificationCenter.NotificationCente
     public final void onAttachedToWindow() {
         int i10;
         super.onAttachedToWindow();
-        i10 = ((org.telegram.ui.ActionBar.f3) this.f9934r).currentAccount;
+        i10 = ((org.telegram.ui.ActionBar.f3) this.f9932r).currentAccount;
         NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.recentDocumentsDidLoad);
     }
 
@@ -99,7 +99,7 @@ public final class v1 extends w1 implements NotificationCenter.NotificationCente
     public final void onDetachedFromWindow() {
         int i10;
         super.onDetachedFromWindow();
-        i10 = ((org.telegram.ui.ActionBar.f3) this.f9934r).currentAccount;
+        i10 = ((org.telegram.ui.ActionBar.f3) this.f9932r).currentAccount;
         NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.recentDocumentsDidLoad);
     }
 
@@ -107,7 +107,7 @@ public final class v1 extends w1 implements NotificationCenter.NotificationCente
     public final void onMeasure(int i10, int i11) {
         int i12;
         int i13;
-        n2 n2Var = this.f9934r;
+        n2 n2Var = this.f9932r;
         i12 = ((org.telegram.ui.ActionBar.f3) n2Var).backgroundPaddingLeft;
         i13 = ((org.telegram.ui.ActionBar.f3) n2Var).backgroundPaddingLeft;
         setPadding(i12, 0, i13, AndroidUtilities.navigationBarHeight);

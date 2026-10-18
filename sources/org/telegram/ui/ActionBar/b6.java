@@ -3,6 +3,6 @@ package org.telegram.ui.ActionBar;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class b6 {
-    public TLRPC.TL_wallPaper f20712a;
-    public ArrayList f20713b;
+    public TLRPC.TL_wallPaper f20705a;
+    public ArrayList f20706b;
 }

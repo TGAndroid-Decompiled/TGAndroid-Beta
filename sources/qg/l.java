@@ -3,10 +3,10 @@ package qg;
 import java.util.Arrays;
 import java.util.List;
 public abstract class l extends m {
-    public static final List f44595b = Arrays.asList(new Object(), new Object(), new Object(), new Object(), new Object());
+    public static final List f44551b = Arrays.asList(new Object(), new Object(), new Object(), new Object(), new Object());
 
     public static l p(int i10) {
-        List list = f44595b;
+        List list = f44551b;
         if (i10 >= 0 && i10 <= list.size()) {
             return (l) list.get(i10);
         }

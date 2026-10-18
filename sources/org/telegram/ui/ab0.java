@@ -10,36 +10,36 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 public final class ab0 extends org.telegram.ui.Cells.i3 {
-    public boolean f35402x;
-    public final cb0 f35403y;
+    public boolean f35354x;
+    public final cb0 f35355y;
 
     public ab0(cb0 cb0Var, Context context, String str, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context, str, false, false, -1, d6Var);
-        this.f35403y = cb0Var;
+        this.f35355y = cb0Var;
     }
 
     @Override
     public final void b(Editable editable) {
         int i10;
         int i11;
-        if (this.f35402x) {
+        if (this.f35354x) {
             return;
         }
         boolean isEmpty = TextUtils.isEmpty(editable);
-        cb0 cb0Var = this.f35403y;
+        cb0 cb0Var = this.f35355y;
         if (isEmpty) {
-            cb0Var.f35916s.setText("");
+            cb0Var.f35870s.setText("");
             return;
         }
         try {
             long parseLong = Long.parseLong(editable.toString());
             if (parseLong > cb0Var.getMessagesController().starsSubscriptionAmountMax) {
-                this.f35402x = true;
+                this.f35354x = true;
                 parseLong = cb0Var.getMessagesController().starsSubscriptionAmountMax;
                 setText(Long.toString(parseLong));
-                this.f35402x = false;
+                this.f35354x = false;
             }
-            TextView textView = cb0Var.f35916s;
+            TextView textView = cb0Var.f35870s;
             if (cb0Var.getConnectionsManager().isTestBackend()) {
                 i10 = R.string.RequireMonthlyFeePriceTest5Minutes;
             } else {

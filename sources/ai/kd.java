@@ -8,32 +8,32 @@ import org.telegram.messenger.R;
 import org.telegram.ui.Components.f61;
 import org.telegram.ui.Components.u81;
 public final class kd extends u81 {
-    public final Context f1724a;
-    public final int f1725b;
-    public final boolean f1726c;
+    public final Context f1730a;
+    public final int f1731b;
+    public final boolean f1732c;
     public final int d;
     public final org.telegram.ui.ActionBar.d6 e;
-    public final long f1727f;
-    public final ArrayList f1728g = new ArrayList();
+    public final long f1733f;
+    public final ArrayList f1734g = new ArrayList();
 
     public kd(Context context, int i10, boolean z10, long j10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
-        this.f1724a = context;
-        this.f1725b = i10;
-        this.f1726c = z10;
+        this.f1730a = context;
+        this.f1731b = i10;
+        this.f1732c = z10;
         this.d = i11;
         this.e = d6Var;
-        this.f1727f = j10;
+        this.f1733f = j10;
         i();
     }
 
     @Override
     public final View d(int i10) {
-        return new jd(this.f1724a, this.f1726c, this.f1727f, i10, this.f1725b, this.d, this.e);
+        return new jd(this.f1730a, this.f1732c, this.f1733f, i10, this.f1731b, this.d, this.e);
     }
 
     @Override
     public final int e() {
-        return this.f1728g.size();
+        return this.f1734g.size();
     }
 
     @Override
@@ -54,9 +54,9 @@ public final class kd extends u81 {
     @Override
     public final int h(int i10) {
         if (i10 >= 0) {
-            ArrayList arrayList = this.f1728g;
+            ArrayList arrayList = this.f1734g;
             if (i10 < arrayList.size()) {
-                return ((f61) arrayList.get(i10)).f26160z;
+                return ((f61) arrayList.get(i10)).f26153z;
             }
             return 0;
         }
@@ -64,13 +64,13 @@ public final class kd extends u81 {
     }
 
     public final void i() {
-        ArrayList arrayList = this.f1728g;
+        ArrayList arrayList = this.f1734g;
         arrayList.clear();
-        long j10 = this.f1727f;
+        long j10 = this.f1733f;
         int i10 = (j10 > 0L ? 1 : (j10 == 0L ? 0 : -1));
-        int i11 = this.f1725b;
+        int i11 = this.f1731b;
         if (i10 == 0) {
-            ga y3 = ga.y(i11, this.f1726c);
+            ga y3 = ga.y(i11, this.f1732c);
             arrayList.add(f61.C(0));
             if (y3.O(1)) {
                 arrayList.add(f61.C(1));
@@ -83,10 +83,10 @@ public final class kd extends u81 {
         }
         k0 g10 = k0.g(i11);
         arrayList.add(f61.C(0));
-        if (!g10.k(j10).f1536a[1].isEmpty()) {
+        if (!g10.k(j10).f1537a[1].isEmpty()) {
             arrayList.add(f61.C(1));
         }
-        if (!g10.k(j10).f1536a[2].isEmpty()) {
+        if (!g10.k(j10).f1537a[2].isEmpty()) {
             arrayList.add(f61.C(2));
         }
     }

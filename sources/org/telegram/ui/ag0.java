@@ -1,54 +1,62 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
-import android.text.TextUtils;
-import android.view.View;
-import android.widget.TextView;
-import android.widget.ViewSwitcher;
-import org.telegram.messenger.AndroidUtilities;
+import android.graphics.Rect;
+import android.view.KeyEvent;
+import android.view.MotionEvent;
 import org.telegram.messenger.LocaleController;
-public final class ag0 implements ViewSwitcher.ViewFactory {
-    public final int f35449a;
-    public final Object f35450b;
+import org.telegram.messenger.R;
+import org.telegram.ui.Components.AnimatedPhoneNumberEditText;
+public final class ag0 extends AnimatedPhoneNumberEditText {
+    public final dg0 G;
 
-    public ag0(Object obj, int i10) {
-        this.f35449a = i10;
-        this.f35450b = obj;
+    public ag0(dg0 dg0Var, Context context) {
+        super(context);
+        this.G = dg0Var;
     }
 
     @Override
-    public final View makeView() {
-        int i10;
-        int i11 = this.f35449a;
-        Object obj = this.f35450b;
-        switch (i11) {
-            case 0:
-                TextView textView = new TextView((Context) obj);
-                textView.setPadding(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(12.0f));
-                textView.setTextSize(1, 16.0f);
-                textView.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.G6, false));
-                textView.setHintTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.H6, false));
-                textView.setMaxLines(1);
-                textView.setSingleLine(true);
-                textView.setEllipsize(TextUtils.TruncateAt.END);
-                if (LocaleController.isRTL) {
-                    i10 = 5;
-                } else {
-                    i10 = 3;
-                }
-                textView.setGravity(i10 | 1);
-                return textView;
-            case 1:
-                TextView textView2 = new TextView((Context) obj);
-                com.google.android.gms.internal.play_billing.k3.o(org.telegram.ui.ActionBar.h6.D6, null, false, textView2, 1);
-                textView2.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
-                textView2.setTextSize(1, 15.0f);
-                return textView2;
-            default:
-                PhotoViewer photoViewer = (PhotoViewer) obj;
-                Drawable[] drawableArr = PhotoViewer.U8;
-                return new yt0(photoViewer.E, photoViewer.T1, photoViewer.Q, new zq0(photoViewer, 0), new xf0(photoViewer, 1));
+    public final void onFocusChanged(boolean z10, int i10, Rect rect) {
+        float f7;
+        super.onFocusChanged(z10, i10, rect);
+        dg0 dg0Var = this.G;
+        eg0 eg0Var = dg0Var.V;
+        org.telegram.ui.Components.sd0 sd0Var = dg0Var.f36190f;
+        if (!z10 && !dg0Var.f36187a.isFocused()) {
+            f7 = 0.0f;
+        } else {
+            f7 = 1.0f;
         }
+        sd0Var.b(f7, f7, true);
+        if (z10) {
+            eg0Var.f36493c.setEditText(this);
+            eg0Var.f36493c.setDispatchBackWhenEmpty(true);
+            if (dg0Var.f36195x == 2) {
+                dg0Var.setCountryButtonText(LocaleController.getString(R.string.WrongCountry));
+            }
+        } else if (dg0Var.f36195x == 2) {
+            dg0Var.setCountryButtonText(null);
+        }
+    }
+
+    @Override
+    public final boolean onKeyDown(int i10, KeyEvent keyEvent) {
+        dg0 dg0Var = this.G;
+        lj0 lj0Var = dg0Var.f36187a;
+        if (i10 == 67 && dg0Var.f36188b.length() == 0) {
+            lj0Var.requestFocus();
+            lj0Var.setSelection(lj0Var.length());
+            lj0Var.dispatchKeyEvent(keyEvent);
+        }
+        return super.onKeyDown(i10, keyEvent);
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        if (motionEvent.getAction() == 0 && !eg0.T0(this.G.V, this)) {
+            clearFocus();
+            requestFocus();
+        }
+        return super.onTouchEvent(motionEvent);
     }
 }

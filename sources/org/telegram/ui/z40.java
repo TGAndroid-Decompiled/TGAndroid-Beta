@@ -15,28 +15,28 @@ import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_update;
 public final class z40 implements RequestDelegate {
-    public final int f43585a;
-    public final Object f43586b;
-    public final Object f43587c;
+    public final int f43549a;
+    public final Object f43550b;
+    public final Object f43551c;
 
     public z40(int i10, Object obj, Object obj2) {
-        this.f43585a = i10;
-        this.f43587c = obj;
-        this.f43586b = obj2;
+        this.f43549a = i10;
+        this.f43551c = obj;
+        this.f43550b = obj2;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        int i10 = this.f43585a;
-        Object obj = this.f43586b;
-        Object obj2 = this.f43587c;
+        int i10 = this.f43549a;
+        Object obj = this.f43550b;
+        Object obj2 = this.f43551c;
         switch (i10) {
             case 0:
                 AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.i90((Object) ((a50) obj2), tL_error, tLObject, (Object) ((String) obj), 14));
                 return;
             case 1:
                 y60 y60Var = (y60) obj2;
-                if (Objects.equals(y60Var.f43355a.e, (String) obj)) {
+                if (Objects.equals(y60Var.f43317a.e, (String) obj)) {
                     AndroidUtilities.runOnUIThread(new nt(26, y60Var, tLObject));
                     return;
                 }
@@ -75,26 +75,26 @@ public final class z40 implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.i90((Object) ((hb0) obj2), tLObject, (Object) ((HashSet) obj), tL_error, 20));
                 return;
             case 8:
-                fg0 fg0Var = (fg0) obj2;
+                eg0 eg0Var = (eg0) obj2;
                 Bundle bundle = (Bundle) obj;
                 if (tLObject != null && !(((TLRPC.auth_SentCode) tLObject).type instanceof TLRPC.TL_auth_sentCodeTypeFirebaseSms)) {
-                    AndroidUtilities.runOnUIThread(new lq(fg0Var, bundle, tLObject, 25));
+                    AndroidUtilities.runOnUIThread(new lq(eg0Var, bundle, tLObject, 25));
                     return;
                 } else {
-                    AndroidUtilities.runOnUIThread(new qc0(fg0Var, 2));
+                    AndroidUtilities.runOnUIThread(new qc0(eg0Var, 2));
                     return;
                 }
             case 9:
                 AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.i90((Object) ((ie0) obj2), tLObject, (Object) ((String) obj), tL_error, 23));
                 return;
             case 10:
-                AndroidUtilities.runOnUIThread(new xe0((jf0) obj2, tL_error, (TL_account.confirmPhone) obj, 0));
+                AndroidUtilities.runOnUIThread(new xe0((if0) obj2, tL_error, (TL_account.confirmPhone) obj, 0));
                 return;
             case 11:
-                AndroidUtilities.runOnUIThread(new xe0((eg0) obj2, tLObject, (HashMap) obj, 5));
+                AndroidUtilities.runOnUIThread(new xe0((dg0) obj2, tLObject, (HashMap) obj, 5));
                 return;
             case 12:
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.i90((Object) ((eg0) obj2), tL_error, tLObject, (Object) ((String) obj), 27));
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.i90((Object) ((dg0) obj2), tL_error, tLObject, (Object) ((String) obj), 27));
                 return;
             case 13:
                 AndroidUtilities.runOnUIThread(new xe0((oj0) obj2, tLObject, (org.telegram.ui.Components.qy) obj, 8));
@@ -111,7 +111,7 @@ public final class z40 implements RequestDelegate {
                 go0 go0Var = (go0) obj2;
                 TLObject tLObject2 = (TLObject) obj;
                 if (tLObject instanceof TLRPC.TL_payments_validatedRequestedInfo) {
-                    AndroidUtilities.runOnUIThread(new zg0(16, go0Var, (TLRPC.TL_payments_validatedRequestedInfo) tLObject));
+                    AndroidUtilities.runOnUIThread(new yg0(16, go0Var, (TLRPC.TL_payments_validatedRequestedInfo) tLObject));
                     return;
                 } else {
                     AndroidUtilities.runOnUIThread(new en0(go0Var, tL_error, tLObject2, 1));
@@ -122,7 +122,7 @@ public final class z40 implements RequestDelegate {
                 TLRPC.TL_payments_sendPaymentForm tL_payments_sendPaymentForm = (TLRPC.TL_payments_sendPaymentForm) obj;
                 if (tLObject != null) {
                     if (tLObject instanceof TLRPC.TL_payments_paymentResult) {
-                        Utilities.Callback callback = go0Var2.f37261c1;
+                        Utilities.Callback callback = go0Var2.f37223c1;
                         if (callback != null) {
                             callback.run((TLRPC.TL_payments_paymentResult) tLObject);
                             return;
@@ -144,7 +144,7 @@ public final class z40 implements RequestDelegate {
                             }
                         }
                         go0Var2.getMessagesController().lambda$processUpdates$377(updates, false);
-                        AndroidUtilities.runOnUIThread(new zg0(17, go0Var2, messageArr));
+                        AndroidUtilities.runOnUIThread(new yg0(17, go0Var2, messageArr));
                         return;
                     } else if (tLObject instanceof TLRPC.TL_payments_paymentVerificationNeeded) {
                         AndroidUtilities.runOnUIThread(new ym0(go0Var2, tLObject, 1));
@@ -153,7 +153,7 @@ public final class z40 implements RequestDelegate {
                         return;
                     }
                 }
-                v10 v10Var = go0Var2.f37265e1;
+                v10 v10Var = go0Var2.f37227e1;
                 if (v10Var == null || !((Boolean) v10Var.run(tL_error)).booleanValue()) {
                     AndroidUtilities.runOnUIThread(new xe0(go0Var2, tL_error, tL_payments_sendPaymentForm, 16));
                     return;

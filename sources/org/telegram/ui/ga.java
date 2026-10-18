@@ -14,19 +14,19 @@ import android.widget.FrameLayout;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
 public final class ga extends org.telegram.ui.ActionBar.j {
-    public final int f37165a;
-    public final Object f37166b;
+    public final int f37130a;
+    public final Object f37131b;
 
     public ga(Object obj, int i10) {
-        this.f37165a = i10;
-        this.f37166b = obj;
+        this.f37130a = i10;
+        this.f37131b = obj;
     }
 
     @Override
     public final void b(int i10) {
         Runnable runnable;
-        int i11 = this.f37165a;
-        Object obj = this.f37166b;
+        int i11 = this.f37130a;
+        Object obj = this.f37131b;
         switch (i11) {
             case 0:
                 ua uaVar = (ua) obj;
@@ -49,7 +49,7 @@ public final class ga extends org.telegram.ui.ActionBar.j {
             case 2:
                 dd ddVar = (dd) obj;
                 if (i10 == -1) {
-                    if (ddVar.f36159b >= ddVar.S0() && ddVar.Q0()) {
+                    if (ddVar.f36131b >= ddVar.S0() && ddVar.Q0()) {
                         ddVar.V0();
                         return;
                     } else {
@@ -78,14 +78,14 @@ public final class ga extends org.telegram.ui.ActionBar.j {
                     nc ncVar = new nc(ddVar, ddVar.getParentActivity(), canvas, (ddVar.L.getMeasuredWidth() / 2.0f) + f7, (ddVar.L.getMeasuredHeight() / 2.0f) + f10, max, paint, createBitmap, paint2, f7, f10, 0);
                     ddVar.m0 = ncVar;
                     ncVar.setOnTouchListener(new di.d(2));
-                    ddVar.f36174n0 = 0.0f;
+                    ddVar.f36146n0 = 0.0f;
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                    ddVar.f36175o0 = ofFloat;
+                    ddVar.f36147o0 = ofFloat;
                     ofFloat.addUpdateListener(new ei.eb(ddVar, 1));
-                    ddVar.f36175o0.addListener(new m.a(ddVar, 22));
-                    ddVar.f36175o0.setDuration(400L);
-                    ddVar.f36175o0.setInterpolator(org.telegram.ui.Components.st.e);
-                    ddVar.f36175o0.start();
+                    ddVar.f36147o0.addListener(new m.a(ddVar, 22));
+                    ddVar.f36147o0.setDuration(400L);
+                    ddVar.f36147o0.setInterpolator(org.telegram.ui.Components.st.e);
+                    ddVar.f36147o0.start();
                     frameLayout.addView(ddVar.m0, new ViewGroup.LayoutParams(-1, -1));
                     AndroidUtilities.runOnUIThread(new ic(ddVar, 0));
                     return;
@@ -112,8 +112,8 @@ public final class ga extends org.telegram.ui.ActionBar.j {
                     yoVar.finishFragment();
                     return;
                 } else if (i10 == 1) {
-                    org.telegram.ui.Components.as asVar = yoVar.f43479r;
-                    if (asVar == null || asVar.f24710c <= 0.0f) {
+                    org.telegram.ui.Components.as asVar = yoVar.f43443r;
+                    if (asVar == null || asVar.f24703c <= 0.0f) {
                         yoVar.Y();
                         return;
                     }
@@ -194,7 +194,7 @@ public final class ga extends org.telegram.ui.ActionBar.j {
                 }
                 return;
             case 13:
-                if (i10 == -1 && (runnable = ((org.telegram.ui.Components.dg0) obj).f25595r) != null) {
+                if (i10 == -1 && (runnable = ((org.telegram.ui.Components.dg0) obj).f25588r) != null) {
                     AndroidUtilities.runOnUIThread(runnable);
                     return;
                 }
@@ -275,12 +275,12 @@ public final class ga extends org.telegram.ui.ActionBar.j {
                         nzVar.c0();
                         return;
                     } else if (Math.abs(nzVar.T - 0.5f) < 0.1f) {
-                        for (int i12 = 0; i12 < nzVar.f39609a.getChildCount(); i12++) {
-                            View childAt = nzVar.f39609a.getChildAt(i12);
-                            nzVar.f39609a.getClass();
+                        for (int i12 = 0; i12 < nzVar.f39601a.getChildCount(); i12++) {
+                            View childAt = nzVar.f39601a.getChildAt(i12);
+                            nzVar.f39601a.getClass();
                             if (RecyclerView.R(childAt) == nzVar.L && (childAt instanceof org.telegram.ui.Components.h10)) {
-                                int i13 = -nzVar.f39615s;
-                                nzVar.f39615s = i13;
+                                int i13 = -nzVar.f39607s;
+                                nzVar.f39607s = i13;
                                 AndroidUtilities.shakeViewSpring(childAt, i13);
                                 return;
                             }

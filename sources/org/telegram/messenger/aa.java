@@ -1,40 +1,28 @@
 package org.telegram.messenger;
 
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-public final class aa implements Utilities.Callback2 {
-    public final int f17859a;
-    public final MessagesController f17860b;
+import android.content.Context;
+public final class aa implements Runnable {
+    public final int f17852a;
+    public final Context f17853b;
+    public final org.telegram.ui.ActionBar.b2 f17854c;
 
-    public aa(MessagesController messagesController, int i10) {
-        this.f17859a = i10;
-        this.f17860b = messagesController;
+    public aa(int i10, Context context, org.telegram.ui.ActionBar.b2 b2Var) {
+        this.f17852a = i10;
+        this.f17853b = context;
+        this.f17854c = b2Var;
     }
 
     @Override
-    public final void run(Object obj, Object obj2) {
-        switch (this.f17859a) {
+    public final void run() {
+        switch (this.f17852a) {
             case 0:
-                this.f17860b.lambda$updateWebBrowserSettings$520((TL_account.WebBrowserSettings) obj, (TLRPC.TL_error) obj2);
+                MessagesController.lambda$convertToMegaGroup$261(this.f17853b, this.f17854c);
                 return;
             case 1:
-                this.f17860b.lambda$removeWebBrowserException$518((TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
-                return;
-            case 2:
-                this.f17860b.lambda$addWebBrowserException$516((TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
-                return;
-            case 3:
-                this.f17860b.lambda$loadStakeDiceInfo$510((TLRPC.EmojiGameInfo) obj, (TLRPC.TL_error) obj2);
-                return;
-            case 4:
-                this.f17860b.lambda$deleteReactionsFromMessage$131((TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
-                return;
-            case 5:
-                this.f17860b.lambda$loadWebBrowserConfig$512((Long) obj, (TL_account.TL_webBrowserSettings) obj2);
+                MessagesController.lambda$convertToGigaGroup$266(this.f17853b, this.f17854c);
                 return;
             default:
-                this.f17860b.lambda$clearAllWebBrowserExceptions$519((TL_account.WebBrowserSettings) obj, (TLRPC.TL_error) obj2);
+                SecretChatHelper.lambda$startSecretChat$24(this.f17853b, this.f17854c);
                 return;
         }
     }

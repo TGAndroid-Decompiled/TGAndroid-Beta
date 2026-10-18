@@ -1,25 +1,11 @@
 package sg;
-public class e0 {
-    public final int f46264a;
-    public final int f46265b;
-    public final String f46266c;
-    public final String d;
-    public final int e;
-    public boolean f46267f;
+public final class e0 extends f0 {
+    public final int f46237g;
+    public final boolean h;
 
-    public e0(int i10, int i11, int i12, String str, String str2) {
-        this.f46264a = i10;
-        this.f46265b = i11;
-        this.f46266c = str;
-        this.d = str2;
-        this.e = i12;
-    }
-
-    public static e0 a(int i10, int i11) {
-        return new e0(i10, i11, -1, null, null);
-    }
-
-    public static e0 b(int i10, int i11, String str) {
-        return new e0(i10, -1, i11, null, str);
+    public e0(int i10, boolean z10) {
+        super(-1, -1, -1, null, null);
+        this.f46237g = i10;
+        this.h = z10;
     }
 }

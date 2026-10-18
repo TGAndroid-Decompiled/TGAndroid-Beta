@@ -5,25 +5,25 @@ import java.util.ArrayList;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class uj0 implements Runnable {
-    public final int f42021a;
-    public final NotificationsCustomSettingsActivity f42022b;
-    public final View f42023c;
+    public final int f41979a;
+    public final NotificationsCustomSettingsActivity f41980b;
+    public final View f41981c;
     public final int d;
 
     public uj0(NotificationsCustomSettingsActivity notificationsCustomSettingsActivity, View view, int i10, int i11) {
-        this.f42021a = i11;
-        this.f42022b = notificationsCustomSettingsActivity;
-        this.f42023c = view;
+        this.f41979a = i11;
+        this.f41980b = notificationsCustomSettingsActivity;
+        this.f41981c = view;
         this.d = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f42021a) {
+        switch (this.f41979a) {
             case 0:
-                NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = this.f42022b;
+                NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = this.f41980b;
                 ArrayList arrayList = notificationsCustomSettingsActivity.I;
-                View view = this.f42023c;
+                View view = this.f41981c;
                 if (view instanceof org.telegram.ui.Cells.x8) {
                     int i10 = this.d;
                     if (i10 >= 0 && i10 < arrayList.size()) {
@@ -35,13 +35,13 @@ public final class uj0 implements Runnable {
                 notificationsCustomSettingsActivity.l0(true);
                 return;
             case 1:
-                NotificationsCustomSettingsActivity notificationsCustomSettingsActivity2 = this.f42022b;
+                NotificationsCustomSettingsActivity notificationsCustomSettingsActivity2 = this.f41980b;
                 ArrayList arrayList2 = notificationsCustomSettingsActivity2.I;
-                View view2 = this.f42023c;
+                View view2 = this.f41981c;
                 if (view2 instanceof org.telegram.ui.Cells.ba) {
                     int i11 = this.d;
                     if (i11 >= 0 && i11 < arrayList2.size()) {
-                        ((zj0) arrayList2.get(i11)).f43779f = notificationsCustomSettingsActivity2.g0();
+                        ((zj0) arrayList2.get(i11)).f43739f = notificationsCustomSettingsActivity2.g0();
                     }
                     org.telegram.ui.Cells.ba baVar = (org.telegram.ui.Cells.ba) view2;
                     baVar.c(LocaleController.getString("PopupNotification", R.string.PopupNotification), notificationsCustomSettingsActivity2.g0(), true, baVar.h);
@@ -50,13 +50,13 @@ public final class uj0 implements Runnable {
                 notificationsCustomSettingsActivity2.l0(true);
                 return;
             default:
-                NotificationsCustomSettingsActivity notificationsCustomSettingsActivity3 = this.f42022b;
+                NotificationsCustomSettingsActivity notificationsCustomSettingsActivity3 = this.f41980b;
                 ArrayList arrayList3 = notificationsCustomSettingsActivity3.I;
-                View view3 = this.f42023c;
+                View view3 = this.f41981c;
                 if (view3 instanceof org.telegram.ui.Cells.ba) {
                     int i12 = this.d;
                     if (i12 >= 0 && i12 < arrayList3.size()) {
-                        ((zj0) arrayList3.get(i12)).f43779f = notificationsCustomSettingsActivity3.h0();
+                        ((zj0) arrayList3.get(i12)).f43739f = notificationsCustomSettingsActivity3.h0();
                     }
                     org.telegram.ui.Cells.ba baVar2 = (org.telegram.ui.Cells.ba) view3;
                     baVar2.c(LocaleController.getString("NotificationsImportance", R.string.NotificationsImportance), notificationsCustomSettingsActivity3.h0(), true, baVar2.h);

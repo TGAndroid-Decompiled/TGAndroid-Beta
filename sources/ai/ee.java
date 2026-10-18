@@ -1,7 +1,7 @@
 package ai;
 public final class ee {
-    public boolean f1263a;
-    public boolean f1264b;
-    public long f1265c;
+    public boolean f1266a;
+    public boolean f1267b;
+    public long f1268c;
     public long d;
 }

@@ -11,28 +11,28 @@ import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 public final class f3 extends FrameLayout {
-    public final LinearLayout f36803a;
-    public boolean f36804b;
-    public final org.telegram.ui.Components.w9 f36805c;
+    public final LinearLayout f36787a;
+    public boolean f36788b;
+    public final org.telegram.ui.Components.w9 f36789c;
     public final TextView d;
     public final TextView e;
-    public final TextView f36806f;
+    public final TextView f36790f;
     public final ei.d h;
-    public ValueAnimator f36807n;
-    public boolean f36808r;
+    public ValueAnimator f36791n;
+    public boolean f36792r;
 
     public f3(Context context) {
         super(context);
-        this.f36808r = true;
+        this.f36792r = true;
         setVisibility(8);
         LinearLayout linearLayout = new LinearLayout(context);
-        this.f36803a = linearLayout;
+        this.f36787a = linearLayout;
         linearLayout.setPadding(AndroidUtilities.dp(32.0f), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(32.0f), AndroidUtilities.dp(24.0f));
         linearLayout.setOrientation(1);
         linearLayout.setGravity(3);
         addView(linearLayout, w7.z5.e(-2, -2, 17));
         org.telegram.ui.Components.w9 w9Var = new org.telegram.ui.Components.w9(context);
-        this.f36805c = w9Var;
+        this.f36789c = w9Var;
         linearLayout.addView(w9Var, w7.z5.n(100, 100));
         TextView textView = new TextView(context);
         this.d = textView;
@@ -46,7 +46,7 @@ public final class f3 extends FrameLayout {
         i10.setSingleLine(false);
         i10.setMaxLines(3);
         TextView i11 = com.google.android.gms.internal.play_billing.k3.i(linearLayout, i10, w7.z5.t(-2, -2, 3, 0, 0, 0, 1), context);
-        this.f36806f = i11;
+        this.f36790f = i11;
         i11.setTextSize(1, 12.0f);
         i11.setTextColor(-1);
         i11.setAlpha(0.4f);
@@ -60,19 +60,19 @@ public final class f3 extends FrameLayout {
 
     public final void a(String str, String str2) {
         this.d.setText(LocaleController.getString(R.string.WebErrorTitle));
-        org.telegram.messenger.kk.r(R.string.WebErrorInfoBot, new Object[]{str}, this.e);
-        this.f36806f.setText(str2);
+        org.telegram.messenger.lk.r(R.string.WebErrorInfoBot, new Object[]{str}, this.e);
+        this.f36790f.setText(str2);
     }
 
     public final void b(boolean z10, boolean z11) {
         int i10;
         int i11;
         float f7;
-        if (this.f36808r == z10) {
+        if (this.f36792r == z10) {
             return;
         }
-        this.f36808r = z10;
-        ValueAnimator valueAnimator = this.f36807n;
+        this.f36792r = z10;
+        ValueAnimator valueAnimator = this.f36791n;
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
@@ -87,9 +87,9 @@ public final class f3 extends FrameLayout {
                 f10 = 0.0f;
             }
             ValueAnimator ofFloat = ValueAnimator.ofFloat(f7, f10);
-            this.f36807n = ofFloat;
+            this.f36791n = ofFloat;
             ofFloat.addUpdateListener(new e3(this, 0));
-            this.f36807n.start();
+            this.f36791n.start();
             return;
         }
         int i12 = -1;
@@ -108,15 +108,15 @@ public final class f3 extends FrameLayout {
         if (!z10) {
             i12 = -16777216;
         }
-        this.f36806f.setTextColor(i12);
+        this.f36790f.setTextColor(i12);
     }
 
     @Override
     public void setVisibility(int i10) {
         super.setVisibility(i10);
-        if (i10 == 0 && !this.f36804b) {
-            this.f36804b = true;
-            MediaDataController.getInstance(UserConfig.selectedAccount).setPlaceholderImage(this.f36805c, "tg_placeholders_android", "🧐", "100_100");
+        if (i10 == 0 && !this.f36788b) {
+            this.f36788b = true;
+            MediaDataController.getInstance(UserConfig.selectedAccount).setPlaceholderImage(this.f36789c, "tg_placeholders_android", "🧐", "100_100");
         }
     }
 }

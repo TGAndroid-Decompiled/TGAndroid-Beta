@@ -5,10 +5,10 @@ import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 public final class cd implements org.telegram.ui.ActionBar.d6 {
-    public final dd f35930a;
+    public final dd f35884a;
 
     public cd(dd ddVar) {
-        this.f35930a = ddVar;
+        this.f35884a = ddVar;
     }
 
     @Override
@@ -18,7 +18,7 @@ public final class cd implements org.telegram.ui.ActionBar.d6 {
 
     @Override
     public final boolean a() {
-        return this.f35930a.J;
+        return this.f35884a.J;
     }
 
     @Override
@@ -28,20 +28,20 @@ public final class cd implements org.telegram.ui.ActionBar.d6 {
 
     @Override
     public final Drawable getDrawable(String str) {
-        dd ddVar = this.f35930a;
-        Drawable drawable = ddVar.f36188x0;
-        Drawable drawable2 = ddVar.f36186w0;
+        dd ddVar = this.f35884a;
+        Drawable drawable = ddVar.f36160x0;
+        Drawable drawable2 = ddVar.f36158w0;
         if (str.equals("drawableMsgIn")) {
-            return ddVar.f36181s0;
+            return ddVar.f36153s0;
         }
         if (str.equals("drawableMsgInSelected")) {
-            return ddVar.f36182t0;
+            return ddVar.f36154t0;
         }
         if (str.equals("drawableMsgOut")) {
-            return ddVar.f36183u0;
+            return ddVar.f36155u0;
         }
         if (str.equals("drawableMsgOutSelected")) {
-            return ddVar.f36184v0;
+            return ddVar.f36156v0;
         }
         if (str.equals("drawableMsgOutCheckRead")) {
             drawable2.setColorFilter(u(org.telegram.ui.ActionBar.h6.La), PorterDuff.Mode.MULTIPLY);
@@ -50,7 +50,7 @@ public final class cd implements org.telegram.ui.ActionBar.d6 {
             drawable.setColorFilter(u(org.telegram.ui.ActionBar.h6.La), PorterDuff.Mode.MULTIPLY);
             return drawable;
         } else {
-            org.telegram.ui.ActionBar.d6 d6Var = ddVar.f36177q0;
+            org.telegram.ui.ActionBar.d6 d6Var = ddVar.f36149q0;
             if (d6Var != null) {
                 return d6Var.getDrawable(str);
             }
@@ -60,13 +60,13 @@ public final class cd implements org.telegram.ui.ActionBar.d6 {
 
     @Override
     public final ColorFilter j() {
-        return org.telegram.ui.ActionBar.h6.f21323v3;
+        return org.telegram.ui.ActionBar.h6.f21316v3;
     }
 
     @Override
     public final Paint n(String str) {
         if (str.equals("paintDivider")) {
-            return this.f35930a.f36190y0;
+            return this.f35884a.f36162y0;
         }
         return org.telegram.ui.ActionBar.h6.T0(str);
     }
@@ -83,12 +83,12 @@ public final class cd implements org.telegram.ui.ActionBar.d6 {
 
     @Override
     public final int u(int i10) {
-        dd ddVar = this.f35930a;
-        int indexOfKey = ddVar.f36179r0.indexOfKey(i10);
+        dd ddVar = this.f35884a;
+        int indexOfKey = ddVar.f36151r0.indexOfKey(i10);
         if (indexOfKey >= 0) {
-            return ddVar.f36179r0.valueAt(indexOfKey);
+            return ddVar.f36151r0.valueAt(indexOfKey);
         }
-        org.telegram.ui.ActionBar.d6 d6Var = ddVar.f36177q0;
+        org.telegram.ui.ActionBar.d6 d6Var = ddVar.f36149q0;
         if (d6Var != null) {
             return d6Var.u(i10);
         }

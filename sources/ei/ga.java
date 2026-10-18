@@ -11,38 +11,38 @@ import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ey;
 public final class ga implements Runnable {
-    public final int f9078a = 0;
-    public final long f9079b;
-    public final boolean f9080c;
+    public final int f9076a = 0;
+    public final long f9077b;
+    public final boolean f9078c;
     public final boolean d;
     public final NotificationCenter.NotificationCenterDelegate e;
-    public final TLObject f9081f;
+    public final TLObject f9079f;
     public final TLObject h;
 
     public ga(vb vbVar, boolean z10, TL_stories.StoryItem storyItem, long j10, TLRPC.InputGroupCall inputGroupCall, boolean z11) {
         this.e = vbVar;
-        this.f9080c = z10;
-        this.f9081f = storyItem;
-        this.f9079b = j10;
+        this.f9078c = z10;
+        this.f9079f = storyItem;
+        this.f9077b = j10;
         this.h = inputGroupCall;
         this.d = z11;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f9078a;
+        int i10 = this.f9076a;
         TLObject tLObject = this.h;
-        TLObject tLObject2 = this.f9081f;
+        TLObject tLObject2 = this.f9079f;
         NotificationCenter.NotificationCenterDelegate notificationCenterDelegate = this.e;
         switch (i10) {
             case 0:
                 vb vbVar = (vb) notificationCenterDelegate;
                 TL_stories.StoryItem storyItem = (TL_stories.StoryItem) tLObject2;
                 TLRPC.InputGroupCall inputGroupCall = (TLRPC.InputGroupCall) tLObject;
-                boolean z10 = this.f9080c;
-                long j10 = this.f9079b;
+                boolean z10 = this.f9078c;
+                long j10 = this.f9077b;
                 if (!z10) {
-                    ci.h1.W = new ci.h1(vbVar.f9953b, vbVar.f9957c, storyItem, j10, storyItem.f20513id, z10, inputGroupCall, true, this.d);
+                    ci.h1.W = new ci.h1(vbVar.f9951b, vbVar.f9955c, storyItem, j10, storyItem.f20506id, z10, inputGroupCall, true, this.d);
                 }
                 qb qbVar = vbVar.F;
                 if (qbVar != null) {
@@ -58,15 +58,15 @@ public final class ga implements Runnable {
                 org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
                 storyItem.dialogId = j10;
                 storyItem.justUploaded = true;
-                U.getOrCreateStoryViewer().F(vbVar.f9953b, storyItem, null);
-                NotificationCenter.getInstance(vbVar.f9957c).lambda$postNotificationNameOnUIThread$1(NotificationCenter.liveStoryUpdated, Long.valueOf(inputGroupCall.f20296id));
+                U.getOrCreateStoryViewer().F(vbVar.f9951b, storyItem, null);
+                NotificationCenter.getInstance(vbVar.f9955c).lambda$postNotificationNameOnUIThread$1(NotificationCenter.liveStoryUpdated, Long.valueOf(inputGroupCall.f20289id));
                 return;
             default:
                 ey eyVar = (ey) notificationCenterDelegate;
                 TLRPC.Chat chat = (TLRPC.Chat) tLObject2;
                 TLRPC.User user = (TLRPC.User) tLObject;
-                long j11 = this.f9079b;
-                boolean z11 = this.f9080c;
+                long j11 = this.f9077b;
+                boolean z11 = this.f9078c;
                 if (chat != null) {
                     eyVar.getClass();
                     if (ChatObject.isNotInChat(chat)) {
@@ -77,7 +77,7 @@ public final class ga implements Runnable {
                 } else {
                     eyVar.getMessagesController().deleteDialog(j11, 0, z11);
                     if (user != null && user.bot && this.d) {
-                        eyVar.getMessagesController().blockPeer(user.f20426id);
+                        eyVar.getMessagesController().blockPeer(user.f20419id);
                     }
                 }
                 eyVar.getMessagesController().checkIfFolderEmpty(eyVar.W2);
@@ -87,9 +87,9 @@ public final class ga implements Runnable {
 
     public ga(ey eyVar, TLRPC.Chat chat, long j10, boolean z10, TLRPC.User user, boolean z11) {
         this.e = eyVar;
-        this.f9081f = chat;
-        this.f9079b = j10;
-        this.f9080c = z10;
+        this.f9079f = chat;
+        this.f9077b = j10;
+        this.f9078c = z10;
         this.h = user;
         this.d = z11;
     }

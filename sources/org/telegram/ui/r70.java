@@ -16,30 +16,30 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class r70 extends FrameLayout implements org.telegram.ui.ActionBar.y5 {
-    public final Paint f40617a;
-    public final Path f40618b;
-    public final ImageView f40619c;
+    public final Paint f40583a;
+    public final Path f40584b;
+    public final ImageView f40585c;
     public final ei.e2 d;
     public GradientDrawable e;
-    public final t70 f40620f;
+    public final t70 f40586f;
 
     public r70(t70 t70Var, Context context, org.telegram.ui.ActionBar.v1 v1Var) {
         super(context);
         int i10;
-        this.f40620f = t70Var;
-        this.f40617a = new Paint(1);
-        this.f40618b = new Path();
+        this.f40586f = t70Var;
+        this.f40583a = new Paint(1);
+        this.f40584b = new Path();
         setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(3.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(3.0f));
         setClipChildren(false);
         setClipToPadding(false);
         ImageView imageView = new ImageView(context);
-        this.f40619c = imageView;
+        this.f40585c = imageView;
         imageView.setImageResource(R.drawable.outline_search_1_24);
         int i11 = org.telegram.ui.ActionBar.h6.G6;
         imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.m1(0.6f, t70Var.getThemedColor(i11)), PorterDuff.Mode.SRC_IN));
-        addView(imageView, w7.z5.a(24.0f, 11.0f, 8.0f, 11.0f, 8.0f, 24, 51));
+        addView(imageView, w7.z5.d(24, 24.0f, 51, 11.0f, 8.0f, 11.0f, 8.0f));
         v1Var.setClipChildren(true);
-        addView(v1Var, w7.z5.a(-1.0f, 0.0f, 0.0f, 0.0f, 40.0f, -1, 119));
+        addView(v1Var, w7.z5.d(-1, -1.0f, 119, 0.0f, 0.0f, 0.0f, 40.0f));
         ei.e2 e2Var = new ei.e2(this, context, 7);
         this.d = e2Var;
         e2Var.setHint(LocaleController.getString(R.string.Search));
@@ -66,13 +66,13 @@ public final class r70 extends FrameLayout implements org.telegram.ui.ActionBar.
         }
         e2Var.setTextColor(t70Var.getThemedColor(i11));
         e2Var.setHintTextColor(t70Var.getThemedColor(org.telegram.ui.ActionBar.h6.H6));
-        addView(e2Var, w7.z5.a(40.0f, 0.0f, 0.0f, 0.0f, 0.0f, -1, 55));
+        addView(e2Var, w7.z5.d(-1, 40.0f, 55, 0.0f, 0.0f, 0.0f, 0.0f));
         d();
     }
 
     @Override
     public final void d() {
-        int themedColor = this.f40620f.getThemedColor(org.telegram.ui.ActionBar.h6.f20935a7);
+        int themedColor = this.f40586f.getThemedColor(org.telegram.ui.ActionBar.h6.f20928a7);
         this.e = new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, new int[]{org.telegram.ui.ActionBar.h6.m1(1.0f, themedColor), org.telegram.ui.ActionBar.h6.m1(0.0f, themedColor)});
     }
 
@@ -80,19 +80,19 @@ public final class r70 extends FrameLayout implements org.telegram.ui.ActionBar.
     public final void dispatchDraw(Canvas canvas) {
         float dpf2 = AndroidUtilities.dpf2(2.0f);
         float dpf22 = AndroidUtilities.dpf2(0.33f);
-        Paint paint = this.f40617a;
+        Paint paint = this.f40583a;
         paint.setShadowLayer(dpf2, 0.0f, dpf22, 285212672);
-        int i10 = org.telegram.ui.ActionBar.h6.f20993d6;
-        t70 t70Var = this.f40620f;
+        int i10 = org.telegram.ui.ActionBar.h6.f20986d6;
+        t70 t70Var = this.f40586f;
         paint.setColor(t70Var.getThemedColor(i10));
         RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(3.0f), getWidth() - AndroidUtilities.dp(12.0f), AndroidUtilities.dp(3.0f) + t70Var.f41629b.e + AndroidUtilities.dp(3.0f));
-        Path path = this.f40618b;
+        rectF.set(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(3.0f), getWidth() - AndroidUtilities.dp(12.0f), AndroidUtilities.dp(3.0f) + t70Var.f41594b.e + AndroidUtilities.dp(3.0f));
+        Path path = this.f40584b;
         path.rewind();
         path.addRoundRect(rectF, AndroidUtilities.dp(20.0f), AndroidUtilities.dp(20.0f), Path.Direction.CW);
         GradientDrawable gradientDrawable = this.e;
         if (gradientDrawable != null) {
-            gradientDrawable.setBounds(0, 0, getWidth(), Math.min(getHeight(), AndroidUtilities.dp(24.0f) + ((int) t70Var.f41629b.e)));
+            gradientDrawable.setBounds(0, 0, getWidth(), Math.min(getHeight(), AndroidUtilities.dp(24.0f) + ((int) t70Var.f41594b.e)));
             this.e.draw(canvas);
         }
         canvas.save();
@@ -104,7 +104,7 @@ public final class r70 extends FrameLayout implements org.telegram.ui.ActionBar.
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j10) {
-        if (view == this.f40620f.e) {
+        if (view == this.f40586f.e) {
             canvas.save();
             canvas.clipRect(view.getX(), view.getY(), view.getX() + view.getWidth(), view.getY() + view.getHeight());
             boolean drawChild = super.drawChild(canvas, view, j10);

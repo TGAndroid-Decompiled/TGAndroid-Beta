@@ -8,19 +8,19 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 public final class t9 implements RequestDelegate {
-    public final int f2217a;
-    public final v9 f2218b;
+    public final int f2218a;
+    public final v9 f2219b;
 
     public t9(v9 v9Var, int i10) {
-        this.f2217a = i10;
-        this.f2218b = v9Var;
+        this.f2218a = i10;
+        this.f2219b = v9Var;
     }
 
     @Override
     public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f2217a) {
+        switch (this.f2218a) {
             case 0:
-                final v9 v9Var = this.f2218b;
+                final v9 v9Var = this.f2219b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -45,7 +45,7 @@ public final class t9 implements RequestDelegate {
                                         if (v9Var2.e(tL_starGiftCollection.collection_id) == null) {
                                             y9 y9Var = new y9(i11, j10, false);
                                             int i13 = tL_starGiftCollection.collection_id;
-                                            y9Var.f2492c = true;
+                                            y9Var.f2493c = true;
                                             y9Var.d = i13;
                                             v9Var2.h.put(Integer.valueOf(i13), y9Var);
                                         }
@@ -92,7 +92,7 @@ public final class t9 implements RequestDelegate {
                 });
                 return;
             case 1:
-                final v9 v9Var2 = this.f2218b;
+                final v9 v9Var2 = this.f2219b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -117,7 +117,7 @@ public final class t9 implements RequestDelegate {
                                         if (v9Var22.e(tL_starGiftCollection.collection_id) == null) {
                                             y9 y9Var = new y9(i11, j10, false);
                                             int i13 = tL_starGiftCollection.collection_id;
-                                            y9Var.f2492c = true;
+                                            y9Var.f2493c = true;
                                             y9Var.d = i13;
                                             v9Var22.h.put(Integer.valueOf(i13), y9Var);
                                         }
@@ -164,7 +164,7 @@ public final class t9 implements RequestDelegate {
                 });
                 return;
             default:
-                final v9 v9Var3 = this.f2218b;
+                final v9 v9Var3 = this.f2219b;
                 v9Var3.getClass();
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
@@ -190,7 +190,7 @@ public final class t9 implements RequestDelegate {
                                         if (v9Var22.e(tL_starGiftCollection.collection_id) == null) {
                                             y9 y9Var = new y9(i11, j10, false);
                                             int i13 = tL_starGiftCollection.collection_id;
-                                            y9Var.f2492c = true;
+                                            y9Var.f2493c = true;
                                             y9Var.d = i13;
                                             v9Var22.h.put(Integer.valueOf(i13), y9Var);
                                         }

@@ -8,13 +8,13 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.sn;
 public final class p5 extends sn {
-    public final Utilities.Callback2 Qc;
-    public final f6 Rc;
+    public final Utilities.Callback2 Rc;
+    public final f6 Sc;
 
     public p5(f6 f6Var, Utilities.Callback2 callback2) {
         super(null);
-        this.Rc = f6Var;
-        this.Qc = callback2;
+        this.Sc = f6Var;
+        this.Rc = callback2;
     }
 
     @Override
@@ -50,24 +50,24 @@ public final class p5 extends sn {
                 if (tL_geoPointAddress != null) {
                     tL_mediaAreaGeoPoint3.flags |= 1;
                 }
-                Utilities.globalQueue.postRunnable(new ci.v7(27, messageMedia, tL_mediaAreaGeoPoint3));
+                Utilities.globalQueue.postRunnable(new ci.u7(27, messageMedia, tL_mediaAreaGeoPoint3));
                 tL_mediaAreaGeoPoint = tL_mediaAreaGeoPoint3;
             }
             tL_mediaAreaGeoPoint2 = tL_mediaAreaGeoPoint;
         } else {
             return;
         }
-        this.Qc.run(messageMedia, tL_mediaAreaGeoPoint2);
+        this.Rc.run(messageMedia, tL_mediaAreaGeoPoint2);
     }
 
     @Override
     public final Activity getParentActivity() {
-        return AndroidUtilities.findActivity(this.Rc.getContext());
+        return AndroidUtilities.findActivity(this.Sc.getContext());
     }
 
     @Override
     public final org.telegram.ui.ActionBar.d6 getResourceProvider() {
-        return this.Rc.G1;
+        return this.Sc.G1;
     }
 
     @Override

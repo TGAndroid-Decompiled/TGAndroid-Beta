@@ -11,43 +11,43 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class sl0 extends FrameLayout {
-    public final int f41157a;
-    public Object f41158b;
-    public float f41159c;
+    public final int f41122a;
+    public Object f41123b;
+    public float f41124c;
     public final KeyEvent.Callback d;
 
     public sl0(Context context, EditTextBoldCursor editTextBoldCursor, int i10) {
         super(context);
-        this.f41157a = i10;
+        this.f41122a = i10;
         this.d = editTextBoldCursor;
     }
 
     @Override
     public void onDraw(Canvas canvas) {
-        switch (this.f41157a) {
+        switch (this.f41122a) {
             case 0:
-                if (((StaticLayout) this.f41158b) != null) {
+                if (((StaticLayout) this.f41123b) != null) {
                     canvas.save();
-                    canvas.translate(AndroidUtilities.dp(21.0f) + this.f41159c, ((EditTextBoldCursor) this.d).getLineY() + AndroidUtilities.dp(3.0f));
-                    ((StaticLayout) this.f41158b).draw(canvas);
+                    canvas.translate(AndroidUtilities.dp(21.0f) + this.f41124c, ((EditTextBoldCursor) this.d).getLineY() + AndroidUtilities.dp(3.0f));
+                    ((StaticLayout) this.f41123b).draw(canvas);
                     canvas.restore();
                     return;
                 }
                 return;
             case 1:
-                if (((StaticLayout) this.f41158b) != null) {
+                if (((StaticLayout) this.f41123b) != null) {
                     canvas.save();
-                    canvas.translate(AndroidUtilities.dp(21.0f) + this.f41159c, ((EditTextBoldCursor) this.d).getLineY() + AndroidUtilities.dp(3.0f));
-                    ((StaticLayout) this.f41158b).draw(canvas);
+                    canvas.translate(AndroidUtilities.dp(21.0f) + this.f41124c, ((EditTextBoldCursor) this.d).getLineY() + AndroidUtilities.dp(3.0f));
+                    ((StaticLayout) this.f41123b).draw(canvas);
                     canvas.restore();
                     return;
                 }
                 return;
             case 2:
-                if (((StaticLayout) this.f41158b) != null) {
+                if (((StaticLayout) this.f41123b) != null) {
                     canvas.save();
-                    canvas.translate(AndroidUtilities.dp(21.0f) + this.f41159c, ((EditTextBoldCursor) this.d).getLineY() + AndroidUtilities.dp(3.0f));
-                    ((StaticLayout) this.f41158b).draw(canvas);
+                    canvas.translate(AndroidUtilities.dp(21.0f) + this.f41124c, ((EditTextBoldCursor) this.d).getLineY() + AndroidUtilities.dp(3.0f));
+                    ((StaticLayout) this.f41123b).draw(canvas);
                     canvas.restore();
                     return;
                 }
@@ -61,27 +61,27 @@ public final class sl0 extends FrameLayout {
     @Override
     public final void onMeasure(int i10, int i11) {
         org.telegram.ui.Components.fj0 fj0Var;
-        switch (this.f41157a) {
+        switch (this.f41122a) {
             case 0:
                 int size = View.MeasureSpec.getSize(i10) - AndroidUtilities.dp(34.0f);
                 StaticLayout errorLayout = ((EditTextBoldCursor) this.d).getErrorLayout(size);
-                this.f41158b = errorLayout;
+                this.f41123b = errorLayout;
                 if (errorLayout != null) {
                     int lineCount = errorLayout.getLineCount();
                     int i12 = 0;
                     if (lineCount > 1) {
-                        i11 = View.MeasureSpec.makeMeasureSpec((((StaticLayout) this.f41158b).getLineBottom(lineCount - 1) - ((StaticLayout) this.f41158b).getLineBottom(0)) + AndroidUtilities.dp(64.0f), 1073741824);
+                        i11 = View.MeasureSpec.makeMeasureSpec((((StaticLayout) this.f41123b).getLineBottom(lineCount - 1) - ((StaticLayout) this.f41123b).getLineBottom(0)) + AndroidUtilities.dp(64.0f), 1073741824);
                     }
                     if (LocaleController.isRTL) {
                         float f7 = 0.0f;
                         while (true) {
                             if (i12 < lineCount) {
-                                if (((StaticLayout) this.f41158b).getLineLeft(i12) != 0.0f) {
-                                    this.f41159c = 0.0f;
+                                if (((StaticLayout) this.f41123b).getLineLeft(i12) != 0.0f) {
+                                    this.f41124c = 0.0f;
                                 } else {
-                                    f7 = Math.max(f7, ((StaticLayout) this.f41158b).getLineWidth(i12));
+                                    f7 = Math.max(f7, ((StaticLayout) this.f41123b).getLineWidth(i12));
                                     if (i12 == lineCount - 1) {
-                                        this.f41159c = size - f7;
+                                        this.f41124c = size - f7;
                                     }
                                     i12++;
                                 }
@@ -94,23 +94,23 @@ public final class sl0 extends FrameLayout {
             case 1:
                 int size2 = View.MeasureSpec.getSize(i10) - AndroidUtilities.dp(34.0f);
                 StaticLayout errorLayout2 = ((EditTextBoldCursor) this.d).getErrorLayout(size2);
-                this.f41158b = errorLayout2;
+                this.f41123b = errorLayout2;
                 if (errorLayout2 != null) {
                     int lineCount2 = errorLayout2.getLineCount();
                     int i13 = 0;
                     if (lineCount2 > 1) {
-                        i11 = View.MeasureSpec.makeMeasureSpec((((StaticLayout) this.f41158b).getLineBottom(lineCount2 - 1) - ((StaticLayout) this.f41158b).getLineBottom(0)) + AndroidUtilities.dp(64.0f), 1073741824);
+                        i11 = View.MeasureSpec.makeMeasureSpec((((StaticLayout) this.f41123b).getLineBottom(lineCount2 - 1) - ((StaticLayout) this.f41123b).getLineBottom(0)) + AndroidUtilities.dp(64.0f), 1073741824);
                     }
                     if (LocaleController.isRTL) {
                         float f10 = 0.0f;
                         while (true) {
                             if (i13 < lineCount2) {
-                                if (((StaticLayout) this.f41158b).getLineLeft(i13) != 0.0f) {
-                                    this.f41159c = 0.0f;
+                                if (((StaticLayout) this.f41123b).getLineLeft(i13) != 0.0f) {
+                                    this.f41124c = 0.0f;
                                 } else {
-                                    f10 = Math.max(f10, ((StaticLayout) this.f41158b).getLineWidth(i13));
+                                    f10 = Math.max(f10, ((StaticLayout) this.f41123b).getLineWidth(i13));
                                     if (i13 == lineCount2 - 1) {
-                                        this.f41159c = size2 - f10;
+                                        this.f41124c = size2 - f10;
                                     }
                                     i13++;
                                 }
@@ -123,23 +123,23 @@ public final class sl0 extends FrameLayout {
             case 2:
                 int size3 = View.MeasureSpec.getSize(i10) - AndroidUtilities.dp(34.0f);
                 StaticLayout errorLayout3 = ((EditTextBoldCursor) this.d).getErrorLayout(size3);
-                this.f41158b = errorLayout3;
+                this.f41123b = errorLayout3;
                 if (errorLayout3 != null) {
                     int lineCount3 = errorLayout3.getLineCount();
                     int i14 = 0;
                     if (lineCount3 > 1) {
-                        i11 = View.MeasureSpec.makeMeasureSpec((((StaticLayout) this.f41158b).getLineBottom(lineCount3 - 1) - ((StaticLayout) this.f41158b).getLineBottom(0)) + AndroidUtilities.dp(64.0f), 1073741824);
+                        i11 = View.MeasureSpec.makeMeasureSpec((((StaticLayout) this.f41123b).getLineBottom(lineCount3 - 1) - ((StaticLayout) this.f41123b).getLineBottom(0)) + AndroidUtilities.dp(64.0f), 1073741824);
                     }
                     if (LocaleController.isRTL) {
                         float f11 = 0.0f;
                         while (true) {
                             if (i14 < lineCount3) {
-                                if (((StaticLayout) this.f41158b).getLineLeft(i14) != 0.0f) {
-                                    this.f41159c = 0.0f;
+                                if (((StaticLayout) this.f41123b).getLineLeft(i14) != 0.0f) {
+                                    this.f41124c = 0.0f;
                                 } else {
-                                    f11 = Math.max(f11, ((StaticLayout) this.f41158b).getLineWidth(i14));
+                                    f11 = Math.max(f11, ((StaticLayout) this.f41123b).getLineWidth(i14));
                                     if (i14 == lineCount3 - 1) {
-                                        this.f41159c = size3 - f11;
+                                        this.f41124c = size3 - f11;
                                     }
                                     i14++;
                                 }
@@ -152,9 +152,9 @@ public final class sl0 extends FrameLayout {
             default:
                 super.onMeasure(i10, i11);
                 org.telegram.ui.Components.xj0 xj0Var = ((org.telegram.ui.Components.fj0) this.d).h;
-                float measuredHeight = (fj0Var.f26268f / 768.0f) * ((ig.k) this.f41158b).getMeasuredHeight();
-                if (this.f41159c != measuredHeight) {
-                    this.f41159c = measuredHeight;
+                float measuredHeight = (fj0Var.f26261f / 768.0f) * ((ig.k) this.f41123b).getMeasuredHeight();
+                if (this.f41124c != measuredHeight) {
+                    this.f41124c = measuredHeight;
                     ViewGroup.LayoutParams layoutParams = xj0Var.getLayoutParams();
                     int i15 = (int) measuredHeight;
                     xj0Var.getLayoutParams().width = i15;
@@ -168,8 +168,8 @@ public final class sl0 extends FrameLayout {
 
     public sl0(org.telegram.ui.Components.fj0 fj0Var, Context context, ig.k kVar) {
         super(context);
-        this.f41157a = 3;
+        this.f41122a = 3;
         this.d = fj0Var;
-        this.f41158b = kVar;
+        this.f41123b = kVar;
     }
 }

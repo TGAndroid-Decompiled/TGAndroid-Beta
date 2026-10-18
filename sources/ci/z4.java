@@ -1,18 +1,39 @@
 package ci;
 
-import android.content.Context;
-import android.view.View;
-public final class z4 extends q5 {
-    public final u5 X2;
+import android.animation.ValueAnimator;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.AndroidUtilities;
+public final class z4 extends s4.r0 {
+    public final t5 f6176a;
 
-    public z4(u5 u5Var, Context context, b bVar) {
-        super(u5Var, context, bVar, 0);
-        this.X2 = u5Var;
+    public z4(t5 t5Var) {
+        this.f6176a = t5Var;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        this.X2.f6053n = View.MeasureSpec.getSize(i11);
-        super.onMeasure(i10, i11);
+    public final void a(RecyclerView recyclerView, int i10) {
+        t5 t5Var = this.f6176a;
+        if (i10 == 0) {
+            t5Var.V = true;
+            t5Var.invalidate();
+        }
+        if (i10 == 1) {
+            t5Var.V = false;
+            a5.a aVar = t5Var.d;
+            ValueAnimator valueAnimator = (ValueAnimator) aVar.f281c;
+            if (valueAnimator != null) {
+                valueAnimator.removeAllListeners();
+                ((ValueAnimator) aVar.f281c).cancel();
+                aVar.f281c = null;
+            }
+            AndroidUtilities.hideKeyboard(t5Var);
+        }
+    }
+
+    @Override
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        t5 t5Var = this.f6176a;
+        t5Var.c();
+        t5Var.invalidate();
     }
 }

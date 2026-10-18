@@ -15,20 +15,20 @@ import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.bs;
 public final class t7 extends FrameLayout {
-    public final int f9857a;
-    public final org.telegram.ui.Components.h9 f9858b;
-    public final org.telegram.ui.Components.w9 f9859c;
+    public final int f9855a;
+    public final org.telegram.ui.Components.h9 f9856b;
+    public final org.telegram.ui.Components.w9 f9857c;
     public final TextView d;
     public ViewPropertyAnimator e;
 
     public t7(Activity activity, int i10) {
         super(activity);
-        this.f9857a = i10;
-        this.f9858b = new org.telegram.ui.Components.h9((org.telegram.ui.ActionBar.d6) null);
+        this.f9855a = i10;
+        this.f9856b = new org.telegram.ui.Components.h9((org.telegram.ui.ActionBar.d6) null);
         org.telegram.ui.Components.w9 w9Var = new org.telegram.ui.Components.w9(activity);
-        this.f9859c = w9Var;
+        this.f9857c = w9Var;
         w9Var.setRoundRadius(AndroidUtilities.dp(15.0f));
-        addView(w9Var, w7.z5.a(30.0f, 14.0f, 0.0f, 0.0f, 0.0f, 30, 19));
+        addView(w9Var, w7.z5.d(30, 30.0f, 19, 14.0f, 0.0f, 0.0f, 0.0f));
         TextView textView = new TextView(activity);
         this.d = textView;
         textView.setTextSize(1, 14.0f);
@@ -37,11 +37,11 @@ public final class t7 extends FrameLayout {
         textView.setSingleLine();
         textView.setLines(1);
         textView.setEllipsize(TextUtils.TruncateAt.END);
-        addView(textView, w7.z5.a(-2.0f, 53.0f, 11.33f, 12.0f, 0.0f, -1, 51));
+        addView(textView, w7.z5.d(-1, -2.0f, 51, 53.0f, 11.33f, 12.0f, 0.0f));
         TextView textView2 = new TextView(activity);
         textView2.setTextSize(1, 12.0f);
         textView2.setTextColor(org.telegram.ui.ActionBar.h6.m1(0.85f, -1));
-        addView(textView2, w7.z5.a(-2.0f, 53.0f, 29.33f, 12.0f, 0.0f, -1, 51));
+        addView(textView2, w7.z5.d(-1, -2.0f, 51, 53.0f, 29.33f, 12.0f, 0.0f));
         textView2.setText(AndroidUtilities.replaceArrows(LocaleController.getString(R.string.LiveStoryPeerChange), false, AndroidUtilities.dp(2.6666667f), AndroidUtilities.dp(0.33f), 1.0f));
         set(null);
     }
@@ -78,7 +78,7 @@ public final class t7 extends FrameLayout {
     public void set(TLRPC.InputPeer inputPeer) {
         long peerDialogId;
         String str;
-        int i10 = this.f9857a;
+        int i10 = this.f9855a;
         if (inputPeer == null) {
             peerDialogId = UserConfig.getInstance(i10).getClientUserId();
         } else {
@@ -86,8 +86,8 @@ public final class t7 extends FrameLayout {
         }
         int i11 = (peerDialogId > 0L ? 1 : (peerDialogId == 0L ? 0 : -1));
         TextView textView = this.d;
-        org.telegram.ui.Components.w9 w9Var = this.f9859c;
-        org.telegram.ui.Components.h9 h9Var = this.f9858b;
+        org.telegram.ui.Components.w9 w9Var = this.f9857c;
+        org.telegram.ui.Components.h9 h9Var = this.f9856b;
         if (i11 >= 0) {
             TLRPC.User user = MessagesController.getInstance(i10).getUser(Long.valueOf(peerDialogId));
             h9Var.r(user);

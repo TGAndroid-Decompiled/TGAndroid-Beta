@@ -2,13 +2,13 @@ package i2;
 
 import android.util.Pair;
 public abstract class a extends b2.o1 {
-    public static final int f12309g = 0;
+    public static final int f12307g = 0;
     public final int e;
-    public final u2.h1 f12310f;
+    public final u2.j1 f12308f;
 
-    public a(u2.h1 h1Var) {
-        this.f12310f = h1Var;
-        this.e = h1Var.getLength();
+    public a(u2.j1 j1Var) {
+        this.f12308f = j1Var;
+        this.e = j1Var.getLength();
     }
 
     @Override
@@ -18,7 +18,7 @@ public abstract class a extends b2.o1 {
             return -1;
         }
         if (z10) {
-            i10 = this.f12310f.b();
+            i10 = this.f12308f.b();
         } else {
             i10 = 0;
         }
@@ -54,15 +54,15 @@ public abstract class a extends b2.o1 {
         if (i11 == 0) {
             return -1;
         }
-        u2.h1 h1Var = this.f12310f;
+        u2.j1 j1Var = this.f12308f;
         if (z10) {
-            i10 = h1Var.h();
+            i10 = j1Var.h();
         } else {
             i10 = i11 - 1;
         }
         while (x(i10).p()) {
             if (z10) {
-                i10 = h1Var.d(i10);
+                i10 = j1Var.d(i10);
                 continue;
             } else if (i10 > 0) {
                 i10--;
@@ -176,7 +176,7 @@ public abstract class a extends b2.o1 {
 
     public final int w(int i10, boolean z10) {
         if (z10) {
-            return this.f12310f.e(i10);
+            return this.f12308f.e(i10);
         }
         if (i10 < this.e - 1) {
             return i10 + 1;

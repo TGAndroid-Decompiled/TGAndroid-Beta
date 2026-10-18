@@ -30,11 +30,11 @@ public final class b0 extends md.i implements td.p {
     public final Object invoke(Object obj, Object obj2) {
         switch (this.f370a) {
             case 0:
-                id.i iVar = id.i.f12777a;
+                id.i iVar = id.i.f12775a;
                 ((b0) create((n1.b) obj, (kd.c) obj2)).invokeSuspend(iVar);
                 return iVar;
             default:
-                return ((b0) create((k1.a0) obj, (kd.c) obj2)).invokeSuspend(id.i.f12777a);
+                return ((b0) create((k1.a0) obj, (kd.c) obj2)).invokeSuspend(id.i.f12775a);
         }
     }
 
@@ -45,16 +45,16 @@ public final class b0 extends md.i implements td.p {
         Object obj2 = this.f372c;
         switch (i10) {
             case 0:
-                ld.a aVar = ld.a.f16000a;
+                ld.a aVar = ld.a.f15998a;
                 i8.b(obj);
                 n1.b bVar = (n1.b) this.f371b;
                 bVar.getClass();
                 n1.d key = x.f473a;
                 kotlin.jvm.internal.i.e(key, "key");
                 bVar.b(key, (String) obj2);
-                return id.i.f12777a;
+                return id.i.f12775a;
             default:
-                ld.a aVar2 = ld.a.f16000a;
+                ld.a aVar2 = ld.a.f15998a;
                 i8.b(obj);
                 k1.a0 a0Var = (k1.a0) this.f371b;
                 k1.a0 a0Var2 = (k1.a0) obj2;

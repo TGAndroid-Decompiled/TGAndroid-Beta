@@ -5,6 +5,6 @@ public abstract class n0 {
 
     static {
         int i10 = g2.f4293c;
-        f4307b = ie.d.f12795c;
+        f4307b = ie.d.f12793c;
     }
 }

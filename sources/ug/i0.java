@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import ci.o1;
+import ci.n1;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
@@ -21,7 +21,7 @@ import org.telegram.ui.Components.x90;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.sa1;
 import w7.z5;
-public final class i0 extends sg.l1 {
+public final class i0 extends sg.m1 {
     public final ArrayList Q0;
 
     public i0(n2 n2Var, int i10, ArrayList arrayList, d6 d6Var) {
@@ -36,40 +36,40 @@ public final class i0 extends sg.l1 {
         wg.a aVar = new wg.a(getContext(), this.resourcesProvider);
         aVar.setOnClickListener(new hg.r0(this, 23));
         aVar.setCloseStyle(true);
-        this.containerView.addView(aVar, z5.a(64.0f, 0.0f, 0.0f, 0.0f, 0.0f, -1, 80));
+        this.containerView.addView(aVar, z5.d(-1, 64.0f, 80, 0.0f, 0.0f, 0.0f, 0.0f));
         im0 im0Var = this.d;
         int i11 = this.backgroundPaddingLeft;
         im0Var.setPadding(i11, 0, i11, AndroidUtilities.dp(64.0f));
         Context context = getContext();
-        int i12 = h0.f47725f;
+        int i12 = h0.f47678f;
         FrameLayout frameLayout = new FrameLayout(context);
         frameLayout.setClipChildren(false);
         FrameLayout frameLayout2 = new FrameLayout(context);
         frameLayout2.setClipChildren(false);
         if (arrayList2.size() == 1) {
-            frameLayout.addView(frameLayout2, z5.a(94.0f, 0.0f, 0.0f, 0.0f, 0.0f, -1, 0));
+            frameLayout.addView(frameLayout2, z5.d(-1, 94.0f, 0, 0.0f, 0.0f, 0.0f, 0.0f));
             h0 h0Var = new h0(context, 47.0f);
             h0Var.d = false;
             TLRPC.User user = (TLRPC.User) arrayList2.get(0);
             h9 h9Var = h0Var.e;
             h9Var.r(user);
-            h0Var.f47726a.e(user, h9Var);
+            h0Var.f47679a.e(user, h9Var);
             frameLayout2.addView(h0Var, 0, z5.e(94, 94, 17));
         } else {
-            frameLayout.addView(frameLayout2, z5.a(83.0f, 0.0f, 0.0f, 0.0f, 0.0f, -1, 0));
+            frameLayout.addView(frameLayout2, z5.d(-1, 83.0f, 0, 0.0f, 0.0f, 0.0f, 0.0f));
             int i13 = 0;
             for (int i14 = 0; i14 < arrayList2.size(); i14++) {
                 TLRPC.User user2 = (TLRPC.User) arrayList2.get(i14);
                 h0 h0Var2 = new h0(context, 41.5f);
                 h9 h9Var2 = h0Var2.e;
                 h9Var2.r(user2);
-                h0Var2.f47726a.e(user2, h9Var2);
+                h0Var2.f47679a.e(user2, h9Var2);
                 frameLayout2.addView(h0Var2, 0, z5.e(83, 83, 17));
                 h0Var2.setTranslationX(AndroidUtilities.dp(29.0f) * (-i14));
                 if (i14 == 0 && arrayList2.size() > 3) {
-                    g0 g0Var = h0Var2.f47727b;
+                    g0 g0Var = h0Var2.f47680b;
                     g0Var.setAlpha(1.0f);
-                    g0Var.f47724b = arrayList2.size() - 3;
+                    g0Var.f47677b = arrayList2.size() - 3;
                 }
                 i13++;
                 if (i14 == 2) {
@@ -96,9 +96,9 @@ public final class i0 extends sg.l1 {
     @Override
     public final void W(int i10, View view) {
         if (i10 == 0) {
-            view.setOutlineProvider(new o1(21));
+            view.setOutlineProvider(new n1(21));
             view.setClipToOutline(true);
-            view.setBackgroundColor(h6.w0(h6.f20935a7, this.resourcesProvider));
+            view.setBackgroundColor(h6.w0(h6.f20928a7, this.resourcesProvider));
             ((ViewGroup.MarginLayoutParams) view.getLayoutParams()).topMargin = -AndroidUtilities.dp(6.0f);
         }
     }
@@ -167,13 +167,13 @@ public final class i0 extends sg.l1 {
 
     @Override
     public final void c0() {
-        this.f46348f0 = 1;
-        this.f46349g0 = 0;
-        this.f46352j0 = 1;
+        this.f46325f0 = 1;
+        this.f46326g0 = 0;
+        this.f46329j0 = 1;
         int size = this.X.size();
         int i10 = 1 + size;
-        this.f46353k0 = i10;
-        this.f46348f0 = size + 2;
-        this.f46355n0 = i10;
+        this.f46330k0 = i10;
+        this.f46325f0 = size + 2;
+        this.f46332n0 = i10;
     }
 }

@@ -6,20 +6,20 @@ import android.view.inputmethod.InputConnection;
 import android.view.inputmethod.InputConnectionWrapper;
 import android.view.inputmethod.InputContentInfo;
 public final class c extends InputConnectionWrapper {
-    public final e f46907a;
+    public final e f46860a;
 
     public c(InputConnection inputConnection, e eVar) {
         super(inputConnection, false);
-        this.f46907a = eVar;
+        this.f46860a = eVar;
     }
 
     @Override
     public final boolean commitContent(InputContentInfo inputContentInfo, int i10, Bundle bundle) {
-        j jVar = null;
+        i iVar = null;
         if (inputContentInfo != null && Build.VERSION.SDK_INT >= 25) {
-            jVar = new j(new g(inputContentInfo));
+            iVar = new i(new g(inputContentInfo));
         }
-        if (this.f46907a.f(jVar, i10, bundle)) {
+        if (this.f46860a.f(iVar, i10, bundle)) {
             return true;
         }
         return super.commitContent(inputContentInfo, i10, bundle);

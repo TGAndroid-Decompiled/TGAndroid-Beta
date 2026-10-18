@@ -4,11 +4,11 @@ import android.app.Activity;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLRPC;
 public final class oy0 extends org.telegram.ui.Components.dr0 {
-    public final py0 f39922b1;
+    public final py0 f39883b1;
 
     public oy0(py0 py0Var, Activity activity, String str) {
         super(activity, null, str, false, null, false, null);
-        this.f39922b1 = py0Var;
+        this.f39883b1 = py0Var;
     }
 
     @Override

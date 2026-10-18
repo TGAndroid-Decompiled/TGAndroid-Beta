@@ -3,25 +3,25 @@ package org.telegram.ui;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class hz implements org.telegram.ui.ActionBar.a2 {
-    public final int f37708a;
-    public final EditTextBoldCursor f37709b;
+    public final int f37670a;
+    public final EditTextBoldCursor f37671b;
 
     public hz(int i10, EditTextBoldCursor editTextBoldCursor) {
-        this.f37708a = i10;
-        this.f37709b = editTextBoldCursor;
+        this.f37670a = i10;
+        this.f37671b = editTextBoldCursor;
     }
 
     @Override
     public final void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f37708a) {
+        switch (this.f37670a) {
             case 0:
-                AndroidUtilities.hideKeyboard(this.f37709b);
+                AndroidUtilities.hideKeyboard(this.f37671b);
                 return;
             case 1:
-                AndroidUtilities.hideKeyboard(this.f37709b);
+                AndroidUtilities.hideKeyboard(this.f37671b);
                 return;
             default:
-                AndroidUtilities.hideKeyboard(this.f37709b);
+                AndroidUtilities.hideKeyboard(this.f37671b);
                 return;
         }
     }

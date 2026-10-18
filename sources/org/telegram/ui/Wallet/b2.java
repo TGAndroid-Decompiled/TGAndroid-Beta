@@ -3,49 +3,49 @@ package org.telegram.ui.Wallet;
 import org.json.JSONObject;
 import org.telegram.tgnet.tl.TL_wallet;
 public final class b2 {
-    public final TL_wallet.tonConnectSession f34016a;
-    public final int f34017b;
-    public final int f34018c;
+    public final TL_wallet.tonConnectSession f33997a;
+    public final int f33998b;
+    public final int f33999c;
     public final String d;
     public final String e;
-    public final e2 f34019f;
-    public final byte[] f34020g;
+    public final e2 f34000f;
+    public final byte[] f34001g;
     public final String h;
-    public final String f34021i;
-    public final String f34022j;
-    public final String f34023k;
-    public final int f34024l;
-    public boolean f34025m;
-    public boolean f34026n;
-    public boolean f34027o;
-    public boolean f34028p;
-    public boolean f34029q;
-    public Runnable f34030r;
+    public final String f34002i;
+    public final String f34003j;
+    public final String f34004k;
+    public final int f34005l;
+    public boolean f34006m;
+    public boolean f34007n;
+    public boolean f34008o;
+    public boolean f34009p;
+    public boolean f34010q;
+    public Runnable f34011r;
 
     public b2(TL_wallet.tonConnectPending tonconnectpending, TL_wallet.tonConnectRequest tonconnectrequest, JSONObject jSONObject, String str, byte[] bArr) {
         e2 e2Var;
-        this.f34016a = tonconnectpending.session;
-        this.f34017b = tonconnectrequest.msg_id;
-        this.f34018c = tonconnectrequest.expires;
+        this.f33997a = tonconnectpending.session;
+        this.f33998b = tonconnectrequest.msg_id;
+        this.f33999c = tonconnectrequest.expires;
         tonconnectrequest.body.clone();
-        this.f34021i = tonconnectrequest.trace_id;
+        this.f34002i = tonconnectrequest.trace_id;
         this.d = jSONObject.getString("id");
         this.e = jSONObject.optString("method");
         int optInt = jSONObject.optInt("errorCode", -1);
-        this.f34024l = optInt;
+        this.f34005l = optInt;
         String str2 = null;
-        this.f34022j = jSONObject.optString("errorMessage", null);
+        this.f34003j = jSONObject.optString("errorMessage", null);
         if (optInt < 0 && jSONObject.has("transaction")) {
             e2Var = new e2(jSONObject.getJSONObject("transaction"));
         } else {
             e2Var = null;
         }
-        this.f34019f = e2Var;
+        this.f34000f = e2Var;
         if (optInt < 0 && jSONObject.has("data")) {
             str2 = jSONObject.getJSONObject("data").toString();
         }
-        this.f34023k = str2;
+        this.f34004k = str2;
         this.h = str;
-        this.f34020g = (byte[]) bArr.clone();
+        this.f34001g = (byte[]) bArr.clone();
     }
 }

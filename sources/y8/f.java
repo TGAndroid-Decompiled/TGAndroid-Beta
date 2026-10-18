@@ -4,17 +4,17 @@ import android.os.Parcel;
 import android.os.Parcelable;
 public final class f extends o6.a implements x8.b, x8.d {
     public static final Parcelable.Creator<f> CREATOR = new c(2);
-    public final String f50045a;
-    public final String f50046b;
-    public final String f50047c;
+    public final String f49998a;
+    public final String f49999b;
+    public final String f50000c;
 
     public f(String str, String str2, String str3) {
         n6.l.h(str);
-        this.f50045a = str;
+        this.f49998a = str;
         n6.l.h(str2);
-        this.f50046b = str2;
+        this.f49999b = str2;
         n6.l.h(str3);
-        this.f50047c = str3;
+        this.f50000c = str3;
     }
 
     public final boolean equals(Object obj) {
@@ -25,18 +25,18 @@ public final class f extends o6.a implements x8.b, x8.d {
             return false;
         }
         f fVar = (f) obj;
-        if (this.f50045a.equals(fVar.f50045a) && n6.l.l(fVar.f50046b, this.f50046b) && n6.l.l(fVar.f50047c, this.f50047c)) {
+        if (this.f49998a.equals(fVar.f49998a) && n6.l.l(fVar.f49999b, this.f49999b) && n6.l.l(fVar.f50000c, this.f50000c)) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return this.f50045a.hashCode();
+        return this.f49998a.hashCode();
     }
 
     public final String toString() {
-        String str = this.f50045a;
+        String str = this.f49998a;
         int i10 = 0;
         for (char c10 : str.toCharArray()) {
             i10 += c10;
@@ -46,15 +46,15 @@ public final class f extends o6.a implements x8.b, x8.d {
         if (length > 25) {
             trim = trim.substring(0, 10) + "..." + trim.substring(length - 10, length) + "::" + i10;
         }
-        return a1.g.s(a1.g.w("Channel{token=", trim, ", nodeId=", this.f50046b, ", path="), this.f50047c, "}");
+        return a1.g.s(a1.g.w("Channel{token=", trim, ", nodeId=", this.f49999b, ", path="), this.f50000c, "}");
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         int q6 = w7.f0.q(parcel, 20293);
-        w7.f0.l(parcel, 2, this.f50045a);
-        w7.f0.l(parcel, 3, this.f50046b);
-        w7.f0.l(parcel, 4, this.f50047c);
+        w7.f0.l(parcel, 2, this.f49998a);
+        w7.f0.l(parcel, 3, this.f49999b);
+        w7.f0.l(parcel, 4, this.f50000c);
         w7.f0.r(parcel, q6);
     }
 }

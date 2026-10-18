@@ -5,49 +5,49 @@ import java.util.WeakHashMap;
 import r0.i0;
 import r0.l0;
 public final class h implements Runnable {
-    public final int f10679a;
-    public final r f10680b;
+    public final int f10677a;
+    public final r f10678b;
 
     public h(r rVar, int i10) {
-        this.f10679a = i10;
-        this.f10680b = rVar;
+        this.f10677a = i10;
+        this.f10678b = rVar;
     }
 
     @Override
     public final void run() {
         ViewGroup viewGroup;
-        int i10 = this.f10679a;
-        r rVar = this.f10680b;
+        int i10 = this.f10677a;
+        r rVar = this.f10678b;
         switch (i10) {
             case 0:
-                if ((rVar.f10715i0 & 1) != 0) {
+                if ((rVar.f10713i0 & 1) != 0) {
                     rVar.k(0);
                 }
-                if ((rVar.f10715i0 & 4096) != 0) {
+                if ((rVar.f10713i0 & 4096) != 0) {
                     rVar.k(108);
                 }
-                rVar.f10714h0 = false;
-                rVar.f10715i0 = 0;
+                rVar.f10712h0 = false;
+                rVar.f10713i0 = 0;
                 return;
             default:
-                rVar.E.showAtLocation(rVar.f10727y, 55, 0, 0);
+                rVar.E.showAtLocation(rVar.f10725y, 55, 0, 0);
                 l0 l0Var = rVar.G;
                 if (l0Var != null) {
                     l0Var.b();
                 }
                 if (rVar.I && (viewGroup = rVar.J) != null) {
-                    WeakHashMap weakHashMap = i0.f44864a;
+                    WeakHashMap weakHashMap = i0.f44818a;
                     if (viewGroup.isLaidOut()) {
-                        rVar.f10727y.setAlpha(0.0f);
-                        l0 a2 = i0.a(rVar.f10727y);
+                        rVar.f10725y.setAlpha(0.0f);
+                        l0 a2 = i0.a(rVar.f10725y);
                         a2.a(1.0f);
                         rVar.G = a2;
                         a2.d(new i(this, 0));
                         return;
                     }
                 }
-                rVar.f10727y.setAlpha(1.0f);
-                rVar.f10727y.setVisibility(0);
+                rVar.f10725y.setAlpha(1.0f);
+                rVar.f10725y.setVisibility(0);
                 return;
         }
     }

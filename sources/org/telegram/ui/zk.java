@@ -3,14 +3,14 @@ package org.telegram.ui;
 import android.graphics.Canvas;
 import android.graphics.RectF;
 public final class zk implements org.telegram.ui.Components.bl0 {
-    public final sn f43782a;
+    public final sn f43742a;
 
     public zk(sn snVar) {
-        this.f43782a = snVar;
+        this.f43742a = snVar;
     }
 
     @Override
-    public final boolean h() {
+    public final boolean j() {
         return true;
     }
 
@@ -25,7 +25,7 @@ public final class zk implements org.telegram.ui.Components.bl0 {
     }
 
     @Override
-    public final boolean r() {
+    public final boolean s() {
         return false;
     }
 

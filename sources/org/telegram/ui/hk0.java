@@ -11,10 +11,10 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.Utilities;
 public final class hk0 implements org.telegram.ui.ActionBar.a2, org.telegram.ui.Components.kd0, Utilities.Callback2Return, org.telegram.ui.Components.mw0, q3.g, g2.g, qg.j0 {
-    public final int f37590a;
+    public final int f37552a;
 
     public hk0(int i10) {
-        this.f37590a = i10;
+        this.f37552a = i10;
     }
 
     public static AudioRecordingConfiguration c(Object obj) {
@@ -27,19 +27,17 @@ public final class hk0 implements org.telegram.ui.ActionBar.a2, org.telegram.ui.
 
     @Override
     public Typeface a() {
-        switch (this.f37590a) {
-            case 24:
-                return AndroidUtilities.getTypeface("fonts/rmedium.ttf");
+        switch (this.f37552a) {
             case 25:
-                return AndroidUtilities.getTypeface("fonts/rmediumitalic.ttf");
+                return AndroidUtilities.getTypeface("fonts/rmedium.ttf");
             case 26:
-                return Typeface.create("serif", 1);
+                return AndroidUtilities.getTypeface("fonts/rmediumitalic.ttf");
             case 27:
-                return AndroidUtilities.getTypeface("fonts/rcondensedbold.ttf");
+                return Typeface.create("serif", 1);
             case 28:
-                return AndroidUtilities.getTypeface("fonts/rmono.ttf");
+                return AndroidUtilities.getTypeface("fonts/rcondensedbold.ttf");
             default:
-                return AndroidUtilities.getTypeface("fonts/mw_bold.ttf");
+                return AndroidUtilities.getTypeface("fonts/rmono.ttf");
         }
     }
 
@@ -75,7 +73,7 @@ public final class hk0 implements org.telegram.ui.ActionBar.a2, org.telegram.ui.
 
     @Override
     public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f37590a) {
+        switch (this.f37552a) {
             case 0:
                 b2Var.dismiss();
                 return;
@@ -86,6 +84,7 @@ public final class hk0 implements org.telegram.ui.ActionBar.a2, org.telegram.ui.
             case 10:
             case 11:
             case 12:
+            case 14:
             default:
                 b2Var.dismiss();
                 return;
@@ -107,13 +106,13 @@ public final class hk0 implements org.telegram.ui.ActionBar.a2, org.telegram.ui.
             case 13:
                 b2Var.dismiss();
                 return;
-            case 14:
-                b2Var.dismiss();
-                return;
             case 15:
                 b2Var.dismiss();
                 return;
             case 16:
+                b2Var.dismiss();
+                return;
+            case 17:
                 b2Var.dismiss();
                 return;
         }

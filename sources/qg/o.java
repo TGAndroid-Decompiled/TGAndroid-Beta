@@ -1,39 +1,38 @@
 package qg;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.Rect;
+import android.graphics.Canvas;
 import android.graphics.RectF;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import org.telegram.messenger.AndroidUtilities;
-import rg.y1;
-public final class o extends y1 {
-    public final y f44627y;
+import org.telegram.ui.ActionBar.h6;
+public final class o extends ScrollView {
+    public final LinearLayout f44581a;
+    public final x f44582b;
 
-    public o(y yVar, Context context, Bitmap bitmap) {
+    public o(x xVar, Context context, LinearLayout linearLayout) {
         super(context);
-        this.f44627y = yVar;
-        Paint paint = new Paint(1);
-        this.f45760b = paint;
-        Paint paint2 = new Paint(1);
-        this.f45761c = paint2;
-        Paint paint3 = new Paint(1);
-        this.d = paint3;
-        this.e = 0.5f;
-        this.f45762f = 0.5f;
-        this.h = new Path();
-        this.f45763n = new Rect();
-        this.f45764r = new RectF();
-        this.f45759a = bitmap;
-        Paint.Style style = Paint.Style.STROKE;
-        paint.setStyle(style);
-        paint.setStrokeWidth(AndroidUtilities.dp(4.0f));
-        paint.setColor(-1);
-        paint2.setStyle(style);
-        paint2.setStrokeWidth(AndroidUtilities.dp(1.0f));
-        paint2.setColor(-1711276033);
-        paint3.setStyle(style);
-        paint3.setStrokeWidth(AndroidUtilities.dp(12.0f));
+        this.f44582b = xVar;
+        this.f44581a = linearLayout;
+        setWillNotDraw(false);
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        float y3 = this.f44581a.getY() + AndroidUtilities.dp(1.0f);
+        int dp = AndroidUtilities.dp(36.0f);
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set((getMeasuredWidth() - dp) / 2.0f, y3, (getMeasuredWidth() + dp) / 2.0f, AndroidUtilities.dp(4.0f) + y3);
+        h6.f21276t0.setColor(-10790053);
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), h6.f21276t0);
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
+        ((LinearLayout.LayoutParams) this.f44582b.f44694b.getLayoutParams()).height = (int) (((View.MeasureSpec.getSize(i10) - AndroidUtilities.dp(24.0f)) * 0.8333333f) + AndroidUtilities.dp(88.0f));
     }
 }

@@ -396,10 +396,10 @@ public class NotificationCenter {
 
     public static class DelayedPost {
         private Object[] args;
-        private int f17805id;
+        private int f17801id;
 
         private DelayedPost(int i10, Object[] objArr) {
-            this.f17805id = i10;
+            this.f17801id = i10;
             this.args = objArr;
         }
     }
@@ -943,7 +943,7 @@ public class NotificationCenter {
                 }
             }
             if (j10 != Long.MAX_VALUE) {
-                AndroidUtilities.runOnUIThread(new qg(this, 0), Math.max(17L, 5017 - (elapsedRealtime - j10)));
+                AndroidUtilities.runOnUIThread(new rg(this, 0), Math.max(17L, 5017 - (elapsedRealtime - j10)));
             }
         }
     }
@@ -1035,7 +1035,7 @@ public class NotificationCenter {
     }
 
     public void lambda$checkForExpiredNotifications$0() {
-        this.checkForExpiredNotifications = new qg(this, 1);
+        this.checkForExpiredNotifications = new rg(this, 1);
     }
 
     public static void lambda$listen$4(int i10, Utilities.Callback callback, int i11, int i12, Object[] objArr) {
@@ -1063,9 +1063,9 @@ public class NotificationCenter {
         if (this.alreadyPostedRunnubles.indexOfKey(hashCode) >= 0) {
             return;
         }
-        a5 a5Var = new a5(this, i10, objArr, hashCode);
-        this.alreadyPostedRunnubles.put(hashCode, a5Var);
-        AndroidUtilities.runOnUIThread(a5Var, 250L);
+        b5 b5Var = new b5(this, i10, objArr, hashCode);
+        this.alreadyPostedRunnubles.put(hashCode, b5Var);
+        AndroidUtilities.runOnUIThread(b5Var, 250L);
     }
 
     public static void sanitize() {
@@ -1353,7 +1353,7 @@ public class NotificationCenter {
     }
 
     public void postNotificationNameOnUIThread(int i10, Object... objArr) {
-        AndroidUtilities.runOnUIThread(new t4(this, i10, objArr, 19));
+        AndroidUtilities.runOnUIThread(new u4(this, i10, objArr, 19));
     }
 
     public void removeDelayed(Runnable runnable) {
@@ -1395,7 +1395,7 @@ public class NotificationCenter {
             this.delayedPosts.clear();
             for (int i10 = 0; i10 < this.delayedPostsTmp.size(); i10++) {
                 DelayedPost delayedPost = this.delayedPostsTmp.get(i10);
-                postNotificationNameInternal(delayedPost.f17805id, true, delayedPost.args);
+                postNotificationNameInternal(delayedPost.f17801id, true, delayedPost.args);
             }
             this.delayedPostsTmp.clear();
         }
@@ -1517,9 +1517,9 @@ public class NotificationCenter {
         allowedNotifications.allowedIds = iArr;
         this.allowedNotifications.put(this.animationInProgressPointer, allowedNotifications);
         if (this.checkForExpiredNotifications == null) {
-            qg qgVar = new qg(this, 1);
-            this.checkForExpiredNotifications = qgVar;
-            AndroidUtilities.runOnUIThread(qgVar, 5017L);
+            rg rgVar = new rg(this, 1);
+            this.checkForExpiredNotifications = rgVar;
+            AndroidUtilities.runOnUIThread(rgVar, 5017L);
         }
         return this.animationInProgressPointer;
     }

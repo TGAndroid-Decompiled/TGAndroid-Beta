@@ -2,20 +2,20 @@ package org.telegram.ui.Components;
 
 import java.util.concurrent.atomic.AtomicReference;
 public final class ho implements Runnable {
-    public final int f26916a;
-    public final oo f26917b;
+    public final int f26909a;
+    public final oo f26910b;
 
     public ho(oo ooVar, int i10) {
-        this.f26916a = i10;
-        this.f26917b = ooVar;
+        this.f26909a = i10;
+        this.f26910b = ooVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f26916a) {
+        switch (this.f26909a) {
             case 0:
-                oo ooVar = this.f26917b;
-                AtomicReference atomicReference = ooVar.f29035n;
+                oo ooVar = this.f26910b;
+                AtomicReference atomicReference = ooVar.f29028n;
                 org.telegram.ui.ActionBar.j5 j5Var = (org.telegram.ui.ActionBar.j5) atomicReference.get();
                 if (j5Var != null) {
                     ooVar.removeView(j5Var);
@@ -24,13 +24,13 @@ public final class ho implements Runnable {
                 }
                 return;
             case 1:
-                oo ooVar2 = this.f26917b;
+                oo ooVar2 = this.f26910b;
                 AtomicReference atomicReference2 = ooVar2.v;
                 org.telegram.ui.ActionBar.j5 j5Var2 = (org.telegram.ui.ActionBar.j5) atomicReference2.get();
                 if (j5Var2 != null) {
                     ooVar2.removeView(j5Var2);
                     atomicReference2.set(null);
-                    if (!ooVar2.f29021b) {
+                    if (!ooVar2.f29014b) {
                         ooVar2.setClipChildren(true);
                         return;
                     }
@@ -38,9 +38,9 @@ public final class ho implements Runnable {
                 }
                 return;
             default:
-                oo ooVar3 = this.f26917b;
-                ooVar3.f29032j0 = false;
-                ooVar3.f29030h0.c(false);
+                oo ooVar3 = this.f26910b;
+                ooVar3.f29025j0 = false;
+                ooVar3.f29023h0.c(false);
                 if (ooVar3.a()) {
                     ooVar3.f();
                     return;

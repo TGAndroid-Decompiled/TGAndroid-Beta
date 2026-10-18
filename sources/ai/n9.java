@@ -5,43 +5,43 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class n9 implements Utilities.Callback {
-    public final ga f1908a;
-    public final long f1909b;
-    public final int f1910c;
+    public final ga f1906a;
+    public final long f1907b;
+    public final int f1908c;
     public final boolean[] d;
     public final Utilities.Callback2 e;
-    public final Context f1911f;
-    public final org.telegram.ui.ActionBar.d6 f1912g;
+    public final Context f1909f;
+    public final org.telegram.ui.ActionBar.d6 f1910g;
     public final TLRPC.ChatInvite h;
-    public final String f1913i;
+    public final String f1911i;
 
     public n9(ga gaVar, long j10, int i10, boolean[] zArr, Utilities.Callback2 callback2, Context context, org.telegram.ui.ActionBar.d6 d6Var, TLRPC.ChatInvite chatInvite, String str) {
-        this.f1908a = gaVar;
-        this.f1909b = j10;
-        this.f1910c = i10;
+        this.f1906a = gaVar;
+        this.f1907b = j10;
+        this.f1908c = i10;
         this.d = zArr;
         this.e = callback2;
-        this.f1911f = context;
-        this.f1912g = d6Var;
+        this.f1909f = context;
+        this.f1910g = d6Var;
         this.h = chatInvite;
-        this.f1913i = str;
+        this.f1911i = str;
     }
 
     @Override
     public final void run(Object obj) {
         Utilities.Callback callback = (Utilities.Callback) obj;
-        ga gaVar = this.f1908a;
-        long j10 = gaVar.f1357f.amount;
-        long j11 = this.f1909b;
+        ga gaVar = this.f1906a;
+        long j10 = gaVar.f1355f.amount;
+        long j11 = this.f1907b;
         int i10 = (j10 > j11 ? 1 : (j10 == j11 ? 0 : -1));
         boolean[] zArr = this.d;
         Utilities.Callback2 callback2 = this.e;
         TLRPC.ChatInvite chatInvite = this.h;
-        String str = this.f1913i;
+        String str = this.f1911i;
         if (i10 < 0) {
-            boolean starsPurchaseAvailable = MessagesController.getInstance(this.f1910c).starsPurchaseAvailable();
-            Context context = this.f1911f;
-            org.telegram.ui.ActionBar.d6 d6Var = this.f1912g;
+            boolean starsPurchaseAvailable = MessagesController.getInstance(this.f1908c).starsPurchaseAvailable();
+            Context context = this.f1909f;
+            org.telegram.ui.ActionBar.d6 d6Var = this.f1910g;
             if (!starsPurchaseAvailable) {
                 if (callback != null) {
                     callback.run(Boolean.FALSE);

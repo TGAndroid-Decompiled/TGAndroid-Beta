@@ -8,16 +8,16 @@ import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.le;
 import org.telegram.ui.sn;
 public final class x implements Utilities.Callback {
-    public final z f47819a;
-    public final TL_stories.TL_prepaidStarsGiveaway f47820b;
-    public final long f47821c;
+    public final z f47772a;
+    public final TL_stories.TL_prepaidStarsGiveaway f47773b;
+    public final long f47774c;
     public final long d;
     public final TL_stories.PrepaidGiveaway e;
 
     public x(z zVar, TL_stories.TL_prepaidStarsGiveaway tL_prepaidStarsGiveaway, long j10, long j11, TL_stories.PrepaidGiveaway prepaidGiveaway) {
-        this.f47819a = zVar;
-        this.f47820b = tL_prepaidStarsGiveaway;
-        this.f47821c = j10;
+        this.f47772a = zVar;
+        this.f47773b = tL_prepaidStarsGiveaway;
+        this.f47774c = j10;
         this.d = j11;
         this.e = prepaidGiveaway;
     }
@@ -25,18 +25,18 @@ public final class x implements Utilities.Callback {
     @Override
     public final void run(Object obj) {
         Void r62 = (Void) obj;
-        z zVar = this.f47819a;
+        z zVar = this.f47772a;
         zVar.dismiss();
-        if (this.f47820b != null) {
+        if (this.f47773b != null) {
             n2 U = LaunchActivity.U();
             if (U != null) {
-                sn W9 = sn.W9(this.f47821c);
+                sn W9 = sn.W9(this.f47774c);
                 W9.whenFullyVisible(new le(W9, this.d, 6));
                 U.presentFragment(W9);
                 return;
             }
             return;
         }
-        AndroidUtilities.runOnUIThread(new uf.c(6, zVar, this.e), 220L);
+        AndroidUtilities.runOnUIThread(new u2.q0(7, zVar, this.e), 220L);
     }
 }

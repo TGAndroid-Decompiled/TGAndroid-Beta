@@ -5,16 +5,16 @@ import android.media.AudioRouting;
 import android.media.AudioTrack;
 import android.os.Handler;
 public final class d0 {
-    public final AudioTrack f14671a;
-    public final a6.i f14672b;
-    public final Handler f14673c;
+    public final AudioTrack f14669a;
+    public final a6.i f14670b;
+    public final Handler f14671c;
     public c0 d;
 
     public d0(AudioTrack audioTrack, a6.i iVar) {
-        this.f14671a = audioTrack;
-        this.f14672b = iVar;
+        this.f14669a = audioTrack;
+        this.f14670b = iVar;
         Handler q6 = e2.m0.q(null);
-        this.f14673c = q6;
+        this.f14671c = q6;
         ?? r02 = new AudioRouting.OnRoutingChangedListener() {
             @Override
             public final void onRoutingChanged(AudioRouting audioRouting) {
@@ -32,12 +32,12 @@ public final class d0 {
     public static void a(d0 d0Var, AudioRouting audioRouting) {
         AudioDeviceInfo routedDevice = audioRouting.getRoutedDevice();
         if (routedDevice != null) {
-            d0Var.f14673c.post(new hi.t(18, d0Var, routedDevice));
+            d0Var.f14671c.post(new hi.t(18, d0Var, routedDevice));
         }
     }
 
     public static void b(d0 d0Var) {
-        AudioTrack audioTrack = d0Var.f14671a;
+        AudioTrack audioTrack = d0Var.f14669a;
         c0 c0Var = d0Var.d;
         c0Var.getClass();
         audioTrack.removeOnRoutingChangedListener(c0Var);

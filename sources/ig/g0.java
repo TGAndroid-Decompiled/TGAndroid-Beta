@@ -7,19 +7,19 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.hm0;
 public final class g0 extends hm0 {
-    public final Context f12904c;
+    public final Context f12902c;
     public final ArrayList d = new ArrayList();
     public String e;
-    public final i0 f12905f;
+    public final i0 f12903f;
 
     public g0(i0 i0Var, Context context) {
-        this.f12905f = i0Var;
-        this.f12904c = context;
+        this.f12903f = i0Var;
+        this.f12902c = context;
     }
 
     @Override
     public final boolean D(s4.b1 b1Var) {
-        if (b1Var.f45961f == 0) {
+        if (b1Var.f45913f == 0) {
             return true;
         }
         return false;
@@ -44,7 +44,7 @@ public final class g0 extends hm0 {
     @Override
     public final void l() {
         super.l();
-        this.f12905f.O();
+        this.f12903f.O();
     }
 
     @Override
@@ -55,7 +55,7 @@ public final class g0 extends hm0 {
     @Override
     public final s4.b1 x(ViewGroup viewGroup, int i10) {
         View w1Var;
-        Context context = this.f12904c;
+        Context context = this.f12902c;
         if (i10 != 0) {
             if (i10 != 1) {
                 w1Var = new View(context);
@@ -66,7 +66,7 @@ public final class g0 extends hm0 {
                 w1Var.setTag(-33024);
             }
         } else {
-            w1Var = new w1(context, this.f12905f.f28244a, false);
+            w1Var = new w1(context, this.f12903f.f28237a, false);
         }
         return new s4.b1(w1Var);
     }

@@ -11,15 +11,15 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import org.xmlpull.v1.XmlPullParser;
 public abstract class a {
-    public static ExecutorService f8189a;
-    public static final Object f8190b = new Object();
+    public static ExecutorService f8187a;
+    public static final Object f8188b = new Object();
 
     public static String a(String str, Throwable th2) {
         String replace;
         if (th2 == null) {
             replace = null;
         } else {
-            synchronized (f8190b) {
+            synchronized (f8188b) {
                 Throwable th3 = th2;
                 while (true) {
                     if (th3 != null) {
@@ -48,19 +48,19 @@ public abstract class a {
     }
 
     public static void b(String str, String str2) {
-        synchronized (f8190b) {
+        synchronized (f8188b) {
             Log.d(str, a(str2, null));
         }
     }
 
     public static void c(String str, String str2) {
-        synchronized (f8190b) {
+        synchronized (f8188b) {
             Log.e(str, a(str2, null));
         }
     }
 
     public static void d(String str, String str2, Throwable th2) {
-        synchronized (f8190b) {
+        synchronized (f8188b) {
             Log.e(str, a(str2, th2));
         }
     }
@@ -69,11 +69,11 @@ public abstract class a {
         ExecutorService executorService;
         synchronized (a.class) {
             try {
-                if (f8189a == null) {
-                    String str = m0.f8255a;
-                    f8189a = Executors.newSingleThreadExecutor(new androidx.emoji2.text.a("ExoPlayer:BackgroundExecutor", 1));
+                if (f8187a == null) {
+                    String str = m0.f8253a;
+                    f8187a = Executors.newSingleThreadExecutor(new androidx.emoji2.text.a("ExoPlayer:BackgroundExecutor", 1));
                 }
-                executorService = f8189a;
+                executorService = f8187a;
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -92,7 +92,7 @@ public abstract class a {
     }
 
     public static void g(String str, String str2) {
-        synchronized (f8190b) {
+        synchronized (f8188b) {
             Log.i(str, a(str2, null));
         }
     }
@@ -124,13 +124,13 @@ public abstract class a {
     }
 
     public static void l(String str, String str2) {
-        synchronized (f8190b) {
+        synchronized (f8188b) {
             Log.w(str, a(str2, null));
         }
     }
 
     public static void m(String str, String str2, Throwable th2) {
-        synchronized (f8190b) {
+        synchronized (f8188b) {
             Log.w(str, a(str2, th2));
         }
     }

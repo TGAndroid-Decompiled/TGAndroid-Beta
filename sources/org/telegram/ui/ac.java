@@ -3,20 +3,20 @@ package org.telegram.ui;
 import java.util.concurrent.CountDownLatch;
 import org.telegram.messenger.AndroidUtilities;
 public final class ac implements Runnable {
-    public final int f35406a;
-    public final ec f35407b;
+    public final int f35358a;
+    public final ec f35359b;
 
     public ac(ec ecVar, int i10) {
-        this.f35406a = i10;
-        this.f35407b = ecVar;
+        this.f35358a = i10;
+        this.f35359b = ecVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f35406a) {
+        switch (this.f35358a) {
             case 0:
                 CountDownLatch countDownLatch = new CountDownLatch(2);
-                ec ecVar = this.f35407b;
+                ec ecVar = this.f35359b;
                 ecVar.a(countDownLatch, null);
                 ecVar.b(countDownLatch, null);
                 try {
@@ -26,17 +26,17 @@ public final class ac implements Runnable {
                 AndroidUtilities.runOnUIThread(new ac(ecVar, 3));
                 return;
             case 1:
-                ec ecVar2 = this.f35407b;
+                ec ecVar2 = this.f35359b;
                 ecVar2.H = false;
                 ecVar2.d(true);
                 return;
             case 2:
-                ec ecVar3 = this.f35407b;
+                ec ecVar3 = this.f35359b;
                 ecVar3.H = false;
                 ecVar3.d(true);
                 return;
             default:
-                ec ecVar4 = this.f35407b;
+                ec ecVar4 = this.f35359b;
                 ecVar4.H = false;
                 ecVar4.d(true);
                 return;

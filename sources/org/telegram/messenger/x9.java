@@ -1,45 +1,47 @@
 package org.telegram.messenger;
-public final class x9 implements Runnable {
-    public final int f20070a;
-    public final MessagesController f20071b;
-    public final int f20072c;
-    public final long d;
-    public final long e;
 
-    public x9(int i10, long j10, long j11, MessagesController messagesController) {
-        this.f20070a = 2;
-        this.f20071b = messagesController;
+import java.util.ArrayList;
+public final class x9 implements Runnable {
+    public final int f20059a;
+    public final MessagesController f20060b;
+    public final ArrayList f20061c;
+    public final long d;
+
+    public x9(MessagesController messagesController, long j10, ArrayList arrayList, int i10) {
+        this.f20059a = i10;
+        this.f20060b = messagesController;
         this.d = j10;
-        this.e = j11;
-        this.f20072c = i10;
+        this.f20061c = arrayList;
     }
 
     @Override
     public final void run() {
-        switch (this.f20070a) {
+        switch (this.f20059a) {
             case 0:
-                long j10 = this.d;
-                long j11 = this.e;
-                this.f20071b.lambda$sendTyping$170(this.f20072c, j10, j11);
+                this.f20060b.lambda$deleteMessagesByPush$368(this.f20061c, this.d);
                 return;
             case 1:
-                long j12 = this.d;
-                long j13 = this.e;
-                this.f20071b.lambda$sendTyping$172(this.f20072c, j12, j13);
+                this.f20060b.lambda$markAllTopicsAsRead$7(this.f20061c, this.d);
+                return;
+            case 2:
+                this.f20060b.lambda$getDifference$353(this.d, this.f20061c);
+                return;
+            case 3:
+                this.f20060b.lambda$generateJoinMessage$367(this.d, this.f20061c);
+                return;
+            case 4:
+                this.f20060b.lambda$processUpdateArray$421(this.d, this.f20061c);
                 return;
             default:
-                long j14 = this.e;
-                int i10 = this.f20072c;
-                this.f20071b.lambda$checkDeletingTask$83(this.d, j14, i10);
+                this.f20060b.lambda$getDifference$354(this.d, this.f20061c);
                 return;
         }
     }
 
-    public x9(MessagesController messagesController, int i10, long j10, long j11, int i11) {
-        this.f20070a = i11;
-        this.f20071b = messagesController;
-        this.f20072c = i10;
+    public x9(MessagesController messagesController, ArrayList arrayList, long j10, int i10) {
+        this.f20059a = i10;
+        this.f20060b = messagesController;
+        this.f20061c = arrayList;
         this.d = j10;
-        this.e = j11;
     }
 }

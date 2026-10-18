@@ -19,8 +19,8 @@ public final class h5 extends c91 {
     public final void E(View view, float f7) {
         int i10;
         View view2;
-        yh.l2 l2Var;
-        yh.l2 l2Var2;
+        yh.k2 k2Var;
+        yh.k2 k2Var2;
         k5 k5Var;
         k5 k5Var2;
         k5 k5Var3;
@@ -44,15 +44,15 @@ public final class h5 extends c91 {
             FrameLayout frameLayout = (FrameLayout) view;
             if (frameLayout.getChildCount() > 0) {
                 view2 = frameLayout.getChildAt(0);
-                l2Var = k7Var.f1655c0;
-                if (l2Var != null && view2 == l2Var.Y && (k5Var3 = l2Var.f1659e0) != null) {
+                k2Var = k7Var.f1661c0;
+                if (k2Var != null && view2 == k2Var.Y && (k5Var3 = k2Var.f1665e0) != null) {
                     k5Var3.invalidate();
                 }
-                if (view2 == k7Var.Y && (k5Var2 = k7Var.f1659e0) != null) {
+                if (view2 == k7Var.Y && (k5Var2 = k7Var.f1665e0) != null) {
                     k5Var2.invalidate();
                 }
-                l2Var2 = k7Var.f1657d0;
-                if (l2Var2 == null && view2 == l2Var2.Y && (k5Var = l2Var2.f1659e0) != null) {
+                k2Var2 = k7Var.f1663d0;
+                if (k2Var2 == null && view2 == k2Var2.Y && (k5Var = k2Var2.f1665e0) != null) {
                     k5Var.invalidate();
                     return;
                 }
@@ -60,26 +60,26 @@ public final class h5 extends c91 {
             }
         }
         view2 = null;
-        l2Var = k7Var.f1655c0;
-        if (l2Var != null) {
+        k2Var = k7Var.f1661c0;
+        if (k2Var != null) {
             k5Var3.invalidate();
         }
         if (view2 == k7Var.Y) {
             k5Var2.invalidate();
         }
-        l2Var2 = k7Var.f1657d0;
-        if (l2Var2 == null) {
+        k2Var2 = k7Var.f1663d0;
+        if (k2Var2 == null) {
         }
     }
 
     @Override
     public final void F() {
         super.F();
-        int i10 = this.f25174b;
+        int i10 = this.f25167b;
         k7 k7Var = this.T;
         boolean z10 = false;
         if (i10 != k7Var.Z1(false)) {
-            if (this.f25174b > k7Var.Z1(false)) {
+            if (this.f25167b > k7Var.Z1(false)) {
                 z10 = true;
             }
             AndroidUtilities.runOnUIThread(new ah.t(3, this, z10));
@@ -88,7 +88,7 @@ public final class h5 extends c91 {
 
     @Override
     public final boolean i(MotionEvent motionEvent) {
-        g6 g6Var = this.T.f1654b1;
+        g6 g6Var = this.T.f1660b1;
         if (g6Var != null && !g6Var.c(0)) {
             return false;
         }

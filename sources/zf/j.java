@@ -8,13 +8,13 @@ import org.xml.sax.ContentHandler;
 import org.xml.sax.Locator;
 import org.xml.sax.XMLReader;
 public final class j implements Html.TagHandler, ContentHandler {
-    public final pb.a f51618a;
-    public ContentHandler f51619b;
-    public Editable f51620c;
+    public final pb.a f51571a;
+    public ContentHandler f51572b;
+    public Editable f51573c;
     public final ArrayDeque d = new ArrayDeque();
 
     public j(pb.a aVar) {
-        this.f51618a = aVar;
+        this.f51571a = aVar;
     }
 
     public static String a(String str, Attributes attributes) {
@@ -29,34 +29,34 @@ public final class j implements Html.TagHandler, ContentHandler {
 
     @Override
     public final void characters(char[] cArr, int i10, int i11) {
-        this.f51619b.characters(cArr, i10, i11);
+        this.f51572b.characters(cArr, i10, i11);
     }
 
     @Override
     public final void endDocument() {
-        this.f51619b.endDocument();
+        this.f51572b.endDocument();
     }
 
     @Override
     public final void endElement(String str, String str2, String str3) {
         if (!((Boolean) this.d.removeLast()).booleanValue()) {
-            this.f51619b.endElement(str, str2, str3);
+            this.f51572b.endElement(str, str2, str3);
         }
-        Editable editable = this.f51620c;
-        this.f51618a.getClass();
+        Editable editable = this.f51573c;
+        this.f51571a.getClass();
         pb.a.m0(false, str2, editable, null);
     }
 
     @Override
     public final void endPrefixMapping(String str) {
-        this.f51619b.endPrefixMapping(str);
+        this.f51572b.endPrefixMapping(str);
     }
 
     @Override
     public final void handleTag(boolean z10, String str, Editable editable, XMLReader xMLReader) {
-        if (this.f51619b == null) {
-            this.f51620c = editable;
-            this.f51619b = xMLReader.getContentHandler();
+        if (this.f51572b == null) {
+            this.f51573c = editable;
+            this.f51572b = xMLReader.getContentHandler();
             xMLReader.setContentHandler(this);
             this.d.addLast(Boolean.FALSE);
         }
@@ -64,42 +64,42 @@ public final class j implements Html.TagHandler, ContentHandler {
 
     @Override
     public final void ignorableWhitespace(char[] cArr, int i10, int i11) {
-        this.f51619b.ignorableWhitespace(cArr, i10, i11);
+        this.f51572b.ignorableWhitespace(cArr, i10, i11);
     }
 
     @Override
     public final void processingInstruction(String str, String str2) {
-        this.f51619b.processingInstruction(str, str2);
+        this.f51572b.processingInstruction(str, str2);
     }
 
     @Override
     public final void setDocumentLocator(Locator locator) {
-        this.f51619b.setDocumentLocator(locator);
+        this.f51572b.setDocumentLocator(locator);
     }
 
     @Override
     public final void skippedEntity(String str) {
-        this.f51619b.skippedEntity(str);
+        this.f51572b.skippedEntity(str);
     }
 
     @Override
     public final void startDocument() {
-        this.f51619b.startDocument();
+        this.f51572b.startDocument();
     }
 
     @Override
     public final void startElement(String str, String str2, String str3, Attributes attributes) {
-        Editable editable = this.f51620c;
-        this.f51618a.getClass();
+        Editable editable = this.f51573c;
+        this.f51571a.getClass();
         boolean m0 = pb.a.m0(true, str2, editable, attributes);
         this.d.addLast(Boolean.valueOf(m0));
         if (!m0) {
-            this.f51619b.startElement(str, str2, str3, attributes);
+            this.f51572b.startElement(str, str2, str3, attributes);
         }
     }
 
     @Override
     public final void startPrefixMapping(String str, String str2) {
-        this.f51619b.startPrefixMapping(str, str2);
+        this.f51572b.startPrefixMapping(str, str2);
     }
 }

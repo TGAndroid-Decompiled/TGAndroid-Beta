@@ -9,14 +9,14 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.UserConfig;
 public final class di implements TextWatcher {
-    public boolean f25601a;
-    public boolean f25602b;
-    public final org.telegram.ui.ActionBar.n2 f25603c;
+    public boolean f25594a;
+    public boolean f25595b;
+    public final org.telegram.ui.ActionBar.n2 f25596c;
     public final ti d;
 
     public di(ti tiVar, org.telegram.ui.ActionBar.n2 n2Var) {
         this.d = tiVar;
-        this.f25603c = n2Var;
+        this.f25596c = n2Var;
     }
 
     @Override
@@ -26,24 +26,24 @@ public final class di implements TextWatcher {
         int i10;
         boolean z12;
         ti tiVar = this.d;
-        q6 q6Var = tiVar.f30620s;
+        q6 q6Var = tiVar.f30613s;
         ci ciVar = tiVar.S0;
         int i11 = tiVar.M1;
         q6 q6Var2 = tiVar.v;
-        if (this.f25602b != TextUtils.isEmpty(editable)) {
+        if (this.f25595b != TextUtils.isEmpty(editable)) {
             li liVar = tiVar.B0;
             if (liVar != null) {
                 liVar.D(liVar.getSelectedItemsCount());
             }
-            this.f25602b = !this.f25602b;
+            this.f25595b = !this.f25595b;
         }
         boolean z13 = false;
-        if (this.f25601a) {
+        if (this.f25594a) {
             for (ImageSpan imageSpan : (ImageSpan[]) editable.getSpans(0, editable.length(), ImageSpan.class)) {
                 editable.removeSpan(imageSpan);
             }
             Emoji.replaceEmoji(editable, ciVar.getEditText().getPaint().getFontMetricsInt(), false);
-            this.f25601a = false;
+            this.f25594a = false;
         }
         int codePointCount = Character.codePointCount(editable, 0, editable.length());
         tiVar.L = codePointCount;
@@ -76,10 +76,10 @@ public final class di implements TextWatcher {
             q6Var2.animate().setListener(null).cancel();
             q6Var2.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(100L).start();
             if (i10 < 0) {
-                q6Var2.setTextColor(tiVar.getThemedColor(org.telegram.ui.ActionBar.h6.f21214p7));
+                q6Var2.setTextColor(tiVar.getThemedColor(org.telegram.ui.ActionBar.h6.f21207p7));
                 z11 = false;
             } else {
-                q6Var2.setTextColor(tiVar.getThemedColor(org.telegram.ui.ActionBar.h6.f21381y6));
+                q6Var2.setTextColor(tiVar.getThemedColor(org.telegram.ui.ActionBar.h6.f21374y6));
                 z11 = true;
             }
             q6Var.c(LocaleController.formatNumber(j10, ','), false, true);
@@ -93,11 +93,11 @@ public final class di implements TextWatcher {
             tiVar.X0 = z11;
             tiVar.L0.invalidate();
         }
-        if (!tiVar.f30600l2 && !MessagesController.getInstance(i11).premiumFeaturesBlocked() && !UserConfig.getInstance(i11).isPremium() && tiVar.L > MessagesController.getInstance(i11).captionLengthLimitDefault && tiVar.L < MessagesController.getInstance(i11).captionLengthLimitPremium) {
-            tiVar.f30600l2 = true;
-            tiVar.S1(this.f25603c);
+        if (!tiVar.f30593l2 && !MessagesController.getInstance(i11).premiumFeaturesBlocked() && !UserConfig.getInstance(i11).isPremium() && tiVar.L > MessagesController.getInstance(i11).captionLengthLimitDefault && tiVar.L < MessagesController.getInstance(i11).captionLengthLimitPremium) {
+            tiVar.f30593l2 = true;
+            tiVar.S1(this.f25596c);
         }
-        if (tiVar.f30571c0) {
+        if (tiVar.f30564c0) {
             if (ciVar.getEditText().getLineCount() > 2 && !TextUtils.isEmpty(ciVar.getText().toString().trim())) {
                 z13 = true;
             }
@@ -109,7 +109,7 @@ public final class di implements TextWatcher {
     @Override
     public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
         if (i12 - i11 >= 1) {
-            this.f25601a = true;
+            this.f25594a = true;
         }
         ti tiVar = this.d;
         if (tiVar.E2 == null) {

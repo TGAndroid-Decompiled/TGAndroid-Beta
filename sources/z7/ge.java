@@ -1,12 +1,12 @@
 package z7;
 public final class ge {
-    public final hb f50930a;
-    public final Long f50931b;
-    public final we f50932c;
+    public final hb f50883a;
+    public final Long f50884b;
+    public final we f50885c;
 
-    public ge(t0.h hVar) {
-        this.f50930a = (hb) hVar.f46911b;
-        this.f50931b = (Long) hVar.f46912c;
-        this.f50932c = (we) hVar.d;
+    public ge(u2.c cVar) {
+        this.f50883a = (hb) cVar.f47260b;
+        this.f50884b = (Long) cVar.f47261c;
+        this.f50885c = (we) cVar.d;
     }
 }

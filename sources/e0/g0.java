@@ -3,22 +3,22 @@ package e0;
 import android.app.Notification;
 import android.os.Parcel;
 public final class g0 {
-    public final String f8106a;
-    public final int f8107b;
-    public final String f8108c;
+    public final String f8104a;
+    public final int f8105b;
+    public final String f8106c;
     public final Notification d;
 
     public g0(String str, int i10, String str2, Notification notification) {
-        this.f8106a = str;
-        this.f8107b = i10;
-        this.f8108c = str2;
+        this.f8104a = str;
+        this.f8105b = i10;
+        this.f8106c = str2;
         this.d = notification;
     }
 
     public final void a(b.c cVar) {
-        String str = this.f8106a;
-        int i10 = this.f8107b;
-        String str2 = this.f8108c;
+        String str = this.f8104a;
+        int i10 = this.f8105b;
+        String str2 = this.f8106c;
         b.a aVar = (b.a) cVar;
         aVar.getClass();
         Parcel obtain = Parcel.obtain();
@@ -42,10 +42,10 @@ public final class g0 {
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("NotifyTask[packageName:");
-        sb2.append(this.f8106a);
+        sb2.append(this.f8104a);
         sb2.append(", id:");
-        sb2.append(this.f8107b);
+        sb2.append(this.f8105b);
         sb2.append(", tag:");
-        return a1.g.s(sb2, this.f8108c, "]");
+        return a1.g.s(sb2, this.f8106c, "]");
     }
 }

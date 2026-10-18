@@ -1,44 +1,40 @@
 package org.telegram.ui.Wallet;
-public final class x7 {
-    public float f35096a;
-    public float f35097b;
-    public float f35098c;
-    public float d;
-    public float e;
 
-    public x7(float f7, float f10, float f11) {
-        this.f35097b = f7;
-        this.f35096a = f7;
-        this.d = f10;
-        this.e = f11;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.Components.qc;
+import org.telegram.ui.Components.xc;
+public final class x7 implements Utilities.Callback {
+    public final int f35109a;
+    public final h8 f35110b;
+
+    public x7(h8 h8Var, int i10) {
+        this.f35109a = i10;
+        this.f35110b = h8Var;
     }
 
-    public final void a(float f7) {
-        this.f35097b = f7;
-        this.f35096a = f7;
-        this.f35098c = 0.0f;
-    }
-
-    public final boolean b(float f7) {
-        boolean z10;
-        float sqrt = this.e * 2.0f * ((float) Math.sqrt(this.d));
-        while (f7 > 0.0f) {
-            float min = Math.min(f7, 0.0020833334f);
-            float f10 = this.f35098c;
-            float f11 = this.f35096a;
-            float f12 = ((((f11 - this.f35097b) * (-this.d)) - (sqrt * f10)) * min) + f10;
-            this.f35098c = f12;
-            this.f35096a = (f12 * min) + f11;
-            f7 -= min;
+    @Override
+    public final void run(Object obj) {
+        switch (this.f35109a) {
+            case 0:
+                m0.w(r0.currentAccount).y(new s1(3, this.f35110b, (Utilities.Callback) obj), true, false);
+                return;
+            case 1:
+                String str = (String) obj;
+                h8 h8Var = this.f35110b;
+                if (str != null) {
+                    xc.a0(h8Var).e0(str, false);
+                    return;
+                }
+                qc M = xc.a0(h8Var).M(LocaleController.getString(R.string.WalletBackupEnabled), LocaleController.getString(R.string.WalletBackupEnabledInfo), R.raw.contact_check);
+                M.f29638j = 5000;
+                M.j();
+                h8Var.f31190a.W2.N(true);
+                return;
+            default:
+                h8.a0(this.f35110b, (Boolean) obj);
+                return;
         }
-        if (Math.abs(this.f35096a - this.f35097b) <= 0.002f && Math.abs(this.f35098c) <= 0.02f) {
-            z10 = false;
-        } else {
-            z10 = true;
-        }
-        if (!z10) {
-            a(this.f35097b);
-        }
-        return z10;
     }
 }

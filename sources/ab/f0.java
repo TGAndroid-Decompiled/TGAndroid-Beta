@@ -10,12 +10,12 @@ public final class f0 {
 
     static {
         la.d dVar = new la.d();
-        dVar.d(e0.class, g.f400a);
-        dVar.d(n0.class, h.f403a);
-        dVar.d(j.class, e.f390a);
-        dVar.d(b.class, d.f382a);
-        dVar.d(a.class, c.f373a);
-        dVar.d(q.class, f.f395a);
+        dVar.a(e0.class, g.f400a);
+        dVar.a(n0.class, h.f403a);
+        dVar.a(j.class, e.f390a);
+        dVar.a(b.class, d.f382a);
+        dVar.a(a.class, c.f373a);
+        dVar.a(q.class, f.f395a);
         dVar.d = true;
         f399b = new t1(dVar, 4);
     }
@@ -24,7 +24,7 @@ public final class f0 {
         String valueOf;
         String str;
         hVar.a();
-        Context context = hVar.f15968a;
+        Context context = hVar.f15966a;
         kotlin.jvm.internal.i.d(context, "firebaseApp.applicationContext");
         String packageName = context.getPackageName();
         PackageInfo packageInfo = context.getPackageManager().getPackageInfo(packageName, 0);
@@ -35,7 +35,7 @@ public final class f0 {
         }
         String str2 = valueOf;
         hVar.a();
-        String str3 = hVar.f15970c.f15979b;
+        String str3 = hVar.f15968c.f15977b;
         kotlin.jvm.internal.i.d(str3, "firebaseApp.options.applicationId");
         String MODEL = Build.MODEL;
         kotlin.jvm.internal.i.d(MODEL, "MODEL");

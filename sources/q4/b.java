@@ -10,11 +10,11 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.PriorityQueue;
 public final class b {
-    public static final i f44434f = new i(3);
-    public static final c f44435g = new Object();
-    public final Object f44436a;
-    public final Object f44437b;
-    public final Object f44438c;
+    public static final i f44391f = new i(3);
+    public static final c f44392g = new Object();
+    public final Object f44393a;
+    public final Object f44394b;
+    public final Object f44395c;
     public final Cloneable d;
     public final Object e;
 
@@ -23,7 +23,7 @@ public final class b {
         this.e = new float[3];
         this.d = cVarArr;
         int[] iArr2 = new int[32768];
-        this.f44437b = iArr2;
+        this.f44394b = iArr2;
         for (int i11 = 0; i11 < iArr.length; i11++) {
             int i12 = iArr[i11];
             int b10 = b(Color.blue(i12), 8, 5) | (b(Color.red(i12), 8, 5) << 10) | (b(Color.green(i12), 8, 5) << 5);
@@ -35,7 +35,7 @@ public final class b {
             if (iArr2[i14] > 0) {
                 int rgb = Color.rgb(b((i14 >> 10) & 31, 5, 8), b((i14 >> 5) & 31, 5, 8), b(i14 & 31, 5, 8));
                 float[] fArr = (float[]) this.e;
-                ThreadLocal threadLocal = i0.a.f12285a;
+                ThreadLocal threadLocal = i0.a.f12283a;
                 i0.a.c(fArr, Color.red(rgb), Color.green(rgb), Color.blue(rgb));
                 if (c(fArr)) {
                     iArr2[i14] = 0;
@@ -46,7 +46,7 @@ public final class b {
             }
         }
         int[] iArr3 = new int[i13];
-        this.f44436a = iArr3;
+        this.f44393a = iArr3;
         int i15 = 0;
         for (int i16 = 0; i16 < 32768; i16++) {
             if (iArr2[i16] > 0) {
@@ -55,37 +55,37 @@ public final class b {
             }
         }
         if (i13 <= i10) {
-            this.f44438c = new ArrayList();
+            this.f44395c = new ArrayList();
             for (int i17 = 0; i17 < i13; i17++) {
                 int i18 = iArr3[i17];
-                ((ArrayList) this.f44438c).add(new d(Color.rgb(b((i18 >> 10) & 31, 5, 8), b((i18 >> 5) & 31, 5, 8), b(i18 & 31, 5, 8)), iArr2[i18]));
+                ((ArrayList) this.f44395c).add(new d(Color.rgb(b((i18 >> 10) & 31, 5, 8), b((i18 >> 5) & 31, 5, 8), b(i18 & 31, 5, 8)), iArr2[i18]));
             }
             return;
         }
-        PriorityQueue priorityQueue = new PriorityQueue(i10, f44434f);
-        priorityQueue.offer(new a(this, 0, ((int[]) this.f44436a).length - 1));
+        PriorityQueue priorityQueue = new PriorityQueue(i10, f44391f);
+        priorityQueue.offer(new a(this, 0, ((int[]) this.f44393a).length - 1));
         while (priorityQueue.size() < i10 && (aVar = (a) priorityQueue.poll()) != null) {
-            int i19 = aVar.f44428b;
-            int i20 = aVar.f44427a;
+            int i19 = aVar.f44385b;
+            int i20 = aVar.f44384a;
             if ((i19 + 1) - i20 <= 1) {
                 break;
             }
-            b bVar = aVar.f44433j;
+            b bVar = aVar.f44390j;
             if ((i19 + 1) - i20 > 1) {
                 int i21 = aVar.e - aVar.d;
-                int i22 = aVar.f44431g - aVar.f44430f;
-                int i23 = aVar.f44432i - aVar.h;
+                int i22 = aVar.f44388g - aVar.f44387f;
+                int i23 = aVar.f44389i - aVar.h;
                 int i24 = (i21 < i22 || i21 < i23) ? (i22 < i21 || i22 < i23) ? -1 : -2 : -3;
-                int[] iArr4 = (int[]) bVar.f44436a;
-                int[] iArr5 = (int[]) bVar.f44437b;
+                int[] iArr4 = (int[]) bVar.f44393a;
+                int[] iArr5 = (int[]) bVar.f44394b;
                 a(i24, i20, i19, iArr4);
-                Arrays.sort(iArr4, i20, aVar.f44428b + 1);
-                a(i24, i20, aVar.f44428b, iArr4);
-                int i25 = aVar.f44429c / 2;
+                Arrays.sort(iArr4, i20, aVar.f44385b + 1);
+                a(i24, i20, aVar.f44385b, iArr4);
+                int i25 = aVar.f44386c / 2;
                 int i26 = 0;
                 int i27 = i20;
                 while (true) {
-                    int i28 = aVar.f44428b;
+                    int i28 = aVar.f44385b;
                     if (i27 > i28) {
                         break;
                     }
@@ -96,8 +96,8 @@ public final class b {
                     }
                     i27++;
                 }
-                a aVar2 = new a(bVar, i20 + 1, aVar.f44428b);
-                aVar.f44428b = i20;
+                a aVar2 = new a(bVar, i20 + 1, aVar.f44385b);
+                aVar.f44385b = i20;
                 aVar.a();
                 priorityQueue.offer(aVar2);
                 priorityQueue.offer(aVar);
@@ -109,14 +109,14 @@ public final class b {
         Iterator it = priorityQueue.iterator();
         while (it.hasNext()) {
             a aVar3 = (a) it.next();
-            b bVar2 = aVar3.f44433j;
-            int[] iArr6 = (int[]) bVar2.f44436a;
-            int[] iArr7 = (int[]) bVar2.f44437b;
+            b bVar2 = aVar3.f44390j;
+            int[] iArr6 = (int[]) bVar2.f44393a;
+            int[] iArr7 = (int[]) bVar2.f44394b;
             int i29 = 0;
             int i30 = 0;
             int i31 = 0;
             int i32 = 0;
-            for (int i33 = aVar3.f44427a; i33 <= aVar3.f44428b; i33++) {
+            for (int i33 = aVar3.f44384a; i33 <= aVar3.f44385b; i33++) {
                 int i34 = iArr6[i33];
                 int i35 = iArr7[i34];
                 i30 += i35;
@@ -130,7 +130,7 @@ public final class b {
                 arrayList.add(dVar);
             }
         }
-        this.f44438c = arrayList;
+        this.f44395c = arrayList;
     }
 
     public static void a(int i10, int i11, int i12, int[] iArr) {
@@ -180,10 +180,10 @@ public final class b {
     }
 
     public b(ArrayList arrayList, List list) {
-        this.f44436a = list;
-        this.f44437b = arrayList;
+        this.f44393a = list;
+        this.f44394b = arrayList;
         this.d = new SparseBooleanArray();
-        this.f44438c = new l(0);
+        this.f44395c = new l(0);
         int size = list.size();
         int i10 = Integer.MIN_VALUE;
         d dVar = null;

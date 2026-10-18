@@ -21,35 +21,35 @@ import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.bs;
 import org.telegram.ui.LaunchActivity;
 public final class s2 {
-    public final Context f9769a;
-    public final p2 f9770b;
-    public final p2 f9771c;
+    public final Context f9767a;
+    public final p2 f9768b;
+    public final p2 f9769c;
     public final WindowManager e;
-    public final View f9772f;
-    public final WindowManager.LayoutParams f9773g;
-    public ValueAnimator f9774i;
-    public int f9775j;
-    public int f9776k;
-    public int f9777l;
-    public float f9778m;
-    public int f9779n;
-    public RadialGradient f9783r;
-    public final Paint f9784s;
+    public final View f9770f;
+    public final WindowManager.LayoutParams f9771g;
+    public ValueAnimator f9772i;
+    public int f9773j;
+    public int f9774k;
+    public int f9775l;
+    public float f9776m;
+    public int f9777n;
+    public RadialGradient f9781r;
+    public final Paint f9782s;
     public final ArrayList d = new ArrayList();
     public float h = 0.0f;
-    public float f9780o = 0.75f;
-    public float f9781p = 1.0f;
-    public final Matrix f9782q = new Matrix();
+    public float f9778o = 0.75f;
+    public float f9779p = 1.0f;
+    public final Matrix f9780q = new Matrix();
 
     public s2(Context context, WindowManager windowManager, View view, WindowManager.LayoutParams layoutParams) {
         Paint paint = new Paint(1);
-        this.f9784s = paint;
-        this.f9769a = context;
+        this.f9782s = paint;
+        this.f9767a = context;
         this.e = windowManager;
-        this.f9772f = view;
-        this.f9773g = layoutParams;
-        this.f9770b = new p2(this, context, 0);
-        this.f9771c = new p2(this, context, 1);
+        this.f9770f = view;
+        this.f9771g = layoutParams;
+        this.f9768b = new p2(this, context, 0);
+        this.f9769c = new p2(this, context, 1);
         paint.setAlpha(0);
     }
 
@@ -66,23 +66,23 @@ public final class s2 {
     }
 
     public final void b(Canvas canvas, boolean z10) {
-        if (this.f9783r != null) {
+        if (this.f9781r != null) {
             g();
-            this.f9783r.setLocalMatrix(this.f9782q);
-            Paint paint = this.f9784s;
+            this.f9781r.setLocalMatrix(this.f9780q);
+            Paint paint = this.f9782s;
             if (z10) {
-                canvas.drawRect(0.0f, 0.0f, this.f9775j, this.f9776k, paint);
+                canvas.drawRect(0.0f, 0.0f, this.f9773j, this.f9774k, paint);
                 return;
             }
             RectF rectF = AndroidUtilities.rectTmp;
-            p2 p2Var = this.f9771c;
+            p2 p2Var = this.f9769c;
             rectF.set(0.0f, 0.0f, p2Var.getMeasuredWidth(), p2Var.getMeasuredHeight());
             canvas.drawRoundRect(rectF, AndroidUtilities.dp(12.0f) - 2, AndroidUtilities.dp(12.0f) - 2, paint);
         }
     }
 
     public final void c(pa paVar) {
-        h(this.f9781p);
+        h(this.f9779p);
         e(1.0f, 320L, paVar);
     }
 
@@ -92,10 +92,10 @@ public final class s2 {
     }
 
     public final void e(float f7, long j10, Runnable runnable) {
-        ValueAnimator valueAnimator = this.f9774i;
+        ValueAnimator valueAnimator = this.f9772i;
         if (valueAnimator != null) {
             valueAnimator.cancel();
-            this.f9774i = null;
+            this.f9772i = null;
         }
         if (j10 <= 0) {
             this.h = f7;
@@ -107,41 +107,41 @@ public final class s2 {
             return;
         }
         ValueAnimator ofFloat = ValueAnimator.ofFloat(this.h, f7);
-        this.f9774i = ofFloat;
+        this.f9772i = ofFloat;
         ofFloat.addUpdateListener(new ah.c0(this, 25));
-        this.f9774i.addListener(new ai.o7(this, f7, runnable, 2));
-        this.f9774i.setDuration(j10);
-        this.f9774i.setInterpolator(bs.f25039i);
-        this.f9774i.start();
+        this.f9772i.addListener(new ai.o7(this, f7, runnable, 2));
+        this.f9772i.setDuration(j10);
+        this.f9772i.setInterpolator(bs.f25032i);
+        this.f9772i.start();
     }
 
     public final void g() {
-        int i10 = this.f9777l;
-        int i11 = this.f9779n;
-        p2 p2Var = this.f9770b;
-        if (i10 != i11 || this.f9775j != p2Var.getMeasuredWidth() || this.f9776k != p2Var.getMeasuredHeight() || Math.abs(this.f9778m - this.h) > 0.005f) {
-            this.f9777l = this.f9779n;
-            this.f9775j = p2Var.getMeasuredWidth();
+        int i10 = this.f9775l;
+        int i11 = this.f9777n;
+        p2 p2Var = this.f9768b;
+        if (i10 != i11 || this.f9773j != p2Var.getMeasuredWidth() || this.f9774k != p2Var.getMeasuredHeight() || Math.abs(this.f9776m - this.h) > 0.005f) {
+            this.f9775l = this.f9777n;
+            this.f9773j = p2Var.getMeasuredWidth();
             int measuredHeight = p2Var.getMeasuredHeight();
-            this.f9776k = measuredHeight;
-            this.f9778m = this.h;
-            if (this.f9775j > 0 && measuredHeight > 0) {
+            this.f9774k = measuredHeight;
+            this.f9776m = this.h;
+            if (this.f9773j > 0 && measuredHeight > 0) {
                 if (Build.VERSION.SDK_INT >= 29) {
-                    int i12 = this.f9775j;
-                    int i13 = this.f9776k;
+                    int i12 = this.f9773j;
+                    int i13 = this.f9774k;
                     float min = (2.0f - this.h) * (Math.min(i12, i13) / 2.0f) * 1.35f;
                     ColorSpace.Named named = ColorSpace.Named.EXTENDED_SRGB;
                     float[] fArr = {AndroidUtilities.lerp(0.9f, 0.22f, this.h), 1.0f};
                     Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-                    this.f9783r = android.support.v4.media.session.x.b(i12 * 0.5f, i13 * 0.4f, min, new long[]{Color.valueOf(Color.red(this.f9779n) / 255.0f, Color.green(this.f9779n) / 255.0f, Color.blue(this.f9779n) / 255.0f, 0.0f, ColorSpace.get(named)).pack(), Color.valueOf(Color.red(this.f9779n) / 255.0f, Color.green(this.f9779n) / 255.0f, Color.blue(this.f9779n) / 255.0f, 1.0f, ColorSpace.get(named)).pack()}, fArr);
+                    this.f9781r = android.support.v4.media.session.x.b(i12 * 0.5f, i13 * 0.4f, min, new long[]{Color.valueOf(Color.red(this.f9777n) / 255.0f, Color.green(this.f9777n) / 255.0f, Color.blue(this.f9777n) / 255.0f, 0.0f, ColorSpace.get(named)).pack(), Color.valueOf(Color.red(this.f9777n) / 255.0f, Color.green(this.f9777n) / 255.0f, Color.blue(this.f9777n) / 255.0f, 1.0f, ColorSpace.get(named)).pack()}, fArr);
                 } else {
-                    int i14 = this.f9775j;
-                    int i15 = this.f9776k;
-                    this.f9783r = new RadialGradient(i14 * 0.5f, i15 * 0.4f, (2.0f - this.h) * (Math.min(i14, i15) / 2.0f) * 1.35f, new int[]{i0.a.o(this.f9779n, 0), this.f9779n}, new float[]{AndroidUtilities.lerp(0.9f, 0.22f, this.h), 1.0f}, Shader.TileMode.CLAMP);
+                    int i14 = this.f9773j;
+                    int i15 = this.f9774k;
+                    this.f9781r = new RadialGradient(i14 * 0.5f, i15 * 0.4f, (2.0f - this.h) * (Math.min(i14, i15) / 2.0f) * 1.35f, new int[]{i0.a.o(this.f9777n, 0), this.f9777n}, new float[]{AndroidUtilities.lerp(0.9f, 0.22f, this.h), 1.0f}, Shader.TileMode.CLAMP);
                 }
-                this.f9784s.setShader(this.f9783r);
+                this.f9782s.setShader(this.f9781r);
                 p2Var.invalidate();
-                this.f9771c.invalidate();
+                this.f9769c.invalidate();
             }
         }
     }
@@ -149,8 +149,8 @@ public final class s2 {
     public final void h(float f7) {
         Window window;
         WindowManager.LayoutParams layoutParams;
-        View view = this.f9772f;
-        if (view != null && (layoutParams = this.f9773g) != null) {
+        View view = this.f9770f;
+        if (view != null && (layoutParams = this.f9771g) != null) {
             layoutParams.screenBrightness = f7;
             WindowManager windowManager = this.e;
             if (windowManager != null) {
@@ -159,7 +159,7 @@ public final class s2 {
             }
             return;
         }
-        Activity findActivity = AndroidUtilities.findActivity(this.f9769a);
+        Activity findActivity = AndroidUtilities.findActivity(this.f9767a);
         if (findActivity == null) {
             findActivity = LaunchActivity.H1;
         }
@@ -179,9 +179,9 @@ public final class s2 {
                 ((r2) arrayList.get(i10)).invalidate();
                 i10++;
             } else {
-                this.f9784s.setAlpha((int) (this.f9781p * 255.0f * this.h));
-                this.f9770b.invalidate();
-                this.f9771c.invalidate();
+                this.f9782s.setAlpha((int) (this.f9779p * 255.0f * this.h));
+                this.f9768b.invalidate();
+                this.f9769c.invalidate();
                 return;
             }
         }

@@ -12,7 +12,7 @@ public final class m {
         this.f440b = hVar2;
         Log.d("FirebaseSessions", "Initializing Firebase Sessions SDK.");
         hVar.a();
-        Context applicationContext = hVar.f15968a.getApplicationContext();
+        Context applicationContext = hVar.f15966a.getApplicationContext();
         if (applicationContext instanceof Application) {
             ((Application) applicationContext).registerActivityLifecycleCallbacks(t0.f463a);
             be.f0.q(be.f0.b(hVar3), new l(this, hVar3, null, 0));

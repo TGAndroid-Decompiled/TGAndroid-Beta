@@ -1,65 +1,23 @@
 package org.telegram.ui;
 
-import android.view.View;
+import java.util.ArrayList;
 import org.telegram.messenger.MessageObject;
-public final class ki0 extends s4.t {
-    public final oi0 S;
+public final class ki0 extends g.o {
+    public final ni0 f38529c;
 
-    public ki0(oi0 oi0Var) {
-        super(true);
-        this.S = oi0Var;
+    public ki0(ni0 ni0Var) {
+        this.f38529c = ni0Var;
     }
 
     @Override
-    public final boolean B1(int i10) {
-        byte b10;
-        oi0 oi0Var = this.S;
-        MessageObject messageObject = (MessageObject) oi0Var.N.get((B() - 1) - i10);
-        MessageObject.GroupedMessages l4 = oi0Var.l(messageObject);
+    public final int i(int i10) {
+        ni0 ni0Var = this.f38529c;
+        ArrayList arrayList = ni0Var.N;
+        MessageObject messageObject = (MessageObject) arrayList.get((arrayList.size() - 1) - i10);
+        MessageObject.GroupedMessages l4 = ni0Var.l(messageObject);
         if (l4 != null) {
-            MessageObject.GroupedMessagePosition position = l4.getPosition(messageObject);
-            if (position.minX != position.maxX && (b10 = position.minY) == position.maxY && b10 != 0) {
-                int size = l4.posArray.size();
-                for (int i11 = 0; i11 < size; i11++) {
-                    MessageObject.GroupedMessagePosition groupedMessagePosition = l4.posArray.get(i11);
-                    if (groupedMessagePosition != position) {
-                        byte b11 = groupedMessagePosition.minY;
-                        byte b12 = position.minY;
-                        if (b11 <= b12 && groupedMessagePosition.maxY >= b12) {
-                            return true;
-                        }
-                    }
-                }
-            }
+            return l4.getPosition(messageObject).spanSize;
         }
-        return false;
-    }
-
-    @Override
-    public final boolean C1(View view) {
-        if (view instanceof org.telegram.ui.Cells.u1) {
-            return !((org.telegram.ui.Cells.u1) view).getMessageObject().isOutOwner();
-        }
-        return false;
-    }
-
-    @Override
-    public final int j(s4.y0 y0Var) {
-        return B0(y0Var);
-    }
-
-    @Override
-    public final int k(s4.y0 y0Var) {
-        return C0(y0Var);
-    }
-
-    @Override
-    public final int l(s4.y0 y0Var) {
-        return D0(y0Var);
-    }
-
-    @Override
-    public final boolean y0() {
-        return true;
+        return 1000;
     }
 }

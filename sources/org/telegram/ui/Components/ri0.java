@@ -35,39 +35,39 @@ public class ri0 extends View {
     public float O;
     public float P;
     public float Q;
-    public final org.telegram.ui.ActionBar.d6 f29951a;
-    public final PorterDuffColorFilter f29952b;
-    public final PorterDuffColorFilter f29953c;
+    public final org.telegram.ui.ActionBar.d6 f29945a;
+    public final PorterDuffColorFilter f29946b;
+    public final PorterDuffColorFilter f29947c;
     public d11 d;
     public d11 e;
-    public ri0 f29954f;
+    public ri0 f29948f;
     public ri0 h;
-    public final Paint f29955n;
-    public final Paint f29956r;
-    public final Path f29957s;
+    public final Paint f29949n;
+    public final Paint f29950r;
+    public final Path f29951s;
     public final Drawable v;
-    public final RectF f29958w;
-    public final Paint f29959x;
-    public final Paint f29960y;
+    public final RectF f29952w;
+    public final Paint f29953x;
+    public final Paint f29954y;
 
     public ri0(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
-        this.f29952b = new PorterDuffColorFilter(-1, mode);
-        this.f29953c = new PorterDuffColorFilter(-16777216, mode);
-        this.f29955n = new Paint();
+        this.f29946b = new PorterDuffColorFilter(-1, mode);
+        this.f29947c = new PorterDuffColorFilter(-16777216, mode);
+        this.f29949n = new Paint();
         Paint paint = new Paint();
-        this.f29956r = paint;
+        this.f29950r = paint;
         Path path = new Path();
-        this.f29957s = path;
-        this.f29958w = new RectF();
-        this.f29959x = new Paint(1);
-        this.f29960y = new Paint(1);
+        this.f29951s = path;
+        this.f29952w = new RectF();
+        this.f29953x = new Paint(1);
+        this.f29954y = new Paint(1);
         this.E = new Path();
         this.F = new Path();
         this.G = new yc(this);
         this.H = -1;
-        this.f29951a = d6Var;
+        this.f29945a = d6Var;
         this.v = context.getResources().getDrawable(R.drawable.files_music).mutate();
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeCap(Paint.Cap.ROUND);
@@ -95,13 +95,13 @@ public class ri0 extends View {
         }
         this.H = i10;
         if (z10) {
-            porterDuffColorFilter = this.f29953c;
+            porterDuffColorFilter = this.f29947c;
         } else {
-            porterDuffColorFilter = this.f29952b;
+            porterDuffColorFilter = this.f29946b;
         }
         this.v.setColorFilter(porterDuffColorFilter);
-        this.f29955n.setColor(this.H);
-        this.f29956r.setColor(org.telegram.ui.ActionBar.h6.m1(0.85f, this.H));
+        this.f29949n.setColor(this.H);
+        this.f29950r.setColor(org.telegram.ui.ActionBar.h6.m1(0.85f, this.H));
         invalidate();
     }
 
@@ -121,14 +121,14 @@ public class ri0 extends View {
         this.e.c(0.0f, height, f7 * 0.85f, this.H, canvas);
         canvas.translate(this.e.l(), 0.0f);
         float dpf2 = AndroidUtilities.dpf2(1.16f);
-        Paint paint = this.f29956r;
+        Paint paint = this.f29950r;
         paint.setStrokeWidth(dpf2);
         canvas.translate(AndroidUtilities.dpf2(4.8f), height);
-        canvas.drawPath(this.f29957s, paint);
+        canvas.drawPath(this.f29951s, paint);
     }
 
     public final void c() {
-        ri0 ri0Var = this.f29954f;
+        ri0 ri0Var = this.f29948f;
         if (ri0Var != null) {
             ri0Var.c();
         }
@@ -140,7 +140,7 @@ public class ri0 extends View {
     }
 
     public final void d(RenderNode renderNode, org.telegram.ui.qz0 qz0Var, float f7, float f10) {
-        ri0 ri0Var = this.f29954f;
+        ri0 ri0Var = this.f29948f;
         if (ri0Var != null) {
             ri0Var.d(renderNode, qz0Var, f7, f10);
         }
@@ -157,30 +157,30 @@ public class ri0 extends View {
             return false;
         }
         int action = motionEvent.getAction();
-        RectF rectF = this.f29958w;
+        RectF rectF = this.f29952w;
         yc ycVar = this.G;
         if (action == 0) {
             ycVar.c(rectF.contains(motionEvent.getX(), motionEvent.getY()));
-        } else if (motionEvent.getAction() == 2 && ycVar.f32613i) {
+        } else if (motionEvent.getAction() == 2 && ycVar.f32606i) {
             if (!rectF.contains(motionEvent.getX(), motionEvent.getY())) {
                 ycVar.c(false);
             }
         } else if (motionEvent.getAction() == 3) {
             ycVar.c(false);
         } else if (motionEvent.getAction() == 1) {
-            if (ycVar.f32613i) {
+            if (ycVar.f32606i) {
                 performClick();
             }
             ycVar.c(false);
         }
-        return ycVar.f32613i;
+        return ycVar.f32606i;
     }
 
     public float e(float f7) {
         float max = Math.max(0.0f, ((f7 - AndroidUtilities.dp(16.0f)) - AndroidUtilities.dp(16.6f)) - AndroidUtilities.dp(8.0f));
         d11 d11Var = this.d;
-        d11Var.f25454p = max / 2.0f;
-        this.e.f25454p = Math.max(0.0f, max - d11Var.l());
+        d11Var.f25447p = max / 2.0f;
+        this.e.f25447p = Math.max(0.0f, max - d11Var.l());
         return this.e.l() + this.d.l() + AndroidUtilities.dp(16.6f) + AndroidUtilities.dp(8.0f);
     }
 
@@ -191,7 +191,7 @@ public class ri0 extends View {
     }
 
     public final void g(float f7, float f10) {
-        ri0 ri0Var = this.f29954f;
+        ri0 ri0Var = this.f29948f;
         if (ri0Var != null) {
             ri0Var.g(f7, f10);
         }
@@ -209,7 +209,7 @@ public class ri0 extends View {
             float a2 = this.G.a(0.02f);
             if (clamp01 > 0.0f) {
                 int width2 = getWidth() - (AndroidUtilities.dp(12.0f) * 2);
-                ri0 ri0Var = this.f29954f;
+                ri0 ri0Var = this.f29948f;
                 if (ri0Var == null) {
                     ri0Var = this.h;
                 }
@@ -218,7 +218,7 @@ public class ri0 extends View {
                     if (ri0Var2 == null) {
                         ri0Var2 = this;
                     }
-                    ri0 ri0Var3 = this.f29954f;
+                    ri0 ri0Var3 = this.f29948f;
                     if (ri0Var3 == null) {
                         ri0Var3 = this;
                     }
@@ -237,13 +237,13 @@ public class ri0 extends View {
                     e = e(width2) + AndroidUtilities.dp(16.0f);
                     width = (getWidth() - e) / 2.0f;
                 }
-                RectF rectF = this.f29958w;
+                RectF rectF = this.f29952w;
                 rectF.set(width, AndroidUtilities.dp(10.0f), e + width, (AndroidUtilities.dp(17.0f) * clamp01) + AndroidUtilities.dp(10.0f));
                 canvas.save();
                 canvas.scale(a2, a2, rectF.centerX(), getHeight() / 2.0f);
                 boolean z10 = this.L;
-                Paint paint = this.f29960y;
-                Paint paint2 = this.f29959x;
+                Paint paint = this.f29954y;
+                Paint paint2 = this.f29953x;
                 if (z10 && SharedConfig.shadowsInSections) {
                     paint2.setShadowLayer(AndroidUtilities.dpf2(2.0f), 0.0f, AndroidUtilities.dpf2(0.33f), org.telegram.ui.ActionBar.h6.m1(clamp01, 167772160));
                     paint.setShadowLayer(AndroidUtilities.dpf2(0.33f), 0.0f, 0.0f, org.telegram.ui.ActionBar.h6.m1(clamp01, 201326592));
@@ -300,7 +300,7 @@ public class ri0 extends View {
     @Override
     public void setAlpha(float f7) {
         super.setAlpha(f7);
-        ri0 ri0Var = this.f29954f;
+        ri0 ri0Var = this.f29948f;
         if (ri0Var != null) {
             ri0Var.setAlpha(f7);
         }
@@ -316,26 +316,26 @@ public class ri0 extends View {
             z10 = false;
         }
         this.I = z10;
-        ri0 ri0Var = this.f29954f;
+        ri0 ri0Var = this.f29948f;
         if (ri0Var != null) {
             ri0Var.setColor(peerColor);
         }
-        org.telegram.ui.ActionBar.d6 d6Var = this.f29951a;
+        org.telegram.ui.ActionBar.d6 d6Var = this.f29945a;
         if (peerColor == null) {
-            bgColor1 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21272s8, d6Var);
+            bgColor1 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21265s8, d6Var);
             bgColor2 = bgColor1;
         } else {
             bgColor1 = peerColor.getBgColor1(org.telegram.ui.ActionBar.h6.I.q());
             bgColor2 = peerColor.getBgColor2(org.telegram.ui.ActionBar.h6.I.q());
         }
         if (peerColor == null) {
-            this.K = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20993d6, d6Var);
+            this.K = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20986d6, d6Var);
             this.L = true;
         } else {
             this.K = org.telegram.ui.ActionBar.h6.b(0.04f, -0.09f, i0.a.f(0.15f, bgColor1, bgColor2));
             this.L = false;
         }
-        this.f29959x.setColor(this.K);
+        this.f29953x.setColor(this.K);
         a();
     }
 
@@ -389,7 +389,7 @@ public class ri0 extends View {
     }
 
     public void setParentExpanded(float f7) {
-        ri0 ri0Var = this.f29954f;
+        ri0 ri0Var = this.f29948f;
         if (ri0Var != null) {
             ri0Var.setParentExpanded(f7);
         }
@@ -401,7 +401,7 @@ public class ri0 extends View {
     }
 
     public void setTrailingView(ri0 ri0Var) {
-        this.f29954f = ri0Var;
+        this.f29948f = ri0Var;
         ri0Var.h = this;
         invalidate();
         ri0Var.invalidate();

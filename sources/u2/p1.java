@@ -1,19 +1,34 @@
 package u2;
-public final class p1 extends r {
-    public final b2.o0 f47456f;
+public final class p1 implements e1 {
+    public final e1 f47402a;
+    public final long f47403b;
 
-    public p1(b2.o1 o1Var, b2.o0 o0Var) {
-        super(o1Var);
-        this.f47456f = o0Var;
+    public p1(e1 e1Var, long j10) {
+        this.f47402a = e1Var;
+        this.f47403b = j10;
     }
 
     @Override
-    public final b2.n1 m(int i10, b2.n1 n1Var, long j10) {
-        super.m(i10, n1Var, j10);
-        b2.o0 o0Var = this.f47456f;
-        n1Var.f3873c = o0Var;
-        b2.j0 j0Var = o0Var.f3891b;
-        n1Var.f3872b = null;
-        return n1Var;
+    public final void a() {
+        this.f47402a.a();
+    }
+
+    @Override
+    public final boolean e() {
+        return this.f47402a.e();
+    }
+
+    @Override
+    public final int f(qf.b bVar, h2.h hVar, int i10) {
+        int f7 = this.f47402a.f(bVar, hVar, i10);
+        if (f7 == -4) {
+            hVar.e += this.f47403b;
+        }
+        return f7;
+    }
+
+    @Override
+    public final int h(long j10) {
+        return this.f47402a.h(j10 - this.f47403b);
     }
 }

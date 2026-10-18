@@ -12,8 +12,8 @@ import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.ActionBar.j5;
 import w7.z5;
 public final class h extends FrameLayout {
-    public final j5 f49018a;
-    public long f49019b;
+    public final j5 f48971a;
+    public long f48972b;
 
     public h(Context context, d6 d6Var) {
         super(context);
@@ -26,7 +26,7 @@ public final class h extends FrameLayout {
         float f12;
         j5 j5Var = new j5(context);
         j5Var.setTextSize(16);
-        j5Var.setTextColor(h6.w0(h6.f21099j5, d6Var));
+        j5Var.setTextColor(h6.w0(h6.f21092j5, d6Var));
         if (LocaleController.isRTL) {
             i10 = 5;
         } else {
@@ -35,7 +35,7 @@ public final class h extends FrameLayout {
         j5Var.setGravity(i10);
         addView(j5Var);
         j5 j5Var2 = new j5(context);
-        this.f49018a = j5Var2;
+        this.f48971a = j5Var2;
         j5Var2.setTextSize(16);
         j5Var2.setTextColor(h6.w0(h6.L6, d6Var));
         if (LocaleController.isRTL) {
@@ -63,7 +63,7 @@ public final class h extends FrameLayout {
         } else {
             f10 = 0.0f;
         }
-        j5Var.setLayoutParams(z5.a(-2.0f, f7, 0.0f, f10, 0.0f, -1, i13));
+        j5Var.setLayoutParams(z5.d(-1, -2.0f, i13, f7, 0.0f, f10, 0.0f));
         boolean z11 = LocaleController.isRTL;
         int i14 = (z11 ? 3 : 5) | 16;
         if (z11) {
@@ -76,12 +76,12 @@ public final class h extends FrameLayout {
         } else {
             f12 = 21.0f;
         }
-        j5Var2.setLayoutParams(z5.a(-2.0f, f11, 0.0f, f12, 0.0f, -1, i14));
-        setBackgroundColor(h6.w0(h6.f21064h5, d6Var));
+        j5Var2.setLayoutParams(z5.d(-1, -2.0f, i14, f11, 0.0f, f12, 0.0f));
+        setBackgroundColor(h6.w0(h6.f21057h5, d6Var));
     }
 
     public long getSelectedTime() {
-        return this.f49019b;
+        return this.f48972b;
     }
 
     @Override
@@ -90,8 +90,8 @@ public final class h extends FrameLayout {
     }
 
     public void setDate(long j10) {
-        this.f49019b = j10;
+        this.f48972b = j10;
         Date date = new Date(j10);
-        this.f49018a.l(LocaleController.formatString("formatDateAtTime", R.string.formatDateAtTime, LocaleController.getInstance().getFormatterDayMonth().format(date), LocaleController.getInstance().getFormatterDay().format(date)), false);
+        this.f48971a.l(LocaleController.formatString("formatDateAtTime", R.string.formatDateAtTime, LocaleController.getInstance().getFormatterDayMonth().format(date), LocaleController.getInstance().getFormatterDay().format(date)), false);
     }
 }

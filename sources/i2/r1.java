@@ -2,20 +2,20 @@ package i2;
 
 import v7.u6;
 public final class r1 {
-    public static final r1 f12580c;
+    public static final r1 f12578c;
     public static final r1 d;
     public static final r1 e;
-    public static final r1 f12581f;
-    public final long f12582a;
-    public final long f12583b;
+    public static final r1 f12579f;
+    public final long f12580a;
+    public final long f12581b;
 
     static {
         r1 r1Var = new r1(0L, 0L);
-        f12580c = r1Var;
+        f12578c = r1Var;
         d = new r1(Long.MAX_VALUE, Long.MAX_VALUE);
         e = new r1(Long.MAX_VALUE, 0L);
         new r1(0L, Long.MAX_VALUE);
-        f12581f = r1Var;
+        f12579f = r1Var;
     }
 
     public r1(long j10, long j11) {
@@ -27,8 +27,8 @@ public final class r1 {
         }
         u6.g(z10);
         u6.g(j11 >= 0);
-        this.f12582a = j10;
-        this.f12583b = j11;
+        this.f12580a = j10;
+        this.f12581b = j11;
     }
 
     public final long a(long r17, long r19, long r21) {
@@ -41,7 +41,7 @@ public final class r1 {
         }
         if (obj != null && r1.class == obj.getClass()) {
             r1 r1Var = (r1) obj;
-            if (this.f12582a == r1Var.f12582a && this.f12583b == r1Var.f12583b) {
+            if (this.f12580a == r1Var.f12580a && this.f12581b == r1Var.f12581b) {
                 return true;
             }
         }
@@ -49,6 +49,6 @@ public final class r1 {
     }
 
     public final int hashCode() {
-        return (((int) this.f12582a) * 31) + ((int) this.f12583b);
+        return (((int) this.f12580a) * 31) + ((int) this.f12581b);
     }
 }

@@ -7,7 +7,7 @@ import org.telegram.ui.ActionBar.d6;
 import w7.z5;
 public class d extends c {
     public static final int v = 0;
-    public int f49014s;
+    public int f48967s;
 
     public d(Context context, d6 d6Var) {
         super(context, d6Var);
@@ -34,7 +34,7 @@ public class d extends c {
         } else {
             i10 = 3;
         }
-        this.f49000c.setLayoutParams(z5.a(40.0f, 57.0f, 0.0f, 57.0f, 0.0f, 40, i10 | 16));
+        this.f48953c.setLayoutParams(z5.d(40, 40.0f, i10 | 16, 57.0f, 0.0f, 57.0f, 0.0f));
         boolean z10 = LocaleController.isRTL;
         if (z10) {
             i11 = 5;
@@ -52,7 +52,7 @@ public class d extends c {
         } else {
             f10 = 20.0f;
         }
-        this.d.setLayoutParams(z5.a(-2.0f, f7, 0.0f, f10, 0.0f, -1, i14));
+        this.d.setLayoutParams(z5.d(-1, -2.0f, i14, f7, 0.0f, f10, 0.0f));
         boolean z11 = LocaleController.isRTL;
         if (z11) {
             i12 = 5;
@@ -70,14 +70,14 @@ public class d extends c {
         } else {
             f12 = 20.0f;
         }
-        this.e.setLayoutParams(z5.a(-2.0f, f11, 0.0f, f12, 0.0f, -1, i15));
+        this.e.setLayoutParams(z5.d(-1, -2.0f, i15, f11, 0.0f, f12, 0.0f));
         if (LocaleController.isRTL) {
             i13 = 5;
         }
-        this.f49001f.setLayoutParams(z5.a(22.0f, 16.0f, 0.0f, 15.0f, 0.0f, 22, i13 | 16));
+        this.f48954f.setLayoutParams(z5.d(22, 22.0f, i13 | 16, 16.0f, 0.0f, 15.0f, 0.0f));
     }
 
     public int getSelectedType() {
-        return this.f49014s;
+        return this.f48967s;
     }
 }

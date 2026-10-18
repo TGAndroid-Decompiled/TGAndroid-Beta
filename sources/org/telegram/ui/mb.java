@@ -21,15 +21,15 @@ public final class mb extends vb {
         int i14;
         MessageObject messageObject;
         xb xbVar = this.V2;
-        if (xbVar.v != null && xbVar.f43092x != null && (i14 = xbVar.N0) >= 0) {
+        if (xbVar.v != null && xbVar.f43056x != null && (i14 = xbVar.N0) >= 0) {
             if (xbVar.M0 != 0) {
                 int i15 = 0;
                 while (true) {
                     tb tbVar = xbVar.E;
                     if (i15 < tbVar.d) {
-                        if (i15 >= tbVar.f41667f && i15 < tbVar.h) {
-                            ArrayList arrayList = tbVar.f41668n.f43080o0;
-                            messageObject = (MessageObject) arrayList.get((arrayList.size() - (i15 - tbVar.f41667f)) - 1);
+                        if (i15 >= tbVar.f41632f && i15 < tbVar.h) {
+                            ArrayList arrayList = tbVar.f41633n.f43044o0;
+                            messageObject = (MessageObject) arrayList.get((arrayList.size() - (i15 - tbVar.f41632f)) - 1);
                         } else {
                             messageObject = null;
                         }
@@ -43,7 +43,7 @@ public final class mb extends vb {
                     }
                 }
             }
-            xbVar.f43092x.i1(i14, xbVar.O0, true);
+            xbVar.f43056x.i1(i14, xbVar.O0, true);
             xbVar.N0 = -1;
             xbVar.M0 = 0L;
         }

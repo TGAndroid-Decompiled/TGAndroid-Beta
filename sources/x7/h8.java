@@ -2,7 +2,7 @@ package x7;
 
 import java.util.Arrays;
 public final class h8 {
-    public final Float f49452a;
+    public final Float f49405a;
 
     public final boolean equals(Object obj) {
         if (obj == this) {
@@ -12,13 +12,13 @@ public final class h8 {
             return false;
         }
         h8 h8Var = (h8) obj;
-        if (n6.l.l(null, null) && n6.l.l(this.f49452a, h8Var.f49452a) && n6.l.l(null, null)) {
+        if (n6.l.l(null, null) && n6.l.l(this.f49405a, h8Var.f49405a) && n6.l.l(null, null)) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{null, this.f49452a, null});
+        return Arrays.hashCode(new Object[]{null, this.f49405a, null});
     }
 }

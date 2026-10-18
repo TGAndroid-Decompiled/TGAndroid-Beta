@@ -8,20 +8,20 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 public final class so extends org.telegram.ui.Cells.d9 {
     public ValueAnimator v;
-    public int f41493w;
-    public final yo f41494x;
+    public int f41458w;
+    public final yo f41459x;
 
     public so(yo yoVar, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context, 12, d6Var);
-        this.f41494x = yoVar;
-        this.f41493w = -1;
+        this.f41459x = yoVar;
+        this.f41458w = -1;
     }
 
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
-        if (this.f41493w != -1) {
-            yo yoVar = this.f41494x;
+        if (this.f41458w != -1) {
+            yo yoVar = this.f41459x;
             if (yoVar.h != null) {
                 ArrayList arrayList = new ArrayList();
                 boolean z11 = false;
@@ -33,7 +33,7 @@ public final class so extends org.telegram.ui.Cells.d9 {
                         z11 = true;
                     }
                 }
-                float height = this.f41493w - getHeight();
+                float height = this.f41458w - getHeight();
                 ValueAnimator valueAnimator = this.v;
                 if (valueAnimator != null) {
                     valueAnimator.cancel();
@@ -46,7 +46,7 @@ public final class so extends org.telegram.ui.Cells.d9 {
                 this.v.start();
             }
         }
-        this.f41493w = getHeight();
+        this.f41458w = getHeight();
     }
 
     @Override
@@ -55,15 +55,15 @@ public final class so extends org.telegram.ui.Cells.d9 {
         if (charSequence != 0) {
             charSequence = AndroidUtilities.replaceTags(charSequence.toString());
             int indexOf = charSequence.toString().indexOf(10);
-            yo yoVar = this.f41494x;
+            yo yoVar = this.f41459x;
             if (indexOf >= 0) {
                 charSequence.replace(indexOf, indexOf + 1, " ");
-                charSequence.setSpan(new ForegroundColorSpan(yoVar.getThemedColor(org.telegram.ui.ActionBar.h6.f21214p7)), 0, indexOf, 33);
+                charSequence.setSpan(new ForegroundColorSpan(yoVar.getThemedColor(org.telegram.ui.ActionBar.h6.f21207p7)), 0, indexOf, 33);
             }
             org.telegram.ui.Components.c61[] c61VarArr = (org.telegram.ui.Components.c61[]) charSequence.getSpans(0, charSequence.length(), org.telegram.ui.Components.c61.class);
-            ei.e2 e2Var = yoVar.f43458a;
+            ei.e2 e2Var = yoVar.f43422a;
             if (e2Var != null && e2Var.getText() != null) {
-                str = yoVar.f43458a.getText().toString();
+                str = yoVar.f43422a.getText().toString();
             } else {
                 str = "";
             }

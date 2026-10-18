@@ -25,7 +25,7 @@ public final class w0 implements MessagesStorage.IntCallback {
                     cVar = ag.c.f636b;
                 }
                 b1Var.V(ag.a.i(0L, cVar), true, false, true);
-                b1Var.f998d0.setText("");
+                b1Var.f1000d0.setText("");
                 return;
             case 1:
                 h1 h1Var = (h1) this.f2351b;
@@ -46,7 +46,7 @@ public final class w0 implements MessagesStorage.IntCallback {
                 } else {
                     cVar3 = ag.c.f636b;
                 }
-                k6Var.f1649q = cVar3;
+                k6Var.f1655q = cVar3;
                 k6Var.a(true);
                 return;
         }

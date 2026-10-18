@@ -114,7 +114,7 @@ public final class h1 extends c91 {
                 return;
             case 7:
                 r91 r91Var = (r91) this.U;
-                r91Var.m0(r91Var.f40674i0.getCurrentPosition(), true);
+                r91Var.m0(r91Var.f40640i0.getCurrentPosition(), true);
                 r91Var.n0(0.0f, false);
                 r91.W(r91Var);
                 return;
@@ -128,7 +128,7 @@ public final class h1 extends c91 {
         o21 o21Var;
         switch (this.T) {
             case 6:
-                if ((getCurrentView() instanceof p21) && (o21Var = ((p21) getCurrentView()).f39964n) != null) {
+                if ((getCurrentView() instanceof p21) && (o21Var = ((p21) getCurrentView()).f39925n) != null) {
                     AndroidUtilities.hideKeyboard(o21Var);
                     return;
                 }
@@ -143,7 +143,7 @@ public final class h1 extends c91 {
         switch (this.T) {
             case 0:
                 n2 n2Var = (n2) this.U;
-                h1 h1Var = n2Var.f9504f;
+                h1 h1Var = n2Var.f9502f;
                 m2 m2Var = n2Var.h;
                 if (m2Var != null) {
                     m2Var.F = h1Var.getPositionAnimated();
@@ -177,8 +177,8 @@ public final class h1 extends c91 {
                 if (dVar != null && C0 != null && C0 != kp0Var.R) {
                     kp0Var.R = C0;
                     n2.e eVar = C0.e;
-                    dVar.g((CharSequence) eVar.f17042b, true, true);
-                    kp0Var.Q.f((SpannableStringBuilder) eVar.f17043c, true);
+                    dVar.g((CharSequence) eVar.f17038b, true, true);
+                    kp0Var.Q.f((SpannableStringBuilder) eVar.f17039c, true);
                 }
                 kp0Var.D0(1);
                 return;
@@ -190,7 +190,7 @@ public final class h1 extends c91 {
                 return;
             case 7:
                 r91 r91Var = (r91) this.U;
-                float positionAnimated2 = r91Var.f40674i0.getPositionAnimated();
+                float positionAnimated2 = r91Var.f40640i0.getPositionAnimated();
                 r91Var.n0(positionAnimated2, !z10);
                 if (!z10) {
                     r91Var.m0(Math.round(positionAnimated2), true);
@@ -205,11 +205,11 @@ public final class h1 extends c91 {
                 org.telegram.ui.Wallet.j2.n((org.telegram.ui.Wallet.j2) this.U).invalidate();
                 return;
             default:
-                org.telegram.ui.Wallet.m5 m5Var = (org.telegram.ui.Wallet.m5) this.U;
-                m5Var.S0();
-                org.telegram.ui.Wallet.z7 z7Var = m5Var.f34578k0;
-                if (z7Var != null && z7Var.f35186c1) {
-                    z7Var.h0();
+                org.telegram.ui.Wallet.n5 n5Var = (org.telegram.ui.Wallet.n5) this.U;
+                n5Var.S0();
+                org.telegram.ui.Wallet.t7 t7Var = n5Var.f34588i0;
+                if (t7Var != null && t7Var.f34911h1) {
+                    t7Var.f0();
                     return;
                 }
                 return;
@@ -218,16 +218,16 @@ public final class h1 extends c91 {
 
     @Override
     public void x(int i10) {
-        org.telegram.ui.Wallet.t8 t8Var;
+        org.telegram.ui.Wallet.n8 n8Var;
         switch (this.T) {
             case 10:
-                org.telegram.ui.Wallet.m5 m5Var = (org.telegram.ui.Wallet.m5) this.U;
-                m5Var.f34573f0 = i10;
-                if (i10 != 1 && (t8Var = m5Var.f34577j0) != null) {
-                    t8Var.b(false);
+                org.telegram.ui.Wallet.n5 n5Var = (org.telegram.ui.Wallet.n5) this.U;
+                n5Var.f34582d0 = i10;
+                if (i10 != 1 && (n8Var = n5Var.f34587h0) != null) {
+                    n8Var.b(false);
                 }
                 if (i10 == 1) {
-                    m5Var.f34584q0.post(new org.telegram.ui.Wallet.n3(m5Var, 13));
+                    n5Var.f34594o0.post(new org.telegram.ui.Wallet.o3(n5Var, 12));
                     return;
                 }
                 return;
@@ -242,9 +242,9 @@ public final class h1 extends c91 {
             case 3:
                 if (i10 == 0) {
                     sn snVar = (sn) this.U;
-                    if (snVar.f41390s1) {
-                        snVar.f41390s1 = false;
-                        snVar.f41363q1.h.clear();
+                    if (snVar.f41355s1) {
+                        snVar.f41355s1 = false;
+                        snVar.f41328q1.h.clear();
                         return;
                     }
                     return;

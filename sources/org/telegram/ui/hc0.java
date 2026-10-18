@@ -2,16 +2,16 @@ package org.telegram.ui;
 
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
 public final class hc0 extends org.telegram.ui.ActionBar.m1 {
-    public final pc0 f37532o;
+    public final pc0 f37494o;
 
     public hc0(pc0 pc0Var, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout) {
         super(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
-        this.f37532o = pc0Var;
+        this.f37494o = pc0Var;
     }
 
     @Override
     public final void dismiss() {
         d(true);
-        this.f37532o.I0 = null;
+        this.f37494o.I0 = null;
     }
 }

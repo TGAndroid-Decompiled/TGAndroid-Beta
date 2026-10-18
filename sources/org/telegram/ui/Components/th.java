@@ -7,28 +7,33 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.TLRPC;
 public final class th implements org.telegram.ui.kq0 {
-    public boolean f30551a;
-    public final HashMap f30552b;
-    public final ArrayList f30553c;
+    public boolean f30544a;
+    public final HashMap f30545b;
+    public final ArrayList f30546c;
     public final ti d;
 
     public th(ti tiVar, HashMap hashMap, ArrayList arrayList) {
         this.d = tiVar;
-        this.f30552b = hashMap;
-        this.f30553c = arrayList;
+        this.f30545b = hashMap;
+        this.f30546c = arrayList;
     }
 
     @Override
-    public final void d(int i10, boolean z10, boolean z11) {
+    public final boolean e() {
+        return true;
+    }
+
+    @Override
+    public final void h(int i10, boolean z10, boolean z11) {
         String str;
         if (!z10) {
-            HashMap hashMap = this.f30552b;
-            if (!hashMap.isEmpty() && !this.f30551a) {
-                this.f30551a = true;
+            HashMap hashMap = this.f30545b;
+            if (!hashMap.isEmpty() && !this.f30544a) {
+                this.f30544a = true;
                 ArrayList arrayList = new ArrayList();
                 int i11 = 0;
                 while (true) {
-                    ArrayList arrayList2 = this.f30553c;
+                    ArrayList arrayList2 = this.f30546c;
                     if (i11 < arrayList2.size()) {
                         Object obj = hashMap.get(arrayList2.get(i11));
                         SendMessagesHelper.SendingMediaInfo sendingMediaInfo = new SendMessagesHelper.SendingMediaInfo();
@@ -60,17 +65,12 @@ public final class th implements org.telegram.ui.kq0 {
                         searchImage.date = (int) (System.currentTimeMillis() / 1000);
                         i11++;
                     } else {
-                        ((org.telegram.ui.sn) this.d.f30581f0).g8(i10, arrayList, z11);
+                        ((org.telegram.ui.sn) this.d.f30574f0).g8(i10, arrayList, z11);
                         return;
                     }
                 }
             }
         }
-    }
-
-    @Override
-    public final boolean e() {
-        return true;
     }
 
     @Override
@@ -82,6 +82,6 @@ public final class th implements org.telegram.ui.kq0 {
     }
 
     @Override
-    public final void c() {
+    public final void g() {
     }
 }

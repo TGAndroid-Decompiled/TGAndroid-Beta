@@ -9,10 +9,10 @@ import org.telegram.ui.Components.s71;
 import org.telegram.ui.Components.t71;
 import org.telegram.ui.Components.z71;
 public final class a1 extends c2.o {
-    public final z71 f14646i;
+    public final z71 f14644i;
 
     public a1(z71 z71Var) {
-        this.f14646i = z71Var;
+        this.f14644i = z71Var;
     }
 
     @Override
@@ -21,15 +21,15 @@ public final class a1 extends c2.o {
         if (remaining == 0) {
             return;
         }
-        String str = e2.m0.f8255a;
+        String str = e2.m0.f8253a;
         ByteBuffer order = byteBuffer.asReadOnlyBuffer().order(byteBuffer.order());
-        z71 z71Var = this.f14646i;
-        float[] fArr = z71Var.f32862b;
-        ByteBuffer byteBuffer2 = z71Var.f32863c;
-        FourierTransform.FFT fft = z71Var.f32861a;
-        a81 a81Var = z71Var.f32864f;
+        z71 z71Var = this.f14644i;
+        float[] fArr = z71Var.f32855b;
+        ByteBuffer byteBuffer2 = z71Var.f32856c;
+        FourierTransform.FFT fft = z71Var.f32854a;
+        a81 a81Var = z71Var.f32857f;
         t71 t71Var = a81Var.K;
-        Handler handler = a81Var.f24530a0;
+        Handler handler = a81Var.f24523a0;
         if (t71Var != null) {
             if (order != c2.n.f4522a && a81Var.I) {
                 if (t71Var.needUpdate()) {
@@ -125,7 +125,7 @@ public final class a1 extends c2.o {
     public final void m() {
         if (isActive()) {
             int i10 = this.f4523b.f4517a;
-            this.f14646i.getClass();
+            this.f14644i.getClass();
         }
     }
 

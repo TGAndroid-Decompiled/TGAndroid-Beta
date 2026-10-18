@@ -78,13 +78,13 @@ public final class e extends b1.d {
         long j10 = packageManager.getPackageInfo("com.google.android.gms", 0).versionCode;
         x5.b bVar2 = bVar;
         boolean z11 = false;
-        for (p pVar : request.f47904a) {
+        for (p pVar : request.f47857a) {
             if ((pVar instanceof p) && !z11) {
                 if (j10 >= 231815000) {
-                    LinkedHashMap linkedHashMap = f.f7734a;
+                    LinkedHashMap linkedHashMap = f.f7732a;
                     bVar2 = new x5.b(pVar.d, true);
                 } else {
-                    LinkedHashMap linkedHashMap2 = f.f7734a;
+                    LinkedHashMap linkedHashMap2 = f.f7732a;
                     JSONObject jSONObject = new JSONObject(pVar.d);
                     String optString = jSONObject.optString("rpId", "");
                     kotlin.jvm.internal.i.b(optString);
@@ -98,18 +98,18 @@ public final class e extends b1.d {
             }
         }
         if (j10 > 241217000) {
-            z10 = request.f47905b;
+            z10 = request.f47858b;
         } else {
             z10 = false;
         }
         i7.b a2 = i8.a(context);
         new x5.a(false, null, null, true, null, null, false);
-        x5.e eVar = new x5.e(dVar, aVar, a2.f12731k, false, 0, cVar, bVar2, z10);
+        x5.e eVar = new x5.e(dVar, aVar, a2.f12729k, false, 0, cVar, bVar2, z10);
         u b10 = v.b();
         b10.d = new k6.c[]{new k6.c("auth_api_credentials_begin_sign_in", 8L)};
-        b10.f6500c = new ag.b(a2, eVar, 23);
-        b10.f6499b = false;
-        b10.f6498a = 1553;
+        b10.f6498c = new ag.b(a2, eVar, 23);
+        b10.f6497b = false;
+        b10.f6496a = 1553;
         a2.e(0, b10.a()).addOnSuccessListener(new a1.c(new b1.f(1, cancellationSignal, this), 12)).addOnFailureListener(new h0(4, this, cancellationSignal));
     }
 }

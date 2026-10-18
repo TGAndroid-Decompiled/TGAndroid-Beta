@@ -15,12 +15,12 @@ import java.util.WeakHashMap;
 import java.util.function.Consumer;
 import org.telegram.messenger.AndroidUtilities;
 public final class z implements Consumer {
-    public final f0 f52193a;
-    public final m f52194b;
+    public final f0 f52152a;
+    public final m f52153b;
 
     public z(f0 f0Var, m mVar) {
-        this.f52193a = f0Var;
-        this.f52194b = mVar;
+        this.f52152a = f0Var;
+        this.f52153b = mVar;
     }
 
     @Override
@@ -31,15 +31,15 @@ public final class z implements Consumer {
         float[] fArr;
         z zVar = this;
         Canvas canvas = (Canvas) obj;
-        f0 f0Var = zVar.f52193a;
-        c cVar2 = f0Var.f51771x;
+        f0 f0Var = zVar.f52152a;
+        c cVar2 = f0Var.f51726x;
         RectF rectF = cVar2.M;
         WeakHashMap weakHashMap = cVar2.N;
-        Paint paint = cVar2.f51693c;
+        Paint paint = cVar2.f51646c;
         long b10 = c.b();
         int i10 = 0;
         while (true) {
-            m mVar = zVar.f52194b;
+            m mVar = zVar.f52153b;
             if (i10 >= mVar.getChildCount()) {
                 break;
             }
@@ -58,7 +58,7 @@ public final class z implements Consumer {
                     f10 = 2.5f;
                 }
                 String key = ((l) childAt).getKey();
-                if (key != null && (fArr = (float[]) cVar2.f51698n.get(key)) != null) {
+                if (key != null && (fArr = (float[]) cVar2.f51651n.get(key)) != null) {
                     float c10 = c.c(fArr, b10);
                     if (c10 > 0.004f) {
                         float translationX = childAt.getTranslationX() + childAt.getLeft();
@@ -83,7 +83,7 @@ public final class z implements Consumer {
             cVar2 = cVar;
         }
         if (!f0Var.d.I.isEmpty()) {
-            f0Var.f51771x.invalidate();
+            f0Var.f51726x.invalidate();
         }
     }
 

@@ -1,6 +1,6 @@
 package dc;
 public final class g extends d {
-    public final byte[] f7935c;
+    public final byte[] f7933c;
     public final int d;
     public final int e;
 
@@ -13,7 +13,7 @@ public final class g extends d {
                 int i14 = iArr[i13];
                 bArr[i13] = (byte) (((((i14 >> 16) & 255) + ((i14 >> 7) & 510)) + (i14 & 255)) / 4);
             }
-            this.f7935c = bArr;
+            this.f7933c = bArr;
             this.d = i10;
             this.e = i11;
             return;
@@ -23,9 +23,9 @@ public final class g extends d {
 
     @Override
     public final byte[] a() {
-        byte[] bArr = this.f7935c;
-        int i10 = this.f7930a;
-        int i11 = this.f7931b;
+        byte[] bArr = this.f7933c;
+        int i10 = this.f7928a;
+        int i11 = this.f7929b;
         int i12 = this.d;
         if (i10 == i12 && i11 == this.e) {
             return bArr;
@@ -46,12 +46,12 @@ public final class g extends d {
 
     @Override
     public final byte[] b(int i10, byte[] bArr) {
-        if (i10 >= 0 && i10 < this.f7931b) {
-            int i11 = this.f7930a;
+        if (i10 >= 0 && i10 < this.f7929b) {
+            int i11 = this.f7928a;
             if (bArr == null || bArr.length < i11) {
                 bArr = new byte[i11];
             }
-            System.arraycopy(this.f7935c, i10 * this.d, bArr, 0, i11);
+            System.arraycopy(this.f7933c, i10 * this.d, bArr, 0, i11);
             return bArr;
         }
         throw new IllegalArgumentException(i2.d.j(i10, "Requested row is outside the image: "));

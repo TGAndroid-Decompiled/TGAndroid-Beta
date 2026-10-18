@@ -1,11 +1,49 @@
 package ci;
 
 import android.content.Context;
-public final class y5 extends u5 {
-    public final z5 f6208a0;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class y5 extends z4.a {
+    public final z9 f6149c;
+    public final Context d;
+    public final b6 e;
 
-    public y5(z5 z5Var, aa aaVar, Context context, f5 f5Var, ai.r0 r0Var) {
-        super(aaVar, context, f5Var, r0Var);
-        this.f6208a0 = z5Var;
+    public y5(Context context, b6 b6Var, z9 z9Var) {
+        this.e = b6Var;
+        this.f6149c = z9Var;
+        this.d = context;
+    }
+
+    @Override
+    public final void a(z4.g gVar, Object obj) {
+        gVar.removeView((View) obj);
+        this.e.G.remove(obj);
+    }
+
+    @Override
+    public final int b() {
+        return this.e.F.size();
+    }
+
+    @Override
+    public final Object e(z4.g gVar, int i10) {
+        b6 b6Var = this.e;
+        x5 x5Var = new x5(this, this.f6149c, this.d, b6Var.H, new ai.r0(this, 8));
+        x5Var.setTag(Integer.valueOf(i10));
+        x5Var.setShadowDrawable(b6Var.f5182s);
+        x5Var.setPadding(0, AndroidUtilities.dp(16.0f), 0, 0);
+        x5Var.g(b6Var.f5185y, (a6) b6Var.F.get(i10));
+        x5Var.setListBottomPadding(b6Var.d);
+        gVar.addView(x5Var);
+        b6Var.G.add(x5Var);
+        return x5Var;
+    }
+
+    @Override
+    public final boolean f(View view, Object obj) {
+        if (view == obj) {
+            return true;
+        }
+        return false;
     }
 }

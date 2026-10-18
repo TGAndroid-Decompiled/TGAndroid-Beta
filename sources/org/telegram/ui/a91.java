@@ -7,26 +7,26 @@ import android.text.TextPaint;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class a91 {
-    public final org.telegram.ui.Components.a10 f35363a;
-    public lg.f f35364b;
-    public final int f35365c;
+    public final org.telegram.ui.Components.a10 f35315a;
+    public lg.f f35316b;
+    public final int f35317c;
     public final b91 d;
 
     public a91(b91 b91Var, int i10) {
         this.d = b91Var;
-        this.f35365c = i10;
+        this.f35317c = i10;
         ?? view = new View(b91Var.getContext());
-        view.f24455c = true;
+        view.f24448c = true;
         TextPaint textPaint = new TextPaint(1);
         view.e = textPaint;
-        view.f24456f = new Paint(1);
+        view.f24449f = new Paint(1);
         Paint paint = new Paint(1);
         view.h = paint;
         Paint paint2 = new Paint(1);
-        view.f24457n = paint2;
-        view.f24460w = AndroidUtilities.dp(35.0f);
-        view.f24461x = AndroidUtilities.dp(22.0f);
-        view.f24462y = AndroidUtilities.dp(8.0f);
+        view.f24450n = paint2;
+        view.f24453w = AndroidUtilities.dp(35.0f);
+        view.f24454x = AndroidUtilities.dp(22.0f);
+        view.f24455y = AndroidUtilities.dp(8.0f);
         view.E = AndroidUtilities.dp(3.5f);
         view.F = new RectF();
         view.G = 0.0f;
@@ -39,9 +39,9 @@ public final class a91 {
         paint2.setStyle(style);
         paint2.setStrokeCap(Paint.Cap.ROUND);
         paint2.setStrokeWidth(AndroidUtilities.dp(2.0f));
-        this.f35363a = view;
+        this.f35315a = view;
         view.setPadding(AndroidUtilities.dp(16.0f), 0, AndroidUtilities.dp(16.0f), 0);
         b91Var.h.addView(view);
-        b91Var.f35631n.add(this);
+        b91Var.f35592n.add(this);
     }
 }

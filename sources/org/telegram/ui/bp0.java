@@ -10,6 +10,6 @@ public final class bp0 extends q51 {
     @Override
     public final void dismiss() {
         super.dismiss();
-        this.e.f36598o0 = null;
+        this.e.f36582o0 = null;
     }
 }

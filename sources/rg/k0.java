@@ -11,34 +11,34 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.kk;
+import org.telegram.messenger.lk;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Components.q6;
 import w7.z5;
 public final class k0 extends FrameLayout {
-    public final int f45473a = 2;
-    public final Object f45474b;
-    public final KeyEvent.Callback f45475c;
+    public final int f45427a = 2;
+    public final Object f45428b;
+    public final KeyEvent.Callback f45429c;
 
-    public k0(sg.x0 x0Var, Context context, sg.z0 z0Var) {
+    public k0(sg.y0 y0Var, Context context, sg.a1 a1Var) {
         super(context);
-        this.f45475c = x0Var;
-        this.f45474b = z0Var;
+        this.f45429c = y0Var;
+        this.f45428b = a1Var;
     }
 
     @Override
     public void dispatchDraw(Canvas canvas) {
-        switch (this.f45473a) {
+        switch (this.f45427a) {
             case 1:
-                ((sg.z0) this.f45474b).d(0, 0.0f, 0, getMeasuredWidth(), 0.0f, getMeasuredHeight());
+                ((sg.a1) this.f45428b).d(0, 0.0f, 0, getMeasuredWidth(), 0.0f, getMeasuredHeight());
                 RectF rectF = AndroidUtilities.rectTmp;
                 rectF.set(0.0f, AndroidUtilities.dp(2.0f), getMeasuredWidth(), AndroidUtilities.dp(18.0f) + getMeasuredHeight());
                 canvas.save();
                 canvas.clipRect(0, 0, getMeasuredWidth(), getMeasuredHeight());
-                sg.z0 z0Var = (sg.z0) this.f45474b;
-                z0Var.f46544f.setAlpha(((sg.x0) this.f45475c).K);
-                canvas.drawRoundRect(rectF, AndroidUtilities.dp(24.0f) - 1, AndroidUtilities.dp(24.0f) - 1, z0Var.f46544f);
+                sg.a1 a1Var = (sg.a1) this.f45428b;
+                a1Var.f46184f.setAlpha(((sg.y0) this.f45429c).K);
+                canvas.drawRoundRect(rectF, AndroidUtilities.dp(24.0f) - 1, AndroidUtilities.dp(24.0f) - 1, a1Var.f46184f);
                 canvas.restore();
                 super.dispatchDraw(canvas);
                 return;
@@ -52,11 +52,11 @@ public final class k0 extends FrameLayout {
     public boolean drawChild(Canvas canvas, View view, long j10) {
         boolean z10;
         float f7;
-        switch (this.f45473a) {
+        switch (this.f45427a) {
             case 0:
-                Path path = (Path) this.f45474b;
-                l0 l0Var = (l0) this.f45475c;
-                if (l0Var.h != null && (((z10 = l0Var.f45501f) && view == l0Var.d) || (!z10 && view == l0Var.f45500c))) {
+                Path path = (Path) this.f45428b;
+                l0 l0Var = (l0) this.f45429c;
+                if (l0Var.h != null && (((z10 = l0Var.f45455f) && view == l0Var.d) || (!z10 && view == l0Var.f45454c))) {
                     if (z10) {
                         f7 = l0Var.e;
                     } else {
@@ -78,9 +78,9 @@ public final class k0 extends FrameLayout {
 
     @Override
     public void onMeasure(int i10, int i11) {
-        switch (this.f45473a) {
+        switch (this.f45427a) {
             case 1:
-                super.onMeasure(i10, kk.C(2.0f, ((sg.x0) this.f45475c).f46530s, 1073741824));
+                super.onMeasure(i10, lk.C(2.0f, ((sg.y0) this.f45429c).f46507s, 1073741824));
                 return;
             default:
                 super.onMeasure(i10, i11);
@@ -90,16 +90,16 @@ public final class k0 extends FrameLayout {
 
     public k0(Context context, d6 d6Var) {
         super(context);
-        LinearLayout e = kk.e(context, 1);
+        LinearLayout e = lk.e(context, 1);
         q6 q6Var = new q6(context, false, false, false);
-        this.f45474b = q6Var;
+        this.f45428b = q6Var;
         int i10 = h6.G6;
         q6Var.setTextColor(h6.w0(i10, d6Var));
         q6Var.setTextSize(AndroidUtilities.dp(17.0f));
         q6Var.setTypeface(AndroidUtilities.bold());
         e.addView(q6Var, z5.q(-2, 23, 1));
         TextView textView = new TextView(context);
-        this.f45475c = textView;
+        this.f45429c = textView;
         textView.setTextSize(1, 11.0f);
         textView.setTextColor(h6.w0(i10, d6Var));
         textView.setSingleLine();
@@ -111,7 +111,7 @@ public final class k0 extends FrameLayout {
 
     public k0(l0 l0Var, Context context) {
         super(context);
-        this.f45475c = l0Var;
-        this.f45474b = new Path();
+        this.f45429c = l0Var;
+        this.f45428b = new Path();
     }
 }

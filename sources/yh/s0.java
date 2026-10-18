@@ -1,23 +1,21 @@
 package yh;
 
-import android.content.Context;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.Components.xc;
-public final class s0 extends y4 {
-    public final p1 f50540x0;
+import android.view.View;
+import org.telegram.ui.Components.p5;
+public final class s0 implements View.OnAttachStateChangeListener {
+    public final p5 f50491a;
 
-    public s0(p1 p1Var, Context context, int i10, TL_stars.StarGift starGift, long j10, m0 m0Var, boolean z10, boolean z11) {
-        super(context, i10, starGift, null, j10, m0Var, z10, z11);
-        this.f50540x0 = p1Var;
+    public s0(p5 p5Var) {
+        this.f50491a = p5Var;
     }
 
     @Override
-    public final xc Y() {
-        d6 d6Var;
-        p1 p1Var = this.f50540x0;
-        org.telegram.ui.ActionBar.d3 d3Var = p1Var.container;
-        d6Var = p1Var.resourcesProvider;
-        return new xc(d3Var, d6Var);
+    public final void onViewAttachedToWindow(View view) {
+        this.f50491a.a();
+    }
+
+    @Override
+    public final void onViewDetachedFromWindow(View view) {
+        this.f50491a.b();
     }
 }

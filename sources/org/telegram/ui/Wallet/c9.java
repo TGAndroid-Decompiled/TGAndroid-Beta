@@ -1,110 +1,81 @@
 package org.telegram.ui.Wallet;
 
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-public final class c9 implements Utilities.Callback3 {
-    public final int f34107a;
-    public final o9 f34108b;
-    public final m0 f34109c;
-    public final long d;
+import android.animation.ValueAnimator;
+import android.graphics.drawable.BitmapDrawable;
+import android.view.KeyEvent;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+import org.telegram.ui.Components.bs;
+public final class c9 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f34061a;
+    public final float f34062b;
+    public final float f34063c;
+    public final float d;
+    public final float e;
+    public final int f34064f;
+    public final KeyEvent.Callback f34065g;
 
-    public c9(o9 o9Var, m0 m0Var, long j10, int i10) {
-        this.f34107a = i10;
-        this.f34108b = o9Var;
-        this.f34109c = m0Var;
-        this.d = j10;
+    public c9(KeyEvent.Callback callback, float f7, float f10, float f11, float f12, int i10, int i11) {
+        this.f34061a = i11;
+        this.f34065g = callback;
+        this.f34062b = f7;
+        this.f34063c = f10;
+        this.d = f11;
+        this.e = f12;
+        this.f34064f = i10;
     }
 
     @Override
-    public final void run(Object obj, Object obj2, Object obj3) {
-        byte[] bArr;
-        byte[] bArr2;
-        switch (this.f34107a) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f34061a) {
             case 0:
-                String str = (String) obj;
-                final Utilities.Callback callback = (Utilities.Callback) obj3;
-                final o9 o9Var = this.f34108b;
-                TLRPC.User user = o9Var.e;
-                String str2 = o9Var.f34694f;
-                if (((Boolean) obj2).booleanValue()) {
-                    bArr = o9Var.l0();
-                } else {
-                    bArr = null;
-                }
-                byte[] bArr3 = bArr;
-                this.f34109c.b0(user, str2, this.d, str, bArr3, null, o9Var.h, new Utilities.Callback() {
-                    @Override
-                    public final void run(Object obj4) {
-                        String str3 = (String) obj4;
-                        switch (r3) {
-                            case 0:
-                                if (!"PASSCODE_FAILED".equalsIgnoreCase(str3)) {
-                                    callback.run(str3);
-                                    if (str3 == null) {
-                                        o9 o9Var2 = o9Var;
-                                        o9Var2.fragmentView.postDelayed(new x8(o9Var2, 4), 220L);
-                                        return;
-                                    }
-                                    return;
-                                }
-                                return;
-                            default:
-                                if (!"PASSCODE_FAILED".equalsIgnoreCase(str3)) {
-                                    callback.run(str3);
-                                    if (str3 == null) {
-                                        o9 o9Var3 = o9Var;
-                                        o9Var3.fragmentView.postDelayed(new x8(o9Var3, 4), 220L);
-                                        return;
-                                    }
-                                    return;
-                                }
-                                return;
-                        }
-                    }
-                }, new b9(o9Var, 2), null);
+                h9 h9Var = (h9) this.f34065g;
+                h9Var.getClass();
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                bs bsVar = bs.h;
+                float interpolation = bsVar.getInterpolation(floatValue);
+                float interpolation2 = bsVar.getInterpolation(Math.min(1.0f, (floatValue * 320.0f) / 120.0f));
+                m6 m6Var = h9Var.f34279c;
+                float f7 = this.f34063c;
+                float f10 = this.f34062b;
+                m6Var.setAlpha(((f7 - f10) * interpolation2) + f10);
+                TextView textView = h9Var.e;
+                float f11 = this.e;
+                float f12 = this.d;
+                textView.setAlpha(((f11 - f12) * interpolation2) + f12);
+                FrameLayout frameLayout = h9Var.d;
+                ViewGroup.LayoutParams layoutParams = frameLayout.getLayoutParams();
+                int i10 = this.f34064f;
+                layoutParams.width = Math.round(((h9Var.f34285x - i10) * interpolation) + i10);
+                frameLayout.requestLayout();
                 return;
             default:
-                String str3 = (String) obj;
-                final Utilities.Callback callback2 = (Utilities.Callback) obj3;
-                final o9 o9Var2 = this.f34108b;
-                TLRPC.User user2 = o9Var2.e;
-                String str4 = o9Var2.f34694f;
-                if (((Boolean) obj2).booleanValue()) {
-                    bArr2 = o9Var2.l0();
-                } else {
-                    bArr2 = null;
+                xh.j jVar = (xh.j) this.f34065g;
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                jVar.f49855x = floatValue2;
+                float f13 = this.f34062b;
+                float y3 = com.google.android.gms.internal.play_billing.k3.y(1.0f, f13, floatValue2, f13);
+                xh.i iVar = jVar.f49856y;
+                iVar.setScaleX(y3);
+                iVar.setScaleY(y3);
+                iVar.setTranslationX((1.0f - jVar.f49855x) * this.f34063c);
+                iVar.setTranslationY((1.0f - jVar.f49855x) * this.d);
+                int i11 = (int) ((1.0f - jVar.f49855x) * this.e);
+                jVar.h.N(i11, i11);
+                float a2 = w7.r.a((jVar.f49855x * 2.0f) - 1.0f, 0.0f, 1.0f);
+                jVar.f49849c.setAlpha((int) (a2 * 255.0f));
+                jVar.d.setAlpha(a2);
+                jVar.e.setAlpha(a2);
+                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = jVar.f49850f;
+                actionBarPopupWindow$ActionBarPopupWindowLayout.setTranslationY((1.0f - jVar.f49855x) * this.f34064f);
+                actionBarPopupWindow$ActionBarPopupWindowLayout.setAlpha(a2);
+                BitmapDrawable bitmapDrawable = jVar.f49854w;
+                if (bitmapDrawable != null) {
+                    bitmapDrawable.setAlpha((int) (jVar.f49855x * 255.0f));
                 }
-                byte[] bArr4 = bArr2;
-                this.f34109c.b0(user2, str4, this.d, str3, bArr4, null, o9Var2.h, new Utilities.Callback() {
-                    @Override
-                    public final void run(Object obj4) {
-                        String str32 = (String) obj4;
-                        switch (r3) {
-                            case 0:
-                                if (!"PASSCODE_FAILED".equalsIgnoreCase(str32)) {
-                                    callback2.run(str32);
-                                    if (str32 == null) {
-                                        o9 o9Var22 = o9Var2;
-                                        o9Var22.fragmentView.postDelayed(new x8(o9Var22, 4), 220L);
-                                        return;
-                                    }
-                                    return;
-                                }
-                                return;
-                            default:
-                                if (!"PASSCODE_FAILED".equalsIgnoreCase(str32)) {
-                                    callback2.run(str32);
-                                    if (str32 == null) {
-                                        o9 o9Var3 = o9Var2;
-                                        o9Var3.fragmentView.postDelayed(new x8(o9Var3, 4), 220L);
-                                        return;
-                                    }
-                                    return;
-                                }
-                                return;
-                        }
-                    }
-                }, new b9(o9Var2, 3), null);
+                jVar.f49851n.setAlpha(a2);
                 return;
         }
     }

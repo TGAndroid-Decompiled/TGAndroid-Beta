@@ -11,63 +11,63 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class pd0 implements Runnable {
-    public final int f40095a = 1;
-    public final ud0 f40096b;
-    public final TLRPC.TL_error f40097c;
+    public final int f40056a = 1;
+    public final ud0 f40057b;
+    public final TLRPC.TL_error f40058c;
     public final String d;
     public final String e;
-    public final TLObject f40098f;
+    public final TLObject f40059f;
 
     public pd0(ud0 ud0Var, TLRPC.TL_error tL_error, String str, String str2, TLObject tLObject) {
-        this.f40096b = ud0Var;
-        this.f40097c = tL_error;
+        this.f40057b = ud0Var;
+        this.f40058c = tL_error;
         this.d = str;
         this.e = str2;
-        this.f40098f = tLObject;
+        this.f40059f = tLObject;
     }
 
     @Override
     public final void run() {
         String formatPluralString;
         int i10;
-        int i11 = this.f40095a;
-        TLObject tLObject = this.f40098f;
+        int i11 = this.f40056a;
+        TLObject tLObject = this.f40059f;
         String str = this.e;
         String str2 = this.d;
-        TLRPC.TL_error tL_error = this.f40097c;
-        ud0 ud0Var = this.f40096b;
+        TLRPC.TL_error tL_error = this.f40058c;
+        ud0 ud0Var = this.f40057b;
         switch (i11) {
             case 0:
                 ud0Var.getClass();
                 if (tL_error == null) {
                     TL_account.Password password = (TL_account.Password) tLObject;
-                    ud0Var.f41977s = password;
+                    ud0Var.f41936s = password;
                     TwoStepVerificationActivity.m0(password);
                     ud0Var.o(str2, str);
                     return;
                 }
                 return;
             default:
-                fg0 fg0Var = ud0Var.E;
+                eg0 eg0Var = ud0Var.E;
                 if (tL_error != null && ("SRP_ID_INVALID".equals(tL_error.text) || "NEW_SALT_INVALID".equals(tL_error.text))) {
                     TL_account.getPassword getpassword = new TL_account.getPassword();
-                    i10 = ((org.telegram.ui.ActionBar.n2) fg0Var).currentAccount;
+                    i10 = ((org.telegram.ui.ActionBar.n2) eg0Var).currentAccount;
                     ConnectionsManager.getInstance(i10).sendRequest(getpassword, new sd0(ud0Var, str2, str, 1), 8);
                     return;
                 }
-                fg0Var.k1(false, true);
+                eg0Var.k1(false, true);
                 if (tLObject instanceof TLRPC.auth_Authorization) {
-                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(fg0Var.getParentActivity());
+                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(eg0Var.getParentActivity());
                     alertDialog$Builder.k(LocaleController.getString(R.string.Continue), new zu(21, ud0Var, tLObject));
                     boolean isEmpty = TextUtils.isEmpty(str2);
-                    org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20608a;
+                    org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20601a;
                     if (isEmpty) {
                         b2Var.T = LocaleController.getString(R.string.YourPasswordReset);
                     } else {
                         b2Var.T = LocaleController.getString(R.string.YourPasswordChangedSuccessText);
                     }
                     b2Var.R = LocaleController.getString(R.string.TwoStepVerificationTitle);
-                    Dialog showDialog = fg0Var.showDialog(b2Var);
+                    Dialog showDialog = eg0Var.showDialog(b2Var);
                     if (showDialog != null) {
                         showDialog.setCanceledOnTouchOutside(false);
                         showDialog.setCancelable(false);
@@ -75,7 +75,7 @@ public final class pd0 implements Runnable {
                     }
                     return;
                 } else if (tL_error != null) {
-                    ud0Var.f41978w = false;
+                    ud0Var.f41937w = false;
                     if (tL_error.text.startsWith("FLOOD_WAIT")) {
                         int intValue = Utilities.parseInt((CharSequence) tL_error.text).intValue();
                         if (intValue < 60) {
@@ -83,10 +83,10 @@ public final class pd0 implements Runnable {
                         } else {
                             formatPluralString = LocaleController.formatPluralString("Minutes", intValue / 60, new Object[0]);
                         }
-                        fg0Var.l1(LocaleController.getString(R.string.RestorePasswordNoEmailTitle), LocaleController.formatString("FloodWaitTime", R.string.FloodWaitTime, formatPluralString));
+                        eg0Var.l1(LocaleController.getString(R.string.RestorePasswordNoEmailTitle), LocaleController.formatString("FloodWaitTime", R.string.FloodWaitTime, formatPluralString));
                         return;
                     }
-                    fg0Var.l1(LocaleController.getString(R.string.RestorePasswordNoEmailTitle), tL_error.text);
+                    eg0Var.l1(LocaleController.getString(R.string.RestorePasswordNoEmailTitle), tL_error.text);
                     return;
                 } else {
                     return;
@@ -95,9 +95,9 @@ public final class pd0 implements Runnable {
     }
 
     public pd0(ud0 ud0Var, TLRPC.TL_error tL_error, TLObject tLObject, String str, String str2) {
-        this.f40096b = ud0Var;
-        this.f40097c = tL_error;
-        this.f40098f = tLObject;
+        this.f40057b = ud0Var;
+        this.f40058c = tL_error;
+        this.f40059f = tLObject;
         this.d = str;
         this.e = str2;
     }

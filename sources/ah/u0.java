@@ -41,28 +41,28 @@ public final class u0 implements View.OnFocusChangeListener {
                 return;
             case 2:
                 ai.b1 b1Var = (ai.b1) this.f894b;
-                b1Var.f997c0.c(z10, !TextUtils.isEmpty(b1Var.f998d0.getText()));
+                b1Var.f999c0.c(z10, !TextUtils.isEmpty(b1Var.f1000d0.getText()));
                 return;
             case 3:
                 ai.h1 h1Var = (ai.h1) this.f894b;
-                h1Var.f1396f.c(z10, !TextUtils.isEmpty(h1Var.h.getText()));
+                h1Var.f1394f.c(z10, !TextUtils.isEmpty(h1Var.h.getText()));
                 return;
             case 4:
                 ai.l1 l1Var = (ai.l1) this.f894b;
-                l1Var.f1738b.c(z10, !TextUtils.isEmpty(l1Var.f1739c.getText()));
+                l1Var.f1744b.c(z10, !TextUtils.isEmpty(l1Var.f1745c.getText()));
                 return;
             case 5:
                 c6.a((c6) this.f894b, z10);
                 return;
             case 6:
-                EditTextBoldCursor editTextBoldCursor = ((qg.w) this.f894b).f44731c;
+                EditTextBoldCursor editTextBoldCursor = ((qg.v) this.f894b).f44676c;
                 if (!z10 && TextUtils.isEmpty(editTextBoldCursor.getText())) {
                     editTextBoldCursor.setText("0");
                     return;
                 }
                 return;
             default:
-                EditTextBoldCursor editTextBoldCursor2 = ((qg.x) this.f894b).d;
+                EditTextBoldCursor editTextBoldCursor2 = ((qg.w) this.f894b).d;
                 if (!z10 && TextUtils.isEmpty(editTextBoldCursor2.getText())) {
                     editTextBoldCursor2.setText("0");
                     return;

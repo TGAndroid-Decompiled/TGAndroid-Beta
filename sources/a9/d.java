@@ -42,15 +42,15 @@ public final class d implements ServiceConnection {
                 LinkedBlockingDeque linkedBlockingDeque = (LinkedBlockingDeque) rVar.d;
                 sb2.append(linkedBlockingDeque.size());
                 Log.d("SessionLifecycleClient", sb2.toString());
-                rVar.f7664c = new Messenger(iBinder);
+                rVar.f7662c = new Messenger(iBinder);
                 ArrayList arrayList = new ArrayList();
                 linkedBlockingDeque.drainTo(arrayList);
-                be.f0.q(be.f0.b((kd.h) rVar.f7663b), new ab.l(rVar, arrayList, null, 2));
+                be.f0.q(be.f0.b((kd.h) rVar.f7661b), new ab.l(rVar, arrayList, null, 2));
                 return;
             case 2:
                 com.google.android.gms.internal.play_billing.u.g("BillingClientTesting", "Billing Override Service connected.");
                 c5.d0 d0Var = (c5.d0) this.f323b;
-                int i10 = com.google.android.gms.internal.play_billing.f.f7105b;
+                int i10 = com.google.android.gms.internal.play_billing.f.f7103b;
                 if (iBinder != null) {
                     IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.apps.play.billingtestcompanion.aidl.IBillingOverrideService");
                     if (queryLocalInterface instanceof com.google.android.gms.internal.play_billing.g) {
@@ -67,30 +67,30 @@ public final class d implements ServiceConnection {
                 n4.s sVar = d0Var.h;
                 sVar.getClass();
                 try {
-                    sVar.V(c10, (q3) sVar.f17128b);
+                    sVar.V(c10, (q3) sVar.f17124b);
                     return;
                 } catch (Throwable th2) {
                     com.google.android.gms.internal.play_billing.u.i("BillingLogger", "Unable to log.", th2);
                     return;
                 }
             default:
-                int i12 = xf.e.f49825a;
+                int i12 = xf.e.f49778a;
                 if (iBinder != null) {
                     IInterface queryLocalInterface2 = iBinder.queryLocalInterface("android.support.customtabs.ICustomTabsService");
                     if (queryLocalInterface2 != null && (queryLocalInterface2 instanceof xf.f)) {
                         fVar = (xf.f) queryLocalInterface2;
                     } else {
                         ?? obj = new Object();
-                        obj.f49824a = iBinder;
+                        obj.f49777a = iBinder;
                         fVar = obj;
                     }
                 }
                 xf.c cVar2 = new xf.c(fVar, componentName);
                 if (((pf.b) ((WeakReference) this.f323b).get()) != null) {
-                    pf.d.f44331b = cVar2;
-                    if (MessagesController.getInstance(UserConfig.selectedAccount).isWebBrowserUseCustomTabs() && (cVar = pf.d.f44331b) != null) {
+                    pf.d.f44288b = cVar2;
+                    if (MessagesController.getInstance(UserConfig.selectedAccount).isWebBrowserUseCustomTabs() && (cVar = pf.d.f44288b) != null) {
                         try {
-                            ((xf.d) ((xf.f) cVar.f49822a)).G0();
+                            ((xf.d) ((xf.f) cVar.f49775a)).G0();
                             return;
                         } catch (RemoteException unused) {
                             return;
@@ -116,7 +116,7 @@ public final class d implements ServiceConnection {
             case 1:
                 Log.d("SessionLifecycleClient", "Disconnected from SessionLifecycleService");
                 com.google.firebase.messaging.r rVar = (com.google.firebase.messaging.r) this.f323b;
-                rVar.f7664c = null;
+                rVar.f7662c = null;
                 rVar.getClass();
                 return;
             case 2:
@@ -127,7 +127,7 @@ public final class d implements ServiceConnection {
                 return;
             default:
                 if (((pf.b) ((WeakReference) this.f323b).get()) != null) {
-                    pf.d.f44331b = null;
+                    pf.d.f44288b = null;
                     return;
                 }
                 return;

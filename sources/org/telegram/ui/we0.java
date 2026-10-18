@@ -1,23 +1,23 @@
 package org.telegram.ui;
 public final class we0 implements org.telegram.ui.ActionBar.a2 {
-    public final int f42524a;
-    public final jf0 f42525b;
+    public final int f42497a;
+    public final if0 f42498b;
 
-    public we0(jf0 jf0Var, int i10) {
-        this.f42524a = i10;
-        this.f42525b = jf0Var;
+    public we0(if0 if0Var, int i10) {
+        this.f42497a = i10;
+        this.f42498b = if0Var;
     }
 
     @Override
     public final void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f42524a) {
+        switch (this.f42497a) {
             case 0:
-                jf0 jf0Var = this.f42525b;
-                jf0Var.c(true);
-                jf0Var.f38174s0.u1(0, true, null, true);
+                if0 if0Var = this.f42498b;
+                if0Var.c(true);
+                if0Var.f37877s0.u1(0, true, null, true);
                 return;
             default:
-                this.f42525b.f38174s0.u1(0, true, null, true);
+                this.f42498b.f37877s0.u1(0, true, null, true);
                 return;
         }
     }

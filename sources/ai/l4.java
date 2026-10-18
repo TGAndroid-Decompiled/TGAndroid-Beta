@@ -1,48 +1,53 @@
 package ai;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.ey;
-public final class l4 implements RequestDelegate {
-    public final int f1756a = 0;
-    public final org.telegram.ui.ActionBar.b2 f1757b;
-    public final long f1758c;
-    public final NotificationCenter.NotificationCenterDelegate d;
-    public final Object e;
-    public final TLObject f1759f;
-    public final Object f1760g;
+import android.os.Bundle;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.ProfileActivity;
+import org.telegram.ui.sn;
+public final class l4 implements Runnable {
+    public final int f1761a;
+    public final long f1762b;
 
-    public l4(k7 k7Var, pf.c cVar, org.telegram.ui.ActionBar.b2 b2Var, TL_stars.TL_starGiftUnique tL_starGiftUnique, long j10, CharSequence charSequence) {
-        this.d = k7Var;
-        this.e = cVar;
-        this.f1757b = b2Var;
-        this.f1759f = tL_starGiftUnique;
-        this.f1758c = j10;
-        this.f1760g = charSequence;
+    public l4(long j10, int i10) {
+        this.f1761a = i10;
+        this.f1762b = j10;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f1756a) {
+    public final void run() {
+        switch (this.f1761a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new p4((k7) this.d, (pf.c) this.e, this.f1757b, tLObject, (TL_stars.TL_starGiftUnique) this.f1759f, tL_error, this.f1758c, (CharSequence) this.f1760g));
+                org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
+                if (U != null) {
+                    Bundle bundle = new Bundle();
+                    bundle.putLong("user_id", this.f1762b);
+                    bundle.putBoolean("my_profile", true);
+                    bundle.putBoolean("open_gifts", true);
+                    U.presentFragment(new ProfileActivity(bundle, null));
+                    return;
+                }
+                return;
+            case 1:
+                org.telegram.ui.ActionBar.n2 U2 = LaunchActivity.U();
+                if (U2 != null) {
+                    U2.presentFragment(sn.W9(this.f1762b));
+                    return;
+                }
+                return;
+            case 2:
+                org.telegram.ui.ActionBar.n2 U3 = LaunchActivity.U();
+                if (U3 != null) {
+                    U3.presentFragment(sn.W9(this.f1762b));
+                    return;
+                }
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new p4((ey) this.d, this.f1757b, tLObject, (TLRPC.User) this.e, (TLRPC.Chat) this.f1759f, this.f1758c, tL_error, (TLRPC.TL_messages_checkHistoryImportPeer) this.f1760g));
+                org.telegram.ui.ActionBar.n2 U4 = LaunchActivity.U();
+                if (U4 != null) {
+                    U4.presentFragment(sn.W9(this.f1762b));
+                    return;
+                }
                 return;
         }
-    }
-
-    public l4(ey eyVar, org.telegram.ui.ActionBar.b2 b2Var, TLRPC.User user, TLRPC.Chat chat, long j10, TLRPC.TL_messages_checkHistoryImportPeer tL_messages_checkHistoryImportPeer) {
-        this.d = eyVar;
-        this.f1757b = b2Var;
-        this.e = user;
-        this.f1759f = chat;
-        this.f1758c = j10;
-        this.f1760g = tL_messages_checkHistoryImportPeer;
     }
 }

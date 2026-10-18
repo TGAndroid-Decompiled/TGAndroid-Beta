@@ -36,7 +36,7 @@ public final class v implements Runnable {
         if (fVar != null) {
             ((e6.h) fVar).o((String) this.d);
         } else {
-            g6.v.f10886n0.b("Discarded message for unknown namespace '%s'", (String) this.f4792c);
+            g6.v.f10884n0.b("Discarded message for unknown namespace '%s'", (String) this.f4792c);
         }
     }
 
@@ -103,9 +103,9 @@ public final class v implements Runnable {
             case 5:
                 da.c cVar = (da.c) this.d;
                 cVar.b((x9.b) this.f4791b, (TaskCompletionSource) this.f4792c);
-                ((AtomicInteger) cVar.f7920i.f17043c).set(0);
-                double min = Math.min(3600000.0d, Math.pow(cVar.f7916b, cVar.a()) * (60000.0d / cVar.f7915a));
-                String str2 = "Delay for: " + String.format(Locale.US, "%.2f", Double.valueOf(min / 1000.0d)) + " s for report: " + bVar.f49712b;
+                ((AtomicInteger) cVar.f7918i.f17039c).set(0);
+                double min = Math.min(3600000.0d, Math.pow(cVar.f7914b, cVar.a()) * (60000.0d / cVar.f7913a));
+                String str2 = "Delay for: " + String.format(Locale.US, "%.2f", Double.valueOf(min / 1000.0d)) + " s for report: " + bVar.f49665b;
                 if (Log.isLoggable("FirebaseCrashlytics", 3)) {
                     Log.d("FirebaseCrashlytics", str2, null);
                 }
@@ -137,7 +137,7 @@ public final class v implements Runnable {
                         mVar.get();
                         return;
                     } catch (Exception e) {
-                        eVar.f47631c.l(e);
+                        eVar.f47587c.l(e);
                         return;
                     }
                 }
@@ -179,7 +179,7 @@ public final class v implements Runnable {
             default:
                 k0 k0Var = (k0) this.f4792c;
                 y8.e0 e0Var = (y8.e0) this.d;
-                Task<byte[]> onRequest = ((x8.m) this.f4791b).f49698c.onRequest(k0Var.d, k0Var.f50059b, k0Var.f50060c);
+                Task<byte[]> onRequest = ((x8.m) this.f4791b).f49651c.onRequest(k0Var.d, k0Var.f50012b, k0Var.f50013c);
                 if (onRequest == null) {
                     x8.m.L0(e0Var, false, null);
                     return;

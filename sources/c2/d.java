@@ -18,7 +18,7 @@ public final class d implements d9.u {
             case 1:
                 return new i2.k(this.f4498b);
             case 2:
-                return new u2.p(this.f4498b, new c3.m());
+                return new u2.q(this.f4498b, new c3.m());
             case 3:
                 return new x2.n(this.f4498b, new oa.d(26));
             default:

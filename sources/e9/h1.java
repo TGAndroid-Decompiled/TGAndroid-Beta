@@ -7,23 +7,23 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.RandomAccess;
 public final class h1 extends AbstractList implements RandomAccess, Serializable {
-    public final List f8455a;
-    public final d9.k f8456b;
+    public final List f8453a;
+    public final d9.k f8454b;
 
     public h1(List list, d9.k kVar) {
         list.getClass();
-        this.f8455a = list;
-        this.f8456b = kVar;
+        this.f8453a = list;
+        this.f8454b = kVar;
     }
 
     @Override
     public final Object get(int i10) {
-        return this.f8456b.apply(this.f8455a.get(i10));
+        return this.f8454b.apply(this.f8453a.get(i10));
     }
 
     @Override
     public final boolean isEmpty() {
-        return this.f8455a.isEmpty();
+        return this.f8453a.isEmpty();
     }
 
     @Override
@@ -33,21 +33,21 @@ public final class h1 extends AbstractList implements RandomAccess, Serializable
 
     @Override
     public final ListIterator listIterator(int i10) {
-        return new g1(this, this.f8455a.listIterator(i10), 0);
+        return new g1(this, this.f8453a.listIterator(i10), 0);
     }
 
     @Override
     public final Object remove(int i10) {
-        return this.f8456b.apply(this.f8455a.remove(i10));
+        return this.f8454b.apply(this.f8453a.remove(i10));
     }
 
     @Override
     public final void removeRange(int i10, int i11) {
-        this.f8455a.subList(i10, i11).clear();
+        this.f8453a.subList(i10, i11).clear();
     }
 
     @Override
     public final int size() {
-        return this.f8455a.size();
+        return this.f8453a.size();
     }
 }

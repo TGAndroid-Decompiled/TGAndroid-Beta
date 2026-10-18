@@ -7,12 +7,12 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.ResultCallback;
 import org.telegram.tgnet.TLRPC;
 public final class sp implements ResultCallback {
-    public final ChatThemeController f30309a;
-    public final wp f30310b;
+    public final ChatThemeController f30302a;
+    public final wp f30303b;
 
     public sp(wp wpVar, ChatThemeController chatThemeController) {
-        this.f30310b = wpVar;
-        this.f30309a = chatThemeController;
+        this.f30303b = wpVar;
+        this.f30302a = chatThemeController;
     }
 
     @Override
@@ -20,17 +20,17 @@ public final class sp implements ResultCallback {
         int i10;
         int i11;
         Void r62 = (Void) obj;
-        ChatThemeController chatThemeController = this.f30309a;
+        ChatThemeController chatThemeController = this.f30302a;
         if (chatThemeController.isGiftThemesFullyLoaded()) {
             i10 = 2;
         } else {
             i10 = 0;
         }
         List<org.telegram.ui.ActionBar.c4> emojiThemes = chatThemeController.getEmojiThemes(i10 | 5);
-        wp wpVar = this.f30310b;
+        wp wpVar = this.f30303b;
         i11 = ((org.telegram.ui.ActionBar.f3) wpVar).currentAccount;
         NotificationCenter.getInstance(i11).doOnIdle(new ee(22, this, emojiThemes));
-        wpVar.f32179b0 = false;
+        wpVar.f32172b0 = false;
     }
 
     @Override
@@ -40,6 +40,6 @@ public final class sp implements ResultCallback {
 
     @Override
     public final void onError(TLRPC.TL_error tL_error) {
-        Toast.makeText(this.f30310b.getContext(), tL_error.text, 0).show();
+        Toast.makeText(this.f30303b.getContext(), tL_error.text, 0).show();
     }
 }

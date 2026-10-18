@@ -3,7 +3,7 @@ package ah;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.view.View;
-import ci.p1;
+import ci.o1;
 import org.telegram.messenger.NotificationCenter;
 public final class z extends AnimatorListenerAdapter {
     public final int f917a;
@@ -17,8 +17,8 @@ public final class z extends AnimatorListenerAdapter {
         View view;
         switch (this.f917a) {
             case 1:
-                rf.d dVar = p1.Z.L;
-                if (dVar == null || (view = dVar.f45315j) == null) {
+                rf.d dVar = o1.Z.L;
+                if (dVar == null || (view = dVar.f45269j) == null) {
                     return;
                 }
                 dVar.e(view);

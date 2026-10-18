@@ -39,7 +39,7 @@ public final class b {
         int i10 = this.f4360b;
         int i11 = this.f4361c;
         f7.h = i10;
-        f7.f8016i = i11;
+        f7.f8014i = i11;
         re.b bVar = this.e;
         if (bVar != null && view != null) {
             bVar.add(view);

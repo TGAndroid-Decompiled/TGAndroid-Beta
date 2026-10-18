@@ -8,30 +8,30 @@ import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.tgnet.tl.TL_wallet;
 public final class e implements Runnable {
-    public final int f34157a;
-    public final f f34158b;
-    public final TL_wallet.currencyRates f34159c;
+    public final int f34101a;
+    public final f f34102b;
+    public final TL_wallet.currencyRates f34103c;
 
     public e(f fVar, TL_wallet.currencyRates currencyrates, int i10) {
-        this.f34157a = i10;
-        this.f34158b = fVar;
-        this.f34159c = currencyrates;
+        this.f34101a = i10;
+        this.f34102b = fVar;
+        this.f34103c = currencyrates;
     }
 
     @Override
     public final void run() {
         boolean z10;
         String str;
-        switch (this.f34157a) {
+        switch (this.f34101a) {
             case 0:
-                f fVar = this.f34158b;
-                TL_wallet.currencyRates currencyrates = this.f34159c;
+                f fVar = this.f34102b;
+                TL_wallet.currencyRates currencyrates = this.f34103c;
                 boolean z11 = true;
                 if (currencyrates != null && currencyrates.rates != null) {
                     try {
                         InputStream open = ApplicationLoader.applicationContext.getAssets().open("currencies.json");
-                        String str2 = e2.m0.f8255a;
-                        JSONObject jSONObject = new JSONObject(new String(f9.f.b(open), d9.j.f7894a));
+                        String str2 = e2.m0.f8253a;
+                        JSONObject jSONObject = new JSONObject(new String(f9.f.b(open), d9.j.f7892a));
                         ArrayList<TL_wallet.currencyRate> arrayList = currencyrates.rates;
                         int size = arrayList.size();
                         int i10 = 0;
@@ -91,10 +91,10 @@ public final class e implements Runnable {
                 AndroidUtilities.runOnUIThread(new e(fVar, currencyrates, 1));
                 return;
             default:
-                f fVar2 = this.f34158b;
-                fVar2.d = this.f34159c;
-                fVar2.f34215c = false;
-                fVar2.f34214b.J();
+                f fVar2 = this.f34102b;
+                fVar2.d = this.f34103c;
+                fVar2.f34160c = false;
+                fVar2.f34159b.J();
                 return;
         }
     }

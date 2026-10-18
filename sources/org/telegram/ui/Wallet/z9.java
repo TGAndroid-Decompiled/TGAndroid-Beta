@@ -1,34 +1,42 @@
 package org.telegram.ui.Wallet;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
+import android.content.Context;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.ti;
-public final class z9 extends AnimatorListenerAdapter {
-    public final ti f35240a;
-    public final s6 f35241b;
-    public final aa f35242c;
+import org.telegram.messenger.ImageLocation;
+import org.telegram.messenger.WebFile;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_wallet;
+import org.telegram.ui.Components.a71;
+import org.telegram.ui.Components.e61;
+import org.telegram.ui.Components.f61;
+import org.telegram.ui.Components.im0;
+import org.telegram.ui.Components.s61;
+public final class z9 extends e61 {
+    public static final int f35194a = 0;
 
-    public z9(aa aaVar, ti tiVar, s6 s6Var) {
-        this.f35242c = aaVar;
-        this.f35240a = tiVar;
-        this.f35241b = s6Var;
+    static {
+        e61.setup(new e61());
     }
 
     @Override
-    public final void onAnimationCancel(Animator animator) {
-        this.f35242c.b();
-    }
-
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        this.f35242c.b();
-    }
-
-    @Override
-    public final void onAnimationStart(Animator animator) {
-        if (this.f35240a != null) {
-            AndroidUtilities.hideKeyboard(this.f35241b);
+    public final void bindView(View view, f61 f61Var, boolean z10, s61 s61Var, a71 a71Var) {
+        aa aaVar = (aa) view;
+        TL_wallet.tonConnectSession tonconnectsession = (TL_wallet.tonConnectSession) f61Var.G;
+        aaVar.getClass();
+        TL_wallet.tonConnectManifest tonconnectmanifest = tonconnectsession.manifest;
+        if (tonconnectmanifest != null) {
+            TLRPC.WebDocument webDocument = tonconnectmanifest.icon;
+            if (webDocument != null) {
+                aaVar.f33989b.n(ImageLocation.getForWebFile(WebFile.createWithWebDocument(webDocument)), "28_28", null, tonconnectsession.manifest);
+            }
+            aaVar.f33990c.setText(tonconnectsession.manifest.name);
+            aaVar.d.setText(AndroidUtilities.getHostAuthority(tonconnectsession.manifest.url));
         }
+    }
+
+    @Override
+    public final View createView(Context context, im0 im0Var, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
+        return new aa(context, d6Var);
     }
 }

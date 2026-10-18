@@ -25,10 +25,10 @@ public final class w4 implements RequestDelegate {
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
         switch (this.f2361a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new m2((k7) this.d, tLObject, this.f2362b, (TLRPC.Document) this.e, this.f2363c, tL_error, (TL_stars.saveStarGift) this.f2364f));
+                AndroidUtilities.runOnUIThread(new l2((k7) this.d, tLObject, this.f2362b, (TLRPC.Document) this.e, this.f2363c, tL_error, (TL_stars.saveStarGift) this.f2364f));
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new m2((xh.k) this.d, this.f2362b, (Runnable) this.e, (String) this.f2364f, tL_error, tLObject, this.f2363c));
+                AndroidUtilities.runOnUIThread(new l2((xh.k) this.d, this.f2362b, (Runnable) this.e, (String) this.f2364f, tL_error, tLObject, this.f2363c));
                 return;
         }
     }

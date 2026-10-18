@@ -1,96 +1,138 @@
 package sg;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.x90;
-import w7.z5;
-public final class w0 extends LinearLayout {
-    public int f46514a;
-    public final TextView f46515b;
-    public final x90 f46516c;
-    public LinearLayout d;
-    public final l0 e;
-    public final ViewGroup f46517f;
-    public boolean h;
-    public final x0 f46518n;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.Components.sa;
+import org.telegram.ui.qw0;
+public final class w0 implements z4.e {
+    public final sa f46466a;
+    public final y0 f46467b;
 
-    public w0(x0 x0Var, Context context, int i10) {
-        super(context);
-        this.f46518n = x0Var;
-        setOrientation(1);
-        ViewGroup B = x0Var.B(context, i10);
-        this.f46517f = B;
-        addView(B);
-        this.e = (l0) B;
-        TextView textView = new TextView(context);
-        this.f46515b = textView;
-        textView.setGravity(1);
-        int i11 = h6.f21099j5;
-        textView.setTextColor(x0Var.getThemedColor(i11));
-        textView.setTextSize(1, 20.0f);
-        textView.setTypeface(AndroidUtilities.bold());
-        addView(textView, z5.a(-2.0f, 21.0f, 20.0f, 21.0f, 0.0f, -1, 0));
-        x90 x90Var = new x90(context, null);
-        this.f46516c = x90Var;
-        x90Var.setGravity(1);
-        x90Var.setTextSize(1, 15.0f);
-        x90Var.setTextColor(x0Var.getThemedColor(i11));
-        if (!x0Var.E) {
-            x90Var.setLines(2);
-        }
-        addView(x90Var, z5.t(-1, -2, 1, 21, 10, 21, 16));
-        setImportantForAccessibility(2);
-        setClipChildren(false);
+    public w0(y0 y0Var, sa saVar) {
+        this.f46467b = y0Var;
+        this.f46466a = saVar;
     }
 
     @Override
-    public final boolean drawChild(Canvas canvas, View view, long j10) {
-        if (view == this.f46517f) {
-            boolean z10 = view instanceof b;
-            if (z10) {
-                setTranslationY(0.0f);
-            } else {
-                setTranslationY(this.f46518n.L);
-            }
-            if (z10) {
-                return super.drawChild(canvas, view, j10);
-            }
-            canvas.save();
-            canvas.clipRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight());
-            boolean drawChild = super.drawChild(canvas, view, j10);
-            canvas.restore();
-            return drawChild;
+    public final void a(float f7, int i10, int i11) {
+        int i12;
+        sa saVar = this.f46466a;
+        saVar.f30224b = f7;
+        saVar.f30225c = i10;
+        saVar.invalidate();
+        y0 y0Var = this.f46467b;
+        y0Var.G = i10;
+        if (i11 > 0) {
+            i12 = i10 + 1;
+        } else {
+            i12 = i10 - 1;
         }
-        return super.drawChild(canvas, view, j10);
+        y0Var.H = i12;
+        y0Var.I = f7;
+        d();
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        TextView textView = this.f46515b;
-        textView.setVisibility(0);
-        ViewGroup viewGroup = this.f46517f;
-        boolean z10 = viewGroup instanceof b;
-        x0 x0Var = this.f46518n;
-        if (z10) {
-            ((b) viewGroup).setTopOffset(x0Var.L);
+    public final void b(int i10) {
+        y0 y0Var = this.f46467b;
+        ArrayList arrayList = y0Var.d;
+        if (((qw0) arrayList.get(i10)).f40499a == 0) {
+            y0Var.N.setTitle(LocaleController.getString(R.string.DoubledLimits));
+            y0Var.N.requestLayout();
+        } else if (((qw0) arrayList.get(i10)).f40499a == 14) {
+            y0Var.N.setTitle(LocaleController.getString(R.string.UpgradedStories));
+            y0Var.N.requestLayout();
+        } else if (((qw0) arrayList.get(i10)).f40499a == 40) {
+            y0Var.N.setTitle(LocaleController.getString(R.string.FeaturePreviewGifts));
+            y0Var.N.requestLayout();
+        } else if (((qw0) arrayList.get(i10)).f40499a == 28) {
+            y0Var.N.setTitle(LocaleController.getString(R.string.TelegramBusiness));
+            y0Var.N.requestLayout();
         }
-        viewGroup.getLayoutParams().height = x0Var.f46530s;
-        x90 x90Var = this.f46516c;
-        x90Var.setVisibility(0);
-        ((ViewGroup.MarginLayoutParams) viewGroup.getLayoutParams()).bottomMargin = 0;
-        super.onMeasure(i10, i11);
-        if (this.h) {
-            viewGroup.getLayoutParams().height = getMeasuredHeight() - AndroidUtilities.dp(16.0f);
-            ((ViewGroup.MarginLayoutParams) viewGroup.getLayoutParams()).bottomMargin = AndroidUtilities.dp(16.0f);
-            textView.setVisibility(8);
-            x90Var.setVisibility(8);
-            super.onMeasure(i10, i11);
+        d();
+    }
+
+    public final void d() {
+        boolean z10;
+        boolean z11;
+        int i10;
+        int i11;
+        y0 y0Var = this.f46467b;
+        v0 v0Var = y0Var.f46505n;
+        ArrayList arrayList = y0Var.d;
+        int i12 = 0;
+        while (true) {
+            float f7 = 0.0f;
+            if (i12 >= v0Var.getChildCount()) {
+                break;
+            }
+            x0 x0Var = (x0) v0Var.getChildAt(i12);
+            if (!y0Var.f46508w || !(x0Var.f46495f instanceof o0)) {
+                int i13 = x0Var.f46492a;
+                m0 m0Var = x0Var.e;
+                if (i13 == y0Var.G) {
+                    f7 = (-x0Var.getMeasuredWidth()) * y0Var.I;
+                    m0Var.setOffset(f7);
+                } else if (i13 == y0Var.H) {
+                    f7 = ((-x0Var.getMeasuredWidth()) * y0Var.I) + x0Var.getMeasuredWidth();
+                    m0Var.setOffset(f7);
+                } else {
+                    m0Var.setOffset(x0Var.getMeasuredWidth());
+                }
+            }
+            if (x0Var.f46495f instanceof o0) {
+                x0Var.setTranslationX(-f7);
+                x0Var.f46493b.setTranslationX(f7);
+                x0Var.f46494c.setTranslationX(f7);
+            }
+            i12++;
         }
+        int i14 = y0Var.G;
+        if (i14 >= 0 && i14 < arrayList.size() && ((i11 = ((qw0) arrayList.get(y0Var.G)).f40499a) == 0 || i11 == 14 || i11 == 28)) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        int i15 = y0Var.H;
+        if (i15 >= 0 && i15 < arrayList.size() && ((i10 = ((qw0) arrayList.get(y0Var.H)).f40499a) == 0 || i10 == 14 || i10 == 28)) {
+            z11 = true;
+        } else {
+            z11 = false;
+        }
+        if (z10 && z11) {
+            y0Var.f46504f = 1.0f;
+            float f10 = y0Var.I;
+            if (f10 == 0.0f) {
+                f10 = 1.0f;
+            }
+            y0Var.e = f10;
+            y0Var.h = true;
+        } else if (z10) {
+            float f11 = 1.0f - y0Var.I;
+            y0Var.e = f11;
+            y0Var.f46504f = f11;
+            y0Var.h = true;
+        } else if (z11) {
+            float f12 = y0Var.I;
+            y0Var.e = f12;
+            y0Var.f46504f = f12;
+            y0Var.h = false;
+        } else {
+            y0Var.e = 0.0f;
+            y0Var.f46504f = 0.0f;
+            y0Var.h = true;
+        }
+        int i16 = (int) ((1.0f - y0Var.e) * 255.0f);
+        if (i16 != y0Var.K) {
+            y0Var.K = i16;
+            y0Var.f46506r.invalidate();
+            AndroidUtilities.runOnUIThread(new org.telegram.ui.web.a2(this, 23));
+        }
+    }
+
+    @Override
+    public final void c(int i10) {
     }
 }

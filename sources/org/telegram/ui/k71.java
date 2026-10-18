@@ -14,31 +14,31 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SvgHelper;
 import org.telegram.tgnet.TLRPC;
 public final class k71 extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
-    public final org.telegram.ui.Components.w9 f38419a;
-    public final mk f38420b;
-    public final org.telegram.ui.Components.voip.h f38421c;
+    public final org.telegram.ui.Components.w9 f38404a;
+    public final mk f38405b;
+    public final org.telegram.ui.Components.voip.h f38406c;
     public final SessionsActivity d;
 
     public k71(SessionsActivity sessionsActivity, Context context) {
         super(context);
         this.d = sessionsActivity;
         org.telegram.ui.Components.voip.h hVar = new org.telegram.ui.Components.voip.h();
-        this.f38421c = hVar;
+        this.f38406c = hVar;
         org.telegram.ui.Components.w9 w9Var = new org.telegram.ui.Components.w9(context);
-        this.f38419a = w9Var;
-        addView(w9Var, w7.z5.a(120.0f, 0.0f, 16.0f, 0.0f, 0.0f, 120, 1));
-        hVar.f31477j = false;
-        hVar.f31481n = 1.2f;
+        this.f38404a = w9Var;
+        addView(w9Var, w7.z5.d(120, 120.0f, 1, 0.0f, 16.0f, 0.0f, 0.0f));
+        hVar.f31470j = false;
+        hVar.f31474n = 1.2f;
         w9Var.setOnClickListener(new b8(this, 2));
         int i10 = org.telegram.ui.ActionBar.h6.G6;
         org.telegram.ui.ActionBar.h6.x0(null, i10, false);
-        int i11 = org.telegram.ui.ActionBar.h6.f20993d6;
+        int i11 = org.telegram.ui.ActionBar.h6.f20986d6;
         org.telegram.ui.ActionBar.h6.x0(null, i11, false);
         int i12 = org.telegram.ui.ActionBar.h6.Oh;
         org.telegram.ui.ActionBar.h6.x0(null, i12, false);
         org.telegram.ui.ActionBar.h6.x0(null, i11, false);
         org.telegram.ui.Components.x90 x90Var = new org.telegram.ui.Components.x90(context, null);
-        addView(x90Var, w7.z5.a(-2.0f, 36.0f, 152.0f, 36.0f, 0.0f, -1, 0));
+        addView(x90Var, w7.z5.d(-1, -2.0f, 0, 36.0f, 152.0f, 36.0f, 0.0f));
         x90Var.setGravity(1);
         x90Var.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, i10, false));
         x90Var.setTextSize(1, 15.0f);
@@ -67,7 +67,7 @@ public final class k71 extends FrameLayout implements NotificationCenter.Notific
         }
         x90Var.setText(spannableStringBuilder);
         mk mkVar = new mk(this, context, 3);
-        this.f38420b = mkVar;
+        this.f38405b = mkVar;
         mkVar.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
         mkVar.setGravity(17);
         mkVar.setTextSize(1, 14.0f);
@@ -82,7 +82,7 @@ public final class k71 extends FrameLayout implements NotificationCenter.Notific
         int x03 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.Qh, false);
         mkVar.setBackground(org.telegram.ui.ActionBar.h6.j0(dp, dp, dp, dp, x02, x03, x03));
         mkVar.setOnClickListener(new i31(this, 3));
-        addView(mkVar, w7.z5.a(48.0f, 16.0f, 15.0f, 16.0f, 16.0f, -1, 80));
+        addView(mkVar, w7.z5.d(-1, 48.0f, 80, 16.0f, 15.0f, 16.0f, 16.0f));
         a();
     }
 
@@ -107,7 +107,7 @@ public final class k71 extends FrameLayout implements NotificationCenter.Notific
             document = null;
         }
         if (document != null) {
-            svgDrawable = DocumentObject.getSvgThumb(document.thumbs, org.telegram.ui.ActionBar.h6.f20975c7, 0.2f);
+            svgDrawable = DocumentObject.getSvgThumb(document.thumbs, org.telegram.ui.ActionBar.h6.f20968c7, 0.2f);
         }
         SvgHelper.SvgDrawable svgDrawable2 = svgDrawable;
         if (svgDrawable2 != null) {
@@ -125,7 +125,7 @@ public final class k71 extends FrameLayout implements NotificationCenter.Notific
             return;
         }
         ImageLocation forDocument = ImageLocation.getForDocument(document);
-        org.telegram.ui.Components.w9 w9Var = this.f38419a;
+        org.telegram.ui.Components.w9 w9Var = this.f38404a;
         w9Var.i(forDocument, "130_130", "tgs", svgDrawable2, tL_messages_stickerSet);
         w9Var.getImageReceiver().setAutoRepeat(2);
     }

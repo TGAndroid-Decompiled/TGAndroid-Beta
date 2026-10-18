@@ -31,15 +31,15 @@ import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class ob implements org.telegram.ui.Cells.l1 {
-    public final tb f39724a;
+    public final tb f39716a;
 
     public ob(tb tbVar) {
-        this.f39724a = tbVar;
+        this.f39716a = tbVar;
     }
 
     @Override
     public final void A0(org.telegram.ui.Cells.u1 u1Var, float f7, float f10) {
-        xb xbVar = this.f39724a.f41668n;
+        xb xbVar = this.f39716a.f41633n;
         int i10 = xb.Q0;
         xbVar.P0(u1Var, 0.0f, 0.0f);
     }
@@ -61,7 +61,7 @@ public final class ob implements org.telegram.ui.Cells.l1 {
 
     @Override
     public final void I1(MessageObject messageObject, String str, String str2, String str3, String str4, int i10, int i11) {
-        xb xbVar = this.f39724a.f41668n;
+        xb xbVar = this.f39716a.f41633n;
         org.telegram.ui.Components.cv.J(xbVar, messageObject, xbVar.B0, str2, str3, str4, str, i10, i11, -1, false);
     }
 
@@ -76,7 +76,7 @@ public final class ob implements org.telegram.ui.Cells.l1 {
             if (!messageObject.isMusic()) {
                 return false;
             }
-            return MediaController.getInstance().setPlaylist(this.f39724a.f41668n.f43080o0, messageObject, 0L);
+            return MediaController.getInstance().setPlaylist(this.f39716a.f41633n.f43044o0, messageObject, 0L);
         }
         boolean playMessage = MediaController.getInstance().playMessage(messageObject, false);
         MediaController.getInstance().setVoiceMessagesPlaylist(null, false);
@@ -86,7 +86,7 @@ public final class ob implements org.telegram.ui.Cells.l1 {
     @Override
     public final void M0(int i10, org.telegram.ui.Cells.u1 u1Var) {
         TLRPC.WebPage webPage;
-        xb xbVar = this.f39724a.f41668n;
+        xb xbVar = this.f39716a.f41633n;
         MessageObject messageObject = u1Var.getMessageObject();
         TLRPC.TL_channelAdminLogEvent tL_channelAdminLogEvent = messageObject.currentEvent;
         if (tL_channelAdminLogEvent != null && (tL_channelAdminLogEvent.action instanceof TLRPC.TL_channelAdminLogEventActionEditMessage)) {
@@ -94,7 +94,7 @@ public final class ob implements org.telegram.ui.Cells.l1 {
             bundle.putLong("chat_id", -messageObject.getDialogId());
             bundle.putInt("message_id", messageObject.getRealId());
             sn snVar = new sn(bundle);
-            if (ChatObject.isForum(xbVar.f43070f)) {
+            if (ChatObject.isForum(xbVar.f43034f)) {
                 og.d.a(snVar, MessagesStorage.TopicKey.of(messageObject.getDialogId(), MessageObject.getTopicId(xb.w0(xbVar), messageObject.messageOwner, true)));
             }
             xbVar.presentFragment(snVar);
@@ -169,12 +169,12 @@ public final class ob implements org.telegram.ui.Cells.l1 {
     @Override
     public final void R0(org.telegram.ui.Cells.u1 u1Var, CharacterStyle characterStyle, boolean z10) {
         TLRPC.WebPage webPage;
-        xb xbVar = this.f39724a.f41668n;
+        xb xbVar = this.f39716a.f41633n;
         if (characterStyle != null) {
             MessageObject messageObject = u1Var.getMessageObject();
             if (characterStyle instanceof org.telegram.ui.Components.i61) {
                 org.telegram.ui.Components.i61 i61Var = (org.telegram.ui.Components.i61) characterStyle;
-                AndroidUtilities.addToClipboard(i61Var.f27096a.subSequence(i61Var.f27097b, i61Var.f27098c).toString());
+                AndroidUtilities.addToClipboard(i61Var.f27089a.subSequence(i61Var.f27090b, i61Var.f27091c).toString());
                 if (AndroidUtilities.shouldShowClipboardToast()) {
                     Toast.makeText(xbVar.getParentActivity(), LocaleController.getString(R.string.TextCopied), 0).show();
                 }
@@ -199,7 +199,7 @@ public final class ob implements org.telegram.ui.Cells.l1 {
                     MessagesController.getInstance(xb.u0(xbVar)).openByUserName(url.substring(1), xbVar, 0);
                 } else if (url.startsWith("#")) {
                     ey eyVar = new ey(null);
-                    eyVar.f36699n2 = url;
+                    eyVar.f36683n2 = url;
                     xbVar.presentFragment(eyVar);
                 }
             } else {
@@ -219,7 +219,7 @@ public final class ob implements org.telegram.ui.Cells.l1 {
                     if (!pf.d.e(Uri.parse(url3), false, null)) {
                         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(xbVar.getParentActivity());
                         String string = LocaleController.getString(R.string.OpenUrlTitle);
-                        org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20608a;
+                        org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20601a;
                         b2Var.R = string;
                         b2Var.T = LocaleController.formatString(R.string.OpenUrlAlert2, url3);
                         alertDialog$Builder.k(LocaleController.getString(R.string.Open), new m4.w0(8, xbVar, url3));
@@ -252,10 +252,10 @@ public final class ob implements org.telegram.ui.Cells.l1 {
     public final void R1(org.telegram.ui.Cells.u1 u1Var, int i10, float f7, float f10, boolean z10) {
         MessageObject messageObject = u1Var.getMessageObject().replyMessageObject;
         long dialogId = messageObject.getDialogId();
-        xb xbVar = this.f39724a.f41668n;
-        if (dialogId == (-xbVar.f43070f.f20279id)) {
-            for (int i11 = 0; i11 < xbVar.f43080o0.size(); i11++) {
-                MessageObject messageObject2 = (MessageObject) xbVar.f43080o0.get(i11);
+        xb xbVar = this.f39716a.f41633n;
+        if (dialogId == (-xbVar.f43034f.f20272id)) {
+            for (int i11 = 0; i11 < xbVar.f43044o0.size(); i11++) {
+                MessageObject messageObject2 = (MessageObject) xbVar.f43044o0.get(i11);
                 if (messageObject2 != null && messageObject2.contentType != 1 && messageObject2.getRealId() == messageObject.getRealId()) {
                     xbVar.Y0(messageObject2);
                     return;
@@ -263,17 +263,17 @@ public final class ob implements org.telegram.ui.Cells.l1 {
             }
         }
         Bundle bundle = new Bundle();
-        bundle.putLong("chat_id", xbVar.f43070f.f20279id);
+        bundle.putLong("chat_id", xbVar.f43034f.f20272id);
         bundle.putInt("message_id", messageObject.getRealId());
         xbVar.presentFragment(new sn(bundle));
     }
 
     @Override
     public final void S(org.telegram.ui.Cells.u1 u1Var, TLRPC.Chat chat, int i10, float f7, float f10, boolean z10) {
-        xb xbVar = this.f39724a.f41668n;
-        if (chat != null && chat != xbVar.f43070f) {
+        xb xbVar = this.f39716a.f41633n;
+        if (chat != null && chat != xbVar.f43034f) {
             Bundle bundle = new Bundle();
-            bundle.putLong("chat_id", chat.f20279id);
+            bundle.putLong("chat_id", chat.f20272id);
             if (i10 != 0) {
                 bundle.putInt("message_id", i10);
             }
@@ -315,12 +315,12 @@ public final class ob implements org.telegram.ui.Cells.l1 {
 
     public final void a(TLRPC.User user) {
         Bundle bundle = new Bundle();
-        bundle.putLong("user_id", user.f20426id);
-        tb tbVar = this.f39724a;
-        xb.p0(tbVar.f41668n, bundle, user.f20426id);
+        bundle.putLong("user_id", user.f20419id);
+        tb tbVar = this.f39716a;
+        xb.p0(tbVar.f41633n, bundle, user.f20419id);
         ProfileActivity profileActivity = new ProfileActivity(bundle, null);
         profileActivity.N4(0);
-        tbVar.f41668n.presentFragment(profileActivity);
+        tbVar.f41633n.presentFragment(profileActivity);
     }
 
     @Override
@@ -336,10 +336,10 @@ public final class ob implements org.telegram.ui.Cells.l1 {
     @Override
     public final boolean c0(org.telegram.ui.Cells.u1 u1Var, TLRPC.User user) {
         c5 b10;
-        xb xbVar = this.f39724a.f41668n;
-        if (user != null && user.f20426id != UserConfig.getInstance(xb.n0(xbVar)).getClientUserId()) {
+        xb xbVar = this.f39716a.f41633n;
+        if (user != null && user.f20419id != UserConfig.getInstance(xb.n0(xbVar)).getClientUserId()) {
             i5[] i5VarArr = {i5.d, i5.h};
-            TLRPC.UserFull userFull = xbVar.getMessagesController().getUserFull(user.f20426id);
+            TLRPC.UserFull userFull = xbVar.getMessagesController().getUserFull(user.f20419id);
             if (userFull != null) {
                 b10 = c5.c(user, userFull, i5VarArr);
             } else {
@@ -381,20 +381,20 @@ public final class ob implements org.telegram.ui.Cells.l1 {
     @Override
     public final void h1(org.telegram.ui.Cells.u1 u1Var, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
         MessageObject messageObject = u1Var.getMessageObject();
-        tb tbVar = this.f39724a;
-        if (tbVar.f41668n.f43081p0.contains(Long.valueOf(messageObject.eventId))) {
-            tbVar.f41668n.f43081p0.remove(Long.valueOf(messageObject.eventId));
+        tb tbVar = this.f39716a;
+        if (tbVar.f41633n.f43045p0.contains(Long.valueOf(messageObject.eventId))) {
+            tbVar.f41633n.f43045p0.remove(Long.valueOf(messageObject.eventId));
         } else {
-            tbVar.f41668n.f43081p0.add(Long.valueOf(messageObject.eventId));
+            tbVar.f41633n.f43045p0.add(Long.valueOf(messageObject.eventId));
         }
-        tbVar.f41668n.W0(true);
-        tbVar.f41668n.R0();
-        tbVar.f41668n.E.l();
+        tbVar.f41633n.W0(true);
+        tbVar.f41633n.R0();
+        tbVar.f41633n.E.l();
     }
 
     @Override
     public final void j() {
-        xb xbVar = this.f39724a.f41668n;
+        xb xbVar = this.f39716a.f41633n;
         if (ApplicationLoader.isStandaloneBuild()) {
             LaunchActivity launchActivity = LaunchActivity.H1;
             if (launchActivity != null) {
@@ -425,14 +425,14 @@ public final class ob implements org.telegram.ui.Cells.l1 {
     @Override
     public final void p(org.telegram.ui.Cells.u1 u1Var) {
         boolean z10;
-        tb tbVar = this.f39724a;
-        xb xbVar = tbVar.f41668n;
+        tb tbVar = this.f39716a;
+        xb xbVar = tbVar.f41633n;
         if (xbVar.getParentActivity() == null) {
             return;
         }
-        Context context = tbVar.f41666c;
+        Context context = tbVar.f41631c;
         MessageObject messageObject = u1Var.getMessageObject();
-        if (ChatObject.isChannel(xbVar.f43070f) && !xbVar.f43070f.megagroup) {
+        if (ChatObject.isChannel(xbVar.f43034f) && !xbVar.f43034f.megagroup) {
             z10 = true;
         } else {
             z10 = false;
@@ -447,14 +447,14 @@ public final class ob implements org.telegram.ui.Cells.l1 {
 
     @Override
     public final void q0(org.telegram.ui.Cells.u1 u1Var, float f7, float f10) {
-        xb xbVar = this.f39724a.f41668n;
+        xb xbVar = this.f39716a.f41633n;
         int i10 = xb.Q0;
         xbVar.P0(u1Var, 0.0f, 0.0f);
     }
 
     @Override
     public final void u0(org.telegram.ui.Cells.u1 u1Var, TLRPC.User user, float f7, float f10) {
-        if (user != null && user.f20426id != UserConfig.getInstance(xb.m0(this.f39724a.f41668n)).getClientUserId()) {
+        if (user != null && user.f20419id != UserConfig.getInstance(xb.m0(this.f39716a.f41633n)).getClientUserId()) {
             a(user);
         }
     }

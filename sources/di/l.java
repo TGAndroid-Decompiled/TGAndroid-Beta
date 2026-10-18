@@ -1,7 +1,7 @@
 package di;
 
 import android.content.Context;
-import ci.a7;
+import ci.z6;
 import org.telegram.ui.Components.rx0;
 public final class l extends q {
     public final r v;
@@ -16,13 +16,13 @@ public final class l extends q {
         boolean z10;
         super.l();
         r rVar = this.v;
-        if (rVar.f8062r.getVisibility() == 0) {
-            rVar.f8064w.l();
+        if (rVar.f8060r.getVisibility() == 0) {
+            rVar.f8062w.l();
         }
-        rx0 rx0Var = rVar.f8066y;
+        rx0 rx0Var = rVar.f8064y;
         if (rx0Var != null) {
-            a7 a7Var = this.e;
-            if (a7Var != null && a7Var.k()) {
+            z6 z6Var = this.e;
+            if (z6Var != null && z6Var.k()) {
                 z10 = true;
             } else {
                 z10 = false;

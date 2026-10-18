@@ -32,27 +32,27 @@ import java.util.List;
 import n6.l;
 public final class h {
     public static final g6.b v = new g6.b("MediaSessionManager", null);
-    public final Context f10488a;
-    public final d6.b f10489b;
-    public final r f10490c;
+    public final Context f10486a;
+    public final d6.b f10487b;
+    public final r f10488c;
     public final d6.g d;
     public final e6.f e;
-    public final ComponentName f10491f;
-    public final ComponentName f10492g;
+    public final ComponentName f10489f;
+    public final ComponentName f10490g;
     public final z5 h;
-    public final z5 f10493i;
-    public final f f10494j;
-    public final a0 f10495k;
-    public final androidx.activity.i f10496l;
-    public final c0 f10497m;
-    public e6.h f10498n;
-    public CastDevice f10499o;
-    public b0 f10500p;
-    public boolean f10501q;
-    public PlaybackStateCompat.CustomAction f10502r;
-    public PlaybackStateCompat.CustomAction f10503s;
-    public PlaybackStateCompat.CustomAction f10504t;
-    public PlaybackStateCompat.CustomAction f10505u;
+    public final z5 f10491i;
+    public final f f10492j;
+    public final a0 f10493k;
+    public final androidx.activity.i f10494l;
+    public final c0 f10495m;
+    public e6.h f10496n;
+    public CastDevice f10497o;
+    public b0 f10498p;
+    public boolean f10499q;
+    public PlaybackStateCompat.CustomAction f10500r;
+    public PlaybackStateCompat.CustomAction f10501s;
+    public PlaybackStateCompat.CustomAction f10502t;
+    public PlaybackStateCompat.CustomAction f10503u;
 
     public h(Context context, d6.b bVar, r rVar) {
         d6.g gVar;
@@ -63,12 +63,12 @@ public final class h {
         ComponentName componentName2;
         e6.f fVar2;
         int size;
-        this.f10488a = context;
-        this.f10489b = bVar;
-        this.f10490c = rVar;
-        g6.b bVar2 = d6.a.f7829l;
+        this.f10486a = context;
+        this.f10487b = bVar;
+        this.f10488c = rVar;
+        g6.b bVar2 = d6.a.f7827l;
         l.e("Must be called from the main thread.");
-        d6.a aVar = d6.a.f7831n;
+        d6.a aVar = d6.a.f7829n;
         f fVar3 = null;
         if (aVar != null) {
             gVar = aVar.b();
@@ -76,45 +76,45 @@ public final class h {
             gVar = null;
         }
         this.d = gVar;
-        e6.a aVar2 = bVar.f7844f;
+        e6.a aVar2 = bVar.f7842f;
         if (aVar2 == null) {
             fVar = null;
         } else {
             fVar = aVar2.d;
         }
         this.e = fVar;
-        this.f10497m = new c0(this, 2);
+        this.f10495m = new c0(this, 2);
         if (aVar2 == null) {
             str = null;
         } else {
-            str = aVar2.f8342b;
+            str = aVar2.f8340b;
         }
         if (!TextUtils.isEmpty(str)) {
             componentName = new ComponentName(context, str);
         } else {
             componentName = null;
         }
-        this.f10491f = componentName;
+        this.f10489f = componentName;
         if (aVar2 == null) {
             str2 = null;
         } else {
-            str2 = aVar2.f8341a;
+            str2 = aVar2.f8339a;
         }
         if (!TextUtils.isEmpty(str2)) {
             componentName2 = new ComponentName(context, str2);
         } else {
             componentName2 = null;
         }
-        this.f10492g = componentName2;
+        this.f10490g = componentName2;
         z5 z5Var = new z5(context);
         this.h = z5Var;
-        z5Var.e = new ya.c(this, 17);
+        z5Var.e = new ya.d(this, 17);
         z5 z5Var2 = new z5(context);
-        this.f10493i = z5Var2;
+        this.f10491i = z5Var2;
         z5Var2.e = new a6.i(this, 20);
-        this.f10495k = new a0(Looper.getMainLooper(), 0);
-        g6.b bVar3 = f.f10469u;
-        e6.a aVar3 = bVar.f7844f;
+        this.f10493k = new a0(Looper.getMainLooper(), 0);
+        g6.b bVar3 = f.f10467u;
+        e6.a aVar3 = bVar.f7842f;
         if (aVar3 != null && (fVar2 = aVar3.d) != null) {
             p pVar = fVar2.V;
             if (pVar != null) {
@@ -127,52 +127,52 @@ public final class h {
                 }
                 if (a2 != null && !a2.isEmpty()) {
                     if (a2.size() > 5) {
-                        Log.e(bVar3.f10845a, bVar3.d(e6.e.class.getSimpleName().concat(" provides more than 5 actions."), new Object[0]));
+                        Log.e(bVar3.f10843a, bVar3.d(e6.e.class.getSimpleName().concat(" provides more than 5 actions."), new Object[0]));
                     } else if (b10 != null && (r1 = b10.length) != 0) {
                         for (int i10 : b10) {
                             if (i10 < 0 || i10 >= size) {
-                                Log.e(bVar3.f10845a, bVar3.d(e6.e.class.getSimpleName().concat("provides a compact view action whose index is out of bounds."), new Object[0]));
+                                Log.e(bVar3.f10843a, bVar3.d(e6.e.class.getSimpleName().concat("provides a compact view action whose index is out of bounds."), new Object[0]));
                                 break;
                             }
                         }
                     } else {
-                        Log.e(bVar3.f10845a, bVar3.d(e6.e.class.getSimpleName().concat(" doesn't provide any actions for compact view."), new Object[0]));
+                        Log.e(bVar3.f10843a, bVar3.d(e6.e.class.getSimpleName().concat(" doesn't provide any actions for compact view."), new Object[0]));
                     }
                 } else {
-                    Log.e(bVar3.f10845a, bVar3.d(e6.e.class.getSimpleName().concat(" doesn't provide any action."), new Object[0]));
+                    Log.e(bVar3.f10843a, bVar3.d(e6.e.class.getSimpleName().concat(" doesn't provide any action."), new Object[0]));
                 }
             }
             fVar3 = new f(context);
         }
-        this.f10494j = fVar3;
-        this.f10496l = new androidx.activity.i(this, 19);
+        this.f10492j = fVar3;
+        this.f10494l = new androidx.activity.i(this, 19);
     }
 
     public final void a(e6.h hVar, CastDevice castDevice) {
         e6.a aVar;
         ComponentName componentName;
-        d6.b bVar = this.f10489b;
+        d6.b bVar = this.f10487b;
         if (bVar == null) {
             aVar = null;
         } else {
-            aVar = bVar.f7844f;
+            aVar = bVar.f7842f;
         }
-        if (!this.f10501q && bVar != null && aVar != null && this.e != null && hVar != null && castDevice != null && (componentName = this.f10492g) != null) {
-            this.f10498n = hVar;
-            hVar.p(this.f10497m);
-            this.f10499o = castDevice;
+        if (!this.f10499q && bVar != null && aVar != null && this.e != null && hVar != null && castDevice != null && (componentName = this.f10490g) != null) {
+            this.f10496n = hVar;
+            hVar.p(this.f10495m);
+            this.f10497o = castDevice;
             Intent intent = new Intent("android.intent.action.MEDIA_BUTTON");
             intent.setComponent(componentName);
-            Context context = this.f10488a;
+            Context context = this.f10486a;
             PendingIntent broadcast = PendingIntent.getBroadcast(context, 0, intent, 67108864);
-            if (aVar.f8344f) {
+            if (aVar.f8342f) {
                 b0 b0Var = new b0(context, "CastMediaSession", componentName, broadcast);
-                this.f10500p = b0Var;
+                this.f10498p = b0Var;
                 j(0, null);
-                CastDevice castDevice2 = this.f10499o;
+                CastDevice castDevice2 = this.f10497o;
                 if (castDevice2 != null && !TextUtils.isEmpty(castDevice2.d)) {
                     Bundle bundle = new Bundle();
-                    String string = context.getResources().getString(2131689513, this.f10499o.d);
+                    String string = context.getResources().getString(2131689513, this.f10497o.d);
                     a0.f fVar = MediaMetadataCompat.d;
                     if (fVar.containsKey("android.media.metadata.ALBUM_ARTIST") && ((Integer) fVar.get("android.media.metadata.ALBUM_ARTIST")).intValue() != 1) {
                         throw new IllegalArgumentException("The android.media.metadata.ALBUM_ARTIST key cannot be used to put a String");
@@ -182,9 +182,9 @@ public final class h {
                 }
                 b0Var.d(new g(this), null);
                 b0Var.c(true);
-                this.f10490c.K0(b0Var);
+                this.f10488c.K0(b0Var);
             }
-            this.f10501q = true;
+            this.f10499q = true;
             b();
             return;
         }
@@ -213,7 +213,7 @@ public final class h {
                     return 516L;
                 }
             } else if (str.equals("com.google.android.gms.cast.framework.action.SKIP_PREV")) {
-                e6.h hVar = this.f10498n;
+                e6.h hVar = this.f10496n;
                 if (hVar != null && hVar.h()) {
                     q e = hVar.e();
                     l.h(e);
@@ -230,7 +230,7 @@ public final class h {
                 return 0L;
             }
         } else if (str.equals("com.google.android.gms.cast.framework.action.SKIP_NEXT")) {
-            e6.h hVar2 = this.f10498n;
+            e6.h hVar2 = this.f10496n;
             if (hVar2 != null && hVar2.h()) {
                 q e7 = hVar2.e();
                 l.h(e7);
@@ -250,7 +250,7 @@ public final class h {
 
     public final Uri d(c6.l lVar) {
         m6.a aVar;
-        e6.a aVar2 = this.f10489b.f7844f;
+        e6.a aVar2 = this.f10487b.f7842f;
         if (aVar2 != null) {
             aVar2.b();
         }
@@ -263,14 +263,14 @@ public final class h {
         if (aVar == null) {
             return null;
         }
-        return aVar.f16795b;
+        return aVar.f16793b;
     }
 
     public final void e(Bitmap bitmap, int i10) {
         ag.b bVar;
         String str;
         MediaMetadata metadata;
-        b0 b0Var = this.f10500p;
+        b0 b0Var = this.f10498p;
         if (b0Var == null) {
             return;
         }
@@ -278,9 +278,9 @@ public final class h {
             bitmap = Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888);
             bitmap.eraseColor(0);
         }
-        b0 b0Var2 = this.f10500p;
+        b0 b0Var2 = this.f10498p;
         MediaMetadataCompat mediaMetadataCompat = null;
-        if (b0Var2 != null && (metadata = ((android.support.v4.media.session.h) b0Var2.f2601b.f44485b).f2614a.getMetadata()) != null) {
+        if (b0Var2 != null && (metadata = ((android.support.v4.media.session.h) b0Var2.f2601b.f44442b).f2614a.getMetadata()) != null) {
             a0.f fVar = MediaMetadataCompat.d;
             Parcel obtain = Parcel.obtain();
             metadata.writeToParcel(obtain, 0);
@@ -309,13 +309,13 @@ public final class h {
     }
 
     public final void g(boolean z10) {
-        if (this.f10489b.h) {
-            a0 a0Var = this.f10495k;
-            androidx.activity.i iVar = this.f10496l;
+        if (this.f10487b.h) {
+            a0 a0Var = this.f10493k;
+            androidx.activity.i iVar = this.f10494l;
             if (iVar != null) {
                 a0Var.removeCallbacks(iVar);
             }
-            Context context = this.f10488a;
+            Context context = this.f10486a;
             Intent intent = new Intent(context, ReconnectionService.class);
             intent.setPackage(context.getPackageName());
             try {
@@ -329,13 +329,13 @@ public final class h {
     }
 
     public final void h() {
-        f fVar = this.f10494j;
+        f fVar = this.f10492j;
         if (fVar != null) {
             v.b("Stopping media notification.", new Object[0]);
-            z5 z5Var = fVar.f10475i;
+            z5 z5Var = fVar.f10473i;
             z5Var.C();
             z5Var.e = null;
-            NotificationManager notificationManager = fVar.f10471b;
+            NotificationManager notificationManager = fVar.f10469b;
             if (notificationManager != null) {
                 notificationManager.cancel("castMediaNotification", 1);
             }
@@ -343,11 +343,11 @@ public final class h {
     }
 
     public final void i() {
-        if (!this.f10489b.h) {
+        if (!this.f10487b.h) {
             return;
         }
-        this.f10495k.removeCallbacks(this.f10496l);
-        Context context = this.f10488a;
+        this.f10493k.removeCallbacks(this.f10494l);
+        Context context = this.f10486a;
         Intent intent = new Intent(context, ReconnectionService.class);
         intent.setPackage(context.getPackageName());
         context.stopService(intent);
@@ -367,14 +367,14 @@ public final class h {
         p pVar;
         long j12;
         int i11;
-        b0 b0Var2 = this.f10500p;
+        b0 b0Var2 = this.f10498p;
         if (b0Var2 != null) {
             v vVar = b0Var2.f2600a;
             Bundle bundle = new Bundle();
             e0 e0Var = new e0();
-            e6.h hVar = this.f10498n;
+            e6.h hVar = this.f10496n;
             e6.f fVar = this.e;
-            if (hVar != null && this.f10494j != null) {
+            if (hVar != null && this.f10492j != null) {
                 if (hVar.s() == 0 || hVar.j()) {
                     j11 = 0;
                 } else {
@@ -389,8 +389,8 @@ public final class h {
                     } else {
                         pVar = null;
                     }
-                    e6.h hVar2 = this.f10498n;
-                    if (hVar2 == null || hVar2.j() || this.f10498n.n()) {
+                    e6.h hVar2 = this.f10496n;
+                    if (hVar2 == null || hVar2.j() || this.f10496n.n()) {
                         j12 = 0;
                     } else {
                         j12 = 256;
@@ -406,7 +406,7 @@ public final class h {
                                 ArrayList arrayList = a2;
                                 e6.d dVar = (e6.d) obj;
                                 int i13 = size;
-                                String str = dVar.f8358a;
+                                String str = dVar.f8356a;
                                 if (!TextUtils.equals(str, "com.google.android.gms.cast.framework.action.TOGGLE_PLAYBACK") && !TextUtils.equals(str, "com.google.android.gms.cast.framework.action.SKIP_PREV") && !TextUtils.equals(str, "com.google.android.gms.cast.framework.action.SKIP_NEXT")) {
                                     f(e0Var, str, dVar);
                                 } else {
@@ -417,7 +417,7 @@ public final class h {
                             }
                         }
                     } else if (fVar != null) {
-                        ArrayList arrayList2 = fVar.f8361a;
+                        ArrayList arrayList2 = fVar.f8359a;
                         int size2 = arrayList2.size();
                         int i14 = 0;
                         while (i14 < size2) {
@@ -453,21 +453,21 @@ public final class h {
                 vVar.f2622a.setExtras(bundle);
             }
             if (i10 != 0) {
-                if (this.f10498n != null) {
-                    ComponentName componentName = this.f10491f;
+                if (this.f10496n != null) {
+                    ComponentName componentName = this.f10489f;
                     if (componentName == null) {
                         activity = null;
                     } else {
                         Intent intent = new Intent();
                         intent.setComponent(componentName);
-                        activity = PendingIntent.getActivity(this.f10488a, 0, intent, 201326592);
+                        activity = PendingIntent.getActivity(this.f10486a, 0, intent, 201326592);
                     }
                     if (activity != null) {
                         vVar.f2622a.setSessionActivity(activity);
                     }
                 }
-                e6.h hVar3 = this.f10498n;
-                if (hVar3 != null && (b0Var = this.f10500p) != null && mediaInfo != null && (lVar = mediaInfo.d) != null) {
+                e6.h hVar3 = this.f10496n;
+                if (hVar3 != null && (b0Var = this.f10498p) != null && mediaInfo != null && (lVar = mediaInfo.d) != null) {
                     Bundle bundle2 = lVar.f4874b;
                     if (hVar3.j()) {
                         j10 = 0;
@@ -478,8 +478,8 @@ public final class h {
                     String string = bundle2.getString("com.google.android.gms.cast.metadata.TITLE");
                     c6.l.c(1, "com.google.android.gms.cast.metadata.SUBTITLE");
                     String string2 = bundle2.getString("com.google.android.gms.cast.metadata.SUBTITLE");
-                    b0 b0Var3 = this.f10500p;
-                    if (b0Var3 == null || (metadata = ((android.support.v4.media.session.h) b0Var3.f2601b.f44485b).f2614a.getMetadata()) == null) {
+                    b0 b0Var3 = this.f10498p;
+                    if (b0Var3 == null || (metadata = ((android.support.v4.media.session.h) b0Var3.f2601b.f44442b).f2614a.getMetadata()) == null) {
                         createFromParcel = null;
                     } else {
                         a0.f fVar2 = MediaMetadataCompat.d;
@@ -514,7 +514,7 @@ public final class h {
                     }
                     Uri d10 = d(lVar);
                     if (d10 != null) {
-                        this.f10493i.B(d10);
+                        this.f10491i.B(d10);
                         return;
                     } else {
                         e(bitmap, 3);

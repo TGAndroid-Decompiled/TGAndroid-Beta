@@ -5,15 +5,15 @@ import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import org.telegram.messenger.AndroidUtilities;
-public final class kc extends sg.w1 {
-    public Paint[] f1721n;
-    public final int f1722r;
-    public final int f1723s;
+public final class kc extends sg.x1 {
+    public Paint[] f1727n;
+    public final int f1728r;
+    public final int f1729s;
 
     public kc(Context context, int i10, int i11) {
         super(context);
-        this.f1722r = i10;
-        this.f1723s = i11;
+        this.f1728r = i10;
+        this.f1729s = i11;
         c();
     }
 
@@ -24,29 +24,29 @@ public final class kc extends sg.w1 {
         float f10;
         int i11;
         int i12;
-        sg.v1 v1Var = new sg.v1(this.f1722r);
-        this.f46519a = v1Var;
-        v1Var.O = 105;
+        sg.w1 w1Var = new sg.w1(this.f1728r);
+        this.f46497a = w1Var;
+        w1Var.O = 105;
         int i13 = 0;
-        v1Var.M = false;
-        v1Var.G = false;
-        v1Var.K = true;
-        v1Var.H = true;
-        v1Var.J = false;
-        v1Var.f46499m = true;
-        v1Var.h = true;
-        int i14 = this.f1723s;
+        w1Var.M = false;
+        w1Var.G = false;
+        w1Var.K = true;
+        w1Var.H = true;
+        w1Var.J = false;
+        w1Var.f46477m = true;
+        w1Var.h = true;
+        int i14 = this.f1729s;
         if (i14 == 1) {
-            v1Var.f46497k = AndroidUtilities.dp(24.0f);
+            w1Var.f46475k = AndroidUtilities.dp(24.0f);
         }
         if (i14 == 2) {
             i10 = 40;
         } else {
             i10 = 20;
         }
-        this.f1721n = new Paint[i10];
+        this.f1727n = new Paint[i10];
         while (true) {
-            Paint[] paintArr = this.f1721n;
+            Paint[] paintArr = this.f1727n;
             if (i13 >= paintArr.length) {
                 break;
             }
@@ -65,28 +65,28 @@ public final class kc extends sg.w1 {
                 }
                 f7 = i0.a.f(f10, i11, i12);
             } else {
-                f7 = i0.a.f(i13 / (this.f1721n.length - 1), -371690, -14281);
+                f7 = i0.a.f(i13 / (this.f1727n.length - 1), -371690, -14281);
             }
-            this.f1721n[i13].setColorFilter(new PorterDuffColorFilter(f7, PorterDuff.Mode.SRC_IN));
+            this.f1727n[i13].setColorFilter(new PorterDuffColorFilter(f7, PorterDuff.Mode.SRC_IN));
             i13++;
         }
-        sg.v1 v1Var2 = this.f46519a;
-        v1Var2.f46498l = new jc(this, 0);
-        v1Var2.f46504r = 17;
-        v1Var2.f46505s = 18;
-        v1Var2.f46506t = 19;
+        sg.w1 w1Var2 = this.f46497a;
+        w1Var2.f46476l = new jc(this, 0);
+        w1Var2.f46482r = 17;
+        w1Var2.f46483s = 18;
+        w1Var2.f46484t = 19;
         if (i14 == 2) {
-            v1Var2.N = true;
-            v1Var2.f46504r = 9;
-            v1Var2.f46505s = 11;
-            v1Var2.f46506t = 13;
-            v1Var2.f46501o = 1.6f;
-            v1Var2.f46509x = 1400L;
-            v1Var2.f46510y = 1600;
-            v1Var2.L = true;
+            w1Var2.N = true;
+            w1Var2.f46482r = 9;
+            w1Var2.f46483s = 11;
+            w1Var2.f46484t = 13;
+            w1Var2.f46479o = 1.6f;
+            w1Var2.f46487x = 1400L;
+            w1Var2.f46488y = 1600;
+            w1Var2.L = true;
         }
-        v1Var2.Q = org.telegram.ui.ActionBar.h6.G6;
-        v1Var2.c();
+        w1Var2.Q = org.telegram.ui.ActionBar.h6.G6;
+        w1Var2.c();
     }
 
     @Override

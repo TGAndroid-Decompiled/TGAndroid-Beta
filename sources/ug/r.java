@@ -1,6 +1,6 @@
 package ug;
 
-import ai.q2;
+import ai.k2;
 import ai.s9;
 import android.text.TextUtils;
 import android.util.Pair;
@@ -25,7 +25,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.n2;
 public abstract class r {
-    public static HashMap f47795a;
+    public static HashMap f47748a;
 
     public static void a(long j10, List list, Utilities.Callback callback, Utilities.Callback callback2) {
         ConnectionsManager connectionsManager = ConnectionsManager.getInstance(UserConfig.selectedAccount);
@@ -34,7 +34,7 @@ public abstract class r {
         tL_premium_applyBoost.peer = messagesController.getInputPeer(-j10);
         tL_premium_applyBoost.flags |= 1;
         tL_premium_applyBoost.slots.addAll(list);
-        connectionsManager.sendRequest(tL_premium_applyBoost, new q2(callback2, messagesController, callback, 21), 66);
+        connectionsManager.sendRequest(tL_premium_applyBoost, new k2(callback2, messagesController, callback, 21), 66);
     }
 
     public static ArrayList b(int i10, List list) {
@@ -92,8 +92,8 @@ public abstract class r {
         ArrayList<TLRPC.Dialog> allDialogs = messagesController.getAllDialogs();
         for (int i10 = 0; i10 < allDialogs.size(); i10++) {
             TLRPC.Dialog dialog = allDialogs.get(i10);
-            if (DialogObject.isChatDialog(dialog.f20283id) && ChatObject.isBoostSupported(messagesController.getChat(Long.valueOf(-dialog.f20283id)))) {
-                long j11 = dialog.f20283id;
+            if (DialogObject.isChatDialog(dialog.f20276id) && ChatObject.isBoostSupported(messagesController.getChat(Long.valueOf(-dialog.f20276id)))) {
+                long j11 = dialog.f20276id;
                 if ((-j11) != j10) {
                     arrayList.add(messagesController.getInputPeer(j11));
                 }
@@ -127,7 +127,7 @@ public abstract class r {
     public static int j(int i10, TLRPC.Chat chat, Utilities.Callback callback) {
         Pair pair;
         if (chat == null) {
-            HashMap hashMap = f47795a;
+            HashMap hashMap = f47748a;
             List list = null;
             if (hashMap != null && (pair = (Pair) hashMap.get(Integer.valueOf(i10))) != null && System.currentTimeMillis() - ((Long) pair.first).longValue() < 1800000) {
                 list = (List) pair.second;
@@ -142,14 +142,14 @@ public abstract class r {
         TLRPC.TL_payments_getPremiumGiftCodeOptions tL_payments_getPremiumGiftCodeOptions = new TLRPC.TL_payments_getPremiumGiftCodeOptions();
         if (chat != null) {
             tL_payments_getPremiumGiftCodeOptions.flags = 1;
-            tL_payments_getPremiumGiftCodeOptions.boost_peer = messagesController.getInputPeer(-chat.f20279id);
+            tL_payments_getPremiumGiftCodeOptions.boost_peer = messagesController.getInputPeer(-chat.f20272id);
         }
         return connectionsManager.sendRequest(tL_payments_getPremiumGiftCodeOptions, new hg.u(chat, i10, callback, 9));
     }
 
     public static void k(ArrayList arrayList, TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption, TLRPC.Chat chat, TLRPC.TL_textWithEntities tL_textWithEntities, n2 n2Var, Utilities.Callback callback, Utilities.Callback callback2) {
         int i10 = UserConfig.selectedAccount;
-        HashMap hashMap = f47795a;
+        HashMap hashMap = f47748a;
         if (hashMap != null) {
             hashMap.remove(Integer.valueOf(i10));
         }
@@ -176,7 +176,7 @@ public abstract class r {
             }
             if (chat != null) {
                 tL_inputStorePaymentPremiumGiftCode.flags |= 1;
-                tL_inputStorePaymentPremiumGiftCode.boost_peer = messagesController.getInputPeer(-chat.f20279id);
+                tL_inputStorePaymentPremiumGiftCode.boost_peer = messagesController.getInputPeer(-chat.f20272id);
             }
             tL_inputStorePaymentPremiumGiftCode.currency = tL_premiumGiftCodeOption.currency;
             tL_inputStorePaymentPremiumGiftCode.amount = tL_premiumGiftCodeOption.amount;
@@ -209,7 +209,7 @@ public abstract class r {
         }
         if (chat != null) {
             tL_inputStorePaymentPremiumGiftCode2.flags = 1;
-            tL_inputStorePaymentPremiumGiftCode2.boost_peer = messagesController2.getInputPeer(-chat.f20279id);
+            tL_inputStorePaymentPremiumGiftCode2.boost_peer = messagesController2.getInputPeer(-chat.f20272id);
         }
         if (tL_textWithEntities != null && !TextUtils.isEmpty(tL_textWithEntities.text)) {
             tL_inputStorePaymentPremiumGiftCode2.flags |= 2;
@@ -229,9 +229,9 @@ public abstract class r {
     }
 
     public static void m(int i10, ArrayList arrayList) {
-        if (f47795a == null) {
-            f47795a = new HashMap();
+        if (f47748a == null) {
+            f47748a = new HashMap();
         }
-        f47795a.put(Integer.valueOf(i10), new Pair(Long.valueOf(System.currentTimeMillis()), arrayList));
+        f47748a.put(Integer.valueOf(i10), new Pair(Long.valueOf(System.currentTimeMillis()), arrayList));
     }
 }

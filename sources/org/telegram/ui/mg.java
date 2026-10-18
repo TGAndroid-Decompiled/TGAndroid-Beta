@@ -9,12 +9,12 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.messenger.TranslateController;
 public final class mg implements Runnable {
-    public final int f39205a;
-    public final sn f39206b;
+    public final int f39160a;
+    public final sn f39161b;
 
     public mg(sn snVar, int i10) {
-        this.f39205a = i10;
-        this.f39206b = snVar;
+        this.f39160a = i10;
+        this.f39161b = snVar;
     }
 
     @Override
@@ -22,33 +22,33 @@ public final class mg implements Runnable {
         boolean z10;
         boolean z11;
         ei.x3 x3Var;
-        int i10 = this.f39205a;
+        int i10 = this.f39160a;
         boolean z12 = true;
-        sn snVar = this.f39206b;
+        sn snVar = this.f39161b;
         switch (i10) {
             case 0:
                 hk hkVar = snVar.Y;
-                if (hkVar != null && snVar.Cc != null) {
+                if (hkVar != null && snVar.Dc != null) {
                     if (hkVar.r0()) {
                         snVar.Y.k0(false);
-                        AndroidUtilities.showKeyboard(snVar.Cc.f45780a);
-                        snVar.Cc.f45781b.f45777a.a(false, true);
+                        AndroidUtilities.showKeyboard(snVar.Dc.f45732a);
+                        snVar.Dc.f45733b.f45729a.a(false, true);
                         return;
                     }
                     snVar.Y.S0(false, false, false);
                     snVar.Y.q1();
-                    snVar.Cc.f45781b.f45777a.a(true, true);
+                    snVar.Dc.f45733b.f45729a.a(true, true);
                     return;
                 }
                 return;
             case 1:
-                ArrayList arrayList = snVar.f41421u6;
+                ArrayList arrayList = snVar.f41386u6;
                 snVar.Hb = System.currentTimeMillis();
-                if (snVar.f41454x0 != null && snVar.A0 != null) {
+                if (snVar.f41419x0 != null && snVar.A0 != null) {
                     int i11 = Integer.MAX_VALUE;
                     int i12 = Integer.MIN_VALUE;
-                    for (int i13 = 0; i13 < snVar.f41454x0.getChildCount(); i13++) {
-                        View childAt = snVar.f41454x0.getChildAt(i13);
+                    for (int i13 = 0; i13 < snVar.f41419x0.getChildCount(); i13++) {
+                        View childAt = snVar.f41419x0.getChildAt(i13);
                         if (childAt instanceof org.telegram.ui.Cells.u1) {
                             org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) childAt;
                             if (u1Var.getCurrentMessagesGroup() != null) {
@@ -68,7 +68,7 @@ public final class mg implements Runnable {
                         ArrayList arrayList2 = new ArrayList();
                         for (int i15 = 0; i15 < arrayList.size(); i15++) {
                             MessageObject messageObject = (MessageObject) arrayList.get(i15);
-                            MessageObject.GroupedMessages groupedMessages = (MessageObject.GroupedMessages) snVar.f41460x6.f(messageObject.getGroupId());
+                            MessageObject.GroupedMessages groupedMessages = (MessageObject.GroupedMessages) snVar.f41425x6.f(messageObject.getGroupId());
                             if (groupedMessages != null) {
                                 if (!arrayList2.contains(Long.valueOf(groupedMessages.groupId))) {
                                     for (int i16 = 0; i16 < groupedMessages.messages.size(); i16++) {
@@ -145,10 +145,10 @@ public final class mg implements Runnable {
                 snVar.Q6();
                 return;
             case 15:
-                snVar.f41164a = (snVar.f41164a + 1) % 3;
+                snVar.f41129a = (snVar.f41129a + 1) % 3;
                 return;
             case 16:
-                snVar.f41177b = !snVar.f41177b;
+                snVar.f41142b = !snVar.f41142b;
                 return;
             case 17:
                 snVar.D7(true);
@@ -168,13 +168,13 @@ public final class mg implements Runnable {
                 snVar.w7();
                 return;
             case 20:
-                snVar.f41477ya = false;
+                snVar.f41442ya = false;
                 snVar.yc();
                 return;
             case 21:
-                snVar.f41276ic = 0;
-                snVar.f41289jc = false;
-                snVar.f41454x0.f1();
+                snVar.f41241ic = 0;
+                snVar.f41254jc = false;
+                snVar.f41419x0.f1();
                 return;
             case 22:
                 snVar.v9(5);
@@ -184,7 +184,7 @@ public final class mg implements Runnable {
                 return;
             case 24:
                 kk kkVar = snVar.R2;
-                if ((kkVar == null || kkVar.getVisibility() != 0) && (x3Var = snVar.f41442w1) != null) {
+                if ((kkVar == null || kkVar.getVisibility() != 0) && (x3Var = snVar.f41407w1) != null) {
                     x3Var.u();
                     return;
                 }
@@ -201,13 +201,13 @@ public final class mg implements Runnable {
             case 28:
                 FrameLayout.LayoutParams e = w7.z5.e(-1, -2, 87);
                 e.bottomMargin = snVar.Y.getMeasuredHeight();
-                snVar.X0.addView(snVar.f41469y1, e);
-                snVar.f41469y1.setTranslationY(-AndroidUtilities.navigationBarHeight);
-                snVar.f41469y1.m(0.0f, snVar.Y.getEmojiButton().getX() + AndroidUtilities.dp(22.0f));
-                snVar.f41469y1.u();
+                snVar.X0.addView(snVar.f41434y1, e);
+                snVar.f41434y1.setTranslationY(-AndroidUtilities.navigationBarHeight);
+                snVar.f41434y1.m(0.0f, snVar.Y.getEmojiButton().getX() + AndroidUtilities.dp(22.0f));
+                snVar.f41434y1.u();
                 return;
             default:
-                int i17 = sn.Hc;
+                int i17 = sn.Ic;
                 snVar.c7();
                 return;
         }

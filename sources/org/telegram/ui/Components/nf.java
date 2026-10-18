@@ -3,39 +3,39 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import android.graphics.Paint;
 public final class nf extends gi.x {
-    public boolean f28752s;
+    public boolean f28745s;
     public final ChatActivityEnterView v;
 
     public nf(ChatActivityEnterView chatActivityEnterView, Context context) {
         super(context);
         this.v = chatActivityEnterView;
-        this.f11535a = null;
+        this.f11533a = null;
         Paint paint = new Paint(1);
         this.d = paint;
-        this.f11538f = true;
-        this.f11536b = new Object();
+        this.f11536f = true;
+        this.f11534b = new Object();
         ai.u1 u1Var = new ai.u1(this, context, 3);
-        this.f11537c = u1Var;
+        this.f11535c = u1Var;
         u1Var.setOverScrollMode(2);
         u1Var.setClipToPadding(false);
         u1Var.setClipToOutline(true);
         u1Var.j(new ah.d0(this, 8));
         addView(u1Var);
         paint.setColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.Ii, false));
-        dh.d dVar = this.f11540r;
+        dh.d dVar = this.f11538r;
         if (dVar != null) {
             dVar.v();
         }
         invalidate();
         setClipChildren(false);
-        this.f28752s = false;
+        this.f28745s = false;
     }
 
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
-        if (!this.f28752s) {
-            this.f28752s = true;
+        if (!this.f28745s) {
+            this.f28745s = true;
             this.v.A1();
         }
     }

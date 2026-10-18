@@ -4,24 +4,24 @@ import android.graphics.Typeface;
 import android.text.TextPaint;
 import android.text.style.MetricAffectingSpan;
 public final class i extends MetricAffectingSpan {
-    public static final Typeface[] f16957c;
-    public final int f16958a;
-    public final int f16959b;
+    public static final Typeface[] f16955c;
+    public final int f16956a;
+    public final int f16957b;
 
     static {
         Typeface typeface = Typeface.MONOSPACE;
-        f16957c = new Typeface[]{typeface, Typeface.create(typeface, 1), Typeface.create(typeface, 2), Typeface.create(typeface, 3)};
+        f16955c = new Typeface[]{typeface, Typeface.create(typeface, 1), Typeface.create(typeface, 2), Typeface.create(typeface, 3)};
     }
 
     public i(int i10) {
         int i11;
-        this.f16959b = i10;
+        this.f16957b = i10;
         if ((i10 & 256) != 0) {
             i11 = 1;
         } else {
             i11 = 0;
         }
-        this.f16958a = i11 | ((i10 & 512) != 0 ? 2 : 0);
+        this.f16956a = i11 | ((i10 & 512) != 0 ? 2 : 0);
     }
 
     @Override
@@ -31,6 +31,6 @@ public final class i extends MetricAffectingSpan {
 
     @Override
     public final void updateMeasureState(TextPaint textPaint) {
-        textPaint.setTypeface(f16957c[this.f16958a]);
+        textPaint.setTypeface(f16955c[this.f16956a]);
     }
 }

@@ -1,10 +1,10 @@
 package m;
 public final class z0 extends ki.t1 {
-    public final a1 f16396c;
+    public final a1 f16394c;
 
     public z0(a1 a1Var) {
         super(a1Var, 5);
-        this.f16396c = a1Var;
+        this.f16394c = a1Var;
     }
 
     @Override

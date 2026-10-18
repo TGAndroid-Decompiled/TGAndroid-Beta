@@ -4,19 +4,19 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 import v7.u6;
 public final class t implements Iterator {
-    public String f7900b;
-    public final CharSequence f7901c;
+    public String f7898b;
+    public final CharSequence f7899c;
     public final i d;
-    public int f7902f;
+    public int f7900f;
     public final a6.i h;
-    public int f7899a = 2;
+    public int f7897a = 2;
     public int e = 0;
 
     public t(a6.i iVar, a5.a aVar, CharSequence charSequence) {
         this.h = iVar;
         this.d = (i) aVar.f281c;
-        this.f7902f = aVar.f280b;
-        this.f7901c = charSequence;
+        this.f7900f = aVar.f280b;
+        this.f7899c = charSequence;
     }
 
     @Override
@@ -24,24 +24,24 @@ public final class t implements Iterator {
         boolean z10;
         String str;
         i iVar;
-        if (this.f7899a != 4) {
+        if (this.f7897a != 4) {
             z10 = true;
         } else {
             z10 = false;
         }
         u6.p(z10);
-        int c10 = m1.j.c(this.f7899a);
+        int c10 = m1.j.c(this.f7897a);
         if (c10 == 0) {
             return true;
         }
         if (c10 != 2) {
-            this.f7899a = 4;
+            this.f7897a = 4;
             int i10 = this.e;
             while (true) {
                 int i11 = this.e;
                 if (i11 != -1) {
                     e eVar = (e) this.h.f306b;
-                    CharSequence charSequence = this.f7901c;
+                    CharSequence charSequence = this.f7899c;
                     int length = charSequence.length();
                     u6.m(i11, length);
                     while (true) {
@@ -79,7 +79,7 @@ public final class t implements Iterator {
                         while (i11 > i10 && iVar.c(charSequence.charAt(i11 - 1))) {
                             i11--;
                         }
-                        int i14 = this.f7902f;
+                        int i14 = this.f7900f;
                         if (i14 == 1) {
                             i11 = charSequence.length();
                             this.e = -1;
@@ -87,19 +87,19 @@ public final class t implements Iterator {
                                 i11--;
                             }
                         } else {
-                            this.f7902f = i14 - 1;
+                            this.f7900f = i14 - 1;
                         }
                         str = charSequence.subSequence(i10, i11).toString();
                     }
                 } else {
-                    this.f7899a = 3;
+                    this.f7897a = 3;
                     str = null;
                     break;
                 }
             }
-            this.f7900b = str;
-            if (this.f7899a != 3) {
-                this.f7899a = 1;
+            this.f7898b = str;
+            if (this.f7897a != 3) {
+                this.f7897a = 1;
                 return true;
             }
         }
@@ -109,9 +109,9 @@ public final class t implements Iterator {
     @Override
     public final Object next() {
         if (hasNext()) {
-            this.f7899a = 2;
-            String str = this.f7900b;
-            this.f7900b = null;
+            this.f7897a = 2;
+            String str = this.f7898b;
+            this.f7898b = null;
             return str;
         }
         throw new NoSuchElementException();

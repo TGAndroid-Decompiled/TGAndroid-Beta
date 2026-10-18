@@ -1,29 +1,29 @@
 package org.telegram.ui.Components;
 public final class jp0 implements o1.f {
-    public final int f27574a;
-    public final rp0 f27575b;
-    public final o1.k f27576c;
+    public final int f27567a;
+    public final rp0 f27568b;
+    public final o1.k f27569c;
 
     public jp0(rp0 rp0Var, o1.k kVar, int i10) {
-        this.f27574a = i10;
-        this.f27575b = rp0Var;
-        this.f27576c = kVar;
+        this.f27567a = i10;
+        this.f27568b = rp0Var;
+        this.f27569c = kVar;
     }
 
     @Override
     public final void a(o1.h hVar, boolean z10, float f7, float f10) {
-        switch (this.f27574a) {
+        switch (this.f27567a) {
             case 0:
                 if (!z10) {
-                    this.f27575b.f30021z.remove(this.f27576c);
+                    this.f27568b.f30015z.remove(this.f27569c);
                     hVar.c();
                     return;
                 }
                 return;
             default:
-                rp0 rp0Var = this.f27575b;
+                rp0 rp0Var = this.f27568b;
                 if (!z10) {
-                    rp0Var.f30021z.remove(this.f27576c);
+                    rp0Var.f30015z.remove(this.f27569c);
                     hVar.c();
                     return;
                 }

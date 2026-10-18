@@ -1,20 +1,32 @@
 package sg;
 
-import ai.z4;
-import android.content.Context;
-import java.util.ArrayList;
-import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.Components.aw;
-public final class g1 extends aw {
-    public final l1 W;
+import android.animation.ValueAnimator;
+import org.telegram.messenger.AndroidUtilities;
+public final class g1 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f46255a;
+    public final m1 f46256b;
 
-    public g1(l1 l1Var, z4 z4Var, Context context, d6 d6Var, ArrayList arrayList) {
-        super(z4Var, context, d6Var, arrayList);
-        this.W = l1Var;
+    public g1(m1 m1Var, int i10) {
+        this.f46255a = i10;
+        this.f46256b = m1Var;
     }
 
     @Override
-    public final void Z() {
-        this.W.dismiss();
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f46255a) {
+            case 0:
+                m1 m1Var = this.f46256b;
+                m1Var.getClass();
+                m1Var.G0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                m1Var.container.invalidate();
+                return;
+            default:
+                m1 m1Var2 = this.f46256b;
+                m1Var2.getClass();
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                m1Var2.N0.getLayoutParams().height = AndroidUtilities.lerp(m1Var2.O0[0].getHeight(), m1Var2.O0[1].getHeight(), floatValue);
+                m1Var2.N0.requestLayout();
+                return;
+        }
     }
 }

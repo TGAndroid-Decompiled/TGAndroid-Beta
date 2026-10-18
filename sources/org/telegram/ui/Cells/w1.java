@@ -11,35 +11,35 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 public final class w1 extends FrameLayout {
-    public final TextView f23758a;
-    public final ImageView f23759b;
-    public final FrameLayout f23760c;
+    public final TextView f23751a;
+    public final ImageView f23752b;
+    public final FrameLayout f23753c;
     public final org.telegram.ui.ActionBar.d6 d;
 
     public w1(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
         this.d = d6Var;
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f23760c = frameLayout;
+        this.f23753c = frameLayout;
         frameLayout.setBackgroundResource(R.drawable.newmsg_divider);
         Drawable background = frameLayout.getBackground();
         int a2 = a(org.telegram.ui.ActionBar.h6.Fe);
         PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
         background.setColorFilter(new PorterDuffColorFilter(a2, mode));
-        addView(frameLayout, w7.z5.a(27.0f, 0.0f, 7.0f, 0.0f, 0.0f, -1, 51));
+        addView(frameLayout, w7.z5.d(-1, 27.0f, 51, 0.0f, 7.0f, 0.0f, 0.0f));
         ImageView imageView = new ImageView(context);
-        this.f23759b = imageView;
+        this.f23752b = imageView;
         imageView.setImageResource(R.drawable.ic_ab_new);
         imageView.setColorFilter(new PorterDuffColorFilter(a(org.telegram.ui.ActionBar.h6.De), mode));
         imageView.setPadding(0, AndroidUtilities.dp(2.0f), 0, 0);
-        frameLayout.addView(imageView, w7.z5.a(-2.0f, 0.0f, 0.0f, 10.0f, 0.0f, -2, 21));
+        frameLayout.addView(imageView, w7.z5.d(-2, -2.0f, 21, 0.0f, 0.0f, 10.0f, 0.0f));
         TextView textView = new TextView(context);
-        this.f23758a = textView;
+        this.f23751a = textView;
         textView.setPadding(0, 0, 0, AndroidUtilities.dp(1.0f));
         textView.setTextSize(1, 14.0f);
         textView.setTextColor(a(org.telegram.ui.ActionBar.h6.Ee));
         textView.setTypeface(AndroidUtilities.bold());
-        addView(textView, w7.z5.a(-2.0f, 32.0f, 0.0f, 32.0f, 0.0f, -2, 17));
+        addView(textView, w7.z5.d(-2, -2.0f, 17, 32.0f, 0.0f, 32.0f, 0.0f));
     }
 
     public final int a(int i10) {
@@ -57,15 +57,15 @@ public final class w1 extends FrameLayout {
     }
 
     public FrameLayout getBackgroundLayout() {
-        return this.f23760c;
+        return this.f23753c;
     }
 
     public ImageView getImageView() {
-        return this.f23759b;
+        return this.f23752b;
     }
 
     public TextView getTextView() {
-        return this.f23758a;
+        return this.f23751a;
     }
 
     @Override
@@ -74,6 +74,6 @@ public final class w1 extends FrameLayout {
     }
 
     public void setText(String str) {
-        this.f23758a.setText(str);
+        this.f23751a.setText(str);
     }
 }

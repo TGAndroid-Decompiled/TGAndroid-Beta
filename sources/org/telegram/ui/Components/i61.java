@@ -6,16 +6,16 @@ import android.text.style.MetricAffectingSpan;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.SharedConfig;
 public final class i61 extends MetricAffectingSpan {
-    public final CharSequence f27096a;
-    public final int f27097b;
-    public final int f27098c;
+    public final CharSequence f27089a;
+    public final int f27090b;
+    public final int f27091c;
     public final byte d;
     public final l11 e;
 
     public i61(CharSequence charSequence, int i10, int i11, byte b10, l11 l11Var) {
-        this.f27096a = charSequence;
-        this.f27097b = i10;
-        this.f27098c = i11;
+        this.f27089a = charSequence;
+        this.f27090b = i10;
+        this.f27091c = i11;
         this.d = b10;
         this.e = l11Var;
     }
@@ -29,7 +29,7 @@ public final class i61 extends MetricAffectingSpan {
         } else if (b10 == 1) {
             textPaint.setColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.fc, false));
         } else {
-            textPaint.setColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21015ec, false));
+            textPaint.setColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21008ec, false));
         }
         l11 l11Var = this.e;
         if (l11Var != null) {

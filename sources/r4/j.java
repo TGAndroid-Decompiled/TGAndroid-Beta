@@ -7,15 +7,15 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 public final class j {
-    public final int f45048a;
-    public final int f45049b;
-    public final long f45050c;
+    public final int f45002a;
+    public final int f45003b;
+    public final long f45004c;
     public final long d;
 
     public j(long j10, int i10, int i11, long j11) {
-        this.f45048a = i10;
-        this.f45049b = i11;
-        this.f45050c = j10;
+        this.f45002a = i10;
+        this.f45003b = i11;
+        this.f45004c = j10;
         this.d = j11;
     }
 
@@ -39,9 +39,9 @@ public final class j {
         file.delete();
         DataOutputStream dataOutputStream = new DataOutputStream(new FileOutputStream(file));
         try {
-            dataOutputStream.writeInt(this.f45048a);
-            dataOutputStream.writeInt(this.f45049b);
-            dataOutputStream.writeLong(this.f45050c);
+            dataOutputStream.writeInt(this.f45002a);
+            dataOutputStream.writeInt(this.f45003b);
+            dataOutputStream.writeLong(this.f45004c);
             dataOutputStream.writeLong(this.d);
             dataOutputStream.close();
         } catch (Throwable th2) {
@@ -60,7 +60,7 @@ public final class j {
         }
         if (obj != null && (obj instanceof j)) {
             j jVar = (j) obj;
-            if (this.f45049b == jVar.f45049b && this.f45050c == jVar.f45050c && this.f45048a == jVar.f45048a && this.d == jVar.d) {
+            if (this.f45003b == jVar.f45003b && this.f45004c == jVar.f45004c && this.f45002a == jVar.f45002a && this.d == jVar.d) {
                 return true;
             }
         }
@@ -68,6 +68,6 @@ public final class j {
     }
 
     public final int hashCode() {
-        return Objects.hash(Integer.valueOf(this.f45049b), Long.valueOf(this.f45050c), Integer.valueOf(this.f45048a), Long.valueOf(this.d));
+        return Objects.hash(Integer.valueOf(this.f45003b), Long.valueOf(this.f45004c), Integer.valueOf(this.f45002a), Long.valueOf(this.d));
     }
 }

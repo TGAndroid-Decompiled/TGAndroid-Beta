@@ -23,10 +23,10 @@ public final class d0 extends d9 {
         } else {
             i10 = R.drawable.greydivider;
         }
-        int i11 = h6.f20955b7;
+        int i11 = h6.f20948b7;
         d6 d6Var = this.v;
-        zq zqVar = new zq(new ColorDrawable(h6.w0(h6.f20935a7, d6Var)), h6.V0(context, i10, h6.w0(i11, d6Var)), 0, 0);
-        zqVar.f33006w = true;
+        zq zqVar = new zq(new ColorDrawable(h6.w0(h6.f20928a7, d6Var)), h6.V0(context, i10, h6.w0(i11, d6Var)), 0, 0);
+        zqVar.f32999w = true;
         setBackground(zqVar);
     }
 }

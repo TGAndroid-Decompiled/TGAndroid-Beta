@@ -1,6 +1,29 @@
 package org.telegram.ui.Wallet;
-public final class v7 {
-    public float f35004a;
-    public float f35005b;
-    public float f35006c;
+
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class v7 implements Runnable {
+    public final int f35000a;
+    public final w7 f35001b;
+
+    public v7(w7 w7Var, int i10) {
+        this.f35000a = i10;
+        this.f35001b = w7Var;
+    }
+
+    @Override
+    public final void run() {
+        switch (this.f35000a) {
+            case 0:
+                w7 w7Var = this.f35001b;
+                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(w7Var.getParentActivity(), 0, w7Var.getResourceProvider());
+                alertDialog$Builder.f20601a.T = LocaleController.getString(R.string.WalletEnterSecretPhraseInfo);
+                org.telegram.messenger.g0.p(R.string.OK, alertDialog$Builder, null);
+                return;
+            default:
+                this.f35001b.Y();
+                return;
+        }
+    }
 }

@@ -11,7 +11,7 @@ import org.telegram.ui.Components.f61;
 import org.telegram.ui.Components.im0;
 import org.telegram.ui.Components.s61;
 public final class g7 extends e61 {
-    public static final int f22304a = 0;
+    public static final int f22297a = 0;
 
     static {
         e61.setup(new e61());

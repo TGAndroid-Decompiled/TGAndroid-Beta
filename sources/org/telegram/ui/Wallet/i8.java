@@ -1,64 +1,164 @@
 package org.telegram.ui.Wallet;
 
-import org.telegram.messenger.Utilities;
-public final class i8 implements Utilities.Callback {
-    public final int f34339a = 0;
-    public final n8 f34340b;
-    public final Utilities.Callback f34341c;
-    public final q0 d;
-    public final m0 e;
+import android.animation.ValueAnimator;
+import android.content.Context;
+import android.os.SystemClock;
+import android.view.MotionEvent;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.R;
+import org.telegram.ui.Components.bs;
+import org.telegram.ui.fg;
+public final class i8 extends FrameLayout {
+    public final ImageView f34309a;
+    public final l3 f34310b;
+    public float f34311c;
+    public float d;
+    public float e;
+    public float f34312f;
+    public int h;
+    public float f34313n;
+    public float f34314r;
+    public boolean f34315s;
+    public ValueAnimator v;
+    public o1.k f34316w;
 
-    public i8(n8 n8Var, Utilities.Callback callback, m0 m0Var, q0 q0Var) {
-        this.f34340b = n8Var;
-        this.f34341c = callback;
-        this.e = m0Var;
-        this.d = q0Var;
+    public i8(Context context) {
+        super(context);
+        this.e = 1.0f;
+        this.h = -1;
+        setClipChildren(false);
+        ImageView imageView = new ImageView(context);
+        this.f34309a = imageView;
+        imageView.setImageResource(R.drawable.mini_gram_72);
+        imageView.setScaleX(0.7407407f);
+        imageView.setScaleY(0.7407407f);
+        addView(imageView, w7.z5.c(-1.0f, -1));
+        l3 l3Var = new l3(this, context, new n(this, 10));
+        this.f34310b = l3Var;
+        addView(l3Var, w7.z5.c(-1.0f, -1));
+    }
+
+    public final void a(float f7) {
+        if (this.f34316w == null) {
+            o1.k kVar = new o1.k(new o1.j(this.e));
+            this.f34316w = kVar;
+            o1.l lVar = new o1.l(f7);
+            lVar.a(0.55f);
+            lVar.b(280.0f);
+            kVar.f17558u = lVar;
+            this.f34316w.e(0.001f);
+            this.f34316w.b(new a3(this, 1));
+        }
+        this.f34316w.g(f7);
+    }
+
+    public final void b() {
+        this.h = -1;
+        if (getParent() != null) {
+            getParent().requestDisallowInterceptTouchEvent(false);
+        }
+        this.f34312f = (float) Math.IEEEremainder((this.f34312f + this.f34311c) - c(), 6.283185307179586d);
+        this.f34315s = true;
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+        this.v = ofFloat;
+        ofFloat.setDuration(350L);
+        this.v.setInterpolator(bs.h);
+        this.v.addUpdateListener(new fg(this, (float) Math.IEEEremainder(this.d, 6.283185307179586d), 6));
+        this.v.start();
+        a(1.0f);
+    }
+
+    public final float c() {
+        return ((float) (((SystemClock.uptimeMillis() / 1000.0d) * 0.5961171984672546d) % 6.283185307179586d)) + this.f34312f;
     }
 
     @Override
-    public final void run(Object obj) {
-        String o10;
-        switch (this.f34339a) {
-            case 0:
-                n8.Y(this.f34340b, this.f34341c, this.e, this.d, (j0) obj);
-                return;
-            default:
-                d0 d0Var = (d0) obj;
-                Utilities.Callback callback = this.f34341c;
-                if (d0Var == null) {
-                    callback.run("ADDRESS_NO_INFO");
-                    return;
-                }
-                byte[] bArr = d0Var.f34116c;
-                q0 q0Var = this.d;
-                if (bArr == null) {
-                    byte[][] m10 = q0Var.m();
-                    if (m10.length <= 0) {
-                        callback.run("STORAGE_NO_PUBLIC_KEY");
-                        return;
-                    }
-                    bArr = m10[0];
-                }
-                if (!q0Var.f(bArr)) {
-                    callback.run("STORAGE_OLD_PUBLIC_KEY");
-                    return;
-                }
-                i8 i8Var = new i8(this.f34340b, callback, this.e, q0Var);
-                if (bArr == null) {
-                    o10 = "";
-                } else {
-                    o10 = q0.o(bArr);
-                }
-                String str = o10;
-                q0.h.execute(new org.telegram.ui.Components.r2(q0Var, q0Var.l(), str, false, (Utilities.Callback) i8Var));
-                return;
-        }
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.f34310b.setPaused(false);
     }
 
-    public i8(n8 n8Var, Utilities.Callback callback, q0 q0Var, m0 m0Var) {
-        this.f34340b = n8Var;
-        this.f34341c = callback;
-        this.d = q0Var;
-        this.e = m0Var;
+    @Override
+    public final void onDetachedFromWindow() {
+        this.f34310b.setPaused(true);
+        ValueAnimator valueAnimator = this.v;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+        }
+        o1.k kVar = this.f34316w;
+        if (kVar != null) {
+            kVar.c();
+        }
+        super.onDetachedFromWindow();
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        l3 l3Var = this.f34310b;
+        int i10 = 0;
+        if (l3Var.f47179n && l3Var.getVisibility() == 0) {
+            int actionMasked = motionEvent.getActionMasked();
+            if (actionMasked != 0) {
+                if (actionMasked != 1) {
+                    if (actionMasked != 2) {
+                        if (actionMasked != 3) {
+                            if (actionMasked != 6) {
+                                if (this.h != -1) {
+                                }
+                            } else if (motionEvent.getPointerId(motionEvent.getActionIndex()) == this.h) {
+                                if (motionEvent.getActionIndex() == 0) {
+                                    i10 = 1;
+                                }
+                                this.h = motionEvent.getPointerId(i10);
+                                this.f34313n = motionEvent.getX(i10);
+                                this.f34314r = motionEvent.getY(i10);
+                                return true;
+                            }
+                            return true;
+                        }
+                    } else {
+                        int i11 = this.h;
+                        if (i11 != -1) {
+                            int findPointerIndex = motionEvent.findPointerIndex(i11);
+                            if (findPointerIndex < 0) {
+                                b();
+                                return true;
+                            }
+                            float radians = ((float) Math.toRadians(0.800000011920929d)) / AndroidUtilities.density;
+                            this.f34311c = com.google.android.gms.internal.play_billing.k3.y(motionEvent.getX(findPointerIndex), this.f34313n, radians, this.f34311c);
+                            this.d = com.google.android.gms.internal.play_billing.k3.y(motionEvent.getY(findPointerIndex), this.f34314r, radians, this.d);
+                            this.f34313n = motionEvent.getX(findPointerIndex);
+                            this.f34314r = motionEvent.getY(findPointerIndex);
+                            return true;
+                        }
+                    }
+                }
+                if (this.h != -1) {
+                    b();
+                }
+                return true;
+            }
+            if (!this.f34315s && this.e <= 1.001f) {
+                this.f34311c = c();
+                this.d = 0.0f;
+            }
+            ValueAnimator valueAnimator = this.v;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
+                this.v = null;
+            }
+            this.f34315s = false;
+            this.h = motionEvent.getPointerId(0);
+            this.f34313n = motionEvent.getX();
+            this.f34314r = motionEvent.getY();
+            if (getParent() != null) {
+                getParent().requestDisallowInterceptTouchEvent(true);
+            }
+            a(3.0f);
+            return true;
+        }
+        return false;
     }
 }

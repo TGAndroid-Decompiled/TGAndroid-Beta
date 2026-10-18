@@ -148,7 +148,7 @@ public class SurfaceViewRenderer extends SurfaceView implements SurfaceHolder.Ca
         if (i12 == 0 || i12 == 180) {
             i10 = i11;
         }
-        postOrRun(new hg.n(this, i13, i10, 12));
+        postOrRun(new hg.n(this, i13, i10, 13));
     }
 
     @Override

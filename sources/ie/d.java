@@ -5,12 +5,12 @@ import be.y0;
 import ge.v;
 import java.util.concurrent.Executor;
 public final class d extends y0 implements Executor {
-    public static final d f12795c = new a0();
+    public static final d f12793c = new a0();
     public static final a0 d;
 
     static {
-        a0 a0Var = l.f12806c;
-        int i10 = v.f11044a;
+        a0 a0Var = l.f12804c;
+        int i10 = v.f11042a;
         if (64 >= i10) {
             i10 = 64;
         }
@@ -42,7 +42,7 @@ public final class d extends y0 implements Executor {
 
     @Override
     public final void execute(Runnable runnable) {
-        c(kd.i.f15030a, runnable);
+        c(kd.i.f15028a, runnable);
     }
 
     @Override

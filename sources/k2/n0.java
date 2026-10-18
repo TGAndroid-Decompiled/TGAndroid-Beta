@@ -9,20 +9,20 @@ import android.media.AudioManager;
 import android.os.Build;
 import android.util.Rational;
 public final class n0 {
-    public final Object f14766a;
-    public Object f14767b;
+    public final Object f14764a;
+    public Object f14765b;
 
     public n0() {
-        this.f14766a = new Rect();
-        this.f14767b = new Point();
+        this.f14764a = new Rect();
+        this.f14765b = new Point();
     }
 
     public PictureInPictureParams.Builder a() {
         int i10;
         Rational rational;
-        Rect rect = (Rect) this.f14766a;
+        Rect rect = (Rect) this.f14764a;
         PictureInPictureParams.Builder builder = new PictureInPictureParams.Builder();
-        Point point = (Point) this.f14767b;
+        Point point = (Point) this.f14765b;
         int i11 = point.x;
         if (i11 > 0 && (i10 = point.y) > 0) {
             double d = i11 / i10;
@@ -59,8 +59,8 @@ public final class n0 {
         fVar.getClass();
         int i11 = Build.VERSION.SDK_INT;
         if (i11 >= 29 && i10 != -1) {
-            Context context = (Context) this.f14766a;
-            Boolean bool = (Boolean) this.f14767b;
+            Context context = (Context) this.f14764a;
+            Boolean bool = (Boolean) this.f14765b;
             boolean z11 = false;
             if (bool != null) {
                 booleanValue = bool.booleanValue();
@@ -72,11 +72,11 @@ public final class n0 {
                     } else {
                         z10 = false;
                     }
-                    this.f14767b = Boolean.valueOf(z10);
+                    this.f14765b = Boolean.valueOf(z10);
                 } else {
-                    this.f14767b = Boolean.FALSE;
+                    this.f14765b = Boolean.FALSE;
                 }
-                booleanValue = ((Boolean) this.f14767b).booleanValue();
+                booleanValue = ((Boolean) this.f14765b).booleanValue();
             }
             String str = wVar.f4132s;
             str.getClass();
@@ -132,8 +132,8 @@ public final class n0 {
     }
 
     public boolean c() {
-        if (!((Rect) this.f14766a).isEmpty()) {
-            Point point = (Point) this.f14767b;
+        if (!((Rect) this.f14764a).isEmpty()) {
+            Point point = (Point) this.f14765b;
             if (point.x > 0 && point.y > 0) {
                 return true;
             }
@@ -143,7 +143,7 @@ public final class n0 {
     }
 
     public boolean d(int i10, int i11) {
-        Point point = (Point) this.f14767b;
+        Point point = (Point) this.f14765b;
         if (point.x == i10 && point.y == i11) {
             return false;
         }
@@ -152,6 +152,6 @@ public final class n0 {
     }
 
     public n0(Context context) {
-        this.f14766a = context == null ? null : context.getApplicationContext();
+        this.f14764a = context == null ? null : context.getApplicationContext();
     }
 }

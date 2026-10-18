@@ -5,32 +5,32 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLRPC;
 public final class ks implements org.telegram.ui.ActionBar.a2, org.telegram.ui.Components.kl0, org.telegram.ui.Components.yl0, r0.n {
-    public final ContactsActivity f38666a;
+    public final ContactsActivity f38621a;
 
     public ks(ContactsActivity contactsActivity) {
-        this.f38666a = contactsActivity;
+        this.f38621a = contactsActivity;
     }
 
     @Override
     public r0.k1 B0(View view, r0.k1 k1Var) {
         int i10 = AndroidUtilities.getDefaultWindowInsets(k1Var, false).d;
-        ContactsActivity contactsActivity = this.f38666a;
-        contactsActivity.f33090q0 = i10;
+        ContactsActivity contactsActivity = this.f38621a;
+        contactsActivity.f33083q0 = i10;
         contactsActivity.j0();
         contactsActivity.i0();
         contactsActivity.h0();
-        return r0.k1.f44872b;
+        return r0.k1.f44826b;
     }
 
     @Override
     public boolean a(int i10, View view) {
-        ContactsActivity contactsActivity = this.f38666a;
-        s4.g0 adapter = contactsActivity.f33078f.getAdapter();
+        ContactsActivity contactsActivity = this.f38621a;
+        s4.g0 adapter = contactsActivity.f33071f.getAdapter();
         ps psVar = contactsActivity.d;
         if (adapter == psVar) {
             int S = psVar.S(i10);
             int Q = contactsActivity.d.Q(i10);
-            org.telegram.ui.Components.qc qcVar = org.telegram.ui.Components.qc.f29638w;
+            org.telegram.ui.Components.qc qcVar = org.telegram.ui.Components.qc.f29631w;
             if (qcVar != null) {
                 qcVar.b();
             }
@@ -55,14 +55,14 @@ public final class ks implements org.telegram.ui.ActionBar.a2, org.telegram.ui.C
 
     @Override
     public void b() {
-        this.f38666a.g0();
+        this.f38621a.g0();
     }
 
     @Override
     public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        ContactsActivity contactsActivity = this.f38666a;
+        ContactsActivity contactsActivity = this.f38621a;
         contactsActivity.getClass();
-        a0.h hVar = contactsActivity.f33076d0;
+        a0.h hVar = contactsActivity.f33069d0;
         ArrayList arrayList = new ArrayList(hVar.m());
         for (int i11 = 0; i11 < hVar.m(); i11++) {
             arrayList.add((TLRPC.User) hVar.f(hVar.j(i11)));

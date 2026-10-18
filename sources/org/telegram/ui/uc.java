@@ -16,7 +16,7 @@ public final class uc extends ip0 {
         vc vcVar = this.F;
         TextView textView = vcVar.d;
         if (textView != null) {
-            textView.setTextColor(vcVar.f42187b.h.getTextColor());
+            textView.setTextColor(vcVar.f42145b.h.getTextColor());
         }
     }
 }

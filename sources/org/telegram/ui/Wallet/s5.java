@@ -1,295 +1,507 @@
 package org.telegram.ui.Wallet;
 
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.opengl.GLES20;
-import android.opengl.GLUtils;
-import android.util.LruCache;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.ByteBuffer;
-import java.nio.FloatBuffer;
-import java.nio.ShortBuffer;
-import java.nio.charset.StandardCharsets;
-import org.telegram.messenger.kk;
-public final class s5 {
-    public static final LruCache A = new LruCache(2);
-    public r5 f34875a;
-    public int f34876b;
-    public float[] f34877c;
-    public float d;
-    public final int[] e;
-    public final Context f34878f;
-    public float[] f34879g;
-    public final int h;
-    public final r5 f34880i;
-    public final r5 f34881j;
-    public final int[] f34882k;
-    public final float[] f34883l;
-    public boolean f34884m;
-    public final r5 f34885n;
-    public final r5 f34886o;
-    public final r5 f34887p;
-    public final mi.s f34888q;
-    public final int f34889r;
-    public final mi.s f34890s;
-    public final mi.s f34891t;
-    public int f34892u;
-    public final z5 v;
-    public final r5 f34893w;
-    public final float[] f34894x;
-    public final float f34895y;
-    public final int[] f34896z;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewConfiguration;
+import android.widget.FrameLayout;
+import ei.ja;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.lk;
+import org.telegram.ui.vf1;
+public final class s5 extends FrameLayout implements SensorEventListener {
+    public static final Object f34815k0 = new Object();
+    public final float[] E;
+    public final z5 F;
+    public final int G;
+    public float H;
+    public float I;
+    public float J;
+    public float K;
+    public float L;
+    public float M;
+    public float N;
+    public int O;
+    public float P;
+    public float Q;
+    public float R;
+    public float S;
+    public boolean T;
+    public long U;
+    public ValueAnimator V;
+    public float W;
+    public boolean f34816a;
+    public float f34817a0;
+    public o5 f34818b;
+    public float f34819b0;
+    public int f34820c;
+    public float f34821c0;
+    public u2 d;
+    public float f34822d0;
+    public final r5 e;
+    public float f34823e0;
+    public final ei.g6 f34824f;
+    public int f34825f0;
+    public int f34826g0;
+    public final q5 h;
+    public final org.telegram.ui.Cells.k7 f34827h0;
+    public float f34828i0;
+    public float f34829j0;
+    public final ah.x f34830n;
+    public final m.s3 f34831r;
+    public final float[] f34832s;
+    public final SensorManager v;
+    public final Sensor f34833w;
+    public final boolean f34834x;
+    public final float[] f34835y;
 
-    public s5(android.content.Context r25, int r26, int r27) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Wallet.s5.<init>(android.content.Context, int, int):void");
-    }
-
-    public static void a(float[] fArr, int i10) {
-        FloatBuffer h = kk.h(ByteBuffer.allocateDirect(fArr.length * 4));
-        h.put(fArr).position(0);
-        GLES20.glBindBuffer(34962, i10);
-        GLES20.glBufferData(34962, fArr.length * 4, h, 35044);
-        GLES20.glBindBuffer(34962, 0);
-    }
-
-    public static Bitmap c(Context context, int i10, int i11) {
-        int i12;
-        int i13;
-        Bitmap createBitmap = Bitmap.createBitmap(1024, 625, Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(createBitmap);
-        float f7 = 3.047619f;
-        float f10 = 3.0487804f;
-        canvas.scale(3.047619f, 3.0487804f);
-        float f11 = 336.0f - i11;
-        float f12 = f11 - 48.0f;
-        Paint paint = new Paint(1);
-        paint.setColor(-65536);
-        float f13 = 74.0f;
-        canvas.drawRoundRect(new RectF(f12, 74.0f, f11, 110.0f), 8.0f, 8.0f, paint);
-        Drawable drawable = context.getDrawable(i10);
-        if (drawable != null) {
-            Drawable mutate = drawable.mutate();
-            mutate.setTint(-16711936);
-            mutate.setBounds((int) (f12 + 12.0f), 80, (int) (f11 - 12.0f), 104);
-            mutate.draw(canvas);
+    public s5(Context context, int i10, int i11) {
+        super(context);
+        this.f34831r = new m.s3();
+        this.f34832s = new float[8];
+        this.f34835y = new float[9];
+        this.E = new float[3];
+        this.F = new Object();
+        this.H = -0.22f;
+        this.I = -0.28f;
+        this.O = -1;
+        this.f34819b0 = 1.0f;
+        this.f34822d0 = Float.NaN;
+        this.f34823e0 = Float.NaN;
+        this.f34827h0 = new org.telegram.ui.Cells.k7(this, 28);
+        this.f34820c = i10;
+        boolean z10 = false;
+        setClipChildren(false);
+        setClipToPadding(false);
+        setWillNotDraw(false);
+        setCameraDistance(AndroidUtilities.dp(4800.0f));
+        w7.b6.b(this, 0.02f, 1.2f);
+        r5 r5Var = new r5(this, context);
+        this.e = r5Var;
+        addView(r5Var, w7.z5.e(-1, -1, 17));
+        ei.g6 g6Var = new ei.g6(this, context);
+        this.f34824f = g6Var;
+        r5Var.addView(g6Var, w7.z5.e(-1, -1, 17));
+        q5 q5Var = new q5(this, context);
+        this.h = q5Var;
+        r5Var.addView(q5Var, w7.z5.e(-1, -1, 17));
+        ah.x xVar = new ah.x(this, context, 29);
+        this.f34830n = xVar;
+        xVar.setClipChildren(false);
+        xVar.setClipToPadding(false);
+        xVar.setLayerType(2, null);
+        xVar.setPivotX(0.0f);
+        xVar.setPivotY(0.0f);
+        r5Var.addView(xVar, w7.z5.e(336, 205, 51));
+        this.G = ViewConfiguration.get(context).getScaledTouchSlop();
+        SensorManager sensorManager = (SensorManager) context.getSystemService("sensor");
+        this.v = sensorManager;
+        Sensor defaultSensor = sensorManager.getDefaultSensor(15);
+        defaultSensor = defaultSensor == null ? sensorManager.getDefaultSensor(11) : defaultSensor;
+        defaultSensor = defaultSensor == null ? sensorManager.getDefaultSensor(4) : defaultSensor;
+        this.f34833w = defaultSensor;
+        if (defaultSensor != null && defaultSensor.getType() != 4) {
+            z10 = true;
         }
-        int i14 = 0;
-        int max = Math.max(0, ((int) Math.floor(f12 * 3.047619f)) - 2);
-        int max2 = Math.max(0, ((int) Math.floor(225.60976f)) - 2);
-        int min = Math.min(1024, ((int) Math.ceil(f11 * 3.047619f)) + 2);
-        int min2 = Math.min(625, ((int) Math.ceil(335.36584f)) + 2);
-        if (min > max && min2 > max2) {
-            int i15 = min - max;
-            int i16 = min2 - max2;
-            int[] iArr = new int[i15 * i16];
-            createBitmap.getPixels(iArr, 0, i15, max, max2, i15, i16);
-            int i17 = max2;
-            while (i17 < min2) {
-                int i18 = max;
-                while (i18 < min) {
-                    int i19 = (((i17 - max2) * i15) + i18) - max;
-                    int i20 = iArr[i19];
-                    float f14 = f7;
-                    float f15 = f10;
-                    int i21 = (i20 >>> 24) & 255;
-                    float f16 = f13;
-                    int i22 = (i20 >>> 8) & 255;
-                    if (i21 == 0) {
-                        iArr[i19] = i14;
-                        i12 = min;
-                        i13 = i14;
-                    } else {
-                        i12 = min;
-                        float f17 = 1.0f - ((i22 * 0.5f) / 255.0f);
-                        i13 = 0;
-                        iArr[i19] = Math.max(0, Math.min(255, Math.round(f17 * ((Math.max(0.0f, Math.min(1.0f, (((((i17 / f15) - f16) - 3.4f) * 28.6f) + ((((i18 / f14) - f12) - 5.2f) * 38.2f)) / 2277.2002f)) * (-0.255f)) + 0.995f) * 255.0f))) | (i21 << 16) | (i21 << 24) | (i22 << 8);
-                    }
-                    i18++;
-                    f13 = f16;
-                    i14 = i13;
-                    min = i12;
-                    f7 = f14;
-                    f10 = f15;
-                }
-                i17++;
-                f10 = f10;
-            }
-            createBitmap.setPixels(iArr, 0, i15, max, max2, i15, i16);
+        this.f34834x = z10;
+        p5 p5Var = new p5(this, 1);
+        if (o5.f34647j0 && o5.f34652p0.get(Integer.valueOf(i10)) != null) {
+            this.f34818b = new o5(context.getApplicationContext(), i10, i11, p5Var);
+            return;
         }
-        return createBitmap;
+        r5Var.setVisibility(4);
+        o5.f34649l0.postRunnable(new gi.m4(this, context, i10, i11, p5Var));
     }
 
-    public static int d(Context context, int i10, int i11) {
-        Bitmap g10 = g(context, i10, i11);
-        int[] iArr = new int[1];
-        GLES20.glGenTextures(1, iArr, 0);
-        GLES20.glBindTexture(3553, iArr[0]);
-        GLES20.glTexParameteri(3553, 10241, 9729);
-        GLES20.glTexParameteri(3553, 10240, 9729);
-        GLES20.glTexParameteri(3553, 10242, 33071);
-        GLES20.glTexParameteri(3553, 10243, 33071);
-        GLUtils.texImage2D(3553, 0, g10, 0);
-        GLES20.glBindTexture(3553, 0);
-        return iArr[0];
+    public static float c(float f7, float f10, float f11) {
+        return Math.max(f10, Math.min(f11, f7));
     }
 
-    public static int e() {
-        int[] iArr = new int[1];
-        GLES20.glGenTextures(1, iArr, 0);
-        GLES20.glBindTexture(3553, iArr[0]);
-        GLES20.glTexParameteri(3553, 10241, 9729);
-        GLES20.glTexParameteri(3553, 10240, 9729);
-        GLES20.glTexParameteri(3553, 10242, 33071);
-        GLES20.glTexParameteri(3553, 10243, 33071);
-        GLES20.glTexImage2D(3553, 0, 6408, 1, 1, 0, 6408, 5121, ByteBuffer.allocateDirect(4));
-        GLES20.glBindTexture(3553, 0);
-        return iArr[0];
-    }
-
-    public static synchronized Bitmap g(Context context, int i10, int i11) {
-        Bitmap bitmap;
-        synchronized (s5.class) {
-            String str = i10 + ":" + i11 + ":" + context.getResources().getConfiguration().hashCode();
-            LruCache lruCache = A;
-            bitmap = (Bitmap) lruCache.get(str);
-            if (bitmap == null) {
-                bitmap = c(context, i10, i11);
-                lruCache.put(str, bitmap);
-            }
+    public final void a() {
+        ValueAnimator valueAnimator = this.V;
+        if (valueAnimator != null) {
+            valueAnimator.removeAllListeners();
+            this.V.cancel();
+            this.V = null;
         }
-        return bitmap;
+        float f7 = this.M;
+        float f10 = this.N;
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+        this.V = ofFloat;
+        ofFloat.setDuration(600L);
+        lk.l(1.2f, this.V);
+        this.V.addUpdateListener(new ja(this, f7, f10, 6));
+        this.V.addListener(new vf1(this, 6));
+        this.V.start();
     }
 
-    public static float h(float[] fArr, int i10, int i11, int i12, int i13) {
-        return fArr[Math.max(0, Math.min(i10 - 1, i12)) + (Math.max(0, Math.min(i11 - 1, i13)) * i10)];
-    }
-
-    public static String i(Context context, String str) {
-        try {
-            InputStream open = context.getAssets().open(str);
-            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-            byte[] bArr = new byte[4096];
-            while (true) {
-                int read = open.read(bArr);
-                if (read != -1) {
-                    byteArrayOutputStream.write(bArr, 0, read);
-                } else {
-                    String byteArrayOutputStream2 = byteArrayOutputStream.toString(StandardCharsets.UTF_8.name());
-                    byteArrayOutputStream.close();
-                    open.close();
-                    return byteArrayOutputStream2;
-                }
-            }
-        } catch (IOException e) {
-            throw new IllegalStateException("Could not read ".concat(str), e);
-        }
-    }
-
-    public static void k() {
-        GLES20.glTexParameteri(3553, 10241, 9987);
-        GLES20.glTexParameteri(3553, 10240, 9729);
-        GLES20.glTexParameteri(3553, 10242, 33071);
-        GLES20.glTexParameteri(3553, 10243, 33071);
-    }
-
-    public static short l(float f7) {
-        int i10;
-        int floatToRawIntBits = Float.floatToRawIntBits(f7);
-        int i11 = (floatToRawIntBits >>> 16) & 32768;
-        int i12 = ((floatToRawIntBits >>> 23) & 255) - 112;
-        int i13 = 8388607 & floatToRawIntBits;
-        if (i12 >= 31) {
-            i10 = i11 | 31744;
-        } else if (i12 <= 0) {
-            if (i12 < -10) {
-                return (short) i11;
-            }
-            int i14 = 8388608 | i13;
-            int i15 = 14 - i12;
-            int i16 = i14 >> i15;
-            int i17 = i14 & ((1 << i15) - 1);
-            int i18 = 1 << (13 - i12);
-            if (i17 > i18 || (i17 == i18 && (i16 & 1) != 0)) {
-                i16++;
-            }
-            i10 = i11 | i16;
+    public final void b(float f7, float f10) {
+        boolean z10;
+        float[] fArr;
+        this.W = f7;
+        this.f34821c0 = f10;
+        float f11 = f7 + this.f34828i0;
+        float f12 = f10 + this.f34829j0;
+        if (Math.cos(Math.toRadians(f12)) * Math.cos(Math.toRadians(f11)) < 0.0d) {
+            z10 = true;
         } else {
-            int i19 = i11 | (i12 << 10) | (i13 >> 13);
-            int i20 = floatToRawIntBits & 8191;
-            if (i20 > 4096 || (i20 == 4096 && (i19 & 1) != 0)) {
-                i19++;
+            z10 = false;
+        }
+        boolean z11 = this.f34816a;
+        q5 q5Var = this.h;
+        if (z11 != z10) {
+            this.f34816a = z10;
+            this.f34830n.invalidate();
+            q5Var.invalidate();
+        }
+        int width = getWidth();
+        int height = getHeight();
+        if (this.f34822d0 == f11 && this.f34823e0 == f12 && this.f34825f0 == width && this.f34826g0 == height) {
+            return;
+        }
+        this.f34822d0 = f11;
+        this.f34823e0 = f12;
+        this.f34825f0 = width;
+        this.f34826g0 = height;
+        if (width > 0 && height > 0) {
+            this.f34831r.c(width, height, f11, f12, z10, this.f34832s);
+            o5 o5Var = this.f34818b;
+            if (o5Var != null) {
+                float[] fArr2 = o5Var.f34672n;
+                float[] fArr3 = o5Var.f34671m;
+                float[] fArr4 = o5Var.f34669k;
+                float[] fArr5 = o5Var.f34670l;
+                int[] iArr = o5Var.f34673o;
+                o5Var.f34676r = z10;
+                float[] fArr6 = o5Var.f34666i;
+                if (z10) {
+                    fArr = fArr5;
+                } else {
+                    fArr = fArr4;
+                }
+                if (!z10) {
+                    fArr4 = fArr5;
+                }
+                m.s3 s3Var = this.f34831r;
+                s3Var.getClass();
+                int i10 = 0;
+                while (i10 < fArr6.length / 2) {
+                    int i11 = i10 * 2;
+                    float f13 = (fArr6[i11 + 1] * (-1.212122f)) + 0.618561f;
+                    float f14 = ((fArr6[i11] * 2.0f) - 1.0f) * 1.0f;
+                    float d = s3Var.d(-0.0125f, f13, f14, width, height, fArr, i11);
+                    float[] fArr7 = fArr;
+                    float[] fArr8 = fArr4;
+                    fArr3[i10] = (d + s3Var.d(0.0125f, f13, f14, width, height, fArr8, i11)) * 0.5f;
+                    i10++;
+                    s3Var = s3Var;
+                    fArr4 = fArr8;
+                    fArr6 = fArr6;
+                    iArr = iArr;
+                    fArr = fArr7;
+                }
+                int[] iArr2 = iArr;
+                o5Var.f34675q = width / 336.0f;
+                int i12 = 0;
+                while (i12 < 76) {
+                    int i13 = i12 + 1;
+                    fArr2[i12] = (fArr3[i12] + fArr3[i13 % 76]) * 0.5f;
+                    iArr2[i12] = i12;
+                    i12 = i13;
+                }
+                for (int i14 = 1; i14 < 76; i14++) {
+                    int i15 = iArr2[i14];
+                    int i16 = i14 - 1;
+                    while (i16 >= 0) {
+                        int i17 = iArr2[i16];
+                        if (fArr2[i17] < fArr2[i15]) {
+                            iArr2[i16 + 1] = i17;
+                            i16--;
+                        }
+                    }
+                    iArr2[i16 + 1] = i15;
+                }
             }
-            return (short) i19;
+            r5 r5Var = this.e;
+            int width2 = r5Var.getWidth();
+            int height2 = r5Var.getHeight();
+            if (width2 != 0 && height2 != 0) {
+                float[] fArr9 = r5Var.d;
+                fArr9[0] = 0.0f;
+                fArr9[1] = 0.0f;
+                float f15 = width2;
+                fArr9[2] = f15;
+                fArr9[3] = 0.0f;
+                fArr9[4] = f15;
+                float f16 = height2;
+                fArr9[5] = f16;
+                fArr9[6] = 0.0f;
+                fArr9[7] = f16;
+                r5Var.f34780b = r5Var.f34779a.setPolyToPoly(fArr9, 0, this.f34832s, 0, 4);
+                r5Var.invalidate();
+            }
         }
-        return (short) i10;
+        o5 o5Var2 = this.f34818b;
+        if (o5Var2 != null) {
+            o5Var2.k(f11, f12);
+        }
+        this.f34824f.invalidate();
+        q5Var.invalidate();
     }
 
-    public final void b(r5 r5Var) {
-        GLES20.glUniform3fv(r5Var.d, 4, this.f34879g, 0);
-        GLES20.glUniform3fv(r5Var.e, 4, this.f34879g, 12);
-        GLES20.glUniform4fv(r5Var.f34833f, 1, this.f34879g, 24);
-        GLES20.glUniform2fv(r5Var.f34834g, 1, this.f34879g, 28);
-        GLES20.glUniform3fv(r5Var.h, 2, this.f34879g, 30);
-        int i10 = r5Var.f34835i;
-        if (i10 >= 0) {
-            GLES20.glUniform3fv(i10, 2, this.f34879g, 36);
-        }
+    public final void d(int i10, MotionEvent motionEvent) {
+        this.O = motionEvent.getPointerId(i10);
+        this.P = motionEvent.getX(i10);
+        this.Q = motionEvent.getY(i10);
+        this.R = this.M;
+        this.S = this.N;
     }
 
-    public final void f(mi.s sVar, r5 r5Var) {
-        b(r5Var);
-        int i10 = r5Var.f34836j;
-        int i11 = sVar.f16986b[0];
-        if (i10 >= 0) {
-            GLES20.glBindBuffer(34962, i11);
-            GLES20.glEnableVertexAttribArray(i10);
-            GLES20.glVertexAttribPointer(i10, 3, 5126, false, 0, 0);
-        }
-        int i12 = r5Var.f34837k;
-        int i13 = sVar.f16986b[1];
-        if (i12 >= 0) {
-            GLES20.glBindBuffer(34962, i13);
-            GLES20.glEnableVertexAttribArray(i12);
-            GLES20.glVertexAttribPointer(i12, 3, 5126, false, 0, 0);
-        }
-        GLES20.glDrawArrays(4, 0, sVar.f16985a);
+    public float getCardRotationX() {
+        return this.W;
     }
 
-    public final void j(q5 q5Var) {
-        this.f34884m = q5Var.f34793a;
-        System.arraycopy(q5Var.f34794b, 0, this.f34883l, 0, 4);
-        r5 r5Var = this.f34881j;
-        GLES20.glUseProgram(r5Var.f34832c);
-        GLES20.glUniform2f(r5Var.f34842p, 4.8828125E-4f, 9.765625E-4f);
-        r5 r5Var2 = this.f34880i;
-        GLES20.glUseProgram(r5Var2.f34832c);
-        GLES20.glUniform2f(r5Var2.f34842p, 4.8828125E-4f, 9.765625E-4f);
-        r5 r5Var3 = this.f34885n;
-        GLES20.glUseProgram(r5Var3.f34832c);
-        GLES20.glUniform2f(r5Var3.f34842p, 4.8828125E-4f, 9.765625E-4f);
-        r5 r5Var4 = this.f34893w;
-        GLES20.glUseProgram(r5Var4.f34832c);
-        GLES20.glUniform2f(r5Var4.f34842p, 4.8828125E-4f, 9.765625E-4f);
-        GLES20.glActiveTexture(33989);
-        GLES20.glBindTexture(3553, this.f34889r);
-        k();
-        int i10 = 0;
-        while (true) {
-            ShortBuffer[] shortBufferArr = q5Var.f34795c;
-            if (i10 < shortBufferArr.length) {
-                GLES20.glTexImage2D(3553, i10, 34842, q5Var.d[i10], q5Var.e[i10], 0, 6408, 5131, shortBufferArr[i10].duplicate());
-                i10++;
-            } else {
-                GLES20.glBindTexture(3553, 0);
-                GLES20.glActiveTexture(33984);
+    public float getCardRotationY() {
+        return this.f34821c0;
+    }
+
+    public FrameLayout getFrontFace() {
+        return this.f34830n;
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.U = 0L;
+        z5 z5Var = this.F;
+        z5Var.f35178a = false;
+        z5Var.h = 0L;
+        z5Var.f35183i = 0L;
+        z5Var.f35184j = 0L;
+        this.J = 0.0f;
+        this.K = 0.0f;
+        this.L = 0.0f;
+        Sensor sensor = this.f34833w;
+        if (sensor != null) {
+            this.v.registerListener(this, sensor, 1);
+        }
+        org.telegram.ui.Cells.k7 k7Var = this.f34827h0;
+        removeCallbacks(k7Var);
+        postOnAnimation(k7Var);
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        this.v.unregisterListener(this);
+        removeCallbacks(this.f34827h0);
+        ValueAnimator valueAnimator = this.V;
+        if (valueAnimator != null) {
+            valueAnimator.removeAllListeners();
+            this.V.cancel();
+            this.V = null;
+        }
+        super.onDetachedFromWindow();
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        int size = View.MeasureSpec.getSize(i10);
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(Math.round(size / 1.64f), 1073741824));
+    }
+
+    @Override
+    public final void onSensorChanged(SensorEvent sensorEvent) {
+        if (this.f34834x) {
+            float[] fArr = sensorEvent.values;
+            float[] fArr2 = this.f34835y;
+            SensorManager.getRotationMatrixFromVector(fArr2, fArr);
+            float[] fArr3 = this.E;
+            SensorManager.getOrientation(fArr2, fArr3);
+            this.H = c((float) Math.sin(fArr3[2]), -0.82f, 0.82f);
+            this.I = c(-((float) Math.sin(fArr3[1])), -0.82f, 0.82f);
+        } else {
+            long j10 = this.U;
+            if (j10 != 0) {
+                float f7 = ((float) (sensorEvent.timestamp - j10)) * 1.0E-9f;
+                if (f7 > 0.0f && f7 < 0.1f) {
+                    this.H = c(org.telegram.ui.Cells.c1.z(sensorEvent.values[1], f7, 0.75f, this.H), -0.82f, 0.82f);
+                    this.I = c(com.google.android.gms.internal.play_billing.k3.t(sensorEvent.values[0], f7, 0.75f, this.I), -0.82f, 0.82f);
+                }
+            }
+            this.U = sensorEvent.timestamp;
+        }
+        float f10 = ((-this.I) / 0.82f) * 15.0f;
+        float f11 = (this.H / 0.82f) * 15.0f;
+        long j11 = sensorEvent.timestamp;
+        z5 z5Var = this.F;
+        z5Var.getClass();
+        if (!Float.isNaN(f10) && !Float.isInfinite(f10) && !Float.isNaN(f11) && !Float.isInfinite(f11)) {
+            z5Var.f35179b = f10;
+            z5Var.f35180c = f11;
+            z5Var.f35183i = j11;
+            if (!z5Var.f35178a) {
+                z5Var.f35178a = true;
+                z5Var.d = f10;
+                z5Var.e = f11;
+                z5Var.f35181f = f10;
+                z5Var.f35182g = f11;
+                z5Var.h = j11;
                 return;
             }
+            float f12 = f10 - z5Var.f35181f;
+            float f13 = f11 - z5Var.f35182g;
+            if ((f13 * f13) + (f12 * f12) > 1.265625f) {
+                z5Var.f35181f = f10;
+                z5Var.f35182g = f11;
+                z5Var.h = j11;
+            }
         }
+    }
+
+    @Override
+    public final void onSizeChanged(int i10, int i11, int i12, int i13) {
+        super.onSizeChanged(i10, i11, i12, i13);
+        float dp = i10 / AndroidUtilities.dp(336.0f);
+        ah.x xVar = this.f34830n;
+        xVar.setScaleX(dp);
+        xVar.setScaleY(i11 / AndroidUtilities.dp(205.0f));
+        b(this.W, this.f34821c0);
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        int actionMasked = motionEvent.getActionMasked();
+        if (actionMasked != 0) {
+            if (actionMasked != 1) {
+                if (actionMasked != 2) {
+                    if (actionMasked != 3) {
+                        if (actionMasked != 5) {
+                            if (actionMasked == 6 && motionEvent.getPointerId(motionEvent.getActionIndex()) == this.O) {
+                                for (int i10 = 0; i10 < motionEvent.getPointerCount(); i10++) {
+                                    if (i10 != motionEvent.getActionIndex()) {
+                                        d(i10, motionEvent);
+                                        return true;
+                                    }
+                                }
+                            }
+                        } else {
+                            d(motionEvent.getActionIndex(), motionEvent);
+                            this.T = true;
+                            setPressed(false);
+                            return true;
+                        }
+                    } else {
+                        this.O = -1;
+                        getParent().requestDisallowInterceptTouchEvent(false);
+                        setPressed(false);
+                        if (this.T) {
+                            a();
+                            return true;
+                        }
+                    }
+                } else {
+                    int findPointerIndex = motionEvent.findPointerIndex(this.O);
+                    if (findPointerIndex >= 0) {
+                        float x10 = motionEvent.getX(findPointerIndex);
+                        float y3 = motionEvent.getY(findPointerIndex);
+                        float abs = Math.abs(x10 - this.P);
+                        float f7 = this.G;
+                        if (abs > f7 || Math.abs(y3 - this.Q) > f7) {
+                            this.T = true;
+                            setPressed(false);
+                        }
+                        if (this.T) {
+                            float f10 = this.S;
+                            this.N = c(com.google.android.gms.internal.play_billing.k3.D(x10, this.P, 0.03f, f10), f10 - 32.0f, f10 + 32.0f);
+                            float f11 = this.R;
+                            this.M = c(com.google.android.gms.internal.play_billing.k3.D(y3, this.Q, 0.03f, f11), f11 - 22.0f, f11 + 22.0f);
+                        }
+                    }
+                }
+                return true;
+            }
+            this.O = -1;
+            getParent().requestDisallowInterceptTouchEvent(false);
+            setPressed(false);
+            if (this.T) {
+                a();
+                return true;
+            }
+            postDelayed(new p5(this, 0), Math.max(0L, 80 - (motionEvent.getEventTime() - motionEvent.getDownTime())));
+            return true;
+        }
+        ValueAnimator valueAnimator = this.V;
+        if (valueAnimator != null) {
+            valueAnimator.removeAllListeners();
+            this.V.cancel();
+            this.V = null;
+        }
+        getParent().requestDisallowInterceptTouchEvent(true);
+        d(0, motionEvent);
+        this.T = false;
+        setPressed(true);
+        return true;
+    }
+
+    @Override
+    public final boolean performClick() {
+        super.performClick();
+        return true;
+    }
+
+    public void setAdditionalTilt(float f7) {
+        float f10 = this.f34817a0;
+        if (f10 == f7) {
+            return;
+        }
+        this.f34817a0 = f7;
+        b((this.W + f7) - f10, this.f34821c0);
+    }
+
+    public void setCardIcon(int i10) {
+        q5 q5Var = this.h;
+        s5 s5Var = q5Var.e;
+        s5Var.f34820c = i10;
+        o5 o5Var = s5Var.f34818b;
+        if (o5Var != null) {
+            o5Var.j(i10);
+        }
+        q5Var.invalidate();
+    }
+
+    public void setEngravingBitmap(Bitmap bitmap) {
+        q5 q5Var = this.h;
+        q5Var.d = bitmap;
+        q5Var.invalidate();
+    }
+
+    public void setStickerStyle(float[] fArr) {
+        ei.g6 g6Var = this.f34824f;
+        g6Var.f9070b = fArr;
+        this.e.invalidate();
+        g6Var.invalidate();
+        q5 q5Var = this.h;
+        q5Var.f34748a.setColorFilter(new PorterDuffColorFilter(h7.b(fArr), PorterDuff.Mode.SRC_IN));
+        q5Var.invalidate();
+    }
+
+    public void setUseGyroscope(float f7) {
+        if (this.f34819b0 == f7) {
+            return;
+        }
+        this.f34819b0 = f7;
+        b((this.K * f7) + this.M + this.f34817a0, (this.L * f7) + this.N);
+    }
+
+    @Override
+    public final void onAccuracyChanged(Sensor sensor, int i10) {
     }
 }

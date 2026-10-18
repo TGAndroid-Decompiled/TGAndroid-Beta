@@ -49,18 +49,18 @@ public final class pg1 extends org.telegram.ui.Components.c91 {
 
     @Override
     public final boolean j(MotionEvent motionEvent) {
-        org.telegram.ui.ActionBar.n2 X = ((pg0) this.V).X();
-        if (!(X instanceof og0)) {
+        org.telegram.ui.ActionBar.n2 X = ((og0) this.V).X();
+        if (!(X instanceof ng0)) {
             return false;
         }
-        return ((og0) X).S(motionEvent, false);
+        return ((ng0) X).S(motionEvent, false);
     }
 
     @Override
     public final boolean k(MotionEvent motionEvent) {
-        org.telegram.ui.ActionBar.n2 X = ((pg0) this.V).X();
-        if (X instanceof og0) {
-            return ((og0) X).S(motionEvent, true);
+        org.telegram.ui.ActionBar.n2 X = ((og0) this.V).X();
+        if (X instanceof ng0) {
+            return ((ng0) X).S(motionEvent, true);
         }
         return false;
     }
@@ -92,26 +92,26 @@ public final class pg1 extends org.telegram.ui.Components.c91 {
     public final void u() {
         ey eyVar;
         qg1 qg1Var = this.V;
-        pg0 pg0Var = (pg0) qg1Var;
-        if (pg0Var.F != null) {
-            pg0Var.m0(pg0Var.f40433c.getCurrentPosition(), true);
-            pg0Var.n0(0.0f, false);
+        og0 og0Var = (og0) qg1Var;
+        if (og0Var.F != null) {
+            og0Var.m0(og0Var.f40396c.getCurrentPosition(), true);
+            og0Var.n0(0.0f, false);
         }
-        pg0Var.d0();
-        pg1 pg1Var = pg0Var.f40433c;
+        og0Var.d0();
+        pg1 pg1Var = og0Var.f40396c;
         if (pg1Var != null) {
             int currentPosition = pg1Var.getCurrentPosition();
-            if (currentPosition != 2 && pg0Var.f40149x) {
-                pg0Var.W(2);
-                pg0Var.f40149x = false;
+            if (currentPosition != 2 && og0Var.f39784x) {
+                og0Var.W(2);
+                og0Var.f39784x = false;
             }
             if (currentPosition != 3) {
-                pg0Var.W(3);
+                og0Var.W(3);
             }
-            Integer num = pg0Var.I;
-            if (num != null && currentPosition == 0 && (eyVar = pg0Var.J) != null) {
+            Integer num = og0Var.I;
+            if (num != null && currentPosition == 0 && (eyVar = og0Var.J) != null) {
                 eyVar.u4(num.intValue());
-                pg0Var.I = null;
+                og0Var.I = null;
             }
         }
         qg1Var.U();
@@ -120,18 +120,18 @@ public final class pg1 extends org.telegram.ui.Components.c91 {
     @Override
     public final void w(boolean z10) {
         qg1 qg1Var = this.V;
-        pg0 pg0Var = (pg0) qg1Var;
+        og0 og0Var = (og0) qg1Var;
         boolean z11 = !z10;
-        if (pg0Var.F != null) {
-            float positionAnimated = pg0Var.f40433c.getPositionAnimated();
-            pg0Var.n0(positionAnimated, z11);
+        if (og0Var.F != null) {
+            float positionAnimated = og0Var.f40396c.getPositionAnimated();
+            og0Var.n0(positionAnimated, z11);
             if (!z10) {
-                pg0Var.m0(Math.round(positionAnimated), true);
+                og0Var.m0(Math.round(positionAnimated), true);
             }
         }
-        pg0Var.h0();
-        pg0Var.d0();
-        pg0Var.f40432b.invalidate();
+        og0Var.h0();
+        og0Var.d0();
+        og0Var.f40395b.invalidate();
         qg1Var.U();
         qg1Var.checkSystemBarColors();
     }

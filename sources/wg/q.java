@@ -4,38 +4,38 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import org.telegram.messenger.AndroidUtilities;
 public final class q extends AnimatorListenerAdapter {
-    public final float[] f49032a;
-    public final float f49033b;
-    public final float f49034c;
+    public final float[] f48985a;
+    public final float f48986b;
+    public final float f48987c;
     public final boolean d;
     public final r e;
 
     public q(r rVar, float[] fArr, float f7, float f10, boolean z10) {
         this.e = rVar;
-        this.f49032a = fArr;
-        this.f49033b = f7;
-        this.f49034c = f10;
+        this.f48985a = fArr;
+        this.f48986b = f7;
+        this.f48987c = f10;
         this.d = z10;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
         int i10;
-        float[] fArr = this.f49032a;
+        float[] fArr = this.f48985a;
         fArr[0] = 1.0f;
-        this.e.f49035a.f47149b.f47120l = AndroidUtilities.lerp(this.f49033b, this.f49034c, 1.0f);
-        tg.g gVar = this.e.f49035a.f47149b;
-        float f7 = gVar.f47115f;
+        this.e.f48988a.f47099b.f47070l = AndroidUtilities.lerp(this.f48986b, this.f48987c, 1.0f);
+        tg.g gVar = this.e.f48988a.f47099b;
+        float f7 = gVar.f47065f;
         float f10 = (1.0f - fArr[0]) * 360.0f;
         if (this.d) {
             i10 = 1;
         } else {
             i10 = -1;
         }
-        gVar.f47115f = (f10 * i10) + f7;
-        this.e.f49035a.f47149b.b();
+        gVar.f47065f = (f10 * i10) + f7;
+        this.e.f48988a.f47099b.b();
         r rVar = this.e;
-        rVar.a(rVar.f49035a.f47149b.f47120l);
-        this.e.f49035a.l(750L);
+        rVar.a(rVar.f48988a.f47099b.f47070l);
+        this.e.f48988a.j(750L);
     }
 }

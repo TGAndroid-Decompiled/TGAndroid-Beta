@@ -11,40 +11,40 @@ import android.view.View;
 import org.telegram.ui.Components.bs;
 import org.telegram.ui.Components.f6;
 public final class j2 {
-    public boolean f45455b;
-    public int f45456c;
+    public boolean f45409b;
+    public int f45410c;
     public Bitmap d;
     public Bitmap e;
-    public Bitmap f45457f;
-    public Bitmap f45458g;
-    public float f45460j;
-    public float f45461k;
-    public int f45464n;
-    public float[] f45465o;
-    public final Paint f45468r;
-    public final Paint f45469s;
-    public final m2 f45470t;
-    public final f6 f45454a = new f6(0.0f, (View) null, 0, 320, bs.h);
+    public Bitmap f45411f;
+    public Bitmap f45412g;
+    public float f45414j;
+    public float f45415k;
+    public int f45418n;
+    public float[] f45419o;
+    public final Paint f45422r;
+    public final Paint f45423s;
+    public final m2 f45424t;
+    public final f6 f45408a = new f6(0.0f, (View) null, 0, 320, bs.h);
     public final RectF h = new RectF();
-    public final RectF f45459i = new RectF();
-    public final Path f45462l = new Path();
-    public final Path f45463m = new Path();
-    public final Paint f45466p = new Paint(1);
-    public final Paint f45467q = new Paint(1);
+    public final RectF f45413i = new RectF();
+    public final Path f45416l = new Path();
+    public final Path f45417m = new Path();
+    public final Paint f45420p = new Paint(1);
+    public final Paint f45421q = new Paint(1);
 
     public j2(m2 m2Var) {
-        this.f45470t = m2Var;
+        this.f45424t = m2Var;
         new Paint(1);
-        this.f45468r = new Paint(1);
-        this.f45469s = new Paint(1);
+        this.f45422r = new Paint(1);
+        this.f45423s = new Paint(1);
     }
 
     public final Bitmap a() {
-        Bitmap bitmap = this.f45458g;
+        Bitmap bitmap = this.f45412g;
         if (bitmap != null) {
             return bitmap;
         }
-        return this.f45457f;
+        return this.f45411f;
     }
 
     public final Bitmap b() {

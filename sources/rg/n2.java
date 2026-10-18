@@ -1,174 +1,160 @@
 package rg;
 
-import ai.zd;
 import android.content.Context;
-import android.graphics.Canvas;
-import android.view.KeyEvent;
+import android.graphics.PointF;
+import android.graphics.RectF;
 import android.view.View;
-import android.view.accessibility.AccessibilityNodeInfo;
-import android.widget.FrameLayout;
+import android.view.ViewGroup;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
-import org.telegram.ui.ActionBar.f3;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.bs;
 import org.telegram.ui.Components.dw0;
-public final class n2 extends FrameLayout {
-    public final int f45587a;
-    public final Object f45588b;
+import org.telegram.ui.Components.e6;
+import org.telegram.ui.Components.el0;
+import org.telegram.ui.Components.f6;
+import org.telegram.ui.Components.uj0;
+import org.telegram.ui.Wallet.p9;
+import w7.z5;
+public class n2 extends j {
+    public final TLRPC.Document f45541q0;
+    public final Object f45542r0;
+    public final int f45543s0;
+    public boolean f45544t0;
+    public final f6 f45545u0;
+    public final dw0 f45546v0;
+    public final p9 f45547w0;
+    public final ImageReceiver f45548x0;
 
-    public n2(Object obj, Context context, int i10) {
-        super(context);
-        this.f45587a = i10;
-        this.f45588b = obj;
+    public n2(Context context, PointF pointF, float f7, float f10, dw0 dw0Var, TLRPC.Document document, Object obj) {
+        super(context, pointF);
+        this.f45543s0 = -1;
+        int i10 = 0;
+        this.f45544t0 = false;
+        this.f45548x0 = new ImageReceiver();
+        setRotation(f7);
+        setScale(f10);
+        this.f45541q0 = document;
+        this.f45546v0 = dw0Var;
+        this.f45542r0 = obj;
+        while (true) {
+            if (i10 >= document.attributes.size()) {
+                break;
+            }
+            TLRPC.DocumentAttribute documentAttribute = document.attributes.get(i10);
+            if (documentAttribute instanceof TLRPC.TL_documentAttributeSticker) {
+                TLRPC.TL_maskCoords tL_maskCoords = documentAttribute.mask_coords;
+                if (tL_maskCoords != null) {
+                    this.f45543s0 = tL_maskCoords.f20347n;
+                }
+            } else {
+                i10++;
+            }
+        }
+        p9 p9Var = new p9(this, context);
+        this.f45547w0 = p9Var;
+        addView(p9Var, z5.c(-1.0f, -1));
+        this.f45545u0 = new f6(p9Var, 0L, 500L, bs.h);
+        this.f45548x0.setAspectFit(true);
+        this.f45548x0.setInvalidateAll(true);
+        this.f45548x0.setParentView(p9Var);
+        this.f45548x0.setImage(ImageLocation.getForDocument(document), (String) null, ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 90), document), (String) null, "webp", obj, 1);
+        this.f45548x0.setDelegate(new qg.g0(this, 14));
+        k();
     }
 
     @Override
-    public void dispatchDraw(Canvas canvas) {
-        Canvas canvas2;
-        switch (this.f45587a) {
-            case 1:
-                t2 t2Var = (t2) this.f45588b;
-                if (t2Var.f45699y > 0.0f && t2Var.f45696s != null) {
-                    t2Var.v.reset();
-                    float width = getWidth() / t2Var.f45694n.getWidth();
-                    t2Var.v.postScale(width, width);
-                    t2Var.f45695r.setLocalMatrix(t2Var.v);
-                    t2Var.f45696s.setAlpha((int) (t2Var.f45699y * 255.0f));
-                    canvas2 = canvas;
-                    canvas2.drawRect(0.0f, 0.0f, getWidth(), getHeight(), t2Var.f45696s);
-                } else {
-                    canvas2 = canvas;
-                }
-                super.dispatchDraw(canvas2);
-                return;
-            default:
-                super.dispatchDraw(canvas);
-                return;
+    public final i a() {
+        z1 z1Var = new z1(this, getContext(), 2);
+        z1Var.f45723r = new RectF();
+        return z1Var;
+    }
+
+    public int getAnchor() {
+        return this.f45543s0;
+    }
+
+    public dw0 getBaseSize() {
+        return this.f45546v0;
+    }
+
+    public long getDuration() {
+        ImageReceiver imageReceiver = this.f45548x0;
+        uj0 lottieAnimation = imageReceiver.getLottieAnimation();
+        if (lottieAnimation != null) {
+            return lottieAnimation.r();
         }
+        e6 animation = imageReceiver.getAnimation();
+        if (animation != null) {
+            return animation.d[4];
+        }
+        return 0L;
+    }
+
+    public Object getParentObject() {
+        return this.f45542r0;
     }
 
     @Override
-    public boolean dispatchKeyEventPreIme(KeyEvent keyEvent) {
-        switch (this.f45587a) {
-            case 1:
-                if (keyEvent != null && keyEvent.getKeyCode() == 4 && keyEvent.getAction() == 1) {
-                    ((t2) this.f45588b).onBackPressed();
-                    return true;
-                }
-                return super.dispatchKeyEventPreIme(keyEvent);
-            default:
-                return super.dispatchKeyEventPreIme(keyEvent);
+    public el0 getSelectionBounds() {
+        ViewGroup viewGroup = (ViewGroup) getParent();
+        if (viewGroup == null) {
+            return new Object();
         }
+        float scaleX = viewGroup.getScaleX();
+        float scale = (getScale() + 0.5f) * getMeasuredWidth();
+        float f7 = scale / 2.0f;
+        float f10 = scale * scaleX;
+        return new el0((getPositionX() - f7) * scaleX, (getPositionY() - f7) * scaleX, f10, f10);
+    }
+
+    public TLRPC.Document getSticker() {
+        return this.f45541q0;
     }
 
     @Override
-    public void onDraw(Canvas canvas) {
-        switch (this.f45587a) {
-            case 0:
-                o2 o2Var = (o2) this.f45588b;
-                ImageReceiver imageReceiver = o2Var.f45634x0;
-                dw0 dw0Var = o2Var.f45632v0;
-                if (o2Var.f45633w0 != null) {
-                    canvas.save();
-                    float e = o2Var.f45631u0.e(o2Var.f45630t0);
-                    canvas.scale(1.0f - (e * 2.0f), 1.0f, dw0Var.f25727a / 2.0f, 0.0f);
-                    canvas.skew(0.0f, org.telegram.messenger.g0.z(1.0f, e, 4.0f * e, 0.25f));
-                    imageReceiver.setImageCoords(0.0f, 0.0f, (int) dw0Var.f25727a, (int) dw0Var.f25728b);
-                    imageReceiver.draw(canvas);
-                    canvas.restore();
-                    return;
-                }
-                return;
-            default:
-                super.onDraw(canvas);
-                return;
-        }
+    public final void k() {
+        dw0 dw0Var = this.f45546v0;
+        setX(getPositionX() - (dw0Var.f25720a / 2.0f));
+        setY(getPositionY() - (dw0Var.f25721b / 2.0f));
+        m();
     }
 
     @Override
-    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        CharSequence charSequence;
-        sg.o0 o0Var;
-        sg.o0 o0Var2;
-        switch (this.f45587a) {
-            case 2:
-                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                accessibilityNodeInfo.setClassName("android.widget.Button");
-                sg.p0 p0Var = (sg.p0) this.f45588b;
-                if (p0Var.h && (o0Var2 = p0Var.e) != null) {
-                    charSequence = o0Var2.getText();
-                } else {
-                    charSequence = null;
-                }
-                if (charSequence == null && (o0Var = p0Var.d) != null) {
-                    charSequence = o0Var.getText();
-                }
-                if (charSequence != null) {
-                    accessibilityNodeInfo.setText(charSequence);
-                    if (getContentDescription() == null) {
-                        accessibilityNodeInfo.setContentDescription(charSequence);
-                        return;
-                    }
-                    return;
-                }
-                return;
-            default:
-                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                return;
-        }
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.f45548x0.onAttachedToWindow();
     }
 
     @Override
-    public void onMeasure(int i10, int i11) {
-        boolean z10;
-        float f7;
-        float top;
-        int measuredHeight;
-        gi.f fVar;
-        switch (this.f45587a) {
-            case 3:
-                sg.x0 x0Var = (sg.x0) this.f45588b;
-                z10 = ((f3) x0Var).isPortrait;
-                if (z10) {
-                    x0Var.f46530s = View.MeasureSpec.getSize(i10);
-                } else {
-                    x0Var.f46530s = (int) (Math.min(View.MeasureSpec.getSize(i10), View.MeasureSpec.getSize(i11)) * 0.8f);
-                }
-                super.onMeasure(i10, i11);
-                return;
-            case 4:
-                super.onMeasure(i10, i11);
-                sg.l1 l1Var = ((sg.k1) this.f45588b).f46332c;
-                zd zdVar = l1Var.f46359r0;
-                if (zdVar != null) {
-                    top = zdVar.getTop();
-                    measuredHeight = l1Var.f46359r0.getMeasuredHeight();
-                } else {
-                    View view = l1Var.B0;
-                    if (view != null) {
-                        top = view.getTop();
-                        measuredHeight = l1Var.B0.getMeasuredHeight();
-                    } else {
-                        f7 = 0.0f;
-                        l1Var.f46358q0.setTranslationY(f7 - (fVar.getMeasuredHeight() / 2.0f));
-                        return;
-                    }
-                }
-                f7 = (measuredHeight / 2.0f) + top;
-                l1Var.f46358q0.setTranslationY(f7 - (fVar.getMeasuredHeight() / 2.0f));
-                return;
-            case 5:
-                super.onMeasure(i10, i11);
-                ((yh.h1) this.f45588b).K.measure(View.MeasureSpec.makeMeasureSpec(getMeasuredWidth(), 1073741824), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824));
-                return;
-            default:
-                super.onMeasure(i10, i11);
-                return;
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.f45548x0.onDetachedFromWindow();
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        dw0 dw0Var = this.f45546v0;
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) dw0Var.f25720a, 1073741824), View.MeasureSpec.makeMeasureSpec((int) dw0Var.f25721b, 1073741824));
+    }
+
+    public final void r(boolean z10) {
+        boolean z11 = !this.f45544t0;
+        this.f45544t0 = z11;
+        if (!z10) {
+            this.f45545u0.f(z11, true);
+        }
+        this.f45547w0.invalidate();
+    }
+
+    public n2(Context context, n2 n2Var, PointF pointF) {
+        this(context, pointF, n2Var.getRotation(), n2Var.getScale(), n2Var.f45546v0, n2Var.f45541q0, n2Var.f45542r0);
+        if (n2Var.f45544t0) {
+            r(false);
         }
     }
 
-    public n2(o2 o2Var, Context context) {
-        super(context);
-        this.f45587a = 0;
-        this.f45588b = o2Var;
-        setWillNotDraw(false);
+    public void q(uj0 uj0Var) {
     }
 }

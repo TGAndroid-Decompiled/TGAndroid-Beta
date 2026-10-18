@@ -24,18 +24,18 @@ public final class pc extends bu0 {
         int[] iArr = new int[2];
         w9Var.getLocationInWindow(iArr);
         lu0 lu0Var = new lu0();
-        lu0Var.f38962b = iArr[0];
-        lu0Var.f38963c = iArr[1];
+        lu0Var.f38918b = iArr[0];
+        lu0Var.f38919c = iArr[1];
         lu0Var.d = this.f2039b;
-        lu0Var.f38970m = null;
-        lu0Var.f38961a = imageReceiver;
+        lu0Var.f38926m = null;
+        lu0Var.f38917a = imageReceiver;
         if (z10) {
             lu0Var.e = imageReceiver.getBitmapSafe();
         }
         lu0Var.h = imageReceiver.getRoundRadius(true);
-        lu0Var.f38964f = this.f2040c;
-        lu0Var.f38967j = 0;
-        lu0Var.f38966i = 0;
+        lu0Var.f38920f = this.f2040c;
+        lu0Var.f38923j = 0;
+        lu0Var.f38922i = 0;
         return lu0Var;
     }
 

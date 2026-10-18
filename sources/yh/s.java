@@ -1,9 +1,9 @@
 package yh;
 
-import android.view.MotionEvent;
-public final class s extends h1 {
+import org.telegram.ui.Components.xc;
+public final class s extends x4 {
     @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        return false;
+    public final xc Y() {
+        return new xc(this.container, this.resourcesProvider);
     }
 }

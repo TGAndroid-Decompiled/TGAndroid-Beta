@@ -7,10 +7,10 @@ import org.telegram.messenger.MessagesStorage;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 public final class pw implements org.telegram.ui.Components.og {
-    public final ey f40253a;
+    public final ey f40211a;
 
     public pw(ey eyVar) {
-        this.f40253a = eyVar;
+        this.f40211a = eyVar;
     }
 
     @Override
@@ -20,13 +20,13 @@ public final class pw implements org.telegram.ui.Components.og {
 
     @Override
     public final void L(CharSequence charSequence, boolean z10, int i10, int i11, long j10) {
-        ey eyVar = this.f40253a;
+        ey eyVar = this.f40211a;
         if (eyVar.C2 != null && !eyVar.I2.isEmpty()) {
             ArrayList arrayList = new ArrayList();
             for (int i12 = 0; i12 < eyVar.I2.size(); i12++) {
                 arrayList.add(MessagesStorage.TopicKey.of(((Long) eyVar.I2.get(i12)).longValue(), 0L));
             }
-            ey eyVar2 = this.f40253a;
+            ey eyVar2 = this.f40211a;
             eyVar2.C2.w(eyVar2, arrayList, charSequence, false, z10, i10, i11, null);
         }
     }
@@ -58,7 +58,7 @@ public final class pw implements org.telegram.ui.Components.og {
 
     @Override
     public final void g1(CharSequence charSequence, boolean z10, boolean z11) {
-        ey eyVar = this.f40253a;
+        ey eyVar = this.f40211a;
         AndroidUtilities.runOnUIThread(new uv(eyVar, 13), 100L);
         org.telegram.ui.Components.ir0 ir0Var = eyVar.G2;
         if (ir0Var != null) {

@@ -44,14 +44,14 @@ public final class n0 extends z51 {
                 vVar.performHapticFeedback(3);
             } catch (Exception unused) {
             }
-            new xc(vVar, null).q(document, AndroidUtilities.replaceTags(LocaleController.getString(R.string.UnlockPremiumEmojiReaction)), LocaleController.getString(R.string.PremiumMore), new a3.d(this, 5)).j();
+            new xc(vVar, null).r(document, AndroidUtilities.replaceTags(LocaleController.getString(R.string.UnlockPremiumEmojiReaction)), LocaleController.getString(R.string.PremiumMore), new a3.d(this, 5)).j();
         } else if (l4 == null && document == null) {
         } else {
             if (document != null) {
                 r5.h(UserConfig.selectedAccount).e(document);
             }
             if (l4 == null) {
-                longValue = document.f20285id;
+                longValue = document.f20278id;
             } else {
                 longValue = l4.longValue();
             }

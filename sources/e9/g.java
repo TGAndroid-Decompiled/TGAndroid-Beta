@@ -11,16 +11,16 @@ import java.util.Set;
 import java.util.SortedMap;
 import java.util.SortedSet;
 public final class g extends j implements NavigableMap {
-    public final p1 f8447n;
+    public final p1 f8445n;
 
     public g(p1 p1Var, NavigableMap navigableMap) {
         super(p1Var, navigableMap);
-        this.f8447n = p1Var;
+        this.f8445n = p1Var;
     }
 
     @Override
     public final SortedSet b() {
-        return new h(this.f8447n, d());
+        return new h(this.f8445n, d());
     }
 
     @Override
@@ -49,7 +49,7 @@ public final class g extends j implements NavigableMap {
 
     @Override
     public final NavigableMap descendingMap() {
-        return new g(this.f8447n, d().descendingMap());
+        return new g(this.f8445n, d().descendingMap());
     }
 
     public final j0 e(Iterator it) {
@@ -57,7 +57,7 @@ public final class g extends j implements NavigableMap {
             return null;
         }
         Map.Entry entry = (Map.Entry) it.next();
-        Collection h = this.f8447n.h();
+        Collection h = this.f8445n.h();
         h.addAll((Collection) entry.getValue());
         it.remove();
         return new j0(entry.getKey(), DesugarCollections.unmodifiableList((List) h));
@@ -65,7 +65,7 @@ public final class g extends j implements NavigableMap {
 
     @Override
     public final NavigableMap d() {
-        return (NavigableMap) ((SortedMap) this.f8436b);
+        return (NavigableMap) ((SortedMap) this.f8434b);
     }
 
     @Override
@@ -165,16 +165,16 @@ public final class g extends j implements NavigableMap {
 
     @Override
     public final NavigableMap headMap(Object obj, boolean z10) {
-        return new g(this.f8447n, d().headMap(obj, z10));
+        return new g(this.f8445n, d().headMap(obj, z10));
     }
 
     @Override
     public final NavigableMap subMap(Object obj, boolean z10, Object obj2, boolean z11) {
-        return new g(this.f8447n, d().subMap(obj, z10, obj2, z11));
+        return new g(this.f8445n, d().subMap(obj, z10, obj2, z11));
     }
 
     @Override
     public final NavigableMap tailMap(Object obj, boolean z10) {
-        return new g(this.f8447n, d().tailMap(obj, z10));
+        return new g(this.f8445n, d().tailMap(obj, z10));
     }
 }

@@ -37,9 +37,9 @@ public final class b extends md.i implements p {
     public final Object invoke(Object obj, Object obj2) {
         switch (this.f5055a) {
             case 0:
-                return ((b) create((JSONObject) obj, (kd.c) obj2)).invokeSuspend(id.i.f12777a);
+                return ((b) create((JSONObject) obj, (kd.c) obj2)).invokeSuspend(id.i.f12775a);
             default:
-                return ((b) create((c0) obj, (kd.c) obj2)).invokeSuspend(id.i.f12777a);
+                return ((b) create((c0) obj, (kd.c) obj2)).invokeSuspend(id.i.f12775a);
         }
     }
 

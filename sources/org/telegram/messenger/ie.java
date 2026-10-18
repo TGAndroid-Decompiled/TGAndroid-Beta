@@ -2,28 +2,26 @@ package org.telegram.messenger;
 
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.Utilities;
-public final class ie implements Runnable {
-    public final int f18624a;
-    public final int f18625b;
-    public final Utilities.Callback2 f18626c;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class ie implements RequestDelegate {
+    public final int f18600a;
+    public final Utilities.Callback4 f18601b;
 
-    public ie(int i10, int i11, Utilities.Callback2 callback2) {
-        this.f18624a = i11;
-        this.f18625b = i10;
-        this.f18626c = callback2;
+    public ie(Utilities.Callback4 callback4, int i10) {
+        this.f18600a = i10;
+        this.f18601b = callback4;
     }
 
     @Override
-    public final void run() {
-        switch (this.f18624a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f18600a) {
             case 0:
-                MessagesController.AnonymousClass1.lambda$getLocal$1(this.f18625b, this.f18626c);
-                return;
-            case 1:
-                MessagesController.AnonymousClass4.lambda$getLocal$1(this.f18625b, this.f18626c);
+                MessagesController.AnonymousClass1.lambda$getRemote$0(this.f18601b, tLObject, tL_error);
                 return;
             default:
-                MessagesController.AnonymousClass5.lambda$getLocal$2(this.f18625b, this.f18626c);
+                MessagesController.AnonymousClass4.lambda$getRemote$0(this.f18601b, tLObject, tL_error);
                 return;
         }
     }

@@ -15,9 +15,9 @@ public final class kl extends org.telegram.ui.Components.k11 {
         super(activity);
         this.K = snVar;
         TextPaint textPaint = new TextPaint(1);
-        this.f27704b = textPaint;
+        this.f27697b = textPaint;
         Paint paint = new Paint(1);
-        this.f27705c = paint;
+        this.f27698c = paint;
         this.d = AndroidUtilities.dp(24.0f);
         this.e = new OvershootInterpolator();
         this.H = new org.telegram.ui.Components.fr0(this, 14);

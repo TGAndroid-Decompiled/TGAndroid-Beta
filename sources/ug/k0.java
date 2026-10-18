@@ -2,7 +2,7 @@ package ug;
 
 import android.os.CountDownTimer;
 import android.view.View;
-import ci.l4;
+import ci.k4;
 import java.util.ArrayList;
 import java.util.Date;
 import org.telegram.messenger.LocaleController;
@@ -11,16 +11,16 @@ import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.j5;
 import org.telegram.ui.Components.im0;
 public final class k0 extends CountDownTimer {
-    public final r0 f47739a;
+    public final r0 f47692a;
 
     public k0(r0 r0Var) {
         super(Long.MAX_VALUE, 1000L);
-        this.f47739a = r0Var;
+        this.f47692a = r0Var;
     }
 
     @Override
     public final void onTick(long j10) {
-        r0 r0Var = this.f47739a;
+        r0 r0Var = this.f47692a;
         im0 im0Var = r0Var.d;
         ArrayList arrayList = r0Var.Y;
         ArrayList arrayList2 = new ArrayList(arrayList.size());
@@ -44,21 +44,21 @@ public final class k0 extends CountDownTimer {
                     yg.k kVar = (yg.k) childAt;
                     if (arrayList2.contains(kVar.getBoost())) {
                         j5 j5Var = kVar.e;
-                        l4 l4Var = kVar.d;
+                        k4 k4Var = kVar.d;
                         int i12 = kVar.J.cooldown_until_date;
                         if (i12 > 0) {
                             kVar.setSubtitle(LocaleController.formatString(R.string.BoostingAvailableIn, yg.k.f((i12 * 1000) - System.currentTimeMillis())));
-                            l4Var.setAlpha(0.65f);
+                            k4Var.setAlpha(0.65f);
                             j5Var.setAlpha(0.65f);
                             kVar.i(0.3f, false);
                         } else {
                             kVar.setSubtitle(LocaleController.formatString(R.string.BoostExpireOn, LocaleController.getInstance().getFormatterBoostExpired().format(new Date(kVar.J.expires * 1000))));
-                            if (l4Var.getAlpha() < 1.0f) {
-                                l4Var.animate().alpha(1.0f).start();
+                            if (k4Var.getAlpha() < 1.0f) {
+                                k4Var.animate().alpha(1.0f).start();
                                 j5Var.animate().alpha(1.0f).start();
                                 kVar.i(1.0f, true);
                             } else {
-                                l4Var.setAlpha(1.0f);
+                                k4Var.setAlpha(1.0f);
                                 j5Var.setAlpha(1.0f);
                                 kVar.i(1.0f, false);
                             }

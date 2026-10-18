@@ -24,63 +24,63 @@ public final class q0 extends FrameLayout implements h80 {
     public ValueAnimator J;
     public v0 K;
     public final Paint L;
-    public boolean f5751a;
-    public boolean f5752b;
-    public final int f5753c;
+    public boolean f5761a;
+    public boolean f5762b;
+    public final int f5763c;
     public final boolean d;
     public Drawable e;
-    public float f5754f;
+    public float f5764f;
     public final uc h;
-    public final LinearLayout f5755n;
-    public final wh.n f5756r;
-    public final wh.n f5757s;
+    public final LinearLayout f5765n;
+    public final wh.n f5766r;
+    public final wh.n f5767s;
     public CharSequence v;
-    public final org.telegram.ui.Components.w9 f5758w;
-    public final org.telegram.ui.Components.h9 f5759x;
-    public final wh.n f5760y;
+    public final org.telegram.ui.Components.w9 f5768w;
+    public final org.telegram.ui.Components.h9 f5769x;
+    public final wh.n f5770y;
 
     public q0(int i10, Context context, boolean z10) {
         super(context);
-        this.f5751a = false;
-        this.f5752b = true;
-        this.f5754f = 0.5f;
+        this.f5761a = false;
+        this.f5762b = true;
+        this.f5764f = 0.5f;
         this.G = new yq[1];
         this.H = new yq[1];
         this.L = new Paint(1);
-        this.f5753c = i10;
+        this.f5763c = i10;
         this.d = z10;
         uc ucVar = new uc(this, context);
         this.h = ucVar;
         ucVar.setOrientation(0);
-        addView(ucVar, w7.z5.a(-2.0f, 0.0f, 0.5f, 0.0f, 0.5f, -2, 51));
-        this.f5759x = new org.telegram.ui.Components.h9((org.telegram.ui.ActionBar.d6) null);
+        addView(ucVar, w7.z5.d(-2, -2.0f, 51, 0.0f, 0.5f, 0.0f, 0.5f));
+        this.f5769x = new org.telegram.ui.Components.h9((org.telegram.ui.ActionBar.d6) null);
         org.telegram.ui.Components.w9 w9Var = new org.telegram.ui.Components.w9(context);
-        this.f5758w = w9Var;
+        this.f5768w = w9Var;
         w9Var.setRoundRadius(AndroidUtilities.dp(11.0f));
         ucVar.addView(w9Var, w7.z5.p(22, 22, 0.0f, 51, 3, 2, 3, 2));
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
         ucVar.addView(linearLayout, w7.z5.p(-2, -2, 1.0f, 51, 4, 3, 7, 3));
         LinearLayout linearLayout2 = new LinearLayout(context);
-        this.f5755n = linearLayout2;
+        this.f5765n = linearLayout2;
         linearLayout2.setOrientation(0);
         linearLayout2.setVisibility(8);
         linearLayout.addView(linearLayout2, w7.z5.n(-2, -2));
         wh.n nVar = new wh.n(context);
-        this.f5756r = nVar;
+        this.f5766r = nVar;
         nVar.setTextColor(-1);
         nVar.setTextSize(1, 14.0f);
         nVar.setGravity(3);
         nVar.setTypeface(AndroidUtilities.bold());
         linearLayout2.addView(nVar, w7.z5.p(-2, -2, 1.0f, 51, 0, 0, 16, 0));
         wh.n nVar2 = new wh.n(context);
-        this.f5757s = nVar2;
+        this.f5767s = nVar2;
         nVar2.setTextColor(org.telegram.ui.ActionBar.h6.m1(0.55f, -1));
         nVar2.setTextSize(1, 12.0f);
         nVar2.setGravity(5);
         linearLayout2.addView(nVar2, w7.z5.p(-2, -2, 0.0f, 53, 0, 0, 0, 0));
         wh.n nVar3 = new wh.n(context);
-        this.f5760y = nVar3;
+        this.f5770y = nVar3;
         nVar3.setTextColor(-1);
         nVar3.setTextSize(1, 14.0f);
         nVar3.setShadowLayer(AndroidUtilities.dp(2.5f), 0.0f, AndroidUtilities.dp(1.5f), org.telegram.ui.ActionBar.h6.m1(0.6f, -16777216));
@@ -114,13 +114,13 @@ public final class q0 extends FrameLayout implements h80 {
             this.J = null;
             Drawable drawable = this.e;
             if (drawable != null) {
-                drawable.setAlpha((int) (this.f5754f * 255.0f));
+                drawable.setAlpha((int) (this.f5764f * 255.0f));
                 this.h.invalidate();
             }
         }
         v0 v0Var = this.K;
         if (v0Var != null && this.e != null) {
-            this.I = v0Var.f6067a;
+            this.I = v0Var.f5994a;
             ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
             this.J = ofFloat;
             ofFloat.addUpdateListener(new ah.c0(this, 12));
@@ -157,7 +157,7 @@ public final class q0 extends FrameLayout implements h80 {
     }
 
     public void setDrawStar(boolean z10) {
-        this.f5752b = z10;
+        this.f5762b = z10;
         yq yqVar = this.G[0];
         if (yqVar != null && yqVar.draw != z10) {
             yqVar.draw = z10;

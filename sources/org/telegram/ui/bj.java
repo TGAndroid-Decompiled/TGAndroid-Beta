@@ -9,10 +9,10 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.TLRPC;
 public final class bj implements org.telegram.ui.Components.xl0 {
-    public final sn f35722a;
+    public final sn f35677a;
 
     public bj(sn snVar) {
-        this.f35722a = snVar;
+        this.f35677a = snVar;
     }
 
     @Override
@@ -23,7 +23,7 @@ public final class bj implements org.telegram.ui.Components.xl0 {
         MessageObject messageObject;
         org.telegram.ui.ActionBar.k kVar;
         TLRPC.ChatFull chatFull;
-        sn snVar = this.f35722a;
+        sn snVar = this.f35677a;
         if (!snVar.E9() && ((tL_availableReaction = snVar.getMediaDataController().getReactionsMap().get((doubleTapReaction = snVar.getMediaDataController().getDoubleTapReaction()))) != null || (doubleTapReaction != null && doubleTapReaction.startsWith("animated_")))) {
             if (snVar.T5 >= 0) {
                 z10 = true;
@@ -58,7 +58,7 @@ public final class bj implements org.telegram.ui.Components.xl0 {
         MessageObject messageObject;
         TLRPC.ChatFull chatFull;
         TLRPC.ChatFull chatFull2;
-        sn snVar = this.f35722a;
+        sn snVar = this.f35677a;
         if (snVar.getParentActivity() != null && !snVar.x() && !snVar.c() && !snVar.isInPreviewMode() && !snVar.E9()) {
             if (view instanceof org.telegram.ui.Cells.u1) {
                 messageObject = ((org.telegram.ui.Cells.u1) view).getPrimaryMessageObject();
@@ -116,7 +116,7 @@ public final class bj implements org.telegram.ui.Components.xl0 {
         MessageObject messageObject2;
         int i11;
         org.telegram.ui.ActionBar.d6 d6Var;
-        sn snVar = this.f35722a;
+        sn snVar = this.f35677a;
         z10 = ((org.telegram.ui.ActionBar.n2) snVar).inPreviewMode;
         if (!z10) {
             snVar.D4 = true;
@@ -187,7 +187,7 @@ public final class bj implements org.telegram.ui.Components.xl0 {
             }
             if (view instanceof org.telegram.ui.Cells.u1) {
                 org.telegram.ui.Cells.u1 u1Var2 = (org.telegram.ui.Cells.u1) view;
-                if (snVar.f41201c9.z(u1Var2.getMessageObject())) {
+                if (snVar.f41166c9.z(u1Var2.getMessageObject())) {
                     return;
                 }
                 z12 = !u1Var2.i3(f7);

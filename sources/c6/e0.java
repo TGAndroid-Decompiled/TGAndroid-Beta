@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 public final class e0 extends com.google.android.gms.common.api.j implements f0 {
     public static final g6.b G = new g6.b("CastClient", null);
-    public static final com.google.android.gms.common.api.e H = new com.google.android.gms.common.api.e("Cast.API_CXLESS", new a8.d(1), g6.j.f10853a);
+    public static final com.google.android.gms.common.api.e H = new com.google.android.gms.common.api.e("Cast.API_CXLESS", new a8.d(1), g6.j.f10851a);
     public final CastDevice A;
     public final HashMap B;
     public final HashMap C;
@@ -37,7 +37,7 @@ public final class e0 extends com.google.android.gms.common.api.j implements f0 
     public x f4853z;
 
     public e0(Context context, e eVar) {
-        super(context, H, eVar, com.google.android.gms.common.api.i.f6359c);
+        super(context, H, eVar, com.google.android.gms.common.api.i.f6357c);
         this.f4839k = new d0(this);
         this.f4846r = new Object();
         this.f4847s = new Object();
@@ -89,7 +89,7 @@ public final class e0 extends com.google.android.gms.common.api.j implements f0 
 
     public static Handler k(e0 e0Var) {
         if (e0Var.f4840l == null) {
-            e0Var.f4840l = new com.google.android.gms.internal.cast.a0(e0Var.f6533f, 0);
+            e0Var.f4840l = new com.google.android.gms.internal.cast.a0(e0Var.f6531f, 0);
         }
         return e0Var.f4840l;
     }

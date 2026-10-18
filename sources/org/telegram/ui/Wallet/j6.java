@@ -1,34 +1,28 @@
 package org.telegram.ui.Wallet;
+public final class j6 implements Runnable {
+    public final int f34362a;
+    public final m6 f34363b;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.ti;
-public final class j6 extends AnimatorListenerAdapter {
-    public final ti f34360a;
-    public final s6 f34361b;
-    public final k6 f34362c;
-
-    public j6(k6 k6Var, ti tiVar, s6 s6Var) {
-        this.f34362c = k6Var;
-        this.f34360a = tiVar;
-        this.f34361b = s6Var;
+    public j6(m6 m6Var, int i10) {
+        this.f34362a = i10;
+        this.f34363b = m6Var;
     }
 
     @Override
-    public final void onAnimationCancel(Animator animator) {
-        this.f34362c.a(false);
-    }
-
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        this.f34362c.a(true);
-    }
-
-    @Override
-    public final void onAnimationStart(Animator animator) {
-        if (this.f34360a != null) {
-            AndroidUtilities.hideKeyboard(this.f34361b);
+    public final void run() {
+        switch (this.f34362a) {
+            case 0:
+                m6.a(this.f34363b);
+                return;
+            default:
+                m6 m6Var = this.f34363b;
+                Runnable runnable = m6Var.f34540c0;
+                m6Var.f34540c0 = null;
+                if (runnable != null) {
+                    runnable.run();
+                    return;
+                }
+                return;
         }
     }
 }

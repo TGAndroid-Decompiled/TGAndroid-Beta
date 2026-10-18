@@ -6,16 +6,16 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class pt0 implements org.telegram.ui.Cells.l7 {
-    public final sv0 f29437a;
+    public final sv0 f29430a;
 
     public pt0(sv0 sv0Var) {
-        this.f29437a = sv0Var;
+        this.f29430a = sv0Var;
     }
 
     @Override
     public final void a(String str, boolean z10) {
-        sv0 sv0Var = this.f29437a;
-        org.telegram.ui.ActionBar.n2 n2Var = sv0Var.f30395v1;
+        sv0 sv0Var = this.f29430a;
+        org.telegram.ui.ActionBar.n2 n2Var = sv0Var.f30388v1;
         if (z10) {
             org.telegram.ui.ActionBar.f3 f3Var = new org.telegram.ui.ActionBar.f3(1, (Context) n2Var.getParentActivity(), (org.telegram.ui.ActionBar.d6) null, false);
             f3Var.fixNavigationBar();
@@ -33,12 +33,12 @@ public final class pt0 implements org.telegram.ui.Cells.l7 {
 
     @Override
     public final void b(TLRPC.WebPage webPage, MessageObject messageObject) {
-        sv0 sv0Var = this.f29437a;
-        cv.J(sv0Var.f30395v1, messageObject, sv0Var.f30386r1, webPage.site_name, webPage.description, webPage.url, webPage.embed_url, webPage.embed_width, webPage.embed_height, -1, false);
+        sv0 sv0Var = this.f29430a;
+        cv.J(sv0Var.f30388v1, messageObject, sv0Var.f30379r1, webPage.site_name, webPage.description, webPage.url, webPage.embed_url, webPage.embed_width, webPage.embed_height, -1, false);
     }
 
     @Override
     public final boolean c() {
-        return !this.f29437a.C1;
+        return !this.f29430a.C1;
     }
 }

@@ -1,130 +1,180 @@
 package ci;
 
-import android.app.Activity;
-import android.content.Context;
-import java.util.WeakHashMap;
-import org.telegram.messenger.AndroidUtilities;
+import java.util.ArrayList;
+import java.util.HashMap;
+import org.telegram.messenger.AccountInstance;
+import org.telegram.messenger.MediaController;
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.Components.ti;
-import org.telegram.ui.hk;
-import org.telegram.ui.lm;
-import org.telegram.ui.sn;
-public final class b3 extends ti {
-    public final int S2;
-    public final NotificationCenter.NotificationCenterDelegate T2;
+import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.ui.Components.gh;
+import org.telegram.ui.Components.ri;
+public final class b3 implements ri {
+    public final p4 f5168a;
 
-    public b3(org.telegram.ui.ActionBar.n2 n2Var, Activity activity, org.telegram.ui.ActionBar.n2 n2Var2, org.telegram.ui.ActionBar.d6 d6Var, int i10) {
-        super(activity, n2Var2, false, false, true, d6Var);
-        this.S2 = i10;
-        this.T2 = (NotificationCenter.NotificationCenterDelegate) n2Var;
+    public b3(p4 p4Var) {
+        this.f5168a = p4Var;
     }
 
     @Override
-    public void dismissInternal() {
-        int i10;
-        int i11 = this.S2;
-        NotificationCenter.NotificationCenterDelegate notificationCenterDelegate = this.T2;
-        switch (i11) {
-            case 1:
-                ig.m mVar = (ig.m) notificationCenterDelegate;
-                b3 b3Var = mVar.L;
-                if (b3Var != null && b3Var.isShowing()) {
-                    AndroidUtilities.requestAdjustResize(mVar.getParentActivity(), ig.m.c0(mVar));
-                }
-                super.dismissInternal();
-                return;
-            case 2:
-                sn snVar = (sn) notificationCenterDelegate;
-                b3 b3Var2 = snVar.J1;
-                if (b3Var2 != null && (b3Var2.isShowing() || this.f30638x0)) {
-                    Activity parentActivity = snVar.getParentActivity();
-                    i10 = ((org.telegram.ui.ActionBar.n2) snVar).classGuid;
-                    AndroidUtilities.requestAdjustResize(parentActivity, i10);
-                }
-                super.dismissInternal();
-                snVar.Y9(false, true);
-                lm lmVar = snVar.X0;
-                if (lmVar != null) {
-                    WeakHashMap weakHashMap = r0.i0.f44864a;
-                    r0.y.c(lmVar);
+    public final void J() {
+        this.f5168a.f5649b2.N();
+    }
+
+    @Override
+    public final void b0(int i10, boolean z10, boolean z11, int i11, int i12, long j10, boolean z12, boolean z13, long j11) {
+        TL_stories.StoryItem storyItem;
+        boolean z14;
+        boolean z15;
+        AccountInstance accountInstance;
+        boolean z16;
+        boolean z17;
+        String str;
+        String str2;
+        p4 p4Var = this.f5168a;
+        if (p4Var.J0.m0 && (storyItem = p4Var.O1.f5591a) != null && !(storyItem instanceof TL_stories.TL_storyItemSkipped)) {
+            if (i10 != 8 && i10 != 7 && (i10 != 4 || p4Var.I2.f30586j0.getSelectedPhotos().isEmpty())) {
+                a3 a3Var = p4Var.I2;
+                if (a3Var != null) {
+                    a3Var.dismissWithButtonClick(i10);
                     return;
                 }
                 return;
-            default:
-                super.dismissInternal();
-                return;
+            }
+            boolean z18 = true;
+            if (i10 != 8) {
+                p4Var.I2.dismiss(true);
+            }
+            HashMap<Object, Object> selectedPhotos = p4Var.I2.f30586j0.getSelectedPhotos();
+            ArrayList<Object> selectedPhotosOrder = p4Var.I2.f30586j0.getSelectedPhotosOrder();
+            if (!selectedPhotos.isEmpty()) {
+                int i13 = 0;
+                int i14 = 0;
+                while (i14 < Math.ceil(selectedPhotos.size() / 10.0f)) {
+                    int i15 = i14 * 10;
+                    int min = Math.min(10, selectedPhotos.size() - i15);
+                    ArrayList arrayList = new ArrayList();
+                    for (int i16 = i13; i16 < min; i16++) {
+                        int i17 = i15 + i16;
+                        if (i17 < selectedPhotosOrder.size()) {
+                            MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) selectedPhotos.get(selectedPhotosOrder.get(i17));
+                            SendMessagesHelper.SendingMediaInfo sendingMediaInfo = new SendMessagesHelper.SendingMediaInfo();
+                            boolean z19 = photoEntry.isVideo;
+                            if (!z19 && (str2 = photoEntry.imagePath) != null) {
+                                sendingMediaInfo.path = str2;
+                            } else {
+                                String str3 = photoEntry.path;
+                                if (str3 != null) {
+                                    sendingMediaInfo.path = str3;
+                                }
+                            }
+                            sendingMediaInfo.thumbPath = photoEntry.thumbPath;
+                            sendingMediaInfo.coverPath = photoEntry.coverPath;
+                            sendingMediaInfo.isVideo = z19;
+                            CharSequence charSequence = photoEntry.caption;
+                            if (charSequence != null) {
+                                str = charSequence.toString();
+                            } else {
+                                str = null;
+                            }
+                            sendingMediaInfo.caption = str;
+                            sendingMediaInfo.entities = photoEntry.entities;
+                            sendingMediaInfo.masks = photoEntry.stickers;
+                            sendingMediaInfo.ttl = photoEntry.ttl;
+                            sendingMediaInfo.videoEditedInfo = photoEntry.editedInfo;
+                            sendingMediaInfo.canDeleteAfter = photoEntry.canDeleteAfter;
+                            sendingMediaInfo.updateStickersOrder = SendMessagesHelper.checkUpdateStickersOrder(photoEntry.caption);
+                            sendingMediaInfo.hasMediaSpoilers = photoEntry.hasSpoiler;
+                            arrayList.add(sendingMediaInfo);
+                            photoEntry.reset();
+                        }
+                    }
+                    if (i14 == 0) {
+                        z15 = ((SendMessagesHelper.SendingMediaInfo) arrayList.get(i13)).updateStickersOrder;
+                    } else {
+                        z15 = i13;
+                    }
+                    HashMap<Object, Object> hashMap = selectedPhotos;
+                    accountInstance = p4Var.getAccountInstance();
+                    ArrayList<Object> arrayList2 = selectedPhotosOrder;
+                    int i18 = i13;
+                    long j12 = p4Var.B1;
+                    if (i10 != 4 && !z13) {
+                        z16 = true;
+                        z17 = i18;
+                    } else {
+                        z16 = true;
+                        z17 = 1;
+                    }
+                    SendMessagesHelper.prepareSendingMedia(accountInstance, arrayList, j12, null, null, storyItem, null, z17, z10, null, z11, i11, i12, 0, z15, null, null, 0L, false, 0L, p4Var.f5649b2.getSendMonoForumPeerId(), p4Var.f5649b2.getSendMessageSuggestionParams());
+                    i14++;
+                    z18 = true;
+                    selectedPhotos = hashMap;
+                    selectedPhotosOrder = arrayList2;
+                    i13 = i18;
+                }
+                boolean z20 = z18;
+                int i19 = i13;
+                p4Var.f5649b2.setFieldText("");
+                if (j11 <= 0) {
+                    z14 = z20;
+                } else {
+                    z14 = i19;
+                }
+                p4Var.k0(z14);
+            }
         }
     }
 
     @Override
-    public final void onDismissAnimationStart() {
-        int i10;
-        hk hkVar;
-        switch (this.S2) {
-            case 0:
-                q4 q4Var = (q4) this.T2;
-                b3 b3Var = q4Var.I2;
-                if (b3Var != null) {
-                    b3Var.setFocusable(false);
-                }
-                v2 v2Var = q4Var.f5769b2;
-                if (v2Var != null && v2Var.getEditField() != null) {
-                    q4Var.f5769b2.getEditField().requestFocus();
-                    return;
-                }
-                return;
-            case 1:
-                ig.m mVar = (ig.m) this.T2;
-                b3 b3Var2 = mVar.L;
-                if (b3Var2 != null) {
-                    b3Var2.setFocusable(false);
-                }
-                b3 b3Var3 = mVar.L;
-                if (b3Var3 != null && b3Var3.isShowing()) {
-                    AndroidUtilities.requestAdjustResize(mVar.getParentActivity(), ig.m.d0(mVar));
-                    return;
-                }
-                return;
-            default:
-                sn snVar = (sn) this.T2;
-                boolean z10 = this.f30638x0;
-                boolean M = this.B0.M();
-                if (!M) {
-                    snVar.D3 = false;
-                    hk hkVar2 = snVar.Y;
-                    if (hkVar2 != null) {
-                        if (!z10) {
-                            hkVar2.N();
-                        }
-                        if (snVar.Y.getEditField() != null) {
-                            snVar.Y.getEditField().clearFocus();
-                        }
-                    }
-                }
-                if (!z10) {
-                    b3 b3Var4 = snVar.J1;
-                    if (b3Var4 != null) {
-                        b3Var4.setFocusable(false);
-                    }
-                    if (M && (hkVar = snVar.Y) != null && hkVar.getEditField() != null) {
-                        snVar.Y.getEditField().requestFocus();
-                    }
-                    b3 b3Var5 = snVar.J1;
-                    if (b3Var5 != null && b3Var5.isShowing()) {
-                        Activity parentActivity = snVar.getParentActivity();
-                        i10 = ((org.telegram.ui.ActionBar.n2) snVar).classGuid;
-                        AndroidUtilities.requestAdjustResize(parentActivity, i10);
-                    }
-                    snVar.Y9(false, false);
-                    return;
-                }
-                return;
+    public final boolean p0() {
+        return false;
+    }
+
+    @Override
+    public final void r(gh ghVar) {
+        NotificationCenter.getInstance(this.f5168a.C2).doOnIdle(ghVar);
+    }
+
+    @Override
+    public final void r0(ArrayList arrayList, CharSequence charSequence, boolean z10, int i10, int i11, long j10, boolean z11, long j11) {
+        AccountInstance accountInstance;
+        CharSequence charSequence2;
+        boolean z12;
+        p4 p4Var = this.f5168a;
+        TL_stories.StoryItem storyItem = p4Var.O1.f5591a;
+        if (storyItem != null && !(storyItem instanceof TL_stories.TL_storyItemSkipped)) {
+            accountInstance = p4Var.getAccountInstance();
+            if (charSequence != null) {
+                charSequence2 = charSequence;
+            } else {
+                charSequence2 = null;
+            }
+            SendMessagesHelper.prepareSendingAudioDocuments(accountInstance, arrayList, charSequence2, p4Var.B1, null, null, storyItem, z10, i10, i11, null, null, j10, z11, j11);
+            if (j11 <= 0) {
+                z12 = true;
+            } else {
+                z12 = false;
+            }
+            p4Var.k0(z12);
         }
     }
 
-    public b3(q4 q4Var, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context, null, false, false, true, d6Var);
-        this.S2 = 0;
-        this.T2 = q4Var;
+    @Override
+    public final boolean v() {
+        return this.f5168a.N0();
+    }
+
+    @Override
+    public final void E() {
+    }
+
+    @Override
+    public final void O(Object obj) {
+    }
+
+    @Override
+    public final void X(TLRPC.User user) {
     }
 }
