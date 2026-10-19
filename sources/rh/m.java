@@ -10,9 +10,9 @@ import org.telegram.ui.Components.f61;
 import org.telegram.ui.Components.g61;
 import org.telegram.ui.Components.im0;
 import org.telegram.ui.Components.t61;
-import org.telegram.ui.oh0;
+import org.telegram.ui.ph0;
 public final class m extends f61 {
-    public static final int f45773a = 0;
+    public static final int f45775a = 0;
 
     static {
         f61.setup(new f61());
@@ -20,9 +20,9 @@ public final class m extends f61 {
 
     @Override
     public final void bindView(View view, g61 g61Var, boolean z10, t61 t61Var, b71 b71Var) {
-        oh0 oh0Var = (oh0) view;
-        oh0Var.a((TLObject) g61Var.G, true, g61Var.f26512z);
-        oh0Var.setOnClickListener(g61Var.D);
+        ph0 ph0Var = (ph0) view;
+        ph0Var.a((TLObject) g61Var.G, true, g61Var.f26510z);
+        ph0Var.setOnClickListener(g61Var.D);
     }
 
     @Override
@@ -35,9 +35,9 @@ public final class m extends f61 {
 
     @Override
     public final View createView(Context context, im0 im0Var, int i10, int i11, d6 d6Var) {
-        oh0 oh0Var = new oh0(context);
-        oh0Var.setBackground(h6.L0(false));
-        return oh0Var;
+        ph0 ph0Var = new ph0(context);
+        ph0Var.setBackground(h6.L0(false));
+        return ph0Var;
     }
 
     @Override

@@ -5,18 +5,18 @@ import android.graphics.Canvas;
 import android.view.MotionEvent;
 import org.telegram.messenger.AndroidUtilities;
 public final class wj extends org.telegram.ui.Cells.w0 {
-    public final qn f42884t2;
+    public final qn f42883t2;
 
     public wj(Context context, org.telegram.ui.ActionBar.d6 d6Var, qn qnVar) {
         super(context, d6Var, false);
-        this.f42884t2 = qnVar;
+        this.f42883t2 = qnVar;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        qn qnVar = this.f42884t2;
+        qn qnVar = this.f42883t2;
         if (qnVar.B8 == null) {
-            float y3 = ((qnVar.f40903x0.getY() + qnVar.f40847s9) - getY()) - AndroidUtilities.dp(4.0f);
+            float y3 = ((qnVar.f40895x0.getY() + qnVar.f40839s9) - getY()) - AndroidUtilities.dp(4.0f);
             if (y3 > 0.0f) {
                 if (y3 < getMeasuredHeight()) {
                     canvas.save();
@@ -35,7 +35,7 @@ public final class wj extends org.telegram.ui.Cells.w0 {
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         org.telegram.ui.ActionBar.k kVar;
         if (getAlpha() != 0.0f) {
-            qn qnVar = this.f42884t2;
+            qn qnVar = this.f42883t2;
             kVar = ((org.telegram.ui.ActionBar.n2) qnVar).actionBar;
             if (!kVar.t() && !qnVar.F9()) {
                 return super.onInterceptTouchEvent(motionEvent);
@@ -49,7 +49,7 @@ public final class wj extends org.telegram.ui.Cells.w0 {
     public final boolean onTouchEvent(MotionEvent motionEvent) {
         org.telegram.ui.ActionBar.k kVar;
         if (getAlpha() != 0.0f) {
-            qn qnVar = this.f42884t2;
+            qn qnVar = this.f42883t2;
             kVar = ((org.telegram.ui.ActionBar.n2) qnVar).actionBar;
             if (!kVar.t() && !qnVar.F9()) {
                 return super.onTouchEvent(motionEvent);

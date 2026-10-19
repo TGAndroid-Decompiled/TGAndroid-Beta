@@ -8,16 +8,16 @@ import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.je;
 import org.telegram.ui.qn;
 public final class x implements Utilities.Callback {
-    public final z f47772a;
-    public final TL_stories.TL_prepaidStarsGiveaway f47773b;
-    public final long f47774c;
+    public final z f47774a;
+    public final TL_stories.TL_prepaidStarsGiveaway f47775b;
+    public final long f47776c;
     public final long d;
     public final TL_stories.PrepaidGiveaway e;
 
     public x(z zVar, TL_stories.TL_prepaidStarsGiveaway tL_prepaidStarsGiveaway, long j10, long j11, TL_stories.PrepaidGiveaway prepaidGiveaway) {
-        this.f47772a = zVar;
-        this.f47773b = tL_prepaidStarsGiveaway;
-        this.f47774c = j10;
+        this.f47774a = zVar;
+        this.f47775b = tL_prepaidStarsGiveaway;
+        this.f47776c = j10;
         this.d = j11;
         this.e = prepaidGiveaway;
     }
@@ -25,12 +25,12 @@ public final class x implements Utilities.Callback {
     @Override
     public final void run(Object obj) {
         Void r62 = (Void) obj;
-        z zVar = this.f47772a;
+        z zVar = this.f47774a;
         zVar.dismiss();
-        if (this.f47773b != null) {
+        if (this.f47775b != null) {
             n2 U = LaunchActivity.U();
             if (U != null) {
-                qn W9 = qn.W9(this.f47774c);
+                qn W9 = qn.W9(this.f47776c);
                 W9.whenFullyVisible(new je(W9, this.d, 6));
                 U.presentFragment(W9);
                 return;

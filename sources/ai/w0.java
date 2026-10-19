@@ -2,12 +2,12 @@ package ai;
 
 import org.telegram.messenger.MessagesStorage;
 public final class w0 implements MessagesStorage.IntCallback {
-    public final int f2347a;
-    public final Object f2348b;
+    public final int f2338a;
+    public final Object f2339b;
 
     public w0(Object obj, int i10) {
-        this.f2347a = i10;
-        this.f2348b = obj;
+        this.f2338a = i10;
+        this.f2339b = obj;
     }
 
     @Override
@@ -15,9 +15,9 @@ public final class w0 implements MessagesStorage.IntCallback {
         ag.b bVar;
         ag.b bVar2;
         ag.b bVar3;
-        switch (this.f2347a) {
+        switch (this.f2338a) {
             case 0:
-                b1 b1Var = (b1) this.f2348b;
+                b1 b1Var = (b1) this.f2339b;
                 b1Var.getClass();
                 if (i10 == 0) {
                     bVar = ag.b.f633a;
@@ -25,10 +25,10 @@ public final class w0 implements MessagesStorage.IntCallback {
                     bVar = ag.b.f634b;
                 }
                 b1Var.V(ag.a.i(0L, bVar), true, false, true);
-                b1Var.f997d0.setText("");
+                b1Var.f1006d0.setText("");
                 return;
             case 1:
-                h1 h1Var = (h1) this.f2348b;
+                h1 h1Var = (h1) this.f2339b;
                 h1Var.getClass();
                 if (i10 == 0) {
                     bVar2 = ag.b.f633a;
@@ -39,15 +39,15 @@ public final class w0 implements MessagesStorage.IntCallback {
                 h1Var.h.setText("");
                 return;
             default:
-                k6 k6Var = (k6) this.f2348b;
-                k6Var.getClass();
+                l6 l6Var = (l6) this.f2339b;
+                l6Var.getClass();
                 if (i10 == 0) {
                     bVar3 = ag.b.f633a;
                 } else {
                     bVar3 = ag.b.f634b;
                 }
-                k6Var.f1645q = bVar3;
-                k6Var.a(true);
+                l6Var.f1716q = bVar3;
+                l6Var.a(true);
                 return;
         }
     }

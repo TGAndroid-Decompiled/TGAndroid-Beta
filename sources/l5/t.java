@@ -10,23 +10,23 @@ import java.util.concurrent.Executor;
 import org.telegram.ui.web.z1;
 public final class t {
     public static volatile k e;
-    public final u5.a f15944a;
-    public final u5.a f15945b;
-    public final q5.b f15946c;
+    public final u5.a f15942a;
+    public final u5.a f15943b;
+    public final q5.b f15944c;
     public final ea.b d;
 
     public t(u5.a aVar, u5.a aVar2, q5.b bVar, ea.b bVar2, com.google.firebase.messaging.r rVar) {
-        this.f15944a = aVar;
-        this.f15945b = aVar2;
-        this.f15946c = bVar;
+        this.f15942a = aVar;
+        this.f15943b = aVar2;
+        this.f15944c = bVar;
         this.d = bVar2;
-        ((Executor) rVar.f7662b).execute(new z1(rVar, 11));
+        ((Executor) rVar.f7660b).execute(new z1(rVar, 11));
     }
 
     public static t a() {
         k kVar = e;
         if (kVar != null) {
-            return (t) kVar.f15929f.mo27get();
+            return (t) kVar.f15927f.mo27get();
         }
         throw new IllegalStateException("Not initialized!");
     }
@@ -38,7 +38,7 @@ public final class t {
                     if (e == null) {
                         ?? obj = new Object();
                         context.getClass();
-                        obj.f15925a = context;
+                        obj.f15923a = context;
                         e = obj.a();
                     }
                 } catch (Throwable th2) {
@@ -58,10 +58,10 @@ public final class t {
         }
         androidx.biometric.e a2 = i.a();
         lVar.getClass();
-        a2.f2817b = "cct";
+        a2.f2815b = "cct";
         j5.a aVar = (j5.a) lVar;
-        String str = aVar.f14254a;
-        String str2 = aVar.f14255b;
+        String str = aVar.f14252a;
+        String str2 = aVar.f14253b;
         if (str2 == null && str == null) {
             bytes = null;
         } else {
@@ -70,7 +70,7 @@ public final class t {
             }
             bytes = k3.k("1$", str, "\\", str2).getBytes(Charset.forName("UTF-8"));
         }
-        a2.f2818c = bytes;
+        a2.f2816c = bytes;
         return new r(singleton, a2.e(), this);
     }
 }

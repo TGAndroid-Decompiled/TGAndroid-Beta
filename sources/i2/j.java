@@ -5,30 +5,30 @@ import j$.util.concurrent.ConcurrentHashMap;
 import java.util.Map;
 import v7.u6;
 public final class j implements t0 {
-    public static final x1 f12433r;
-    public final b2.n1 f12434a;
-    public final b2.l1 f12435b;
-    public final y2.d f12436c;
+    public static final x1 f12431r;
+    public final b2.n1 f12432a;
+    public final b2.l1 f12433b;
+    public final y2.d f12434c;
     public final long d;
     public final long e;
-    public final long f12437f;
-    public final long f12438g;
+    public final long f12435f;
+    public final long f12436g;
     public final long h;
-    public final long f12439i;
-    public final long f12440j;
-    public final long f12441k;
-    public final int f12442l;
-    public final boolean f12443m;
-    public final long f12444n;
-    public final e9.q0 f12445o;
-    public final ConcurrentHashMap f12446p;
-    public long f12447q;
+    public final long f12437i;
+    public final long f12438j;
+    public final long f12439k;
+    public final int f12440l;
+    public final boolean f12441m;
+    public final long f12442n;
+    public final e9.q0 f12443o;
+    public final ConcurrentHashMap f12444p;
+    public long f12445q;
 
     static {
-        e9.l0 l0Var = e9.n0.f8476b;
+        e9.l0 l0Var = e9.n0.f8474b;
         Object[] objArr = {"file", "content", "data", "android.resource", "rawresource", "asset"};
         e9.s.d(6, objArr);
-        f12433r = e9.n0.s(6, objArr);
+        f12431r = e9.n0.s(6, objArr);
     }
 
     public j(y2.d dVar, int i10, int i11, int i12, int i13, int i14, boolean z10, Map map) {
@@ -43,24 +43,24 @@ public final class j implements t0 {
         a(50000, 50000, "maxBufferMs", "minBufferMs");
         a(50000, i10, "maxBufferForLocalPlaybackMs", "minBufferForLocalPlaybackMs");
         a(0, 0, "backBufferDurationMs", "0");
-        this.f12434a = new b2.n1();
-        this.f12435b = new b2.l1();
-        this.f12436c = dVar;
+        this.f12432a = new b2.n1();
+        this.f12433b = new b2.l1();
+        this.f12434c = dVar;
         long j10 = 50000;
         this.d = e2.m0.S(j10);
         this.e = e2.m0.S(i10);
-        this.f12437f = e2.m0.S(j10);
-        this.f12438g = e2.m0.S(j10);
+        this.f12435f = e2.m0.S(j10);
+        this.f12436g = e2.m0.S(j10);
         this.h = e2.m0.S(i11);
-        this.f12439i = e2.m0.S(i12);
-        this.f12440j = e2.m0.S(i13);
-        this.f12441k = e2.m0.S(i14);
-        this.f12442l = -1;
-        this.f12443m = z10;
-        this.f12444n = e2.m0.S(0);
-        this.f12446p = new ConcurrentHashMap();
-        this.f12445o = e9.q0.a(map);
-        this.f12447q = -1L;
+        this.f12437i = e2.m0.S(i12);
+        this.f12438j = e2.m0.S(i13);
+        this.f12439k = e2.m0.S(i14);
+        this.f12440l = -1;
+        this.f12441m = z10;
+        this.f12442n = e2.m0.S(0);
+        this.f12444p = new ConcurrentHashMap();
+        this.f12443o = e9.q0.a(map);
+        this.f12445q = -1L;
     }
 
     public static void a(int i10, int i11, String str, String str2) {
@@ -79,18 +79,18 @@ public final class j implements t0 {
 
     public final void c() {
         int i10 = 0;
-        if (this.f12446p.isEmpty()) {
-            y2.d dVar = this.f12436c;
+        if (this.f12444p.isEmpty()) {
+            y2.d dVar = this.f12434c;
             synchronized (dVar) {
-                if (dVar.f49893a) {
+                if (dVar.f49895a) {
                     dVar.d(0);
                 }
             }
             return;
         }
-        y2.d dVar2 = this.f12436c;
-        for (i iVar : this.f12446p.values()) {
-            i10 += iVar.f12383c;
+        y2.d dVar2 = this.f12434c;
+        for (i iVar : this.f12444p.values()) {
+            i10 += iVar.f12381c;
         }
         dVar2.d(i10);
     }

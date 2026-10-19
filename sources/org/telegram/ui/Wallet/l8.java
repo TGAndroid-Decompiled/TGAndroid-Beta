@@ -5,30 +5,30 @@ import android.widget.EditText;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 public final class l8 implements TextView.OnEditorActionListener {
-    public final int f34461a;
-    public final Object f34462b;
+    public final int f34463a;
+    public final Object f34464b;
 
     public l8(Object obj, int i10) {
-        this.f34461a = i10;
-        this.f34462b = obj;
+        this.f34463a = i10;
+        this.f34464b = obj;
     }
 
     @Override
     public final boolean onEditorAction(TextView textView, int i10, KeyEvent keyEvent) {
         boolean z10;
-        switch (this.f34461a) {
+        switch (this.f34463a) {
             case 0:
-                n8 n8Var = (n8) this.f34462b;
+                n8 n8Var = (n8) this.f34464b;
                 if (i10 != 3) {
                     n8Var.getClass();
                     return false;
                 }
-                AndroidUtilities.hideKeyboard(n8Var.f34602b);
+                AndroidUtilities.hideKeyboard(n8Var.f34604b);
                 return true;
             case 1:
-                i9 i9Var = (i9) this.f34462b;
+                i9 i9Var = (i9) this.f34464b;
                 if (i10 == 6) {
-                    ei.d dVar = i9Var.f34336a0;
+                    ei.d dVar = i9Var.f34338a0;
                     if (dVar.W) {
                         dVar.performClick();
                         return true;
@@ -38,8 +38,8 @@ public final class l8 implements TextView.OnEditorActionListener {
                 }
                 return false;
             default:
-                ha haVar = (ha) this.f34462b;
-                EditText editText = haVar.f34294a;
+                ha haVar = (ha) this.f34464b;
+                EditText editText = haVar.f34296a;
                 if (keyEvent != null && (keyEvent.getKeyCode() == 66 || keyEvent.getKeyCode() == 160)) {
                     z10 = true;
                 } else {
@@ -53,7 +53,7 @@ public final class l8 implements TextView.OnEditorActionListener {
                     if (!lowerCase.isEmpty() && haVar.b()) {
                         haVar.setError(false);
                         haVar.a();
-                        Runnable runnable = haVar.f34299r;
+                        Runnable runnable = haVar.f34301r;
                         if (runnable != null) {
                             editText.post(runnable);
                         }
@@ -79,7 +79,7 @@ public final class l8 implements TextView.OnEditorActionListener {
                             editText.setSelection(str.length());
                             haVar.setError(false);
                             haVar.a();
-                            Runnable runnable2 = haVar.f34299r;
+                            Runnable runnable2 = haVar.f34301r;
                             if (runnable2 != null) {
                                 editText.post(runnable2);
                             }

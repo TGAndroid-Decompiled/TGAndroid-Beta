@@ -13,44 +13,44 @@ import org.telegram.ui.Components.ex;
 import org.telegram.ui.Components.s00;
 import org.telegram.ui.ck0;
 import org.telegram.ui.eo0;
-import org.telegram.ui.gf0;
+import org.telegram.ui.hf0;
 import org.telegram.ui.rm0;
 import org.telegram.ui.sa;
 import org.telegram.ui.u61;
 import org.telegram.ui.vo;
 public final class e6 implements RequestDelegate {
-    public final int f5358a;
+    public final int f5356a;
 
     public e6(int i10) {
-        this.f5358a = i10;
+        this.f5356a = i10;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f5358a) {
+        switch (this.f5356a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new ah.j(8));
+                AndroidUtilities.runOnUIThread(new ah.j(9));
                 return;
             case 1:
                 Comparator comparator = i7.X;
                 return;
             case 2:
-                AndroidUtilities.runOnUIThread(new ah.j(22));
+                AndroidUtilities.runOnUIThread(new ah.j(23));
                 return;
             case 3:
-                AndroidUtilities.runOnUIThread(new ah.j(22));
+                AndroidUtilities.runOnUIThread(new ah.j(23));
                 return;
             case 4:
-                int[] iArr = ei.c1.f8808a0;
+                int[] iArr = ei.c1.f8806a0;
                 return;
             case 5:
-                AndroidUtilities.runOnUIThread(new ah.j(16));
+                AndroidUtilities.runOnUIThread(new ah.j(17));
                 return;
             case 6:
-                AndroidUtilities.runOnUIThread(new ah.j(16));
+                AndroidUtilities.runOnUIThread(new ah.j(17));
                 return;
             case 7:
-                AndroidUtilities.runOnUIThread(new ah.j(16));
+                AndroidUtilities.runOnUIThread(new ah.j(17));
                 return;
             case 8:
                 return;
@@ -61,10 +61,10 @@ public final class e6 implements RequestDelegate {
                 int i10 = vo.Z2;
                 return;
             case 11:
-                AndroidUtilities.runOnUIThread(new ah.j(22));
+                AndroidUtilities.runOnUIThread(new ah.j(23));
                 return;
             case 12:
-                Pattern pattern = org.telegram.ui.Components.f5.f26101a;
+                Pattern pattern = org.telegram.ui.Components.f5.f26099a;
                 return;
             case 13:
                 int i11 = ex.H0;
@@ -73,13 +73,13 @@ public final class e6 implements RequestDelegate {
                 int i12 = s00.A0;
                 return;
             case 15:
-                AndroidUtilities.runOnUIThread(new ah.j(22));
+                AndroidUtilities.runOnUIThread(new ah.j(23));
                 return;
             case 16:
                 int i13 = d11.e;
                 return;
             case 17:
-                int i14 = gf0.f37310t0;
+                int i14 = hf0.f37585t0;
                 return;
             case 18:
                 AndroidUtilities.runOnUIThread(new ck0(tLObject, 3));
@@ -88,7 +88,7 @@ public final class e6 implements RequestDelegate {
                 int i15 = rm0.R;
                 return;
             case 20:
-                List list = eo0.f36696g1;
+                List list = eo0.f36690g1;
                 return;
             default:
                 int i16 = u61.e;

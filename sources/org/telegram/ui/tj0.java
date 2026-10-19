@@ -4,15 +4,15 @@ import android.widget.EditText;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class tj0 extends org.telegram.ui.ActionBar.g5 {
-    public final NotificationsCustomSettingsActivity f41701r;
+    public final NotificationsCustomSettingsActivity f41685r;
 
     public tj0(NotificationsCustomSettingsActivity notificationsCustomSettingsActivity) {
-        this.f41701r = notificationsCustomSettingsActivity;
+        this.f41685r = notificationsCustomSettingsActivity;
     }
 
     @Override
     public final void m() {
-        NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = this.f41701r;
+        NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = this.f41685r;
         notificationsCustomSettingsActivity.d.F(null);
         notificationsCustomSettingsActivity.f33202f = false;
         notificationsCustomSettingsActivity.getClass();
@@ -26,14 +26,14 @@ public final class tj0 extends org.telegram.ui.ActionBar.g5 {
 
     @Override
     public final void n() {
-        NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = this.f41701r;
+        NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = this.f41685r;
         notificationsCustomSettingsActivity.f33202f = true;
         notificationsCustomSettingsActivity.f33201c.setShowAtCenter(true);
     }
 
     @Override
     public final void q(EditText editText) {
-        NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = this.f41701r;
+        NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = this.f41685r;
         if (notificationsCustomSettingsActivity.d == null) {
             return;
         }

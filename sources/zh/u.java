@@ -17,7 +17,7 @@ import android.view.RoundedCorner;
 import android.view.View;
 import android.view.WindowInsets;
 public abstract class u {
-    public static float f52119a = -1.0f;
+    public static float f52121a = -1.0f;
 
     public static Canvas a(int i10, int i11, Object obj) {
         RenderNode c10 = org.telegram.messenger.b.c(obj);
@@ -80,7 +80,7 @@ public abstract class u {
                 return f10;
             }
         }
-        if (f52119a < 0.0f) {
+        if (f52121a < 0.0f) {
             try {
                 Resources system = Resources.getSystem();
                 int identifier2 = system.getIdentifier("rounded_corner_radius_top", "dimen", "android");
@@ -95,9 +95,9 @@ public abstract class u {
             } catch (Exception unused) {
                 f7 = 0.0f;
             }
-            f52119a = Math.max(0.0f, f7);
+            f52121a = Math.max(0.0f, f7);
         }
-        return f52119a;
+        return f52121a;
     }
 
     public static void h(Object obj, float f7) {

@@ -1,7 +1,7 @@
 package a6;
 
 import a3.n0;
-import ai.k7;
+import ai.l7;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -111,7 +111,7 @@ public final class i implements n0, r, tq0, a0, androidx.activity.result.b, p, O
         a8 a8Var = r6Var.d;
         if (a8Var != null) {
             a8Var.Z = f7;
-            a8Var.f8716j = true;
+            a8Var.f8714j = true;
             b81 b81Var = r6Var.e;
             if (b81Var != null && b81Var.p() != -9223372036854775807L) {
                 r6Var.m(f7 * ((float) r6Var.e.p()));
@@ -134,8 +134,8 @@ public final class i implements n0, r, tq0, a0, androidx.activity.result.b, p, O
         if (a8Var == null) {
             return;
         }
-        a8Var.f8732r0 = j10;
-        a8Var.f8716j = true;
+        a8Var.f8730r0 = j10;
+        a8Var.f8714j = true;
         r6Var.y(true);
     }
 
@@ -143,13 +143,13 @@ public final class i implements n0, r, tq0, a0, androidx.activity.result.b, p, O
     public void D(boolean z10) {
         c2 c2Var;
         vb vbVar = ((jb) ((r6) this.f307b)).C0;
-        xa xaVar = vbVar.f10017v1;
+        xa xaVar = vbVar.f10015v1;
         if (xaVar != null) {
             c2 c2Var2 = null;
             if (!z10 && (xaVar.getSelectedEntity() instanceof c2)) {
-                vbVar.f10017v1.C0(null, true);
-            } else if (z10 && !(vbVar.f10017v1.getSelectedEntity() instanceof c2)) {
-                z5 z5Var = vbVar.f10017v1.R0;
+                vbVar.f10015v1.C0(null, true);
+            } else if (z10 && !(vbVar.f10015v1.getSelectedEntity() instanceof c2)) {
+                z5 z5Var = vbVar.f10015v1.R0;
                 int i10 = 0;
                 int i11 = 0;
                 while (true) {
@@ -166,7 +166,7 @@ public final class i implements n0, r, tq0, a0, androidx.activity.result.b, p, O
                     }
                 }
                 if (c2Var != null) {
-                    xa xaVar2 = vbVar.f10017v1;
+                    xa xaVar2 = vbVar.f10015v1;
                     z5 z5Var2 = xaVar2.R0;
                     while (true) {
                         if (i10 >= z5Var2.getChildCount()) {
@@ -213,7 +213,7 @@ public final class i implements n0, r, tq0, a0, androidx.activity.result.b, p, O
             return;
         }
         a8Var.F = f7;
-        a8Var.f8716j = true;
+        a8Var.f8714j = true;
         r6Var.w(true);
     }
 
@@ -225,7 +225,7 @@ public final class i implements n0, r, tq0, a0, androidx.activity.result.b, p, O
             return;
         }
         a8Var.E = f7;
-        a8Var.f8716j = true;
+        a8Var.f8714j = true;
         r6Var.w(true);
     }
 
@@ -255,8 +255,8 @@ public final class i implements n0, r, tq0, a0, androidx.activity.result.b, p, O
         if (a8Var == null) {
             return;
         }
-        a8Var.f8697a0 = f7;
-        a8Var.f8716j = true;
+        a8Var.f8695a0 = f7;
+        a8Var.f8714j = true;
     }
 
     @Override
@@ -276,8 +276,8 @@ public final class i implements n0, r, tq0, a0, androidx.activity.result.b, p, O
         if (a8Var == null) {
             return;
         }
-        a8Var.f8736t0 = f7;
-        a8Var.f8716j = true;
+        a8Var.f8734t0 = f7;
+        a8Var.f8714j = true;
         r6Var.y(true);
     }
 
@@ -307,7 +307,7 @@ public final class i implements n0, r, tq0, a0, androidx.activity.result.b, p, O
             return;
         }
         a8Var.D = j10;
-        a8Var.f8716j = true;
+        a8Var.f8714j = true;
         r6Var.w(true);
     }
 
@@ -346,9 +346,9 @@ public final class i implements n0, r, tq0, a0, androidx.activity.result.b, p, O
             default:
                 i7.a aVar = new i7.a((TaskCompletionSource) obj2);
                 i7.i iVar = (i7.i) ((i7.c) obj).u();
-                String str = ((i7.b) this.f307b).f12731k;
+                String str = ((i7.b) this.f307b).f12729k;
                 Parcel J0 = iVar.J0();
-                int i11 = i7.f.f12735a;
+                int i11 = i7.f.f12733a;
                 J0.writeStrongBinder(aVar);
                 J0.writeString(str);
                 iVar.K0(J0, 2);
@@ -426,7 +426,7 @@ public final class i implements n0, r, tq0, a0, androidx.activity.result.b, p, O
         }
         if (qVar != null) {
             if (z11) {
-                rVar.f(qVar.f10689a, qVar, k10);
+                rVar.f(qVar.f10687a, qVar, k10);
                 rVar.h(qVar, true);
                 return;
             }
@@ -445,8 +445,8 @@ public final class i implements n0, r, tq0, a0, androidx.activity.result.b, p, O
                 Object obj = arrayList.get(i11);
                 i11++;
                 d0 d0Var = (d0) obj;
-                if (d0Var.f8867a == i10) {
-                    d0Var.f8868b.d(1.0f, true);
+                if (d0Var.f8865a == i10) {
+                    d0Var.f8866b.d(1.0f, true);
                     e0Var.invalidate();
                     return;
                 }
@@ -479,8 +479,8 @@ public final class i implements n0, r, tq0, a0, androidx.activity.result.b, p, O
         if (a8Var == null) {
             return;
         }
-        a8Var.f8738u0 = f7;
-        a8Var.f8716j = true;
+        a8Var.f8736u0 = f7;
+        a8Var.f8714j = true;
         r6Var.c();
     }
 
@@ -488,8 +488,8 @@ public final class i implements n0, r, tq0, a0, androidx.activity.result.b, p, O
     public void g0() {
         switch (this.f306a) {
             case 4:
-                qc k10 = ((k7) this.f307b).getBulletinFactory().k(false);
-                k10.f29606t = true;
+                qc k10 = ((l7) this.f307b).getBulletinFactory().k(false);
+                k10.f29604t = true;
                 k10.j();
                 return;
             default:
@@ -524,20 +524,20 @@ public final class i implements n0, r, tq0, a0, androidx.activity.result.b, p, O
             Log.w("FragmentManager", "No permissions were requested for " + this);
             return;
         }
-        String str = f0Var.f3178a;
-        if (j0Var.f3192c.f(str) == null) {
+        String str = f0Var.f3176a;
+        if (j0Var.f3190c.f(str) == null) {
             Log.w("FragmentManager", "Permission request result delivered for unknown Fragment " + str);
         }
     }
 
     public c6.o i() {
         c6.o oVar = (c6.o) this.f307b;
-        if (oVar.f4885a != null) {
+        if (oVar.f4883a != null) {
             if (!Double.isNaN(oVar.d) && oVar.d < 0.0d) {
                 throw new IllegalArgumentException("startTime cannot be negative or NaN.");
             }
             if (!Double.isNaN(oVar.e)) {
-                if (!Double.isNaN(oVar.f4888f) && oVar.f4888f >= 0.0d) {
+                if (!Double.isNaN(oVar.f4886f) && oVar.f4886f >= 0.0d) {
                     return oVar;
                 }
                 throw new IllegalArgumentException("preloadTime cannot be negative or Nan.");
@@ -567,7 +567,7 @@ public final class i implements n0, r, tq0, a0, androidx.activity.result.b, p, O
             return;
         }
         a8Var.G = f7;
-        a8Var.f8716j = true;
+        a8Var.f8714j = true;
         r6Var.c();
     }
 
@@ -593,7 +593,7 @@ public final class i implements n0, r, tq0, a0, androidx.activity.result.b, p, O
         } else if (r6Var.j()) {
             r6Var.E.m(j10, true);
         } else {
-            b81 b81Var2 = r6Var.f9739y;
+            b81 b81Var2 = r6Var.f9737y;
             if (b81Var2 != null) {
                 b81Var2.L(j10, false);
             }
@@ -602,7 +602,7 @@ public final class i implements n0, r, tq0, a0, androidx.activity.result.b, p, O
 
     @Override
     public void onComplete(Task task) {
-        d6.c.h((d6.c) ((d6.j) this.f307b).f7869c, "joinApplication", task);
+        d6.c.h((d6.c) ((d6.j) this.f307b).f7867c, "joinApplication", task);
     }
 
     @Override
@@ -624,30 +624,30 @@ public final class i implements n0, r, tq0, a0, androidx.activity.result.b, p, O
         if (jbVar != null) {
             jbVar.s(null, null, true);
         }
-        xa xaVar = vbVar.f10017v1;
+        xa xaVar = vbVar.f10015v1;
         if (xaVar != null) {
             xaVar.p0();
         }
-        lb lbVar = vbVar.f9958c1;
+        lb lbVar = vbVar.f9956c1;
         if (lbVar != null) {
             lbVar.setHasRoundVideo(false);
         }
         a8 a8Var = vbVar.K1;
         if (a8Var != null) {
-            File file = a8Var.f8726o0;
+            File file = a8Var.f8724o0;
             if (file != null) {
                 try {
                     file.delete();
                 } catch (Exception unused) {
                 }
-                vbVar.K1.f8726o0 = null;
+                vbVar.K1.f8724o0 = null;
             }
-            if (vbVar.K1.f8728p0 != null) {
+            if (vbVar.K1.f8726p0 != null) {
                 try {
-                    new File(vbVar.K1.f8728p0).delete();
+                    new File(vbVar.K1.f8726p0).delete();
                 } catch (Exception unused2) {
                 }
-                vbVar.K1.f8728p0 = null;
+                vbVar.K1.f8726p0 = null;
             }
         }
     }
@@ -656,7 +656,7 @@ public final class i implements n0, r, tq0, a0, androidx.activity.result.b, p, O
     public boolean r(l.k kVar) {
         Window.Callback callback;
         g.r rVar = (g.r) this.f307b;
-        if (kVar == kVar.k() && rVar.O && (callback = rVar.f10710f.getCallback()) != null && !rVar.Z) {
+        if (kVar == kVar.k() && rVar.O && (callback = rVar.f10708f.getCallback()) != null && !rVar.Z) {
             callback.onMenuOpened(108, kVar);
             return true;
         }
@@ -670,8 +670,8 @@ public final class i implements n0, r, tq0, a0, androidx.activity.result.b, p, O
         if (a8Var == null) {
             return;
         }
-        a8Var.f8734s0 = f7;
-        a8Var.f8716j = true;
+        a8Var.f8732s0 = f7;
+        a8Var.f8714j = true;
         r6Var.y(true);
     }
 
@@ -681,9 +681,9 @@ public final class i implements n0, r, tq0, a0, androidx.activity.result.b, p, O
         FileWriter fileWriter;
         Void r13 = (Void) obj;
         ea.b bVar = (ea.b) this.f307b;
-        d9.l lVar = (d9.l) bVar.f8550f;
-        ea.d dVar = (ea.d) bVar.f8548b;
-        String str = lVar.f7894a;
+        d9.l lVar = (d9.l) bVar.f8548f;
+        ea.d dVar = (ea.d) bVar.f8546b;
+        String str = lVar.f7892a;
         FileWriter fileWriter2 = null;
         try {
             HashMap c10 = d9.l.c(dVar);
@@ -705,16 +705,16 @@ public final class i implements n0, r, tq0, a0, androidx.activity.result.b, p, O
             jSONObject = null;
         }
         if (jSONObject != null) {
-            ea.a Z = ((a4.l) bVar.f8549c).Z(jSONObject);
+            ea.a Z = ((a4.l) bVar.f8547c).Z(jSONObject);
             qb.c cVar = (qb.c) bVar.e;
-            long j10 = Z.f8545c;
+            long j10 = Z.f8543c;
             cVar.getClass();
             if (Log.isLoggable("FirebaseCrashlytics", 2)) {
                 Log.v("FirebaseCrashlytics", "Writing settings to cache file...", null);
             }
             try {
                 jSONObject.put("expires_at", j10);
-                fileWriter = new FileWriter((File) cVar.f44425b);
+                fileWriter = new FileWriter((File) cVar.f44427b);
                 try {
                     try {
                         fileWriter.write(jSONObject.toString());
@@ -724,12 +724,12 @@ public final class i implements n0, r, tq0, a0, androidx.activity.result.b, p, O
                         Log.e("FirebaseCrashlytics", "Failed to cache settings", e);
                         x9.h.c(fileWriter, "Failed to close settings writer.");
                         ea.b.f("Loaded settings: ", jSONObject);
-                        String str4 = dVar.f8556f;
-                        SharedPreferences.Editor edit = ((Context) bVar.f8547a).getSharedPreferences("com.google.firebase.crashlytics", 0).edit();
+                        String str4 = dVar.f8554f;
+                        SharedPreferences.Editor edit = ((Context) bVar.f8545a).getSharedPreferences("com.google.firebase.crashlytics", 0).edit();
                         edit.putString("existing_instance_identifier", str4);
                         edit.apply();
                         ((AtomicReference) bVar.h).set(Z);
-                        ((TaskCompletionSource) ((AtomicReference) bVar.f8552i).get()).trySetResult(Z);
+                        ((TaskCompletionSource) ((AtomicReference) bVar.f8550i).get()).trySetResult(Z);
                         return Tasks.forResult(null);
                     }
                 } catch (Throwable th2) {
@@ -748,12 +748,12 @@ public final class i implements n0, r, tq0, a0, androidx.activity.result.b, p, O
             }
             x9.h.c(fileWriter, "Failed to close settings writer.");
             ea.b.f("Loaded settings: ", jSONObject);
-            String str42 = dVar.f8556f;
-            SharedPreferences.Editor edit2 = ((Context) bVar.f8547a).getSharedPreferences("com.google.firebase.crashlytics", 0).edit();
+            String str42 = dVar.f8554f;
+            SharedPreferences.Editor edit2 = ((Context) bVar.f8545a).getSharedPreferences("com.google.firebase.crashlytics", 0).edit();
             edit2.putString("existing_instance_identifier", str42);
             edit2.apply();
             ((AtomicReference) bVar.h).set(Z);
-            ((TaskCompletionSource) ((AtomicReference) bVar.f8552i).get()).trySetResult(Z);
+            ((TaskCompletionSource) ((AtomicReference) bVar.f8550i).get()).trySetResult(Z);
         }
         return Tasks.forResult(null);
     }
@@ -812,7 +812,7 @@ public final class i implements n0, r, tq0, a0, androidx.activity.result.b, p, O
 
     public i(ya.d dVar) {
         this.f306a = 9;
-        this.f307b = (com.google.android.gms.internal.play_billing.r) dVar.f50114b;
+        this.f307b = (com.google.android.gms.internal.play_billing.r) dVar.f50116b;
     }
 
     public i(Context context, int i10) {

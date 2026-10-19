@@ -4,9 +4,9 @@ import android.os.SystemClock;
 import java.util.concurrent.atomic.AtomicLong;
 import org.telegram.messenger.FileLog;
 public final class n {
-    public static final AtomicLong f46728c = new AtomicLong(1);
-    public final long f46729a = f46728c.getAndIncrement();
-    public final long f46730b = SystemClock.elapsedRealtime();
+    public static final AtomicLong f46730c = new AtomicLong(1);
+    public final long f46731a = f46730c.getAndIncrement();
+    public final long f46732b = SystemClock.elapsedRealtime();
 
     public final void a(String str, Exception exc) {
         FileLog.e(c() + str + ": " + exc);
@@ -18,6 +18,6 @@ public final class n {
     }
 
     public final String c() {
-        return "RoundVideo[" + this.f46729a + "] t+" + (SystemClock.elapsedRealtime() - this.f46730b) + "ms [" + Thread.currentThread().getName() + "] ";
+        return "RoundVideo[" + this.f46731a + "] t+" + (SystemClock.elapsedRealtime() - this.f46732b) + "ms [" + Thread.currentThread().getName() + "] ";
     }
 }

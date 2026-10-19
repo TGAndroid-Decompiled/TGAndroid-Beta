@@ -13,12 +13,12 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class i11 extends org.telegram.ui.ActionBar.j {
-    public final Context f37855a;
-    public final ProxyListActivity f37856b;
+    public final Context f37826a;
+    public final ProxyListActivity f37827b;
 
     public i11(ProxyListActivity proxyListActivity, Context context) {
-        this.f37856b = proxyListActivity;
-        this.f37855a = context;
+        this.f37827b = proxyListActivity;
+        this.f37826a = context;
     }
 
     @Override
@@ -27,7 +27,7 @@ public final class i11 extends org.telegram.ui.ActionBar.j {
         int i12;
         StringBuilder sb2;
         boolean z10;
-        ProxyListActivity proxyListActivity = this.f37856b;
+        ProxyListActivity proxyListActivity = this.f37827b;
         ArrayList arrayList = proxyListActivity.F;
         if (i10 != -1) {
             int i13 = 1;
@@ -46,9 +46,9 @@ public final class i11 extends org.telegram.ui.ActionBar.j {
                         qi.a aVar = proxyInfo.settings;
                         String str = aVar.e;
                         String str2 = aVar.d;
-                        String str3 = aVar.f44739b;
-                        String str4 = aVar.f44741f;
-                        int i15 = aVar.f44738a;
+                        String str3 = aVar.f44741b;
+                        String str4 = aVar.f44743f;
+                        int i15 = aVar.f44740a;
                         int c10 = m1.j.c(i15);
                         if (c10 != i13) {
                             if (c10 != 2) {
@@ -64,7 +64,7 @@ public final class i11 extends org.telegram.ui.ActionBar.j {
                             sb2.append(URLEncoder.encode(str3, "UTF-8"));
                             if (i15 != 3) {
                                 sb2.append("&port=");
-                                sb2.append(aVar.f44740c);
+                                sb2.append(aVar.f44742c);
                             }
                             if (!TextUtils.isEmpty(str2)) {
                                 sb2.append("&user=");
@@ -112,8 +112,8 @@ public final class i11 extends org.telegram.ui.ActionBar.j {
                     }
                     Intent createChooser = Intent.createChooser(intent, LocaleController.getString(i12));
                     createChooser.setFlags(268435456);
-                    this.f37855a.startActivity(createChooser);
-                    j11 j11Var = proxyListActivity.f33757a;
+                    this.f37826a.startActivity(createChooser);
+                    j11 j11Var = proxyListActivity.f33759a;
                     if (j11Var != null) {
                         j11Var.F();
                         return;
@@ -128,20 +128,20 @@ public final class i11 extends org.telegram.ui.ActionBar.j {
             } else {
                 i11 = R.string.DeleteProxyConfirm;
             }
-            alertDialog$Builder.f20604a.T = LocaleController.getString(i11);
+            alertDialog$Builder.f20602a.T = LocaleController.getString(i11);
             alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-            alertDialog$Builder.f20604a.R = LocaleController.getString(R.string.DeleteProxyTitle);
+            alertDialog$Builder.f20602a.R = LocaleController.getString(R.string.DeleteProxyTitle);
             alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new pp0(this, 13));
-            org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20604a;
+            org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20602a;
             proxyListActivity.showDialog(b2Var);
             TextView textView = (TextView) b2Var.d(-1);
             if (textView != null) {
-                textView.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21227q7, false));
+                textView.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21225q7, false));
             }
         } else if (arrayList.isEmpty()) {
             proxyListActivity.finishFragment();
         } else {
-            proxyListActivity.f33757a.F();
+            proxyListActivity.f33759a.F();
         }
     }
 }

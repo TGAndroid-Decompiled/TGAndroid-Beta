@@ -21,50 +21,50 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 public final class g71 extends org.telegram.ui.ActionBar.f3 {
-    public final Drawable f26517b;
-    public final f71 f26518c;
+    public final Drawable f26515b;
+    public final f71 f26516c;
     public AnimatorSet d;
     public final View e;
-    public final LinearLayout f26519f;
+    public final LinearLayout f26517f;
     public int h;
-    public final int[] f26520n;
+    public final int[] f26518n;
 
     public g71(Context context, BetaUpdate betaUpdate) {
         super(context, false);
-        this.f26520n = new int[2];
+        this.f26518n = new int[2];
         setCanceledOnTouchOutside(false);
         setApplyTopPadding(false);
         setApplyBottomPadding(false);
         Drawable mutate = context.getResources().getDrawable(R.drawable.sheet_shadow_round).mutate();
-        this.f26517b = mutate;
-        mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21060h5, false), PorterDuff.Mode.MULTIPLY));
+        this.f26515b = mutate;
+        mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21058h5, false), PorterDuff.Mode.MULTIPLY));
         ah.x xVar = new ah.x(this, context, 25);
         xVar.setWillNotDraw(false);
         this.containerView = xVar;
         f71 f71Var = new f71(this, context);
-        this.f26518c = f71Var;
+        this.f26516c = f71Var;
         f71Var.setFillViewport(true);
         f71Var.setWillNotDraw(false);
         f71Var.setClipToPadding(false);
         f71Var.setVerticalScrollBarEnabled(false);
         xVar.addView(f71Var, w7.z5.d(-1, -1.0f, 51, 0.0f, 0.0f, 0.0f, 130.0f));
         LinearLayout linearLayout = new LinearLayout(context);
-        this.f26519f = linearLayout;
+        this.f26517f = linearLayout;
         linearLayout.setOrientation(1);
         f71Var.addView(linearLayout, w7.z5.x(-1, -2, 51));
         TextView textView = new TextView(context);
-        org.telegram.messenger.lk.k(20.0f, 1, textView);
-        int i10 = org.telegram.ui.ActionBar.h6.f21095j5;
+        org.telegram.messenger.kk.k(20.0f, 1, textView);
+        int i10 = org.telegram.ui.ActionBar.h6.f21093j5;
         textView.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, i10, false));
         textView.setSingleLine(true);
         textView.setEllipsize(TextUtils.TruncateAt.END);
         textView.setText(LocaleController.getString(R.string.AppUpdateBeta));
         linearLayout.addView(textView, w7.z5.t(-2, -2, 49, 23, 16, 23, 0));
         TextView textView2 = new TextView(getContext());
-        textView2.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21245r5, false));
+        textView2.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21243r5, false));
         textView2.setTextSize(1, 14.0f);
         textView2.setMovementMethod(new AndroidUtilities.LinkMovementMethodMy());
-        int i11 = org.telegram.ui.ActionBar.h6.f21115k5;
+        int i11 = org.telegram.ui.ActionBar.h6.f21113k5;
         textView2.setLinkTextColor(org.telegram.ui.ActionBar.h6.x0(null, i11, false));
         textView2.setText(LocaleController.formatString(R.string.AppBetaUpdateVersion, betaUpdate.version, Integer.valueOf(betaUpdate.versionCode)));
         textView2.setGravity(49);
@@ -96,23 +96,23 @@ public final class g71 extends org.telegram.ui.ActionBar.f3 {
         } else {
             dVar.g(LocaleController.formatString(R.string.AppUpdateDownloadNow, new Object[0]), false, true);
             dVar.setOnClickListener(new View.OnClickListener(this) {
-                public final g71 f25839b;
+                public final g71 f25837b;
 
                 {
-                    this.f25839b = this;
+                    this.f25837b = this;
                 }
 
                 @Override
                 public final void onClick(View view2) {
                     switch (r2) {
                         case 0:
-                            g71 g71Var = this.f25839b;
+                            g71 g71Var = this.f25837b;
                             g71Var.getClass();
                             ApplicationLoader.applicationLoaderInstance.downloadUpdate();
                             g71Var.dismiss();
                             return;
                         default:
-                            this.f25839b.dismiss();
+                            this.f25837b.dismiss();
                             return;
                     }
                 }
@@ -122,23 +122,23 @@ public final class g71 extends org.telegram.ui.ActionBar.f3 {
         ei.d dVar2 = new ei.d(context, null, false);
         dVar2.g(LocaleController.getString(R.string.AppUpdateRemindMeLater), false, true);
         dVar2.setOnClickListener(new View.OnClickListener(this) {
-            public final g71 f25839b;
+            public final g71 f25837b;
 
             {
-                this.f25839b = this;
+                this.f25837b = this;
             }
 
             @Override
             public final void onClick(View view2) {
                 switch (r2) {
                     case 0:
-                        g71 g71Var = this.f25839b;
+                        g71 g71Var = this.f25837b;
                         g71Var.getClass();
                         ApplicationLoader.applicationLoaderInstance.downloadUpdate();
                         g71Var.dismiss();
                         return;
                     default:
-                        this.f25839b.dismiss();
+                        this.f25837b.dismiss();
                         return;
                 }
             }
@@ -147,9 +147,9 @@ public final class g71 extends org.telegram.ui.ActionBar.f3 {
     }
 
     public static void n(g71 g71Var) {
-        LinearLayout linearLayout = g71Var.f26519f;
+        LinearLayout linearLayout = g71Var.f26517f;
         View childAt = linearLayout.getChildAt(0);
-        int[] iArr = g71Var.f26520n;
+        int[] iArr = g71Var.f26518n;
         childAt.getLocationInWindow(iArr);
         int max = Math.max(iArr[1] - AndroidUtilities.dp(24.0f), 0);
         if (linearLayout.getMeasuredHeight() + iArr[1] <= g71Var.containerView.getTranslationY() + (g71Var.container.getMeasuredHeight() - AndroidUtilities.dp(113.0f))) {
@@ -159,7 +159,7 @@ public final class g71 extends org.telegram.ui.ActionBar.f3 {
         }
         if (g71Var.h != max) {
             g71Var.h = max;
-            g71Var.f26518c.invalidate();
+            g71Var.f26516c.invalidate();
         }
     }
 

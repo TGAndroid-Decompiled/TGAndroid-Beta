@@ -1,21 +1,21 @@
 package ki;
 
-import ai.l8;
+import ai.m8;
 import android.text.Editable;
 import android.text.TextWatcher;
 public final class p implements TextWatcher {
-    public final String[] f15438a;
-    public final l8 f15439b;
+    public final String[] f15436a;
+    public final m8 f15437b;
 
-    public p(String[] strArr, l8 l8Var) {
-        this.f15438a = strArr;
-        this.f15439b = l8Var;
+    public p(String[] strArr, m8 m8Var) {
+        this.f15436a = strArr;
+        this.f15437b = m8Var;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
-        this.f15438a[0] = editable.toString();
-        this.f15439b.run();
+        this.f15436a[0] = editable.toString();
+        this.f15437b.run();
     }
 
     @Override

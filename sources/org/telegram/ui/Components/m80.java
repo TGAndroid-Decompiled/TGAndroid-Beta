@@ -9,19 +9,19 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 public final class m80 extends FrameLayout {
-    public final r80 f28466a;
+    public final r80 f28464a;
 
     public m80(r80 r80Var, Context context) {
         super(context);
-        this.f28466a = r80Var;
+        this.f28464a = r80Var;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         int i10;
-        r80 r80Var = this.f28466a;
-        Drawable drawable = r80Var.f29875b;
-        int i11 = r80Var.f29879r;
+        r80 r80Var = this.f28464a;
+        Drawable drawable = r80Var.f29873b;
+        int i11 = r80Var.f29877r;
         i10 = ((org.telegram.ui.ActionBar.f3) r80Var).backgroundPaddingTop;
         drawable.setBounds(0, i11 - i10, getMeasuredWidth(), getMeasuredHeight());
         drawable.draw(canvas);
@@ -30,8 +30,8 @@ public final class m80 extends FrameLayout {
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         if (motionEvent.getAction() == 0) {
-            r80 r80Var = this.f28466a;
-            if (r80Var.f29879r != 0 && motionEvent.getY() < r80Var.f29879r) {
+            r80 r80Var = this.f28464a;
+            if (r80Var.f29877r != 0 && motionEvent.getY() < r80Var.f29877r) {
                 r80Var.dismiss();
                 return true;
             }
@@ -42,7 +42,7 @@ public final class m80 extends FrameLayout {
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
-        r80.p(this.f28466a);
+        r80.p(this.f28464a);
     }
 
     @Override
@@ -50,8 +50,8 @@ public final class m80 extends FrameLayout {
         int i12;
         int i13;
         int size = View.MeasureSpec.getSize(i11) - AndroidUtilities.statusBarHeight;
-        r80 r80Var = this.f28466a;
-        TextView textView = r80Var.f29877f;
+        r80 r80Var = this.f28464a;
+        TextView textView = r80Var.f29875f;
         measureChildWithMargins(textView, i10, 0, i11, 0);
         int measuredHeight = textView.getMeasuredHeight();
         n80 n80Var = r80Var.d;
@@ -67,16 +67,16 @@ public final class m80 extends FrameLayout {
             i13 = i14 * 2;
         }
         if (n80Var.getPaddingTop() != i13) {
-            r80Var.f29878n = true;
+            r80Var.f29876n = true;
             n80Var.setPadding(0, i13, 0, 0);
-            r80Var.f29878n = false;
+            r80Var.f29876n = false;
         }
         super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(size, 1073741824));
     }
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (!this.f28466a.isDismissed() && super.onTouchEvent(motionEvent)) {
+        if (!this.f28464a.isDismissed() && super.onTouchEvent(motionEvent)) {
             return true;
         }
         return false;
@@ -84,7 +84,7 @@ public final class m80 extends FrameLayout {
 
     @Override
     public final void requestLayout() {
-        if (this.f28466a.f29878n) {
+        if (this.f28464a.f29876n) {
             return;
         }
         super.requestLayout();

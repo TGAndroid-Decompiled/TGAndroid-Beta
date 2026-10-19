@@ -7,11 +7,11 @@ import org.telegram.messenger.AndroidUtilities;
 public final class in0 extends z5 {
     public final f6 d;
     public final int e;
-    public final ScrollSlidingTextTabStrip f27328f;
+    public final ScrollSlidingTextTabStrip f27326f;
 
     public in0(ScrollSlidingTextTabStrip scrollSlidingTextTabStrip, Context context, int i10) {
         super(context);
-        this.f27328f = scrollSlidingTextTabStrip;
+        this.f27326f = scrollSlidingTextTabStrip;
         this.e = i10;
         this.d = new f6(this, 360L, bs.h);
     }
@@ -19,7 +19,7 @@ public final class in0 extends z5 {
     @Override
     public final void onDraw(Canvas canvas) {
         Canvas canvas2;
-        float e = this.d.e(this.f27328f.f24361n0);
+        float e = this.d.e(this.f27326f.f24359n0);
         int i10 = (e > 0.0f ? 1 : (e == 0.0f ? 0 : -1));
         if (i10 > 0) {
             canvas2 = canvas;
@@ -37,7 +37,7 @@ public final class in0 extends z5 {
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         boolean z10;
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        if (this.f27328f.f24362r == this.e) {
+        if (this.f27326f.f24360r == this.e) {
             z10 = true;
         } else {
             z10 = false;

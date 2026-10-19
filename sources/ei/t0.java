@@ -30,20 +30,20 @@ public final class t0 extends View {
     public boolean O;
     public s0 P;
     public Runnable Q;
-    public final Paint f9831a;
-    public final TextPaint f9832b;
-    public final TextPaint f9833c;
+    public final Paint f9829a;
+    public final TextPaint f9830b;
+    public final TextPaint f9831c;
     public final Paint d;
     public final Paint e;
-    public final Paint f9834f;
+    public final Paint f9832f;
     public final yc h;
-    public uj0 f9835n;
-    public final StaticLayout f9836r;
-    public final float f9837s;
+    public uj0 f9833n;
+    public final StaticLayout f9834r;
+    public final float f9835s;
     public final float v;
-    public StaticLayout f9838w;
-    public float f9839x;
-    public float f9840y;
+    public StaticLayout f9836w;
+    public float f9837x;
+    public float f9838y;
 
     public t0(Context context) {
         this(context, LocaleController.getString(R.string.PreparingVideo));
@@ -61,28 +61,28 @@ public final class t0 extends View {
 
     public final void b(int i10, int i11, CharSequence charSequence) {
         float f7;
-        uj0 uj0Var = this.f9835n;
+        uj0 uj0Var = this.f9833n;
         if (uj0Var != null) {
             uj0Var.setCallback(null);
-            this.f9835n.C(true);
+            this.f9833n.C(true);
         }
         uj0 uj0Var2 = new uj0(i10, AndroidUtilities.dp(36.0f), AndroidUtilities.dp(36.0f));
-        this.f9835n = uj0Var2;
+        this.f9833n = uj0Var2;
         uj0Var2.setCallback(this);
-        this.f9835n.start();
-        StaticLayout staticLayout = new StaticLayout(charSequence, this.f9833c, AndroidUtilities.displaySize.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-        this.f9838w = staticLayout;
+        this.f9833n.start();
+        StaticLayout staticLayout = new StaticLayout(charSequence, this.f9831c, AndroidUtilities.displaySize.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+        this.f9836w = staticLayout;
         float f10 = 0.0f;
         if (staticLayout.getLineCount() > 0) {
-            f7 = this.f9838w.getLineWidth(0);
+            f7 = this.f9836w.getLineWidth(0);
         } else {
             f7 = 0.0f;
         }
-        this.f9839x = f7;
-        if (this.f9838w.getLineCount() > 0) {
-            f10 = this.f9838w.getLineLeft(0);
+        this.f9837x = f7;
+        if (this.f9836w.getLineCount() > 0) {
+            f10 = this.f9836w.getLineLeft(0);
         }
-        this.f9840y = f10;
+        this.f9838y = f10;
         this.G = false;
         invalidate();
         s0 s0Var = this.P;
@@ -115,17 +115,17 @@ public final class t0 extends View {
         }
         float d10 = this.I.d(f10, false);
         float f13 = 1.0f - d10;
-        Paint paint = this.f9831a;
+        Paint paint = this.f9829a;
         paint.setAlpha((int) (90.0f * f13 * d));
         Canvas canvas2 = canvas;
         canvas2.drawRect(0.0f, 0.0f, getWidth(), getHeight(), paint);
-        float max = Math.max(this.f9837s, AndroidUtilities.dp(54.0f)) + AndroidUtilities.dp(42.0f);
+        float max = Math.max(this.f9835s, AndroidUtilities.dp(54.0f)) + AndroidUtilities.dp(42.0f);
         int dp = AndroidUtilities.dp(111.0f);
-        StaticLayout staticLayout = this.f9836r;
+        StaticLayout staticLayout = this.f9834r;
         float height = staticLayout.getHeight() + dp;
         RectF rectF2 = this.K;
         rectF2.set((getWidth() - max) / 2.0f, (getHeight() - height) / 2.0f, (getWidth() + max) / 2.0f, (getHeight() + height) / 2.0f);
-        float dp2 = AndroidUtilities.dp(74.0f) + this.f9839x;
+        float dp2 = AndroidUtilities.dp(74.0f) + this.f9837x;
         float dp3 = AndroidUtilities.dp(48.0f);
         RectF rectF3 = this.L;
         rectF3.set((getWidth() - dp2) / 2.0f, (getHeight() - dp3) / 2.0f, (getWidth() + dp2) / 2.0f, (getHeight() + dp3) / 2.0f);
@@ -154,7 +154,7 @@ public final class t0 extends View {
             float centerX = rectF2.centerX();
             float dp4 = rectF2.top + AndroidUtilities.dp(48.0f);
             float dp5 = AndroidUtilities.dp(25.0f);
-            Paint paint3 = this.f9834f;
+            Paint paint3 = this.f9832f;
             paint3.setAlpha((int) (51.0f * f14));
             canvas2.drawCircle(centerX, dp4, dp5, paint3);
             RectF rectF6 = AndroidUtilities.rectTmp;
@@ -176,7 +176,7 @@ public final class t0 extends View {
             canvas2.restore();
             canvas2.save();
             canvas2.translate((rectF2.left + AndroidUtilities.dp(21.0f)) - this.v, (rectF2.bottom - AndroidUtilities.dp(18.0f)) - staticLayout.getHeight());
-            this.f9832b.setAlpha(i11);
+            this.f9830b.setAlpha(i11);
             staticLayout.draw(canvas2);
             canvas2.restore();
         } else {
@@ -185,17 +185,17 @@ public final class t0 extends View {
         }
         if (d10 > 0.0f) {
             float f15 = d10 * d;
-            uj0 uj0Var = this.f9835n;
+            uj0 uj0Var = this.f9833n;
             if (uj0Var != null) {
                 uj0Var.setAlpha((int) (f15 * f12));
-                this.f9835n.setBounds((int) (rectF.left + AndroidUtilities.dp(9.0f)), (int) (rectF.top + AndroidUtilities.dp(6.0f)), (int) (rectF.left + AndroidUtilities.dp(45.0f)), (int) (rectF.top + AndroidUtilities.dp(f11)));
-                this.f9835n.draw(canvas2);
+                this.f9833n.setBounds((int) (rectF.left + AndroidUtilities.dp(9.0f)), (int) (rectF.top + AndroidUtilities.dp(6.0f)), (int) (rectF.left + AndroidUtilities.dp(45.0f)), (int) (rectF.top + AndroidUtilities.dp(f11)));
+                this.f9833n.draw(canvas2);
             }
-            if (this.f9838w != null) {
+            if (this.f9836w != null) {
                 canvas2.save();
-                canvas2.translate((rectF.left + AndroidUtilities.dp(52.0f)) - this.f9840y, rectF.centerY() - (this.f9838w.getHeight() / 2.0f));
-                this.f9833c.setAlpha((int) (f15 * f12));
-                this.f9838w.draw(canvas2);
+                canvas2.translate((rectF.left + AndroidUtilities.dp(52.0f)) - this.f9838y, rectF.centerY() - (this.f9836w.getHeight() / 2.0f));
+                this.f9831c.setAlpha((int) (f15 * f12));
+                this.f9836w.draw(canvas2);
                 canvas2.restore();
             }
         }
@@ -216,7 +216,7 @@ public final class t0 extends View {
             return true;
         }
         if (motionEvent.getAction() == 1) {
-            if (ycVar.f32600i) {
+            if (ycVar.f32598i) {
                 if (contains) {
                     if (this.G) {
                         Runnable runnable = this.Q;
@@ -248,7 +248,7 @@ public final class t0 extends View {
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f9835n && !super.verifyDrawable(drawable)) {
+        if (drawable != this.f9833n && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;
@@ -257,17 +257,17 @@ public final class t0 extends View {
     public t0(Context context, String str) {
         super(context);
         Paint paint = new Paint(1);
-        this.f9831a = paint;
+        this.f9829a = paint;
         TextPaint textPaint = new TextPaint(1);
-        this.f9832b = textPaint;
+        this.f9830b = textPaint;
         TextPaint textPaint2 = new TextPaint(1);
-        this.f9833c = textPaint2;
+        this.f9831c = textPaint2;
         Paint paint2 = new Paint(1);
         this.d = paint2;
         Paint paint3 = new Paint(1);
         this.e = paint3;
         Paint paint4 = new Paint(1);
-        this.f9834f = paint4;
+        this.f9832f = paint4;
         this.h = new yc(this);
         this.E = false;
         this.F = new org.telegram.ui.Components.f6(0.0f, this, 0L, 350L, bs.h);
@@ -296,8 +296,8 @@ public final class t0 extends View {
         textPaint.setTextSize(AndroidUtilities.dp(14.0f));
         textPaint2.setTextSize(AndroidUtilities.dpf2(14.66f));
         StaticLayout staticLayout = new StaticLayout(str, textPaint, AndroidUtilities.displaySize.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-        this.f9836r = staticLayout;
-        this.f9837s = staticLayout.getLineCount() > 0 ? staticLayout.getLineWidth(0) : 0.0f;
+        this.f9834r = staticLayout;
+        this.f9835s = staticLayout.getLineCount() > 0 ? staticLayout.getLineWidth(0) : 0.0f;
         this.v = staticLayout.getLineCount() > 0 ? staticLayout.getLineLeft(0) : 0.0f;
         this.E = true;
         invalidate();

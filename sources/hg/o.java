@@ -19,16 +19,16 @@ import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Components.g61;
 import org.telegram.ui.Components.js0;
 import org.telegram.ui.Components.t61;
-import org.telegram.ui.ig0;
+import org.telegram.ui.jg0;
 import yh.l2;
 import yh.m2;
 public final class o implements Utilities.Callback2 {
-    public final int f12001a;
-    public final Object f12002b;
+    public final int f11999a;
+    public final Object f12000b;
 
     public o(Object obj, int i10) {
-        this.f12001a = i10;
-        this.f12002b = obj;
+        this.f11999a = i10;
+        this.f12000b = obj;
     }
 
     private final void a(Object obj, Object obj2) {
@@ -36,12 +36,12 @@ public final class o implements Utilities.Callback2 {
         boolean z11;
         boolean z12;
         boolean z13;
-        final org.telegram.ui.web.k kVar = (org.telegram.ui.web.k) this.f12002b;
+        final org.telegram.ui.web.k kVar = (org.telegram.ui.web.k) this.f12000b;
         ArrayList arrayList = (ArrayList) obj;
         t61 t61Var = (t61) obj2;
-        org.telegram.ui.web.i iVar = kVar.f42696y;
-        ArrayList arrayList2 = kVar.f42695x;
-        if (!kVar.f42688b && arrayList2.isEmpty()) {
+        org.telegram.ui.web.i iVar = kVar.f42697y;
+        ArrayList arrayList2 = kVar.f42696x;
+        if (!kVar.f42689b && arrayList2.isEmpty()) {
             arrayList.add(g61.k(kVar.d));
         }
         SharedPreferences sharedPreferences = kVar.getContext().getSharedPreferences("webhistory", 0);
@@ -54,10 +54,10 @@ public final class o implements Utilities.Callback2 {
                 for (int i10 = 0; i10 < jSONArray.length(); i10++) {
                     JSONObject jSONObject = jSONArray.getJSONObject(i10);
                     org.telegram.ui.web.j jVar = new org.telegram.ui.web.j(jSONObject.optString("name"), jSONObject.optLong("usage", System.currentTimeMillis()));
-                    jVar.f42677c = jSONObject.optDouble("rank", 0.0d);
+                    jVar.f42678c = jSONObject.optDouble("rank", 0.0d);
                     arrayList4.add(jVar);
                 }
-                Collections.sort(arrayList4, new ig0(12));
+                Collections.sort(arrayList4, new jg0(12));
                 int size = arrayList4.size();
                 int i11 = 0;
                 while (i11 < size) {
@@ -67,7 +67,7 @@ public final class o implements Utilities.Callback2 {
                     if (arrayList3.size() >= 20) {
                         break;
                     }
-                    arrayList3.add(jVar2.f42675a);
+                    arrayList3.add(jVar2.f42676a);
                 }
             } catch (Exception unused) {
             }
@@ -110,13 +110,13 @@ public final class o implements Utilities.Callback2 {
                     }
                 }
             };
-            int i13 = org.telegram.ui.web.d.f42612a;
+            int i13 = org.telegram.ui.web.d.f42613a;
             g61 J = g61.J(org.telegram.ui.web.d.class);
-            J.f26512z = 1;
-            J.f26499l = str;
+            J.f26510z = 1;
+            J.f26497l = str;
             J.D = onClickListener;
-            J.f26504q = z12;
-            J.f26505r = z13;
+            J.f26502q = z12;
+            J.f26503r = z13;
             J.G = Boolean.TRUE;
             J.H = kVar;
             arrayList.add(J);
@@ -156,34 +156,34 @@ public final class o implements Utilities.Callback2 {
                         }
                     }
                 };
-                int i15 = org.telegram.ui.web.d.f42612a;
+                int i15 = org.telegram.ui.web.d.f42613a;
                 g61 J2 = g61.J(org.telegram.ui.web.d.class);
-                J2.f26512z = 0;
-                J2.f26499l = str2;
+                J2.f26510z = 0;
+                J2.f26497l = str2;
                 J2.D = onClickListener2;
-                J2.f26504q = z10;
-                J2.f26505r = z11;
+                J2.f26502q = z10;
+                J2.f26503r = z11;
                 J2.G = Boolean.TRUE;
                 J2.H = kVar;
                 arrayList.add(J2);
             }
         }
         if (iVar != null) {
-            ArrayList arrayList5 = iVar.f42664a;
+            ArrayList arrayList5 = iVar.f42665a;
             if (!arrayList5.isEmpty()) {
                 arrayList.add(g61.q(LocaleController.getString(R.string.WebSectionBookmarks)));
                 for (int i16 = 0; i16 < arrayList5.size(); i16++) {
                     MessageObject messageObject = (MessageObject) arrayList5.get(i16);
                     if (!TextUtils.isEmpty(org.telegram.ui.web.k.a(messageObject))) {
-                        int i17 = org.telegram.ui.web.g.f42641a;
+                        int i17 = org.telegram.ui.web.g.f42642a;
                         g61 J3 = g61.J(org.telegram.ui.web.g.class);
-                        J3.f26512z = 3;
-                        J3.f26504q = true;
+                        J3.f26510z = 3;
+                        J3.f26502q = true;
                         J3.H = messageObject;
                         arrayList.add(J3);
                     }
                 }
-                if (!iVar.f42667f) {
+                if (!iVar.f42668f) {
                     arrayList.add(g61.o(arrayList.size(), 32));
                     arrayList.add(g61.o(arrayList.size(), 32));
                     arrayList.add(g61.o(arrayList.size(), 32));
@@ -194,12 +194,12 @@ public final class o implements Utilities.Callback2 {
 
     private final void b(Object obj, Object obj2) {
         t61 t61Var = (t61) obj2;
-        ((ArrayList) obj).add(g61.j(-1, ((yh.v) this.f12002b).Z));
+        ((ArrayList) obj).add(g61.j(-1, ((yh.v) this.f12000b).Z));
     }
 
     private final void c(Object obj, Object obj2) {
         t61 t61Var = (t61) obj2;
-        ((ArrayList) obj).add(g61.j(-1, ((yh.c0) this.f12002b).Z));
+        ((ArrayList) obj).add(g61.j(-1, ((yh.c0) this.f12000b).Z));
     }
 
     private final void d(Object obj, Object obj2) {
@@ -208,20 +208,20 @@ public final class o implements Utilities.Callback2 {
         int i11;
         boolean z10;
         int i12;
-        l2 l2Var = (l2) this.f12002b;
+        l2 l2Var = (l2) this.f12000b;
         ArrayList arrayList = (ArrayList) obj;
         t61 t61Var = (t61) obj2;
-        js0 js0Var = l2Var.f50358a;
+        js0 js0Var = l2Var.f50360a;
         y9 y9Var = l2Var.e;
         if (y9Var != null) {
-            if ((!y9Var.e || y9Var.f2495g != 783) && y9Var.f2499l.size() <= 0) {
+            if ((!y9Var.e || y9Var.f2500g != 783) && y9Var.f2504l.size() <= 0) {
                 y9 y9Var2 = l2Var.e;
-                if (y9Var2.f2497j && !y9Var2.f2496i) {
+                if (y9Var2.f2502j && !y9Var2.f2501i) {
                     return;
                 }
             }
             y9 y9Var3 = l2Var.e;
-            if (y9Var3 != null && (i12 = y9Var3.f2501n) != 0) {
+            if (y9Var3 != null && (i12 = y9Var3.f2506n) != 0) {
                 i10 = Math.min(3, i12);
             } else {
                 i10 = 3;
@@ -229,7 +229,7 @@ public final class o implements Utilities.Callback2 {
             int max = Math.max(1, i10);
             y9 y9Var4 = l2Var.e;
             if (y9Var4 != null) {
-                ArrayList arrayList2 = y9Var4.f2499l;
+                ArrayList arrayList2 = y9Var4.f2504l;
                 int size = arrayList2.size();
                 int i13 = 3;
                 int i14 = 0;
@@ -238,15 +238,15 @@ public final class o implements Utilities.Callback2 {
                     i14++;
                     TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj3;
                     boolean z11 = l2Var.d;
-                    int i15 = yh.f1.f50229a;
+                    int i15 = yh.f1.f50231a;
                     g61 J = g61.J(yh.f1.class);
-                    J.f26508u = 1;
-                    J.f26512z = 0;
+                    J.f26506u = 1;
+                    J.f26510z = 0;
                     J.G = savedStarGift;
-                    J.f26504q = true;
-                    J.f26494f = false;
-                    J.f26505r = z11;
-                    if (l2Var.f50362n && (l2Var.e != js0Var.d || savedStarGift.pinned_to_top)) {
+                    J.f26502q = true;
+                    J.f26492f = false;
+                    J.f26503r = z11;
+                    if (l2Var.f50364n && (l2Var.e != js0Var.d || savedStarGift.pinned_to_top)) {
                         z10 = true;
                     } else {
                         z10 = false;
@@ -259,7 +259,7 @@ public final class o implements Utilities.Callback2 {
                     }
                 }
                 y9 y9Var5 = l2Var.e;
-                if (y9Var5.f2496i || !y9Var5.f2497j) {
+                if (y9Var5.f2501i || !y9Var5.f2502j) {
                     int i16 = 0;
                     while (true) {
                         if (i13 <= 0) {
@@ -272,26 +272,26 @@ public final class o implements Utilities.Callback2 {
                         }
                         i16++;
                         g61 o10 = g61.o(i16, 34);
-                        o10.f26508u = 1;
+                        o10.f26506u = 1;
                         arrayList.add(o10);
                     }
                 }
             }
             if (js0Var.d == l2Var.e) {
                 arrayList.add(g61.C(AndroidUtilities.dp(20.0f)));
-                if (js0Var.f50458c == UserConfig.getInstance(l2Var.f50359b).getClientUserId()) {
-                    int w02 = h6.w0(h6.f21394z6, l2Var.f50360c);
+                if (js0Var.f50460c == UserConfig.getInstance(l2Var.f50361b).getClientUserId()) {
+                    int w02 = h6.w0(h6.f21392z6, l2Var.f50362c);
                     String string = LocaleController.getString(R.string.ProfileGiftsInfo);
                     int dp = AndroidUtilities.dp(24.0f);
-                    int i17 = m2.f50396a;
+                    int i17 = m2.f50398a;
                     g61 J2 = g61.J(m2.class);
-                    J2.f26499l = string;
-                    J2.f26512z = 17;
+                    J2.f26497l = string;
+                    J2.f26510z = 17;
                     J2.B = w02;
                     J2.A = 14.0f;
-                    J2.f26496i = dp;
-                    J2.f26498k = 0;
-                    J2.f26504q = false;
+                    J2.f26494i = dp;
+                    J2.f26496k = 0;
+                    J2.f26502q = false;
                     arrayList.add(J2);
                 }
                 arrayList.add(g61.C(AndroidUtilities.dp(82.0f)));
@@ -306,7 +306,7 @@ public final class o implements Utilities.Callback2 {
                 }
                 arrayList.add(0, g61.C(AndroidUtilities.dp(f7)));
             }
-            if (l2Var.f50361f.getSpanCount() != max) {
+            if (l2Var.f50363f.getSpanCount() != max) {
                 AndroidUtilities.runOnUIThread(new yh.r1(l2Var, max, 1));
             }
             js0Var.o();

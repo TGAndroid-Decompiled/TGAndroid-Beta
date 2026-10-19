@@ -1,49 +1,79 @@
 package ai;
 
-import org.telegram.messenger.AndroidUtilities;
-public final class d4 implements Runnable {
-    public final int f1131a;
-    public final k7 f1132b;
-    public final String f1133c;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+public final class d4 implements Utilities.Callback {
+    public final int f1134a;
+    public final l7 f1135b;
 
-    public d4(k7 k7Var, String str, int i10) {
-        this.f1131a = i10;
-        this.f1132b = k7Var;
-        this.f1133c = str;
+    public d4(l7 l7Var, int i10) {
+        this.f1134a = i10;
+        this.f1135b = l7Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f1131a) {
+    public final void run(Object obj) {
+        TLRPC.Message message;
+        switch (this.f1134a) {
             case 0:
-                k7.a0(this.f1132b, this.f1133c);
+                l7 l7Var = this.f1135b;
+                l7Var.getClass();
+                if (((Boolean) obj).booleanValue()) {
+                    l7Var.skipDismissAnimation();
+                }
+                l7Var.dismiss();
                 return;
             case 1:
-                k7.v0(this.f1132b, this.f1133c);
+                this.f1135b.dismiss(((Boolean) obj).booleanValue());
                 return;
             case 2:
-                k7.n0(this.f1132b, this.f1133c);
-                return;
-            case 3:
-                k7.I0(this.f1132b, this.f1133c);
-                return;
-            case 4:
-                k7.i1(this.f1132b, this.f1133c);
-                return;
-            case 5:
-                k7.H0(this.f1132b, this.f1133c);
-                return;
-            case 6:
-                k7.R(this.f1132b, this.f1133c);
-                return;
-            case 7:
-                AndroidUtilities.addToClipboard(this.f1133c);
-                org.telegram.ui.Components.qc k10 = this.f1132b.getBulletinFactory().k(false);
-                k10.f29606t = true;
-                k10.j();
+                TL_stars.starGiftUpgradePreview stargiftupgradepreview = (TL_stars.starGiftUpgradePreview) obj;
+                l7 l7Var2 = this.f1135b;
+                l7Var2.getClass();
+                if (stargiftupgradepreview != null) {
+                    l7Var2.f1745o1 = stargiftupgradepreview.sample_attributes;
+                    l7Var2.f1747p1 = stargiftupgradepreview.prices;
+                    l7Var2.f1749q1 = stargiftupgradepreview.next_prices;
+                    l7Var2.B2();
+                    return;
+                }
                 return;
             default:
-                k7.l0(this.f1132b, this.f1133c);
+                TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj;
+                l7 l7Var3 = this.f1135b;
+                l7Var3.N0 = false;
+                l7Var3.O0 = true;
+                if (savedStarGift != null) {
+                    l7Var3.f1741m1 = Boolean.valueOf(savedStarGift.unsaved);
+                    MessageObject messageObject = l7Var3.H0;
+                    if (messageObject != null && (message = messageObject.messageOwner) != null) {
+                        TLRPC.MessageAction messageAction = message.action;
+                        if (messageAction instanceof TLRPC.TL_messageActionStarGiftUnique) {
+                            TLRPC.TL_messageActionStarGiftUnique tL_messageActionStarGiftUnique = (TLRPC.TL_messageActionStarGiftUnique) messageAction;
+                            boolean z10 = tL_messageActionStarGiftUnique.saved;
+                            boolean z11 = !savedStarGift.unsaved;
+                            if (z10 != z11) {
+                                tL_messageActionStarGiftUnique.saved = z11;
+                            } else {
+                                return;
+                            }
+                        } else if (messageAction instanceof TLRPC.TL_messageActionStarGift) {
+                            TLRPC.TL_messageActionStarGift tL_messageActionStarGift = (TLRPC.TL_messageActionStarGift) messageAction;
+                            boolean z12 = tL_messageActionStarGift.saved;
+                            boolean z13 = !savedStarGift.unsaved;
+                            if (z12 != z13) {
+                                tL_messageActionStarGift.saved = z13;
+                            } else {
+                                return;
+                            }
+                        }
+                        l7Var3.L2(messageObject, null);
+                        return;
+                    }
+                    return;
+                }
                 return;
         }
     }

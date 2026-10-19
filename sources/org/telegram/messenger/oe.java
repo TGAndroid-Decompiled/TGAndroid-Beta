@@ -1,33 +1,28 @@
 package org.telegram.messenger;
-
-import java.util.ArrayList;
 public final class oe implements Runnable {
-    public final int f19172a = 0;
-    public final MessagesStorage f19173b;
-    public final boolean f19174c;
-    public final ArrayList d;
+    public final int f19191a;
+    public final MessagesStorage f19192b;
+    public final long f19193c;
+    public final long d;
+    public final String e;
 
-    public oe(MessagesStorage messagesStorage, ArrayList arrayList, boolean z10) {
-        this.f19173b = messagesStorage;
-        this.d = arrayList;
-        this.f19174c = z10;
+    public oe(MessagesStorage messagesStorage, long j10, long j11, String str, int i10) {
+        this.f19191a = i10;
+        this.f19192b = messagesStorage;
+        this.f19193c = j10;
+        this.d = j11;
+        this.e = str;
     }
 
     @Override
     public final void run() {
-        switch (this.f19172a) {
+        switch (this.f19191a) {
             case 0:
-                this.f19173b.lambda$putEphemeralMessages$204(this.d, this.f19174c);
+                this.f19192b.lambda$updateRanksInLastMessages$45(this.f19193c, this.d, this.e);
                 return;
             default:
-                this.f19173b.lambda$putContacts$146(this.f19174c, this.d);
+                this.f19192b.lambda$updateRanksInLastMessages$46(this.f19193c, this.d, this.e);
                 return;
         }
-    }
-
-    public oe(MessagesStorage messagesStorage, boolean z10, ArrayList arrayList) {
-        this.f19173b = messagesStorage;
-        this.f19174c = z10;
-        this.d = arrayList;
     }
 }

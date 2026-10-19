@@ -1,23 +1,23 @@
 package org.telegram.ui;
 public final class fi implements org.telegram.ui.Components.oh0 {
-    public boolean f37014a = true;
-    public final org.telegram.ui.Components.cl0 f37015b;
+    public boolean f37010a = true;
+    public final org.telegram.ui.Components.cl0 f37011b;
 
     public fi(org.telegram.ui.Components.cl0 cl0Var) {
-        this.f37015b = cl0Var;
+        this.f37011b = cl0Var;
     }
 
     @Override
     public final void a(float f7, float f10) {
         int i10 = (f7 > 0.0f ? 1 : (f7 == 0.0f ? 0 : -1));
-        org.telegram.ui.Components.cl0 cl0Var = this.f37015b;
-        if (i10 == 0 && !this.f37014a) {
+        org.telegram.ui.Components.cl0 cl0Var = this.f37011b;
+        if (i10 == 0 && !this.f37010a) {
             cl0Var.r(false);
-            this.f37014a = true;
-        } else if (f7 == 1.0f && this.f37014a) {
+            this.f37010a = true;
+        } else if (f7 == 1.0f && this.f37010a) {
             cl0Var.setAlpha(1.0f - f10);
             if (f10 == 1.0f) {
-                this.f37014a = false;
+                this.f37010a = false;
             }
         }
     }

@@ -23,23 +23,23 @@ public final class n extends pg.b {
         boolean z10 = this.d;
         tw twVar = this.e;
         if (z10) {
-            arrayList = twVar.f5900y;
+            arrayList = twVar.f5898y;
         } else {
-            arrayList = twVar.f5898x;
+            arrayList = twVar.f5896x;
         }
         return arrayList.size();
     }
 
     @Override
     public final void v(s4.b1 b1Var, int i10) {
-        q qVar = (q) b1Var.f45910a;
-        qVar.f5740b = i10;
+        q qVar = (q) b1Var.f45912a;
+        qVar.f5738b = i10;
         boolean z10 = this.d;
         tw twVar = this.e;
         if (z10) {
-            qVar.setDialogId(((o) twVar.f5900y.get(i10)).f5682c);
+            qVar.setDialogId(((o) twVar.f5898y.get(i10)).f5680c);
         } else {
-            qVar.setDialogId(((o) twVar.f5898x.get(i10)).f5682c);
+            qVar.setDialogId(((o) twVar.f5896x.get(i10)).f5680c);
         }
     }
 

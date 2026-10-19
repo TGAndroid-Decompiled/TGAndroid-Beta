@@ -16,17 +16,17 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.TLRPC;
 public final class ly0 extends hm0 {
-    public final Context f28334c;
+    public final Context f28332c;
     public int d;
     public final SparseArray e = new SparseArray();
-    public final SparseArray f28335f = new SparseArray();
+    public final SparseArray f28333f = new SparseArray();
     public int h;
-    public int f28336n;
-    public final py0 f28337r;
+    public int f28334n;
+    public final py0 f28335r;
 
     public ly0(py0 py0Var, Context context) {
-        this.f28337r = py0Var;
-        this.f28334c = context;
+        this.f28335r = py0Var;
+        this.f28332c = context;
     }
 
     @Override
@@ -41,7 +41,7 @@ public final class ly0 extends hm0 {
 
     @Override
     public final int j(int i10) {
-        py0 py0Var = this.f28337r;
+        py0 py0Var = this.f28335r;
         if (py0Var.W != null) {
             Object obj = this.e.get(i10);
             if (obj != null) {
@@ -64,10 +64,10 @@ public final class ly0 extends hm0 {
         List list;
         int i10;
         int i11;
-        py0 py0Var = this.f28337r;
+        py0 py0Var = this.f28335r;
         int i12 = 0;
         if (py0Var.W != null) {
-            int measuredWidth = py0Var.f29420c.getMeasuredWidth();
+            int measuredWidth = py0Var.f29418c.getMeasuredWidth();
             if (measuredWidth == 0) {
                 measuredWidth = AndroidUtilities.displaySize.x;
             }
@@ -76,10 +76,10 @@ public final class ly0 extends hm0 {
             py0Var.M.y1(dp);
             SparseArray sparseArray = this.e;
             sparseArray.clear();
-            SparseArray sparseArray2 = this.f28335f;
+            SparseArray sparseArray2 = this.f28333f;
             sparseArray2.clear();
             this.h = 0;
-            this.f28336n = 0;
+            this.f28334n = 0;
             for (int i13 = 0; i13 < py0Var.W.size(); i13++) {
                 TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) py0Var.W.get(i13);
                 if (stickerSetCovered instanceof TLRPC.TL_stickerSetFullCovered) {
@@ -91,7 +91,7 @@ public final class ly0 extends hm0 {
                     list = list.subList(0, Math.min(list.size(), this.d));
                 }
                 if (list != null && (!list.isEmpty() || stickerSetCovered.cover != null)) {
-                    this.f28336n++;
+                    this.f28334n++;
                     sparseArray2.put(this.h, stickerSetCovered);
                     int i14 = this.h;
                     this.h = i14 + 1;
@@ -142,7 +142,7 @@ public final class ly0 extends hm0 {
 
     @Override
     public final void u(int i10) {
-        ArrayList arrayList = this.f28337r.Y;
+        ArrayList arrayList = this.f28335r.Y;
         if (arrayList != null) {
             this.h = arrayList.size();
         }
@@ -151,11 +151,11 @@ public final class ly0 extends hm0 {
 
     @Override
     public final void v(s4.b1 b1Var, int i10) {
-        View view = b1Var.f45910a;
-        py0 py0Var = this.f28337r;
+        View view = b1Var.f45912a;
+        py0 py0Var = this.f28335r;
         ArrayList arrayList = py0Var.W;
         if (arrayList != null) {
-            int i11 = b1Var.f45913f;
+            int i11 = b1Var.f45915f;
             SparseArray sparseArray = this.e;
             if (i11 != 0) {
                 if (i11 != 1) {
@@ -168,14 +168,14 @@ public final class ly0 extends hm0 {
                 ((org.telegram.ui.Cells.k3) view).setHeight(AndroidUtilities.dp(82.0f));
                 return;
             }
-            ((org.telegram.ui.Cells.e8) view).d((TLRPC.Document) sparseArray.get(i10), null, this.f28335f.get(i10), null, false, false);
+            ((org.telegram.ui.Cells.e8) view).d((TLRPC.Document) sparseArray.get(i10), null, this.f28333f.get(i10), null, false, false);
         } else if (py0Var.X != null) {
             ((org.telegram.ui.Cells.e8) view).setSticker((SendMessagesHelper.ImportingSticker) py0Var.Y.get(i10));
-        } else if (b1Var.f45913f != 3) {
+        } else if (b1Var.f45915f != 3) {
             org.telegram.ui.Cells.e8 e8Var = (org.telegram.ui.Cells.e8) view;
             TLRPC.TL_messages_stickerSet tL_messages_stickerSet = py0Var.S;
             if (tL_messages_stickerSet != null) {
-                e8Var.d(tL_messages_stickerSet.documents.get(i10), null, py0Var.S, null, py0Var.f29427h0, py0Var.R);
+                e8Var.d(tL_messages_stickerSet.documents.get(i10), null, py0Var.S, null, py0Var.f29425h0, py0Var.R);
                 e8Var.J.setOnClickListener(new ca(25, this, e8Var));
             }
         }
@@ -188,8 +188,8 @@ public final class ly0 extends hm0 {
         FrameLayout frameLayout2;
         org.telegram.ui.ActionBar.d6 d6Var2;
         org.telegram.ui.ActionBar.d6 d6Var3;
-        py0 py0Var = this.f28337r;
-        Context context = this.f28334c;
+        py0 py0Var = this.f28335r;
+        Context context = this.f28332c;
         if (i10 == 0) {
             d6Var = ((org.telegram.ui.ActionBar.f3) py0Var).resourcesProvider;
             ky0 ky0Var = new ky0(this, context, d6Var);
@@ -199,7 +199,7 @@ public final class ly0 extends hm0 {
             if (i10 != 1) {
                 if (i10 == 2) {
                     d6Var2 = ((org.telegram.ui.ActionBar.f3) py0Var).resourcesProvider;
-                    frameLayout2 = new org.telegram.ui.Cells.r3(8, this.f28334c, d6Var2, true, false);
+                    frameLayout2 = new org.telegram.ui.Cells.r3(8, this.f28332c, d6Var2, true, false);
                 } else if (i10 == 3) {
                     d6Var3 = ((org.telegram.ui.ActionBar.f3) py0Var).resourcesProvider;
                     FrameLayout frameLayout3 = new FrameLayout(context);

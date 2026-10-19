@@ -41,9 +41,9 @@ public final class dg1 extends org.telegram.ui.Components.w61 {
             }
             presentFragment(new h(0));
             globalMainSettings.edit().putBoolean("channel_intro", true).apply();
-        } else if (g61Var.f44286a == 12) {
+        } else if (g61Var.f44288a == 12) {
             finishFragment();
-            zf1Var.run(getMessagesController().getChat(Long.valueOf(-g61Var.f26510x)));
+            zf1Var.run(getMessagesController().getChat(Long.valueOf(-g61Var.f26508x)));
         }
     }
 
@@ -62,8 +62,8 @@ public final class dg1 extends org.telegram.ui.Components.w61 {
         this.f36389n.setContentDescription(LocaleController.getString(R.string.Search));
         this.f36389n.setVisibility(8);
         super.createView(context);
-        this.f32027a.p1();
-        this.actionBar.setAdaptiveBackground(this.f32027a);
+        this.f32025a.p1();
+        this.actionBar.setAdaptiveBackground(this.f32025a);
         return this.fragmentView;
     }
 
@@ -72,8 +72,8 @@ public final class dg1 extends org.telegram.ui.Components.w61 {
         super.onResume();
         if (this.f36390r) {
             bg1 bg1Var = this.d;
-            bg1Var.f35652c = false;
-            bg1Var.f35653f.add(new cg1(this, 0));
+            bg1Var.f35627c = false;
+            bg1Var.f35628f.add(new cg1(this, 0));
             this.f36390r = false;
         }
     }

@@ -31,9 +31,9 @@ public final class v extends md.i implements td.p {
         kd.c cVar = (kd.c) obj2;
         switch (this.f468a) {
             case 0:
-                return ((v) create(c0Var, cVar)).invokeSuspend(id.i.f12777a);
+                return ((v) create(c0Var, cVar)).invokeSuspend(id.i.f12775a);
             default:
-                return ((v) create(c0Var, cVar)).invokeSuspend(id.i.f12777a);
+                return ((v) create(c0Var, cVar)).invokeSuspend(id.i.f12775a);
         }
     }
 
@@ -41,7 +41,7 @@ public final class v extends md.i implements td.p {
     public final Object invokeSuspend(Object obj) {
         switch (this.f468a) {
             case 0:
-                ld.a aVar = ld.a.f16001a;
+                ld.a aVar = ld.a.f15999a;
                 int i10 = this.f469b;
                 if (i10 != 0) {
                     if (i10 == 1) {
@@ -59,9 +59,9 @@ public final class v extends md.i implements td.p {
                         return aVar;
                     }
                 }
-                return id.i.f12777a;
+                return id.i.f12775a;
             default:
-                ld.a aVar2 = ld.a.f16001a;
+                ld.a aVar2 = ld.a.f15999a;
                 int i11 = this.f469b;
                 if (i11 != 0) {
                     if (i11 == 1) {
@@ -71,7 +71,7 @@ public final class v extends md.i implements td.p {
                     }
                 } else {
                     i8.b(obj);
-                    bb.c cVar = bb.c.f4238a;
+                    bb.c cVar = bb.c.f4236a;
                     this.f469b = 1;
                     obj = cVar.b(this);
                     if (obj == aVar2) {
@@ -86,16 +86,16 @@ public final class v extends md.i implements td.p {
                     if (Log.isLoggable("FirebaseCrashlytics", 3)) {
                         Log.d("FirebaseCrashlytics", str2, null);
                     }
-                    x9.i iVar = jVar.f49681b;
+                    x9.i iVar = jVar.f49683b;
                     synchronized (iVar) {
-                        if (!Objects.equals(iVar.f49679c, str)) {
-                            x9.i.a(iVar.f49677a, iVar.f49678b, str);
-                            iVar.f49679c = str;
+                        if (!Objects.equals(iVar.f49681c, str)) {
+                            x9.i.a(iVar.f49679a, iVar.f49680b, str);
+                            iVar.f49681c = str;
                         }
                     }
-                    Log.d("SessionLifecycleClient", "Notified " + bb.d.f4240a + " of new session " + str);
+                    Log.d("SessionLifecycleClient", "Notified " + bb.d.f4238a + " of new session " + str);
                 }
-                return id.i.f12777a;
+                return id.i.f12775a;
         }
     }
 }

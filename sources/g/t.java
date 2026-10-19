@@ -25,12 +25,12 @@ public abstract class t extends androidx.activity.n {
         r rVar = (r) c();
         rVar.k();
         ((ViewGroup) rVar.J.findViewById(16908290)).addView(view, layoutParams);
-        rVar.h.a(rVar.f10710f.getCallback());
+        rVar.h.a(rVar.f10708f.getCallback());
     }
 
     public final g c() {
         if (this.d == null) {
-            int i10 = g.f10675a;
+            int i10 = g.f10673a;
             this.d = new r(this, this);
         }
         return this.d;
@@ -45,19 +45,19 @@ public abstract class t extends androidx.activity.n {
         super.dismiss();
         r rVar = (r) c();
         t tVar = rVar.d;
-        if (rVar.f10713h0) {
-            rVar.f10710f.getDecorView().removeCallbacks(rVar.f10715j0);
+        if (rVar.f10711h0) {
+            rVar.f10708f.getDecorView().removeCallbacks(rVar.f10713j0);
         }
         rVar.Z = true;
-        if (rVar.f10706b0 != -100) {
+        if (rVar.f10704b0 != -100) {
             t tVar2 = rVar.d;
         }
-        r.f10702q0.remove(rVar.d.getClass().getName());
-        n nVar = rVar.f10711f0;
+        r.f10700q0.remove(rVar.d.getClass().getName());
+        n nVar = rVar.f10709f0;
         if (nVar != null) {
             nVar.c();
         }
-        n nVar2 = rVar.f10712g0;
+        n nVar2 = rVar.f10710g0;
         if (nVar2 != null) {
             nVar2.c();
         }
@@ -72,13 +72,13 @@ public abstract class t extends androidx.activity.n {
     public final View findViewById(int i10) {
         r rVar = (r) c();
         rVar.k();
-        return rVar.f10710f.findViewById(i10);
+        return rVar.f10708f.findViewById(i10);
     }
 
     @Override
     public final void invalidateOptionsMenu() {
         r rVar = (r) c();
-        if (rVar.f10718n != null) {
+        if (rVar.f10716n != null) {
             rVar.r().getClass();
             rVar.s(0);
         }
@@ -102,7 +102,7 @@ public abstract class t extends androidx.activity.n {
         cc.d dVar;
         super.onStop();
         a0 r10 = ((r) c()).r();
-        if (r10 != null && (dVar = r10.f10636s) != null) {
+        if (r10 != null && (dVar = r10.f10634s) != null) {
             dVar.a();
         }
     }
@@ -114,30 +114,30 @@ public abstract class t extends androidx.activity.n {
         ViewGroup viewGroup = (ViewGroup) rVar.J.findViewById(16908290);
         viewGroup.removeAllViews();
         LayoutInflater.from(rVar.e).inflate(i10, viewGroup);
-        rVar.h.a(rVar.f10710f.getCallback());
+        rVar.h.a(rVar.f10708f.getCallback());
     }
 
     @Override
     public void setTitle(CharSequence charSequence) {
         super.setTitle(charSequence);
         r rVar = (r) c();
-        rVar.f10722r = charSequence;
-        k1 k1Var = rVar.f10723s;
+        rVar.f10720r = charSequence;
+        k1 k1Var = rVar.f10721s;
         if (k1Var != null) {
             k1Var.setWindowTitle(charSequence);
             return;
         }
-        a0 a0Var = rVar.f10718n;
+        a0 a0Var = rVar.f10716n;
         if (a0Var != null) {
             o3 o3Var = (o3) a0Var.e;
-            if (o3Var.f16281g) {
+            if (o3Var.f16279g) {
                 return;
             }
-            Toolbar toolbar = o3Var.f16277a;
+            Toolbar toolbar = o3Var.f16275a;
             o3Var.h = charSequence;
-            if ((o3Var.f16278b & 8) != 0) {
+            if ((o3Var.f16276b & 8) != 0) {
                 toolbar.setTitle(charSequence);
-                if (o3Var.f16281g) {
+                if (o3Var.f16279g) {
                     i0.k(toolbar.getRootView(), charSequence);
                     return;
                 }
@@ -158,7 +158,7 @@ public abstract class t extends androidx.activity.n {
         ViewGroup viewGroup = (ViewGroup) rVar.J.findViewById(16908290);
         viewGroup.removeAllViews();
         viewGroup.addView(view);
-        rVar.h.a(rVar.f10710f.getCallback());
+        rVar.h.a(rVar.f10708f.getCallback());
     }
 
     @Override
@@ -168,7 +168,7 @@ public abstract class t extends androidx.activity.n {
         ViewGroup viewGroup = (ViewGroup) rVar.J.findViewById(16908290);
         viewGroup.removeAllViews();
         viewGroup.addView(view, layoutParams);
-        rVar.h.a(rVar.f10710f.getCallback());
+        rVar.h.a(rVar.f10708f.getCallback());
     }
 
     @Override
@@ -177,23 +177,23 @@ public abstract class t extends androidx.activity.n {
         g c10 = c();
         String string = getContext().getString(i10);
         r rVar = (r) c10;
-        rVar.f10722r = string;
-        k1 k1Var = rVar.f10723s;
+        rVar.f10720r = string;
+        k1 k1Var = rVar.f10721s;
         if (k1Var != null) {
             k1Var.setWindowTitle(string);
             return;
         }
-        a0 a0Var = rVar.f10718n;
+        a0 a0Var = rVar.f10716n;
         if (a0Var != null) {
             o3 o3Var = (o3) a0Var.e;
-            if (o3Var.f16281g) {
+            if (o3Var.f16279g) {
                 return;
             }
-            Toolbar toolbar = o3Var.f16277a;
+            Toolbar toolbar = o3Var.f16275a;
             o3Var.h = string;
-            if ((o3Var.f16278b & 8) != 0) {
+            if ((o3Var.f16276b & 8) != 0) {
                 toolbar.setTitle(string);
-                if (o3Var.f16281g) {
+                if (o3Var.f16279g) {
                     i0.k(toolbar.getRootView(), string);
                     return;
                 }

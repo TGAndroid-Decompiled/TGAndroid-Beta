@@ -44,8 +44,8 @@ public final class e extends d {
 
     @Override
     public final void draw(Canvas canvas) {
-        c cVar = this.f8016j;
-        if (cVar.f8007m.isEmpty()) {
+        c cVar = this.f8014j;
+        if (cVar.f8005m.isEmpty()) {
             return;
         }
         boolean isHardwareAccelerated = canvas.isHardwareAccelerated();
@@ -61,16 +61,16 @@ public final class e extends d {
             w();
         }
         this.O = false;
-        int m12 = h6.m1(this.J.getAlpha() * this.f8022p, this.d);
+        int m12 = h6.m1(this.J.getAlpha() * this.f8020p, this.d);
         if (Color.alpha(m12) != 0) {
-            float f7 = this.f8020n;
-            float f10 = this.f8021o;
+            float f7 = this.f8018n;
+            float f10 = this.f8019o;
             Paint paint = this.L;
             paint.setShadowLayer(f7, 0.0f, f10, m12);
-            cVar.c(canvas, paint, this.f8019m);
+            cVar.c(canvas, paint, this.f8017m);
         }
         canvas.save();
-        Rect rect = cVar.f8007m;
+        Rect rect = cVar.f8005m;
         canvas.translate(rect.left, rect.top);
         canvas.drawRenderNode(this.J);
         canvas.restore();
@@ -89,20 +89,20 @@ public final class e extends d {
     @Override
     public final void k() {
         b();
-        c cVar = this.f8016j;
-        this.M.setStrokeWidth(cVar.f8003i);
-        this.N.setStrokeWidth(cVar.f8004j);
-        int width = cVar.f8007m.width();
-        int height = cVar.f8007m.height();
+        c cVar = this.f8014j;
+        this.M.setStrokeWidth(cVar.f8001i);
+        this.N.setStrokeWidth(cVar.f8002j);
+        int width = cVar.f8005m.width();
+        int height = cVar.f8005m.height();
         Rect rect = this.I;
         rect.set(0, 0, width, height);
-        float[] fArr = cVar.f7999b;
+        float[] fArr = cVar.f7997b;
         Outline outline = this.H;
         d.h(outline, rect, fArr);
         outline.setAlpha(1.0f);
-        if (!cVar.f8007m.isEmpty()) {
-            this.K.setPosition(0, 0, cVar.f8007m.width(), cVar.f8007m.height());
-            this.J.setPosition(0, 0, cVar.f8007m.width(), cVar.f8007m.height());
+        if (!cVar.f8005m.isEmpty()) {
+            this.K.setPosition(0, 0, cVar.f8005m.width(), cVar.f8005m.height());
+            this.J.setPosition(0, 0, cVar.f8005m.width(), cVar.f8005m.height());
             this.J.setOutline(outline);
             this.O = true;
         }
@@ -127,8 +127,8 @@ public final class e extends d {
 
     @Override
     public final void setAlpha(int i10) {
-        int i11 = this.f8018l;
-        this.f8018l = i10;
+        int i11 = this.f8016l;
+        this.f8016l = i10;
         this.J.setAlpha(i10 / 255.0f);
         this.O = true;
         if (i11 == 0 && i10 > 0) {
@@ -139,19 +139,19 @@ public final class e extends d {
     @Override
     public final void v() {
         super.v();
-        this.L.setShadowLayer(this.f8020n, 0.0f, this.f8021o, this.d);
-        this.M.setColor(this.f8013f);
-        this.N.setColor(this.f8014g);
+        this.L.setShadowLayer(this.f8018n, 0.0f, this.f8019o, this.d);
+        this.M.setColor(this.f8011f);
+        this.N.setColor(this.f8012g);
         this.O = true;
     }
 
     @Override
     public final void w() {
-        float f7 = this.f8010a;
-        float f10 = this.f8011b;
-        c cVar = this.f8016j;
-        Rect rect = cVar.f8007m;
-        Rect rect2 = cVar.f8007m;
+        float f7 = this.f8008a;
+        float f10 = this.f8009b;
+        c cVar = this.f8014j;
+        Rect rect = cVar.f8005m;
+        Rect rect2 = cVar.f8005m;
         float f11 = rect.left + f7;
         float f12 = rect.top + f10;
         float f13 = rect.right + f7;
@@ -160,7 +160,7 @@ public final class e extends d {
         beginRecording.save();
         beginRecording.translate(-f11, -f12);
         if (this.P != null && Build.VERSION.SDK_INT >= 33) {
-            int i10 = cVar.f8001f;
+            int i10 = cVar.f7999f;
             if (i10 <= 0) {
                 i10 = AndroidUtilities.dp(11.0f);
             }
@@ -168,8 +168,8 @@ public final class e extends d {
             g gVar = this.P;
             float width = rect2.width();
             float height = rect2.height();
-            float[] fArr = cVar.f8000c;
-            gVar.a(width, height, fArr[0], fArr[2], fArr[4], fArr[6], max, cVar.f8002g, cVar.h, this.e);
+            float[] fArr = cVar.f7998c;
+            gVar.a(width, height, fArr[0], fArr[2], fArr[4], fArr[6], max, cVar.f8000g, cVar.h, this.e);
         }
         this.G.y(beginRecording, f11, f12, f13, f14);
         beginRecording.save();
@@ -183,11 +183,11 @@ public final class e extends d {
                 beginRecording2.drawColor(this.e);
             }
         }
-        if (this.f8013f != 0) {
-            d.e(beginRecording2, rect2.width(), rect2.height(), cVar.f7999b, cVar.f8003i, true, this.M);
+        if (this.f8011f != 0) {
+            d.e(beginRecording2, rect2.width(), rect2.height(), cVar.f7997b, cVar.f8001i, true, this.M);
         }
-        if (this.f8014g != 0) {
-            d.e(beginRecording2, rect2.width(), rect2.height(), cVar.f7999b, cVar.f8004j, false, this.N);
+        if (this.f8012g != 0) {
+            d.e(beginRecording2, rect2.width(), rect2.height(), cVar.f7997b, cVar.f8002j, false, this.N);
         }
         this.J.endRecording();
     }

@@ -1,29 +1,29 @@
 package w7;
 public final class ra extends sa {
-    public final transient int f48814c;
+    public final transient int f48816c;
     public final transient int d;
     public final sa e;
 
     public ra(sa saVar, int i10, int i11) {
         this.e = saVar;
-        this.f48814c = i10;
+        this.f48816c = i10;
         this.d = i11;
     }
 
     @Override
     public final Object get(int i10) {
         e8.a(i10, this.d);
-        return this.e.get(i10 + this.f48814c);
+        return this.e.get(i10 + this.f48816c);
     }
 
     @Override
     public final int m() {
-        return this.e.n() + this.f48814c + this.d;
+        return this.e.n() + this.f48816c + this.d;
     }
 
     @Override
     public final int n() {
-        return this.e.n() + this.f48814c;
+        return this.e.n() + this.f48816c;
     }
 
     @Override
@@ -34,7 +34,7 @@ public final class ra extends sa {
     @Override
     public final sa subList(int i10, int i11) {
         e8.b(i10, i11, this.d);
-        int i12 = this.f48814c;
+        int i12 = this.f48816c;
         return this.e.subList(i10 + i12, i11 + i12);
     }
 

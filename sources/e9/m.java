@@ -11,31 +11,31 @@ import java.util.RandomAccess;
 import z7.cg;
 import z7.mg;
 public class m extends AbstractCollection implements List {
-    public final int f8469a = 0;
-    public final Object f8470b;
-    public Collection f8471c;
+    public final int f8467a = 0;
+    public final Object f8468b;
+    public Collection f8469c;
     public final Collection d;
     public final AbstractCollection e;
-    public final Serializable f8472f;
+    public final Serializable f8470f;
     public final Serializable h;
 
     public m(x7.f fVar, Object obj, List list, m mVar) {
         this.h = fVar;
-        this.f8472f = fVar;
-        this.f8470b = obj;
-        this.f8471c = list;
+        this.f8470f = fVar;
+        this.f8468b = obj;
+        this.f8469c = list;
         this.e = mVar;
-        this.d = mVar == null ? null : mVar.f8471c;
+        this.d = mVar == null ? null : mVar.f8469c;
     }
 
     @Override
     public final void add(int i10, Object obj) {
-        switch (this.f8469a) {
+        switch (this.f8467a) {
             case 0:
                 m();
-                boolean isEmpty = this.f8471c.isEmpty();
-                ((List) this.f8471c).add(i10, obj);
-                ((p1) this.h).f8487f++;
+                boolean isEmpty = this.f8469c.isEmpty();
+                ((List) this.f8469c).add(i10, obj);
+                ((p1) this.h).f8485f++;
                 if (isEmpty) {
                     h();
                     return;
@@ -43,8 +43,8 @@ public class m extends AbstractCollection implements List {
                 return;
             case 1:
                 zzb();
-                boolean isEmpty2 = this.f8471c.isEmpty();
-                ((List) this.f8471c).add(i10, obj);
+                boolean isEmpty2 = this.f8469c.isEmpty();
+                ((List) this.f8469c).add(i10, obj);
                 ((x7.f) this.h).d++;
                 if (isEmpty2) {
                     o();
@@ -53,8 +53,8 @@ public class m extends AbstractCollection implements List {
                 return;
             default:
                 zzb();
-                boolean isEmpty3 = this.f8471c.isEmpty();
-                ((List) this.f8471c).add(i10, obj);
+                boolean isEmpty3 = this.f8469c.isEmpty();
+                ((List) this.f8469c).add(i10, obj);
                 if (isEmpty3) {
                     o();
                     return;
@@ -65,16 +65,16 @@ public class m extends AbstractCollection implements List {
 
     @Override
     public final boolean addAll(int i10, Collection collection) {
-        switch (this.f8469a) {
+        switch (this.f8467a) {
             case 0:
                 if (collection.isEmpty()) {
                     return false;
                 }
                 int size = size();
-                boolean addAll = ((List) this.f8471c).addAll(i10, collection);
+                boolean addAll = ((List) this.f8469c).addAll(i10, collection);
                 if (addAll) {
-                    int size2 = this.f8471c.size();
-                    ((p1) this.h).f8487f += size2 - size;
+                    int size2 = this.f8469c.size();
+                    ((p1) this.h).f8485f += size2 - size;
                     if (size == 0) {
                         h();
                         return addAll;
@@ -87,9 +87,9 @@ public class m extends AbstractCollection implements List {
                     return false;
                 }
                 int size3 = size();
-                boolean addAll2 = ((List) this.f8471c).addAll(i10, collection);
+                boolean addAll2 = ((List) this.f8469c).addAll(i10, collection);
                 if (addAll2) {
-                    int size4 = this.f8471c.size();
+                    int size4 = this.f8469c.size();
                     ((x7.f) this.h).d += size4 - size3;
                     if (size3 == 0) {
                         o();
@@ -103,9 +103,9 @@ public class m extends AbstractCollection implements List {
                     return false;
                 }
                 int size5 = size();
-                boolean addAll3 = ((List) this.f8471c).addAll(i10, collection);
+                boolean addAll3 = ((List) this.f8469c).addAll(i10, collection);
                 if (addAll3) {
-                    this.f8471c.size();
+                    this.f8469c.size();
                     if (size5 == 0) {
                         o();
                         return true;
@@ -118,12 +118,12 @@ public class m extends AbstractCollection implements List {
 
     @Override
     public final void clear() {
-        switch (this.f8469a) {
+        switch (this.f8467a) {
             case 0:
                 int size = size();
                 if (size != 0) {
-                    this.f8471c.clear();
-                    ((p1) this.f8472f).f8487f -= size;
+                    this.f8469c.clear();
+                    ((p1) this.f8470f).f8485f -= size;
                     n();
                     return;
                 }
@@ -131,15 +131,15 @@ public class m extends AbstractCollection implements List {
             case 1:
                 int size2 = size();
                 if (size2 != 0) {
-                    this.f8471c.clear();
-                    ((x7.f) this.f8472f).d -= size2;
+                    this.f8469c.clear();
+                    ((x7.f) this.f8470f).d -= size2;
                     p();
                     return;
                 }
                 return;
             default:
                 if (size() != 0) {
-                    this.f8471c.clear();
+                    this.f8469c.clear();
                     p();
                     return;
                 }
@@ -149,70 +149,70 @@ public class m extends AbstractCollection implements List {
 
     @Override
     public final boolean contains(Object obj) {
-        switch (this.f8469a) {
+        switch (this.f8467a) {
             case 0:
                 m();
-                return this.f8471c.contains(obj);
+                return this.f8469c.contains(obj);
             case 1:
                 zzb();
-                return this.f8471c.contains(obj);
+                return this.f8469c.contains(obj);
             default:
                 zzb();
-                return this.f8471c.contains(obj);
+                return this.f8469c.contains(obj);
         }
     }
 
     @Override
     public final boolean containsAll(Collection collection) {
-        switch (this.f8469a) {
+        switch (this.f8467a) {
             case 0:
                 m();
-                return this.f8471c.containsAll(collection);
+                return this.f8469c.containsAll(collection);
             case 1:
                 zzb();
-                return this.f8471c.containsAll(collection);
+                return this.f8469c.containsAll(collection);
             default:
                 zzb();
-                return this.f8471c.containsAll(collection);
+                return this.f8469c.containsAll(collection);
         }
     }
 
     @Override
     public final boolean equals(Object obj) {
-        switch (this.f8469a) {
+        switch (this.f8467a) {
             case 0:
                 if (obj == this) {
                     return true;
                 }
                 m();
-                return this.f8471c.equals(obj);
+                return this.f8469c.equals(obj);
             case 1:
                 if (obj == this) {
                     return true;
                 }
                 zzb();
-                return this.f8471c.equals(obj);
+                return this.f8469c.equals(obj);
             default:
                 if (obj == this) {
                     return true;
                 }
                 zzb();
-                return this.f8471c.equals(obj);
+                return this.f8469c.equals(obj);
         }
     }
 
     @Override
     public final Object get(int i10) {
-        switch (this.f8469a) {
+        switch (this.f8467a) {
             case 0:
                 m();
-                return ((List) this.f8471c).get(i10);
+                return ((List) this.f8469c).get(i10);
             case 1:
                 zzb();
-                return ((List) this.f8471c).get(i10);
+                return ((List) this.f8469c).get(i10);
             default:
                 zzb();
-                return ((List) this.f8471c).get(i10);
+                return ((List) this.f8469c).get(i10);
         }
     }
 
@@ -221,43 +221,43 @@ public class m extends AbstractCollection implements List {
         if (mVar != null) {
             mVar.h();
         } else {
-            ((p1) this.f8472f).e.put(this.f8470b, this.f8471c);
+            ((p1) this.f8470f).e.put(this.f8468b, this.f8469c);
         }
     }
 
     @Override
     public final int hashCode() {
-        switch (this.f8469a) {
+        switch (this.f8467a) {
             case 0:
                 m();
-                return this.f8471c.hashCode();
+                return this.f8469c.hashCode();
             case 1:
                 zzb();
-                return this.f8471c.hashCode();
+                return this.f8469c.hashCode();
             default:
                 zzb();
-                return this.f8471c.hashCode();
+                return this.f8469c.hashCode();
         }
     }
 
     @Override
     public final int indexOf(Object obj) {
-        switch (this.f8469a) {
+        switch (this.f8467a) {
             case 0:
                 m();
-                return ((List) this.f8471c).indexOf(obj);
+                return ((List) this.f8469c).indexOf(obj);
             case 1:
                 zzb();
-                return ((List) this.f8471c).indexOf(obj);
+                return ((List) this.f8469c).indexOf(obj);
             default:
                 zzb();
-                return ((List) this.f8471c).indexOf(obj);
+                return ((List) this.f8469c).indexOf(obj);
         }
     }
 
     @Override
     public final Iterator iterator() {
-        switch (this.f8469a) {
+        switch (this.f8467a) {
             case 0:
                 m();
                 return new d(this);
@@ -272,22 +272,22 @@ public class m extends AbstractCollection implements List {
 
     @Override
     public final int lastIndexOf(Object obj) {
-        switch (this.f8469a) {
+        switch (this.f8467a) {
             case 0:
                 m();
-                return ((List) this.f8471c).lastIndexOf(obj);
+                return ((List) this.f8469c).lastIndexOf(obj);
             case 1:
                 zzb();
-                return ((List) this.f8471c).lastIndexOf(obj);
+                return ((List) this.f8469c).lastIndexOf(obj);
             default:
                 zzb();
-                return ((List) this.f8471c).lastIndexOf(obj);
+                return ((List) this.f8469c).lastIndexOf(obj);
         }
     }
 
     @Override
     public final ListIterator listIterator() {
-        switch (this.f8469a) {
+        switch (this.f8467a) {
             case 0:
                 m();
                 return new l(this);
@@ -305,11 +305,11 @@ public class m extends AbstractCollection implements List {
         m mVar = (m) this.e;
         if (mVar != null) {
             mVar.m();
-            if (mVar.f8471c != this.d) {
+            if (mVar.f8469c != this.d) {
                 throw new ConcurrentModificationException();
             }
-        } else if (this.f8471c.isEmpty() && (collection = (Collection) ((p1) this.f8472f).e.get(this.f8470b)) != null) {
-            this.f8471c = collection;
+        } else if (this.f8469c.isEmpty() && (collection = (Collection) ((p1) this.f8470f).e.get(this.f8468b)) != null) {
+            this.f8469c = collection;
         }
     }
 
@@ -317,20 +317,20 @@ public class m extends AbstractCollection implements List {
         m mVar = (m) this.e;
         if (mVar != null) {
             mVar.n();
-        } else if (this.f8471c.isEmpty()) {
-            ((p1) this.f8472f).e.remove(this.f8470b);
+        } else if (this.f8469c.isEmpty()) {
+            ((p1) this.f8470f).e.remove(this.f8468b);
         }
     }
 
     public void o() {
-        switch (this.f8469a) {
+        switch (this.f8467a) {
             case 1:
                 m mVar = (m) this.e;
                 if (mVar != null) {
                     mVar.o();
                     return;
                 } else {
-                    ((x7.f) this.f8472f).f49363c.put(this.f8470b, this.f8471c);
+                    ((x7.f) this.f8470f).f49365c.put(this.f8468b, this.f8469c);
                     return;
                 }
             default:
@@ -339,20 +339,20 @@ public class m extends AbstractCollection implements List {
                     mVar2.o();
                     return;
                 }
-                ((mg) this.f8472f).f51105c.put(this.f8470b, this.f8471c);
+                ((mg) this.f8470f).f51107c.put(this.f8468b, this.f8469c);
                 return;
         }
     }
 
     public void p() {
-        switch (this.f8469a) {
+        switch (this.f8467a) {
             case 1:
                 m mVar = (m) this.e;
                 if (mVar != null) {
                     mVar.p();
                     return;
-                } else if (this.f8471c.isEmpty()) {
-                    ((x7.f) this.f8472f).f49363c.remove(this.f8470b);
+                } else if (this.f8469c.isEmpty()) {
+                    ((x7.f) this.f8470f).f49365c.remove(this.f8468b);
                     return;
                 } else {
                     return;
@@ -362,8 +362,8 @@ public class m extends AbstractCollection implements List {
                 if (mVar2 != null) {
                     mVar2.p();
                     return;
-                } else if (this.f8471c.isEmpty()) {
-                    ((mg) this.f8472f).f51105c.remove(this.f8470b);
+                } else if (this.f8469c.isEmpty()) {
+                    ((mg) this.f8470f).f51107c.remove(this.f8468b);
                     return;
                 } else {
                     return;
@@ -373,24 +373,24 @@ public class m extends AbstractCollection implements List {
 
     @Override
     public final Object remove(int i10) {
-        switch (this.f8469a) {
+        switch (this.f8467a) {
             case 0:
                 m();
-                Object remove = ((List) this.f8471c).remove(i10);
+                Object remove = ((List) this.f8469c).remove(i10);
                 p1 p1Var = (p1) this.h;
-                p1Var.f8487f--;
+                p1Var.f8485f--;
                 n();
                 return remove;
             case 1:
                 zzb();
-                Object remove2 = ((List) this.f8471c).remove(i10);
+                Object remove2 = ((List) this.f8469c).remove(i10);
                 x7.f fVar = (x7.f) this.h;
                 fVar.d--;
                 p();
                 return remove2;
             default:
                 zzb();
-                Object remove3 = ((List) this.f8471c).remove(i10);
+                Object remove3 = ((List) this.f8469c).remove(i10);
                 p();
                 return remove3;
         }
@@ -398,16 +398,16 @@ public class m extends AbstractCollection implements List {
 
     @Override
     public final boolean removeAll(Collection collection) {
-        switch (this.f8469a) {
+        switch (this.f8467a) {
             case 0:
                 if (collection.isEmpty()) {
                     return false;
                 }
                 int size = size();
-                boolean removeAll = this.f8471c.removeAll(collection);
+                boolean removeAll = this.f8469c.removeAll(collection);
                 if (removeAll) {
-                    int size2 = this.f8471c.size();
-                    ((p1) this.f8472f).f8487f += size2 - size;
+                    int size2 = this.f8469c.size();
+                    ((p1) this.f8470f).f8485f += size2 - size;
                     n();
                     return removeAll;
                 }
@@ -417,10 +417,10 @@ public class m extends AbstractCollection implements List {
                     return false;
                 }
                 int size3 = size();
-                boolean removeAll2 = this.f8471c.removeAll(collection);
+                boolean removeAll2 = this.f8469c.removeAll(collection);
                 if (removeAll2) {
-                    int size4 = this.f8471c.size();
-                    ((x7.f) this.f8472f).d += size4 - size3;
+                    int size4 = this.f8469c.size();
+                    ((x7.f) this.f8470f).d += size4 - size3;
                     p();
                     return removeAll2;
                 }
@@ -430,9 +430,9 @@ public class m extends AbstractCollection implements List {
                     return false;
                 }
                 size();
-                boolean removeAll3 = this.f8471c.removeAll(collection);
+                boolean removeAll3 = this.f8469c.removeAll(collection);
                 if (removeAll3) {
-                    this.f8471c.size();
+                    this.f8469c.size();
                     p();
                     return removeAll3;
                 }
@@ -442,33 +442,33 @@ public class m extends AbstractCollection implements List {
 
     @Override
     public final boolean retainAll(Collection collection) {
-        switch (this.f8469a) {
+        switch (this.f8467a) {
             case 0:
                 collection.getClass();
                 int size = size();
-                boolean retainAll = this.f8471c.retainAll(collection);
+                boolean retainAll = this.f8469c.retainAll(collection);
                 if (retainAll) {
-                    int size2 = this.f8471c.size();
-                    ((p1) this.f8472f).f8487f += size2 - size;
+                    int size2 = this.f8469c.size();
+                    ((p1) this.f8470f).f8485f += size2 - size;
                     n();
                 }
                 return retainAll;
             case 1:
                 collection.getClass();
                 int size3 = size();
-                boolean retainAll2 = this.f8471c.retainAll(collection);
+                boolean retainAll2 = this.f8469c.retainAll(collection);
                 if (retainAll2) {
-                    int size4 = this.f8471c.size();
-                    ((x7.f) this.f8472f).d += size4 - size3;
+                    int size4 = this.f8469c.size();
+                    ((x7.f) this.f8470f).d += size4 - size3;
                     p();
                 }
                 return retainAll2;
             default:
                 collection.getClass();
                 size();
-                boolean retainAll3 = this.f8471c.retainAll(collection);
+                boolean retainAll3 = this.f8469c.retainAll(collection);
                 if (retainAll3) {
-                    this.f8471c.size();
+                    this.f8469c.size();
                     p();
                 }
                 return retainAll3;
@@ -477,47 +477,47 @@ public class m extends AbstractCollection implements List {
 
     @Override
     public final Object set(int i10, Object obj) {
-        switch (this.f8469a) {
+        switch (this.f8467a) {
             case 0:
                 m();
-                return ((List) this.f8471c).set(i10, obj);
+                return ((List) this.f8469c).set(i10, obj);
             case 1:
                 zzb();
-                return ((List) this.f8471c).set(i10, obj);
+                return ((List) this.f8469c).set(i10, obj);
             default:
                 zzb();
-                return ((List) this.f8471c).set(i10, obj);
+                return ((List) this.f8469c).set(i10, obj);
         }
     }
 
     @Override
     public final int size() {
-        switch (this.f8469a) {
+        switch (this.f8467a) {
             case 0:
                 m();
-                return this.f8471c.size();
+                return this.f8469c.size();
             case 1:
                 zzb();
-                return this.f8471c.size();
+                return this.f8469c.size();
             default:
                 zzb();
-                return this.f8471c.size();
+                return this.f8469c.size();
         }
     }
 
     @Override
     public final List subList(int i10, int i11) {
-        switch (this.f8469a) {
+        switch (this.f8467a) {
             case 0:
                 m();
                 p1 p1Var = (p1) this.h;
-                List subList = ((List) this.f8471c).subList(i10, i11);
+                List subList = ((List) this.f8469c).subList(i10, i11);
                 m mVar = (m) this.e;
                 if (mVar == null) {
                     mVar = this;
                 }
                 boolean z10 = subList instanceof RandomAccess;
-                Object obj = this.f8470b;
+                Object obj = this.f8468b;
                 if (z10) {
                     return new m(p1Var, obj, subList, mVar);
                 }
@@ -525,27 +525,27 @@ public class m extends AbstractCollection implements List {
             case 1:
                 zzb();
                 x7.f fVar = (x7.f) this.h;
-                List subList2 = ((List) this.f8471c).subList(i10, i11);
+                List subList2 = ((List) this.f8469c).subList(i10, i11);
                 m mVar2 = (m) this.e;
                 if (mVar2 == null) {
                     mVar2 = this;
                 }
                 boolean z11 = subList2 instanceof RandomAccess;
-                Object obj2 = this.f8470b;
+                Object obj2 = this.f8468b;
                 if (z11) {
                     return new m(fVar, obj2, subList2, mVar2);
                 }
                 return new m(fVar, obj2, subList2, mVar2);
             default:
                 zzb();
-                List subList3 = ((List) this.f8471c).subList(i10, i11);
+                List subList3 = ((List) this.f8469c).subList(i10, i11);
                 m mVar3 = (m) this.e;
                 if (mVar3 == null) {
                     mVar3 = this;
                 }
                 mg mgVar = (mg) this.h;
                 boolean z12 = subList3 instanceof RandomAccess;
-                Object obj3 = this.f8470b;
+                Object obj3 = this.f8468b;
                 if (z12) {
                     return new m(mgVar, obj3, subList3, mVar3);
                 }
@@ -555,32 +555,32 @@ public class m extends AbstractCollection implements List {
 
     @Override
     public final String toString() {
-        switch (this.f8469a) {
+        switch (this.f8467a) {
             case 0:
                 m();
-                return this.f8471c.toString();
+                return this.f8469c.toString();
             case 1:
                 zzb();
-                return this.f8471c.toString();
+                return this.f8469c.toString();
             default:
                 zzb();
-                return this.f8471c.toString();
+                return this.f8469c.toString();
         }
     }
 
     public void zzb() {
         Collection collection;
-        switch (this.f8469a) {
+        switch (this.f8467a) {
             case 1:
                 m mVar = (m) this.e;
                 if (mVar != null) {
                     mVar.zzb();
-                    if (mVar.f8471c != this.d) {
+                    if (mVar.f8469c != this.d) {
                         throw new ConcurrentModificationException();
                     }
                     return;
-                } else if (this.f8471c.isEmpty() && (collection = (Collection) ((x7.f) this.f8472f).f49363c.get(this.f8470b)) != null) {
-                    this.f8471c = collection;
+                } else if (this.f8469c.isEmpty() && (collection = (Collection) ((x7.f) this.f8470f).f49365c.get(this.f8468b)) != null) {
+                    this.f8469c = collection;
                     return;
                 } else {
                     return;
@@ -589,14 +589,14 @@ public class m extends AbstractCollection implements List {
                 m mVar2 = (m) this.e;
                 if (mVar2 != null) {
                     mVar2.zzb();
-                    if (mVar2.f8471c != this.d) {
+                    if (mVar2.f8469c != this.d) {
                         throw new ConcurrentModificationException();
                     }
                     return;
-                } else if (this.f8471c.isEmpty()) {
-                    Collection collection2 = (Collection) ((mg) this.f8472f).f51105c.get(this.f8470b);
+                } else if (this.f8469c.isEmpty()) {
+                    Collection collection2 = (Collection) ((mg) this.f8470f).f51107c.get(this.f8468b);
                     if (collection2 != null) {
-                        this.f8471c = collection2;
+                        this.f8469c = collection2;
                         return;
                     }
                     return;
@@ -608,25 +608,25 @@ public class m extends AbstractCollection implements List {
 
     public m(mg mgVar, Object obj, List list, m mVar) {
         this.h = mgVar;
-        this.f8472f = mgVar;
-        this.f8470b = obj;
-        this.f8471c = list;
+        this.f8470f = mgVar;
+        this.f8468b = obj;
+        this.f8469c = list;
         this.e = mVar;
-        this.d = mVar == null ? null : mVar.f8471c;
+        this.d = mVar == null ? null : mVar.f8469c;
     }
 
     public m(p1 p1Var, Object obj, List list, m mVar) {
         this.h = p1Var;
-        this.f8472f = p1Var;
-        this.f8470b = obj;
-        this.f8471c = list;
+        this.f8470f = p1Var;
+        this.f8468b = obj;
+        this.f8469c = list;
         this.e = mVar;
-        this.d = mVar == null ? null : mVar.f8471c;
+        this.d = mVar == null ? null : mVar.f8469c;
     }
 
     @Override
     public final ListIterator listIterator(int i10) {
-        switch (this.f8469a) {
+        switch (this.f8467a) {
             case 0:
                 m();
                 return new l(this, i10);
@@ -641,28 +641,28 @@ public class m extends AbstractCollection implements List {
 
     @Override
     public final boolean remove(Object obj) {
-        switch (this.f8469a) {
+        switch (this.f8467a) {
             case 0:
                 m();
-                boolean remove = this.f8471c.remove(obj);
+                boolean remove = this.f8469c.remove(obj);
                 if (remove) {
-                    p1 p1Var = (p1) this.f8472f;
-                    p1Var.f8487f--;
+                    p1 p1Var = (p1) this.f8470f;
+                    p1Var.f8485f--;
                     n();
                 }
                 return remove;
             case 1:
                 zzb();
-                boolean remove2 = this.f8471c.remove(obj);
+                boolean remove2 = this.f8469c.remove(obj);
                 if (remove2) {
-                    x7.f fVar = (x7.f) this.f8472f;
+                    x7.f fVar = (x7.f) this.f8470f;
                     fVar.d--;
                     p();
                 }
                 return remove2;
             default:
                 zzb();
-                boolean remove3 = this.f8471c.remove(obj);
+                boolean remove3 = this.f8469c.remove(obj);
                 if (remove3) {
                     p();
                 }
@@ -672,13 +672,13 @@ public class m extends AbstractCollection implements List {
 
     @Override
     public final boolean add(Object obj) {
-        switch (this.f8469a) {
+        switch (this.f8467a) {
             case 0:
                 m();
-                boolean isEmpty = this.f8471c.isEmpty();
-                boolean add = this.f8471c.add(obj);
+                boolean isEmpty = this.f8469c.isEmpty();
+                boolean add = this.f8469c.add(obj);
                 if (add) {
-                    ((p1) this.f8472f).f8487f++;
+                    ((p1) this.f8470f).f8485f++;
                     if (isEmpty) {
                         h();
                     }
@@ -686,10 +686,10 @@ public class m extends AbstractCollection implements List {
                 return add;
             case 1:
                 zzb();
-                boolean isEmpty2 = this.f8471c.isEmpty();
-                boolean add2 = this.f8471c.add(obj);
+                boolean isEmpty2 = this.f8469c.isEmpty();
+                boolean add2 = this.f8469c.add(obj);
                 if (add2) {
-                    ((x7.f) this.f8472f).d++;
+                    ((x7.f) this.f8470f).d++;
                     if (isEmpty2) {
                         o();
                         return true;
@@ -699,8 +699,8 @@ public class m extends AbstractCollection implements List {
                 return add2;
             default:
                 zzb();
-                boolean isEmpty3 = this.f8471c.isEmpty();
-                boolean add3 = this.f8471c.add(obj);
+                boolean isEmpty3 = this.f8469c.isEmpty();
+                boolean add3 = this.f8469c.add(obj);
                 if (add3 && isEmpty3) {
                     o();
                     return true;
@@ -711,16 +711,16 @@ public class m extends AbstractCollection implements List {
 
     @Override
     public final boolean addAll(Collection collection) {
-        switch (this.f8469a) {
+        switch (this.f8467a) {
             case 0:
                 if (collection.isEmpty()) {
                     return false;
                 }
                 int size = size();
-                boolean addAll = this.f8471c.addAll(collection);
+                boolean addAll = this.f8469c.addAll(collection);
                 if (addAll) {
-                    int size2 = this.f8471c.size();
-                    ((p1) this.f8472f).f8487f += size2 - size;
+                    int size2 = this.f8469c.size();
+                    ((p1) this.f8470f).f8485f += size2 - size;
                     if (size == 0) {
                         h();
                         return addAll;
@@ -733,10 +733,10 @@ public class m extends AbstractCollection implements List {
                     return false;
                 }
                 int size3 = size();
-                boolean addAll2 = this.f8471c.addAll(collection);
+                boolean addAll2 = this.f8469c.addAll(collection);
                 if (addAll2) {
-                    int size4 = this.f8471c.size();
-                    ((x7.f) this.f8472f).d += size4 - size3;
+                    int size4 = this.f8469c.size();
+                    ((x7.f) this.f8470f).d += size4 - size3;
                     if (size3 == 0) {
                         o();
                         return true;
@@ -749,9 +749,9 @@ public class m extends AbstractCollection implements List {
                     return false;
                 }
                 int size5 = size();
-                boolean addAll3 = this.f8471c.addAll(collection);
+                boolean addAll3 = this.f8469c.addAll(collection);
                 if (addAll3) {
-                    this.f8471c.size();
+                    this.f8469c.size();
                     if (size5 == 0) {
                         o();
                         return true;

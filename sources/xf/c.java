@@ -7,22 +7,22 @@ import r0.k1;
 import r0.n;
 import z4.g;
 public final class c implements n {
-    public Object f49774a;
-    public Object f49775b;
+    public Object f49776a;
+    public Object f49777b;
 
     public c(Object obj, Cloneable cloneable) {
-        this.f49774a = obj;
-        this.f49775b = cloneable;
+        this.f49776a = obj;
+        this.f49777b = cloneable;
     }
 
     @Override
     public k1 B0(View view, k1 k1Var) {
-        g gVar = (g) this.f49775b;
+        g gVar = (g) this.f49777b;
         k1 g10 = i0.g(view, k1Var);
-        if (g10.f44825a.n()) {
+        if (g10.f44827a.n()) {
             return g10;
         }
-        Rect rect = (Rect) this.f49774a;
+        Rect rect = (Rect) this.f49776a;
         rect.left = g10.b();
         rect.top = g10.d();
         rect.right = g10.c();

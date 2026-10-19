@@ -3,35 +3,35 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import android.widget.TextView;
 public final class pl extends TextView {
-    public final int f29304a;
-    public float f29305b;
-    public float f29306c;
+    public final int f29302a;
+    public float f29303b;
+    public float f29304c;
 
     public pl(Context context, int i10) {
         super(context);
-        this.f29304a = i10;
+        this.f29302a = i10;
     }
 
     @Override
     public final float getTranslationX() {
-        switch (this.f29304a) {
+        switch (this.f29302a) {
             case 0:
-                return this.f29305b;
+                return this.f29303b;
             default:
-                return this.f29305b;
+                return this.f29303b;
         }
     }
 
     @Override
     public final void setTranslationX(float f7) {
-        switch (this.f29304a) {
+        switch (this.f29302a) {
             case 0:
-                this.f29305b = f7;
-                setTranslationY(this.f29306c + f7);
+                this.f29303b = f7;
+                setTranslationY(this.f29304c + f7);
                 return;
             default:
-                this.f29305b = f7;
-                setTranslationY(this.f29306c + f7);
+                this.f29303b = f7;
+                setTranslationY(this.f29304c + f7);
                 return;
         }
     }

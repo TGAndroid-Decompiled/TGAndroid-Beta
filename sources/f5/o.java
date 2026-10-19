@@ -4,22 +4,22 @@ import com.google.android.gms.internal.play_billing.k3;
 import java.nio.ByteBuffer;
 import w7.b7;
 public final class o extends com.googlecode.mp4parser.c {
-    public static final te.b f10436n;
-    public static final te.b f10437r;
-    public static final te.b f10438s;
+    public static final te.b f10434n;
+    public static final te.b f10435r;
+    public static final te.b f10436s;
     public static final te.b v;
     public long e;
-    public long[] f10439f;
+    public long[] f10437f;
     public int h;
 
     static {
         te.a aVar = new te.a(o.class, "SampleSizeBox.java");
-        f10436n = aVar.e(aVar.d("getSampleSize", "com.coremedia.iso.boxes.SampleSizeBox", "", "", "long"));
+        f10434n = aVar.e(aVar.d("getSampleSize", "com.coremedia.iso.boxes.SampleSizeBox", "", "", "long"));
         aVar.e(aVar.d("setSampleSize", "com.coremedia.iso.boxes.SampleSizeBox", "long", "sampleSize", "void"));
         aVar.e(aVar.d("getSampleSizeAtIndex", "com.coremedia.iso.boxes.SampleSizeBox", "int", "index", "long"));
-        f10437r = aVar.e(aVar.d("getSampleCount", "com.coremedia.iso.boxes.SampleSizeBox", "", "", "long"));
+        f10435r = aVar.e(aVar.d("getSampleCount", "com.coremedia.iso.boxes.SampleSizeBox", "", "", "long"));
         aVar.e(aVar.d("getSampleSizes", "com.coremedia.iso.boxes.SampleSizeBox", "", "", "[J"));
-        f10438s = aVar.e(aVar.d("setSampleSizes", "com.coremedia.iso.boxes.SampleSizeBox", "[J", "sampleSizes", "void"));
+        f10436s = aVar.e(aVar.d("setSampleSizes", "com.coremedia.iso.boxes.SampleSizeBox", "[J", "sampleSizes", "void"));
         v = aVar.e(aVar.d("toString", "com.coremedia.iso.boxes.SampleSizeBox", "", "", "java.lang.String"));
     }
 
@@ -30,9 +30,9 @@ public final class o extends com.googlecode.mp4parser.c {
         int a2 = b7.a(e5.b.i(byteBuffer));
         this.h = a2;
         if (this.e == 0) {
-            this.f10439f = new long[a2];
+            this.f10437f = new long[a2];
             for (int i10 = 0; i10 < this.h; i10++) {
-                this.f10439f[i10] = e5.b.i(byteBuffer);
+                this.f10437f[i10] = e5.b.i(byteBuffer);
             }
         }
     }
@@ -42,8 +42,8 @@ public final class o extends com.googlecode.mp4parser.c {
         i(byteBuffer);
         byteBuffer.putInt((int) this.e);
         if (this.e == 0) {
-            byteBuffer.putInt(this.f10439f.length);
-            for (long j10 : this.f10439f) {
+            byteBuffer.putInt(this.f10437f.length);
+            for (long j10 : this.f10437f) {
                 byteBuffer.putInt((int) j10);
             }
             return;
@@ -55,7 +55,7 @@ public final class o extends com.googlecode.mp4parser.c {
     public final long getContentSize() {
         int i10;
         if (this.e == 0) {
-            i10 = this.f10439f.length * 4;
+            i10 = this.f10437f.length * 4;
         } else {
             i10 = 0;
         }
@@ -68,14 +68,14 @@ public final class o extends com.googlecode.mp4parser.c {
         com.googlecode.mp4parser.g.a().getClass();
         com.googlecode.mp4parser.g.b(b10);
         StringBuilder sb2 = new StringBuilder("SampleSizeBox[sampleSize=");
-        k3.p(te.a.b(f10436n, this, this));
+        k3.p(te.a.b(f10434n, this, this));
         sb2.append(this.e);
         sb2.append(";sampleCount=");
-        k3.p(te.a.b(f10437r, this, this));
+        k3.p(te.a.b(f10435r, this, this));
         if (this.e > 0) {
             length = this.h;
         } else {
-            length = this.f10439f.length;
+            length = this.f10437f.length;
         }
         return a1.g.r(sb2, length, "]");
     }

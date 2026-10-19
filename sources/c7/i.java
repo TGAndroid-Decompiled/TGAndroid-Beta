@@ -8,9 +8,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 public final class i extends l {
     public static final Parcelable.Creator<i> CREATOR = new r0(15);
-    public final n7.s0 f4962a;
-    public final n7.s0 f4963b;
-    public final n7.s0 f4964c;
+    public final n7.s0 f4960a;
+    public final n7.s0 f4961b;
+    public final n7.s0 f4962c;
     public final n7.s0 d;
     public final n7.s0 e;
 
@@ -29,9 +29,9 @@ public final class i extends l {
         } else {
             s10 = n7.s0.s(bArr5.length, bArr5);
         }
-        this.f4962a = s11;
-        this.f4963b = s12;
-        this.f4964c = s13;
+        this.f4960a = s11;
+        this.f4961b = s12;
+        this.f4962c = s13;
         this.d = s14;
         this.e = s10;
     }
@@ -40,8 +40,8 @@ public final class i extends l {
         byte[] t10;
         try {
             JSONObject jSONObject = new JSONObject();
-            jSONObject.put("clientDataJSON", u6.b.c(this.f4963b.t()));
-            jSONObject.put("authenticatorData", u6.b.c(this.f4964c.t()));
+            jSONObject.put("clientDataJSON", u6.b.c(this.f4961b.t()));
+            jSONObject.put("authenticatorData", u6.b.c(this.f4962c.t()));
             jSONObject.put("signature", u6.b.c(this.d.t()));
             n7.s0 s0Var = this.e;
             if (s0Var != null) {
@@ -62,7 +62,7 @@ public final class i extends l {
     public final boolean equals(Object obj) {
         if (obj instanceof i) {
             i iVar = (i) obj;
-            if (n6.l.l(this.f4962a, iVar.f4962a) && n6.l.l(this.f4963b, iVar.f4963b) && n6.l.l(this.f4964c, iVar.f4964c) && n6.l.l(this.d, iVar.d) && n6.l.l(this.e, iVar.e)) {
+            if (n6.l.l(this.f4960a, iVar.f4960a) && n6.l.l(this.f4961b, iVar.f4961b) && n6.l.l(this.f4962c, iVar.f4962c) && n6.l.l(this.d, iVar.d) && n6.l.l(this.e, iVar.e)) {
                 return true;
             }
             return false;
@@ -71,18 +71,18 @@ public final class i extends l {
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Integer.valueOf(Arrays.hashCode(new Object[]{this.f4962a})), Integer.valueOf(Arrays.hashCode(new Object[]{this.f4963b})), Integer.valueOf(Arrays.hashCode(new Object[]{this.f4964c})), Integer.valueOf(Arrays.hashCode(new Object[]{this.d})), Integer.valueOf(Arrays.hashCode(new Object[]{this.e}))});
+        return Arrays.hashCode(new Object[]{Integer.valueOf(Arrays.hashCode(new Object[]{this.f4960a})), Integer.valueOf(Arrays.hashCode(new Object[]{this.f4961b})), Integer.valueOf(Arrays.hashCode(new Object[]{this.f4962c})), Integer.valueOf(Arrays.hashCode(new Object[]{this.d})), Integer.valueOf(Arrays.hashCode(new Object[]{this.e}))});
     }
 
     public final String toString() {
         byte[] t10;
         g3 g3Var = new g3(getClass().getSimpleName());
         n7.k0 k0Var = n7.m0.d;
-        byte[] t11 = this.f4962a.t();
+        byte[] t11 = this.f4960a.t();
         g3Var.Y(k0Var.c(t11.length, t11), "keyHandle");
-        byte[] t12 = this.f4963b.t();
+        byte[] t12 = this.f4961b.t();
         g3Var.Y(k0Var.c(t12.length, t12), "clientDataJSON");
-        byte[] t13 = this.f4964c.t();
+        byte[] t13 = this.f4962c.t();
         g3Var.Y(k0Var.c(t13.length, t13), "authenticatorData");
         byte[] t14 = this.d.t();
         g3Var.Y(k0Var.c(t14.length, t14), "signature");
@@ -102,9 +102,9 @@ public final class i extends l {
     public final void writeToParcel(Parcel parcel, int i10) {
         byte[] t10;
         int q6 = w7.f0.q(parcel, 20293);
-        w7.f0.c(parcel, 2, this.f4962a.t());
-        w7.f0.c(parcel, 3, this.f4963b.t());
-        w7.f0.c(parcel, 4, this.f4964c.t());
+        w7.f0.c(parcel, 2, this.f4960a.t());
+        w7.f0.c(parcel, 3, this.f4961b.t());
+        w7.f0.c(parcel, 4, this.f4962c.t());
         w7.f0.c(parcel, 5, this.d.t());
         n7.s0 s0Var = this.e;
         if (s0Var == null) {

@@ -10,9 +10,9 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class ra extends FrameLayout {
-    public final org.telegram.ui.Components.x90 f41104a;
-    public final org.telegram.ui.Cells.y1 f41105b;
-    public Integer f41106c;
+    public final org.telegram.ui.Components.x90 f41096a;
+    public final org.telegram.ui.Cells.y1 f41097b;
+    public Integer f41098c;
     public ValueAnimator d;
     public final sa e;
 
@@ -24,7 +24,7 @@ public final class ra extends FrameLayout {
         setPadding(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(18.0f), AndroidUtilities.dp(17.0f));
         setClipChildren(false);
         org.telegram.ui.Components.x90 x90Var = new org.telegram.ui.Components.x90(activity, null);
-        this.f41104a = x90Var;
+        this.f41096a = x90Var;
         x90Var.setTextSize(1, 15.0f);
         int i11 = org.telegram.ui.ActionBar.h6.F6;
         x90Var.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, i11, false));
@@ -41,7 +41,7 @@ public final class ra extends FrameLayout {
         x90Var.setPadding(AndroidUtilities.dp(3.0f), 0, AndroidUtilities.dp(3.0f), 0);
         org.telegram.ui.Cells.y1 y1Var = new org.telegram.ui.Cells.y1(this, activity, 2);
         saVar.G = y1Var;
-        this.f41105b = y1Var;
+        this.f41097b = y1Var;
         y1Var.setTextSize(1, 15.0f);
         y1Var.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, i11, false));
         y1Var.setGravity(LocaleController.isRTL ? 5 : 3);
@@ -50,7 +50,7 @@ public final class ra extends FrameLayout {
         y1Var.setPadding(AndroidUtilities.dp(3.0f), 0, AndroidUtilities.dp(3.0f), 0);
         addView(x90Var, w7.z5.e(-1, -2, 48));
         addView(y1Var, w7.z5.e(-1, -2, 48));
-        if (saVar.f41415x != 0) {
+        if (saVar.f41413x != 0) {
             String string = LocaleController.getString(R.string.BotUsernameHelp);
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(string);
             int indexOf = string.indexOf(42);
@@ -70,8 +70,8 @@ public final class ra extends FrameLayout {
         int intValue;
         int i10;
         float f7;
-        org.telegram.ui.Components.x90 x90Var = raVar.f41104a;
-        org.telegram.ui.Cells.y1 y1Var = raVar.f41105b;
+        org.telegram.ui.Components.x90 x90Var = raVar.f41096a;
+        org.telegram.ui.Cells.y1 y1Var = raVar.f41097b;
         if (y1Var.getVisibility() == 0) {
             y1Var.measure(View.MeasureSpec.makeMeasureSpec((raVar.getMeasuredWidth() - raVar.getPaddingLeft()) - raVar.getPaddingRight(), 1073741824), View.MeasureSpec.makeMeasureSpec(9999999, Integer.MIN_VALUE));
         }
@@ -79,7 +79,7 @@ public final class ra extends FrameLayout {
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
-        Integer num = raVar.f41106c;
+        Integer num = raVar.f41098c;
         if (num == null) {
             intValue = raVar.getMeasuredHeight();
         } else {
@@ -108,8 +108,8 @@ public final class ra extends FrameLayout {
                 ra raVar2 = ra.this;
                 raVar2.getClass();
                 float floatValue = ((Float) valueAnimator2.getAnimatedValue()).floatValue();
-                raVar2.f41104a.setTranslationY(AndroidUtilities.lerp(translationY, f10, floatValue));
-                raVar2.f41106c = Integer.valueOf(AndroidUtilities.lerp(i11, i12, floatValue));
+                raVar2.f41096a.setTranslationY(AndroidUtilities.lerp(translationY, f10, floatValue));
+                raVar2.f41098c = Integer.valueOf(AndroidUtilities.lerp(i11, i12, floatValue));
                 raVar2.requestLayout();
             }
         });
@@ -120,7 +120,7 @@ public final class ra extends FrameLayout {
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        Integer num = this.f41106c;
+        Integer num = this.f41098c;
         if (num != null) {
             i11 = View.MeasureSpec.makeMeasureSpec(num.intValue(), 1073741824);
         }

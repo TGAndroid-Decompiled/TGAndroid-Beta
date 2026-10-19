@@ -2,12 +2,12 @@ package org.telegram.ui.Components;
 
 import org.telegram.messenger.AndroidUtilities;
 public class lu0 extends ia implements ci.p7 {
-    public int f28309b3;
-    public int f28310c3;
+    public int f28307b3;
+    public int f28308c3;
 
     @Override
     public final void a(int[] iArr) {
-        iArr[0] = (getPaddingTop() - AndroidUtilities.dp(2.0f)) - this.f28309b3;
-        iArr[1] = (getMeasuredHeight() - getPaddingBottom()) - this.f28310c3;
+        iArr[0] = (getPaddingTop() - AndroidUtilities.dp(2.0f)) - this.f28307b3;
+        iArr[1] = (getMeasuredHeight() - getPaddingBottom()) - this.f28308c3;
     }
 }

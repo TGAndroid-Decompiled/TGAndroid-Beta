@@ -14,11 +14,11 @@ public final class uv extends k61 {
     public final void onClick(View view) {
         int i10;
         vv vvVar = this.e;
-        i10 = ((org.telegram.ui.ActionBar.f3) vvVar.f31928x).currentAccount;
+        i10 = ((org.telegram.ui.ActionBar.f3) vvVar.f31926x).currentAccount;
         MessagesController messagesController = MessagesController.getInstance(i10);
         String url = getURL();
-        aw awVar = vvVar.f31928x;
-        messagesController.openByUserName(url, awVar.f24715c, 1);
+        aw awVar = vvVar.f31926x;
+        messagesController.openByUserName(url, awVar.f24713c, 1);
         awVar.Z();
         awVar.dismiss();
     }

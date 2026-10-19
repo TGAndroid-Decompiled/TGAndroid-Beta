@@ -1,35 +1,33 @@
 package ai;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class t8 implements RequestDelegate {
-    public final int f2213a;
-    public final ga f2214b;
+import org.telegram.ui.ProfileActivity;
+import org.telegram.ui.nz0;
+public final class t8 implements Runnable {
+    public final int f2217a;
+    public final ProfileActivity f2218b;
 
-    public t8(ga gaVar, int i10) {
-        this.f2213a = i10;
-        this.f2214b = gaVar;
+    public t8(ProfileActivity profileActivity, int i10) {
+        this.f2217a = i10;
+        this.f2218b = profileActivity;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f2213a) {
+    public final void run() {
+        switch (this.f2217a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new b9(this.f2214b, tLObject, 0));
+                ProfileActivity profileActivity = this.f2218b;
+                nz0 nz0Var = profileActivity.O;
+                if (nz0Var != null) {
+                    nz0Var.a1(14);
+                    profileActivity.G4(false);
+                    return;
+                }
                 return;
             case 1:
-                AndroidUtilities.runOnUIThread(new b9(this.f2214b, tLObject, 1));
-                return;
-            case 2:
-                AndroidUtilities.runOnUIThread(new b9(this.f2214b, tLObject, 2));
-                return;
-            case 3:
-                AndroidUtilities.runOnUIThread(new b9(this.f2214b, tLObject, 3));
+                this.f2218b.G4(true);
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new b9(this.f2214b, tLObject, 4));
+                this.f2218b.G4(true);
                 return;
         }
     }

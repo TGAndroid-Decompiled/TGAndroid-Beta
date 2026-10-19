@@ -1,94 +1,69 @@
 package ai;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
+import android.content.Context;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.gh;
-import org.telegram.ui.Components.hi;
-import org.telegram.ui.Components.im0;
-import org.telegram.ui.Components.li;
-import org.telegram.ui.Components.ti;
-public final class b5 extends AnimatorListenerAdapter {
-    public final int f1025a;
-    public final int f1026b;
-    public final Object f1027c;
-    public final Object d;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.UserConfig;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.er0;
+public final class b5 extends er0 {
+    public final l7 f1035c1;
 
-    public b5(Object obj, int i10, Object obj2, int i11) {
-        this.f1025a = i11;
-        this.d = obj;
-        this.f1026b = i10;
-        this.f1027c = obj2;
+    public b5(l7 l7Var, Context context, String str, String str2, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context, null, null, str, null, false, str2, null, false, false, true, null, d6Var);
+        this.f1035c1 = l7Var;
+        this.f25978b0 = true;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        int i10;
-        int i11;
-        int i12;
-        switch (this.f1025a) {
-            case 0:
-                k7 k7Var = (k7) this.d;
-                k7Var.o2();
-                j5 j5Var = k7Var.f1659g0;
-                int i13 = 8;
-                int i14 = this.f1026b;
-                if (i14 == 0) {
-                    i10 = 0;
+    public final void T0(a0.h hVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
+        org.telegram.ui.Components.xc bulletinFactory;
+        String str;
+        if (z10 && (bulletinFactory = getBulletinFactory()) != null) {
+            if (hVar.m() == 1) {
+                long j10 = hVar.j(0);
+                if (j10 == UserConfig.getInstance(this.currentAccount).clientUserId) {
+                    org.telegram.ui.Components.qc G = bulletinFactory.G(R.raw.saved_messages, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.LinkSharedToSavedMessages, new Object[0])));
+                    G.f29602r = false;
+                    G.f29604t = true;
+                    G.j();
+                } else if (j10 < 0) {
+                    TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j10));
+                    int i11 = R.raw.forward;
+                    int i12 = R.string.LinkSharedTo;
+                    if (tL_forumTopic != null) {
+                        str = tL_forumTopic.title;
+                    } else {
+                        str = chat.title;
+                    }
+                    org.telegram.ui.Components.qc G2 = bulletinFactory.G(i11, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(i12, str)));
+                    G2.f29602r = false;
+                    G2.f29604t = true;
+                    G2.j();
                 } else {
-                    i10 = 8;
+                    org.telegram.ui.Components.qc G3 = bulletinFactory.G(R.raw.forward, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.LinkSharedTo, MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j10)).first_name)));
+                    G3.f29602r = false;
+                    G3.f29604t = true;
+                    G3.j();
                 }
-                j5Var.setVisibility(i10);
-                j5 j5Var2 = k7Var.f1681s0;
-                if (i14 == 1) {
-                    i11 = 0;
-                } else {
-                    i11 = 8;
-                }
-                j5Var2.setVisibility(i11);
-                j5 j5Var3 = k7Var.B0;
-                if (i14 == 2) {
-                    i12 = 0;
-                } else {
-                    i12 = 8;
-                }
-                j5Var3.setVisibility(i12);
-                j5 j5Var4 = k7Var.D0;
-                if (i14 == 3) {
-                    i13 = 0;
-                }
-                j5Var4.setVisibility(i13);
-                k7Var.X2();
-                k7Var.f1652c1 = null;
-                Runnable runnable = (Runnable) this.f1027c;
-                if (runnable != null) {
-                    runnable.run();
-                    return;
-                }
-                return;
-            case 1:
-                ti tiVar = (ti) this.d;
-                tiVar.B0.setAlpha(0.0f);
-                tiVar.B0.setTranslationY(AndroidUtilities.dp(78.0f) + this.f1026b);
-                hi hiVar = tiVar.f30532e0;
-                li liVar = tiVar.B0;
-                Float valueOf = Float.valueOf(1.0f);
-                hiVar.getClass();
-                hiVar.a(liVar, valueOf);
-                tiVar.f30520a1.setAlpha(0.0f);
-                o1.k kVar = new o1.k(tiVar.C0, o1.h.f17544n, 0.0f);
-                kVar.f17561u.a(0.75f);
-                kVar.f17561u.b(500.0f);
-                kVar.b(new org.telegram.ui.Components.l7(this, 3));
-                kVar.a(new gi.b4(3, this, (gh) this.f1027c));
-                tiVar.f30590w1 = kVar;
-                kVar.h();
-                return;
-            default:
-                a5.a aVar = (a5.a) this.d;
-                ((im0) aVar.d).scrollBy(0, this.f1026b - ((int[]) this.f1027c)[0]);
-                aVar.f282c = null;
-                return;
+            } else {
+                org.telegram.ui.Components.qc Q = bulletinFactory.Q(R.raw.forward, 36, AndroidUtilities.replaceTags(LocaleController.formatPluralString("LinkSharedToManyChats", hVar.m(), Integer.valueOf(hVar.m()))));
+                Q.f29602r = false;
+                Q.f29604t = true;
+                Q.j();
+            }
+            try {
+                this.container.performHapticFeedback(3);
+            } catch (Exception unused) {
+            }
         }
+    }
+
+    @Override
+    public final void U0(View view) {
+        l7.y1(this.f1035c1, view);
     }
 }

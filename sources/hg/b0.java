@@ -13,17 +13,17 @@ import org.telegram.ui.Cells.j2;
 import org.telegram.ui.Cells.m4;
 import org.telegram.ui.Components.hm0;
 public class b0 extends hm0 {
-    public final Context f11810c;
+    public final Context f11808c;
     public final int d;
     public final boolean e;
-    public final boolean f11811f;
+    public final boolean f11809f;
     public final d6 h;
 
     public b0(int i10, Context context, d6 d6Var, boolean z10, boolean z11) {
         this.e = z10;
-        this.f11810c = context;
+        this.f11808c = context;
         this.d = i10;
-        this.f11811f = z11;
+        this.f11809f = z11;
         this.h = d6Var;
     }
 
@@ -41,7 +41,7 @@ public class b0 extends hm0 {
     public void v(s4.b1 b1Var, int i10) {
         TLRPC.Chat chat;
         String str;
-        m4 m4Var = (m4) b1Var.f45910a;
+        m4 m4Var = (m4) b1Var.f45912a;
         int i11 = this.d;
         TLRPC.TL_topPeer tL_topPeer = MediaDataController.getInstance(i11).hints.get(i10);
         new TLRPC.TL_dialog();
@@ -85,9 +85,9 @@ public class b0 extends hm0 {
     @Override
     public final s4.b1 x(ViewGroup viewGroup, int i10) {
         boolean z10 = this.e;
-        m4 m4Var = new m4(this.f11810c, this.h, z10);
-        if (this.f11811f && !m4Var.f22581x) {
-            m4Var.f22581x = true;
+        m4 m4Var = new m4(this.f11808c, this.h, z10);
+        if (this.f11809f && !m4Var.f22579x) {
+            m4Var.f22579x = true;
             NotificationCenter.getInstance(m4Var.h).listen(m4Var, NotificationCenter.userIsPremiumBlockedUpadted, new j2(m4Var, 1));
         }
         m4Var.setLayoutParams(new s4.o0(AndroidUtilities.dp(80.0f), AndroidUtilities.dp(86.0f)));

@@ -1,21 +1,21 @@
 package yh;
 public final class o implements Runnable {
-    public final int f50415a;
-    public final v f50416b;
+    public final int f50417a;
+    public final v f50418b;
 
     public o(v vVar, int i10) {
-        this.f50415a = i10;
-        this.f50416b = vVar;
+        this.f50417a = i10;
+        this.f50418b = vVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f50415a) {
+        switch (this.f50417a) {
             case 0:
-                this.f50416b.onBackPressed();
+                this.f50418b.onBackPressed();
                 return;
             default:
-                this.f50416b.U();
+                this.f50418b.U();
                 return;
         }
     }

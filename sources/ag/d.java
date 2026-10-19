@@ -39,7 +39,7 @@ public abstract class d {
                         Charset charset = StandardCharsets.UTF_8;
                         crc32.update(l4.getBytes(charset));
                         crc32.update(pollAnswer.option);
-                        crc32.update(Long.toString(poll.f20301id).getBytes(charset));
+                        crc32.update(Long.toString(poll.f20299id).getBytes(charset));
                         pollAnswer.shuffle_hash = crc32.getValue();
                     }
                 }

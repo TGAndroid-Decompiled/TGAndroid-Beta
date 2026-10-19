@@ -1,20 +1,20 @@
 package org.telegram.ui.Components;
 public final class gb implements q0.a {
-    public final int f26565a;
-    public final Object f26566b;
+    public final int f26563a;
+    public final Object f26564b;
 
     public gb(Object obj, int i10) {
-        this.f26565a = i10;
-        this.f26566b = obj;
+        this.f26563a = i10;
+        this.f26564b = obj;
     }
 
     @Override
     public final void accept(Object obj) {
-        switch (this.f26565a) {
+        switch (this.f26563a) {
             case 0:
-                qc qcVar = (qc) this.f26566b;
+                qc qcVar = (qc) this.f26564b;
                 Float f7 = (Float) obj;
-                ob obVar = qcVar.f29602p;
+                ob obVar = qcVar.f29600p;
                 if (obVar != null) {
                     ub ubVar = qcVar.e;
                     if (!ubVar.top) {
@@ -25,7 +25,7 @@ public final class gb implements q0.a {
                 }
                 return;
             default:
-                ri riVar = ((ti) this.f26566b).f30528c2;
+                ri riVar = ((ti) this.f26564b).f30526c2;
                 if (riVar != null) {
                     riVar.O(obj);
                     return;

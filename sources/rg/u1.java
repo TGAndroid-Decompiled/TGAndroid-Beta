@@ -4,9 +4,9 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import com.google.android.gms.internal.play_billing.k3;
 public final class u1 extends GestureDetector.SimpleOnGestureListener {
-    public float f45655a;
-    public boolean f45656b;
-    public float f45657c;
+    public float f45657a;
+    public boolean f45658b;
+    public float f45659c;
     public final w1 d;
 
     public u1(w1 w1Var) {
@@ -18,33 +18,33 @@ public final class u1 extends GestureDetector.SimpleOnGestureListener {
         float f7;
         w1 w1Var = this.d;
         boolean contains = w1Var.e.contains(motionEvent.getX(), motionEvent.getY());
-        if (w1Var.f45682f != contains) {
-            w1Var.f45682f = contains;
+        if (w1Var.f45684f != contains) {
+            w1Var.f45684f = contains;
             w1Var.invalidate();
             if (contains) {
                 v1 v1Var = w1Var.K;
                 if (v1Var != null) {
                     f7 = v1Var.get();
                 } else {
-                    f7 = w1Var.H.f44649c;
+                    f7 = w1Var.H.f44651c;
                 }
-                this.f45655a = f7;
-                this.f45656b = false;
+                this.f45657a = f7;
+                this.f45658b = false;
             }
         }
-        return w1Var.f45682f;
+        return w1Var.f45684f;
     }
 
     @Override
     public final boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
         w1 w1Var = this.d;
-        if (w1Var.f45682f) {
-            if (!this.f45656b) {
-                this.f45657c = motionEvent.getY() - motionEvent2.getY();
-                this.f45656b = true;
+        if (w1Var.f45684f) {
+            if (!this.f45658b) {
+                this.f45659c = motionEvent.getY() - motionEvent2.getY();
+                this.f45658b = true;
             }
-            float f11 = this.f45655a;
-            float y3 = ((motionEvent.getY() - motionEvent2.getY()) - this.f45657c) / w1Var.e.height();
+            float f11 = this.f45657a;
+            float y3 = ((motionEvent.getY() - motionEvent2.getY()) - this.f45659c) / w1Var.e.height();
             float f12 = w1Var.G;
             float f13 = w1Var.F;
             float a2 = w7.r.a(k3.y(f12, f13, y3, f11), f13, f12);
@@ -52,15 +52,15 @@ public final class u1 extends GestureDetector.SimpleOnGestureListener {
             if (v1Var != null) {
                 v1Var.U(a2);
             } else {
-                w1Var.H.f44649c = a2;
+                w1Var.H.f44651c = a2;
             }
-            w1Var.f45686w.d(a2, true);
+            w1Var.f45688w.d(a2, true);
             Runnable runnable = w1Var.I;
             if (runnable != null) {
                 runnable.run();
             }
             w1Var.invalidate();
         }
-        return w1Var.f45682f;
+        return w1Var.f45684f;
     }
 }

@@ -11,34 +11,34 @@ import org.telegram.ui.Components.lw0;
 import org.telegram.ui.qn;
 import org.telegram.ui.ti;
 public final class n5 extends AnimatorListenerAdapter {
-    public final int f9514a;
-    public int f9515b;
-    public final Object f9516c;
+    public final int f9512a;
+    public int f9513b;
+    public final Object f9514c;
     public final Object d;
     public final Object e;
 
     public n5(lw0 lw0Var, ViewGroup viewGroup, ViewGroup viewGroup2, int i10, int i11) {
-        this.f9514a = i11;
+        this.f9512a = i11;
         this.e = lw0Var;
-        this.f9516c = viewGroup;
+        this.f9514c = viewGroup;
         this.d = viewGroup2;
-        this.f9515b = i10;
+        this.f9513b = i10;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f9514a) {
+        switch (this.f9512a) {
             case 0:
                 f6 f6Var = (f6) this.e;
                 f6Var.Y0 = f6Var.Z0;
                 f6Var.Z0 = -1;
                 f6Var.W0.invalidate();
-                View view = (View) this.f9516c;
+                View view = (View) this.f9514c;
                 if (view != null && ((View) this.d) != null) {
                     view.setVisibility(8);
                 }
-                if (animator == f6Var.f9002b1) {
-                    f6Var.f9002b1 = null;
+                if (animator == f6Var.f9000b1) {
+                    f6Var.f9000b1 = null;
                     return;
                 }
                 return;
@@ -52,22 +52,22 @@ public final class n5 extends AnimatorListenerAdapter {
                 qnVar.X0.invalidate();
                 qnVar.X0.setSkipBackgroundDrawing(false);
                 qnVar.S9 = false;
-                qn qnVar2 = (qn) this.f9516c;
+                qn qnVar2 = (qn) this.f9514c;
                 qnVar2.U9 = 0.0f;
                 qnVar2.fragmentView.invalidate();
-                qnVar2.f40903x0.invalidate();
+                qnVar2.f40895x0.invalidate();
                 qnVar2.T9 = null;
                 qnVar.fragmentView.setAlpha(1.0f);
                 ((Runnable) this.d).run();
-                qnVar.f40615a1.setTranslationY(0.0f);
-                qnVar2.f40615a1.setTranslationY(0.0f);
-                qnVar2.f40615a1.getAvatarImageView().setTranslationY(0.0f);
-                qnVar.f40615a1.getAvatarImageView().setScaleX(1.0f);
-                qnVar.f40615a1.getAvatarImageView().setScaleY(1.0f);
-                qnVar.f40615a1.getAvatarImageView().setAlpha(1.0f);
-                qnVar2.f40615a1.getAvatarImageView().setScaleX(1.0f);
-                qnVar2.f40615a1.getAvatarImageView().setScaleY(1.0f);
-                qnVar2.f40615a1.getAvatarImageView().setAlpha(1.0f);
+                qnVar.f40607a1.setTranslationY(0.0f);
+                qnVar2.f40607a1.setTranslationY(0.0f);
+                qnVar2.f40607a1.getAvatarImageView().setTranslationY(0.0f);
+                qnVar.f40607a1.getAvatarImageView().setScaleX(1.0f);
+                qnVar.f40607a1.getAvatarImageView().setScaleY(1.0f);
+                qnVar.f40607a1.getAvatarImageView().setAlpha(1.0f);
+                qnVar2.f40607a1.getAvatarImageView().setScaleX(1.0f);
+                qnVar2.f40607a1.getAvatarImageView().setScaleY(1.0f);
+                qnVar2.f40607a1.getAvatarImageView().setAlpha(1.0f);
                 ch chVar = qnVar2.M0;
                 if (chVar != null) {
                     chVar.setAlpha(1.0f);
@@ -76,15 +76,15 @@ public final class n5 extends AnimatorListenerAdapter {
                 return;
             default:
                 rg.m0 m0Var = (rg.m0) this.e;
-                m0Var.f45474g1 = m0Var.f45476h1;
-                m0Var.f45476h1 = -1;
-                m0Var.f45472f1.invalidate();
-                View view2 = (View) this.f9516c;
+                m0Var.f45476g1 = m0Var.f45478h1;
+                m0Var.f45478h1 = -1;
+                m0Var.f45474f1.invalidate();
+                View view2 = (View) this.f9514c;
                 if (view2 != null && ((View) this.d) != null) {
                     view2.setVisibility(8);
                 }
-                if (animator == m0Var.f45480j1) {
-                    m0Var.f45480j1 = null;
+                if (animator == m0Var.f45482j1) {
+                    m0Var.f45482j1 = null;
                     return;
                 }
                 return;
@@ -96,14 +96,14 @@ public final class n5 extends AnimatorListenerAdapter {
         View view;
         int i10;
         View view2;
-        switch (this.f9514a) {
+        switch (this.f9512a) {
             case 0:
                 f6 f6Var = (f6) this.e;
-                rg.w1 w1Var = f6Var.f9006d1;
-                if (((View) this.f9516c) != null && (view = (View) this.d) != null) {
+                rg.w1 w1Var = f6Var.f9004d1;
+                if (((View) this.f9514c) != null && (view = (View) this.d) != null) {
                     view.setVisibility(0);
                 }
-                if (this.f9515b == 2) {
+                if (this.f9513b == 2) {
                     w1Var.b(0.5f, 2.0f);
                     return;
                 }
@@ -118,15 +118,15 @@ public final class n5 extends AnimatorListenerAdapter {
             case 1:
                 super.onAnimationStart(animator);
                 i10 = ((org.telegram.ui.ActionBar.n2) ((qn) this.e)).currentAccount;
-                this.f9515b = NotificationCenter.getInstance(i10).setAnimationInProgress(this.f9515b, null);
+                this.f9513b = NotificationCenter.getInstance(i10).setAnimationInProgress(this.f9513b, null);
                 return;
             default:
                 rg.m0 m0Var = (rg.m0) this.e;
                 rg.w1 w1Var2 = m0Var.l1;
-                if (((View) this.f9516c) != null && (view2 = (View) this.d) != null) {
+                if (((View) this.f9514c) != null && (view2 = (View) this.d) != null) {
                     view2.setVisibility(0);
                 }
-                if (this.f9515b == 2) {
+                if (this.f9513b == 2) {
                     w1Var2.b(0.5f, 2.0f);
                     return;
                 }
@@ -142,9 +142,9 @@ public final class n5 extends AnimatorListenerAdapter {
     }
 
     public n5(qn qnVar, qn qnVar2, Runnable runnable) {
-        this.f9514a = 1;
+        this.f9512a = 1;
         this.e = qnVar;
-        this.f9516c = qnVar2;
+        this.f9514c = qnVar2;
         this.d = runnable;
     }
 }

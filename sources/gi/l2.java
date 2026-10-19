@@ -14,60 +14,60 @@ import org.telegram.messenger.voip.VoIPService;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.ui.LaunchActivity;
 public final class l2 implements Runnable {
-    public final int f11320a;
-    public final int f11321b;
+    public final int f11318a;
+    public final int f11319b;
 
     public l2(int i10, int i11) {
-        this.f11320a = i11;
-        this.f11321b = i10;
+        this.f11318a = i11;
+        this.f11319b = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f11320a) {
+        switch (this.f11318a) {
             case 0:
-                MediaDataController.getInstance(this.f11321b).loadAttachMenuBots(false, true);
+                MediaDataController.getInstance(this.f11319b).loadAttachMenuBots(false, true);
                 return;
             case 1:
                 try {
-                    MessagesStorage.getInstance(this.f11321b).getDatabase().executeFast("DELETE FROM search_recent WHERE 1").stepThis().dispose();
+                    MessagesStorage.getInstance(this.f11319b).getDatabase().executeFast("DELETE FROM search_recent WHERE 1").stepThis().dispose();
                     return;
                 } catch (Exception e) {
                     FileLog.e(e);
                     return;
                 }
             case 2:
-                MediaController.lambda$loadGalleryPhotosAlbums$58(this.f11321b);
+                MediaController.lambda$loadGalleryPhotosAlbums$58(this.f11319b);
                 return;
             case 3:
-                MediaController.lambda$checkGallery$1(this.f11321b);
+                MediaController.lambda$checkGallery$1(this.f11319b);
                 return;
             case 4:
-                NotificationRepeat.a(this.f11321b);
+                NotificationRepeat.a(this.f11319b);
                 return;
             case 5:
-                PushListenerController.lambda$processRemoteMessage$3(this.f11321b);
+                PushListenerController.lambda$processRemoteMessage$3(this.f11319b);
                 return;
             case 6:
-                PushListenerController.lambda$processRemoteMessage$4(this.f11321b);
+                PushListenerController.lambda$processRemoteMessage$4(this.f11319b);
                 return;
             case 7:
-                SharedConfig.lambda$checkLogsToDelete$3(this.f11321b);
+                SharedConfig.lambda$checkLogsToDelete$3(this.f11319b);
                 return;
             case 8:
-                ConnectionsManager.lambda$onUpdate$13(this.f11321b);
+                ConnectionsManager.lambda$onUpdate$13(this.f11319b);
                 return;
             case 9:
-                ConnectionsManager.lambda$onSessionCreated$14(this.f11321b);
+                ConnectionsManager.lambda$onSessionCreated$14(this.f11319b);
                 return;
             case 10:
-                ConnectionsManager.lambda$onLogout$16(this.f11321b);
+                ConnectionsManager.lambda$onLogout$16(this.f11319b);
                 return;
             case 11:
-                MediaDataController.getInstance(this.f11321b).checkStickers(5);
+                MediaDataController.getInstance(this.f11319b).checkStickers(5);
                 return;
             default:
-                int i10 = this.f11321b;
+                int i10 = this.f11319b;
                 Pattern pattern = LaunchActivity.C1;
                 ApplicationLoader.mainInterfacePausedStageQueue = true;
                 ApplicationLoader.mainInterfacePausedStageQueueTime = 0L;

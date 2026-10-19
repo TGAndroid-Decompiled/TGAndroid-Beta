@@ -3,24 +3,24 @@ package org.telegram.ui;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 public final class at0 extends AnimatorListenerAdapter {
-    public final int f35426a;
-    public final bt0 f35427b;
+    public final int f35410a;
+    public final bt0 f35411b;
 
     public at0(bt0 bt0Var, int i10) {
-        this.f35427b = bt0Var;
-        this.f35426a = i10;
+        this.f35411b = bt0Var;
+        this.f35410a = i10;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        if (this.f35427b.f35743b.f33333k8) {
-            PhotoViewer photoViewer = this.f35427b.f35743b;
+        if (this.f35411b.f35736b.f33333k8) {
+            PhotoViewer photoViewer = this.f35411b.f35736b;
             if (photoViewer.f33386r1) {
                 photoViewer.B3();
             }
         }
-        if (this.f35426a == 3) {
-            PhotoViewer photoViewer2 = this.f35427b.f35743b;
+        if (this.f35410a == 3) {
+            PhotoViewer photoViewer2 = this.f35411b.f35736b;
             photoViewer2.G2(photoViewer2.P4, false, true, true);
         }
     }
@@ -28,7 +28,7 @@ public final class at0 extends AnimatorListenerAdapter {
     @Override
     public final void onAnimationStart(Animator animator) {
         int i10;
-        PhotoViewer photoViewer = this.f35427b.f35743b;
+        PhotoViewer photoViewer = this.f35411b.f35736b;
         photoViewer.P0.setVisibility(0);
         if (photoViewer.E3()) {
             photoViewer.f33350n0.setVisibility(0);

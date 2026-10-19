@@ -9,7 +9,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 public final class x91 extends org.telegram.ui.ActionBar.f3 {
-    public static x91 f43170b;
+    public static x91 f43169b;
 
     public static void n(x91 x91Var, cy cyVar) {
         if (cyVar.getParentActivity() == null) {
@@ -20,7 +20,7 @@ public final class x91 extends org.telegram.ui.ActionBar.f3 {
     }
 
     public static void o(cy cyVar) {
-        if (f43170b == null) {
+        if (f43169b == null) {
             ?? f3Var = new org.telegram.ui.ActionBar.f3(cyVar.getParentActivity(), false);
             Activity parentActivity = cyVar.getParentActivity();
             LinearLayout e = org.telegram.messenger.g0.e(parentActivity, 1);
@@ -30,7 +30,7 @@ public final class x91 extends org.telegram.ui.ActionBar.f3 {
             e.addView(tx0Var, w7.z5.t(144, 144, 1, 0, 16, 0, 0));
             TextView textView = new TextView(parentActivity);
             textView.setGravity(8388611);
-            int i10 = org.telegram.ui.ActionBar.h6.f21095j5;
+            int i10 = org.telegram.ui.ActionBar.h6.f21093j5;
             org.telegram.messenger.g0.m(20.0f, org.telegram.ui.ActionBar.h6.x0(null, i10, false), 1, textView);
             textView.setText(LocaleController.getString(R.string.SuggestClearDatabaseTitle));
             e.addView(textView, w7.z5.d(-1, -2.0f, 0, 21.0f, 30.0f, 21.0f, 0.0f));
@@ -49,14 +49,14 @@ public final class x91 extends org.telegram.ui.ActionBar.f3 {
             textView3.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.Sh, false));
             int dp = AndroidUtilities.dp(6.0f);
             int x02 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.Oh, false);
-            int o10 = i0.a.o(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20989d6, false), 120);
+            int o10 = i0.a.o(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20987d6, false), 120);
             textView3.setBackgroundDrawable(org.telegram.ui.ActionBar.h6.j0(dp, dp, dp, dp, x02, o10, o10));
             e.addView(textView3, w7.z5.d(-1, 48.0f, 0, 16.0f, 15.0f, 16.0f, 16.0f));
             textView3.setOnClickListener(new cf0(18, f3Var, cyVar));
             ScrollView scrollView = new ScrollView(parentActivity);
             scrollView.addView(e);
             f3Var.setCustomView(scrollView);
-            f43170b = f3Var;
+            f43169b = f3Var;
             f3Var.show();
         }
     }
@@ -64,6 +64,6 @@ public final class x91 extends org.telegram.ui.ActionBar.f3 {
     @Override
     public final void dismiss() {
         super.dismiss();
-        f43170b = null;
+        f43169b = null;
     }
 }

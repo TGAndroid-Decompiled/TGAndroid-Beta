@@ -4,21 +4,21 @@ import android.os.Build;
 import java.util.ArrayList;
 import org.telegram.messenger.FileLog;
 public final class vk0 {
-    public final LaunchActivity f42269a;
-    public final ArrayList f42270b = new ArrayList();
-    public int f42271c = Integer.MIN_VALUE;
+    public final LaunchActivity f42270a;
+    public final ArrayList f42271b = new ArrayList();
+    public int f42272c = Integer.MIN_VALUE;
 
     public vk0(LaunchActivity launchActivity) {
-        this.f42269a = launchActivity;
+        this.f42270a = launchActivity;
     }
 
     public final void a() {
-        boolean isEmpty = this.f42270b.isEmpty();
-        LaunchActivity launchActivity = this.f42269a;
+        boolean isEmpty = this.f42271b.isEmpty();
+        LaunchActivity launchActivity = this.f42270a;
         try {
             if (!isEmpty && launchActivity.getResources().getConfiguration().smallestScreenWidthDp < 600 && (Build.VERSION.SDK_INT < 24 || !launchActivity.isInMultiWindowMode())) {
-                if (this.f42271c == Integer.MIN_VALUE) {
-                    this.f42271c = launchActivity.getRequestedOrientation();
+                if (this.f42272c == Integer.MIN_VALUE) {
+                    this.f42272c = launchActivity.getRequestedOrientation();
                 }
                 if (launchActivity.getRequestedOrientation() != 1) {
                     launchActivity.setRequestedOrientation(1);
@@ -26,10 +26,10 @@ public final class vk0 {
                 }
                 return;
             }
-            int i10 = this.f42271c;
+            int i10 = this.f42272c;
             if (i10 != Integer.MIN_VALUE) {
                 launchActivity.setRequestedOrientation(i10);
-                this.f42271c = Integer.MIN_VALUE;
+                this.f42272c = Integer.MIN_VALUE;
             }
         } catch (Exception e) {
             FileLog.e(e);

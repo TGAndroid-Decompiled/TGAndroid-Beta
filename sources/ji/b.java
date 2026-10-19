@@ -54,10 +54,10 @@ public final class b extends bb {
         dVar2.setOnClickListener(new p(22, this, runnable));
         uc ucVar = new uc(context, 3);
         TextView textView = (TextView) ucVar.d;
-        TextView textView2 = (TextView) ucVar.f2276c;
+        TextView textView2 = (TextView) ucVar.f2278c;
         this.X = ucVar;
         ucVar.setPadding(AndroidUtilities.dp(20.0f), 0, AndroidUtilities.dp(20.0f), AndroidUtilities.dp(17.0f));
-        ((w9) ucVar.f2275b).e(chat, new h9(chat));
+        ((w9) ucVar.f2277b).e(chat, new h9(chat));
         textView2.setText(DialogObject.getName(chat));
         int i13 = h6.G6;
         textView2.setTextColor(getThemedColor(i13));
@@ -86,7 +86,7 @@ public final class b extends bb {
     public final hm0 x(im0 im0Var) {
         t61 t61Var = new t61(this.d, getContext(), this.currentAccount, 0, true, new o(this, 12), this.resourcesProvider);
         this.Y = t61Var;
-        t61Var.f30438r = false;
+        t61Var.f30436r = false;
         return t61Var;
     }
 }

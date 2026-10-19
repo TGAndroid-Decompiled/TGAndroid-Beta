@@ -5,12 +5,12 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.ui.Components.by0;
 public class BotWebViewContainer$BotWebViewProxy {
-    public a1 f42543a;
+    public a1 f42544a;
 
     @JavascriptInterface
     public void postEvent(String str, String str2) {
         try {
-            if (this.f42543a == null) {
+            if (this.f42544a == null) {
                 FileLog.d("webviewproxy.postEvent: no container");
             } else {
                 AndroidUtilities.runOnUIThread(new by0(this, str, str2, 8));

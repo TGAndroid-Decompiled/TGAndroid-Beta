@@ -4,21 +4,21 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 public final class am0 extends AnimatorListenerAdapter {
-    public final int f35397a;
-    public final boolean f35398b;
-    public final vm0 f35399c;
+    public final int f35381a;
+    public final boolean f35382b;
+    public final vm0 f35383c;
 
     public am0(vm0 vm0Var, boolean z10, int i10) {
-        this.f35397a = i10;
-        this.f35399c = vm0Var;
-        this.f35398b = z10;
+        this.f35381a = i10;
+        this.f35383c = vm0Var;
+        this.f35382b = z10;
     }
 
     @Override
     public final void onAnimationCancel(Animator animator) {
-        switch (this.f35397a) {
+        switch (this.f35381a) {
             case 0:
-                vm0 vm0Var = this.f35399c;
+                vm0 vm0Var = this.f35383c;
                 AnimatorSet animatorSet = vm0Var.M;
                 if (animatorSet != null && animatorSet.equals(animator)) {
                     vm0Var.M = null;
@@ -26,7 +26,7 @@ public final class am0 extends AnimatorListenerAdapter {
                 }
                 return;
             default:
-                vm0 vm0Var2 = this.f35399c;
+                vm0 vm0Var2 = this.f35383c;
                 AnimatorSet animatorSet2 = vm0Var2.M;
                 if (animatorSet2 != null && animatorSet2.equals(animator)) {
                     vm0Var2.M = null;
@@ -38,12 +38,12 @@ public final class am0 extends AnimatorListenerAdapter {
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f35397a) {
+        switch (this.f35381a) {
             case 0:
-                vm0 vm0Var = this.f35399c;
+                vm0 vm0Var = this.f35383c;
                 AnimatorSet animatorSet = vm0Var.M;
                 if (animatorSet != null && animatorSet.equals(animator)) {
-                    if (!this.f35398b) {
+                    if (!this.f35382b) {
                         vm0Var.N.setVisibility(4);
                         return;
                     } else {
@@ -53,10 +53,10 @@ public final class am0 extends AnimatorListenerAdapter {
                 }
                 return;
             default:
-                vm0 vm0Var2 = this.f35399c;
+                vm0 vm0Var2 = this.f35383c;
                 AnimatorSet animatorSet2 = vm0Var2.M;
                 if (animatorSet2 != null && animatorSet2.equals(animator)) {
-                    if (!this.f35398b) {
+                    if (!this.f35382b) {
                         vm0Var2.P.setVisibility(4);
                         return;
                     } else {

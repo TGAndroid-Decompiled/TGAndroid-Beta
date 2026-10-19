@@ -4,21 +4,21 @@ import android.graphics.ColorFilter;
 import android.graphics.drawable.Drawable;
 import org.telegram.ui.Components.zq;
 public final class p2 extends zq {
-    public final int f5723y;
+    public final int f5721y;
 
     public p2(Drawable drawable, Drawable drawable2, int i10) {
         super(drawable, drawable2);
-        this.f5723y = i10;
+        this.f5721y = i10;
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        int i10 = this.f5723y;
+        int i10 = this.f5721y;
     }
 
     public p2(Drawable drawable, Drawable drawable2, int i10, int i11) {
         super(drawable, drawable2, i10, i11);
-        this.f5723y = 3;
+        this.f5721y = 3;
     }
 
     private final void a(ColorFilter colorFilter) {

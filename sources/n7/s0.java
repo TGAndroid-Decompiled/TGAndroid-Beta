@@ -5,17 +5,17 @@ import java.io.Serializable;
 import java.util.Iterator;
 import java.util.Locale;
 public class s0 implements Iterable, Serializable {
-    public static final s0 f17311c = new s0(t0.f17316a);
-    public int f17312a = 0;
-    public final byte[] f17313b;
+    public static final s0 f17309c = new s0(t0.f17314a);
+    public int f17310a = 0;
+    public final byte[] f17311b;
 
     static {
-        int i10 = q0.f17308a;
+        int i10 = q0.f17306a;
     }
 
     public s0(byte[] bArr) {
         bArr.getClass();
-        this.f17313b = bArr;
+        this.f17311b = bArr;
     }
 
     public static int r(int i10, int i11, int i12) {
@@ -45,18 +45,18 @@ public class s0 implements Iterable, Serializable {
                 if (o() != 0) {
                     if (obj instanceof s0) {
                         s0 s0Var = (s0) obj;
-                        int i10 = this.f17312a;
-                        int i11 = s0Var.f17312a;
+                        int i10 = this.f17310a;
+                        int i11 = s0Var.f17310a;
                         if (i10 == 0 || i11 == 0 || i10 == i11) {
                             int o10 = o();
                             if (o10 <= s0Var.o()) {
                                 if (o10 <= s0Var.o()) {
-                                    byte[] bArr = s0Var.f17313b;
+                                    byte[] bArr = s0Var.f17311b;
                                     int n10 = n() + o10;
                                     int n11 = n();
                                     int n12 = s0Var.n();
                                     while (n11 < n10) {
-                                        if (this.f17313b[n11] != bArr[n12]) {
+                                        if (this.f17311b[n11] != bArr[n12]) {
                                             return false;
                                         }
                                         n11++;
@@ -81,23 +81,23 @@ public class s0 implements Iterable, Serializable {
     }
 
     public byte h(int i10) {
-        return this.f17313b[i10];
+        return this.f17311b[i10];
     }
 
     public final int hashCode() {
-        int i10 = this.f17312a;
+        int i10 = this.f17310a;
         if (i10 == 0) {
             int o10 = o();
             int n10 = n();
-            byte[] bArr = t0.f17316a;
+            byte[] bArr = t0.f17314a;
             int i11 = o10;
             for (int i12 = n10; i12 < n10 + o10; i12++) {
-                i11 = (i11 * 31) + this.f17313b[i12];
+                i11 = (i11 * 31) + this.f17311b[i12];
             }
             if (i11 == 0) {
                 i11 = 1;
             }
-            this.f17312a = i11;
+            this.f17310a = i11;
             return i11;
         }
         return i10;
@@ -109,7 +109,7 @@ public class s0 implements Iterable, Serializable {
     }
 
     public byte m(int i10) {
-        return this.f17313b[i10];
+        return this.f17311b[i10];
     }
 
     public int n() {
@@ -117,21 +117,21 @@ public class s0 implements Iterable, Serializable {
     }
 
     public int o() {
-        return this.f17313b.length;
+        return this.f17311b.length;
     }
 
     public void p(int i10, byte[] bArr) {
-        System.arraycopy(this.f17313b, 0, bArr, 0, i10);
+        System.arraycopy(this.f17311b, 0, bArr, 0, i10);
     }
 
     public final ByteArrayInputStream q() {
-        return new ByteArrayInputStream(this.f17313b, n(), o());
+        return new ByteArrayInputStream(this.f17311b, n(), o());
     }
 
     public final byte[] t() {
         int o10 = o();
         if (o10 == 0) {
-            return t0.f17316a;
+            return t0.f17314a;
         }
         byte[] bArr = new byte[o10];
         p(o10, bArr);
@@ -149,9 +149,9 @@ public class s0 implements Iterable, Serializable {
         } else {
             int r10 = r(0, 47, o());
             if (r10 == 0) {
-                r0Var = f17311c;
+                r0Var = f17309c;
             } else {
-                r0Var = new r0(this.f17313b, n(), r10);
+                r0Var = new r0(this.f17311b, n(), r10);
             }
             concat = a.d(r0Var).concat("...");
         }

@@ -5,21 +5,21 @@ import android.animation.AnimatorListenerAdapter;
 import android.app.Activity;
 import org.telegram.messenger.AndroidUtilities;
 public final class fz0 extends AnimatorListenerAdapter {
-    public final int f37145a;
-    public final boolean f37146b;
-    public final ProfileActivity f37147c;
+    public final int f37139a;
+    public final boolean f37140b;
+    public final ProfileActivity f37141c;
 
     public fz0(ProfileActivity profileActivity, boolean z10, int i10) {
-        this.f37145a = i10;
-        this.f37147c = profileActivity;
-        this.f37146b = z10;
+        this.f37139a = i10;
+        this.f37141c = profileActivity;
+        this.f37140b = z10;
     }
 
     @Override
     public void onAnimationCancel(Animator animator) {
-        switch (this.f37145a) {
+        switch (this.f37139a) {
             case 1:
-                this.f37147c.f33619g0 = null;
+                this.f37141c.f33619g0 = null;
                 return;
             default:
                 super.onAnimationCancel(animator);
@@ -31,11 +31,11 @@ public final class fz0 extends AnimatorListenerAdapter {
     public final void onAnimationEnd(Animator animator) {
         int i10;
         org.telegram.ui.Cells.y3 y3Var;
-        switch (this.f37145a) {
+        switch (this.f37139a) {
             case 0:
-                ProfileActivity profileActivity = this.f37147c;
-                boolean z10 = this.f37146b;
-                ProfileActivity.n1(profileActivity, z10);
+                ProfileActivity profileActivity = this.f37141c;
+                boolean z10 = this.f37140b;
+                ProfileActivity.o1(profileActivity, z10);
                 profileActivity.Y.setClickable(true);
                 if (z10) {
                     org.telegram.ui.ActionBar.u0 u0Var = profileActivity.V0;
@@ -58,9 +58,9 @@ public final class fz0 extends AnimatorListenerAdapter {
                 }
                 return;
             default:
-                ProfileActivity profileActivity2 = this.f37147c;
+                ProfileActivity profileActivity2 = this.f37141c;
                 if (profileActivity2.f33619g0 != null && (y3Var = profileActivity2.f33626h0) != null) {
-                    if (!this.f37146b) {
+                    if (!this.f37140b) {
                         y3Var.setVisibility(4);
                     }
                     profileActivity2.f33619g0 = null;

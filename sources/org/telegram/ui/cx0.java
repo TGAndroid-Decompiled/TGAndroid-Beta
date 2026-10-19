@@ -14,12 +14,12 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 public final class cx0 extends org.telegram.ui.Components.hm0 {
-    public final Context f36087c;
+    public final Context f36059c;
     public final PrivacyControlActivity d;
 
     public cx0(PrivacyControlActivity privacyControlActivity, Context context) {
         this.d = privacyControlActivity;
-        this.f36087c = context;
+        this.f36059c = context;
     }
 
     @Override
@@ -172,7 +172,7 @@ public final class cx0 extends org.telegram.ui.Components.hm0 {
         org.telegram.ui.ActionBar.d6 d6Var2;
         org.telegram.ui.ActionBar.d6 d6Var3;
         View view;
-        Context context = this.f36087c;
+        Context context = this.f36059c;
         PrivacyControlActivity privacyControlActivity = this.d;
         switch (i10) {
             case 0:
@@ -205,7 +205,7 @@ public final class cx0 extends org.telegram.ui.Components.hm0 {
                     q8Var.m(R.drawable.msg_addphoto, LocaleController.formatString("UpdatePhotoForRest", R.string.UpdatePhotoForRest, new Object[0]), true);
                 }
                 privacyControlActivity.f33552u0.setBackgroundDrawable(org.telegram.ui.ActionBar.h6.L0(false));
-                privacyControlActivity.f33552u0.e(org.telegram.ui.ActionBar.h6.f21322v6, org.telegram.ui.ActionBar.h6.f21305u6);
+                privacyControlActivity.f33552u0.e(org.telegram.ui.ActionBar.h6.f21320v6, org.telegram.ui.ActionBar.h6.f21303u6);
                 privacyControlActivity.f33551t0 = new org.telegram.ui.Components.uj0(R.raw.camera_outline, AndroidUtilities.dp(50.0f), AndroidUtilities.dp(50.0f), false, null);
                 privacyControlActivity.f33552u0.e.setTranslationX(-AndroidUtilities.dp(8.0f));
                 privacyControlActivity.f33552u0.e.setAnimation(privacyControlActivity.f33551t0);
@@ -234,7 +234,7 @@ public final class cx0 extends org.telegram.ui.Components.hm0 {
                 privacyControlActivity.f33555w0.getImageView().setVisibility(0);
                 privacyControlActivity.f33555w0.setBackgroundDrawable(org.telegram.ui.ActionBar.h6.L0(false));
                 ds dsVar = privacyControlActivity.f33555w0;
-                int i13 = org.telegram.ui.ActionBar.h6.f21210p7;
+                int i13 = org.telegram.ui.ActionBar.h6.f21208p7;
                 dsVar.e(i13, i13);
                 view = privacyControlActivity.f33555w0;
                 break;

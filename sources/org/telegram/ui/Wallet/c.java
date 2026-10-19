@@ -15,19 +15,19 @@ import org.telegram.messenger.WebFile;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_wallet;
 public final class c extends FrameLayout implements org.telegram.ui.ActionBar.y5 {
-    public final org.telegram.ui.ActionBar.d6 f34046a;
-    public final org.telegram.ui.Components.w9 f34047b;
-    public final TextView f34048c;
+    public final org.telegram.ui.ActionBar.d6 f34048a;
+    public final org.telegram.ui.Components.w9 f34049b;
+    public final TextView f34050c;
     public final TextView d;
     public boolean e;
-    public boolean f34049f;
+    public boolean f34051f;
 
     public c(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
-        this.f34046a = d6Var;
+        this.f34048a = d6Var;
         setWillNotDraw(false);
         org.telegram.ui.Components.w9 w9Var = new org.telegram.ui.Components.w9(context);
-        this.f34047b = w9Var;
+        this.f34049b = w9Var;
         w9Var.setRoundRadius(AndroidUtilities.dp(8.0f));
         addView(w9Var, w7.z5.d(46, 46.0f, 19, 15.0f, 0.0f, 0.0f, 0.0f));
         LinearLayout linearLayout = new LinearLayout(context);
@@ -35,7 +35,7 @@ public final class c extends FrameLayout implements org.telegram.ui.ActionBar.y5
         linearLayout.setGravity(16);
         addView(linearLayout, w7.z5.d(-1, -1.0f, 119, 71.0f, 0.0f, 20.0f, 0.0f));
         TextView textView = new TextView(context);
-        this.f34048c = textView;
+        this.f34050c = textView;
         textView.setSingleLine(true);
         TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
         textView.setEllipsize(truncateAt);
@@ -85,16 +85,16 @@ public final class c extends FrameLayout implements org.telegram.ui.ActionBar.y5
         FrameLayout.LayoutParams d;
         float f7;
         int i10;
-        if (this.f34049f == z10) {
+        if (this.f34051f == z10) {
             return;
         }
-        this.f34049f = z10;
+        this.f34051f = z10;
         if (z10) {
             d = w7.z5.d(-1, -1.0f, 119, 3.33f, 4.0f, 3.33f, 4.0f);
         } else {
             d = w7.z5.d(46, 46.0f, 19, 15.0f, 0.0f, 0.0f, 0.0f);
         }
-        org.telegram.ui.Components.w9 w9Var = this.f34047b;
+        org.telegram.ui.Components.w9 w9Var = this.f34049b;
         w9Var.setLayoutParams(d);
         if (z10) {
             f7 = 11.0f;
@@ -102,7 +102,7 @@ public final class c extends FrameLayout implements org.telegram.ui.ActionBar.y5
             f7 = 8.0f;
         }
         w9Var.setRoundRadius(AndroidUtilities.dp(f7));
-        View view = (View) this.f34048c.getParent();
+        View view = (View) this.f34050c.getParent();
         if (z10) {
             i10 = 8;
         } else {
@@ -115,9 +115,9 @@ public final class c extends FrameLayout implements org.telegram.ui.ActionBar.y5
     public final void d() {
         setBackgroundColor(0);
         int i10 = org.telegram.ui.ActionBar.h6.G6;
-        org.telegram.ui.ActionBar.d6 d6Var = this.f34046a;
-        this.f34048c.setTextColor(org.telegram.ui.ActionBar.h6.w0(i10, d6Var));
-        this.d.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21394z6, d6Var));
+        org.telegram.ui.ActionBar.d6 d6Var = this.f34048a;
+        this.f34050c.setTextColor(org.telegram.ui.ActionBar.h6.w0(i10, d6Var));
+        this.d.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21392z6, d6Var));
     }
 
     public int[] getColorKeys() {
@@ -143,7 +143,7 @@ public final class c extends FrameLayout implements org.telegram.ui.ActionBar.y5
             } else {
                 i10 = 0;
             }
-            canvas.drawRect(f7, height, width - i10, getHeight(), org.telegram.ui.ActionBar.h6.f21110k0);
+            canvas.drawRect(f7, height, width - i10, getHeight(), org.telegram.ui.ActionBar.h6.f21108k0);
         }
     }
 
@@ -151,7 +151,7 @@ public final class c extends FrameLayout implements org.telegram.ui.ActionBar.y5
     public final void onMeasure(int i10, int i11) {
         float f7;
         int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824);
-        if (this.f34049f) {
+        if (this.f34051f) {
             f7 = 112.0f;
         } else {
             f7 = 58.0f;

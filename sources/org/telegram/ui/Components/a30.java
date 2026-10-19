@@ -7,19 +7,19 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
 import org.telegram.tgnet.TLRPC;
 public final class a30 extends hm0 {
-    public ChatObject.Call f24471c;
+    public ChatObject.Call f24469c;
     public final int d;
     public ArrayList h;
-    public org.telegram.ui.h30 f24473n;
-    public final org.telegram.ui.q50 f24474r;
+    public org.telegram.ui.h30 f24471n;
+    public final org.telegram.ui.q50 f24472r;
     public final ArrayList e = new ArrayList();
-    public final ArrayList f24472f = new ArrayList();
-    public boolean f24475s = false;
+    public final ArrayList f24470f = new ArrayList();
+    public boolean f24473s = false;
 
     public a30(ChatObject.Call call, int i10, org.telegram.ui.q50 q50Var) {
-        this.f24471c = call;
+        this.f24469c = call;
         this.d = i10;
-        this.f24474r = q50Var;
+        this.f24472r = q50Var;
     }
 
     @Override
@@ -29,11 +29,11 @@ public final class a30 extends hm0 {
 
     public final void E(ArrayList arrayList, org.telegram.ui.h30 h30Var) {
         this.h = arrayList;
-        this.f24473n = h30Var;
+        this.f24471n = h30Var;
     }
 
     public final void F(org.telegram.ui.d30 d30Var, boolean z10) {
-        this.f24475s = z10;
+        this.f24473s = z10;
         for (int i10 = 0; i10 < d30Var.getChildCount(); i10++) {
             View childAt = d30Var.getChildAt(i10);
             if (childAt instanceof z20) {
@@ -46,21 +46,21 @@ public final class a30 extends hm0 {
     }
 
     public final void G(im0 im0Var, boolean z10) {
-        if (this.f24471c == null) {
+        if (this.f24469c == null) {
             return;
         }
         ArrayList arrayList = this.e;
-        ArrayList arrayList2 = this.f24472f;
+        ArrayList arrayList2 = this.f24470f;
         if (z10) {
             ArrayList arrayList3 = new ArrayList(arrayList2);
             ArrayList arrayList4 = new ArrayList(arrayList);
             arrayList2.clear();
-            ChatObject.Call call = this.f24471c;
+            ChatObject.Call call = this.f24469c;
             if (!call.call.rtmp_stream) {
                 arrayList2.addAll(call.visibleParticipants);
             }
             arrayList.clear();
-            ChatObject.Call call2 = this.f24471c;
+            ChatObject.Call call2 = this.f24469c;
             if (!call2.call.rtmp_stream) {
                 arrayList.addAll(call2.visibleVideoParticipants);
             }
@@ -69,12 +69,12 @@ public final class a30 extends hm0 {
             return;
         }
         arrayList2.clear();
-        ChatObject.Call call3 = this.f24471c;
+        ChatObject.Call call3 = this.f24469c;
         if (!call3.call.rtmp_stream) {
             arrayList2.addAll(call3.visibleParticipants);
         }
         arrayList.clear();
-        ChatObject.Call call4 = this.f24471c;
+        ChatObject.Call call4 = this.f24469c;
         if (!call4.call.rtmp_stream) {
             arrayList.addAll(call4.visibleVideoParticipants);
         }
@@ -83,22 +83,22 @@ public final class a30 extends hm0 {
 
     @Override
     public final int h() {
-        return this.f24472f.size() + this.e.size();
+        return this.f24470f.size() + this.e.size();
     }
 
     @Override
     public final void v(s4.b1 b1Var, int i10) {
         TLRPC.GroupCallParticipant groupCallParticipant;
         ChatObject.VideoParticipant videoParticipant;
-        z20 z20Var = (z20) b1Var.f45910a;
-        ChatObject.VideoParticipant videoParticipant2 = z20Var.f32816f;
+        z20 z20Var = (z20) b1Var.f45912a;
+        ChatObject.VideoParticipant videoParticipant2 = z20Var.f32814f;
         ArrayList arrayList = this.e;
         if (i10 < arrayList.size()) {
             videoParticipant = (ChatObject.VideoParticipant) arrayList.get(i10);
             groupCallParticipant = ((ChatObject.VideoParticipant) arrayList.get(i10)).participant;
         } else {
             int size = i10 - arrayList.size();
-            ArrayList arrayList2 = this.f24472f;
+            ArrayList arrayList2 = this.f24470f;
             if (size < arrayList2.size()) {
                 groupCallParticipant = (TLRPC.GroupCallParticipant) arrayList2.get(i10 - arrayList.size());
                 videoParticipant = null;
@@ -113,7 +113,7 @@ public final class a30 extends hm0 {
                 z20Var.b(true);
             }
         } else if (z20Var.K) {
-            if (z20Var.getRenderer() == null && videoParticipant != null && this.f24475s) {
+            if (z20Var.getRenderer() == null && videoParticipant != null && this.f24473s) {
                 z20Var.b(true);
             } else if (z20Var.getRenderer() != null && videoParticipant == null) {
                 z20Var.b(false);

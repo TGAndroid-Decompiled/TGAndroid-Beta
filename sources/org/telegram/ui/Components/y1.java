@@ -8,18 +8,18 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class y1 implements RequestDelegate {
-    public final int f32527a;
-    public final Object f32528b;
+    public final int f32525a;
+    public final Object f32526b;
 
     public y1(Object obj, int i10) {
-        this.f32527a = i10;
-        this.f32528b = obj;
+        this.f32525a = i10;
+        this.f32526b = obj;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        int i10 = this.f32527a;
-        Object obj = this.f32528b;
+        int i10 = this.f32525a;
+        Object obj = this.f32526b;
         switch (i10) {
             case 0:
                 AccountInstance accountInstance = (AccountInstance) obj;
@@ -83,13 +83,13 @@ public final class y1 implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new lg((py0) obj, tL_error, tLObject, 29));
                 return;
             case 14:
-                AndroidUtilities.runOnUIThread(new ai.m9(tLObject, (Utilities.Callback) obj, 1));
+                AndroidUtilities.runOnUIThread(new ai.n9(tLObject, (Utilities.Callback) obj, 1));
                 return;
             case 15:
                 r31 r31Var = (r31) obj;
                 if (tLObject != null) {
                     TLRPC.Updates updates = (TLRPC.Updates) tLObject;
-                    MessagesController.getInstance(r31Var.f29816b).lambda$processUpdates$377(updates, false);
+                    MessagesController.getInstance(r31Var.f29814b).lambda$processUpdates$377(updates, false);
                     if (!updates.chats.isEmpty()) {
                         AndroidUtilities.runOnUIThread(new go0(14, r31Var, updates), 1000L);
                         return;
@@ -106,7 +106,7 @@ public final class y1 implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new by0(b61Var, tL_error, tLObject, 2));
                 return;
             default:
-                int i12 = UndoView.f24405e0;
+                int i12 = UndoView.f24403e0;
                 AndroidUtilities.runOnUIThread(new go0(19, (UndoView) obj, tLObject));
                 return;
         }

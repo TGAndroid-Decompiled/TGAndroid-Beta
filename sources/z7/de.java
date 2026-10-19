@@ -1,10 +1,10 @@
 package z7;
 public final class de {
-    public final hb f50773a;
-    public final we f50774b;
+    public final hb f50775a;
+    public final we f50776b;
 
     public de(xf.c cVar) {
-        this.f50773a = (hb) cVar.f49774a;
-        this.f50774b = (we) cVar.f49775b;
+        this.f50775a = (hb) cVar.f49776a;
+        this.f50776b = (we) cVar.f49777b;
     }
 }

@@ -1,31 +1,23 @@
 package ai;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.TwoStepVerificationActivity;
-public final class n4 implements RequestDelegate {
-    public final int f1883a;
-    public final k7 f1884b;
-    public final TwoStepVerificationActivity f1885c;
-    public final boolean d;
+import android.content.DialogInterface;
+public final class n4 implements DialogInterface.OnDismissListener {
+    public final int f1874a;
+    public final l7 f1875b;
 
-    public n4(k7 k7Var, TwoStepVerificationActivity twoStepVerificationActivity, boolean z10, int i10) {
-        this.f1883a = i10;
-        this.f1884b = k7Var;
-        this.f1885c = twoStepVerificationActivity;
-        this.d = z10;
+    public n4(l7 l7Var, int i10) {
+        this.f1874a = i10;
+        this.f1875b = l7Var;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f1883a) {
+    public final void onDismiss(DialogInterface dialogInterface) {
+        switch (this.f1874a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new q4(this.f1884b, tLObject, this.f1885c, this.d, tL_error));
+                this.f1875b.f1738k0.setLoading(false);
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new q4(this.f1884b, tL_error, this.f1885c, tLObject, this.d));
+                this.f1875b.f1738k0.setLoading(false);
                 return;
         }
     }

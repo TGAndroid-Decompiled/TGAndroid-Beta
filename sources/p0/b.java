@@ -3,23 +3,23 @@ package p0;
 import android.text.SpannableStringBuilder;
 import b2.t;
 public final class b {
-    public static final String f43899b;
-    public static final String f43900c;
+    public static final String f43901b;
+    public static final String f43902c;
     public static final b d;
     public static final b e;
-    public final boolean f43901a;
+    public final boolean f43903a;
 
     static {
-        t tVar = f.f43908c;
-        f43899b = Character.toString((char) 8206);
-        f43900c = Character.toString((char) 8207);
+        t tVar = f.f43910c;
+        f43901b = Character.toString((char) 8206);
+        f43902c = Character.toString((char) 8207);
         d = new b(false);
         e = new b(true);
     }
 
     public b(boolean z10) {
-        t tVar = f.f43906a;
-        this.f43901a = z10;
+        t tVar = f.f43908a;
+        this.f43903a = z10;
     }
 
     public static int a(java.lang.CharSequence r9) {
@@ -35,22 +35,22 @@ public final class b {
         String str;
         t tVar2;
         char c10;
-        t tVar3 = f.f43908c;
+        t tVar3 = f.f43910c;
         if (charSequence == null) {
             return null;
         }
         boolean h = tVar3.h(charSequence.length(), charSequence);
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         if (h) {
-            tVar = f.f43907b;
+            tVar = f.f43909b;
         } else {
-            tVar = f.f43906a;
+            tVar = f.f43908a;
         }
         boolean h10 = tVar.h(charSequence.length(), charSequence);
         String str2 = "";
-        String str3 = f43900c;
-        String str4 = f43899b;
-        boolean z10 = this.f43901a;
+        String str3 = f43902c;
+        String str4 = f43901b;
+        boolean z10 = this.f43903a;
         if (!z10 && (h10 || a(charSequence) == 1)) {
             str = str4;
         } else if (!z10 || (h10 && a(charSequence) != -1)) {
@@ -72,9 +72,9 @@ public final class b {
             spannableStringBuilder.append(charSequence);
         }
         if (h) {
-            tVar2 = f.f43907b;
+            tVar2 = f.f43909b;
         } else {
-            tVar2 = f.f43906a;
+            tVar2 = f.f43908a;
         }
         boolean h11 = tVar2.h(charSequence.length(), charSequence);
         if (!z10 && (h11 || b(charSequence) == 1)) {

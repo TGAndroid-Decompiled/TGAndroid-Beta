@@ -43,46 +43,46 @@ public final class v91 extends ViewGroup implements y71, AudioManager.OnAudioFoc
     public boolean U;
     public boolean V;
     public boolean W;
-    public final b81 f31221a;
-    public final RadialProgressView f31222a0;
-    public final o91 f31223b;
-    public final ImageView f31224b0;
-    public final rg0 f31225c;
-    public final ImageView f31226c0;
+    public final b81 f31219a;
+    public final RadialProgressView f31220a0;
+    public final o91 f31221b;
+    public final ImageView f31222b0;
+    public final rg0 f31223c;
+    public final ImageView f31224c0;
     public final TextureView d;
-    public final ImageView f31227d0;
+    public final ImageView f31225d0;
     public final ImageView e;
-    public AnimatorSet f31228e0;
-    public final ViewGroup f31229f;
-    public final r91 f31230f0;
-    public int f31231g0;
+    public AnimatorSet f31226e0;
+    public final ViewGroup f31227f;
+    public final r91 f31228f0;
+    public int f31229g0;
     public Bitmap h;
-    public int f31232h0;
-    public final n91 f31233i0;
-    public final t50 f31234j0;
-    public final n91 f31235k0;
-    public TextureView f31236n;
-    public int f31237r;
-    public boolean f31238s;
+    public int f31230h0;
+    public final n91 f31231i0;
+    public final t50 f31232j0;
+    public final n91 f31233k0;
+    public TextureView f31234n;
+    public int f31235r;
+    public boolean f31236s;
     public final s91 v;
-    public boolean f31239w;
-    public String f31240x;
-    public String f31241y;
-    public static final Pattern f31207l0 = Pattern.compile("(?:youtube(?:-nocookie)?\\.com/(?:[^/\\n\\s]+/\\S+/|(?:v|e(?:mbed)?)/|\\S*?[?&]v=)|youtu\\.be/)([a-zA-Z0-9_-]{11})");
+    public boolean f31237w;
+    public String f31238x;
+    public String f31239y;
+    public static final Pattern f31205l0 = Pattern.compile("(?:youtube(?:-nocookie)?\\.com/(?:[^/\\n\\s]+/\\S+/|(?:v|e(?:mbed)?)/|\\S*?[?&]v=)|youtu\\.be/)([a-zA-Z0-9_-]{11})");
     public static final Pattern m0 = Pattern.compile("https?://(?:(?:www|(player))\\.)?vimeo(pro)?\\.com/(?!(?:channels|album)/[^/?#]+/?(?:$|[?#])|[^/]+/review/|ondemand/)(?:.*?/)?(?:(?:play_redirect_hls|moogaloop\\.swf)\\?clip_id=)?(?:videos?/)?([0-9]+)(?:/[\\da-f]+)?/?(?:[?&].*)?(?:[#].*)?$");
-    public static final Pattern f31208n0 = Pattern.compile("(?:coub:|https?://(?:coub\\.com/(?:view|embed|coubs)/|c-cdn\\.coub\\.com/fb-player\\.swf\\?.*\\bcoub(?:ID|id)=))([\\da-z]+)");
-    public static final Pattern f31209o0 = Pattern.compile("^https?://(?:www\\.)?aparat\\.com/(?:v/|video/video/embed/videohash/)([a-zA-Z0-9]+)");
-    public static final Pattern f31210p0 = Pattern.compile("https?://clips\\.twitch\\.tv/(?:[^/]+/)*([^/?#&]+)");
-    public static final Pattern f31211q0 = Pattern.compile("https?://(?:(?:www\\.)?twitch\\.tv/|player\\.twitch\\.tv/\\?.*?\\bchannel=)([^/#?]+)");
-    public static final Pattern f31212r0 = Pattern.compile("fileList\\s*=\\s*JSON\\.parse\\('([^']+)'\\)");
-    public static final Pattern f31213s0 = Pattern.compile("clipInfo\\s*=\\s*(\\{[^']+\\});");
-    public static final Pattern f31214t0 = Pattern.compile("\"sts\"\\s*:\\s*(\\d+)");
-    public static final Pattern f31215u0 = Pattern.compile("\"assets\":.+?\"js\":\\s*(\"[^\"]+\")");
-    public static final Pattern f31216v0 = Pattern.compile("\\.sig\\|\\|([a-zA-Z0-9$]+)\\(");
-    public static final Pattern f31217w0 = Pattern.compile("[\"']signature[\"']\\s*,\\s*([a-zA-Z0-9$]+)\\(");
-    public static final Pattern f31218x0 = Pattern.compile("var\\s");
-    public static final Pattern f31219y0 = Pattern.compile("return(?:\\s+|$)");
-    public static final Pattern f31220z0 = Pattern.compile("[()]");
+    public static final Pattern f31206n0 = Pattern.compile("(?:coub:|https?://(?:coub\\.com/(?:view|embed|coubs)/|c-cdn\\.coub\\.com/fb-player\\.swf\\?.*\\bcoub(?:ID|id)=))([\\da-z]+)");
+    public static final Pattern f31207o0 = Pattern.compile("^https?://(?:www\\.)?aparat\\.com/(?:v/|video/video/embed/videohash/)([a-zA-Z0-9]+)");
+    public static final Pattern f31208p0 = Pattern.compile("https?://clips\\.twitch\\.tv/(?:[^/]+/)*([^/?#&]+)");
+    public static final Pattern f31209q0 = Pattern.compile("https?://(?:(?:www\\.)?twitch\\.tv/|player\\.twitch\\.tv/\\?.*?\\bchannel=)([^/#?]+)");
+    public static final Pattern f31210r0 = Pattern.compile("fileList\\s*=\\s*JSON\\.parse\\('([^']+)'\\)");
+    public static final Pattern f31211s0 = Pattern.compile("clipInfo\\s*=\\s*(\\{[^']+\\});");
+    public static final Pattern f31212t0 = Pattern.compile("\"sts\"\\s*:\\s*(\\d+)");
+    public static final Pattern f31213u0 = Pattern.compile("\"assets\":.+?\"js\":\\s*(\"[^\"]+\")");
+    public static final Pattern f31214v0 = Pattern.compile("\\.sig\\|\\|([a-zA-Z0-9$]+)\\(");
+    public static final Pattern f31215w0 = Pattern.compile("[\"']signature[\"']\\s*,\\s*([a-zA-Z0-9$]+)\\(");
+    public static final Pattern f31216x0 = Pattern.compile("var\\s");
+    public static final Pattern f31217y0 = Pattern.compile("return(?:\\s+|$)");
+    public static final Pattern f31218z0 = Pattern.compile("[()]");
     public static final Pattern A0 = Pattern.compile(".*?-([a-zA-Z0-9_-]+)(?:/watch_as3|/html5player(?:-new)?|(?:/[a-z]{2}_[A-Z]{2})?/base)?\\.([a-z]+)$");
 
     public v91(Context context, boolean z10, s91 s91Var) {
@@ -90,38 +90,38 @@ public final class v91 extends ViewGroup implements y71, AudioManager.OnAudioFoc
         this.I = true;
         Paint paint = new Paint();
         this.Q = paint;
-        this.f31233i0 = new n91(this, 0);
-        this.f31234j0 = new t50(this, 3);
-        this.f31235k0 = new n91(this, 1);
+        this.f31231i0 = new n91(this, 0);
+        this.f31232j0 = new t50(this, 3);
+        this.f31233k0 = new n91(this, 1);
         setWillNotDraw(false);
         this.v = s91Var;
         paint.setColor(-16777216);
         rg0 rg0Var = new rg0(this, context, 1);
-        this.f31225c = rg0Var;
+        this.f31223c = rg0Var;
         addView(rg0Var, w7.z5.e(-1, -1, 17));
         o91 o91Var = new o91(context, context);
-        this.f31223b = o91Var;
+        this.f31221b = o91Var;
         final f81 f81Var = new f81(this);
         o91Var.addJavascriptInterface(new Object(f81Var) {
-            public final f81 f24420a;
+            public final f81 f24418a;
 
             {
-                this.f24420a = f81Var;
+                this.f24418a = f81Var;
             }
 
             @JavascriptInterface
             public void returnResultToJava(String str) {
-                v91 v91Var = (v91) this.f24420a.f26158a;
+                v91 v91Var = (v91) this.f24418a.f26156a;
                 AsyncTask asyncTask = v91Var.R;
                 if (asyncTask != null && !asyncTask.isCancelled()) {
                     AsyncTask asyncTask2 = v91Var.R;
                     if (asyncTask2 instanceof u91) {
                         u91 u91Var = (u91) asyncTask2;
-                        String[] strArr = u91Var.f30921c;
+                        String[] strArr = u91Var.f30919c;
                         String str2 = strArr[0];
                         String str3 = u91Var.d;
                         strArr[0] = str2.replace(str3, "/signature/" + str);
-                        u91Var.f30920b.countDown();
+                        u91Var.f30918b.countDown();
                     }
                 }
             }
@@ -130,7 +130,7 @@ public final class v91 extends ViewGroup implements y71, AudioManager.OnAudioFoc
         settings.setJavaScriptEnabled(true);
         settings.setDefaultTextEncodingName("utf-8");
         ViewGroup g10 = s91Var.g();
-        this.f31229f = g10;
+        this.f31227f = g10;
         TextureView textureView = new TextureView(context);
         this.d = textureView;
         textureView.setPivotX(0.0f);
@@ -150,47 +150,47 @@ public final class v91 extends ViewGroup implements y71, AudioManager.OnAudioFoc
             g10.addView(imageView);
         }
         b81 b81Var = new b81();
-        this.f31221a = b81Var;
+        this.f31219a = b81Var;
         b81Var.J = this;
         b81Var.V(textureView);
         r91 r91Var = new r91(this, context);
-        this.f31230f0 = r91Var;
+        this.f31228f0 = r91Var;
         if (g10 != null) {
             g10.addView(r91Var);
         } else {
             addView(r91Var, w7.z5.c(-1.0f, -1));
         }
         RadialProgressView radialProgressView = new RadialProgressView(context, null);
-        this.f31222a0 = radialProgressView;
+        this.f31220a0 = radialProgressView;
         radialProgressView.setProgressColor(-1);
         addView(radialProgressView, w7.z5.e(48, 48, 17));
         ImageView imageView2 = new ImageView(context);
-        this.f31224b0 = imageView2;
+        this.f31222b0 = imageView2;
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
         imageView2.setScaleType(scaleType);
         r91Var.addView(imageView2, w7.z5.d(56, 56.0f, 85, 0.0f, 0.0f, 0.0f, 5.0f));
         imageView2.setOnClickListener(new View.OnClickListener(this) {
-            public final v91 f28493b;
+            public final v91 f28491b;
 
             {
-                this.f28493b = this;
+                this.f28491b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        v91 v91Var = this.f28493b;
-                        if (v91Var.f31239w && !v91Var.S && !v91Var.W && v91Var.M) {
+                        v91 v91Var = this.f28491b;
+                        if (v91Var.f31237w && !v91Var.S && !v91Var.W && v91Var.M) {
                             v91Var.T = !v91Var.T;
                             v91Var.l(true);
                             return;
                         }
                         return;
                     case 1:
-                        v91 v91Var2 = this.f28493b;
-                        b81 b81Var2 = v91Var2.f31221a;
-                        if (v91Var2.f31239w && v91Var2.f31240x != null) {
+                        v91 v91Var2 = this.f28491b;
+                        b81 b81Var2 = v91Var2.f31219a;
+                        if (v91Var2.f31237w && v91Var2.f31238x != null) {
                             if (b81Var2.d == null) {
                                 v91Var2.i();
                             }
@@ -205,18 +205,18 @@ public final class v91 extends ViewGroup implements y71, AudioManager.OnAudioFoc
                         }
                         return;
                     default:
-                        v91 v91Var3 = this.f28493b;
-                        ViewGroup viewGroup = v91Var3.f31229f;
+                        v91 v91Var3 = this.f28491b;
+                        ViewGroup viewGroup = v91Var3.f31227f;
                         boolean z11 = v91Var3.I;
                         s91 s91Var2 = v91Var3.v;
-                        r91 r91Var2 = v91Var3.f31230f0;
-                        rg0 rg0Var2 = v91Var3.f31225c;
+                        r91 r91Var2 = v91Var3.f31228f0;
+                        rg0 rg0Var2 = v91Var3.f31223c;
                         TextureView textureView2 = v91Var3.d;
                         if (textureView2 != null && s91Var2.h() && !v91Var3.S && !v91Var3.W && v91Var3.M) {
                             v91Var3.W = true;
                             if (!v91Var3.U) {
                                 v91Var3.T = false;
-                                s91Var2.i(true, v91Var3.f31235k0, rg0Var2.getAspectRatio(), z11);
+                                s91Var2.i(true, v91Var3.f31233k0, rg0Var2.getAspectRatio(), z11);
                                 return;
                             }
                             ViewGroup viewGroup2 = (ViewGroup) rg0Var2.getParent();
@@ -264,31 +264,31 @@ public final class v91 extends ViewGroup implements y71, AudioManager.OnAudioFoc
             }
         });
         ImageView imageView3 = new ImageView(context);
-        this.f31226c0 = imageView3;
+        this.f31224c0 = imageView3;
         imageView3.setScaleType(scaleType);
         r91Var.addView(imageView3, w7.z5.e(48, 48, 17));
         imageView3.setOnClickListener(new View.OnClickListener(this) {
-            public final v91 f28493b;
+            public final v91 f28491b;
 
             {
-                this.f28493b = this;
+                this.f28491b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        v91 v91Var = this.f28493b;
-                        if (v91Var.f31239w && !v91Var.S && !v91Var.W && v91Var.M) {
+                        v91 v91Var = this.f28491b;
+                        if (v91Var.f31237w && !v91Var.S && !v91Var.W && v91Var.M) {
                             v91Var.T = !v91Var.T;
                             v91Var.l(true);
                             return;
                         }
                         return;
                     case 1:
-                        v91 v91Var2 = this.f28493b;
-                        b81 b81Var2 = v91Var2.f31221a;
-                        if (v91Var2.f31239w && v91Var2.f31240x != null) {
+                        v91 v91Var2 = this.f28491b;
+                        b81 b81Var2 = v91Var2.f31219a;
+                        if (v91Var2.f31237w && v91Var2.f31238x != null) {
                             if (b81Var2.d == null) {
                                 v91Var2.i();
                             }
@@ -303,18 +303,18 @@ public final class v91 extends ViewGroup implements y71, AudioManager.OnAudioFoc
                         }
                         return;
                     default:
-                        v91 v91Var3 = this.f28493b;
-                        ViewGroup viewGroup = v91Var3.f31229f;
+                        v91 v91Var3 = this.f28491b;
+                        ViewGroup viewGroup = v91Var3.f31227f;
                         boolean z11 = v91Var3.I;
                         s91 s91Var2 = v91Var3.v;
-                        r91 r91Var2 = v91Var3.f31230f0;
-                        rg0 rg0Var2 = v91Var3.f31225c;
+                        r91 r91Var2 = v91Var3.f31228f0;
+                        rg0 rg0Var2 = v91Var3.f31223c;
                         TextureView textureView2 = v91Var3.d;
                         if (textureView2 != null && s91Var2.h() && !v91Var3.S && !v91Var3.W && v91Var3.M) {
                             v91Var3.W = true;
                             if (!v91Var3.U) {
                                 v91Var3.T = false;
-                                s91Var2.i(true, v91Var3.f31235k0, rg0Var2.getAspectRatio(), z11);
+                                s91Var2.i(true, v91Var3.f31233k0, rg0Var2.getAspectRatio(), z11);
                                 return;
                             }
                             ViewGroup viewGroup2 = (ViewGroup) rg0Var2.getParent();
@@ -363,31 +363,31 @@ public final class v91 extends ViewGroup implements y71, AudioManager.OnAudioFoc
         });
         if (z10) {
             ImageView imageView4 = new ImageView(context);
-            this.f31227d0 = imageView4;
+            this.f31225d0 = imageView4;
             imageView4.setScaleType(scaleType);
             r91Var.addView(imageView4, w7.z5.e(56, 48, 53));
             imageView4.setOnClickListener(new View.OnClickListener(this) {
-                public final v91 f28493b;
+                public final v91 f28491b;
 
                 {
-                    this.f28493b = this;
+                    this.f28491b = this;
                 }
 
                 @Override
                 public final void onClick(View view) {
                     switch (r2) {
                         case 0:
-                            v91 v91Var = this.f28493b;
-                            if (v91Var.f31239w && !v91Var.S && !v91Var.W && v91Var.M) {
+                            v91 v91Var = this.f28491b;
+                            if (v91Var.f31237w && !v91Var.S && !v91Var.W && v91Var.M) {
                                 v91Var.T = !v91Var.T;
                                 v91Var.l(true);
                                 return;
                             }
                             return;
                         case 1:
-                            v91 v91Var2 = this.f28493b;
-                            b81 b81Var2 = v91Var2.f31221a;
-                            if (v91Var2.f31239w && v91Var2.f31240x != null) {
+                            v91 v91Var2 = this.f28491b;
+                            b81 b81Var2 = v91Var2.f31219a;
+                            if (v91Var2.f31237w && v91Var2.f31238x != null) {
                                 if (b81Var2.d == null) {
                                     v91Var2.i();
                                 }
@@ -402,18 +402,18 @@ public final class v91 extends ViewGroup implements y71, AudioManager.OnAudioFoc
                             }
                             return;
                         default:
-                            v91 v91Var3 = this.f28493b;
-                            ViewGroup viewGroup = v91Var3.f31229f;
+                            v91 v91Var3 = this.f28491b;
+                            ViewGroup viewGroup = v91Var3.f31227f;
                             boolean z11 = v91Var3.I;
                             s91 s91Var2 = v91Var3.v;
-                            r91 r91Var2 = v91Var3.f31230f0;
-                            rg0 rg0Var2 = v91Var3.f31225c;
+                            r91 r91Var2 = v91Var3.f31228f0;
+                            rg0 rg0Var2 = v91Var3.f31223c;
                             TextureView textureView2 = v91Var3.d;
                             if (textureView2 != null && s91Var2.h() && !v91Var3.S && !v91Var3.W && v91Var3.M) {
                                 v91Var3.W = true;
                                 if (!v91Var3.U) {
                                     v91Var3.T = false;
-                                    s91Var2.i(true, v91Var3.f31235k0, rg0Var2.getAspectRatio(), z11);
+                                    s91Var2.i(true, v91Var3.f31233k0, rg0Var2.getAspectRatio(), z11);
                                     return;
                                 }
                                 ViewGroup viewGroup2 = (ViewGroup) rg0Var2.getParent();
@@ -479,7 +479,7 @@ public final class v91 extends ViewGroup implements y71, AudioManager.OnAudioFoc
         String str2;
         if (!TextUtils.isEmpty(str)) {
             try {
-                Matcher matcher = f31208n0.matcher(str);
+                Matcher matcher = f31206n0.matcher(str);
                 if (matcher.find()) {
                     str2 = matcher.group(1);
                 } else {
@@ -500,7 +500,7 @@ public final class v91 extends ViewGroup implements y71, AudioManager.OnAudioFoc
         if (str == null) {
             return null;
         }
-        Matcher matcher = f31207l0.matcher(str);
+        Matcher matcher = f31205l0.matcher(str);
         if (!matcher.find()) {
             return null;
         }
@@ -508,21 +508,21 @@ public final class v91 extends ViewGroup implements y71, AudioManager.OnAudioFoc
     }
 
     private View getControlView() {
-        return this.f31230f0;
+        return this.f31228f0;
     }
 
     private View getProgressView() {
-        return this.f31222a0;
+        return this.f31220a0;
     }
 
     public final void b() {
-        this.f31221a.H();
+        this.f31219a.H();
         AsyncTask asyncTask = this.R;
         if (asyncTask != null) {
             asyncTask.cancel(true);
             this.R = null;
         }
-        this.f31223b.stopLoading();
+        this.f31221b.stopLoading();
     }
 
     public final boolean f() {
@@ -537,11 +537,11 @@ public final class v91 extends ViewGroup implements y71, AudioManager.OnAudioFoc
     }
 
     public View getAspectRatioView() {
-        return this.f31225c;
+        return this.f31223c;
     }
 
     public View getControlsView() {
-        return this.f31230f0;
+        return this.f31228f0;
     }
 
     public ImageView getTextureImageView() {
@@ -557,7 +557,7 @@ public final class v91 extends ViewGroup implements y71, AudioManager.OnAudioFoc
     }
 
     public final void h() {
-        r91 r91Var = this.f31230f0;
+        r91 r91Var = this.f31228f0;
         if (r91Var.getParent() != this) {
             r91Var.setVisibility(8);
         }
@@ -565,18 +565,18 @@ public final class v91 extends ViewGroup implements y71, AudioManager.OnAudioFoc
     }
 
     public final void i() {
-        String str = this.f31240x;
+        String str = this.f31238x;
         if (str != null) {
             String str2 = this.E;
-            b81 b81Var = this.f31221a;
+            b81 b81Var = this.f31219a;
             if (str2 != null) {
-                b81Var.G(Uri.parse(str), this.f31241y, Uri.parse(this.E), this.F);
+                b81Var.G(Uri.parse(str), this.f31239y, Uri.parse(this.E), this.F);
             } else {
-                b81Var.D(Uri.parse(str), this.f31241y);
+                b81Var.D(Uri.parse(str), this.f31239y);
             }
-            b81Var.P(this.f31238s);
+            b81Var.P(this.f31236s);
             int i10 = (b81Var.p() > (-9223372036854775807L) ? 1 : (b81Var.p() == (-9223372036854775807L) ? 0 : -1));
-            r91 r91Var = this.f31230f0;
+            r91 r91Var = this.f31228f0;
             if (i10 != 0) {
                 r91Var.b((int) (b81Var.p() / 1000));
             } else {
@@ -595,21 +595,21 @@ public final class v91 extends ViewGroup implements y71, AudioManager.OnAudioFoc
 
     public final void j(boolean z10, boolean z11) {
         float f7 = 0.0f;
-        RadialProgressView radialProgressView = this.f31222a0;
+        RadialProgressView radialProgressView = this.f31220a0;
         if (z11) {
-            AnimatorSet animatorSet = this.f31228e0;
+            AnimatorSet animatorSet = this.f31226e0;
             if (animatorSet != null) {
                 animatorSet.cancel();
             }
             AnimatorSet animatorSet2 = new AnimatorSet();
-            this.f31228e0 = animatorSet2;
+            this.f31226e0 = animatorSet2;
             if (z10) {
                 f7 = 1.0f;
             }
             animatorSet2.playTogether(ObjectAnimator.ofFloat(radialProgressView, "alpha", f7));
-            this.f31228e0.setDuration(150L);
-            this.f31228e0.addListener(new o31(this, 6));
-            this.f31228e0.start();
+            this.f31226e0.setDuration(150L);
+            this.f31226e0.addListener(new o31(this, 6));
+            this.f31226e0.start();
             return;
         }
         if (z10) {
@@ -619,8 +619,8 @@ public final class v91 extends ViewGroup implements y71, AudioManager.OnAudioFoc
     }
 
     public final void k() {
-        i2.i0 i0Var = this.f31221a.d;
-        ImageView imageView = this.f31224b0;
+        i2.i0 i0Var = this.f31219a.d;
+        ImageView imageView = this.f31222b0;
         if (i0Var != null && !this.U) {
             imageView.setVisibility(0);
             if (!this.T) {
@@ -642,8 +642,8 @@ public final class v91 extends ViewGroup implements y71, AudioManager.OnAudioFoc
             return;
         }
         k();
-        ViewGroup viewGroup2 = this.f31229f;
-        rg0 rg0Var = this.f31225c;
+        ViewGroup viewGroup2 = this.f31227f;
+        rg0 rg0Var = this.f31223c;
         if (viewGroup2 == null) {
             this.S = true;
             if (!this.T) {
@@ -654,7 +654,7 @@ public final class v91 extends ViewGroup implements y71, AudioManager.OnAudioFoc
                 }
             }
             boolean z11 = this.T;
-            r91 r91Var = this.f31230f0;
+            r91 r91Var = this.f31228f0;
             if (z11) {
                 ViewGroup viewGroup3 = (ViewGroup) r91Var.getParent();
                 if (viewGroup3 != null) {
@@ -673,10 +673,10 @@ public final class v91 extends ViewGroup implements y71, AudioManager.OnAudioFoc
                     }
                 }
             }
-            TextureView a2 = this.v.a(this.f31230f0, this.T, rg0Var.getAspectRatio(), rg0Var.getVideoRotation(), z10);
-            this.f31236n = a2;
+            TextureView a2 = this.v.a(this.f31228f0, this.T, rg0Var.getAspectRatio(), rg0Var.getVideoRotation(), z10);
+            this.f31234n = a2;
             a2.setVisibility(4);
-            if (this.T && this.f31236n != null && (viewGroup = (ViewGroup) textureView.getParent()) != null) {
+            if (this.T && this.f31234n != null && (viewGroup = (ViewGroup) textureView.getParent()) != null) {
                 viewGroup.removeView(textureView);
             }
             int i10 = r91.I;
@@ -697,13 +697,13 @@ public final class v91 extends ViewGroup implements y71, AudioManager.OnAudioFoc
                 addView(rg0Var, 0);
             }
         }
-        this.v.a(this.f31230f0, this.T, rg0Var.getAspectRatio(), rg0Var.getVideoRotation(), z10);
+        this.v.a(this.f31228f0, this.T, rg0Var.getAspectRatio(), rg0Var.getVideoRotation(), z10);
     }
 
     public final void m() {
         int i10;
         int i11;
-        ImageView imageView = this.f31227d0;
+        ImageView imageView = this.f31225d0;
         if (imageView == null) {
             return;
         }
@@ -713,7 +713,7 @@ public final class v91 extends ViewGroup implements y71, AudioManager.OnAudioFoc
             i10 = R.drawable.ic_outinline;
         }
         imageView.setImageResource(i10);
-        if (this.f31221a.d != null) {
+        if (this.f31219a.d != null) {
             i11 = 0;
         } else {
             i11 = 8;
@@ -730,13 +730,13 @@ public final class v91 extends ViewGroup implements y71, AudioManager.OnAudioFoc
         int i10;
         int i11;
         int i12;
-        r91 r91Var = this.f31230f0;
+        r91 r91Var = this.f31228f0;
         int i13 = r91.I;
         r91Var.a();
-        AndroidUtilities.cancelRunOnUIThread(this.f31233i0);
-        if (!this.f31221a.y()) {
+        AndroidUtilities.cancelRunOnUIThread(this.f31231i0);
+        if (!this.f31219a.y()) {
             if (this.V) {
-                ImageView imageView = this.f31226c0;
+                ImageView imageView = this.f31224c0;
                 if (this.U) {
                     i12 = R.drawable.ic_againinline;
                 } else {
@@ -745,7 +745,7 @@ public final class v91 extends ViewGroup implements y71, AudioManager.OnAudioFoc
                 imageView.setImageResource(i12);
                 return;
             }
-            ImageView imageView2 = this.f31226c0;
+            ImageView imageView2 = this.f31224c0;
             if (this.U) {
                 i11 = R.drawable.ic_playinline;
             } else {
@@ -754,14 +754,14 @@ public final class v91 extends ViewGroup implements y71, AudioManager.OnAudioFoc
             imageView2.setImageResource(i11);
             return;
         }
-        ImageView imageView3 = this.f31226c0;
+        ImageView imageView3 = this.f31224c0;
         if (this.U) {
             i10 = R.drawable.ic_pauseinline;
         } else {
             i10 = R.drawable.ic_pause;
         }
         imageView3.setImageResource(i10);
-        AndroidUtilities.runOnUIThread(this.f31233i0, 500L);
+        AndroidUtilities.runOnUIThread(this.f31231i0, 500L);
         if (!this.J) {
             this.J = true;
             ((AudioManager) ApplicationLoader.applicationContext.getSystemService("audio")).requestAudioFocus(this, 3, 1);
@@ -787,32 +787,32 @@ public final class v91 extends ViewGroup implements y71, AudioManager.OnAudioFoc
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         int i14 = i12 - i10;
-        rg0 rg0Var = this.f31225c;
+        rg0 rg0Var = this.f31223c;
         int measuredWidth = (i14 - rg0Var.getMeasuredWidth()) / 2;
         int i15 = i13 - i11;
         int dp = ((i15 - AndroidUtilities.dp(10.0f)) - rg0Var.getMeasuredHeight()) / 2;
         rg0Var.layout(measuredWidth, dp, rg0Var.getMeasuredWidth() + measuredWidth, rg0Var.getMeasuredHeight() + dp);
-        r91 r91Var = this.f31230f0;
+        r91 r91Var = this.f31228f0;
         if (r91Var.getParent() == this) {
             r91Var.layout(0, 0, r91Var.getMeasuredWidth(), r91Var.getMeasuredHeight());
         }
-        RadialProgressView radialProgressView = this.f31222a0;
+        RadialProgressView radialProgressView = this.f31220a0;
         int measuredWidth2 = (i14 - radialProgressView.getMeasuredWidth()) / 2;
         int measuredHeight = (i15 - radialProgressView.getMeasuredHeight()) / 2;
         radialProgressView.layout(measuredWidth2, measuredHeight, radialProgressView.getMeasuredWidth() + measuredWidth2, radialProgressView.getMeasuredHeight() + measuredHeight);
-        r91Var.f29904a.setImageCoords(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight() - AndroidUtilities.dp(10.0f));
+        r91Var.f29902a.setImageCoords(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight() - AndroidUtilities.dp(10.0f));
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
         int size = View.MeasureSpec.getSize(i10);
         int size2 = View.MeasureSpec.getSize(i11);
-        this.f31225c.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2 - AndroidUtilities.dp(10.0f), 1073741824));
-        r91 r91Var = this.f31230f0;
+        this.f31223c.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2 - AndroidUtilities.dp(10.0f), 1073741824));
+        r91 r91Var = this.f31228f0;
         if (r91Var.getParent() == this) {
             r91Var.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
         }
-        this.f31222a0.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(44.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(44.0f), 1073741824));
+        this.f31220a0.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(44.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(44.0f), 1073741824));
         setMeasuredDimension(size, size2);
     }
 
@@ -822,8 +822,8 @@ public final class v91 extends ViewGroup implements y71, AudioManager.OnAudioFoc
 
     @Override
     public final void onStateChanged(boolean z10, int i10) {
-        r91 r91Var = this.f31230f0;
-        b81 b81Var = this.f31221a;
+        r91 r91Var = this.f31228f0;
+        b81 b81Var = this.f31219a;
         if (i10 != 2) {
             if (b81Var.p() != -9223372036854775807L) {
                 r91Var.b((int) (b81Var.p() / 1000));
@@ -854,11 +854,11 @@ public final class v91 extends ViewGroup implements y71, AudioManager.OnAudioFoc
             this.S = false;
             if (this.T || this.U) {
                 if (this.U) {
-                    this.f31237r = 1;
+                    this.f31235r = 1;
                 }
-                this.f31236n.setSurfaceTexture(surfaceTexture);
-                this.f31236n.setSurfaceTextureListener(this.f31234j0);
-                this.f31236n.setVisibility(0);
+                this.f31234n.setSurfaceTexture(surfaceTexture);
+                this.f31234n.setSurfaceTextureListener(this.f31232j0);
+                this.f31234n.setVisibility(0);
                 return true;
             }
         }
@@ -867,7 +867,7 @@ public final class v91 extends ViewGroup implements y71, AudioManager.OnAudioFoc
 
     @Override
     public final void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
-        if (this.f31237r == 2) {
+        if (this.f31235r == 2) {
             ImageView imageView = this.e;
             if (imageView != null) {
                 imageView.setVisibility(4);
@@ -879,22 +879,22 @@ public final class v91 extends ViewGroup implements y71, AudioManager.OnAudioFoc
                 }
             }
             this.W = false;
-            int i10 = this.f31231g0;
-            int i11 = this.f31232h0;
-            this.f31225c.getVideoRotation();
-            this.v.f(this.f31230f0, false, i10, i11, this.I);
-            this.f31237r = 0;
+            int i10 = this.f31229g0;
+            int i11 = this.f31230h0;
+            this.f31223c.getVideoRotation();
+            this.v.f(this.f31228f0, false, i10, i11, this.I);
+            this.f31235r = 0;
         }
     }
 
     @Override
     public final void onVideoSizeChanged(int i10, int i11, int i12, float f7) {
         float f10;
-        rg0 rg0Var = this.f31225c;
+        rg0 rg0Var = this.f31223c;
         if (rg0Var != null) {
             float f11 = i10 * f7;
-            this.f31231g0 = (int) f11;
-            this.f31232h0 = i11;
+            this.f31229g0 = (int) f11;
+            this.f31230h0 = i11;
             if (i11 == 0) {
                 f10 = 1.0f;
             } else {
@@ -911,7 +911,7 @@ public final class v91 extends ViewGroup implements y71, AudioManager.OnAudioFoc
     public final void onRenderedFirstFrame() {
         this.M = true;
         this.L = System.currentTimeMillis();
-        this.f31230f0.invalidate();
+        this.f31228f0.invalidate();
     }
 
     public final void o() {

@@ -12,37 +12,37 @@ import org.telegram.ui.Components.lj0;
 import org.telegram.ui.Components.st;
 import w7.r;
 public final class a extends Path {
-    public final View f49011a;
-    public final Layout f49012b;
-    public final Stack f49013c;
+    public final View f49013a;
+    public final Layout f49014b;
+    public final Stack f49015c;
     public final List d;
     public final int e;
-    public final int f49014f;
-    public final ArrayList f49015g;
+    public final int f49016f;
+    public final ArrayList f49017g;
 
     public a(View view, Layout layout, Stack stack, List list, int i10, int i11, ArrayList arrayList) {
-        this.f49011a = view;
-        this.f49012b = layout;
-        this.f49013c = stack;
+        this.f49013a = view;
+        this.f49014b = layout;
+        this.f49015c = stack;
         this.d = list;
         this.e = i10;
-        this.f49014f = i11;
-        this.f49015g = arrayList;
+        this.f49016f = i11;
+        this.f49017g = arrayList;
     }
 
     @Override
     public final void addRect(float f7, float f10, float f11, float f12, Path.Direction direction) {
         g gVar;
         float f13;
-        Stack stack = this.f49013c;
+        Stack stack = this.f49015c;
         int i10 = 0;
         if (stack != null && !stack.isEmpty()) {
             gVar = (g) stack.remove(0);
         } else {
             gVar = new g();
         }
-        gVar.f49065y = false;
-        ArrayList arrayList = this.f49015g;
+        gVar.f49067y = false;
+        ArrayList arrayList = this.f49017g;
         if (arrayList != null) {
             float f14 = (f10 + f12) / 2.0f;
             while (true) {
@@ -50,41 +50,41 @@ public final class a extends Path {
                     break;
                 }
                 lj0 lj0Var = (lj0) arrayList.get(i10);
-                if (f14 >= lj0Var.f28236b && f14 <= lj0Var.f28237c) {
-                    gVar.f49065y = true;
+                if (f14 >= lj0Var.f28234b && f14 <= lj0Var.f28235c) {
+                    gVar.f49067y = true;
                     break;
                 }
                 i10++;
             }
         }
-        gVar.f49055n = -1.0f;
-        ValueAnimator valueAnimator = gVar.f49059r;
+        gVar.f49057n = -1.0f;
+        ValueAnimator valueAnimator = gVar.f49061r;
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
-        gVar.f49057p = true;
+        gVar.f49059p = true;
         int max = (int) Math.max(f7, this.e);
         int i11 = (int) f10;
-        int i12 = this.f49014f;
+        int i12 = this.f49016f;
         if (i12 <= 0) {
             f13 = 2.1474836E9f;
         } else {
             f13 = i12;
         }
         gVar.setBounds(max, i11, (int) Math.min(f11, f13), (int) f12);
-        gVar.h(this.f49012b.getPaint().getColor());
-        gVar.f49061t = st.f30329c;
+        gVar.h(this.f49014b.getPaint().getColor());
+        gVar.f49063t = st.f30327c;
         int width = gVar.getBounds().width() / AndroidUtilities.dp(6.0f);
         int i13 = g.B;
         int b10 = r.b(width * i13, i13, g.A);
-        Stack stack2 = gVar.f49047c;
+        Stack stack2 = gVar.f49049c;
         gVar.d = b10;
         while (gVar.h.size() + stack2.size() < b10) {
             stack2.push(new Object());
         }
-        View view = this.f49011a;
+        View view = this.f49013a;
         if (view != null) {
-            gVar.f49050i = view;
+            gVar.f49052i = view;
         }
         this.d.add(gVar);
     }

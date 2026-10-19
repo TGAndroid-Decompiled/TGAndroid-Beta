@@ -5,18 +5,18 @@ import android.text.TextWatcher;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 public final class s1 implements TextWatcher {
-    public final TextView f13012a;
-    public final Runnable[] f13013b;
+    public final TextView f13010a;
+    public final Runnable[] f13011b;
 
     public s1(TextView textView, Runnable[] runnableArr) {
-        this.f13012a = textView;
-        this.f13013b = runnableArr;
+        this.f13010a = textView;
+        this.f13011b = runnableArr;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
-        if (this.f13012a.getAlpha() > 0.0f) {
-            Runnable[] runnableArr = this.f13013b;
+        if (this.f13010a.getAlpha() > 0.0f) {
+            Runnable[] runnableArr = this.f13011b;
             AndroidUtilities.cancelRunOnUIThread(runnableArr[0]);
             AndroidUtilities.runOnUIThread(runnableArr[0]);
         }

@@ -8,18 +8,18 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.uj0;
 public final class ca extends ba {
-    public final g9 f5304a;
-    public final TL_stories.TL_mediaAreaSuggestedReaction f5305b;
-    public final ah.y0 f5306c;
+    public final g9 f5302a;
+    public final TL_stories.TL_mediaAreaSuggestedReaction f5303b;
+    public final ah.y0 f5304c;
     public final fa d;
 
     public ca(fa faVar, TL_stories.TL_mediaAreaSuggestedReaction tL_mediaAreaSuggestedReaction) {
         this.d = faVar;
         g9 g9Var = new g9(null);
-        this.f5304a = g9Var;
+        this.f5302a = g9Var;
         ah.y0 y0Var = new ah.y0(null);
-        this.f5306c = y0Var;
-        this.f5305b = tL_mediaAreaSuggestedReaction;
+        this.f5304c = y0Var;
+        this.f5303b = tL_mediaAreaSuggestedReaction;
         if (tL_mediaAreaSuggestedReaction.flipped) {
             g9Var.b(true, false);
         }
@@ -34,10 +34,10 @@ public final class ca extends ba {
     public final void a(Canvas canvas, float f7) {
         ImageReceiver imageReceiver;
         int i10;
-        ah.y0 y0Var = this.f5306c;
+        ah.y0 y0Var = this.f5304c;
         org.telegram.ui.Components.r5 r5Var = y0Var.f908b;
         if (r5Var != null) {
-            imageReceiver = r5Var.f29853k;
+            imageReceiver = r5Var.f29851k;
         } else {
             imageReceiver = y0Var.f907a;
         }
@@ -48,15 +48,15 @@ public final class ca extends ba {
             }
             fa faVar = this.d;
             double d = faVar.d;
-            TL_stories.TL_mediaAreaSuggestedReaction tL_mediaAreaSuggestedReaction = this.f5305b;
+            TL_stories.TL_mediaAreaSuggestedReaction tL_mediaAreaSuggestedReaction = this.f5303b;
             TL_stories.MediaAreaCoordinates mediaAreaCoordinates = tL_mediaAreaSuggestedReaction.coordinates;
-            float f10 = (float) (((mediaAreaCoordinates.f20506x * d) / 100.0d) + faVar.f5407b);
-            double d10 = faVar.f5408c;
+            float f10 = (float) (((mediaAreaCoordinates.f20504x * d) / 100.0d) + faVar.f5405b);
+            double d10 = faVar.f5406c;
             double d11 = faVar.e;
-            float f11 = (float) (((mediaAreaCoordinates.f20507y * d11) / 100.0d) + d10);
-            float f12 = ((float) ((d * mediaAreaCoordinates.f20505w) / 100.0d)) / 2.0f;
+            float f11 = (float) (((mediaAreaCoordinates.f20505y * d11) / 100.0d) + d10);
+            float f12 = ((float) ((d * mediaAreaCoordinates.f20503w) / 100.0d)) / 2.0f;
             float f13 = ((float) ((d11 * mediaAreaCoordinates.h) / 100.0d)) / 2.0f;
-            g9 g9Var = this.f5304a;
+            g9 g9Var = this.f5302a;
             g9Var.setBounds((int) (f10 - f12), (int) (f11 - f13), (int) (f12 + f10), (int) (f13 + f11));
             g9Var.e = (int) (255.0f * f7);
             canvas.save();
@@ -71,7 +71,7 @@ public final class ca extends ba {
             g9Var.draw(canvas);
             y0Var.c(rect);
             y0Var.h = f7;
-            if (g9Var.f5428a == 1) {
+            if (g9Var.f5426a == 1) {
                 i10 = -1;
             } else {
                 i10 = -16777216;
@@ -84,12 +84,12 @@ public final class ca extends ba {
 
     @Override
     public final void b(boolean z10) {
-        this.f5306c.b(z10);
+        this.f5304c.b(z10);
     }
 
     @Override
     public final void c(View view) {
-        ah.y0 y0Var = this.f5306c;
+        ah.y0 y0Var = this.f5304c;
         if (y0Var.f910f == view) {
             return;
         }

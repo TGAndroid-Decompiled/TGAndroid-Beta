@@ -9,21 +9,21 @@ import android.text.TextPaint;
 import android.text.style.ReplacementSpan;
 import org.telegram.messenger.AndroidUtilities;
 public class l00 extends ReplacementSpan {
-    public final TextPaint f38703a;
-    public final Paint f38704b;
-    public StaticLayout f38705c;
+    public final TextPaint f38701a;
+    public final Paint f38702b;
+    public StaticLayout f38703c;
     public float d;
     public float e;
-    public int f38706f;
+    public int f38704f;
     public final int h;
-    public CharSequence f38707n;
+    public CharSequence f38705n;
 
     public l00(int i10) {
         TextPaint textPaint = new TextPaint(1);
-        this.f38703a = textPaint;
+        this.f38701a = textPaint;
         Paint paint = new Paint(1);
-        this.f38704b = paint;
-        this.f38707n = "NEW";
+        this.f38702b = paint;
+        this.f38705n = "NEW";
         this.h = i10;
         textPaint.setTypeface(AndroidUtilities.bold());
         paint.setStyle(Paint.Style.FILL);
@@ -31,11 +31,11 @@ public class l00 extends ReplacementSpan {
     }
 
     public final void a() {
-        if (this.f38705c == null) {
-            StaticLayout staticLayout = new StaticLayout(this.f38707n, this.f38703a, AndroidUtilities.displaySize.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-            this.f38705c = staticLayout;
+        if (this.f38703c == null) {
+            StaticLayout staticLayout = new StaticLayout(this.f38705n, this.f38701a, AndroidUtilities.displaySize.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            this.f38703c = staticLayout;
             this.d = staticLayout.getLineWidth(0);
-            this.e = this.f38705c.getHeight();
+            this.e = this.f38703c.getHeight();
         }
     }
 
@@ -44,18 +44,18 @@ public class l00 extends ReplacementSpan {
         int i15;
         float f10;
         a();
-        int i16 = this.f38706f;
+        int i16 = this.f38704f;
         if (i16 == 0) {
             i16 = paint.getColor();
         }
-        Paint paint2 = this.f38704b;
+        Paint paint2 = this.f38702b;
         paint2.setColor(i16);
         if (AndroidUtilities.computePerceivedBrightness(i16) > 0.721f) {
             i15 = -16777216;
         } else {
             i15 = -1;
         }
-        TextPaint textPaint = this.f38703a;
+        TextPaint textPaint = this.f38701a;
         textPaint.setColor(i15);
         paint2.setAlpha((int) (paint2.getAlpha() * 1.0f));
         textPaint.setAlpha((int) (textPaint.getAlpha() * 1.0f));
@@ -74,7 +74,7 @@ public class l00 extends ReplacementSpan {
         canvas.drawRoundRect(rectF, dp3, dp3, paint2);
         canvas.save();
         canvas.translate(dp, dp2);
-        this.f38705c.draw(canvas);
+        this.f38703c.draw(canvas);
         canvas.restore();
     }
 
@@ -86,10 +86,10 @@ public class l00 extends ReplacementSpan {
 
     public l00() {
         TextPaint textPaint = new TextPaint(1);
-        this.f38703a = textPaint;
+        this.f38701a = textPaint;
         Paint paint = new Paint(1);
-        this.f38704b = paint;
-        this.f38707n = "NEW";
+        this.f38702b = paint;
+        this.f38705n = "NEW";
         textPaint.setTypeface(AndroidUtilities.bold());
         paint.setStyle(Paint.Style.FILL);
         textPaint.setTextSize(AndroidUtilities.dp(10.0f));

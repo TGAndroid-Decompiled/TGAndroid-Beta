@@ -24,15 +24,15 @@ public final class m extends com.googlecode.mp4parser.c {
     public int G;
     public int H;
     public Date e;
-    public Date f10429f;
+    public Date f10427f;
     public long h;
-    public long f10430n;
-    public double f10431r;
-    public float f10432s;
+    public long f10428n;
+    public double f10429r;
+    public float f10430s;
     public rc.d v;
-    public long f10433w;
-    public int f10434x;
-    public int f10435y;
+    public long f10431w;
+    public int f10432x;
+    public int f10433y;
 
     static {
         te.a aVar = new te.a(m.class, "MovieHeaderBox.java");
@@ -72,28 +72,28 @@ public final class m extends com.googlecode.mp4parser.c {
         f(byteBuffer);
         if (e() == 1) {
             this.e = c7.b(e5.b.j(byteBuffer));
-            this.f10429f = c7.b(e5.b.j(byteBuffer));
+            this.f10427f = c7.b(e5.b.j(byteBuffer));
             this.h = e5.b.i(byteBuffer);
-            this.f10430n = e5.b.j(byteBuffer);
+            this.f10428n = e5.b.j(byteBuffer);
         } else {
             this.e = c7.b(e5.b.i(byteBuffer));
-            this.f10429f = c7.b(e5.b.i(byteBuffer));
+            this.f10427f = c7.b(e5.b.i(byteBuffer));
             this.h = e5.b.i(byteBuffer);
-            this.f10430n = e5.b.i(byteBuffer);
+            this.f10428n = e5.b.i(byteBuffer);
         }
-        this.f10431r = e5.b.f(byteBuffer);
-        this.f10432s = e5.b.g(byteBuffer);
+        this.f10429r = e5.b.f(byteBuffer);
+        this.f10430s = e5.b.g(byteBuffer);
         e5.b.h(byteBuffer);
         e5.b.i(byteBuffer);
         e5.b.i(byteBuffer);
         this.v = rc.d.a(byteBuffer);
-        this.f10434x = byteBuffer.getInt();
-        this.f10435y = byteBuffer.getInt();
+        this.f10432x = byteBuffer.getInt();
+        this.f10433y = byteBuffer.getInt();
         this.E = byteBuffer.getInt();
         this.F = byteBuffer.getInt();
         this.G = byteBuffer.getInt();
         this.H = byteBuffer.getInt();
-        this.f10433w = e5.b.i(byteBuffer);
+        this.f10431w = e5.b.i(byteBuffer);
     }
 
     @Override
@@ -101,29 +101,29 @@ public final class m extends com.googlecode.mp4parser.c {
         i(byteBuffer);
         if (e() == 1) {
             byteBuffer.putLong(c7.a(this.e));
-            byteBuffer.putLong(c7.a(this.f10429f));
+            byteBuffer.putLong(c7.a(this.f10427f));
             byteBuffer.putInt((int) this.h);
-            byteBuffer.putLong(this.f10430n);
+            byteBuffer.putLong(this.f10428n);
         } else {
             byteBuffer.putInt((int) c7.a(this.e));
-            byteBuffer.putInt((int) c7.a(this.f10429f));
+            byteBuffer.putInt((int) c7.a(this.f10427f));
             byteBuffer.putInt((int) this.h);
-            byteBuffer.putInt((int) this.f10430n);
+            byteBuffer.putInt((int) this.f10428n);
         }
-        e5.b.n(byteBuffer, this.f10431r);
-        e5.b.o(byteBuffer, this.f10432s);
+        e5.b.n(byteBuffer, this.f10429r);
+        e5.b.o(byteBuffer, this.f10430s);
         e5.b.p(0, byteBuffer);
         int i10 = (int) 0;
         byteBuffer.putInt(i10);
         byteBuffer.putInt(i10);
         this.v.b(byteBuffer);
-        byteBuffer.putInt(this.f10434x);
-        byteBuffer.putInt(this.f10435y);
+        byteBuffer.putInt(this.f10432x);
+        byteBuffer.putInt(this.f10433y);
         byteBuffer.putInt(this.E);
         byteBuffer.putInt(this.F);
         byteBuffer.putInt(this.G);
         byteBuffer.putInt(this.H);
-        byteBuffer.putInt((int) this.f10433w);
+        byteBuffer.putInt((int) this.f10431w);
     }
 
     @Override
@@ -146,23 +146,23 @@ public final class m extends com.googlecode.mp4parser.c {
         sb2.append(this.e);
         sb2.append(";modificationTime=");
         k3.p(te.a.b(J, this, this));
-        sb2.append(this.f10429f);
+        sb2.append(this.f10427f);
         sb2.append(";timescale=");
         k3.p(te.a.b(K, this, this));
         sb2.append(this.h);
         sb2.append(";duration=");
         k3.p(te.a.b(L, this, this));
-        sb2.append(this.f10430n);
+        sb2.append(this.f10428n);
         sb2.append(";rate=");
         k3.p(te.a.b(M, this, this));
-        sb2.append(this.f10431r);
+        sb2.append(this.f10429r);
         sb2.append(";volume=");
         k3.p(te.a.b(N, this, this));
-        sb2.append(this.f10432s);
+        sb2.append(this.f10430s);
         sb2.append(";matrix=");
         sb2.append(this.v);
         sb2.append(";nextTrackId=");
         k3.p(te.a.b(O, this, this));
-        return a1.g.r(sb2, this.f10433w, "]");
+        return a1.g.r(sb2, this.f10431w, "]");
     }
 }

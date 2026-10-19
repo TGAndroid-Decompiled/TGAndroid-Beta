@@ -1,32 +1,23 @@
 package org.telegram.messenger;
-
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.Components.i80;
 public final class f6 implements Runnable {
-    public final int f18332a;
-    public final float f18333b;
-    public final NotificationCenter.NotificationCenterDelegate f18334c;
-    public final Object d;
+    public final int f18348a;
+    public final MediaController f18349b;
+    public final boolean f18350c;
 
-    public f6(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, Object obj, float f7, int i10) {
-        this.f18332a = i10;
-        this.f18334c = notificationCenterDelegate;
-        this.d = obj;
-        this.f18333b = f7;
+    public f6(MediaController mediaController, boolean z10, int i10) {
+        this.f18348a = i10;
+        this.f18349b = mediaController;
+        this.f18350c = z10;
     }
 
     @Override
     public final void run() {
-        switch (this.f18332a) {
+        switch (this.f18348a) {
             case 0:
-                ((MediaController) this.f18334c).lambda$setPlaybackSpeed$16((MessageObject) this.d, this.f18333b);
+                this.f18349b.lambda$toggleRecordingPause$29(this.f18350c);
                 return;
             default:
-                org.telegram.ui.l4 l4Var = (org.telegram.ui.l4) this.f18334c;
-                i80 i80Var = (i80) this.d;
-                l4Var.f38762h0.M.c(0.0f, true);
-                i80Var.f27131p = new org.telegram.ui.c0(l4Var, this.f18333b, 0);
-                i80Var.Z();
+                this.f18349b.lambda$toggleRecordingPause$33(this.f18350c);
                 return;
         }
     }

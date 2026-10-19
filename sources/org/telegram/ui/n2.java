@@ -3,38 +3,38 @@ package org.telegram.ui;
 import android.content.Context;
 import android.view.MotionEvent;
 public final class n2 extends z4.g {
-    public final s2 f39390w0;
+    public final s2 f39386w0;
 
     public n2(s2 s2Var, Context context) {
         super(context);
-        this.f39390w0 = s2Var;
+        this.f39386w0 = s2Var;
     }
 
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         int actionMasked = motionEvent.getActionMasked();
-        s2 s2Var = this.f39390w0;
+        s2 s2Var = this.f39386w0;
         if (actionMasked == 0) {
-            s2Var.f41329x.f38760f0.requestDisallowInterceptTouchEvent(true);
+            s2Var.f41327x.f38758f0.requestDisallowInterceptTouchEvent(true);
         } else if (motionEvent.getActionMasked() == 1 || motionEvent.getActionMasked() == 3) {
-            s2Var.f41329x.f38760f0.requestDisallowInterceptTouchEvent(false);
+            s2Var.f41327x.f38758f0.requestDisallowInterceptTouchEvent(false);
         }
-        s2Var.f41329x.k();
+        s2Var.f41327x.k();
         return super.onInterceptTouchEvent(motionEvent);
     }
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
         int actionMasked = motionEvent.getActionMasked();
-        s2 s2Var = this.f39390w0;
+        s2 s2Var = this.f39386w0;
         if (actionMasked == 0) {
-            s2Var.f41329x.f38760f0.requestDisallowInterceptTouchEvent(true);
+            s2Var.f41327x.f38758f0.requestDisallowInterceptTouchEvent(true);
         }
         boolean onTouchEvent = super.onTouchEvent(motionEvent);
         if (motionEvent.getActionMasked() != 1 && motionEvent.getActionMasked() != 3) {
             return onTouchEvent;
         }
-        s2Var.f41329x.f38760f0.requestDisallowInterceptTouchEvent(false);
+        s2Var.f41327x.f38758f0.requestDisallowInterceptTouchEvent(false);
         return onTouchEvent;
     }
 }

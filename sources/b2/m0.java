@@ -3,30 +3,30 @@ package b2;
 import java.util.HashSet;
 import w7.a7;
 public final class m0 {
-    public int f3831a;
-    public int f3832b;
-    public Object f3833c;
+    public int f3829a;
+    public int f3830b;
+    public Object f3831c;
     public Object d = null;
     public Object e;
-    public Object f3834f;
-    public Object f3835g;
+    public Object f3832f;
+    public Object f3833g;
 
     public m0(Class cls, Class[] clsArr) {
         HashSet hashSet = new HashSet();
-        this.f3833c = hashSet;
+        this.f3831c = hashSet;
         this.e = new HashSet();
-        this.f3831a = 0;
-        this.f3832b = 0;
-        this.f3835g = new HashSet();
+        this.f3829a = 0;
+        this.f3830b = 0;
+        this.f3833g = new HashSet();
         hashSet.add(r9.r.a(cls));
         for (Class cls2 : clsArr) {
             a7.a(cls2, "Null interface");
-            ((HashSet) this.f3833c).add(r9.r.a(cls2));
+            ((HashSet) this.f3831c).add(r9.r.a(cls2));
         }
     }
 
     public void a(r9.j jVar) {
-        if (!((HashSet) this.f3833c).contains(jVar.f45134a)) {
+        if (!((HashSet) this.f3831c).contains(jVar.f45136a)) {
             ((HashSet) this.e).add(jVar);
             return;
         }
@@ -35,26 +35,26 @@ public final class m0 {
 
     public r9.a b() {
         boolean z10;
-        if (((r9.d) this.f3834f) != null) {
+        if (((r9.d) this.f3832f) != null) {
             z10 = true;
         } else {
             z10 = false;
         }
         if (z10) {
-            return new r9.a((String) this.d, new HashSet((HashSet) this.f3833c), new HashSet((HashSet) this.e), this.f3831a, this.f3832b, (r9.d) this.f3834f, (HashSet) this.f3835g);
+            return new r9.a((String) this.d, new HashSet((HashSet) this.f3831c), new HashSet((HashSet) this.e), this.f3829a, this.f3830b, (r9.d) this.f3832f, (HashSet) this.f3833g);
         }
         throw new IllegalStateException("Missing required property: factory.");
     }
 
     public void c(int i10) {
         boolean z10;
-        if (this.f3831a == 0) {
+        if (this.f3829a == 0) {
             z10 = true;
         } else {
             z10 = false;
         }
         if (z10) {
-            this.f3831a = i10;
+            this.f3829a = i10;
             return;
         }
         throw new IllegalStateException("Instantiation type has already been set.");

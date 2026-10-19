@@ -4,12 +4,12 @@ import com.google.android.gms.internal.cast.j0;
 import java.util.Iterator;
 import java.util.Map;
 public final class i extends f {
-    public final transient j0 f46885c;
+    public final transient j0 f46887c;
     public final transient Object[] d;
     public final transient int e;
 
     public i(j0 j0Var, Object[] objArr, int i10) {
-        this.f46885c = j0Var;
+        this.f46887c = j0Var;
         this.d = objArr;
         this.e = i10;
     }
@@ -20,7 +20,7 @@ public final class i extends f {
             Map.Entry entry = (Map.Entry) obj;
             Object key = entry.getKey();
             Object value = entry.getValue();
-            if (value != null && value.equals(this.f46885c.get(key))) {
+            if (value != null && value.equals(this.f46887c.get(key))) {
                 return true;
             }
         }
@@ -29,20 +29,20 @@ public final class i extends f {
 
     @Override
     public final int h(Object[] objArr) {
-        d dVar = this.f46882b;
+        d dVar = this.f46884b;
         if (dVar == null) {
             dVar = new h(this);
-            this.f46882b = dVar;
+            this.f46884b = dVar;
         }
         return dVar.h(objArr);
     }
 
     @Override
     public final Iterator iterator() {
-        d dVar = this.f46882b;
+        d dVar = this.f46884b;
         if (dVar == null) {
             dVar = new h(this);
-            this.f46882b = dVar;
+            this.f46884b = dVar;
         }
         return dVar.listIterator(0);
     }

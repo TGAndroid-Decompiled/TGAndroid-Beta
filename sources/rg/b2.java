@@ -15,72 +15,72 @@ import org.telegram.ui.Components.ew0;
 import org.telegram.ui.Components.f6;
 import org.telegram.ui.Components.ml0;
 public final class b2 extends j {
-    public ew0 f45286q0;
-    public g9 f45287r0;
-    public g9 f45288s0;
-    public ah.y0 f45289t0;
-    public ah.y0 f45290u0;
-    public ah.i1 f45291v0;
-    public f6 f45292w0;
-    public f6 f45293x0;
-    public boolean f45294y0;
-    public float f45295z0;
+    public ew0 f45288q0;
+    public g9 f45289r0;
+    public g9 f45290s0;
+    public ah.y0 f45291t0;
+    public ah.y0 f45292u0;
+    public ah.i1 f45293v0;
+    public f6 f45294w0;
+    public f6 f45295x0;
+    public boolean f45296y0;
+    public float f45297z0;
 
     @Override
     public final i a() {
         a2 a2Var = new a2(this, getContext(), 0);
-        a2Var.f45276r = new RectF();
+        a2Var.f45278r = new RectF();
         return a2Var;
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         int i10;
-        ew0 ew0Var = this.f45286q0;
+        ew0 ew0Var = this.f45288q0;
         int padding = getPadding();
-        float d = this.f45293x0.d(1.0f, false);
+        float d = this.f45295x0.d(1.0f, false);
         if (d == 1.0f) {
-            this.f45288s0 = null;
+            this.f45290s0 = null;
         }
         canvas.save();
-        float f7 = this.f45295z0;
+        float f7 = this.f45297z0;
         canvas.scale(f7, f7, getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f);
-        g9 g9Var = this.f45288s0;
+        g9 g9Var = this.f45290s0;
         if (g9Var != null) {
             g9Var.e = (int) ((1.0f - d) * 255.0f);
-            g9Var.setBounds(padding, padding, ((int) ew0Var.f26040a) - padding, ((int) ew0Var.f26041b) - padding);
-            this.f45288s0.draw(canvas);
+            g9Var.setBounds(padding, padding, ((int) ew0Var.f26038a) - padding, ((int) ew0Var.f26039b) - padding);
+            this.f45290s0.draw(canvas);
         }
-        g9 g9Var2 = this.f45287r0;
+        g9 g9Var2 = this.f45289r0;
         g9Var2.e = (int) (d * 255.0f);
-        g9Var2.setBounds(padding, padding, ((int) ew0Var.f26040a) - padding, ((int) ew0Var.f26041b) - padding);
-        this.f45287r0.draw(canvas);
+        g9Var2.setBounds(padding, padding, ((int) ew0Var.f26038a) - padding, ((int) ew0Var.f26039b) - padding);
+        this.f45289r0.draw(canvas);
         Rect rect = AndroidUtilities.rectTmp2;
-        float width = (this.f45287r0.getBounds().width() * 0.61f) / 2.0f;
-        rect.set((int) (this.f45287r0.getBounds().centerX() - width), (int) (this.f45287r0.getBounds().centerY() - width), (int) (this.f45287r0.getBounds().centerX() + width), (int) (this.f45287r0.getBounds().centerY() + width));
-        float d10 = this.f45292w0.d(1.0f, false);
-        this.f45289t0.c(rect);
-        this.f45290u0.c(rect);
-        ah.y0 y0Var = this.f45289t0;
-        if (this.f45287r0.f5428a == 1) {
+        float width = (this.f45289r0.getBounds().width() * 0.61f) / 2.0f;
+        rect.set((int) (this.f45289r0.getBounds().centerX() - width), (int) (this.f45289r0.getBounds().centerY() - width), (int) (this.f45289r0.getBounds().centerX() + width), (int) (this.f45289r0.getBounds().centerY() + width));
+        float d10 = this.f45294w0.d(1.0f, false);
+        this.f45291t0.c(rect);
+        this.f45292u0.c(rect);
+        ah.y0 y0Var = this.f45291t0;
+        if (this.f45289r0.f5426a == 1) {
             i10 = -1;
         } else {
             i10 = -16777216;
         }
         y0Var.d(i10);
         if (d10 == 1.0f) {
-            this.f45289t0.a(canvas);
+            this.f45291t0.a(canvas);
         } else {
             canvas.save();
             float f10 = 1.0f - d10;
             canvas.scale(f10, f10, rect.centerX(), rect.top);
-            ah.y0 y0Var2 = this.f45290u0;
+            ah.y0 y0Var2 = this.f45292u0;
             y0Var2.h = f10;
             y0Var2.a(canvas);
             canvas.restore();
             canvas.save();
             canvas.scale(d10, d10, rect.centerX(), rect.bottom);
-            ah.y0 y0Var3 = this.f45289t0;
+            ah.y0 y0Var3 = this.f45291t0;
             y0Var3.h = d10;
             y0Var3.a(canvas);
             canvas.restore();
@@ -89,7 +89,7 @@ public final class b2 extends j {
     }
 
     public ah.i1 getCurrentReaction() {
-        return this.f45291v0;
+        return this.f45293v0;
     }
 
     @Override
@@ -103,7 +103,7 @@ public final class b2 extends j {
     }
 
     public int getPadding() {
-        return (int) ((this.f45286q0.f26041b - AndroidUtilities.dp(84.0f)) / 2.0f);
+        return (int) ((this.f45288q0.f26039b - AndroidUtilities.dp(84.0f)) / 2.0f);
     }
 
     @Override
@@ -121,81 +121,81 @@ public final class b2 extends j {
 
     @Override
     public final void k() {
-        ew0 ew0Var = this.f45286q0;
-        setX(getPositionX() - (ew0Var.f26040a / 2.0f));
-        setY(getPositionY() - (ew0Var.f26041b / 2.0f));
+        ew0 ew0Var = this.f45288q0;
+        setX(getPositionX() - (ew0Var.f26038a / 2.0f));
+        setY(getPositionY() - (ew0Var.f26039b / 2.0f));
         m();
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f45289t0.b(true);
-        this.f45290u0.b(true);
+        this.f45291t0.b(true);
+        this.f45292u0.b(true);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f45289t0.b(false);
-        this.f45290u0.b(false);
+        this.f45291t0.b(false);
+        this.f45292u0.b(false);
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        ew0 ew0Var = this.f45286q0;
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) ew0Var.f26040a, 1073741824), View.MeasureSpec.makeMeasureSpec((int) ew0Var.f26041b, 1073741824));
+        ew0 ew0Var = this.f45288q0;
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) ew0Var.f26038a, 1073741824), View.MeasureSpec.makeMeasureSpec((int) ew0Var.f26039b, 1073741824));
     }
 
     public final void q(boolean z10) {
         if (!z10) {
-            this.f45287r0.a();
+            this.f45289r0.a();
         } else {
-            this.f45288s0 = this.f45287r0;
+            this.f45290s0 = this.f45289r0;
             g9 g9Var = new g9(this);
-            this.f45287r0 = g9Var;
-            if (this.f45288s0.f5428a != 1) {
+            this.f45289r0 = g9Var;
+            if (this.f45290s0.f5426a != 1) {
                 g9Var.a();
             }
-            this.f45287r0.b(this.f45294y0, false);
-            this.f45287r0.c(getScaleX());
-            this.f45293x0.d(0.0f, true);
+            this.f45289r0.b(this.f45296y0, false);
+            this.f45289r0.c(getScaleX());
+            this.f45295x0.d(0.0f, true);
         }
         invalidate();
     }
 
     public final void r(boolean z10) {
-        boolean z11 = !this.f45294y0;
-        this.f45294y0 = z11;
+        boolean z11 = !this.f45296y0;
+        this.f45296y0 = z11;
         if (!z10) {
-            this.f45287r0.b(z11, z10);
+            this.f45289r0.b(z11, z10);
             return;
         }
         boolean[] zArr = {false};
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
         ofFloat.addUpdateListener(new ah.l0(28, this, zArr));
         ofFloat.addListener(new ml0(20, this, zArr));
-        ofFloat.setInterpolator(bs.f25015g);
+        ofFloat.setInterpolator(bs.f25013g);
         ofFloat.setDuration(350L);
         ofFloat.start();
     }
 
     public final void s(ah.i1 i1Var, boolean z10) {
-        if (Objects.equals(this.f45291v0, i1Var)) {
+        if (Objects.equals(this.f45293v0, i1Var)) {
             return;
         }
         if (!z10) {
-            this.f45291v0 = i1Var;
-            this.f45289t0.e(i1Var);
+            this.f45293v0 = i1Var;
+            this.f45291t0.e(i1Var);
             invalidate();
             return;
         }
-        this.f45291v0 = i1Var;
-        this.f45290u0.e(i1Var);
-        ah.y0 y0Var = this.f45289t0;
-        this.f45289t0 = this.f45290u0;
-        this.f45290u0 = y0Var;
-        this.f45292w0.d(0.0f, true);
+        this.f45293v0 = i1Var;
+        this.f45292u0.e(i1Var);
+        ah.y0 y0Var = this.f45291t0;
+        this.f45291t0 = this.f45292u0;
+        this.f45292u0 = y0Var;
+        this.f45294w0.d(0.0f, true);
         invalidate();
     }
 
@@ -203,7 +203,7 @@ public final class b2 extends j {
     public void setScaleX(float f7) {
         if (getScaleX() != f7) {
             super.setScaleX(f7);
-            this.f45287r0.c(f7);
+            this.f45289r0.c(f7);
             invalidate();
         }
     }

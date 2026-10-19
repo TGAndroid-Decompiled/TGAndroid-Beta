@@ -15,18 +15,18 @@ import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.bs;
 public final class t7 extends FrameLayout {
-    public final int f9856a;
-    public final org.telegram.ui.Components.h9 f9857b;
-    public final org.telegram.ui.Components.w9 f9858c;
+    public final int f9854a;
+    public final org.telegram.ui.Components.h9 f9855b;
+    public final org.telegram.ui.Components.w9 f9856c;
     public final TextView d;
     public ViewPropertyAnimator e;
 
     public t7(Activity activity, int i10) {
         super(activity);
-        this.f9856a = i10;
-        this.f9857b = new org.telegram.ui.Components.h9((org.telegram.ui.ActionBar.d6) null);
+        this.f9854a = i10;
+        this.f9855b = new org.telegram.ui.Components.h9((org.telegram.ui.ActionBar.d6) null);
         org.telegram.ui.Components.w9 w9Var = new org.telegram.ui.Components.w9(activity);
-        this.f9858c = w9Var;
+        this.f9856c = w9Var;
         w9Var.setRoundRadius(AndroidUtilities.dp(15.0f));
         addView(w9Var, w7.z5.d(30, 30.0f, 19, 14.0f, 0.0f, 0.0f, 0.0f));
         TextView textView = new TextView(activity);
@@ -78,7 +78,7 @@ public final class t7 extends FrameLayout {
     public void set(TLRPC.InputPeer inputPeer) {
         long peerDialogId;
         String str;
-        int i10 = this.f9856a;
+        int i10 = this.f9854a;
         if (inputPeer == null) {
             peerDialogId = UserConfig.getInstance(i10).getClientUserId();
         } else {
@@ -86,8 +86,8 @@ public final class t7 extends FrameLayout {
         }
         int i11 = (peerDialogId > 0L ? 1 : (peerDialogId == 0L ? 0 : -1));
         TextView textView = this.d;
-        org.telegram.ui.Components.w9 w9Var = this.f9858c;
-        org.telegram.ui.Components.h9 h9Var = this.f9857b;
+        org.telegram.ui.Components.w9 w9Var = this.f9856c;
+        org.telegram.ui.Components.h9 h9Var = this.f9855b;
         if (i11 >= 0) {
             TLRPC.User user = MessagesController.getInstance(i10).getUser(Long.valueOf(peerDialogId));
             h9Var.r(user);

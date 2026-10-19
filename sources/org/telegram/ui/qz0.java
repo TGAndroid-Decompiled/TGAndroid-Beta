@@ -4,19 +4,19 @@ import android.view.View;
 import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.TLRPC;
 public final class qz0 implements View.OnClickListener {
-    public final int f41023a;
-    public final b01 f41024b;
+    public final int f41015a;
+    public final b01 f41016b;
 
     public qz0(b01 b01Var, int i10) {
-        this.f41023a = i10;
-        this.f41024b = b01Var;
+        this.f41015a = i10;
+        this.f41016b = b01Var;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f41023a) {
+        switch (this.f41015a) {
             case 0:
-                b01 b01Var = this.f41024b;
+                b01 b01Var = this.f41016b;
                 ProfileActivity profileActivity = b01Var.e;
                 TLRPC.User user = profileActivity.getMessagesController().getUser(Long.valueOf(profileActivity.f33613f1));
                 MessagesController messagesController = profileActivity.getMessagesController();
@@ -24,7 +24,7 @@ public final class qz0 implements View.OnClickListener {
                 messagesController.openApp(profileActivity2, user, null, profileActivity2.getClassGuid(), null);
                 return;
             default:
-                ProfileActivity profileActivity3 = this.f41024b.e;
+                ProfileActivity profileActivity3 = this.f41016b.e;
                 profileActivity3.Q4 = !profileActivity3.Q4;
                 if (!profileActivity3.P4) {
                     profileActivity3.P4 = true;

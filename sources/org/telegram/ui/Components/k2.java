@@ -13,20 +13,20 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.R;
 public final class k2 implements kd0, org.telegram.ui.ActionBar.a2, e5, ImageReceiver.ImageReceiverDelegate, GenericProvider, p.a, hh.b, bw0, cw0, eh.d, r0.n {
-    public final int f27682a;
+    public final int f27680a;
 
     public k2(int i10) {
-        this.f27682a = i10;
+        this.f27680a = i10;
     }
 
     @Override
     public r0.k1 B0(View view, r0.k1 k1Var) {
-        return r0.k1.f44824b;
+        return r0.k1.f44826b;
     }
 
     @Override
     public void C(int i10, int i11, boolean z10) {
-        switch (this.f27682a) {
+        switch (this.f27680a) {
             case 10:
                 MediaController.getInstance().stopRecording(1, z10, i10, false, 0L);
                 return;
@@ -46,12 +46,12 @@ public final class k2 implements kd0, org.telegram.ui.ActionBar.a2, e5, ImageRec
 
     @Override
     public void b(Object obj, float f7) {
-        switch (this.f27682a) {
+        switch (this.f27680a) {
             case 20:
                 sd0 sd0Var = (sd0) obj;
-                sd0Var.f30235f = f7;
-                if (!sd0Var.f30241y || sd0Var.F) {
-                    sd0Var.f30234c.setStrokeWidth(AndroidUtilities.lerp(sd0Var.v, sd0Var.f30239w, f7));
+                sd0Var.f30233f = f7;
+                if (!sd0Var.f30239y || sd0Var.F) {
+                    sd0Var.f30232c.setStrokeWidth(AndroidUtilities.lerp(sd0Var.v, sd0Var.f30237w, f7));
                     sd0Var.f();
                 }
                 sd0Var.invalidate();
@@ -60,11 +60,11 @@ public final class k2 implements kd0, org.telegram.ui.ActionBar.a2, e5, ImageRec
             case 23:
             default:
                 zg0 zg0Var = (zg0) obj;
-                WindowManager.LayoutParams layoutParams = zg0Var.f32934c;
+                WindowManager.LayoutParams layoutParams = zg0Var.f32932c;
                 zg0Var.K = f7;
                 layoutParams.x = (int) f7;
                 try {
-                    AndroidUtilities.updateViewLayout(zg0Var.f32932b, zg0Var.d, layoutParams);
+                    AndroidUtilities.updateViewLayout(zg0Var.f32930b, zg0Var.d, layoutParams);
                     return;
                 } catch (IllegalArgumentException unused) {
                     zg0Var.M.c();
@@ -72,15 +72,15 @@ public final class k2 implements kd0, org.telegram.ui.ActionBar.a2, e5, ImageRec
                 }
             case 22:
                 sd0 sd0Var2 = (sd0) obj;
-                sd0Var2.f30236n = f7;
-                if (!sd0Var2.f30241y || sd0Var2.F) {
+                sd0Var2.f30234n = f7;
+                if (!sd0Var2.f30239y || sd0Var2.F) {
                     sd0Var2.f();
                 }
                 sd0Var2.invalidate();
                 return;
             case 24:
                 sd0 sd0Var3 = (sd0) obj;
-                sd0Var3.f30238s = f7;
+                sd0Var3.f30236s = f7;
                 sd0Var3.f();
                 return;
         }
@@ -94,7 +94,7 @@ public final class k2 implements kd0, org.telegram.ui.ActionBar.a2, e5, ImageRec
     @Override
     public void didSetImage(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
         uj0 lottieAnimation;
-        switch (this.f27682a) {
+        switch (this.f27680a) {
             case 12:
                 Drawable drawable = imageReceiver.getDrawable();
                 if (drawable instanceof uj0) {
@@ -116,13 +116,13 @@ public final class k2 implements kd0, org.telegram.ui.ActionBar.a2, e5, ImageRec
 
     @Override
     public void didSetImageBitmap(int i10, String str, Drawable drawable) {
-        int i11 = this.f27682a;
-        org.telegram.messenger.l5.a(this, i10, str, drawable);
+        int i11 = this.f27680a;
+        org.telegram.messenger.k5.a(this, i10, str, drawable);
     }
 
     @Override
     public String e(int i10) {
-        switch (this.f27682a) {
+        switch (this.f27680a) {
             case 0:
                 if (i10 == 0) {
                     return LocaleController.getString(R.string.MessageScheduleToday);
@@ -203,15 +203,15 @@ public final class k2 implements kd0, org.telegram.ui.ActionBar.a2, e5, ImageRec
 
     @Override
     public int f(org.telegram.ui.ActionBar.d6 d6Var, boolean z10) {
-        int[] iArr = le0.f28190i0;
+        int[] iArr = le0.f28188i0;
         return 620756991;
     }
 
     @Override
     public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f27682a) {
+        switch (this.f27680a) {
             case 7:
-                Pattern pattern = f5.f26101a;
+                Pattern pattern = f5.f26099a;
                 return;
             case 13:
                 b2Var.dismiss();
@@ -224,29 +224,29 @@ public final class k2 implements kd0, org.telegram.ui.ActionBar.a2, e5, ImageRec
 
     @Override
     public float get(Object obj) {
-        switch (this.f27682a) {
+        switch (this.f27680a) {
             case 19:
-                return ((sd0) obj).f30235f;
+                return ((sd0) obj).f30233f;
             case 20:
             case 22:
             default:
                 return ((zg0) obj).K;
             case 21:
-                return ((sd0) obj).f30236n;
+                return ((sd0) obj).f30234n;
             case 23:
-                return ((sd0) obj).f30238s;
+                return ((sd0) obj).f30236s;
         }
     }
 
     @Override
     public void onAnimationReady(ImageReceiver imageReceiver) {
-        int i10 = this.f27682a;
-        org.telegram.messenger.l5.b(this, imageReceiver);
+        int i10 = this.f27680a;
+        org.telegram.messenger.k5.b(this, imageReceiver);
     }
 
     @Override
     public Object provide(Object obj) {
-        switch (this.f27682a) {
+        switch (this.f27680a) {
             case 14:
                 Void r22 = (Void) obj;
                 return CheckBoxBase.I;

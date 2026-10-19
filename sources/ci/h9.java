@@ -43,7 +43,7 @@ public final class h9 extends c9 {
         y0Var.e(d);
         oyVar.getClass();
         String str = d.f783f;
-        str = str == null ? MessageObject.findAnimatedEmojiEmoticon(org.telegram.ui.Components.r5.f(oyVar.f40004b, d.f784g)) : str;
+        str = str == null ? MessageObject.findAnimatedEmojiEmoticon(org.telegram.ui.Components.r5.f(oyVar.f39995b, d.f784g)) : str;
         if (str != null && (arrayList = (ArrayList) oyVar.e.get(str)) != null && !arrayList.isEmpty()) {
             int min = Math.min(1, arrayList.size());
             for (int i10 = 0; i10 < min; i10++) {
@@ -54,7 +54,7 @@ public final class h9 extends c9 {
             this.L.setImage(ImageLocation.getForDocument(tL_availableReaction.center_icon), "40_40_lastreactframe", null, "webp", tL_availableReaction, 1);
         }
         org.telegram.ui.Components.p6 p6Var = this.N;
-        p6Var.f29182b = 17;
+        p6Var.f29180b = 17;
         p6Var.x(AndroidUtilities.getTypeface("fonts/rcondensedbold.ttf"));
         this.N.w(AndroidUtilities.dp(18.0f));
         this.N.M = AndroidUtilities.displaySize.x;
@@ -89,7 +89,7 @@ public final class h9 extends c9 {
         float d = this.M.d(f7, false);
         Rect rect = AndroidUtilities.rectTmp2;
         rect.set((int) centerX, (int) AndroidUtilities.lerp(centerY, f10, d), (int) centerX2, (int) AndroidUtilities.lerp(centerY2, f11, d));
-        if (g9Var.f5428a == 1) {
+        if (g9Var.f5426a == 1) {
             i10 = -1;
         } else {
             i10 = -16777216;

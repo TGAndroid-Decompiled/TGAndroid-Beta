@@ -4,26 +4,26 @@ import android.text.SpannableStringBuilder;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.lk;
+import org.telegram.messenger.kk;
 import org.telegram.ui.Components.yq;
 public final class d implements Runnable {
-    public final int f1118a;
-    public final x f1119b;
+    public final int f1121a;
+    public final x f1122b;
 
     public d(x xVar, int i10) {
-        this.f1118a = i10;
-        this.f1119b = xVar;
+        this.f1121a = i10;
+        this.f1122b = xVar;
     }
 
     @Override
     public final void run() {
         boolean z10;
         String formatPluralStringSpaced;
-        int i10 = this.f1118a;
-        x xVar = this.f1119b;
+        int i10 = this.f1121a;
+        x xVar = this.f1122b;
         switch (i10) {
             case 0:
-                d dVar = xVar.f2410n0;
+                d dVar = xVar.f2414n0;
                 int currentTime = xVar.getConnectionsManager().getCurrentTime();
                 v vVar = xVar.R;
                 if (xVar.P <= 0 && xVar.G <= currentTime) {
@@ -43,11 +43,11 @@ public final class d implements Runnable {
                     SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
                     spannableStringBuilder.append((CharSequence) xVar.m0).append((CharSequence) x.j0(xVar.G - currentTime));
                     xVar.R.f(spannableStringBuilder, true);
-                    org.telegram.ui.Components.qc qcVar = xVar.f2394a0;
+                    org.telegram.ui.Components.qc qcVar = xVar.f2398a0;
                     if (qcVar != null) {
                         org.telegram.ui.Components.ub ubVar = qcVar.e;
                         if ((ubVar instanceof org.telegram.ui.Components.yb) && ubVar.isAttachedToWindow()) {
-                            lk.r(R.string.BotStarsWithdrawalToast, new Object[]{x.j0(xVar.G - currentTime)}, ((org.telegram.ui.Components.yb) xVar.f2394a0.e).f32593b);
+                            kk.r(R.string.BotStarsWithdrawalToast, new Object[]{x.j0(xVar.G - currentTime)}, ((org.telegram.ui.Components.yb) xVar.f2398a0.e).f32591b);
                         }
                     }
                     AndroidUtilities.cancelRunOnUIThread(dVar);

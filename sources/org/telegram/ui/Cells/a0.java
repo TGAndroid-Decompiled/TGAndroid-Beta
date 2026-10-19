@@ -6,17 +6,17 @@ import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import org.telegram.ui.Components.hw0;
 public abstract class a0 extends ViewGroup implements hw0 {
-    public boolean f21952a;
-    public androidx.emoji2.text.j f21953b;
-    public int f21954c;
+    public boolean f21950a;
+    public androidx.emoji2.text.j f21951b;
+    public int f21952c;
     public androidx.activity.i d;
     public Runnable e;
 
     public a0(Context context) {
         super(context);
-        this.f21952a = false;
-        this.f21953b = null;
-        this.f21954c = 0;
+        this.f21950a = false;
+        this.f21951b = null;
+        this.f21952c = 0;
         this.d = null;
         setWillNotDraw(false);
         setFocusable(true);
@@ -69,8 +69,8 @@ public abstract class a0 extends ViewGroup implements hw0 {
     }
 
     public final void k() {
-        this.f21952a = false;
-        androidx.emoji2.text.j jVar = this.f21953b;
+        this.f21950a = false;
+        androidx.emoji2.text.j jVar = this.f21951b;
         if (jVar != null) {
             removeCallbacks(jVar);
         }
@@ -89,10 +89,10 @@ public abstract class a0 extends ViewGroup implements hw0 {
     }
 
     public final void q() {
-        if (this.f21952a) {
+        if (this.f21950a) {
             return;
         }
-        this.f21952a = true;
+        this.f21950a = true;
         if (this.d == null) {
             this.d = new androidx.activity.i(this, 27);
         }

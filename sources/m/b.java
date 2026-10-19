@@ -2,24 +2,24 @@ package m;
 
 import androidx.appcompat.widget.ActionBarOverlayLayout;
 public final class b implements Runnable {
-    public final int f16159a;
-    public final ActionBarOverlayLayout f16160b;
+    public final int f16157a;
+    public final ActionBarOverlayLayout f16158b;
 
     public b(ActionBarOverlayLayout actionBarOverlayLayout, int i10) {
-        this.f16159a = i10;
-        this.f16160b = actionBarOverlayLayout;
+        this.f16157a = i10;
+        this.f16158b = actionBarOverlayLayout;
     }
 
     @Override
     public final void run() {
-        switch (this.f16159a) {
+        switch (this.f16157a) {
             case 0:
-                ActionBarOverlayLayout actionBarOverlayLayout = this.f16160b;
+                ActionBarOverlayLayout actionBarOverlayLayout = this.f16158b;
                 actionBarOverlayLayout.c();
                 actionBarOverlayLayout.M = actionBarOverlayLayout.d.animate().translationY(0.0f).setListener(actionBarOverlayLayout.N);
                 return;
             default:
-                ActionBarOverlayLayout actionBarOverlayLayout2 = this.f16160b;
+                ActionBarOverlayLayout actionBarOverlayLayout2 = this.f16158b;
                 actionBarOverlayLayout2.c();
                 actionBarOverlayLayout2.M = actionBarOverlayLayout2.d.animate().translationY(-actionBarOverlayLayout2.d.getHeight()).setListener(actionBarOverlayLayout2.N);
                 return;

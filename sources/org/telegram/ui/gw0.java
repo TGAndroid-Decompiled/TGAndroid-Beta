@@ -4,15 +4,15 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 public final class gw0 extends org.telegram.ui.Components.hm0 {
-    public final PremiumPreviewFragment f37448c;
+    public final PremiumPreviewFragment f37422c;
 
     public gw0(PremiumPreviewFragment premiumPreviewFragment) {
-        this.f37448c = premiumPreviewFragment;
+        this.f37422c = premiumPreviewFragment;
     }
 
     @Override
     public final boolean D(s4.b1 b1Var) {
-        int i10 = b1Var.f45913f;
+        int i10 = b1Var.f45915f;
         if (i10 == 1 || i10 == 8) {
             return true;
         }
@@ -21,13 +21,13 @@ public final class gw0 extends org.telegram.ui.Components.hm0 {
 
     @Override
     public final int h() {
-        return this.f37448c.h;
+        return this.f37422c.h;
     }
 
     @Override
     public final int j(int i10) {
         if (i10 != 0) {
-            PremiumPreviewFragment premiumPreviewFragment = this.f37448c;
+            PremiumPreviewFragment premiumPreviewFragment = this.f37422c;
             if (i10 < premiumPreviewFragment.f33507n || i10 >= premiumPreviewFragment.f33512r) {
                 if (i10 >= premiumPreviewFragment.v && i10 < premiumPreviewFragment.f33519w) {
                     return 1;
@@ -90,7 +90,7 @@ public final class gw0 extends org.telegram.ui.Components.hm0 {
                 fw0Var = new org.telegram.ui.Cells.l4(context);
                 break;
             case 8:
-                d6Var = ((org.telegram.ui.ActionBar.n2) this.f37448c).resourceProvider;
+                d6Var = ((org.telegram.ui.ActionBar.n2) this.f37422c).resourceProvider;
                 fw0Var = new org.telegram.ui.Cells.q8(23, context, d6Var, false, true);
                 break;
         }

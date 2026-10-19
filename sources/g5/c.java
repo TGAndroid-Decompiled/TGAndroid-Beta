@@ -4,22 +4,22 @@ import java.nio.ByteBuffer;
 import java.nio.channels.WritableByteChannel;
 public final class c extends a {
     public int h;
-    public int f10836n;
-    public double f10837r;
-    public double f10838s;
+    public int f10834n;
+    public double f10835r;
+    public double f10836s;
     public int v;
-    public String f10839w;
-    public int f10840x;
-    public final long[] f10841y;
+    public String f10837w;
+    public int f10838x;
+    public final long[] f10839y;
 
     public c(String str) {
         super(str);
-        this.f10837r = 72.0d;
-        this.f10838s = 72.0d;
+        this.f10835r = 72.0d;
+        this.f10836s = 72.0d;
         this.v = 1;
-        this.f10839w = "";
-        this.f10840x = 24;
-        this.f10841y = new long[3];
+        this.f10837w = "";
+        this.f10838x = 24;
+        this.f10839y = new long[3];
     }
 
     @Override
@@ -27,27 +27,27 @@ public final class c extends a {
         writableByteChannel.write(d());
         ByteBuffer allocate = ByteBuffer.allocate(78);
         allocate.position(6);
-        e5.b.p(this.f10833f, allocate);
+        e5.b.p(this.f10831f, allocate);
         e5.b.p(0, allocate);
         e5.b.p(0, allocate);
-        long[] jArr = this.f10841y;
+        long[] jArr = this.f10839y;
         allocate.putInt((int) jArr[0]);
         allocate.putInt((int) jArr[1]);
         allocate.putInt((int) jArr[2]);
         e5.b.p(this.h, allocate);
-        e5.b.p(this.f10836n, allocate);
-        e5.b.n(allocate, this.f10837r);
-        e5.b.n(allocate, this.f10838s);
+        e5.b.p(this.f10834n, allocate);
+        e5.b.n(allocate, this.f10835r);
+        e5.b.n(allocate, this.f10836s);
         allocate.putInt((int) 0);
         e5.b.p(this.v, allocate);
-        allocate.put((byte) (e5.b.l(this.f10839w) & 255));
-        allocate.put(e5.b.b(this.f10839w));
-        int l4 = e5.b.l(this.f10839w);
+        allocate.put((byte) (e5.b.l(this.f10837w) & 255));
+        allocate.put(e5.b.b(this.f10837w));
+        int l4 = e5.b.l(this.f10837w);
         while (l4 < 31) {
             l4++;
             allocate.put((byte) 0);
         }
-        e5.b.p(this.f10840x, allocate);
+        e5.b.p(this.f10838x, allocate);
         e5.b.p(65535, allocate);
         writableByteChannel.write((ByteBuffer) allocate.rewind());
         c(writableByteChannel);

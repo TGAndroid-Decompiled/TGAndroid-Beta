@@ -15,7 +15,7 @@ public final class ry0 extends oz0 {
         ci.g3 g3Var;
         super.dispatchDraw(canvas);
         org.telegram.ui.Components.r5 r5Var = this.e;
-        if (r5Var != null && (g3Var = r5Var.f29853k) != null) {
+        if (r5Var != null && (g3Var = r5Var.f29851k) != null) {
             g3Var.startAnimation();
         }
     }

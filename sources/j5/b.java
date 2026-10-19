@@ -95,12 +95,12 @@ import p4.s0;
 import r9.r;
 import w7.i6;
 public final class b implements gu, o0, Utilities.Callback5, a2, vx, p5, j, e0, g1, e2.j, e1, k, ne.d, r9.d, Vector.TLDeserializer, GlGenericDrawer.TextureCallback, k1, a5.b {
-    public final int f14256a;
-    public final Object f14257b;
+    public final int f14254a;
+    public final Object f14255b;
 
     public b(Object obj, int i10) {
-        this.f14256a = i10;
-        this.f14257b = obj;
+        this.f14254a = i10;
+        this.f14255b = obj;
     }
 
     @Override
@@ -110,41 +110,41 @@ public final class b implements gu, o0, Utilities.Callback5, a2, vx, p5, j, e0, 
 
     @Override
     public void E() {
-        switch (this.f14256a) {
+        switch (this.f14254a) {
             case 3:
-                t0 t0Var = (t0) this.f14257b;
+                t0 t0Var = (t0) this.f14255b;
                 h1 h1Var = t0Var.d;
-                ki.a aVar = t0Var.f15524f;
+                ki.a aVar = t0Var.f15522f;
                 if (aVar != null) {
-                    aVar.f15111s = true;
-                    aVar.f15110r = h1Var.E;
+                    aVar.f15109s = true;
+                    aVar.f15108r = h1Var.E;
                 }
                 if (aVar != null) {
-                    TL_iv.PageBlock pageBlock = aVar.f15097b;
+                    TL_iv.PageBlock pageBlock = aVar.f15095b;
                     if (pageBlock instanceof TL_iv.pageBlockDetails) {
                         ((TL_iv.pageBlockDetails) pageBlock).title = e6.f(h1Var.getText());
                     }
                 }
                 d3 d3Var = t0Var.h;
-                if (d3Var != null && t0Var.f15524f != null) {
-                    w3.P1(d3Var.f15233a);
+                if (d3Var != null && t0Var.f15522f != null) {
+                    w3.P1(d3Var.f15231a);
                     return;
                 }
                 return;
             case 8:
-                ((g5) this.f14257b).h();
+                ((g5) this.f14255b).h();
                 return;
             default:
-                o5 o5Var = (o5) this.f14257b;
-                ki.a aVar2 = o5Var.f15113a;
+                o5 o5Var = (o5) this.f14255b;
+                ki.a aVar2 = o5Var.f15111a;
                 if (aVar2 != null) {
-                    aVar2.f15111s = true;
-                    aVar2.f15110r = o5Var.f15433r.E;
+                    aVar2.f15109s = true;
+                    aVar2.f15108r = o5Var.f15431r.E;
                 }
                 o5Var.u();
                 c3 c3Var = o5Var.E;
-                if (c3Var != null && o5Var.f15113a != null) {
-                    w3.P1(c3Var.f15177a);
+                if (c3Var != null && o5Var.f15111a != null) {
+                    w3.P1(c3Var.f15175a);
                     return;
                 }
                 return;
@@ -158,31 +158,31 @@ public final class b implements gu, o0, Utilities.Callback5, a2, vx, p5, j, e0, 
 
     @Override
     public Object a(i iVar) {
-        f0 f0Var = (f0) this.f14257b;
-        f0Var.f16531o.post(new z(0, f0Var, iVar));
+        f0 f0Var = (f0) this.f14255b;
+        f0Var.f16529o.post(new z(0, f0Var, iVar));
         return "onPlayRequested";
     }
 
     @Override
     public void accept(Object obj) {
-        switch (this.f14256a) {
+        switch (this.f14254a) {
             case 14:
-                ((m1) obj).f((z0) this.f14257b);
+                ((m1) obj).f((z0) this.f14255b);
                 return;
             default:
-                ((n2.k) obj).a((oa.d) this.f14257b);
+                ((n2.k) obj).a((oa.d) this.f14255b);
                 return;
         }
     }
 
     @Override
     public Object apply(Object obj) {
-        switch (this.f14256a) {
+        switch (this.f14254a) {
             case 17:
                 Bitmap bitmap = (Bitmap) obj;
                 int height = bitmap.getHeight();
                 int width = bitmap.getWidth();
-                i9.a aVar = (i9.a) ((s) this.f14257b).f17128c;
+                i9.a aVar = (i9.a) ((s) this.f14255b).f17126c;
                 if (aVar.a(Math.max(height, width))) {
                     if (aVar.a(height)) {
                         height--;
@@ -196,7 +196,7 @@ public final class b implements gu, o0, Utilities.Callback5, a2, vx, p5, j, e0, 
             default:
                 Bitmap bitmap2 = (Bitmap) obj;
                 int width2 = bitmap2.getWidth();
-                int i10 = ((c0) this.f14257b).f4725b;
+                int i10 = ((c0) this.f14255b).f4723b;
                 if (width2 > i10 || bitmap2.getHeight() > i10) {
                     float f7 = i10;
                     float width3 = bitmap2.getWidth();
@@ -210,23 +210,23 @@ public final class b implements gu, o0, Utilities.Callback5, a2, vx, p5, j, e0, 
 
     @Override
     public void b(u uVar, int i10) {
-        uVar.c(i10, (b1) this.f14257b);
+        uVar.c(i10, (b1) this.f14255b);
     }
 
     @Override
     public void c(WebView webView, a5.a aVar, Uri uri, boolean z10, h hVar) {
         String uri2;
-        x0 x0Var = (x0) this.f14257b;
+        x0 x0Var = (x0) this.f14255b;
         a1 a1Var = x0Var.Q;
         if (webView == x0Var && a1Var != null) {
-            if (webView == a1Var.f42554a && aVar.f281b == 0) {
+            if (webView == a1Var.f42555a && aVar.f281b == 0) {
                 if (uri == null) {
                     uri2 = null;
                 } else {
                     uri2 = uri.toString();
                 }
                 String k10 = a1.k(uri2);
-                if (a1Var.f42579t0 && (TextUtils.isEmpty(a1Var.F0) || !TextUtils.equals(a1Var.F0, k10) || !TextUtils.equals(a1Var.F0, a1Var.getOriginHost()))) {
+                if (a1Var.f42580t0 && (TextUtils.isEmpty(a1Var.F0) || !TextUtils.equals(a1Var.F0, k10) || !TextUtils.equals(a1Var.F0, a1Var.getOriginHost()))) {
                     a1Var.g("onBotWebMessage ignored: untrusted origin");
                     return;
                 }
@@ -257,52 +257,52 @@ public final class b implements gu, o0, Utilities.Callback5, a2, vx, p5, j, e0, 
 
     @Override
     public void d(m1 m1Var, v vVar) {
-        ((e2.j) this.f14257b).accept(m1Var);
+        ((e2.j) this.f14255b).accept(m1Var);
     }
 
     @Override
     public TLObject deserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
         TLRPC.PhotoSize lambda$readParams$0;
         TLRPC.PhotoSize lambda$readParams$02;
-        switch (this.f14256a) {
+        switch (this.f14254a) {
             case 23:
-                lambda$readParams$0 = ((TLRPC.TL_stickerSet) this.f14257b).lambda$readParams$0(inputSerializedData, i10, z10);
+                lambda$readParams$0 = ((TLRPC.TL_stickerSet) this.f14255b).lambda$readParams$0(inputSerializedData, i10, z10);
                 return lambda$readParams$0;
             default:
-                lambda$readParams$02 = ((TLRPC.TL_stickerSet_layer143) this.f14257b).lambda$readParams$0(inputSerializedData, i10, z10);
+                lambda$readParams$02 = ((TLRPC.TL_stickerSet_layer143) this.f14255b).lambda$readParams$0(inputSerializedData, i10, z10);
                 return lambda$readParams$02;
         }
     }
 
     @Override
     public Object e(f0 f0Var, v vVar, int i10) {
-        int i11 = this.f14256a;
-        Object obj = this.f14257b;
+        int i11 = this.f14254a;
+        Object obj = this.f14255b;
         switch (i11) {
             case 13:
                 return f0Var.l(vVar, (n0) obj);
             default:
                 e1 e1Var = (e1) obj;
-                w wVar = w.f14363b;
+                w wVar = w.f14361b;
                 if (!f0Var.j()) {
-                    e1Var.d(f0Var.f16536t, vVar);
+                    e1Var.d(f0Var.f16534t, vVar);
                     i1.P0(f0Var, vVar, i10, new s1(0));
                 }
-                return w.f14363b;
+                return w.f14361b;
         }
     }
 
     public c f(e eVar) {
         InputStream inputStream;
-        d dVar = (d) this.f14257b;
-        URL url = (URL) eVar.f2817b;
+        d dVar = (d) this.f14255b;
+        URL url = (URL) eVar.f2815b;
         String c10 = i6.c("CctTransportBackend");
         if (Log.isLoggable(c10, 4)) {
             Log.i(c10, String.format("Making request to: %s", url));
         }
         HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
         httpURLConnection.setConnectTimeout(30000);
-        httpURLConnection.setReadTimeout(dVar.f14265g);
+        httpURLConnection.setReadTimeout(dVar.f14263g);
         httpURLConnection.setDoOutput(true);
         httpURLConnection.setInstanceFollowRedirects(false);
         httpURLConnection.setRequestMethod("POST");
@@ -318,13 +318,13 @@ public final class b implements gu, o0, Utilities.Callback5, a2, vx, p5, j, e0, 
             OutputStream outputStream = httpURLConnection.getOutputStream();
             try {
                 GZIPOutputStream gZIPOutputStream = new GZIPOutputStream(outputStream);
-                t1 t1Var = dVar.f14261a;
+                t1 t1Var = dVar.f14259a;
                 BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(gZIPOutputStream));
-                la.d dVar2 = (la.d) t1Var.f15527b;
-                la.e eVar2 = new la.e(bufferedWriter, dVar2.f15989a, dVar2.f15990b, dVar2.f15991c, dVar2.d);
-                eVar2.h((k5.i) eVar.f2818c);
+                la.d dVar2 = (la.d) t1Var.f15525b;
+                la.e eVar2 = new la.e(bufferedWriter, dVar2.f15987a, dVar2.f15988b, dVar2.f15989c, dVar2.d);
+                eVar2.h((k5.i) eVar.f2816c);
                 eVar2.j();
-                eVar2.f15993b.flush();
+                eVar2.f15991b.flush();
                 gZIPOutputStream.close();
                 if (outputStream != null) {
                     outputStream.close();
@@ -348,7 +348,7 @@ public final class b implements gu, o0, Utilities.Callback5, a2, vx, p5, j, e0, 
                         } else {
                             inputStream = inputStream2;
                         }
-                        c cVar = new c(responseCode, null, m.a(new BufferedReader(new InputStreamReader(inputStream))).f14953a);
+                        c cVar = new c(responseCode, null, m.a(new BufferedReader(new InputStreamReader(inputStream))).f14951a);
                         if (inputStream != null) {
                             inputStream.close();
                         }
@@ -399,35 +399,35 @@ public final class b implements gu, o0, Utilities.Callback5, a2, vx, p5, j, e0, 
 
     @Override
     public void g(b2 b2Var, int i10) {
-        switch (this.f14256a) {
+        switch (this.f14254a) {
             case 6:
-                ((x9) this.f14257b).run();
+                ((x9) this.f14255b).run();
                 return;
             default:
-                ((b0) this.f14257b).run();
+                ((b0) this.f14255b).run();
                 return;
         }
     }
 
     @Override
     public i80 h(h1 h1Var) {
-        return i80.H((d2) ((l) this.f14257b).f279b, h1Var);
+        return i80.H((d2) ((l) this.f14255b).f279b, h1Var);
     }
 
     public void i(int i10) {
-        a0 a0Var = (a0) this.f14257b;
-        a0Var.f15115c = i10;
+        a0 a0Var = (a0) this.f14255b;
+        a0Var.f15113c = i10;
         a0Var.f(i10);
     }
 
     @Override
     public Object j2(z5 z5Var) {
-        return new oa.c((Context) z5Var.a(Context.class), ((l9.h) z5Var.a(l9.h.class)).d(), z5Var.y(oa.d.class), z5Var.b(ya.c.class), (Executor) z5Var.c((r) this.f14257b));
+        return new oa.c((Context) z5Var.a(Context.class), ((l9.h) z5Var.a(l9.h.class)).d(), z5Var.y(oa.d.class), z5Var.b(ya.c.class), (Executor) z5Var.c((r) this.f14255b));
     }
 
     @Override
     public void r(int i10, float f7, float f10, ne.e eVar) {
-        ((Switch) this.f14257b).invalidate();
+        ((Switch) this.f14255b).invalidate();
     }
 
     @Override
@@ -437,7 +437,7 @@ public final class b implements gu, o0, Utilities.Callback5, a2, vx, p5, j, e0, 
         Integer num = (Integer) obj3;
         Float f7 = (Float) obj4;
         Float f10 = (Float) obj5;
-        if (((w3[]) this.f14257b)[0] != null) {
+        if (((w3[]) this.f14255b)[0] != null) {
             num.intValue();
             f7.floatValue();
             f10.floatValue();
@@ -449,7 +449,7 @@ public final class b implements gu, o0, Utilities.Callback5, a2, vx, p5, j, e0, 
 
     @Override
     public boolean w(cy cyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, re1 re1Var) {
-        i4 i4Var = (i4) this.f14257b;
+        i4 i4Var = (i4) this.f14255b;
         if (arrayList.isEmpty() || ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId <= 0) {
             return false;
         }
@@ -459,13 +459,13 @@ public final class b implements gu, o0, Utilities.Callback5, a2, vx, p5, j, e0, 
     }
 
     public b(s0 s0Var, r0 r0Var) {
-        this.f14256a = 29;
-        this.f14257b = s0Var;
+        this.f14254a = 29;
+        this.f14255b = s0Var;
     }
 
     @Override
     public void run(Bitmap bitmap, int i10) {
-        t tVar = (t) this.f14257b;
+        t tVar = (t) this.f14255b;
         if (bitmap == null || bitmap.getPixel(0, 0) == 0) {
             return;
         }

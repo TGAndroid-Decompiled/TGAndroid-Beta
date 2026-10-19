@@ -3,15 +3,15 @@ package j4;
 import e2.k0;
 import e2.m0;
 public final class b0 implements g0 {
-    public final a0 f13997a;
-    public final e2.x f13998b = new e2.x(32);
-    public int f13999c;
+    public final a0 f13995a;
+    public final e2.x f13996b = new e2.x(32);
+    public int f13997c;
     public int d;
     public boolean e;
-    public boolean f14000f;
+    public boolean f13998f;
 
     public b0(a0 a0Var) {
-        this.f13997a = a0Var;
+        this.f13995a = a0Var;
     }
 
     @Override
@@ -25,13 +25,13 @@ public final class b0 implements g0 {
             z10 = false;
         }
         if (z10) {
-            i11 = xVar.f8294b + xVar.A();
+            i11 = xVar.f8292b + xVar.A();
         } else {
             i11 = -1;
         }
-        if (this.f14000f) {
+        if (this.f13998f) {
             if (z10) {
-                this.f14000f = false;
+                this.f13998f = false;
                 xVar.N(i11);
                 this.d = 0;
             } else {
@@ -40,18 +40,18 @@ public final class b0 implements g0 {
         }
         while (xVar.a() > 0) {
             int i12 = this.d;
-            e2.x xVar2 = this.f13998b;
+            e2.x xVar2 = this.f13996b;
             if (i12 < 3) {
                 if (i12 == 0) {
                     int A = xVar.A();
-                    xVar.N(xVar.f8294b - 1);
+                    xVar.N(xVar.f8292b - 1);
                     if (A == 255) {
-                        this.f14000f = true;
+                        this.f13998f = true;
                         return;
                     }
                 }
                 int min = Math.min(xVar.a(), 3 - this.d);
-                xVar.k(this.d, min, xVar2.f8293a);
+                xVar.k(this.d, min, xVar2.f8291a);
                 int i13 = this.d + min;
                 this.d = i13;
                 if (i13 == 3) {
@@ -67,32 +67,32 @@ public final class b0 implements g0 {
                     }
                     this.e = z11;
                     int i14 = (((A2 & 15) << 8) | A3) + 3;
-                    this.f13999c = i14;
-                    byte[] bArr = xVar2.f8293a;
+                    this.f13997c = i14;
+                    byte[] bArr = xVar2.f8291a;
                     if (bArr.length < i14) {
                         xVar2.c(Math.min(4098, Math.max(i14, bArr.length * 2)));
                     }
                 }
             } else {
-                int min2 = Math.min(xVar.a(), this.f13999c - this.d);
-                xVar.k(this.d, min2, xVar2.f8293a);
+                int min2 = Math.min(xVar.a(), this.f13997c - this.d);
+                xVar.k(this.d, min2, xVar2.f8291a);
                 int i15 = this.d + min2;
                 this.d = i15;
-                int i16 = this.f13999c;
+                int i16 = this.f13997c;
                 if (i15 != i16) {
                     continue;
                 } else {
                     if (this.e) {
-                        if (m0.p(0, i16, -1, xVar2.f8293a) != 0) {
-                            this.f14000f = true;
+                        if (m0.p(0, i16, -1, xVar2.f8291a) != 0) {
+                            this.f13998f = true;
                             return;
                         }
-                        xVar2.M(this.f13999c - 4);
+                        xVar2.M(this.f13997c - 4);
                     } else {
                         xVar2.M(i16);
                     }
                     xVar2.N(0);
-                    this.f13997a.a(xVar2);
+                    this.f13995a.a(xVar2);
                     this.d = 0;
                 }
             }
@@ -101,12 +101,12 @@ public final class b0 implements g0 {
 
     @Override
     public final void b(k0 k0Var, c3.q qVar, f0 f0Var) {
-        this.f13997a.b(k0Var, qVar, f0Var);
-        this.f14000f = true;
+        this.f13995a.b(k0Var, qVar, f0Var);
+        this.f13998f = true;
     }
 
     @Override
     public final void c() {
-        this.f14000f = true;
+        this.f13998f = true;
     }
 }

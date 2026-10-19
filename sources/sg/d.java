@@ -11,7 +11,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.lk;
+import org.telegram.messenger.kk;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Cells.s3;
@@ -20,25 +20,25 @@ import org.telegram.ui.Components.hm0;
 import org.telegram.ui.j41;
 import w7.z5;
 public final class d extends hm0 {
-    public final d6 f46228c;
+    public final d6 f46230c;
     public final int d;
     public final int e;
-    public final ArrayList f46229f;
+    public final ArrayList f46231f;
     public final a1 h;
-    public int f46230n;
-    public c f46231r;
-    public final boolean f46232s;
+    public int f46232n;
+    public c f46233r;
+    public final boolean f46234s;
 
     public d(int i10, d6 d6Var) {
         ArrayList arrayList = new ArrayList();
-        this.f46229f = arrayList;
-        this.f46232s = true;
-        this.f46228c = d6Var;
+        this.f46231f = arrayList;
+        this.f46234s = true;
+        this.f46230c = d6Var;
         a1 a1Var = new a1(h6.Lj, h6.Mj, h6.Nj, h6.Oj, d6Var);
         this.h = a1Var;
-        a1Var.f46192o = 0.0f;
-        a1Var.f46193p = 0.0f;
-        a1Var.f46194q = 1.0f;
+        a1Var.f46194o = 0.0f;
+        a1Var.f46195p = 0.0f;
+        a1Var.f46196q = 1.0f;
         MessagesController messagesController = MessagesController.getInstance(i10);
         arrayList.add(new e(messagesController.channelsLimitDefault, messagesController.channelsLimitPremium, LocaleController.getString(R.string.GroupsAndChannelsLimitTitle), LocaleController.formatString(R.string.GroupsAndChannelsLimitSubtitle, Integer.valueOf(messagesController.channelsLimitPremium))));
         arrayList.add(new e(messagesController.dialogFiltersPinnedLimitDefault, messagesController.dialogFiltersPinnedLimitPremium, LocaleController.getString(R.string.PinChatsLimitTitle), LocaleController.formatString(R.string.PinChatsLimitSubtitle, Integer.valueOf(messagesController.dialogFiltersPinnedLimitPremium))));
@@ -79,14 +79,14 @@ public final class d extends hm0 {
 
     @Override
     public final void v(s4.b1 b1Var, int i10) {
-        if (b1Var.f45913f == 0) {
-            f fVar = (f) b1Var.f45910a;
+        if (b1Var.f45915f == 0) {
+            f fVar = (f) b1Var.f45912a;
             int i11 = i10 - this.e;
-            ArrayList arrayList = this.f46229f;
+            ArrayList arrayList = this.f46231f;
             fVar.a((e) arrayList.get(i11));
-            LimitPreviewView limitPreviewView = fVar.f46242c;
+            LimitPreviewView limitPreviewView = fVar.f46244c;
             limitPreviewView.F = ((e) arrayList.get(i11)).e;
-            limitPreviewView.f24283c = this.f46230n;
+            limitPreviewView.f24281c = this.f46232n;
         }
     }
 
@@ -94,21 +94,21 @@ public final class d extends hm0 {
     public final s4.b1 x(ViewGroup viewGroup, int i10) {
         s3 s3Var;
         Context context = viewGroup.getContext();
-        d6 d6Var = this.f46228c;
+        d6 d6Var = this.f46230c;
         if (i10 != 1) {
             if (i10 != 2) {
                 ?? fVar = new f(context, d6Var);
-                fVar.f46242c.setParentViewForGradien(this.f46231r);
-                fVar.f46242c.setStaticGradinet(this.h);
+                fVar.f46244c.setParentViewForGradien(this.f46233r);
+                fVar.f46244c.setStaticGradinet(this.h);
                 s3Var = fVar;
             } else {
                 s3Var = new s3(context, 16);
             }
-        } else if (this.f46232s) {
+        } else if (this.f46234s) {
             ?? j41Var = new j41(context, 10);
-            LinearLayout e = lk.e(context, 0);
+            LinearLayout e = kk.e(context, 0);
             ImageView imageView = new ImageView(context);
-            imageView.setImageDrawable(b1.c(context.getDrawable(R.drawable.other_2x_large), b1.d().f46211a));
+            imageView.setImageDrawable(b1.c(context.getDrawable(R.drawable.other_2x_large), b1.d().f46213a));
             e.addView(imageView, z5.d(40, 28.0f, 16, 0.0f, 0.0f, 8.0f, 0.0f));
             TextView textView = new TextView(context);
             textView.setText(LocaleController.getString(R.string.DoubledLimits));

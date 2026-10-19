@@ -30,12 +30,12 @@ import org.telegram.ui.o3;
 import org.telegram.ui.web.x0;
 import xf.f;
 public abstract class d {
-    public static e f44282a;
-    public static xf.c f44283b;
-    public static a9.d f44284c;
+    public static e f44284a;
+    public static xf.c f44285b;
+    public static a9.d f44286c;
     public static String d;
     public static WeakReference e;
-    public static Pattern f44285f;
+    public static Pattern f44287f;
 
     public static java.lang.String a(java.lang.String r3) {
         throw new UnsupportedOperationException("Method not decompiled: pf.d.a(java.lang.String):java.lang.String");
@@ -64,24 +64,24 @@ public abstract class d {
     }
 
     public static e c() {
-        xf.c cVar = f44283b;
+        xf.c cVar = f44285b;
         e eVar = null;
         if (cVar == null) {
-            f44282a = null;
-        } else if (f44282a == null) {
+            f44284a = null;
+        } else if (f44284a == null) {
             rb.b bVar = new rb.b(19);
-            f fVar = (f) cVar.f49774a;
+            f fVar = (f) cVar.f49776a;
             xf.b bVar2 = new xf.b(bVar);
             try {
                 if (((xf.d) fVar).F0(bVar2)) {
-                    eVar = new e(29, bVar2, (ComponentName) cVar.f49775b);
+                    eVar = new e(29, bVar2, (ComponentName) cVar.f49777b);
                 }
             } catch (RemoteException unused) {
             }
-            f44282a = eVar;
+            f44284a = eVar;
             new WeakReference(eVar);
         }
-        return f44282a;
+        return f44284a;
     }
 
     public static boolean d(android.content.Context r8, java.lang.String r9) {
@@ -217,16 +217,16 @@ public abstract class d {
 
     public static boolean i(String str) {
         boolean matches;
-        if (f44285f == null) {
-            f44285f = Pattern.compile("^[a-zA-Z0-9\\-\\_\\.]+\\.[a-zA-Z0-9\\-\\_]+$");
+        if (f44287f == null) {
+            f44287f = Pattern.compile("^[a-zA-Z0-9\\-\\_\\.]+\\.[a-zA-Z0-9\\-\\_]+$");
         }
         String hostAuthority = AndroidUtilities.getHostAuthority(str, true);
         if (hostAuthority != null && (hostAuthority.endsWith(".ton") || hostAuthority.endsWith(".adnl"))) {
-            matches = f44285f.matcher(hostAuthority).matches();
+            matches = f44287f.matcher(hostAuthority).matches();
         } else {
             Uri parse = Uri.parse(str);
             if (parse.getScheme() != null && parse.getScheme().equalsIgnoreCase("tonsite")) {
-                matches = f44285f.matcher(parse.getScheme()).matches();
+                matches = f44287f.matcher(parse.getScheme()).matches();
             } else {
                 return false;
             }
@@ -310,11 +310,11 @@ public abstract class d {
                 for (int i10 = 0; i10 < tabs.size(); i10++) {
                     m3Var = tabs.get(i10);
                     l4 l4Var = m3Var.J;
-                    if (l4Var != null && !l4Var.f38758d0.isEmpty()) {
-                        Object h = i2.e.h(1, m3Var.J.f38758d0);
+                    if (l4Var != null && !l4Var.f38756d0.isEmpty()) {
+                        Object h = i2.e.h(1, m3Var.J.f38756d0);
                         if (h instanceof b3) {
-                            x0 x0Var = ((b3) h).f21582b;
-                            if (x0Var == null && (o3VarArr = m3Var.J.f38774u0) != null && (o3Var = o3VarArr[0]) != null) {
+                            x0 x0Var = ((b3) h).f21580b;
+                            if (x0Var == null && (o3VarArr = m3Var.J.f38772u0) != null && (o3Var = o3VarArr[0]) != null) {
                                 x0Var = o3Var.getWebView();
                             }
                             if (x0Var != null) {
@@ -442,7 +442,7 @@ public abstract class d {
 
     public static void w(Activity activity) {
         Activity activity2;
-        if (f44284c == null) {
+        if (f44286c == null) {
             return;
         }
         WeakReference weakReference = e;
@@ -455,11 +455,11 @@ public abstract class d {
             e.clear();
         }
         try {
-            activity.unbindService(f44284c);
+            activity.unbindService(f44286c);
         } catch (Exception unused) {
         }
-        f44283b = null;
-        f44282a = null;
+        f44285b = null;
+        f44284a = null;
     }
 
     public static boolean x(String str) {

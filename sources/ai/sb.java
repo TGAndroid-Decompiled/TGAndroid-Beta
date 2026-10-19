@@ -20,29 +20,29 @@ import org.telegram.ui.jq;
 import org.telegram.ui.ti;
 import org.telegram.ui.z70;
 public final class sb implements RequestDelegate {
-    public final int f2176a;
-    public final Object f2177b;
-    public final Object f2178c;
+    public final int f2168a;
+    public final Object f2169b;
+    public final Object f2170c;
     public final int d;
     public final Object e;
-    public final Object f2179f;
+    public final Object f2171f;
 
     public sb(int i10, Object obj, Object obj2, Object obj3, Object obj4, int i11) {
-        this.f2176a = i11;
+        this.f2168a = i11;
         this.d = i10;
-        this.f2177b = obj;
-        this.f2178c = obj2;
+        this.f2169b = obj;
+        this.f2170c = obj2;
         this.e = obj3;
-        this.f2179f = obj4;
+        this.f2171f = obj4;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        int i10 = this.f2176a;
+        int i10 = this.f2168a;
         Object obj = this.e;
-        Object obj2 = this.f2178c;
-        Object obj3 = this.f2179f;
-        Object obj4 = this.f2177b;
+        Object obj2 = this.f2170c;
+        Object obj3 = this.f2171f;
+        Object obj4 = this.f2169b;
         switch (i10) {
             case 0:
                 AndroidUtilities.runOnUIThread(new ub((ei.d) obj4, (org.telegram.ui.ActionBar.f3[]) obj2, this.d, (TLObject) obj, (String) obj3, 0));
@@ -51,7 +51,7 @@ public final class sb implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new vb((ei.d) obj4, tLObject, (org.telegram.ui.ActionBar.f3[]) obj2, (org.telegram.ui.ActionBar.d6) obj, this.d, (TLRPC.TL_messages_checkChatInvite) obj3, 0));
                 return;
             case 2:
-                AndroidUtilities.runOnUIThread(new vb((ci.v8) obj4, tLObject, this.f2178c, (ArrayList) obj, (boolean[]) obj3, this.d, 1));
+                AndroidUtilities.runOnUIThread(new vb((ci.v8) obj4, tLObject, this.f2170c, (ArrayList) obj, (boolean[]) obj3, this.d, 1));
                 return;
             case 3:
                 AndroidUtilities.runOnUIThread(new hg.d1((hg.e1) obj4, this.d, (ArrayList) obj2, (a0.h) obj, tL_error, tLObject, (MessagesController) obj3, 0));
@@ -99,47 +99,47 @@ public final class sb implements RequestDelegate {
     }
 
     public sb(KeyEvent.Callback callback, Object obj, int i10, Object obj2, Object obj3, int i11) {
-        this.f2176a = i11;
-        this.f2177b = callback;
-        this.f2178c = obj;
+        this.f2168a = i11;
+        this.f2169b = callback;
+        this.f2170c = obj;
         this.d = i10;
         this.e = obj2;
-        this.f2179f = obj3;
+        this.f2171f = obj3;
     }
 
     public sb(KeyEvent.Callback callback, Object obj, Object obj2, int i10, Object obj3, int i11) {
-        this.f2176a = i11;
-        this.f2177b = callback;
-        this.f2178c = obj;
+        this.f2168a = i11;
+        this.f2169b = callback;
+        this.f2170c = obj;
         this.e = obj2;
         this.d = i10;
-        this.f2179f = obj3;
+        this.f2171f = obj3;
     }
 
     public sb(Object obj, int i10, Object obj2, Object obj3, Object obj4, int i11) {
-        this.f2176a = i11;
-        this.f2177b = obj;
+        this.f2168a = i11;
+        this.f2169b = obj;
         this.d = i10;
-        this.f2178c = obj2;
+        this.f2170c = obj2;
         this.e = obj3;
-        this.f2179f = obj4;
+        this.f2171f = obj4;
     }
 
     public sb(Object obj, Object obj2, Object obj3, Object obj4, int i10, int i11) {
-        this.f2176a = i11;
-        this.f2177b = obj;
-        this.f2178c = obj2;
+        this.f2168a = i11;
+        this.f2169b = obj;
+        this.f2170c = obj2;
         this.e = obj3;
-        this.f2179f = obj4;
+        this.f2171f = obj4;
         this.d = i10;
     }
 
     public sb(org.telegram.ui.web.a1 a1Var, String str, int i10, org.telegram.ui.web.x0 x0Var, ci.z7 z7Var) {
-        this.f2176a = 14;
-        this.f2177b = a1Var;
-        this.f2179f = str;
+        this.f2168a = 14;
+        this.f2169b = a1Var;
+        this.f2171f = str;
         this.d = i10;
-        this.f2178c = x0Var;
+        this.f2170c = x0Var;
         this.e = z7Var;
     }
 }

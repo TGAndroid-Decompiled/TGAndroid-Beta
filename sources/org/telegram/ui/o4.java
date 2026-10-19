@@ -6,34 +6,34 @@ import android.view.TextureView;
 import android.view.View;
 import android.widget.FrameLayout;
 public class o4 extends FrameLayout {
-    public final n4 f39760a;
-    public float f39761b;
-    public int f39762c;
+    public final n4 f39759a;
+    public float f39760b;
+    public int f39761c;
     public boolean d;
     public int e;
-    public final Matrix f39763f;
+    public final Matrix f39762f;
 
     public o4(Context context) {
         super(context);
-        this.f39763f = new Matrix();
-        this.f39762c = 0;
-        this.f39760a = new n4(this, 0);
+        this.f39762f = new Matrix();
+        this.f39761c = 0;
+        this.f39759a = new n4(this, 0);
     }
 
     public final void a(float f7, int i10) {
-        if (this.f39761b != f7) {
-            this.f39761b = f7;
+        if (this.f39760b != f7) {
+            this.f39760b = f7;
             this.e = i10;
             requestLayout();
         }
     }
 
     public float getAspectRatio() {
-        return this.f39761b;
+        return this.f39760b;
     }
 
     public int getResizeMode() {
-        return this.f39762c;
+        return this.f39761c;
     }
 
     public int getVideoRotation() {
@@ -45,64 +45,64 @@ public class o4 extends FrameLayout {
         float f7;
         float f10;
         super.onMeasure(i10, i11);
-        if (this.f39761b > 0.0f) {
+        if (this.f39760b > 0.0f) {
             int measuredWidth = getMeasuredWidth();
             int measuredHeight = getMeasuredHeight();
             float f11 = measuredWidth;
             float f12 = measuredHeight;
-            float f13 = (this.f39761b / (f11 / f12)) - 1.0f;
+            float f13 = (this.f39760b / (f11 / f12)) - 1.0f;
             int i12 = (Math.abs(f13) > 0.01f ? 1 : (Math.abs(f13) == 0.01f ? 0 : -1));
-            n4 n4Var = this.f39760a;
+            n4 n4Var = this.f39759a;
             if (i12 <= 0) {
-                if (!n4Var.f39404b) {
-                    n4Var.f39404b = true;
-                    ((o4) n4Var.f39405c).post(n4Var);
+                if (!n4Var.f39400b) {
+                    n4Var.f39400b = true;
+                    ((o4) n4Var.f39401c).post(n4Var);
                     return;
                 }
                 return;
             }
-            int i13 = this.f39762c;
+            int i13 = this.f39761c;
             if (i13 != 0) {
                 if (i13 != 1) {
                     if (i13 != 2) {
                         if (i13 != 3) {
                             if (i13 == 4) {
                                 if (f13 > 0.0f) {
-                                    f7 = this.f39761b;
+                                    f7 = this.f39760b;
                                 } else {
-                                    f10 = this.f39761b;
+                                    f10 = this.f39760b;
                                 }
                             }
                         } else if (f13 <= 0.0f) {
-                            f10 = this.f39761b;
+                            f10 = this.f39760b;
                         } else {
-                            f7 = this.f39761b;
+                            f7 = this.f39760b;
                         }
                     } else {
-                        f7 = this.f39761b;
+                        f7 = this.f39760b;
                     }
                     measuredWidth = (int) (f12 * f7);
                 } else {
-                    f10 = this.f39761b;
+                    f10 = this.f39760b;
                 }
                 measuredHeight = (int) (f11 / f10);
             } else if (f13 > 0.0f) {
-                f10 = this.f39761b;
+                f10 = this.f39760b;
                 measuredHeight = (int) (f11 / f10);
             } else {
-                f7 = this.f39761b;
+                f7 = this.f39760b;
                 measuredWidth = (int) (f12 * f7);
             }
-            if (!n4Var.f39404b) {
-                n4Var.f39404b = true;
-                ((o4) n4Var.f39405c).post(n4Var);
+            if (!n4Var.f39400b) {
+                n4Var.f39400b = true;
+                ((o4) n4Var.f39401c).post(n4Var);
             }
             super.onMeasure(View.MeasureSpec.makeMeasureSpec(measuredWidth, 1073741824), View.MeasureSpec.makeMeasureSpec(measuredHeight, 1073741824));
             int childCount = getChildCount();
             for (int i14 = 0; i14 < childCount; i14++) {
                 View childAt = getChildAt(i14);
                 if (childAt instanceof TextureView) {
-                    Matrix matrix = this.f39763f;
+                    Matrix matrix = this.f39762f;
                     matrix.reset();
                     float width = getWidth() / 2;
                     float height = getHeight() / 2;
@@ -127,8 +127,8 @@ public class o4 extends FrameLayout {
     }
 
     public void setResizeMode(int i10) {
-        if (this.f39762c != i10) {
-            this.f39762c = i10;
+        if (this.f39761c != i10) {
+            this.f39761c = i10;
             requestLayout();
         }
     }

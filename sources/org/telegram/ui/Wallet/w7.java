@@ -26,21 +26,21 @@ import org.telegram.ui.Components.x31;
 import org.telegram.ui.Components.x90;
 import org.telegram.ui.Components.xc;
 public final class w7 extends org.telegram.ui.ActionBar.n2 {
-    public int f35061a;
-    public j5 f35062b;
-    public LinearLayout f35063c;
+    public int f35063a;
+    public j5 f35064b;
+    public LinearLayout f35065c;
     public ei.d d;
     public ImageView e;
-    public ScrollView f35064f;
+    public ScrollView f35066f;
     public x90 h;
-    public int f35065n;
-    public boolean f35066r;
-    public byte[] f35067s;
+    public int f35067n;
+    public boolean f35068r;
+    public byte[] f35069s;
     public final ArrayList v;
 
     public w7() {
         super(null);
-        this.f35061a = 12;
+        this.f35063a = 12;
         this.v = new ArrayList();
     }
 
@@ -51,15 +51,15 @@ public final class w7 extends org.telegram.ui.ActionBar.n2 {
                 xc.a0(w7Var).e0(str2, false);
                 return;
             }
-            if (w7Var.f35066r && !TextUtils.isEmpty(str) && !TextUtils.equals(str, m0Var.s())) {
+            if (w7Var.f35068r && !TextUtils.isEmpty(str) && !TextUtils.equals(str, m0Var.s())) {
                 new q0(w7Var.getParentActivity(), str, w7Var.currentAccount).B();
             }
             AndroidUtilities.runOnUIThread(new z3(12, w7Var, n2Var), 300L);
             return;
         }
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(w7Var.getParentActivity(), 0, w7Var.getResourceProvider());
-        alertDialog$Builder.f20604a.R = LocaleController.getString(R.string.WalletInvalidRecoveryPhrase);
-        alertDialog$Builder.f20604a.T = LocaleController.getString(R.string.WalletInvalidRecoveryPhraseInfo);
+        alertDialog$Builder.f20602a.R = LocaleController.getString(R.string.WalletInvalidRecoveryPhrase);
+        alertDialog$Builder.f20602a.T = LocaleController.getString(R.string.WalletInvalidRecoveryPhraseInfo);
         org.telegram.messenger.g0.p(R.string.WalletOK, alertDialog$Builder, null);
     }
 
@@ -81,7 +81,7 @@ public final class w7 extends org.telegram.ui.ActionBar.n2 {
             try {
                 w7Var.d.setLoading(true);
                 org.telegram.ui.ActionBar.n2 n2Var = null;
-                if (w7Var.f35067s != null) {
+                if (w7Var.f35069s != null) {
                     try {
                         bArr = WalletEngine2.secretPhraseToPublicKey(d);
                     } catch (Exception e) {
@@ -91,11 +91,11 @@ public final class w7 extends org.telegram.ui.ActionBar.n2 {
                     if (bArr == null) {
                         w7Var.d.setLoading(false);
                         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(w7Var.getParentActivity(), 0, w7Var.getResourceProvider());
-                        alertDialog$Builder.f20604a.R = LocaleController.getString(R.string.WalletInvalidRecoveryPhrase);
-                        alertDialog$Builder.f20604a.T = LocaleController.getString(R.string.WalletInvalidRecoveryPhraseInfo);
+                        alertDialog$Builder.f20602a.R = LocaleController.getString(R.string.WalletInvalidRecoveryPhrase);
+                        alertDialog$Builder.f20602a.T = LocaleController.getString(R.string.WalletInvalidRecoveryPhraseInfo);
                         alertDialog$Builder.k(LocaleController.getString(R.string.WalletOK), null);
                         alertDialog$Builder.o();
-                    } else if (!Arrays.equals(bArr, w7Var.f35067s)) {
+                    } else if (!Arrays.equals(bArr, w7Var.f35069s)) {
                         try {
                             str = WalletEngine2.secretPhraseToAddress(d);
                         } catch (Exception e7) {
@@ -110,7 +110,7 @@ public final class w7 extends org.telegram.ui.ActionBar.n2 {
                             textView.setText(X(str));
                             textView.setPadding(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(12.0f));
                             textView.setTypeface(AndroidUtilities.getTypeface("fonts/rmono.ttf"));
-                            textView.setBackground(org.telegram.ui.ActionBar.h6.c0(AndroidUtilities.dp(10.0f), org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20931a7, w7Var.resourceProvider)));
+                            textView.setBackground(org.telegram.ui.ActionBar.h6.c0(AndroidUtilities.dp(10.0f), org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20929a7, w7Var.resourceProvider)));
                             textView.setGravity(17);
                             frameLayout.addView(textView, w7.z5.d(-1, -2.0f, 7, 16.0f, 0.0f, 16.0f, 0.0f));
                         } else {
@@ -118,14 +118,14 @@ public final class w7 extends org.telegram.ui.ActionBar.n2 {
                         }
                         w7Var.d.setLoading(false);
                         AlertDialog$Builder alertDialog$Builder2 = new AlertDialog$Builder(w7Var.getParentActivity(), 0, w7Var.getResourceProvider());
-                        alertDialog$Builder2.f20604a.R = LocaleController.getString(R.string.WalletWrongSecretPhrase);
-                        alertDialog$Builder2.f20604a.T = LocaleController.getString(R.string.WalletWrongSecretPhraseInfo);
+                        alertDialog$Builder2.f20602a.R = LocaleController.getString(R.string.WalletWrongSecretPhrase);
+                        alertDialog$Builder2.f20602a.T = LocaleController.getString(R.string.WalletWrongSecretPhraseInfo);
                         alertDialog$Builder2.n(frameLayout);
                         alertDialog$Builder2.k(LocaleController.getString(R.string.OK), null);
                         alertDialog$Builder2.o();
                     } else {
                         m0 w9 = m0.w(w7Var.currentAccount);
-                        w9.f34470c.p(UserConfig.getInstance(w7Var.currentAccount).getClientUserId(), bArr, d, new x(7, w7Var, w9));
+                        w9.f34472c.p(UserConfig.getInstance(w7Var.currentAccount).getClientUserId(), bArr, d, new x(7, w7Var, w9));
                     }
                     d.close();
                     return;
@@ -176,7 +176,7 @@ public final class w7 extends org.telegram.ui.ActionBar.n2 {
                 int i14 = i11 + 1;
                 if (i11 % 2 == 1) {
                     su suVar = new su(false);
-                    suVar.f30334b = (int) 191.25f;
+                    suVar.f30332b = (int) 191.25f;
                     spannableStringBuilder.setSpan(suVar, i10, spannableStringBuilder.length(), 33);
                 }
                 i10 = spannableStringBuilder.length();
@@ -198,9 +198,9 @@ public final class w7 extends org.telegram.ui.ActionBar.n2 {
             i11++;
             arrayList.add(((ha) obj).getWord());
         }
-        this.f35063c.removeAllViews();
+        this.f35065c.removeAllViews();
         arrayList2.clear();
-        for (int i12 = 0; i12 < this.f35061a; i12++) {
+        for (int i12 = 0; i12 < this.f35063a; i12++) {
             if (i12 == 0) {
                 z10 = true;
             } else {
@@ -210,7 +210,7 @@ public final class w7 extends org.telegram.ui.ActionBar.n2 {
             haVar.setOnTextChangedListener(new v7(this, 1));
             haVar.setOnPasteListener(new j(this, i12, 4));
             haVar.setOnNextListener(new x31(this, i12, haVar, 20));
-            LinearLayout linearLayout = this.f35063c;
+            LinearLayout linearLayout = this.f35065c;
             if (i12 == 0) {
                 i10 = 0;
             } else {
@@ -253,13 +253,13 @@ public final class w7 extends org.telegram.ui.ActionBar.n2 {
         this.actionBar.setOccupyStatusBar(false);
         kw0 kw0Var = new kw0(context, null);
         this.fragmentView = kw0Var;
-        kw0Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20989d6, this.resourceProvider));
+        kw0Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20987d6, this.resourceProvider));
         ScrollView scrollView = new ScrollView(context);
         scrollView.setFillViewport(true);
         scrollView.setVerticalScrollBarEnabled(false);
         scrollView.setClipToPadding(false);
         scrollView.setPadding(0, AndroidUtilities.dp(96.0f), 0, 0);
-        this.f35064f = scrollView;
+        this.f35066f = scrollView;
         scrollView.addOnLayoutChangeListener(new i7(this, 1));
         ((FrameLayout) this.fragmentView).addView(scrollView, w7.z5.c(-1.0f, -1));
         LinearLayout linearLayout = new LinearLayout(context);
@@ -274,22 +274,22 @@ public final class w7 extends org.telegram.ui.ActionBar.n2 {
         int i11 = org.telegram.ui.ActionBar.h6.G6;
         imageView2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(i11, this.resourceProvider), PorterDuff.Mode.SRC_IN));
         this.e.setImageResource(R.drawable.ic_ab_close);
-        this.e.setBackground(org.telegram.ui.ActionBar.h6.g0(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21078i6, this.resourceProvider), 3, -1));
+        this.e.setBackground(org.telegram.ui.ActionBar.h6.g0(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21076i6, this.resourceProvider), 3, -1));
         this.e.setOnClickListener(new View.OnClickListener(this) {
-            public final w7 f34993b;
+            public final w7 f34996b;
 
             {
-                this.f34993b = this;
+                this.f34996b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f34993b.finishFragment();
+                        this.f34996b.finishFragment();
                         return;
                     default:
-                        w7.V(this.f34993b);
+                        w7.V(this.f34996b);
                         return;
                 }
             }
@@ -306,7 +306,7 @@ public final class w7 extends org.telegram.ui.ActionBar.n2 {
         textView.setTypeface(AndroidUtilities.bold());
         textView.setGravity(1);
         textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(i11, this.resourceProvider));
-        if (this.f35067s != null) {
+        if (this.f35069s != null) {
             i10 = R.string.WalletSecretPhrase;
         } else {
             i10 = R.string.WalletImport;
@@ -317,47 +317,47 @@ public final class w7 extends org.telegram.ui.ActionBar.n2 {
         this.h = x90Var;
         x90Var.setTextSize(1, 14.0f);
         this.h.setGravity(1);
-        this.h.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21394z6, this.resourceProvider));
-        this.h.setLinkTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21048gc, this.resourceProvider));
-        if (this.f35067s != null) {
+        this.h.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21392z6, this.resourceProvider));
+        this.h.setLinkTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21046gc, this.resourceProvider));
+        if (this.f35069s != null) {
             this.h.setText(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.WalletEnterSecretPhrase), new v7(this, 0)));
         } else {
             this.h.setText(LocaleController.formatSpannable(R.string.WalletImportPhraseInfo, 12));
         }
         linearLayout.addView(this.h, w7.z5.t(-1, -2, 1, 32, 0, 32, 8));
         j5 j5Var = new j5(context, new CharSequence[]{LocaleController.formatPluralString("WalletPhraseWords", 12, new Object[0]), LocaleController.formatPluralString("WalletPhraseWords", 24, new Object[0])}, new l(this, 5), this.resourceProvider);
-        this.f35062b = j5Var;
+        this.f35064b = j5Var;
         j5Var.e = true;
         j5Var.d();
-        this.f35062b.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
-        this.f35062b.setClipToPadding(false);
-        linearLayout.addView(this.f35062b, w7.z5.t(-1, -2, 1, 0, 0, 0, 4));
+        this.f35064b.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
+        this.f35064b.setClipToPadding(false);
+        linearLayout.addView(this.f35064b, w7.z5.t(-1, -2, 1, 0, 0, 0, 4));
         LinearLayout linearLayout2 = new LinearLayout(context);
-        this.f35063c = linearLayout2;
+        this.f35065c = linearLayout2;
         linearLayout2.setOrientation(1);
-        this.f35063c.setGravity(1);
-        this.f35063c.setClipChildren(false);
-        linearLayout.addView(this.f35063c, w7.z5.t(-1, -2, 1, 0, 16, 0, 0));
+        this.f35065c.setGravity(1);
+        this.f35065c.setClipChildren(false);
+        linearLayout.addView(this.f35065c, w7.z5.t(-1, -2, 1, 0, 16, 0, 0));
         ei.d dVar = new ei.d(context, this.resourceProvider, true);
         this.d = dVar;
         dVar.e();
         this.d.setText(LocaleController.getString(R.string.WalletImportButton));
         this.d.setEnabled(false);
         this.d.setOnClickListener(new View.OnClickListener(this) {
-            public final w7 f34993b;
+            public final w7 f34996b;
 
             {
-                this.f34993b = this;
+                this.f34996b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f34993b.finishFragment();
+                        this.f34996b.finishFragment();
                         return;
                     default:
-                        w7.V(this.f34993b);
+                        w7.V(this.f34996b);
                         return;
                 }
             }
@@ -376,14 +376,14 @@ public final class w7 extends org.telegram.ui.ActionBar.n2 {
     @Override
     public final void onInsets(int i10, int i11, int i12, int i13) {
         FrameLayout.LayoutParams layoutParams;
-        ScrollView scrollView = this.f35064f;
+        ScrollView scrollView = this.f35066f;
         if (scrollView != null) {
             scrollView.setPadding(i10, AndroidUtilities.dp(96.0f) + i11, i12, 0);
-            FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) this.f35064f.getLayoutParams();
-            int max = Math.max(i13, this.f35065n);
+            FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) this.f35066f.getLayoutParams();
+            int max = Math.max(i13, this.f35067n);
             if (layoutParams2.bottomMargin != max) {
                 layoutParams2.bottomMargin = max;
-                this.f35064f.setLayoutParams(layoutParams2);
+                this.f35066f.setLayoutParams(layoutParams2);
             }
         }
         ImageView imageView = this.e;
@@ -395,7 +395,7 @@ public final class w7 extends org.telegram.ui.ActionBar.n2 {
 
     @Override
     public final r0.k1 onInsetsInternal(View view, r0.k1 k1Var) {
-        this.f35065n = k1Var.f44825a.f(8).d;
+        this.f35067n = k1Var.f44827a.f(8).d;
         return super.onInsetsInternal(view, k1Var);
     }
 }

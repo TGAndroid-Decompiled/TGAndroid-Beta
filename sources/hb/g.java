@@ -2,7 +2,7 @@ package hb;
 
 import java.util.Date;
 public abstract class g {
-    public static final f f11719a = new g(Date.class);
+    public static final f f11717a = new g(Date.class);
 
     public g(Class cls) {
     }

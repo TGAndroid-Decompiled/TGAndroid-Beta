@@ -6,14 +6,14 @@ import android.os.Bundle;
 import java.util.HashSet;
 import java.util.Iterator;
 public final class o0 {
-    public final CharSequence f8140a;
-    public final Bundle f8141b;
-    public final HashSet f8142c;
+    public final CharSequence f8138a;
+    public final Bundle f8139b;
+    public final HashSet f8140c;
 
     public o0(String str, Bundle bundle, HashSet hashSet) {
-        this.f8140a = str;
-        this.f8141b = bundle;
-        this.f8142c = hashSet;
+        this.f8138a = str;
+        this.f8139b = bundle;
+        this.f8140c = hashSet;
     }
 
     public static RemoteInput[] a(o0[] o0VarArr) {
@@ -24,9 +24,9 @@ public final class o0 {
         for (int i10 = 0; i10 < o0VarArr.length; i10++) {
             o0 o0Var = o0VarArr[i10];
             o0Var.getClass();
-            RemoteInput.Builder addExtras = new RemoteInput.Builder("extra_voice_reply").setLabel(o0Var.f8140a).setChoices(null).setAllowFreeFormInput(true).addExtras(o0Var.f8141b);
+            RemoteInput.Builder addExtras = new RemoteInput.Builder("extra_voice_reply").setLabel(o0Var.f8138a).setChoices(null).setAllowFreeFormInput(true).addExtras(o0Var.f8139b);
             if (Build.VERSION.SDK_INT >= 26) {
-                Iterator it = o0Var.f8142c.iterator();
+                Iterator it = o0Var.f8140c.iterator();
                 while (it.hasNext()) {
                     w6.a.c(addExtras, (String) it.next());
                 }

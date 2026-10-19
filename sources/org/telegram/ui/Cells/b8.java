@@ -13,25 +13,25 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
-import org.telegram.messenger.lk;
+import org.telegram.messenger.kk;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.zq;
 import org.telegram.ui.i91;
 import org.telegram.ui.m91;
 public abstract class b8 extends FrameLayout {
-    public final z7 f22049a;
-    public final a8 f22050b;
-    public final TextView f22051c;
+    public final z7 f22047a;
+    public final a8 f22048b;
+    public final TextView f22049c;
     public final TextView d;
     public final TextView e;
-    public final TextView f22052f;
+    public final TextView f22050f;
     public final Paint h;
-    public final org.telegram.ui.Components.h9 f22053n;
-    public final ci.y7 f22054r;
-    public final org.telegram.ui.ActionBar.d6 f22055s;
+    public final org.telegram.ui.Components.h9 f22051n;
+    public final ci.y7 f22052r;
+    public final org.telegram.ui.ActionBar.d6 f22053s;
     public m91 v;
-    public final TLRPC.ChatFull f22056w;
-    public boolean f22057x;
+    public final TLRPC.ChatFull f22054w;
+    public boolean f22055x;
 
     public b8(Context context, TLRPC.ChatFull chatFull, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
@@ -42,12 +42,12 @@ public abstract class b8 extends FrameLayout {
         float f11;
         float f12;
         this.h = new Paint(1);
-        this.f22053n = new org.telegram.ui.Components.h9((org.telegram.ui.ActionBar.d6) null);
-        this.f22054r = new ci.y7(null, false);
-        this.f22056w = chatFull;
-        this.f22055s = d6Var;
+        this.f22051n = new org.telegram.ui.Components.h9((org.telegram.ui.ActionBar.d6) null);
+        this.f22052r = new ci.y7(null, false);
+        this.f22054w = chatFull;
+        this.f22053s = d6Var;
         z7 z7Var = new z7(this, context, d6Var);
-        this.f22049a = z7Var;
+        this.f22047a = z7Var;
         setClipChildren(false);
         boolean z10 = LocaleController.isRTL;
         if (!z10) {
@@ -69,9 +69,9 @@ public abstract class b8 extends FrameLayout {
         addView(z7Var, w7.z5.d(46, 46.0f, i12, f7, 0.0f, f10, 0.0f));
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
-        LinearLayout e = lk.e(context, 0);
+        LinearLayout e = kk.e(context, 0);
         ?? j5Var = new org.telegram.ui.ActionBar.j5(context);
-        this.f22050b = j5Var;
+        this.f22048b = j5Var;
         NotificationCenter.listenEmojiLoading(j5Var);
         j5Var.setTypeface(AndroidUtilities.bold());
         j5Var.setTextSize(16);
@@ -84,7 +84,7 @@ public abstract class b8 extends FrameLayout {
         }
         j5Var.setGravity(i11);
         TextView textView = new TextView(context);
-        this.f22051c = textView;
+        this.f22049c = textView;
         textView.setTextSize(1, 14.0f);
         textView.setTextColor(-16777216);
         if (!LocaleController.isRTL) {
@@ -107,11 +107,11 @@ public abstract class b8 extends FrameLayout {
         textView3.setTextColor(-16777216);
         textView3.setGravity(16);
         TextView textView4 = new TextView(context);
-        this.f22052f = textView4;
+        this.f22050f = textView4;
         textView4.setTextSize(1, 13.0f);
         textView4.setTextColor(-16777216);
         textView4.setGravity(16);
-        LinearLayout e7 = lk.e(context, 0);
+        LinearLayout e7 = kk.e(context, 0);
         if (!LocaleController.isRTL) {
             e7.addView(textView2, w7.z5.p(0, -2, 1.0f, 0, 0, 0, 8, 0));
             e7.addView(textView4, w7.z5.q(-2, -2, 16));
@@ -134,7 +134,7 @@ public abstract class b8 extends FrameLayout {
             f12 = 72.0f;
         }
         addView(linearLayout, w7.z5.d(-1, -2.0f, 0, f11, 0.0f, f12, 0.0f));
-        int i13 = org.telegram.ui.ActionBar.h6.f21095j5;
+        int i13 = org.telegram.ui.ActionBar.h6.f21093j5;
         j5Var.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, i13, false));
         textView.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, i13, false));
         int i14 = org.telegram.ui.ActionBar.h6.A6;
@@ -165,8 +165,8 @@ public abstract class b8 extends FrameLayout {
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        if (this.f22057x) {
-            int w02 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20990d7, this.f22055s);
+        if (this.f22055x) {
+            int w02 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20988d7, this.f22053s);
             Paint paint = this.h;
             paint.setColor(w02);
             if (LocaleController.isRTL) {
@@ -178,7 +178,7 @@ public abstract class b8 extends FrameLayout {
     }
 
     public org.telegram.ui.Components.w9 getImageView() {
-        return this.f22049a;
+        return this.f22047a;
     }
 
     public m91 getPostInfo() {
@@ -186,31 +186,31 @@ public abstract class b8 extends FrameLayout {
     }
 
     public ci.y7 getStoryAvatarParams() {
-        return this.f22054r;
+        return this.f22052r;
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f22054r.g();
+        this.f22052r.g();
     }
 
     public void setData(i91 i91Var) {
-        TLRPC.User user = i91Var.f37923a;
-        org.telegram.ui.Components.h9 h9Var = this.f22053n;
+        TLRPC.User user = i91Var.f37894a;
+        org.telegram.ui.Components.h9 h9Var = this.f22051n;
         h9Var.r(user);
-        TLRPC.User user2 = i91Var.f37923a;
-        z7 z7Var = this.f22049a;
+        TLRPC.User user2 = i91Var.f37894a;
+        z7 z7Var = this.f22047a;
         z7Var.e(user2, h9Var);
         z7Var.setRoundRadius(AndroidUtilities.dp(46.0f) >> 1);
-        this.f22050b.k(i91Var.f37923a.first_name);
-        this.e.setText(i91Var.f37924b);
-        this.f22051c.setVisibility(8);
+        this.f22048b.k(i91Var.f37894a.first_name);
+        this.e.setText(i91Var.f37895b);
+        this.f22049c.setVisibility(8);
         this.d.setVisibility(8);
-        this.f22052f.setVisibility(8);
+        this.f22050f.setVisibility(8);
     }
 
     public void setImageViewAction(View.OnClickListener onClickListener) {
-        this.f22049a.setOnClickListener(onClickListener);
+        this.f22047a.setOnClickListener(onClickListener);
     }
 }

@@ -19,20 +19,20 @@ import org.telegram.ui.Components.zq;
 import org.telegram.ui.l00;
 import w7.z5;
 public final class h1 extends LinearLayout {
-    public final d6 f11907a;
-    public final w9 f11908b;
-    public final h9 f11909c;
+    public final d6 f11905a;
+    public final w9 f11906b;
+    public final h9 f11907c;
     public final TextView d;
     public final TextView e;
 
     public h1(Context context, d6 d6Var, boolean z10) {
         super(context);
         int w02;
-        this.f11909c = new h9((d6) null);
-        this.f11907a = d6Var;
+        this.f11907c = new h9((d6) null);
+        this.f11905a = d6Var;
         setOrientation(0);
         w9 w9Var = new w9(context);
-        this.f11908b = w9Var;
+        this.f11906b = w9Var;
         w9Var.setRoundRadius(AndroidUtilities.dp(28.0f));
         addView(w9Var, z5.t(28, 28, 19, 12, 0, 12, 0));
         LinearLayout linearLayout = new LinearLayout(context);
@@ -49,7 +49,7 @@ public final class h1 extends LinearLayout {
         if (z10) {
             w02 = h6.m1(0.5f, h6.w0(i10, d6Var));
         } else {
-            w02 = h6.w0(h6.f21394z6, d6Var);
+            w02 = h6.w0(h6.f21392z6, d6Var);
         }
         i11.setTextColor(w02);
         linearLayout.addView(i11, z5.n(-1, -2));
@@ -61,9 +61,9 @@ public final class h1 extends LinearLayout {
         }
         TextView textView = this.e;
         TextView textView2 = this.d;
-        w9 w9Var = this.f11908b;
+        w9 w9Var = this.f11906b;
         if (i10 == 0) {
-            zq zqVar = new zq(h6.c0(AndroidUtilities.dp(28.0f), h6.w0(h6.Oh, this.f11907a)), getContext().getResources().getDrawable(R.drawable.menu_hashtag).mutate());
+            zq zqVar = new zq(h6.c0(AndroidUtilities.dp(28.0f), h6.w0(h6.Oh, this.f11905a)), getContext().getResources().getDrawable(R.drawable.menu_hashtag).mutate());
             zqVar.f33022s = AndroidUtilities.dp(-0.66f);
             zqVar.v = 0;
             int dp = AndroidUtilities.dp(20.0f);
@@ -75,7 +75,7 @@ public final class h1 extends LinearLayout {
             textView.setText(LocaleController.getString(R.string.HashtagSuggestion1Text));
             return;
         }
-        h9 h9Var = this.f11909c;
+        h9 h9Var = this.f11907c;
         h9Var.q(chat);
         w9Var.e(chat, h9Var);
         int i11 = R.string.HashtagSuggestion2Title;
@@ -84,7 +84,7 @@ public final class h1 extends LinearLayout {
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(LocaleController.formatString(i11, i12.toString()));
         spannableStringBuilder.append((CharSequence) "  d");
         l00 l00Var = new l00(8);
-        l00Var.f38706f = h6.x0(null, h6.Lj, false);
+        l00Var.f38704f = h6.x0(null, h6.Lj, false);
         spannableStringBuilder.setSpan(l00Var, spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 0);
         textView2.setText(spannableStringBuilder);
         textView.setText(LocaleController.getString(R.string.HashtagSuggestion2Text));

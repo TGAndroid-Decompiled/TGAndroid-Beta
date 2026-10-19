@@ -2,14 +2,14 @@ package ci;
 
 import org.telegram.ui.Components.wl0;
 public final class y4 implements wl0 {
-    public final int f6204a;
-    public final Object f6205b;
-    public final Object f6206c;
+    public final int f6202a;
+    public final Object f6203b;
+    public final Object f6204c;
 
     public y4(int i10, Object obj, Object obj2) {
-        this.f6204a = i10;
-        this.f6205b = obj;
-        this.f6206c = obj2;
+        this.f6202a = i10;
+        this.f6203b = obj;
+        this.f6204c = obj2;
     }
 
     @Override

@@ -3,17 +3,17 @@ package org.telegram.ui;
 import android.content.Context;
 import android.os.Bundle;
 public final class ak extends sn {
-    public final int f35390f;
+    public final int f35374f;
     public boolean h;
 
     public ak(Context context, org.telegram.ui.ActionBar.d5 d5Var, Bundle bundle, int i10) {
         super(context, d5Var, bundle);
-        this.f35390f = i10;
+        this.f35374f = i10;
     }
 
     @Override
     public final void a() {
-        switch (this.f35390f) {
+        switch (this.f35374f) {
             case 0:
                 if (!this.h) {
                     this.h = true;

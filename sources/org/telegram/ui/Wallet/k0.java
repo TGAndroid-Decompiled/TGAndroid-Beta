@@ -10,32 +10,32 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_wallet;
 public final class k0 implements Utilities.Callback2 {
-    public final int f34403a;
-    public final l0 f34404b;
-    public final TL_wallet.getTransactions f34405c;
+    public final int f34405a;
+    public final l0 f34406b;
+    public final TL_wallet.getTransactions f34407c;
 
     public k0(l0 l0Var, TL_wallet.getTransactions gettransactions, int i10) {
-        this.f34403a = i10;
-        this.f34404b = l0Var;
-        this.f34405c = gettransactions;
+        this.f34405a = i10;
+        this.f34406b = l0Var;
+        this.f34407c = gettransactions;
     }
 
     @Override
     public final void run(Object obj, Object obj2) {
         boolean z10;
         boolean z11;
-        switch (this.f34403a) {
+        switch (this.f34405a) {
             case 0:
-                l0 l0Var = this.f34404b;
-                HashMap hashMap = l0Var.f34441f;
+                l0 l0Var = this.f34406b;
+                HashMap hashMap = l0Var.f34443f;
                 HashSet hashSet = l0Var.d;
                 TL_wallet.walletTransactions wallettransactions = (TL_wallet.walletTransactions) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                int i10 = l0Var.f34446l.f34468a;
-                ArrayList arrayList = l0Var.f34439b;
-                l0Var.f34444j = -1;
+                int i10 = l0Var.f34448l.f34470a;
+                ArrayList arrayList = l0Var.f34441b;
+                l0Var.f34446j = -1;
                 boolean z12 = false;
-                l0Var.f34443i = false;
+                l0Var.f34445i = false;
                 if (wallettransactions != null) {
                     MessagesController.getInstance(i10).putUsers(wallettransactions.users, false);
                     MessagesController.getInstance(i10).putChats(wallettransactions.chats, false);
@@ -46,16 +46,16 @@ public final class k0 implements Utilities.Callback2 {
                         if (i11 < size) {
                             TL_wallet.walletTransaction wallettransaction = arrayList2.get(i11);
                             i11++;
-                            if (l0Var.b(wallettransaction) != null) {
+                            if (l0Var.c(wallettransaction) != null) {
                                 boolean z13 = false;
                                 for (int size2 = wallettransactions.transactions.size() - 1; size2 >= 0; size2--) {
                                     TL_wallet.walletTransaction wallettransaction2 = wallettransactions.transactions.get(size2);
-                                    TL_wallet.walletTransaction b10 = l0Var.b(wallettransaction2);
-                                    l0Var.d(wallettransaction2);
-                                    if (b10 != null) {
-                                        boolean z14 = b10.set(wallettransaction2);
-                                        if (!TextUtils.equals(b10.f20534id, wallettransaction2.f20534id)) {
-                                            b10.f20534id = wallettransaction2.f20534id;
+                                    TL_wallet.walletTransaction c10 = l0Var.c(wallettransaction2);
+                                    l0Var.e(wallettransaction2);
+                                    if (c10 != null) {
+                                        boolean z14 = c10.set(wallettransaction2);
+                                        if (!TextUtils.equals(c10.f20532id, wallettransaction2.f20532id)) {
+                                            c10.f20532id = wallettransaction2.f20532id;
                                             z14 = true;
                                         }
                                         if (!z14) {
@@ -95,7 +95,7 @@ public final class k0 implements Utilities.Callback2 {
                             while (i13 < size4) {
                                 TL_wallet.walletTransaction wallettransaction4 = arrayList4.get(i13);
                                 i13++;
-                                l0Var.d(wallettransaction4);
+                                l0Var.e(wallettransaction4);
                             }
                             arrayList.clear();
                             arrayList.addAll(wallettransactions.transactions);
@@ -116,11 +116,11 @@ public final class k0 implements Utilities.Callback2 {
                                     }
                                 }
                                 if (z10) {
-                                    l0Var.e(wallettransaction5);
+                                    l0Var.f(wallettransaction5);
                                 }
                             }
-                            l0Var.f34442g = wallettransactions.next_offset;
-                            if (wallettransactions.transactions.size() < this.f34405c.limit) {
+                            l0Var.f34444g = wallettransactions.next_offset;
+                            if (wallettransactions.transactions.size() < this.f34407c.limit) {
                                 z12 = true;
                             }
                             l0Var.h = z12;
@@ -129,17 +129,17 @@ public final class k0 implements Utilities.Callback2 {
                     }
                 }
                 if (z12) {
-                    l0Var.j();
-                    l0Var.h();
+                    l0Var.k();
+                    l0Var.i();
                     return;
                 }
                 return;
             default:
                 TL_wallet.walletTransactions wallettransactions2 = (TL_wallet.walletTransactions) obj;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
-                l0 l0Var2 = this.f34404b;
-                int i15 = l0Var2.f34446l.f34468a;
-                l0Var2.f34445k = -1;
+                l0 l0Var2 = this.f34406b;
+                int i15 = l0Var2.f34448l.f34470a;
+                l0Var2.f34447k = -1;
                 if (wallettransactions2 != null) {
                     int i16 = 0;
                     MessagesController.getInstance(i15).putUsers(wallettransactions2.users, false);
@@ -151,27 +151,27 @@ public final class k0 implements Utilities.Callback2 {
                         i16++;
                         TL_wallet.walletTransaction wallettransaction7 = wallettransaction6;
                         if (wallettransaction7 != null) {
-                            TL_wallet.walletTransaction b11 = l0Var2.b(wallettransaction7);
-                            l0Var2.d(wallettransaction7);
-                            if (b11 != null) {
-                                b11.set(wallettransaction7);
-                                if (!TextUtils.equals(b11.f20534id, wallettransaction7.f20534id)) {
-                                    b11.f20534id = wallettransaction7.f20534id;
+                            TL_wallet.walletTransaction c11 = l0Var2.c(wallettransaction7);
+                            l0Var2.e(wallettransaction7);
+                            if (c11 != null) {
+                                c11.set(wallettransaction7);
+                                if (!TextUtils.equals(c11.f20532id, wallettransaction7.f20532id)) {
+                                    c11.f20532id = wallettransaction7.f20532id;
                                 }
                             } else {
-                                l0Var2.f34439b.add(wallettransaction7);
+                                l0Var2.f34441b.add(wallettransaction7);
                             }
                         }
                     }
-                    l0Var2.f34442g = wallettransactions2.next_offset;
-                    if (wallettransactions2.transactions.size() < this.f34405c.limit) {
+                    l0Var2.f34444g = wallettransactions2.next_offset;
+                    if (wallettransactions2.transactions.size() < this.f34407c.limit) {
                         l0Var2.h = true;
                     }
                 } else {
                     l0Var2.h = true;
                 }
-                l0Var2.j();
-                l0Var2.h();
+                l0Var2.k();
+                l0Var2.i();
                 return;
         }
     }

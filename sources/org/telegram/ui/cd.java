@@ -5,31 +5,31 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class cd implements RequestDelegate {
-    public final int f35939a;
-    public final md f35940b;
+    public final int f35932a;
+    public final md f35933b;
 
     public cd(md mdVar, int i10) {
-        this.f35939a = i10;
-        this.f35940b = mdVar;
+        this.f35932a = i10;
+        this.f35933b = mdVar;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f35939a) {
+        switch (this.f35932a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new i0(19, this.f35940b, tLObject));
+                AndroidUtilities.runOnUIThread(new i0(19, this.f35933b, tLObject));
                 return;
             case 1:
                 if (tLObject instanceof TLRPC.TL_boolTrue) {
-                    AndroidUtilities.runOnUIThread(new dd(this.f35940b, 3));
+                    AndroidUtilities.runOnUIThread(new dd(this.f35933b, 3));
                     return;
                 }
                 return;
             case 2:
-                AndroidUtilities.runOnUIThread(new i0(17, this.f35940b, tL_error));
+                AndroidUtilities.runOnUIThread(new i0(17, this.f35933b, tL_error));
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new t1(this.f35940b, tL_error, tLObject, 11));
+                AndroidUtilities.runOnUIThread(new t1(this.f35933b, tL_error, tLObject, 11));
                 return;
         }
     }

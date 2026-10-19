@@ -19,7 +19,7 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.lk;
+import org.telegram.messenger.kk;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
@@ -31,36 +31,37 @@ import org.telegram.ui.Components.m11;
 import org.telegram.ui.Components.m61;
 import org.telegram.ui.Components.n61;
 import org.telegram.ui.Components.qc;
+import org.telegram.ui.Components.rc;
 import org.telegram.ui.Components.wa0;
 import org.telegram.ui.Components.xc;
 import org.telegram.ui.qn;
 public final class v3 extends s8 {
-    public final aa f6077x0;
-    public final org.telegram.ui.ActionBar.d6 f6078y0;
-    public final q4 f6079z0;
+    public final aa f6075x0;
+    public final org.telegram.ui.ActionBar.d6 f6076y0;
+    public final q4 f6077z0;
 
     public v3(q4 q4Var, Context context, b bVar, aa aaVar, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context, bVar);
-        this.f6079z0 = q4Var;
-        this.f6077x0 = aaVar;
-        this.f6078y0 = d6Var;
+        this.f6077z0 = q4Var;
+        this.f6075x0 = aaVar;
+        this.f6076y0 = d6Var;
     }
 
     @Override
     public final void F(org.telegram.ui.Components.a6 a6Var) {
         if (a6Var != null) {
-            q4 q4Var = this.f6079z0;
+            q4 q4Var = this.f6077z0;
             if (q4Var.Q1 != null) {
                 TLRPC.Document document = a6Var.document;
                 if (document == null) {
                     document = org.telegram.ui.Components.r5.f(q4Var.C2, a6Var.documentId);
                 }
                 if (document != null) {
-                    r3 r3Var = q4Var.f5771c1;
-                    org.telegram.ui.ActionBar.d6 d6Var = this.f6078y0;
-                    qc h = new xc(r3Var, d6Var).h(document, 2, new ai.v3(this, this.f6077x0, d6Var, 1));
+                    r3 r3Var = q4Var.f5769c1;
+                    org.telegram.ui.ActionBar.d6 d6Var = this.f6076y0;
+                    qc h = new xc(r3Var, d6Var).h(document, 2, new ai.a4(this, this.f6075x0, d6Var, 1));
                     if (h != null) {
-                        h.f29590a = 1;
+                        h.f29588a = 1;
                         h.k(true);
                     }
                 }
@@ -71,12 +72,12 @@ public final class v3 extends s8 {
     @Override
     public final void G(CharacterStyle characterStyle, View view) {
         boolean z10 = characterStyle instanceof n61;
-        aa aaVar = this.f6077x0;
-        q4 q4Var = this.f6079z0;
+        aa aaVar = this.f6075x0;
+        q4 q4Var = this.f6077z0;
         if (z10) {
             TLRPC.User user = MessagesController.getInstance(q4Var.C2).getUser(Utilities.parseLong(((n61) characterStyle).getURL()));
             if (user != null) {
-                MessagesController.getInstance(q4Var.C2).openChatOrProfileWith(user, null, aaVar.f5189f, 0, false);
+                MessagesController.getInstance(q4Var.C2).openChatOrProfileWith(user, null, aaVar.f5187f, 0, false);
             }
         } else if (characterStyle instanceof k61) {
             String url = ((k61) characterStyle).getURL();
@@ -95,7 +96,7 @@ public final class v3 extends s8 {
             if (b10 != null) {
                 String lowerCase = b10.toLowerCase();
                 if (url.startsWith("@")) {
-                    MessagesController.getInstance(q4Var.C2).openByUserName(lowerCase, aaVar.f5189f, 0, null);
+                    MessagesController.getInstance(q4Var.C2).openByUserName(lowerCase, aaVar.f5187f, 0, null);
                     return;
                 } else {
                     M(0, url, characterStyle, false);
@@ -107,8 +108,8 @@ public final class v3 extends s8 {
             M(2, ((URLSpan) characterStyle).getURL(), characterStyle, characterStyle instanceof m61);
         } else if (characterStyle instanceof j61) {
             j61 j61Var = (j61) characterStyle;
-            AndroidUtilities.addToClipboard(j61Var.f27435a.subSequence(j61Var.f27436b, j61Var.f27437c).toString());
-            lk.p(R.string.TextCopied, new xc(q4Var.f5771c1, this.f6078y0));
+            AndroidUtilities.addToClipboard(j61Var.f27433a.subSequence(j61Var.f27434b, j61Var.f27435c).toString());
+            kk.p(R.string.TextCopied, new xc(q4Var.f5769c1, this.f6076y0));
         } else if (characterStyle instanceof ClickableSpan) {
             ((ClickableSpan) characterStyle).onClick(view);
         }
@@ -136,16 +137,16 @@ public final class v3 extends s8 {
         } catch (Exception unused) {
         }
         Context context = getContext();
-        org.telegram.ui.ActionBar.d6 d6Var = this.f6078y0;
+        org.telegram.ui.ActionBar.d6 d6Var = this.f6076y0;
         org.telegram.ui.ActionBar.f3 f3Var = new org.telegram.ui.ActionBar.f3(1, context, d6Var, false);
         f3Var.fixNavigationBar();
         f3Var.title = str;
         f3Var.bigTitle = false;
         f3Var.multipleLinesTitle = true;
-        q4 q4Var = this.f6079z0;
+        q4 q4Var = this.f6077z0;
         o4 o4Var = q4Var.O1;
         CharSequence[] charSequenceArr = (o4Var == null || o4Var.d()) ? new CharSequence[]{LocaleController.getString(R.string.Open), LocaleController.getString(R.string.Copy)} : new CharSequence[]{LocaleController.getString(R.string.Open)};
-        final org.telegram.ui.ActionBar.d6 d6Var2 = this.f6078y0;
+        final org.telegram.ui.ActionBar.d6 d6Var2 = this.f6076y0;
         DialogInterface.OnClickListener onClickListener = new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i10) {
@@ -154,14 +155,14 @@ public final class v3 extends s8 {
                     v3Var.G(uRLSpan, view);
                 } else if (i10 == 1) {
                     AndroidUtilities.addToClipboard(url);
-                    new xc(v3Var.f6079z0.f5771c1, d6Var2).k(false).j();
+                    new xc(v3Var.f6077z0.f5769c1, d6Var2).k(false).j();
                 }
             }
         };
         f3Var.items = charSequenceArr;
         f3Var.onClickListener = onClickListener;
         f3Var.setOnHideListener(new bb(dVar, 3));
-        f3Var.fixNavigationBar(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21060h5, d6Var));
+        f3Var.fixNavigationBar(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21058h5, d6Var));
         ((r9) q4Var.Q1).h(f3Var);
     }
 
@@ -170,19 +171,19 @@ public final class v3 extends s8 {
         if (n8Var == null) {
             return;
         }
-        final TLRPC.Document document = n8Var.f5664g;
-        q4 q4Var = this.f6079z0;
-        aa aaVar = this.f6077x0;
-        final org.telegram.ui.ActionBar.d6 d6Var = this.f6078y0;
+        final TLRPC.Document document = n8Var.f5662g;
+        q4 q4Var = this.f6077z0;
+        aa aaVar = this.f6075x0;
+        final org.telegram.ui.ActionBar.d6 d6Var = this.f6076y0;
         if (document != null) {
             i80 F = i80.F(aaVar.v, d6Var, q4Var.K0);
-            F.f27118i = 3;
+            F.f27116i = 3;
             F.a0(-AndroidUtilities.dp(8.0f), 0.0f);
             F.l(R.drawable.msg_saved, LocaleController.getString(R.string.StoryAudioAddToSavedMessages), new Runnable(this) {
-                public final v3 f5958b;
+                public final v3 f5956b;
 
                 {
-                    this.f5958b = this;
+                    this.f5956b = this;
                 }
 
                 @Override
@@ -190,42 +191,42 @@ public final class v3 extends s8 {
                     TL_stories.StoryItem storyItem;
                     switch (r4) {
                         case 0:
-                            q4 q4Var2 = this.f5958b.f6079z0;
+                            q4 q4Var2 = this.f5956b.f6077z0;
                             SendMessagesHelper sendMessagesHelper = SendMessagesHelper.getInstance(q4Var2.C2);
                             TLRPC.TL_document tL_document = (TLRPC.TL_document) document;
                             long clientUserId = UserConfig.getInstance(q4Var2.C2).getClientUserId();
                             o4 o4Var = q4Var2.O1;
                             if (o4Var != null) {
-                                storyItem = o4Var.f5690a;
+                                storyItem = o4Var.f5688a;
                             } else {
                                 storyItem = null;
                             }
                             sendMessagesHelper.sendMessage(SendMessagesHelper.SendMessageParams.of(tL_document, null, null, clientUserId, null, null, null, null, null, null, false, 0, 0, 0, storyItem, null, false));
-                            new xc(q4Var2.f5771c1, d6Var).Q(R.raw.saved_messages, 36, AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.StoryAudioAddToSavedMessagesToast), -1, 2, new ah.j(29))).k(true);
+                            new xc(q4Var2.f5769c1, d6Var).Q(R.raw.saved_messages, 36, AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.StoryAudioAddToSavedMessagesToast), -1, 2, new rc(0))).k(true);
                             return;
                         default:
-                            q4 q4Var3 = this.f5958b.f6079z0;
+                            q4 q4Var3 = this.f5956b.f6077z0;
                             TLRPC.TL_account_saveMusic tL_account_saveMusic = new TLRPC.TL_account_saveMusic();
                             TLRPC.TL_inputDocument tL_inputDocument = new TLRPC.TL_inputDocument();
-                            tL_account_saveMusic.f20303id = tL_inputDocument;
+                            tL_account_saveMusic.f20301id = tL_inputDocument;
                             TLRPC.Document document2 = document;
-                            tL_inputDocument.f20287id = document2.f20281id;
+                            tL_inputDocument.f20285id = document2.f20279id;
                             tL_inputDocument.access_hash = document2.access_hash;
                             tL_inputDocument.file_reference = document2.file_reference;
                             if (MediaController.getInstance().currentSavedMusicList != null && MediaController.getInstance().currentSavedMusicList.dialogId == UserConfig.getInstance(q4Var3.C2).getClientUserId()) {
                                 MediaController.getInstance().currentSavedMusicList.add(document2);
                             }
                             ConnectionsManager.getInstance(q4Var3.C2).sendRequest(tL_account_saveMusic, null);
-                            new xc(q4Var3.f5771c1, d6Var).Q(R.raw.ic_save_to_music, 36, LocaleController.getString(R.string.StoryAudioAddToProfileToast)).k(true);
+                            new xc(q4Var3.f5769c1, d6Var).Q(R.raw.ic_save_to_music, 36, LocaleController.getString(R.string.StoryAudioAddToProfileToast)).k(true);
                             return;
                     }
                 }
             }, document instanceof TLRPC.TL_document);
             F.c(R.drawable.msg_tone_add, LocaleController.getString(R.string.StoryAudioAddToProfile), new Runnable(this) {
-                public final v3 f5958b;
+                public final v3 f5956b;
 
                 {
-                    this.f5958b = this;
+                    this.f5956b = this;
                 }
 
                 @Override
@@ -233,52 +234,52 @@ public final class v3 extends s8 {
                     TL_stories.StoryItem storyItem;
                     switch (r4) {
                         case 0:
-                            q4 q4Var2 = this.f5958b.f6079z0;
+                            q4 q4Var2 = this.f5956b.f6077z0;
                             SendMessagesHelper sendMessagesHelper = SendMessagesHelper.getInstance(q4Var2.C2);
                             TLRPC.TL_document tL_document = (TLRPC.TL_document) document;
                             long clientUserId = UserConfig.getInstance(q4Var2.C2).getClientUserId();
                             o4 o4Var = q4Var2.O1;
                             if (o4Var != null) {
-                                storyItem = o4Var.f5690a;
+                                storyItem = o4Var.f5688a;
                             } else {
                                 storyItem = null;
                             }
                             sendMessagesHelper.sendMessage(SendMessagesHelper.SendMessageParams.of(tL_document, null, null, clientUserId, null, null, null, null, null, null, false, 0, 0, 0, storyItem, null, false));
-                            new xc(q4Var2.f5771c1, d6Var).Q(R.raw.saved_messages, 36, AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.StoryAudioAddToSavedMessagesToast), -1, 2, new ah.j(29))).k(true);
+                            new xc(q4Var2.f5769c1, d6Var).Q(R.raw.saved_messages, 36, AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.StoryAudioAddToSavedMessagesToast), -1, 2, new rc(0))).k(true);
                             return;
                         default:
-                            q4 q4Var3 = this.f5958b.f6079z0;
+                            q4 q4Var3 = this.f5956b.f6077z0;
                             TLRPC.TL_account_saveMusic tL_account_saveMusic = new TLRPC.TL_account_saveMusic();
                             TLRPC.TL_inputDocument tL_inputDocument = new TLRPC.TL_inputDocument();
-                            tL_account_saveMusic.f20303id = tL_inputDocument;
+                            tL_account_saveMusic.f20301id = tL_inputDocument;
                             TLRPC.Document document2 = document;
-                            tL_inputDocument.f20287id = document2.f20281id;
+                            tL_inputDocument.f20285id = document2.f20279id;
                             tL_inputDocument.access_hash = document2.access_hash;
                             tL_inputDocument.file_reference = document2.file_reference;
                             if (MediaController.getInstance().currentSavedMusicList != null && MediaController.getInstance().currentSavedMusicList.dialogId == UserConfig.getInstance(q4Var3.C2).getClientUserId()) {
                                 MediaController.getInstance().currentSavedMusicList.add(document2);
                             }
                             ConnectionsManager.getInstance(q4Var3.C2).sendRequest(tL_account_saveMusic, null);
-                            new xc(q4Var3.f5771c1, d6Var).Q(R.raw.ic_save_to_music, 36, LocaleController.getString(R.string.StoryAudioAddToProfileToast)).k(true);
+                            new xc(q4Var3.f5769c1, d6Var).Q(R.raw.ic_save_to_music, 36, LocaleController.getString(R.string.StoryAudioAddToProfileToast)).k(true);
                             return;
                     }
                 }
             }, false);
             F.Z();
-        } else if (n8Var.e && n8Var.f5661b != null && n8Var.d != null) {
+        } else if (n8Var.e && n8Var.f5659b != null && n8Var.d != null) {
             Bundle bundle = new Bundle();
-            if (n8Var.f5661b.longValue() >= 0) {
-                bundle.putLong("user_id", n8Var.f5661b.longValue());
+            if (n8Var.f5659b.longValue() >= 0) {
+                bundle.putLong("user_id", n8Var.f5659b.longValue());
             } else {
-                bundle.putLong("chat_id", -n8Var.f5661b.longValue());
+                bundle.putLong("chat_id", -n8Var.f5659b.longValue());
             }
             bundle.putInt("message_id", n8Var.d.intValue());
             aaVar.H(new qn(bundle));
-        } else if (n8Var.f5661b != null && n8Var.f5662c != null) {
-            MessagesController.getInstance(q4Var.C2).getStoriesController().d0(n8Var.f5661b.longValue(), n8Var.f5662c.intValue(), new z2(this, n8Var, aaVar, d6Var, 1));
+        } else if (n8Var.f5659b != null && n8Var.f5660c != null) {
+            MessagesController.getInstance(q4Var.C2).getStoriesController().d0(n8Var.f5659b.longValue(), n8Var.f5660c.intValue(), new z2(this, n8Var, aaVar, d6Var, 1));
         } else {
-            qc Q = new xc(q4Var.f5771c1, d6Var).Q(R.raw.error, 36, LocaleController.getString(R.string.StoryHidAccount));
-            Q.f29590a = 3;
+            qc Q = new xc(q4Var.f5769c1, d6Var).Q(R.raw.error, 36, LocaleController.getString(R.string.StoryHidAccount));
+            Q.f29588a = 3;
             Q.k(true);
         }
     }
@@ -300,19 +301,19 @@ public final class v3 extends s8 {
                 return;
             }
         }
-        aa aaVar = this.f6077x0;
+        aa aaVar = this.f6075x0;
         if (i10 != 0 && i10 != 2) {
             if (i10 == 1) {
-                org.telegram.ui.Components.f5.q0(aaVar.f5189f, str, true, true, false, false, null, null, this.f6078y0);
+                org.telegram.ui.Components.f5.q0(aaVar.f5187f, str, true, true, false, false, null, null, this.f6076y0);
                 return;
             }
             return;
         }
-        if ((characterStyle instanceof m61) && (m11Var = ((m61) characterStyle).f28448a) != null && (m11Var.f28359a & 1024) != 0) {
+        if ((characterStyle instanceof m61) && (m11Var = ((m61) characterStyle).f28446a) != null && (m11Var.f28357a & 1024) != 0) {
             z11 = true;
         } else {
             z11 = false;
         }
-        org.telegram.ui.Components.f5.q0(aaVar.f5189f, str, true, true, true, z11, null, null, this.f6078y0);
+        org.telegram.ui.Components.f5.q0(aaVar.f5187f, str, true, true, true, z11, null, null, this.f6076y0);
     }
 }

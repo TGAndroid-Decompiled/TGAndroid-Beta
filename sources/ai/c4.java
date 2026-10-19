@@ -1,137 +1,45 @@
 package ai;
 
-import android.content.Context;
-import android.view.View;
-import android.widget.TextView;
-import org.telegram.messenger.ChannelBoostsController;
-import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.Switch;
-import org.telegram.ui.Components.ls;
-import org.telegram.ui.Components.v70;
-import org.telegram.ui.cy;
-import org.telegram.ui.eo0;
-import org.telegram.ui.io;
-public final class c4 implements View.OnClickListener {
-    public final int f1063a;
-    public final long f1064b;
-    public final Object f1065c;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.Components.i80;
+import org.telegram.ui.Components.r31;
+public final class c4 implements org.telegram.ui.ActionBar.a2, MessagesController.IsInChatCheckedCallback {
+    public final long f1073a;
+    public final Object f1074b;
+    public final Object f1075c;
     public final Object d;
+    public final TLObject e;
+    public final Object f1076f;
 
-    public c4(Object obj, Object obj2, long j10, int i10) {
-        this.f1063a = i10;
-        this.f1065c = obj;
-        this.d = obj2;
-        this.f1064b = j10;
+    public c4(l7 l7Var, TL_stars.TL_starGiftUnique tL_starGiftUnique, TLRPC.PaymentForm paymentForm, TLRPC.TL_inputInvoiceStarGiftDropOriginalDetails tL_inputInvoiceStarGiftDropOriginalDetails, long j10, CharSequence charSequence) {
+        this.f1074b = l7Var;
+        this.f1075c = tL_starGiftUnique;
+        this.d = paymentForm;
+        this.e = tL_inputInvoiceStarGiftDropOriginalDetails;
+        this.f1073a = j10;
+        this.f1076f = charSequence;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f1063a) {
-            case 0:
-                k7.S((k7) this.f1065c, (String) this.d, this.f1064b);
-                return;
-            case 1:
-                final io ioVar = (io) this.f1065c;
-                final boolean[] zArr = (boolean[]) this.d;
-                if (!zArr[0]) {
-                    final org.telegram.ui.ActionBar.b2 b2Var = new org.telegram.ui.ActionBar.b2(ioVar.getParentActivity(), 3, null);
-                    b2Var.r(400L);
-                    zArr[0] = true;
-                    final boolean z10 = !ioVar.M.b();
-                    if (ioVar.M.getCheckBox().F == null) {
-                        ioVar.M.setChecked(z10);
-                    }
-                    ChannelBoostsController boostsController = ioVar.getMessagesController().getBoostsController();
-                    final long j10 = this.f1064b;
-                    boostsController.getBoostsStats(j10, new Utilities.Callback() {
-                        @Override
-                        public final void run(Object obj) {
-                            int i10;
-                            TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = (TL_stories.TL_premium_boostsStatus) obj;
-                            io ioVar2 = io.this;
-                            TLRPC.Chat chat = ioVar2.f38055x0;
-                            int i11 = chat.level;
-                            int i12 = tL_premium_boostsStatus.level;
-                            if (i11 != i12) {
-                                chat.level = i12;
-                                ioVar2.getMessagesController().putChat(ioVar2.f38055x0, false);
-                            }
-                            Switch checkBox = ioVar2.M.getCheckBox();
-                            if (tL_premium_boostsStatus.level < ioVar2.getMessagesController().channelAutotranslationLevelMin) {
-                                i10 = R.drawable.permission_locked;
-                            } else {
-                                i10 = 0;
-                            }
-                            checkBox.setIcon(i10);
-                            boolean z11 = z10;
-                            boolean[] zArr2 = zArr;
-                            org.telegram.ui.ActionBar.b2 b2Var2 = b2Var;
-                            if (z11 && tL_premium_boostsStatus.level < ioVar2.getMessagesController().channelAutotranslationLevelMin) {
-                                ioVar2.M.setChecked(false);
-                                zArr2[0] = false;
-                                ChannelBoostsController boostsController2 = ioVar2.getMessagesController().getBoostsController();
-                                long j11 = j10;
-                                boostsController2.userCanBoostChannel(j11, tL_premium_boostsStatus, new ai.z2(ioVar2, b2Var2, tL_premium_boostsStatus, j11));
-                                return;
-                            }
-                            TLRPC.TL_channels_toggleAutotranslation tL_channels_toggleAutotranslation = new TLRPC.TL_channels_toggleAutotranslation();
-                            ioVar2.getMessagesController();
-                            tL_channels_toggleAutotranslation.channel = MessagesController.getInputChannel(ioVar2.f38055x0);
-                            tL_channels_toggleAutotranslation.enabled = z11;
-                            ioVar2.M.setChecked(z11);
-                            zArr2[0] = false;
-                            b2Var2.dismiss();
-                            ioVar2.getConnectionsManager().sendRequest(tL_channels_toggleAutotranslation, new ei.o3(5, ioVar2, z11), 64);
-                        }
-                    });
-                    return;
-                }
-                return;
-            case 2:
-                ((org.telegram.ui.ActionBar.b2[]) this.f1065c)[0].dismiss();
-                ((ls) this.d).run(-this.f1064b);
-                return;
-            case 3:
-                ((org.telegram.ui.ActionBar.b2[]) this.f1065c)[0].dismiss();
-                ((ls) this.d).run(-this.f1064b);
-                return;
-            case 4:
-                v70.O((v70) this.f1065c, (Context) this.d, this.f1064b);
-                return;
-            case 5:
-                cy cyVar = (cy) this.f1065c;
-                boolean hasUnread = ((org.telegram.ui.Cells.r2) this.d).getHasUnread();
-                long j11 = this.f1064b;
-                if (hasUnread) {
-                    cyVar.h4(j11);
-                } else {
-                    cyVar.getMessagesController().markDialogAsUnread(j11, null, 0L);
-                }
-                cyVar.finishPreviewFragment();
-                return;
-            default:
-                eo0 eo0Var = (eo0) this.f1065c;
-                eo0Var.getClass();
-                long longValue = ((Long) ((TextView) this.d).getTag()).longValue();
-                Long l4 = eo0Var.H0;
-                if (l4 != null && longValue == l4.longValue()) {
-                    eo0Var.m0 = true;
-                    eo0Var.f36711f[0].setText("");
-                    eo0Var.m0 = false;
-                    eo0Var.H0 = 0L;
-                    eo0Var.L0();
-                } else {
-                    eo0Var.f36711f[0].setText(LocaleController.getInstance().formatCurrencyString(this.f1064b, false, true, true, eo0Var.C0.invoice.currency));
-                }
-                EditTextBoldCursor editTextBoldCursor = eo0Var.f36711f[0];
-                editTextBoldCursor.setSelection(editTextBoldCursor.length());
-                return;
-        }
+    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        l7.b0((l7) this.f1074b, (TL_stars.TL_starGiftUnique) this.f1075c, (TLRPC.PaymentForm) this.d, (TLRPC.TL_inputInvoiceStarGiftDropOriginalDetails) this.e, this.f1073a, (CharSequence) this.f1076f, b2Var);
+    }
+
+    @Override
+    public void run(boolean z10, TLRPC.TL_chatAdminRights tL_chatAdminRights, String str) {
+        AndroidUtilities.runOnUIThread(new j((r31) this.f1074b, z10, (org.telegram.ui.ActionBar.e1) this.f1075c, (i80) this.d, this.f1073a, (TLRPC.User) this.e, (TLRPC.Chat) this.f1076f));
+    }
+
+    public c4(r31 r31Var, org.telegram.ui.ActionBar.e1 e1Var, i80 i80Var, long j10, TLRPC.User user, TLRPC.Chat chat) {
+        this.f1074b = r31Var;
+        this.f1075c = e1Var;
+        this.d = i80Var;
+        this.f1073a = j10;
+        this.e = user;
+        this.f1076f = chat;
     }
 }

@@ -50,19 +50,19 @@ public final class ee1 extends s4.k {
     @Override
     public final void z(s4.b1 b1Var) {
         re1 re1Var = this.H;
-        View view = re1Var.f41155b1;
-        if (view == b1Var.f45910a) {
+        View view = re1Var.f41147b1;
+        if (view == b1Var.f45912a) {
             view.setTranslationX(0.0f);
             vd1 vd1Var = re1Var.O;
             if (vd1Var != null) {
                 vd1Var.F.clear();
             }
-            View view2 = re1Var.f41155b1;
+            View view2 = re1Var.f41147b1;
             if (view2 instanceof oe1) {
                 oe1 oe1Var = (oe1) view2;
-                oe1Var.setTopicIcon(oe1Var.f39860c5);
+                oe1Var.setTopicIcon(oe1Var.f39859c5);
             }
-            re1Var.f41155b1 = null;
+            re1Var.f41147b1 = null;
         }
     }
 }

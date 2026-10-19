@@ -10,38 +10,38 @@ import org.telegram.ui.Components.bs;
 import org.telegram.ui.Components.uu;
 import org.telegram.ui.Components.x20;
 public final class a8 {
-    public final int f5168a;
-    public final uu f5169b;
-    public final x20 f5170c;
+    public final int f5166a;
+    public final uu f5167b;
+    public final x20 f5168c;
     public int d;
     public int e;
-    public final org.telegram.ui.Components.i5 f5171f;
-    public final org.telegram.ui.Components.i5 f5172g;
+    public final org.telegram.ui.Components.i5 f5169f;
+    public final org.telegram.ui.Components.i5 f5170g;
 
     public a8(View view) {
         uu uuVar = new uu(1, view);
-        this.f5168a = UserConfig.selectedAccount;
-        this.f5169b = uuVar;
+        this.f5166a = UserConfig.selectedAccount;
+        this.f5167b = uuVar;
         bs bsVar = bs.h;
-        this.f5171f = new org.telegram.ui.Components.i5(uuVar, 350L, bsVar);
-        this.f5172g = new org.telegram.ui.Components.i5(uuVar, 350L, bsVar);
+        this.f5169f = new org.telegram.ui.Components.i5(uuVar, 350L, bsVar);
+        this.f5170g = new org.telegram.ui.Components.i5(uuVar, 350L, bsVar);
         x20 x20Var = new x20();
-        this.f5170c = x20Var;
-        x20Var.f32266a = true;
-        x20Var.f32267b = true;
+        this.f5168c = x20Var;
+        x20Var.f32264a = true;
+        x20Var.f32265b = true;
         b(false);
-        x20Var.f32268c.setStrokeWidth(AndroidUtilities.dpf2(2.0f));
-        x20Var.f32268c.setStyle(Paint.Style.STROKE);
-        x20Var.f32268c.setStrokeCap(Paint.Cap.ROUND);
+        x20Var.f32266c.setStrokeWidth(AndroidUtilities.dpf2(2.0f));
+        x20Var.f32266c.setStyle(Paint.Style.STROKE);
+        x20Var.f32266c.setStrokeCap(Paint.Cap.ROUND);
     }
 
     public final Paint a(RectF rectF) {
-        int a2 = this.f5171f.a(this.d, false);
-        int a10 = this.f5172g.a(this.e, false);
-        x20 x20Var = this.f5170c;
+        int a2 = this.f5169f.a(this.d, false);
+        int a10 = this.f5170g.a(this.e, false);
+        x20 x20Var = this.f5168c;
         x20Var.d(a2, a10, 0, 0);
         x20Var.b(rectF.left, rectF.top, rectF.right, rectF.bottom);
-        return x20Var.f32268c;
+        return x20Var.f32266c;
     }
 
     public final void b(boolean z10) {
@@ -60,10 +60,10 @@ public final class a8 {
         this.d = i10;
         this.e = i11;
         if (!z10) {
-            this.f5171f.a(i10, true);
-            this.f5172g.a(i11, true);
+            this.f5169f.a(i10, true);
+            this.f5170g.a(i11, true);
         }
-        uu uuVar = this.f5169b;
+        uu uuVar = this.f5167b;
         if (uuVar != null) {
             uuVar.run();
         }

@@ -8,13 +8,13 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
 public final class jb extends sb {
-    public final ih.k f38213x0;
-    public final vb f38214y0;
+    public final ih.k f38215x0;
+    public final vb f38216y0;
 
     public jb(vb vbVar, Context context) {
         super(vbVar, context);
-        this.f38214y0 = vbVar;
-        this.f38213x0 = new ih.k();
+        this.f38216y0 = vbVar;
+        this.f38215x0 = new ih.k();
     }
 
     @Override
@@ -22,11 +22,11 @@ public final class jb extends sb {
         if (drawable instanceof org.telegram.ui.Components.wc0) {
             ((org.telegram.ui.Components.wc0) drawable).p();
         }
-        ih.k kVar = this.f38213x0;
+        ih.k kVar = this.f38215x0;
         gh.a c10 = kVar.c(drawable);
         AndroidUtilities.computePerceivedBrightness(kVar.a(c10));
-        vb vbVar = this.f38214y0;
-        vbVar.f42155a.f11065a = c10;
+        vb vbVar = this.f38216y0;
+        vbVar.f42154a.f11063a = c10;
         kh.f fVar = vbVar.W;
         if (fVar != null) {
             fVar.invalidate();
@@ -36,7 +36,7 @@ public final class jb extends sb {
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
         c2.b bVar = c2.b.e;
-        if (bVar != null && bVar.f4491a) {
+        if (bVar != null && bVar.f4489a) {
             x4 x4Var = (x4) c2.b.m().d;
             if (x4Var != null) {
                 x4Var.onTouchEvent(motionEvent);
@@ -53,9 +53,9 @@ public final class jb extends sb {
         MessageObject playingMessageObject = MediaController.getInstance().getPlayingMessageObject();
         if (playingMessageObject != null && playingMessageObject.isRoundVideo() && playingMessageObject.eventId != 0) {
             long dialogId = playingMessageObject.getDialogId();
-            vb vbVar = this.f38214y0;
-            if (dialogId == (-vbVar.f42163f.f20275id)) {
-                MediaController.getInstance().setTextureView(vbVar.Q0(false), vbVar.f42162e0, vbVar.f42161d0, true);
+            vb vbVar = this.f38216y0;
+            if (dialogId == (-vbVar.f42162f.f20273id)) {
+                MediaController.getInstance().setTextureView(vbVar.Q0(false), vbVar.f42161e0, vbVar.f42160d0, true);
             }
         }
     }
@@ -69,23 +69,23 @@ public final class jb extends sb {
     public final void onMeasure(int i10, int i11) {
         int size = View.MeasureSpec.getSize(i10);
         int size2 = View.MeasureSpec.getSize(i11);
-        vb vbVar = this.f38214y0;
-        gh.a aVar = vbVar.f42155a.f11065a;
+        vb vbVar = this.f38216y0;
+        gh.a aVar = vbVar.f42154a.f11063a;
         if (aVar instanceof gh.b) {
             ((gh.b) aVar).c(size, size2);
         }
         setMeasuredDimension(size, size2);
         int paddingTop = size2 - getPaddingTop();
-        measureChildWithMargins(((org.telegram.ui.ActionBar.n2) vbVar).actionBar, i10, 0, i11, 0);
-        int measuredHeight = ((org.telegram.ui.ActionBar.n2) vbVar).actionBar.getMeasuredHeight();
-        if (((org.telegram.ui.ActionBar.n2) vbVar).actionBar.getVisibility() == 0) {
+        measureChildWithMargins(vb.a0(vbVar), i10, 0, i11, 0);
+        int measuredHeight = vb.b0(vbVar).getMeasuredHeight();
+        if (vb.c0(vbVar).getVisibility() == 0) {
             paddingTop -= measuredHeight;
         }
         int childCount = getChildCount();
         for (int i12 = 0; i12 < childCount; i12++) {
             View childAt = getChildAt(i12);
-            if (childAt != null && childAt.getVisibility() != 8 && childAt != ((org.telegram.ui.ActionBar.n2) vbVar).actionBar) {
-                if (childAt != vbVar.v && childAt != vbVar.f42171n) {
+            if (childAt != null && childAt.getVisibility() != 8 && childAt != vb.d0(vbVar)) {
+                if (childAt != vbVar.v && childAt != vbVar.f42170n) {
                     if (childAt == vbVar.H) {
                         childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(paddingTop, 1073741824));
                     } else {

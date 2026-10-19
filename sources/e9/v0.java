@@ -19,7 +19,7 @@ public final class v0 extends y0 {
                 if (t1Var.a() <= 0) {
                     return false;
                 }
-                if (((d2) this.e).e.b(t1Var.f8506a) != t1Var.a()) {
+                if (((d2) this.e).e.b(t1Var.f8504a) != t1Var.a()) {
                     return false;
                 }
                 return true;
@@ -65,7 +65,7 @@ public final class v0 extends y0 {
             case 0:
                 return this.e.s().size();
             default:
-                return ((d2) this.e).e.f8515c;
+                return ((d2) this.e).e.f8513c;
         }
     }
 

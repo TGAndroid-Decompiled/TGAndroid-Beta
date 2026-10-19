@@ -1,53 +1,61 @@
 package org.telegram.messenger;
 
 import android.content.Context;
+import java.util.ArrayList;
 import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.TranslateController;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-public final class il implements RequestDelegate {
-    public final int f18635a;
-    public final BaseController f18636b;
-    public final Object f18637c;
+public final class il implements Runnable {
+    public final int f18651a;
+    public final BaseController f18652b;
+    public final Object f18653c;
     public final Object d;
     public final Object e;
-    public final Object f18638f;
-    public final Object f18639g;
+    public final Object f18654f;
+    public final Object h;
+    public final Object f18655n;
 
-    public il(BaseController baseController, Object obj, Object obj2, Object obj3, Object obj4, TLObject tLObject, int i10) {
-        this.f18635a = i10;
-        this.f18636b = baseController;
-        this.f18637c = obj;
+    public il(BaseController baseController, Object obj, Object obj2, Object obj3, Object obj4, Object obj5, Object obj6, int i10) {
+        this.f18651a = i10;
+        this.f18652b = baseController;
+        this.f18653c = obj;
         this.d = obj2;
         this.e = obj3;
-        this.f18638f = obj4;
-        this.f18639g = tLObject;
+        this.f18654f = obj4;
+        this.h = obj5;
+        this.f18655n = obj6;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f18635a) {
+    public final void run() {
+        switch (this.f18651a) {
             case 0:
-                ((TranslateController) this.f18636b).lambda$translateStory$38((TL_stories.StoryItem) this.f18637c, (String) this.d, (TranslateController.StoryKey) this.e, (Runnable) this.f18638f, (TLRPC.TL_textWithEntities) this.f18639g, tLObject, tL_error);
+                ((TranslateController) this.f18652b).lambda$translateStory$36((TL_stories.StoryItem) this.f18653c, (String) this.d, (TLRPC.TL_textWithEntities) this.e, (TLRPC.TL_textWithEntities) this.f18654f, (TranslateController.StoryKey) this.h, (Runnable) this.f18655n);
                 return;
             case 1:
-                ((MessagesController) this.f18636b).lambda$convertToGigaGroup$269((Context) this.f18637c, (org.telegram.ui.ActionBar.b2) this.d, (MessagesStorage.BooleanCallback) this.e, (org.telegram.ui.ActionBar.n2) this.f18638f, (TLRPC.TL_channels_convertToGigagroup) this.f18639g, tLObject, tL_error);
+                ((MediaDataController) this.f18652b).lambda$loadHints$144((ArrayList) this.f18653c, (ArrayList) this.d, (ArrayList) this.e, (ArrayList) this.f18654f, (ArrayList) this.h, (ArrayList) this.f18655n);
+                return;
+            case 2:
+                ((MessagesController) this.f18652b).lambda$convertToMegaGroup$263((MessagesStorage.LongCallback) this.f18653c, (Context) this.d, (org.telegram.ui.ActionBar.b2) this.e, (TLRPC.TL_error) this.f18654f, (org.telegram.ui.ActionBar.n2) this.h, (TLRPC.TL_messages_migrateChat) this.f18655n);
+                return;
+            case 3:
+                ((MessagesController) this.f18652b).lambda$convertToGigaGroup$268((MessagesStorage.BooleanCallback) this.f18653c, (Context) this.d, (org.telegram.ui.ActionBar.b2) this.e, (TLRPC.TL_error) this.f18654f, (org.telegram.ui.ActionBar.n2) this.h, (TLRPC.TL_channels_convertToGigagroup) this.f18655n);
                 return;
             default:
-                ((SecretChatHelper) this.f18636b).lambda$performSendEncryptedRequest$7((TLRPC.DecryptedMessage) this.f18637c, (TLRPC.EncryptedChat) this.e, (TLRPC.Message) this.f18638f, (MessageObject) this.f18639g, (String) this.d, tLObject, tL_error);
+                ((SecretChatHelper) this.f18652b).lambda$performSendEncryptedRequest$8((TLRPC.EncryptedChat) this.f18653c, (TLRPC.DecryptedMessage) this.e, (TLRPC.Message) this.f18654f, (TLRPC.InputEncryptedFile) this.h, (MessageObject) this.f18655n, (String) this.d);
                 return;
         }
     }
 
-    public il(SecretChatHelper secretChatHelper, TLRPC.DecryptedMessage decryptedMessage, TLRPC.EncryptedChat encryptedChat, TLRPC.Message message, MessageObject messageObject, String str) {
-        this.f18635a = 2;
-        this.f18636b = secretChatHelper;
-        this.f18637c = decryptedMessage;
-        this.e = encryptedChat;
-        this.f18638f = message;
-        this.f18639g = messageObject;
+    public il(SecretChatHelper secretChatHelper, TLRPC.EncryptedChat encryptedChat, TLRPC.DecryptedMessage decryptedMessage, TLRPC.Message message, TLRPC.InputEncryptedFile inputEncryptedFile, MessageObject messageObject, String str) {
+        this.f18651a = 4;
+        this.f18652b = secretChatHelper;
+        this.f18653c = encryptedChat;
+        this.e = decryptedMessage;
+        this.f18654f = message;
+        this.h = inputEncryptedFile;
+        this.f18655n = messageObject;
         this.d = str;
     }
 }

@@ -7,22 +7,22 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.SharedConfig;
 public final class hx implements bh.h, org.telegram.ui.Components.ro0, org.telegram.ui.Components.zl0, ei.mb, org.telegram.ui.Components.j20 {
-    public final int f37835a;
-    public final cy f37836b;
+    public final int f37806a;
+    public final cy f37807b;
 
     public hx(cy cyVar, int i10) {
-        this.f37835a = i10;
-        this.f37836b = cyVar;
+        this.f37806a = i10;
+        this.f37807b = cyVar;
     }
 
     @Override
     public void J(bh.a aVar) {
         re1 re1Var;
         re1 re1Var2;
-        switch (this.f37835a) {
+        switch (this.f37806a) {
             case 0:
-                int i10 = org.telegram.ui.ActionBar.h6.f20989d6;
-                cy cyVar = this.f37836b;
+                int i10 = org.telegram.ui.ActionBar.h6.f20987d6;
+                cy cyVar = this.f37807b;
                 aVar.a(cyVar.getThemedColor(i10));
                 aVar.b(SharedConfig.chatBlurEnabled());
                 if (SharedConfig.chatBlurEnabled()) {
@@ -32,16 +32,16 @@ public final class hx implements bh.h, org.telegram.ui.Components.ro0, org.teleg
                     } else {
                         re1Var = null;
                     }
-                    if (re1Var != null && re1Var.getFragmentView() != null && !cyVar.f36141j2) {
-                        aVar.f4355a = true;
+                    if (re1Var != null && re1Var.getFragmentView() != null && !cyVar.f36113j2) {
+                        aVar.f4353a = true;
                         return;
                     }
                     return;
                 }
                 return;
             default:
-                int i11 = org.telegram.ui.ActionBar.h6.f20989d6;
-                cy cyVar2 = this.f37836b;
+                int i11 = org.telegram.ui.ActionBar.h6.f20987d6;
+                cy cyVar2 = this.f37807b;
                 aVar.a(cyVar2.getThemedColor(i11));
                 aVar.b(SharedConfig.chatBlurEnabled());
                 if (SharedConfig.chatBlurEnabled()) {
@@ -51,8 +51,8 @@ public final class hx implements bh.h, org.telegram.ui.Components.ro0, org.teleg
                     } else {
                         re1Var2 = null;
                     }
-                    if (re1Var2 != null && re1Var2.getFragmentView() != null && !cyVar2.f36141j2) {
-                        aVar.f4355a = true;
+                    if (re1Var2 != null && re1Var2.getFragmentView() != null && !cyVar2.f36113j2) {
+                        aVar.f4353a = true;
                         return;
                     }
                     return;
@@ -64,7 +64,7 @@ public final class hx implements bh.h, org.telegram.ui.Components.ro0, org.teleg
     @Override
     public ei.qb a(long j10) {
         ci.q qVar;
-        tw twVar = this.f37836b.E0;
+        tw twVar = this.f37807b.E0;
         if (twVar != null) {
             qVar = twVar.e(j10);
         } else {
@@ -79,12 +79,12 @@ public final class hx implements bh.h, org.telegram.ui.Components.ro0, org.teleg
         gh.d dVar;
         re1 re1Var2;
         gh.d dVar2;
-        switch (this.f37835a) {
+        switch (this.f37806a) {
             case 0:
-                cy cyVar = this.f37836b;
+                cy cyVar = this.f37807b;
                 int measuredWidth = cyVar.fragmentView.getMeasuredWidth();
                 int measuredHeight = cyVar.fragmentView.getMeasuredHeight();
-                canvas.drawColor(cyVar.getThemedColor(org.telegram.ui.ActionBar.h6.f20989d6));
+                canvas.drawColor(cyVar.getThemedColor(org.telegram.ui.ActionBar.h6.f20987d6));
                 if (SharedConfig.chatBlurEnabled()) {
                     ww wwVar = cyVar.G3;
                     if (wwVar != null && (wwVar.getFragment() instanceof re1)) {
@@ -92,7 +92,7 @@ public final class hx implements bh.h, org.telegram.ui.Components.ro0, org.teleg
                     } else {
                         re1Var = null;
                     }
-                    if (re1Var != null && re1Var.getFragmentView() != null && !cyVar.f36141j2 && (dVar = re1Var.f41167g1) != null) {
+                    if (re1Var != null && re1Var.getFragmentView() != null && !cyVar.f36113j2 && (dVar = re1Var.f41159g1) != null) {
                         canvas.save();
                         canvas.translate(re1Var.getFragmentView().getTranslationX(), re1Var.getFragmentView().getTranslationY());
                         dVar.y(canvas, 0.0f, 0.0f, measuredWidth, measuredHeight);
@@ -103,10 +103,10 @@ public final class hx implements bh.h, org.telegram.ui.Components.ro0, org.teleg
                 }
                 return;
             default:
-                cy cyVar2 = this.f37836b;
+                cy cyVar2 = this.f37807b;
                 int measuredWidth2 = cyVar2.fragmentView.getMeasuredWidth();
                 int measuredHeight2 = cyVar2.fragmentView.getMeasuredHeight();
-                canvas.drawColor(cyVar2.getThemedColor(org.telegram.ui.ActionBar.h6.f20989d6));
+                canvas.drawColor(cyVar2.getThemedColor(org.telegram.ui.ActionBar.h6.f20987d6));
                 if (SharedConfig.chatBlurEnabled()) {
                     ww wwVar2 = cyVar2.G3;
                     if (wwVar2 != null && (wwVar2.getFragment() instanceof re1)) {
@@ -114,7 +114,7 @@ public final class hx implements bh.h, org.telegram.ui.Components.ro0, org.teleg
                     } else {
                         re1Var2 = null;
                     }
-                    if (re1Var2 != null && re1Var2.getFragmentView() != null && !cyVar2.f36141j2 && (dVar2 = re1Var2.f41169h1) != null) {
+                    if (re1Var2 != null && re1Var2.getFragmentView() != null && !cyVar2.f36113j2 && (dVar2 = re1Var2.f41161h1) != null) {
                         canvas.save();
                         canvas.translate(re1Var2.getFragmentView().getTranslationX(), re1Var2.getFragmentView().getTranslationY());
                         dVar2.y(canvas, 0.0f, 0.0f, measuredWidth2, measuredHeight2);
@@ -128,8 +128,8 @@ public final class hx implements bh.h, org.telegram.ui.Components.ro0, org.teleg
     }
 
     @Override
-    public void c(long j10, ai.u3 u3Var) {
-        cy cyVar = this.f37836b;
+    public void c(long j10, ai.v3 v3Var) {
+        cy cyVar = this.f37807b;
         if (cyVar.E0 != null) {
             cyVar.v4(false, true);
             cyVar.Q = true;
@@ -139,62 +139,62 @@ public final class hx implements bh.h, org.telegram.ui.Components.ro0, org.teleg
             } else {
                 cyVar.E0.S.h1(0, 0);
             }
-            cyVar.f36113e0[0].f35452a.getViewTreeObserver().addOnPreDrawListener(new xl(1, this, u3Var));
+            cyVar.f36085e0[0].f35436a.getViewTreeObserver().addOnPreDrawListener(new xl(1, this, v3Var));
             return;
         }
-        u3Var.run();
+        v3Var.run();
     }
 
     @Override
     public boolean mo17d(float f7, float f10, int i10, View view) {
         boolean z10 = view instanceof org.telegram.ui.Cells.h6;
-        cy cyVar = this.f37836b;
+        cy cyVar = this.f37807b;
         if (z10) {
             org.telegram.ui.Cells.h6 h6Var = (org.telegram.ui.Cells.h6) view;
-            if (h6Var.f22350n0) {
+            if (h6Var.f22348n0) {
                 cyVar.L4(h6Var.getDialogId(), view);
                 return true;
             }
         }
         lx lxVar = cyVar.C0;
         ai.u1 u1Var = lxVar.V;
-        return cyVar.m4(view, i10, f7, lxVar.f31351b0);
+        return cyVar.m4(view, i10, f7, lxVar.f31349b0);
     }
 
     @Override
     public void e(float f7) {
         Point point = AndroidUtilities.displaySize;
         if (point.x > point.y) {
-            this.f37836b.movePreviewFragment(f7);
+            this.f37807b.movePreviewFragment(f7);
         }
     }
 
     @Override
     public void f(org.telegram.ui.Cells.r2 r2Var) {
-        this.f37836b.F4(r2Var);
+        this.f37807b.F4(r2Var);
     }
 
     @Override
     public void finish() {
         Point point = AndroidUtilities.displaySize;
         if (point.x > point.y) {
-            this.f37836b.finishPreviewFragment();
+            this.f37807b.finishPreviewFragment();
         }
     }
 
     public void g(hg.o0 o0Var) {
-        cy cyVar = this.f37836b;
-        if (!cyVar.f36175q3) {
+        cy cyVar = this.f37807b;
+        if (!cyVar.f36147q3) {
             return;
         }
         lx lxVar = cyVar.C0;
         if (lxVar != null) {
             lxVar.A0.remove(o0Var);
             lx lxVar2 = cyVar.C0;
-            String obj = cyVar.f36139j0.getSearchField().getText().toString();
+            String obj = cyVar.f36111j0.getSearchField().getText().toString();
             View currentView = lxVar2.getCurrentView();
             boolean z10 = true;
-            boolean z11 = !lxVar2.f31354e0;
+            boolean z11 = !lxVar2.f31352e0;
             if (!TextUtils.isEmpty(lxVar2.K0)) {
                 z10 = z11;
             }
@@ -202,14 +202,14 @@ public final class hx implements bh.h, org.telegram.ui.Components.ro0, org.teleg
             lxVar2.O(currentView, lxVar2.getCurrentPosition(), obj, z10);
         }
         cyVar.U4(true, null, null, false, true);
-        cyVar.Y.f51566a.q(cyVar.X.f27688r);
+        cyVar.Y.f51568a.q(cyVar.X.f27686r);
     }
 
     @Override
     public void h() {
         Point point = AndroidUtilities.displaySize;
         if (point.x > point.y) {
-            this.f37836b.finishPreviewFragment();
+            this.f37807b.finishPreviewFragment();
         }
     }
 
@@ -217,7 +217,7 @@ public final class hx implements bh.h, org.telegram.ui.Components.ro0, org.teleg
     public void o(float f7) {
         Point point = AndroidUtilities.displaySize;
         if (point.x > point.y) {
-            this.f37836b.movePreviewFragment(f7);
+            this.f37807b.movePreviewFragment(f7);
         }
     }
 }

@@ -5,19 +5,19 @@ import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
 public final class vw extends s4.m0 {
-    public final tz f31930a;
+    public final tz f31928a;
 
     public vw(tz tzVar) {
-        this.f31930a = tzVar;
+        this.f31928a = tzVar;
     }
 
     @Override
     public final void a(Rect rect, View view, RecyclerView recyclerView, s4.y0 y0Var) {
         recyclerView.getClass();
         int R = RecyclerView.R(view);
-        tz tzVar = this.f31930a;
-        s4.g0 adapter = tzVar.f30785h0.getAdapter();
-        yy yyVar = tzVar.f30802n0;
+        tz tzVar = this.f31928a;
+        s4.g0 adapter = tzVar.f30783h0.getAdapter();
+        yy yyVar = tzVar.f30800n0;
         int i10 = 0;
         if (adapter == yyVar && R == yyVar.I) {
             rect.set(0, 0, 0, 0);
@@ -29,7 +29,7 @@ public final class vw extends s4.m0 {
         rect.left = 0;
         rect.bottom = 0;
         rect.top = AndroidUtilities.dp(2.0f);
-        zy zyVar = tzVar.f30788i0;
+        zy zyVar = tzVar.f30786i0;
         yyVar.getClass();
         if (!zyVar.E1(R)) {
             i10 = AndroidUtilities.dp(2.0f);

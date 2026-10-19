@@ -15,19 +15,19 @@ public final class zm0 implements View.OnClickListener {
     public final void onClick(View view) {
         switch (this.f32993a) {
             case 0:
-                this.f32994b.f26632f.b(((Integer) view.getTag(R.id.index_tag)).intValue());
+                this.f32994b.f26630f.b(((Integer) view.getTag(R.id.index_tag)).intValue());
                 return;
             case 1:
-                this.f32994b.f26632f.b(((Integer) view.getTag(R.id.index_tag)).intValue());
+                this.f32994b.f26630f.b(((Integer) view.getTag(R.id.index_tag)).intValue());
                 return;
             case 2:
-                this.f32994b.f26632f.b(((Integer) view.getTag(R.id.index_tag)).intValue());
+                this.f32994b.f26630f.b(((Integer) view.getTag(R.id.index_tag)).intValue());
                 return;
             case 3:
-                this.f32994b.f26632f.b(((Integer) view.getTag(R.id.index_tag)).intValue());
+                this.f32994b.f26630f.b(((Integer) view.getTag(R.id.index_tag)).intValue());
                 return;
             default:
-                this.f32994b.f26632f.b(((Integer) view.getTag(R.id.index_tag)).intValue());
+                this.f32994b.f26630f.b(((Integer) view.getTag(R.id.index_tag)).intValue());
                 return;
         }
     }

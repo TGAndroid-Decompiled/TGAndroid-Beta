@@ -13,9 +13,9 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class vz extends FrameLayout {
-    public final TextView f42408a;
-    public final ImageView f42409b;
-    public boolean f42410c;
+    public final TextView f42409a;
+    public final ImageView f42410b;
+    public boolean f42411c;
 
     public vz(Context context) {
         super(context);
@@ -27,7 +27,7 @@ public final class vz extends FrameLayout {
         float f11;
         float f12;
         TextView textView = new TextView(context);
-        this.f42408a = textView;
+        this.f42409a = textView;
         textView.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.q6, false));
         textView.setTextSize(1, 16.0f);
         textView.setText(LocaleController.getString(R.string.CreateNewLink));
@@ -62,13 +62,13 @@ public final class vz extends FrameLayout {
         }
         addView(textView, w7.z5.d(-1, -2.0f, 23, f7, 0.0f, f10, 0.0f));
         ImageView imageView = new ImageView(context);
-        this.f42409b = imageView;
+        this.f42410b = imageView;
         Drawable drawable = context.getResources().getDrawable(R.drawable.poll_add_circle);
         Drawable drawable2 = context.getResources().getDrawable(R.drawable.poll_add_plus);
         int x02 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.Oh, false);
         PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
         drawable.setColorFilter(new PorterDuffColorFilter(x02, mode));
-        drawable2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21117k7, false), mode));
+        drawable2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21115k7, false), mode));
         imageView.setImageDrawable(new org.telegram.ui.Components.zq(drawable, drawable2));
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         boolean z12 = LocaleController.isRTL;
@@ -89,9 +89,9 @@ public final class vz extends FrameLayout {
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        if (this.f42410c) {
-            TextView textView = this.f42408a;
-            canvas.drawRect(textView.getLeft(), getMeasuredHeight() - 1, textView.getRight(), getMeasuredHeight(), org.telegram.ui.ActionBar.h6.f21110k0);
+        if (this.f42411c) {
+            TextView textView = this.f42409a;
+            canvas.drawRect(textView.getLeft(), getMeasuredHeight() - 1, textView.getRight(), getMeasuredHeight(), org.telegram.ui.ActionBar.h6.f21108k0);
         }
     }
 
@@ -110,10 +110,10 @@ public final class vz extends FrameLayout {
         } else {
             f7 = 0.5f;
         }
-        this.f42408a.setAlpha(f7);
+        this.f42409a.setAlpha(f7);
         if (z10) {
             f10 = 1.0f;
         }
-        this.f42409b.setAlpha(f10);
+        this.f42410b.setAlpha(f10);
     }
 }

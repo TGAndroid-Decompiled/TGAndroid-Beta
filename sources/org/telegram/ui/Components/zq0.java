@@ -22,14 +22,14 @@ public final class zq0 extends hg.b0 {
         boolean z10;
         String str;
         int i14;
-        org.telegram.ui.Cells.m4 m4Var = (org.telegram.ui.Cells.m4) b1Var.f45910a;
+        org.telegram.ui.Cells.m4 m4Var = (org.telegram.ui.Cells.m4) b1Var.f45912a;
         er0 er0Var = this.f33025n.K;
         boolean z11 = false;
         TLRPC.User user = null;
-        if (er0Var.f25989i0 || er0Var.f25990j0) {
-            int i15 = org.telegram.ui.ActionBar.h6.f21182ng;
+        if (er0Var.f25987i0 || er0Var.f25988j0) {
+            int i15 = org.telegram.ui.ActionBar.h6.f21180ng;
             int i16 = org.telegram.ui.ActionBar.h6.fg;
-            m4Var.f22574b.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, i15, false));
+            m4Var.f22572b.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, i15, false));
             m4Var.H = i16;
             m4Var.v.b(org.telegram.ui.ActionBar.h6.B5, i16, org.telegram.ui.ActionBar.h6.C5);
         }
@@ -76,7 +76,7 @@ public final class zq0 extends hg.b0 {
         if (er0Var.V.h(j10) >= 0) {
             z11 = true;
         }
-        if (m4Var.f22580w) {
+        if (m4Var.f22578w) {
             m4Var.v.a(z11, z10);
         }
     }

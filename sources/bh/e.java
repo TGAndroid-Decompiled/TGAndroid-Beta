@@ -7,29 +7,29 @@ import android.support.v4.media.session.x;
 import org.telegram.messenger.AndroidUtilities;
 import zf.g0;
 public final class e {
-    public final d f4385b;
-    public final d f4386c;
+    public final d f4383b;
+    public final d f4384c;
     public long e;
-    public final RenderNode f4384a = x.c();
+    public final RenderNode f4382a = x.c();
     public final Rect d = new Rect();
 
     public e(f fVar) {
         int i10;
-        if (fVar.f4387a) {
+        if (fVar.f4385a) {
             d dVar = new d(fVar, "glass", 0, true);
-            this.f4386c = dVar;
+            this.f4384c = dVar;
             dVar.e = 4;
-            dVar.f4380f = 4;
+            dVar.f4378f = 4;
             dVar.d(AndroidUtilities.dpf2(6.0f), g0.b());
             d dVar2 = new d(fVar, "blur", 0, false);
-            this.f4385b = dVar2;
+            this.f4383b = dVar2;
             dVar2.e = 8;
-            dVar2.f4380f = 8;
+            dVar2.f4378f = 8;
             dVar2.c(AndroidUtilities.dpf2(38.34f));
-        } else if (fVar.f4389c) {
+        } else if (fVar.f4387c) {
             d dVar3 = new d(fVar, "blur", 0, false);
-            this.f4385b = dVar3;
-            boolean z10 = fVar.f4388b;
+            this.f4383b = dVar3;
+            boolean z10 = fVar.f4386b;
             if (z10) {
                 i10 = 16;
             } else {
@@ -37,17 +37,17 @@ public final class e {
             }
             int i11 = z10 ? 16 : 8;
             dVar3.e = i10;
-            dVar3.f4380f = i11;
+            dVar3.f4378f = i11;
             dVar3.d(AndroidUtilities.dpf2(40.0f), g0.b());
-            this.f4386c = null;
+            this.f4384c = null;
         } else {
             d dVar4 = new d(fVar, "blur", 1, false);
-            this.f4385b = dVar4;
+            this.f4383b = dVar4;
             dVar4.e = 8;
-            dVar4.f4380f = 8;
+            dVar4.f4378f = 8;
             dVar4.c(AndroidUtilities.dpf2(40.0f));
             dVar4.e(g0.b());
-            this.f4386c = null;
+            this.f4384c = null;
         }
     }
 

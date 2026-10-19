@@ -14,12 +14,12 @@ public final class m extends fe.b implements k, b {
     @Override
     public final Object a(Object obj, md.c cVar) {
         d(obj);
-        return id.i.f12777a;
+        return id.i.f12775a;
     }
 
     public final Object c() {
         Object obj = e.get(this);
-        if (obj == fe.e.f10588a) {
+        if (obj == fe.e.f10586a) {
             return null;
         }
         return obj;
@@ -30,7 +30,7 @@ public final class m extends fe.b implements k, b {
         o[] oVarArr;
         com.google.android.gms.internal.clearcut.e eVar;
         if (obj == null) {
-            obj = fe.e.f10588a;
+            obj = fe.e.f10586a;
         }
         synchronized (this) {
             AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = e;
@@ -42,16 +42,16 @@ public final class m extends fe.b implements k, b {
             if ((i11 & 1) == 0) {
                 int i12 = i11 + 1;
                 this.d = i12;
-                o[] oVarArr2 = this.f10582a;
+                o[] oVarArr2 = this.f10580a;
                 while (true) {
                     if (oVarArr2 != null) {
                         for (o oVar : oVarArr2) {
                             if (oVar != null) {
-                                AtomicReference atomicReference = oVar.f8645a;
+                                AtomicReference atomicReference = oVar.f8643a;
                                 while (true) {
                                     Object obj2 = atomicReference.get();
-                                    if (obj2 != null && obj2 != (eVar = n.f8644b)) {
-                                        com.google.android.gms.internal.clearcut.e eVar2 = n.f8643a;
+                                    if (obj2 != null && obj2 != (eVar = n.f8642b)) {
+                                        com.google.android.gms.internal.clearcut.e eVar2 = n.f8641a;
                                         if (obj2 == eVar2) {
                                             while (!atomicReference.compareAndSet(obj2, eVar)) {
                                                 if (atomicReference.get() != obj2) {
@@ -64,7 +64,7 @@ public final class m extends fe.b implements k, b {
                                                     break;
                                                 }
                                             }
-                                            ((be.m) obj2).resumeWith(id.i.f12777a);
+                                            ((be.m) obj2).resumeWith(id.i.f12775a);
                                             break;
                                         }
                                     }
@@ -78,7 +78,7 @@ public final class m extends fe.b implements k, b {
                             this.d = i12 + 1;
                             return;
                         }
-                        oVarArr = this.f10582a;
+                        oVarArr = this.f10580a;
                     }
                     oVarArr2 = oVarArr;
                     i12 = i10;

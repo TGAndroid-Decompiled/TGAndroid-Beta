@@ -6,18 +6,18 @@ import org.telegram.ui.Components.bz0;
 import org.telegram.ui.Wallet.a1;
 import org.telegram.ui.Wallet.z0;
 public final class b extends z {
-    public final int f46931b;
+    public final int f46933b;
 
     public b(String str, u uVar, int i10, int i11) {
         super(str, uVar, i10);
-        this.f46931b = i11;
+        this.f46933b = i11;
     }
 
     @Override
     public final void a() {
-        switch (this.f46931b) {
+        switch (this.f46933b) {
             case 0:
-                u uVar = this.f46992a;
+                u uVar = this.f46994a;
                 try {
                     uVar.b();
                     return;
@@ -33,9 +33,9 @@ public final class b extends z {
                         z0 z0Var = (z0) obj;
                         try {
                             try {
-                                u uVar2 = (u) bVar.f4492b;
-                                a1 a1Var = z0Var.f35156c;
-                                int i11 = z0Var.f35154a;
+                                u uVar2 = (u) bVar.f4490b;
+                                a1 a1Var = z0Var.f35158c;
+                                int i11 = z0Var.f35156a;
                                 AndroidUtilities.runOnUIThread(new bz0(a1Var, uVar2, i11, "connect error: " + a1.a(e), 15, false));
                             } catch (Throwable unused) {
                             }
@@ -46,7 +46,7 @@ public final class b extends z {
                     return;
                 }
             default:
-                this.f46992a.d();
+                this.f46994a.d();
                 return;
         }
     }

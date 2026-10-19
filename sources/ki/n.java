@@ -8,18 +8,18 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.ek;
 import org.telegram.ui.Components.ti;
 public final class n implements ek {
-    public final ti f15394a;
-    public final q f15395b;
+    public final ti f15392a;
+    public final q f15393b;
 
     public n(q qVar, ti tiVar) {
-        this.f15395b = qVar;
-        this.f15394a = tiVar;
+        this.f15393b = qVar;
+        this.f15392a = tiVar;
     }
 
     @Override
     public final void l(ArrayList arrayList, String str, ArrayList arrayList2, ArrayList arrayList3, boolean z10, int i10, long j10, boolean z11, long j11) {
         String str2;
-        w3 w3Var = this.f15395b.f15450r;
+        w3 w3Var = this.f15393b.f15448r;
         if (!arrayList.isEmpty()) {
             w3Var.d2((String) arrayList.get(0));
         } else if (!arrayList3.isEmpty()) {
@@ -36,7 +36,7 @@ public final class n implements ek {
                 w3Var.e2(document, str2);
             }
         }
-        this.f15394a.dismiss(true);
+        this.f15392a.dismiss(true);
     }
 
     @Override
@@ -44,7 +44,7 @@ public final class n implements ek {
         try {
             Intent intent = new Intent("android.intent.action.GET_CONTENT");
             intent.setType("*/*");
-            this.f15395b.f28225b.f30536f0.startActivityForResult(intent, 21);
+            this.f15393b.f28223b.f30534f0.startActivityForResult(intent, 21);
         } catch (Exception e) {
             FileLog.e(e);
         }

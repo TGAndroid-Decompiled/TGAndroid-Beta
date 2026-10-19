@@ -31,7 +31,7 @@ public final class fb0 extends l60 {
             }
             if (LaunchActivity.H1 != null && groupCall != null) {
                 TLRPC.TL_inputGroupCall tL_inputGroupCall = new TLRPC.TL_inputGroupCall();
-                tL_inputGroupCall.f20292id = groupCall.f20285id;
+                tL_inputGroupCall.f20290id = groupCall.f20283id;
                 tL_inputGroupCall.access_hash = groupCall.access_hash;
                 org.telegram.ui.Components.voip.d2.g(LaunchActivity.H1, fb0Var.currentAccount, tL_inputGroupCall, false, groupCall, hashSet);
             }
@@ -42,7 +42,7 @@ public final class fb0 extends l60 {
             if (LaunchActivity.H1 != null) {
                 TLRPC.TL_inputGroupCall tL_inputGroupCall2 = new TLRPC.TL_inputGroupCall();
                 TLRPC.GroupCall groupCall2 = groupcall.call;
-                tL_inputGroupCall2.f20292id = groupCall2.f20285id;
+                tL_inputGroupCall2.f20290id = groupCall2.f20283id;
                 tL_inputGroupCall2.access_hash = groupCall2.access_hash;
                 org.telegram.ui.Components.voip.d2.g(LaunchActivity.H1, fb0Var.currentAccount, tL_inputGroupCall2, false, groupCall2, hashSet);
             }
@@ -55,10 +55,10 @@ public final class fb0 extends l60 {
     public final void n0(HashSet hashSet) {
         if (hashSet.size() == 1) {
             TLRPC.User user = getMessagesController().getUser((Long) hashSet.iterator().next());
-            TLRPC.UserFull userFull = getMessagesController().getUserFull(user.f20422id);
+            TLRPC.UserFull userFull = getMessagesController().getUserFull(user.f20420id);
             if (userFull == null) {
                 TLRPC.TL_users_getFullUser tL_users_getFullUser = new TLRPC.TL_users_getFullUser();
-                tL_users_getFullUser.f20415id = getMessagesController().getInputUser(user.f20422id);
+                tL_users_getFullUser.f20413id = getMessagesController().getInputUser(user.f20420id);
                 getConnectionsManager().sendRequest(tL_users_getFullUser, new x40(6, this, user));
                 return;
             }

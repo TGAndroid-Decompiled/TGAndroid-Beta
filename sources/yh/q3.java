@@ -1,6 +1,6 @@
 package yh;
 
-import ai.m6;
+import ai.n6;
 import android.content.Context;
 import android.graphics.PorterDuff;
 import android.view.View;
@@ -20,10 +20,10 @@ public final class q3 extends org.telegram.ui.ActionBar.e1 {
         int i11 = h6.F8;
         c(w02, h6.w0(i11, d6Var));
         e(h6.w0(i11, d6Var), PorterDuff.Mode.SRC_IN);
-        this.f20762c.setTranslationX(AndroidUtilities.dp(2.0f));
+        this.f20760c.setTranslationX(AndroidUtilities.dp(2.0f));
         a(2);
         setBackground(null);
-        this.f20762c.addOnAttachStateChangeListener(new m6(this, 15));
+        this.f20760c.addOnAttachStateChangeListener(new n6(this, 15));
     }
 
     @Override

@@ -10,14 +10,14 @@ import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.Components.kw0;
 public final class s4 extends org.telegram.ui.Cells.f3 {
     public final x4 E;
-    public final dh.f f50515x;
-    public final int f50516y;
+    public final dh.f f50517x;
+    public final int f50518y;
 
     public s4(x4 x4Var, Context context, kw0 kw0Var, String str, int i10, d6 d6Var, dh.f fVar, int i11) {
         super(context, kw0Var, str, true, i10, d6Var);
         this.E = x4Var;
-        this.f50515x = fVar;
-        this.f50516y = i11;
+        this.f50517x = fVar;
+        this.f50518y = i11;
     }
 
     @Override
@@ -25,7 +25,7 @@ public final class s4 extends org.telegram.ui.Cells.f3 {
         TLRPC.TL_textWithEntities tL_textWithEntities;
         x4 x4Var = this.E;
         MessageObject messageObject = x4Var.m0;
-        TLRPC.MessageAction messageAction = x4Var.f50588l0;
+        TLRPC.MessageAction messageAction = x4Var.f50590l0;
         if (messageAction instanceof TLRPC.TL_messageActionStarGift) {
             tL_textWithEntities = new TLRPC.TL_textWithEntities();
             ((TLRPC.TL_messageActionStarGift) messageAction).message = tL_textWithEntities;
@@ -42,12 +42,12 @@ public final class s4 extends org.telegram.ui.Cells.f3 {
         } else {
             return;
         }
-        CharSequence[] charSequenceArr = {x4Var.f50594s0.getText()};
-        tL_textWithEntities.entities = MediaDataController.getInstance(this.f50516y).getEntities(charSequenceArr, true);
+        CharSequence[] charSequenceArr = {x4Var.f50596s0.getText()};
+        tL_textWithEntities.entities = MediaDataController.getInstance(this.f50518y).getEntities(charSequenceArr, true);
         tL_textWithEntities.text = charSequenceArr[0].toString();
         messageObject.setType();
-        x4Var.f50587k0.Y(messageObject, true);
-        x4Var.f50595t0.N(true);
+        x4Var.f50589k0.Y(messageObject, true);
+        x4Var.f50597t0.N(true);
         x4Var.a0(true);
     }
 
@@ -56,7 +56,7 @@ public final class s4 extends org.telegram.ui.Cells.f3 {
         int dp = AndroidUtilities.dp(10.0f);
         int measuredWidth = getMeasuredWidth() - AndroidUtilities.dp(10.0f);
         int measuredHeight = getMeasuredHeight();
-        dh.f fVar = this.f50515x;
+        dh.f fVar = this.f50517x;
         fVar.setBounds(dp, 0, measuredWidth, measuredHeight);
         fVar.draw(canvas);
         super.dispatchDraw(canvas);

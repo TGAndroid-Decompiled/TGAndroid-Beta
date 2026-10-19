@@ -23,31 +23,31 @@ public final class nt extends org.telegram.ui.ActionBar.f3 {
             final ?? f3Var = new org.telegram.ui.ActionBar.f3(activity, false);
             f3Var.setApplyBottomPadding(false);
             f3Var.setApplyTopPadding(false);
-            int i10 = org.telegram.ui.ActionBar.h6.f20989d6;
+            int i10 = org.telegram.ui.ActionBar.h6.f20987d6;
             f3Var.fixNavigationBar(f3Var.getThemedColor(i10));
             LinearLayout linearLayout = new LinearLayout(activity);
             linearLayout.setOrientation(1);
             FrameLayout frameLayout = new FrameLayout(activity);
             frameLayout.addView(linearLayout);
             ImageView imageView = new ImageView(activity);
-            imageView.setBackground(org.telegram.ui.ActionBar.h6.g0(f3Var.getThemedColor(org.telegram.ui.ActionBar.h6.f21078i6), 1, -1));
+            imageView.setBackground(org.telegram.ui.ActionBar.h6.g0(f3Var.getThemedColor(org.telegram.ui.ActionBar.h6.f21076i6), 1, -1));
             imageView.setColorFilter(f3Var.getThemedColor(org.telegram.ui.ActionBar.h6.Ji));
             imageView.setImageResource(R.drawable.ic_layer_close);
             imageView.setOnClickListener(new View.OnClickListener(f3Var) {
-                public final nt f28603b;
+                public final nt f28601b;
 
                 {
-                    this.f28603b = f3Var;
+                    this.f28601b = f3Var;
                 }
 
                 @Override
                 public final void onClick(View view) {
                     switch (r2) {
                         case 0:
-                            this.f28603b.dismiss();
+                            this.f28601b.dismiss();
                             return;
                         default:
-                            nt.n(this.f28603b);
+                            nt.n(this.f28601b);
                             return;
                     }
                 }
@@ -61,7 +61,7 @@ public final class nt extends org.telegram.ui.ActionBar.f3 {
             linearLayout.addView(tx0Var, w7.z5.t(110, 110, 1, 0, 26, 0, 0));
             TextView textView = new TextView(activity);
             textView.setGravity(1);
-            int i11 = org.telegram.ui.ActionBar.h6.f21095j5;
+            int i11 = org.telegram.ui.ActionBar.h6.f21093j5;
             textView.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, i11, false));
             textView.setTextSize(1, 20.0f);
             textView.setText(LocaleController.getString(R.string.DownloadedFiles));
@@ -106,20 +106,20 @@ public final class nt extends org.telegram.ui.ActionBar.f3 {
             f3Var.setCustomView(nestedScrollView);
             textView3.setOnClickListener(new ca(10, f3Var, n2Var));
             textView4.setOnClickListener(new View.OnClickListener(f3Var) {
-                public final nt f28603b;
+                public final nt f28601b;
 
                 {
-                    this.f28603b = f3Var;
+                    this.f28601b = f3Var;
                 }
 
                 @Override
                 public final void onClick(View view) {
                     switch (r2) {
                         case 0:
-                            this.f28603b.dismiss();
+                            this.f28601b.dismiss();
                             return;
                         default:
-                            nt.n(this.f28603b);
+                            nt.n(this.f28601b);
                             return;
                     }
                 }

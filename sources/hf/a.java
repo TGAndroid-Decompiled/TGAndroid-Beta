@@ -5,7 +5,7 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ThreadPoolExecutor;
 import org.telegram.messenger.FileLog;
 public final class a extends ThreadPoolExecutor implements AutoCloseable {
-    public final c f11783a;
+    public final c f11781a;
 
     public a(hf.c r8, java.util.concurrent.PriorityBlockingQueue r9) {
         throw new UnsupportedOperationException("Method not decompiled: hf.a.<init>(hf.c, java.util.concurrent.PriorityBlockingQueue):void");
@@ -13,7 +13,7 @@ public final class a extends ThreadPoolExecutor implements AutoCloseable {
 
     @Override
     public final void beforeExecute(Thread thread, Runnable runnable) {
-        CountDownLatch countDownLatch = this.f11783a.f11787b;
+        CountDownLatch countDownLatch = this.f11781a.f11785b;
         if (countDownLatch != null) {
             try {
                 countDownLatch.await();

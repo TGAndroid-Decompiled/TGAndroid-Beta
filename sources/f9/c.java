@@ -15,9 +15,9 @@ public final class c extends d {
             int i14 = (bArr[i11 + 1] & 255) << 8;
             i11 += 3;
             int i15 = i14 | ((bArr[i11] & 255) << 16) | (bArr[i13] & 255);
-            a aVar = this.f10513a;
-            char[] cArr = aVar.f10509b;
-            char[] cArr2 = aVar.f10509b;
+            a aVar = this.f10511a;
+            char[] cArr = aVar.f10507b;
+            char[] cArr2 = aVar.f10507b;
             sb2.append(cArr[i15 >>> 18]);
             sb2.append(cArr2[(i15 >>> 12) & 63]);
             sb2.append(cArr2[(i15 >>> 6) & 63]);

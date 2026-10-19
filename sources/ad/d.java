@@ -186,7 +186,7 @@ public final class d implements p, q, OnFailureListener, l2.i, yo {
     public m2.j g(long j10) {
         c3.j jVar = (c3.j) this.f505c;
         int i10 = (int) j10;
-        return new m2.j(jVar.f4632c[i10], jVar.f4631b[i10], null);
+        return new m2.j(jVar.f4630c[i10], jVar.f4629b[i10], null);
     }
 
     @Override
@@ -281,18 +281,18 @@ public final class d implements p, q, OnFailureListener, l2.i, yo {
                     i10 = 13;
                 }
                 long j10 = this.f504b;
-                for (o oVar : ((e6.h) ((androidx.biometric.e) this.f505c).d).f8373c.d) {
+                for (o oVar : ((e6.h) ((androidx.biometric.e) this.f505c).d).f8371c.d) {
                     oVar.b(j10, i10, null);
                 }
                 return;
             case 8:
-                ((z8) this.f505c).f48244b.set(this.f504b);
+                ((z8) this.f505c).f48246b.set(this.f504b);
                 return;
             case 9:
-                ((z8) this.f505c).f48244b.set(this.f504b);
+                ((z8) this.f505c).f48246b.set(this.f504b);
                 return;
             default:
-                ((AtomicLong) ((qa) this.f505c).f51141b).set(this.f504b);
+                ((AtomicLong) ((qa) this.f505c).f51143b).set(this.f504b);
                 return;
         }
     }
@@ -335,7 +335,7 @@ public final class d implements p, q, OnFailureListener, l2.i, yo {
     @Override
     public void t() {
         ProfileActivity profileActivity = (ProfileActivity) this.f505c;
-        SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(ProfileActivity.c1(profileActivity));
+        SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(ProfileActivity.d1(profileActivity));
         StringBuilder sb2 = new StringBuilder("sound_enabled_");
         long j10 = this.f504b;
         boolean z10 = notificationsSettings.getBoolean(g0.i(j10, profileActivity.f33627h1, sb2), true);
@@ -370,7 +370,7 @@ public final class d implements p, q, OnFailureListener, l2.i, yo {
 
     @Override
     public long w(long j10) {
-        return ((c3.j) this.f505c).f4630a;
+        return ((c3.j) this.f505c).f4628a;
     }
 
     @Override
@@ -396,7 +396,7 @@ public final class d implements p, q, OnFailureListener, l2.i, yo {
 
     @Override
     public long y(long j10, long j11) {
-        return ((c3.j) this.f505c).f4630a;
+        return ((c3.j) this.f505c).f4628a;
     }
 
     public void z(int i10) {

@@ -1,38 +1,175 @@
 package ai;
 
 import android.content.Context;
-import android.text.SpannableStringBuilder;
+import android.graphics.Camera;
+import android.graphics.Canvas;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Emoji;
-public final class w6 extends org.telegram.ui.Components.zc {
-    public final org.telegram.ui.ActionBar.d6 P;
-    public String Q;
-    public int R;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.s10;
+public final class w6 extends View {
+    public float E;
+    public final Camera F;
+    public final s10 G;
+    public final RectF H;
+    public r6 f2360a;
+    public r6 f2361b;
+    public r6 f2362c;
+    public float d;
+    public float e;
+    public float f2363f;
+    public boolean h;
+    public boolean f2364n;
+    public boolean f2365r;
+    public q6 f2366s;
+    public q6 v;
+    public q6 f2367w;
+    public float f2368x;
+    public float f2369y;
 
-    public w6(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
+    public w6(Context context) {
         super(context);
-        this.P = d6Var;
-        setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.G6, d6Var));
-        setTextSize(1, 14.0f);
-        setPadding(0, AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f));
+        this.F = new Camera();
+        this.G = new s10();
+        this.H = new RectF();
     }
 
-    public final void e(String str, int i10, k2 k2Var) {
-        ah.o oVar;
-        if (str == this.Q && this.R == i10) {
+    public final void a(Canvas canvas, q6 q6Var, float f7, float f10, float f11, int[] iArr, int[] iArr2, int[] iArr3) {
+        float f12;
+        float f13;
+        float f14;
+        if (q6Var != null) {
+            Matrix matrix = q6Var.d;
+            Paint paint = q6Var.f2061c;
+            if (paint != null) {
+                float f15 = (f7 - 0.5f) / 1.5f;
+                float clamp01 = Utilities.clamp01(1.0f - Math.abs(f15));
+                float max = Math.max(0.8f * f10, AndroidUtilities.dp(180.0f));
+                float z10 = org.telegram.ui.Cells.c1.z(f15, max, 1.8f, f10 / 2.0f);
+                float min = Math.min(AndroidUtilities.dp(176.0f), f11) / 2.0f;
+                float f16 = z10 - max;
+                float f17 = z10 + max;
+                canvas.saveLayerAlpha(f16, 0.0f, f17, f11, 255, 31);
+                matrix.reset();
+                matrix.postTranslate(z10, min);
+                q6Var.e.setLocalMatrix(matrix);
+                paint.setAlpha((int) (clamp01 * 255.0f));
+                canvas.drawRect(f16, 0.0f, f17, f11, paint);
+                canvas.save();
+                float dp = AndroidUtilities.dp(90.0f);
+                RectF rectF = this.H;
+                rectF.set(f16, 0.0f, f16 + dp, f11);
+                s10 s10Var = this.G;
+                s10Var.b(canvas, rectF, 0, 1.0f);
+                rectF.set(f17 - dp, 0.0f, f17, f11);
+                s10Var.b(canvas, rectF, 2, 1.0f);
+                canvas.restore();
+                canvas.restore();
+                for (int i10 = 0; i10 < iArr.length; i10++) {
+                    float width = (getWidth() / (iArr.length - 1)) * i10;
+                    if (width >= f16 && width <= f17) {
+                        f14 = Math.min(Utilities.clamp01((width - f16) / max), Utilities.clamp01(1.0f - ((width - (f17 - max)) / max)));
+                    } else {
+                        f14 = 0.0f;
+                    }
+                    iArr[i10] = org.telegram.ui.ActionBar.h6.v(iArr[i10], org.telegram.ui.ActionBar.h6.m1(clamp01 * f14, q6Var.f2063g));
+                }
+                for (int i11 = 0; i11 < iArr2.length; i11++) {
+                    float width2 = (getWidth() / (iArr2.length - 1)) * i11;
+                    if (width2 >= f16 && width2 <= f17) {
+                        f13 = Math.min(Utilities.clamp01((width2 - f16) / max), Utilities.clamp01(1.0f - ((width2 - (f17 - max)) / max)));
+                    } else {
+                        f13 = 0.0f;
+                    }
+                    iArr2[i11] = org.telegram.ui.ActionBar.h6.v(iArr2[i11], org.telegram.ui.ActionBar.h6.m1(clamp01 * f13, q6Var.f2062f));
+                }
+                for (int i12 = 0; i12 < iArr3.length; i12++) {
+                    float width3 = (getWidth() / (iArr2.length - 1)) * i12;
+                    if (width3 >= f16 && width3 <= f17) {
+                        f12 = Math.min(Utilities.clamp01((width3 - f16) / max), Utilities.clamp01(1.0f - ((width3 - (f17 - max)) / max)));
+                    } else {
+                        f12 = 0.0f;
+                    }
+                    iArr3[i12] = org.telegram.ui.ActionBar.h6.v(iArr3[i12], org.telegram.ui.ActionBar.h6.m1(clamp01 * f12, q6Var.h));
+                }
+            }
+        }
+    }
+
+    public final void b(Canvas canvas, r6 r6Var, float f7, boolean z10) {
+        if (r6Var == null) {
             return;
         }
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(Emoji.replaceEmoji(str, getPaint().getFontMetricsInt(), false));
-        SpannableStringBuilder append = spannableStringBuilder.append((CharSequence) " ");
-        String H0 = gi.l.H0(i10);
-        if (k2Var != null) {
-            oVar = new ah.o(this, k2Var, i10, 2);
-        } else {
-            oVar = null;
+        ImageReceiver imageReceiver = r6Var.d;
+        float f10 = f7;
+        if (z10) {
+            f10 = Math.max(0.5f, f10);
         }
-        append.append((CharSequence) org.telegram.ui.Components.ad.b(H0, oVar, this.P, null));
-        setText(spannableStringBuilder);
-        this.Q = str;
-        this.R = i10;
+        float imageX = imageReceiver.getImageX();
+        float imageY = imageReceiver.getImageY();
+        float imageWidth = imageReceiver.getImageWidth();
+        float imageHeight = imageReceiver.getImageHeight();
+        float alpha = imageReceiver.getAlpha();
+        float f11 = (f10 - 0.5f) / 1.5f;
+        float clamp01 = Utilities.clamp01(1.0f - Math.abs(f11));
+        float width = (getWidth() / 2.0f) - (AndroidUtilities.dp(220.0f) * f11);
+        float dp = AndroidUtilities.dp(80.0f);
+        float lerp = AndroidUtilities.lerp(0.85f, 1.0f, clamp01);
+        float dp2 = AndroidUtilities.dp(160.0f);
+        canvas.save();
+        float f12 = ((dp2 / 2.0f) * f11) + width;
+        canvas.translate(f12, dp);
+        Camera camera = this.F;
+        camera.save();
+        camera.rotateY(f11 * (-30.0f));
+        camera.applyToCanvas(canvas);
+        camera.restore();
+        canvas.translate(-f12, -dp);
+        float f13 = dp2 * lerp;
+        float f14 = f13 / 2.0f;
+        imageReceiver.setImageCoords(width - f14, dp - f14, f13, f13);
+        imageReceiver.setAlpha(clamp01);
+        imageReceiver.draw(canvas);
+        imageReceiver.setImageCoords(imageX, imageY, imageWidth, imageHeight);
+        imageReceiver.setAlpha(alpha);
+        canvas.restore();
+    }
+
+    public final void c() {
+        boolean z10;
+        if (this.f2360a == null && this.f2361b == null && this.f2362c == null && this.f2366s == null && this.v == null && this.f2367w == null) {
+            z10 = false;
+        } else {
+            z10 = true;
+        }
+        this.f2362c = null;
+        this.f2361b = null;
+        this.f2360a = null;
+        this.f2363f = 0.0f;
+        this.e = 0.0f;
+        this.d = 0.0f;
+        this.f2365r = false;
+        this.f2364n = false;
+        this.h = false;
+        this.f2367w = null;
+        this.v = null;
+        this.f2366s = null;
+        this.E = 0.0f;
+        this.f2369y = 0.0f;
+        this.f2368x = 0.0f;
+        if (z10) {
+            invalidate();
+        }
+    }
+
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        b(canvas, this.f2360a, this.d, this.h);
+        b(canvas, this.f2361b, this.e, this.f2364n);
+        b(canvas, this.f2362c, this.f2363f, this.f2365r);
     }
 }

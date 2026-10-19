@@ -15,17 +15,17 @@ import com.google.android.gms.tasks.TaskCompletionSource;
 import j$.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 public final class h implements c6.f {
-    public static final g6.b f8370k = new g6.b("RemoteMediaClient", null);
-    public final Object f8371a;
-    public final a0 f8372b;
-    public final g6.m f8373c;
+    public static final g6.b f8368k = new g6.b("RemoteMediaClient", null);
+    public final Object f8369a;
+    public final a0 f8370b;
+    public final g6.m f8371c;
     public final androidx.biometric.e d;
     public final c e;
-    public f0 f8374f;
-    public TaskCompletionSource f8375g;
+    public f0 f8372f;
+    public TaskCompletionSource f8373g;
     public final CopyOnWriteArrayList h = new CopyOnWriteArrayList();
-    public final CopyOnWriteArrayList f8376i = new CopyOnWriteArrayList();
-    public final ConcurrentHashMap f8377j;
+    public final CopyOnWriteArrayList f8374i = new CopyOnWriteArrayList();
+    public final ConcurrentHashMap f8375j;
 
     static {
         String str = g6.m.v;
@@ -33,14 +33,14 @@ public final class h implements c6.f {
 
     public h(g6.m mVar) {
         new ConcurrentHashMap();
-        this.f8377j = new ConcurrentHashMap();
-        this.f8371a = new Object();
-        this.f8372b = new a0(Looper.getMainLooper(), 0);
+        this.f8375j = new ConcurrentHashMap();
+        this.f8369a = new Object();
+        this.f8370b = new a0(Looper.getMainLooper(), 0);
         androidx.biometric.e eVar = new androidx.biometric.e(this);
         this.d = eVar;
-        this.f8373c = mVar;
+        this.f8371c = mVar;
         mVar.h = new ya.d(this, 14);
-        mVar.f10876c = eVar;
+        mVar.f10874c = eVar;
         this.e = new c(this);
     }
 
@@ -62,21 +62,21 @@ public final class h implements c6.f {
 
     public final long a() {
         long o10;
-        synchronized (this.f8371a) {
+        synchronized (this.f8369a) {
             n6.l.e("Must be called from the main thread.");
-            o10 = this.f8373c.o();
+            o10 = this.f8371c.o();
         }
         return o10;
     }
 
     public final int b() {
         int i10;
-        synchronized (this.f8371a) {
+        synchronized (this.f8369a) {
             try {
                 n6.l.e("Must be called from the main thread.");
                 c6.q e = e();
                 if (e != null) {
-                    i10 = e.f4895f;
+                    i10 = e.f4893f;
                 } else {
                     i10 = 0;
                 }
@@ -93,7 +93,7 @@ public final class h implements c6.f {
         if (e == null) {
             return null;
         }
-        Integer num = (Integer) e.N.get(e.f4899w);
+        Integer num = (Integer) e.N.get(e.f4897w);
         if (num == null) {
             return null;
         }
@@ -102,13 +102,13 @@ public final class h implements c6.f {
 
     public final MediaInfo d() {
         MediaInfo mediaInfo;
-        synchronized (this.f8371a) {
+        synchronized (this.f8369a) {
             n6.l.e("Must be called from the main thread.");
-            c6.q qVar = this.f8373c.f10853f;
+            c6.q qVar = this.f8371c.f10851f;
             if (qVar == null) {
                 mediaInfo = null;
             } else {
-                mediaInfo = qVar.f4892a;
+                mediaInfo = qVar.f4890a;
             }
         }
         return mediaInfo;
@@ -116,16 +116,16 @@ public final class h implements c6.f {
 
     public final c6.q e() {
         c6.q qVar;
-        synchronized (this.f8371a) {
+        synchronized (this.f8369a) {
             n6.l.e("Must be called from the main thread.");
-            qVar = this.f8373c.f10853f;
+            qVar = this.f8371c.f10851f;
         }
         return qVar;
     }
 
     public final int f() {
         int i10;
-        synchronized (this.f8371a) {
+        synchronized (this.f8369a) {
             try {
                 n6.l.e("Must be called from the main thread.");
                 c6.q e = e();
@@ -144,13 +144,13 @@ public final class h implements c6.f {
     public final long g() {
         MediaInfo mediaInfo;
         long j10;
-        synchronized (this.f8371a) {
+        synchronized (this.f8369a) {
             n6.l.e("Must be called from the main thread.");
-            c6.q qVar = this.f8373c.f10853f;
+            c6.q qVar = this.f8371c.f10851f;
             if (qVar == null) {
                 mediaInfo = null;
             } else {
-                mediaInfo = qVar.f4892a;
+                mediaInfo = qVar.f4890a;
             }
             if (mediaInfo != null) {
                 j10 = mediaInfo.e;
@@ -186,7 +186,7 @@ public final class h implements c6.f {
     public final boolean j() {
         n6.l.e("Must be called from the main thread.");
         MediaInfo d = d();
-        if (d != null && d.f6315b == 2) {
+        if (d != null && d.f6313b == 2) {
             return true;
         }
         return false;
@@ -195,7 +195,7 @@ public final class h implements c6.f {
     public final boolean k() {
         n6.l.e("Must be called from the main thread.");
         c6.q e = e();
-        if (e != null && e.f4899w != 0) {
+        if (e != null && e.f4897w != 0) {
             return true;
         }
         return false;
@@ -241,7 +241,7 @@ public final class h implements c6.f {
     public final void p(g gVar) {
         n6.l.e("Must be called from the main thread.");
         if (gVar != null) {
-            this.f8376i.add(gVar);
+            this.f8374i.add(gVar);
         }
     }
 
@@ -288,7 +288,7 @@ public final class h implements c6.f {
             if (l()) {
                 return 2;
             }
-            if (k() && (c10 = c()) != null && c10.f4885a != null) {
+            if (k() && (c10 = c()) != null && c10.f4883a != null) {
                 return 6;
             }
         }
@@ -296,20 +296,20 @@ public final class h implements c6.f {
     }
 
     public final void u() {
-        f0 f0Var = this.f8374f;
+        f0 f0Var = this.f8372f;
         if (f0Var == null) {
             return;
         }
         n6.l.e("Must be called from the main thread.");
-        String str = this.f8373c.f10875b;
+        String str = this.f8371c.f10873b;
         e0 e0Var = (e0) f0Var;
         g6.a.b(str);
         synchronized (e0Var.C) {
             e0Var.C.put(str, this);
         }
         u b10 = v.b();
-        b10.f6499c = new c6.a0(e0Var, str, this);
-        b10.f6497a = 8413;
+        b10.f6497c = new c6.a0(e0Var, str, this);
+        b10.f6495a = 8413;
         e0Var.e(1, b10.a());
         n6.l.e("Must be called from the main thread.");
         if (!w()) {
@@ -321,37 +321,37 @@ public final class h implements c6.f {
 
     public final void v(e0 e0Var) {
         c6.f fVar;
-        f0 f0Var = this.f8374f;
+        f0 f0Var = this.f8372f;
         if (f0Var != e0Var) {
             if (f0Var != null) {
-                this.f8373c.n();
+                this.f8371c.n();
                 this.e.c();
                 n6.l.e("Must be called from the main thread.");
-                String str = this.f8373c.f10875b;
+                String str = this.f8371c.f10873b;
                 e0 e0Var2 = (e0) f0Var;
                 if (!TextUtils.isEmpty(str)) {
                     synchronized (e0Var2.C) {
                         fVar = (c6.f) e0Var2.C.remove(str);
                     }
                     u b10 = v.b();
-                    b10.f6499c = new c6.a0(e0Var2, fVar, str);
-                    b10.f6497a = 8414;
+                    b10.f6497c = new c6.a0(e0Var2, fVar, str);
+                    b10.f6495a = 8414;
                     e0Var2.e(1, b10.a());
-                    this.d.f2817b = null;
-                    this.f8372b.removeCallbacksAndMessages(null);
+                    this.d.f2815b = null;
+                    this.f8370b.removeCallbacksAndMessages(null);
                 } else {
                     throw new IllegalArgumentException("Channel namespace cannot be null or empty");
                 }
             }
-            this.f8374f = e0Var;
+            this.f8372f = e0Var;
             if (e0Var != null) {
-                this.d.f2817b = e0Var;
+                this.d.f2815b = e0Var;
             }
         }
     }
 
     public final boolean w() {
-        if (this.f8374f != null) {
+        if (this.f8372f != null) {
             return true;
         }
         return false;

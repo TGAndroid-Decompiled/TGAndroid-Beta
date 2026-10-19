@@ -9,12 +9,12 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
 public final class a implements d, d6 {
-    public final int f10596a;
-    public final d6 f10597b;
+    public final int f10594a;
+    public final d6 f10595b;
 
     public a(int i10, d6 d6Var) {
-        this.f10596a = i10;
-        this.f10597b = d6Var;
+        this.f10594a = i10;
+        this.f10595b = d6Var;
     }
 
     @Override
@@ -39,9 +39,9 @@ public final class a implements d, d6 {
         int i10;
         float f11;
         int i11;
-        switch (this.f10596a) {
+        switch (this.f10594a) {
             case 0:
-                if (!c.c(UserConfig.selectedAccount, this.f10597b)) {
+                if (!c.c(UserConfig.selectedAccount, this.f10595b)) {
                     return i0.a.o(h6.w0(h6.Sd, d6Var), 255);
                 }
                 if (LiteMode.isEnabled(262144)) {
@@ -51,11 +51,11 @@ public final class a implements d, d6 {
                 }
                 return h6.m1(f7, h6.w0(h6.Sd, d6Var));
             case 1:
-                if (!c.c(UserConfig.selectedAccount, this.f10597b)) {
+                if (!c.c(UserConfig.selectedAccount, this.f10595b)) {
                     if (z10) {
-                        i10 = h6.f21268s8;
+                        i10 = h6.f21266s8;
                     } else {
-                        i10 = h6.f20978ce;
+                        i10 = h6.f20976ce;
                     }
                     return i0.a.o(h6.w0(i10, d6Var), 255);
                 }
@@ -64,13 +64,13 @@ public final class a implements d, d6 {
                 } else {
                     f10 = 0.76f;
                 }
-                return h6.m1(f10, h6.w0(h6.f20978ce, d6Var));
+                return h6.m1(f10, h6.w0(h6.f20976ce, d6Var));
             default:
-                if (!c.c(UserConfig.selectedAccount, this.f10597b)) {
+                if (!c.c(UserConfig.selectedAccount, this.f10595b)) {
                     if (z10) {
-                        i11 = h6.f21268s8;
+                        i11 = h6.f21266s8;
                     } else {
-                        i11 = h6.f20978ce;
+                        i11 = h6.f20976ce;
                     }
                     return i0.a.o(h6.w0(i11, d6Var), 255);
                 }
@@ -79,7 +79,7 @@ public final class a implements d, d6 {
                 } else {
                     f11 = 0.76f;
                 }
-                return h6.m1(f11, h6.w0(h6.f20978ce, d6Var));
+                return h6.m1(f11, h6.w0(h6.f20976ce, d6Var));
         }
     }
 
@@ -90,7 +90,7 @@ public final class a implements d, d6 {
 
     @Override
     public ColorFilter j() {
-        return h6.f21319v3;
+        return h6.f21317v3;
     }
 
     @Override
@@ -114,13 +114,13 @@ public final class a implements d, d6 {
             return -14145495;
         }
         if (i10 != h6.E8) {
-            if (i10 == h6.f21060h5) {
+            if (i10 == h6.f21058h5) {
                 return -14737633;
             }
-            if (i10 == h6.f21095j5) {
+            if (i10 == h6.f21093j5) {
                 return -592138;
             }
-            if (i10 == h6.f21245r5) {
+            if (i10 == h6.f21243r5) {
                 return -8553091;
             }
             if (i10 != h6.He) {
@@ -135,7 +135,7 @@ public final class a implements d, d6 {
                     if (i10 == i11) {
                         return -11754001;
                     }
-                    if (i10 == h6.f21078i6) {
+                    if (i10 == h6.f21076i6) {
                         return 536870911;
                     }
                     if (i10 != h6.Fh && i10 != h6.Eh && i10 != h6.Gh) {
@@ -146,25 +146,25 @@ public final class a implements d, d6 {
                             if (i10 == h6.Ie) {
                                 return 780633991;
                             }
-                            if (i10 == h6.f20931a7) {
+                            if (i10 == h6.f20929a7) {
                                 return -15921907;
                             }
-                            if (i10 == h6.f21153m7) {
+                            if (i10 == h6.f21151m7) {
                                 return -12500671;
                             }
-                            if (i10 == h6.f21134l7) {
+                            if (i10 == h6.f21132l7) {
                                 return -13133079;
                             }
-                            if (i10 == h6.f21173n7) {
+                            if (i10 == h6.f21171n7) {
                                 return -1;
                             }
-                            if (i10 == h6.f20989d6) {
+                            if (i10 == h6.f20987d6) {
                                 return -15198183;
                             }
-                            if (i10 == h6.f20990d7) {
+                            if (i10 == h6.f20988d7) {
                                 return -16777216;
                             }
-                            d6 d6Var = this.f10597b;
+                            d6 d6Var = this.f10595b;
                             if (d6Var != null) {
                                 return d6Var.w(i10);
                             }

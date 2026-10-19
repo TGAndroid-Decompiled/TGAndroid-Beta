@@ -22,7 +22,7 @@ public final class g extends HashMap {
                 uj0 uj0Var = (uj0) super.get(obj);
                 if (uj0Var == null) {
                     zg zgVar = (zg) obj;
-                    uj0 uj0Var2 = new uj0(zgVar.f32926c, AndroidUtilities.dp(i10), AndroidUtilities.dp(i10));
+                    uj0 uj0Var2 = new uj0(zgVar.f32924c, AndroidUtilities.dp(i10), AndroidUtilities.dp(i10));
                     put(zgVar, uj0Var2);
                     return uj0Var2;
                 }

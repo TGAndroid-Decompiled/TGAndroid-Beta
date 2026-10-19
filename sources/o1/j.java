@@ -1,8 +1,8 @@
 package o1;
 public final class j {
-    public float f17560a;
+    public float f17558a;
 
     public j(float f7) {
-        this.f17560a = f7;
+        this.f17558a = f7;
     }
 }

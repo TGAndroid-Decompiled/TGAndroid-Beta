@@ -5,16 +5,16 @@ import java.util.ArrayList;
 import java.util.List;
 import w7.b7;
 public final class r extends com.googlecode.mp4parser.c {
-    public static final te.b f10443f;
+    public static final te.b f10441f;
     public static final te.b h;
-    public static final te.b f10444n;
+    public static final te.b f10442n;
     public List e;
 
     static {
         te.a aVar = new te.a(r.class, "SampleToChunkBox.java");
-        f10443f = aVar.e(aVar.d("getEntries", "com.coremedia.iso.boxes.SampleToChunkBox", "", "", "java.util.List"));
+        f10441f = aVar.e(aVar.d("getEntries", "com.coremedia.iso.boxes.SampleToChunkBox", "", "", "java.util.List"));
         h = aVar.e(aVar.d("setEntries", "com.coremedia.iso.boxes.SampleToChunkBox", "java.util.List", "entries", "void"));
-        f10444n = aVar.e(aVar.d("toString", "com.coremedia.iso.boxes.SampleToChunkBox", "", "", "java.lang.String"));
+        f10442n = aVar.e(aVar.d("toString", "com.coremedia.iso.boxes.SampleToChunkBox", "", "", "java.lang.String"));
         aVar.e(aVar.d("blowup", "com.coremedia.iso.boxes.SampleToChunkBox", "int", "chunkCount", "[J"));
     }
 
@@ -33,9 +33,9 @@ public final class r extends com.googlecode.mp4parser.c {
         i(byteBuffer);
         byteBuffer.putInt(this.e.size());
         for (q qVar : this.e) {
-            byteBuffer.putInt((int) qVar.f10440a);
-            byteBuffer.putInt((int) qVar.f10441b);
-            byteBuffer.putInt((int) qVar.f10442c);
+            byteBuffer.putInt((int) qVar.f10438a);
+            byteBuffer.putInt((int) qVar.f10439b);
+            byteBuffer.putInt((int) qVar.f10440c);
         }
     }
 
@@ -45,7 +45,7 @@ public final class r extends com.googlecode.mp4parser.c {
     }
 
     public final String toString() {
-        com.google.firebase.messaging.r b10 = te.a.b(f10444n, this, this);
+        com.google.firebase.messaging.r b10 = te.a.b(f10442n, this, this);
         com.googlecode.mp4parser.g.a().getClass();
         com.googlecode.mp4parser.g.b(b10);
         return "SampleToChunkBox[entryCount=" + this.e.size() + "]";

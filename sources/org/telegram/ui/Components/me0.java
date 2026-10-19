@@ -3,11 +3,11 @@ package org.telegram.ui.Components;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.LaunchActivity;
 public final class me0 extends le0 {
-    public final ne0 f28521j0;
+    public final ne0 f28519j0;
 
     public me0(ne0 ne0Var, LaunchActivity launchActivity) {
         super(launchActivity);
-        this.f28521j0 = ne0Var;
+        this.f28519j0 = ne0Var;
     }
 
     @Override
@@ -23,7 +23,7 @@ public final class me0 extends le0 {
 
     @Override
     public final void i() {
-        ne0.a(this.f28521j0);
+        ne0.a(this.f28519j0);
         LaunchActivity launchActivity = LaunchActivity.H1;
         if (launchActivity == null) {
             return;

@@ -1,43 +1,41 @@
 package ai;
 
-import android.content.Context;
-import android.view.View;
-public final class b7 extends org.telegram.ui.Components.w9 {
-    public final int G;
+import android.animation.ValueAnimator;
+import android.widget.FrameLayout;
+public final class b7 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f1039a;
+    public final f7 f1040b;
 
-    public b7(Context context, int i10) {
-        super(context);
-        this.G = i10;
+    public b7(f7 f7Var, int i10) {
+        this.f1039a = i10;
+        this.f1040b = f7Var;
     }
 
     @Override
-    public void onMeasure(int i10, int i11) {
-        switch (this.G) {
-            case 1:
-                int size = View.MeasureSpec.getSize(i10);
-                setMeasuredDimension(size, size);
-                return;
-            default:
-                super.onMeasure(i10, i11);
-                return;
-        }
-    }
-
-    @Override
-    public void setAlpha(float f7) {
-        int i10;
-        switch (this.G) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f1039a) {
             case 0:
-                super.setAlpha(f7);
-                if (f7 > 0.0f) {
-                    i10 = 0;
-                } else {
-                    i10 = 4;
-                }
-                setVisibility(i10);
+                f7 f7Var = this.f1040b;
+                f7Var.getClass();
+                f7Var.f1288v0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                f7Var.d(f7Var.f1262a0);
+                return;
+            case 1:
+                f7 f7Var2 = this.f1040b;
+                f7Var2.getClass();
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                float t10 = com.google.android.gms.internal.play_billing.k3.t((float) Math.pow((floatValue * 2.0f) - 2.0f, 2.0d), 0.075f, floatValue, 1.0f);
+                f7Var2.f1290w0 = t10;
+                FrameLayout frameLayout = f7Var2.f1263b;
+                frameLayout.setScaleX(t10);
+                frameLayout.setScaleY(f7Var2.f1290w0);
+                f7Var2.invalidate();
                 return;
             default:
-                super.setAlpha(f7);
+                f7 f7Var3 = this.f1040b;
+                f7Var3.getClass();
+                f7Var3.f1288v0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                f7Var3.d(f7Var3.f1262a0);
                 return;
         }
     }

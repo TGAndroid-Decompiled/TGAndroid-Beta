@@ -2,13 +2,13 @@ package kg;
 
 import org.telegram.messenger.SegmentTree;
 public final class a {
-    public long[] f15048a;
-    public SegmentTree f15049b;
-    public String f15050c;
+    public long[] f15046a;
+    public SegmentTree f15047b;
+    public String f15048c;
     public String d;
-    public int f15052g;
+    public int f15050g;
     public long e = 0;
-    public long f15051f = Long.MAX_VALUE;
+    public long f15049f = Long.MAX_VALUE;
     public int h = -16777216;
-    public int f15053i = -1;
+    public int f15051i = -1;
 }

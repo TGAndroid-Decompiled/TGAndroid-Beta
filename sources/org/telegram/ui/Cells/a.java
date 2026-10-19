@@ -12,18 +12,18 @@ import org.telegram.ui.pp0;
 import org.telegram.ui.qp0;
 import org.telegram.ui.sp0;
 public final class a implements View.OnClickListener {
-    public final int f21950a;
-    public final Object f21951b;
+    public final int f21948a;
+    public final Object f21949b;
 
     public a(Object obj, int i10) {
-        this.f21950a = i10;
-        this.f21951b = obj;
+        this.f21948a = i10;
+        this.f21949b = obj;
     }
 
     @Override
     public final void onClick(View view) {
-        int i10 = this.f21950a;
-        Object obj = this.f21951b;
+        int i10 = this.f21948a;
+        Object obj = this.f21949b;
         switch (i10) {
             case 0:
                 ((j) obj).h();
@@ -41,7 +41,7 @@ public final class a implements View.OnClickListener {
                 ((w) obj).toggle();
                 return;
             case 3:
-                xj0 xj0Var = ((x2) obj).f23793f;
+                xj0 xj0Var = ((x2) obj).f23791f;
                 if (!xj0Var.b()) {
                     xj0Var.setProgress(0.0f);
                     xj0Var.d();
@@ -66,13 +66,13 @@ public final class a implements View.OnClickListener {
                 t5 t5Var = (t5) obj;
                 t5Var.d = t5Var.e[((Integer) ((RadioButton) view).getTag()).intValue()];
                 t5Var.b(true);
-                t5Var.f23188c.onClick(t5Var);
+                t5Var.f23186c.onClick(t5Var);
                 return;
             case 9:
                 x5 x5Var = (x5) obj;
                 w5 w5Var = x5Var.d;
                 if (w5Var != null) {
-                    sp0.U(((qp0) ((pp0) w5Var).f40277b).d, x5Var.f23803b[((Integer) view.getTag()).intValue()]);
+                    sp0.U(((qp0) ((pp0) w5Var).f40272b).d, x5Var.f23801b[((Integer) view.getTag()).intValue()]);
                     return;
                 }
                 return;
@@ -81,10 +81,10 @@ public final class a implements View.OnClickListener {
                 if (t7Var.d != null) {
                     int intValue = ((Integer) view.getTag()).intValue();
                     q7 q7Var = t7Var.d;
-                    int i11 = t7Var.f23201c[intValue];
-                    MessageObject messageObject = t7Var.f23200b[intValue];
-                    e10 e10Var = ((c10) ((org.telegram.ui.g) q7Var).f37149b).d;
-                    SpannableStringBuilder[] spannableStringBuilderArr = e10.f36493s0;
+                    int i11 = t7Var.f23199c[intValue];
+                    MessageObject messageObject = t7Var.f23198b[intValue];
+                    e10 e10Var = ((c10) ((org.telegram.ui.g) q7Var).f37143b).d;
+                    SpannableStringBuilder[] spannableStringBuilderArr = e10.f36484s0;
                     e10Var.f(i11, t7Var, messageObject, intValue);
                     return;
                 }

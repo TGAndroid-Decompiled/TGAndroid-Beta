@@ -12,13 +12,13 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.bs;
 import org.telegram.ui.Components.f6;
 public final class f0 extends Drawable {
-    public final Paint f11195a = new Paint(1);
-    public final RectF f11196b = new RectF();
-    public final int f11197c;
+    public final Paint f11193a = new Paint(1);
+    public final RectF f11194b = new RectF();
+    public final int f11195c;
     public final Path d;
     public boolean e;
-    public int f11198f;
-    public final f6 f11199g;
+    public int f11196f;
+    public final f6 f11197g;
     public final f6 h;
 
     public f0(int i10) {
@@ -26,9 +26,9 @@ public final class f0 extends Drawable {
         this.d = path;
         bc bcVar = new bc(this, 2);
         bs bsVar = bs.h;
-        this.f11199g = new f6(bcVar, 320L, bsVar, 0);
+        this.f11197g = new f6(bcVar, 320L, bsVar, 0);
         this.h = new f6(new bc(this, 2), 320L, bsVar, 0);
-        this.f11197c = i10;
+        this.f11195c = i10;
         path.moveTo(-AndroidUtilities.dp(6.5f), 0.0f);
         path.lineTo(AndroidUtilities.dp(6.5f), 0.0f);
         path.lineTo(0.0f, -AndroidUtilities.dp(6.16f));
@@ -38,14 +38,14 @@ public final class f0 extends Drawable {
     @Override
     public final void draw(Canvas canvas) {
         Rect bounds = getBounds();
-        RectF rectF = this.f11196b;
+        RectF rectF = this.f11194b;
         rectF.set(bounds);
         rectF.inset(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
-        int i10 = this.f11197c;
-        Paint paint = this.f11195a;
+        int i10 = this.f11195c;
+        Paint paint = this.f11193a;
         canvas.drawRoundRect(rectF, i10, i10, paint);
-        float e = this.f11199g.e(this.e);
-        float dp = (rectF.right + AndroidUtilities.dp(8.0f)) - this.h.d(this.f11198f, false);
+        float e = this.f11197g.e(this.e);
+        float dp = (rectF.right + AndroidUtilities.dp(8.0f)) - this.h.d(this.f11196f, false);
         if (e > 0.0f) {
             canvas.save();
             canvas.translate(dp, com.google.android.gms.internal.play_billing.k3.y(1.0f, e, AndroidUtilities.dp(6.16f), AndroidUtilities.dp(8.0f)));

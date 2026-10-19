@@ -11,17 +11,17 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 public final class im0 implements RequestDelegate {
-    public final boolean f38019a;
-    public final byte[] f38020b;
-    public final TL_account.getPasswordSettings f38021c;
+    public final boolean f38021a;
+    public final byte[] f38022b;
+    public final TL_account.getPasswordSettings f38023c;
     public final String d;
     public final vm0 e;
 
     public im0(vm0 vm0Var, boolean z10, byte[] bArr, TL_account.getPasswordSettings getpasswordsettings, String str) {
         this.e = vm0Var;
-        this.f38019a = z10;
-        this.f38020b = bArr;
-        this.f38021c = getpasswordsettings;
+        this.f38021a = z10;
+        this.f38022b = bArr;
+        this.f38023c = getpasswordsettings;
         this.d = str;
     }
 
@@ -34,30 +34,30 @@ public final class im0 implements RequestDelegate {
         if (vm0Var.Y == null) {
             return;
         }
-        if (!this.f38019a) {
+        if (!this.f38021a) {
             i11 = ((org.telegram.ui.ActionBar.n2) vm0Var).currentAccount;
-            UserConfig.getInstance(i11).savePassword(this.f38020b, vm0Var.f42286e1);
+            UserConfig.getInstance(i11).savePassword(this.f38022b, vm0Var.f42287e1);
         }
         int i12 = 0;
         AndroidUtilities.hideKeyboard(vm0Var.Y[0]);
-        vm0Var.f42289f1 = true;
-        long j10 = vm0Var.f42280c;
+        vm0Var.f42290f1 = true;
+        long j10 = vm0Var.f42281c;
         if (j10 == 0) {
             i12 = 8;
         }
-        vm0 vm0Var2 = new vm0(i12, j10, vm0Var.h, vm0Var.f42311r, vm0Var.d, vm0Var.e, vm0Var.f42302n, vm0Var.f42329y, vm0Var.J);
-        vm0Var2.f42284d1 = vm0Var.f42284d1;
+        vm0 vm0Var2 = new vm0(i12, j10, vm0Var.h, vm0Var.f42312r, vm0Var.d, vm0Var.e, vm0Var.f42303n, vm0Var.f42330y, vm0Var.J);
+        vm0Var2.f42285d1 = vm0Var.f42285d1;
         i10 = ((org.telegram.ui.ActionBar.n2) vm0Var).currentAccount;
         ((org.telegram.ui.ActionBar.n2) vm0Var2).currentAccount = i10;
-        vm0Var2.f42286e1 = vm0Var.f42286e1;
-        vm0Var2.f42282c1 = vm0Var.f42282c1;
-        vm0Var2.f42279b1 = vm0Var.f42279b1;
+        vm0Var2.f42287e1 = vm0Var.f42287e1;
+        vm0Var2.f42283c1 = vm0Var.f42283c1;
+        vm0Var2.f42280b1 = vm0Var.f42280b1;
         vm0Var2.C1 = vm0Var.C1;
         d5Var = ((org.telegram.ui.ActionBar.n2) vm0Var).parentLayout;
         if (d5Var != null) {
             d5Var2 = ((org.telegram.ui.ActionBar.n2) vm0Var).parentLayout;
             if (((ActionBarLayout) d5Var2).j()) {
-                vm0Var.f42293h1 = vm0Var2;
+                vm0Var.f42294h1 = vm0Var2;
                 return;
             }
         }
@@ -71,7 +71,7 @@ public final class im0 implements RequestDelegate {
         TL_account.Password password = vm0Var.J;
         TLRPC.PasswordKdfAlgo passwordKdfAlgo = password.current_algo;
         if (passwordKdfAlgo instanceof TLRPC.TL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow) {
-            updatepasswordsettings.password = SRPHelper.startCheck(this.f38020b, password.srp_id, password.srp_B, (TLRPC.TL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow) passwordKdfAlgo);
+            updatepasswordsettings.password = SRPHelper.startCheck(this.f38022b, password.srp_id, password.srp_B, (TLRPC.TL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow) passwordKdfAlgo);
         }
         TL_account.passwordInputSettings passwordinputsettings = new TL_account.passwordInputSettings();
         updatepasswordsettings.new_settings = passwordinputsettings;
@@ -83,7 +83,7 @@ public final class im0 implements RequestDelegate {
         passwordinputsettings2.new_secure_settings.secure_secret_id = 0L;
         passwordinputsettings2.flags |= 4;
         i10 = ((org.telegram.ui.ActionBar.n2) vm0Var).currentAccount;
-        ConnectionsManager.getInstance(i10).sendRequest(this.f38021c, new gm0(this, 1));
+        ConnectionsManager.getInstance(i10).sendRequest(this.f38023c, new gm0(this, 1));
     }
 
     @Override
@@ -92,11 +92,11 @@ public final class im0 implements RequestDelegate {
         if (tL_error != null && "SRP_ID_INVALID".equals(tL_error.text)) {
             TL_account.getPassword getpassword = new TL_account.getPassword();
             i10 = ((org.telegram.ui.ActionBar.n2) this.e).currentAccount;
-            ConnectionsManager.getInstance(i10).sendRequest(getpassword, new ei.o3(9, this, this.f38019a), 8);
+            ConnectionsManager.getInstance(i10).sendRequest(getpassword, new ei.o3(9, this, this.f38021a), 8);
         } else if (tL_error == null) {
-            Utilities.globalQueue.postRunnable(new ai.x9((Object) this, tLObject, (Object) this.d, this.f38019a, 24));
+            Utilities.globalQueue.postRunnable(new ai.x9((Object) this, tLObject, (Object) this.d, this.f38021a, 24));
         } else {
-            AndroidUtilities.runOnUIThread(new x70(this, this.f38019a, tL_error, 4));
+            AndroidUtilities.runOnUIThread(new x70(this, this.f38021a, tL_error, 4));
         }
     }
 }

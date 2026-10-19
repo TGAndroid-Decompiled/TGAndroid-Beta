@@ -96,7 +96,7 @@ public class FileLog {
             if (name.startsWith("org.telegram.tgnet.")) {
                 name = name.substring(19);
             }
-            lVar.n("_", name == null ? eb.k.f8575a : new eb.m(name));
+            lVar.n("_", name == null ? eb.k.f8573a : new eb.m(name));
             try {
                 for (Field field : tLObject.getClass().getFields()) {
                     if (FileLog.privateFields == null || !FileLog.privateFields.contains(field.getName())) {
@@ -169,8 +169,8 @@ public class FileLog {
                 @Override
                 public boolean shouldSkipField(eb.b bVar) {
                     HashSet hashSet3 = FileLog.privateFields;
-                    Field field = bVar.f8559a;
-                    Field field2 = bVar.f8559a;
+                    Field field = bVar.f8557a;
+                    Field field2 = bVar.f8557a;
                     if (!hashSet3.contains(field.getName())) {
                         if (!"message".equalsIgnoreCase(field2.getName()) || !String.class.equals(field2.getGenericType())) {
                             return false;
@@ -180,26 +180,26 @@ public class FileLog {
                     return true;
                 }
             };
-            gb.f fVar = gb.f.f10958c;
+            gb.f fVar = gb.f.f10956c;
             HashMap hashMap = new HashMap();
             ArrayList arrayList = new ArrayList();
             ArrayList arrayList2 = new ArrayList();
             eb.c cVar = eb.g.h;
-            eb.p pVar = eb.g.f8567i;
-            eb.q qVar = eb.g.f8568j;
+            eb.p pVar = eb.g.f8565i;
+            eb.q qVar = eb.g.f8566j;
             ArrayDeque arrayDeque = new ArrayDeque();
             eb.a aVar = exclusionStrategy;
             Objects.requireNonNull(aVar);
             gb.f clone = fVar.clone();
-            ArrayList arrayList3 = new ArrayList(fVar.f10959a);
-            clone.f10959a = arrayList3;
+            ArrayList arrayList3 = new ArrayList(fVar.f10957a);
+            clone.f10957a = arrayList3;
             arrayList3.add(aVar);
             ByteArrayHexAdapter byteArrayHexAdapter = new ByteArrayHexAdapter();
             boolean z11 = byteArrayHexAdapter instanceof eb.o;
             if (!eb.i.class.isAssignableFrom(byte[].class)) {
                 if (z11) {
                     lb.a aVar2 = new lb.a(byte[].class);
-                    if (aVar2.f15997b == aVar2.f15996a) {
+                    if (aVar2.f15995b == aVar2.f15994a) {
                         z10 = true;
                     } else {
                         z10 = false;
@@ -207,7 +207,7 @@ public class FileLog {
                     arrayList.add(new hb.z(byteArrayHexAdapter, aVar2, z10, null));
                 }
                 lb.a aVar3 = new lb.a(byte[].class);
-                hb.x0 x0Var = hb.h1.f11724a;
+                hb.x0 x0Var = hb.h1.f11722a;
                 arrayList.add(new hb.x0(aVar3, byteArrayHexAdapter, 2));
                 RuntimeClassNameTypeAdapterFactory of2 = RuntimeClassNameTypeAdapterFactory.of(TLObject.class, "type_", exclusionStrategy);
                 Objects.requireNonNull(of2);
@@ -221,7 +221,7 @@ public class FileLog {
                     ArrayList arrayList5 = new ArrayList(arrayList2);
                     Collections.reverse(arrayList5);
                     arrayList4.addAll(arrayList5);
-                    boolean z12 = kb.f.f15007a;
+                    boolean z12 = kb.f.f15005a;
                     gson = new eb.g(clone, new HashMap(hashMap), cVar, new ArrayList(arrayList), new ArrayList(arrayList2), arrayList4, pVar, qVar, new ArrayList(arrayDeque));
                     return;
                 }
@@ -297,7 +297,7 @@ public class FileLog {
 
     public static void dumpUnparsedMessage(TLObject tLObject, long j10, int i10) {
         if (BuildVars.DEBUG_PRIVATE_VERSION && BuildVars.LOGS_ENABLED && tLObject != null) {
-            postProtocolDump(new z4(tLObject, gsonDisabled, System.currentTimeMillis(), j10, i10));
+            postProtocolDump(new y4(tLObject, gsonDisabled, System.currentTimeMillis(), j10, i10));
         }
     }
 

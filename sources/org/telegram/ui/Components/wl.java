@@ -2,46 +2,46 @@ package org.telegram.ui.Components;
 
 import android.os.Build;
 public final class wl implements Runnable {
-    public final int f32149a;
-    public final ChatAttachAlertPhotoLayout f32150b;
+    public final int f32147a;
+    public final ChatAttachAlertPhotoLayout f32148b;
 
     public wl(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, int i10) {
-        this.f32149a = i10;
-        this.f32150b = chatAttachAlertPhotoLayout;
+        this.f32147a = i10;
+        this.f32148b = chatAttachAlertPhotoLayout;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f32149a;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f32150b;
+        int i10 = this.f32147a;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f32148b;
         switch (i10) {
             case 0:
-                boolean z10 = ChatAttachAlertPhotoLayout.f24076q1;
-                chatAttachAlertPhotoLayout.f28225b.getContainer().removeView(chatAttachAlertPhotoLayout.P);
+                boolean z10 = ChatAttachAlertPhotoLayout.f24074q1;
+                chatAttachAlertPhotoLayout.f28223b.getContainer().removeView(chatAttachAlertPhotoLayout.P);
                 chatAttachAlertPhotoLayout.P = null;
                 return;
             case 1:
-                chatAttachAlertPhotoLayout.f24120w.setVisibility(8);
+                chatAttachAlertPhotoLayout.f24118w.setVisibility(8);
                 return;
             case 2:
                 chatAttachAlertPhotoLayout.G.l();
                 return;
             case 3:
-                boolean z11 = ChatAttachAlertPhotoLayout.f24076q1;
+                boolean z11 = ChatAttachAlertPhotoLayout.f24074q1;
                 chatAttachAlertPhotoLayout.t0(false);
-                chatAttachAlertPhotoLayout.f24106n0 = null;
+                chatAttachAlertPhotoLayout.f24104n0 = null;
                 return;
             case 4:
-                boolean z12 = ChatAttachAlertPhotoLayout.f24076q1;
+                boolean z12 = ChatAttachAlertPhotoLayout.f24074q1;
                 chatAttachAlertPhotoLayout.t0(false);
-                chatAttachAlertPhotoLayout.f24106n0 = null;
+                chatAttachAlertPhotoLayout.f24104n0 = null;
                 return;
             case 5:
-                boolean z13 = ChatAttachAlertPhotoLayout.f24076q1;
-                ti tiVar = chatAttachAlertPhotoLayout.f28225b;
-                if (f0.c.b(tiVar.f30536f0.getParentActivity(), "android.permission.CAMERA") != 0) {
+                boolean z13 = ChatAttachAlertPhotoLayout.f24074q1;
+                ti tiVar = chatAttachAlertPhotoLayout.f28223b;
+                if (f0.c.b(tiVar.f30534f0.getParentActivity(), "android.permission.CAMERA") != 0) {
                     try {
-                        tiVar.f30536f0.getParentActivity().requestPermissions(new String[]{"android.permission.CAMERA"}, 18);
+                        tiVar.f30534f0.getParentActivity().requestPermissions(new String[]{"android.permission.CAMERA"}, 18);
                         return;
                     } catch (Exception unused) {
                         return;
@@ -50,13 +50,13 @@ public final class wl implements Runnable {
                 chatAttachAlertPhotoLayout.i0();
                 return;
             default:
-                boolean z14 = ChatAttachAlertPhotoLayout.f24076q1;
-                ti tiVar2 = chatAttachAlertPhotoLayout.f28225b;
+                boolean z14 = ChatAttachAlertPhotoLayout.f24074q1;
+                ti tiVar2 = chatAttachAlertPhotoLayout.f28223b;
                 try {
                     if (Build.VERSION.SDK_INT >= 33) {
-                        tiVar2.f30536f0.getParentActivity().requestPermissions(new String[]{"android.permission.READ_MEDIA_VIDEO", "android.permission.READ_MEDIA_IMAGES"}, 4);
+                        tiVar2.f30534f0.getParentActivity().requestPermissions(new String[]{"android.permission.READ_MEDIA_VIDEO", "android.permission.READ_MEDIA_IMAGES"}, 4);
                     } else {
-                        tiVar2.f30536f0.getParentActivity().requestPermissions(new String[]{"android.permission.READ_EXTERNAL_STORAGE"}, 4);
+                        tiVar2.f30534f0.getParentActivity().requestPermissions(new String[]{"android.permission.READ_EXTERNAL_STORAGE"}, 4);
                     }
                     return;
                 } catch (Exception unused2) {

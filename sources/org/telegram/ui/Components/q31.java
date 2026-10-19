@@ -33,32 +33,32 @@ public final class q31 extends FrameLayout {
     public float Q;
     public boolean R;
     public ValueAnimator S;
-    public final int f29506a;
-    public final org.telegram.ui.ActionBar.d6 f29507b;
-    public up0 f29508c;
+    public final int f29504a;
+    public final org.telegram.ui.ActionBar.d6 f29505b;
+    public up0 f29506c;
     public final ei.m5 d;
     public final FrameLayout.LayoutParams e;
-    public final p6 f29509f;
+    public final p6 f29507f;
     public final ai.w1 h;
-    public final w9 f29510n;
-    public final h9 f29511r;
-    public final TextView f29512s;
+    public final w9 f29508n;
+    public final h9 f29509r;
+    public final TextView f29510s;
     public final ImageView v;
-    public boolean f29513w;
-    public boolean f29514x;
-    public boolean f29515y;
+    public boolean f29511w;
+    public boolean f29512x;
+    public boolean f29513y;
 
     public q31(Context context, int i10, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
-        this.f29514x = false;
-        this.f29515y = false;
+        this.f29512x = false;
+        this.f29513y = false;
         this.E = org.telegram.ui.ActionBar.h6.U8;
         this.K = 1.0f;
         this.M = 0L;
         this.N = false;
         this.O = false;
-        this.f29506a = i10;
-        this.f29507b = d6Var;
+        this.f29504a = i10;
+        this.f29505b = d6Var;
         ei.m5 m5Var = new ei.m5(this, context);
         this.d = m5Var;
         m5Var.setWillNotDraw(false);
@@ -66,26 +66,26 @@ public final class q31 extends FrameLayout {
         addView(m5Var, w7.z5.d(-1, -1.0f, 119, 1.0f, 0.0f, 0.0f, 0.0f));
         w7.b6.a(m5Var);
         p6 p6Var = new p6(false, false, false);
-        this.f29509f = p6Var;
+        this.f29507f = p6Var;
         p6Var.w(AndroidUtilities.dp(11.0f));
         p6Var.x(AndroidUtilities.bold());
         p6Var.u(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.W8, d6Var));
         p6Var.M = AndroidUtilities.displaySize.x;
-        p6Var.f29182b = 17;
+        p6Var.f29180b = 17;
         ai.w1 w1Var = new ai.w1(this, context, d6Var);
         this.h = w1Var;
         w1Var.setWillNotDraw(false);
         w1Var.setPadding(0, AndroidUtilities.dp(4.0f), 0, 0);
         m5Var.addView(w1Var, w7.z5.q(-1, -2, 17));
         w9 w9Var = new w9(context);
-        this.f29510n = w9Var;
+        this.f29508n = w9Var;
         FrameLayout.LayoutParams e = w7.z5.e(34, 34, 17);
         this.e = e;
         w1Var.addView(w9Var, e);
-        this.f29511r = new h9((org.telegram.ui.ActionBar.d6) null);
+        this.f29509r = new h9((org.telegram.ui.ActionBar.d6) null);
         TextView textView = new TextView(context);
-        this.f29512s = textView;
-        int w02 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21394z6, d6Var);
+        this.f29510s = textView;
+        int w02 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21392z6, d6Var);
         int i11 = org.telegram.ui.ActionBar.h6.Oh;
         textView.setTextColor(i0.a.f(this.Q, w02, org.telegram.ui.ActionBar.h6.w0(i11, d6Var)));
         textView.setTextSize(1, 10.0f);
@@ -108,16 +108,16 @@ public final class q31 extends FrameLayout {
         float f10;
         int dp;
         int dp2;
-        if (this.f29514x == z10) {
+        if (this.f29512x == z10) {
             return;
         }
-        this.f29514x = z10;
+        this.f29512x = z10;
         if (z10) {
             f7 = 36.0f;
         } else {
             f7 = 3.0f;
         }
-        this.f29510n.setRoundRadius(AndroidUtilities.dp(f7));
+        this.f29508n.setRoundRadius(AndroidUtilities.dp(f7));
         if (z10) {
             f10 = 7.0f;
         } else {
@@ -145,7 +145,7 @@ public final class q31 extends FrameLayout {
         boolean z13;
         setLayout(false);
         long j11 = this.M;
-        long j12 = tL_forumTopic.f20327id;
+        long j12 = tL_forumTopic.f20325id;
         if (j11 == j12) {
             z11 = true;
         } else {
@@ -155,11 +155,11 @@ public final class q31 extends FrameLayout {
         this.M = j12;
         this.N = false;
         String str = tL_forumTopic.title;
-        TextView textView = this.f29512s;
+        TextView textView = this.f29510s;
         textView.setText(str);
         textView.setVisibility(0);
-        int i10 = tL_forumTopic.f20327id;
-        w9 w9Var = this.f29510n;
+        int i10 = tL_forumTopic.f20325id;
+        w9 w9Var = this.f29508n;
         if (i10 == 1) {
             this.O = true;
             w9Var.b();
@@ -180,7 +180,7 @@ public final class q31 extends FrameLayout {
         }
         setSelected(z10);
         g();
-        boolean isDialogMuted = MessagesController.getInstance(this.f29506a).isDialogMuted(j10, tL_forumTopic.f20327id);
+        boolean isDialogMuted = MessagesController.getInstance(this.f29504a).isDialogMuted(j10, tL_forumTopic.f20325id);
         int i11 = tL_forumTopic.unread_count;
         if (tL_forumTopic.unread_mentions_count > 0) {
             z12 = true;
@@ -194,8 +194,8 @@ public final class q31 extends FrameLayout {
         }
         d(i11, isDialogMuted, z12, z13, z11);
         boolean z14 = tL_forumTopic.pinned;
-        if (this.f29515y != z14) {
-            this.f29515y = z14;
+        if (this.f29513y != z14) {
+            this.f29513y = z14;
         }
         h();
     }
@@ -205,10 +205,10 @@ public final class q31 extends FrameLayout {
         this.O = true;
         this.N = true;
         String string = LocaleController.getString(R.string.NewTopic);
-        TextView textView = this.f29512s;
+        TextView textView = this.f29510s;
         textView.setText(string);
         textView.setVisibility(0);
-        w9 w9Var = this.f29510n;
+        w9 w9Var = this.f29508n;
         w9Var.b();
         w9Var.setAnimatedEmojiDrawable(null);
         w9Var.setImageResource(R.drawable.emoji_tabs_new3);
@@ -218,8 +218,8 @@ public final class q31 extends FrameLayout {
         g();
         h();
         d(0, true, false, false, false);
-        if (this.f29515y) {
-            this.f29515y = false;
+        if (this.f29513y) {
+            this.f29513y = false;
         }
     }
 
@@ -236,7 +236,7 @@ public final class q31 extends FrameLayout {
             i10 = R.string.AllTopicsSide;
         }
         String string = LocaleController.getString(i10);
-        TextView textView = this.f29512s;
+        TextView textView = this.f29510s;
         textView.setText(string);
         if (z10) {
             i11 = 8;
@@ -244,12 +244,12 @@ public final class q31 extends FrameLayout {
             i11 = 0;
         }
         textView.setVisibility(i11);
-        w9 w9Var = this.f29510n;
+        w9 w9Var = this.f29508n;
         w9Var.b();
         w9Var.setAnimatedEmojiDrawable(null);
         if (z10) {
             i31 i31Var = new i31(getContext());
-            i31Var.f27066b.setColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Oh, this.f29507b));
+            i31Var.f27064b.setColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Oh, this.f29505b));
             w9Var.setImageDrawable(i31Var);
         } else {
             w9Var.setImageResource(R.drawable.other_chats);
@@ -260,15 +260,15 @@ public final class q31 extends FrameLayout {
         g();
         h();
         d(0, true, false, false, false);
-        if (this.f29515y) {
-            this.f29515y = false;
+        if (this.f29513y) {
+            this.f29513y = false;
         }
     }
 
     public final void d(int i10, boolean z10, boolean z11, boolean z12, boolean z13) {
         int i11;
         int i12;
-        p6 p6Var = this.f29509f;
+        p6 p6Var = this.f29507f;
         if (z12) {
             this.E = org.telegram.ui.ActionBar.h6.Z5;
             if (this.G == null) {
@@ -320,7 +320,7 @@ public final class q31 extends FrameLayout {
             this.L = ofFloat;
             ofFloat.addUpdateListener(new n31(this, 1));
             this.L.addListener(new o31(this, 0));
-            org.telegram.messenger.lk.l(2.0f, this.L);
+            org.telegram.messenger.kk.l(2.0f, this.L);
             this.L.setDuration(200L);
             this.L.start();
         }
@@ -337,24 +337,24 @@ public final class q31 extends FrameLayout {
         this.N = false;
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("x");
         int dp = AndroidUtilities.dp(38.0f);
-        TextView textView = this.f29512s;
+        TextView textView = this.f29510s;
         ca0 ca0Var = new ca0(dp, textView);
         ca0Var.e = 0.75f;
         spannableStringBuilder.setSpan(ca0Var, 0, 1, 33);
         textView.setText(spannableStringBuilder);
         textView.setVisibility(0);
-        w9 w9Var = this.f29510n;
+        w9 w9Var = this.f29508n;
         w9Var.b();
         w9Var.setAnimatedEmojiDrawable(null);
         if (this.P == null) {
-            org.telegram.ui.ActionBar.d6 d6Var = this.f29507b;
+            org.telegram.ui.ActionBar.d6 d6Var = this.f29505b;
             ba0 ba0Var = new ba0(d6Var);
             this.P = ba0Var;
             ba0Var.k(38.0f);
             this.P.setCallback(w9Var);
-            int w02 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21394z6, d6Var);
+            int w02 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21392z6, d6Var);
             this.P.g(org.telegram.ui.ActionBar.h6.m1(0.15f, w02), org.telegram.ui.ActionBar.h6.m1(0.5f, w02), org.telegram.ui.ActionBar.h6.m1(0.6f, w02), org.telegram.ui.ActionBar.h6.m1(0.15f, w02));
-            this.P.f24884n = false;
+            this.P.f24882n = false;
         }
         w9Var.setImageDrawable(this.P);
         w9Var.setScaleX(1.0f);
@@ -362,8 +362,8 @@ public final class q31 extends FrameLayout {
         setSelected(false);
         g();
         d(0, true, false, false, false);
-        if (this.f29515y) {
-            this.f29515y = false;
+        if (this.f29513y) {
+            this.f29513y = false;
         }
         h();
     }
@@ -382,13 +382,13 @@ public final class q31 extends FrameLayout {
         }
         this.M = peerDialogId;
         String name = DialogObject.getName(peerDialogId);
-        TextView textView = this.f29512s;
+        TextView textView = this.f29510s;
         textView.setText(name);
         textView.setVisibility(0);
         int i10 = (peerDialogId > 0L ? 1 : (peerDialogId == 0L ? 0 : -1));
-        int i11 = this.f29506a;
-        w9 w9Var = this.f29510n;
-        h9 h9Var = this.f29511r;
+        int i11 = this.f29504a;
+        w9 w9Var = this.f29508n;
+        h9 h9Var = this.f29509r;
         if (i10 >= 0) {
             TLRPC.User user = MessagesController.getInstance(i11).getUser(Long.valueOf(peerDialogId));
             h9Var.r(user);
@@ -409,15 +409,15 @@ public final class q31 extends FrameLayout {
             z12 = false;
         }
         d(i12, false, false, z12, z11);
-        if (this.f29515y) {
-            this.f29515y = false;
+        if (this.f29513y) {
+            this.f29513y = false;
         }
     }
 
     public final void g() {
         float f7;
-        int i10 = org.telegram.ui.ActionBar.h6.f21394z6;
-        org.telegram.ui.ActionBar.d6 d6Var = this.f29507b;
+        int i10 = org.telegram.ui.ActionBar.h6.f21392z6;
+        org.telegram.ui.ActionBar.d6 d6Var = this.f29505b;
         int w02 = org.telegram.ui.ActionBar.h6.w0(i10, d6Var);
         int w03 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Oh, d6Var);
         if (this.N) {
@@ -427,7 +427,7 @@ public final class q31 extends FrameLayout {
         }
         int f10 = i0.a.f(f7, w02, w03);
         boolean z10 = this.O;
-        w9 w9Var = this.f29510n;
+        w9 w9Var = this.f29508n;
         if (!z10) {
             w9Var.setColorFilter(null);
         } else {
@@ -449,14 +449,14 @@ public final class q31 extends FrameLayout {
             i10 = 0;
         }
         imageView.setVisibility(i10);
-        int i11 = org.telegram.ui.ActionBar.h6.f21394z6;
-        org.telegram.ui.ActionBar.d6 d6Var = this.f29507b;
+        int i11 = org.telegram.ui.ActionBar.h6.f21392z6;
+        org.telegram.ui.ActionBar.d6 d6Var = this.f29505b;
         int w02 = org.telegram.ui.ActionBar.h6.w0(i11, d6Var);
         int w03 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Oh, d6Var);
         if (!this.N) {
             f7 = this.Q;
         }
-        this.f29512s.setTextColor(i0.a.f(f7, w02, w03));
+        this.f29510s.setTextColor(i0.a.f(f7, w02, w03));
     }
 
     @Override
@@ -465,7 +465,7 @@ public final class q31 extends FrameLayout {
     }
 
     public void setReorder(boolean z10) {
-        this.f29513w = z10;
+        this.f29511w = z10;
         this.d.invalidate();
     }
 

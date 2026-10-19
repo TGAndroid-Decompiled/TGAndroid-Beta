@@ -5,7 +5,7 @@ import java.io.ObjectStreamClass;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 public abstract class s {
-    public static final s f10986a;
+    public static final s f10984a;
 
     static {
         o oVar;
@@ -32,7 +32,7 @@ public abstract class s {
                 oVar = new q(declaredMethod3);
             }
         }
-        f10986a = oVar;
+        f10984a = oVar;
     }
 
     public abstract Object a(Class cls);

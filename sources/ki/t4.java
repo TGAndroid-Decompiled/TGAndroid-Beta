@@ -7,7 +7,7 @@ import org.telegram.ui.Components.f61;
 import org.telegram.ui.Components.g61;
 import org.telegram.ui.Components.im0;
 public final class t4 extends f61 {
-    public static final int f15532a = 0;
+    public static final int f15530a = 0;
 
     static {
         f61.setup(new f61());
@@ -29,7 +29,7 @@ public final class t4 extends f61 {
     @Override
     public final View createView(Context context, im0 im0Var, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
         u4 u4Var = new u4(context, d6Var);
-        u4Var.setBackground(new a2(h6.w0(h6.f20989d6, d6Var)));
+        u4Var.setBackground(new a2(h6.w0(h6.f20987d6, d6Var)));
         return u4Var;
     }
 

@@ -2,15 +2,15 @@ package org.telegram.ui.ActionBar;
 
 import android.app.Activity;
 public final class y4 extends ActionBarLayout {
-    public final n f21907s1;
+    public final n f21905s1;
 
     public y4(Activity activity, n nVar) {
         super(activity, false);
-        this.f21907s1 = nVar;
+        this.f21905s1 = nVar;
     }
 
     @Override
     public final f3 getBottomSheet() {
-        return ((f3[]) this.f21907s1.f21609b)[0];
+        return ((f3[]) this.f21905s1.f21607b)[0];
     }
 }

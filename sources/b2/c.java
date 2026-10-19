@@ -2,11 +2,11 @@ package b2;
 
 import java.util.Arrays;
 public final class c {
-    public static final c f3703c = new c(new a[0]);
+    public static final c f3701c = new c(new a[0]);
     public static final a d;
     public static final String e;
-    public final int f3704a;
-    public final a[] f3705b;
+    public final int f3702a;
+    public final a[] f3703b;
 
     static {
         a aVar = new a(-1, -1, new int[0], new o0[0], new long[0], new String[0], new b[0]);
@@ -15,16 +15,16 @@ public final class c {
         int max = Math.max(0, length);
         int[] copyOf = Arrays.copyOf(iArr, max);
         Arrays.fill(copyOf, length, max, 0);
-        long[] jArr = aVar.f3686f;
+        long[] jArr = aVar.f3684f;
         int length2 = jArr.length;
         int max2 = Math.max(0, length2);
         long[] copyOf2 = Arrays.copyOf(jArr, max2);
         Arrays.fill(copyOf2, length2, max2, -9223372036854775807L);
         o0[] o0VarArr = (o0[]) Arrays.copyOf(aVar.d, 0);
-        String[] strArr = (String[]) Arrays.copyOf(aVar.f3687g, 0);
+        String[] strArr = (String[]) Arrays.copyOf(aVar.f3685g, 0);
         b[] bVarArr = aVar.h;
-        d = new a(0, aVar.f3684b, copyOf, o0VarArr, copyOf2, strArr, (b[]) Arrays.copyOf(bVarArr, Math.max(0, bVarArr.length)));
-        String str = e2.m0.f8254a;
+        d = new a(0, aVar.f3682b, copyOf, o0VarArr, copyOf2, strArr, (b[]) Arrays.copyOf(bVarArr, Math.max(0, bVarArr.length)));
+        String str = e2.m0.f8252a;
         e = Integer.toString(1, 36);
         Integer.toString(2, 36);
         Integer.toString(3, 36);
@@ -32,22 +32,22 @@ public final class c {
     }
 
     public c(a[] aVarArr) {
-        this.f3704a = aVarArr.length;
-        this.f3705b = aVarArr;
+        this.f3702a = aVarArr.length;
+        this.f3703b = aVarArr;
     }
 
     public final a a(int i10) {
         if (i10 < 0) {
             return d;
         }
-        return this.f3705b[i10];
+        return this.f3703b[i10];
     }
 
     public final boolean equals(Object obj) {
         if (this != obj) {
             if (obj != null && c.class == obj.getClass()) {
                 c cVar = (c) obj;
-                if (this.f3704a == cVar.f3704a && Arrays.equals(this.f3705b, cVar.f3705b)) {
+                if (this.f3702a == cVar.f3702a && Arrays.equals(this.f3703b, cVar.f3703b)) {
                     return true;
                 }
                 return false;
@@ -58,14 +58,14 @@ public final class c {
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(this.f3705b) + (((((this.f3704a * 961) + ((int) 0)) * 31) + ((int) (-9223372036854775807L))) * 961);
+        return Arrays.hashCode(this.f3703b) + (((((this.f3702a * 961) + ((int) 0)) * 31) + ((int) (-9223372036854775807L))) * 961);
     }
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("AdPlaybackState(adsId=null, adResumePositionUs=0, adGroups=[");
         int i10 = 0;
         while (true) {
-            a[] aVarArr = this.f3705b;
+            a[] aVarArr = this.f3703b;
             if (i10 < aVarArr.length) {
                 sb2.append("adGroup(timeUs=0, ads=[");
                 aVarArr[i10].getClass();
@@ -94,7 +94,7 @@ public final class c {
                         sb2.append('_');
                     }
                     sb2.append(", durationUs=");
-                    sb2.append(aVarArr[i10].f3686f[i11]);
+                    sb2.append(aVarArr[i10].f3684f[i11]);
                     sb2.append(')');
                     if (i11 < aVarArr[i10].e.length - 1) {
                         sb2.append(", ");

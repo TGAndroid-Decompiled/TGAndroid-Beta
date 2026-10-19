@@ -12,7 +12,7 @@ public final class g {
 
     public g() {
         this.f259a = 2;
-        this.f260b = m0.f8255b;
+        this.f260b = m0.f8253b;
     }
 
     public void a() {
@@ -166,12 +166,12 @@ public final class g {
     public long i(int i10) {
         if (i10 <= 32) {
             int g10 = g(i10);
-            String str = m0.f8254a;
+            String str = m0.f8252a;
             return 4294967295L & g10;
         }
         int g11 = g(i10 - 32);
         int g12 = g(32);
-        String str2 = m0.f8254a;
+        String str2 = m0.f8252a;
         return (4294967295L & g12) | ((g11 & 4294967295L) << 32);
     }
 
@@ -196,8 +196,8 @@ public final class g {
     }
 
     public void l(x xVar) {
-        k(xVar.f8295c, xVar.f8293a);
-        m(xVar.f8294b * 8);
+        k(xVar.f8293c, xVar.f8291a);
+        m(xVar.f8292b * 8);
     }
 
     public void m(int i10) {

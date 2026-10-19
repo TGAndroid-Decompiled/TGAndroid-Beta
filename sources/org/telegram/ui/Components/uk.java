@@ -2,57 +2,57 @@ package org.telegram.ui.Components;
 
 import org.telegram.messenger.AndroidUtilities;
 public final class uk implements Runnable {
-    public final int f31010a;
-    public final al f31011b;
+    public final int f31008a;
+    public final al f31009b;
 
     public uk(al alVar, int i10) {
-        this.f31010a = i10;
-        this.f31011b = alVar;
+        this.f31008a = i10;
+        this.f31009b = alVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f31010a) {
+        switch (this.f31008a) {
             case 0:
-                this.f31011b.Z();
+                this.f31009b.Z();
                 return;
             case 1:
-                al alVar = this.f31011b;
+                al alVar = this.f31009b;
                 EditTextBoldCursor editTextBoldCursor = alVar.P;
-                if (!alVar.H && !alVar.K0 && !alVar.f28225b.isDismissed() && alVar.I0 && alVar.Q0 == null && editTextBoldCursor.hasFocus() && alVar.isShown()) {
+                if (!alVar.H && !alVar.K0 && !alVar.f28223b.isDismissed() && alVar.I0 && alVar.Q0 == null && editTextBoldCursor.hasFocus() && alVar.isShown()) {
                     AndroidUtilities.showKeyboard(editTextBoldCursor);
                     return;
                 }
                 return;
             case 2:
-                al alVar2 = this.f31011b;
+                al alVar2 = this.f31009b;
                 if (!alVar2.H && alVar2.I0 && alVar2.isShown()) {
                     alVar2.c0();
                     return;
                 }
                 return;
             case 3:
-                al alVar3 = this.f31011b;
+                al alVar3 = this.f31009b;
                 if (!alVar3.H) {
-                    float f7 = alVar3.f24609j0;
-                    if (f7 < 1.0f && alVar3.f24608i0 == null) {
+                    float f7 = alVar3.f24607j0;
+                    if (f7 < 1.0f && alVar3.f24606i0 == null) {
                         o1.k kVar = new o1.k(new o1.j(f7));
-                        alVar3.f24608i0 = kVar;
+                        alVar3.f24606i0 = kVar;
                         o1.l lVar = new o1.l(1.0f);
                         lVar.a(0.55f);
                         lVar.b(65.0f);
-                        kVar.f17561u = lVar;
-                        alVar3.f24608i0.e(0.001f);
-                        alVar3.f24608i0.b(new l7(alVar3, 4));
-                        alVar3.f24608i0.a(new hb(alVar3, 2));
-                        alVar3.f24608i0.h();
+                        kVar.f17559u = lVar;
+                        alVar3.f24606i0.e(0.001f);
+                        alVar3.f24606i0.b(new l7(alVar3, 4));
+                        alVar3.f24606i0.a(new hb(alVar3, 2));
+                        alVar3.f24606i0.h();
                         return;
                     }
                     return;
                 }
                 return;
             case 4:
-                al alVar4 = this.f31011b;
+                al alVar4 = this.f31009b;
                 if (alVar4.I0 && !alVar4.H) {
                     alVar4.b0();
                     if (alVar4.J0) {
@@ -63,9 +63,9 @@ public final class uk implements Runnable {
                 }
                 return;
             default:
-                al alVar5 = this.f31011b;
+                al alVar5 = this.f31009b;
                 if (!alVar5.m0) {
-                    alVar5.f24611l0.setVisibility(4);
+                    alVar5.f24609l0.setVisibility(4);
                     return;
                 }
                 return;

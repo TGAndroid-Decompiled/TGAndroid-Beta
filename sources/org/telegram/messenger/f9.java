@@ -1,36 +1,38 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
+import android.content.SharedPreferences;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
 public final class f9 implements Runnable {
-    public final int f18353a = 1;
-    public final MediaDataController f18354b;
-    public final boolean f18355c;
-    public final int d;
-    public final ArrayList e;
+    public final int f18357a;
+    public final MediaDataController f18358b;
+    public final TLRPC.TL_error f18359c;
+    public final TLObject d;
+    public final SharedPreferences e;
+    public final boolean[] f18360f;
 
-    public f9(MediaDataController mediaDataController, boolean z10, int i10, ArrayList arrayList) {
-        this.f18354b = mediaDataController;
-        this.f18355c = z10;
-        this.d = i10;
-        this.e = arrayList;
+    public f9(MediaDataController mediaDataController, TLRPC.TL_error tL_error, TLObject tLObject, SharedPreferences sharedPreferences, boolean[] zArr, int i10) {
+        this.f18357a = i10;
+        this.f18358b = mediaDataController;
+        this.f18359c = tL_error;
+        this.d = tLObject;
+        this.e = sharedPreferences;
+        this.f18360f = zArr;
     }
 
     @Override
     public final void run() {
-        switch (this.f18353a) {
+        switch (this.f18357a) {
             case 0:
-                this.f18354b.lambda$loadRecents$48(this.f18355c, this.e, this.d);
+                SharedPreferences sharedPreferences = this.e;
+                boolean[] zArr = this.f18360f;
+                this.f18358b.lambda$loadRecentAndTopReactions$238(this.f18359c, this.d, sharedPreferences, zArr);
                 return;
             default:
-                this.f18354b.lambda$processLoadedRecentDocuments$53(this.f18355c, this.d, this.e);
+                SharedPreferences sharedPreferences2 = this.e;
+                boolean[] zArr2 = this.f18360f;
+                this.f18358b.lambda$loadRecentAndTopReactions$236(this.f18359c, this.d, sharedPreferences2, zArr2);
                 return;
         }
-    }
-
-    public f9(MediaDataController mediaDataController, boolean z10, ArrayList arrayList, int i10) {
-        this.f18354b = mediaDataController;
-        this.f18355c = z10;
-        this.e = arrayList;
-        this.d = i10;
     }
 }

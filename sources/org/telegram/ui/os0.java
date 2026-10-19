@@ -9,12 +9,12 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 public final class os0 extends AnimatorListenerAdapter {
-    public final int f39975a;
-    public final PhotoViewer f39976b;
+    public final int f39966a;
+    public final PhotoViewer f39967b;
 
     public os0(PhotoViewer photoViewer, int i10) {
-        this.f39975a = i10;
-        this.f39976b = photoViewer;
+        this.f39966a = i10;
+        this.f39967b = photoViewer;
     }
 
     @Override
@@ -22,15 +22,15 @@ public final class os0 extends AnimatorListenerAdapter {
         boolean z10;
         boolean z11;
         org.telegram.ui.Components.ti tiVar;
-        int i10 = this.f39975a;
-        PhotoViewer photoViewer = this.f39976b;
+        int i10 = this.f39966a;
+        PhotoViewer photoViewer = this.f39967b;
         switch (i10) {
             case 0:
                 photoViewer.f33373p6 = null;
                 org.telegram.ui.Components.nf0 nf0Var = photoViewer.C1;
                 if (nf0Var != null) {
-                    if (nf0Var.f28765b.j()) {
-                        photoViewer.f33236a1.setColorFilter(new PorterDuffColorFilter(photoViewer.z1(org.telegram.ui.ActionBar.h6.f21402zf), PorterDuff.Mode.MULTIPLY));
+                    if (nf0Var.f28763b.j()) {
+                        photoViewer.f33236a1.setColorFilter(new PorterDuffColorFilter(photoViewer.z1(org.telegram.ui.ActionBar.h6.f21400zf), PorterDuff.Mode.MULTIPLY));
                     } else {
                         photoViewer.f33236a1.setColorFilter((ColorFilter) null);
                     }
@@ -49,7 +49,7 @@ public final class os0 extends AnimatorListenerAdapter {
             case 3:
                 photoViewer.L1.o0(false);
                 gt0 gt0Var = photoViewer.L1;
-                gt0Var.f45495u1.setTypeface(qg.v0.e(gt0Var.P1).f44673j);
+                gt0Var.f45497u1.setTypeface(qg.v0.e(gt0Var.P1).f44675j);
                 gt0Var.Z0.setVisibility(0);
                 gt0Var.W0.setVisibility(0);
                 gt0Var.X0.setVisibility(0);
@@ -108,7 +108,7 @@ public final class os0 extends AnimatorListenerAdapter {
                 if (runnable != null) {
                     qn qnVar = photoViewer.l4;
                     if (qnVar == null && (tiVar = photoViewer.a2) != null) {
-                        org.telegram.ui.ActionBar.n2 n2Var = tiVar.f30536f0;
+                        org.telegram.ui.ActionBar.n2 n2Var = tiVar.f30534f0;
                         if (n2Var instanceof qn) {
                             qnVar = (qn) n2Var;
                         }

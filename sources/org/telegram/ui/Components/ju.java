@@ -1,34 +1,34 @@
 package org.telegram.ui.Components;
 public final class ju implements Runnable {
-    public final int f27602a;
-    public final ku f27603b;
+    public final int f27600a;
+    public final ku f27601b;
 
     public ju(ku kuVar, int i10) {
-        this.f27602a = i10;
-        this.f27603b = kuVar;
+        this.f27600a = i10;
+        this.f27601b = kuVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f27602a) {
+        switch (this.f27600a) {
             case 0:
-                ku kuVar = this.f27603b;
+                ku kuVar = this.f27601b;
                 kuVar.post(new ju(kuVar, 1));
                 return;
             case 1:
-                ku kuVar2 = this.f27603b;
+                ku kuVar2 = this.f27601b;
                 kuVar2.invalidateSpoilers();
                 kuVar2.b();
                 return;
             case 2:
-                ku.a(this.f27603b);
+                ku.a(this.f27601b);
                 return;
             case 3:
-                ku kuVar3 = this.f27603b;
+                ku kuVar3 = this.f27601b;
                 kuVar3.post(new ju(kuVar3, 4));
                 return;
             default:
-                this.f27603b.setSpoilersRevealed(false, true);
+                this.f27601b.setSpoilersRevealed(false, true);
                 return;
         }
     }

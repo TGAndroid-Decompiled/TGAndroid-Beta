@@ -27,16 +27,16 @@ public final class f extends i2.b {
     public Bitmap X;
     public boolean Y;
     public j5.c Z;
-    public j5.c f44346a0;
-    public int f44347b0;
-    public boolean f44348c0;
+    public j5.c f44348a0;
+    public int f44349b0;
+    public boolean f44350c0;
 
     public f(j jVar) {
         super(4);
         this.I = jVar;
-        this.V = d.f44342a;
+        this.V = d.f44344a;
         this.J = new h(0, 0);
-        this.N = e.f44343c;
+        this.N = e.f44345c;
         this.K = new ArrayDeque();
         this.P = -9223372036854775807L;
         this.O = -9223372036854775807L;
@@ -59,7 +59,7 @@ public final class f extends i2.b {
     }
 
     public final void H() {
-        if (!this.f44348c0) {
+        if (!this.f44350c0) {
             return;
         }
         w wVar = this.S;
@@ -74,8 +74,8 @@ public final class f extends i2.b {
         if (bVar != null) {
             bVar.release();
         }
-        this.T = new b(jVar.f15925a);
-        this.f44348c0 = false;
+        this.T = new b(jVar.f15923a);
+        this.f44350c0 = false;
     }
 
     public final void I() {
@@ -105,7 +105,7 @@ public final class f extends i2.b {
             dVar = null;
         }
         if (dVar == null) {
-            dVar = d.f44342a;
+            dVar = d.f44344a;
         }
         this.V = dVar;
     }
@@ -135,7 +135,7 @@ public final class f extends i2.b {
     @Override
     public final void n() {
         this.S = null;
-        this.N = e.f44343c;
+        this.N = e.f44345c;
         this.K.clear();
         I();
         this.V.getClass();
@@ -153,7 +153,7 @@ public final class f extends i2.b {
         this.L = false;
         this.X = null;
         this.Z = null;
-        this.f44346a0 = null;
+        this.f44348a0 = null;
         this.Y = false;
         this.U = null;
         b bVar = this.T;
@@ -183,16 +183,16 @@ public final class f extends i2.b {
     public final void x(long j10, long j11) {
         if (!this.M) {
             if (this.S == null) {
-                qf.b bVar = this.f12315c;
+                qf.b bVar = this.f12313c;
                 bVar.A();
                 h hVar = this.J;
                 hVar.clear();
                 int w9 = w(bVar, hVar, 2);
                 if (w9 == -5) {
-                    w wVar = (w) bVar.f44438c;
+                    w wVar = (w) bVar.f44440c;
                     wVar.getClass();
                     this.S = wVar;
-                    this.f44348c0 = true;
+                    this.f44350c0 = true;
                 } else if (w9 == -4) {
                     u6.p(hVar.isEndOfStream());
                     this.L = true;

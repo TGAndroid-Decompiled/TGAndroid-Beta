@@ -5,24 +5,24 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 public final class i4 implements Runnable {
-    public final int f37871a;
-    public final int f37872b;
-    public final Object f37873c;
+    public final int f37842a;
+    public final int f37843b;
+    public final Object f37844c;
     public final Object d;
 
     public i4(int i10, Object obj, Object obj2, int i11) {
-        this.f37871a = i11;
-        this.f37872b = i10;
-        this.f37873c = obj;
+        this.f37842a = i11;
+        this.f37843b = i10;
+        this.f37844c = obj;
         this.d = obj2;
     }
 
     private final void a() {
         int i10;
-        org.telegram.ui.Components.i21 i21Var = (org.telegram.ui.Components.i21) this.f37873c;
+        org.telegram.ui.Components.i21 i21Var = (org.telegram.ui.Components.i21) this.f37844c;
         String str = (String) this.d;
-        int i11 = this.f37872b;
-        org.telegram.ui.Components.h21 h21Var = i21Var.f27049r.f24399n;
+        int i11 = this.f37843b;
+        org.telegram.ui.Components.h21 h21Var = i21Var.f27047r.f24397n;
         try {
             String lowerCase = str.trim().toLowerCase();
             if (lowerCase.length() == 0) {
@@ -48,7 +48,7 @@ public final class i4 implements Runnable {
             int size = h21Var.d.size();
             for (int i13 = 0; i13 < size; i13++) {
                 ArrayList arrayList3 = (ArrayList) h21Var.d.get(i13);
-                String i14 = org.telegram.ui.ActionBar.g5.i(((org.telegram.ui.ActionBar.j6) arrayList3.get(0)).f21458f);
+                String i14 = org.telegram.ui.ActionBar.g5.i(((org.telegram.ui.ActionBar.j6) arrayList3.get(0)).f21456f);
                 String lowerCase2 = i14.toLowerCase();
                 int i15 = 0;
                 while (true) {
@@ -75,23 +75,23 @@ public final class i4 implements Runnable {
     }
 
     public i4(Object obj, int i10, Object obj2, int i11) {
-        this.f37871a = i11;
-        this.f37873c = obj;
-        this.f37872b = i10;
+        this.f37842a = i11;
+        this.f37844c = obj;
+        this.f37843b = i10;
         this.d = obj2;
     }
 
     public i4(Object obj, Object obj2, int i10, int i11) {
-        this.f37871a = i11;
-        this.f37873c = obj;
+        this.f37842a = i11;
+        this.f37844c = obj;
         this.d = obj2;
-        this.f37872b = i10;
+        this.f37843b = i10;
     }
 
     public i4(j4 j4Var, int i10, int[] iArr, int[] iArr2) {
-        this.f37871a = 0;
-        this.f37873c = j4Var;
-        this.f37872b = i10;
+        this.f37842a = 0;
+        this.f37844c = j4Var;
+        this.f37843b = i10;
         this.d = iArr2;
     }
 }

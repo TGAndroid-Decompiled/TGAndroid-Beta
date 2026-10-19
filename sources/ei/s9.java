@@ -13,7 +13,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLRPC;
 public abstract class s9 extends View {
-    public static final int f9819a = 0;
+    public static final int f9817a = 0;
 
     public static void a(int i10, a8 a8Var) {
         p9 p9Var;
@@ -26,11 +26,11 @@ public abstract class s9 extends View {
                     SerializedData serializedData = new SerializedData(Utilities.hexToBytes(string));
                     p9Var = b(serializedData);
                     serializedData.cleanup();
-                    if (p9Var.f9604f.isEmpty() && p9Var.f9602b.isEmpty()) {
+                    if (p9Var.f9602f.isEmpty() && p9Var.f9600b.isEmpty()) {
                         p9Var = new p9();
                     } else {
                         HashSet hashSet = new HashSet();
-                        hashSet.addAll(p9Var.f9603c);
+                        hashSet.addAll(p9Var.f9601c);
                         for (ArrayList arrayList : p9Var.d.values()) {
                             hashSet.addAll(arrayList);
                         }
@@ -46,7 +46,7 @@ public abstract class s9 extends View {
             }
             a8Var.E0 = p9Var;
             a8Var.F0.clear();
-            a8Var.F0.addAll(a8Var.E0.f9602b);
+            a8Var.F0.addAll(a8Var.E0.f9600b);
             if (UserConfig.getInstance(i10).isPremium()) {
                 a8Var.I0 = MessagesController.getInstance(i10).getMainSettings().getInt("story_period", 86400);
             } else {
@@ -91,7 +91,7 @@ public abstract class s9 extends View {
                         hashSet.addAll(arrayList4);
                     }
                     p9 p9Var = new p9(readInt32, arrayList, 0);
-                    ArrayList arrayList5 = p9Var.f9603c;
+                    ArrayList arrayList5 = p9Var.f9601c;
                     arrayList5.clear();
                     arrayList5.addAll(arrayList2);
                     HashMap hashMap2 = p9Var.d;
@@ -107,9 +107,9 @@ public abstract class s9 extends View {
     }
 
     public static void c(SerializedData serializedData, p9 p9Var) {
-        int i10 = p9Var.f9601a;
+        int i10 = p9Var.f9599a;
         HashMap hashMap = p9Var.d;
-        ArrayList arrayList = p9Var.f9603c;
+        ArrayList arrayList = p9Var.f9601c;
         serializedData.writeInt32(i10);
         serializedData.writeInt32(481674261);
         ArrayList arrayList2 = p9Var.e;

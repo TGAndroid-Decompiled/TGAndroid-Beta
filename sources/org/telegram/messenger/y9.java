@@ -1,45 +1,76 @@
 package org.telegram.messenger;
-public final class y9 implements Runnable {
-    public final int f20143a;
-    public final MessagesController f20144b;
-    public final int f20145c;
-    public final long d;
-    public final long e;
 
-    public y9(int i10, long j10, long j11, MessagesController messagesController) {
-        this.f20143a = 2;
-        this.f20144b = messagesController;
-        this.d = j10;
-        this.e = j11;
-        this.f20145c = i10;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class y9 implements RequestDelegate {
+    public final int f20139a;
+    public final MessagesController f20140b;
+    public final long f20141c;
+
+    public y9(MessagesController messagesController, long j10, int i10) {
+        this.f20139a = i10;
+        this.f20140b = messagesController;
+        this.f20141c = j10;
     }
 
     @Override
-    public final void run() {
-        switch (this.f20143a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f20139a) {
             case 0:
-                long j10 = this.d;
-                long j11 = this.e;
-                this.f20144b.lambda$sendTyping$170(this.f20145c, j10, j11);
+                this.f20140b.lambda$markMessageAsRead2$234(this.f20141c, tLObject, tL_error);
                 return;
             case 1:
-                long j12 = this.d;
-                long j13 = this.e;
-                this.f20144b.lambda$sendTyping$172(this.f20145c, j12, j13);
+                this.f20140b.lambda$markMessageAsRead2$235(this.f20141c, tLObject, tL_error);
+                return;
+            case 2:
+                this.f20140b.lambda$pinDialog$363(this.f20141c, tLObject, tL_error);
+                return;
+            case 3:
+                this.f20140b.lambda$saveWallpaperToServer$120(this.f20141c, tLObject, tL_error);
+                return;
+            case 4:
+                this.f20140b.lambda$updateTimerProc$159(this.f20141c, tLObject, tL_error);
+                return;
+            case 5:
+                this.f20140b.lambda$deleteUserPhoto$114(this.f20141c, tLObject, tL_error);
+                return;
+            case 6:
+                this.f20140b.lambda$reorderPinnedDialogs$362(this.f20141c, tLObject, tL_error);
+                return;
+            case 7:
+                this.f20140b.lambda$loadPeerSettings$79(this.f20141c, tLObject, tL_error);
+                return;
+            case 8:
+                this.f20140b.lambda$setChannelSlowMode$93(this.f20141c, tLObject, tL_error);
+                return;
+            case 9:
+                this.f20140b.lambda$loadChannelAdmins$64(this.f20141c, tLObject, tL_error);
+                return;
+            case 10:
+                this.f20140b.lambda$deleteDialog$140(this.f20141c, tLObject, tL_error);
+                return;
+            case 11:
+                this.f20140b.lambda$addDialogToFolder$197(this.f20141c, tLObject, tL_error);
+                return;
+            case 12:
+                this.f20140b.lambda$setDefaultSendAs$274(this.f20141c, tLObject, tL_error);
+                return;
+            case 13:
+                this.f20140b.lambda$deleteMessages$121(this.f20141c, tLObject, tL_error);
+                return;
+            case 14:
+                this.f20140b.lambda$deleteMessages$122(this.f20141c, tLObject, tL_error);
+                return;
+            case 15:
+                this.f20140b.lambda$deleteMessages$124(this.f20141c, tLObject, tL_error);
+                return;
+            case 16:
+                this.f20140b.lambda$setBoostsToUnblockRestrictions$95(this.f20141c, tLObject, tL_error);
                 return;
             default:
-                long j14 = this.e;
-                int i10 = this.f20145c;
-                this.f20144b.lambda$checkDeletingTask$83(this.d, j14, i10);
+                this.f20140b.lambda$markDialogAsUnread$359(this.f20141c, tLObject, tL_error);
                 return;
         }
-    }
-
-    public y9(MessagesController messagesController, int i10, long j10, long j11, int i11) {
-        this.f20143a = i11;
-        this.f20144b = messagesController;
-        this.f20145c = i10;
-        this.d = j10;
-        this.e = j11;
     }
 }

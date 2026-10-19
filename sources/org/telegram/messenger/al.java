@@ -1,28 +1,50 @@
 package org.telegram.messenger;
 
-import org.telegram.messenger.LanguageDetector;
-public final class al implements LanguageDetector.StringCallback, LanguageDetector.ExceptionCallback {
-    public final TranslateController f17902a;
-    public final MessageObject f17903b;
-    public final long f17904c;
-    public final int d;
+import org.telegram.messenger.TranslateController;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class al implements Runnable {
+    public final int f17903a;
+    public final BaseController f17904b;
+    public final Object f17905c;
+    public final Object d;
+    public final Object e;
+    public final Runnable f17906f;
+    public final long h;
 
-    public al(TranslateController translateController, MessageObject messageObject, long j10, int i10) {
-        this.f17902a = translateController;
-        this.f17903b = messageObject;
-        this.f17904c = j10;
-        this.d = i10;
+    public al(TopicsController topicsController, TLObject tLObject, long j10, TLRPC.TL_messages_forumTopics tL_messages_forumTopics, a0.h hVar, Runnable runnable) {
+        this.f17903a = 2;
+        this.f17904b = topicsController;
+        this.f17905c = tLObject;
+        this.h = j10;
+        this.d = tL_messages_forumTopics;
+        this.e = hVar;
+        this.f17906f = runnable;
     }
 
     @Override
-    public void run(Exception exc) {
-        this.f17902a.lambda$checkLanguage$15(this.f17903b, this.f17904c, this.d, exc);
+    public final void run() {
+        switch (this.f17903a) {
+            case 0:
+                ((TranslateController) this.f17904b).lambda$translatePhoto$43((MessageObject) this.f17905c, (String) this.d, (TranslateController.MessageKey) this.e, this.f17906f, this.h);
+                return;
+            case 1:
+                ((TranslateController) this.f17904b).lambda$translatePhoto$45((MessageObject) this.f17905c, (String) this.d, (TranslateController.MessageKey) this.e, this.f17906f, this.h);
+                return;
+            default:
+                Runnable runnable = this.f17906f;
+                ((TopicsController) this.f17904b).lambda$reloadTopics$14((TLObject) this.f17905c, this.h, (TLRPC.TL_messages_forumTopics) this.d, (a0.h) this.e, runnable);
+                return;
+        }
     }
 
-    @Override
-    public void run(String str) {
-        long j10 = this.f17904c;
-        int i10 = this.d;
-        this.f17902a.lambda$checkLanguage$13(this.f17903b, j10, i10, str);
+    public al(TranslateController translateController, MessageObject messageObject, String str, TranslateController.MessageKey messageKey, Runnable runnable, long j10, int i10) {
+        this.f17903a = i10;
+        this.f17904b = translateController;
+        this.f17905c = messageObject;
+        this.d = str;
+        this.e = messageKey;
+        this.f17906f = runnable;
+        this.h = j10;
     }
 }

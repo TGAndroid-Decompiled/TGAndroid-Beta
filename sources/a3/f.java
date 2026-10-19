@@ -82,7 +82,7 @@ public final class f implements p0 {
     @Override
     public final void g(a6.i iVar) {
         this.h = iVar;
-        this.f84i = j9.r.f14358a;
+        this.f84i = j9.r.f14356a;
     }
 
     @Override
@@ -121,10 +121,10 @@ public final class f implements p0 {
         long j11;
         long j12;
         u6.p(list.isEmpty());
-        int i11 = wVar.f4136z;
+        int i11 = wVar.f4134z;
         int i12 = wVar.A;
         b2.w wVar2 = this.f82f;
-        int i13 = wVar2.f4136z;
+        int i13 = wVar2.f4134z;
         g0 g0Var = this.f81c;
         if (i11 != i13 || i12 != wVar2.A) {
             e2.j0 j0Var = g0Var.d;
@@ -142,7 +142,7 @@ public final class f implements p0 {
         }
         this.f82f = wVar;
         if (j10 != this.f83g) {
-            if (g0Var.f110f.f8282c == 0) {
+            if (g0Var.f110f.f8280c == 0) {
                 g0Var.f108b.e(i10);
                 g0Var.f115l = j10;
             } else {
@@ -176,9 +176,9 @@ public final class f implements p0 {
         g0 g0Var = this.f81c;
         e2.j0 j0Var = g0Var.d;
         e2.s sVar = g0Var.f110f;
-        sVar.f8280a = 0;
-        sVar.f8281b = -1;
-        sVar.f8282c = 0;
+        sVar.f8278a = 0;
+        sVar.f8279b = -1;
+        sVar.f8280c = 0;
         g0Var.h = -9223372036854775807L;
         g0Var.f112i = -9223372036854775807L;
         g0Var.f113j = -9223372036854775807L;
@@ -217,29 +217,29 @@ public final class f implements p0 {
         this.d.add(jVar);
         g0 g0Var = this.f81c;
         e2.s sVar = g0Var.f110f;
-        int i10 = sVar.f8282c;
+        int i10 = sVar.f8280c;
         long[] jArr = (long[]) sVar.e;
         if (i10 == jArr.length) {
             int length = jArr.length << 1;
             if (length >= 0) {
                 long[] jArr2 = new long[length];
                 int length2 = jArr.length;
-                int i11 = sVar.f8280a;
+                int i11 = sVar.f8278a;
                 int i12 = length2 - i11;
                 System.arraycopy(jArr, i11, jArr2, 0, i12);
                 System.arraycopy((long[]) sVar.e, 0, jArr2, i12, i11);
-                sVar.f8280a = 0;
-                sVar.f8281b = sVar.f8282c - 1;
+                sVar.f8278a = 0;
+                sVar.f8279b = sVar.f8280c - 1;
                 sVar.e = jArr2;
                 sVar.d = length - 1;
             } else {
                 throw new IllegalStateException();
             }
         }
-        int i13 = (sVar.f8281b + 1) & sVar.d;
-        sVar.f8281b = i13;
+        int i13 = (sVar.f8279b + 1) & sVar.d;
+        sVar.f8279b = i13;
         ((long[]) sVar.e)[i13] = j10;
-        sVar.f8282c++;
+        sVar.f8280c++;
         g0Var.h = j10;
         g0Var.f113j = -9223372036854775807L;
         this.f84i.execute(new d(this, 0));

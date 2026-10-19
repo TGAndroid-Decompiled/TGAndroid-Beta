@@ -2,17 +2,17 @@ package ei;
 
 import org.telegram.ui.oz0;
 public final class ob extends qb {
-    public final int f9572g;
+    public final int f9570g;
     public final Object h;
 
     public ob(Object obj, int i10) {
-        this.f9572g = i10;
+        this.f9570g = i10;
         this.h = obj;
     }
 
     @Override
     public final void e() {
-        switch (this.f9572g) {
+        switch (this.f9570g) {
             case 0:
                 oz0 oz0Var = (oz0) this.h;
                 oz0Var.Q = false;
@@ -34,7 +34,7 @@ public final class ob extends qb {
 
     @Override
     public final void f(boolean z10) {
-        switch (this.f9572g) {
+        switch (this.f9570g) {
             case 0:
                 oz0 oz0Var = (oz0) this.h;
                 oz0Var.Q = true;
@@ -45,10 +45,10 @@ public final class ob extends qb {
                 if (t10 != null) {
                     t10.m0(false);
                 }
-                ci.r3 r3Var = this.f9668f;
+                ci.r3 r3Var = this.f9666f;
                 if (r3Var != null) {
                     r3Var.setTranslationX(0.0f);
-                    this.f9668f.setTranslationY(0.0f);
+                    this.f9666f.setTranslationY(0.0f);
                     return;
                 }
                 return;

@@ -10,17 +10,17 @@ public final class x4 extends us {
 
     public x4(o5 o5Var, Context context) {
         super(context);
-        this.G = org.telegram.ui.ActionBar.h6.c0(AndroidUtilities.dp(22.0f), o5Var.getThemedColor(org.telegram.ui.ActionBar.h6.f20989d6));
+        this.G = org.telegram.ui.ActionBar.h6.c0(AndroidUtilities.dp(22.0f), o5Var.getThemedColor(org.telegram.ui.ActionBar.h6.f20987d6));
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        int ceil = (int) Math.ceil(getMetadata().f17403g.f17409a);
+        int ceil = (int) Math.ceil(getMetadata().f17401g.f17407a);
         if (ceil > 0) {
             int width = getWidth();
             ShapeDrawable shapeDrawable = this.G;
             shapeDrawable.setBounds(0, 0, width, ceil);
-            shapeDrawable.setAlpha((int) (getMetadata().f17401c.f17409a * 255.0f));
+            shapeDrawable.setAlpha((int) (getMetadata().f17399c.f17407a * 255.0f));
             shapeDrawable.draw(canvas);
         }
         super.dispatchDraw(canvas);

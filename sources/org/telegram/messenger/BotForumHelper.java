@@ -20,7 +20,7 @@ import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_update;
 import org.telegram.ui.Components.e61;
 import org.telegram.ui.Components.yq;
-import org.telegram.ui.dj0;
+import org.telegram.ui.ej0;
 public class BotForumHelper extends BaseController {
     private static volatile BotForumHelper[] Instance = new BotForumHelper[4];
     private final DialogTopicIdKeyMap<BotDraftMessage> botTextDraftsByRandomIds;
@@ -29,14 +29,14 @@ public class BotForumHelper extends BaseController {
     private final SharedPreferences preferences;
 
     public static class BotDraftAnimationsPool {
-        private final DialogTopicIdKeyMap<dj0> animators = new DialogTopicIdKeyMap<>();
+        private final DialogTopicIdKeyMap<ej0> animators = new DialogTopicIdKeyMap<>();
         private final SparseIntArray ids = new SparseIntArray();
 
         public void bind(int i10, int i11) {
             this.ids.put(i11, i10);
         }
 
-        public dj0 getAnimator(long j10, int i10, boolean z10) {
+        public ej0 getAnimator(long j10, int i10, boolean z10) {
             if (i10 > 0) {
                 i10 = this.ids.get(i10, 0);
             }
@@ -44,13 +44,13 @@ public class BotForumHelper extends BaseController {
                 return null;
             }
             long j11 = i10;
-            dj0 dj0Var = this.animators.get(j10, 0L, j11);
-            if (dj0Var == null && z10) {
-                dj0 dj0Var2 = new dj0();
-                this.animators.put(j10, 0L, j11, dj0Var2);
-                return dj0Var2;
+            ej0 ej0Var = this.animators.get(j10, 0L, j11);
+            if (ej0Var == null && z10) {
+                ej0 ej0Var2 = new ej0();
+                this.animators.put(j10, 0L, j11, ej0Var2);
+                return ej0Var2;
             }
-            return dj0Var;
+            return ej0Var;
         }
 
         public void removeAnimator(long j10, int i10) {
@@ -157,7 +157,7 @@ public class BotForumHelper extends BaseController {
         e61Var.b(-1);
         e61Var.d();
         TypingBotSpan typingBotSpan = new TypingBotSpan(e61Var, 1);
-        typingBotSpan.setColorKey(org.telegram.ui.ActionBar.h6.f21011ec);
+        typingBotSpan.setColorKey(org.telegram.ui.ActionBar.h6.f21009ec);
         typingBotSpan.setTopOffset(-AndroidUtilities.dp(10.0f));
         spannableStringBuilder.append((CharSequence) " _");
         spannableStringBuilder.setSpan(typingBotSpan, spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 33);
@@ -170,7 +170,7 @@ public class BotForumHelper extends BaseController {
         tL_message.peer_id = getMessagesController().getPeer(j10);
         tL_message.from_id = getMessagesController().getPeer(j10);
         tL_message.local_id = i11;
-        tL_message.f20296id = i11;
+        tL_message.f20294id = i11;
         tL_message.random_id = j11;
         tL_message.message = tL_textWithEntities.text;
         tL_message.entities = tL_textWithEntities.entities;
@@ -300,10 +300,10 @@ public class BotForumHelper extends BaseController {
         tL_messageService.action = tL_messageActionTopicCreate;
         tL_messageService.peer_id = getMessagesController().getPeer(j10);
         tL_messageService.dialog_id = j10;
-        tL_messageService.f20296id = tL_updateMessageID.f20528id;
+        tL_messageService.f20294id = tL_updateMessageID.f20526id;
         tL_messageService.date = (int) (System.currentTimeMillis() / 1000);
-        int i11 = tL_updateMessageID.f20528id;
-        tL_forumTopic.f20327id = i11;
+        int i11 = tL_updateMessageID.f20526id;
+        tL_forumTopic.f20325id = i11;
         tL_forumTopic.my = true;
         tL_forumTopic.flags |= 2;
         tL_forumTopic.topicStartMessage = tL_messageService;
@@ -315,8 +315,8 @@ public class BotForumHelper extends BaseController {
         tL_forumTopic.icon_color = 0;
         tL_forumTopic.title_missing = true;
         getMessagesController().getTopicsController().onTopicCreated(j10, tL_forumTopic, true);
-        performSendBotTopicCreateComplete(j10, tL_updateMessageID.f20528id);
-        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.botForumTopicDidCreate, new BotForumTopicCreateNotification(j10, tL_updateMessageID.f20528id));
+        performSendBotTopicCreateComplete(j10, tL_updateMessageID.f20526id);
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.botForumTopicDidCreate, new BotForumTopicCreateNotification(j10, tL_updateMessageID.f20526id));
     }
 
     public void lambda$onBotForumDraftUpdate$1(long j10, int i10, long j11) {
@@ -349,7 +349,7 @@ public class BotForumHelper extends BaseController {
         tL_messages_createForumTopic.title_missing = true;
         tL_messages_createForumTopic.peer = inputPeer;
         tL_messages_createForumTopic.random_id = j10;
-        getConnectionsManager().sendRequestTyped(tL_messages_createForumTopic, new Object(), new kh(this, peerDialogId, str));
+        getConnectionsManager().sendRequestTyped(tL_messages_createForumTopic, new Object(), new jh(this, peerDialogId, str));
     }
 
     private void performSendBotTopicCreateComplete(long j10, int i10) {
@@ -645,7 +645,7 @@ public class BotForumHelper extends BaseController {
         tL_message.peer_id = getMessagesController().getPeer(j10);
         tL_message.from_id = getMessagesController().getPeer(j10);
         tL_message.local_id = i11;
-        tL_message.f20296id = i11;
+        tL_message.f20294id = i11;
         tL_message.random_id = j11;
         tL_message.message = "";
         tL_message.flags |= 8192;

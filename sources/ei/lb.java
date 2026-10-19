@@ -30,7 +30,7 @@ public final class lb extends r {
     @Override
     public final boolean e() {
         org.telegram.ui.Components.qc qcVar;
-        if (MessagesController.getInstance(this.U).premiumFeaturesBlocked() || ((qcVar = org.telegram.ui.Components.qc.f29589w) != null && qcVar.f29590a == 2)) {
+        if (MessagesController.getInstance(this.U).premiumFeaturesBlocked() || ((qcVar = org.telegram.ui.Components.qc.f29587w) != null && qcVar.f29588a == 2)) {
             return false;
         }
         int i10 = MessagesController.getInstance(this.U).storyCaptionLengthLimitPremium;
@@ -41,20 +41,20 @@ public final class lb extends r {
             int indexOf2 = replaceTags.toString().indexOf("__");
             if (indexOf2 >= 0) {
                 replaceTags.replace(indexOf2, indexOf2 + 2, (CharSequence) "");
-                replaceTags.setSpan(new ForegroundColorSpan(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21048gc, this.f9393a)), indexOf, indexOf2, 33);
+                replaceTags.setSpan(new ForegroundColorSpan(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21046gc, this.f9391a)), indexOf, indexOf2, 33);
                 replaceTags.setSpan(new kb(this, 0), indexOf, indexOf2, 33);
             }
         }
-        org.telegram.ui.Components.qc M = new xc(this.S1.f9985l0, this.f9393a).M(LocaleController.getString(R.string.CaptionPremiumTitle), replaceTags, R.raw.caption_limit);
-        M.f29590a = 2;
-        M.f29596j = 5000;
+        org.telegram.ui.Components.qc M = new xc(this.S1.f9983l0, this.f9391a).M(LocaleController.getString(R.string.CaptionPremiumTitle), replaceTags, R.raw.caption_limit);
+        M.f29588a = 2;
+        M.f29594j = 5000;
         M.k(false);
         return true;
     }
 
     @Override
     public final boolean g() {
-        return this.S1.f10003r0.c();
+        return this.S1.f10001r0.c();
     }
 
     @Override
@@ -84,31 +84,31 @@ public final class lb extends r {
 
     @Override
     public final void i(Bitmap bitmap) {
-        this.S1.f9989n.Z(bitmap, 12.0f);
+        this.S1.f9987n.Z(bitmap, 12.0f);
         Utilities.stackBlurBitmap(bitmap, (int) 12.0f);
     }
 
     @Override
     public final boolean l(float f7, float f10) {
         vb vbVar = this.S1;
-        xa xaVar = vbVar.f10017v1;
+        xa xaVar = vbVar.f10015v1;
         if (xaVar != null && xaVar.R0 != null) {
-            lb lbVar = vbVar.f9958c1;
-            if (!lbVar.f9412p0) {
+            lb lbVar = vbVar.f9956c1;
+            if (!lbVar.f9410p0) {
                 float x10 = lbVar.getX() + f7;
-                float y3 = vbVar.f9958c1.getY() + f10;
-                float x11 = vbVar.f9985l0.getX() + x10;
-                float y10 = vbVar.f9985l0.getY() + y3;
-                float x12 = x11 - vbVar.f9973h0.getX();
-                float y11 = y10 - vbVar.f9973h0.getY();
-                for (int i10 = 0; i10 < vbVar.f10017v1.R0.getChildCount(); i10++) {
-                    View childAt = vbVar.f10017v1.R0.getChildAt(i10);
+                float y3 = vbVar.f9956c1.getY() + f10;
+                float x11 = vbVar.f9983l0.getX() + x10;
+                float y10 = vbVar.f9983l0.getY() + y3;
+                float x12 = x11 - vbVar.f9971h0.getX();
+                float y11 = y10 - vbVar.f9971h0.getY();
+                for (int i10 = 0; i10 < vbVar.f10015v1.R0.getChildCount(); i10++) {
+                    View childAt = vbVar.f10015v1.R0.getChildAt(i10);
                     if (childAt instanceof rg.j) {
                         el0 selectionBounds = ((rg.j) childAt).getSelectionBounds();
                         RectF rectF = AndroidUtilities.rectTmp;
-                        float f11 = selectionBounds.f25947a;
-                        float f12 = selectionBounds.f25948b;
-                        rectF.set(f11, f12, selectionBounds.f25949c + f11, selectionBounds.d + f12);
+                        float f11 = selectionBounds.f25945a;
+                        float f12 = selectionBounds.f25946b;
+                        rectF.set(f11, f12, selectionBounds.f25947c + f11, selectionBounds.d + f12);
                         if (rectF.contains(x12, y11)) {
                             return true;
                         }
@@ -121,7 +121,7 @@ public final class lb extends r {
 
     @Override
     public final void n() {
-        ai.ic icVar = this.S1.f10010t0;
+        ai.ic icVar = this.S1.f10008t0;
         if (icVar != null) {
             icVar.invalidate();
         }
@@ -132,12 +132,12 @@ public final class lb extends r {
         boolean z11;
         a8 a8Var;
         vb vbVar = this.S1;
-        k6 k6Var = vbVar.f9954b1;
+        k6 k6Var = vbVar.f9952b1;
         if (!vbVar.N1 && !z10) {
             ci.i7 storiesController = MessagesController.getInstance(this.U).getStoriesController();
             int A = vbVar.A();
             ci.c7 o10 = storiesController.o();
-            if (o10 == null || !o10.a(storiesController.f5493a, A) || ((a8Var = vbVar.K1) != null && a8Var.f8711g)) {
+            if (o10 == null || !o10.a(storiesController.f5491a, A) || ((a8Var = vbVar.K1) != null && a8Var.f8709g)) {
                 z11 = true;
                 k6Var.setShareEnabled(z11);
             }

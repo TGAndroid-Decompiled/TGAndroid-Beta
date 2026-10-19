@@ -11,16 +11,16 @@ import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.j5;
 import org.telegram.ui.Components.im0;
 public final class k0 extends CountDownTimer {
-    public final r0 f47692a;
+    public final r0 f47694a;
 
     public k0(r0 r0Var) {
         super(Long.MAX_VALUE, 1000L);
-        this.f47692a = r0Var;
+        this.f47694a = r0Var;
     }
 
     @Override
     public final void onTick(long j10) {
-        r0 r0Var = this.f47692a;
+        r0 r0Var = this.f47694a;
         im0 im0Var = r0Var.d;
         ArrayList arrayList = r0Var.Y;
         ArrayList arrayList2 = new ArrayList(arrayList.size());

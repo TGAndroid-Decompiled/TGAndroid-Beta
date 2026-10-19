@@ -16,7 +16,7 @@ public final class js0 extends yh.p2 {
         float f7;
         float f10;
         tv0 tv0Var = this.U;
-        TextView textView = tv0Var.f30721q0;
+        TextView textView = tv0Var.f30719q0;
         textView.setVisibility(0);
         ViewPropertyAnimator animate = textView.animate();
         float f11 = 1.0f;

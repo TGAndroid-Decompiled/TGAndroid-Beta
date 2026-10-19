@@ -1,29 +1,32 @@
 package ai;
 
-import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-public final class t2 implements Utilities.Callback {
-    public final int f2190a;
-    public final Utilities.Callback f2191b;
+public final class t2 implements RequestDelegate {
+    public final int f2182a;
+    public final l7 f2183b;
+    public final TL_stars.TL_starGiftUnique f2184c;
+    public final ag.a d;
+    public final Runnable e;
 
-    public t2(int i10, Utilities.Callback callback) {
-        this.f2190a = i10;
-        this.f2191b = callback;
+    public t2(l7 l7Var, TL_stars.TL_starGiftUnique tL_starGiftUnique, ag.a aVar, Runnable runnable, int i10) {
+        this.f2182a = i10;
+        this.f2183b = l7Var;
+        this.f2184c = tL_starGiftUnique;
+        this.d = aVar;
+        this.e = runnable;
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f2190a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f2182a) {
             case 0:
-                this.f2191b.run((TL_stars.StarGift) obj);
+                l7.E0(this.f2183b, this.f2184c, this.d, this.e, tLObject, tL_error);
                 return;
             default:
-                Boolean bool = (Boolean) obj;
-                Utilities.Callback callback = this.f2191b;
-                if (callback != null) {
-                    callback.run(bool);
-                    return;
-                }
+                l7.t0(this.f2183b, this.f2184c, this.d, this.e, tLObject, tL_error);
                 return;
         }
     }

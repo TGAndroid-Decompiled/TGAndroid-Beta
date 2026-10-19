@@ -15,14 +15,14 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_aicompose;
 import org.telegram.ui.Components.ChatActivityEnterView;
 public final class eh implements Runnable {
-    public final int f36659a;
-    public final Object f36660b;
-    public final Object f36661c;
+    public final int f36650a;
+    public final Object f36651b;
+    public final Object f36652c;
 
     public eh(int i10, Object obj, Object obj2) {
-        this.f36659a = i10;
-        this.f36660b = obj;
-        this.f36661c = obj2;
+        this.f36650a = i10;
+        this.f36651b = obj;
+        this.f36652c = obj2;
     }
 
     @Override
@@ -33,11 +33,11 @@ public final class eh implements Runnable {
         String str;
         String formatString;
         TLRPC.Chat chat;
-        int i10 = this.f36659a;
+        int i10 = this.f36650a;
         MessageObject messageObject = null;
         boolean z10 = false;
-        Object obj = this.f36661c;
-        Object obj2 = this.f36660b;
+        Object obj = this.f36652c;
+        Object obj2 = this.f36651b;
         switch (i10) {
             case 0:
                 ((qn) obj2).pa((TLRPC.Chat) obj);
@@ -90,9 +90,9 @@ public final class eh implements Runnable {
                     qnVar2.K0.setTranslationY(AndroidUtilities.dp(10.0f) + ((view.getTop() - qnVar2.Aa) - qnVar2.X0.getHeight()));
                     qnVar2.X0.addView(qnVar2.K0, w7.z5.e(-1, 100, 87));
                     ei.x3 x3Var = qnVar2.K0;
-                    x3Var.f10082l0 = new ke(qnVar2, 26);
+                    x3Var.f10080l0 = new ke(qnVar2, 26);
                     x3Var.u();
-                    org.telegram.ui.Components.s40.f30169w.b();
+                    org.telegram.ui.Components.s40.f30166w.b();
                     return;
                 }
                 return;
@@ -101,10 +101,10 @@ public final class eh implements Runnable {
                 return;
             case 7:
                 MessageObject messageObject2 = (MessageObject) obj;
-                qn qnVar3 = ((ni) obj2).f39600s;
-                MessageObject messageObject3 = (MessageObject) qnVar3.f40795o6[0].get(messageObject2.getId());
+                qn qnVar3 = ((ni) obj2).f39598s;
+                MessageObject messageObject3 = (MessageObject) qnVar3.f40787o6[0].get(messageObject2.getId());
                 if (messageObject3 != null && messageObject3 != messageObject2) {
-                    MessageObject messageObject4 = (MessageObject) qnVar3.f40795o6[0].get(messageObject2.getId());
+                    MessageObject messageObject4 = (MessageObject) qnVar3.f40787o6[0].get(messageObject2.getId());
                     messageObject4.messageOwner.reactions = messageObject2.messageOwner.reactions;
                     messageObject2 = messageObject4;
                 }
@@ -113,7 +113,7 @@ public final class eh implements Runnable {
                 return;
             case 8:
                 org.telegram.ui.Cells.w0 w0Var = (org.telegram.ui.Cells.w0) obj;
-                qn qnVar4 = ((ul) ((vm) obj2).f42273f).f42006a.Q;
+                qn qnVar4 = ((ul) ((vm) obj2).f42274f).f42005a.Q;
                 int i12 = qn.Ic;
                 qnVar4.Qa();
                 w0Var.getMessageObject().flickerLoading = false;
@@ -121,7 +121,7 @@ public final class eh implements Runnable {
                 return;
             case 9:
                 ei.x3 x3Var2 = (ei.x3) obj;
-                qn qnVar5 = ((cn) obj2).f36032a;
+                qn qnVar5 = ((cn) obj2).f36004a;
                 qnVar5.X0.removeView(x3Var2);
                 if (x3Var2 == qnVar5.A1) {
                     qnVar5.A1 = null;
@@ -130,7 +130,7 @@ public final class eh implements Runnable {
                 return;
             case 10:
                 Long l4 = (Long) obj;
-                qn qnVar6 = ((wm) obj2).f42893d1.f36032a;
+                qn qnVar6 = ((wm) obj2).f42892d1.f36004a;
                 if (l4.longValue() < 0 && (chat = qnVar6.getMessagesController().getChat(Long.valueOf(-l4.longValue()))) != null) {
                     str = chat.title;
                 } else {
@@ -156,15 +156,15 @@ public final class eh implements Runnable {
                 TLRPC.TL_channels_checkUsername tL_channels_checkUsername = new TLRPC.TL_channels_checkUsername();
                 tL_channels_checkUsername.username = str2;
                 tL_channels_checkUsername.channel = woVar.getMessagesController().getInputChannel(woVar.Z);
-                woVar.f42912h0 = woVar.getConnectionsManager().sendRequest(tL_channels_checkUsername, new ca(woVar, str2, tL_channels_checkUsername, 6), 2);
+                woVar.f42911h0 = woVar.getConnectionsManager().sendRequest(tL_channels_checkUsername, new ca(woVar, str2, tL_channels_checkUsername, 6), 2);
                 return;
             case 13:
                 wo woVar2 = (wo) obj2;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj;
                 z10 = (tL_error2 == null || !tL_error2.text.equals("CHANNELS_ADMIN_PUBLIC_TOO_MUCH")) ? true : true;
-                woVar2.f42906c0 = z10;
-                if (!z10 && woVar2.getUserConfig().isPremium() && !woVar2.f42907d0 && woVar2.f42928x != null) {
-                    woVar2.f42907d0 = true;
+                woVar2.f42905c0 = z10;
+                if (!z10 && woVar2.getUserConfig().isPremium() && !woVar2.f42906d0 && woVar2.f42927x != null) {
+                    woVar2.f42906d0 = true;
                     woVar2.b0();
                     woVar2.getConnectionsManager().sendRequest(new TLRPC.TL_channels_getAdminedPublicChannels(), new jo(woVar2, 2));
                     return;
@@ -189,20 +189,20 @@ public final class eh implements Runnable {
                         }
                     }
                 }
-                ipVar.f38068w = false;
-                ipVar.f38069x = true;
+                ipVar.f38070w = false;
+                ipVar.f38071x = true;
                 ipVar.b0();
                 return;
             case 16:
-                ((ep) obj2).f36740x.d.P = false;
+                ((ep) obj2).f36734x.d.P = false;
                 ((org.telegram.ui.Components.c90) obj).run();
                 return;
             case 17:
-                ((ep) obj2).f36740x.d.O = false;
+                ((ep) obj2).f36734x.d.O = false;
                 ((org.telegram.ui.Components.d90) obj).run();
                 return;
             case 18:
-                ip ipVar2 = ((ep) obj2).f36740x.d;
+                ip ipVar2 = ((ep) obj2).f36734x.d;
                 ipVar2.O = false;
                 ipVar2.P = false;
                 ((Runnable) obj).run();
@@ -212,23 +212,23 @@ public final class eh implements Runnable {
                 epVar.getClass();
                 ((TLRPC.Chat) obj).join_request = true;
                 epVar.h = true;
-                epVar.f25869c.setChecked(true);
+                epVar.f25867c.setChecked(true);
                 return;
             case 20:
                 hr hrVar = (hr) obj2;
                 hrVar.getClass();
-                hrVar.getMessagesController().loadFullChat(((TLRPC.Updates) obj).chats.get(0).f20275id, 0, true);
+                hrVar.getMessagesController().loadFullChat(((TLRPC.Updates) obj).chats.get(0).f20273id, 0, true);
                 return;
             case 21:
                 TLRPC.User user = (TLRPC.User) obj;
-                hr hrVar2 = ((wq) obj2).f42936a;
+                hr hrVar2 = ((wq) obj2).f42935a;
                 if (org.telegram.ui.Components.xc.a(hrVar2)) {
                     org.telegram.ui.Components.xc.C(hrVar2, user.first_name).j();
                     return;
                 }
                 return;
             case 22:
-                ((org.telegram.ui.Components.e0) obj2).f25695u0.unsave((TL_aicompose.TL_aiComposeTone) obj);
+                ((org.telegram.ui.Components.e0) obj2).f25693u0.unsave((TL_aicompose.TL_aiComposeTone) obj);
                 return;
             case 23:
                 org.telegram.ui.Components.q qVar = (org.telegram.ui.Components.q) obj2;
@@ -262,13 +262,13 @@ public final class eh implements Runnable {
             case 26:
                 org.telegram.ui.Components.qc qcVar = (org.telegram.ui.Components.qc) obj2;
                 CharSequence charSequence = (CharSequence) obj;
-                qcVar.f29600n = true;
+                qcVar.f29598n = true;
                 org.telegram.ui.Components.ub ubVar = qcVar.e;
                 if (ubVar instanceof org.telegram.ui.Components.vb) {
                     org.telegram.ui.Components.wb wbVar = (org.telegram.ui.Components.wb) ((org.telegram.ui.Components.vb) ubVar);
-                    wbVar.f32593b.setText(charSequence);
+                    wbVar.f32591b.setText(charSequence);
                     AndroidUtilities.updateViewShow(wbVar.d, false, false, true);
-                    AndroidUtilities.updateViewShow(wbVar.f32593b, true, false, true);
+                    AndroidUtilities.updateViewShow(wbVar.f32591b, true, false, true);
                 }
                 qcVar.i(true);
                 return;
@@ -285,7 +285,7 @@ public final class eh implements Runnable {
                 ((org.telegram.ui.Components.kd) obj2).removeView((ei.x3) obj);
                 return;
             default:
-                int i14 = ChatActivityEnterView.f23907n5;
+                int i14 = ChatActivityEnterView.f23905n5;
                 ((ChatActivityEnterView) obj2).removeView((ei.x3) obj);
                 return;
         }

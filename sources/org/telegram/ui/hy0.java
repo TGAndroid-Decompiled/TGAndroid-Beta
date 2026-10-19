@@ -66,7 +66,7 @@ public final class hy0 extends org.telegram.ui.Components.im0 implements ci.p7 {
             org.telegram.ui.Components.js0 js0Var = profileActivity.O.V;
             if (js0Var == null || !js0Var.g()) {
                 org.telegram.ui.Components.os0 os0Var = profileActivity.O.W;
-                if (os0Var != null && os0Var.f36524w) {
+                if (os0Var != null && os0Var.f36515w) {
                     return false;
                 }
             } else {

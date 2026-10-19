@@ -1,84 +1,278 @@
 package ai;
 
 import android.animation.ValueAnimator;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewConfiguration;
+import java.util.ArrayList;
+import java.util.Random;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BillingController;
-import org.telegram.messenger.FileLog;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.R;
+import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.bs;
-public final class q7 implements q0.a {
-    public final int f2064a;
-    public final Object f2065b;
+import org.telegram.ui.Components.uj0;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.qn;
+public final class q7 extends View {
+    public ValueAnimator E;
+    public long F;
+    public float G;
+    public final o7 H;
+    public boolean I;
+    public final ArrayList J;
+    public final int[] K;
+    public final qn f2064a;
+    public org.telegram.ui.Cells.a0 f2065b;
+    public int f2066c;
+    public final int[] d;
+    public final int[] e;
+    public final RectF f2067f;
+    public final RectF h;
+    public final Paint f2068n;
+    public boolean f2069r;
+    public final org.telegram.ui.Components.f6 f2070s;
+    public final org.telegram.ui.Components.p6 v;
+    public boolean f2071w;
+    public final a1.f f2072x;
+    public float f2073y;
 
-    public q7(Object obj, int i10) {
-        this.f2064a = i10;
-        this.f2065b = obj;
+    public q7(qn qnVar) {
+        super(qnVar.getParentActivity());
+        this.d = new int[2];
+        this.e = new int[2];
+        this.f2067f = new RectF();
+        this.h = new RectF();
+        this.f2068n = new Paint();
+        new Paint();
+        this.f2070s = new org.telegram.ui.Components.f6(this, 0L, 420L, bs.h);
+        org.telegram.ui.Components.p6 p6Var = new org.telegram.ui.Components.p6(false, false, false);
+        this.v = p6Var;
+        new Matrix();
+        this.J = new ArrayList();
+        this.K = new int[]{R.raw.star_reaction_effect1, R.raw.star_reaction_effect2, R.raw.star_reaction_effect3, R.raw.star_reaction_effect4, R.raw.star_reaction_effect5};
+        this.f2064a = qnVar;
+        p6Var.setCallback(this);
+        p6Var.r(false, true);
+        p6Var.w(AndroidUtilities.dp(40.0f));
+        p6Var.x(AndroidUtilities.getTypeface("fonts/num.otf"));
+        p6Var.s(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(3.5f), 0);
+        p6Var.M = AndroidUtilities.displaySize.x;
+        p6Var.u(-1);
+        p6Var.f29180b = 17;
+        this.H = new o7(this, 0);
+        this.f2072x = new a1.f(25, this, qnVar);
+    }
+
+    private MessageObject getMessageObject() {
+        org.telegram.ui.Cells.a0 a0Var = this.f2065b;
+        if (a0Var instanceof org.telegram.ui.Cells.u1) {
+            return ((org.telegram.ui.Cells.u1) a0Var).getPrimaryMessageObject();
+        }
+        if (a0Var instanceof org.telegram.ui.Cells.w0) {
+            return ((org.telegram.ui.Cells.w0) a0Var).getMessageObject();
+        }
+        return null;
+    }
+
+    public final void a() {
+        String str;
+        if (getMessageObject() != null) {
+            MessageObject messageObject = getMessageObject();
+            qn qnVar = this.f2064a;
+            ga y3 = ga.y(qnVar.getCurrentAccount(), false);
+            long E = y3.E(messageObject);
+            if (y3.e && y3.q(false, false, null).amount < E) {
+                fa faVar = ga.y(qnVar.getCurrentAccount(), false).B;
+                if (faVar != null) {
+                    faVar.a();
+                }
+                long a2 = qnVar.a();
+                if (a2 >= 0) {
+                    str = UserObject.getForcedFirstName(qnVar.getMessagesController().getUser(Long.valueOf(a2)));
+                } else {
+                    TLRPC.Chat chat = qnVar.getMessagesController().getChat(Long.valueOf(-a2));
+                    if (chat == null) {
+                        str = "";
+                    } else {
+                        str = chat.title;
+                    }
+                }
+                new cd(qnVar.getParentActivity(), qnVar.getResourceProvider(), E, 5, str, new c3(this, y3, messageObject, E, 3), 0L).show();
+            }
+        }
+    }
+
+    public final void b(float f7, o7 o7Var) {
+        ValueAnimator valueAnimator = this.E;
+        if (valueAnimator != null) {
+            this.E = null;
+            valueAnimator.cancel();
+        }
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.f2073y, f7);
+        this.E = ofFloat;
+        ofFloat.addUpdateListener(new ah.c0(this, 5));
+        this.E.addListener(new p7(this, f7, o7Var, 0));
+        this.E.setInterpolator(bs.h);
+        this.E.setDuration(320L);
+        this.E.start();
+    }
+
+    public final void c() {
+        this.I = true;
+        AndroidUtilities.cancelRunOnUIThread(this.H);
+        this.v.t("", true, true);
+        this.f2069r = false;
+        invalidate();
+        b(0.0f, new o7(this, 2));
+    }
+
+    public final void d(float f7, float f10, boolean z10) {
+        ArrayList arrayList;
+        if (this.f2065b != null && !this.I) {
+            MessageObject messageObject = getMessageObject();
+            ah.j1 reactionsLayoutInBubble = getReactionsLayoutInBubble();
+            if (messageObject != null && reactionsLayoutInBubble != null) {
+                qn qnVar = this.f2064a;
+                ga y3 = ga.y(qnVar.getCurrentAccount(), false);
+                while (true) {
+                    arrayList = this.J;
+                    if (arrayList.size() <= 4) {
+                        break;
+                    }
+                    ((uj0) arrayList.remove(0)).C(true);
+                }
+                Random random = Utilities.fastRandom;
+                int[] iArr = this.K;
+                uj0 uj0Var = new uj0(iArr[random.nextInt(iArr.length)], AndroidUtilities.dp(70.0f), AndroidUtilities.dp(70.0f));
+                uj0Var.R(this);
+                uj0Var.J(true);
+                uj0Var.K(0);
+                uj0Var.start();
+                arrayList.add(uj0Var);
+                invalidate();
+                ah.g1 m10 = reactionsLayoutInBubble.m("stars");
+                if (m10 != null) {
+                    m10.q();
+                }
+                if (z10) {
+                    try {
+                        performHapticFeedback(3, 1);
+                    } catch (Exception unused) {
+                    }
+                    ga.y(qnVar.getCurrentAccount(), false).d0(messageObject, this.f2064a, 1L, true, false, null);
+                }
+                org.telegram.ui.Components.p6 p6Var = this.v;
+                p6Var.a();
+                p6Var.t("+" + y3.E(messageObject), true, true);
+                this.f2069r = true;
+                o7 o7Var = this.H;
+                AndroidUtilities.cancelRunOnUIThread(o7Var);
+                AndroidUtilities.runOnUIThread(o7Var, 1500L);
+                long currentTimeMillis = System.currentTimeMillis();
+                long j10 = currentTimeMillis - this.F;
+                if (j10 < 100) {
+                    this.G += 0.5f;
+                    return;
+                }
+                this.G = Utilities.clamp(1.0f - (((float) (j10 - 100)) / 200.0f), 1.0f, 0.0f) * this.G;
+                int measuredWidth = getMeasuredWidth();
+                int[] iArr2 = this.e;
+                if (measuredWidth == 0 && qnVar.getLayoutContainer() != null) {
+                    qnVar.getLayoutContainer().getLocationInWindow(iArr2);
+                } else {
+                    getLocationInWindow(iArr2);
+                }
+                LaunchActivity.c0(iArr2[0] + f7, iArr2[1] + f10, Utilities.clamp(this.G, 0.9f, 0.3f));
+                this.G = 0.0f;
+                this.F = currentTimeMillis;
+            }
+        }
     }
 
     @Override
-    public final void accept(Object obj) {
-        String responseCodeString;
-        int i10 = this.f2064a;
-        boolean z10 = true;
-        Object obj2 = this.f2065b;
-        switch (i10) {
-            case 0:
-                Utilities.Callback2 callback2 = (Utilities.Callback2) obj2;
-                int i11 = ((c5.i) obj).f4754a;
-                if (i11 != 0) {
-                    z10 = false;
-                }
-                if (z10) {
-                    responseCodeString = null;
-                } else {
-                    responseCodeString = BillingController.getResponseCodeString(i11);
-                }
-                FileLog.d("StarsController.buy onResult " + z10 + " " + responseCodeString);
-                AndroidUtilities.runOnUIThread(new x7(callback2, z10, responseCodeString, 0));
-                return;
-            case 1:
-                ei.f6.a0((ei.xa) obj2, (Integer) obj);
-                return;
-            case 2:
-                gi.d3 d3Var = (gi.d3) obj2;
-                Float f7 = (Float) obj;
-                d3Var.f11168y.setLoadProgressAnimated(f7.floatValue());
-                if (f7.floatValue() == 1.0f) {
-                    ValueAnimator duration = ValueAnimator.ofFloat(1.0f, 0.0f).setDuration(200L);
-                    duration.setInterpolator(bs.f25014f);
-                    duration.addUpdateListener(new gi.x1(d3Var, 1));
-                    duration.addListener(new ah.b(d3Var, 26));
-                    duration.start();
-                    return;
-                }
-                return;
-            case 3:
-                gi.f4 f4Var = (gi.f4) obj2;
-                Float f10 = (Float) obj;
-                f4Var.I.setLoadProgressAnimated(f10.floatValue());
-                if (f10.floatValue() == 1.0f) {
-                    ValueAnimator duration2 = ValueAnimator.ofFloat(1.0f, 0.0f).setDuration(200L);
-                    duration2.setInterpolator(bs.f25014f);
-                    duration2.addUpdateListener(new gi.x3(f4Var, 0));
-                    duration2.addListener(new ah.b(f4Var, 27));
-                    duration2.start();
-                    f4Var.O();
-                    return;
-                }
-                return;
-            case 4:
-                ((hg.m) obj2).R.x4(((Float) obj).floatValue());
-                return;
-            case 5:
-                ((qg.v) obj2).h(((Integer) obj).intValue());
-                return;
-            default:
-                yh.x4 x4Var = (yh.x4) obj2;
-                if (((c5.i) obj).f4754a == 0) {
-                    AndroidUtilities.runOnUIThread(new yh.n4(x4Var, 1));
-                    return;
-                }
-                return;
+    public final void dispatchDraw(android.graphics.Canvas r24) {
+        throw new UnsupportedOperationException("Method not decompiled: ai.q7.dispatchDraw(android.graphics.Canvas):void");
+    }
+
+    public ah.j1 getReactionsLayoutInBubble() {
+        org.telegram.ui.Cells.a0 a0Var = this.f2065b;
+        if (a0Var instanceof org.telegram.ui.Cells.u1) {
+            return ((org.telegram.ui.Cells.u1) a0Var).N;
         }
+        if (a0Var instanceof org.telegram.ui.Cells.w0) {
+            return ((org.telegram.ui.Cells.w0) a0Var).E0;
+        }
+        return null;
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        ah.j1 reactionsLayoutInBubble;
+        if (this.f2065b == null || this.I || (reactionsLayoutInBubble = getReactionsLayoutInBubble()) == null) {
+            return false;
+        }
+        int action = motionEvent.getAction();
+        a1.f fVar = this.f2072x;
+        if (action == 0) {
+            if (this.h.contains(motionEvent.getX(), motionEvent.getY())) {
+                this.f2071w = true;
+                ah.g1 m10 = reactionsLayoutInBubble.m("stars");
+                if (m10 != null) {
+                    m10.Y.c(true);
+                }
+                AndroidUtilities.cancelRunOnUIThread(fVar);
+                AndroidUtilities.runOnUIThread(fVar, ViewConfiguration.getLongPressTimeout());
+            }
+        } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
+            ah.g1 m11 = reactionsLayoutInBubble.m("stars");
+            if (motionEvent.getAction() == 1) {
+                d(motionEvent.getX(), motionEvent.getY(), true);
+            }
+            if (m11 != null) {
+                m11.Y.c(false);
+            }
+            this.f2071w = false;
+            AndroidUtilities.cancelRunOnUIThread(fVar);
+        }
+        return this.f2071w;
+    }
+
+    public void setMessageCell(org.telegram.ui.Cells.a0 a0Var) {
+        int id2;
+        org.telegram.ui.Cells.a0 a0Var2 = this.f2065b;
+        if (a0Var2 == a0Var) {
+            return;
+        }
+        if (a0Var2 instanceof org.telegram.ui.Cells.u1) {
+            ((org.telegram.ui.Cells.u1) a0Var2).setScrimReaction(null);
+            ((org.telegram.ui.Cells.u1) this.f2065b).setInvalidateListener(null);
+            this.f2065b.invalidate();
+        } else if (a0Var2 instanceof org.telegram.ui.Cells.w0) {
+            ((org.telegram.ui.Cells.w0) a0Var2).setScrimReaction(null);
+            ((org.telegram.ui.Cells.w0) this.f2065b).setInvalidateListener(null);
+            this.f2065b.invalidate();
+        }
+        this.f2065b = a0Var;
+        if (getMessageObject() == null) {
+            id2 = 0;
+        } else {
+            id2 = getMessageObject().getId();
+        }
+        this.f2066c = id2;
+        org.telegram.ui.Cells.a0 a0Var3 = this.f2065b;
+        if (a0Var3 instanceof org.telegram.ui.Cells.u1) {
+            a0Var3.invalidate();
+            ((org.telegram.ui.Cells.u1) this.f2065b).setInvalidateListener(new o7(this, 1));
+        } else if (a0Var3 instanceof org.telegram.ui.Cells.w0) {
+            a0Var3.invalidate();
+            ((org.telegram.ui.Cells.w0) this.f2065b).setInvalidateListener(new o7(this, 1));
+        }
+        invalidate();
     }
 }

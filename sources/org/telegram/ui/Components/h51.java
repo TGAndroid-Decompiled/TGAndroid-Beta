@@ -2,14 +2,14 @@ package org.telegram.ui.Components;
 
 import android.view.View;
 public final class h51 implements View.OnClickListener {
-    public final int f26780a;
-    public final Object f26781b;
-    public final Object f26782c;
+    public final int f26778a;
+    public final Object f26779b;
+    public final Object f26780c;
 
     public h51(int i10, Object obj, Object obj2) {
-        this.f26780a = i10;
-        this.f26781b = obj;
-        this.f26782c = obj2;
+        this.f26778a = i10;
+        this.f26779b = obj;
+        this.f26780c = obj2;
     }
 
     @Override

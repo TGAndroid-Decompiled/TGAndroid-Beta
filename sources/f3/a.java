@@ -12,53 +12,53 @@ import e9.n0;
 import e9.x1;
 import java.util.List;
 public final class a implements o {
-    public final int f10359a;
-    public final x f10360b;
-    public final e0 f10361c;
+    public final int f10357a;
+    public final x f10358b;
+    public final e0 f10359c;
 
     public a(int i10) {
-        this.f10359a = i10;
+        this.f10357a = i10;
         switch (i10) {
             case 1:
-                this.f10360b = new x(4);
-                this.f10361c = new e0(-1, -1, "image/webp");
+                this.f10358b = new x(4);
+                this.f10359c = new e0(-1, -1, "image/webp");
                 return;
             default:
-                this.f10360b = new x(4);
-                this.f10361c = new e0(-1, -1, "image/avif");
+                this.f10358b = new x(4);
+                this.f10359c = new e0(-1, -1, "image/avif");
                 return;
         }
     }
 
     @Override
     public final boolean a(p pVar) {
-        switch (this.f10359a) {
+        switch (this.f10357a) {
             case 0:
                 l lVar = (l) pVar;
                 lVar.v(4, false);
-                x xVar = this.f10360b;
+                x xVar = this.f10358b;
                 xVar.K(4);
-                lVar.j(xVar.f8293a, 0, 4, false);
+                lVar.j(xVar.f8291a, 0, 4, false);
                 if (xVar.C() != 1718909296) {
                     return false;
                 }
                 xVar.K(4);
-                lVar.j(xVar.f8293a, 0, 4, false);
+                lVar.j(xVar.f8291a, 0, 4, false);
                 if (xVar.C() != 1635150182) {
                     return false;
                 }
                 return true;
             default:
-                x xVar2 = this.f10360b;
+                x xVar2 = this.f10358b;
                 xVar2.K(4);
                 l lVar2 = (l) pVar;
-                lVar2.j(xVar2.f8293a, 0, 4, false);
+                lVar2.j(xVar2.f8291a, 0, 4, false);
                 if (xVar2.C() != 1380533830) {
                     return false;
                 }
                 lVar2.v(4, false);
                 xVar2.K(4);
-                lVar2.j(xVar2.f8293a, 0, 4, false);
+                lVar2.j(xVar2.f8291a, 0, 4, false);
                 if (xVar2.C() != 1464156752) {
                     return false;
                 }
@@ -68,57 +68,57 @@ public final class a implements o {
 
     @Override
     public final o b() {
-        int i10 = this.f10359a;
+        int i10 = this.f10357a;
         return this;
     }
 
     @Override
     public final void c(q qVar) {
-        switch (this.f10359a) {
+        switch (this.f10357a) {
             case 0:
-                this.f10361c.c(qVar);
+                this.f10359c.c(qVar);
                 return;
             default:
-                this.f10361c.c(qVar);
+                this.f10359c.c(qVar);
                 return;
         }
     }
 
     @Override
     public final void d(long j10, long j11) {
-        switch (this.f10359a) {
+        switch (this.f10357a) {
             case 0:
-                this.f10361c.d(j10, j11);
+                this.f10359c.d(j10, j11);
                 return;
             default:
-                this.f10361c.d(j10, j11);
+                this.f10359c.d(j10, j11);
                 return;
         }
     }
 
     @Override
     public final List e() {
-        switch (this.f10359a) {
+        switch (this.f10357a) {
             case 0:
             default:
-                l0 l0Var = n0.f8476b;
+                l0 l0Var = n0.f8474b;
                 return x1.e;
         }
     }
 
     @Override
     public final int f(p pVar, s sVar) {
-        switch (this.f10359a) {
+        switch (this.f10357a) {
             case 0:
-                return this.f10361c.f(pVar, sVar);
+                return this.f10359c.f(pVar, sVar);
             default:
-                return this.f10361c.f(pVar, sVar);
+                return this.f10359c.f(pVar, sVar);
         }
     }
 
     @Override
     public final void release() {
-        int i10 = this.f10359a;
+        int i10 = this.f10357a;
     }
 
     private final void g() {

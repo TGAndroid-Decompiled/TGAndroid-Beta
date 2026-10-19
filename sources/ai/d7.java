@@ -2,33 +2,39 @@ package ai;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.tl.TL_stars;
 public final class d7 extends AnimatorListenerAdapter {
-    public final e7 f1160a;
+    public final int f1146a;
+    public final f7 f1147b;
 
-    public d7(e7 e7Var) {
-        this.f1160a = e7Var;
+    public d7(f7 f7Var, int i10) {
+        this.f1146a = i10;
+        this.f1147b = f7Var;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        e7 e7Var = this.f1160a;
-        a3.d dVar = e7Var.f1225l0;
-        e7Var.f1237v0 = e7Var.f1236u0;
-        e7Var.d(e7Var.f1211a0);
-        TL_stars.starGiftAttributeModel[] stargiftattributemodelArr = e7Var.e;
-        int i10 = 2 - e7Var.f1236u0;
-        stargiftattributemodelArr[i10] = (TL_stars.starGiftAttributeModel) e7Var.f1215c0.f921f;
-        md.a1(e7Var.d[i10].getImageReceiver(), stargiftattributemodelArr[2 - e7Var.f1236u0].document, 160);
-        TL_stars.starGiftAttributePattern stargiftattributepattern = (TL_stars.starGiftAttributePattern) e7Var.f1216d0.f921f;
-        if (stargiftattributepattern != null) {
-            org.telegram.ui.Components.r5 m10 = org.telegram.ui.Components.r5.m(UserConfig.selectedAccount, 7, stargiftattributepattern.document);
-            m10.f29855m = true;
-            m10.v();
+        switch (this.f1146a) {
+            case 0:
+                this.f1147b.f1271g0 = false;
+                return;
+            case 1:
+                this.f1147b.f1271g0 = false;
+                return;
+            case 2:
+                this.f1147b.O.setVisibility(4);
+                return;
+            case 3:
+                f7 f7Var = this.f1147b;
+                f7Var.f1288v0 = f7Var.f1287u0;
+                f7Var.d(f7Var.f1262a0);
+                return;
+            default:
+                f7 f7Var2 = this.f1147b;
+                f7Var2.f1290w0 = 1.0f;
+                f7Var2.f1263b.setScaleX(1.0f);
+                f7Var2.f1263b.setScaleY(f7Var2.f1290w0);
+                f7Var2.invalidate();
+                return;
         }
-        AndroidUtilities.cancelRunOnUIThread(dVar);
-        AndroidUtilities.runOnUIThread(dVar, 2500L);
     }
 }

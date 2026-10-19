@@ -12,27 +12,27 @@ import org.telegram.messenger.ChatThemeController;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class zc extends FrameLayout {
-    public final int f43711a;
-    public final org.telegram.ui.ActionBar.d6 f43712b;
-    public final ArrayList f43713c;
+    public final int f43706a;
+    public final org.telegram.ui.ActionBar.d6 f43707b;
+    public final ArrayList f43708c;
     public final sa1 d;
     public final org.telegram.ui.Components.b10 e;
-    public boolean f43714f;
+    public boolean f43709f;
     public final xc h;
-    public boolean f43715n;
-    public Utilities.Callback f43716r;
-    public String f43717s;
+    public boolean f43710n;
+    public Utilities.Callback f43711r;
+    public String f43712s;
     public TLRPC.WallPaper v;
-    public final HashMap f43718w;
-    public final HashMap f43719x;
+    public final HashMap f43713w;
+    public final HashMap f43714x;
 
     public zc(int i10, Activity activity, org.telegram.ui.ActionBar.d6 d6Var) {
         super(activity);
-        this.f43713c = new ArrayList();
-        this.f43718w = new HashMap();
-        this.f43719x = new HashMap();
-        this.f43711a = i10;
-        this.f43712b = d6Var;
+        this.f43708c = new ArrayList();
+        this.f43713w = new HashMap();
+        this.f43714x = new HashMap();
+        this.f43706a = i10;
+        this.f43707b = d6Var;
         org.telegram.ui.Components.b10 b10Var = new org.telegram.ui.Components.b10(getContext(), d6Var);
         this.e = b10Var;
         b10Var.setViewType(14);
@@ -58,7 +58,7 @@ public final class zc extends FrameLayout {
         chatThemeController.preloadAllWallpaperImages(true);
         chatThemeController.preloadAllWallpaperImages(false);
         chatThemeController.requestAllChatThemes(new yc(this, i10), true);
-        if (!this.f43715n) {
+        if (!this.f43710n) {
             AndroidUtilities.updateViewVisibilityAnimated(b10Var, true, 1.0f, true, false);
         } else {
             AndroidUtilities.updateViewVisibilityAnimated(b10Var, false, 1.0f, true, false);
@@ -68,17 +68,17 @@ public final class zc extends FrameLayout {
     public final void a(String str, boolean z10) {
         ArrayList arrayList;
         int R;
-        this.f43717s = str;
+        this.f43712s = str;
         int i10 = -1;
         int i11 = 0;
         while (true) {
-            arrayList = this.f43713c;
+            arrayList = this.f43708c;
             boolean z11 = true;
             if (i11 >= arrayList.size()) {
                 break;
             }
             org.telegram.ui.Components.vp vpVar = (org.telegram.ui.Components.vp) arrayList.get(i11);
-            if (!TextUtils.equals(this.f43717s, vpVar.a()) && (!TextUtils.isEmpty(str) || !vpVar.f31900a.f20722a)) {
+            if (!TextUtils.equals(this.f43712s, vpVar.a()) && (!TextUtils.isEmpty(str) || !vpVar.f31898a.f20720a)) {
                 z11 = false;
             }
             vpVar.d = z11;
@@ -108,19 +108,19 @@ public final class zc extends FrameLayout {
         this.v = wallPaper;
         AndroidUtilities.forEachViews((RecyclerView) this.d, (Utilities.Callback<View>) new uc(this, 1));
         if (this.v != null) {
-            ArrayList arrayList = this.f43713c;
-            if ((arrayList.isEmpty() || ((org.telegram.ui.Components.vp) arrayList.get(0)).f31900a.f20722a) && this.f43714f) {
-                arrayList.add(0, new org.telegram.ui.Components.vp(org.telegram.ui.ActionBar.c4.a(this.f43711a)));
+            ArrayList arrayList = this.f43708c;
+            if ((arrayList.isEmpty() || ((org.telegram.ui.Components.vp) arrayList.get(0)).f31898a.f20720a) && this.f43709f) {
+                arrayList.add(0, new org.telegram.ui.Components.vp(org.telegram.ui.ActionBar.c4.a(this.f43706a)));
                 this.h.l();
             }
         }
     }
 
     public void setOnEmoticonSelected(Utilities.Callback<String> callback) {
-        this.f43716r = callback;
+        this.f43711r = callback;
     }
 
     public void setWithRemovedStub(boolean z10) {
-        this.f43714f = z10;
+        this.f43709f = z10;
     }
 }

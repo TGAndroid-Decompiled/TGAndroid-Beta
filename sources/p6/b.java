@@ -9,13 +9,13 @@ import com.google.android.gms.tasks.Task;
 import ki.t1;
 import n6.o;
 public final class b extends j {
-    public static final e f44226k = new e("ClientTelemetry.API", new d(11), new Object());
+    public static final e f44228k = new e("ClientTelemetry.API", new d(11), new Object());
 
     public final Task f(o oVar) {
         u b10 = v.b();
-        b10.d = new k6.c[]{k7.b.f14991a};
-        b10.f6498b = false;
-        b10.f6499c = new t1(oVar, 21);
+        b10.d = new k6.c[]{k7.b.f14989a};
+        b10.f6496b = false;
+        b10.f6497c = new t1(oVar, 21);
         return e(2, b10.a());
     }
 }

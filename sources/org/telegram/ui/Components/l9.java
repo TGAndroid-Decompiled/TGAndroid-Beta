@@ -4,19 +4,19 @@ import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 public final class l9 implements ne.h, qe.a {
-    public final ImageReceiver f28163a;
-    public final h9 f28164b;
-    public long f28165c;
+    public final ImageReceiver f28161a;
+    public final h9 f28162b;
+    public long f28163c;
     public boolean d;
     public final m9 e;
 
     public l9(m9 m9Var, ViewGroup viewGroup) {
         this.e = m9Var;
         ImageReceiver imageReceiver = new ImageReceiver(viewGroup);
-        this.f28163a = imageReceiver;
+        this.f28161a = imageReceiver;
         imageReceiver.setRoundRadius(m9Var.e / 2);
         h9 h9Var = new h9((org.telegram.ui.ActionBar.d6) null);
-        this.f28164b = h9Var;
+        this.f28162b = h9Var;
         h9Var.u(AndroidUtilities.dp(22.0f));
     }
 
@@ -24,9 +24,9 @@ public final class l9 implements ne.h, qe.a {
     public final void a() {
         if (this.d) {
             this.d = false;
-            this.f28163a.onDetachedFromWindow();
+            this.f28161a.onDetachedFromWindow();
         }
-        this.f28165c = 0L;
+        this.f28163c = 0L;
     }
 
     @Override
@@ -34,11 +34,11 @@ public final class l9 implements ne.h, qe.a {
         if (z10) {
             return 0;
         }
-        return -this.e.f28486f;
+        return -this.e.f28484f;
     }
 
     public final boolean equals(Object obj) {
-        if (!(obj instanceof l9) || this.f28165c != ((l9) obj).f28165c) {
+        if (!(obj instanceof l9) || this.f28163c != ((l9) obj).f28163c) {
             return false;
         }
         return true;

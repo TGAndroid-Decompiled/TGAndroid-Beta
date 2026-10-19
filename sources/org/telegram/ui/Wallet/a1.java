@@ -10,33 +10,33 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_toncenter;
 public final class a1 {
-    public final int f33962a;
-    public final String f33963b;
-    public final m0 f33964c;
+    public final int f33964a;
+    public final String f33965b;
+    public final m0 f33966c;
     public boolean d;
     public boolean e;
-    public String f33965f;
-    public int f33966g;
+    public String f33967f;
+    public int f33968g;
     public int h;
-    public int f33968j;
-    public tc.u f33969k;
-    public long f33970l;
-    public int f33967i = -1;
-    public final x0 f33971m = new Runnable(this) {
-        public final a1 f35077b;
+    public int f33970j;
+    public tc.u f33971k;
+    public long f33972l;
+    public int f33969i = -1;
+    public final x0 f33973m = new Runnable(this) {
+        public final a1 f35079b;
 
         {
-            this.f35077b = this;
+            this.f35079b = this;
         }
 
         @Override
         public final void run() {
             switch (r2) {
                 case 0:
-                    this.f35077b.e();
+                    this.f35079b.e();
                     return;
                 case 1:
-                    a1 a1Var = this.f35077b;
+                    a1 a1Var = this.f35079b;
                     if (a1Var.d) {
                         a1Var.d("URL expired; renewing connection");
                         a1Var.b();
@@ -45,26 +45,26 @@ public final class a1 {
                     }
                     return;
                 default:
-                    this.f35077b.f("connection or subscription timed out");
+                    this.f35079b.f("connection or subscription timed out");
                     return;
             }
         }
     };
-    public final x0 f33972n = new Runnable(this) {
-        public final a1 f35077b;
+    public final x0 f33974n = new Runnable(this) {
+        public final a1 f35079b;
 
         {
-            this.f35077b = this;
+            this.f35079b = this;
         }
 
         @Override
         public final void run() {
             switch (r2) {
                 case 0:
-                    this.f35077b.e();
+                    this.f35079b.e();
                     return;
                 case 1:
-                    a1 a1Var = this.f35077b;
+                    a1 a1Var = this.f35079b;
                     if (a1Var.d) {
                         a1Var.d("URL expired; renewing connection");
                         a1Var.b();
@@ -73,26 +73,26 @@ public final class a1 {
                     }
                     return;
                 default:
-                    this.f35077b.f("connection or subscription timed out");
+                    this.f35079b.f("connection or subscription timed out");
                     return;
             }
         }
     };
-    public final x0 f33973o = new Runnable(this) {
-        public final a1 f35077b;
+    public final x0 f33975o = new Runnable(this) {
+        public final a1 f35079b;
 
         {
-            this.f35077b = this;
+            this.f35079b = this;
         }
 
         @Override
         public final void run() {
             switch (r2) {
                 case 0:
-                    this.f35077b.e();
+                    this.f35079b.e();
                     return;
                 case 1:
-                    a1 a1Var = this.f35077b;
+                    a1 a1Var = this.f35079b;
                     if (a1Var.d) {
                         a1Var.d("URL expired; renewing connection");
                         a1Var.b();
@@ -101,23 +101,23 @@ public final class a1 {
                     }
                     return;
                 default:
-                    this.f35077b.f("connection or subscription timed out");
+                    this.f35079b.f("connection or subscription timed out");
                     return;
             }
         }
     };
-    public final org.telegram.ui.Cells.k7 f33974p = new org.telegram.ui.Cells.k7(this, 26);
+    public final org.telegram.ui.Cells.k7 f33976p = new org.telegram.ui.Cells.k7(this, 26);
 
     public a1(int i10, String str, m0 m0Var) {
-        this.f33962a = i10;
-        this.f33963b = str;
-        this.f33964c = m0Var;
+        this.f33964a = i10;
+        this.f33965b = str;
+        this.f33966c = m0Var;
     }
 
     public static String a(tc.v vVar) {
         String str;
         ba.a aVar;
-        switch (vVar.f46984a) {
+        switch (vVar.f46986a) {
             case 1:
                 str = "NOT_IN_CREATED_STATE";
                 break;
@@ -269,9 +269,9 @@ public final class a1 {
                 str = "null";
                 break;
         }
-        if ((vVar instanceof tc.n) && (aVar = ((tc.n) vVar).f46948b) != null) {
+        if ((vVar instanceof tc.n) && (aVar = ((tc.n) vVar).f46950b) != null) {
             StringBuilder i10 = r4.c.i(str, ", HTTP ");
-            i10.append(aVar.f4229c);
+            i10.append(aVar.f4227c);
             return i10.toString();
         }
         return str;
@@ -280,7 +280,7 @@ public final class a1 {
     public final void b() {
         boolean z10;
         StringBuilder sb2 = new StringBuilder("disconnecting; socket=");
-        if (this.f33969k != null) {
+        if (this.f33971k != null) {
             z10 = true;
         } else {
             z10 = false;
@@ -289,47 +289,47 @@ public final class a1 {
         sb2.append(", subscribed=");
         sb2.append(this.e);
         sb2.append(", URL request=");
-        sb2.append(this.f33967i);
+        sb2.append(this.f33969i);
         d(sb2.toString());
         this.h++;
         this.e = false;
-        AndroidUtilities.cancelRunOnUIThread(this.f33971m);
-        AndroidUtilities.cancelRunOnUIThread(this.f33972n);
-        AndroidUtilities.cancelRunOnUIThread(this.f33973o);
-        AndroidUtilities.cancelRunOnUIThread(this.f33974p);
-        if (this.f33967i >= 0) {
-            ConnectionsManager.getInstance(this.f33962a).cancelRequest(this.f33967i, true);
-            this.f33967i = -1;
+        AndroidUtilities.cancelRunOnUIThread(this.f33973m);
+        AndroidUtilities.cancelRunOnUIThread(this.f33974n);
+        AndroidUtilities.cancelRunOnUIThread(this.f33975o);
+        AndroidUtilities.cancelRunOnUIThread(this.f33976p);
+        if (this.f33969i >= 0) {
+            ConnectionsManager.getInstance(this.f33964a).cancelRequest(this.f33969i, true);
+            this.f33969i = -1;
         }
-        tc.u uVar = this.f33969k;
-        this.f33969k = null;
+        tc.u uVar = this.f33971k;
+        this.f33971k = null;
         if (uVar != null) {
             uVar.c();
         }
     }
 
     public final boolean c(tc.u uVar, int i10) {
-        if (this.d && this.f33969k == uVar && this.h == i10) {
+        if (this.d && this.f33971k == uVar && this.h == i10) {
             return true;
         }
         return false;
     }
 
     public final void d(String str) {
-        FileLog.d("[gram-wallet-streaming] account=" + this.f33962a + " generation=" + this.h + " " + str);
+        FileLog.d("[gram-wallet-streaming] account=" + this.f33964a + " generation=" + this.h + " " + str);
     }
 
     public final void e() {
         if (!this.d) {
             return;
         }
-        AndroidUtilities.cancelRunOnUIThread(this.f33971m);
+        AndroidUtilities.cancelRunOnUIThread(this.f33973m);
         final int i10 = this.h + 1;
         this.h = i10;
         final long elapsedRealtime = SystemClock.elapsedRealtime();
-        d("requesting streaming URL; retry=" + this.f33968j);
-        AndroidUtilities.runOnUIThread(this.f33973o, 30000L);
-        this.f33967i = ConnectionsManager.getInstance(this.f33962a).sendRequestTyped(new TL_toncenter.getStreamingUrl(), new Object(), new Utilities.Callback2() {
+        d("requesting streaming URL; retry=" + this.f33970j);
+        AndroidUtilities.runOnUIThread(this.f33975o, 30000L);
+        this.f33969i = ConnectionsManager.getInstance(this.f33964a).sendRequestTyped(new TL_toncenter.getStreamingUrl(), new Object(), new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
                 Object valueOf;
@@ -349,32 +349,32 @@ public final class a1 {
                     }
                     sb2.append(valueOf);
                     a1Var.d(sb2.toString());
-                    a1Var.f33967i = -1;
-                    AndroidUtilities.cancelRunOnUIThread(a1Var.f33973o);
+                    a1Var.f33969i = -1;
+                    AndroidUtilities.cancelRunOnUIThread(a1Var.f33975o);
                     if (streamingurl != null && !TextUtils.isEmpty(streamingurl.url)) {
-                        long currentTime = (streamingurl.expires - ConnectionsManager.getInstance(a1Var.f33962a).getCurrentTime()) * 1000;
+                        long currentTime = (streamingurl.expires - ConnectionsManager.getInstance(a1Var.f33964a).getCurrentTime()) * 1000;
                         a1Var.d("URL expires=" + streamingurl.expires + ", remaining=" + currentTime + " ms");
                         if (currentTime <= 0) {
                             a1Var.f("received expired streaming URL");
                             return;
                         }
-                        AndroidUtilities.runOnUIThread(a1Var.f33972n, currentTime);
+                        AndroidUtilities.runOnUIThread(a1Var.f33974n, currentTime);
                         String str = streamingurl.url;
                         long elapsedRealtime2 = SystemClock.elapsedRealtime();
                         a1Var.d("opening websocket; attempt=" + i11);
                         try {
                             c5.c0 c0Var = new c5.c0(13, (short) 0);
-                            c0Var.f4725b = 10000;
+                            c0Var.f4723b = 10000;
                             tc.u j11 = c0Var.j(str);
-                            a1Var.f33969k = j11;
+                            a1Var.f33971k = j11;
                             z0 z0Var = new z0(a1Var, i11, elapsedRealtime2);
                             c2.b bVar = j11.d;
-                            synchronized (((ArrayList) bVar.f4493c)) {
-                                ((ArrayList) bVar.f4493c).add(z0Var);
-                                bVar.f4491a = true;
+                            synchronized (((ArrayList) bVar.f4491c)) {
+                                ((ArrayList) bVar.f4491c).add(z0Var);
+                                bVar.f4489a = true;
                             }
-                            AndroidUtilities.runOnUIThread(a1Var.f33973o, 30000L);
-                            tc.u uVar = a1Var.f33969k;
+                            AndroidUtilities.runOnUIThread(a1Var.f33975o, 30000L);
+                            tc.u uVar = a1Var.f33971k;
                             uVar.getClass();
                             tc.b bVar2 = new tc.b("ConnectThread", uVar, 3, 0);
                             c2.b bVar3 = uVar.d;
@@ -416,24 +416,24 @@ public final class a1 {
             return;
         }
         b();
-        int i10 = this.f33968j;
-        this.f33968j = i10 + 1;
+        int i10 = this.f33970j;
+        this.f33970j = i10 + 1;
         long min = Math.min(30000L, 1000 << Math.min(i10, 5)) + ((long) (Math.random() * 500.0d));
         d(str + "; retrying in " + min + " ms");
-        AndroidUtilities.runOnUIThread(this.f33971m, min);
+        AndroidUtilities.runOnUIThread(this.f33973m, min);
     }
 
     public final void g(String str) {
         d("send -> " + str);
-        tc.u uVar = this.f33969k;
+        tc.u uVar = this.f33971k;
         uVar.getClass();
         ?? obj = new Object();
-        obj.f46987a = true;
+        obj.f46989a = true;
         obj.e = 1;
         if (str != null && str.length() != 0) {
             obj.c(tc.k.a(str));
         } else {
-            obj.f46991g = null;
+            obj.f46993g = null;
         }
         uVar.g(obj);
     }

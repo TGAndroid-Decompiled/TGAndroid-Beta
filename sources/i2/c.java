@@ -6,21 +6,21 @@ import android.util.Log;
 import java.util.HashMap;
 import java.util.Map;
 public final class c {
-    public final HashMap f12326a;
+    public final HashMap f12324a;
 
     public c(int i10) {
         switch (i10) {
             case 1:
-                this.f12326a = new HashMap();
+                this.f12324a = new HashMap();
                 return;
             default:
-                this.f12326a = new HashMap();
+                this.f12324a = new HashMap();
                 return;
         }
     }
 
     public void a(IBinder iBinder) {
-        synchronized (this.f12326a) {
+        synchronized (this.f12324a) {
             if (iBinder != null) {
                 try {
                     iBinder.queryLocalInterface("com.google.android.gms.wearable.internal.IWearableService");
@@ -29,7 +29,7 @@ public final class c {
                 }
             }
             new y8.a();
-            for (Map.Entry entry : this.f12326a.entrySet()) {
+            for (Map.Entry entry : this.f12324a.entrySet()) {
                 if (entry.getValue() == null) {
                     try {
                         throw null;

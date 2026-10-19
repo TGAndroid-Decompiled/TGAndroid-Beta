@@ -8,22 +8,22 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class gm0 implements RequestDelegate {
-    public final int f37375a;
-    public final im0 f37376b;
+    public final int f37349a;
+    public final im0 f37350b;
 
     public gm0(im0 im0Var, int i10) {
-        this.f37375a = i10;
-        this.f37376b = im0Var;
+        this.f37349a = i10;
+        this.f37350b = im0Var;
     }
 
     @Override
     public final void run(TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f37375a) {
+        switch (this.f37349a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new hm0(this.f37376b, tLObject, tL_error));
+                AndroidUtilities.runOnUIThread(new hm0(this.f37350b, tLObject, tL_error));
                 return;
             case 1:
-                final im0 im0Var = this.f37376b;
+                final im0 im0Var = this.f37350b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -40,8 +40,8 @@ public final class gm0 implements RequestDelegate {
                                     ConnectionsManager.getInstance(i10).sendRequest(getpassword, new gm0(im0Var2, 4), 8);
                                     return;
                                 }
-                                if (vm0Var.f42329y == null) {
-                                    vm0Var.f42329y = new TL_account.authorizationForm();
+                                if (vm0Var.f42330y == null) {
+                                    vm0Var.f42330y = new TL_account.authorizationForm();
                                 }
                                 im0Var2.a();
                                 return;
@@ -54,14 +54,14 @@ public final class gm0 implements RequestDelegate {
                                     ConnectionsManager.getInstance(i11).sendRequest(getpassword2, new gm0(im0Var3, 3), 8);
                                     return;
                                 }
-                                Utilities.globalQueue.postRunnable(new ve0(im0Var3, im0Var3.f38020b, im0Var3.d, 13));
+                                Utilities.globalQueue.postRunnable(new ve0(im0Var3, im0Var3.f38022b, im0Var3.d, 13));
                                 return;
                         }
                     }
                 });
                 return;
             case 2:
-                final im0 im0Var2 = this.f37376b;
+                final im0 im0Var2 = this.f37350b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -78,8 +78,8 @@ public final class gm0 implements RequestDelegate {
                                     ConnectionsManager.getInstance(i10).sendRequest(getpassword, new gm0(im0Var22, 4), 8);
                                     return;
                                 }
-                                if (vm0Var.f42329y == null) {
-                                    vm0Var.f42329y = new TL_account.authorizationForm();
+                                if (vm0Var.f42330y == null) {
+                                    vm0Var.f42330y = new TL_account.authorizationForm();
                                 }
                                 im0Var22.a();
                                 return;
@@ -92,17 +92,17 @@ public final class gm0 implements RequestDelegate {
                                     ConnectionsManager.getInstance(i11).sendRequest(getpassword2, new gm0(im0Var3, 3), 8);
                                     return;
                                 }
-                                Utilities.globalQueue.postRunnable(new ve0(im0Var3, im0Var3.f38020b, im0Var3.d, 13));
+                                Utilities.globalQueue.postRunnable(new ve0(im0Var3, im0Var3.f38022b, im0Var3.d, 13));
                                 return;
                         }
                     }
                 });
                 return;
             case 3:
-                AndroidUtilities.runOnUIThread(new hm0(this.f37376b, tL_error, tLObject, 1));
+                AndroidUtilities.runOnUIThread(new hm0(this.f37350b, tL_error, tLObject, 1));
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new hm0(this.f37376b, tL_error, tLObject, 2));
+                AndroidUtilities.runOnUIThread(new hm0(this.f37350b, tL_error, tLObject, 2));
                 return;
         }
     }

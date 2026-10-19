@@ -2,13 +2,13 @@ package ah;
 
 import ai.a2;
 import ai.ad;
-import ai.b4;
 import ai.bd;
 import ai.dd;
-import ai.g7;
-import ai.k6;
+import ai.h7;
+import ai.l6;
 import ai.la;
 import ai.md;
+import ai.s3;
 import android.view.View;
 import ci.aa;
 import ci.e9;
@@ -17,6 +17,7 @@ import ci.j9;
 import ci.t9;
 import ei.a9;
 import ei.j6;
+import ei.k6;
 import ei.lb;
 import ei.x8;
 import org.telegram.messenger.AndroidUtilities;
@@ -63,32 +64,32 @@ public final class g0 implements View.OnClickListener {
                     bVar2 = ag.b.f633a;
                 }
                 l1Var.o(ag.a.i(0L, bVar2), true, false, true);
-                l1Var.f1735c.setText("");
+                l1Var.f1676c.setText("");
                 return;
             case 4:
                 ((a2) this.f739b).dismiss();
                 return;
             case 5:
-                ((b4) this.f739b).run();
+                ((s3) this.f739b).run();
                 return;
             case 6:
-                ((b4) this.f739b).run();
+                ((s3) this.f739b).run();
                 return;
             case 7:
-                k6 k6Var = (k6) this.f739b;
-                k6Var.getClass();
-                new dd(k6Var.f1633b, k6Var.f1636g).show();
+                l6 l6Var = (l6) this.f739b;
+                l6Var.getClass();
+                new dd(l6Var.f1704b, l6Var.f1707g).show();
                 return;
             case 8:
-                ((g7) this.f739b).dismiss();
+                ((h7) this.f739b).dismiss();
                 return;
             case 9:
                 ((la) this.f739b).run();
                 return;
             case 10:
-                if (((ad) ((bd) this.f739b).d).f980f > 0 && (R = LaunchActivity.R()) != 0) {
+                if (((ad) ((bd) this.f739b).d).f989f > 0 && (R = LaunchActivity.R()) != 0) {
                     ?? obj = new Object();
-                    obj.f21555a = true;
+                    obj.f21553a = true;
                     R.showAsSheet(new md(), obj);
                     return;
                 }
@@ -98,7 +99,7 @@ public final class g0 implements View.OnClickListener {
                 return;
             case 12:
                 ci.n2 n2Var = (ci.n2) this.f739b;
-                n2Var.q(!n2Var.f6140f0, true);
+                n2Var.q(!n2Var.f6138f0, true);
                 return;
             case 13:
                 ((aa) this.f739b).N();
@@ -113,21 +114,21 @@ public final class g0 implements View.OnClickListener {
                 return;
             case 15:
                 e9 e9Var = (e9) this.f739b;
-                e9Var.onClick(e9Var.f5363b);
+                e9Var.onClick(e9Var.f5361b);
                 return;
             case 16:
                 j9 j9Var = (j9) this.f739b;
-                j9Var.f5554b.f5222u1.animate().alpha(0.0f).setDuration(150L).setListener(new t9(j9Var, 0)).start();
+                j9Var.f5552b.f5220u1.animate().alpha(0.0f).setDuration(150L).setListener(new t9(j9Var, 0)).start();
                 return;
             case 17:
                 ((com.google.firebase.messaging.s) this.f739b).run();
                 return;
             case 18:
                 ei.m mVar = (ei.m) this.f739b;
-                ei.g gVar = mVar.f9401f;
+                ei.g gVar = mVar.f9399f;
                 gVar.d();
                 gVar.k(true);
-                ei.e eVar = mVar.f9398c0;
+                ei.e eVar = mVar.f9396c0;
                 AndroidUtilities.cancelRunOnUIThread(eVar);
                 eVar.run();
                 return;
@@ -141,8 +142,8 @@ public final class g0 implements View.OnClickListener {
                 ((o) this.f739b).run();
                 return;
             case 22:
-                ei.k6 k6Var2 = ((j6) this.f739b).f9258x;
-                if (k6Var2.f9321r && (callback = k6Var2.f9319f) != null) {
+                k6 k6Var = ((j6) this.f739b).f9256x;
+                if (k6Var.f9319r && (callback = k6Var.f9317f) != null) {
                     callback.run(5);
                     return;
                 }
@@ -161,7 +162,7 @@ public final class g0 implements View.OnClickListener {
                 ((kf) this.f739b).run();
                 return;
             case 26:
-                ChatActivityEnterView.g(((zd) ((gi.n0) this.f739b).d).f32906a, (TL_keyboard.KeyboardButton) view.getTag());
+                ChatActivityEnterView.g(((zd) ((gi.n0) this.f739b).d).f32904a, (TL_keyboard.KeyboardButton) view.getTag());
                 return;
             case 27:
                 ((ai.y0) this.f739b).run();

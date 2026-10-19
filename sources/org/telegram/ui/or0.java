@@ -8,7 +8,7 @@ public final class or0 extends FloatProperty {
 
     @Override
     public final Object get(Object obj) {
-        return Float.valueOf(((qu0) obj).f40972a);
+        return Float.valueOf(((qu0) obj).f40964a);
     }
 
     public final void setValue(Object obj, float f7) {

@@ -10,21 +10,21 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.SharedConfig;
 public final class ka1 extends FrameLayout {
-    public final org.telegram.ui.Components.cp0 f38493a;
-    public final int f38494b;
-    public final TextPaint f38495c;
+    public final org.telegram.ui.Components.cp0 f38494a;
+    public final int f38495b;
+    public final TextPaint f38496c;
     public final ThemeActivity d;
 
     public ka1(ThemeActivity themeActivity, Context context) {
         super(context);
         this.d = themeActivity;
-        this.f38494b = 17;
+        this.f38495b = 17;
         setWillNotDraw(false);
         TextPaint textPaint = new TextPaint(1);
-        this.f38495c = textPaint;
+        this.f38496c = textPaint;
         textPaint.setTextSize(AndroidUtilities.dp(16.0f));
         org.telegram.ui.Components.cp0 cp0Var = new org.telegram.ui.Components.cp0(context);
-        this.f38493a = cp0Var;
+        this.f38494a = cp0Var;
         cp0Var.setReportChanges(true);
         cp0Var.setSeparatorsCount(18);
         cp0Var.setDelegate(new ko0(this, 4));
@@ -35,13 +35,13 @@ public final class ka1 extends FrameLayout {
     @Override
     public final void invalidate() {
         super.invalidate();
-        this.f38493a.invalidate();
+        this.f38494a.invalidate();
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         int x02 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.I6, false);
-        TextPaint textPaint = this.f38495c;
+        TextPaint textPaint = this.f38496c;
         textPaint.setColor(x02);
         canvas.drawText("" + SharedConfig.bubbleRadius, getMeasuredWidth() - AndroidUtilities.dp(39.0f), AndroidUtilities.dp(28.0f), textPaint);
     }
@@ -49,18 +49,18 @@ public final class ka1 extends FrameLayout {
     @Override
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        this.f38493a.getSeekBarAccessibilityDelegate().e(this, accessibilityNodeInfo);
+        this.f38494a.getSeekBarAccessibilityDelegate().e(this, accessibilityNodeInfo);
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
-        this.f38493a.setProgress(SharedConfig.bubbleRadius / this.f38494b);
+        this.f38494a.setProgress(SharedConfig.bubbleRadius / this.f38495b);
     }
 
     @Override
     public final boolean performAccessibilityAction(int i10, Bundle bundle) {
-        if (!super.performAccessibilityAction(i10, bundle) && !this.f38493a.getSeekBarAccessibilityDelegate().g(this, i10, bundle)) {
+        if (!super.performAccessibilityAction(i10, bundle) && !this.f38494a.getSeekBarAccessibilityDelegate().g(this, i10, bundle)) {
             return false;
         }
         return true;

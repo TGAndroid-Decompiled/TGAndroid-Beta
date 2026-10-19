@@ -5,23 +5,23 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.ListIterator;
 public final class k implements gf.a {
-    public final char f11010a;
-    public int f11011b = 0;
-    public final LinkedList f11012c = new LinkedList();
+    public final char f11008a;
+    public int f11009b = 0;
+    public final LinkedList f11010c = new LinkedList();
 
     public k(char c10) {
-        this.f11010a = c10;
+        this.f11008a = c10;
     }
 
     @Override
     public final char a() {
-        return this.f11010a;
+        return this.f11008a;
     }
 
     @Override
     public final void b(s sVar, s sVar2, int i10) {
         gf.a aVar;
-        LinkedList linkedList = this.f11012c;
+        LinkedList linkedList = this.f11010c;
         Iterator it = linkedList.iterator();
         while (true) {
             if (it.hasNext()) {
@@ -39,14 +39,14 @@ public final class k implements gf.a {
 
     @Override
     public final int c() {
-        return this.f11011b;
+        return this.f11009b;
     }
 
     @Override
     public final int d(af.f fVar, af.f fVar2) {
         gf.a aVar;
         int i10 = fVar.f566g;
-        LinkedList linkedList = this.f11012c;
+        LinkedList linkedList = this.f11010c;
         Iterator it = linkedList.iterator();
         while (true) {
             if (it.hasNext()) {
@@ -64,12 +64,12 @@ public final class k implements gf.a {
 
     @Override
     public final char e() {
-        return this.f11010a;
+        return this.f11008a;
     }
 
     public final void f(gf.a aVar) {
         int c10 = aVar.c();
-        LinkedList linkedList = this.f11012c;
+        LinkedList linkedList = this.f11010c;
         ListIterator listIterator = linkedList.listIterator();
         while (listIterator.hasNext()) {
             int c11 = ((gf.a) listIterator.next()).c();
@@ -78,10 +78,10 @@ public final class k implements gf.a {
                 listIterator.add(aVar);
                 return;
             } else if (c10 == c11) {
-                throw new IllegalArgumentException("Cannot add two delimiter processors for char '" + this.f11010a + "' and minimum length " + c10);
+                throw new IllegalArgumentException("Cannot add two delimiter processors for char '" + this.f11008a + "' and minimum length " + c10);
             }
         }
         linkedList.add(aVar);
-        this.f11011b = c10;
+        this.f11009b = c10;
     }
 }

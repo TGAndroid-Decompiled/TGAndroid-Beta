@@ -15,19 +15,19 @@ import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.NotificationCenter;
 public final class j0 {
-    public static final HashMap f11274g = new HashMap();
+    public static final HashMap f11272g = new HashMap();
     public static final HashMap h = new HashMap();
-    public final Context f11275a;
-    public final int f11276b;
-    public final long f11277c;
+    public final Context f11273a;
+    public final int f11274b;
+    public final long f11275c;
     public final DownloadManager d;
     public final ArrayList e = new ArrayList();
-    public i0 f11278f;
+    public i0 f11276f;
 
     public j0(Context context, int i10, long j10) {
-        this.f11275a = context;
-        this.f11276b = i10;
-        this.f11277c = j10;
+        this.f11273a = context;
+        this.f11274b = i10;
+        this.f11275c = j10;
         this.d = (DownloadManager) context.getSystemService("download");
         SharedPreferences sharedPreferences = context.getSharedPreferences("botdownloads_" + i10, 0);
         Set<String> stringSet = sharedPreferences.getStringSet("" + j10, null);
@@ -54,12 +54,12 @@ public final class j0 {
         for (int i10 = 0; i10 < 4; i10++) {
             context.getSharedPreferences("botdownloads_" + i10, 0).edit().clear().apply();
         }
-        f11274g.clear();
+        f11272g.clear();
     }
 
     public static j0 c(Context context, int i10, long j10) {
         Pair pair = new Pair(Integer.valueOf(i10), Long.valueOf(j10));
-        HashMap hashMap = f11274g;
+        HashMap hashMap = f11272g;
         j0 j0Var = (j0) hashMap.get(pair);
         if (j0Var == null) {
             j0 j0Var2 = new j0(context, i10, j10);
@@ -72,14 +72,14 @@ public final class j0 {
     public final void b(String str, String str2) {
         i0 d = d(str);
         if (d != null) {
-            this.f11278f = d;
-            d.f11259k = true;
+            this.f11276f = d;
+            d.f11257k = true;
             e();
             return;
         }
         i0 i0Var = new i0(this, str, str2);
-        this.f11278f = i0Var;
-        i0Var.f11260l = false;
+        this.f11276f = i0Var;
+        i0Var.f11258l = false;
         this.e.add(i0Var);
         f();
         e();
@@ -93,7 +93,7 @@ public final class j0 {
             Object obj = arrayList.get(i10);
             i10++;
             i0 i0Var = (i0) obj;
-            if (TextUtils.equals(i0Var.f11253b, str) && i0Var.h) {
+            if (TextUtils.equals(i0Var.f11251b, str) && i0Var.h) {
                 return i0Var;
             }
         }
@@ -101,13 +101,13 @@ public final class j0 {
     }
 
     public final void e() {
-        NotificationCenter.getInstance(this.f11276b).lambda$postNotificationNameOnUIThread$1(NotificationCenter.botDownloadsUpdate, new Object[0]);
+        NotificationCenter.getInstance(this.f11274b).lambda$postNotificationNameOnUIThread$1(NotificationCenter.botDownloadsUpdate, new Object[0]);
     }
 
     public final void f() {
         String absolutePath;
         int i10 = 0;
-        SharedPreferences.Editor edit = this.f11275a.getSharedPreferences("botdownloads_" + this.f11276b, 0).edit();
+        SharedPreferences.Editor edit = this.f11273a.getSharedPreferences("botdownloads_" + this.f11274b, 0).edit();
         edit.clear();
         HashSet hashSet = new HashSet();
         ArrayList arrayList = this.e;
@@ -119,9 +119,9 @@ public final class j0 {
             i0Var.getClass();
             JSONObject jSONObject = new JSONObject();
             try {
-                jSONObject.put("url", i0Var.f11253b);
-                jSONObject.put("file_name", i0Var.f11254c);
-                jSONObject.put("size", i0Var.f11256g);
+                jSONObject.put("url", i0Var.f11251b);
+                jSONObject.put("file_name", i0Var.f11252c);
+                jSONObject.put("size", i0Var.f11254g);
                 File file = i0Var.d;
                 if (file == null) {
                     absolutePath = null;
@@ -136,7 +136,7 @@ public final class j0 {
             }
             hashSet.add(jSONObject.toString());
         }
-        edit.putStringSet("" + this.f11277c, hashSet);
+        edit.putStringSet("" + this.f11275c, hashSet);
         edit.apply();
     }
 }

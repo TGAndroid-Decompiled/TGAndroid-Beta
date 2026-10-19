@@ -19,7 +19,7 @@ public abstract class i {
             return 0;
         }
         int c10 = c(aVar);
-        int max = Math.max(0, aVar.f15098c);
+        int max = Math.max(0, aVar.f15096c);
         if (max > 0) {
             i10 = AndroidUtilities.dp(com.google.android.gms.internal.play_billing.k3.v(max, 1, 24, 28));
         }
@@ -31,7 +31,7 @@ public abstract class i {
         if (aVar == null) {
             size = 0;
         } else {
-            size = aVar.f15103k.size();
+            size = aVar.f15101k.size();
         }
         if (size <= 0) {
             return 0;
@@ -44,7 +44,7 @@ public abstract class i {
         if (aVar == null) {
             size = 0;
         } else {
-            size = aVar.f15103k.size();
+            size = aVar.f15101k.size();
         }
         if (size <= 0) {
             return 0;

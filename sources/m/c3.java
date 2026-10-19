@@ -10,16 +10,16 @@ import android.util.TypedValue;
 import android.view.View;
 import v7.q7;
 public abstract class c3 {
-    public static final ThreadLocal f16171a = new ThreadLocal();
-    public static final int[] f16172b = {-16842910};
-    public static final int[] f16173c = {16842908};
+    public static final ThreadLocal f16169a = new ThreadLocal();
+    public static final int[] f16170b = {-16842910};
+    public static final int[] f16171c = {16842908};
     public static final int[] d = {16842919};
     public static final int[] e = {16842912};
-    public static final int[] f16174f = new int[0];
-    public static final int[] f16175g = new int[1];
+    public static final int[] f16172f = new int[0];
+    public static final int[] f16173g = new int[1];
 
     public static void a(View view, Context context) {
-        TypedArray obtainStyledAttributes = context.obtainStyledAttributes(f.a.f10257j);
+        TypedArray obtainStyledAttributes = context.obtainStyledAttributes(f.a.f10255j);
         try {
             if (!obtainStyledAttributes.hasValue(117)) {
                 Log.e("ThemeUtils", "View " + view.getClass() + " is an AppCompat widget that can only be used with a Theme.AppCompat theme (or descendant).");
@@ -32,9 +32,9 @@ public abstract class c3 {
     public static int b(Context context, int i10) {
         ColorStateList d10 = d(context, i10);
         if (d10 != null && d10.isStateful()) {
-            return d10.getColorForState(f16172b, d10.getDefaultColor());
+            return d10.getColorForState(f16170b, d10.getDefaultColor());
         }
-        ThreadLocal threadLocal = f16171a;
+        ThreadLocal threadLocal = f16169a;
         TypedValue typedValue = (TypedValue) threadLocal.get();
         if (typedValue == null) {
             typedValue = new TypedValue();
@@ -47,7 +47,7 @@ public abstract class c3 {
     }
 
     public static int c(Context context, int i10) {
-        int[] iArr = f16175g;
+        int[] iArr = f16173g;
         iArr[0] = i10;
         TypedArray obtainStyledAttributes = context.obtainStyledAttributes((AttributeSet) null, iArr);
         try {
@@ -60,7 +60,7 @@ public abstract class c3 {
     public static ColorStateList d(Context context, int i10) {
         ColorStateList colorStateList;
         int resourceId;
-        int[] iArr = f16175g;
+        int[] iArr = f16173g;
         iArr[0] = i10;
         TypedArray obtainStyledAttributes = context.obtainStyledAttributes((AttributeSet) null, iArr);
         try {

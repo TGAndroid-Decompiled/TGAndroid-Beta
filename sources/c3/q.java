@@ -1,6 +1,6 @@
 package c3;
 public interface q {
-    public static final oa.d f4656i = new oa.d(4);
+    public static final oa.d f4654i = new oa.d(4);
 
     void H();
 

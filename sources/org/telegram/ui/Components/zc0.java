@@ -7,60 +7,60 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.Shader;
 import org.telegram.messenger.R;
 public final class zc0 {
-    public final Paint f32900a;
-    public final ad0 f32901b;
-    public final ad0 f32902c;
+    public final Paint f32898a;
+    public final ad0 f32899b;
+    public final ad0 f32900c;
     public final ad0 d;
     public final yc0 e;
-    public final yc0 f32903f;
-    public final float[] f32904g;
+    public final yc0 f32901f;
+    public final float[] f32902g;
     public int h;
-    public float f32905i;
+    public float f32903i;
 
     public zc0() {
         Paint paint = new Paint();
-        this.f32900a = paint;
+        this.f32898a = paint;
         Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-        this.f32901b = new ad0(tileMode);
-        this.f32902c = new ad0(tileMode);
+        this.f32899b = new ad0(tileMode);
+        this.f32900c = new ad0(tileMode);
         this.d = new ad0(Shader.TileMode.REPEAT);
         this.e = new yc0(R.raw.wallpaper_pos_intensity);
-        this.f32903f = new yc0(R.raw.wallpaper_neg_intensity);
-        this.f32904g = new float[4];
+        this.f32901f = new yc0(R.raw.wallpaper_neg_intensity);
+        this.f32902g = new float[4];
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC));
     }
 
     public final Paint a(Bitmap bitmap, Bitmap bitmap2, Bitmap bitmap3, int i10, int i11) {
-        ad0 ad0Var = this.f32901b;
+        ad0 ad0Var = this.f32899b;
         boolean b10 = ad0Var.b(bitmap);
         ad0 ad0Var2 = this.d;
         boolean b11 = b10 | ad0Var2.b(bitmap2);
-        Paint paint = this.f32900a;
+        Paint paint = this.f32898a;
         if (i11 >= 0) {
-            ad0 ad0Var3 = this.f32902c;
+            ad0 ad0Var3 = this.f32900c;
             if ((b11 | ad0Var3.b(bitmap3)) || this.h != 1) {
                 this.h = 1;
                 yc0 yc0Var = this.e;
-                yc0Var.f32602a.setInputBuffer("shaderPattern", ad0Var2.d);
-                yc0Var.f32602a.setInputBuffer("shaderGradient", ad0Var.d);
-                yc0Var.f32602a.setInputBuffer("shaderGradientSoftLight", ad0Var3.d);
-                yc0Var.f32602a.setFloatUniform("transformGradient", yc0Var.f32603b);
-                yc0Var.f32602a.setFloatUniform("transformPattern", yc0Var.f32604c);
-                paint.setShader(yc0Var.f32602a);
+                yc0Var.f32600a.setInputBuffer("shaderPattern", ad0Var2.d);
+                yc0Var.f32600a.setInputBuffer("shaderGradient", ad0Var.d);
+                yc0Var.f32600a.setInputBuffer("shaderGradientSoftLight", ad0Var3.d);
+                yc0Var.f32600a.setFloatUniform("transformGradient", yc0Var.f32601b);
+                yc0Var.f32600a.setFloatUniform("transformPattern", yc0Var.f32602c);
+                paint.setShader(yc0Var.f32600a);
                 return paint;
             }
         } else {
             float a2 = w7.r.a((i10 * (-i11)) / 25500.0f, 0.0f, 1.0f);
-            if (b11 || this.f32905i != a2 || this.h != 2) {
+            if (b11 || this.f32903i != a2 || this.h != 2) {
                 this.h = 2;
-                this.f32905i = a2;
-                yc0 yc0Var2 = this.f32903f;
-                yc0Var2.f32602a.setInputBuffer("shaderPattern", ad0Var2.d);
-                yc0Var2.f32602a.setInputBuffer("shaderGradient", ad0Var.d);
-                yc0Var2.f32602a.setFloatUniform("intensity", a2);
-                yc0Var2.f32602a.setFloatUniform("transformGradient", yc0Var2.f32603b);
-                yc0Var2.f32602a.setFloatUniform("transformPattern", yc0Var2.f32604c);
-                paint.setShader(yc0Var2.f32602a);
+                this.f32903i = a2;
+                yc0 yc0Var2 = this.f32901f;
+                yc0Var2.f32600a.setInputBuffer("shaderPattern", ad0Var2.d);
+                yc0Var2.f32600a.setInputBuffer("shaderGradient", ad0Var.d);
+                yc0Var2.f32600a.setFloatUniform("intensity", a2);
+                yc0Var2.f32600a.setFloatUniform("transformGradient", yc0Var2.f32601b);
+                yc0Var2.f32600a.setFloatUniform("transformPattern", yc0Var2.f32602c);
+                paint.setShader(yc0Var2.f32600a);
                 return paint;
             }
         }

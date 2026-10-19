@@ -8,80 +8,80 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.camera.Camera2Session;
 import org.telegram.messenger.camera.CameraSession;
 public final class l6 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f28088a;
-    public final Object f28089b;
+    public final int f28086a;
+    public final Object f28087b;
 
     public l6(Object obj, int i10) {
-        this.f28088a = i10;
-        this.f28089b = obj;
+        this.f28086a = i10;
+        this.f28087b = obj;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f28088a) {
+        switch (this.f28086a) {
             case 0:
-                p6 p6Var = (p6) this.f28089b;
+                p6 p6Var = (p6) this.f28087b;
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                p6Var.f29195q = floatValue;
-                TimeInterpolator timeInterpolator = p6Var.f29201x;
+                p6Var.f29193q = floatValue;
+                TimeInterpolator timeInterpolator = p6Var.f29199x;
                 if (timeInterpolator != null) {
                     floatValue = timeInterpolator.getInterpolation(floatValue);
                 }
-                p6Var.f29196r = floatValue;
+                p6Var.f29194r = floatValue;
                 p6Var.invalidateSelf();
-                Runnable runnable = p6Var.f29183b0;
+                Runnable runnable = p6Var.f29181b0;
                 if (runnable != null) {
                     runnable.run();
                     return;
                 }
                 return;
             case 1:
-                x6 x6Var = (x6) this.f28089b;
-                x6Var.f32318a.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                x6 x6Var = (x6) this.f28087b;
+                x6Var.f32316a.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 x6Var.invalidate();
                 return;
             case 2:
-                k8 k8Var = (k8) this.f28089b;
+                k8 k8Var = (k8) this.f28087b;
                 k8Var.J.setCustomPaddingRight(((Integer) valueAnimator.getAnimatedValue()).intValue());
                 k8Var.M.setCustomPaddingRight(((Integer) valueAnimator.getAnimatedValue()).intValue());
                 return;
             case 3:
-                e9 e9Var = (e9) this.f28089b;
+                e9 e9Var = (e9) this.f28087b;
                 e9Var.getClass();
                 e9Var.j0(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 return;
             case 4:
-                j9 j9Var = (j9) this.f28089b;
+                j9 j9Var = (j9) this.f28087b;
                 j9Var.getClass();
                 j9Var.e = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 j9Var.f();
                 return;
             case 5:
-                y9 y9Var = (y9) this.f28089b;
+                y9 y9Var = (y9) this.f28087b;
                 y9Var.getClass();
-                y9Var.f32572g = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                y9Var.f32570g = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 y9Var.invalidateSelf();
                 return;
             case 6:
-                na naVar = (na) this.f28089b;
+                na naVar = (na) this.f28087b;
                 naVar.getClass();
-                naVar.f28709f = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                naVar.f28707b.invalidate();
+                naVar.f28707f = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                naVar.f28705b.invalidate();
                 return;
             case 7:
-                yc ycVar = (yc) this.f28089b;
+                yc ycVar = (yc) this.f28087b;
                 ycVar.getClass();
-                ycVar.f32601j = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                ycVar.f32599j = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 ycVar.b();
                 return;
             case 8:
-                vg vgVar = (vg) this.f28089b;
+                vg vgVar = (vg) this.f28087b;
                 vgVar.getClass();
-                vgVar.f31271d0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                vgVar.f31269d0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 return;
             case 9:
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                ti tiVar = ((ai) this.f28089b).e;
+                ti tiVar = ((ai) this.f28087b).e;
                 wh whVar = tiVar.A1;
                 whVar.setAlpha(1.0f - floatValue2);
                 tiVar.H1.setAlpha(floatValue2);
@@ -90,24 +90,24 @@ public final class l6 implements ValueAnimator.AnimatorUpdateListener {
                 whVar.setTranslationY(dp);
                 return;
             case 10:
-                wh whVar2 = (wh) this.f28089b;
-                ti tiVar2 = whVar2.f32116b;
+                wh whVar2 = (wh) this.f28087b;
+                ti tiVar2 = whVar2.f32114b;
                 tiVar2.Y1 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 tiVar2.F0.invalidate();
                 tiVar2.G0.invalidate();
                 whVar2.invalidate();
                 return;
             case 11:
-                ((al) this.f28089b).setFeeVisibilityProgress(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                ((al) this.f28087b).setFeeVisibilityProgress(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 return;
             case 12:
-                ym ymVar = (ym) this.f28089b;
+                ym ymVar = (ym) this.f28087b;
                 ymVar.getClass();
-                ymVar.f32681l = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                ymVar.f32679l = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 ymVar.O.f32992z.invalidate();
                 return;
             case 13:
-                dp dpVar = (dp) this.f28089b;
+                dp dpVar = (dp) this.f28087b;
                 dpVar.getClass();
                 float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 dpVar.d = floatValue3;
@@ -115,15 +115,15 @@ public final class l6 implements ValueAnimator.AnimatorUpdateListener {
                 dpVar.a(false);
                 return;
             case 14:
-                wp wpVar = (wp) this.f28089b;
+                wp wpVar = (wp) this.f28087b;
                 wpVar.getClass();
-                wpVar.f32178g0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                wpVar.J.setTranslationY((-AndroidUtilities.dp(7.0f)) * wpVar.f32178g0);
+                wpVar.f32176g0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                wpVar.J.setTranslationY((-AndroidUtilities.dp(7.0f)) * wpVar.f32176g0);
                 return;
             case 15:
-                fr frVar = (fr) this.f28089b;
+                fr frVar = (fr) this.f28087b;
                 frVar.getClass();
-                frVar.f26351l = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                frVar.f26349l = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 View view = frVar.H;
                 if (view != null) {
                     view.invalidate();
@@ -131,16 +131,16 @@ public final class l6 implements ValueAnimator.AnimatorUpdateListener {
                 }
                 return;
             case 16:
-                as asVar = (as) this.f28089b;
+                as asVar = (as) this.f28087b;
                 asVar.getClass();
                 asVar.b(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 asVar.invalidateSelf();
                 return;
             case 17:
-                aw.q((aw) this.f28089b, valueAnimator);
+                aw.q((aw) this.f28087b, valueAnimator);
                 return;
             case 18:
-                rv rvVar = (rv) this.f28089b;
+                rv rvVar = (rv) this.f28087b;
                 rvVar.getClass();
                 rvVar.e = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 if (rvVar.getParent() instanceof View) {
@@ -149,11 +149,11 @@ public final class l6 implements ValueAnimator.AnimatorUpdateListener {
                 }
                 return;
             case 19:
-                vv vvVar = (vv) this.f28089b;
+                vv vvVar = (vv) this.f28087b;
                 vvVar.getClass();
                 float floatValue4 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 vvVar.v = floatValue4;
-                TextView textView = vvVar.f31922c;
+                TextView textView = vvVar.f31920c;
                 textView.setScaleX(1.0f - floatValue4);
                 textView.setScaleY(1.0f - vvVar.v);
                 textView.setAlpha(1.0f - vvVar.v);
@@ -163,61 +163,61 @@ public final class l6 implements ValueAnimator.AnimatorUpdateListener {
                 textView2.setAlpha(vvVar.v);
                 return;
             case 20:
-                gw gwVar = (gw) this.f28089b;
+                gw gwVar = (gw) this.f28087b;
                 gwVar.getClass();
                 gwVar.G = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 gwVar.d();
                 return;
             case 21:
-                iw iwVar = (iw) this.f28089b;
+                iw iwVar = (iw) this.f28087b;
                 iwVar.getClass();
-                iwVar.f27384r = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                iwVar.f27382r = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 iwVar.invalidate();
                 iwVar.requestLayout();
                 iwVar.c();
-                iwVar.f27385s.f27924b.invalidate();
+                iwVar.f27383s.f27922b.invalidate();
                 return;
             case 22:
-                cz czVar = (cz) this.f28089b;
+                cz czVar = (cz) this.f28087b;
                 czVar.getClass();
                 czVar.h = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 czVar.invalidate();
                 return;
             case 23:
-                gz gzVar = (gz) this.f28089b;
+                gz gzVar = (gz) this.f28087b;
                 float floatValue5 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                gzVar.f26723w = floatValue5;
+                gzVar.f26721w = floatValue5;
                 View view2 = gzVar.v;
                 if (view2 != null) {
                     view2.setAlpha(floatValue5);
                     return;
                 }
-                ah.v vVar = gzVar.f26722s;
+                ah.v vVar = gzVar.f26720s;
                 if (vVar != null) {
                     vVar.invalidate();
                     return;
                 }
                 return;
             case 24:
-                s00 s00Var = ((l00) this.f28089b).F;
+                s00 s00Var = ((l00) this.f28087b).F;
                 s00Var.F.invalidate();
                 s00Var.invalidate();
                 return;
             case 25:
-                a10 a10Var = (a10) this.f28089b;
+                a10 a10Var = (a10) this.f28087b;
                 a10Var.getClass();
                 a10Var.G = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 a10Var.invalidate();
                 return;
             case 26:
-                i30 i30Var = (i30) this.f28089b;
-                f30 f30Var = i30Var.f27052a;
+                i30 i30Var = (i30) this.f28087b;
+                f30 f30Var = i30Var.f27050a;
                 if (!i30Var.F) {
                     float floatValue6 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                    i30Var.f27055b0 = floatValue6;
+                    i30Var.f27053b0 = floatValue6;
                     i30Var.U.setPinnedProgress(floatValue6);
-                    f30Var.setScaleX(1.0f - (i30Var.f27055b0 * 0.6f));
-                    f30Var.setScaleY(1.0f - (i30Var.f27055b0 * 0.6f));
+                    f30Var.setScaleX(1.0f - (i30Var.f27053b0 * 0.6f));
+                    f30Var.setScaleY(1.0f - (i30Var.f27053b0 * 0.6f));
                     if (i30Var.W) {
                         i30Var.i();
                         return;
@@ -226,27 +226,27 @@ public final class l6 implements ValueAnimator.AnimatorUpdateListener {
                 }
                 return;
             case 27:
-                m60 m60Var = (m60) this.f28089b;
-                if (m60Var.f28437s0) {
-                    Camera2Session camera2Session = m60Var.f28442w0;
+                m60 m60Var = (m60) this.f28087b;
+                if (m60Var.f28435s0) {
+                    Camera2Session camera2Session = m60Var.f28440w0;
                     if (camera2Session != null) {
                         camera2Session.setZoom(((Float) valueAnimator.getAnimatedValue()).floatValue());
                         return;
                     }
                     return;
                 }
-                CameraSession cameraSession = m60Var.f28438t0;
+                CameraSession cameraSession = m60Var.f28436t0;
                 if (cameraSession != null) {
                     cameraSession.setZoom(((Float) valueAnimator.getAnimatedValue()).floatValue());
                     return;
                 }
                 return;
             case 28:
-                v70.Q((v70) this.f28089b, valueAnimator);
+                v70.Q((v70) this.f28087b, valueAnimator);
                 return;
             default:
-                v70 v70Var = ((u70) this.f28089b).e;
-                v70Var.f31182k0 = ((Integer) valueAnimator.getAnimatedValue()).intValue();
+                v70 v70Var = ((u70) this.f28087b).e;
+                v70Var.f31180k0 = ((Integer) valueAnimator.getAnimatedValue()).intValue();
                 v70.V(v70Var).invalidate();
                 return;
         }

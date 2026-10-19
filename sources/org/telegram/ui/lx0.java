@@ -11,30 +11,30 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class lx0 implements Runnable {
-    public final int f39068a;
-    public final ProfileActivity f39069b;
-    public final TLRPC.User f39070c;
+    public final int f39033a;
+    public final ProfileActivity f39034b;
+    public final TLRPC.User f39035c;
 
     public lx0(ProfileActivity profileActivity, TLRPC.User user, int i10) {
-        this.f39068a = i10;
-        this.f39069b = profileActivity;
-        this.f39070c = user;
+        this.f39033a = i10;
+        this.f39034b = profileActivity;
+        this.f39035c = user;
     }
 
     @Override
     public final void run() {
         boolean z10;
         boolean z11;
-        switch (this.f39068a) {
+        switch (this.f39033a) {
             case 0:
-                ProfileActivity profileActivity = this.f39069b;
-                TLRPC.User user = this.f39070c;
+                ProfileActivity profileActivity = this.f39034b;
+                TLRPC.User user = this.f39035c;
                 profileActivity.getClass();
-                profileActivity.presentFragment(qn.W9(user.f20422id));
+                profileActivity.presentFragment(qn.W9(user.f20420id));
                 return;
             case 1:
-                ProfileActivity profileActivity2 = this.f39069b;
-                TLRPC.User user2 = this.f39070c;
+                ProfileActivity profileActivity2 = this.f39034b;
+                TLRPC.User user2 = this.f39035c;
                 if (profileActivity2.getParentActivity() != null) {
                     TLRPC.UserFull userFull = profileActivity2.f33732w2;
                     if (userFull != null && userFull.video_calls_available) {
@@ -47,8 +47,8 @@ public final class lx0 implements Runnable {
                 }
                 return;
             case 2:
-                ProfileActivity profileActivity3 = this.f39069b;
-                TLRPC.User user3 = this.f39070c;
+                ProfileActivity profileActivity3 = this.f39034b;
+                TLRPC.User user3 = this.f39035c;
                 if (profileActivity3.getParentActivity() != null) {
                     TLRPC.UserFull userFull2 = profileActivity3.f33732w2;
                     if (userFull2 != null && userFull2.video_calls_available) {
@@ -61,8 +61,8 @@ public final class lx0 implements Runnable {
                 }
                 return;
             case 3:
-                ProfileActivity profileActivity4 = this.f39069b;
-                TLRPC.User user4 = this.f39070c;
+                ProfileActivity profileActivity4 = this.f39034b;
+                TLRPC.User user4 = this.f39035c;
                 profileActivity4.getClass();
                 try {
                     Intent intent = new Intent("android.intent.action.DIAL", Uri.parse("tel:+" + user4.phone));
@@ -74,8 +74,8 @@ public final class lx0 implements Runnable {
                     return;
                 }
             default:
-                ProfileActivity profileActivity5 = this.f39069b;
-                TLRPC.User user5 = this.f39070c;
+                ProfileActivity profileActivity5 = this.f39034b;
+                TLRPC.User user5 = this.f39035c;
                 try {
                     ((ClipboardManager) ApplicationLoader.applicationContext.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", "+" + user5.phone));
                     if (AndroidUtilities.shouldShowClipboardToast()) {

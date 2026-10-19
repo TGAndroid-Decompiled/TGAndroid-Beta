@@ -13,20 +13,20 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 public final class br0 extends hm0 {
-    public final Context f25012c;
+    public final Context f25010c;
     public boolean d;
     public boolean e;
-    public ArrayList f25013f;
+    public ArrayList f25011f;
     public final er0 h;
 
     public br0(er0 er0Var, Context context) {
         this.h = er0Var;
-        this.f25012c = context;
+        this.f25010c = context;
     }
 
     @Override
     public final boolean D(s4.b1 b1Var) {
-        if (b1Var.f45913f != 1) {
+        if (b1Var.f45915f != 1) {
             return true;
         }
         return false;
@@ -37,9 +37,9 @@ public final class br0 extends hm0 {
         if (this.d) {
             i11 = i10 - 2;
         }
-        ArrayList arrayList = this.f25013f;
+        ArrayList arrayList = this.f25011f;
         if (arrayList != null && i11 >= 0 && i11 < arrayList.size()) {
-            return (TLRPC.TL_forumTopic) this.f25013f.get(i11);
+            return (TLRPC.TL_forumTopic) this.f25011f.get(i11);
         }
         return null;
     }
@@ -47,7 +47,7 @@ public final class br0 extends hm0 {
     @Override
     public final int h() {
         int i10;
-        ArrayList arrayList = this.f25013f;
+        ArrayList arrayList = this.f25011f;
         if (arrayList != null) {
             i10 = arrayList.size() + 1;
         } else {
@@ -69,27 +69,27 @@ public final class br0 extends hm0 {
         boolean z10;
         long j10;
         int dp;
-        if (b1Var.f45913f == 0) {
-            org.telegram.ui.Cells.f7 f7Var = (org.telegram.ui.Cells.f7) b1Var.f45910a;
+        if (b1Var.f45915f == 0) {
+            org.telegram.ui.Cells.f7 f7Var = (org.telegram.ui.Cells.f7) b1Var.f45912a;
             if (i10 == 1 && this.d) {
                 f7Var.setAsNewBotForumTopic(this.e);
-            } else if (this.f25013f != null) {
+            } else if (this.f25011f != null) {
                 TLRPC.TL_forumTopic E = E(i10);
                 er0 er0Var = this.h;
                 TLRPC.Dialog dialog = er0Var.D0;
-                if (E != null && er0Var.V.h(E.f20327id) >= 0) {
+                if (E != null && er0Var.V.h(E.f20325id) >= 0) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                org.telegram.ui.Cells.c7 c7Var = f7Var.f22255b;
-                int i11 = f7Var.f22257f;
-                w9 w9Var = f7Var.f22254a;
-                TextView textView = f7Var.f22256c;
+                org.telegram.ui.Cells.c7 c7Var = f7Var.f22253b;
+                int i11 = f7Var.f22255f;
+                w9 w9Var = f7Var.f22252a;
+                TextView textView = f7Var.f22254c;
                 if (dialog != null) {
-                    TLRPC.Chat chat = MessagesController.getInstance(i11).getChat(Long.valueOf(-dialog.f20279id));
+                    TLRPC.Chat chat = MessagesController.getInstance(i11).getChat(Long.valueOf(-dialog.f20277id));
                     String str = "";
-                    if (dialog.f20279id > 0) {
+                    if (dialog.f20277id > 0) {
                         textView.setText(E.title);
                         j10 = 0;
                     } else if (chat != null) {
@@ -110,7 +110,7 @@ public final class br0 extends hm0 {
                         long peerDialogId = DialogObject.getPeerDialogId(E.from_id);
                         if (DialogObject.isUserDialog(peerDialogId)) {
                             TLRPC.User user = MessagesController.getInstance(i11).getUser(Long.valueOf(peerDialogId));
-                            textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21095j5, f7Var.h));
+                            textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21093j5, f7Var.h));
                             c7Var.m(i11, user);
                             if (user != null) {
                                 textView.setText(ContactsController.formatName(user.first_name, user.last_name));
@@ -141,7 +141,7 @@ public final class br0 extends hm0 {
                             str = upperCase.substring(0, 1);
                         }
                         f90Var.a(str);
-                        f90Var.f26169i = 1.8f;
+                        f90Var.f26167i = 1.8f;
                         zq zqVar = new zq(aVar, f90Var, 0, 0);
                         zqVar.f33023w = true;
                         w9Var.setImageDrawable(zqVar);
@@ -152,8 +152,8 @@ public final class br0 extends hm0 {
                         dp = AndroidUtilities.dp(28.0f);
                     }
                     w9Var.setRoundRadius(dp);
-                    f7Var.d = dialog.f20279id;
-                    f7Var.e = E.f20327id;
+                    f7Var.d = dialog.f20277id;
+                    f7Var.e = E.f20325id;
                 }
             }
         }
@@ -163,7 +163,7 @@ public final class br0 extends hm0 {
     public final s4.b1 x(ViewGroup viewGroup, int i10) {
         View f7Var;
         org.telegram.ui.ActionBar.d6 d6Var;
-        Context context = this.f25012c;
+        Context context = this.f25010c;
         if (i10 == 0 || i10 == 2) {
             d6Var = ((org.telegram.ui.ActionBar.f3) this.h).resourcesProvider;
             f7Var = new org.telegram.ui.Cells.f7(context, d6Var);

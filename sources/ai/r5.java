@@ -1,98 +1,25 @@
 package ai;
 
-import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.RadialGradient;
-import android.graphics.Shader;
-import android.graphics.drawable.ShapeDrawable;
-import android.graphics.drawable.shapes.OvalShape;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.tl.TL_stars;
-public final class r5 extends FrameLayout {
-    public final org.telegram.ui.Components.w9 f2104a;
-    public final y5 f2105b;
-    public final org.telegram.ui.Components.q6 f2106c;
-    public TL_stars.starGiftAttributeBackdrop d;
-    public TL_stars.starGiftAttributePattern e;
-    public float f2107f;
+import org.telegram.messenger.Utilities;
+public final class r5 implements Utilities.Callback2 {
+    public final int f2110a;
+    public final Object f2111b;
+    public final Object f2112c;
 
-    public r5(Context context) {
-        super(context);
-        org.telegram.ui.Components.w9 w9Var = new org.telegram.ui.Components.w9(context);
-        this.f2104a = w9Var;
-        w9Var.setRoundRadius(AndroidUtilities.dp(13.0f));
-        addView(w9Var, w7.z5.d(26, 26.0f, 49, 0.0f, 11.33f, 0.0f, 0.0f));
-        y5 y5Var = new y5(context);
-        this.f2105b = y5Var;
-        y5Var.e = AndroidUtilities.dp(18.0f);
-        y5Var.f2479a.setStrokeWidth(AndroidUtilities.dp(3.0f));
-        addView(y5Var, w7.z5.d(48, 48.0f, 49, 0.0f, 0.66f, 0.0f, 0.0f));
-        org.telegram.ui.Components.q6 q6Var = new org.telegram.ui.Components.q6(context, false, false, false);
-        this.f2106c = q6Var;
-        q6Var.setTypeface(AndroidUtilities.bold());
-        q6Var.setGravity(17);
-        q6Var.setTextSize(AndroidUtilities.dp(12.0f));
-        q6Var.setTextColor(-1);
-        addView(q6Var, w7.z5.d(-1, 14.0f, 48, 0.0f, 39.0f, 0.0f, 0.0f));
-        c(0.0f, false);
-        w7.b6.a(this);
+    public r5(int i10, Object obj, Object obj2) {
+        this.f2110a = i10;
+        this.f2111b = obj;
+        this.f2112c = obj2;
     }
 
-    public final void a(TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop) {
-        this.d = stargiftattributebackdrop;
-        this.e = null;
-        org.telegram.ui.Components.w9 w9Var = this.f2104a;
-        w9Var.setScaleX(1.0f);
-        w9Var.setScaleY(1.0f);
-        if (stargiftattributebackdrop != null) {
-            w9Var.setAlpha(1.0f);
-            OvalShape ovalShape = new OvalShape();
-            ovalShape.resize(AndroidUtilities.dp(26.0f), AndroidUtilities.dp(26.0f));
-            ShapeDrawable shapeDrawable = new ShapeDrawable(ovalShape);
-            shapeDrawable.setIntrinsicWidth(AndroidUtilities.dp(26.0f));
-            shapeDrawable.setIntrinsicHeight(AndroidUtilities.dp(26.0f));
-            shapeDrawable.getPaint().setShader(new RadialGradient(AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.0f), new int[]{stargiftattributebackdrop.center_color | (-16777216), stargiftattributebackdrop.edge_color | (-16777216)}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
-            w9Var.setImageDrawable(shapeDrawable);
-            return;
-        }
-        w9Var.setAlpha(1.0f);
-        w9Var.setImageDrawable(org.telegram.ui.ActionBar.h6.K(AndroidUtilities.dp(26.0f), org.telegram.ui.ActionBar.h6.m1(0.25f, -1)));
+    @Override
+    public final void run(java.lang.Object r32, java.lang.Object r33) {
+        throw new UnsupportedOperationException("Method not decompiled: ai.r5.run(java.lang.Object, java.lang.Object):void");
     }
 
-    public final void b(TL_stars.starGiftAttributePattern stargiftattributepattern) {
-        this.d = null;
-        this.e = stargiftattributepattern;
-        org.telegram.ui.Components.w9 w9Var = this.f2104a;
-        if (stargiftattributepattern == null) {
-            w9Var.setAlpha(0.25f);
-            w9Var.setScaleX(0.75f);
-            w9Var.setScaleY(0.75f);
-            w9Var.setTranslationY(0.0f);
-            w9Var.setAnimatedEmojiDrawable(null);
-            w9Var.setImageResource(R.drawable.mini_roll);
-            return;
-        }
-        w9Var.setAlpha(1.0f);
-        w9Var.setScaleX(0.95f);
-        w9Var.setScaleY(0.95f);
-        w9Var.setTranslationY(AndroidUtilities.dp(2.0f));
-        org.telegram.ui.Components.r5 m10 = org.telegram.ui.Components.r5.m(UserConfig.selectedAccount, 9, stargiftattributepattern.document);
-        m10.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
-        w9Var.setAnimatedEmojiDrawable(m10);
-    }
-
-    public final void c(float f7, boolean z10) {
-        this.f2107f = f7;
-        y5 y5Var = this.f2105b;
-        y5Var.d = f7;
-        if (!z10) {
-            y5Var.f2480b.d(f7, true);
-        }
-        y5Var.invalidate();
-        this.f2106c.c(Math.round(f7 * 100.0f) + "%", z10, true);
+    public r5(org.telegram.ui.Wallet.m0 m0Var, String str, Utilities.Callback callback) {
+        this.f2110a = 23;
+        this.f2111b = str;
+        this.f2112c = callback;
     }
 }

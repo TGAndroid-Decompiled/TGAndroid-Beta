@@ -11,7 +11,7 @@ public final class n80 extends im0 {
 
     @Override
     public final void requestLayout() {
-        if (this.V2.f29878n) {
+        if (this.V2.f29876n) {
             return;
         }
         super.requestLayout();

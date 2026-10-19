@@ -15,13 +15,13 @@ public final class lw0 extends sg.r1 {
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        TextView textView = this.f46409r;
+        TextView textView = this.f46411r;
         if (textView.getVisibility() == 0) {
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(textView.getLeft(), textView.getTop(), textView.getRight(), textView.getBottom());
             mw0 mw0Var = this.N;
-            mw0Var.d.f39695n.f33508n0.d(0, 0.0f, 0, getMeasuredWidth(), -this.f46408n.h, mw0Var.d.f39695n.O);
-            canvas.drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), mw0Var.d.f39695n.f33508n0.f46184f);
+            mw0Var.d.f39694n.f33508n0.d(0, 0.0f, 0, getMeasuredWidth(), -this.f46410n.h, mw0Var.d.f39694n.O);
+            canvas.drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), mw0Var.d.f39694n.f33508n0.f46186f);
         }
         super.dispatchDraw(canvas);
     }

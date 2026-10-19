@@ -1,15 +1,15 @@
 package b2;
 public class u0 {
-    public int f4055a;
-    public int f4056b;
+    public int f4053a;
+    public int f4054b;
 
     public u0(int i10, int i11) {
-        this.f4055a = i10;
-        this.f4056b = i11;
+        this.f4053a = i10;
+        this.f4054b = i11;
     }
 
     public int a() {
-        int i10 = this.f4056b;
+        int i10 = this.f4054b;
         if (i10 != 2) {
             if (i10 != 5) {
                 if (i10 != 29) {
@@ -32,6 +32,6 @@ public class u0 {
     }
 
     public int b() {
-        return this.f4055a | this.f4056b;
+        return this.f4053a | this.f4054b;
     }
 }

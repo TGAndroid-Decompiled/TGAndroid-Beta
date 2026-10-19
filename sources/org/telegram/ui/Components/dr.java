@@ -7,23 +7,23 @@ import android.graphics.RectF;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class dr extends View {
-    public final Paint f25618a;
-    public final Paint f25619b;
-    public final RectF f25620c;
+    public final Paint f25616a;
+    public final Paint f25617b;
+    public final RectF f25618c;
     public int d;
     public long e;
-    public int f25621f;
+    public int f25619f;
     public int h;
-    public int f25622n;
-    public int f25623r;
+    public int f25620n;
+    public int f25621r;
 
     public dr(Context context, int i10) {
         super(context);
         Paint paint = new Paint(1);
-        this.f25618a = paint;
+        this.f25616a = paint;
         Paint paint2 = new Paint(1);
-        this.f25619b = paint2;
-        this.f25620c = new RectF();
+        this.f25617b = paint2;
+        this.f25618c = new RectF();
         this.d = 0;
         Paint.Style style = Paint.Style.STROKE;
         paint.setStyle(style);
@@ -32,43 +32,43 @@ public final class dr extends View {
         paint2.setStrokeWidth(AndroidUtilities.dp(2.0f));
         paint2.setStrokeCap(Paint.Cap.ROUND);
         if (i10 == 0) {
-            this.f25621f = org.telegram.ui.ActionBar.h6.B7;
+            this.f25619f = org.telegram.ui.ActionBar.h6.B7;
             this.h = org.telegram.ui.ActionBar.h6.C7;
         } else if (i10 == 1) {
-            this.f25621f = org.telegram.ui.ActionBar.h6.D7;
+            this.f25619f = org.telegram.ui.ActionBar.h6.D7;
             this.h = org.telegram.ui.ActionBar.h6.E7;
         } else if (i10 == 2) {
-            this.f25621f = org.telegram.ui.ActionBar.h6.F7;
+            this.f25619f = org.telegram.ui.ActionBar.h6.F7;
             this.h = org.telegram.ui.ActionBar.h6.G7;
         } else if (i10 == 3) {
-            this.f25621f = org.telegram.ui.ActionBar.h6.H7;
+            this.f25619f = org.telegram.ui.ActionBar.h6.H7;
             this.h = org.telegram.ui.ActionBar.h6.I7;
         }
         b();
     }
 
     public final void a(int i10, int i11) {
-        this.f25621f = -1;
+        this.f25619f = -1;
         this.h = -1;
-        this.f25622n = i10;
-        this.f25623r = i11;
+        this.f25620n = i10;
+        this.f25621r = i11;
         b();
     }
 
     public final void b() {
-        int i10 = this.f25621f;
-        Paint paint = this.f25618a;
+        int i10 = this.f25619f;
+        Paint paint = this.f25616a;
         if (i10 >= 0) {
             paint.setColor(org.telegram.ui.ActionBar.h6.x0(null, i10, false));
         } else {
-            paint.setColor(this.f25622n);
+            paint.setColor(this.f25620n);
         }
         int i11 = this.h;
-        Paint paint2 = this.f25619b;
+        Paint paint2 = this.f25617b;
         if (i11 >= 0) {
             paint2.setColor(org.telegram.ui.ActionBar.h6.x0(null, i11, false));
         } else {
-            paint2.setColor(this.f25623r);
+            paint2.setColor(this.f25621r);
         }
         invalidate();
     }
@@ -91,10 +91,10 @@ public final class dr extends View {
         this.d = (int) ((((float) (j10 * 360)) / 1000.0f) + this.d);
         int measuredWidth = (getMeasuredWidth() / 2) - AndroidUtilities.dp(9.0f);
         int measuredHeight = (getMeasuredHeight() / 2) - AndroidUtilities.dp(9.0f);
-        RectF rectF = this.f25620c;
+        RectF rectF = this.f25618c;
         rectF.set(measuredWidth, measuredHeight, AndroidUtilities.dp(18.0f) + measuredWidth, AndroidUtilities.dp(18.0f) + measuredHeight);
-        canvas.drawCircle(getMeasuredWidth() / 2, getMeasuredHeight() / 2, AndroidUtilities.dp(9.0f), this.f25618a);
-        canvas.drawArc(rectF, this.d - 90, 90.0f, false, this.f25619b);
+        canvas.drawCircle(getMeasuredWidth() / 2, getMeasuredHeight() / 2, AndroidUtilities.dp(9.0f), this.f25616a);
+        canvas.drawArc(rectF, this.d - 90, 90.0f, false, this.f25617b);
         invalidate();
     }
 

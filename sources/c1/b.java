@@ -4,28 +4,28 @@ import java.util.concurrent.Executor;
 import td.l;
 import w0.i;
 public final class b implements l {
-    public final int f4480a;
-    public final Object f4481b;
+    public final int f4478a;
+    public final Object f4479b;
 
     public b(Object obj, int i10) {
-        this.f4480a = i10;
-        this.f4481b = obj;
+        this.f4478a = i10;
+        this.f4479b = obj;
     }
 
     @Override
     public final Object invoke(Object obj) {
-        switch (this.f4480a) {
+        switch (this.f4478a) {
             case 0:
-                e eVar = (e) this.f4481b;
+                e eVar = (e) this.f4479b;
                 i e = (i) obj;
                 kotlin.jvm.internal.i.e(e, "e");
                 eVar.f().execute(new a(eVar, e, 2));
                 break;
             case 1:
-                d1.e eVar2 = (d1.e) this.f4481b;
+                d1.e eVar2 = (d1.e) this.f4479b;
                 w0.d e7 = (w0.d) obj;
                 kotlin.jvm.internal.i.e(e7, "e");
-                Executor executor = eVar2.f7731g;
+                Executor executor = eVar2.f7729g;
                 if (executor != null) {
                     executor.execute(new d1.a(eVar2, e7, 0));
                     break;
@@ -34,10 +34,10 @@ public final class b implements l {
                     throw null;
                 }
             case 2:
-                e1.e eVar3 = (e1.e) this.f4481b;
+                e1.e eVar3 = (e1.e) this.f4479b;
                 w0.d e10 = (w0.d) obj;
                 kotlin.jvm.internal.i.e(e10, "e");
-                Executor executor2 = eVar3.f8186g;
+                Executor executor2 = eVar3.f8184g;
                 if (executor2 != null) {
                     executor2.execute(new e1.d(eVar3, e10, 0));
                     break;
@@ -46,11 +46,11 @@ public final class b implements l {
                     throw null;
                 }
             default:
-                if (obj == ((jd.c) this.f4481b)) {
+                if (obj == ((jd.c) this.f4479b)) {
                     return "(this Collection)";
                 }
                 return String.valueOf(obj);
         }
-        return id.i.f12777a;
+        return id.i.f12775a;
     }
 }

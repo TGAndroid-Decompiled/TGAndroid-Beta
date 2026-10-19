@@ -14,15 +14,15 @@ import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.cy;
 import org.telegram.ui.re1;
 public final class r1 implements Utilities.Callback {
-    public final re1 f11422a;
-    public final cy f11423b;
-    public final long f11424c;
+    public final re1 f11420a;
+    public final cy f11421b;
+    public final long f11422c;
     public final int d;
 
     public r1(re1 re1Var, cy cyVar, long j10, int i10) {
-        this.f11422a = re1Var;
-        this.f11423b = cyVar;
-        this.f11424c = j10;
+        this.f11420a = re1Var;
+        this.f11421b = cyVar;
+        this.f11422c = j10;
         this.d = i10;
     }
 
@@ -32,8 +32,8 @@ public final class r1 implements Utilities.Callback {
         TLRPC.User user;
         int i10;
         Boolean bool = (Boolean) obj;
-        re1 re1Var = this.f11422a;
-        cy cyVar = this.f11423b;
+        re1 re1Var = this.f11420a;
+        cy cyVar = this.f11421b;
         if (re1Var != null) {
             re1Var.finishFragment();
             cyVar.removeSelfFromStack();
@@ -44,7 +44,7 @@ public final class r1 implements Utilities.Callback {
         if (U == null) {
             return;
         }
-        long j10 = this.f11424c;
+        long j10 = this.f11422c;
         int i11 = (j10 > 0L ? 1 : (j10 == 0L ? 0 : -1));
         int i12 = this.d;
         if (i11 >= 0) {

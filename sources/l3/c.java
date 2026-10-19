@@ -5,10 +5,10 @@ import b2.s0;
 import b2.w;
 import v7.c8;
 public final class c implements s0 {
-    public final long f15899a;
+    public final long f15897a;
 
     public c(long j10) {
-        this.f15899a = j10;
+        this.f15897a = j10;
     }
 
     @Override
@@ -25,18 +25,18 @@ public final class c implements s0 {
         if (this == obj) {
             return true;
         }
-        if (obj != null && c.class == obj.getClass() && this.f15899a == ((c) obj).f15899a) {
+        if (obj != null && c.class == obj.getClass() && this.f15897a == ((c) obj).f15897a) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return c8.b(this.f15899a) + 527;
+        return c8.b(this.f15897a) + 527;
     }
 
     public final String toString() {
-        return "ThumbnailMetadata: presentationTimeUs=" + this.f15899a;
+        return "ThumbnailMetadata: presentationTimeUs=" + this.f15897a;
     }
 
     @Override

@@ -12,16 +12,16 @@ import org.telegram.messenger.R;
 import org.telegram.ui.Components.wc0;
 import org.telegram.ui.ah1;
 public final class z0 extends TextView {
-    public final Paint f31893a;
-    public final Paint[] f31894b;
-    public final ah1 f31895c;
+    public final Paint f31891a;
+    public final Paint[] f31892b;
+    public final ah1 f31893c;
 
     public z0(ah1 ah1Var, Context context) {
         super(context);
-        this.f31895c = ah1Var;
+        this.f31893c = ah1Var;
         Paint paint = new Paint();
-        this.f31893a = paint;
-        this.f31894b = new Paint[ah1Var.e.length];
+        this.f31891a = paint;
+        this.f31892b = new Paint[ah1Var.e.length];
         wc0 wc0Var = ah1Var.R;
         wc0Var.setBounds(0, 0, 80, 80);
         wc0 wc0Var2 = ah1Var.S;
@@ -33,35 +33,35 @@ public final class z0 extends TextView {
         wc0Var.setAlpha(255);
         wc0Var2.setAlpha(255);
         PorterDuff.Mode mode = PorterDuff.Mode.CLEAR;
-        ((Canvas) lVar.f7648b).drawColor(0, mode);
-        ((Canvas) lVar2.f7648b).drawColor(0, mode);
-        wc0Var.draw((Canvas) lVar.f7648b);
-        wc0Var2.draw((Canvas) lVar2.f7648b);
+        ((Canvas) lVar.f7646b).drawColor(0, mode);
+        ((Canvas) lVar2.f7646b).drawColor(0, mode);
+        wc0Var.draw((Canvas) lVar.f7646b);
+        wc0Var2.draw((Canvas) lVar2.f7646b);
         paint.setColor(-1);
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         int i10;
-        ah1 ah1Var = this.f31895c;
-        z0 z0Var = ah1Var.f31399c;
+        ah1 ah1Var = this.f31893c;
+        z0 z0Var = ah1Var.f31397c;
         ah1Var.P.E(-getX(), -getY(), ah1Var.getWidth() - getX(), ah1Var.getHeight() - getY());
         ah1Var.Q.E(-getX(), -getY(), ah1Var.getWidth() - getX(), ah1Var.getHeight() - getY());
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
         int i11 = ah1Var.v;
-        Paint[] paintArr = this.f31894b;
+        Paint[] paintArr = this.f31892b;
         paintArr[i11].setAlpha(255);
-        float dp = AndroidUtilities.dp(8.0f) + ((int) ((1.0f - ah1Var.f31406y) * (AndroidUtilities.dp(26.0f) - AndroidUtilities.dp(8.0f))));
+        float dp = AndroidUtilities.dp(8.0f) + ((int) ((1.0f - ah1Var.f31404y) * (AndroidUtilities.dp(26.0f) - AndroidUtilities.dp(8.0f))));
         canvas.drawRoundRect(rectF, dp, dp, paintArr[ah1Var.v]);
-        float f7 = ah1Var.f31403s;
+        float f7 = ah1Var.f31401s;
         if (f7 > 0.0f && (i10 = ah1Var.v + 1) < paintArr.length) {
             paintArr[i10].setAlpha((int) (f7 * 255.0f));
             canvas.drawRoundRect(rectF, dp, dp, paintArr[ah1Var.v + 1]);
         }
-        float f10 = ah1Var.f31406y;
+        float f10 = ah1Var.f31404y;
         if (f10 < 1.0f) {
-            Paint paint = this.f31893a;
+            Paint paint = this.f31891a;
             paint.setAlpha((int) ((1.0f - f10) * 255.0f));
             canvas.drawRoundRect(rectF, dp, dp, paint);
         }
@@ -73,19 +73,19 @@ public final class z0 extends TextView {
 
     @Override
     public final void onSizeChanged(int i10, int i11, int i12, int i13) {
-        ah1 ah1Var = this.f31895c;
+        ah1 ah1Var = this.f31893c;
         com.google.firebase.messaging.l lVar = ah1Var.P;
         super.onSizeChanged(i10, i11, i12, i13);
         int i14 = 0;
         while (true) {
-            Paint[] paintArr = this.f31894b;
+            Paint[] paintArr = this.f31892b;
             if (i14 < paintArr.length) {
                 if (i14 == 0) {
-                    paintArr[i14] = (Paint) lVar.f7647a;
+                    paintArr[i14] = (Paint) lVar.f7645a;
                 } else if (i14 == 1) {
-                    paintArr[i14] = (Paint) ah1Var.Q.f7647a;
+                    paintArr[i14] = (Paint) ah1Var.Q.f7645a;
                 } else {
-                    paintArr[i14] = (Paint) lVar.f7647a;
+                    paintArr[i14] = (Paint) lVar.f7645a;
                 }
                 i14++;
             } else {

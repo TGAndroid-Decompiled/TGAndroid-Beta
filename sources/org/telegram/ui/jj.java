@@ -28,7 +28,7 @@ public final class jj implements org.telegram.ui.ActionBar.r0, org.telegram.ui.A
 
     @Override
     public TextureView U() {
-        return this.f38264a.f40898w8;
+        return this.f38264a.f40890w8;
     }
 
     @Override
@@ -58,23 +58,23 @@ public final class jj implements org.telegram.ui.ActionBar.r0, org.telegram.ui.A
 
     @Override
     public ColorFilter j() {
-        return org.telegram.ui.ActionBar.h6.f21319v3;
+        return org.telegram.ui.ActionBar.h6.f21317v3;
     }
 
     @Override
     public void m0(MessageObject messageObject) {
         qn qnVar = this.f38264a;
-        qnVar.f40903x0.I0(true);
-        qnVar.f40903x0.B0();
+        qnVar.f40895x0.I0(true);
+        qnVar.f40895x0.B0();
         if (MediaController.getInstance().isPlayingMessage(messageObject)) {
-            qnVar.X0.removeView(qnVar.f40859t8);
-            qnVar.f40859t8 = null;
-            qnVar.f40898w8 = null;
-            qnVar.f40884v8 = null;
+            qnVar.X0.removeView(qnVar.f40851t8);
+            qnVar.f40851t8 = null;
+            qnVar.f40890w8 = null;
+            qnVar.f40876v8 = null;
         }
-        for (int i10 = 0; i10 < qnVar.f40903x0.getChildCount(); i10++) {
-            if (qnVar.f40903x0.getChildAt(i10) instanceof org.telegram.ui.Cells.u1) {
-                org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) qnVar.f40903x0.getChildAt(i10);
+        for (int i10 = 0; i10 < qnVar.f40895x0.getChildCount(); i10++) {
+            if (qnVar.f40895x0.getChildAt(i10) instanceof org.telegram.ui.Cells.u1) {
+                org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) qnVar.f40895x0.getChildAt(i10);
                 if (u1Var.getMessageObject() != null && u1Var.getMessageObject().getId() == messageObject.getId()) {
                     u1Var.getPhotoImage().setVisible(false, true);
                 }
@@ -109,25 +109,25 @@ public final class jj implements org.telegram.ui.ActionBar.r0, org.telegram.ui.A
             return;
         }
         if (MediaController.getInstance().isPlayingMessage(messageObject)) {
-            for (int i10 = 0; i10 < this.f38264a.f40903x0.getChildCount(); i10++) {
-                if (this.f38264a.f40903x0.getChildAt(i10) instanceof org.telegram.ui.Cells.u1) {
-                    org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) this.f38264a.f40903x0.getChildAt(i10);
+            for (int i10 = 0; i10 < this.f38264a.f40895x0.getChildCount(); i10++) {
+                if (this.f38264a.f40895x0.getChildAt(i10) instanceof org.telegram.ui.Cells.u1) {
+                    org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) this.f38264a.f40895x0.getChildAt(i10);
                     if (u1Var.getMessageObject() != null && u1Var.getMessageObject().getId() == messageObject.getId()) {
                         org.telegram.ui.Components.e6 animation = u1Var.getPhotoImage().getAnimation();
-                        if (animation.f25793b0) {
+                        if (animation.f25791b0) {
                             animation.stop();
                         }
                         Bitmap m10 = animation.m();
                         if (m10 != null) {
                             try {
-                                ok okVar = this.f38264a.f40899wa;
+                                ok okVar = this.f38264a.f40891wa;
                                 int width = m10.getWidth();
                                 int height = m10.getHeight();
                                 uu0 uu0Var = okVar.d;
                                 if (uu0Var == null) {
                                     bitmap = null;
                                 } else {
-                                    bitmap = uu0Var.f42050b.getBitmap(width, height);
+                                    bitmap = uu0Var.f42049b.getBitmap(width, height);
                                 }
                                 new Canvas(m10).drawBitmap(bitmap, 0.0f, 0.0f, (Paint) null);
                                 bitmap.recycle();
@@ -141,9 +141,9 @@ public final class jj implements org.telegram.ui.ActionBar.r0, org.telegram.ui.A
             this.f38264a.Q7(true);
             MediaController mediaController = MediaController.getInstance();
             qn qnVar = this.f38264a;
-            mediaController.setTextureView(qnVar.f40898w8, qnVar.f40884v8, qnVar.f40859t8, true);
+            mediaController.setTextureView(qnVar.f40890w8, qnVar.f40876v8, qnVar.f40851t8, true);
         }
-        this.f38264a.f40903x0.invalidate();
+        this.f38264a.f40895x0.invalidate();
     }
 
     @Override

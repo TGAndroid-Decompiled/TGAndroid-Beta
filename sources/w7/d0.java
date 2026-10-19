@@ -17,11 +17,11 @@ import org.telegram.messenger.SharedConfig;
 import org.telegram.ui.Components.im0;
 import org.telegram.ui.LaunchActivity;
 public abstract class d0 {
-    public static ng.i f48610a;
+    public static ng.i f48612a;
 
     public static void a(LaunchActivity launchActivity, boolean z10, boolean z11) {
         boolean z12;
-        ng.i iVar = f48610a;
+        ng.i iVar = f48612a;
         if (iVar != null) {
             z12 = true;
         } else {
@@ -30,15 +30,15 @@ public abstract class d0 {
         if (z10 != z12) {
             if (z10) {
                 ?? frameLayout = new FrameLayout(launchActivity);
-                frameLayout.f17471r = new ng.c(frameLayout, 3);
+                frameLayout.f17469r = new ng.c(frameLayout, 3);
                 frameLayout.E = new ArrayList();
                 ng.f fVar = new ng.f(frameLayout);
                 frameLayout.e = launchActivity.getSharedPreferences("floating_debug", 0);
                 frameLayout.F = ViewConfiguration.get(launchActivity).getScaledTouchSlop();
                 le.b bVar = new le.b(launchActivity, fVar);
-                ((GestureDetector) bVar.f16011b).setIsLongpressEnabled(false);
+                ((GestureDetector) bVar.f16009b).setIsLongpressEnabled(false);
                 ah.v vVar = new ah.v(frameLayout, launchActivity, bVar, 5);
-                frameLayout.f17466a = vVar;
+                frameLayout.f17464a = vVar;
                 ImageView imageView = new ImageView(launchActivity);
                 imageView.setImageResource(R.drawable.device_phone_android);
                 imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.O9, false), PorterDuff.Mode.SRC_IN));
@@ -46,18 +46,18 @@ public abstract class d0 {
                 vVar.setVisibility(8);
                 frameLayout.addView(vVar, z5.c(56.0f, 56));
                 LinearLayout linearLayout = new LinearLayout(launchActivity);
-                frameLayout.f17473w = linearLayout;
+                frameLayout.f17471w = linearLayout;
                 linearLayout.setOrientation(1);
                 linearLayout.setVisibility(8);
                 TextView textView = new TextView(launchActivity);
-                frameLayout.f17474x = textView;
+                frameLayout.f17472x = textView;
                 textView.setTextSize(1, 20.0f);
                 textView.setText(LocaleController.getString(R.string.DebugMenu));
                 textView.setTypeface(AndroidUtilities.bold());
                 textView.setPadding(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(19.0f), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(19.0f));
                 linearLayout.addView(textView, z5.n(-1, -2));
                 im0 im0Var = new im0(launchActivity, null);
-                frameLayout.f17475y = im0Var;
+                frameLayout.f17473y = im0Var;
                 im0Var.setLayoutManager(new s4.b0());
                 im0Var.setAdapter(new ng.g((ng.i) frameLayout, launchActivity));
                 im0Var.setOnItemClickListener(new ai.wa(frameLayout, 17));
@@ -66,18 +66,18 @@ public abstract class d0 {
                 frameLayout.d();
                 frameLayout.setFitsSystemWindows(true);
                 frameLayout.setWillNotDraw(false);
-                f48610a = frameLayout;
+                f48612a = frameLayout;
                 launchActivity.f33191w0.addView((View) frameLayout, new FrameLayout.LayoutParams(-1, -1));
-                ng.i iVar2 = f48610a;
-                iVar2.f17466a.setVisibility(0);
+                ng.i iVar2 = f48612a;
+                iVar2.f17464a.setVisibility(0);
                 o1.k kVar = new o1.k(new o1.j(0.0f));
-                kVar.f17561u = org.telegram.ui.Cells.c1.l(1000.0f, 750.0f, 0.75f);
+                kVar.f17559u = org.telegram.ui.Cells.c1.l(1000.0f, 750.0f, 0.75f);
                 kVar.b(new ci.l8(2, iVar2));
                 kVar.h();
             } else {
                 iVar.getClass();
-                launchActivity.f33191w0.removeView(f48610a);
-                f48610a = null;
+                launchActivity.f33191w0.removeView(f48612a);
+                f48612a = null;
             }
             if (z11) {
                 SharedConfig.isFloatingDebugActive = z10;

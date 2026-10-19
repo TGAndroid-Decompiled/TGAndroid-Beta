@@ -5,17 +5,17 @@ import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.vm0;
 public final class z3 implements View.OnClickListener {
-    public final int f6249a;
-    public final boolean f6250b;
-    public final Object f6251c;
+    public final int f6247a;
+    public final boolean f6248b;
+    public final Object f6249c;
     public final Object d;
     public final Object e;
 
     public z3(Object obj, Object obj2, boolean z10, Object obj3, int i10) {
-        this.f6249a = i10;
-        this.f6251c = obj;
+        this.f6247a = i10;
+        this.f6249c = obj;
         this.d = obj2;
-        this.f6250b = z10;
+        this.f6248b = z10;
         this.e = obj3;
     }
 
@@ -25,10 +25,10 @@ public final class z3 implements View.OnClickListener {
     }
 
     public z3(ArrayList arrayList, TLRPC.TL_secureRequiredType tL_secureRequiredType, vm0 vm0Var, boolean z10) {
-        this.f6249a = 2;
-        this.f6251c = vm0Var;
+        this.f6247a = 2;
+        this.f6249c = vm0Var;
         this.d = arrayList;
         this.e = tL_secureRequiredType;
-        this.f6250b = z10;
+        this.f6248b = z10;
     }
 }

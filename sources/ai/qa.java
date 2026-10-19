@@ -13,28 +13,28 @@ import org.telegram.ui.hr;
 import org.telegram.ui.qn;
 import org.telegram.ui.xv0;
 public final class qa implements Runnable {
-    public final int f2081a;
-    public final int f2082b;
-    public final long f2083c;
+    public final int f2084a;
+    public final int f2085b;
+    public final long f2086c;
 
     public qa(int i10, long j10, int i11) {
-        this.f2081a = i11;
-        this.f2082b = i10;
-        this.f2083c = j10;
+        this.f2084a = i11;
+        this.f2085b = i10;
+        this.f2086c = j10;
     }
 
     @Override
     public final void run() {
-        switch (this.f2081a) {
+        switch (this.f2084a) {
             case 0:
                 org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
                 if (U != null) {
-                    long j10 = this.f2083c;
+                    long j10 = this.f2086c;
                     if (j10 >= 0) {
                         U.presentFragment(new PrivacyControlActivity(10, false));
                         return;
                     }
-                    int i10 = this.f2082b;
+                    int i10 = this.f2085b;
                     long j11 = -j10;
                     if (ChatObject.isChannelAndNotMegaGroup(MessagesController.getInstance(i10).getChat(Long.valueOf(j11)))) {
                         U.presentFragment(new xv0(j11));
@@ -50,11 +50,11 @@ public final class qa implements Runnable {
                 }
                 return;
             case 1:
-                SendMessagesHelper.getInstance(this.f2082b).sendMessage(SendMessagesHelper.SendMessageParams.of("/privacy", this.f2083c, null, null, null, false, null, null, null, true, 0, 0, null, false));
+                SendMessagesHelper.getInstance(this.f2085b).sendMessage(SendMessagesHelper.SendMessageParams.of("/privacy", this.f2086c, null, null, null, false, null, null, null, true, 0, 0, null, false));
                 return;
             case 2:
-                int i11 = this.f2082b;
-                long j12 = this.f2083c;
+                int i11 = this.f2085b;
+                long j12 = this.f2086c;
                 try {
                     SQLitePreparedStatement executeFast = MessagesStorage.getInstance(i11).getDatabase().executeFast("REPLACE INTO search_recent VALUES(?, ?)");
                     executeFast.requery();
@@ -70,7 +70,7 @@ public final class qa implements Runnable {
             default:
                 org.telegram.ui.ActionBar.n2 U2 = LaunchActivity.U();
                 if (U2 != null) {
-                    U2.presentFragment(qn.V9(this.f2082b, this.f2083c));
+                    U2.presentFragment(qn.V9(this.f2085b, this.f2086c));
                     return;
                 }
                 return;
@@ -78,8 +78,8 @@ public final class qa implements Runnable {
     }
 
     public qa(long j10, int i10, int i11) {
-        this.f2081a = i11;
-        this.f2083c = j10;
-        this.f2082b = i10;
+        this.f2084a = i11;
+        this.f2086c = j10;
+        this.f2085b = i10;
     }
 }

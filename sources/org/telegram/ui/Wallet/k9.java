@@ -8,10 +8,10 @@ import java.util.ArrayList;
 import java.util.Random;
 import org.telegram.messenger.AndroidUtilities;
 public final class k9 {
-    public static final int[] f34432f = {-16106272, -16754689, -14779393, -13326081, -10235137, -6559233};
-    public final ArrayList f34433a = new ArrayList();
-    public final Random f34434b = new Random();
-    public final Paint f34435c = new Paint(1);
+    public static final int[] f34434f = {-16106272, -16754689, -14779393, -13326081, -10235137, -6559233};
+    public final ArrayList f34435a = new ArrayList();
+    public final Random f34436b = new Random();
+    public final Paint f34437c = new Paint(1);
     public final Path d;
     public long e;
 
@@ -27,23 +27,23 @@ public final class k9 {
     }
 
     public final j9 a(float f7, float f10, float f11, float f12, float f13, float f14, float f15) {
-        ArrayList arrayList = this.f34433a;
+        ArrayList arrayList = this.f34435a;
         if (arrayList.isEmpty()) {
             this.e = SystemClock.uptimeMillis();
         }
         ?? obj = new Object();
-        obj.f34399l = 1.0f;
-        obj.f34391a = f7;
-        obj.f34392b = f10;
+        obj.f34401l = 1.0f;
+        obj.f34393a = f7;
+        obj.f34394b = f10;
         double d = f11;
-        obj.f34393c = ((float) Math.cos(d)) * f12;
+        obj.f34395c = ((float) Math.cos(d)) * f12;
         obj.d = ((float) Math.sin(d)) * f12;
         obj.e = f13;
-        obj.f34394f = f14;
-        obj.f34395g = f15;
-        obj.f34398k = f34432f[this.f34434b.nextInt(6)];
+        obj.f34396f = f14;
+        obj.f34397g = f15;
+        obj.f34400k = f34434f[this.f34436b.nextInt(6)];
         obj.h = e(0.0f, 90.0f);
-        obj.f34396i = e(-180.0f, 180.0f);
+        obj.f34398i = e(-180.0f, 180.0f);
         arrayList.add(obj);
         return obj;
     }
@@ -59,33 +59,33 @@ public final class k9 {
         long uptimeMillis = SystemClock.uptimeMillis();
         float min = Math.min(0.033f, ((float) (uptimeMillis - this.e)) / 1000.0f);
         this.e = uptimeMillis;
-        ArrayList arrayList = this.f34433a;
+        ArrayList arrayList = this.f34435a;
         for (int size = arrayList.size() - 1; size >= 0; size--) {
             j9 j9Var = (j9) arrayList.get(size);
-            float f7 = j9Var.f34397j + min;
-            j9Var.f34397j = f7;
+            float f7 = j9Var.f34399j + min;
+            j9Var.f34399j = f7;
             if (f7 >= 0.0f) {
-                if (f7 >= j9Var.f34394f) {
+                if (f7 >= j9Var.f34396f) {
                     arrayList.remove(size);
                 } else {
-                    float exp = (float) Math.exp((-j9Var.f34395g) * min);
-                    float f10 = j9Var.f34393c * exp;
-                    j9Var.f34393c = f10;
+                    float exp = (float) Math.exp((-j9Var.f34397g) * min);
+                    float f10 = j9Var.f34395c * exp;
+                    j9Var.f34395c = f10;
                     float f11 = j9Var.d * exp;
                     j9Var.d = f11;
-                    j9Var.f34391a = (f10 * min) + j9Var.f34391a;
-                    j9Var.f34392b = (f11 * min) + j9Var.f34392b;
-                    j9Var.h = (j9Var.f34396i * min) + j9Var.h;
-                    float f12 = j9Var.f34397j / j9Var.f34394f;
+                    j9Var.f34393a = (f10 * min) + j9Var.f34393a;
+                    j9Var.f34394b = (f11 * min) + j9Var.f34394b;
+                    j9Var.h = (j9Var.f34398i * min) + j9Var.h;
+                    float f12 = j9Var.f34399j / j9Var.f34396f;
                     float max = Math.max(0.0f, Math.min(1.0f, (f12 - 0.35f) / 0.65f));
-                    float min2 = (1.0f - ((3.0f - (max * 2.0f)) * (max * max))) * Math.min(1.0f, 8.0f * f12) * j9Var.f34399l;
+                    float min2 = (1.0f - ((3.0f - (max * 2.0f)) * (max * max))) * Math.min(1.0f, 8.0f * f12) * j9Var.f34401l;
                     float B = com.google.android.gms.internal.play_billing.k3.B(f12, 0.5f, 1.0f, j9Var.e);
                     int save = canvas.save();
-                    canvas.translate(j9Var.f34391a, j9Var.f34392b);
+                    canvas.translate(j9Var.f34393a, j9Var.f34394b);
                     canvas.rotate(j9Var.h);
                     canvas.scale(B, B);
-                    int i10 = j9Var.f34398k;
-                    Paint paint = this.f34435c;
+                    int i10 = j9Var.f34400k;
+                    Paint paint = this.f34437c;
                     paint.setColor(i10);
                     paint.setAlpha(Math.round(20.4f * min2));
                     canvas.drawCircle(0.0f, 0.0f, 1.4f, paint);
@@ -98,16 +98,16 @@ public final class k9 {
     }
 
     public final boolean d() {
-        return !this.f34433a.isEmpty();
+        return !this.f34435a.isEmpty();
     }
 
     public final float e(float f7, float f10) {
-        return com.google.android.gms.internal.play_billing.k3.y(f10, f7, this.f34434b.nextFloat(), f7);
+        return com.google.android.gms.internal.play_billing.k3.y(f10, f7, this.f34436b.nextFloat(), f7);
     }
 
     public final void f() {
         float f7;
-        this.f34433a.clear();
+        this.f34435a.clear();
         float f10 = AndroidUtilities.density;
         for (int i10 = 0; i10 < 48; i10++) {
             for (int i11 = -1; i11 <= 1; i11 += 2) {
@@ -117,9 +117,9 @@ public final class k9 {
                     f7 = 0.0f;
                 }
                 j9 a2 = a(0.0f, (e(-3.0f, 3.0f) * f10) + 0.0f, e(-0.6f, 0.6f) + f7, e(150.0f, 310.0f) * f10, e(1.3f, 3.2f) * f10, e(0.65f, 1.05f), 1.8f);
-                a2.f34398k = -6562049;
-                a2.f34399l = e(0.3f, 1.0f);
-                a2.f34397j = (-i10) * 0.006f;
+                a2.f34400k = -6562049;
+                a2.f34401l = e(0.3f, 1.0f);
+                a2.f34399j = (-i10) * 0.006f;
             }
         }
     }

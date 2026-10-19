@@ -5,28 +5,28 @@ import com.google.android.gms.internal.play_billing.k3;
 import v7.b8;
 import v7.u6;
 public final class d {
-    public final String f7819a;
-    public final int f7820b;
-    public final Integer f7821c;
+    public final String f7817a;
+    public final int f7818b;
+    public final Integer f7819c;
     public final Integer d;
     public final float e;
-    public final boolean f7822f;
-    public final boolean f7823g;
+    public final boolean f7820f;
+    public final boolean f7821g;
     public final boolean h;
-    public final boolean f7824i;
-    public final int f7825j;
+    public final boolean f7822i;
+    public final int f7823j;
 
     public d(String str, int i10, Integer num, Integer num2, float f7, boolean z10, boolean z11, boolean z12, boolean z13, int i11) {
-        this.f7819a = str;
-        this.f7820b = i10;
-        this.f7821c = num;
+        this.f7817a = str;
+        this.f7818b = i10;
+        this.f7819c = num;
         this.d = num2;
         this.e = f7;
-        this.f7822f = z10;
-        this.f7823g = z11;
+        this.f7820f = z10;
+        this.f7821g = z11;
         this.h = z12;
-        this.f7824i = z13;
-        this.f7825j = i11;
+        this.f7822i = z13;
+        this.f7823j = i11;
     }
 
     public static int a(String str) {

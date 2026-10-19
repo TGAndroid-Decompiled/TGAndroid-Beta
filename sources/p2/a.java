@@ -9,43 +9,43 @@ import e9.y0;
 import java.util.HashMap;
 import si.z;
 public final class a implements v {
-    public final e f43912a;
+    public final e f43914a;
 
     public a(e eVar) {
-        this.f43912a = eVar;
+        this.f43914a = eVar;
     }
 
     @Override
     public final void a() {
-        this.f43912a.e.remove(this);
+        this.f43914a.e.remove(this);
     }
 
     @Override
     public final boolean b(Uri uri, c0 c0Var, boolean z10) {
         d dVar;
-        e eVar = this.f43912a;
+        e eVar = this.f43914a;
         HashMap hashMap = eVar.d;
         if (eVar.G == null) {
             long elapsedRealtime = SystemClock.elapsedRealtime();
             d dVar2 = (d) hashMap.get(uri);
             dVar2.getClass();
-            x xVar = dVar2.f43925a;
-            int size = xVar.f44067b.size();
-            m2 it = y0.u(xVar.f44067b.values()).iterator();
+            x xVar = dVar2.f43927a;
+            int size = xVar.f44069b.size();
+            m2 it = y0.u(xVar.f44069b.values()).iterator();
             int i10 = 0;
             while (it.hasNext()) {
                 Uri uri2 = (Uri) it.next();
                 d dVar3 = (d) hashMap.get(uri2);
                 if (dVar3 != null) {
-                    c cVar = (c) i2.e.i(dVar3.f43926b, uri2, uri2);
+                    c cVar = (c) i2.e.i(dVar3.f43928b, uri2, uri2);
                     cVar.getClass();
-                    if (elapsedRealtime <= cVar.f43921r) {
+                    if (elapsedRealtime <= cVar.f43923r) {
                         i10++;
                     }
                 }
             }
-            int size2 = eVar.f43935w.size();
-            l0 listIterator = eVar.f43935w.listIterator(0);
+            int size2 = eVar.f43937w.size();
+            l0 listIterator = eVar.f43937w.listIterator(0);
             int i11 = 0;
             while (listIterator.hasNext()) {
                 if (eVar.f((x) listIterator.next(), elapsedRealtime)) {
@@ -53,10 +53,10 @@ public final class a implements v {
                 }
             }
             z zVar = new z(size, i10, size2, i11);
-            eVar.f43930c.getClass();
+            eVar.f43932c.getClass();
             k4.d x32 = oa.d.x3(zVar, c0Var);
             if (x32 != null && (dVar = (d) hashMap.get(uri)) != null) {
-                return d.c(dVar, uri, x32.f14899b);
+                return d.c(dVar, uri, x32.f14897b);
             }
         }
         return false;

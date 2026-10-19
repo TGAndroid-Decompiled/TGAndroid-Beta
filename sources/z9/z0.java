@@ -1,14 +1,14 @@
 package z9;
 public final class z0 extends b2 {
-    public final int f51504a;
-    public final String f51505b;
-    public final String f51506c;
+    public final int f51506a;
+    public final String f51507b;
+    public final String f51508c;
     public final boolean d;
 
     public z0(int i10, String str, String str2, boolean z10) {
-        this.f51504a = i10;
-        this.f51505b = str;
-        this.f51506c = str2;
+        this.f51506a = i10;
+        this.f51507b = str;
+        this.f51508c = str2;
         this.d = z10;
     }
 
@@ -18,7 +18,7 @@ public final class z0 extends b2 {
         }
         if (obj instanceof b2) {
             z0 z0Var = (z0) ((b2) obj);
-            if (this.f51504a == z0Var.f51504a && this.f51505b.equals(z0Var.f51505b) && this.f51506c.equals(z0Var.f51506c) && this.d == z0Var.d) {
+            if (this.f51506a == z0Var.f51506a && this.f51507b.equals(z0Var.f51507b) && this.f51508c.equals(z0Var.f51508c) && this.d == z0Var.d) {
                 return true;
             }
         }
@@ -27,7 +27,7 @@ public final class z0 extends b2 {
 
     public final int hashCode() {
         int i10;
-        int hashCode = (((((this.f51504a ^ 1000003) * 1000003) ^ this.f51505b.hashCode()) * 1000003) ^ this.f51506c.hashCode()) * 1000003;
+        int hashCode = (((((this.f51506a ^ 1000003) * 1000003) ^ this.f51507b.hashCode()) * 1000003) ^ this.f51508c.hashCode()) * 1000003;
         if (this.d) {
             i10 = 1231;
         } else {
@@ -37,6 +37,6 @@ public final class z0 extends b2 {
     }
 
     public final String toString() {
-        return "OperatingSystem{platform=" + this.f51504a + ", version=" + this.f51505b + ", buildVersion=" + this.f51506c + ", jailbroken=" + this.d + "}";
+        return "OperatingSystem{platform=" + this.f51506a + ", version=" + this.f51507b + ", buildVersion=" + this.f51508c + ", jailbroken=" + this.d + "}";
     }
 }

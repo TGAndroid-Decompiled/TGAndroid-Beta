@@ -2,45 +2,45 @@ package org.telegram.ui.Components;
 
 import org.telegram.messenger.AndroidUtilities;
 public final class db0 {
-    public final org.telegram.ui.ActionBar.n2 f25528a;
-    public final ib0 f25529b;
+    public final org.telegram.ui.ActionBar.n2 f25526a;
+    public final ib0 f25527b;
 
     public db0(ib0 ib0Var, org.telegram.ui.ActionBar.n2 n2Var) {
-        this.f25529b = ib0Var;
-        this.f25528a = n2Var;
+        this.f25527b = ib0Var;
+        this.f25526a = n2Var;
     }
 
     public final void a(boolean z10) {
-        ib0 ib0Var = this.f25529b;
+        ib0 ib0Var = this.f25527b;
         boolean z11 = false;
         if (ib0Var.getNeededLayoutManager() != ib0Var.getCurrentLayoutManager() && ib0Var.a()) {
-            if (ib0Var.f27188f.M0 > 0) {
+            if (ib0Var.f27186f.M0 > 0) {
                 ib0Var.N = true;
                 ib0Var.o(false);
                 return;
             }
-            ib0Var.f27186b.setLayoutManager(ib0Var.getNeededLayoutManager());
+            ib0Var.f27184b.setLayoutManager(ib0Var.getNeededLayoutManager());
         }
         if (z10 && !ib0Var.a()) {
             z10 = false;
         }
-        if (!z10 || ib0Var.f27188f.K() > 0) {
+        if (!z10 || ib0Var.f27186f.K() > 0) {
             z11 = z10;
         }
         ib0Var.o(z11);
     }
 
     public final void b(boolean z10) {
-        this.f25529b.l(z10);
+        this.f25527b.l(z10);
     }
 
     public final void c() {
         long j10;
-        ib0 ib0Var = this.f25529b;
+        ib0 ib0Var = this.f25527b;
         hq hqVar = ib0Var.J;
-        if (ib0Var.f27186b.getLayoutManager() != ib0Var.d && ib0Var.I) {
+        if (ib0Var.f27184b.getLayoutManager() != ib0Var.d && ib0Var.I) {
             AndroidUtilities.cancelRunOnUIThread(hqVar);
-            if (this.f25528a.getFragmentBeginToShow()) {
+            if (this.f25526a.getFragmentBeginToShow()) {
                 j10 = 0;
             } else {
                 j10 = 100;

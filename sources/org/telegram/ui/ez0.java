@@ -4,19 +4,19 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 public final class ez0 extends AnimatorListenerAdapter {
-    public final int f36840a;
-    public final ProfileActivity f36841b;
+    public final int f36834a;
+    public final ProfileActivity f36835b;
 
     public ez0(ProfileActivity profileActivity, int i10) {
-        this.f36840a = i10;
-        this.f36841b = profileActivity;
+        this.f36834a = i10;
+        this.f36835b = profileActivity;
     }
 
     @Override
     public void onAnimationCancel(Animator animator) {
-        switch (this.f36840a) {
+        switch (this.f36834a) {
             case 2:
-                ProfileActivity profileActivity = this.f36841b;
+                ProfileActivity profileActivity = this.f36835b;
                 profileActivity.P1 = false;
                 profileActivity.f33574a.O0 = true;
                 return;
@@ -28,13 +28,13 @@ public final class ez0 extends AnimatorListenerAdapter {
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f36840a) {
+        switch (this.f36834a) {
             case 0:
                 super.onAnimationEnd(animator);
-                this.f36841b.k4(true);
+                this.f36835b.k4(true);
                 return;
             case 1:
-                ProfileActivity profileActivity = this.f36841b;
+                ProfileActivity profileActivity = this.f36835b;
                 AnimatorSet animatorSet = profileActivity.f33729w;
                 if (animatorSet != null && animatorSet.equals(animator)) {
                     profileActivity.f33729w = null;
@@ -42,7 +42,7 @@ public final class ez0 extends AnimatorListenerAdapter {
                 }
                 return;
             case 2:
-                ProfileActivity profileActivity2 = this.f36841b;
+                ProfileActivity profileActivity2 = this.f36835b;
                 profileActivity2.P1 = false;
                 profileActivity2.f33574a.O0 = true;
                 profileActivity2.f33649k2.removeListener(this);
@@ -52,13 +52,13 @@ public final class ez0 extends AnimatorListenerAdapter {
                 profileActivity2.f33673o0.setAlpha(1.0f);
                 return;
             case 3:
-                ProfileActivity profileActivity3 = this.f36841b;
+                ProfileActivity profileActivity3 = this.f36835b;
                 profileActivity3.f33649k2.removeListener(this);
                 profileActivity3.f33673o0.setVisibility(8);
                 profileActivity3.f33673o0.setAlpha(1.0f);
                 return;
             default:
-                ProfileActivity profileActivity4 = this.f36841b;
+                ProfileActivity profileActivity4 = this.f36835b;
                 profileActivity4.f33738x0 = null;
                 profileActivity4.fragmentView.invalidate();
                 return;
@@ -67,9 +67,9 @@ public final class ez0 extends AnimatorListenerAdapter {
 
     @Override
     public void onAnimationStart(Animator animator) {
-        switch (this.f36840a) {
+        switch (this.f36834a) {
             case 2:
-                ProfileActivity profileActivity = this.f36841b;
+                ProfileActivity profileActivity = this.f36835b;
                 ProfileActivity.s3(profileActivity, false);
                 profileActivity.f33673o0.setAnimatedFileMaybe(profileActivity.f33612f0.getImageReceiver().getAnimation());
                 profileActivity.f33673o0.L();

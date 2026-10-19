@@ -1,9 +1,9 @@
 package mi;
 public final class g {
-    public final String f16953a;
-    public p f16954b;
+    public final String f16951a;
+    public p f16952b;
 
     public g(String str) {
-        this.f16953a = str;
+        this.f16951a = str;
     }
 }

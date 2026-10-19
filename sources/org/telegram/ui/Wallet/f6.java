@@ -11,28 +11,28 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.R;
 public final class f6 extends Drawable {
-    public static float[] f34198k;
-    public static Bitmap f34199l;
-    public static Bitmap f34200m;
-    public final int f34204b;
-    public final int f34205c;
+    public static float[] f34200k;
+    public static Bitmap f34201l;
+    public static Bitmap f34202m;
+    public final int f34206b;
+    public final int f34207c;
     public final Drawable d;
-    public float f34206f;
-    public float f34207g;
-    public static final float[] f34197j = {0.2126f, 0.7152f, 0.0722f};
-    public static final int[] f34201n = new int[2];
-    public static final int[] f34202o = new int[2];
-    public final Paint f34203a = new Paint(3);
+    public float f34208f;
+    public float f34209g;
+    public static final float[] f34199j = {0.2126f, 0.7152f, 0.0722f};
+    public static final int[] f34203n = new int[2];
+    public static final int[] f34204o = new int[2];
+    public final Paint f34205a = new Paint(3);
     public float e = -1.0f;
     public int h = 255;
-    public float f34208i = 1.0f;
+    public float f34210i = 1.0f;
 
     public f6(int i10, int i11) {
-        this.f34204b = i10;
-        this.f34205c = i11;
+        this.f34206b = i10;
+        this.f34207c = i11;
         Drawable mutate = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.wallet_card_diamond).mutate();
         this.d = mutate;
-        if (f34199l != null) {
+        if (f34201l != null) {
             return;
         }
         Bitmap createBitmap = Bitmap.createBitmap(84, 84, Bitmap.Config.ARGB_8888);
@@ -41,9 +41,9 @@ public final class f6 extends Drawable {
         Paint paint = new Paint();
         BlurMaskFilter.Blur blur = BlurMaskFilter.Blur.NORMAL;
         paint.setMaskFilter(new BlurMaskFilter(15.0f, blur));
-        f34199l = createBitmap.extractAlpha(paint, f34201n);
+        f34201l = createBitmap.extractAlpha(paint, f34203n);
         paint.setMaskFilter(new BlurMaskFilter(4.5f, blur));
-        f34200m = createBitmap.extractAlpha(paint, f34202o);
+        f34202m = createBitmap.extractAlpha(paint, f34204o);
         createBitmap.recycle();
     }
 
@@ -64,20 +64,20 @@ public final class f6 extends Drawable {
     public final void draw(Canvas canvas) {
         if (this.h > 0 && this.e >= 0.0f) {
             Rect bounds = getBounds();
-            if (this.f34208i > 0.0f) {
+            if (this.f34210i > 0.0f) {
                 float width = bounds.width() / 84.0f;
                 canvas.save();
                 canvas.translate(bounds.left, bounds.top);
                 canvas.scale(width, bounds.height() / 84.0f);
-                Paint paint = this.f34203a;
+                Paint paint = this.f34205a;
                 paint.setColor(-16777216);
-                paint.setAlpha((int) (this.h * 0.35f * this.f34208i));
-                Bitmap bitmap = f34199l;
-                int[] iArr = f34201n;
+                paint.setAlpha((int) (this.h * 0.35f * this.f34210i));
+                Bitmap bitmap = f34201l;
+                int[] iArr = f34203n;
                 canvas.drawBitmap(bitmap, iArr[0], (AndroidUtilities.dp(1.0f) / width) + iArr[1], paint);
-                paint.setAlpha((int) (this.h * 0.55f * this.f34208i));
-                Bitmap bitmap2 = f34200m;
-                int[] iArr2 = f34202o;
+                paint.setAlpha((int) (this.h * 0.55f * this.f34210i));
+                Bitmap bitmap2 = f34202m;
+                int[] iArr2 = f34204o;
                 canvas.drawBitmap(bitmap2, iArr2[0], iArr2[1], paint);
                 canvas.restore();
             }
@@ -90,12 +90,12 @@ public final class f6 extends Drawable {
 
     @Override
     public final int getIntrinsicHeight() {
-        return this.f34205c;
+        return this.f34207c;
     }
 
     @Override
     public final int getIntrinsicWidth() {
-        return this.f34204b;
+        return this.f34206b;
     }
 
     @Override

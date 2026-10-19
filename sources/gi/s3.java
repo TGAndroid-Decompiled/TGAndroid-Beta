@@ -9,7 +9,7 @@ import org.telegram.ui.Components.g61;
 import org.telegram.ui.Components.im0;
 import org.telegram.ui.Components.t61;
 public final class s3 extends f61 {
-    public static final int f11449a = 0;
+    public static final int f11447a = 0;
 
     static {
         f61.setup(new f61());
@@ -18,10 +18,10 @@ public final class s3 extends f61 {
     @Override
     public final void bindView(View view, g61 g61Var, boolean z10, t61 t61Var, b71 b71Var) {
         t3 t3Var = (t3) view;
-        CharSequence charSequence = g61Var.f26499l;
-        CharSequence charSequence2 = g61Var.f26500m;
+        CharSequence charSequence = g61Var.f26497l;
+        CharSequence charSequence2 = g61Var.f26498m;
         t3Var.setText(charSequence);
-        t3Var.f11466r.setText(charSequence2);
+        t3Var.f11464r.setText(charSequence2);
     }
 
     @Override

@@ -9,17 +9,17 @@ import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.wo0;
 public class r extends LinearLayout {
-    public static float f2090b = 1.0f;
-    public final int f2091a;
+    public static float f2093b = 1.0f;
+    public final int f2094a;
 
     public r(Context context, int i10) {
         super(context);
-        this.f2091a = i10;
+        this.f2094a = i10;
     }
 
     @Override
     public void dispatchSetPressed(boolean z10) {
-        switch (this.f2091a) {
+        switch (this.f2094a) {
             case 8:
                 return;
             default:
@@ -33,13 +33,13 @@ public class r extends LinearLayout {
         View childAt;
         boolean z10;
         boolean z11;
-        switch (this.f2091a) {
+        switch (this.f2094a) {
             case 6:
                 if (getParent() instanceof wo0) {
                     wo0 wo0Var = (wo0) getParent();
                     canvas.save();
-                    LinearLayout linearLayout = wo0Var.f32164b;
-                    Path path = wo0Var.f32167n;
+                    LinearLayout linearLayout = wo0Var.f32162b;
+                    Path path = wo0Var.f32165n;
                     if (view != null && wo0.e(view)) {
                         int indexOfChild = linearLayout.indexOfChild(view);
                         int i10 = indexOfChild - 1;
@@ -85,7 +85,7 @@ public class r extends LinearLayout {
                         }
                         if (!z10 && !z11) {
                             path.rewind();
-                            float f7 = wo0Var.f32165c;
+                            float f7 = wo0Var.f32163c;
                             path.addRoundRect(rectF, f7, f7, Path.Direction.CW);
                             canvas.clipPath(path);
                         } else if (!z10) {
@@ -110,7 +110,7 @@ public class r extends LinearLayout {
 
     @Override
     public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        switch (this.f2091a) {
+        switch (this.f2094a) {
             case 4:
                 super.onLayout(z10, i10, i11, i12, i13);
                 setPivotX(getWidth());
@@ -131,7 +131,7 @@ public class r extends LinearLayout {
 
     @Override
     public void onMeasure(int i10, int i11) {
-        switch (this.f2091a) {
+        switch (this.f2094a) {
             case 0:
                 super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
                 return;
@@ -172,7 +172,7 @@ public class r extends LinearLayout {
 
     public r(Context context) {
         super(context);
-        this.f2091a = 6;
+        this.f2094a = 6;
         setWillNotDraw(false);
     }
 

@@ -9,10 +9,10 @@ import org.telegram.ui.Components.bp0;
 import org.telegram.ui.Components.o31;
 import org.telegram.ui.tt;
 public final class b5 implements bp0 {
-    public final tt f22046a;
+    public final tt f22044a;
 
     public b5(tt ttVar) {
-        this.f22046a = ttVar;
+        this.f22044a = ttVar;
     }
 
     @Override
@@ -35,17 +35,17 @@ public final class b5 implements bp0 {
             }
         }
         int i11 = (int) d;
-        tt ttVar = this.f22046a;
+        tt ttVar = this.f22044a;
         long j10 = i11;
         boolean z11 = true;
-        ttVar.f22088b.setText(LocaleController.formatString("AutodownloadSizeLimitUpTo", R.string.AutodownloadSizeLimitUpTo, AndroidUtilities.formatFileSize(j10)));
+        ttVar.f22086b.setText(LocaleController.formatString("AutodownloadSizeLimitUpTo", R.string.AutodownloadSizeLimitUpTo, AndroidUtilities.formatFileSize(j10)));
         ttVar.d = j10;
         v8[] v8VarArr = ttVar.h;
-        AnimatorSet[] animatorSetArr = ttVar.f41756n;
+        AnimatorSet[] animatorSetArr = ttVar.f41740n;
         int i12 = ttVar.e;
-        i10 = ttVar.f41757r.videosRow;
+        i10 = ttVar.f41741r.videosRow;
         if (i12 == i10) {
-            ttVar.f41755f.setText(LocaleController.formatString("AutoDownloadPreloadVideoInfo", R.string.AutoDownloadPreloadVideoInfo, AndroidUtilities.formatFileSize(j10)));
+            ttVar.f41739f.setText(LocaleController.formatString("AutoDownloadPreloadVideoInfo", R.string.AutoDownloadPreloadVideoInfo, AndroidUtilities.formatFileSize(j10)));
             if (i11 <= 2097152) {
                 z11 = false;
             }
@@ -75,10 +75,10 @@ public final class b5 implements bp0 {
     @Override
     public final CharSequence getContentDescription() {
         StringBuilder sb2 = new StringBuilder();
-        tt ttVar = this.f22046a;
-        sb2.append((Object) ttVar.f22087a.getText());
+        tt ttVar = this.f22044a;
+        sb2.append((Object) ttVar.f22085a.getText());
         sb2.append(" ");
-        sb2.append((Object) ttVar.f22088b.getText());
+        sb2.append((Object) ttVar.f22086b.getText());
         return sb2.toString();
     }
 

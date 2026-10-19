@@ -5,7 +5,7 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
 public final class p implements Map, Serializable {
-    public static final p f14393a = new Object();
+    public static final p f14391a = new Object();
 
     @Override
     public final void clear() {
@@ -24,7 +24,7 @@ public final class p implements Map, Serializable {
 
     @Override
     public final Set entrySet() {
-        return q.f14394a;
+        return q.f14392a;
     }
 
     @Override
@@ -52,7 +52,7 @@ public final class p implements Map, Serializable {
 
     @Override
     public final Set keySet() {
-        return q.f14394a;
+        return q.f14392a;
     }
 
     @Override
@@ -81,6 +81,6 @@ public final class p implements Map, Serializable {
 
     @Override
     public final Collection values() {
-        return o.f14392a;
+        return o.f14390a;
     }
 }

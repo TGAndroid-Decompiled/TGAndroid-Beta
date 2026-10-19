@@ -1,23 +1,28 @@
 package org.telegram.messenger;
-public final class xc implements Runnable {
-    public final int f20079a;
-    public final boolean[] f20080b;
-    public final Runnable[] f20081c;
 
-    public xc(boolean[] zArr, Runnable[] runnableArr, int i10) {
-        this.f20079a = i10;
-        this.f20080b = zArr;
-        this.f20081c = runnableArr;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+public final class xc implements Utilities.Callback {
+    public final int f20075a;
+    public final MessagesController f20076b;
+
+    public xc(MessagesController messagesController, int i10) {
+        this.f20075a = i10;
+        this.f20076b = messagesController;
     }
 
     @Override
-    public final void run() {
-        switch (this.f20079a) {
+    public final void run(Object obj) {
+        switch (this.f20075a) {
             case 0:
-                MessagesController.lambda$ensureMessagesLoaded$464(this.f20080b, this.f20081c);
+                this.f20076b.lambda$loadAppConfig$32((TLRPC.TL_help_appConfig) obj);
+                return;
+            case 1:
+                this.f20076b.lambda$loadWebBrowserConfig$514((TL_account.TL_webBrowserSettings) obj);
                 return;
             default:
-                PasskeysController.lambda$login$12(this.f20080b, this.f20081c);
+                this.f20076b.lambda$getAvailableEffects$499((TLRPC.messages_AvailableEffects) obj);
                 return;
         }
     }

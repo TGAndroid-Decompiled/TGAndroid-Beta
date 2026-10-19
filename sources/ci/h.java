@@ -10,7 +10,7 @@ public final class h extends zq {
     public final Drawable E;
     public final Drawable F;
     public final tw G;
-    public int f5441y;
+    public int f5439y;
 
     public h(tw twVar, Drawable drawable, Drawable drawable2, Drawable drawable3, Drawable drawable4) {
         super(drawable, drawable2);
@@ -24,15 +24,15 @@ public final class h extends zq {
         int i10;
         int i11;
         tw twVar = this.G;
-        int i12 = twVar.f5870b;
+        int i12 = twVar.f5868b;
         if (i12 == 0) {
-            i10 = org.telegram.ui.ActionBar.h6.f21268s8;
+            i10 = org.telegram.ui.ActionBar.h6.f21266s8;
         } else {
             i10 = org.telegram.ui.ActionBar.h6.M8;
         }
         int f7 = twVar.f(i10);
-        if (this.f5441y != f7) {
-            this.f5441y = f7;
+        if (this.f5439y != f7) {
+            this.f5439y = f7;
             if (i12 == 0) {
                 i11 = org.telegram.ui.ActionBar.h6.A8;
             } else {

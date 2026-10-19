@@ -35,7 +35,7 @@ public final class kd extends RadialProgressView {
         switch (this.K) {
             case 0:
                 super.setAlpha(f7);
-                ((md) this.L).f39214f.invalidate();
+                ((md) this.L).f39179f.invalidate();
                 return;
             case 1:
                 super.setAlpha(f7);

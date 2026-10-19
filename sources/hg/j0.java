@@ -16,25 +16,25 @@ import org.telegram.ui.Components.tv0;
 import org.telegram.ui.Components.voip.n2;
 import org.telegram.ui.ProfileActivity;
 public final class j0 extends AnimatorListenerAdapter {
-    public final int f11918a;
-    public final Object f11919b;
-    public final Object f11920c;
+    public final int f11916a;
+    public final Object f11917b;
+    public final Object f11918c;
     public final Object d;
     public final Object e;
 
     public j0(FrameLayout frameLayout, View view, View view2, Object obj, int i10) {
-        this.f11918a = i10;
+        this.f11916a = i10;
         this.e = frameLayout;
-        this.f11920c = view;
-        this.f11919b = view2;
+        this.f11918c = view;
+        this.f11917b = view2;
         this.d = obj;
     }
 
     @Override
     public void onAnimationCancel(Animator animator) {
-        switch (this.f11918a) {
+        switch (this.f11916a) {
             case 1:
-                View view = (View) this.f11920c;
+                View view = (View) this.f11918c;
                 view.setTranslationY(0.0f);
                 if (view instanceof org.telegram.ui.Cells.u1) {
                     ((org.telegram.ui.Cells.u1) view).getTransitionParams().h = false;
@@ -50,66 +50,66 @@ public final class j0 extends AnimatorListenerAdapter {
     @Override
     public final void onAnimationEnd(Animator animator) {
         org.telegram.ui.ActionBar.k kVar;
-        switch (this.f11918a) {
+        switch (this.f11916a) {
             case 0:
                 ((ViewPropertyAnimator) this.d).setListener(null);
-                View view = (View) this.f11920c;
+                View view = (View) this.f11918c;
                 view.setAlpha(1.0f);
                 view.setTranslationX(0.0f);
                 view.setTranslationY(0.0f);
                 view.setScaleX(1.0f);
                 view.setScaleY(1.0f);
                 k0 k0Var = (k0) this.e;
-                s4.b1 b1Var = (s4.b1) this.f11919b;
+                s4.b1 b1Var = (s4.b1) this.f11917b;
                 k0Var.d(b1Var);
                 k0Var.A.remove(b1Var);
                 k0Var.G();
                 return;
             case 1:
-                s4.b1 b1Var2 = (s4.b1) this.f11919b;
+                s4.b1 b1Var2 = (s4.b1) this.f11917b;
                 li.m mVar = (li.m) this.e;
-                View view2 = (View) this.f11920c;
+                View view2 = (View) this.f11918c;
                 if (view2 instanceof org.telegram.ui.Cells.u1) {
                     ((org.telegram.ui.Cells.u1) view2).getTransitionParams().h = false;
                 }
                 ((ViewPropertyAnimator) this.d).setListener(null);
-                if (mVar.f45982y.remove(b1Var2)) {
+                if (mVar.f45984y.remove(b1Var2)) {
                     mVar.u(b1Var2);
                     mVar.G();
                     return;
                 }
                 return;
             case 2:
-                ((s4.b1) this.f11919b).f45910a.setAlpha(1.0f);
-                ((AnimatorSet) this.f11920c).removeAllListeners();
+                ((s4.b1) this.f11917b).f45912a.setAlpha(1.0f);
+                ((AnimatorSet) this.f11918c).removeAllListeners();
                 kt ktVar = (kt) this.e;
                 ht htVar = (ht) this.d;
-                ktVar.d(htVar.f26931a);
-                ktVar.f27969y.remove(htVar.f26931a);
+                ktVar.d(htVar.f26929a);
+                ktVar.f27967y.remove(htVar.f26929a);
                 ktVar.A();
-                ktVar.d(htVar.f26932b);
-                ktVar.f27969y.remove(htVar.f26932b);
+                ktVar.d(htVar.f26930b);
+                ktVar.f27967y.remove(htVar.f26930b);
                 ktVar.A();
                 return;
             case 3:
                 ((tv0) this.e).H1 = false;
-                View view3 = (View) this.f11920c;
+                View view3 = (View) this.f11918c;
                 if (view3.getParent() != null) {
-                    ((mu0) this.f11919b).removeView(view3);
+                    ((mu0) this.f11917b).removeView(view3);
                     ((Bitmap) this.d).recycle();
                     return;
                 }
                 return;
             case 4:
                 n2 n2Var = (n2) this.e;
-                TextView[] textViewArr = n2Var.f31634a;
-                View view4 = (View) this.f11920c;
+                TextView[] textViewArr = n2Var.f31632a;
+                View view4 = (View) this.f11918c;
                 view4.setVisibility(8);
                 view4.setAlpha(1.0f);
                 view4.setTranslationY(0.0f);
                 view4.setScaleY(1.0f);
                 view4.setScaleX(1.0f);
-                View view5 = (View) this.f11919b;
+                View view5 = (View) this.f11917b;
                 view5.setAlpha(1.0f);
                 view5.setTranslationY(0.0f);
                 view5.setVisibility(0);
@@ -119,7 +119,7 @@ public final class j0 extends AnimatorListenerAdapter {
                 if (runnable != null) {
                     runnable.run();
                 }
-                n2Var.f31637f = false;
+                n2Var.f31635f = false;
                 CharSequence charSequence = n2Var.e;
                 if (charSequence != null) {
                     if (charSequence.equals("timer")) {
@@ -133,9 +133,9 @@ public final class j0 extends AnimatorListenerAdapter {
                 }
                 return;
             default:
-                Runnable runnable2 = (Runnable) this.f11920c;
+                Runnable runnable2 = (Runnable) this.f11918c;
                 ProfileActivity profileActivity = (ProfileActivity) this.e;
-                org.telegram.ui.ActionBar.k kVar2 = (org.telegram.ui.ActionBar.k) this.f11919b;
+                org.telegram.ui.ActionBar.k kVar2 = (org.telegram.ui.ActionBar.k) this.f11917b;
                 if (kVar2 != null) {
                     kVar2.setSkipDrawChild(false);
                 }
@@ -178,7 +178,7 @@ public final class j0 extends AnimatorListenerAdapter {
 
     @Override
     public void onAnimationStart(Animator animator) {
-        switch (this.f11918a) {
+        switch (this.f11916a) {
             case 0:
                 return;
             case 1:
@@ -187,9 +187,9 @@ public final class j0 extends AnimatorListenerAdapter {
             case 2:
                 kt ktVar = (kt) this.e;
                 ht htVar = (ht) this.d;
-                s4.b1 b1Var = htVar.f26931a;
+                s4.b1 b1Var = htVar.f26929a;
                 ktVar.getClass();
-                s4.b1 b1Var2 = htVar.f26932b;
+                s4.b1 b1Var2 = htVar.f26930b;
                 ktVar.getClass();
                 return;
             default:
@@ -199,27 +199,27 @@ public final class j0 extends AnimatorListenerAdapter {
     }
 
     public j0(Object obj, Object obj2, Object obj3, Object obj4, int i10) {
-        this.f11918a = i10;
+        this.f11916a = i10;
         this.e = obj;
-        this.f11919b = obj2;
+        this.f11917b = obj2;
         this.d = obj3;
-        this.f11920c = obj4;
+        this.f11918c = obj4;
     }
 
     public j0(li.m mVar, s4.b1 b1Var, View view, ViewPropertyAnimator viewPropertyAnimator) {
-        this.f11918a = 1;
+        this.f11916a = 1;
         this.e = mVar;
-        this.f11919b = b1Var;
-        this.f11920c = view;
+        this.f11917b = b1Var;
+        this.f11918c = view;
         this.d = viewPropertyAnimator;
     }
 
     public j0(kt ktVar, ht htVar, s4.b1 b1Var, AnimatorSet animatorSet) {
-        this.f11918a = 2;
+        this.f11916a = 2;
         this.e = ktVar;
         this.d = htVar;
-        this.f11919b = b1Var;
-        this.f11920c = animatorSet;
+        this.f11917b = b1Var;
+        this.f11918c = animatorSet;
     }
 
     private final void a(Animator animator) {

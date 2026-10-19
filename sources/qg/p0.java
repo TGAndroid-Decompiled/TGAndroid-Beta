@@ -5,14 +5,14 @@ import android.graphics.RectF;
 import org.telegram.messenger.BotWebViewVibrationEffect;
 import org.telegram.ui.Components.bs;
 public final class p0 implements Runnable {
-    public final int f44585a;
-    public final t0 f44586b;
-    public final i1 f44587c;
+    public final int f44587a;
+    public final t0 f44588b;
+    public final i1 f44589c;
 
     public p0(t0 t0Var, i1 i1Var, int i10) {
-        this.f44585a = i10;
-        this.f44586b = t0Var;
-        this.f44587c = i1Var;
+        this.f44587a = i10;
+        this.f44588b = t0Var;
+        this.f44589c = i1Var;
     }
 
     @Override
@@ -20,25 +20,25 @@ public final class p0 implements Runnable {
         boolean z10;
         boolean z11;
         float f7;
-        int i10 = this.f44585a;
-        i1 i1Var = this.f44587c;
-        t0 t0Var = this.f44586b;
+        int i10 = this.f44587a;
+        i1 i1Var = this.f44589c;
+        t0 t0Var = this.f44588b;
         switch (i10) {
             case 0:
-                t0Var.f44627c = i1Var;
+                t0Var.f44629c = i1Var;
                 if (t0Var.h == null) {
                     t0Var.h = new RectF();
                 }
-                t0Var.f44627c.a(t0Var.h);
-                ki.t1 t1Var = t0Var.f44625a;
+                t0Var.f44629c.a(t0Var.h);
+                ki.t1 t1Var = t0Var.f44627a;
                 if (t1Var != null) {
                     t1Var.s();
                     return;
                 }
                 return;
             default:
-                if (i1Var != null && t0Var.f44638q == 0) {
-                    t0Var.f44638q = u1.b(t0Var.f44629g);
+                if (i1Var != null && t0Var.f44640q == 0) {
+                    t0Var.f44640q = u1.b(t0Var.f44631g);
                 }
                 boolean z12 = t0Var.H;
                 if (i1Var != null) {
@@ -71,7 +71,7 @@ public final class p0 implements Runnable {
                     t0Var.K.setInterpolator(bs.h);
                     t0Var.K.start();
                     t0Var.d = i1Var;
-                    ki.t1 t1Var2 = t0Var.f44625a;
+                    ki.t1 t1Var2 = t0Var.f44627a;
                     if (t1Var2 != null) {
                         t1Var2.s();
                     }
@@ -82,7 +82,7 @@ public final class p0 implements Runnable {
                     return;
                 } else if (i1Var != t0Var.d) {
                     t0Var.d = i1Var;
-                    ki.t1 t1Var3 = t0Var.f44625a;
+                    ki.t1 t1Var3 = t0Var.f44627a;
                     if (t1Var3 != null) {
                         t1Var3.s();
                         return;

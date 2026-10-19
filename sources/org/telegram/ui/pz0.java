@@ -4,17 +4,17 @@ import android.util.SparseIntArray;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class pz0 extends s4.o {
-    public int f40320b;
-    public final SparseIntArray f40321c = new SparseIntArray();
+    public int f40315b;
+    public final SparseIntArray f40316c = new SparseIntArray();
     public final SparseIntArray d = new SparseIntArray();
     public final ArrayList e = new ArrayList();
-    public final ArrayList f40322f = new ArrayList();
-    public int f40323g;
+    public final ArrayList f40317f = new ArrayList();
+    public int f40318g;
     public int h;
-    public final ProfileActivity f40324i;
+    public final ProfileActivity f40319i;
 
     public pz0(ProfileActivity profileActivity) {
-        this.f40324i = profileActivity;
+        this.f40319i = profileActivity;
     }
 
     public static void g(int i10, int i11, SparseIntArray sparseIntArray) {
@@ -32,15 +32,15 @@ public final class pz0 extends s4.o {
     public final boolean b(int i10, int i11) {
         TLRPC.ChatParticipant chatParticipant;
         TLRPC.ChatParticipant chatParticipant2;
-        ProfileActivity profileActivity = this.f40324i;
-        if (i11 >= profileActivity.f33726v4 && i11 < profileActivity.f33734w4 && i10 >= this.f40323g && i10 < this.h) {
-            ArrayList arrayList = this.f40322f;
+        ProfileActivity profileActivity = this.f40319i;
+        if (i11 >= profileActivity.f33726v4 && i11 < profileActivity.f33734w4 && i10 >= this.f40318g && i10 < this.h) {
+            ArrayList arrayList = this.f40317f;
             boolean isEmpty = arrayList.isEmpty();
             ArrayList arrayList2 = this.e;
             if (!isEmpty) {
-                chatParticipant = (TLRPC.ChatParticipant) arrayList2.get(((Integer) arrayList.get(i10 - this.f40323g)).intValue());
+                chatParticipant = (TLRPC.ChatParticipant) arrayList2.get(((Integer) arrayList.get(i10 - this.f40318g)).intValue());
             } else {
-                chatParticipant = (TLRPC.ChatParticipant) arrayList2.get(i10 - this.f40323g);
+                chatParticipant = (TLRPC.ChatParticipant) arrayList2.get(i10 - this.f40318g);
             }
             if (!profileActivity.D2.isEmpty()) {
                 chatParticipant2 = (TLRPC.ChatParticipant) profileActivity.S4.get(((Integer) profileActivity.T4.get(i11 - profileActivity.f33726v4)).intValue());
@@ -52,7 +52,7 @@ public final class pz0 extends s4.o {
             }
             return true;
         }
-        int i12 = this.f40321c.get(i10, -1);
+        int i12 = this.f40316c.get(i10, -1);
         if (i12 != this.d.get(i11, -1) || i12 < 0) {
             return false;
         }
@@ -61,12 +61,12 @@ public final class pz0 extends s4.o {
 
     @Override
     public final int d() {
-        return this.f40324i.O2;
+        return this.f40319i.O2;
     }
 
     @Override
     public final int e() {
-        return this.f40320b;
+        return this.f40315b;
     }
 
     public final void f(SparseIntArray sparseIntArray) {
@@ -74,7 +74,7 @@ public final class pz0 extends s4.o {
         int i11;
         int i12;
         sparseIntArray.clear();
-        ProfileActivity profileActivity = this.f40324i;
+        ProfileActivity profileActivity = this.f40319i;
         g(1, profileActivity.P2, sparseIntArray);
         g(2, profileActivity.Q2, sparseIntArray);
         g(3, profileActivity.T2, sparseIntArray);
@@ -113,7 +113,7 @@ public final class pz0 extends s4.o {
         g(36, profileActivity.f33733w3, sparseIntArray);
         g(37, profileActivity.f33741x3, sparseIntArray);
         g(38, profileActivity.y3, sparseIntArray);
-        g(39, profileActivity.f33754z3, sparseIntArray);
+        g(39, profileActivity.f33755z3, sparseIntArray);
         g(40, profileActivity.A3, sparseIntArray);
         g(41, profileActivity.B3, sparseIntArray);
         g(42, profileActivity.C3, sparseIntArray);
@@ -145,7 +145,7 @@ public final class pz0 extends s4.o {
         g(68, profileActivity.f33719u4, sparseIntArray);
         g(69, profileActivity.f33742x4, sparseIntArray);
         g(70, profileActivity.f33749y4, sparseIntArray);
-        g(71, profileActivity.f33755z4, sparseIntArray);
+        g(71, profileActivity.f33756z4, sparseIntArray);
         g(72, profileActivity.A4, sparseIntArray);
         g(73, profileActivity.B4, sparseIntArray);
         g(74, profileActivity.H4, sparseIntArray);

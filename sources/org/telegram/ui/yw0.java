@@ -2,8 +2,8 @@ package org.telegram.ui;
 
 import android.util.SparseIntArray;
 public final class yw0 extends s4.o {
-    public int f43567b;
-    public final SparseIntArray f43568c = new SparseIntArray();
+    public int f43562b;
+    public final SparseIntArray f43563c = new SparseIntArray();
     public final SparseIntArray d = new SparseIntArray();
     public final PrivacyControlActivity e;
 
@@ -24,7 +24,7 @@ public final class yw0 extends s4.o {
 
     @Override
     public final boolean b(int i10, int i11) {
-        int i12 = this.f43568c.get(i10, -1);
+        int i12 = this.f43563c.get(i10, -1);
         if (i12 == this.d.get(i11, -1) && i12 >= 0) {
             return true;
         }
@@ -38,7 +38,7 @@ public final class yw0 extends s4.o {
 
     @Override
     public final int e() {
-        return this.f43567b;
+        return this.f43562b;
     }
 
     public final void f(SparseIntArray sparseIntArray) {

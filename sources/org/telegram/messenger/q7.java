@@ -1,30 +1,50 @@
 package org.telegram.messenger;
 
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-public final class q7 implements Utilities.Callback2 {
-    public final int f19331a;
-    public final MediaDataController f19332b;
-    public final String f19333c;
-    public final Utilities.Callback d;
+public final class q7 implements Runnable {
+    public final int f19326a;
+    public final Utilities.Callback f19327b;
 
-    public q7(MediaDataController mediaDataController, String str, Utilities.Callback callback, int i10) {
-        this.f19331a = i10;
-        this.f19332b = mediaDataController;
-        this.f19333c = str;
-        this.d = callback;
+    public q7(int i10, Utilities.Callback callback) {
+        this.f19326a = i10;
+        this.f19327b = callback;
     }
 
     @Override
-    public final void run(Object obj, Object obj2) {
-        Boolean bool = (Boolean) obj;
-        TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) obj2;
-        switch (this.f19331a) {
+    public final void run() {
+        switch (this.f19326a) {
             case 0:
-                this.f19332b.lambda$getStickerSet$32(this.f19333c, this.d, bool, tL_messages_stickerSet);
+                MediaDataController.lambda$loadStickers$98(this.f19327b);
+                return;
+            case 1:
+                MediaDataController.lambda$loadStickers$99(this.f19327b);
+                return;
+            case 2:
+                MediaDataController.lambda$loadStickers$94(this.f19327b);
+                return;
+            case 3:
+                MediaDataController.lambda$loadStickers$95(this.f19327b);
+                return;
+            case 4:
+                MediaDataController.lambda$loadStickers$96(this.f19327b);
+                return;
+            case 5:
+                MediaDataController.lambda$loadBotInfo$199(this.f19327b);
+                return;
+            case 6:
+                this.f19327b.run(null);
+                return;
+            case 7:
+                MessagesController.lambda$addUserToChat$300(this.f19327b);
+                return;
+            case 8:
+                MessagesController.lambda$addUserToChat$304(this.f19327b);
+                return;
+            case 9:
+                this.f19327b.run(null);
                 return;
             default:
-                this.f19332b.lambda$getStickerSet$35(this.f19333c, this.d, bool, tL_messages_stickerSet);
+                ShortcutResultReceiver.a(this.f19327b);
                 return;
         }
     }

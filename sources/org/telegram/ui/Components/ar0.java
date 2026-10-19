@@ -21,33 +21,33 @@ public final class ar0 extends hm0 {
     public zq0 H;
     public int J;
     public final er0 K;
-    public final Context f24681c;
+    public final Context f24679c;
     public final yq0 e;
-    public xq0 f24682f;
+    public xq0 f24680f;
     public xq0 h;
-    public String f24683n;
-    public int f24684r;
-    public int f24685s;
+    public String f24681n;
+    public int f24682r;
+    public int f24683s;
     public int v;
     public ArrayList d = new ArrayList();
-    public int f24686w = -1;
-    public int f24687x = -1;
-    public int f24688y = -1;
+    public int f24684w = -1;
+    public int f24685x = -1;
+    public int f24686y = -1;
     public int E = -1;
     public int F = -1;
     public boolean I = false;
 
     public ar0(er0 er0Var, Context context) {
         this.K = er0Var;
-        this.f24681c = context;
+        this.f24679c = context;
         ?? a2Var = new hg.a2(false);
         this.e = a2Var;
-        a2Var.f11794a = new ki.t1(this, 18);
+        a2Var.f11792a = new ki.t1(this, 18);
     }
 
     @Override
     public final boolean D(s4.b1 b1Var) {
-        int i10 = b1Var.f45913f;
+        int i10 = b1Var.f45915f;
         if (i10 != 1 && i10 != 4) {
             return true;
         }
@@ -55,13 +55,13 @@ public final class ar0 extends hm0 {
     }
 
     public final void E(String str) {
-        if (str != null && str.equals(this.f24683n)) {
+        if (str != null && str.equals(this.f24681n)) {
             return;
         }
-        this.f24683n = str;
-        if (this.f24682f != null) {
-            Utilities.searchQueue.cancelRunnable(this.f24682f);
-            this.f24682f = null;
+        this.f24681n = str;
+        if (this.f24680f != null) {
+            Utilities.searchQueue.cancelRunnable(this.f24680f);
+            this.f24680f = null;
         }
         xq0 xq0Var = this.h;
         if (xq0Var != null) {
@@ -75,16 +75,16 @@ public final class ar0 extends hm0 {
         this.K.M0(true);
         if (TextUtils.isEmpty(str)) {
             er0.J0(this.K);
-            this.f24684r = -1;
+            this.f24682r = -1;
             this.I = false;
         } else {
             this.I = true;
-            int i10 = this.f24684r + 1;
-            this.f24684r = i10;
+            int i10 = this.f24682r + 1;
+            this.f24682r = i10;
             this.K.R.e(true, true);
             DispatchQueue dispatchQueue = Utilities.searchQueue;
             xq0 xq0Var2 = new xq0(this, str, i10, 0);
-            this.f24682f = xq0Var2;
+            this.f24680f = xq0Var2;
             dispatchQueue.postRunnable(xq0Var2, 300L);
         }
         this.K.M0(false);
@@ -93,21 +93,21 @@ public final class ar0 extends hm0 {
     @Override
     public final int h() {
         this.G = 0;
-        this.f24686w = -1;
-        this.f24687x = -1;
+        this.f24684w = -1;
+        this.f24685x = -1;
         this.E = -1;
         this.F = -1;
-        if (TextUtils.isEmpty(this.f24683n)) {
+        if (TextUtils.isEmpty(this.f24681n)) {
             int i10 = this.G;
-            this.f24688y = i10;
+            this.f24686y = i10;
             this.G = i10 + 2;
-            this.f24686w = i10 + 1;
+            this.f24684w = i10 + 1;
             er0 er0Var = this.K;
             if (er0Var.F0.size() > 0) {
                 int i11 = this.G;
                 int i12 = i11 + 1;
                 this.G = i12;
-                this.f24687x = i11;
+                this.f24685x = i11;
                 this.E = i12;
                 this.G = er0Var.F0.size() + i12;
             }
@@ -121,11 +121,11 @@ public final class ar0 extends hm0 {
         int i15 = this.G;
         int i16 = i15 + 1;
         this.G = i16;
-        this.f24688y = i15;
+        this.f24686y = i15;
         int size = this.e.d.size() + this.d.size() + i16;
         this.G = size;
         if (size == 1) {
-            this.f24688y = -1;
+            this.f24686y = -1;
             this.G = 0;
             this.J = 0;
             return 0;
@@ -142,16 +142,16 @@ public final class ar0 extends hm0 {
         if (i10 == this.F) {
             return 4;
         }
-        if (i10 == this.f24688y) {
+        if (i10 == this.f24686y) {
             return 1;
         }
-        if (i10 == this.f24686w) {
+        if (i10 == this.f24684w) {
             return 2;
         }
-        if (i10 == this.f24687x) {
+        if (i10 == this.f24685x) {
             return 3;
         }
-        if (TextUtils.isEmpty(this.f24683n)) {
+        if (TextUtils.isEmpty(this.f24681n)) {
             return 0;
         }
         return 5;
@@ -177,8 +177,8 @@ public final class ar0 extends hm0 {
         org.telegram.ui.ActionBar.d6 d6Var2;
         er0 er0Var = this.K;
         a0.h hVar = er0Var.V;
-        int i12 = b1Var.f45913f;
-        View view = b1Var.f45910a;
+        int i12 = b1Var.f45915f;
+        View view = b1Var.f45912a;
         if (i12 != 0 && i12 != 5) {
             if (i12 == 2) {
                 ((im0) view).getAdapter().l();
@@ -186,7 +186,7 @@ public final class ar0 extends hm0 {
             }
             return;
         }
-        boolean isEmpty = TextUtils.isEmpty(this.f24683n);
+        boolean isEmpty = TextUtils.isEmpty(this.f24681n);
         String str4 = null;
         yq0 yq0Var = this.e;
         TLRPC.TL_encryptedChat tL_encryptedChat = null;
@@ -194,25 +194,25 @@ public final class ar0 extends hm0 {
             int i13 = this.E;
             long j12 = 0;
             if (i13 >= 0 && i10 >= i13) {
-                TLObject tLObject3 = ((hg.g0) er0Var.F0.get(i10 - i13)).f11868a;
+                TLObject tLObject3 = ((hg.g0) er0Var.F0.get(i10 - i13)).f11866a;
                 if (tLObject3 instanceof TLRPC.User) {
                     TLRPC.User user = (TLRPC.User) tLObject3;
-                    j12 = user.f20422id;
+                    j12 = user.f20420id;
                     str4 = ContactsController.formatName(user.first_name, user.last_name);
                 } else if (tLObject3 instanceof TLRPC.Chat) {
                     TLRPC.Chat chat = (TLRPC.Chat) tLObject3;
-                    j12 = -chat.f20275id;
+                    j12 = -chat.f20273id;
                     str4 = chat.title;
                 } else if (tLObject3 instanceof TLRPC.TL_encryptedChat) {
                     tL_encryptedChat = (TLRPC.TL_encryptedChat) tLObject3;
                     i11 = ((org.telegram.ui.ActionBar.f3) er0Var).currentAccount;
                     TLRPC.User user2 = MessagesController.getInstance(i11).getUser(Long.valueOf(tL_encryptedChat.user_id));
                     if (user2 != null) {
-                        j12 = user2.f20422id;
+                        j12 = user2.f20420id;
                         str4 = ContactsController.formatName(user2.first_name, user2.last_name);
                     }
                 }
-                String str5 = yq0Var.f11796c;
+                String str5 = yq0Var.f11794c;
                 if (!TextUtils.isEmpty(str5) && str4 != null && (indexOfIgnoreCase2 = AndroidUtilities.indexOfIgnoreCase(str4.toString(), str5)) != -1) {
                     ?? spannableStringBuilder = new SpannableStringBuilder(str4);
                     int i14 = org.telegram.ui.ActionBar.h6.q6;
@@ -256,7 +256,7 @@ public final class ar0 extends hm0 {
         int i15 = i10 - 1;
         if (i15 < this.d.size()) {
             sq0 sq0Var = (sq0) this.d.get(i15);
-            j11 = sq0Var.f30307a.f20279id;
+            j11 = sq0Var.f30305a.f20277id;
             str2 = sq0Var.d;
             tLObject = null;
         } else {
@@ -264,14 +264,14 @@ public final class ar0 extends hm0 {
             TLObject tLObject4 = (TLObject) yq0Var.d.get(i15);
             if (tLObject4 instanceof TLRPC.User) {
                 TLRPC.User user3 = (TLRPC.User) tLObject4;
-                j10 = user3.f20422id;
+                j10 = user3.f20420id;
                 str = ContactsController.formatName(user3.first_name, user3.last_name);
             } else {
                 TLRPC.Chat chat2 = (TLRPC.Chat) tLObject4;
-                j10 = -chat2.f20275id;
+                j10 = -chat2.f20273id;
                 str = chat2.title;
             }
-            String str7 = yq0Var.f11796c;
+            String str7 = yq0Var.f11794c;
             if (!TextUtils.isEmpty(str7) && str != null && (indexOfIgnoreCase = AndroidUtilities.indexOfIgnoreCase(str.toString(), str7)) != -1) {
                 ?? spannableStringBuilder2 = new SpannableStringBuilder(str);
                 int i16 = org.telegram.ui.ActionBar.h6.q6;
@@ -318,13 +318,13 @@ public final class ar0 extends hm0 {
         org.telegram.ui.ActionBar.d6 d6Var4;
         org.telegram.ui.ActionBar.d6 d6Var5;
         float f7;
-        Context context = this.f24681c;
+        Context context = this.f24679c;
         er0 er0Var = this.K;
         if (i10 == 0) {
             d6Var = ((org.telegram.ui.ActionBar.f3) er0Var).resourcesProvider;
             org.telegram.ui.Cells.h6 h6Var = new org.telegram.ui.Cells.h6(context, d6Var);
             h6Var.E0 = true;
-            h6Var.f22348l0 = true;
+            h6Var.f22346l0 = true;
             u3Var = h6Var;
         } else if (i10 == 2) {
             d6Var2 = ((org.telegram.ui.ActionBar.f3) er0Var).resourcesProvider;
@@ -356,7 +356,7 @@ public final class ar0 extends hm0 {
                 u3Var = e7Var;
             } else {
                 View view = new View(context);
-                if (er0Var.f25989i0 && er0Var.f25996p0[1] != null) {
+                if (er0Var.f25987i0 && er0Var.f25994p0[1] != null) {
                     f7 = 109.0f;
                 } else {
                     f7 = 56.0f;

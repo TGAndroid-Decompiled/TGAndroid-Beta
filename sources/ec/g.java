@@ -2,26 +2,26 @@ package ec;
 
 import com.google.android.gms.internal.play_billing.k3;
 public final class g {
-    public final float f8596a;
-    public final float f8597b;
-    public final float f8598c;
+    public final float f8594a;
+    public final float f8595b;
+    public final float f8596c;
     public final float d;
     public final float e;
-    public final float f8599f;
-    public final float f8600g;
+    public final float f8597f;
+    public final float f8598g;
     public final float h;
-    public final float f8601i;
+    public final float f8599i;
 
     public g(float f7, float f10, float f11, float f12, float f13, float f14, float f15, float f16, float f17) {
-        this.f8596a = f7;
-        this.f8597b = f12;
-        this.f8598c = f15;
+        this.f8594a = f7;
+        this.f8595b = f12;
+        this.f8596c = f15;
         this.d = f10;
         this.e = f13;
-        this.f8599f = f16;
-        this.f8600g = f11;
+        this.f8597f = f16;
+        this.f8598g = f11;
         this.h = f14;
-        this.f8601i = f17;
+        this.f8599i = f17;
     }
 
     public static g a(float f7, float f10, float f11, float f12, float f13, float f14, float f15, float f16) {

@@ -8,22 +8,22 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.bs;
 public final class z8 {
-    public final n4 f6259a;
-    public final org.telegram.ui.Components.f6 f6260b;
-    public final TextPaint f6261c;
+    public final n4 f6257a;
+    public final org.telegram.ui.Components.f6 f6258b;
+    public final TextPaint f6259c;
     public final StaticLayout d;
     public final float e;
-    public final float f6262f;
-    public float f6263g;
+    public final float f6260f;
+    public float f6261g;
     public boolean h;
-    public int f6264i;
+    public int f6262i;
 
     public z8(q4 q4Var, n4 n4Var) {
         float f7;
-        this.f6259a = n4Var;
-        this.f6260b = new org.telegram.ui.Components.f6(q4Var, 0L, 360L, bs.h);
+        this.f6257a = n4Var;
+        this.f6258b = new org.telegram.ui.Components.f6(q4Var, 0L, 360L, bs.h);
         TextPaint textPaint = new TextPaint(1);
-        this.f6261c = textPaint;
+        this.f6259c = textPaint;
         textPaint.setTextSize(AndroidUtilities.dp(14.0f));
         textPaint.setColor(-1);
         textPaint.setShadowLayer(AndroidUtilities.dp(3.0f), 0.0f, AndroidUtilities.dp(1.0f), 805306368);
@@ -35,6 +35,6 @@ public final class z8 {
             f7 = 0.0f;
         }
         this.e = f7;
-        this.f6262f = staticLayout.getLineCount() > 0 ? staticLayout.getLineWidth(0) : 0.0f;
+        this.f6260f = staticLayout.getLineCount() > 0 ? staticLayout.getLineWidth(0) : 0.0f;
     }
 }

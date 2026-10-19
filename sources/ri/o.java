@@ -1,8 +1,8 @@
 package ri;
 public final class o {
-    public final n f45824a;
+    public final n f45826a;
 
     public o(n nVar) {
-        this.f45824a = nVar;
+        this.f45826a = nVar;
     }
 }

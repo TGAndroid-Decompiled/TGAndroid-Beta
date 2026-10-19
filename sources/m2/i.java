@@ -2,16 +2,16 @@ package m2;
 
 import j$.util.Objects;
 public final class i {
-    public final String f16445a;
-    public final String f16446b;
-    public final String f16447c;
+    public final String f16443a;
+    public final String f16444b;
+    public final String f16445c;
     public final String d;
     public final String e;
 
     public i(String str, String str2, String str3, String str4, String str5) {
-        this.f16445a = str;
-        this.f16446b = str2;
-        this.f16447c = str3;
+        this.f16443a = str;
+        this.f16444b = str2;
+        this.f16445c = str3;
         this.d = str4;
         this.e = str5;
     }
@@ -24,7 +24,7 @@ public final class i {
             return false;
         }
         i iVar = (i) obj;
-        if (Objects.equals(this.f16445a, iVar.f16445a) && Objects.equals(this.f16446b, iVar.f16446b) && Objects.equals(this.f16447c, iVar.f16447c) && Objects.equals(this.d, iVar.d) && Objects.equals(this.e, iVar.e)) {
+        if (Objects.equals(this.f16443a, iVar.f16443a) && Objects.equals(this.f16444b, iVar.f16444b) && Objects.equals(this.f16445c, iVar.f16445c) && Objects.equals(this.d, iVar.d) && Objects.equals(this.e, iVar.e)) {
             return true;
         }
         return false;
@@ -36,21 +36,21 @@ public final class i {
         int i12;
         int i13;
         int i14 = 0;
-        String str = this.f16445a;
+        String str = this.f16443a;
         if (str != null) {
             i10 = str.hashCode();
         } else {
             i10 = 0;
         }
         int i15 = (527 + i10) * 31;
-        String str2 = this.f16446b;
+        String str2 = this.f16444b;
         if (str2 != null) {
             i11 = str2.hashCode();
         } else {
             i11 = 0;
         }
         int i16 = (i15 + i11) * 31;
-        String str3 = this.f16447c;
+        String str3 = this.f16445c;
         if (str3 != null) {
             i12 = str3.hashCode();
         } else {

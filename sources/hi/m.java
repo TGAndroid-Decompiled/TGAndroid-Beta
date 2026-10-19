@@ -7,10 +7,10 @@ import org.telegram.ui.Components.w9;
 import org.telegram.ui.ju0;
 import org.telegram.ui.zt0;
 public final class m extends zt0 {
-    public final o f12185a;
+    public final o f12183a;
 
     public m(o oVar) {
-        this.f12185a = oVar;
+        this.f12183a = oVar;
     }
 
     @Override
@@ -18,8 +18,8 @@ public final class m extends zt0 {
         TLRPC.FileLocation fileLocation2;
         TLRPC.ChatPhoto chatPhoto;
         if (fileLocation != null) {
-            o oVar = this.f12185a;
-            TLRPC.Chat chat = oVar.getMessagesController().getChat(Long.valueOf(oVar.f12194b));
+            o oVar = this.f12183a;
+            TLRPC.Chat chat = oVar.getMessagesController().getChat(Long.valueOf(oVar.f12192b));
             if (chat == null || (chatPhoto = chat.photo) == null || (fileLocation2 = chatPhoto.photo_big) == null) {
                 fileLocation2 = null;
             }
@@ -27,18 +27,18 @@ public final class m extends zt0 {
                 int[] iArr = new int[2];
                 oVar.v.getLocationInWindow(iArr);
                 ju0 ju0Var = new ju0();
-                ju0Var.f38344b = iArr[0];
-                ju0Var.f38345c = iArr[1];
+                ju0Var.f38345b = iArr[0];
+                ju0Var.f38346c = iArr[1];
                 w9 w9Var = oVar.v;
                 ju0Var.d = w9Var;
                 ImageReceiver imageReceiver = w9Var.getImageReceiver();
-                ju0Var.f38343a = imageReceiver;
-                ju0Var.f38346f = -oVar.f12194b;
+                ju0Var.f38344a = imageReceiver;
+                ju0Var.f38347f = -oVar.f12192b;
                 ju0Var.e = imageReceiver.getBitmapSafe();
-                ju0Var.f38347g = -1L;
+                ju0Var.f38348g = -1L;
                 ju0Var.h = oVar.v.getImageReceiver().getRoundRadius(true);
-                ju0Var.f38350k = 1.0f;
-                ju0Var.f38355p = true;
+                ju0Var.f38351k = 1.0f;
+                ju0Var.f38356p = true;
                 return ju0Var;
             }
         }
@@ -47,7 +47,7 @@ public final class m extends zt0 {
 
     @Override
     public final void G() {
-        this.f12185a.v.getImageReceiver().setVisible(true, true);
+        this.f12183a.v.getImageReceiver().setVisible(true, true);
     }
 
     @Override
@@ -57,7 +57,7 @@ public final class m extends zt0 {
 
     @Override
     public final void f(String str, String str2, boolean z10) {
-        this.f12185a.E.p(str, str2, z10);
+        this.f12183a.E.p(str, str2, z10);
     }
 
     @Override

@@ -8,15 +8,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 public final class ul0 extends s4.m0 implements ch.a {
-    public final Utilities.CallbackReturn f31016a;
-    public final im0 f31017b;
-    public final int f31018c;
+    public final Utilities.CallbackReturn f31014a;
+    public final im0 f31015b;
+    public final int f31016c;
     public final boolean d;
 
     public ul0(im0 im0Var, Utilities.CallbackReturn callbackReturn, int i10, boolean z10) {
-        this.f31017b = im0Var;
-        this.f31016a = callbackReturn;
-        this.f31018c = i10;
+        this.f31015b = im0Var;
+        this.f31014a = callbackReturn;
+        this.f31016c = i10;
         this.d = z10;
     }
 
@@ -25,8 +25,8 @@ public final class ul0 extends s4.m0 implements ch.a {
         int b10;
         boolean z10;
         int dp;
-        if (((Boolean) this.f31016a.run(view)).booleanValue()) {
-            int i10 = this.f31018c;
+        if (((Boolean) this.f31014a.run(view)).booleanValue()) {
+            int i10 = this.f31016c;
             rect.right = i10;
             rect.left = i10;
             s4.b1 T = recyclerView.T(view);
@@ -65,14 +65,14 @@ public final class ul0 extends s4.m0 implements ch.a {
 
     @Override
     public final void e(bh.a aVar, RectF rectF) {
-        aVar.f4355a = true;
+        aVar.f4353a = true;
     }
 
     @Override
     public final void f(Canvas canvas, RectF rectF) {
         canvas.save();
         canvas.clipRect(rectF);
-        this.f31017b.Q0(canvas);
+        this.f31015b.Q0(canvas);
         canvas.restore();
     }
 }

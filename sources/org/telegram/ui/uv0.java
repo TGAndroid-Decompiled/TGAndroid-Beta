@@ -6,10 +6,10 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 public final class uv0 implements org.telegram.ui.Components.og {
-    public final PopupNotificationActivity f42055a;
+    public final PopupNotificationActivity f42054a;
 
     public uv0(PopupNotificationActivity popupNotificationActivity) {
-        this.f42055a = popupNotificationActivity;
+        this.f42054a = popupNotificationActivity;
     }
 
     @Override
@@ -19,7 +19,7 @@ public final class uv0 implements org.telegram.ui.Components.og {
 
     @Override
     public final void L(CharSequence charSequence, boolean z10, int i10, int i11, long j10) {
-        PopupNotificationActivity popupNotificationActivity = this.f42055a;
+        PopupNotificationActivity popupNotificationActivity = this.f42054a;
         if (popupNotificationActivity.Q == null) {
             return;
         }
@@ -89,7 +89,7 @@ public final class uv0 implements org.telegram.ui.Components.og {
 
     @Override
     public final void y1() {
-        PopupNotificationActivity popupNotificationActivity = this.f42055a;
+        PopupNotificationActivity popupNotificationActivity = this.f42054a;
         MessageObject messageObject = popupNotificationActivity.Q;
         if (messageObject != null) {
             MessagesController.getInstance(messageObject.currentAccount).sendTyping(popupNotificationActivity.Q.getDialogId(), 0L, 0, popupNotificationActivity.K);

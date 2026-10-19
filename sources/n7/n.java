@@ -7,20 +7,20 @@ import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 public abstract class n implements Map, Serializable, j$.util.Map {
-    public static final Map.Entry[] f17299b = new Map.Entry[0];
-    public transient o f17300a;
+    public static final Map.Entry[] f17297b = new Map.Entry[0];
+    public transient o f17298a;
 
     @Override
     public final o entrySet() {
-        o oVar = this.f17300a;
+        o oVar = this.f17298a;
         if (oVar == null) {
             r rVar = (r) this;
             if (rVar.isEmpty()) {
-                oVar = y.f17326s;
+                oVar = y.f17324s;
             } else {
                 oVar = new q(rVar);
             }
-            this.f17300a = oVar;
+            this.f17298a = oVar;
         }
         return oVar;
     }

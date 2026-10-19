@@ -9,7 +9,7 @@ import org.telegram.ui.Components.g61;
 import org.telegram.ui.Components.im0;
 import org.telegram.ui.Components.t61;
 public final class w0 extends f61 {
-    public static final int f15584a = 0;
+    public static final int f15582a = 0;
 
     static {
         f61.setup(new f61());
@@ -19,9 +19,9 @@ public final class w0 extends f61 {
     public final void bindView(View view, g61 g61Var, boolean z10, t61 t61Var, b71 b71Var) {
         x0 x0Var = (x0) view;
         a aVar = (a) g61Var.G;
-        x0Var.f15113a = aVar;
+        x0Var.f15111a = aVar;
         x0Var.v = (s2) g61Var.H;
-        x0Var.f15642w = LocaleController.isRTL;
+        x0Var.f15640w = LocaleController.isRTL;
         x0Var.c(aVar);
     }
 

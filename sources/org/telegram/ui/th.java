@@ -7,40 +7,40 @@ import android.animation.ObjectAnimator;
 import android.view.View;
 import java.util.ArrayList;
 public final class th extends AnimatorListenerAdapter {
-    public final boolean f41672a;
-    public final boolean f41673b;
-    public final org.telegram.ui.Components.w9 f41674c;
+    public final boolean f41668a;
+    public final boolean f41669b;
+    public final org.telegram.ui.Components.w9 f41670c;
     public final pn d;
     public final org.telegram.ui.ActionBar.j5 e;
-    public final boolean f41675f;
+    public final boolean f41671f;
     public final ai.vd h;
-    public final qn f41676n;
+    public final qn f41672n;
 
     public th(qn qnVar, boolean z10, boolean z11, org.telegram.ui.Components.w9 w9Var, pn pnVar, org.telegram.ui.ActionBar.j5 j5Var, boolean z12, ai.vd vdVar) {
-        this.f41676n = qnVar;
-        this.f41672a = z10;
-        this.f41673b = z11;
-        this.f41674c = w9Var;
+        this.f41672n = qnVar;
+        this.f41668a = z10;
+        this.f41669b = z11;
+        this.f41670c = w9Var;
         this.d = pnVar;
         this.e = j5Var;
-        this.f41675f = z12;
+        this.f41671f = z12;
         this.h = vdVar;
     }
 
     @Override
     public final void onAnimationCancel(Animator animator) {
-        qn qnVar = this.f41676n;
+        qn qnVar = this.f41672n;
         qnVar.H2[1] = null;
         qnVar.B2[1].setTranslationY(0.0f);
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        Object[] objArr = this.f41676n.H2;
+        Object[] objArr = this.f41672n.H2;
         if (animator.equals(objArr[1])) {
-            org.telegram.ui.Components.w9 w9Var = this.f41674c;
-            boolean z10 = this.f41673b;
-            boolean z11 = this.f41672a;
+            org.telegram.ui.Components.w9 w9Var = this.f41670c;
+            boolean z10 = this.f41669b;
+            boolean z11 = this.f41668a;
             if (!z11 && !z10 && w9Var == null) {
                 objArr[1] = null;
                 return;
@@ -55,7 +55,7 @@ public final class th extends AnimatorListenerAdapter {
             if (z10) {
                 arrayList.add(ObjectAnimator.ofFloat(this.e, View.TRANSLATION_Y, 0.0f));
             }
-            if (this.f41675f) {
+            if (this.f41671f) {
                 arrayList.add(ObjectAnimator.ofFloat(this.h, View.TRANSLATION_Y, 0.0f));
             }
             if (w9Var != null) {

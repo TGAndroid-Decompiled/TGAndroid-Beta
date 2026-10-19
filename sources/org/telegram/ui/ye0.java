@@ -2,27 +2,27 @@ package org.telegram.ui;
 
 import org.telegram.messenger.AndroidUtilities;
 public final class ye0 implements Runnable {
-    public final int f43463a;
-    public final gf0 f43464b;
-    public final int f43465c;
+    public final int f43467a;
+    public final hf0 f43468b;
+    public final int f43469c;
 
-    public ye0(gf0 gf0Var, int i10, int i11) {
-        this.f43463a = i11;
-        this.f43464b = gf0Var;
-        this.f43465c = i10;
+    public ye0(hf0 hf0Var, int i10, int i11) {
+        this.f43467a = i11;
+        this.f43468b = hf0Var;
+        this.f43469c = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f43463a) {
+        switch (this.f43467a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new ye0(this.f43464b, this.f43465c, 1));
+                AndroidUtilities.runOnUIThread(new ye0(this.f43468b, this.f43469c, 1));
                 return;
             case 1:
-                this.f43464b.A(this.f43465c);
+                this.f43468b.A(this.f43469c);
                 return;
             default:
-                this.f43464b.f37319f.f40961f[this.f43465c].l(1.0f);
+                this.f43468b.f37594f.f40953f[this.f43469c].l(1.0f);
                 return;
         }
     }

@@ -17,25 +17,25 @@ import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.o21;
 import org.telegram.ui.qn;
 public final class y1 implements Runnable {
-    public final int f11567a;
-    public final d3 f11568b;
+    public final int f11565a;
+    public final d3 f11566b;
 
     public y1(d3 d3Var, int i10) {
-        this.f11567a = i10;
-        this.f11568b = d3Var;
+        this.f11565a = i10;
+        this.f11566b = d3Var;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f11567a;
+        int i10 = this.f11565a;
         int i11 = 1;
-        d3 d3Var = this.f11568b;
+        d3 d3Var = this.f11566b;
         switch (i10) {
             case 0:
                 d3.d(d3Var);
                 return;
             case 1:
-                if (!d3Var.f11141c0 && d3Var.J != 0) {
+                if (!d3Var.f11139c0 && d3Var.J != 0) {
                     TLRPC.TL_messages_prolongWebView tL_messages_prolongWebView = new TLRPC.TL_messages_prolongWebView();
                     tL_messages_prolongWebView.bot = MessagesController.getInstance(d3Var.G).getInputUser(d3Var.H);
                     tL_messages_prolongWebView.peer = MessagesController.getInstance(d3Var.G).getInputPeer(d3Var.I);
@@ -66,13 +66,13 @@ public final class y1 implements Runnable {
                 d3Var.v.requestLayout();
                 return;
             case 4:
-                if (!d3Var.f11166x.C()) {
+                if (!d3Var.f11164x.C()) {
                     d3Var.r();
                     return;
                 }
                 return;
             case 5:
-                d3Var.f11167x0 = true;
+                d3Var.f11165x0 = true;
                 d3Var.k(true);
                 return;
             case 6:
@@ -87,20 +87,20 @@ public final class y1 implements Runnable {
                     paint.setAlpha(64);
                 }
                 d3Var.e.invalidate();
-                d3Var.f11166x.n(false, false);
-                if (d3Var.f11140c != null) {
+                d3Var.f11164x.n(false, false);
+                if (d3Var.f11138c != null) {
                     if (1.0f - (Math.min(u2Var.getTopActionBarOffsetY(), u2Var.getTranslationY() - u2Var.getTopActionBarOffsetY()) / u2Var.getTopActionBarOffsetY()) <= 0.5f) {
                         i11 = 0;
                     }
                     float f7 = i11 * 100.0f;
-                    o1.k kVar = d3Var.f11140c;
-                    o1.l lVar = kVar.f17561u;
-                    if (((float) lVar.f17567i) != f7) {
-                        lVar.f17567i = f7;
+                    o1.k kVar = d3Var.f11138c;
+                    o1.l lVar = kVar.f17559u;
+                    if (((float) lVar.f17565i) != f7) {
+                        lVar.f17565i = f7;
                         kVar.h();
                     }
                 }
-                if (d3Var.f11142d0) {
+                if (d3Var.f11140d0) {
                     int i12 = d3Var.h.bottom;
                 } else {
                     Math.max(0.0f, u2Var.getSwipeOffsetY());
@@ -108,17 +108,17 @@ public final class y1 implements Runnable {
                 System.currentTimeMillis();
                 return;
             case 8:
-                d3Var.f11166x.n(true, false);
+                d3Var.f11164x.n(true, false);
                 return;
             case 9:
-                Activity activity = d3Var.f11150k0;
+                Activity activity = d3Var.f11148k0;
                 if (activity instanceof LaunchActivity) {
                     ((LaunchActivity) activity).t0(qn.W9(d3Var.H));
                 }
                 d3Var.k(true);
                 return;
             case 10:
-                v2 v2Var = d3Var.f11166x;
+                v2 v2Var = d3Var.f11164x;
                 v2Var.getClass();
                 v2Var.P = System.currentTimeMillis();
                 v2Var.y("settings_button_pressed", null);

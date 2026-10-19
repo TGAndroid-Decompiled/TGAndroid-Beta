@@ -8,7 +8,7 @@ public final class b extends d {
         super(aVar, (Character) null);
         boolean z10;
         this.e = new char[512];
-        char[] cArr = aVar.f10509b;
+        char[] cArr = aVar.f10507b;
         if (cArr.length == 16) {
             z10 = true;
         } else {

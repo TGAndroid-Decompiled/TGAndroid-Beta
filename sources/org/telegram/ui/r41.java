@@ -7,23 +7,23 @@ import android.graphics.Path;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class r41 extends FrameLayout {
-    public final Path f41060a;
-    public final Paint f41061b;
-    public final boolean f41062c;
+    public final Path f41052a;
+    public final Paint f41053b;
+    public final boolean f41054c;
     public final boolean d;
     public final org.telegram.ui.ActionBar.d6 e;
-    public final Integer f41063f;
+    public final Integer f41055f;
     public final x51 h;
 
     public r41(x51 x51Var, Context context, boolean z10, boolean z11, org.telegram.ui.ActionBar.d6 d6Var, Integer num) {
         super(context);
         this.h = x51Var;
-        this.f41062c = z10;
+        this.f41054c = z10;
         this.d = z11;
         this.e = d6Var;
-        this.f41063f = num;
-        this.f41060a = new Path();
-        this.f41061b = new Paint(1);
+        this.f41055f = num;
+        this.f41052a = new Path();
+        this.f41053b = new Paint(1);
     }
 
     @Override
@@ -32,16 +32,16 @@ public final class r41 extends FrameLayout {
         x51 x51Var = this.h;
         if (!x51Var.Q0) {
             super.dispatchDraw(canvas);
-        } else if (this.f41062c) {
+        } else if (this.f41054c) {
             canvas.save();
             boolean z10 = this.d;
-            Paint paint = this.f41061b;
+            Paint paint = this.f41053b;
             if (z10) {
                 org.telegram.ui.ActionBar.h6.m(paint);
             }
             paint.setColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.G8, this.e));
             paint.setAlpha((int) (getAlpha() * 255.0f));
-            Integer num = this.f41063f;
+            Integer num = this.f41055f;
             if (num == null) {
                 intValue = getWidth() / 2.0f;
             } else {
@@ -51,11 +51,11 @@ public final class r41 extends FrameLayout {
             float width = (getWidth() - getPaddingLeft()) - getPaddingRight();
             float height = (getHeight() - getPaddingBottom()) - getPaddingTop();
             if (x51Var.n()) {
-                AndroidUtilities.rectTmp.set((dp - (x51Var.f43040a1 * dp)) + getPaddingLeft(), com.google.android.gms.internal.play_billing.k3.y(1.0f, x51Var.f43043b1, height, getPaddingTop()), ((width - dp) * x51Var.f43040a1) + getPaddingLeft() + dp, getPaddingTop() + height);
+                AndroidUtilities.rectTmp.set((dp - (x51Var.f43039a1 * dp)) + getPaddingLeft(), com.google.android.gms.internal.play_billing.k3.y(1.0f, x51Var.f43042b1, height, getPaddingTop()), ((width - dp) * x51Var.f43039a1) + getPaddingLeft() + dp, getPaddingTop() + height);
             } else {
-                AndroidUtilities.rectTmp.set((dp - (x51Var.f43040a1 * dp)) + getPaddingLeft(), getPaddingTop(), ((width - dp) * x51Var.f43040a1) + getPaddingLeft() + dp, (height * x51Var.f43043b1) + getPaddingTop());
+                AndroidUtilities.rectTmp.set((dp - (x51Var.f43039a1 * dp)) + getPaddingLeft(), getPaddingTop(), ((width - dp) * x51Var.f43039a1) + getPaddingLeft() + dp, (height * x51Var.f43042b1) + getPaddingTop());
             }
-            Path path = this.f41060a;
+            Path path = this.f41052a;
             path.rewind();
             path.addRoundRect(AndroidUtilities.rectTmp, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), Path.Direction.CW);
             canvas.drawPath(path, paint);

@@ -5,17 +5,17 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import org.telegram.messenger.AndroidUtilities;
 public final class yd implements TextWatcher {
-    public final ie f43453a;
+    public final ie f43457a;
 
     public yd(ie ieVar) {
-        this.f43453a = ieVar;
+        this.f43457a = ieVar;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
         long parseLong;
-        ie ieVar = this.f43453a;
-        nd ndVar = ieVar.f37961i1;
+        ie ieVar = this.f43457a;
+        nd ndVar = ieVar.f37932i1;
         ai.t tVar = ieVar.Y0;
         if (ieVar.V0) {
             return;

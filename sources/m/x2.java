@@ -3,14 +3,14 @@ package m;
 import android.os.Build;
 import java.lang.reflect.Method;
 public final class x2 {
-    public Method f16388a;
-    public Method f16389b;
-    public Method f16390c;
+    public Method f16386a;
+    public Method f16387b;
+    public Method f16388c;
 
     public x2(Method method, Method method2, Method method3) {
-        this.f16388a = method;
-        this.f16389b = method2;
-        this.f16390c = method3;
+        this.f16386a = method;
+        this.f16387b = method2;
+        this.f16388c = method3;
     }
 
     public static void a() {

@@ -2,40 +2,40 @@ package c3;
 
 import v7.u6;
 public final class k0 {
-    public final byte[] f4639a = new byte[10];
-    public boolean f4640b;
-    public int f4641c;
+    public final byte[] f4637a = new byte[10];
+    public boolean f4638b;
+    public int f4639c;
     public long d;
     public int e;
-    public int f4642f;
-    public int f4643g;
+    public int f4640f;
+    public int f4641g;
 
     public final void a(j0 j0Var, i0 i0Var) {
-        if (this.f4641c > 0) {
-            j0Var.c(this.d, this.e, this.f4642f, this.f4643g, i0Var);
-            this.f4641c = 0;
+        if (this.f4639c > 0) {
+            j0Var.c(this.d, this.e, this.f4640f, this.f4641g, i0Var);
+            this.f4639c = 0;
         }
     }
 
     public final void b(j0 j0Var, long j10, int i10, int i11, int i12, i0 i0Var) {
         boolean z10;
-        if (this.f4643g <= i11 + i12) {
+        if (this.f4641g <= i11 + i12) {
             z10 = true;
         } else {
             z10 = false;
         }
         u6.o("TrueHD chunk samples must be contiguous in the sample queue.", z10);
-        if (this.f4640b) {
-            int i13 = this.f4641c;
+        if (this.f4638b) {
+            int i13 = this.f4639c;
             int i14 = i13 + 1;
-            this.f4641c = i14;
+            this.f4639c = i14;
             if (i13 == 0) {
                 this.d = j10;
                 this.e = i10;
-                this.f4642f = 0;
+                this.f4640f = 0;
             }
-            this.f4642f += i11;
-            this.f4643g = i12;
+            this.f4640f += i11;
+            this.f4641g = i12;
             if (i14 >= 16) {
                 a(j0Var, i0Var);
             }
@@ -44,9 +44,9 @@ public final class k0 {
 
     public final void c(p pVar) {
         char c10;
-        if (!this.f4640b) {
+        if (!this.f4638b) {
             int i10 = 0;
-            byte[] bArr = this.f4639a;
+            byte[] bArr = this.f4637a;
             pVar.b(0, 10, bArr);
             pVar.q();
             if (bArr[4] == -8 && bArr[5] == 114 && bArr[6] == 111) {
@@ -66,7 +66,7 @@ public final class k0 {
             if (i10 == 0) {
                 return;
             }
-            this.f4640b = true;
+            this.f4638b = true;
         }
     }
 }

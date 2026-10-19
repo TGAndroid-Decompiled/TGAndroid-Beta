@@ -6,28 +6,28 @@ import android.os.Build;
 import android.os.Handler;
 import j$.util.Objects;
 public final class h {
-    public final int f4507a;
-    public final AudioManager.OnAudioFocusChangeListener f4508b;
-    public final Handler f4509c;
+    public final int f4505a;
+    public final AudioManager.OnAudioFocusChangeListener f4506b;
+    public final Handler f4507c;
     public final b2.f d;
     public final boolean e;
-    public final Object f4510f;
+    public final Object f4508f;
 
     public h(int i10, AudioManager.OnAudioFocusChangeListener onAudioFocusChangeListener, Handler handler, b2.f fVar, boolean z10, boolean z11) {
-        this.f4507a = i10;
-        this.f4509c = handler;
+        this.f4505a = i10;
+        this.f4507c = handler;
         this.d = fVar;
         this.e = z10;
         int i11 = Build.VERSION.SDK_INT;
         if (i11 < 26) {
-            this.f4508b = new g(onAudioFocusChangeListener, handler);
+            this.f4506b = new g(onAudioFocusChangeListener, handler);
         } else {
-            this.f4508b = onAudioFocusChangeListener;
+            this.f4506b = onAudioFocusChangeListener;
         }
         if (i11 >= 26) {
-            this.f4510f = new AudioFocusRequest.Builder(i10).setAudioAttributes(fVar.b()).setWillPauseWhenDucked(z10).setOnAudioFocusChangeListener(onAudioFocusChangeListener, handler).setAcceptsDelayedFocusGain(z11).build();
+            this.f4508f = new AudioFocusRequest.Builder(i10).setAudioAttributes(fVar.b()).setWillPauseWhenDucked(z10).setOnAudioFocusChangeListener(onAudioFocusChangeListener, handler).setAcceptsDelayedFocusGain(z11).build();
         } else {
-            this.f4510f = null;
+            this.f4508f = null;
         }
     }
 
@@ -39,13 +39,13 @@ public final class h {
             return false;
         }
         h hVar = (h) obj;
-        if (this.f4507a == hVar.f4507a && this.e == hVar.e && Objects.equals(this.f4508b, hVar.f4508b) && Objects.equals(this.f4509c, hVar.f4509c) && Objects.equals(this.d, hVar.d)) {
+        if (this.f4505a == hVar.f4505a && this.e == hVar.e && Objects.equals(this.f4506b, hVar.f4506b) && Objects.equals(this.f4507c, hVar.f4507c) && Objects.equals(this.d, hVar.d)) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return Objects.hash(Integer.valueOf(this.f4507a), this.f4508b, this.f4509c, this.d, Boolean.valueOf(this.e));
+        return Objects.hash(Integer.valueOf(this.f4505a), this.f4506b, this.f4507c, this.d, Boolean.valueOf(this.e));
     }
 }

@@ -4,30 +4,30 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class rx0 implements Runnable {
-    public final int f41296a;
-    public final ProfileActivity f41297b;
-    public final TLRPC.TL_error f41298c;
+    public final int f41294a;
+    public final ProfileActivity f41295b;
+    public final TLRPC.TL_error f41296c;
     public final TLObject d;
     public final TLRPC.TL_channels_getParticipants e;
 
     public rx0(ProfileActivity profileActivity, TLRPC.TL_error tL_error, TLObject tLObject, TLRPC.TL_channels_getParticipants tL_channels_getParticipants, int i10) {
-        this.f41296a = i10;
-        this.f41297b = profileActivity;
-        this.f41298c = tL_error;
+        this.f41294a = i10;
+        this.f41295b = profileActivity;
+        this.f41296c = tL_error;
         this.d = tLObject;
         this.e = tL_channels_getParticipants;
     }
 
     @Override
     public final void run() {
-        switch (this.f41296a) {
+        switch (this.f41294a) {
             case 0:
-                ProfileActivity profileActivity = this.f41297b;
-                profileActivity.getNotificationCenter().doOnIdle(new rx0(profileActivity, this.f41298c, this.d, this.e, 1));
+                ProfileActivity profileActivity = this.f41295b;
+                profileActivity.getNotificationCenter().doOnIdle(new rx0(profileActivity, this.f41296c, this.d, this.e, 1));
                 return;
             default:
-                ProfileActivity profileActivity2 = this.f41297b;
-                if (this.f41298c == null) {
+                ProfileActivity profileActivity2 = this.f41295b;
+                if (this.f41296c == null) {
                     profileActivity2.getClass();
                     TLRPC.TL_channels_channelParticipants tL_channels_channelParticipants = (TLRPC.TL_channels_channelParticipants) this.d;
                     profileActivity2.getMessagesController().putUsers(tL_channels_channelParticipants.users, false);

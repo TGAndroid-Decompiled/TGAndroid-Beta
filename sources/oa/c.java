@@ -8,23 +8,23 @@ import com.google.android.gms.tasks.Tasks;
 import java.util.Set;
 import java.util.concurrent.Executor;
 public final class c implements e, f {
-    public final l9.d f17718a;
-    public final Context f17719b;
-    public final qa.b f17720c;
+    public final l9.d f17716a;
+    public final Context f17717b;
+    public final qa.b f17718c;
     public final Set d;
     public final Executor e;
 
     public c(Context context, String str, Set set, qa.b bVar, Executor executor) {
-        this.f17718a = new l9.d(context, str);
+        this.f17716a = new l9.d(context, str);
         this.d = set;
         this.e = executor;
-        this.f17720c = bVar;
-        this.f17719b = context;
+        this.f17718c = bVar;
+        this.f17717b = context;
     }
 
     public final synchronized int a() {
         long currentTimeMillis = System.currentTimeMillis();
-        g gVar = (g) this.f17718a.get();
+        g gVar = (g) this.f17716a.get();
         if (gVar.i(currentTimeMillis)) {
             gVar.g();
             return 3;
@@ -35,7 +35,7 @@ public final class c implements e, f {
     public final Task b() {
         boolean z10;
         if (Build.VERSION.SDK_INT >= 24) {
-            z10 = w.g(this.f17719b);
+            z10 = w.g(this.f17717b);
         } else {
             z10 = true;
         }
@@ -52,7 +52,7 @@ public final class c implements e, f {
             return;
         }
         if (Build.VERSION.SDK_INT >= 24) {
-            z10 = w.g(this.f17719b);
+            z10 = w.g(this.f17717b);
         } else {
             z10 = true;
         }

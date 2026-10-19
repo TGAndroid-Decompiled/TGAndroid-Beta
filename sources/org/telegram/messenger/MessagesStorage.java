@@ -561,7 +561,7 @@ public class MessagesStorage extends BaseController {
                 TLRPC.Reaction reaction = reactionCount2.reaction;
                 if ((reaction instanceof TLRPC.TL_reactionEmoji) || (reaction instanceof TLRPC.TL_reactionCustomEmoji)) {
                     sQLitePreparedStatement.requery();
-                    sQLitePreparedStatement.bindLong(1, message.f20296id);
+                    sQLitePreparedStatement.bindLong(1, message.f20294id);
                     sQLitePreparedStatement.bindLong(2, MessageObject.getSavedDialogId(clientUserId, message));
                     TLRPC.Reaction reaction2 = reactionCount2.reaction;
                     if (reaction2 instanceof TLRPC.TL_reactionEmoji) {
@@ -609,7 +609,7 @@ public class MessagesStorage extends BaseController {
                 i10 = queryFinalized.intValue(0);
             }
             queryFinalized.dispose();
-            AndroidUtilities.runOnUIThread(new u4(this, l4, i10, 17));
+            AndroidUtilities.runOnUIThread(new t4(this, l4, i10, 17));
         } catch (Exception e7) {
             e = e7;
             sQLiteCursor = queryFinalized;
@@ -655,7 +655,7 @@ public class MessagesStorage extends BaseController {
                 }
                 sQLiteCursor.dispose();
                 if (z10) {
-                    AndroidUtilities.runOnUIThread(new gf(this, i10, 1));
+                    AndroidUtilities.runOnUIThread(new ff(this, i10, 1));
                     this.database.executeFast("DELETE FROM dialogs WHERE did = " + DialogObject.makeFolderDialogId(i10)).stepThis().dispose();
                 }
                 sQLiteCursor.dispose();
@@ -1070,7 +1070,7 @@ public class MessagesStorage extends BaseController {
     private void createOrEditTopic(long j10, TLRPC.Message message) {
         TLRPC.TL_forumTopic tL_forumTopic = new TLRPC.TL_forumTopic();
         tL_forumTopic.topicStartMessage = message;
-        tL_forumTopic.top_message = message.f20296id;
+        tL_forumTopic.top_message = message.f20294id;
         tL_forumTopic.topMessage = message;
         tL_forumTopic.from_id = message.from_id;
         tL_forumTopic.notify_settings = new TLRPC.TL_peerNotifySettings();
@@ -1079,7 +1079,7 @@ public class MessagesStorage extends BaseController {
         TLRPC.MessageAction messageAction = message.action;
         if (messageAction instanceof TLRPC.TL_messageActionTopicCreate) {
             TLRPC.TL_messageActionTopicCreate tL_messageActionTopicCreate = (TLRPC.TL_messageActionTopicCreate) messageAction;
-            tL_forumTopic.f20327id = message.f20296id;
+            tL_forumTopic.f20325id = message.f20294id;
             long j11 = tL_messageActionTopicCreate.icon_emoji_id;
             tL_forumTopic.icon_emoji_id = j11;
             tL_forumTopic.title = tL_messageActionTopicCreate.title;
@@ -1090,10 +1090,10 @@ public class MessagesStorage extends BaseController {
             ArrayList arrayList = new ArrayList();
             arrayList.add(tL_forumTopic);
             saveTopics(j10, arrayList, false, false, message.date);
-            AndroidUtilities.runOnUIThread(new f4(this, j10, tL_forumTopic, 21));
+            AndroidUtilities.runOnUIThread(new e4(this, j10, tL_forumTopic, 21));
         } else if (messageAction instanceof TLRPC.TL_messageActionTopicEdit) {
             TLRPC.TL_messageActionTopicEdit tL_messageActionTopicEdit = (TLRPC.TL_messageActionTopicEdit) messageAction;
-            tL_forumTopic.f20327id = (int) MessageObject.getTopicId(this.currentAccount, message, true);
+            tL_forumTopic.f20325id = (int) MessageObject.getTopicId(this.currentAccount, message, true);
             tL_forumTopic.icon_emoji_id = tL_messageActionTopicEdit.icon_emoji_id;
             tL_forumTopic.title = tL_messageActionTopicEdit.title;
             tL_forumTopic.closed = tL_messageActionTopicEdit.closed;
@@ -1236,13 +1236,13 @@ public class MessagesStorage extends BaseController {
     public void lambda$deleteDialogFilter$72(MessagesController.DialogFilter dialogFilter) {
         try {
             this.dialogFilters.remove(dialogFilter);
-            this.dialogFiltersMap.remove(dialogFilter.f17801id);
+            this.dialogFiltersMap.remove(dialogFilter.f17799id);
             SQLiteDatabase sQLiteDatabase = this.database;
-            sQLiteDatabase.executeFast("DELETE FROM dialog_filter WHERE id = " + dialogFilter.f17801id).stepThis().dispose();
+            sQLiteDatabase.executeFast("DELETE FROM dialog_filter WHERE id = " + dialogFilter.f17799id).stepThis().dispose();
             SQLiteDatabase sQLiteDatabase2 = this.database;
-            sQLiteDatabase2.executeFast("DELETE FROM dialog_filter_ep WHERE id = " + dialogFilter.f17801id).stepThis().dispose();
+            sQLiteDatabase2.executeFast("DELETE FROM dialog_filter_ep WHERE id = " + dialogFilter.f17799id).stepThis().dispose();
             SQLiteDatabase sQLiteDatabase3 = this.database;
-            sQLiteDatabase3.executeFast("DELETE FROM dialog_filter_pin_v2 WHERE id = " + dialogFilter.f17801id).stepThis().dispose();
+            sQLiteDatabase3.executeFast("DELETE FROM dialog_filter_pin_v2 WHERE id = " + dialogFilter.f17799id).stepThis().dispose();
         } catch (Exception e) {
             checkSQLException(e);
         }
@@ -1767,7 +1767,7 @@ public class MessagesStorage extends BaseController {
                 ArrayList<Integer> arrayList = new ArrayList<>();
                 arrayList.add(Integer.valueOf(i13));
                 sparseArray.put(max, arrayList);
-                AndroidUtilities.runOnUIThread(new p8(this, z10, j10, arrayList, 5));
+                AndroidUtilities.runOnUIThread(new o8(this, z10, j10, arrayList, 5));
                 SQLitePreparedStatement executeFast = this.database.executeFast("REPLACE INTO enc_tasks_v4 VALUES(?, ?, ?, ?)");
                 for (int i14 = 0; i14 < sparseArray.size(); i14++) {
                     try {
@@ -1869,7 +1869,7 @@ public class MessagesStorage extends BaseController {
             sQLiteCursor.dispose();
             if (arrayList != null) {
                 j10 = makeEncryptedDialogId;
-                AndroidUtilities.runOnUIThread(new qe(this, j10, arrayList2, 7));
+                AndroidUtilities.runOnUIThread(new pe(this, j10, arrayList2, 7));
             } else {
                 j10 = makeEncryptedDialogId;
             }
@@ -2017,8 +2017,8 @@ public class MessagesStorage extends BaseController {
                 int i12 = ephemeralMessage.anchor_msg_id;
                 if (i12 != 0) {
                     zf.t tVar = this.ephemeralWelcomeAnchorsState;
-                    int i13 = ephemeralMessage.f20485id;
-                    a0.h hVar3 = tVar.f51592a;
+                    int i13 = ephemeralMessage.f20483id;
+                    a0.h hVar3 = tVar.f51594a;
                     SparseIntArray sparseIntArray = (SparseIntArray) hVar3.f(j10);
                     if (sparseIntArray != null && sparseIntArray.get(i12, -1) == i13) {
                         sparseIntArray.delete(i12);
@@ -2037,7 +2037,7 @@ public class MessagesStorage extends BaseController {
             }
         }
         if (!hVar2.i()) {
-            AndroidUtilities.runOnUIThread(new mf(this, hVar2, 3));
+            AndroidUtilities.runOnUIThread(new lf(this, hVar2, 3));
         }
     }
 
@@ -2203,7 +2203,7 @@ public class MessagesStorage extends BaseController {
                     }
                     sQLiteCursor.dispose();
                 }
-                AndroidUtilities.runOnUIThread(new re(intCallback, i10, 1));
+                AndroidUtilities.runOnUIThread(new qe(intCallback, i10, 1));
                 if (sQLiteCursor != null) {
                     sQLiteCursor.dispose();
                 }
@@ -2267,7 +2267,7 @@ public class MessagesStorage extends BaseController {
                         DownloadObject downloadObject = new DownloadObject();
                         boolean z12 = true;
                         downloadObject.type = queryFinalized.intValue(1);
-                        downloadObject.f17790id = queryFinalized.longValue(0);
+                        downloadObject.f17788id = queryFinalized.longValue(0);
                         downloadObject.parent = queryFinalized.stringValue(3);
                         NativeByteBuffer byteBufferValue = queryFinalized.byteBufferValue(2);
                         if (byteBufferValue != null) {
@@ -2329,7 +2329,7 @@ public class MessagesStorage extends BaseController {
                     }
                 }
                 queryFinalized.dispose();
-                AndroidUtilities.runOnUIThread(new uf(this, i10, arrayList, 2));
+                AndroidUtilities.runOnUIThread(new tf(this, i10, arrayList, 2));
             } catch (Exception e7) {
                 e = e7;
             }
@@ -2363,7 +2363,7 @@ public class MessagesStorage extends BaseController {
     }
 
     public void lambda$getEphemeralMessages$208(Utilities.Callback callback, long j10, long j11) {
-        AndroidUtilities.runOnUIThread(new xe(this, callback, j10, j11, 1));
+        AndroidUtilities.runOnUIThread(new we(this, callback, j10, j11, 1));
     }
 
     public void lambda$getMessage$142(long j10, long j11, AtomicReference atomicReference, CountDownLatch countDownLatch) {
@@ -2408,7 +2408,7 @@ public class MessagesStorage extends BaseController {
         Timer.Task start = Timer.start(timer, "MessagesStorage.getMessages");
         Runnable messagesInternal = getMessagesInternal(j10, j11, i10, i11, i12, i13, i14, i15, i16, j12, i17, z10, z11, timer);
         Timer.done(start);
-        Utilities.stageQueue.postRunnable(new lc(22, Timer.start(timer, "MessagesStorage.getMessages: stageQueue.postRunnable"), messagesInternal));
+        Utilities.stageQueue.postRunnable(new kc(22, Timer.start(timer, "MessagesStorage.getMessages: stageQueue.postRunnable"), messagesInternal));
     }
 
     public void lambda$getMessagesCount$158(long j10, IntCallback intCallback) {
@@ -2423,7 +2423,7 @@ public class MessagesStorage extends BaseController {
                     i10 = sQLiteCursor.intValue(0);
                 }
                 sQLiteCursor.dispose();
-                AndroidUtilities.runOnUIThread(new re(intCallback, i10, 0));
+                AndroidUtilities.runOnUIThread(new qe(intCallback, i10, 0));
                 sQLiteCursor.dispose();
             } catch (Exception e) {
                 checkSQLException(e);
@@ -2444,16 +2444,16 @@ public class MessagesStorage extends BaseController {
         int i11;
         int i12;
         int i13;
-        if (!MessageObject.isEphemeralMessageId(message.f20296id) && !MessageObject.isEphemeralMessageId(message2.f20296id)) {
-            int i14 = message.f20296id;
-            if (i14 > 0 && (i13 = message2.f20296id) > 0) {
+        if (!MessageObject.isEphemeralMessageId(message.f20294id) && !MessageObject.isEphemeralMessageId(message2.f20294id)) {
+            int i14 = message.f20294id;
+            if (i14 > 0 && (i13 = message2.f20294id) > 0) {
                 if (i14 > i13) {
                     return -1;
                 }
                 if (i14 < i13) {
                     return 1;
                 }
-            } else if (i14 < 0 && (i12 = message2.f20296id) < 0) {
+            } else if (i14 < 0 && (i12 = message2.f20294id) < 0) {
                 if (i14 < i12) {
                     return -1;
                 }
@@ -2480,10 +2480,10 @@ public class MessagesStorage extends BaseController {
         if (i17 < i18) {
             return 1;
         }
-        if (MessageObject.isEphemeralMessageId(message.f20296id) && !MessageObject.isEphemeralMessageId(message2.f20296id)) {
+        if (MessageObject.isEphemeralMessageId(message.f20294id) && !MessageObject.isEphemeralMessageId(message2.f20294id)) {
             return -1;
         }
-        if ((!MessageObject.isEphemeralMessageId(message.f20296id) && MessageObject.isEphemeralMessageId(message2.f20296id)) || (i10 = message.f20296id) > (i11 = message2.f20296id)) {
+        if ((!MessageObject.isEphemeralMessageId(message.f20294id) && MessageObject.isEphemeralMessageId(message2.f20294id)) || (i10 = message.f20294id) > (i11 = message2.f20294id)) {
             return 1;
         }
         if (i10 >= i11) {
@@ -2562,7 +2562,7 @@ public class MessagesStorage extends BaseController {
                     i10 = sQLiteCursor.intValue(0);
                 }
                 sQLiteCursor.dispose();
-                AndroidUtilities.runOnUIThread(new re(intCallback, i10, 2));
+                AndroidUtilities.runOnUIThread(new qe(intCallback, i10, 2));
                 sQLiteCursor.dispose();
             } catch (Exception e) {
                 checkSQLException(e);
@@ -2792,24 +2792,24 @@ public class MessagesStorage extends BaseController {
                             arrayList.add(Long.valueOf(longValue3));
                         }
                         TLRPC.TL_dialog tL_dialog = new TLRPC.TL_dialog();
-                        tL_dialog.f20279id = longValue3;
+                        tL_dialog.f20277id = longValue3;
                         tL_dialog.top_message = queryFinalized.intValue(1);
                         tL_dialog.unread_count = queryFinalized.intValue(2);
                         tL_dialog.last_message_date = queryFinalized.intValue(3);
-                        hVar.k(tL_dialog, tL_dialog.f20279id);
+                        hVar.k(tL_dialog, tL_dialog.f20277id);
                         NativeByteBuffer byteBufferValue = queryFinalized.byteBufferValue(4);
                         if (byteBufferValue != null) {
                             TLRPC.Message TLdeserialize = TLRPC.Message.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
                             TLdeserialize.readAttachPath(byteBufferValue, getUserConfig().clientUserId);
                             byteBufferValue.reuse();
                             MessageObject.setUnreadFlags(TLdeserialize, queryFinalized.intValue(5));
-                            TLdeserialize.f20296id = queryFinalized.intValue(6);
+                            TLdeserialize.f20294id = queryFinalized.intValue(6);
                             TLdeserialize.send_state = queryFinalized.intValue(7);
                             int intValue = queryFinalized.intValue(8);
                             if (intValue != 0) {
                                 tL_dialog.last_message_date = intValue;
                             }
-                            long j10 = tL_dialog.f20279id;
+                            long j10 = tL_dialog.f20277id;
                             TLdeserialize.dialog_id = j10;
                             hVar2.k(TLdeserialize, j10);
                             addUsersAndChatsFromMessage(TLdeserialize, arrayList4, arrayList5, null);
@@ -2824,7 +2824,7 @@ public class MessagesStorage extends BaseController {
                         long longValue4 = l4.longValue();
                         if (hVar.f(((Long) arrayList.get(i12)).longValue()) == null) {
                             TLRPC.TL_dialog tL_dialog2 = new TLRPC.TL_dialog();
-                            tL_dialog2.f20279id = longValue4;
+                            tL_dialog2.f20277id = longValue4;
                             hVar.k(tL_dialog2, longValue4);
                             if (DialogObject.isChatDialog(longValue4)) {
                                 long j11 = -longValue4;
@@ -3211,8 +3211,8 @@ public class MessagesStorage extends BaseController {
     }
 
     public static int lambda$localSearch$260(hg.c0 c0Var, hg.c0 c0Var2) {
-        int i10 = c0Var.f11825b;
-        int i11 = c0Var2.f11825b;
+        int i10 = c0Var.f11823b;
+        int i11 = c0Var2.f11823b;
         if (i10 < i11) {
             return 1;
         }
@@ -3238,7 +3238,7 @@ public class MessagesStorage extends BaseController {
 
     public void lambda$markMessageAsSendError$209(int i10, TLRPC.Message message) {
         try {
-            long j10 = message.f20296id;
+            long j10 = message.f20294id;
             if (MessageObject.isQuickReply(message)) {
                 i10 = 5;
             } else if (MessageObject.isWelcomeMessage(message)) {
@@ -3275,7 +3275,7 @@ public class MessagesStorage extends BaseController {
         SQLiteCursor sQLiteCursor = null;
         try {
             try {
-                long j12 = message.f20296id;
+                long j12 = message.f20294id;
                 long dialogId = MessageObject.getDialogId(message);
                 int i10 = 0;
                 int i11 = 0;
@@ -3464,7 +3464,7 @@ public class MessagesStorage extends BaseController {
             if (arrayList2.isEmpty()) {
                 return;
             }
-            AndroidUtilities.runOnUIThread(new ne(1, arrayList2, this));
+            AndroidUtilities.runOnUIThread(new me(1, arrayList2, this));
         } catch (Throwable th2) {
             if (0 != 0) {
                 sQLiteCursor.dispose();
@@ -4378,7 +4378,7 @@ public class MessagesStorage extends BaseController {
         this.dialogFilters.addAll(arrayList);
         for (int i10 = 0; i10 < arrayList.size(); i10++) {
             ((MessagesController.DialogFilter) arrayList.get(i10)).order = i10;
-            this.dialogFiltersMap.put(((MessagesController.DialogFilter) arrayList.get(i10)).f17801id, (MessagesController.DialogFilter) arrayList.get(i10));
+            this.dialogFiltersMap.put(((MessagesController.DialogFilter) arrayList.get(i10)).f17799id, (MessagesController.DialogFilter) arrayList.get(i10));
         }
         saveDialogFiltersOrderInternal();
     }
@@ -4713,11 +4713,11 @@ public class MessagesStorage extends BaseController {
             queryFinalized.dispose();
             if (chatFull instanceof TLRPC.TL_chatFull) {
                 chatFull.participants = chatParticipants;
-                AndroidUtilities.runOnUIThread(new ff(this, chatFull, 0));
+                AndroidUtilities.runOnUIThread(new ef(this, chatFull, 0));
                 SQLitePreparedStatement executeFast = this.database.executeFast("REPLACE INTO chat_settings_v2 VALUES(?, ?, ?, ?, ?, ?, ?)");
                 NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(chatFull.getObjectSize());
                 chatFull.serializeToStream(nativeByteBuffer);
-                executeFast.bindLong(1, chatFull.f20276id);
+                executeFast.bindLong(1, chatFull.f20274id);
                 executeFast.bindByteBuffer(2, nativeByteBuffer);
                 executeFast.bindInteger(3, chatFull.pinned_msg_id);
                 executeFast.bindInteger(4, chatFull.online_count);
@@ -4777,7 +4777,7 @@ public class MessagesStorage extends BaseController {
             try {
                 sQLitePreparedStatement = this.database.executeFast("UPDATE enc_chats SET layer = ? WHERE uid = ?");
                 sQLitePreparedStatement.bindInteger(1, encryptedChat.layer);
-                sQLitePreparedStatement.bindInteger(2, encryptedChat.f20283id);
+                sQLitePreparedStatement.bindInteger(2, encryptedChat.f20281id);
                 sQLitePreparedStatement.step();
                 sQLitePreparedStatement.dispose();
             } catch (Exception e) {
@@ -4804,10 +4804,10 @@ public class MessagesStorage extends BaseController {
                 sQLitePreparedStatement.bindInteger(3, (encryptedChat.key_use_count_in << 16) | encryptedChat.key_use_count_out);
                 sQLitePreparedStatement.bindInteger(4, encryptedChat.in_seq_no);
                 sQLitePreparedStatement.bindInteger(5, encryptedChat.mtproto_seq);
-                sQLitePreparedStatement.bindInteger(6, encryptedChat.f20283id);
+                sQLitePreparedStatement.bindInteger(6, encryptedChat.f20281id);
                 sQLitePreparedStatement.step();
                 if (z10 && encryptedChat.in_seq_no != 0) {
-                    long encryptedChatId = DialogObject.getEncryptedChatId(encryptedChat.f20283id);
+                    long encryptedChatId = DialogObject.getEncryptedChatId(encryptedChat.f20281id);
                     SQLiteDatabase sQLiteDatabase = this.database;
                     Locale locale = Locale.US;
                     sQLiteDatabase.executeFast("DELETE FROM messages_v2 WHERE mid IN (SELECT m.mid FROM messages_v2 as m LEFT JOIN messages_seq as s ON m.mid = s.mid WHERE m.uid = " + encryptedChatId + " AND m.date = 0 AND m.mid < 0 AND s.seq_out <= " + encryptedChat.in_seq_no + ") AND uid = " + encryptedChatId).stepThis().dispose();
@@ -4833,7 +4833,7 @@ public class MessagesStorage extends BaseController {
             try {
                 sQLitePreparedStatement = this.database.executeFast("UPDATE enc_chats SET ttl = ? WHERE uid = ?");
                 sQLitePreparedStatement.bindInteger(1, encryptedChat.ttl);
-                sQLitePreparedStatement.bindInteger(2, encryptedChat.f20283id);
+                sQLitePreparedStatement.bindInteger(2, encryptedChat.f20281id);
                 sQLitePreparedStatement.step();
                 sQLitePreparedStatement.dispose();
             } catch (Exception e) {
@@ -4866,7 +4866,7 @@ public class MessagesStorage extends BaseController {
         try {
             try {
                 this.database.beginTransaction();
-                TLRPC.Message messageWithCustomParamsOnlyInternal = getMessageWithCustomParamsOnlyInternal(message.f20296id, j10);
+                TLRPC.Message messageWithCustomParamsOnlyInternal = getMessageWithCustomParamsOnlyInternal(message.f20294id, j10);
                 MessageCustomParamsHelper.copyParams(message, messageWithCustomParamsOnlyInternal);
                 for (int i10 = 0; i10 < 2; i10++) {
                     if (i10 == 0) {
@@ -4882,7 +4882,7 @@ public class MessagesStorage extends BaseController {
                         } else {
                             executeFast.bindNull(1);
                         }
-                        executeFast.bindInteger(2, message.f20296id);
+                        executeFast.bindInteger(2, message.f20294id);
                         executeFast.bindLong(3, j10);
                         executeFast.step();
                         executeFast.dispose();
@@ -4990,7 +4990,7 @@ public class MessagesStorage extends BaseController {
                                 i10 = 0;
                             }
                             executeFast.bindInteger(1, i10);
-                            executeFast.bindInteger(2, message.f20296id);
+                            executeFast.bindInteger(2, message.f20294id);
                             executeFast.bindLong(3, MessageObject.getDialogId(message));
                             executeFast.step();
                         }
@@ -5474,7 +5474,7 @@ public class MessagesStorage extends BaseController {
         if (arrayList == null || arrayList.isEmpty()) {
             return;
         }
-        AndroidUtilities.runOnUIThread(new ne(15, arrayList, this));
+        AndroidUtilities.runOnUIThread(new me(15, arrayList, this));
     }
 
     private void processAnchoredEphemeralMessagesInternal(ArrayList<TL_ephemeral.EphemeralMessage> arrayList) {
@@ -5488,8 +5488,8 @@ public class MessagesStorage extends BaseController {
             long peerDialogId2 = DialogObject.getPeerDialogId(ephemeralMessage2.from_id);
             int i11 = ephemeralMessage2.anchor_msg_id;
             zf.t tVar = this.ephemeralWelcomeAnchorsState;
-            int i12 = ephemeralMessage2.f20485id;
-            a0.h hVar = tVar.f51592a;
+            int i12 = ephemeralMessage2.f20483id;
+            a0.h hVar = tVar.f51594a;
             SparseIntArray sparseIntArray = (SparseIntArray) hVar.f(peerDialogId);
             if (sparseIntArray == null) {
                 sparseIntArray = new SparseIntArray();
@@ -5518,7 +5518,7 @@ public class MessagesStorage extends BaseController {
             TL_ephemeral.EphemeralMessage ephemeralMessage = arrayList.get(i11);
             i11++;
             TL_ephemeral.EphemeralMessage ephemeralMessage2 = ephemeralMessage;
-            if (ephemeralMessage2.top_msg_id == 0 && (ephemeralMessageInternal = getEphemeralMessageInternal(DialogObject.getPeerDialogId(ephemeralMessage2.peer_id), ephemeralMessage2.f20485id)) != null && (i10 = ephemeralMessageInternal.top_msg_id) != 0) {
+            if (ephemeralMessage2.top_msg_id == 0 && (ephemeralMessageInternal = getEphemeralMessageInternal(DialogObject.getPeerDialogId(ephemeralMessage2.peer_id), ephemeralMessage2.f20483id)) != null && (i10 = ephemeralMessageInternal.top_msg_id) != 0) {
                 ephemeralMessage2.top_msg_id = i10;
                 TLRPC.MessageReplyHeader messageReplyHeader = ephemeralMessage2.reply_to;
                 if (messageReplyHeader != null) {
@@ -5613,7 +5613,7 @@ public class MessagesStorage extends BaseController {
         boolean z11 = false;
         for (int i13 = 0; i13 < size3; i13++) {
             MessagesController.DialogFilter dialogFilter3 = this.dialogFilters.get(i13);
-            int indexOf = arrayList4.indexOf(Integer.valueOf(dialogFilter3.f17801id));
+            int indexOf = arrayList4.indexOf(Integer.valueOf(dialogFilter3.f17799id));
             if (dialogFilter3.order != indexOf) {
                 dialogFilter3.order = indexOf;
                 z11 = true;
@@ -5641,7 +5641,7 @@ public class MessagesStorage extends BaseController {
                 if (chat.min) {
                     SQLiteDatabase sQLiteDatabase = this.database;
                     Locale locale = Locale.US;
-                    SQLiteCursor queryFinalized = sQLiteDatabase.queryFinalized(a1.g.o(chat.f20275id, "SELECT data FROM chats WHERE uid = "), new Object[0]);
+                    SQLiteCursor queryFinalized = sQLiteDatabase.queryFinalized(a1.g.o(chat.f20273id, "SELECT data FROM chats WHERE uid = "), new Object[0]);
                     if (queryFinalized.next()) {
                         try {
                             NativeByteBuffer byteBufferValue = queryFinalized.byteBufferValue(0);
@@ -5706,7 +5706,7 @@ public class MessagesStorage extends BaseController {
                 chat.flags |= 131072;
                 NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(chat.getObjectSize());
                 chat.serializeToStream(nativeByteBuffer);
-                executeFast.bindLong(1, chat.f20275id);
+                executeFast.bindLong(1, chat.f20273id);
                 String str2 = chat.title;
                 if (str2 != null) {
                     executeFast.bindString(2, str2.toLowerCase());
@@ -5716,7 +5716,7 @@ public class MessagesStorage extends BaseController {
                 executeFast.bindByteBuffer(3, nativeByteBuffer);
                 executeFast.step();
                 nativeByteBuffer.reuse();
-                isForumCacheInvalidate(-chat.f20275id);
+                isForumCacheInvalidate(-chat.f20273id);
             }
             executeFast.dispose();
         }
@@ -5757,7 +5757,7 @@ public class MessagesStorage extends BaseController {
             if (!ephemeralMessage2.welcome) {
                 sQLitePreparedStatement.requery();
                 sQLitePreparedStatement.bindLong(1, DialogObject.getPeerDialogId(ephemeralMessage2.peer_id));
-                sQLitePreparedStatement.bindInteger(2, ephemeralMessage2.f20485id);
+                sQLitePreparedStatement.bindInteger(2, ephemeralMessage2.f20483id);
                 sQLitePreparedStatement.bindInteger(3, ephemeralMessage2.top_msg_id);
                 sQLitePreparedStatement.bindInteger(4, ephemeralMessage2.date);
                 sQLitePreparedStatement.bindTlObject(5, ephemeralMessage2);
@@ -5818,7 +5818,7 @@ public class MessagesStorage extends BaseController {
                     if (user.min) {
                         SQLiteDatabase sQLiteDatabase = this.database;
                         Locale locale = Locale.US;
-                        SQLiteCursor queryFinalized = sQLiteDatabase.queryFinalized(a1.g.o(user.f20422id, "SELECT data FROM users WHERE uid = "), new Object[0]);
+                        SQLiteCursor queryFinalized = sQLiteDatabase.queryFinalized(a1.g.o(user.f20420id, "SELECT data FROM users WHERE uid = "), new Object[0]);
                         if (queryFinalized.next()) {
                             try {
                                 NativeByteBuffer byteBufferValue = queryFinalized.byteBufferValue(0);
@@ -5856,7 +5856,7 @@ public class MessagesStorage extends BaseController {
                     executeFast.requery();
                     NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(user.getObjectSize());
                     user.serializeToStream(nativeByteBuffer);
-                    executeFast.bindLong(1, user.f20422id);
+                    executeFast.bindLong(1, user.f20420id);
                     executeFast.bindString(2, formatUserSearchName(user));
                     TLRPC.UserStatus userStatus = user.status;
                     if (userStatus != null) {
@@ -5889,7 +5889,7 @@ public class MessagesStorage extends BaseController {
                     executeFast.bindByteBuffer(4, nativeByteBuffer);
                     executeFast.step();
                     nativeByteBuffer.reuse();
-                    isForumCacheInvalidate(user.f20422id);
+                    isForumCacheInvalidate(user.f20420id);
                 }
             }
             executeFast.dispose();
@@ -5980,7 +5980,7 @@ public class MessagesStorage extends BaseController {
                     } else {
                         this.dialogFilters.add(dialogFilter);
                     }
-                    this.dialogFiltersMap.put(dialogFilter.f17801id, dialogFilter);
+                    this.dialogFiltersMap.put(dialogFilter.f17799id, dialogFilter);
                 }
                 executeFast = this.database.executeFast("REPLACE INTO dialog_filter VALUES(?, ?, ?, ?, ?, ?, ?, ?)");
             } catch (Throwable th2) {
@@ -5990,11 +5990,11 @@ public class MessagesStorage extends BaseController {
             e = e;
         }
         try {
-            executeFast.bindInteger(1, dialogFilter.f17801id);
+            executeFast.bindInteger(1, dialogFilter.f17799id);
             executeFast.bindInteger(2, dialogFilter.order);
             executeFast.bindInteger(3, dialogFilter.unreadCount);
             executeFast.bindInteger(4, dialogFilter.flags);
-            if (dialogFilter.f17801id == 0) {
+            if (dialogFilter.f17799id == 0) {
                 str = "ALL_CHATS";
             } else {
                 str = dialogFilter.name;
@@ -6011,15 +6011,15 @@ public class MessagesStorage extends BaseController {
             executeFast.dispose();
             nativeByteBuffer.reuse();
             if (z11) {
-                this.database.executeFast("DELETE FROM dialog_filter_ep WHERE id = " + dialogFilter.f17801id).stepThis().dispose();
-                this.database.executeFast("DELETE FROM dialog_filter_pin_v2 WHERE id = " + dialogFilter.f17801id).stepThis().dispose();
+                this.database.executeFast("DELETE FROM dialog_filter_ep WHERE id = " + dialogFilter.f17799id).stepThis().dispose();
+                this.database.executeFast("DELETE FROM dialog_filter_pin_v2 WHERE id = " + dialogFilter.f17799id).stepThis().dispose();
                 this.database.beginTransaction();
                 SQLitePreparedStatement executeFast2 = this.database.executeFast("REPLACE INTO dialog_filter_pin_v2 VALUES(?, ?, ?)");
                 int size = dialogFilter.alwaysShow.size();
                 for (int i11 = 0; i11 < size; i11++) {
                     long longValue = dialogFilter.alwaysShow.get(i11).longValue();
                     executeFast2.requery();
-                    executeFast2.bindInteger(1, dialogFilter.f17801id);
+                    executeFast2.bindInteger(1, dialogFilter.f17799id);
                     executeFast2.bindLong(2, longValue);
                     executeFast2.bindInteger(3, dialogFilter.pinnedDialogs.get(longValue, Integer.MIN_VALUE));
                     executeFast2.step();
@@ -6029,7 +6029,7 @@ public class MessagesStorage extends BaseController {
                     long keyAt = dialogFilter.pinnedDialogs.keyAt(i12);
                     if (DialogObject.isEncryptedDialog(keyAt)) {
                         executeFast2.requery();
-                        executeFast2.bindInteger(1, dialogFilter.f17801id);
+                        executeFast2.bindInteger(1, dialogFilter.f17799id);
                         executeFast2.bindLong(2, keyAt);
                         executeFast2.bindInteger(3, dialogFilter.pinnedDialogs.valueAt(i12));
                         executeFast2.step();
@@ -6040,7 +6040,7 @@ public class MessagesStorage extends BaseController {
                 int size3 = dialogFilter.neverShow.size();
                 for (i10 = 0; i10 < size3; i10++) {
                     executeFast3.requery();
-                    executeFast3.bindInteger(1, dialogFilter.f17801id);
+                    executeFast3.bindInteger(1, dialogFilter.f17799id);
                     executeFast3.bindLong(2, dialogFilter.neverShow.get(i10).longValue());
                     executeFast3.step();
                 }
@@ -6204,7 +6204,7 @@ public class MessagesStorage extends BaseController {
                             } else {
                                 executeFast.bindInteger(1, 0);
                             }
-                            executeFast.bindLong(2, user.f20422id);
+                            executeFast.bindLong(2, user.f20420id);
                             executeFast.step();
                         }
                         executeFast.dispose();
@@ -6242,15 +6242,15 @@ public class MessagesStorage extends BaseController {
                     int size2 = arrayList.size();
                     for (int i11 = 0; i11 < size2; i11++) {
                         TLRPC.User user2 = arrayList.get(i11);
-                        arrayList2.add(Long.valueOf(user2.f20422id));
-                        hVar.k(user2, user2.f20422id);
+                        arrayList2.add(Long.valueOf(user2.f20420id));
+                        hVar.k(user2, user2.f20420id);
                     }
                     ArrayList<TLRPC.User> arrayList3 = new ArrayList<>();
                     getUsersInternal(arrayList2, arrayList3);
                     int size3 = arrayList3.size();
                     for (int i12 = 0; i12 < size3; i12++) {
                         TLRPC.User user3 = arrayList3.get(i12);
-                        TLRPC.User user4 = (TLRPC.User) hVar.f(user3.f20422id);
+                        TLRPC.User user4 = (TLRPC.User) hVar.f(user3.f20420id);
                         if (user4 != null) {
                             if (user4.first_name != null && user4.last_name != null) {
                                 if (!UserObject.isContact(user3)) {
@@ -6302,7 +6302,7 @@ public class MessagesStorage extends BaseController {
     public void addRecentLocalFile(String str, String str2, TLRPC.Document document) {
         if (str != null && str.length() != 0) {
             if ((str2 != null && str2.length() != 0) || document != null) {
-                this.storageQueue.postRunnable(new mk(this, document, str, str2, 27));
+                this.storageQueue.postRunnable(new lk(this, document, str, str2, 27));
             }
         }
     }
@@ -6311,7 +6311,7 @@ public class MessagesStorage extends BaseController {
         if (TextUtils.isEmpty(str)) {
             return;
         }
-        this.storageQueue.postRunnable(new k8((BaseController) this, str, (Object) str2, 19));
+        this.storageQueue.postRunnable(new j8((BaseController) this, str, (Object) str2, 19));
     }
 
     public void bindTaskToGuid(Runnable runnable, int i10) {
@@ -6336,17 +6336,17 @@ public class MessagesStorage extends BaseController {
     }
 
     public void checkIfFolderEmpty(int i10) {
-        this.storageQueue.postRunnable(new gf(this, i10, 6));
+        this.storageQueue.postRunnable(new ff(this, i10, 6));
     }
 
     public void checkLoadedRemoteFilters(ArrayList<TLRPC.DialogFilter> arrayList, Runnable runnable) {
-        this.storageQueue.postRunnable(new kf(this, arrayList, runnable, 3));
+        this.storageQueue.postRunnable(new jf(this, arrayList, runnable, 3));
     }
 
     public boolean checkMessageByRandomId(long j10) {
         boolean[] zArr = new boolean[1];
         CountDownLatch countDownLatch = new CountDownLatch(1);
-        this.storageQueue.postRunnable(new tf(0, j10, countDownLatch, this, zArr));
+        this.storageQueue.postRunnable(new sf(0, j10, countDownLatch, this, zArr));
         try {
             countDownLatch.await();
         } catch (Exception e) {
@@ -6372,7 +6372,7 @@ public class MessagesStorage extends BaseController {
     }
 
     public void cleanup(boolean z10) {
-        this.storageQueue.postRunnable(new hf(this, z10, 1));
+        this.storageQueue.postRunnable(new gf(this, z10, 1));
     }
 
     public void clearDatabaseValues() {
@@ -6397,7 +6397,7 @@ public class MessagesStorage extends BaseController {
     }
 
     public void clearDownloadQueue(int i10) {
-        this.storageQueue.postRunnable(new gf(this, i10, 2));
+        this.storageQueue.postRunnable(new ff(this, i10, 2));
     }
 
     public void clearLocalDatabase() {
@@ -6409,15 +6409,15 @@ public class MessagesStorage extends BaseController {
     }
 
     public void clearUserPhoto(long j10, long j11) {
-        this.storageQueue.postRunnable(new te(0, j10, j11, this));
+        this.storageQueue.postRunnable(new se(0, j10, j11, this));
     }
 
     public void clearUserPhotos(long j10) {
-        this.storageQueue.postRunnable(new jf(this, j10, 1));
+        this.storageQueue.postRunnable(new hf(this, j10, 1));
     }
 
     public void clearWidgetDialogs(int i10) {
-        this.storageQueue.postRunnable(new gf(this, i10, 7));
+        this.storageQueue.postRunnable(new ff(this, i10, 7));
     }
 
     public void closeHolesInMedia(long r23, int r25, int r26, int r27, long r28) {
@@ -6464,7 +6464,7 @@ public class MessagesStorage extends BaseController {
             return 0L;
         }
         long andAdd = this.lastTaskId.getAndAdd(1L);
-        this.storageQueue.postRunnable(new f4(this, andAdd, nativeByteBuffer, 22));
+        this.storageQueue.postRunnable(new e4(this, andAdd, nativeByteBuffer, 22));
         return andAdd;
     }
 
@@ -6487,7 +6487,7 @@ public class MessagesStorage extends BaseController {
     }
 
     public void deleteAllReactionsFromChat(long j10, long j11, int i10) {
-        executeInStorageQueue(new ue(this, i10, j10, j11, 0));
+        executeInStorageQueue(new te(this, i10, j10, j11, 0));
     }
 
     public void deleteAllStoryPushMessages() {
@@ -6500,16 +6500,16 @@ public class MessagesStorage extends BaseController {
 
     public void deleteContacts(ArrayList<Long> arrayList) {
         if (arrayList != null && !arrayList.isEmpty()) {
-            this.storageQueue.postRunnable(new ne(8, arrayList, this));
+            this.storageQueue.postRunnable(new me(8, arrayList, this));
         }
     }
 
     public void deleteDialog(long j10, int i10) {
-        this.storageQueue.postRunnable(new nf(this, i10, j10, 4));
+        this.storageQueue.postRunnable(new mf(this, i10, j10, 4));
     }
 
     public void deleteDialogFilter(MessagesController.DialogFilter dialogFilter) {
-        this.storageQueue.postRunnable(new lc(24, this, dialogFilter));
+        this.storageQueue.postRunnable(new kc(24, this, dialogFilter));
     }
 
     public void deleteEphemeralMessages(long j10, int i10) {
@@ -6532,19 +6532,19 @@ public class MessagesStorage extends BaseController {
     }
 
     public void deleteSavedDialog(long j10) {
-        this.storageQueue.postRunnable(new jf(this, j10, 4));
+        this.storageQueue.postRunnable(new hf(this, j10, 4));
     }
 
     public void deleteStoryPushMessage(long j10) {
-        this.storageQueue.postRunnable(new jf(this, j10, 0));
+        this.storageQueue.postRunnable(new hf(this, j10, 0));
     }
 
     public void deleteUserChatHistory(long j10, long j11) {
-        this.storageQueue.postRunnable(new te(4, j10, j11, this));
+        this.storageQueue.postRunnable(new se(4, j10, j11, this));
     }
 
     public void deleteWallpaper(long j10) {
-        this.storageQueue.postRunnable(new jf(this, j10, 3));
+        this.storageQueue.postRunnable(new hf(this, j10, 3));
     }
 
     public void doneHolesInMedia(long r19, int r21, int r22, long r23) {
@@ -6552,7 +6552,7 @@ public class MessagesStorage extends BaseController {
     }
 
     public void emptyMessagesMedia(long j10, ArrayList<Integer> arrayList) {
-        this.storageQueue.postRunnable(new qe(this, arrayList, j10, 1));
+        this.storageQueue.postRunnable(new pe(this, arrayList, j10, 1));
     }
 
     public void fixNotificationSettings() {
@@ -6574,7 +6574,7 @@ public class MessagesStorage extends BaseController {
                     NativeByteBuffer byteBufferValue = sQLiteCursor.byteBufferValue(0);
                     try {
                         TLRPC.Document TLdeserialize = TLRPC.Document.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(true), true);
-                        if (TLdeserialize != null && TLdeserialize.f20281id != 0) {
+                        if (TLdeserialize != null && TLdeserialize.f20279id != 0) {
                             arrayList.add(TLdeserialize);
                         }
                     } catch (Exception e) {
@@ -6614,7 +6614,7 @@ public class MessagesStorage extends BaseController {
     }
 
     public void getCachedPhoneBook(boolean z10) {
-        this.storageQueue.postRunnable(new hf(this, z10, 0));
+        this.storageQueue.postRunnable(new gf(this, z10, 0));
     }
 
     public int getChannelPtsSync(long j10) {
@@ -6703,11 +6703,11 @@ public class MessagesStorage extends BaseController {
     }
 
     public void getDialogFolderId(long j10, IntCallback intCallback) {
-        this.storageQueue.postRunnable(new ef(this, j10, intCallback, 1));
+        this.storageQueue.postRunnable(new df(this, j10, intCallback, 1));
     }
 
     public void getDialogMaxMessageId(long j10, IntCallback intCallback) {
-        this.storageQueue.postRunnable(new ef(this, j10, intCallback, 0));
+        this.storageQueue.postRunnable(new df(this, j10, intCallback, 0));
     }
 
     public int getDialogReadMax(final boolean z10, final long j10) {
@@ -6782,7 +6782,7 @@ public class MessagesStorage extends BaseController {
     }
 
     public void getDownloadQueue(int i10) {
-        this.storageQueue.postRunnable(new gf(this, i10, 4));
+        this.storageQueue.postRunnable(new ff(this, i10, 4));
     }
 
     public void getEncryptedChat(long j10, CountDownLatch countDownLatch, ArrayList<TLObject> arrayList) {
@@ -6841,7 +6841,7 @@ public class MessagesStorage extends BaseController {
     }
 
     public void getEphemeralMessages(long j10, long j11, Utilities.Callback<ArrayList<TL_ephemeral.EphemeralMessage>> callback) {
-        executeInStorageQueue(new xe(this, callback, j10, j11, 0));
+        executeInStorageQueue(new we(this, callback, j10, j11, 0));
     }
 
     public int getForumTypeFlags(long j10) {
@@ -6992,7 +6992,7 @@ public class MessagesStorage extends BaseController {
     }
 
     public void getMessagesCount(long j10, IntCallback intCallback) {
-        this.storageQueue.postRunnable(new ef(this, j10, intCallback, 2));
+        this.storageQueue.postRunnable(new df(this, j10, intCallback, 2));
     }
 
     public java.lang.Runnable getMessagesInternal(long r83, long r85, int r87, int r88, int r89, int r90, int r91, int r92, int r93, long r94, int r96, boolean r97, boolean r98, org.telegram.messenger.Timer r99) {
@@ -7000,11 +7000,11 @@ public class MessagesStorage extends BaseController {
     }
 
     public void getNewTask(a0.h hVar, a0.h hVar2) {
-        this.storageQueue.postRunnable(new k8(this, hVar, hVar2, 21));
+        this.storageQueue.postRunnable(new j8(this, hVar, hVar2, 21));
     }
 
     public void getSavedDialogMaxMessageId(long j10, IntCallback intCallback) {
-        this.storageQueue.postRunnable(new ef(this, j10, intCallback, 3));
+        this.storageQueue.postRunnable(new df(this, j10, intCallback, 3));
     }
 
     public int getSecretG() {
@@ -7079,7 +7079,7 @@ public class MessagesStorage extends BaseController {
     }
 
     public void getUnsentMessages(int i10) {
-        this.storageQueue.postRunnable(new gf(this, i10, 5));
+        this.storageQueue.postRunnable(new ff(this, i10, 5));
     }
 
     public TLRPC.User getUser(long j10) {
@@ -7147,7 +7147,7 @@ public class MessagesStorage extends BaseController {
 
     public void getWidgetDialogs(int i10, int i11, ArrayList<Long> arrayList, a0.h hVar, a0.h hVar2, ArrayList<TLRPC.User> arrayList2, ArrayList<TLRPC.Chat> arrayList3) {
         CountDownLatch countDownLatch = new CountDownLatch(1);
-        this.storageQueue.postRunnable(new of(this, i10, arrayList, i11, hVar, hVar2, arrayList3, arrayList2, countDownLatch));
+        this.storageQueue.postRunnable(new nf(this, i10, arrayList, i11, hVar, hVar2, arrayList3, arrayList2, countDownLatch));
         try {
             countDownLatch.await();
         } catch (Exception e) {
@@ -7170,7 +7170,7 @@ public class MessagesStorage extends BaseController {
     public boolean hasInviteMeMessage(long j10) {
         CountDownLatch countDownLatch = new CountDownLatch(1);
         boolean[] zArr = new boolean[1];
-        this.storageQueue.postRunnable(new tf(2, j10, countDownLatch, this, zArr));
+        this.storageQueue.postRunnable(new sf(2, j10, countDownLatch, this, zArr));
         try {
             countDownLatch.await();
         } catch (Exception e) {
@@ -7184,7 +7184,7 @@ public class MessagesStorage extends BaseController {
     }
 
     public void isDialogHasTopMessage(long j10, Runnable runnable) {
-        this.storageQueue.postRunnable(new f4(this, j10, runnable, 17));
+        this.storageQueue.postRunnable(new e4(this, j10, runnable, 17));
     }
 
     public boolean isForum(long j10, int i10) {
@@ -7197,7 +7197,7 @@ public class MessagesStorage extends BaseController {
     public boolean isMigratedChat(long j10) {
         CountDownLatch countDownLatch = new CountDownLatch(1);
         boolean[] zArr = new boolean[1];
-        this.storageQueue.postRunnable(new tf(1, j10, countDownLatch, this, zArr));
+        this.storageQueue.postRunnable(new sf(1, j10, countDownLatch, this, zArr));
         try {
             countDownLatch.await();
         } catch (Exception e) {
@@ -7211,7 +7211,7 @@ public class MessagesStorage extends BaseController {
     }
 
     public void loadChannelAdmins(long j10) {
-        this.storageQueue.postRunnable(new jf(this, j10, 7));
+        this.storageQueue.postRunnable(new hf(this, j10, 7));
     }
 
     public TLRPC.ChatFull loadChatInfo(long j10, boolean z10, CountDownLatch countDownLatch, boolean z11, boolean z12) {
@@ -7223,7 +7223,7 @@ public class MessagesStorage extends BaseController {
     }
 
     public void loadGiftChatTheme(Utilities.Callback<List<TLRPC.TL_chatThemeUniqueGift>> callback) {
-        executeInStorageQueue(new lc(25, this, callback));
+        executeInStorageQueue(new kc(25, this, callback));
     }
 
     public void loadGroupedMessagesForTopicUpdates(ArrayList<TopicsController.TopicUpdate> arrayList) {
@@ -7319,7 +7319,7 @@ public class MessagesStorage extends BaseController {
     }
 
     public void loadMessageAttachPaths(ArrayList<MessageObject> arrayList, Runnable runnable) {
-        this.storageQueue.postRunnable(new kf(this, arrayList, runnable, 0));
+        this.storageQueue.postRunnable(new jf(this, arrayList, runnable, 0));
     }
 
     public void loadReplyMessages(a0.h r22, a0.h r23, java.util.ArrayList<java.lang.Long> r24, java.util.ArrayList<java.lang.Long> r25, int r26) {
@@ -7327,11 +7327,11 @@ public class MessagesStorage extends BaseController {
     }
 
     public void loadStoryAlbumsCache(long j10, Consumer<List<ci.b7>> consumer) {
-        this.storageQueue.postRunnable(new ng(this, j10, consumer, 0));
+        this.storageQueue.postRunnable(new mg(this, j10, consumer, 0));
     }
 
     public void loadTopics(long j10, Consumer<ArrayList<TLRPC.TL_forumTopic>> consumer) {
-        this.storageQueue.postRunnable(new ng(this, j10, consumer, 1));
+        this.storageQueue.postRunnable(new mg(this, j10, consumer, 1));
     }
 
     public void loadUnreadMessages() {
@@ -7342,7 +7342,7 @@ public class MessagesStorage extends BaseController {
         if (user == null) {
             return;
         }
-        this.storageQueue.postRunnable(new y4(i10, 3, this, user, z10));
+        this.storageQueue.postRunnable(new x4(i10, 3, this, user, z10));
     }
 
     public ArrayList<TLRPC.UserFull> loadUserInfos(HashSet<Long> hashSet) {
@@ -7373,27 +7373,27 @@ public class MessagesStorage extends BaseController {
     }
 
     public void markMentionMessageAsRead(long j10, int i10, long j11) {
-        this.storageQueue.postRunnable(new ue(this, i10, j10, j11, 6));
+        this.storageQueue.postRunnable(new te(this, i10, j10, j11, 6));
     }
 
     public void markMessageAsMention(long j10, int i10) {
-        this.storageQueue.postRunnable(new nf(this, i10, j10, 1));
+        this.storageQueue.postRunnable(new mf(this, i10, j10, 1));
     }
 
     public void markMessageAsSendError(TLRPC.Message message, int i10) {
-        this.storageQueue.postRunnable(new u4(this, i10, message, 16));
+        this.storageQueue.postRunnable(new t4(this, i10, message, 16));
     }
 
     public void markMessageAsSendErrorWithParams(TLRPC.Message message, long j10, long j11) {
-        this.storageQueue.postRunnable(new se(1, getUserConfig().getClientUserId(), this, message));
+        this.storageQueue.postRunnable(new re(1, getUserConfig().getClientUserId(), this, message));
     }
 
     public void markMessagePollVotesAsRead(long j10, long j11, int i10) {
-        executeInStorageQueue(new ue(this, j10, j11, i10, 2));
+        executeInStorageQueue(new te(this, j10, j11, i10, 2));
     }
 
     public void markMessageReactionsAsRead(long j10, long j11, int i10) {
-        executeInStorageQueue(new ue(this, j10, j11, i10, 3));
+        executeInStorageQueue(new te(this, j10, j11, i10, 3));
     }
 
     public ArrayList<Long> markMessagesAsDeleted(long j10, ArrayList<Integer> arrayList, boolean z10, boolean z11, int i10, int i11) {
@@ -7401,7 +7401,7 @@ public class MessagesStorage extends BaseController {
             return null;
         }
         if (z10) {
-            this.storageQueue.postRunnable(new pf(this, j10, arrayList, z11, i10, i11));
+            this.storageQueue.postRunnable(new of(this, j10, arrayList, z11, i10, i11));
             return null;
         }
         return lambda$markMessagesAsDeleted$229(j10, arrayList, z11, i10, i11);
@@ -7411,12 +7411,12 @@ public class MessagesStorage extends BaseController {
         if (arrayList.isEmpty()) {
             return;
         }
-        this.storageQueue.postRunnable(new ne(12, arrayList, this));
+        this.storageQueue.postRunnable(new me(12, arrayList, this));
     }
 
     public void markMessagesAsRead(LongSparseIntArray longSparseIntArray, LongSparseIntArray longSparseIntArray2, SparseIntArray sparseIntArray, boolean z10) {
         if (z10) {
-            this.storageQueue.postRunnable(new mk(this, longSparseIntArray, longSparseIntArray2, sparseIntArray, 28));
+            this.storageQueue.postRunnable(new lk(this, longSparseIntArray, longSparseIntArray2, sparseIntArray, 28));
         } else {
             lambda$markMessagesAsRead$219(longSparseIntArray, longSparseIntArray2, sparseIntArray);
         }
@@ -7433,11 +7433,11 @@ public class MessagesStorage extends BaseController {
         if (isEmpty(arrayList)) {
             return;
         }
-        this.storageQueue.postRunnable(new qe(this, arrayList, j10, 4));
+        this.storageQueue.postRunnable(new pe(this, arrayList, j10, 4));
     }
 
     public void onDeleteQueryComplete(long j10) {
-        this.storageQueue.postRunnable(new jf(this, j10, 5));
+        this.storageQueue.postRunnable(new hf(this, j10, 5));
     }
 
     public void openDatabase(int i10) {
@@ -7566,19 +7566,19 @@ public class MessagesStorage extends BaseController {
 
     public void processAnchoredEphemeralMessages(ArrayList<TL_ephemeral.EphemeralMessage> arrayList, Runnable runnable) {
         if (arrayList != null && !arrayList.isEmpty()) {
-            executeInStorageQueue(new kf(this, arrayList, runnable, 1));
+            executeInStorageQueue(new jf(this, arrayList, runnable, 1));
         }
     }
 
     public void processEphemeralEditedMessages(ArrayList<TL_ephemeral.EphemeralMessage> arrayList, Runnable runnable) {
         if (arrayList != null && !arrayList.isEmpty()) {
-            executeInStorageQueue(new kf(this, arrayList, runnable, 4));
+            executeInStorageQueue(new jf(this, arrayList, runnable, 4));
         }
     }
 
     public void processEphemeralMessages(ArrayList<TL_ephemeral.EphemeralMessage> arrayList, Runnable runnable) {
         if (arrayList != null && !arrayList.isEmpty()) {
-            executeInStorageQueue(new kf(this, arrayList, runnable, 2));
+            executeInStorageQueue(new jf(this, arrayList, runnable, 2));
         }
     }
 
@@ -7604,13 +7604,13 @@ public class MessagesStorage extends BaseController {
     public void putCachedPhoneBook(HashMap<String, ContactsController.Contact> hashMap, boolean z10, boolean z11) {
         if (hashMap != null) {
             if (!hashMap.isEmpty() || z10 || z11) {
-                this.storageQueue.postRunnable(new q6(this, hashMap, z10, 7));
+                this.storageQueue.postRunnable(new p6(this, hashMap, z10, 7));
             }
         }
     }
 
     public void putChannelAdmins(long j10, a0.h hVar) {
-        this.storageQueue.postRunnable(new f4(this, j10, hVar, 23));
+        this.storageQueue.postRunnable(new e4(this, j10, hVar, 23));
     }
 
     public void putChannelViews(a0.h hVar, a0.h hVar2, a0.h hVar3, boolean z10) {
@@ -7624,26 +7624,26 @@ public class MessagesStorage extends BaseController {
         if (arrayList.isEmpty() && !z10) {
             return;
         }
-        this.storageQueue.postRunnable(new oe(this, z10, new ArrayList(arrayList)));
+        this.storageQueue.postRunnable(new ne(this, z10, new ArrayList(arrayList)));
     }
 
     public void putDialogs(TLRPC.messages_Dialogs messages_dialogs, int i10) {
         if (messages_dialogs.dialogs.isEmpty()) {
             return;
         }
-        this.storageQueue.postRunnable(new u4(this, messages_dialogs, i10, 18));
+        this.storageQueue.postRunnable(new t4(this, messages_dialogs, i10, 18));
     }
 
     public void putEncryptedChat(TLRPC.EncryptedChat encryptedChat, TLRPC.User user, TLRPC.Dialog dialog) {
         if (encryptedChat == null) {
             return;
         }
-        this.storageQueue.postRunnable(new mk(this, encryptedChat, user, dialog, 26));
+        this.storageQueue.postRunnable(new lk(this, encryptedChat, user, dialog, 26));
     }
 
     public void putEphemeralMessages(ArrayList<TL_ephemeral.EphemeralMessage> arrayList, boolean z10) {
         if (arrayList != null && !arrayList.isEmpty()) {
-            executeInStorageQueue(new oe(this, arrayList, z10));
+            executeInStorageQueue(new ne(this, arrayList, z10));
         }
     }
 
@@ -7652,7 +7652,7 @@ public class MessagesStorage extends BaseController {
     }
 
     public void putGiftChatThemes(List<TLRPC.ChatTheme> list) {
-        executeInStorageQueue(new lc(20, this, list));
+        executeInStorageQueue(new kc(20, this, list));
     }
 
     public void putMessages(ArrayList<TLRPC.Message> arrayList, boolean z10, boolean z11, boolean z12, int i10, int i11, long j10) {
@@ -7660,7 +7660,7 @@ public class MessagesStorage extends BaseController {
     }
 
     public void putPushMessage(MessageObject messageObject) {
-        this.storageQueue.postRunnable(new lc(21, this, messageObject));
+        this.storageQueue.postRunnable(new kc(21, this, messageObject));
     }
 
     public void putSentFile(String str, TLObject tLObject, int i10, String str2) {
@@ -7670,7 +7670,7 @@ public class MessagesStorage extends BaseController {
     }
 
     public void putStoryPushMessage(NotificationsController.StoryNotification storyNotification) {
-        this.storageQueue.postRunnable(new lc(26, this, storyNotification));
+        this.storageQueue.postRunnable(new kc(26, this, storyNotification));
     }
 
     public void putUsersAndChats(List<TLRPC.User> list, List<TLRPC.Chat> list2, boolean z10, boolean z11) {
@@ -7678,49 +7678,49 @@ public class MessagesStorage extends BaseController {
             return;
         }
         if (z11) {
-            this.storageQueue.postRunnable(new xj(this, list, list2, z10, 13));
+            this.storageQueue.postRunnable(new wj(this, list, list2, z10, 13));
         } else {
             lambda$putUsersAndChats$181(list, list2, z10);
         }
     }
 
     public void putWallpapers(ArrayList<TLRPC.WallPaper> arrayList, int i10) {
-        this.storageQueue.postRunnable(new uf(this, i10, arrayList, 0));
+        this.storageQueue.postRunnable(new tf(this, i10, arrayList, 0));
     }
 
     public void putWebPages(a0.h hVar) {
         if (isEmpty(hVar)) {
             return;
         }
-        this.storageQueue.postRunnable(new mf(this, hVar, 2));
+        this.storageQueue.postRunnable(new lf(this, hVar, 2));
     }
 
     public void putWidgetDialogs(int i10, ArrayList<TopicKey> arrayList) {
-        this.storageQueue.postRunnable(new uf(this, i10, arrayList, 3));
+        this.storageQueue.postRunnable(new tf(this, i10, arrayList, 3));
     }
 
     public void readAllDialogs(int i10) {
-        this.storageQueue.postRunnable(new gf(this, i10, 0));
+        this.storageQueue.postRunnable(new ff(this, i10, 0));
     }
 
     public void removeAllTopics(long j10) {
-        executeInStorageQueue(new jf(this, j10, 2));
+        executeInStorageQueue(new hf(this, j10, 2));
     }
 
     public void removeFromDownloadQueue(long j10, int i10, boolean z10) {
-        this.storageQueue.postRunnable(new ye(this, z10, i10, j10));
+        this.storageQueue.postRunnable(new xe(this, z10, i10, j10));
     }
 
     public void removePendingTask(long j10) {
-        this.storageQueue.postRunnable(new jf(this, j10, 6));
+        this.storageQueue.postRunnable(new hf(this, j10, 6));
     }
 
     public void removeTopic(long j10, long j11) {
-        this.storageQueue.postRunnable(new te(3, j10, j11, this));
+        this.storageQueue.postRunnable(new se(3, j10, j11, this));
     }
 
     public void removeTopics(long j10, ArrayList<Long> arrayList) {
-        this.storageQueue.postRunnable(new qe(this, arrayList, j10, 6));
+        this.storageQueue.postRunnable(new pe(this, arrayList, j10, 6));
     }
 
     public void replaceMessageIfExists(TLRPC.Message message, ArrayList<TLRPC.User> arrayList, ArrayList<TLRPC.Chat> arrayList2, boolean z10) {
@@ -7761,25 +7761,25 @@ public class MessagesStorage extends BaseController {
     }
 
     public void resetMentionsCount(long j10, long j11, int i10) {
-        this.storageQueue.postRunnable(new ue(this, j11, j10, i10, 7));
+        this.storageQueue.postRunnable(new te(this, j11, j10, i10, 7));
     }
 
     public void saveBotCache(String str, TLObject tLObject) {
         if (tLObject != null && !TextUtils.isEmpty(str)) {
-            this.storageQueue.postRunnable(new k8(this, tLObject, str, 18));
+            this.storageQueue.postRunnable(new j8(this, tLObject, str, 18));
         }
     }
 
     public void saveChannelPts(long j10, int i10) {
-        this.storageQueue.postRunnable(new nf(this, i10, j10, 0));
+        this.storageQueue.postRunnable(new mf(this, i10, j10, 0));
     }
 
     public void saveChatInviter(long j10, long j11) {
-        this.storageQueue.postRunnable(new te(1, j11, j10, this));
+        this.storageQueue.postRunnable(new se(1, j11, j10, this));
     }
 
     public void saveChatLinksCount(long j10, int i10) {
-        this.storageQueue.postRunnable(new nf(this, i10, j10, 6));
+        this.storageQueue.postRunnable(new mf(this, i10, j10, 6));
     }
 
     public void saveDialogFilter(MessagesController.DialogFilter dialogFilter, boolean z10, boolean z11) {
@@ -7787,7 +7787,7 @@ public class MessagesStorage extends BaseController {
     }
 
     public void saveDialogFiltersOrder() {
-        this.storageQueue.postRunnable(new ne(17, new ArrayList(getMessagesController().dialogFilters), this));
+        this.storageQueue.postRunnable(new me(17, new ArrayList(getMessagesController().dialogFilters), this));
     }
 
     public void saveDialogFiltersOrderInternal() {
@@ -7801,7 +7801,7 @@ public class MessagesStorage extends BaseController {
                     sQLitePreparedStatement.requery();
                     sQLitePreparedStatement.bindInteger(1, dialogFilter.order);
                     sQLitePreparedStatement.bindInteger(2, dialogFilter.flags);
-                    sQLitePreparedStatement.bindInteger(3, dialogFilter.f17801id);
+                    sQLitePreparedStatement.bindInteger(3, dialogFilter.f17799id);
                     sQLitePreparedStatement.step();
                 }
                 sQLitePreparedStatement.dispose();
@@ -7820,20 +7820,20 @@ public class MessagesStorage extends BaseController {
     }
 
     public void saveDiffParams(int i10, int i11, int i12, int i13) {
-        this.storageQueue.postRunnable(new df(this, i10, i11, i12, i13, 0));
+        this.storageQueue.postRunnable(new cf(this, i10, i11, i12, i13, 0));
     }
 
     public void saveSecretParams(int i10, int i11, byte[] bArr) {
-        this.storageQueue.postRunnable(new b5(this, i10, i11, bArr));
+        this.storageQueue.postRunnable(new a5(this, i10, i11, bArr));
     }
 
     public void saveStoryAlbumsCache(long j10, List<ci.b7> list) {
-        this.storageQueue.postRunnable(new f4(this, j10, list, 19));
+        this.storageQueue.postRunnable(new e4(this, j10, list, 19));
     }
 
     public void saveTopics(long j10, List<TLRPC.TL_forumTopic> list, boolean z10, boolean z11, int i10) {
         if (z11) {
-            this.storageQueue.postRunnable(new cg(this, j10, list, z10, i10, 0));
+            this.storageQueue.postRunnable(new bg(this, j10, list, z10, i10, 0));
         } else {
             saveTopicsInternal(j10, list, z10, false, i10);
         }
@@ -7852,23 +7852,23 @@ public class MessagesStorage extends BaseController {
     }
 
     public void setDialogFlags(long j10, long j11) {
-        this.storageQueue.postRunnable(new te(2, j10, j11, this));
+        this.storageQueue.postRunnable(new se(2, j10, j11, this));
     }
 
     public void setDialogPinned(long j10, int i10) {
-        this.storageQueue.postRunnable(new nf(this, i10, j10, 2));
+        this.storageQueue.postRunnable(new mf(this, i10, j10, 2));
     }
 
     public void setDialogTtl(long j10, int i10) {
-        this.storageQueue.postRunnable(new nf(this, i10, j10, 3));
+        this.storageQueue.postRunnable(new mf(this, i10, j10, 3));
     }
 
     public void setDialogUnread(long j10, boolean z10) {
-        this.storageQueue.postRunnable(new dg(this, 0, z10, j10));
+        this.storageQueue.postRunnable(new cg(this, 0, z10, j10));
     }
 
     public void setDialogViewThreadAsMessages(long j10, boolean z10) {
-        this.storageQueue.postRunnable(new dg(this, 1, z10, j10));
+        this.storageQueue.postRunnable(new cg(this, 1, z10, j10));
     }
 
     public void setDialogsFolderId(ArrayList<TLRPC.TL_folderPeer> arrayList, ArrayList<TLRPC.TL_inputFolderPeer> arrayList2, long j10, int i10) {
@@ -7879,7 +7879,7 @@ public class MessagesStorage extends BaseController {
     }
 
     public void setDialogsPinned(ArrayList<Long> arrayList, ArrayList<Integer> arrayList2) {
-        this.storageQueue.postRunnable(new ag(this, arrayList, arrayList2, 0));
+        this.storageQueue.postRunnable(new zf(this, arrayList, arrayList2, 0));
     }
 
     public void setLastDateValue(int i10) {
@@ -7933,11 +7933,11 @@ public class MessagesStorage extends BaseController {
     }
 
     public void unpinAllDialogsExceptNew(ArrayList<Long> arrayList, int i10) {
-        this.storageQueue.postRunnable(new uf(i10, arrayList, this));
+        this.storageQueue.postRunnable(new tf(i10, arrayList, this));
     }
 
     public void updateChannelUsers(long j10, ArrayList<TLRPC.ChannelParticipant> arrayList) {
-        this.storageQueue.postRunnable(new qe(this, j10, arrayList, 3));
+        this.storageQueue.postRunnable(new pe(this, j10, arrayList, 3));
     }
 
     public void updateChatDefaultBannedRights(long j10, TLRPC.TL_chatBannedRights tL_chatBannedRights, int i10) {
@@ -7947,25 +7947,25 @@ public class MessagesStorage extends BaseController {
     }
 
     public void updateChatInfo(TLRPC.ChatFull chatFull, boolean z10) {
-        this.storageQueue.postRunnable(new q6(this, chatFull, z10, 9));
+        this.storageQueue.postRunnable(new p6(this, chatFull, z10, 9));
     }
 
     public void updateChatOnlineCount(long j10, int i10) {
-        this.storageQueue.postRunnable(new nf(this, i10, j10, 5));
+        this.storageQueue.postRunnable(new mf(this, i10, j10, 5));
     }
 
     public void updateChatParticipants(TLRPC.ChatParticipants chatParticipants) {
         if (chatParticipants == null) {
             return;
         }
-        this.storageQueue.postRunnable(new lc(23, this, chatParticipants));
+        this.storageQueue.postRunnable(new kc(23, this, chatParticipants));
     }
 
     public void updateDialogData(TLRPC.Dialog dialog) {
         if (dialog == null) {
             return;
         }
-        this.storageQueue.postRunnable(new lc(28, this, dialog));
+        this.storageQueue.postRunnable(new kc(28, this, dialog));
     }
 
     public void updateDialogUnreadPollVotes(long j10, long j11, int i10, boolean z10) {
@@ -7985,7 +7985,7 @@ public class MessagesStorage extends BaseController {
             return;
         }
         if (z10) {
-            this.storageQueue.postRunnable(new f5(this, longSparseIntArray, longSparseIntArray2, hVar, longSparseIntArray3, 12));
+            this.storageQueue.postRunnable(new e5(this, longSparseIntArray, longSparseIntArray2, hVar, longSparseIntArray3, 12));
         } else {
             updateDialogsWithReadMessagesInternal(null, longSparseIntArray, longSparseIntArray2, hVar, longSparseIntArray3);
         }
@@ -7995,32 +7995,32 @@ public class MessagesStorage extends BaseController {
         if (encryptedChat == null) {
             return;
         }
-        this.storageQueue.postRunnable(new rf(this, encryptedChat, 0));
+        this.storageQueue.postRunnable(new qf(this, encryptedChat, 0));
     }
 
     public void updateEncryptedChatLayer(TLRPC.EncryptedChat encryptedChat) {
         if (encryptedChat == null) {
             return;
         }
-        this.storageQueue.postRunnable(new rf(this, encryptedChat, 1));
+        this.storageQueue.postRunnable(new qf(this, encryptedChat, 1));
     }
 
     public void updateEncryptedChatSeq(TLRPC.EncryptedChat encryptedChat, boolean z10) {
         if (encryptedChat == null) {
             return;
         }
-        this.storageQueue.postRunnable(new q6(this, encryptedChat, z10, 8));
+        this.storageQueue.postRunnable(new p6(this, encryptedChat, z10, 8));
     }
 
     public void updateEncryptedChatTTL(TLRPC.EncryptedChat encryptedChat) {
         if (encryptedChat == null) {
             return;
         }
-        this.storageQueue.postRunnable(new rf(this, encryptedChat, 2));
+        this.storageQueue.postRunnable(new qf(this, encryptedChat, 2));
     }
 
     public void updateMessageCustomParams(long j10, TLRPC.Message message) {
-        this.storageQueue.postRunnable(new se(0, j10, this, message));
+        this.storageQueue.postRunnable(new re(0, j10, this, message));
     }
 
     public void updateMessagePollResults(long j10, TLRPC.Poll poll, TLRPC.PollResults pollResults) {
@@ -8045,11 +8045,11 @@ public class MessagesStorage extends BaseController {
     }
 
     public void updateMessageTopicId(long j10, long j11, int i10) {
-        executeInStorageQueue(new ue(this, i10, j10, j11, 1));
+        executeInStorageQueue(new te(this, i10, j10, j11, 1));
     }
 
     public void updateMessageVerifyFlags(ArrayList<TLRPC.Message> arrayList) {
-        Utilities.stageQueue.postRunnable(new ne(9, arrayList, this));
+        Utilities.stageQueue.postRunnable(new me(9, arrayList, this));
     }
 
     public void updateMessageVoiceTranscription(final long j10, final int i10, final String str, final long j11, final boolean z10) {
@@ -8070,11 +8070,11 @@ public class MessagesStorage extends BaseController {
     }
 
     public void updatePinnedMessages(long j10, ArrayList<Integer> arrayList, boolean z10, int i10, int i11, boolean z11, HashMap<Integer, MessageObject> hashMap) {
-        this.storageQueue.postRunnable(new p6(this, z10, hashMap, i11, j10, arrayList, i10, z11));
+        this.storageQueue.postRunnable(new o6(this, z10, hashMap, i11, j10, arrayList, i10, z11));
     }
 
     public void updateRanksInLastMessages(long j10, long j11, String str) {
-        this.storageQueue.postRunnable(new pe(this, j10, j11, str, 1));
+        this.storageQueue.postRunnable(new oe(this, j10, j11, str, 1));
     }
 
     public void updateRepliesCount(long j10, int i10, ArrayList<TLRPC.Peer> arrayList, int i11, int i12) {
@@ -8083,7 +8083,7 @@ public class MessagesStorage extends BaseController {
 
     public void updateRepliesMaxReadId(long j10, long j11, int i10, int i11, boolean z10) {
         if (z10) {
-            this.storageQueue.postRunnable(new h8(this, j10, j11, i10, i11, 2));
+            this.storageQueue.postRunnable(new g8(this, j10, j11, i10, i11, 2));
         } else {
             updateRepliesMaxReadIdInternal(-j10, j11, i10, i11);
         }
@@ -8094,7 +8094,7 @@ public class MessagesStorage extends BaseController {
     }
 
     public void updateTopicsWithReadMessages(HashMap<TopicKey, Integer> hashMap) {
-        this.storageQueue.postRunnable(new lc(19, this, hashMap));
+        this.storageQueue.postRunnable(new kc(19, this, hashMap));
     }
 
     public void updateUnreadPollVotesCount(long j10, long j11, int i10) {
@@ -8106,11 +8106,11 @@ public class MessagesStorage extends BaseController {
     }
 
     public void updateUserInfo(TLRPC.UserFull userFull, boolean z10) {
-        this.storageQueue.postRunnable(new q6(this, userFull, z10, 6));
+        this.storageQueue.postRunnable(new p6(this, userFull, z10, 6));
     }
 
     public void updateUserInfoContactBlocked(long j10, TL_account.RequirementToContact requirementToContact) {
-        this.storageQueue.postRunnable(new f4(this, j10, requirementToContact, 16));
+        this.storageQueue.postRunnable(new e4(this, j10, requirementToContact, 16));
     }
 
     public void updateUsers(ArrayList<TLRPC.User> arrayList, boolean z10, boolean z11, boolean z12) {
@@ -8265,7 +8265,7 @@ public class MessagesStorage extends BaseController {
 
     public TLRPC.ChatFull loadChatInfo(long j10, boolean z10, CountDownLatch countDownLatch, boolean z11, boolean z12, int i10) {
         TLRPC.ChatFull[] chatFullArr = new TLRPC.ChatFull[1];
-        this.storageQueue.postRunnable(new x8(this, chatFullArr, j10, z10, z11, z12, i10, countDownLatch));
+        this.storageQueue.postRunnable(new w8(this, chatFullArr, j10, z10, z11, z12, i10, countDownLatch));
         if (countDownLatch != null) {
             try {
                 countDownLatch.await();
@@ -8382,7 +8382,7 @@ public class MessagesStorage extends BaseController {
 
     public ArrayList<Long> markMessagesAsDeleted(long j10, int i10, boolean z10, boolean z11) {
         if (z10) {
-            this.storageQueue.postRunnable(new ye(this, j10, i10, z11));
+            this.storageQueue.postRunnable(new xe(this, j10, i10, z11));
             return null;
         }
         return lambda$markMessagesAsDeleted$231(j10, i10, z11);
@@ -8393,11 +8393,11 @@ public class MessagesStorage extends BaseController {
     }
 
     public void putMessages(TLRPC.messages_Messages messages_messages, long j10, int i10, int i11, boolean z10, int i12, long j11) {
-        this.storageQueue.postRunnable(new v8(this, i12, messages_messages, j10, j11, i10, i11, z10));
+        this.storageQueue.postRunnable(new u8(this, i12, messages_messages, j10, j11, i10, i11, z10));
     }
 
     public void deleteEphemeralMessages(a0.h hVar, boolean z10) {
-        executeInStorageQueue(new q6(this, hVar, z10, 10));
+        executeInStorageQueue(new p6(this, hVar, z10, 10));
     }
 
     public ArrayList<TL_ephemeral.EphemeralMessage> getEphemeralMessagesInternal(long j10, ArrayList<Integer> arrayList) {

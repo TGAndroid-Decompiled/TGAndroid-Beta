@@ -8,41 +8,41 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.Utilities;
 public abstract class w21 extends View {
-    public final x21 f32003a;
-    public Utilities.Callback f32004b;
-    public final org.telegram.ui.ActionBar.d6 f32005c;
+    public final x21 f32001a;
+    public Utilities.Callback f32002b;
+    public final org.telegram.ui.ActionBar.d6 f32003c;
     public int d;
 
     public w21(Context context, int i10, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
-        this.f32005c = d6Var;
+        this.f32003c = d6Var;
         x21 x21Var = new x21(i10, this, d6Var, false);
-        this.f32003a = x21Var;
-        x21Var.f32290r = new gr0(this, 18);
+        this.f32001a = x21Var;
+        x21Var.f32288r = new gr0(this, 18);
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        org.telegram.ui.ActionBar.d6 d6Var = this.f32005c;
+        org.telegram.ui.ActionBar.d6 d6Var = this.f32003c;
         if (d6Var != null) {
             d6Var.d(0.0f, 0.0f, getMeasuredWidth(), this.d);
         } else {
             org.telegram.ui.ActionBar.h6.q(0.0f, 0.0f, getMeasuredWidth(), this.d);
         }
-        this.f32003a.c(canvas, getWidth(), 0.0f, 0.0f, 0.75f, 1.0f, true);
+        this.f32001a.c(canvas, getWidth(), 0.0f, 0.0f, 0.75f, 1.0f, true);
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f32003a.a();
+        this.f32001a.a();
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f32003a.b();
+        this.f32001a.b();
     }
 
     @Override
@@ -52,14 +52,14 @@ public abstract class w21 extends View {
 
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        if (!this.f32003a.d(motionEvent, false) && !super.onTouchEvent(motionEvent)) {
+        if (!this.f32001a.d(motionEvent, false) && !super.onTouchEvent(motionEvent)) {
             return false;
         }
         return true;
     }
 
     public void set(MessageObject messageObject) {
-        x21 x21Var = this.f32003a;
+        x21 x21Var = this.f32001a;
         x21Var.e(messageObject);
         if (isAttachedToWindow()) {
             x21Var.a();
@@ -71,6 +71,6 @@ public abstract class w21 extends View {
     }
 
     public void setOnTopicClickListener(Utilities.Callback<Long> callback) {
-        this.f32004b = callback;
+        this.f32002b = callback;
     }
 }

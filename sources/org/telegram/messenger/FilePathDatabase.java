@@ -36,13 +36,13 @@ public class FilePathDatabase {
     }
 
     public static class PathData {
-        public final int f17791dc;
-        public final long f17792id;
+        public final int f17789dc;
+        public final long f17790id;
         public final int type;
 
         public PathData(long j10, int i10, int i11) {
-            this.f17792id = j10;
-            this.f17791dc = i10;
+            this.f17790id = j10;
+            this.f17789dc = i10;
             this.type = i11;
         }
     }
@@ -192,7 +192,7 @@ public class FilePathDatabase {
             this.database.beginTransaction();
             for (int i10 = 0; i10 < list.size(); i10++) {
                 SQLiteDatabase sQLiteDatabase = this.database;
-                sQLiteDatabase.executeFast("DELETE FROM paths_by_dialog_id WHERE path = '" + shield(((bi.b) list.get(i10)).f4426a.getPath()) + "'").stepThis().dispose();
+                sQLiteDatabase.executeFast("DELETE FROM paths_by_dialog_id WHERE path = '" + shield(((bi.b) list.get(i10)).f4424a.getPath()) + "'").stepThis().dispose();
             }
         } catch (Throwable th2) {
             try {
@@ -297,7 +297,7 @@ public class FilePathDatabase {
             CountDownLatch countDownLatch = new CountDownLatch(1);
             long currentTimeMillis = System.currentTimeMillis();
             long[] jArr = new long[1];
-            postToFrontRunnable(new mk(this, arrayList2, jArr, countDownLatch, 6));
+            postToFrontRunnable(new lk(this, arrayList2, jArr, countDownLatch, 6));
             try {
                 countDownLatch.await();
             } catch (InterruptedException e) {
@@ -478,7 +478,7 @@ public class FilePathDatabase {
     public LongSparseArray<ArrayList<CacheByChatsController.KeepMediaFile>> lookupFiles(ArrayList<? extends CacheByChatsController.KeepMediaFile> arrayList) {
         CountDownLatch countDownLatch = new CountDownLatch(1);
         LongSparseArray<ArrayList<CacheByChatsController.KeepMediaFile>> longSparseArray = new LongSparseArray<>();
-        postRunnable(new mk(this, arrayList, longSparseArray, countDownLatch, 5));
+        postRunnable(new lk(this, arrayList, longSparseArray, countDownLatch, 5));
         try {
             countDownLatch.await();
             return longSparseArray;

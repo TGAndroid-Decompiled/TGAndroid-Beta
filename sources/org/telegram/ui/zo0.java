@@ -10,6 +10,6 @@ public final class zo0 extends o51 {
     @Override
     public final void dismiss() {
         super.dismiss();
-        this.e.f36058o0 = null;
+        this.e.f36030o0 = null;
     }
 }

@@ -8,29 +8,29 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SecureDocument;
 import org.telegram.tgnet.TLRPC;
 public final class vl0 extends zt0 {
-    public final vm0 f42272a;
+    public final vm0 f42273a;
 
     public vl0(vm0 vm0Var) {
-        this.f42272a = vm0Var;
+        this.f42273a = vm0Var;
     }
 
     @Override
     public final void B(int i10) {
         SecureDocument secureDocument;
-        vm0 vm0Var = this.f42272a;
+        vm0 vm0Var = this.f42273a;
         int i11 = vm0Var.S0;
         if (i11 == 1) {
-            secureDocument = vm0Var.f42297j1;
+            secureDocument = vm0Var.f42298j1;
         } else if (i11 == 4) {
-            secureDocument = (SecureDocument) vm0Var.f42299k1.get(i10);
+            secureDocument = (SecureDocument) vm0Var.f42300k1.get(i10);
         } else if (i11 == 2) {
             secureDocument = vm0Var.l1;
         } else if (i11 == 3) {
-            secureDocument = vm0Var.f42301m1;
+            secureDocument = vm0Var.f42302m1;
         } else {
-            secureDocument = (SecureDocument) vm0Var.f42295i1.get(i10);
+            secureDocument = (SecureDocument) vm0Var.f42296i1.get(i10);
         }
-        tm0 tm0Var = (tm0) vm0Var.f42304n1.remove(secureDocument);
+        tm0 tm0Var = (tm0) vm0Var.f42305n1.remove(secureDocument);
         if (tm0Var == null) {
             return;
         }
@@ -38,7 +38,7 @@ public final class vl0 extends zt0 {
         int i12 = vm0Var.S0;
         String str = null;
         if (i12 == 1) {
-            vm0Var.f42297j1 = null;
+            vm0Var.f42298j1 = null;
             str = r4.c.h("selfie", m12);
         } else if (i12 == 4) {
             str = r4.c.h("translation", m12);
@@ -46,39 +46,39 @@ public final class vl0 extends zt0 {
             vm0Var.l1 = null;
             str = r4.c.h("front", m12);
         } else if (i12 == 3) {
-            vm0Var.f42301m1 = null;
+            vm0Var.f42302m1 = null;
             str = r4.c.h("reverse", m12);
         } else if (i12 == 0) {
             str = r4.c.h("files", m12);
         }
         if (str != null) {
-            HashMap hashMap = vm0Var.f42328x1;
+            HashMap hashMap = vm0Var.f42329x1;
             if (hashMap != null) {
                 hashMap.remove(str);
             }
-            HashMap hashMap2 = vm0Var.f42331y1;
+            HashMap hashMap2 = vm0Var.f42332y1;
             if (hashMap2 != null) {
                 hashMap2.remove(str);
             }
         }
         vm0Var.R1(vm0Var.S0);
-        vm0Var.f42294i0.removeView(tm0Var);
+        vm0Var.f42295i0.removeView(tm0Var);
     }
 
     @Override
     public final ju0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
         if (i10 >= 0) {
-            vm0 vm0Var = this.f42272a;
-            if (i10 < vm0Var.f42294i0.getChildCount()) {
-                tm0 tm0Var = (tm0) vm0Var.f42294i0.getChildAt(i10);
+            vm0 vm0Var = this.f42273a;
+            if (i10 < vm0Var.f42295i0.getChildCount()) {
+                tm0 tm0Var = (tm0) vm0Var.f42295i0.getChildAt(i10);
                 int[] iArr = new int[2];
-                tm0Var.f41711c.getLocationInWindow(iArr);
+                tm0Var.f41695c.getLocationInWindow(iArr);
                 ju0 ju0Var = new ju0();
-                ju0Var.f38344b = iArr[0];
-                ju0Var.f38345c = iArr[1];
-                ju0Var.d = vm0Var.f42294i0;
-                ImageReceiver imageReceiver = tm0Var.f41711c.getImageReceiver();
-                ju0Var.f38343a = imageReceiver;
+                ju0Var.f38345b = iArr[0];
+                ju0Var.f38346c = iArr[1];
+                ju0Var.d = vm0Var.f42295i0;
+                ImageReceiver imageReceiver = tm0Var.f41695c.getImageReceiver();
+                ju0Var.f38344a = imageReceiver;
                 ju0Var.e = imageReceiver.getBitmapSafe();
                 return ju0Var;
             }
@@ -89,7 +89,7 @@ public final class vl0 extends zt0 {
 
     @Override
     public final String b0() {
-        if (this.f42272a.S0 == 1) {
+        if (this.f42273a.S0 == 1) {
             return LocaleController.formatString("PassportDeleteSelfieAlert", R.string.PassportDeleteSelfieAlert, new Object[0]);
         }
         return LocaleController.formatString("PassportDeleteScanAlert", R.string.PassportDeleteScanAlert, new Object[0]);

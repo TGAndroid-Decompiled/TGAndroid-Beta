@@ -6,14 +6,14 @@ public enum e1 extends a2 {
 
     @Override
     public final void d(k kVar, a aVar) {
-        f fVar = kVar.f10576m;
+        f fVar = kVar.f10574m;
         char d = aVar.d();
-        f1 f1Var = a2.f10539o0;
+        f1 f1Var = a2.f10537o0;
         if (d != '\t' && d != '\n' && d != '\f' && d != '\r' && d != ' ') {
             if (d != '>') {
                 if (d != 65535) {
                     kVar.m(this);
-                    kVar.f10569c = f1Var;
+                    kVar.f10567c = f1Var;
                     return;
                 }
                 kVar.l(this);
@@ -22,9 +22,9 @@ public enum e1 extends a2 {
             fVar.b();
             fVar.getClass();
             kVar.j();
-            kVar.f10569c = a2.f10521a;
+            kVar.f10567c = a2.f10519a;
             return;
         }
-        kVar.f10569c = f1Var;
+        kVar.f10567c = f1Var;
     }
 }

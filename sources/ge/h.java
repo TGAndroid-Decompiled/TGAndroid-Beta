@@ -9,19 +9,19 @@ import com.google.android.gms.internal.play_billing.k3;
 import java.util.concurrent.CancellationException;
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 public final class h extends m0 implements md.d, kd.c {
-    public static final AtomicReferenceFieldUpdater f11024n = AtomicReferenceFieldUpdater.newUpdater(h.class, Object.class, "_reusableCancellableContinuation$volatile");
+    public static final AtomicReferenceFieldUpdater f11022n = AtomicReferenceFieldUpdater.newUpdater(h.class, Object.class, "_reusableCancellableContinuation$volatile");
     private volatile Object _reusableCancellableContinuation$volatile;
     public final a0 d;
     public final md.c e;
-    public Object f11025f;
+    public Object f11023f;
     public final Object h;
 
     public h(a0 a0Var, md.c cVar) {
         super(-1);
         this.d = a0Var;
         this.e = cVar;
-        this.f11025f = a.f11015c;
-        Object fold = cVar.getContext().fold(0, w.f11044c);
+        this.f11023f = a.f11013c;
+        Object fold = cVar.getContext().fold(0, w.f11042c);
         kotlin.jvm.internal.i.b(fold);
         this.h = fold;
     }
@@ -50,8 +50,8 @@ public final class h extends m0 implements md.d, kd.c {
 
     @Override
     public final Object j() {
-        Object obj = this.f11025f;
-        this.f11025f = a.f11015c;
+        Object obj = this.f11023f;
+        this.f11023f = a.f11013c;
         return obj;
     }
 
@@ -68,15 +68,15 @@ public final class h extends m0 implements md.d, kd.c {
         }
         a0 a0Var = this.d;
         if (a0Var.d()) {
-            this.f11025f = vVar;
-            this.f4301c = 0;
+            this.f11023f = vVar;
+            this.f4299c = 0;
             a0Var.c(context, this);
             return;
         }
         x0 a10 = d2.a();
-        if (a10.f4339c >= 4294967296L) {
-            this.f11025f = vVar;
-            this.f4301c = 0;
+        if (a10.f4337c >= 4294967296L) {
+            this.f11023f = vVar;
+            this.f4299c = 0;
             jd.e eVar = a10.e;
             if (eVar == null) {
                 eVar = new jd.e();

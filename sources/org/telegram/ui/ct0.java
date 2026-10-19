@@ -10,19 +10,19 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MediaController;
 public final class ct0 extends AnimatorListenerAdapter {
-    public final int f36072a;
-    public final PhotoViewer f36073b;
+    public final int f36044a;
+    public final PhotoViewer f36045b;
 
     public ct0(PhotoViewer photoViewer, int i10) {
-        this.f36073b = photoViewer;
-        this.f36072a = i10;
+        this.f36045b = photoViewer;
+        this.f36044a = i10;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
         boolean z10;
         int i10;
-        PhotoViewer photoViewer = this.f36073b;
+        PhotoViewer photoViewer = this.f36045b;
         yt0 yt0Var = photoViewer.X4;
         org.telegram.ui.Components.q71 q71Var = null;
         photoViewer.q6 = null;
@@ -67,11 +67,11 @@ public final class ct0 extends AnimatorListenerAdapter {
             if (photoViewer.f33386r1) {
                 q71Var = (org.telegram.ui.Components.q71) photoViewer.B2;
             }
-            nf0Var.b(bitmap, orientation, z10, false, gVar, q71Var, yt0Var.f43550c);
+            nf0Var.b(bitmap, orientation, z10, false, gVar, q71Var, yt0Var.f43545c);
             photoViewer.C1.a();
             int bitmapWidth = photoViewer.C4.getBitmapWidth();
             int bitmapHeight = photoViewer.C4.getBitmapHeight();
-            MediaController.CropState cropState = yt0Var.f43550c;
+            MediaController.CropState cropState = yt0Var.f43545c;
             if (cropState != null) {
                 int i12 = cropState.transformRotation;
                 if (i12 == 90 || i12 == 270) {
@@ -104,7 +104,7 @@ public final class ct0 extends AnimatorListenerAdapter {
         }
         AnimatorSet animatorSet = new AnimatorSet();
         photoViewer.f33373p6 = animatorSet;
-        animatorSet.playTogether(ObjectAnimator.ofFloat(photoViewer.U0, View.TRANSLATION_Y, AndroidUtilities.dp(48.0f), 0.0f), ObjectAnimator.ofFloat(photoViewer, org.telegram.ui.Components.t6.f30433g, 0.0f, 1.0f), ObjectAnimator.ofFloat(photoViewer.C1, View.ALPHA, 0.0f, 1.0f));
+        animatorSet.playTogether(ObjectAnimator.ofFloat(photoViewer.U0, View.TRANSLATION_Y, AndroidUtilities.dp(48.0f), 0.0f), ObjectAnimator.ofFloat(photoViewer, org.telegram.ui.Components.t6.f30431g, 0.0f, 1.0f), ObjectAnimator.ofFloat(photoViewer.C1, View.ALPHA, 0.0f, 1.0f));
         photoViewer.f33373p6.setDuration(200L);
         photoViewer.f33373p6.addListener(new zb0(this, 8));
         photoViewer.f33373p6.start();

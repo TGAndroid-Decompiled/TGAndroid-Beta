@@ -1,120 +1,112 @@
 package ai;
 
-import android.util.SparseIntArray;
-import java.text.Collator;
-import java.util.ArrayList;
-import java.util.Comparator;
-import org.telegram.messenger.DialogObject;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.UserObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.tgnet.tl.TL_stories;
-public final class t5 implements Comparator {
-    public final int f2200a;
-    public final Object f2201b;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.LinearGradient;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.graphics.Shader;
+import android.graphics.drawable.Drawable;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.bs;
+public final class t5 extends Drawable {
+    public final Paint f2191a;
+    public final LinearGradient[] f2192b;
+    public final Matrix f2193c;
+    public final org.telegram.ui.Components.f6 d;
+    public final Path e;
+    public final de f2194f;
+    public int f2195g;
+    public int h;
 
-    public t5(Object obj, int i10) {
-        this.f2200a = i10;
-        this.f2201b = obj;
+    public t5() {
+        Paint paint = new Paint(1);
+        Paint paint2 = new Paint(1);
+        this.f2191a = new Paint(1);
+        this.f2192b = new LinearGradient[2];
+        this.f2193c = new Matrix();
+        this.d = new org.telegram.ui.Components.f6(1.0f, new a3.d(this, 15), 0L, 420L, bs.h);
+        this.e = new Path();
+        this.f2194f = new de(1, 45);
+        Paint.Style style = Paint.Style.STROKE;
+        paint.setStyle(style);
+        paint.setColor(117440511);
+        paint.setStrokeWidth(AndroidUtilities.dpf2(1.0f));
+        paint2.setStyle(style);
+        paint2.setColor(301989887);
+        paint2.setStrokeWidth(AndroidUtilities.dpf2(0.6666667f));
+    }
+
+    public final void a(int i10, int i11) {
+        if (this.f2195g == i10 && this.h == i11) {
+            return;
+        }
+        LinearGradient[] linearGradientArr = this.f2192b;
+        linearGradientArr[0] = linearGradientArr[1];
+        this.f2195g = i10;
+        this.h = i11;
+        linearGradientArr[1] = new LinearGradient(0.0f, 0.0f, 100.0f, 0.0f, new int[]{i10, i11}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
+        this.d.d(0.0f, true);
+        invalidateSelf();
     }
 
     @Override
-    public final int compare(Object obj, Object obj2) {
-        ?? r02;
-        ?? r12;
-        int i10;
-        int indexOf;
-        int indexOf2;
-        switch (this.f2200a) {
-            case 0:
-                float[] fArr = ((w5) this.f2201b).f2368r;
-                return Float.compare(fArr[((Integer) obj).intValue()], fArr[((Integer) obj2).intValue()]);
-            case 1:
-                ci.i7 i7Var = (ci.i7) this.f2201b;
-                int i11 = i7Var.f5493a;
-                TL_stories.PeerStories peerStories = (TL_stories.PeerStories) obj;
-                TL_stories.PeerStories peerStories2 = (TL_stories.PeerStories) obj2;
-                long peerDialogId = DialogObject.getPeerDialogId(peerStories.peer);
-                long peerDialogId2 = DialogObject.getPeerDialogId(peerStories2.peer);
-                boolean K = i7Var.K(peerDialogId);
-                boolean K2 = i7Var.K(peerDialogId2);
-                boolean J = i7Var.J(peerDialogId);
-                boolean J2 = i7Var.J(peerDialogId2);
-                boolean F = i7Var.F(peerDialogId);
-                boolean F2 = i7Var.F(peerDialogId2);
-                if (F != F2) {
-                    return (F2 ? 1 : 0) - (F ? 1 : 0);
-                }
-                if (K == K2) {
-                    if (J == J2) {
-                        boolean isService = UserObject.isService(peerDialogId);
-                        boolean isService2 = UserObject.isService(peerDialogId2);
-                        if (isService == isService2) {
-                            TLRPC.User user = MessagesController.getInstance(i11).getUser(Long.valueOf(peerDialogId));
-                            int i12 = 0;
-                            if (user == null) {
-                                r02 = 0;
-                            } else {
-                                r02 = user.premium;
-                            }
-                            TLRPC.User user2 = MessagesController.getInstance(i11).getUser(Long.valueOf(peerDialogId2));
-                            if (user2 == null) {
-                                r12 = 0;
-                            } else {
-                                r12 = user2.premium;
-                            }
-                            if (r02 == r12) {
-                                if (peerStories.stories.isEmpty()) {
-                                    i10 = 0;
-                                } else {
-                                    i10 = ((TL_stories.StoryItem) i2.e.h(1, peerStories.stories)).date;
-                                }
-                                if (!peerStories2.stories.isEmpty()) {
-                                    i12 = ((TL_stories.StoryItem) i2.e.h(1, peerStories2.stories)).date;
-                                }
-                                return i12 - i10;
-                            }
-                            return r12 - r02;
-                        }
-                        return (isService2 ? 1 : 0) - (isService ? 1 : 0);
-                    }
-                    return (J2 ? 1 : 0) - (J ? 1 : 0);
-                }
-                return (K2 ? 1 : 0) - (K ? 1 : 0);
-            case 2:
-                ArrayList arrayList = (ArrayList) this.f2201b;
-                MediaController.AlbumEntry albumEntry = (MediaController.AlbumEntry) obj;
-                MediaController.AlbumEntry albumEntry2 = (MediaController.AlbumEntry) obj2;
-                int i13 = albumEntry.bucketId;
-                if (i13 != 0 || albumEntry2.bucketId == 0) {
-                    if ((i13 != 0 && albumEntry2.bucketId == 0) || (indexOf = arrayList.indexOf(albumEntry)) > (indexOf2 = arrayList.indexOf(albumEntry2))) {
-                        return 1;
-                    }
-                    if (indexOf >= indexOf2) {
-                        return 0;
+    public final void draw(Canvas canvas) {
+        AndroidUtilities.rectTmp.set(getBounds());
+        float dp = AndroidUtilities.dp(24.0f);
+        int i10 = 0;
+        float d = this.d.d(1.0f, false);
+        while (true) {
+            LinearGradient[] linearGradientArr = this.f2192b;
+            if (i10 < linearGradientArr.length) {
+                if (linearGradientArr[i10] != null) {
+                    float pow = (float) Math.pow(1.0f - Math.abs(i10 - d), 0.5d);
+                    if (pow > 0.0f) {
+                        Matrix matrix = this.f2193c;
+                        matrix.reset();
+                        RectF rectF = AndroidUtilities.rectTmp;
+                        matrix.postScale(rectF.width() / 100.0f, 1.0f);
+                        linearGradientArr[i10].setLocalMatrix(matrix);
+                        LinearGradient linearGradient = linearGradientArr[i10];
+                        Paint paint = this.f2191a;
+                        paint.setShader(linearGradient);
+                        paint.setAlpha((int) (pow * 255.0f));
+                        canvas.drawRoundRect(rectF, dp, dp, paint);
                     }
                 }
-                return -1;
-            case 3:
-                ki.g6 g6Var = (ki.g6) this.f2201b;
-                TL_iv.pageTableCell pagetablecell = (TL_iv.pageTableCell) obj;
-                TL_iv.pageTableCell pagetablecell2 = (TL_iv.pageTableCell) obj2;
-                int b10 = g6Var.b(pagetablecell);
-                int b11 = g6Var.b(pagetablecell2);
-                if (b10 != b11) {
-                    return Integer.compare(b10, b11);
-                }
-                return Integer.compare(g6Var.a(pagetablecell), g6Var.a(pagetablecell2));
-            case 4:
-                r2.v vVar = (r2.v) this.f2201b;
-                return vVar.b(obj2) - vVar.b(obj);
-            case 5:
-                SparseIntArray sparseIntArray = (SparseIntArray) this.f2201b;
-                return sparseIntArray.get(((sg.h) obj).e, Integer.MAX_VALUE) - sparseIntArray.get(((sg.h) obj2).e, Integer.MAX_VALUE);
-            default:
-                return ((Collator) this.f2201b).compare((String) obj, (String) obj2);
+                i10++;
+            } else {
+                Path path = this.e;
+                path.rewind();
+                RectF rectF2 = AndroidUtilities.rectTmp;
+                path.addRoundRect(rectF2, dp, dp, Path.Direction.CW);
+                canvas.save();
+                canvas.clipPath(path);
+                de deVar = this.f2194f;
+                deVar.g(rectF2);
+                deVar.h = 30.0f;
+                deVar.d();
+                deVar.a(canvas, org.telegram.ui.ActionBar.h6.m1(0.6f, -1));
+                invalidateSelf();
+                canvas.restore();
+                AndroidUtilities.drawStroke(canvas, rectF2, dp);
+                return;
+            }
         }
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

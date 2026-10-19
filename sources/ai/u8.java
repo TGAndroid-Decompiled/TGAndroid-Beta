@@ -1,80 +1,36 @@
 package ai;
 
-import java.util.Map;
-import java.util.function.ToIntFunction;
-import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.tgnet.tl.TL_stories;
-public final class u8 implements ToIntFunction {
-    public final int f2263a;
+public final class u8 implements RequestDelegate {
+    public final int f2264a;
+    public final ga f2265b;
 
-    public u8(int i10) {
-        this.f2263a = i10;
+    public u8(ga gaVar, int i10) {
+        this.f2264a = i10;
+        this.f2265b = gaVar;
     }
 
     @Override
-    public final int applyAsInt(Object obj) {
-        switch (this.f2263a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f2264a) {
             case 0:
-                return ((TL_stars.StarGift) obj).sold_out ? 1 : 0;
+                AndroidUtilities.runOnUIThread(new c9(this.f2265b, tLObject, 0));
+                return;
             case 1:
-                if (((TL_stars.StarGift) obj).birthday) {
-                    return -1;
-                }
-                return 0;
+                AndroidUtilities.runOnUIThread(new c9(this.f2265b, tLObject, 1));
+                return;
             case 2:
-                return ((TL_stars.StarGift) obj).sold_out ? 1 : 0;
+                AndroidUtilities.runOnUIThread(new c9(this.f2265b, tLObject, 2));
+                return;
             case 3:
-                return ((TL_stars.StarGift) obj).sold_out ? 1 : 0;
-            case 4:
-                if (((TL_stars.StarGift) obj).birthday) {
-                    return -1;
-                }
-                return 0;
-            case 5:
-                return ((TL_stars.StarGift) obj).sold_out ? 1 : 0;
-            case 6:
-                return -((TL_stories.StoryView) obj).date;
-            case 7:
-                return ((TL_stories.StoryItem) obj).date;
-            case 8:
-                return -((TL_stories.StoryItem) i2.e.h(1, ((TL_stories.PeerStories) obj).stories)).date;
-            case 9:
-                return ((Integer) ((Object[]) obj)[1]).intValue();
-            case 10:
-                return ((MessageObject) obj).getId();
-            case 11:
-                return -((TLRPC.TL_forumTopic) obj).top_message;
-            case 12:
-                return ((TLRPC.Message) obj).f20296id;
-            case 13:
-                return ((TLRPC.Message) obj).f20296id;
-            case 14:
-                return ((org.telegram.ui.Components.g6) obj).d;
-            case 15:
-                return ((org.telegram.ui.Components.g6) obj).e;
-            case 16:
-                cd.c cVar = (cd.c) obj;
-                return cVar.d - cVar.f5104b;
-            case 17:
-                TLRPC.MessagePeerReaction messagePeerReaction = (TLRPC.MessagePeerReaction) obj;
-                int i10 = messagePeerReaction.date;
-                if (i10 > 0 && messagePeerReaction.reaction == null) {
-                    return -i10;
-                }
-                return Integer.MIN_VALUE;
-            case 18:
-                TLRPC.MessagePeerReaction messagePeerReaction2 = (TLRPC.MessagePeerReaction) obj;
-                int i11 = messagePeerReaction2.date;
-                if (i11 > 0 && messagePeerReaction2.reaction == null) {
-                    return -i11;
-                }
-                return Integer.MIN_VALUE;
-            case 19:
-                return ((String) ((Map.Entry) obj).getKey()).hashCode();
+                AndroidUtilities.runOnUIThread(new c9(this.f2265b, tLObject, 3));
+                return;
             default:
-                return ((zf.d) obj).f51529a;
+                AndroidUtilities.runOnUIThread(new c9(this.f2265b, tLObject, 4));
+                return;
         }
     }
 }

@@ -10,16 +10,16 @@ import java.util.Set;
 import v7.t6;
 import v7.u6;
 public final class x extends AbstractMap implements Serializable {
-    public static final Object f8529s = new Object();
-    public transient Object f8530a;
-    public transient int[] f8531b;
-    public transient Object[] f8532c;
+    public static final Object f8527s = new Object();
+    public transient Object f8528a;
+    public transient int[] f8529b;
+    public transient Object[] f8530c;
     public transient Object[] d;
     public transient int e;
-    public transient int f8533f;
+    public transient int f8531f;
     public transient u h;
-    public transient u f8534n;
-    public transient o f8535r;
+    public transient u f8532n;
+    public transient o f8533r;
 
     public static x a() {
         ?? abstractMap = new AbstractMap();
@@ -41,7 +41,7 @@ public final class x extends AbstractMap implements Serializable {
     }
 
     public final Map c() {
-        Object obj = this.f8530a;
+        Object obj = this.f8528a;
         if (obj instanceof Map) {
             return (Map) obj;
         }
@@ -58,13 +58,13 @@ public final class x extends AbstractMap implements Serializable {
         if (c10 != null) {
             this.e = Math.min(Math.max(size(), 3), 1073741823);
             c10.clear();
-            this.f8530a = null;
-            this.f8533f = 0;
+            this.f8528a = null;
+            this.f8531f = 0;
             return;
         }
-        Arrays.fill(j(), 0, this.f8533f, (Object) null);
-        Arrays.fill(k(), 0, this.f8533f, (Object) null);
-        Object obj = this.f8530a;
+        Arrays.fill(j(), 0, this.f8531f, (Object) null);
+        Arrays.fill(k(), 0, this.f8531f, (Object) null);
+        Object obj = this.f8528a;
         Objects.requireNonNull(obj);
         if (obj instanceof byte[]) {
             Arrays.fill((byte[]) obj, (byte) 0);
@@ -73,8 +73,8 @@ public final class x extends AbstractMap implements Serializable {
         } else {
             Arrays.fill((int[]) obj, 0);
         }
-        Arrays.fill(i(), 0, this.f8533f, 0);
-        this.f8533f = 0;
+        Arrays.fill(i(), 0, this.f8531f, 0);
+        this.f8531f = 0;
     }
 
     @Override
@@ -95,7 +95,7 @@ public final class x extends AbstractMap implements Serializable {
         if (c10 != null) {
             return c10.containsValue(obj);
         }
-        for (int i10 = 0; i10 < this.f8533f; i10++) {
+        for (int i10 = 0; i10 < this.f8531f; i10++) {
             if (t6.a(obj, k()[i10])) {
                 return true;
             }
@@ -113,7 +113,7 @@ public final class x extends AbstractMap implements Serializable {
         }
         int u10 = s.u(obj);
         int d = d();
-        Object obj2 = this.f8530a;
+        Object obj2 = this.f8528a;
         Objects.requireNonNull(obj2);
         int v = s.v(u10 & d, obj2);
         if (v == 0) {
@@ -134,17 +134,17 @@ public final class x extends AbstractMap implements Serializable {
 
     @Override
     public final Set entrySet() {
-        u uVar = this.f8534n;
+        u uVar = this.f8532n;
         if (uVar == null) {
             u uVar2 = new u(this, 0);
-            this.f8534n = uVar2;
+            this.f8532n = uVar2;
             return uVar2;
         }
         return uVar;
     }
 
     public final void f(int i10, int i11) {
-        Object obj = this.f8530a;
+        Object obj = this.f8528a;
         Objects.requireNonNull(obj);
         int[] i12 = i();
         Object[] j10 = j();
@@ -183,7 +183,7 @@ public final class x extends AbstractMap implements Serializable {
     }
 
     public final boolean g() {
-        if (this.f8530a == null) {
+        if (this.f8528a == null) {
             return true;
         }
         return false;
@@ -205,22 +205,22 @@ public final class x extends AbstractMap implements Serializable {
     public final Object h(Object obj) {
         if (!g()) {
             int d = d();
-            Object obj2 = this.f8530a;
+            Object obj2 = this.f8528a;
             Objects.requireNonNull(obj2);
             int r10 = s.r(obj, null, d, obj2, i(), j(), null);
             if (r10 != -1) {
                 Object obj3 = k()[r10];
                 f(r10, d);
-                this.f8533f--;
+                this.f8531f--;
                 this.e += 32;
                 return obj3;
             }
         }
-        return f8529s;
+        return f8527s;
     }
 
     public final int[] i() {
-        int[] iArr = this.f8531b;
+        int[] iArr = this.f8529b;
         Objects.requireNonNull(iArr);
         return iArr;
     }
@@ -234,7 +234,7 @@ public final class x extends AbstractMap implements Serializable {
     }
 
     public final Object[] j() {
-        Object[] objArr = this.f8532c;
+        Object[] objArr = this.f8530c;
         Objects.requireNonNull(objArr);
         return objArr;
     }
@@ -262,7 +262,7 @@ public final class x extends AbstractMap implements Serializable {
         if (i13 != 0) {
             s.w(i12 & i14, i13 + 1, g10);
         }
-        Object obj = this.f8530a;
+        Object obj = this.f8528a;
         Objects.requireNonNull(obj);
         int[] i15 = i();
         for (int i16 = 0; i16 <= i10; i16++) {
@@ -278,7 +278,7 @@ public final class x extends AbstractMap implements Serializable {
                 v = i18 & i10;
             }
         }
-        this.f8530a = g10;
+        this.f8528a = g10;
         this.e = s.p(this.e, 32 - Integer.numberOfLeadingZeros(i14), 31);
         return i14;
     }
@@ -295,7 +295,7 @@ public final class x extends AbstractMap implements Serializable {
             return c10.remove(obj);
         }
         Object h = h(obj);
-        if (h == f8529s) {
+        if (h == f8527s) {
             return null;
         }
         return h;
@@ -307,15 +307,15 @@ public final class x extends AbstractMap implements Serializable {
         if (c10 != null) {
             return c10.size();
         }
-        return this.f8533f;
+        return this.f8531f;
     }
 
     @Override
     public final Collection values() {
-        o oVar = this.f8535r;
+        o oVar = this.f8533r;
         if (oVar == null) {
             o oVar2 = new o((Object) this, 2);
-            this.f8535r = oVar2;
+            this.f8533r = oVar2;
             return oVar2;
         }
         return oVar;

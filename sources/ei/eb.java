@@ -6,54 +6,54 @@ import org.telegram.ui.bd;
 import org.telegram.ui.ip0;
 import org.telegram.ui.kc1;
 public final class eb implements ValueAnimator.AnimatorUpdateListener {
-    public final int f8979a;
-    public boolean f8980b = false;
-    public final NotificationCenter.NotificationCenterDelegate f8981c;
+    public final int f8977a;
+    public boolean f8978b = false;
+    public final NotificationCenter.NotificationCenterDelegate f8979c;
 
     public eb(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, int i10) {
-        this.f8979a = i10;
-        this.f8981c = notificationCenterDelegate;
+        this.f8977a = i10;
+        this.f8979c = notificationCenterDelegate;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f8979a) {
+        switch (this.f8977a) {
             case 0:
-                vb vbVar = (vb) this.f8981c;
+                vb vbVar = (vb) this.f8979c;
                 vbVar.D2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 db dbVar = vbVar.C2;
                 if (dbVar != null) {
                     dbVar.invalidate();
                 }
-                if (!this.f8980b && vbVar.D2 > 0.5f) {
-                    this.f8980b = true;
+                if (!this.f8978b && vbVar.D2 > 0.5f) {
+                    this.f8978b = true;
                     return;
                 }
                 return;
             case 1:
-                bd bdVar = (bd) this.f8981c;
-                bdVar.f35599n0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                bd bdVar = (bd) this.f8979c;
+                bdVar.f35583n0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 bdVar.m0.invalidate();
-                if (!this.f8980b && bdVar.f35599n0 > 0.5f) {
-                    this.f8980b = true;
+                if (!this.f8978b && bdVar.f35583n0 > 0.5f) {
+                    this.f8978b = true;
                     return;
                 }
                 return;
             case 2:
-                ip0 ip0Var = (ip0) this.f8981c;
+                ip0 ip0Var = (ip0) this.f8979c;
                 ip0Var.Y = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 ip0Var.X.invalidate();
-                if (!this.f8980b && ip0Var.Y > 0.5f) {
-                    this.f8980b = true;
+                if (!this.f8978b && ip0Var.Y > 0.5f) {
+                    this.f8978b = true;
                     return;
                 }
                 return;
             default:
-                kc1 kc1Var = (kc1) this.f8981c;
-                kc1Var.f38538i2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                kc1Var.f38535h2.invalidate();
-                if (!this.f8980b && kc1Var.f38538i2 > 0.5f) {
-                    this.f8980b = true;
+                kc1 kc1Var = (kc1) this.f8979c;
+                kc1Var.f38539i2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                kc1Var.f38536h2.invalidate();
+                if (!this.f8978b && kc1Var.f38539i2 > 0.5f) {
+                    this.f8978b = true;
                     return;
                 }
                 return;

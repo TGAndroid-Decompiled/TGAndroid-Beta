@@ -23,9 +23,9 @@ public final class d0 extends d9 {
         } else {
             i10 = R.drawable.greydivider;
         }
-        int i11 = h6.f20951b7;
+        int i11 = h6.f20949b7;
         d6 d6Var = this.v;
-        zq zqVar = new zq(new ColorDrawable(h6.w0(h6.f20931a7, d6Var)), h6.V0(context, i10, h6.w0(i11, d6Var)), 0, 0);
+        zq zqVar = new zq(new ColorDrawable(h6.w0(h6.f20929a7, d6Var)), h6.V0(context, i10, h6.w0(i11, d6Var)), 0, 0);
         zqVar.f33023w = true;
         setBackground(zqVar);
     }

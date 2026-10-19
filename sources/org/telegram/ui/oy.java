@@ -39,20 +39,20 @@ public class oy implements NotificationCenter.NotificationCenterDelegate {
     public final long I;
     public final long J;
     public HashMap K;
-    public final qn f40003a;
-    public int f40004b;
-    public TLRPC.TL_messages_stickerSet f40005c;
-    public boolean f40007n;
+    public final qn f39994a;
+    public int f39995b;
+    public TLRPC.TL_messages_stickerSet f39996c;
+    public boolean f39998n;
     public String v;
-    public ti f40012y;
+    public ti f40003y;
     public boolean d = false;
     public final HashMap e = new HashMap();
-    public final HashMap f40006f = new HashMap();
+    public final HashMap f39997f = new HashMap();
     public final Random h = new Random();
-    public int f40008r = -1;
-    public long f40009s = 0;
-    public final ArrayList f40010w = new ArrayList();
-    public final ArrayList f40011x = new ArrayList();
+    public int f39999r = -1;
+    public long f40000s = 0;
+    public final ArrayList f40001w = new ArrayList();
+    public final ArrayList f40002x = new ArrayList();
     public final ArrayList F = new ArrayList();
 
     static {
@@ -72,7 +72,7 @@ public class oy implements NotificationCenter.NotificationCenterDelegate {
 
     public oy(int i10, FrameLayout frameLayout) {
         this.G = frameLayout;
-        this.f40004b = i10;
+        this.f39995b = i10;
     }
 
     public static boolean a(org.telegram.ui.Cells.u1 u1Var, float f7, int i10) {
@@ -103,21 +103,21 @@ public class oy implements NotificationCenter.NotificationCenterDelegate {
 
     public final void b() {
         if (!this.d) {
-            TLRPC.TL_messages_stickerSet stickerSetByName = MediaDataController.getInstance(this.f40004b).getStickerSetByName("EmojiAnimations");
-            this.f40005c = stickerSetByName;
+            TLRPC.TL_messages_stickerSet stickerSetByName = MediaDataController.getInstance(this.f39995b).getStickerSetByName("EmojiAnimations");
+            this.f39996c = stickerSetByName;
             if (stickerSetByName == null) {
-                this.f40005c = MediaDataController.getInstance(this.f40004b).getStickerSetByEmojiOrName("EmojiAnimations");
+                this.f39996c = MediaDataController.getInstance(this.f39995b).getStickerSetByEmojiOrName("EmojiAnimations");
             }
-            if (this.f40005c == null) {
-                MediaDataController.getInstance(this.f40004b).loadStickersByEmojiOrName("EmojiAnimations", false, true);
+            if (this.f39996c == null) {
+                MediaDataController.getInstance(this.f39995b).loadStickersByEmojiOrName("EmojiAnimations", false, true);
             }
-            if (this.f40005c != null) {
+            if (this.f39996c != null) {
                 HashMap hashMap = new HashMap();
-                for (int i10 = 0; i10 < this.f40005c.documents.size(); i10++) {
-                    hashMap.put(Long.valueOf(this.f40005c.documents.get(i10).f20281id), this.f40005c.documents.get(i10));
+                for (int i10 = 0; i10 < this.f39996c.documents.size(); i10++) {
+                    hashMap.put(Long.valueOf(this.f39996c.documents.get(i10).f20279id), this.f39996c.documents.get(i10));
                 }
-                for (int i11 = 0; i11 < this.f40005c.packs.size(); i11++) {
-                    TLRPC.TL_stickerPack tL_stickerPack = this.f40005c.packs.get(i11);
+                for (int i11 = 0; i11 < this.f39996c.packs.size(); i11++) {
+                    TLRPC.TL_stickerPack tL_stickerPack = this.f39996c.packs.get(i11);
                     if (!M.contains(tL_stickerPack.emoticon) && tL_stickerPack.documents.size() > 0) {
                         String str = tL_stickerPack.emoticon;
                         HashSet hashSet = L;
@@ -149,9 +149,9 @@ public class oy implements NotificationCenter.NotificationCenterDelegate {
         while (true) {
             ArrayList arrayList = this.F;
             if (i10 < arrayList.size()) {
-                ((ny) arrayList.get(i10)).f39713r.onDetachedFromWindow();
-                if (((ny) arrayList.get(i10)).f39705j != null) {
-                    ((ny) arrayList.get(i10)).f39705j.d(this.G);
+                ((ny) arrayList.get(i10)).f39712r.onDetachedFromWindow();
+                if (((ny) arrayList.get(i10)).f39704j != null) {
+                    ((ny) arrayList.get(i10)).f39704j.d(this.G);
                 }
                 i10++;
             } else {
@@ -198,36 +198,36 @@ public class oy implements NotificationCenter.NotificationCenterDelegate {
                 while (true) {
                     ArrayList arrayList2 = this.F;
                     if (i13 < arrayList2.size()) {
-                        if (((ny) arrayList2.get(i13)).f39711p == i10) {
+                        if (((ny) arrayList2.get(i13)).f39710p == i10) {
                             i14++;
-                            if (!z14 && (((ny) arrayList2.get(i13)).f39713r.getLottieAnimation() == null || ((ny) arrayList2.get(i13)).f39713r.getLottieAnimation().y())) {
+                            if (!z14 && (((ny) arrayList2.get(i13)).f39712r.getLottieAnimation() == null || ((ny) arrayList2.get(i13)).f39712r.getLottieAnimation().y())) {
                                 return false;
                             }
                         }
-                        if (((ny) arrayList2.get(i13)).f39712q != null && document != null) {
-                            if (((ny) arrayList2.get(i13)).f39712q.f20281id == document.f20281id) {
+                        if (((ny) arrayList2.get(i13)).f39711q != null && document != null) {
+                            if (((ny) arrayList2.get(i13)).f39711q.f20279id == document.f20279id) {
                                 i15++;
                             }
                         }
                         i13++;
                     } else if (z10 && z13 && i14 > 0) {
-                        org.telegram.ui.Components.qc qcVar = org.telegram.ui.Components.qc.f29589w;
-                        if (qcVar != null && qcVar.f29591b == messageObject.getId()) {
+                        org.telegram.ui.Components.qc qcVar = org.telegram.ui.Components.qc.f29587w;
+                        if (qcVar != null && qcVar.f29589b == messageObject.getId()) {
                             return false;
                         }
                         TLRPC.InputStickerSet inputStickerSet = messageObject.getInputStickerSet();
                         if (inputStickerSet.short_name != null) {
-                            tL_messages_stickerSet = MediaDataController.getInstance(this.f40004b).getStickerSetByName(inputStickerSet.short_name);
+                            tL_messages_stickerSet = MediaDataController.getInstance(this.f39995b).getStickerSetByName(inputStickerSet.short_name);
                         } else {
                             tL_messages_stickerSet = null;
                         }
                         if (tL_messages_stickerSet == null) {
-                            tL_messages_stickerSet = MediaDataController.getInstance(this.f40004b).getStickerSetById(inputStickerSet.f20295id);
+                            tL_messages_stickerSet = MediaDataController.getInstance(this.f39995b).getStickerSetById(inputStickerSet.f20293id);
                         }
                         if (tL_messages_stickerSet == null) {
                             TLRPC.TL_messages_getStickerSet tL_messages_getStickerSet = new TLRPC.TL_messages_getStickerSet();
                             tL_messages_getStickerSet.stickerset = inputStickerSet;
-                            ConnectionsManager.getInstance(this.f40004b).sendRequest(tL_messages_getStickerSet, new vc(25, this, messageObject));
+                            ConnectionsManager.getInstance(this.f39995b).sendRequest(tL_messages_getStickerSet, new vc(25, this, messageObject));
                             return false;
                         }
                         o(tL_messages_stickerSet, messageObject);
@@ -238,7 +238,7 @@ public class oy implements NotificationCenter.NotificationCenterDelegate {
                         Random random2 = this.h;
                         if (z14) {
                             TLRPC.TL_availableEffect effect = messageObject.getEffect();
-                            TLRPC.messages_AvailableEffects availableEffects = MessagesController.getInstance(this.f40004b).getAvailableEffects();
+                            TLRPC.messages_AvailableEffects availableEffects = MessagesController.getInstance(this.f39995b).getAvailableEffects();
                             if (availableEffects == null) {
                                 return false;
                             }
@@ -253,7 +253,7 @@ public class oy implements NotificationCenter.NotificationCenterDelegate {
                                 if (i16 < availableEffects.documents.size()) {
                                     document2 = availableEffects.documents.get(i16);
                                     long j12 = j11;
-                                    if (document2 != null && document2.f20281id == j12) {
+                                    if (document2 != null && document2.f20279id == j12) {
                                         break;
                                     }
                                     i16++;
@@ -292,7 +292,7 @@ public class oy implements NotificationCenter.NotificationCenterDelegate {
                                             if (document3 != null) {
                                                 HashMap hashMap = this.K;
                                                 if (hashMap != null) {
-                                                    bool = (Boolean) hashMap.get(Long.valueOf(document3.f20281id));
+                                                    bool = (Boolean) hashMap.get(Long.valueOf(document3.f20279id));
                                                 } else {
                                                     bool = null;
                                                 }
@@ -323,37 +323,37 @@ public class oy implements NotificationCenter.NotificationCenterDelegate {
                         }
                         ny nyVar = new ny();
                         nyVar.h = z13;
-                        nyVar.f39704i = z14;
+                        nyVar.f39703i = z14;
                         if (!z14) {
-                            nyVar.f39702f = ((random.nextInt() % 101) / 100.0f) * (f7 / 4.0f);
-                            nyVar.f39703g = ((random.nextInt() % 101) / 100.0f) * (f10 / 4.0f);
+                            nyVar.f39701f = ((random.nextInt() % 101) / 100.0f) * (f7 / 4.0f);
+                            nyVar.f39702g = ((random.nextInt() % 101) / 100.0f) * (f10 / 4.0f);
                         }
-                        nyVar.f39711p = i10;
-                        nyVar.f39712q = document2;
-                        nyVar.f39708m = z12;
-                        nyVar.f39713r.setAllowStartAnimation(true);
-                        nyVar.f39713r.setAllowLottieVibration(z10);
+                        nyVar.f39710p = i10;
+                        nyVar.f39711q = document2;
+                        nyVar.f39707m = z12;
+                        nyVar.f39712r.setAllowStartAnimation(true);
+                        nyVar.f39712r.setAllowLottieVibration(z10);
                         if (SharedConfig.getDevicePerformanceClass() > 1 && BuildVars.DEBUG_VERSION) {
                             z15 = false;
                         } else {
                             z15 = true;
                         }
-                        HashMap hashMap2 = this.f40006f;
+                        HashMap hashMap2 = this.f39997f;
                         int i18 = i12;
                         if (premiumStickerAnimation == null) {
                             int f11 = f();
                             z16 = z13;
                             boolean z17 = z15;
-                            Integer num = (Integer) hashMap2.get(Long.valueOf(document2.f20281id));
+                            Integer num = (Integer) hashMap2.get(Long.valueOf(document2.f20279id));
                             if (num == null) {
                                 intValue3 = 0;
                             } else {
                                 intValue3 = num.intValue();
                             }
                             int i19 = intValue3 + 1;
-                            hashMap2.put(Long.valueOf(document2.f20281id), Integer.valueOf(i19));
+                            hashMap2.put(Long.valueOf(document2.f20279id), Integer.valueOf(i19));
                             ImageLocation forDocument = ImageLocation.getForDocument(document2);
-                            nyVar.f39713r.setUniqKeyPrefix(i19 + "_" + nyVar.f39711p + "_");
+                            nyVar.f39712r.setUniqKeyPrefix(i19 + "_" + nyVar.f39710p + "_");
                             StringBuilder sb2 = new StringBuilder();
                             sb2.append(f11);
                             sb2.append("_");
@@ -364,26 +364,26 @@ public class oy implements NotificationCenter.NotificationCenterDelegate {
                                 str3 = "_pcache";
                             }
                             sb2.append(str3);
-                            nyVar.f39713r.setImage(forDocument, sb2.toString(), null, "tgs", this.f40005c, 1);
-                            nyVar.f39713r.setDelegate(new my(this, nyVar, z10, messageObject));
-                            if (nyVar.f39713r.getLottieAnimation() != null) {
-                                nyVar.f39713r.getLottieAnimation().N(0, false, true);
+                            nyVar.f39712r.setImage(forDocument, sb2.toString(), null, "tgs", this.f39996c, 1);
+                            nyVar.f39712r.setDelegate(new my(this, nyVar, z10, messageObject));
+                            if (nyVar.f39712r.getLottieAnimation() != null) {
+                                nyVar.f39712r.getLottieAnimation().N(0, false, true);
                             }
                         } else {
                             z16 = z13;
                             boolean z18 = z15;
                             int f12 = f();
                             if (i15 > 0) {
-                                Integer num2 = (Integer) hashMap2.get(Long.valueOf(document2.f20281id));
+                                Integer num2 = (Integer) hashMap2.get(Long.valueOf(document2.f20279id));
                                 if (num2 == null) {
                                     intValue2 = 0;
                                 } else {
                                     intValue2 = num2.intValue();
                                 }
-                                hashMap2.put(Long.valueOf(document2.f20281id), Integer.valueOf((intValue2 + 1) % 4));
-                                nyVar.f39713r.setUniqKeyPrefix(intValue2 + "_" + nyVar.f39711p + "_");
+                                hashMap2.put(Long.valueOf(document2.f20279id), Integer.valueOf((intValue2 + 1) % 4));
+                                nyVar.f39712r.setUniqKeyPrefix(intValue2 + "_" + nyVar.f39710p + "_");
                             }
-                            nyVar.f39712q = document2;
+                            nyVar.f39711q = document2;
                             ImageLocation forDocument2 = ImageLocation.getForDocument(premiumStickerAnimation, document2);
                             StringBuilder sb3 = new StringBuilder();
                             sb3.append(f12);
@@ -395,54 +395,54 @@ public class oy implements NotificationCenter.NotificationCenterDelegate {
                                 str2 = "_pcache";
                             }
                             sb3.append(str2);
-                            nyVar.f39713r.setImage(forDocument2, sb3.toString(), null, "tgs", this.f40005c, 1);
+                            nyVar.f39712r.setImage(forDocument2, sb3.toString(), null, "tgs", this.f39996c, 1);
                         }
-                        nyVar.f39713r.setLayerNum(Integer.MAX_VALUE);
-                        nyVar.f39713r.setAutoRepeat(0);
-                        if (nyVar.f39713r.getLottieAnimation() != null) {
+                        nyVar.f39712r.setLayerNum(Integer.MAX_VALUE);
+                        nyVar.f39712r.setAutoRepeat(0);
+                        if (nyVar.f39712r.getLottieAnimation() != null) {
                             if (nyVar.h) {
-                                nyVar.f39713r.getLottieAnimation().N(0, false, true);
+                                nyVar.f39712r.getLottieAnimation().N(0, false, true);
                             }
-                            nyVar.f39713r.getLottieAnimation().start();
+                            nyVar.f39712r.getLottieAnimation().start();
                         }
                         arrayList2.add(nyVar);
-                        nyVar.f39713r.onAttachedToWindow();
-                        ImageReceiver imageReceiver = nyVar.f39713r;
+                        nyVar.f39712r.onAttachedToWindow();
+                        ImageReceiver imageReceiver = nyVar.f39712r;
                         FrameLayout frameLayout = this.G;
                         imageReceiver.setParentView(frameLayout);
                         frameLayout.invalidate();
-                        if (z10 && !z16 && UserConfig.getInstance(this.f40004b).clientUserId != this.I) {
-                            int i20 = this.f40008r;
-                            if (i20 != 0 && i20 != i10 && (tiVar = this.f40012y) != null) {
+                        if (z10 && !z16 && UserConfig.getInstance(this.f39995b).clientUserId != this.I) {
+                            int i20 = this.f39999r;
+                            if (i20 != 0 && i20 != i10 && (tiVar = this.f40003y) != null) {
                                 AndroidUtilities.cancelRunOnUIThread(tiVar);
-                                this.f40012y.run();
+                                this.f40003y.run();
                             }
-                            this.f40008r = i10;
+                            this.f39999r = i10;
                             this.v = str;
-                            int i21 = (this.f40009s > j10 ? 1 : (this.f40009s == j10 ? 0 : -1));
-                            ArrayList arrayList4 = this.f40011x;
-                            ArrayList arrayList5 = this.f40010w;
+                            int i21 = (this.f40000s > j10 ? 1 : (this.f40000s == j10 ? 0 : -1));
+                            ArrayList arrayList4 = this.f40002x;
+                            ArrayList arrayList5 = this.f40001w;
                             if (i21 == 0) {
-                                this.f40009s = System.currentTimeMillis();
+                                this.f40000s = System.currentTimeMillis();
                                 arrayList5.clear();
                                 arrayList4.clear();
                                 arrayList5.add(Long.valueOf(j10));
                                 arrayList4.add(Integer.valueOf(i18));
                             } else {
-                                arrayList5.add(Long.valueOf(System.currentTimeMillis() - this.f40009s));
+                                arrayList5.add(Long.valueOf(System.currentTimeMillis() - this.f40000s));
                                 arrayList4.add(Integer.valueOf(i18));
                             }
-                            ti tiVar2 = this.f40012y;
+                            ti tiVar2 = this.f40003y;
                             if (tiVar2 != null) {
                                 AndroidUtilities.cancelRunOnUIThread(tiVar2);
-                                this.f40012y = null;
+                                this.f40003y = null;
                             }
                             ti tiVar3 = new ti(this, 28);
-                            this.f40012y = tiVar3;
+                            this.f40003y = tiVar3;
                             AndroidUtilities.runOnUIThread(tiVar3, 500L);
                         }
                         if (z11) {
-                            MessagesController.getInstance(this.f40004b).sendTyping(this.I, this.J, 11, str, 0);
+                            MessagesController.getInstance(this.f39995b).sendTyping(this.I, this.J, 11, str, 0);
                             return true;
                         }
                         return true;
@@ -466,7 +466,7 @@ public class oy implements NotificationCenter.NotificationCenterDelegate {
         int i12 = NotificationCenter.onEmojiInteractionsReceived;
         long j10 = this.I;
         if (i10 == i12) {
-            if (this.f40003a != null) {
+            if (this.f39994a != null) {
                 long longValue = ((Long) objArr[0]).longValue();
                 TLRPC.TL_sendMessageEmojiInteraction tL_sendMessageEmojiInteraction = (TLRPC.TL_sendMessageEmojiInteraction) objArr[1];
                 if (longValue == j10 && L.contains(tL_sendMessageEmojiInteraction.emoticon)) {
@@ -484,7 +484,7 @@ public class oy implements NotificationCenter.NotificationCenterDelegate {
                     }
                 }
             }
-        } else if (i10 == NotificationCenter.updateInterfaces && (printingStringType = MessagesController.getInstance(this.f40004b).getPrintingStringType(j10, this.J)) != null && printingStringType.intValue() == 5) {
+        } else if (i10 == NotificationCenter.updateInterfaces && (printingStringType = MessagesController.getInstance(this.f39995b).getPrintingStringType(j10, this.J)) != null && printingStringType.intValue() == 5) {
             j9.u uVar = this.E;
             if (uVar != null) {
                 AndroidUtilities.cancelRunOnUIThread(uVar);
@@ -508,8 +508,8 @@ public class oy implements NotificationCenter.NotificationCenterDelegate {
             while (i10 < this.F.size()) {
                 ny nyVar = (ny) this.F.get(i10);
                 float f12 = 3.0f;
-                if (this.f40003a != null) {
-                    nyVar.f39701c = false;
+                if (this.f39994a != null) {
+                    nyVar.f39700c = false;
                     int i11 = 0;
                     while (true) {
                         if (i11 < this.H.getChildCount()) {
@@ -526,14 +526,14 @@ public class oy implements NotificationCenter.NotificationCenterDelegate {
                                 messageObject = null;
                                 imageReceiver = null;
                             }
-                            if (messageObject != null && messageObject.getId() == nyVar.f39711p) {
-                                nyVar.f39701c = true;
+                            if (messageObject != null && messageObject.getId() == nyVar.f39710p) {
+                                nyVar.f39700c = true;
                                 float x10 = childAt.getX() + this.H.getX();
                                 float y3 = childAt.getY() + this.H.getY();
                                 f10 = childAt.getY();
                                 nyVar.d = imageReceiver.getImageWidth();
                                 nyVar.e = imageReceiver.getImageHeight();
-                                if (nyVar.f39704i && (childAt instanceof org.telegram.ui.Cells.u1)) {
+                                if (nyVar.f39703i && (childAt instanceof org.telegram.ui.Cells.u1)) {
                                     org.telegram.ui.Cells.u1 u1Var2 = (org.telegram.ui.Cells.u1) childAt;
                                     float f13 = (f() * AndroidUtilities.density) / 1.3f;
                                     float f14 = f13 / f12;
@@ -542,23 +542,23 @@ public class oy implements NotificationCenter.NotificationCenterDelegate {
                                     float timeX = u1Var2.getTimeX() + x10;
                                     float f15 = f13 / 2.0f;
                                     f7 = f12;
-                                    nyVar.f39699a = Utilities.clamp(timeX - f15, AndroidUtilities.displaySize.x - f13, 0.0f);
-                                    nyVar.f39700b = (u1Var2.getTimeY() + y3) - f15;
+                                    nyVar.f39698a = Utilities.clamp(timeX - f15, AndroidUtilities.displaySize.x - f13, 0.0f);
+                                    nyVar.f39699b = (u1Var2.getTimeY() + y3) - f15;
                                 } else {
                                     f7 = f12;
                                     if (nyVar.h) {
-                                        nyVar.f39699a = imageReceiver.getImageX() + x10;
-                                        nyVar.f39700b = imageReceiver.getImageY() + y3;
+                                        nyVar.f39698a = imageReceiver.getImageX() + x10;
+                                        nyVar.f39699b = imageReceiver.getImageY() + y3;
                                     } else {
                                         float imageX = imageReceiver.getImageX() + x10;
                                         float imageY = imageReceiver.getImageY() + y3;
-                                        if (nyVar.f39708m) {
+                                        if (nyVar.f39707m) {
                                             f11 = ((-imageReceiver.getImageWidth()) * 2.0f) + AndroidUtilities.dp(24.0f) + imageX;
                                         } else {
                                             f11 = (-AndroidUtilities.dp(24.0f)) + imageX;
                                         }
-                                        nyVar.f39699a = f11;
-                                        nyVar.f39700b = imageY - imageReceiver.getImageWidth();
+                                        nyVar.f39698a = f11;
+                                        nyVar.f39699b = imageY - imageReceiver.getImageWidth();
                                     }
                                 }
                             } else {
@@ -571,8 +571,8 @@ public class oy implements NotificationCenter.NotificationCenterDelegate {
                             break;
                         }
                     }
-                    if (!nyVar.f39701c || nyVar.e + f10 < this.f40003a.f40847s9 || f10 > this.H.getMeasuredHeight() - this.f40003a.Ba) {
-                        nyVar.f39709n = true;
+                    if (!nyVar.f39700c || nyVar.e + f10 < this.f39994a.f40839s9 || f10 > this.H.getMeasuredHeight() - this.f39994a.Ba) {
+                        nyVar.f39708n = true;
                     }
                     if (nyVar.h) {
                         float f16 = nyVar.e / 2.0f;
@@ -581,99 +581,99 @@ public class oy implements NotificationCenter.NotificationCenterDelegate {
                         } else {
                             z12 = false;
                         }
-                        if ((f10 - this.f40003a.f40847s9) + f16 <= 0.0f) {
+                        if ((f10 - this.f39994a.f40839s9) + f16 <= 0.0f) {
                             z13 = true;
                         } else {
                             z13 = false;
                         }
                         if (z12 || z13) {
-                            nyVar.f39709n = true;
+                            nyVar.f39708n = true;
                         }
                     }
-                    if (nyVar.f39709n) {
-                        float f17 = nyVar.f39710o;
+                    if (nyVar.f39708n) {
+                        float f17 = nyVar.f39709o;
                         if (f17 != 1.0f) {
                             float clamp = Utilities.clamp(f17 + 0.10666667f, 1.0f, 0.0f);
-                            nyVar.f39710o = clamp;
-                            nyVar.f39713r.setAlpha(1.0f - clamp);
-                            this.f40003a.X0.invalidate();
+                            nyVar.f39709o = clamp;
+                            nyVar.f39712r.setAlpha(1.0f - clamp);
+                            this.f39994a.X0.invalidate();
                         }
                     }
                 } else {
                     f7 = 3.0f;
                     g(nyVar);
                 }
-                if (!nyVar.f39707l && nyVar.f39709n) {
+                if (!nyVar.f39706l && nyVar.f39708n) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
                 if (!z10) {
-                    if (nyVar.h && !nyVar.f39704i) {
+                    if (nyVar.h && !nyVar.f39703i) {
                         float f18 = nyVar.e;
                         float f19 = 1.49926f * f18;
                         float f20 = 0.0546875f * f19;
-                        float f21 = (((f18 / 2.0f) + nyVar.f39700b) - (f19 / 2.0f)) - (0.00279f * f19);
-                        if (!nyVar.f39708m) {
-                            nyVar.f39713r.setImageCoords(nyVar.f39699a - f20, f21, f19, f19);
+                        float f21 = (((f18 / 2.0f) + nyVar.f39699b) - (f19 / 2.0f)) - (0.00279f * f19);
+                        if (!nyVar.f39707m) {
+                            nyVar.f39712r.setImageCoords(nyVar.f39698a - f20, f21, f19, f19);
                         } else {
-                            nyVar.f39713r.setImageCoords(((nyVar.f39699a + nyVar.d) - f19) + f20, f21, f19, f19);
+                            nyVar.f39712r.setImageCoords(((nyVar.f39698a + nyVar.d) - f19) + f20, f21, f19, f19);
                         }
-                        if (!nyVar.f39708m) {
+                        if (!nyVar.f39707m) {
                             canvas.save();
-                            canvas.scale(-1.0f, 1.0f, nyVar.f39713r.getCenterX(), nyVar.f39713r.getCenterY());
-                            nyVar.f39713r.draw(canvas);
+                            canvas.scale(-1.0f, 1.0f, nyVar.f39712r.getCenterX(), nyVar.f39712r.getCenterY());
+                            nyVar.f39712r.draw(canvas);
                             canvas.restore();
                         } else {
-                            nyVar.f39713r.draw(canvas);
+                            nyVar.f39712r.draw(canvas);
                         }
                     } else {
-                        ah.e eVar = nyVar.f39705j;
+                        ah.e eVar = nyVar.f39704j;
                         if (eVar != null) {
-                            float f22 = nyVar.f39699a + nyVar.f39702f;
-                            float f23 = nyVar.f39700b + nyVar.f39703g;
+                            float f22 = nyVar.f39698a + nyVar.f39701f;
+                            float f23 = nyVar.f39699b + nyVar.f39702g;
                             float f24 = nyVar.d * f7;
                             eVar.e((int) f22, (int) f23, (int) (f22 + f24), (int) (f23 + f24));
-                            nyVar.f39705j.b(canvas);
+                            nyVar.f39704j.b(canvas);
                         } else {
-                            ImageReceiver imageReceiver2 = nyVar.f39713r;
-                            float f25 = nyVar.f39699a + nyVar.f39702f;
-                            float f26 = nyVar.f39700b + nyVar.f39703g;
+                            ImageReceiver imageReceiver2 = nyVar.f39712r;
+                            float f25 = nyVar.f39698a + nyVar.f39701f;
+                            float f26 = nyVar.f39699b + nyVar.f39702g;
                             float f27 = nyVar.d * f7;
                             imageReceiver2.setImageCoords(f25, f26, f27, f27);
-                            if (!nyVar.f39708m) {
+                            if (!nyVar.f39707m) {
                                 canvas.save();
-                                canvas.scale(-1.0f, 1.0f, nyVar.f39713r.getCenterX(), nyVar.f39713r.getCenterY());
-                                nyVar.f39713r.draw(canvas);
+                                canvas.scale(-1.0f, 1.0f, nyVar.f39712r.getCenterX(), nyVar.f39712r.getCenterY());
+                                nyVar.f39712r.draw(canvas);
                                 canvas.restore();
                             } else {
-                                nyVar.f39713r.draw(canvas);
+                                nyVar.f39712r.draw(canvas);
                             }
                         }
                     }
                 }
-                ah.e eVar2 = nyVar.f39705j;
+                ah.e eVar2 = nyVar.f39704j;
                 if (eVar2 != null) {
                     z11 = eVar2.c();
-                } else if (nyVar.f39707l && nyVar.f39713r.getLottieAnimation() != null && nyVar.f39713r.getLottieAnimation().f30976a0 >= nyVar.f39713r.getLottieAnimation().e[0] - 2) {
+                } else if (nyVar.f39706l && nyVar.f39712r.getLottieAnimation() != null && nyVar.f39712r.getLottieAnimation().f30974a0 >= nyVar.f39712r.getLottieAnimation().e[0] - 2) {
                     z11 = true;
                 } else {
                     z11 = false;
                 }
-                if (nyVar.f39710o != 1.0f && !z11 && !z10) {
-                    if (nyVar.f39713r.getLottieAnimation() != null && nyVar.f39713r.getLottieAnimation().f30989k0) {
-                        nyVar.f39707l = true;
-                    } else if (nyVar.f39713r.getLottieAnimation() != null && !nyVar.f39713r.getLottieAnimation().f30989k0) {
-                        nyVar.f39713r.getLottieAnimation().N(0, true, false);
-                        nyVar.f39713r.getLottieAnimation().start();
+                if (nyVar.f39709o != 1.0f && !z11 && !z10) {
+                    if (nyVar.f39712r.getLottieAnimation() != null && nyVar.f39712r.getLottieAnimation().f30987k0) {
+                        nyVar.f39706l = true;
+                    } else if (nyVar.f39712r.getLottieAnimation() != null && !nyVar.f39712r.getLottieAnimation().f30987k0) {
+                        nyVar.f39712r.getLottieAnimation().N(0, true, false);
+                        nyVar.f39712r.getLottieAnimation().start();
                     }
                 } else {
                     ny nyVar2 = (ny) this.F.remove(i10);
-                    if (nyVar.h && nyVar.f39713r.getLottieAnimation() != null) {
-                        nyVar2.f39713r.getLottieAnimation().N(0, true, true);
+                    if (nyVar.h && nyVar.f39712r.getLottieAnimation() != null) {
+                        nyVar2.f39712r.getLottieAnimation().N(0, true, true);
                     }
-                    nyVar2.f39713r.onDetachedFromWindow();
-                    ah.e eVar3 = nyVar2.f39705j;
+                    nyVar2.f39712r.onDetachedFromWindow();
+                    ah.e eVar3 = nyVar2.f39704j;
                     if (eVar3 != null) {
                         eVar3.d(this.G);
                     }
@@ -689,18 +689,18 @@ public class oy implements NotificationCenter.NotificationCenterDelegate {
     }
 
     public final void i() {
-        this.f40007n = true;
+        this.f39998n = true;
         b();
-        NotificationCenter.getInstance(this.f40004b).addObserver(this, NotificationCenter.diceStickersDidLoad);
-        NotificationCenter.getInstance(this.f40004b).addObserver(this, NotificationCenter.onEmojiInteractionsReceived);
-        NotificationCenter.getInstance(this.f40004b).addObserver(this, NotificationCenter.updateInterfaces);
+        NotificationCenter.getInstance(this.f39995b).addObserver(this, NotificationCenter.diceStickersDidLoad);
+        NotificationCenter.getInstance(this.f39995b).addObserver(this, NotificationCenter.onEmojiInteractionsReceived);
+        NotificationCenter.getInstance(this.f39995b).addObserver(this, NotificationCenter.updateInterfaces);
         int i10 = 0;
         while (true) {
             ArrayList arrayList = this.F;
             if (i10 < arrayList.size()) {
-                ((ny) arrayList.get(i10)).f39713r.onAttachedToWindow();
-                if (((ny) arrayList.get(i10)).f39705j != null) {
-                    ((ny) arrayList.get(i10)).f39705j.f(this.G);
+                ((ny) arrayList.get(i10)).f39712r.onAttachedToWindow();
+                if (((ny) arrayList.get(i10)).f39704j != null) {
+                    ((ny) arrayList.get(i10)).f39704j.f(this.G);
                 }
                 i10++;
             } else {
@@ -711,16 +711,16 @@ public class oy implements NotificationCenter.NotificationCenterDelegate {
 
     public final void j() {
         int i10 = 0;
-        this.f40007n = false;
-        NotificationCenter.getInstance(this.f40004b).removeObserver(this, NotificationCenter.diceStickersDidLoad);
-        NotificationCenter.getInstance(this.f40004b).removeObserver(this, NotificationCenter.onEmojiInteractionsReceived);
-        NotificationCenter.getInstance(this.f40004b).removeObserver(this, NotificationCenter.updateInterfaces);
+        this.f39998n = false;
+        NotificationCenter.getInstance(this.f39995b).removeObserver(this, NotificationCenter.diceStickersDidLoad);
+        NotificationCenter.getInstance(this.f39995b).removeObserver(this, NotificationCenter.onEmojiInteractionsReceived);
+        NotificationCenter.getInstance(this.f39995b).removeObserver(this, NotificationCenter.updateInterfaces);
         while (true) {
             ArrayList arrayList = this.F;
             if (i10 < arrayList.size()) {
-                ((ny) arrayList.get(i10)).f39713r.onDetachedFromWindow();
-                if (((ny) arrayList.get(i10)).f39705j != null) {
-                    ((ny) arrayList.get(i10)).f39705j.d(this.G);
+                ((ny) arrayList.get(i10)).f39712r.onDetachedFromWindow();
+                if (((ny) arrayList.get(i10)).f39704j != null) {
+                    ((ny) arrayList.get(i10)).f39704j.d(this.G);
                 }
                 i10++;
             } else {
@@ -733,7 +733,7 @@ public class oy implements NotificationCenter.NotificationCenterDelegate {
     public final void k(org.telegram.ui.Cells.u1 u1Var, qn qnVar, boolean z10) {
         TLRPC.Document emojiAnimatedSticker;
         if (!qnVar.x() && u1Var.getMessageObject() != null && u1Var.getMessageObject().getId() >= 0) {
-            if (u1Var.getMessageObject().isPremiumSticker() || qnVar.f40678f != null) {
+            if (u1Var.getMessageObject().isPremiumSticker() || qnVar.f40670f != null) {
                 boolean n10 = n(u1Var, -1, z10, false);
                 if (z10 && n10 && !EmojiData.hasEmojiSupportVibration(u1Var.getMessageObject().getStickerEmoji()) && !u1Var.getMessageObject().isPremiumSticker() && !u1Var.getMessageObject().isAnimatedAnimatedEmoji()) {
                     try {
@@ -744,20 +744,20 @@ public class oy implements NotificationCenter.NotificationCenterDelegate {
                 boolean isPremiumSticker = u1Var.getMessageObject().isPremiumSticker();
                 long j10 = this.I;
                 if (!isPremiumSticker && u1Var.getEffect() == null && (z10 || !u1Var.getMessageObject().isAnimatedEmojiStickerSingle())) {
-                    Integer printingStringType = MessagesController.getInstance(this.f40004b).getPrintingStringType(j10, this.J);
+                    Integer printingStringType = MessagesController.getInstance(this.f39995b).getPrintingStringType(j10, this.J);
                     if ((printingStringType == null || printingStringType.intValue() != 5) && this.E == null && n10) {
-                        org.telegram.ui.Components.qc qcVar = org.telegram.ui.Components.qc.f29589w;
-                        if ((qcVar == null || !qcVar.f29598l) && SharedConfig.emojiInteractionsHintCount > 0 && UserConfig.getInstance(this.f40004b).getClientUserId() != qnVar.f40678f.f20422id) {
+                        org.telegram.ui.Components.qc qcVar = org.telegram.ui.Components.qc.f29587w;
+                        if ((qcVar == null || !qcVar.f29596l) && SharedConfig.emojiInteractionsHintCount > 0 && UserConfig.getInstance(this.f39995b).getClientUserId() != qnVar.f40670f.f20420id) {
                             SharedConfig.updateEmojiInteractionsHintCount(SharedConfig.emojiInteractionsHintCount - 1);
                             if (u1Var.getMessageObject().isAnimatedAnimatedEmoji()) {
                                 emojiAnimatedSticker = u1Var.getMessageObject().getDocument();
                             } else {
-                                emojiAnimatedSticker = MediaDataController.getInstance(this.f40004b).getEmojiAnimatedSticker(u1Var.getMessageObject().getStickerEmoji());
+                                emojiAnimatedSticker = MediaDataController.getInstance(this.f39995b).getEmojiAnimatedSticker(u1Var.getMessageObject().getStickerEmoji());
                             }
                             org.telegram.ui.Components.ux0 ux0Var = new org.telegram.ui.Components.ux0(qnVar.getParentActivity(), null, 1, -1, emojiAnimatedSticker, qnVar.getResourceProvider());
-                            ux0Var.f28511c.setVisibility(8);
-                            SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.formatString("EmojiInteractionTapHint", R.string.EmojiInteractionTapHint, qnVar.f40678f.first_name));
-                            TextView textView = ux0Var.f28510b;
+                            ux0Var.f28509c.setVisibility(8);
+                            SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.formatString("EmojiInteractionTapHint", R.string.EmojiInteractionTapHint, qnVar.f40670f.first_name));
+                            TextView textView = ux0Var.f28508b;
                             textView.setText(Emoji.replaceEmoji(replaceTags, textView.getPaint().getFontMetricsInt(), false));
                             textView.setTypeface(null);
                             textView.setMaxLines(3);
@@ -781,14 +781,14 @@ public class oy implements NotificationCenter.NotificationCenterDelegate {
     public final void l(TLRPC.Document document) {
         if (document != null) {
             HashMap hashMap = this.K;
-            if (hashMap != null && hashMap.containsKey(Long.valueOf(document.f20281id))) {
+            if (hashMap != null && hashMap.containsKey(Long.valueOf(document.f20279id))) {
                 return;
             }
             if (this.K == null) {
                 this.K = new HashMap();
             }
-            this.K.put(Long.valueOf(document.f20281id), Boolean.TRUE);
-            MediaDataController.getInstance(this.f40004b).preloadImage(ImageLocation.getForDocument(document), 2);
+            this.K.put(Long.valueOf(document.f20279id), Boolean.TRUE);
+            MediaDataController.getInstance(this.f39995b).preloadImage(ImageLocation.getForDocument(document), 2);
         }
     }
 
@@ -834,26 +834,26 @@ public class oy implements NotificationCenter.NotificationCenterDelegate {
     }
 
     public final void o(TLRPC.TL_messages_stickerSet tL_messages_stickerSet, MessageObject messageObject) {
-        qn qnVar = this.f40003a;
-        if (qnVar != null && !MessagesController.getInstance(this.f40004b).premiumFeaturesBlocked() && qnVar.getParentActivity() != null) {
+        qn qnVar = this.f39994a;
+        if (qnVar != null && !MessagesController.getInstance(this.f39995b).premiumFeaturesBlocked() && qnVar.getParentActivity() != null) {
             org.telegram.ui.Components.ux0 ux0Var = new org.telegram.ui.Components.ux0(this.G.getContext(), null, 1, -1, messageObject.getDocument(), qnVar.getResourceProvider());
-            ux0Var.f28510b.setText(tL_messages_stickerSet.set.title);
-            ux0Var.f28511c.setText(LocaleController.getString(R.string.PremiumStickerTooltip));
+            ux0Var.f28508b.setText(tL_messages_stickerSet.set.title);
+            ux0Var.f28509c.setText(LocaleController.getString(R.string.PremiumStickerTooltip));
             org.telegram.ui.Components.oc ocVar = new org.telegram.ui.Components.oc(qnVar.getParentActivity(), qnVar.getResourceProvider(), true);
             ux0Var.setButton(ocVar);
-            ocVar.f28946a = new lt(11, this, messageObject);
+            ocVar.f28944a = new lt(11, this, messageObject);
             ocVar.e(LocaleController.getString(R.string.ViewAction));
             org.telegram.ui.Components.qc g10 = org.telegram.ui.Components.qc.g(qnVar, ux0Var, 2750);
-            g10.f29591b = messageObject.getId();
+            g10.f29589b = messageObject.getId();
             g10.j();
         }
     }
 
     public oy(qn qnVar, FrameLayout frameLayout, org.telegram.ui.Components.im0 im0Var, int i10, long j10, long j11) {
-        this.f40003a = qnVar;
+        this.f39994a = qnVar;
         this.G = frameLayout;
         this.H = im0Var;
-        this.f40004b = i10;
+        this.f39995b = i10;
         this.I = j10;
         this.J = j11;
     }

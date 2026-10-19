@@ -16,10 +16,10 @@ public final class l extends q {
         boolean z10;
         super.l();
         r rVar = this.v;
-        if (rVar.f8061r.getVisibility() == 0) {
-            rVar.f8063w.l();
+        if (rVar.f8059r.getVisibility() == 0) {
+            rVar.f8061w.l();
         }
-        sx0 sx0Var = rVar.f8065y;
+        sx0 sx0Var = rVar.f8063y;
         if (sx0Var != null) {
             a7 a7Var = this.e;
             if (a7Var != null && a7Var.k()) {

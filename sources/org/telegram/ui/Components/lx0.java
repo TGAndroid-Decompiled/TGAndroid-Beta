@@ -14,21 +14,21 @@ public final class lx0 extends xj0 {
     public ValueAnimator F;
     public ValueAnimator G;
     public final qx0 H;
-    public int f28328r;
-    public float f28329s;
+    public int f28326r;
+    public float f28327s;
     public ValueAnimator v;
-    public boolean f28330w;
-    public long f28331x;
-    public float f28332y;
+    public boolean f28328w;
+    public long f28329x;
+    public float f28330y;
 
     public lx0(qx0 qx0Var, Context context) {
         super(context);
         int w02;
-        org.telegram.ui.ActionBar.d6 d6Var = qx0Var.f27301n2;
+        org.telegram.ui.ActionBar.d6 d6Var = qx0Var.f27299n2;
         this.H = qx0Var;
-        this.f28330w = false;
-        this.f28332y = 1.0f;
-        if (qx0Var.f29756u3) {
+        this.f28328w = false;
+        this.f28330y = 1.0f;
+        if (qx0Var.f29754u3) {
             w02 = i0.a.o(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Wk, d6Var), (int) 102.0f);
         } else {
             w02 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Me, d6Var);
@@ -40,14 +40,14 @@ public final class lx0 extends xj0 {
 
     @Override
     public final void c() {
-        this.f28330w = true;
-        if (this.f28332y < 1.0f) {
+        this.f28328w = true;
+        if (this.f28330y < 1.0f) {
             ValueAnimator valueAnimator = this.G;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
                 this.G = null;
             }
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.f28332y, 1.0f);
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.f28330y, 1.0f);
             this.G = ofFloat;
             ofFloat.addUpdateListener(new ix0(this, 2));
             this.G.addListener(new kx0(this, 0));
@@ -67,7 +67,7 @@ public final class lx0 extends xj0 {
                 this.H.invalidate();
             }
         }
-        float y3 = com.google.android.gms.internal.play_billing.k3.y(1.0f, this.E, 0.15f, 0.85f) * this.f28332y;
+        float y3 = com.google.android.gms.internal.play_billing.k3.y(1.0f, this.E, 0.15f, 0.85f) * this.f28330y;
         int i10 = (y3 > 1.0f ? 1 : (y3 == 1.0f ? 0 : -1));
         if (i10 != 0) {
             canvas.save();
@@ -80,8 +80,8 @@ public final class lx0 extends xj0 {
     }
 
     public final void j() {
-        if (System.currentTimeMillis() - this.f28331x > 250) {
-            this.f28331x = System.currentTimeMillis();
+        if (System.currentTimeMillis() - this.f28329x > 250) {
+            this.f28329x = System.currentTimeMillis();
             uj0 animatedDrawable = getAnimatedDrawable();
             if (animatedDrawable == null && getImageReceiver() != null) {
                 animatedDrawable = getImageReceiver().getLottieAnimation();
@@ -98,14 +98,14 @@ public final class lx0 extends xj0 {
     }
 
     public final void k(int i10) {
-        if (this.f28328r != i10) {
-            this.f28328r = i10;
+        if (this.f28326r != i10) {
+            this.f28326r = i10;
             setColorFilter(new PorterDuffColorFilter(i10, PorterDuff.Mode.SRC_IN));
         }
     }
 
     public final void l(boolean z10, boolean z11) {
-        if (Math.abs(this.f28329s - (z10 ? 1.0f : 0.0f)) > 0.01f) {
+        if (Math.abs(this.f28327s - (z10 ? 1.0f : 0.0f)) > 0.01f) {
             ValueAnimator valueAnimator = this.v;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
@@ -113,7 +113,7 @@ public final class lx0 extends xj0 {
             }
             float f7 = 0.0f;
             if (z11) {
-                float f10 = this.f28329s;
+                float f10 = this.f28327s;
                 if (z10) {
                     f7 = 1.0f;
                 }
@@ -134,13 +134,13 @@ public final class lx0 extends xj0 {
     }
 
     public final void m(float f7) {
-        this.f28329s = f7;
+        this.f28327s = f7;
         qx0 qx0Var = this.H;
-        org.telegram.ui.ActionBar.d6 d6Var = qx0Var.f27301n2;
-        if (qx0Var.f29756u3) {
+        org.telegram.ui.ActionBar.d6 d6Var = qx0Var.f27299n2;
+        if (qx0Var.f29754u3) {
             k(i0.a.o(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Wk, d6Var), (int) (AndroidUtilities.lerp(0.4f, 0.8f, f7) * 255.0f)));
         } else {
-            k(i0.a.f(this.f28329s, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Me, d6Var), org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Oe, d6Var)));
+            k(i0.a.f(this.f28327s, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Me, d6Var), org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Oe, d6Var)));
         }
         invalidate();
     }
@@ -148,7 +148,7 @@ public final class lx0 extends xj0 {
     @Override
     public final void onMeasure(int i10, int i11) {
         int size = View.MeasureSpec.getSize(i11);
-        super.onMeasure(org.telegram.messenger.lk.c(4.0f, size, 1073741824), View.MeasureSpec.makeMeasureSpec(size, 1073741824));
+        super.onMeasure(org.telegram.messenger.kk.c(4.0f, size, 1073741824), View.MeasureSpec.makeMeasureSpec(size, 1073741824));
     }
 
     @Override
@@ -169,7 +169,7 @@ public final class lx0 extends xj0 {
                     this.F = ofFloat;
                     ofFloat.addUpdateListener(new ix0(this, 0));
                     this.F.addListener(new kx0(this, 2));
-                    org.telegram.messenger.lk.l(3.0f, this.F);
+                    org.telegram.messenger.kk.l(3.0f, this.F);
                     this.F.setDuration(350L);
                     this.F.start();
                 }

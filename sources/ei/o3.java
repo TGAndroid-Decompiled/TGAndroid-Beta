@@ -21,24 +21,24 @@ import org.telegram.ui.vf1;
 import org.telegram.ui.wo;
 import org.telegram.ui.x70;
 public final class o3 implements RequestDelegate {
-    public final int f9550a;
-    public final boolean f9551b;
-    public final Object f9552c;
+    public final int f9548a;
+    public final boolean f9549b;
+    public final Object f9550c;
 
     public o3(int i10, Object obj, boolean z10) {
-        this.f9550a = i10;
-        this.f9552c = obj;
-        this.f9551b = z10;
+        this.f9548a = i10;
+        this.f9550c = obj;
+        this.f9549b = z10;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        int i10 = this.f9550a;
-        boolean z10 = this.f9551b;
-        Object obj = this.f9552c;
+        int i10 = this.f9548a;
+        boolean z10 = this.f9549b;
+        Object obj = this.f9550c;
         switch (i10) {
             case 0:
-                AndroidUtilities.runOnUIThread(new ai.x7((p3) obj, tLObject, z10, 4));
+                AndroidUtilities.runOnUIThread(new ai.y7((p3) obj, tLObject, z10, 4));
                 return;
             case 1:
                 ((MessagesController) obj).lambda$updateTimerProc$155(z10, tLObject, tL_error);
@@ -67,7 +67,7 @@ public final class o3 implements RequestDelegate {
                 }
                 return;
             case 4:
-                AndroidUtilities.runOnUIThread(new ai.x7((cn) obj, tLObject, z10, 16));
+                AndroidUtilities.runOnUIThread(new ai.y7((cn) obj, tLObject, z10, 16));
                 return;
             case 5:
                 io ioVar = (io) obj;
@@ -79,19 +79,19 @@ public final class o3 implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new bo(ioVar, 3));
                 return;
             case 6:
-                AndroidUtilities.runOnUIThread(new ai.x9((Object) ((wo) obj), (Object) tL_error, (Object) tLObject, this.f9551b, 13));
+                AndroidUtilities.runOnUIThread(new ai.x9((Object) ((wo) obj), (Object) tL_error, (Object) tLObject, this.f9549b, 13));
                 return;
             case 7:
                 AndroidUtilities.runOnUIThread(new lg((te0) obj, tL_error, tLObject, z10));
                 return;
             case 8:
-                AndroidUtilities.runOnUIThread(new ai.x9((Object) ((u60) obj), (Object) tL_error, (Object) tLObject, this.f9551b, 22));
+                AndroidUtilities.runOnUIThread(new ai.x9((Object) ((u60) obj), (Object) tL_error, (Object) tLObject, this.f9549b, 22));
                 return;
             case 9:
-                AndroidUtilities.runOnUIThread(new ai.x9((Object) ((im0) obj), (Object) tL_error, (Object) tLObject, this.f9551b, 23));
+                AndroidUtilities.runOnUIThread(new ai.x9((Object) ((im0) obj), (Object) tL_error, (Object) tLObject, this.f9549b, 23));
                 return;
             case 10:
-                AndroidUtilities.runOnUIThread(new ai.x9((Object) ((eo0) obj), (Object) tL_error, (Object) tLObject, this.f9551b, 26));
+                AndroidUtilities.runOnUIThread(new ai.x9((Object) ((eo0) obj), (Object) tL_error, (Object) tLObject, this.f9549b, 26));
                 return;
             case 11:
                 jq0 jq0Var = (jq0) obj;
@@ -101,10 +101,10 @@ public final class o3 implements RequestDelegate {
                 }
                 return;
             case 12:
-                AndroidUtilities.runOnUIThread(new ai.x9((Object) ((vf1) obj), (Object) tL_error, (Object) tLObject, this.f9551b, 27));
+                AndroidUtilities.runOnUIThread(new ai.x9((Object) ((vf1) obj), (Object) tL_error, (Object) tLObject, this.f9549b, 27));
                 return;
             default:
-                int[][] iArr = WallpapersListActivity.f35198k0;
+                int[][] iArr = WallpapersListActivity.f35200k0;
                 AndroidUtilities.runOnUIThread(new x70((WallpapersListActivity) obj, tLObject, z10, 14));
                 return;
         }

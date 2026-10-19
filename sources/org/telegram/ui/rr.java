@@ -9,16 +9,16 @@ import org.telegram.messenger.LanguageDetector;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class rr implements org.telegram.ui.Components.bw0, org.telegram.ui.Components.cw0, LanguageDetector.ExceptionCallback, org.telegram.ui.Components.kd0, org.telegram.ui.ActionBar.a2, org.telegram.ui.Components.md0 {
-    public final int f41268a;
+    public final int f41266a;
 
     public rr(int i10) {
-        this.f41268a = i10;
+        this.f41266a = i10;
     }
 
     @Override
     public void b(Object obj, float f7) {
         tr trVar = (tr) obj;
-        switch (this.f41268a) {
+        switch (this.f41266a) {
             case 1:
                 trVar.d = f7;
                 if (trVar.getParent() != null) {
@@ -39,7 +39,7 @@ public final class rr implements org.telegram.ui.Components.bw0, org.telegram.ui
     @Override
     public String e(int i10) {
         int i11;
-        switch (this.f41268a) {
+        switch (this.f41266a) {
             case 6:
                 return i2.e.j(i10, "");
             case 7:
@@ -166,7 +166,7 @@ public final class rr implements org.telegram.ui.Components.bw0, org.telegram.ui
 
     @Override
     public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f41268a) {
+        switch (this.f41266a) {
             case 9:
                 b2Var.dismiss();
                 return;
@@ -182,7 +182,7 @@ public final class rr implements org.telegram.ui.Components.bw0, org.telegram.ui
     @Override
     public float get(Object obj) {
         tr trVar = (tr) obj;
-        switch (this.f41268a) {
+        switch (this.f41266a) {
             case 0:
                 return trVar.d;
             default:
@@ -192,12 +192,12 @@ public final class rr implements org.telegram.ui.Components.bw0, org.telegram.ui
 
     @Override
     public void q(org.telegram.ui.Components.od0 od0Var, int i10) {
-        Pattern pattern = org.telegram.ui.Components.f5.f26101a;
+        Pattern pattern = org.telegram.ui.Components.f5.f26099a;
     }
 
     @Override
     public void run(Exception exc) {
-        switch (this.f41268a) {
+        switch (this.f41266a) {
             case 4:
                 FileLog.e(exc);
                 return;

@@ -1,33 +1,49 @@
 package org.telegram.messenger;
-public final class h8 implements Runnable {
-    public final int f18512a;
-    public final BaseController f18513b;
-    public final long f18514c;
-    public final long d;
-    public final int e;
-    public final int f18515f;
 
-    public h8(BaseController baseController, long j10, long j11, int i10, int i11, int i12) {
-        this.f18512a = i12;
-        this.f18513b = baseController;
-        this.f18514c = j10;
-        this.d = j11;
-        this.e = i10;
-        this.f18515f = i11;
+import java.util.ArrayList;
+import java.util.HashSet;
+import org.telegram.messenger.Timer;
+import org.telegram.tgnet.TLRPC;
+public final class h8 implements Runnable {
+    public final int f18504a = 0;
+    public final long f18505b;
+    public final ArrayList f18506c;
+    public final a0.h d;
+    public final Runnable e;
+    public final BaseController f18507f;
+    public final Object h;
+    public final Object f18508n;
+
+    public h8(MediaDataController mediaDataController, Timer.Task task, Timer timer, ArrayList arrayList, long j10, a0.h hVar, Runnable runnable) {
+        this.f18507f = mediaDataController;
+        this.h = task;
+        this.f18508n = timer;
+        this.f18506c = arrayList;
+        this.f18505b = j10;
+        this.d = hVar;
+        this.e = runnable;
     }
 
     @Override
     public final void run() {
-        switch (this.f18512a) {
+        switch (this.f18504a) {
             case 0:
-                ((MediaDataController) this.f18513b).lambda$getMediaCountDatabase$139(this.f18514c, this.d, this.e, this.f18515f);
-                return;
-            case 1:
-                ((MediaDataController) this.f18513b).lambda$putMediaCountDatabase$138(this.f18514c, this.d, this.e, this.f18515f);
+                ((MediaDataController) this.f18507f).lambda$loadReplyMessagesForMessages$171((Timer.Task) this.h, (Timer) this.f18508n, this.f18506c, this.f18505b, this.d, this.e);
                 return;
             default:
-                ((MessagesStorage) this.f18513b).lambda$updateRepliesMaxReadId$193(this.f18514c, this.d, this.e, this.f18515f);
+                Runnable runnable = this.e;
+                ((TopicsController) this.f18507f).lambda$reloadTopics$13((TLRPC.TL_messages_savedDialogs) this.h, this.f18505b, this.f18506c, this.d, (HashSet) this.f18508n, runnable);
                 return;
         }
+    }
+
+    public h8(TopicsController topicsController, TLRPC.TL_messages_savedDialogs tL_messages_savedDialogs, long j10, ArrayList arrayList, a0.h hVar, HashSet hashSet, Runnable runnable) {
+        this.f18507f = topicsController;
+        this.h = tL_messages_savedDialogs;
+        this.f18505b = j10;
+        this.f18506c = arrayList;
+        this.d = hVar;
+        this.f18508n = hashSet;
+        this.e = runnable;
     }
 }

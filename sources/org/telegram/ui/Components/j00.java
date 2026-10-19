@@ -4,10 +4,10 @@ import android.graphics.RectF;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class j00 implements xl0, yl0 {
-    public final s00 f27399a;
+    public final s00 f27397a;
 
     public j00(s00 s00Var) {
-        this.f27399a = s00Var;
+        this.f27397a = s00Var;
     }
 
     @Override
@@ -22,24 +22,24 @@ public final class j00 implements xl0, yl0 {
 
     @Override
     public void d(float f7, float f10, int i10, View view) {
-        s00 s00Var = this.f27399a;
+        s00 s00Var = this.f27397a;
         n00 n00Var = s00Var.J;
-        if (!((org.telegram.ui.bw) n00Var).f35748b.f36141j2) {
+        if (!((org.telegram.ui.bw) n00Var).f35741b.f36113j2) {
             q00 q00Var = (q00) view;
-            if (s00Var.f30090n) {
+            if (s00Var.f30087n) {
                 if (i10 != 0) {
                     int dp = AndroidUtilities.dp(6.0f);
-                    RectF rectF = q00Var.f29466f;
+                    RectF rectF = q00Var.f29464f;
                     float f11 = dp;
                     if (rectF.left - f11 < f7 && rectF.right + f11 > f7) {
                         org.telegram.ui.bw bwVar = (org.telegram.ui.bw) s00Var.J;
-                        bwVar.d(bwVar.f35748b.getMessagesController().getDialogFilters().get(q00Var.f29460b.f29128a));
+                        bwVar.d(bwVar.f35741b.getMessagesController().getDialogFilters().get(q00Var.f29458b.f29126a));
                     }
                 }
             } else if (i10 == s00Var.K && n00Var != null) {
-                ((org.telegram.ui.bw) n00Var).f35748b.v4(true, false);
+                ((org.telegram.ui.bw) n00Var).f35741b.v4(true, false);
             } else {
-                s00Var.f(q00Var.f29460b, i10);
+                s00Var.f(q00Var.f29458b, i10);
             }
         }
     }

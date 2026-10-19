@@ -9,24 +9,24 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class gq implements Utilities.Callback2 {
-    public final int f37410a;
-    public final boolean f37411b;
-    public final NotificationCenter.NotificationCenterDelegate f37412c;
+    public final int f37384a;
+    public final boolean f37385b;
+    public final NotificationCenter.NotificationCenterDelegate f37386c;
     public final Object d;
 
     public gq(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, Object obj, boolean z10, int i10) {
-        this.f37410a = i10;
-        this.f37412c = notificationCenterDelegate;
+        this.f37384a = i10;
+        this.f37386c = notificationCenterDelegate;
         this.d = obj;
-        this.f37411b = z10;
+        this.f37385b = z10;
     }
 
     @Override
     public final void run(Object obj, Object obj2) {
         String str;
-        switch (this.f37410a) {
+        switch (this.f37384a) {
             case 0:
-                hr hrVar = (hr) this.f37412c;
+                hr hrVar = (hr) this.f37386c;
                 org.telegram.ui.Cells.q8 q8Var = (org.telegram.ui.Cells.q8) this.d;
                 TLRPC.Updates updates = (TLRPC.Updates) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
@@ -36,21 +36,21 @@ public final class gq implements Utilities.Callback2 {
                 }
                 hrVar.getClass();
                 if (tL_error != null) {
-                    q8Var.setChecked(this.f37411b);
+                    q8Var.setChecked(this.f37385b);
                     org.telegram.ui.Components.xc.a0(hrVar).f0(tL_error, false);
                     return;
                 }
                 return;
             default:
-                zh.q0 q0Var = (zh.q0) this.f37412c;
+                zh.q0 q0Var = (zh.q0) this.f37386c;
                 TLRPC.TL_exportedNoPaidMessagesToken tL_exportedNoPaidMessagesToken = (TLRPC.TL_exportedNoPaidMessagesToken) obj;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
-                int i10 = q0Var.f52073a;
-                zh.c1 c1Var = q0Var.f52074b;
+                int i10 = q0Var.f52075a;
+                zh.c1 c1Var = q0Var.f52076b;
                 boolean z10 = false;
-                if (q0Var.f52077n == ((int[]) this.d)[0] && !q0Var.E) {
-                    q0Var.f52077n = 0;
-                    boolean z11 = this.f37411b;
+                if (q0Var.f52079n == ((int[]) this.d)[0] && !q0Var.E) {
+                    q0Var.f52079n = 0;
+                    boolean z11 = this.f37385b;
                     boolean z12 = true;
                     if (tL_exportedNoPaidMessagesToken == null) {
                         String str2 = null;
@@ -60,7 +60,7 @@ public final class gq implements Utilities.Callback2 {
                             str = null;
                         }
                         FileLog.e("QrShare: exportNoPaidMessagesToken " + str);
-                        TLRPC.TL_exportedNoPaidMessagesToken tL_exportedNoPaidMessagesToken2 = q0Var.f52076f;
+                        TLRPC.TL_exportedNoPaidMessagesToken tL_exportedNoPaidMessagesToken2 = q0Var.f52078f;
                         if (tL_exportedNoPaidMessagesToken2 != null) {
                             if (tL_exportedNoPaidMessagesToken2.expires == 0) {
                                 z12 = false;
@@ -76,7 +76,7 @@ public final class gq implements Utilities.Callback2 {
                         }
                         q0Var.d = 0;
                         MessagesController.getMainSettings(i10).edit().putBoolean("qrNoPaidPermanent", false).apply();
-                        if (c1Var.f51905v0) {
+                        if (c1Var.f51907v0) {
                             if (str != null) {
                                 str2 = LocaleController.getString(R.string.ErrorOccurred);
                             }
@@ -98,7 +98,7 @@ public final class gq implements Utilities.Callback2 {
                             if (tL_exportedNoPaidMessagesToken.expires == 0) {
                                 MessagesController.getMainSettings(i10).edit().putString("qrNoPaidToken", tL_exportedNoPaidMessagesToken.token).putString("qrNoPaidUrl", tL_exportedNoPaidMessagesToken.url).apply();
                             }
-                            q0Var.f52076f = tL_exportedNoPaidMessagesToken;
+                            q0Var.f52078f = tL_exportedNoPaidMessagesToken;
                             q0Var.h = SystemClock.elapsedRealtime();
                             c1Var.setFreeLink(q0Var.d(tL_exportedNoPaidMessagesToken));
                             return;

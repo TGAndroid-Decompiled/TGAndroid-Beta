@@ -30,18 +30,18 @@ public final class av0 extends org.telegram.ui.Cells.c6 {
         org.telegram.ui.Cells.b6 b6Var = this.d;
         b6Var.getText().replace(b6Var.getSelectionStart(), b6Var.getSelectionEnd(), (CharSequence) arrayList.remove(0));
         int i10 = 0;
-        while (!arrayList.isEmpty() && i10 < fv0Var.f37113n) {
+        while (!arrayList.isEmpty() && i10 < fv0Var.f37107n) {
             for (int length = fv0Var.v.length - 1; length > i10; length--) {
                 CharSequence[] charSequenceArr = fv0Var.v;
                 charSequenceArr[length] = charSequenceArr[length - 1];
             }
             fv0Var.v[i10] = (CharSequence) arrayList.remove(0);
-            fv0Var.f37129y++;
+            fv0Var.f37123y++;
             i10++;
         }
         fv0Var.r0();
-        fv0Var.f37107g0 = (fv0Var.f37114n0 + i10) - 1;
-        fv0Var.f37099b.l();
+        fv0Var.f37101g0 = (fv0Var.f37108n0 + i10) - 1;
+        fv0Var.f37093b.l();
         return true;
     }
 

@@ -20,69 +20,69 @@ public final class g61 extends pg.a {
     public Object G;
     public Object H;
     public boolean I;
-    public View f26493c;
+    public View f26491c;
     public int d;
     public boolean e;
-    public boolean f26494f;
-    public boolean f26495g;
+    public boolean f26492f;
+    public boolean f26493g;
     public boolean h;
-    public int f26496i;
-    public boolean f26497j;
-    public int f26498k;
-    public CharSequence f26499l;
-    public CharSequence f26500m;
-    public CharSequence f26501n;
-    public CharSequence f26502o;
-    public String[] f26503p;
-    public boolean f26504q;
-    public boolean f26505r;
-    public boolean f26506s;
-    public boolean f26507t;
-    public int f26508u;
+    public int f26494i;
+    public boolean f26495j;
+    public int f26496k;
+    public CharSequence f26497l;
+    public CharSequence f26498m;
+    public CharSequence f26499n;
+    public CharSequence f26500o;
+    public String[] f26501p;
+    public boolean f26502q;
+    public boolean f26503r;
+    public boolean f26504s;
+    public boolean f26505t;
+    public int f26506u;
     public int v;
-    public boolean f26509w;
-    public long f26510x;
-    public int f26511y;
-    public int f26512z;
+    public boolean f26507w;
+    public long f26508x;
+    public int f26509y;
+    public int f26510z;
 
     public g61(int i10) {
         super(i10, false);
-        this.f26495g = true;
-        this.f26508u = -1;
+        this.f26493g = true;
+        this.f26506u = -1;
         this.I = true;
     }
 
     public static g61 A(int i10, CharSequence charSequence) {
         g61 g61Var = new g61(7);
         g61Var.d = i10;
-        g61Var.f26499l = charSequence;
+        g61Var.f26497l = charSequence;
         return g61Var;
     }
 
     public static g61 B(CharSequence charSequence) {
         g61 g61Var = new g61(7);
-        g61Var.f26499l = charSequence;
+        g61Var.f26497l = charSequence;
         return g61Var;
     }
 
     public static g61 C(int i10) {
         g61 g61Var = new g61(28);
-        g61Var.f26512z = i10;
+        g61Var.f26510z = i10;
         return g61Var;
     }
 
     public static g61 D(int i10, int i11) {
         g61 g61Var = new g61(28);
         g61Var.d = i10;
-        g61Var.f26512z = i11;
+        g61Var.f26510z = i11;
         return g61Var;
     }
 
     public static g61 E(int i10, String str) {
         g61 g61Var = new g61(39);
         g61Var.d = i10;
-        g61Var.f26499l = str;
-        g61Var.f26512z = 1;
+        g61Var.f26497l = str;
+        g61Var.f26510z = 1;
         return g61Var;
     }
 
@@ -110,52 +110,52 @@ public final class g61 extends pg.a {
 
     public static g61 b(String str) {
         g61 g61Var = new g61(1);
-        g61Var.f26499l = str;
+        g61Var.f26497l = str;
         return g61Var;
     }
 
     public static g61 c(int i10, int i11, String str) {
         g61 g61Var = new g61(3);
         g61Var.d = i10;
-        g61Var.f26498k = i11;
-        g61Var.f26499l = str;
+        g61Var.f26496k = i11;
+        g61Var.f26497l = str;
         return g61Var;
     }
 
     public static g61 d(int i10, int i11, String str, String str2) {
         g61 g61Var = new g61(3);
         g61Var.d = i10;
-        g61Var.f26498k = i11;
-        g61Var.f26499l = str;
-        g61Var.f26501n = str2;
+        g61Var.f26496k = i11;
+        g61Var.f26497l = str;
+        g61Var.f26499n = str2;
         return g61Var;
     }
 
     public static g61 e(int i10, String str) {
         g61 g61Var = new g61(3);
         g61Var.d = i10;
-        g61Var.f26499l = str;
+        g61Var.f26497l = str;
         return g61Var;
     }
 
     public static g61 f(String str, CharSequence charSequence, int i10) {
         g61 g61Var = new g61(3);
         g61Var.d = i10;
-        g61Var.f26499l = str;
-        g61Var.f26501n = charSequence;
+        g61Var.f26497l = str;
+        g61Var.f26499n = charSequence;
         return g61Var;
     }
 
     public static g61 g(CharSequence charSequence) {
         g61 g61Var = new g61(7);
-        g61Var.f26499l = charSequence;
-        g61Var.f26504q = true;
+        g61Var.f26497l = charSequence;
+        g61Var.f26502q = true;
         return g61Var;
     }
 
     public static g61 h(int i10, int i11, org.telegram.ui.b91 b91Var) {
         g61 g61Var = new g61(i10 + 18);
-        g61Var.f26512z = i11;
+        g61Var.f26510z = i11;
         g61Var.G = b91Var;
         return g61Var;
     }
@@ -163,71 +163,71 @@ public final class g61 extends pg.a {
     public static g61 i(int i10, CharSequence charSequence) {
         g61 g61Var = new g61(4);
         g61Var.d = i10;
-        g61Var.f26499l = charSequence;
+        g61Var.f26497l = charSequence;
         return g61Var;
     }
 
     public static g61 j(int i10, View view) {
         g61 g61Var = new g61(-1);
         g61Var.d = i10;
-        g61Var.f26493c = view;
-        g61Var.f26512z = -1;
+        g61Var.f26491c = view;
+        g61Var.f26510z = -1;
         return g61Var;
     }
 
     public static g61 k(View view) {
         g61 g61Var = new g61(-1);
-        g61Var.f26493c = view;
-        g61Var.f26512z = -1;
+        g61Var.f26491c = view;
+        g61Var.f26510z = -1;
         return g61Var;
     }
 
     public static g61 l(View view) {
         g61 g61Var = new g61(-4);
-        g61Var.f26493c = view;
-        g61Var.f26512z = -1;
+        g61Var.f26491c = view;
+        g61Var.f26510z = -1;
         return g61Var;
     }
 
     public static g61 m(int i10, String str, String str2) {
         g61 g61Var = new g61(40);
         g61Var.d = i10;
-        g61Var.f26499l = str;
-        g61Var.f26502o = str2;
+        g61Var.f26497l = str;
+        g61Var.f26500o = str2;
         return g61Var;
     }
 
     public static g61 n(int i10) {
         g61 g61Var = new g61(34);
-        g61Var.f26512z = i10;
+        g61Var.f26510z = i10;
         return g61Var;
     }
 
     public static g61 o(int i10, int i11) {
         g61 g61Var = new g61(34);
         g61Var.d = i10;
-        g61Var.f26512z = i11;
+        g61Var.f26510z = i11;
         return g61Var;
     }
 
     public static g61 p(View view, int i10, boolean z10) {
         g61 g61Var = new g61(-3);
-        g61Var.f26493c = view;
-        g61Var.f26512z = i10;
-        g61Var.f26511y = z10 ? 1 : 0;
+        g61Var.f26491c = view;
+        g61Var.f26510z = i10;
+        g61Var.f26509y = z10 ? 1 : 0;
         return g61Var;
     }
 
     public static g61 q(String str) {
         g61 g61Var = new g61(31);
-        g61Var.f26499l = str;
+        g61Var.f26497l = str;
         return g61Var;
     }
 
     public static g61 r(String str, String str2, View.OnClickListener onClickListener) {
         g61 g61Var = new g61(31);
-        g61Var.f26499l = str;
-        g61Var.f26500m = str2;
+        g61Var.f26497l = str;
+        g61Var.f26498m = str2;
         g61Var.D = onClickListener;
         return g61Var;
     }
@@ -235,13 +235,13 @@ public final class g61 extends pg.a {
     public static g61 s(int i10, String str) {
         g61 g61Var = new g61(0);
         g61Var.d = i10;
-        g61Var.f26499l = str;
+        g61Var.f26497l = str;
         return g61Var;
     }
 
     public static g61 t(String str) {
         g61 g61Var = new g61(0);
-        g61Var.f26499l = str;
+        g61Var.f26497l = str;
         return g61Var;
     }
 
@@ -260,37 +260,37 @@ public final class g61 extends pg.a {
     public static g61 w(int i10, String str) {
         g61 g61Var = new g61(10);
         g61Var.d = i10;
-        g61Var.f26499l = str;
+        g61Var.f26497l = str;
         return g61Var;
     }
 
     public static g61 x(int i10, String str, String str2) {
         g61 g61Var = new g61(44);
         g61Var.d = i10;
-        g61Var.f26499l = str;
-        g61Var.f26501n = str2;
+        g61Var.f26497l = str;
+        g61Var.f26499n = str2;
         return g61Var;
     }
 
     public static g61 y(int i10, CharSequence charSequence) {
         g61 g61Var = new g61(35);
         g61Var.d = i10;
-        g61Var.f26499l = charSequence;
+        g61Var.f26497l = charSequence;
         return g61Var;
     }
 
     public static g61 z(String str, CharSequence charSequence, int i10) {
         g61 g61Var = new g61(41);
         g61Var.d = i10;
-        g61Var.f26499l = charSequence;
-        g61Var.f26502o = str;
+        g61Var.f26497l = charSequence;
+        g61Var.f26500o = str;
         return g61Var;
     }
 
     public final boolean G(Class cls) {
         HashMap hashMap;
         f61 f61Var;
-        if (this.f44286a >= 10000 && (hashMap = L) != null && (f61Var = (f61) hashMap.get(cls)) != null && f61Var.viewType == this.f44286a) {
+        if (this.f44288a >= 10000 && (hashMap = L) != null && (f61Var = (f61) hashMap.get(cls)) != null && f61Var.viewType == this.f44288a) {
             return true;
         }
         return false;
@@ -301,7 +301,7 @@ public final class g61 extends pg.a {
     }
 
     public final boolean I(g61 g61Var) {
-        if (this.d == g61Var.d && this.f26496i == g61Var.f26496i && this.f26510x == g61Var.f26510x && this.f26498k == g61Var.f26498k && this.f26497j == g61Var.f26497j && this.f26506s == g61Var.f26506s && this.f26505r == g61Var.f26505r && this.f26507t == g61Var.f26507t && this.f26504q == g61Var.f26504q && this.f26493c == g61Var.f26493c && TextUtils.equals(this.f26499l, g61Var.f26499l) && TextUtils.equals(this.f26500m, g61Var.f26500m) && TextUtils.equals(this.f26501n, g61Var.f26501n) && this.f26493c == g61Var.f26493c && this.f26512z == g61Var.f26512z && Math.abs(this.A - g61Var.A) < 0.01f && this.B == g61Var.B && Objects.equals(this.G, g61Var.G) && Objects.equals(this.H, g61Var.H)) {
+        if (this.d == g61Var.d && this.f26494i == g61Var.f26494i && this.f26508x == g61Var.f26508x && this.f26496k == g61Var.f26496k && this.f26495j == g61Var.f26495j && this.f26504s == g61Var.f26504s && this.f26503r == g61Var.f26503r && this.f26505t == g61Var.f26505t && this.f26502q == g61Var.f26502q && this.f26491c == g61Var.f26491c && TextUtils.equals(this.f26497l, g61Var.f26497l) && TextUtils.equals(this.f26498m, g61Var.f26498m) && TextUtils.equals(this.f26499n, g61Var.f26499n) && this.f26491c == g61Var.f26491c && this.f26510z == g61Var.f26510z && Math.abs(this.A - g61Var.A) < 0.01f && this.B == g61Var.B && Objects.equals(this.G, g61Var.G) && Objects.equals(this.H, g61Var.H)) {
             return true;
         }
         return false;
@@ -309,8 +309,8 @@ public final class g61 extends pg.a {
 
     public final void K(boolean z10) {
         this.e = z10;
-        if (this.f44286a == 11) {
-            this.f44286a = 12;
+        if (this.f44288a == 11) {
+            this.f44288a = 12;
         }
     }
 
@@ -320,15 +320,15 @@ public final class g61 extends pg.a {
         if (this != aVar) {
             if (g61.class == aVar.getClass()) {
                 g61 g61Var = (g61) aVar;
-                int i10 = this.f44286a;
-                if (i10 == g61Var.f44286a) {
+                int i10 = this.f44288a;
+                if (i10 == g61Var.f44288a) {
                     if (i10 == 31) {
-                        if (TextUtils.equals(this.f26499l, g61Var.f26499l) && TextUtils.equals(this.f26500m, g61Var.f26500m)) {
+                        if (TextUtils.equals(this.f26497l, g61Var.f26497l) && TextUtils.equals(this.f26498m, g61Var.f26498m)) {
                             return true;
                         }
                         return false;
                     } else if (i10 == 28) {
-                        if (this.f26512z == g61Var.f26512z) {
+                        if (this.f26510z == g61Var.f26510z) {
                             return true;
                         }
                         return false;
@@ -337,7 +337,7 @@ public final class g61 extends pg.a {
                             return F.contentsEquals(this, g61Var);
                         }
                         return H(g61Var);
-                    } else if (this.d == g61Var.d && TextUtils.equals(this.f26499l, g61Var.f26499l) && this.e == g61Var.e) {
+                    } else if (this.d == g61Var.d && TextUtils.equals(this.f26497l, g61Var.f26497l) && this.e == g61Var.e) {
                         return true;
                     } else {
                         return false;
@@ -355,8 +355,8 @@ public final class g61 extends pg.a {
         if (this != obj) {
             if (obj != null && g61.class == obj.getClass()) {
                 g61 g61Var = (g61) obj;
-                int i10 = this.f44286a;
-                if (i10 == g61Var.f44286a) {
+                int i10 = this.f44288a;
+                if (i10 == g61Var.f44288a) {
                     if (i10 != 36 && i10 != 35) {
                         if (i10 == 28) {
                             if (this.d == g61Var.d) {
@@ -364,7 +364,7 @@ public final class g61 extends pg.a {
                             }
                             return false;
                         } else if (i10 == 31) {
-                            return TextUtils.equals(this.f26499l, g61Var.f26499l);
+                            return TextUtils.equals(this.f26497l, g61Var.f26497l);
                         } else {
                             if (i10 >= 10000 && (F = F(i10)) != null) {
                                 return F.equals(this, g61Var);

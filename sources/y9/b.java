@@ -1,21 +1,21 @@
 package y9;
 public final class b extends l {
-    public final String f50082b;
-    public final String f50083c;
+    public final String f50084b;
+    public final String f50085c;
     public final String d;
     public final String e;
-    public final long f50084f;
+    public final long f50086f;
 
     public b(String str, String str2, String str3, String str4, long j10) {
         if (str != null) {
-            this.f50082b = str;
+            this.f50084b = str;
             if (str2 != null) {
-                this.f50083c = str2;
+                this.f50085c = str2;
                 if (str3 != null) {
                     this.d = str3;
                     if (str4 != null) {
                         this.e = str4;
-                        this.f50084f = j10;
+                        this.f50086f = j10;
                         return;
                     }
                     throw new NullPointerException("Null variantId");
@@ -33,7 +33,7 @@ public final class b extends l {
         }
         if (obj instanceof l) {
             b bVar = (b) ((l) obj);
-            if (this.f50082b.equals(bVar.f50082b) && this.f50083c.equals(bVar.f50083c) && this.d.equals(bVar.d) && this.e.equals(bVar.e) && this.f50084f == bVar.f50084f) {
+            if (this.f50084b.equals(bVar.f50084b) && this.f50085c.equals(bVar.f50085c) && this.d.equals(bVar.d) && this.e.equals(bVar.e) && this.f50086f == bVar.f50086f) {
                 return true;
             }
         }
@@ -41,20 +41,20 @@ public final class b extends l {
     }
 
     public final int hashCode() {
-        long j10 = this.f50084f;
-        return ((((((((this.f50082b.hashCode() ^ 1000003) * 1000003) ^ this.f50083c.hashCode()) * 1000003) ^ this.d.hashCode()) * 1000003) ^ this.e.hashCode()) * 1000003) ^ ((int) (j10 ^ (j10 >>> 32)));
+        long j10 = this.f50086f;
+        return ((((((((this.f50084b.hashCode() ^ 1000003) * 1000003) ^ this.f50085c.hashCode()) * 1000003) ^ this.d.hashCode()) * 1000003) ^ this.e.hashCode()) * 1000003) ^ ((int) (j10 ^ (j10 >>> 32)));
     }
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("RolloutAssignment{rolloutId=");
-        sb2.append(this.f50082b);
+        sb2.append(this.f50084b);
         sb2.append(", parameterKey=");
-        sb2.append(this.f50083c);
+        sb2.append(this.f50085c);
         sb2.append(", parameterValue=");
         sb2.append(this.d);
         sb2.append(", variantId=");
         sb2.append(this.e);
         sb2.append(", templateVersion=");
-        return a1.g.r(sb2, this.f50084f, "}");
+        return a1.g.r(sb2, this.f50086f, "}");
     }
 }

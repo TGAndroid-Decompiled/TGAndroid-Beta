@@ -5,16 +5,16 @@ import android.hardware.fingerprint.FingerprintManager;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class v0 extends FingerprintManager.AuthenticationCallback {
-    public final w0 f35001a;
+    public final w0 f35003a;
 
     public v0(w0 w0Var) {
-        this.f35001a = w0Var;
+        this.f35003a = w0Var;
     }
 
     @Override
     public final void onAuthenticationError(int i10, CharSequence charSequence) {
-        w0 w0Var = this.f35001a;
-        if (w0Var.f() && !w0Var.f35045f) {
+        w0 w0Var = this.f35003a;
+        if (w0Var.f() && !w0Var.f35047f) {
             if (i10 == 5) {
                 w0Var.c("AUTH_CANCELED");
             } else {
@@ -26,8 +26,8 @@ public final class v0 extends FingerprintManager.AuthenticationCallback {
     @Override
     public final void onAuthenticationFailed() {
         AlertDialog alertDialog;
-        w0 w0Var = this.f35001a;
-        if (w0Var.f() && (alertDialog = w0Var.f35047i) != null) {
+        w0 w0Var = this.f35003a;
+        if (w0Var.f() && (alertDialog = w0Var.f35049i) != null) {
             alertDialog.setMessage(LocaleController.getString(R.string.WalletFingerprintRetry));
         }
     }
@@ -35,16 +35,16 @@ public final class v0 extends FingerprintManager.AuthenticationCallback {
     @Override
     public final void onAuthenticationHelp(int i10, CharSequence charSequence) {
         AlertDialog alertDialog;
-        w0 w0Var = this.f35001a;
-        if (w0Var.f() && (alertDialog = w0Var.f35047i) != null) {
+        w0 w0Var = this.f35003a;
+        if (w0Var.f() && (alertDialog = w0Var.f35049i) != null) {
             alertDialog.setMessage(charSequence);
         }
     }
 
     @Override
     public final void onAuthenticationSucceeded(FingerprintManager.AuthenticationResult authenticationResult) {
-        w0 w0Var = this.f35001a;
-        if (!w0Var.f35045f) {
+        w0 w0Var = this.f35003a;
+        if (!w0Var.f35047f) {
             w0Var.c(null);
         }
     }

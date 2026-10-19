@@ -2,10 +2,10 @@ package kd;
 
 import td.p;
 public abstract class a implements f {
-    public final g f15027a;
+    public final g f15025a;
 
     public a(g gVar) {
-        this.f15027a = gVar;
+        this.f15025a = gVar;
     }
 
     @Override
@@ -20,7 +20,7 @@ public abstract class a implements f {
 
     @Override
     public final g getKey() {
-        return this.f15027a;
+        return this.f15025a;
     }
 
     @Override

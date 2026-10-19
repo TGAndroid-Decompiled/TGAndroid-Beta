@@ -1,54 +1,79 @@
 package ai;
 
 import android.content.Context;
-import android.text.TextPaint;
-import android.text.style.ClickableSpan;
-import android.view.View;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.tl.TL_stars;
-public final class d5 extends ClickableSpan {
-    public final boolean[] f1134a;
-    public final int f1135b;
-    public final Context f1136c;
-    public final org.telegram.ui.ActionBar.d6 d;
-    public final long e;
-    public final String f1137f;
-    public final String h;
+import java.util.ArrayList;
+import java.util.regex.Pattern;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.UserObject;
+import org.telegram.messenger.Utilities;
+import org.telegram.messenger.kk;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.LaunchActivity;
+public final class d5 implements Utilities.Callback {
+    public final int f1136a;
+    public final int f1137b;
+    public final String f1138c;
+    public final Object d;
+    public final Object e;
+    public final Object f1139f;
 
-    public d5(boolean[] zArr, int i10, Context context, org.telegram.ui.ActionBar.d6 d6Var, long j10, String str, String str2) {
-        this.f1134a = zArr;
-        this.f1135b = i10;
-        this.f1136c = context;
-        this.d = d6Var;
-        this.e = j10;
-        this.f1137f = str;
-        this.h = str2;
+    public d5(Object obj, Object obj2, Object obj3, int i10, String str, int i11) {
+        this.f1136a = i11;
+        this.d = obj;
+        this.e = obj2;
+        this.f1139f = obj3;
+        this.f1137b = i10;
+        this.f1138c = str;
     }
 
     @Override
-    public final void onClick(View view) {
-        boolean[] zArr = this.f1134a;
-        if (zArr[0]) {
-            return;
+    public final void run(Object obj) {
+        TLRPC.User user;
+        int i10 = this.f1136a;
+        Object obj2 = this.f1139f;
+        Object obj3 = this.e;
+        Object obj4 = this.d;
+        switch (i10) {
+            case 0:
+                Context context = (Context) obj3;
+                org.telegram.ui.ActionBar.d6 d6Var = (org.telegram.ui.ActionBar.d6) obj2;
+                ArrayList arrayList = (ArrayList) obj;
+                ((boolean[]) obj4)[0] = false;
+                if (arrayList != null) {
+                    new a2(context, d6Var, this.f1137b, this.f1138c, arrayList, false).show();
+                    return;
+                }
+                return;
+            default:
+                LaunchActivity launchActivity = (LaunchActivity) obj4;
+                MessagesController messagesController = (MessagesController) obj3;
+                pf.c cVar = (pf.c) obj2;
+                Long l4 = (Long) obj;
+                Pattern pattern = LaunchActivity.C1;
+                if (l4 != null && l4.longValue() > 0 && l4.longValue() != Long.MAX_VALUE) {
+                    user = messagesController.getUser(l4);
+                } else {
+                    user = null;
+                }
+                int i11 = this.f1137b;
+                if (user != null && !UserObject.isUserSelf(user)) {
+                    launchActivity.Z(i11, user, this.f1138c, cVar);
+                    return;
+                }
+                if (cVar != null) {
+                    cVar.b();
+                }
+                if (user != null) {
+                    launchActivity.m0(i11, user.f20420id, null);
+                    return;
+                }
+                org.telegram.ui.ActionBar.n2 R = LaunchActivity.R();
+                if (R != null) {
+                    kk.q(R.string.NoUsernameFound, org.telegram.ui.Components.xc.a0(R), null);
+                    return;
+                }
+                return;
         }
-        zArr[0] = true;
-        int i10 = this.f1135b;
-        u0 u0Var = new u0(zArr, i10, this.f1136c, this.d, 1);
-        long j10 = this.e;
-        int i11 = (j10 > 0L ? 1 : (j10 == 0L ? 0 : -1));
-        String str = this.f1137f;
-        if (i11 != 0) {
-            u0Var.run(Long.valueOf(j10), str);
-            return;
-        }
-        TL_stars.getUniqueStarGift getuniquestargift = new TL_stars.getUniqueStarGift();
-        getuniquestargift.slug = this.h.concat("-1");
-        ConnectionsManager.getInstance(i10).sendRequest(getuniquestargift, new g(4, u0Var, str));
-    }
-
-    @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        textPaint.setColor(textPaint.linkColor);
-        textPaint.setUnderlineText(false);
     }
 }

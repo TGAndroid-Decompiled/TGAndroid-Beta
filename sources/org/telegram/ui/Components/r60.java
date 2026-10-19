@@ -7,9 +7,9 @@ import android.view.View;
 import android.widget.FrameLayout;
 public abstract class r60 extends FrameLayout {
     public static final int e = 0;
-    public n60 f29863a;
-    public q60 f29864b;
-    public p60 f29865c;
+    public n60 f29861a;
+    public q60 f29862b;
+    public p60 f29863c;
     public boolean d;
 
     public abstract void a(boolean z10);
@@ -43,7 +43,7 @@ public abstract class r60 extends FrameLayout {
     public abstract void i();
 
     public final void setAnimationCallback(n60 n60Var) {
-        this.f29863a = n60Var;
+        this.f29861a = n60Var;
     }
 
     public abstract void setInternalPadding(int i10);
@@ -51,7 +51,7 @@ public abstract class r60 extends FrameLayout {
     public abstract void setIsMessageTransition(boolean z10);
 
     public final void setRecordingUiFrameCallback(p60 p60Var) {
-        this.f29865c = p60Var;
+        this.f29863c = p60Var;
         if (p60Var != null) {
             boolean z10 = this.d;
             org.telegram.ui.fk fkVar = ((org.telegram.ui.jj) p60Var).f38264a.Y;
@@ -62,6 +62,6 @@ public abstract class r60 extends FrameLayout {
     }
 
     public final void setTrimCallback(q60 q60Var) {
-        this.f29864b = q60Var;
+        this.f29862b = q60Var;
     }
 }

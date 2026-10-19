@@ -5,13 +5,13 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.concurrent.atomic.AtomicReference;
 public final class f implements com.google.android.gms.common.api.internal.c {
-    public static final AtomicReference f15964a = new AtomicReference();
+    public static final AtomicReference f15962a = new AtomicReference();
 
     @Override
     public final void a(boolean z10) {
-        synchronized (h.f15967k) {
+        synchronized (h.f15965k) {
             try {
-                ArrayList arrayList = new ArrayList(h.f15968l.values());
+                ArrayList arrayList = new ArrayList(h.f15966l.values());
                 int size = arrayList.size();
                 int i10 = 0;
                 while (i10 < size) {
@@ -20,9 +20,9 @@ public final class f implements com.google.android.gms.common.api.internal.c {
                     h hVar = (h) obj;
                     if (hVar.e.get()) {
                         Log.d("FirebaseApp", "Notifying background state change listeners.");
-                        Iterator it = hVar.f15974i.iterator();
+                        Iterator it = hVar.f15972i.iterator();
                         while (it.hasNext()) {
-                            h hVar2 = ((e) it.next()).f15963a;
+                            h hVar2 = ((e) it.next()).f15961a;
                             if (!z10) {
                                 ((oa.c) hVar2.h.get()).c();
                             }

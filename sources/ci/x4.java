@@ -25,20 +25,20 @@ public abstract class x4 extends View {
     public int K;
     public boolean L;
     public ValueAnimator M;
-    public int f6158a;
-    public int f6159b;
-    public int f6160c;
+    public int f6156a;
+    public int f6157b;
+    public int f6158c;
     public Scroller d;
     public float e;
-    public float f6161f;
+    public float f6159f;
     public float h;
-    public int f6162n;
-    public int f6163r;
-    public int f6164s;
+    public int f6160n;
+    public int f6161r;
+    public int f6162s;
     public boolean v;
-    public int f6165w;
-    public float f6166x;
-    public float f6167y;
+    public int f6163w;
+    public float f6164x;
+    public float f6165y;
 
     public static void a(x4 x4Var, SpannableStringBuilder spannableStringBuilder, TL_stories.StoryViews storyViews, boolean z10) {
         int i10;
@@ -83,13 +83,13 @@ public abstract class x4 extends View {
                 this.M = null;
             }
             if (!z10) {
-                int i11 = this.f6164s;
-                this.e = (i11 / 2.0f) + ((-getMeasuredWidth()) / 2.0f) + ((i11 + this.f6162n) * i10);
+                int i11 = this.f6162s;
+                this.e = (i11 / 2.0f) + ((-getMeasuredWidth()) / 2.0f) + ((i11 + this.f6160n) * i10);
                 invalidate();
                 return;
             }
-            int i12 = this.f6164s;
-            float f7 = (i12 / 2.0f) + ((-getMeasuredWidth()) / 2.0f) + ((i12 + this.f6162n) * i10);
+            int i12 = this.f6162s;
+            float f7 = (i12 / 2.0f) + ((-getMeasuredWidth()) / 2.0f) + ((i12 + this.f6160n) * i10);
             float f10 = this.e;
             if (f7 == f10) {
                 return;
@@ -98,7 +98,7 @@ public abstract class x4 extends View {
             this.M = ofFloat;
             ofFloat.addUpdateListener(new v4(this, 0));
             this.M.addListener(new ah.b(this, 12));
-            this.M.setInterpolator(bs.f25014f);
+            this.M.setInterpolator(bs.f25012f);
             this.M.setDuration(200L);
             this.M.start();
         }
@@ -106,16 +106,16 @@ public abstract class x4 extends View {
 
     public final void d() {
         int measuredWidth = getMeasuredWidth();
-        int i10 = this.f6164s;
-        this.f6161f = (-(measuredWidth - i10)) / 2.0f;
-        int i11 = i10 + this.f6162n;
-        this.h = ((getMeasuredWidth() - this.f6164s) / 2.0f) + (((this.E.size() * i11) - this.f6162n) - getMeasuredWidth());
+        int i10 = this.f6162s;
+        this.f6159f = (-(measuredWidth - i10)) / 2.0f;
+        int i11 = i10 + this.f6160n;
+        this.h = ((getMeasuredWidth() - this.f6162s) / 2.0f) + (((this.E.size() * i11) - this.f6160n) - getMeasuredWidth());
     }
 
     public w4 getCenteredImageReciever() {
         ArrayList arrayList = this.G;
         for (int i10 = 0; i10 < arrayList.size(); i10++) {
-            if (((w4) arrayList.get(i10)).f6114b == this.K) {
+            if (((w4) arrayList.get(i10)).f6112b == this.K) {
                 return (w4) arrayList.get(i10);
             }
         }
@@ -142,7 +142,7 @@ public abstract class x4 extends View {
         super.onDetachedFromWindow();
         this.v = false;
         for (int i10 = 0; i10 < arrayList.size(); i10++) {
-            ((w4) arrayList.get(i10)).f6113a.onDetachedFromWindow();
+            ((w4) arrayList.get(i10)).f6111a.onDetachedFromWindow();
         }
         arrayList.clear();
     }
@@ -183,12 +183,12 @@ public abstract class x4 extends View {
         int i14 = -1;
         int i15 = 0;
         while (i15 < this.E.size()) {
-            int i16 = this.f6164s;
-            float f16 = (-this.e) + ((this.f6162n + i16) * i15);
+            int i16 = this.f6162s;
+            float f16 = (-this.e) + ((this.f6160n + i16) * i15);
             float f17 = ((i16 / f14) + f16) - measuredWidth;
             float abs = Math.abs(f17);
-            if (abs < this.f6164s) {
-                f10 = 1.0f - (Math.abs(f17) / this.f6164s);
+            if (abs < this.f6162s) {
+                f10 = 1.0f - (Math.abs(f17) / this.f6162s);
                 f7 = (0.2f * f10) + 1.0f;
             } else {
                 f7 = 1.0f;
@@ -199,11 +199,11 @@ public abstract class x4 extends View {
                 f15 = abs;
             }
             if (f17 < 0.0f) {
-                y3 = com.google.android.gms.internal.play_billing.k3.D(1.0f, f10, this.f6164s * 0.1f, f16);
+                y3 = com.google.android.gms.internal.play_billing.k3.D(1.0f, f10, this.f6162s * 0.1f, f16);
             } else {
-                y3 = com.google.android.gms.internal.play_billing.k3.y(1.0f, f10, this.f6164s * 0.1f, f16);
+                y3 = com.google.android.gms.internal.play_billing.k3.y(1.0f, f10, this.f6162s * 0.1f, f16);
             }
-            if (y3 > getMeasuredWidth() || this.f6164s + y3 < 0.0f) {
+            if (y3 > getMeasuredWidth() || this.f6162s + y3 < 0.0f) {
                 arrayList = arrayList4;
                 f11 = measuredWidth;
                 f12 = f15;
@@ -213,7 +213,7 @@ public abstract class x4 extends View {
                 int i17 = 0;
                 while (true) {
                     if (i17 < arrayList4.size()) {
-                        if (((w4) arrayList4.get(i17)).f6114b == i15) {
+                        if (((w4) arrayList4.get(i17)).f6112b == i15) {
                             w4Var = (w4) arrayList4.remove(i17);
                             break;
                         }
@@ -221,46 +221,46 @@ public abstract class x4 extends View {
                     } else {
                         w4Var = new w4(this);
                         w4Var.a(i15);
-                        w4Var.f6114b = i15;
+                        w4Var.f6112b = i15;
                         break;
                     }
                 }
-                float f18 = this.f6164s;
+                float f18 = this.f6162s;
                 float f19 = f18 * f7;
-                float f20 = this.f6163r;
+                float f20 = this.f6161r;
                 float f21 = f7 * f20;
                 f11 = measuredWidth;
                 float x10 = org.telegram.messenger.g0.x(f19, f18, 2.0f, y3);
-                float x11 = org.telegram.messenger.g0.x(f21, f20, 2.0f, this.f6166x);
-                if (this.f6167y == 0.0f || i15 == (i12 = this.K)) {
+                float x11 = org.telegram.messenger.g0.x(f21, f20, 2.0f, this.f6164x);
+                if (this.f6165y == 0.0f || i15 == (i12 = this.K)) {
                     arrayList2 = arrayList3;
                     arrayList = arrayList4;
                     f12 = f15;
                     i11 = i14;
-                    w4Var.f6113a.setImageCoords(x10, x11, f19, f21);
+                    w4Var.f6111a.setImageCoords(x10, x11, f19, f21);
                 } else {
                     f12 = f15;
                     i11 = i14;
                     arrayList = arrayList4;
                     arrayList2 = arrayList3;
-                    w4Var.f6113a.setImageCoords(AndroidUtilities.lerp(getMeasuredWidth() * (i15 - i12), x10, this.f6167y), AndroidUtilities.lerp(this.f6158a, x11, this.f6167y), AndroidUtilities.lerp(this.f6159b, f19, this.f6167y), AndroidUtilities.lerp(this.f6160c, f21, this.f6167y));
+                    w4Var.f6111a.setImageCoords(AndroidUtilities.lerp(getMeasuredWidth() * (i15 - i12), x10, this.f6165y), AndroidUtilities.lerp(this.f6156a, x11, this.f6165y), AndroidUtilities.lerp(this.f6157b, f19, this.f6165y), AndroidUtilities.lerp(this.f6158c, f21, this.f6165y));
                 }
-                if (this.f6167y != 1.0f && i15 == this.K) {
+                if (this.f6165y != 1.0f && i15 == this.K) {
                     arrayList3 = arrayList2;
                     f13 = 2.0f;
                 } else {
-                    ImageReceiver imageReceiver = w4Var.f6113a;
+                    ImageReceiver imageReceiver = w4Var.f6111a;
                     imageReceiver.draw(canvas);
-                    if (w4Var.f6115c != null) {
+                    if (w4Var.f6113c != null) {
                         int A = (int) com.google.android.gms.internal.play_billing.k3.A(f10, 0.3f, 0.7f, 255.0f);
                         gradientDrawable.setAlpha(A);
                         gradientDrawable.setBounds((int) imageReceiver.getImageX(), (int) (imageReceiver.getImageY2() - AndroidUtilities.dp(24.0f)), (int) imageReceiver.getImageX2(), ((int) imageReceiver.getImageY2()) + 2);
                         gradientDrawable.draw(canvas);
                         canvas.save();
                         f13 = 2.0f;
-                        canvas.translate(imageReceiver.getCenterX() - (this.J / 2.0f), (imageReceiver.getImageY2() - AndroidUtilities.dp(8.0f)) - w4Var.f6115c.getHeight());
+                        canvas.translate(imageReceiver.getCenterX() - (this.J / 2.0f), (imageReceiver.getImageY2() - AndroidUtilities.dp(8.0f)) - w4Var.f6113c.getHeight());
                         w4Var.d.setAlpha(A);
-                        w4Var.f6115c.draw(canvas);
+                        w4Var.f6113c.draw(canvas);
                         canvas.restore();
                     } else {
                         f13 = 2.0f;
@@ -283,7 +283,7 @@ public abstract class x4 extends View {
             b(i14);
         }
         for (int i18 = 0; i18 < arrayList5.size(); i18++) {
-            ((w4) arrayList5.get(i18)).f6113a.onDetachedFromWindow();
+            ((w4) arrayList5.get(i18)).f6111a.onDetachedFromWindow();
         }
         arrayList5.clear();
     }
@@ -292,23 +292,23 @@ public abstract class x4 extends View {
     public final void onMeasure(int i10, int i11) {
         ArrayList arrayList = this.G;
         super.onMeasure(i10, i11);
-        this.f6162n = AndroidUtilities.dp(8.0f);
+        this.f6160n = AndroidUtilities.dp(8.0f);
         int dp = (int) (AndroidUtilities.dp(180.0f) / 1.2f);
-        this.f6163r = dp;
+        this.f6161r = dp;
         int i12 = (int) ((dp / 16.0f) * 9.0f);
-        this.f6164s = i12;
+        this.f6162s = i12;
         float dp2 = i12 - AndroidUtilities.dp(8.0f);
-        this.f6166x = ((AndroidUtilities.dp(180.0f) - this.f6163r) / 2.0f) + AndroidUtilities.dp(20.0f);
+        this.f6164x = ((AndroidUtilities.dp(180.0f) - this.f6161r) / 2.0f) + AndroidUtilities.dp(20.0f);
         d();
-        if (this.f6165w >= 0 && getMeasuredWidth() > 0) {
+        if (this.f6163w >= 0 && getMeasuredWidth() > 0) {
             this.K = -1;
-            c(this.f6165w, false, false);
-            this.f6165w = -1;
+            c(this.f6163w, false, false);
+            this.f6163w = -1;
         }
         if (this.J != dp2) {
             this.J = dp2;
             for (int i13 = 0; i13 < arrayList.size(); i13++) {
-                ((w4) arrayList.get(i13)).a(((w4) arrayList.get(i13)).f6114b);
+                ((w4) arrayList.get(i13)).a(((w4) arrayList.get(i13)).f6112b);
             }
         }
     }
@@ -324,10 +324,10 @@ public abstract class x4 extends View {
     }
 
     public void setProgressToOpen(float f7) {
-        if (this.f6167y == f7) {
+        if (this.f6165y == f7) {
             return;
         }
-        this.f6167y = f7;
+        this.f6165y = f7;
         invalidate();
     }
 }

@@ -2,12 +2,12 @@ package ci;
 
 import org.telegram.tgnet.RequestDelegate;
 public final class z0 implements RequestDelegate {
-    public final int f6242a;
-    public final h1 f6243b;
+    public final int f6240a;
+    public final h1 f6241b;
 
     public z0(h1 h1Var, int i10) {
-        this.f6242a = i10;
-        this.f6243b = h1Var;
+        this.f6240a = i10;
+        this.f6241b = h1Var;
     }
 
     @Override

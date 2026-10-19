@@ -7,17 +7,17 @@ import java.util.ArrayList;
 import sg.y;
 import t7.u;
 public final class a implements v9.a {
-    public final f f46907a;
+    public final f f46909a;
 
     public a(f fVar) {
-        this.f46907a = fVar;
+        this.f46909a = fVar;
     }
 
     public void a(y yVar) {
-        f fVar = this.f46907a;
+        f fVar = this.f46909a;
         synchronized (fVar) {
-            ((ArrayList) fVar.f3095b).add(yVar);
-            ((u) fVar.f3096c).getClass();
+            ((ArrayList) fVar.f3093b).add(yVar);
+            ((u) fVar.f3094c).getClass();
             if (Log.isLoggable("FirebaseCrashlytics", 3)) {
                 Log.d("FirebaseCrashlytics", "Could not register handler for breadcrumbs events.", null);
             }
@@ -26,6 +26,6 @@ public final class a implements v9.a {
 
     @Override
     public void o(Bundle bundle) {
-        ((rb.b) this.f46907a.f3094a).o(bundle);
+        ((rb.b) this.f46909a.f3092a).o(bundle);
     }
 }

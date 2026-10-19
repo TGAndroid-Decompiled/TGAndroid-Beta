@@ -8,15 +8,15 @@ import java.util.Iterator;
 import java.util.concurrent.CopyOnWriteArraySet;
 import v7.u6;
 public final class r {
-    public final Thread f8274a;
-    public final i0 f8275b;
-    public final p f8276c;
+    public final Thread f8272a;
+    public final i0 f8273b;
+    public final p f8274c;
     public final CopyOnWriteArraySet d;
     public final ArrayDeque e;
-    public final ArrayDeque f8277f;
-    public final Object f8278g;
+    public final ArrayDeque f8275f;
+    public final Object f8276g;
     public boolean h;
-    public final boolean f8279i;
+    public final boolean f8277i;
 
     public r(Thread thread) {
         this(new CopyOnWriteArraySet(), null, thread, null, null, true);
@@ -24,7 +24,7 @@ public final class r {
 
     public final void a(Object obj) {
         obj.getClass();
-        synchronized (this.f8278g) {
+        synchronized (this.f8276g) {
             try {
                 if (this.h) {
                     return;
@@ -38,23 +38,23 @@ public final class r {
 
     public final void b() {
         boolean z10;
-        if (this.f8279i) {
-            if (Thread.currentThread() == this.f8274a) {
+        if (this.f8277i) {
+            if (Thread.currentThread() == this.f8272a) {
                 z10 = true;
             } else {
                 z10 = false;
             }
             u6.p(z10);
         }
-        ArrayDeque arrayDeque = this.f8277f;
+        ArrayDeque arrayDeque = this.f8275f;
         if (!arrayDeque.isEmpty()) {
-            if (this.f8276c != null) {
-                i0 i0Var = this.f8275b;
+            if (this.f8274c != null) {
+                i0 i0Var = this.f8273b;
                 i0Var.getClass();
-                Handler handler = i0Var.f8239a;
+                Handler handler = i0Var.f8237a;
                 if (!handler.hasMessages(1)) {
                     h0 a2 = i0Var.a(1);
-                    Message message = a2.f8235a;
+                    Message message = a2.f8233a;
                     message.getClass();
                     handler.sendMessageAtFrontOfQueue(message);
                     a2.a();
@@ -75,38 +75,38 @@ public final class r {
 
     public final void c(int i10, o oVar) {
         boolean z10;
-        if (this.f8279i) {
-            if (Thread.currentThread() == this.f8274a) {
+        if (this.f8277i) {
+            if (Thread.currentThread() == this.f8272a) {
                 z10 = true;
             } else {
                 z10 = false;
             }
             u6.p(z10);
         }
-        this.f8277f.add(new ah.o(new CopyOnWriteArraySet(this.d), i10, oVar, 8));
+        this.f8275f.add(new ah.o(new CopyOnWriteArraySet(this.d), i10, oVar, 8));
     }
 
     public final void d() {
         boolean z10;
-        if (this.f8279i) {
-            if (Thread.currentThread() == this.f8274a) {
+        if (this.f8277i) {
+            if (Thread.currentThread() == this.f8272a) {
                 z10 = true;
             } else {
                 z10 = false;
             }
             u6.p(z10);
         }
-        synchronized (this.f8278g) {
+        synchronized (this.f8276g) {
             this.h = true;
         }
         Iterator it = this.d.iterator();
         while (it.hasNext()) {
             q qVar = (q) it.next();
-            p pVar = this.f8276c;
+            p pVar = this.f8274c;
             qVar.d = true;
-            if (pVar != null && qVar.f8273c) {
-                qVar.f8273c = false;
-                pVar.c(qVar.f8271a, qVar.f8272b.d());
+            if (pVar != null && qVar.f8271c) {
+                qVar.f8271c = false;
+                pVar.c(qVar.f8269a, qVar.f8270b.d());
             }
         }
         this.d.clear();
@@ -118,17 +118,17 @@ public final class r {
     }
 
     public r(CopyOnWriteArraySet copyOnWriteArraySet, Looper looper, Thread thread, g0 g0Var, p pVar, boolean z10) {
-        this.f8274a = thread;
+        this.f8272a = thread;
         this.d = copyOnWriteArraySet;
-        this.f8276c = pVar;
-        this.f8278g = new Object();
+        this.f8274c = pVar;
+        this.f8276g = new Object();
         this.e = new ArrayDeque();
-        this.f8277f = new ArrayDeque();
+        this.f8275f = new ArrayDeque();
         if (looper != null && g0Var != null && pVar != null) {
-            this.f8275b = g0Var.a(looper, new n(this, 0));
+            this.f8273b = g0Var.a(looper, new n(this, 0));
         } else {
-            this.f8275b = null;
+            this.f8273b = null;
         }
-        this.f8279i = z10;
+        this.f8277i = z10;
     }
 }

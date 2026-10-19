@@ -10,58 +10,58 @@ import org.telegram.messenger.camera.CameraController;
 import org.telegram.messenger.camera.CameraView;
 import w7.z5;
 public final class v implements Runnable {
-    public final int f52121a;
-    public final b0 f52122b;
+    public final int f52123a;
+    public final b0 f52124b;
 
     public v(b0 b0Var, int i10) {
-        this.f52121a = i10;
-        this.f52122b = b0Var;
+        this.f52123a = i10;
+        this.f52124b = b0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f52121a) {
+        switch (this.f52123a) {
             case 0:
-                b0 b0Var = this.f52122b;
+                b0 b0Var = this.f52124b;
                 b0Var.g();
-                b0Var.f51642a.b(b0Var);
+                b0Var.f51644a.b(b0Var);
                 return;
             case 1:
-                b0 b0Var2 = this.f52122b;
-                r8.n nVar = b0Var2.f51654i0;
+                b0 b0Var2 = this.f52124b;
+                r8.n nVar = b0Var2.f51656i0;
                 if (nVar != null) {
                     nVar.X0();
-                    b0Var2.f51654i0 = null;
+                    b0Var2.f51656i0 = null;
                 }
-                Bitmap bitmap = b0Var2.f51656k0;
+                Bitmap bitmap = b0Var2.f51658k0;
                 if (bitmap != null) {
                     bitmap.recycle();
-                    b0Var2.f51656k0 = null;
+                    b0Var2.f51658k0 = null;
                 }
-                b0Var2.f51651f0.quitSafely();
+                b0Var2.f51653f0.quitSafely();
                 return;
             case 2:
-                b0 b0Var3 = this.f52122b;
+                b0 b0Var3 = this.f52124b;
                 try {
                     Context context = ApplicationLoader.applicationContext;
                     ?? obj = new Object();
-                    obj.f7391a = 256;
-                    b0Var3.f51654i0 = new r8.n(new t2(context, (x1) obj));
+                    obj.f7389a = 256;
+                    b0Var3.f51656i0 = new r8.n(new t2(context, (x1) obj));
                 } catch (Throwable th2) {
                     FileLog.e(th2);
                 }
-                b0Var3.f51655j0 = new a6.i(23);
+                b0Var3.f51657j0 = new a6.i(23);
                 return;
             default:
-                b0 b0Var4 = this.f52122b;
-                if (!b0Var4.V && !b0Var4.U && b0Var4.f51644b == null && CameraView.isCameraAllowed()) {
+                b0 b0Var4 = this.f52124b;
+                if (!b0Var4.V && !b0Var4.U && b0Var4.f51646b == null && CameraView.isCameraAllowed()) {
                     CameraController.getInstance().initCamera(null);
                     CameraView cameraView = new CameraView(b0Var4.getContext(), false);
                     cameraView.setUseMaxPreview(true);
                     cameraView.setOptimizeForBarcode(true);
                     cameraView.setAlpha(0.0f);
                     cameraView.setDelegate(new org.telegram.ui.web.m(26, b0Var4, cameraView));
-                    b0Var4.f51644b = cameraView;
+                    b0Var4.f51646b = cameraView;
                     b0Var4.addView(cameraView, 0, z5.c(-1.0f, -1));
                     return;
                 }

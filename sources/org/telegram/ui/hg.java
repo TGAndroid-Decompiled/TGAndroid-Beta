@@ -15,9 +15,9 @@ public final class hg implements DialogInterface.OnCancelListener {
         switch (this.f37614a) {
             case 0:
                 qn qnVar = (qn) this.f37615b;
-                qnVar.f40636b9 = true;
+                qnVar.f40628b9 = true;
                 qnVar.Z8 = 0;
-                qnVar.f40821qb = 0;
+                qnVar.f40813qb = 0;
                 qnVar.N4 = 0;
                 qnVar.w9();
                 qnVar.Rb(false);
@@ -25,11 +25,11 @@ public final class hg implements DialogInterface.OnCancelListener {
             case 1:
                 io ioVar = (io) this.f37615b;
                 ioVar.M0 = false;
-                ioVar.f38026b = null;
+                ioVar.f38028b = null;
                 ioVar.N0 = false;
                 return;
             case 2:
-                ((ip) this.f37615b).f38065n = null;
+                ((ip) this.f37615b).f38067n = null;
                 return;
             default:
                 ((ib0) this.f37615b).b();

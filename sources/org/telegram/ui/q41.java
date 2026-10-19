@@ -5,14 +5,14 @@ import android.animation.AnimatorListenerAdapter;
 import android.widget.FrameLayout;
 import java.util.ArrayList;
 public final class q41 extends AnimatorListenerAdapter {
-    public final int f40369a;
-    public final boolean f40370b;
-    public final x51 f40371c;
+    public final int f40364a;
+    public final boolean f40365b;
+    public final x51 f40366c;
 
     public q41(x51 x51Var, boolean z10, int i10) {
-        this.f40369a = i10;
-        this.f40371c = x51Var;
-        this.f40370b = z10;
+        this.f40364a = i10;
+        this.f40366c = x51Var;
+        this.f40365b = z10;
     }
 
     @Override
@@ -21,19 +21,19 @@ public final class q41 extends AnimatorListenerAdapter {
         ArrayList arrayList;
         ArrayList arrayList2;
         int i11;
-        switch (this.f40369a) {
+        switch (this.f40364a) {
             case 0:
-                x51 x51Var = this.f40371c;
-                k41 k41Var = x51Var.f43058i0;
+                x51 x51Var = this.f40366c;
+                k41 k41Var = x51Var.f43057i0;
                 int i12 = 8;
-                boolean z10 = this.f40370b;
+                boolean z10 = this.f40365b;
                 if (z10) {
                     i10 = 0;
                 } else {
                     i10 = 8;
                 }
                 k41Var.setVisibility(i10);
-                u41 u41Var = x51Var.f43056h0;
+                u41 u41Var = x51Var.f43055h0;
                 if (!z10) {
                     i12 = 0;
                 }
@@ -45,7 +45,7 @@ public final class q41 extends AnimatorListenerAdapter {
                     if (arrayList3 != null) {
                         arrayList3.clear();
                     }
-                    x51Var.f43073q0.E(false);
+                    x51Var.f43072q0.E(false);
                 }
                 if (!z10 && (arrayList = x51Var.B1) != null) {
                     arrayList.clear();
@@ -53,9 +53,9 @@ public final class q41 extends AnimatorListenerAdapter {
                 }
                 return;
             default:
-                x51 x51Var2 = this.f40371c;
-                FrameLayout frameLayout = x51Var2.f43060j0;
-                if (this.f40370b && x51Var2.f43058i0.getVisibility() == 0) {
+                x51 x51Var2 = this.f40366c;
+                FrameLayout frameLayout = x51Var2.f43059j0;
+                if (this.f40365b && x51Var2.f43057i0.getVisibility() == 0) {
                     i11 = 0;
                 } else {
                     i11 = 8;

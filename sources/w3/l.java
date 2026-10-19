@@ -16,61 +16,61 @@ public final class l implements c3.o {
     public long[][] D;
     public int E;
     public l3.b F;
-    public final z3.k f48518a;
-    public final int f48519b;
-    public final boolean f48520c;
+    public final z3.k f48520a;
+    public final int f48521b;
+    public final boolean f48522c;
     public final x d;
     public final x e;
-    public final x f48521f;
-    public final x f48522g;
+    public final x f48523f;
+    public final x f48524g;
     public final ArrayDeque h;
-    public final o f48523i;
-    public final ArrayList f48524j;
-    public x1 f48525k;
-    public int f48526l;
-    public int f48527m;
-    public long f48528n;
-    public int f48529o;
-    public x f48530p;
-    public int f48531q;
-    public int f48532r;
-    public int f48533s;
-    public int f48534t;
-    public boolean f48535u;
+    public final o f48525i;
+    public final ArrayList f48526j;
+    public x1 f48527k;
+    public int f48528l;
+    public int f48529m;
+    public long f48530n;
+    public int f48531o;
+    public x f48532p;
+    public int f48533q;
+    public int f48534r;
+    public int f48535s;
+    public int f48536t;
+    public boolean f48537u;
     public boolean v;
-    public boolean f48536w;
-    public long f48537x;
-    public boolean f48538y;
-    public boolean f48539z;
+    public boolean f48538w;
+    public long f48539x;
+    public boolean f48540y;
+    public boolean f48541z;
 
     public l(z3.k kVar, int i10) {
         boolean z10;
         int i11;
-        this.f48518a = kVar;
-        this.f48519b = i10;
+        this.f48520a = kVar;
+        this.f48521b = i10;
         if ((i10 & 256) != 0) {
             z10 = true;
         } else {
             z10 = false;
         }
-        this.f48520c = z10;
-        l0 l0Var = n0.f8476b;
-        this.f48525k = x1.e;
+        this.f48522c = z10;
+        l0 l0Var = n0.f8474b;
+        this.f48527k = x1.e;
         if ((i10 & 4) != 0) {
             i11 = 3;
         } else {
             i11 = 0;
         }
-        this.f48526l = i11;
-        this.f48523i = new o();
-        this.f48524j = new ArrayList();
-        this.f48522g = new x(16);
+        this.f48528l = i11;
+        this.f48525i = new o();
+        this.f48526j = new ArrayList();
+        this.f48524g = new x(16);
         this.h = new ArrayDeque();
-        this.d = new x(f2.q.f10337a);
+        this.d = new x(f2.q.f10335a);
         this.e = new x(6);
-        this.f48521f = new x();
-        this.f48531q = -1;
-        this.B = c3.q.f4656i;
+        this.f48523f = new x();
+        this.f48533q = -1;
+        this.B = c3.q.f4654i;
         this.C = new k[0];
     }
 
@@ -78,7 +78,7 @@ public final class l implements c3.o {
     public final boolean a(c3.p pVar) {
         boolean z10;
         x1 x1Var;
-        if ((this.f48519b & 2) != 0) {
+        if ((this.f48521b & 2) != 0) {
             z10 = true;
         } else {
             z10 = false;
@@ -87,10 +87,10 @@ public final class l implements c3.o {
         if (m10 != null) {
             x1Var = n0.y(m10);
         } else {
-            l0 l0Var = n0.f8476b;
+            l0 l0Var = n0.f8474b;
             x1Var = x1.e;
         }
-        this.f48525k = x1Var;
+        this.f48527k = x1Var;
         if (m10 == null) {
             return true;
         }
@@ -99,8 +99,8 @@ public final class l implements c3.o {
 
     @Override
     public final void c(c3.q qVar) {
-        if ((this.f48519b & 16) == 0) {
-            qVar = new c2.b(qVar, this.f48518a);
+        if ((this.f48521b & 16) == 0) {
+            qVar = new c2.b(qVar, this.f48520a);
         }
         this.B = qVar;
     }
@@ -109,27 +109,27 @@ public final class l implements c3.o {
     public final void d(long j10, long j11) {
         k[] kVarArr;
         this.h.clear();
-        this.f48529o = 0;
-        this.f48531q = -1;
-        this.f48532r = 0;
-        this.f48533s = 0;
-        this.f48534t = 0;
-        this.f48535u = false;
-        this.f48539z = false;
+        this.f48531o = 0;
+        this.f48533q = -1;
+        this.f48534r = 0;
+        this.f48535s = 0;
+        this.f48536t = 0;
+        this.f48537u = false;
+        this.f48541z = false;
         if (j10 == 0) {
-            if (this.f48526l != 3) {
-                this.f48526l = 0;
-                this.f48529o = 0;
+            if (this.f48528l != 3) {
+                this.f48528l = 0;
+                this.f48531o = 0;
                 return;
             }
-            o oVar = this.f48523i;
-            oVar.f48543a.clear();
-            oVar.f48544b = 0;
-            this.f48524j.clear();
+            o oVar = this.f48525i;
+            oVar.f48545a.clear();
+            oVar.f48546b = 0;
+            this.f48526j.clear();
             return;
         }
         for (k kVar : this.C) {
-            t tVar = kVar.f48515b;
+            t tVar = kVar.f48517b;
             int a2 = tVar.a(j11);
             if (a2 == -1) {
                 a2 = tVar.b(j11);
@@ -137,15 +137,15 @@ public final class l implements c3.o {
             kVar.e = a2;
             k0 k0Var = kVar.d;
             if (k0Var != null) {
-                k0Var.f4640b = false;
-                k0Var.f4641c = 0;
+                k0Var.f4638b = false;
+                k0Var.f4639c = 0;
             }
         }
     }
 
     @Override
     public final List e() {
-        return this.f48525k;
+        return this.f48527k;
     }
 
     @Override

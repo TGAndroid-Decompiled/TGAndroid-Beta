@@ -1,49 +1,61 @@
 package org.telegram.ui;
 
-import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.TLRPC;
-public abstract class kh0 extends FrameLayout {
-    public TLRPC.User f38605a;
-    public org.telegram.ui.Components.x90 f38606b;
-    public org.telegram.ui.Components.b10 f38607c;
-    public boolean d;
+import android.os.Bundle;
+import android.os.SystemClock;
+import java.util.HashSet;
+public final class kh0 implements Runnable {
+    public final int f38604a;
+    public final long f38605b;
+    public final Object f38606c;
 
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        org.telegram.ui.Components.x90 x90Var = this.f38606b;
-        org.telegram.ui.Components.b10 b10Var = this.f38607c;
-        View view = (View) getParent();
-        if (view != null && view.getWidth() > 0) {
-            i10 = View.MeasureSpec.makeMeasureSpec(view.getWidth(), 1073741824);
-        }
-        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(36.0f), 1073741824);
-        boolean z10 = true;
-        this.d = true;
-        if (b10Var.getVisibility() != 0) {
-            z10 = false;
-        }
-        x90Var.setVisibility(8);
-        if (z10) {
-            b10Var.setVisibility(8);
-        }
-        super.onMeasure(i10, makeMeasureSpec);
-        if (z10) {
-            b10Var.getLayoutParams().width = getMeasuredWidth();
-            b10Var.setVisibility(0);
-        }
-        x90Var.setVisibility(0);
-        x90Var.getLayoutParams().width = getMeasuredWidth() - AndroidUtilities.dp(24.0f);
-        this.d = false;
-        super.onMeasure(i10, makeMeasureSpec);
+    public kh0(Object obj, long j10, int i10) {
+        this.f38604a = i10;
+        this.f38606c = obj;
+        this.f38605b = j10;
     }
 
     @Override
-    public final void requestLayout() {
-        if (this.d) {
-            return;
+    public final void run() {
+        ri.n nVar;
+        switch (this.f38604a) {
+            case 0:
+                qn qnVar = ((di) this.f38606c).e;
+                qnVar.D7(true);
+                Bundle bundle = new Bundle();
+                long j10 = this.f38605b;
+                bundle.putLong("user_id", j10);
+                if (j10 == qnVar.getUserConfig().getClientUserId()) {
+                    bundle.putBoolean("my_profile", true);
+                }
+                qnVar.presentFragment(new ProfileActivity(bundle, null));
+                return;
+            case 1:
+                ((org.telegram.ui.ActionBar.j3) this.f38606c).run(Long.valueOf(this.f38605b));
+                return;
+            case 2:
+                org.telegram.ui.web.e0 e0Var = (org.telegram.ui.web.e0) this.f38606c;
+                e0Var.getClass();
+                e0Var.presentFragment(qn.W9(this.f38605b));
+                return;
+            case 3:
+                ri.p pVar = (ri.p) ((cc.e) this.f38606c).f5093c;
+                if (this.f38605b == pVar.f45838o && (nVar = pVar.f45836m) != ri.n.f45824r && nVar != ri.n.f45825s && nVar != ri.n.f45823n) {
+                    SystemClock.elapsedRealtime();
+                    pVar.f45845w = false;
+                    pVar.r(ri.n.f45821c);
+                    pVar.h.removeCallbacks(pVar.D);
+                    ri.b bVar = pVar.f45831g;
+                    bVar.b("recording started: retainedDurationMs=" + ri.p.q(pVar.f45839p));
+                    return;
+                }
+                return;
+            default:
+                ug.y0 y0Var = (ug.y0) this.f38606c;
+                HashSet hashSet = y0Var.f47781e0;
+                hashSet.remove(Long.valueOf(this.f38605b));
+                y0Var.Y.b(true, hashSet, new ug.s0(y0Var, 5), null);
+                y0Var.c0(true, false);
+                return;
         }
-        super.requestLayout();
     }
 }

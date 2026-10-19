@@ -28,20 +28,20 @@ public abstract class x21 extends FrameLayout {
     public float N;
     public float O;
     public Paint P;
-    public dx f42994a;
-    public View f42995b;
-    public m0 f42996c;
+    public dx f42993a;
+    public View f42994b;
+    public m0 f42995c;
     public org.telegram.ui.ActionBar.k d;
     public float e;
-    public boolean f42997f;
+    public boolean f42996f;
     public ValueAnimator h;
-    public AnimationNotificationsLocker f42998n;
-    public boolean f42999r;
-    public int f43000s;
+    public AnimationNotificationsLocker f42997n;
+    public boolean f42998r;
+    public int f42999s;
     public boolean v;
-    public org.telegram.ui.ActionBar.d5 f43001w;
-    public o1.k f43002x;
-    public float f43003y;
+    public org.telegram.ui.ActionBar.d5 f43000w;
+    public o1.k f43001x;
+    public float f43002y;
 
     public static void f(org.telegram.ui.ActionBar.n2 n2Var, org.telegram.ui.ActionBar.n2 n2Var2, float f7) {
         int measuredWidth;
@@ -76,7 +76,7 @@ public abstract class x21 extends FrameLayout {
     }
 
     public final void a() {
-        if (!this.f42997f) {
+        if (!this.f42996f) {
             return;
         }
         e(false);
@@ -84,33 +84,33 @@ public abstract class x21 extends FrameLayout {
     }
 
     public final void b() {
-        this.f42997f = false;
+        this.f42996f = false;
         if (!SharedConfig.animationsEnabled()) {
             this.e = 0.0f;
             g();
-            dx dxVar = this.f42994a;
+            dx dxVar = this.f42993a;
             if (dxVar != null) {
                 dxVar.onPause();
-                this.f42994a.onFragmentDestroy();
+                this.f42993a.onFragmentDestroy();
                 removeAllViews();
-                this.f42994a = null;
+                this.f42993a = null;
                 NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needCheckSystemBarColors, new Object[0]);
             }
             d(false);
             return;
         }
-        this.f42998n.lock();
+        this.f42997n.lock();
         ValueAnimator ofFloat = ValueAnimator.ofFloat(this.e, 0.0f);
         this.h = ofFloat;
         ofFloat.addUpdateListener(new u21(this, 0));
         this.h.addListener(new w21(this, 0));
         this.h.setDuration(250L);
-        this.h.setInterpolator(org.telegram.ui.Components.bs.f25014f);
+        this.h.setInterpolator(org.telegram.ui.Components.bs.f25012f);
         this.h.start();
     }
 
     public final boolean c() {
-        if (this.f42994a != null) {
+        if (this.f42993a != null) {
             return true;
         }
         return false;
@@ -123,7 +123,7 @@ public abstract class x21 extends FrameLayout {
         float f7;
         float f10;
         if (this.v) {
-            f(this.E, this.f42994a, this.f43003y);
+            f(this.E, this.f42993a, this.f43002y);
             invalidate();
         }
         super.dispatchDraw(canvas);
@@ -138,14 +138,14 @@ public abstract class x21 extends FrameLayout {
         if (kVar2 == null) {
             f10 = 0.0f;
         } else {
-            f10 = kVar2.f21498o0;
+            f10 = kVar2.f21496o0;
         }
         float max = Math.max(f7, f10) * f11;
-        if (this.f42994a != null && this.d != null && max > 0.0f) {
+        if (this.f42993a != null && this.d != null && max > 0.0f) {
             if (this.P == null) {
                 this.P = new Paint();
             }
-            this.P.setColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21343w8, false));
+            this.P.setColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21341w8, false));
             if (max == 1.0f) {
                 canvas.save();
             } else {
@@ -188,7 +188,7 @@ public abstract class x21 extends FrameLayout {
     public final void g() {
         if (!this.v && c()) {
             setOpenProgress(this.e);
-            View view = this.f42995b;
+            View view = this.f42994b;
             if (view != null) {
                 view.setTranslationX((1.0f - this.e) * (getMeasuredWidth() - AndroidUtilities.dp(getRightPaddingSize())));
             }
@@ -196,7 +196,7 @@ public abstract class x21 extends FrameLayout {
             if (kVar != null) {
                 kVar.setTranslationX((1.0f - this.e) * AndroidUtilities.dp(48.0f));
             }
-            dx dxVar = this.f42994a;
+            dx dxVar = this.f42993a;
             if (dxVar != null) {
                 dxVar.setPreviewOpenedProgress(this.e);
             }
@@ -209,11 +209,11 @@ public abstract class x21 extends FrameLayout {
     }
 
     public org.telegram.ui.ActionBar.n2 getFragment() {
-        return this.f42994a;
+        return this.f42993a;
     }
 
     public View getFragmentView() {
-        return this.f42995b;
+        return this.f42994b;
     }
 
     public abstract boolean getOccupyStatusbar();
@@ -231,11 +231,11 @@ public abstract class x21 extends FrameLayout {
         } else {
             i12 = 0;
         }
-        View view = this.f42995b;
+        View view = this.f42994b;
         if (view != null) {
             FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) view.getLayoutParams();
             layoutParams.leftMargin = AndroidUtilities.dp(getRightPaddingSize());
-            layoutParams.topMargin = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + i12 + this.f43000s;
+            layoutParams.topMargin = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + i12 + this.f42999s;
         }
         org.telegram.ui.ActionBar.k kVar = this.d;
         if (kVar != null) {
@@ -251,7 +251,7 @@ public abstract class x21 extends FrameLayout {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        org.telegram.ui.ActionBar.d5 d5Var = this.f43001w;
+        org.telegram.ui.ActionBar.d5 d5Var = this.f43000w;
         if ((d5Var != null && ((ActionBarLayout) d5Var).y()) || !c() || !this.M) {
             return false;
         }
@@ -301,7 +301,7 @@ public abstract class x21 extends FrameLayout {
                     ofFloat.addUpdateListener(new u21(this, 2));
                     this.h.addListener(new w21(this, 1));
                     this.h.setDuration(250L);
-                    this.h.setInterpolator(org.telegram.ui.Components.bs.f25014f);
+                    this.h.setInterpolator(org.telegram.ui.Components.bs.f25012f);
                     this.h.start();
                 } else {
                     b();
@@ -329,7 +329,7 @@ public abstract class x21 extends FrameLayout {
     @Override
     public final void removeView(View view) {
         super.removeView(view);
-        if (view == this.f42995b) {
+        if (view == this.f42994b) {
             a();
         }
     }
@@ -337,33 +337,33 @@ public abstract class x21 extends FrameLayout {
     @Override
     public final void removeViewInLayout(View view) {
         super.removeViewInLayout(view);
-        if (view == this.f42995b) {
+        if (view == this.f42994b) {
             a();
         }
     }
 
     public void setCurrentTop(int i10) {
         this.O = i10;
-        View view = this.f42995b;
+        View view = this.f42994b;
         if (view != null) {
-            view.setTranslationY((i10 - view.getTop()) + this.f43000s);
+            view.setTranslationY((i10 - view.getTop()) + this.f42999s);
         }
-        m0 m0Var = this.f42996c;
+        m0 m0Var = this.f42995c;
         if (m0Var != null) {
             m0Var.setTranslationY(i10 - m0Var.getTop());
         }
     }
 
     public void setFragmentViewPadding(int i10) {
-        this.f43000s = i10;
+        this.f42999s = i10;
     }
 
     public void setTransitionPaddingBottom(int i10) {
-        dx dxVar = this.f42994a;
+        dx dxVar = this.f42993a;
         if (com.google.android.gms.internal.play_billing.k3.s(dxVar)) {
             float f7 = i10;
             dxVar.X0 = f7;
-            dxVar.h.setTranslationY(((-f7) - dxVar.f41162e1) - dxVar.f41160d1);
+            dxVar.h.setTranslationY(((-f7) - dxVar.f41154e1) - dxVar.f41152d1);
         }
     }
 

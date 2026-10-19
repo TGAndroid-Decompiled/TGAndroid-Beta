@@ -10,12 +10,12 @@ public final class k extends v2.b {
     @Override
     public final long b() {
         a();
-        return this.d.e(this.f47870c);
+        return this.d.e(this.f47872c);
     }
 
     @Override
     public final long r() {
         a();
-        return this.d.d(this.f47870c);
+        return this.d.d(this.f47872c);
     }
 }

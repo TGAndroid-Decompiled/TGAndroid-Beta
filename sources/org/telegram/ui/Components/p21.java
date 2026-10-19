@@ -11,19 +11,19 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.R;
 public final class p21 {
-    public final Paint f29151a;
-    public final Paint f29152b;
-    public final Paint f29153c;
+    public final Paint f29149a;
+    public final Paint f29150b;
+    public final Paint f29151c;
     public Drawable d;
     public Drawable e;
-    public final q21 f29154f;
+    public final q21 f29152f;
 
     public p21(q21 q21Var) {
-        this.f29154f = q21Var;
+        this.f29152f = q21Var;
         Paint paint = new Paint(1);
-        this.f29151a = paint;
-        this.f29152b = new Paint(1);
-        this.f29153c = new Paint(1);
+        this.f29149a = paint;
+        this.f29150b = new Paint(1);
+        this.f29151c = new Paint(1);
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
     }
@@ -41,48 +41,48 @@ public final class p21 {
         float f17;
         int i11;
         float f18;
-        q21 q21Var = this.f29154f;
+        q21 q21Var = this.f29152f;
         ImageReceiver imageReceiver = q21Var.P;
         float f19 = q21Var.e;
         org.telegram.ui.ActionBar.f5 f5Var = q21Var.S;
         org.telegram.ui.ActionBar.f5 f5Var2 = q21Var.R;
         float f20 = q21Var.d;
-        float f21 = q21Var.f29497c;
+        float f21 = q21Var.f29495c;
         int i12 = q21Var.K;
         RectF rectF = q21Var.v;
-        if (!q21Var.W && q21Var.f29504y == null) {
+        if (!q21Var.W && q21Var.f29502y == null) {
             f12 = 0.5f;
             f10 = 255.0f;
             f11 = 4.0f;
         } else {
             vp vpVar = q21Var.G;
             f10 = 255.0f;
-            org.telegram.ui.ActionBar.b4 b4Var = (org.telegram.ui.ActionBar.b4) vpVar.f31900a.f20725f.get(vpVar.f31902c);
-            if (q21Var.G.f31900a.l()) {
-                i10 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Oh, q21Var.f29503x);
+            org.telegram.ui.ActionBar.b4 b4Var = (org.telegram.ui.ActionBar.b4) vpVar.f31898a.f20723f.get(vpVar.f31900c);
+            if (q21Var.G.f31898a.l()) {
+                i10 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Oh, q21Var.f29501x);
             } else {
-                i10 = b4Var.f20697j;
+                i10 = b4Var.f20695j;
             }
-            Paint paint = this.f29151a;
+            Paint paint = this.f29149a;
             paint.setColor(i10);
             paint.setAlpha((int) (q21Var.M * f7 * 255.0f));
             f11 = 4.0f;
             f12 = 0.5f;
             float y3 = com.google.android.gms.internal.play_billing.k3.y(1.0f, q21Var.M, AndroidUtilities.dp(4.0f), paint.getStrokeWidth() * 0.5f);
             rectF.set(y3, y3, q21Var.getWidth() - y3, q21Var.getHeight() - y3);
-            float f22 = q21Var.f29495a;
+            float f22 = q21Var.f29493a;
             canvas.drawRoundRect(rectF, f22, f22, paint);
         }
         int i13 = (int) (f7 * f10);
-        Paint paint2 = this.f29152b;
+        Paint paint2 = this.f29150b;
         paint2.setAlpha(i13);
-        Paint paint3 = this.f29153c;
+        Paint paint3 = this.f29151c;
         paint3.setAlpha(i13);
         rectF.set(f21, f21, q21Var.getWidth() - f21, q21Var.getHeight() - f21);
-        org.telegram.ui.ActionBar.c4 c4Var = q21Var.G.f31900a;
+        org.telegram.ui.ActionBar.c4 c4Var = q21Var.G.f31898a;
         if (c4Var != null) {
             if (c4Var.l()) {
-                q21Var.G.f31900a.getClass();
+                q21Var.G.f31898a.getClass();
             } else if (i12 != 4) {
                 if (i12 == 2) {
                     q21Var.G.getClass();
@@ -165,8 +165,8 @@ public final class p21 {
             }
         }
         if (q21Var.T == null) {
-            float f23 = q21Var.f29496b;
-            canvas.drawRoundRect(rectF, f23, f23, q21Var.f29501s);
+            float f23 = q21Var.f29494b;
+            canvas.drawRoundRect(rectF, f23, f23, q21Var.f29499s);
             canvas.save();
             noThemeStaticLayout = q21Var.getNoThemeStaticLayout();
             canvas.translate((q21Var.getWidth() - noThemeStaticLayout.getWidth()) * f12, AndroidUtilities.dp(18.0f));
@@ -180,10 +180,10 @@ public final class p21 {
         int[] iArr;
         int i10;
         Drawable drawable = this.d;
-        q21 q21Var = this.f29154f;
+        q21 q21Var = this.f29152f;
         if (drawable != null) {
             canvas.save();
-            canvas.clipPath(q21Var.f29502w);
+            canvas.clipPath(q21Var.f29500w);
             Drawable drawable2 = this.d;
             if (drawable2 instanceof BitmapDrawable) {
                 float intrinsicWidth = drawable2.getIntrinsicWidth();
@@ -203,25 +203,25 @@ public final class p21 {
             this.d.setAlpha((int) (255.0f * f7));
             this.d.draw(canvas);
             Drawable drawable3 = this.d;
-            if ((drawable3 instanceof ColorDrawable) || ((drawable3 instanceof wc0) && (i10 = (iArr = ((wc0) drawable3).f32079a)[0]) == iArr[1] && i10 == iArr[2] && i10 == iArr[3])) {
-                int alpha = q21Var.f29500r.getAlpha();
-                q21Var.f29500r.setAlpha((int) (alpha * f7));
-                float f10 = q21Var.f29497c;
+            if ((drawable3 instanceof ColorDrawable) || ((drawable3 instanceof wc0) && (i10 = (iArr = ((wc0) drawable3).f32077a)[0]) == iArr[1] && i10 == iArr[2] && i10 == iArr[3])) {
+                int alpha = q21Var.f29498r.getAlpha();
+                q21Var.f29498r.setAlpha((int) (alpha * f7));
+                float f10 = q21Var.f29495c;
                 RectF rectF = AndroidUtilities.rectTmp;
                 rectF.set(f10, f10, q21Var.getWidth() - f10, q21Var.getHeight() - f10);
-                float f11 = q21Var.f29496b;
-                canvas.drawRoundRect(rectF, f11, f11, q21Var.f29500r);
-                q21Var.f29500r.setAlpha(alpha);
+                float f11 = q21Var.f29494b;
+                canvas.drawRoundRect(rectF, f11, f11, q21Var.f29498r);
+                q21Var.f29498r.setAlpha(alpha);
             }
             canvas.restore();
             return;
         }
         vp vpVar = q21Var.G;
-        if (vpVar != null && (c4Var = vpVar.f31900a) != null && c4Var.l() && q21Var.N != null) {
+        if (vpVar != null && (c4Var = vpVar.f31898a) != null && c4Var.l() && q21Var.N != null) {
             return;
         }
         RectF rectF2 = q21Var.v;
-        float f12 = q21Var.f29496b;
-        canvas.drawRoundRect(rectF2, f12, f12, q21Var.f29501s);
+        float f12 = q21Var.f29494b;
+        canvas.drawRoundRect(rectF2, f12, f12, q21Var.f29499s);
     }
 }

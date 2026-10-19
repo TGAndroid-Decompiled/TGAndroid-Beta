@@ -2,17 +2,17 @@ package org.telegram.ui;
 
 import org.telegram.messenger.AndroidUtilities;
 public final class zk0 extends org.telegram.ui.ActionBar.j {
-    public final org.telegram.ui.ActionBar.e1 f43764a;
-    public final PasscodeActivity f43765b;
+    public final org.telegram.ui.ActionBar.e1 f43766a;
+    public final PasscodeActivity f43767b;
 
     public zk0(PasscodeActivity passcodeActivity, org.telegram.ui.ActionBar.e1 e1Var) {
-        this.f43765b = passcodeActivity;
-        this.f43764a = e1Var;
+        this.f43767b = passcodeActivity;
+        this.f43766a = e1Var;
     }
 
     @Override
     public final void b(int i10) {
-        PasscodeActivity passcodeActivity = this.f43765b;
+        PasscodeActivity passcodeActivity = this.f43767b;
         if (i10 == -1) {
             passcodeActivity.finishFragment();
             return;
@@ -23,9 +23,9 @@ public final class zk0 extends org.telegram.ui.ActionBar.j {
                 i11 = 0;
             }
             passcodeActivity.f33228y = i11;
-            AndroidUtilities.runOnUIThread(new wg0(8, this, this.f43764a), 150L);
+            AndroidUtilities.runOnUIThread(new xg0(8, this, this.f43766a), 150L);
             passcodeActivity.h.setText("");
-            for (tr trVar : passcodeActivity.f33223n.f40961f) {
+            for (tr trVar : passcodeActivity.f33223n.f40953f) {
                 trVar.setText("");
             }
             passcodeActivity.o0();

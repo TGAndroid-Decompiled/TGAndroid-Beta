@@ -18,7 +18,7 @@ import org.telegram.ui.Components.t61;
 import org.telegram.ui.Components.zq;
 import org.telegram.ui.kk;
 public final class v1 extends f61 {
-    public static final int f42825a = 0;
+    public static final int f42826a = 0;
 
     static {
         f61.setup(new f61());
@@ -27,12 +27,12 @@ public final class v1 extends f61 {
     @Override
     public final void bindView(View view, g61 g61Var, boolean z10, t61 t61Var, b71 b71Var) {
         w1 w1Var = (w1) view;
-        CharSequence charSequence = g61Var.f26501n;
-        String str = (String) g61Var.f26499l;
+        CharSequence charSequence = g61Var.f26499n;
+        String str = (String) g61Var.f26497l;
         long j10 = g61Var.B;
-        ImageView imageView = w1Var.f42831a;
-        w1Var.f42832b.setText(charSequence);
-        kk kkVar = w1Var.f42833c;
+        ImageView imageView = w1Var.f42832a;
+        w1Var.f42833b.setText(charSequence);
+        kk kkVar = w1Var.f42834c;
         kkVar.setText(str);
         if (TextUtils.isEmpty(charSequence)) {
             kkVar.setTranslationY(-AndroidUtilities.dp(14.0f));
@@ -70,7 +70,7 @@ public final class v1 extends f61 {
             zqVar.f33020n = dp2;
             imageView.setImageDrawable(zqVar);
         }
-        w1Var.f42834f = z10;
+        w1Var.f42835f = z10;
         w1Var.invalidate();
     }
 

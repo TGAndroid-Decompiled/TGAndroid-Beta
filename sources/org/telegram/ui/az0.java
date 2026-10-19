@@ -4,17 +4,17 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.UndoView;
 public final class az0 implements yp {
-    public final int f35467a;
-    public final TLRPC.ChatParticipant f35468b;
-    public final boolean f35469c;
+    public final int f35451a;
+    public final TLRPC.ChatParticipant f35452b;
+    public final boolean f35453c;
     public final boolean[] d;
     public final ProfileActivity e;
 
     public az0(ProfileActivity profileActivity, int i10, TLRPC.ChatParticipant chatParticipant, boolean z10, boolean[] zArr) {
         this.e = profileActivity;
-        this.f35467a = i10;
-        this.f35468b = chatParticipant;
-        this.f35469c = z10;
+        this.f35451a = i10;
+        this.f35452b = chatParticipant;
+        this.f35453c = z10;
         this.d = zArr;
     }
 
@@ -38,9 +38,9 @@ public final class az0 implements yp {
         boolean z10;
         TLRPC.ChatParticipant tL_chatParticipant;
         int i11 = 0;
-        TLRPC.ChatParticipant chatParticipant = this.f35468b;
+        TLRPC.ChatParticipant chatParticipant = this.f35452b;
         ProfileActivity profileActivity = this.e;
-        int i12 = this.f35467a;
+        int i12 = this.f35451a;
         if (i12 == 0) {
             if (chatParticipant instanceof TLRPC.TL_chatChannelParticipant) {
                 TLRPC.TL_chatChannelParticipant tL_chatChannelParticipant = (TLRPC.TL_chatChannelParticipant) chatParticipant;
@@ -73,7 +73,7 @@ public final class az0 implements yp {
                     profileActivity.f33724v2.participants.participants.set(indexOf, tL_chatParticipant);
                 }
             }
-            if (i10 == 1 && !this.f35469c) {
+            if (i10 == 1 && !this.f35453c) {
                 this.d[0] = true;
             }
         } else if (i12 == 1 && i10 == 0 && profileActivity.F2.megagroup && (chatFull = profileActivity.f33724v2) != null && chatFull.participants != null) {

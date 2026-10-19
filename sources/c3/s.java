@@ -11,14 +11,14 @@ import org.telegram.ui.Components.tb;
 import org.telegram.ui.Components.ub;
 import org.telegram.ui.Components.xl;
 public final class s implements tb {
-    public long f4657a;
+    public long f4655a;
 
     @Override
     public void D0(ub ubVar, fb fbVar, pg pgVar, xl xlVar) {
         ubVar.setInOutOffset(ubVar.getMeasuredHeight());
         xlVar.accept(Float.valueOf(ubVar.getTranslationY()));
         ObjectAnimator ofFloat = ObjectAnimator.ofFloat(ubVar, ub.IN_OUT_OFFSET_Y2, 0.0f);
-        ofFloat.setDuration(this.f4657a);
+        ofFloat.setDuration(this.f4655a);
         ofFloat.setInterpolator(st.d);
         ofFloat.addListener(new me(fbVar, pgVar, 17));
         ofFloat.addUpdateListener(new ah.l0(15, xlVar, ubVar));
@@ -26,7 +26,7 @@ public final class s implements tb {
     }
 
     public boolean a(nf.m mVar) {
-        if (mVar.f7628b == this.f4657a && nf.a.c(mVar)) {
+        if (mVar.f7626b == this.f4655a && nf.a.c(mVar)) {
             return true;
         }
         return false;
@@ -36,7 +36,7 @@ public final class s implements tb {
     public void d(ub ubVar, fb fbVar, db dbVar, gb gbVar) {
         ObjectAnimator ofFloat = ObjectAnimator.ofFloat(ubVar, ub.IN_OUT_OFFSET_Y2, ubVar.getHeight());
         ofFloat.setDuration(175L);
-        ofFloat.setInterpolator(st.f30329c);
+        ofFloat.setInterpolator(st.f30327c);
         ofFloat.addListener(new me(fbVar, dbVar, 18));
         ofFloat.addUpdateListener(new ah.l0(14, gbVar, ubVar));
         ofFloat.start();

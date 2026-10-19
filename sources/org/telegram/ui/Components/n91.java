@@ -8,32 +8,32 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Bitmaps;
 import org.telegram.messenger.FileLog;
 public final class n91 implements Runnable {
-    public final int f28704a;
-    public final v91 f28705b;
+    public final int f28702a;
+    public final v91 f28703b;
 
     public n91(v91 v91Var, int i10) {
-        this.f28704a = i10;
-        this.f28705b = v91Var;
+        this.f28702a = i10;
+        this.f28703b = v91Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f28704a) {
+        switch (this.f28702a) {
             case 0:
-                v91 v91Var = this.f28705b;
-                r91 r91Var = v91Var.f31230f0;
-                b81 b81Var = v91Var.f31221a;
+                v91 v91Var = this.f28703b;
+                r91 r91Var = v91Var.f31228f0;
+                b81 b81Var = v91Var.f31219a;
                 if (b81Var != null && b81Var.y()) {
                     r91Var.c((int) (b81Var.n() / 1000));
-                    r91Var.f29911w = (int) (b81Var.j() / 1000);
+                    r91Var.f29909w = (int) (b81Var.j() / 1000);
                     r91Var.invalidate();
-                    AndroidUtilities.runOnUIThread(v91Var.f31233i0, 1000L);
+                    AndroidUtilities.runOnUIThread(v91Var.f31231i0, 1000L);
                     return;
                 }
                 return;
             default:
-                v91 v91Var2 = this.f28705b;
-                r91 r91Var2 = v91Var2.f31230f0;
+                v91 v91Var2 = this.f28703b;
+                r91 r91Var2 = v91Var2.f31228f0;
                 ImageView imageView = v91Var2.e;
                 TextureView textureView = v91Var2.d;
                 v91Var2.W = false;
@@ -73,13 +73,13 @@ public final class n91 implements Runnable {
                     viewGroup.removeView(r91Var2);
                 }
                 s91 s91Var = v91Var2.v;
-                r91 r91Var3 = v91Var2.f31230f0;
+                r91 r91Var3 = v91Var2.f31228f0;
                 boolean z10 = v91Var2.U;
-                int i10 = v91Var2.f31231g0;
-                int i11 = v91Var2.f31232h0;
-                v91Var2.f31225c.getVideoRotation();
+                int i10 = v91Var2.f31229g0;
+                int i11 = v91Var2.f31230h0;
+                v91Var2.f31223c.getVideoRotation();
                 TextureView f7 = s91Var.f(r91Var3, z10, i10, i11, v91Var2.I);
-                v91Var2.f31236n = f7;
+                v91Var2.f31234n = f7;
                 f7.setVisibility(4);
                 ViewGroup viewGroup2 = (ViewGroup) textureView.getParent();
                 if (viewGroup2 != null) {

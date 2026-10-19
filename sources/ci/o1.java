@@ -5,15 +5,15 @@ import android.view.View;
 import android.view.ViewOutlineProvider;
 import org.telegram.messenger.AndroidUtilities;
 public final class o1 extends ViewOutlineProvider {
-    public final int f5684a;
+    public final int f5682a;
 
     public o1(int i10) {
-        this.f5684a = i10;
+        this.f5682a = i10;
     }
 
     @Override
     public final void getOutline(View view, Outline outline) {
-        switch (this.f5684a) {
+        switch (this.f5682a) {
             case 0:
                 outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight(), AndroidUtilities.dp(10.0f));
                 return;

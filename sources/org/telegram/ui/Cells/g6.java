@@ -15,39 +15,39 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.lk;
+import org.telegram.messenger.kk;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.ba0;
 import org.telegram.ui.Components.bs;
 import org.telegram.ui.Components.nq;
 import org.telegram.ui.sz0;
 public abstract class g6 extends FrameLayout implements org.telegram.ui.ActionBar.y5 {
-    public final org.telegram.ui.ActionBar.d6 f22295a;
-    public final TextView f22296b;
-    public final nq f22297c;
+    public final org.telegram.ui.ActionBar.d6 f22293a;
+    public final TextView f22294b;
+    public final nq f22295c;
     public final r2 d;
     public boolean e;
-    public final org.telegram.ui.Components.f6 f22298f;
+    public final org.telegram.ui.Components.f6 f22296f;
     public final ba0 h;
-    public boolean f22299n;
+    public boolean f22297n;
 
     public g6(org.telegram.ui.ActionBar.n2 n2Var) {
         super(n2Var.getContext());
         bs bsVar = bs.h;
-        this.f22298f = new org.telegram.ui.Components.f6(320L, bsVar);
-        this.f22299n = false;
+        this.f22296f = new org.telegram.ui.Components.f6(320L, bsVar);
+        this.f22297n = false;
         Context context = n2Var.getContext();
         org.telegram.ui.ActionBar.d6 resourceProvider = n2Var.getResourceProvider();
-        this.f22295a = resourceProvider;
-        LinearLayout e = lk.e(context, 0);
+        this.f22293a = resourceProvider;
+        LinearLayout e = kk.e(context, 0);
         addView(e, w7.z5.d(-1, -2.0f, 55, 16.66f, 11.6f, 16.66f, 0.0f));
         TextView textView = new TextView(context);
-        this.f22296b = textView;
-        lk.k(14.0f, 1, textView);
+        this.f22294b = textView;
+        kk.k(14.0f, 1, textView);
         textView.setText(LocaleController.getString(R.string.ProfileChannel));
         e.addView(textView, w7.z5.q(-2, -2, 51));
         nq nqVar = new nq(context);
-        this.f22297c = nqVar;
+        this.f22295c = nqVar;
         nqVar.getDrawable().r(true, true);
         nqVar.b(0.3f, 165L, bsVar);
         nqVar.setTypeface(AndroidUtilities.bold());
@@ -66,7 +66,7 @@ public abstract class g6 extends FrameLayout implements org.telegram.ui.ActionBa
         setWillNotDraw(false);
         ba0 ba0Var = new ba0();
         this.h = ba0Var;
-        int i10 = org.telegram.ui.ActionBar.h6.f21078i6;
+        int i10 = org.telegram.ui.ActionBar.h6.f21076i6;
         ba0Var.f(org.telegram.ui.ActionBar.h6.m1(1.25f, org.telegram.ui.ActionBar.h6.w0(i10, resourceProvider)), org.telegram.ui.ActionBar.h6.m1(0.8f, org.telegram.ui.ActionBar.h6.w0(i10, resourceProvider)));
         ba0Var.k(8.0f);
     }
@@ -78,13 +78,13 @@ public abstract class g6 extends FrameLayout implements org.telegram.ui.ActionBa
         String formatShortNumber;
         boolean z11;
         float f11;
-        boolean z12 = this.f22299n;
+        boolean z12 = this.f22297n;
         if (chat != null && chat.participants_count <= 0) {
             z10 = false;
         } else {
             z10 = true;
         }
-        nq nqVar = this.f22297c;
+        nq nqVar = this.f22295c;
         nqVar.a();
         float f12 = 0.0f;
         nqVar.setPivotX(0.0f);
@@ -141,18 +141,18 @@ public abstract class g6 extends FrameLayout implements org.telegram.ui.ActionBa
             this.e = z11;
             r2 r2Var = this.d;
             if (z11) {
-                r2Var.W(-chat.f20275id, null, 0, false, z12);
+                r2Var.W(-chat.f20273id, null, 0, false, z12);
             } else {
                 MessageObject messageObject = (MessageObject) i2.e.h(1, arrayList);
-                long j10 = -chat.f20275id;
+                long j10 = -chat.f20273id;
                 int i11 = messageObject.messageOwner.date;
                 if (r2Var.H0 != j10) {
-                    r2Var.f22925x4 = -1;
+                    r2Var.f22923x4 = -1;
                 }
                 r2Var.H0 = j10;
                 r2Var.B4 = System.currentTimeMillis();
-                r2Var.f22830f1 = messageObject;
-                r2Var.f22906u2 = false;
+                r2Var.f22828f1 = messageObject;
+                r2Var.f22904u2 = false;
                 r2Var.N0 = false;
                 r2Var.R0 = i11;
                 int i12 = messageObject.messageOwner.edit_date;
@@ -163,8 +163,8 @@ public abstract class g6 extends FrameLayout implements org.telegram.ui.ActionBa
                 r2Var.V0 = 0;
                 r2Var.W0 = 0;
                 r2Var.X0 = messageObject.isUnread();
-                r2Var.f22835g1 = arrayList;
-                MessageObject messageObject2 = r2Var.f22830f1;
+                r2Var.f22833g1 = arrayList;
+                MessageObject messageObject2 = r2Var.f22828f1;
                 if (messageObject2 != null) {
                     r2Var.Y0 = messageObject2.messageOwner.send_state;
                 }
@@ -172,25 +172,25 @@ public abstract class g6 extends FrameLayout implements org.telegram.ui.ActionBa
             }
         }
         if (!z12) {
-            this.f22298f.f(this.e, true);
+            this.f22296f.f(this.e, true);
         }
         invalidate();
-        this.f22299n = true;
+        this.f22297n = true;
     }
 
     @Override
     public final void d() {
-        int w02 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.L6, this.f22295a);
-        nq nqVar = this.f22297c;
+        int w02 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.L6, this.f22293a);
+        nq nqVar = this.f22295c;
         nqVar.setTextColor(w02);
         nqVar.setBackground(org.telegram.ui.ActionBar.h6.d0(AndroidUtilities.dp(9.0f), AndroidUtilities.dp(9.0f), org.telegram.ui.ActionBar.h6.m1(0.1f, w02)));
-        this.f22296b.setTextColor(w02);
+        this.f22294b.setTextColor(w02);
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        float e = this.f22298f.e(this.e);
+        float e = this.f22296f.e(this.e);
         if (e > 0.0f) {
             ba0 ba0Var = this.h;
             ba0Var.setAlpha((int) (e * 255.0f));

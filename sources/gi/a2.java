@@ -4,26 +4,26 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.ui.Components.jw0;
 public final class a2 implements jw0 {
-    public final int f11073a;
-    public final NotificationCenter.NotificationCenterDelegate f11074b;
+    public final int f11071a;
+    public final NotificationCenter.NotificationCenterDelegate f11072b;
 
     public a2(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, int i10) {
-        this.f11073a = i10;
-        this.f11074b = notificationCenterDelegate;
+        this.f11071a = i10;
+        this.f11072b = notificationCenterDelegate;
     }
 
     @Override
     public final void G(int i10, boolean z10) {
-        switch (this.f11073a) {
+        switch (this.f11071a) {
             case 0:
-                u2 u2Var = ((d3) this.f11074b).v;
+                u2 u2Var = ((d3) this.f11072b).v;
                 if (i10 > AndroidUtilities.dp(20.0f)) {
                     u2Var.e(u2Var.getTopActionBarOffsetY() + (-u2Var.getOffsetY()));
                     return;
                 }
                 return;
             default:
-                ((ki.d2) this.f11074b).getClass();
+                ((ki.d2) this.f11072b).getClass();
                 return;
         }
     }

@@ -27,9 +27,9 @@ public final class ty0 extends org.telegram.ui.Components.s90 {
             j5Var.setTextColor(i10);
             j5VarArr[3].setTextColor(i10);
         }
-        n01 n01Var = profileActivity.f33603d6;
-        if (n01Var != null && n01Var.f39385c != (m12 = org.telegram.ui.ActionBar.h6.m1(1.4f, org.telegram.ui.ActionBar.h6.b(-0.02f, 0.15f, i10)))) {
-            n01Var.f39385c = m12;
+        n01 n01Var = profileActivity.f33618f6;
+        if (n01Var != null && n01Var.f39381c != (m12 = org.telegram.ui.ActionBar.h6.m1(1.4f, org.telegram.ui.ActionBar.h6.b(-0.02f, 0.15f, i10)))) {
+            n01Var.f39381c = m12;
             n01Var.invalidateSelf();
         }
     }

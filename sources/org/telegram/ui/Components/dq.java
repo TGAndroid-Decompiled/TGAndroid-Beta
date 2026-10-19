@@ -9,25 +9,25 @@ import android.os.SystemClock;
 import org.telegram.messenger.AndroidUtilities;
 public class dq extends Drawable {
     public static final u1.a h = new u1.a();
-    public float f25610a;
-    public final float f25611b;
-    public long f25612c;
+    public float f25608a;
+    public final float f25609b;
+    public long f25610c;
     public final float[] d;
     public final Paint e;
-    public float f25613f;
-    public final RectF f25614g;
+    public float f25611f;
+    public final RectF f25612g;
 
     public dq(int i10) {
-        this.f25610a = AndroidUtilities.dp(18.0f);
-        this.f25611b = AndroidUtilities.dp(2.25f);
-        this.f25612c = -1L;
+        this.f25608a = AndroidUtilities.dp(18.0f);
+        this.f25609b = AndroidUtilities.dp(2.25f);
+        this.f25610c = -1L;
         this.d = new float[2];
         Paint paint = new Paint();
         this.e = paint;
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setStrokeJoin(Paint.Join.ROUND);
-        this.f25614g = new RectF();
+        this.f25612g = new RectF();
         b(i10);
     }
 
@@ -49,26 +49,26 @@ public class dq extends Drawable {
 
     @Override
     public final void draw(Canvas canvas) {
-        if (this.f25612c < 0) {
-            this.f25612c = SystemClock.elapsedRealtime();
+        if (this.f25610c < 0) {
+            this.f25610c = SystemClock.elapsedRealtime();
         }
         float[] fArr = this.d;
-        a(fArr, (float) ((SystemClock.elapsedRealtime() - this.f25612c) % 5400));
-        float f7 = this.f25613f;
+        a(fArr, (float) ((SystemClock.elapsedRealtime() - this.f25610c) % 5400));
+        float f7 = this.f25611f;
         float f10 = fArr[0];
         Paint paint = this.e;
-        canvas.drawArc(this.f25614g, f7 + f10, fArr[1] - f10, false, paint);
+        canvas.drawArc(this.f25612g, f7 + f10, fArr[1] - f10, false, paint);
         invalidateSelf();
     }
 
     @Override
     public int getIntrinsicHeight() {
-        return (int) (this.f25610a + this.f25611b);
+        return (int) (this.f25608a + this.f25609b);
     }
 
     @Override
     public int getIntrinsicWidth() {
-        return (int) (this.f25610a + this.f25611b);
+        return (int) (this.f25608a + this.f25609b);
     }
 
     @Override
@@ -85,28 +85,28 @@ public class dq extends Drawable {
     public final void setBounds(int i10, int i11, int i12, int i13) {
         float f7 = i10;
         float f10 = i12 - i10;
-        float f11 = this.f25611b;
-        float f12 = this.f25610a;
+        float f11 = this.f25609b;
+        float f12 = this.f25608a;
         float f13 = i11;
         float f14 = i13 - i11;
-        this.f25614g.set(com.google.android.gms.internal.play_billing.k3.z(f10 - (f11 / 2.0f), f12, 2.0f, f7), (((f14 - (f11 / 2.0f)) - f12) / 2.0f) + f13, ((((f11 / 2.0f) + f10) + f12) / 2.0f) + f7, ((((f11 / 2.0f) + f14) + f12) / 2.0f) + f13);
+        this.f25612g.set(com.google.android.gms.internal.play_billing.k3.z(f10 - (f11 / 2.0f), f12, 2.0f, f7), (((f14 - (f11 / 2.0f)) - f12) / 2.0f) + f13, ((((f11 / 2.0f) + f10) + f12) / 2.0f) + f7, ((((f11 / 2.0f) + f14) + f12) / 2.0f) + f13);
         super.setBounds(i10, i11, i12, i13);
         this.e.setStrokeWidth(f11);
     }
 
     public dq(float f7, float f10, int i10) {
-        this.f25610a = AndroidUtilities.dp(18.0f);
-        this.f25611b = AndroidUtilities.dp(2.25f);
-        this.f25612c = -1L;
+        this.f25608a = AndroidUtilities.dp(18.0f);
+        this.f25609b = AndroidUtilities.dp(2.25f);
+        this.f25610c = -1L;
         this.d = new float[2];
         Paint paint = new Paint();
         this.e = paint;
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setStrokeJoin(Paint.Join.ROUND);
-        this.f25614g = new RectF();
-        this.f25610a = f7;
-        this.f25611b = f10;
+        this.f25612g = new RectF();
+        this.f25608a = f7;
+        this.f25609b = f10;
         b(i10);
     }
 

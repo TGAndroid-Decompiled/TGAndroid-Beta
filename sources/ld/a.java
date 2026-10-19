@@ -2,14 +2,14 @@ package ld;
 
 import w7.c0;
 public final class a {
-    public static final a f16001a;
-    public static final a[] f16002b;
+    public static final a f15999a;
+    public static final a[] f16000b;
 
     static {
         ?? r02 = new Enum("COROUTINE_SUSPENDED", 0);
-        f16001a = r02;
+        f15999a = r02;
         a[] aVarArr = {r02, new Enum("UNDECIDED", 1), new Enum("RESUMED", 2)};
-        f16002b = aVarArr;
+        f16000b = aVarArr;
         c0.a(aVarArr);
     }
 
@@ -18,6 +18,6 @@ public final class a {
     }
 
     public static a[] values() {
-        return (a[]) f16002b.clone();
+        return (a[]) f16000b.clone();
     }
 }

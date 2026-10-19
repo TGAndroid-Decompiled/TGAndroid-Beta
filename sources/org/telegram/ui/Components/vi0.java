@@ -4,18 +4,18 @@ import java.util.Locale;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class vi0 implements kd0, md0 {
-    public final int f31313a;
-    public final aj0 f31314b;
+    public final int f31311a;
+    public final aj0 f31312b;
 
     public vi0(aj0 aj0Var, int i10) {
-        this.f31313a = i10;
-        this.f31314b = aj0Var;
+        this.f31311a = i10;
+        this.f31312b = aj0Var;
     }
 
     @Override
     public String e(int i10) {
-        int i11 = this.f31313a;
-        aj0 aj0Var = this.f31314b;
+        int i11 = this.f31311a;
+        aj0 aj0Var = this.f31312b;
         switch (i11) {
             case 0:
                 if (aj0Var.O) {
@@ -45,7 +45,7 @@ public final class vi0 implements kd0, md0 {
 
     @Override
     public void q(od0 od0Var, int i10) {
-        aj0 aj0Var = this.f31314b;
+        aj0 aj0Var = this.f31312b;
         try {
             aj0Var.performHapticFeedback(3, 2);
         } catch (Exception unused) {

@@ -17,24 +17,24 @@ import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class nw0 extends LinearLayout {
-    public final TextView f39691a;
-    public final TextView f39692b;
-    public final FrameLayout f39693c;
+    public final TextView f39690a;
+    public final TextView f39691b;
+    public final FrameLayout f39692c;
     public final jw0 d;
     public final kw0 e;
-    public boolean f39694f;
+    public boolean f39693f;
     public boolean h;
-    public final PremiumPreviewFragment f39695n;
+    public final PremiumPreviewFragment f39694n;
 
     public nw0(PremiumPreviewFragment premiumPreviewFragment, Context context) {
         super(context);
         int i10;
         int i11;
         int i12;
-        this.f39695n = premiumPreviewFragment;
+        this.f39694n = premiumPreviewFragment;
         setOrientation(1);
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f39693c = frameLayout;
+        this.f39692c = frameLayout;
         int i13 = premiumPreviewFragment.f33501g0;
         if (i13 == 1) {
             i10 = 175;
@@ -54,7 +54,7 @@ public final class nw0 extends LinearLayout {
         frameLayout.setClipChildren(false);
         setClipChildren(false);
         TextView textView = new TextView(context);
-        this.f39691a = textView;
+        this.f39690a = textView;
         textView.setTextSize(1, 22.0f);
         textView.setTypeface(AndroidUtilities.bold());
         textView.setGravity(1);
@@ -65,7 +65,7 @@ public final class nw0 extends LinearLayout {
         }
         addView(textView, w7.z5.p(-2, -2, 0.0f, 1, 16, i12, 16, 0));
         TextView textView2 = new TextView(context);
-        this.f39692b = textView2;
+        this.f39691b = textView2;
         textView2.setTextSize(1, 14.0f);
         textView2.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
         textView2.setGravity(1);
@@ -124,10 +124,10 @@ public final class nw0 extends LinearLayout {
         boolean z10;
         int i12;
         int i13;
-        PremiumPreviewFragment premiumPreviewFragment = this.f39695n;
+        PremiumPreviewFragment premiumPreviewFragment = this.f39694n;
         int i14 = premiumPreviewFragment.f33501g0;
-        TextView textView = this.f39691a;
-        TextView textView2 = this.f39692b;
+        TextView textView = this.f39690a;
+        TextView textView2 = this.f39691b;
         if (i14 == 0) {
             if (premiumPreviewFragment.f33510p0) {
                 i12 = R.string.TelegramPremiumSubscribedTitle;
@@ -162,14 +162,14 @@ public final class nw0 extends LinearLayout {
         } else {
             z10 = true;
         }
-        boolean z11 = this.f39694f;
+        boolean z11 = this.f39693f;
         kw0 kw0Var = this.e;
         if (z11 && z10) {
             if (kw0Var.getVisibility() == 0 && z10 && this.h == z10) {
                 ValueAnimator duration = ValueAnimator.ofFloat(1.0f, 0.0f).setDuration(250L);
                 duration.addUpdateListener(new iw0(this, kw0Var, duration, 0));
                 duration.addListener(new org.telegram.ui.Components.ml0(11, this, kw0Var));
-                duration.setInterpolator(org.telegram.ui.Components.bs.f25014f);
+                duration.setInterpolator(org.telegram.ui.Components.bs.f25012f);
                 duration.start();
             }
         } else {
@@ -177,7 +177,7 @@ public final class nw0 extends LinearLayout {
                 i15 = 8;
             }
             kw0Var.setVisibility(i15);
-            this.f39694f = true;
+            this.f39693f = true;
         }
         this.h = !z10;
     }

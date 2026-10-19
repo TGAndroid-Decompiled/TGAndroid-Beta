@@ -2,16 +2,16 @@ package org.telegram.ui.ActionBar;
 
 import org.telegram.ui.py;
 public final class r extends py {
-    public final ActionBarLayout f21681a;
+    public final ActionBarLayout f21679a;
 
     public r(ActionBarLayout actionBarLayout) {
         super(null);
-        this.f21681a = actionBarLayout;
+        this.f21679a = actionBarLayout;
     }
 
     @Override
     public final void updateSheetsVisibility() {
         super.updateSheetsVisibility();
-        this.f21681a.invalidate();
+        this.f21679a.invalidate();
     }
 }

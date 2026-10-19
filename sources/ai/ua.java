@@ -28,28 +28,28 @@ import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.z70;
 public final class ua implements Utilities.Callback {
-    public final int f2267a;
-    public final int f2268b;
-    public final Object f2269c;
+    public final int f2269a;
+    public final int f2270b;
+    public final Object f2271c;
     public final Object d;
     public final Object e;
 
     public ua(Object obj, int i10, Object obj2, Object obj3, int i11) {
-        this.f2267a = i11;
-        this.f2269c = obj;
-        this.f2268b = i10;
+        this.f2269a = i11;
+        this.f2271c = obj;
+        this.f2270b = i10;
         this.d = obj2;
         this.e = obj3;
     }
 
     @Override
     public final void run(Object obj) {
-        int i10 = this.f2267a;
+        int i10 = this.f2269a;
         boolean z10 = true;
-        int i11 = this.f2268b;
+        int i11 = this.f2270b;
         Object obj2 = this.e;
         Object obj3 = this.d;
-        Object obj4 = this.f2269c;
+        Object obj4 = this.f2271c;
         switch (i10) {
             case 0:
                 org.telegram.ui.Components.zc zcVar = (org.telegram.ui.Components.zc) obj4;
@@ -58,7 +58,7 @@ public final class ua implements Utilities.Callback {
                 TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj;
                 if (savedStarGift != null) {
                     SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(zcVar.getText());
-                    spannableStringBuilder.append((CharSequence) " ").append((CharSequence) org.telegram.ui.Components.ad.b(LocaleController.getString(R.string.StarGiftReasonUpgradeView), new cb(this.f2268b, context, d6Var, savedStarGift, 0), d6Var, null));
+                    spannableStringBuilder.append((CharSequence) " ").append((CharSequence) org.telegram.ui.Components.ad.b(LocaleController.getString(R.string.StarGiftReasonUpgradeView), new cb(this.f2270b, context, d6Var, savedStarGift, 0), d6Var, null));
                     zcVar.setText(spannableStringBuilder);
                     return;
                 }
@@ -66,17 +66,17 @@ public final class ua implements Utilities.Callback {
             case 1:
                 org.telegram.ui.ActionBar.n2 n2Var = (org.telegram.ui.ActionBar.n2) obj4;
                 TLRPC.Chat chat = (TLRPC.Chat) obj3;
-                long j10 = ((TLRPC.Chat) obj2).f20275id;
+                long j10 = ((TLRPC.Chat) obj2).f20273id;
                 boolean booleanValue = ((Boolean) obj).booleanValue();
                 boolean isChannel = ChatObject.isChannel(chat);
-                int i12 = this.f2268b;
+                int i12 = this.f2270b;
                 if (!isChannel) {
                     org.telegram.ui.ActionBar.b2 b2Var = new org.telegram.ui.ActionBar.b2(n2Var.getContext(), 3, null);
                     b2Var.r(250L);
-                    MessagesController.getInstance(i12).convertToMegaGroup(n2Var.getParentActivity(), chat.f20275id, n2Var, new hi.m0(b2Var, n2Var, i12, j10, booleanValue));
+                    MessagesController.getInstance(i12).convertToMegaGroup(n2Var.getParentActivity(), chat.f20273id, n2Var, new hi.m0(b2Var, n2Var, i12, j10, booleanValue));
                     return;
                 }
-                long j11 = chat.f20275id;
+                long j11 = chat.f20273id;
                 MessagesController.getInstance(i12).linkCommunity(-j11, j10, booleanValue, new hi.n0(n2Var, j11, 0));
                 return;
             case 2:
@@ -84,8 +84,8 @@ public final class ua implements Utilities.Callback {
                 ki.a aVar = (ki.a) obj3;
                 String str = (String) obj2;
                 SpannableString spannableString = (SpannableString) obj;
-                if (i11 == c6Var.I && c6Var.f15189x == aVar) {
-                    Editable text = c6Var.f15184f.getText();
+                if (i11 == c6Var.I && c6Var.f15187x == aVar) {
+                    Editable text = c6Var.f15182f.getText();
                     if (TextUtils.equals(str, text)) {
                         for (mi.d dVar : (mi.d[]) text.getSpans(0, text.length(), mi.d.class)) {
                             text.removeSpan(dVar);
@@ -109,7 +109,7 @@ public final class ua implements Utilities.Callback {
                 aw awVar = (aw) obj4;
                 int[] iArr = (int[]) obj3;
                 ArrayList arrayList = (ArrayList) obj2;
-                org.telegram.ui.ActionBar.n2 n2Var2 = awVar.f24715c;
+                org.telegram.ui.ActionBar.n2 n2Var2 = awVar.f24713c;
                 iArr[0] = iArr[0] + 1;
                 if (((Boolean) obj).booleanValue()) {
                     iArr[1] = iArr[1] + 1;
@@ -179,18 +179,18 @@ public final class ua implements Utilities.Callback {
     }
 
     public ua(aw awVar, int[] iArr, int i10, ArrayList arrayList) {
-        this.f2267a = 3;
-        this.f2269c = awVar;
+        this.f2269a = 3;
+        this.f2271c = awVar;
         this.d = iArr;
-        this.f2268b = i10;
+        this.f2270b = i10;
         this.e = arrayList;
     }
 
     public ua(LaunchActivity launchActivity, z70 z70Var, Long l4, int i10) {
-        this.f2267a = 4;
-        this.f2269c = launchActivity;
+        this.f2269a = 4;
+        this.f2271c = launchActivity;
         this.d = z70Var;
         this.e = l4;
-        this.f2268b = i10;
+        this.f2270b = i10;
     }
 }

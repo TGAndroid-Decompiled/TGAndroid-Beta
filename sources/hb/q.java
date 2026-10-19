@@ -1,10 +1,10 @@
 package hb;
 public final class q extends eb.u {
-    public static final p f11754b = new p(new q(eb.t.f8579b), 0);
-    public final eb.t f11755a;
+    public static final p f11752b = new p(new q(eb.t.f8577b), 0);
+    public final eb.t f11753a;
 
     public q(eb.t tVar) {
-        this.f11755a = tVar;
+        this.f11753a = tVar;
     }
 
     @Override
@@ -18,7 +18,7 @@ public final class q extends eb.u {
             }
             throw new RuntimeException("Expecting number, got: " + i2.e.E(x10) + "; at path " + aVar.h());
         }
-        return this.f11755a.a(aVar);
+        return this.f11753a.a(aVar);
     }
 
     @Override

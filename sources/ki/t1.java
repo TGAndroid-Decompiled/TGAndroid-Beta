@@ -52,16 +52,16 @@ import org.telegram.ui.Components.ti;
 import org.telegram.ui.Components.y71;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.Wallet.r9;
-import org.telegram.ui.li0;
+import org.telegram.ui.mi0;
 import org.telegram.ui.zr0;
 import w7.u8;
 public class t1 implements org.telegram.ui.Components.e5, j0, m.f2, y2.g, m.y0, n5.b, o0.a, r71, fb0, mg.o, y71, hg.z1, com.google.android.gms.common.api.internal.r, r2.m, com.google.android.gms.common.api.internal.o, rg.v1, s4.h1 {
-    public final int f15526a;
-    public Object f15527b;
+    public final int f15524a;
+    public Object f15525b;
 
     public t1(Object obj, int i10) {
-        this.f15526a = i10;
-        this.f15527b = obj;
+        this.f15524a = i10;
+        this.f15525b = obj;
     }
 
     public static float[] P(ArrayList arrayList) {
@@ -282,41 +282,41 @@ public class t1 implements org.telegram.ui.Components.e5, j0, m.f2, y2.g, m.y0, 
 
     @Override
     public void C(int i10, int i11, boolean z10) {
-        switch (this.f15526a) {
+        switch (this.f15524a) {
             case 0:
-                d2 d2Var = (d2) this.f15527b;
+                d2 d2Var = (d2) this.f15525b;
                 d2Var.s0(i10, i11, z10);
-                li0 li0Var = d2Var.O0;
-                if (li0Var != null) {
-                    li0Var.i();
+                mi0 mi0Var = d2Var.O0;
+                if (mi0Var != null) {
+                    mi0Var.i();
                     d2Var.O0 = null;
                     return;
                 }
                 return;
             default:
-                ((ChatActivityEnterView) this.f15527b).R0(i10, z10, 0, true, 0L);
+                ((ChatActivityEnterView) this.f15525b).R0(i10, z10, 0, true, 0L);
                 return;
         }
     }
 
     @Override
     public m9 D() {
-        return (o4) this.f15527b;
+        return (o4) this.f15525b;
     }
 
     @Override
     public void E(boolean z10) {
-        ((nf0) this.f15527b).f28766c.setAspectLock(z10);
+        ((nf0) this.f15525b).f28764c.setAspectLock(z10);
     }
 
     @Override
     public a F() {
-        return ((o4) this.f15527b).f15113a;
+        return ((o4) this.f15525b).f15111a;
     }
 
     @Override
     public a0.h G() {
-        switch (this.f15526a) {
+        switch (this.f15524a) {
             case 18:
                 return null;
             default:
@@ -326,11 +326,11 @@ public class t1 implements org.telegram.ui.Components.e5, j0, m.f2, y2.g, m.y0, 
 
     @Override
     public boolean H() {
-        o4 o4Var = (o4) this.f15527b;
+        o4 o4Var = (o4) this.f15525b;
         m4 m4Var = o4Var.G;
         if (m4Var != null) {
-            a aVar = o4Var.f15113a;
-            if (((s3) m4Var).f15503a.T4()) {
+            a aVar = o4Var.f15111a;
+            if (((s3) m4Var).f15501a.T4()) {
                 return true;
             }
             return false;
@@ -340,7 +340,7 @@ public class t1 implements org.telegram.ui.Components.e5, j0, m.f2, y2.g, m.y0, 
 
     @Override
     public void I(int i10, int i11, CharSequence charSequence, boolean z10) {
-        ti tiVar = (ti) this.f15527b;
+        ti tiVar = (ti) this.f15525b;
         if (tiVar.o1() == null) {
             return;
         }
@@ -359,16 +359,16 @@ public class t1 implements org.telegram.ui.Components.e5, j0, m.f2, y2.g, m.y0, 
 
     @Override
     public void J(y2.i iVar, long j10, long j11, boolean z10) {
-        ((l2.h) this.f15527b).x((y2.o) iVar, j10, j11);
+        ((l2.h) this.f15525b).x((y2.o) iVar, j10, j11);
     }
 
     @Override
     public void K(int i10, int i11) {
-        o4 o4Var = (o4) this.f15527b;
+        o4 o4Var = (o4) this.f15525b;
         m4 m4Var = o4Var.G;
         if (m4Var != null) {
-            a aVar = o4Var.f15113a;
-            h2 h2Var = ((s3) m4Var).f15503a.H3;
+            a aVar = o4Var.f15111a;
+            h2 h2Var = ((s3) m4Var).f15501a.H3;
             if (h2Var != null) {
                 h2Var.f(i10, i11);
             }
@@ -378,11 +378,11 @@ public class t1 implements org.telegram.ui.Components.e5, j0, m.f2, y2.g, m.y0, 
     public String M(Object obj) {
         StringWriter stringWriter = new StringWriter();
         try {
-            la.d dVar = (la.d) this.f15527b;
-            la.e eVar = new la.e(stringWriter, dVar.f15989a, dVar.f15990b, dVar.f15991c, dVar.d);
+            la.d dVar = (la.d) this.f15525b;
+            la.e eVar = new la.e(stringWriter, dVar.f15987a, dVar.f15988b, dVar.f15989c, dVar.d);
             eVar.h(obj);
             eVar.j();
-            eVar.f15993b.flush();
+            eVar.f15991b.flush();
         } catch (IOException unused) {
         }
         return stringWriter.toString();
@@ -390,24 +390,24 @@ public class t1 implements org.telegram.ui.Components.e5, j0, m.f2, y2.g, m.y0, 
 
     @Override
     public void N() {
-        o4 o4Var = (o4) this.f15527b;
+        o4 o4Var = (o4) this.f15525b;
         m4 m4Var = o4Var.G;
         if (m4Var != null) {
-            a aVar = o4Var.f15113a;
-            w3 w3Var = ((s3) m4Var).f15503a;
+            a aVar = o4Var.f15111a;
+            w3 w3Var = ((s3) m4Var).f15501a;
             h2 h2Var = w3Var.H3;
             if (h2Var != null) {
                 h2Var.g();
             }
-            w3Var.f15594f3.onContentChanged();
+            w3Var.f15592f3.onContentChanged();
         }
     }
 
     @Override
     public boolean O(int i10) {
-        switch (this.f15526a) {
+        switch (this.f15524a) {
             case 18:
-                if (i10 == ((ar0) this.f15527b).f24684r) {
+                if (i10 == ((ar0) this.f15525b).f24682r) {
                     return true;
                 }
                 return false;
@@ -418,9 +418,9 @@ public class t1 implements org.telegram.ui.Components.e5, j0, m.f2, y2.g, m.y0, 
 
     @Override
     public void R(boolean z10) {
-        nf0 nf0Var = (nf0) this.f15527b;
+        nf0 nf0Var = (nf0) this.f15525b;
         nf0Var.getClass();
-        mf0 mf0Var = nf0Var.f28764a;
+        mf0 mf0Var = nf0Var.f28762a;
         if (mf0Var != null) {
             ((zr0) mf0Var).a(z10);
         }
@@ -428,21 +428,21 @@ public class t1 implements org.telegram.ui.Components.e5, j0, m.f2, y2.g, m.y0, 
 
     @Override
     public void S(ArrayList arrayList) {
-        int i10 = this.f15526a;
+        int i10 = this.f15524a;
     }
 
     @Override
     public void U(float f7) {
-        rg.w0 w0Var = (rg.w0) this.f15527b;
-        qg.v0.e(w0Var.f45669a).k("-1", f7);
+        rg.w0 w0Var = (rg.w0) this.f15525b;
+        qg.v0.e(w0Var.f45671a).k("-1", f7);
         w0Var.e.setBrushSize(f7);
     }
 
     @Override
     public void W() {
-        mf0 mf0Var = ((nf0) this.f15527b).f28764a;
+        mf0 mf0Var = ((nf0) this.f15525b).f28762a;
         if (mf0Var != null) {
-            PhotoViewer photoViewer = ((zr0) mf0Var).f43790a;
+            PhotoViewer photoViewer = ((zr0) mf0Var).f43792a;
             if (photoViewer.f33256c2 == 1) {
                 photoViewer.H2 = true;
                 photoViewer.q3();
@@ -452,16 +452,16 @@ public class t1 implements org.telegram.ui.Components.e5, j0, m.f2, y2.g, m.y0, 
 
     @Override
     public void X() {
-        o4 o4Var = (o4) this.f15527b;
+        o4 o4Var = (o4) this.f15525b;
         m4 m4Var = o4Var.G;
         if (m4Var != null) {
-            a aVar = o4Var.f15113a;
-            w3.P1(((s3) m4Var).f15503a);
+            a aVar = o4Var.f15111a;
+            w3.P1(((s3) m4Var).f15501a);
         }
     }
 
     public void Y(int i10) {
-        RecyclerView recyclerView = (RecyclerView) this.f15527b;
+        RecyclerView recyclerView = (RecyclerView) this.f15525b;
         View childAt = recyclerView.getChildAt(i10);
         if (childAt != null) {
             recyclerView.r(childAt);
@@ -471,7 +471,7 @@ public class t1 implements org.telegram.ui.Components.e5, j0, m.f2, y2.g, m.y0, 
     }
 
     public void Z() {
-        ArrayDeque arrayDeque = (ArrayDeque) this.f15527b;
+        ArrayDeque arrayDeque = (ArrayDeque) this.f15525b;
         if (arrayDeque.isEmpty()) {
             return;
         }
@@ -482,7 +482,7 @@ public class t1 implements org.telegram.ui.Components.e5, j0, m.f2, y2.g, m.y0, 
 
     @Override
     public void a(long j10, int i10, int i11, int i12) {
-        ((MediaCodec) this.f15527b).queueInputBuffer(i10, 0, i11, j10, i12);
+        ((MediaCodec) this.f15525b).queueInputBuffer(i10, 0, i11, j10, i12);
     }
 
     public void a0(long j10) {
@@ -503,12 +503,12 @@ public class t1 implements org.telegram.ui.Components.e5, j0, m.f2, y2.g, m.y0, 
 
     @Override
     public void accept(Object obj, Object obj2) {
-        switch (this.f15526a) {
+        switch (this.f15524a) {
             case 21:
                 TaskCompletionSource taskCompletionSource = (TaskCompletionSource) obj2;
                 p6.a aVar = (p6.a) ((p6.c) obj).u();
                 Parcel H0 = aVar.H0();
-                k7.a.c(H0, (n6.o) this.f15527b);
+                k7.a.c(H0, (n6.o) this.f15525b);
                 try {
                     aVar.f317b.transact(1, H0, null, 1);
                     H0.recycle();
@@ -523,7 +523,7 @@ public class t1 implements org.telegram.ui.Components.e5, j0, m.f2, y2.g, m.y0, 
                 s6.e eVar = (s6.e) ((s6.h) obj).u();
                 Parcel H02 = eVar.H0();
                 k7.a.d(H02, fVar);
-                k7.a.c(H02, (s6.a) this.f15527b);
+                k7.a.c(H02, (s6.a) this.f15525b);
                 H02.writeStrongBinder(null);
                 eVar.I0(H02, 2);
                 return;
@@ -532,11 +532,11 @@ public class t1 implements org.telegram.ui.Components.e5, j0, m.f2, y2.g, m.y0, 
 
     @Override
     public void b(int i10, h2.d dVar, long j10, int i11) {
-        ((MediaCodec) this.f15527b).queueSecureInputBuffer(i10, 0, dVar.f11632i, j10, i11);
+        ((MediaCodec) this.f15525b).queueSecureInputBuffer(i10, 0, dVar.f11630i, j10, i11);
     }
 
     public long b0() {
-        ArrayDeque arrayDeque = (ArrayDeque) this.f15527b;
+        ArrayDeque arrayDeque = (ArrayDeque) this.f15525b;
         if (arrayDeque.isEmpty()) {
             return 0L;
         }
@@ -545,17 +545,17 @@ public class t1 implements org.telegram.ui.Components.e5, j0, m.f2, y2.g, m.y0, 
 
     @Override
     public void c(h1 h1Var) {
-        m4 m4Var = ((o4) this.f15527b).G;
+        m4 m4Var = ((o4) this.f15525b).G;
         if (m4Var != null) {
-            w3 w3Var = ((s3) m4Var).f15503a;
+            w3 w3Var = ((s3) m4Var).f15501a;
             w3.N1(w3Var, h1Var);
-            w3Var.f15594f3.o(h1Var, true);
+            w3Var.f15592f3.o(h1Var, true);
         }
     }
 
     @Override
     public void close() {
-        ContentProviderClient contentProviderClient = (ContentProviderClient) this.f15527b;
+        ContentProviderClient contentProviderClient = (ContentProviderClient) this.f15525b;
         if (contentProviderClient != null) {
             contentProviderClient.release();
         }
@@ -563,7 +563,7 @@ public class t1 implements org.telegram.ui.Components.e5, j0, m.f2, y2.g, m.y0, 
 
     @Override
     public void d(l.k kVar, MenuItem menuItem) {
-        ((l.e) this.f15527b).f15737f.removeCallbacksAndMessages(kVar);
+        ((l.e) this.f15525b).f15735f.removeCallbacksAndMessages(kVar);
     }
 
     @Override
@@ -571,36 +571,36 @@ public class t1 implements org.telegram.ui.Components.e5, j0, m.f2, y2.g, m.y0, 
         long min;
         k4.d dVar;
         y2.o oVar = (y2.o) iVar;
-        l2.h hVar = (l2.h) this.f15527b;
-        long j12 = oVar.f49927a;
-        g2.m mVar = oVar.f49928b;
+        l2.h hVar = (l2.h) this.f15525b;
+        long j12 = oVar.f49929a;
+        g2.m mVar = oVar.f49930b;
         g2.b0 b0Var = oVar.d;
-        u2.u uVar = new u2.u(mVar, b0Var.f10766c, b0Var.d, j10, j11, b0Var.f10765b);
-        int i11 = oVar.f49929c;
-        hVar.f15851m.getClass();
+        u2.u uVar = new u2.u(mVar, b0Var.f10764c, b0Var.d, j10, j11, b0Var.f10763b);
+        int i11 = oVar.f49931c;
+        hVar.f15849m.getClass();
         for (Throwable th2 = iOException; th2 != null; th2 = th2.getCause()) {
-            if ((th2 instanceof b2.w0) || (th2 instanceof FileNotFoundException) || (th2 instanceof g2.u) || (th2 instanceof y2.k) || ((th2 instanceof g2.j) && ((g2.j) th2).f10783a == 2008)) {
+            if ((th2 instanceof b2.w0) || (th2 instanceof FileNotFoundException) || (th2 instanceof g2.u) || (th2 instanceof y2.k) || ((th2 instanceof g2.j) && ((g2.j) th2).f10781a == 2008)) {
                 min = -9223372036854775807L;
                 break;
             }
         }
         min = Math.min((i10 - 1) * 1000, 5000);
         if (min == -9223372036854775807L) {
-            dVar = y2.l.f49923f;
+            dVar = y2.l.f49925f;
         } else {
             dVar = new k4.d(0, min, false);
         }
-        hVar.f15855q.t(uVar, i11, iOException, !dVar.a());
+        hVar.f15853q.t(uVar, i11, iOException, !dVar.a());
         return dVar;
     }
 
     @Override
     public void f(int i10) {
-        switch (this.f15526a) {
+        switch (this.f15524a) {
             case 18:
-                ar0 ar0Var = (ar0) this.f15527b;
+                ar0 ar0Var = (ar0) this.f15525b;
                 er0 er0Var = ar0Var.K;
-                ar0Var.f24685s = i10;
+                ar0Var.f24683s = i10;
                 if (ar0Var.v != i10) {
                     ar0Var.d.clear();
                 }
@@ -608,15 +608,15 @@ public class t1 implements org.telegram.ui.Components.e5, j0, m.f2, y2.g, m.y0, 
                 if (ar0Var.h() == 0 && !ar0Var.e.e() && !ar0Var.I) {
                     er0Var.R.e(false, true);
                 } else {
-                    er0Var.f26010y0.b(i11);
+                    er0Var.f26008y0.b(i11);
                 }
                 ar0Var.l();
-                int i12 = er0.f25976b1;
+                int i12 = er0.f25974b1;
                 er0Var.M0(true);
                 return;
             default:
-                r9 r9Var = (r9) this.f15527b;
-                if (!r9Var.f34807n && i10 == r9Var.I) {
+                r9 r9Var = (r9) this.f15525b;
+                if (!r9Var.f34809n && i10 == r9Var.I) {
                     r9Var.e0(r9Var.M.getText().toString().trim());
                     return;
                 }
@@ -626,38 +626,38 @@ public class t1 implements org.telegram.ui.Components.e5, j0, m.f2, y2.g, m.y0, 
 
     @Override
     public void g() {
-        o4 o4Var = (o4) this.f15527b;
+        o4 o4Var = (o4) this.f15525b;
         m4 m4Var = o4Var.G;
         if (m4Var != null) {
-            w3.Q1(((s3) m4Var).f15503a, o4Var.f15113a);
+            w3.Q1(((s3) m4Var).f15501a, o4Var.f15111a);
         }
     }
 
     @Override
     public Object mo27get() {
-        return new m.g3((Context) ((n5.c) this.f15527b).f17153a, new rb.b(24), new pb.a(24), 3);
+        return new m.g3((Context) ((n5.c) this.f15525b).f17151a, new rb.b(24), new pb.a(24), 3);
     }
 
     @Override
     public void h(y2.i iVar, long j10, long j11, int i10) {
         u2.u uVar;
         y2.o oVar = (y2.o) iVar;
-        l2.h hVar = (l2.h) this.f15527b;
+        l2.h hVar = (l2.h) this.f15525b;
         if (i10 == 0) {
-            long j12 = oVar.f49927a;
-            uVar = new u2.u(oVar.f49928b, j10);
+            long j12 = oVar.f49929a;
+            uVar = new u2.u(oVar.f49930b, j10);
         } else {
-            long j13 = oVar.f49927a;
-            g2.m mVar = oVar.f49928b;
+            long j13 = oVar.f49929a;
+            g2.m mVar = oVar.f49930b;
             g2.b0 b0Var = oVar.d;
-            uVar = new u2.u(mVar, b0Var.f10766c, b0Var.d, j10, j11, b0Var.f10765b);
+            uVar = new u2.u(mVar, b0Var.f10764c, b0Var.d, j10, j11, b0Var.f10763b);
         }
-        hVar.f15855q.v(uVar, oVar.f49929c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L, i10);
+        hVar.f15853q.v(uVar, oVar.f49931c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L, i10);
     }
 
     @Override
     public void invalidate() {
-        ((org.telegram.ui.Cells.u1) ((org.telegram.ui.Cells.h1) this.f15527b).f22323b).invalidate();
+        ((org.telegram.ui.Cells.u1) ((org.telegram.ui.Cells.h1) this.f15525b).f22321b).invalidate();
     }
 
     @Override
@@ -670,27 +670,27 @@ public class t1 implements org.telegram.ui.Components.e5, j0, m.f2, y2.g, m.y0, 
         int size;
         long j12;
         y2.o oVar = (y2.o) iVar;
-        l2.h hVar = (l2.h) this.f15527b;
-        long j13 = oVar.f49927a;
-        g2.m mVar = oVar.f49928b;
+        l2.h hVar = (l2.h) this.f15525b;
+        long j13 = oVar.f49929a;
+        g2.m mVar = oVar.f49930b;
         g2.b0 b0Var = oVar.d;
-        u2.u uVar = new u2.u(mVar, b0Var.f10766c, b0Var.d, j10, j11, b0Var.f10765b);
-        hVar.f15851m.getClass();
-        hVar.f15855q.r(uVar, oVar.f49929c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
-        m2.c cVar = (m2.c) oVar.f49930f;
+        u2.u uVar = new u2.u(mVar, b0Var.f10764c, b0Var.d, j10, j11, b0Var.f10763b);
+        hVar.f15849m.getClass();
+        hVar.f15853q.r(uVar, oVar.f49931c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
+        m2.c cVar = (m2.c) oVar.f49932f;
         m2.c cVar2 = hVar.G;
         if (cVar2 == null) {
             size = 0;
         } else {
-            size = cVar2.f16426m.size();
+            size = cVar2.f16424m.size();
         }
-        long j14 = cVar.b(0).f16443b;
+        long j14 = cVar.b(0).f16441b;
         int i10 = 0;
-        while (i10 < size && hVar.G.b(i10).f16443b < j14) {
+        while (i10 < size && hVar.G.b(i10).f16441b < j14) {
             i10++;
         }
         if (cVar.d) {
-            if (size - i10 > cVar.f16426m.size()) {
+            if (size - i10 > cVar.f16424m.size()) {
                 e2.a.l("DashMediaSource", "Loaded out of sync manifest");
             } else {
                 long j15 = hVar.M;
@@ -703,7 +703,7 @@ public class t1 implements org.telegram.ui.Components.e5, j0, m.f2, y2.g, m.y0, 
             }
             int i11 = hVar.L;
             hVar.L = i11 + 1;
-            if (i11 < hVar.f15851m.y3(oVar.f49929c)) {
+            if (i11 < hVar.f15849m.y3(oVar.f49931c)) {
                 hVar.D.postDelayed(hVar.v, Math.min((hVar.L - 1) * 1000, 5000));
                 return;
             }
@@ -716,12 +716,12 @@ public class t1 implements org.telegram.ui.Components.e5, j0, m.f2, y2.g, m.y0, 
         hVar.I = j10 - j11;
         hVar.J = j10;
         hVar.N += i10;
-        synchronized (hVar.f15858t) {
+        synchronized (hVar.f15856t) {
             try {
-                if (oVar.f49928b.f10793a.equals(hVar.E)) {
-                    Uri uri = hVar.G.f16424k;
+                if (oVar.f49930b.f10791a.equals(hVar.E)) {
+                    Uri uri = hVar.G.f16422k;
                     if (uri == null) {
-                        uri = u8.a(oVar.d.f10766c);
+                        uri = u8.a(oVar.d.f10764c);
                     }
                     hVar.E = uri;
                 }
@@ -731,9 +731,9 @@ public class t1 implements org.telegram.ui.Components.e5, j0, m.f2, y2.g, m.y0, 
         }
         m2.c cVar3 = hVar.G;
         if (cVar3.d && hVar.K == j12) {
-            m2.t tVar = cVar3.f16422i;
+            m2.t tVar = cVar3.f16420i;
             if (tVar != null) {
-                String str = tVar.f16471b;
+                String str = tVar.f16469b;
                 if (!Objects.equals(str, "urn:mpeg:dash:utc:direct:2014") && !Objects.equals(str, "urn:mpeg:dash:utc:direct:2012")) {
                     if (!Objects.equals(str, "urn:mpeg:dash:utc:http-iso:2014") && !Objects.equals(str, "urn:mpeg:dash:utc:http-iso:2012")) {
                         if (!Objects.equals(str, "urn:mpeg:dash:utc:http-xsdate:2014") && !Objects.equals(str, "urn:mpeg:dash:utc:http-xsdate:2012")) {
@@ -752,7 +752,7 @@ public class t1 implements org.telegram.ui.Components.e5, j0, m.f2, y2.g, m.y0, 
                     return;
                 }
                 try {
-                    hVar.K = e2.m0.V(tVar.f16472c) - hVar.J;
+                    hVar.K = e2.m0.V(tVar.f16470c) - hVar.J;
                     hVar.z(true);
                     return;
                 } catch (b2.w0 e) {
@@ -768,12 +768,12 @@ public class t1 implements org.telegram.ui.Components.e5, j0, m.f2, y2.g, m.y0, 
 
     @Override
     public int l() {
-        return ((s4.n0) this.f15527b).G();
+        return ((s4.n0) this.f15525b).G();
     }
 
     @Override
     public void o(Object obj) {
-        ((g8.c) obj).onLocationAvailability((LocationAvailability) this.f15527b);
+        ((g8.c) obj).onLocationAvailability((LocationAvailability) this.f15525b);
     }
 
     @Override
@@ -782,12 +782,12 @@ public class t1 implements org.telegram.ui.Components.e5, j0, m.f2, y2.g, m.y0, 
 
     @Override
     public void onStateChanged(boolean z10, int i10) {
-        dl0 dl0Var = (dl0) this.f15527b;
-        if (z10 && dl0Var.f25586n.n() >= 0) {
-            dl0Var.f25589w = true;
+        dl0 dl0Var = (dl0) this.f15525b;
+        if (z10 && dl0Var.f25584n.n() >= 0) {
+            dl0Var.f25587w = true;
         }
-        ah0 ah0Var = dl0Var.f25585f;
-        rc0 rc0Var = dl0Var.f25590x;
+        ah0 ah0Var = dl0Var.f25583f;
+        rc0 rc0Var = dl0Var.f25588x;
         ah0Var.a(z10, true);
         AndroidUtilities.cancelRunOnUIThread(rc0Var);
         if (z10) {
@@ -802,16 +802,16 @@ public class t1 implements org.telegram.ui.Components.e5, j0, m.f2, y2.g, m.y0, 
 
     @Override
     public void p(l.k kVar, l.m mVar) {
-        l.e eVar = (l.e) this.f15527b;
-        Handler handler = eVar.f15737f;
+        l.e eVar = (l.e) this.f15525b;
+        Handler handler = eVar.f15735f;
         l.d dVar = null;
         handler.removeCallbacksAndMessages(null);
-        ArrayList arrayList = eVar.f15738n;
+        ArrayList arrayList = eVar.f15736n;
         int size = arrayList.size();
         int i10 = 0;
         while (true) {
             if (i10 < size) {
-                if (kVar == ((l.d) arrayList.get(i10)).f15732b) {
+                if (kVar == ((l.d) arrayList.get(i10)).f15730b) {
                     break;
                 }
                 i10++;
@@ -832,37 +832,37 @@ public class t1 implements org.telegram.ui.Components.e5, j0, m.f2, y2.g, m.y0, 
 
     @Override
     public int r() {
-        s4.n0 n0Var = (s4.n0) this.f15527b;
-        return n0Var.f46012n - n0Var.C();
+        s4.n0 n0Var = (s4.n0) this.f15525b;
+        return n0Var.f46014n - n0Var.C();
     }
 
     public void s() {
-        qg.d1 d1Var = ((qg.f1) this.f15527b).d;
+        qg.d1 d1Var = ((qg.f1) this.f15525b).d;
         if (d1Var != null) {
-            qg.c1 c1Var = d1Var.f44483s;
+            qg.c1 c1Var = d1Var.f44485s;
             if (c1Var != null) {
                 d1Var.cancelRunnable(c1Var);
-                d1Var.f44483s = null;
+                d1Var.f44485s = null;
             }
             qg.c1 c1Var2 = new qg.c1(d1Var, 1);
-            d1Var.f44483s = c1Var2;
+            d1Var.f44485s = c1Var2;
             d1Var.postRunnable(c1Var2, 1L);
         }
     }
 
     @Override
     public void setParameters(Bundle bundle) {
-        ((MediaCodec) this.f15527b).setParameters(bundle);
+        ((MediaCodec) this.f15525b).setParameters(bundle);
     }
 
     @Override
     public Paint.FontMetricsInt t() {
-        return ((ti) this.f15527b).H0.getEditText().getPaint().getFontMetricsInt();
+        return ((ti) this.f15525b).H0.getEditText().getPaint().getFontMetricsInt();
     }
 
     @Override
     public Cursor u(Uri uri, String[] strArr, String[] strArr2) {
-        ContentProviderClient contentProviderClient = (ContentProviderClient) this.f15527b;
+        ContentProviderClient contentProviderClient = (ContentProviderClient) this.f15525b;
         if (contentProviderClient == null) {
             return null;
         }
@@ -876,29 +876,29 @@ public class t1 implements org.telegram.ui.Components.e5, j0, m.f2, y2.g, m.y0, 
 
     @Override
     public void v() {
-        mf0 mf0Var = ((nf0) this.f15527b).f28764a;
+        mf0 mf0Var = ((nf0) this.f15525b).f28762a;
         if (mf0Var != null) {
-            ((zr0) mf0Var).f43790a.f33272e0.invalidate();
+            ((zr0) mf0Var).f43792a.f33272e0.invalidate();
         }
     }
 
     @Override
     public n9 w() {
-        m4 m4Var = ((o4) this.f15527b).G;
+        m4 m4Var = ((o4) this.f15525b).G;
         if (m4Var != null) {
-            return ((s3) m4Var).f15503a.getTextSelectionHelper();
+            return ((s3) m4Var).f15501a.getTextSelectionHelper();
         }
         return null;
     }
 
     @Override
     public View x(int i10) {
-        return ((s4.n0) this.f15527b).q(i10);
+        return ((s4.n0) this.f15525b).q(i10);
     }
 
     @Override
     public a0.h y() {
-        switch (this.f15526a) {
+        switch (this.f15524a) {
             case 18:
                 return null;
             default:
@@ -908,19 +908,19 @@ public class t1 implements org.telegram.ui.Components.e5, j0, m.f2, y2.g, m.y0, 
 
     @Override
     public void z(CharSequence charSequence) {
-        m4 m4Var = ((o4) this.f15527b).G;
+        m4 m4Var = ((o4) this.f15525b).G;
         if (m4Var != null) {
             s3 s3Var = (s3) m4Var;
             s3Var.getClass();
             if (charSequence != null && charSequence.length() > 0) {
-                s3Var.f15503a.u4(charSequence.toString());
+                s3Var.f15501a.u4(charSequence.toString());
             }
         }
     }
 
     public t1(s6.g gVar, s6.a aVar) {
-        this.f15526a = 29;
-        this.f15527b = aVar;
+        this.f15524a = 29;
+        this.f15525b = aVar;
     }
 
     @Override
@@ -928,53 +928,53 @@ public class t1 implements org.telegram.ui.Components.e5, j0, m.f2, y2.g, m.y0, 
     }
 
     public t1(int i10) {
-        this.f15526a = i10;
+        this.f15524a = i10;
         switch (i10) {
             case 10:
-                this.f15527b = new o2.d(1.0f, 5, 0, false);
+                this.f15525b = new o2.d(1.0f, 5, 0, false);
                 return;
             case 15:
                 return;
             default:
-                this.f15527b = new ArrayDeque(16);
+                this.f15525b = new ArrayDeque(16);
                 return;
         }
     }
 
     public t1(int i10, int i11, int[] iArr) {
-        this.f15526a = 12;
+        this.f15524a = 12;
         t60[] t60VarArr = new t60[(iArr.length / 2) + 1];
-        this.f15527b = t60VarArr;
+        this.f15525b = t60VarArr;
         t60 t60Var = new t60(i10, i11);
         int i12 = 0;
         t60VarArr[0] = t60Var;
         while (i12 < iArr.length / 2) {
             int i13 = i12 + 1;
             int i14 = i12 * 2;
-            ((t60[]) this.f15527b)[i13] = new t60(iArr[i14], iArr[i14 + 1]);
+            ((t60[]) this.f15525b)[i13] = new t60(iArr[i14], iArr[i14 + 1]);
             i12 = i13;
         }
     }
 
     @Override
     public float get() {
-        rg.w0 w0Var = (rg.w0) this.f15527b;
-        int i10 = w0Var.f45669a;
+        rg.w0 w0Var = (rg.w0) this.f15525b;
+        int i10 = w0Var.f45671a;
         qg.m currentBrush = w0Var.e.getCurrentBrush();
         if (currentBrush == null) {
-            return qg.v0.e(i10).f44672i;
+            return qg.v0.e(i10).f44674i;
         }
         return qg.v0.e(i10).f("-1", currentBrush.d());
     }
 
     public t1(ArrayList arrayList) {
-        this.f15526a = 26;
-        this.f15527b = DesugarCollections.unmodifiableList(arrayList);
+        this.f15524a = 26;
+        this.f15525b = DesugarCollections.unmodifiableList(arrayList);
     }
 
     public t1(Context context, Uri uri) {
-        this.f15526a = 9;
-        this.f15527b = context.getContentResolver().acquireUnstableContentProviderClient(uri);
+        this.f15524a = 9;
+        this.f15525b = context.getContentResolver().acquireUnstableContentProviderClient(uri);
     }
 
     private final void T(ArrayList arrayList) {

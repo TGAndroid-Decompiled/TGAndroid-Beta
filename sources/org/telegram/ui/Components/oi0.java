@@ -10,21 +10,21 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotchInfoUtils;
 import org.telegram.messenger.SharedConfig;
 public final class oi0 extends FrameLayout {
-    public final Paint f29007a;
-    public final Path f29008b;
-    public final ni0 f29009c;
+    public final Paint f29005a;
+    public final Path f29006b;
+    public final ni0 f29007c;
     public float d;
     public float e;
-    public float f29010f;
+    public float f29008f;
     public boolean h;
-    public NotchInfoUtils.NotchInfo f29011n;
+    public NotchInfoUtils.NotchInfo f29009n;
 
     public oi0(Context context) {
         super(context);
         float f7;
         Paint paint = new Paint(1);
-        this.f29007a = paint;
-        this.f29008b = new Path();
+        this.f29005a = paint;
+        this.f29006b = new Path();
         paint.setColor(-16777216);
         if (Build.VERSION.SDK_INT >= 31 && SharedConfig.getDevicePerformanceClass() >= 1) {
             if (SharedConfig.getDevicePerformanceClass() == 2) {
@@ -32,9 +32,9 @@ public final class oi0 extends FrameLayout {
             } else {
                 f7 = 1.5f;
             }
-            this.f29009c = new mi0(this, f7);
+            this.f29007c = new mi0(this, f7);
         } else {
-            this.f29009c = new li0(this);
+            this.f29007c = new li0(this);
         }
         setIntensity(15.0f);
         setBlurIntensity(0.0f);
@@ -54,13 +54,13 @@ public final class oi0 extends FrameLayout {
             super.draw(canvas);
             return;
         }
-        this.f29009c.c(new tv(this, 13), canvas);
+        this.f29007c.c(new tv(this, 13), canvas);
     }
 
     public float getAvatarEndScale() {
         float min;
         int dp;
-        NotchInfoUtils.NotchInfo notchInfo = this.f29011n;
+        NotchInfoUtils.NotchInfo notchInfo = this.f29009n;
         if (notchInfo == null) {
             return 0.8f;
         }
@@ -68,7 +68,7 @@ public final class oi0 extends FrameLayout {
             min = notchInfo.bounds.width() - AndroidUtilities.dp(2.0f);
             dp = AndroidUtilities.dp(100.0f);
         } else {
-            min = Math.min(notchInfo.bounds.width(), this.f29011n.bounds.height());
+            min = Math.min(notchInfo.bounds.width(), this.f29009n.bounds.height());
             dp = AndroidUtilities.dp(100.0f);
         }
         return Math.min(0.8f, min / dp);
@@ -78,16 +78,16 @@ public final class oi0 extends FrameLayout {
     public final void onSizeChanged(int i10, int i11, int i12, int i13) {
         super.onSizeChanged(i10, i11, i12, i13);
         NotchInfoUtils.NotchInfo info = NotchInfoUtils.getInfo(getContext());
-        this.f29011n = info;
+        this.f29009n = info;
         if ((info != null && info.gravity != 17) || getWidth() > getHeight()) {
-            this.f29011n = null;
+            this.f29009n = null;
         }
-        this.f29009c.d(i10, i11);
+        this.f29007c.d(i10, i11);
     }
 
     public void setBlurIntensity(float f7) {
-        this.f29010f = f7;
-        this.f29009c.b(f7);
+        this.f29008f = f7;
+        this.f29007c.b(f7);
         invalidate();
     }
 
@@ -101,7 +101,7 @@ public final class oi0 extends FrameLayout {
 
     public void setIntensity(float f7) {
         this.d = f7;
-        this.f29009c.a(f7);
+        this.f29007c.a(f7);
         invalidate();
     }
 

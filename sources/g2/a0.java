@@ -13,16 +13,16 @@ import java.io.IOException;
 import java.nio.channels.FileChannel;
 import java.util.List;
 public final class a0 extends c {
-    public final Context f10757a;
-    public m f10758b;
-    public AssetFileDescriptor f10759c;
+    public final Context f10755a;
+    public m f10756b;
+    public AssetFileDescriptor f10757c;
     public FileInputStream d;
     public long e;
-    public boolean f10760f;
+    public boolean f10758f;
 
     public a0(Context context) {
         super(false);
-        this.f10757a = context.getApplicationContext();
+        this.f10755a = context.getApplicationContext();
     }
 
     @Deprecated
@@ -32,7 +32,7 @@ public final class a0 extends c {
 
     @Override
     public final void close() {
-        this.f10758b = null;
+        this.f10756b = null;
         try {
             try {
                 FileInputStream fileInputStream = this.d;
@@ -42,7 +42,7 @@ public final class a0 extends c {
                 this.d = null;
                 try {
                     try {
-                        AssetFileDescriptor assetFileDescriptor = this.f10759c;
+                        AssetFileDescriptor assetFileDescriptor = this.f10757c;
                         if (assetFileDescriptor != null) {
                             assetFileDescriptor.close();
                         }
@@ -50,9 +50,9 @@ public final class a0 extends c {
                         throw new j(null, e, 2000);
                     }
                 } finally {
-                    this.f10759c = null;
-                    if (this.f10760f) {
-                        this.f10760f = false;
+                    this.f10757c = null;
+                    if (this.f10758f) {
+                        this.f10758f = false;
                         transferEnded();
                     }
                 }
@@ -63,13 +63,13 @@ public final class a0 extends c {
             this.d = null;
             try {
                 try {
-                    AssetFileDescriptor assetFileDescriptor2 = this.f10759c;
+                    AssetFileDescriptor assetFileDescriptor2 = this.f10757c;
                     if (assetFileDescriptor2 != null) {
                         assetFileDescriptor2.close();
                     }
-                    this.f10759c = null;
-                    if (this.f10760f) {
-                        this.f10760f = false;
+                    this.f10757c = null;
+                    if (this.f10758f) {
+                        this.f10758f = false;
                         transferEnded();
                     }
                     throw th2;
@@ -77,9 +77,9 @@ public final class a0 extends c {
                     throw new j(null, e10, 2000);
                 }
             } finally {
-                this.f10759c = null;
-                if (this.f10760f) {
-                    this.f10760f = false;
+                this.f10757c = null;
+                if (this.f10758f) {
+                    this.f10758f = false;
                     transferEnded();
                 }
             }
@@ -88,9 +88,9 @@ public final class a0 extends c {
 
     @Override
     public final Uri getUri() {
-        m mVar = this.f10758b;
+        m mVar = this.f10756b;
         if (mVar != null) {
-            return mVar.f10793a;
+            return mVar.f10791a;
         }
         return null;
     }
@@ -103,14 +103,14 @@ public final class a0 extends c {
         int i10;
         Resources resources;
         long min;
-        this.f10758b = mVar;
+        this.f10756b = mVar;
         transferInitializing(mVar);
-        Uri uri = mVar.f10793a;
-        long j10 = mVar.f10796f;
+        Uri uri = mVar.f10791a;
+        long j10 = mVar.f10794f;
         long j11 = mVar.e;
         Uri normalizeScheme = uri.normalizeScheme();
         boolean equals = TextUtils.equals("rawresource", normalizeScheme.getScheme());
-        Context context = this.f10757a;
+        Context context = this.f10755a;
         if (equals) {
             resources = context.getResources();
             List<String> pathSegments = normalizeScheme.getPathSegments();
@@ -163,16 +163,16 @@ public final class a0 extends c {
         try {
             AssetFileDescriptor openRawResourceFd = resources.openRawResourceFd(i10);
             if (openRawResourceFd != null) {
-                this.f10759c = openRawResourceFd;
+                this.f10757c = openRawResourceFd;
                 long length = openRawResourceFd.getLength();
-                FileInputStream fileInputStream = new FileInputStream(this.f10759c.getFileDescriptor());
+                FileInputStream fileInputStream = new FileInputStream(this.f10757c.getFileDescriptor());
                 this.d = fileInputStream;
                 int i11 = (length > (-1L) ? 1 : (length == (-1L) ? 0 : -1));
                 try {
                     if (i11 != 0 && j11 > length) {
                         throw new j(null, null, 2008);
                     }
-                    long startOffset = this.f10759c.getStartOffset();
+                    long startOffset = this.f10757c.getStartOffset();
                     long skip = fileInputStream.skip(startOffset + j11) - startOffset;
                     if (skip == j11) {
                         if (i11 == 0) {
@@ -203,7 +203,7 @@ public final class a0 extends c {
                             }
                             this.e = min;
                         }
-                        this.f10760f = true;
+                        this.f10758f = true;
                         transferStarted(mVar);
                         if (i12 != 0) {
                             return j10;
@@ -238,7 +238,7 @@ public final class a0 extends c {
                 }
             }
             FileInputStream fileInputStream = this.d;
-            String str = m0.f8254a;
+            String str = m0.f8252a;
             int read = fileInputStream.read(bArr, i10, i11);
             if (read == -1) {
                 if (this.e != -1) {

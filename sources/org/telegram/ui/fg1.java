@@ -7,26 +7,26 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 public final class fg1 extends LinearLayout {
-    public final org.telegram.ui.ActionBar.d6 f37004a;
-    public final ImageView f37005b;
-    public final LinearLayout f37006c;
+    public final org.telegram.ui.ActionBar.d6 f36992a;
+    public final ImageView f36993b;
+    public final LinearLayout f36994c;
     public final TextView d;
     public final TextView e;
-    public final ImageView f37007f;
+    public final ImageView f36995f;
     public boolean h;
-    public boolean f37008n;
+    public boolean f36996n;
 
     public fg1(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
         setOrientation(0);
-        this.f37004a = d6Var;
+        this.f36992a = d6Var;
         ImageView imageView = new ImageView(context);
-        this.f37005b = imageView;
+        this.f36993b = imageView;
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
         imageView.setScaleType(scaleType);
         addView(imageView, w7.z5.t(40, 40, 19, 12, 0, 12, 0));
         LinearLayout linearLayout = new LinearLayout(context);
-        this.f37006c = linearLayout;
+        this.f36994c = linearLayout;
         linearLayout.setOrientation(1);
         linearLayout.setPadding(0, AndroidUtilities.dp(10.0f), 0, AndroidUtilities.dp(10.0f));
         addView(linearLayout, w7.z5.p(0, -2, 1.0f, 23, 0, 0, 32, 0));
@@ -38,7 +38,7 @@ public final class fg1 extends LinearLayout {
         i10.setTextSize(1, 13.0f);
         linearLayout.addView(i10, w7.z5.r(-1, -2, 7, 0.0f, 4.33f, 0.0f, 0.0f));
         ImageView imageView2 = new ImageView(context);
-        this.f37007f = imageView2;
+        this.f36995f = imageView2;
         imageView2.setScaleType(scaleType);
         addView(imageView2, w7.z5.t(40, 40, 21, 12, 0, 12, 0));
     }

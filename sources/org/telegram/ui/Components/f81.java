@@ -7,10 +7,10 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 public final class f81 implements ImageReceiver.ImageReceiverDelegate {
-    public final View f26158a;
+    public final View f26156a;
 
     public f81(View view) {
-        this.f26158a = view;
+        this.f26156a = view;
     }
 
     @Override
@@ -23,10 +23,10 @@ public final class f81 implements ImageReceiver.ImageReceiverDelegate {
         int i11;
         int ceil;
         double ceil2;
-        i81 i81Var = (i81) this.f26158a;
+        i81 i81Var = (i81) this.f26156a;
         ImageReceiver imageReceiver2 = i81Var.Q;
         if (z10) {
-            if (i81Var.N != null || i81Var.f27149d0 != null) {
+            if (i81Var.N != null || i81Var.f27147d0 != null) {
                 int dp = AndroidUtilities.dp(150.0f);
                 org.telegram.ui.ot0 ot0Var = i81Var.N;
                 if (ot0Var != null) {
@@ -84,17 +84,17 @@ public final class f81 implements ImageReceiver.ImageReceiverDelegate {
                     z13 = true;
                     int i13 = 0;
                     while (true) {
-                        if (i13 < i81Var.f27149d0.size()) {
-                            h81Var = (h81) i81Var.f27149d0.get(i13);
+                        if (i13 < i81Var.f27147d0.size()) {
+                            h81Var = (h81) i81Var.f27147d0.get(i13);
                             if (i13 == 0) {
                                 d = 0.0d;
                             } else {
-                                d = h81Var.f26802a;
+                                d = h81Var.f26800a;
                             }
-                            if (i13 == i81Var.f27149d0.size() - 1) {
+                            if (i13 == i81Var.f27147d0.size() - 1) {
                                 d10 = 9.9999999E7d;
                             } else {
-                                d10 = ((h81) i81Var.f27149d0.get(i13 + 1)).f26802a;
+                                d10 = ((h81) i81Var.f27147d0.get(i13 + 1)).f26800a;
                             }
                             double d11 = i81Var.O;
                             if (d11 >= d && d11 <= d10) {
@@ -107,10 +107,10 @@ public final class f81 implements ImageReceiver.ImageReceiverDelegate {
                         }
                     }
                     if (h81Var != null) {
-                        i81Var.R = h81Var.f26803b;
-                        i81Var.S = h81Var.f26804c;
-                        i81Var.T = i81Var.f27146b0;
-                        i81Var.U = i81Var.f27148c0;
+                        i81Var.R = h81Var.f26801b;
+                        i81Var.S = h81Var.f26802c;
+                        i81Var.T = i81Var.f27144b0;
+                        i81Var.U = i81Var.f27146c0;
                     } else {
                         return;
                     }
@@ -136,11 +136,11 @@ public final class f81 implements ImageReceiver.ImageReceiverDelegate {
 
     @Override
     public void didSetImageBitmap(int i10, String str, Drawable drawable) {
-        org.telegram.messenger.l5.a(this, i10, str, drawable);
+        org.telegram.messenger.k5.a(this, i10, str, drawable);
     }
 
     @Override
     public void onAnimationReady(ImageReceiver imageReceiver) {
-        org.telegram.messenger.l5.b(this, imageReceiver);
+        org.telegram.messenger.k5.b(this, imageReceiver);
     }
 }

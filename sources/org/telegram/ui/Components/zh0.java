@@ -13,25 +13,25 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class zh0 extends ri0 {
-    public final Drawable R;
-    public final Drawable S;
-    public final e11 T;
-    public e11 U;
-    public final Paint V;
-    public final Path W;
-    public float f32955a0;
-    public final DecimalFormat f32956b0;
+    public final Drawable T;
+    public final Drawable U;
+    public final e11 V;
+    public e11 W;
+    public final Paint f32953a0;
+    public final Path f32954b0;
+    public float f32955c0;
+    public final DecimalFormat f32956d0;
 
-    public zh0(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context, d6Var);
+    public zh0(Context context) {
+        super(context);
         Paint paint = new Paint(1);
-        this.V = paint;
+        this.f32953a0 = paint;
         Path path = new Path();
-        this.W = path;
-        this.f32956b0 = new DecimalFormat("#,##0.#########", new DecimalFormatSymbols(Locale.US));
-        this.R = context.getResources().getDrawable(R.drawable.profile_balance_gram).mutate();
-        this.S = context.getResources().getDrawable(R.drawable.profile_balance_gram_color).mutate();
-        this.T = new e11(LocaleController.getString(R.string.StarsBalance) + ":", 11.0f, null);
+        this.f32954b0 = path;
+        this.f32956d0 = new DecimalFormat("#,##0.#########", new DecimalFormatSymbols(Locale.US));
+        this.T = context.getResources().getDrawable(R.drawable.profile_balance_gram).mutate();
+        this.U = context.getResources().getDrawable(R.drawable.profile_balance_gram_color).mutate();
+        this.V = new e11(LocaleController.getString(R.string.StarsBalance) + ":", 11.0f, null);
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setStrokeJoin(Paint.Join.ROUND);
@@ -46,14 +46,14 @@ public final class zh0 extends ri0 {
     public final void b(Canvas canvas, float f7) {
         Drawable drawable;
         float height = getHeight() / 2.0f;
-        canvas.translate(0.0f, (-AndroidUtilities.dp(20.0f)) * this.f32955a0);
+        canvas.translate(0.0f, (-AndroidUtilities.dp(20.0f)) * this.f32955c0);
         float f10 = f7 * 0.85f;
-        this.T.c(0.0f, height, f10, this.H, canvas);
-        canvas.translate(this.T.l() + AndroidUtilities.dp(4.0f), 0.0f);
-        if (!this.I && this.J < 0.8f) {
-            drawable = this.R;
+        this.V.c(0.0f, height, f10, this.F, canvas);
+        canvas.translate(this.V.l() + AndroidUtilities.dp(4.0f), 0.0f);
+        if (!this.G && this.H < 0.8f) {
+            drawable = this.T;
         } else {
-            drawable = this.S;
+            drawable = this.U;
         }
         int dp = AndroidUtilities.dp(13.0f);
         int i10 = ((int) height) - (dp / 2);
@@ -61,37 +61,37 @@ public final class zh0 extends ri0 {
         drawable.setAlpha((int) (255.0f * f7));
         drawable.draw(canvas);
         canvas.translate(AndroidUtilities.dp(2.0f) + dp, 0.0f);
-        this.U.c(0.0f, height, f7, this.H, canvas);
-        canvas.translate(AndroidUtilities.dpf2(4.8f) + this.U.l(), height);
-        int m12 = org.telegram.ui.ActionBar.h6.m1(f10, this.H);
-        Paint paint = this.V;
+        this.W.c(0.0f, height, f7, this.F, canvas);
+        canvas.translate(AndroidUtilities.dpf2(4.8f) + this.W.l(), height);
+        int m12 = org.telegram.ui.ActionBar.h6.m1(f10, this.F);
+        Paint paint = this.f32953a0;
         paint.setColor(m12);
-        canvas.drawPath(this.W, paint);
+        canvas.drawPath(this.f32954b0, paint);
     }
 
     @Override
     public final float e(float f7) {
-        e11 e11Var = this.T;
-        e11Var.f25740p = -1.0f;
-        this.U.f25740p = -1.0f;
+        e11 e11Var = this.V;
+        e11Var.f25738p = -1.0f;
+        this.W.f25738p = -1.0f;
         float max = Math.max(0.0f, f7 - AndroidUtilities.dp(43.0f));
-        e11Var.f25740p = Math.max(0.0f, max - this.U.l());
-        this.U.f25740p = Math.max(0.0f, max - e11Var.l());
-        return this.U.l() + e11Var.l() + AndroidUtilities.dp(27.0f);
+        e11Var.f25738p = Math.max(0.0f, max - this.W.l());
+        this.W.f25738p = Math.max(0.0f, max - e11Var.l());
+        return this.W.l() + e11Var.l() + AndroidUtilities.dp(27.0f);
     }
 
     public void setBalance(long j10) {
-        String format = this.f32956b0.format(new BigDecimal(org.telegram.ui.Wallet.m0.o(j10, false)));
-        this.U = new e11(format, 11.0f, AndroidUtilities.bold());
+        String format = this.f32956d0.format(new BigDecimal(org.telegram.ui.Wallet.m0.o(j10, false)));
+        this.W = new e11(format, 11.0f, AndroidUtilities.bold());
         setContentDescription(LocaleController.getString(R.string.StarsBalance) + ": " + format);
         invalidate();
     }
 
     public void setEjectProgress(float f7) {
-        if (this.f32955a0 == f7) {
+        if (this.f32955c0 == f7) {
             return;
         }
-        this.f32955a0 = f7;
+        this.f32955c0 = f7;
         invalidate();
     }
 }

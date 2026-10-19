@@ -23,22 +23,22 @@ import org.telegram.messenger.SvgHelper;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 public final class h51 extends org.telegram.ui.Components.hm0 {
-    public int f37516c;
+    public int f37490c;
     public int d;
     public int h;
-    public final x51 f37520s;
+    public final x51 f37494s;
     public int e = -1;
-    public int f37517f = -1;
-    public int f37518n = 1;
-    public final ArrayList f37519r = new ArrayList();
+    public int f37491f = -1;
+    public int f37492n = 1;
+    public final ArrayList f37493r = new ArrayList();
 
     public h51(x51 x51Var) {
-        this.f37520s = x51Var;
+        this.f37494s = x51Var;
     }
 
     @Override
     public final boolean D(s4.b1 b1Var) {
-        int i10 = b1Var.f45913f;
+        int i10 = b1Var.f45915f;
         if (i10 != 3 && i10 != 4) {
             return false;
         }
@@ -46,40 +46,40 @@ public final class h51 extends org.telegram.ui.Components.hm0 {
     }
 
     public final void E(boolean z10) {
-        x51 x51Var = this.f37520s;
+        x51 x51Var = this.f37494s;
         int i10 = x51Var.W;
         boolean z11 = x51Var.I;
-        ArrayList arrayList = this.f37519r;
+        ArrayList arrayList = this.f37493r;
         new ArrayList(arrayList);
         this.h = -1;
-        this.f37516c = -1;
+        this.f37490c = -1;
         boolean z12 = false;
-        this.f37518n = 0;
+        this.f37492n = 0;
         arrayList.clear();
         ArrayList arrayList2 = x51Var.A1;
         if (arrayList2 != null) {
             if (i10 == 4 && !arrayList2.isEmpty()) {
-                int i11 = this.f37518n;
-                this.f37518n = i11 + 1;
+                int i11 = this.f37492n;
+                this.f37492n = i11 + 1;
                 this.e = i11;
                 arrayList.add(1);
             }
-            this.d = this.f37518n;
+            this.d = this.f37492n;
             for (int i12 = 0; i12 < x51Var.A1.size(); i12++) {
-                this.f37518n++;
+                this.f37492n++;
                 arrayList.add(Integer.valueOf(Objects.hash(-4342, x51Var.A1.get(i12))));
             }
         }
         if (i10 == 14) {
             ArrayList arrayList3 = x51Var.B1;
             if (arrayList3 != null && !arrayList3.isEmpty()) {
-                int i13 = this.f37518n;
-                this.f37518n = i13 + 1;
-                this.f37517f = i13;
+                int i13 = this.f37492n;
+                this.f37492n = i13 + 1;
+                this.f37491f = i13;
                 arrayList.add(2);
-                this.f37516c = this.f37518n;
+                this.f37490c = this.f37492n;
                 for (int i14 = 0; i14 < x51Var.B1.size(); i14++) {
-                    this.f37518n++;
+                    this.f37492n++;
                     arrayList.add(Integer.valueOf(Objects.hash(-7453, x51Var.B1.get(i14))));
                 }
             }
@@ -87,26 +87,26 @@ public final class h51 extends org.telegram.ui.Components.hm0 {
             ArrayList arrayList4 = x51Var.C1;
             if (arrayList4 != null) {
                 if (i10 == 4 && !arrayList4.isEmpty()) {
-                    int i15 = this.f37518n;
-                    this.f37518n = i15 + 1;
-                    this.f37517f = i15;
+                    int i15 = this.f37492n;
+                    this.f37492n = i15 + 1;
+                    this.f37491f = i15;
                     arrayList.add(2);
                 }
-                this.f37516c = this.f37518n;
+                this.f37490c = this.f37492n;
                 for (int i16 = 0; i16 < x51Var.C1.size(); i16++) {
-                    this.f37518n++;
+                    this.f37492n++;
                     arrayList.add(Integer.valueOf(Objects.hash(-7453, x51Var.C1.get(i16))));
                 }
             }
         }
         ArrayList arrayList5 = x51Var.D1;
         if (arrayList5 != null) {
-            int i17 = this.f37518n;
+            int i17 = this.f37492n;
             this.h = i17;
-            this.f37518n = arrayList5.size() + i17;
+            this.f37492n = arrayList5.size() + i17;
         }
         l();
-        if (x51Var.f43095y1 && this.f37518n == 0) {
+        if (x51Var.f43094y1 && this.f37492n == 0) {
             z12 = true;
         }
         if (x51Var.G1 != z12) {
@@ -123,30 +123,30 @@ public final class h51 extends org.telegram.ui.Components.hm0 {
             x51Var.H1.setDuration(100L);
             x51Var.H1.start();
             if (z12) {
-                x51.D(x51Var.V, x51Var.f43064l0);
+                x51.D(x51Var.V, x51Var.f43063l0);
             }
         }
     }
 
     @Override
     public final int h() {
-        return this.f37518n;
+        return this.f37492n;
     }
 
     @Override
     public final int j(int i10) {
         int i11;
-        if (i10 == this.e || i10 == this.f37517f) {
+        if (i10 == this.e || i10 == this.f37491f) {
             return 6;
         }
-        x51 x51Var = this.f37520s;
+        x51 x51Var = this.f37494s;
         if (x51Var.W == 14) {
             ArrayList arrayList = x51Var.B1;
-            if (arrayList != null && i10 >= (i11 = this.f37516c) && i10 - i11 < arrayList.size()) {
+            if (arrayList != null && i10 >= (i11 = this.f37490c) && i10 - i11 < arrayList.size()) {
                 return 4;
             }
         } else {
-            int i12 = this.f37516c;
+            int i12 = this.f37490c;
             if (i10 > i12 && (i10 - i12) - 1 < x51Var.C1.size()) {
                 return 5;
             }
@@ -181,28 +181,28 @@ public final class h51 extends org.telegram.ui.Components.hm0 {
         int cacheType2;
         int i13;
         int indexOf;
-        x51 x51Var = this.f37520s;
+        x51 x51Var = this.f37494s;
         HashSet hashSet = x51Var.K;
         int i14 = x51Var.W;
         int i15 = x51Var.V;
-        k41 k41Var = x51Var.f43058i0;
-        int i16 = b1Var.f45913f;
-        View view = b1Var.f45910a;
+        k41 k41Var = x51Var.f43057i0;
+        int i16 = b1Var.f45915f;
+        View view = b1Var.f45912a;
         if (i16 == 6) {
             c51 c51Var = (c51) view;
             ArrayList arrayList = x51Var.D1;
             if (arrayList != null && (i13 = i10 - this.h) >= 0 && i13 < arrayList.size()) {
                 TLRPC.Document document2 = (TLRPC.Document) x51Var.D1.get(i10 - this.h);
                 if (document2 instanceof u51) {
-                    CharSequence charSequence = ((u51) document2).f41817a;
-                    String str = x51Var.f43097z1;
+                    CharSequence charSequence = ((u51) document2).f41801a;
+                    String str = x51Var.f43096z1;
                     c51Var.getClass();
                     if (charSequence != null && str != null && (indexOf = charSequence.toString().toLowerCase().indexOf(str.toLowerCase())) >= 0) {
                         SpannableString spannableString = new SpannableString(charSequence);
-                        spannableString.setSpan(new ForegroundColorSpan(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Ue, c51Var.f35825f.Z0)), indexOf, str.length() + indexOf, 33);
+                        spannableString.setSpan(new ForegroundColorSpan(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Ue, c51Var.f35818f.Z0)), indexOf, str.length() + indexOf, 33);
                         charSequence = spannableString;
                     }
-                    c51Var.f35822a.setText(charSequence);
+                    c51Var.f35815a.setText(charSequence);
                     c51Var.b(false);
                 }
             } else if (i10 == this.e) {
@@ -212,26 +212,26 @@ public final class h51 extends org.telegram.ui.Components.hm0 {
             } else {
                 c51Var.a(LocaleController.getString(R.string.AccDescrStickers), false);
             }
-            c51Var.f35824c.setVisibility(8);
+            c51Var.f35817c.setVisibility(8);
         } else if (i16 == 5) {
-            TLRPC.Document document3 = (TLRPC.Document) x51Var.C1.get((i10 - this.f37516c) - 1);
+            TLRPC.Document document3 = (TLRPC.Document) x51Var.C1.get((i10 - this.f37490c) - 1);
             g51 g51Var = (g51) view;
             g51Var.a(k41Var);
-            g51Var.h.setImage(ImageLocation.getForDocument(document3), "100_100_firstframe", null, null, DocumentObject.getSvgThumb(document3, org.telegram.ui.ActionBar.h6.f21152m6, 0.2f), 0L, "tgs", document3, 0);
+            g51Var.h.setImage(ImageLocation.getForDocument(document3), "100_100_firstframe", null, null, DocumentObject.getSvgThumb(document3, org.telegram.ui.ActionBar.h6.f21150m6, 0.2f), 0L, "tgs", document3, 0);
             g51Var.Q = true;
             g51Var.d = document3;
             g51Var.e = null;
         } else if (i16 == 4) {
             g51 g51Var2 = (g51) view;
-            g51Var2.f37190c = i10;
-            ImageReceiver imageReceiver = g51Var2.f37192n;
+            g51Var2.f37184c = i10;
+            ImageReceiver imageReceiver = g51Var2.f37186n;
             ArrayList arrayList2 = x51Var.A1;
             if (arrayList2 != null && i10 >= 0 && i10 < arrayList2.size()) {
                 i1Var = (ah.i1) x51Var.A1.get(i10);
             } else {
                 ArrayList arrayList3 = x51Var.B1;
-                if (arrayList3 != null && i10 >= (i12 = this.f37516c) && i10 - i12 < arrayList3.size()) {
-                    i1Var = (ah.i1) x51Var.B1.get(i10 - this.f37516c);
+                if (arrayList3 != null && i10 >= (i12 = this.f37490c) && i10 - i12 < arrayList3.size()) {
+                    i1Var = (ah.i1) x51Var.B1.get(i10 - this.f37490c);
                 } else {
                     return;
                 }
@@ -243,18 +243,18 @@ public final class h51 extends org.telegram.ui.Components.hm0 {
                 g51Var2.h.onAttachedToWindow();
             }
             g51Var2.h.setParentView(k41Var);
-            g51Var2.f37196x = i1Var;
-            g51Var2.f37197y = false;
+            g51Var2.f37190x = i1Var;
+            g51Var2.f37191y = false;
             g51Var2.d(x51Var.J.contains(i1Var), false);
-            g51Var2.f37189b = false;
+            g51Var2.f37183b = false;
             g51Var2.invalidate();
             if (i14 == 13) {
                 g51Var2.setDrawable(Emoji.getEmojiDrawable(i1Var.f783f));
             } else if (!i1Var.f781b && i1Var.f783f != null) {
-                g51Var2.f37194s = true;
+                g51Var2.f37188s = true;
                 TLRPC.TL_availableReaction tL_availableReaction = MediaDataController.getInstance(i15).getReactionsMap().get(i1Var.f783f);
                 if (tL_availableReaction != null) {
-                    SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(tL_availableReaction.activate_animation, org.telegram.ui.ActionBar.h6.f21152m6, 0.2f);
+                    SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(tL_availableReaction.activate_animation, org.telegram.ui.ActionBar.h6.f21150m6, 0.2f);
                     if (!LiteMode.isEnabled(8200)) {
                         g51Var2.h.setImage(ImageLocation.getForDocument(tL_availableReaction.select_animation), "60_60_firstframe", null, null, svgThumb, 0L, "tgs", i1Var, 0);
                     } else {
@@ -279,16 +279,16 @@ public final class h51 extends org.telegram.ui.Components.hm0 {
                     g51Var2.setDrawable(Emoji.getEmojiDrawable(i1Var.f783f));
                 }
             } else {
-                g51Var2.f37194s = false;
+                g51Var2.f37188s = false;
                 g51Var2.e = new org.telegram.ui.Components.a6(i1Var.f784g, (Paint.FontMetricsInt) null);
                 g51Var2.d = null;
                 g51Var2.h.clearImage();
                 imageReceiver.clearImage();
-                org.telegram.ui.Components.r5 r5Var = (org.telegram.ui.Components.r5) k41Var.f43628b3.get(g51Var2.e.getDocumentId());
+                org.telegram.ui.Components.r5 r5Var = (org.telegram.ui.Components.r5) k41Var.f43623b3.get(g51Var2.e.getDocumentId());
                 if (r5Var == null) {
                     cacheType2 = x51Var.getCacheType();
                     r5Var = org.telegram.ui.Components.r5.n(i15, g51Var2.e.getDocumentId(), null, cacheType2);
-                    k41Var.f43628b3.put(g51Var2.e.getDocumentId(), r5Var);
+                    k41Var.f43623b3.put(g51Var2.e.getDocumentId(), r5Var);
                 }
                 g51Var2.setDrawable(r5Var);
             }
@@ -309,18 +309,18 @@ public final class h51 extends org.telegram.ui.Components.hm0 {
             }
         } else if (i16 == 3) {
             g51 g51Var3 = (g51) view;
-            g51Var3.f37188a = false;
-            g51Var3.f37190c = i10;
+            g51Var3.f37182a = false;
+            g51Var3.f37184c = i10;
             g51Var3.setPadding(AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f));
             g51Var3.setDrawable(null);
             ArrayList arrayList4 = x51Var.A1;
             if (arrayList4 != null && i10 >= 0 && i10 < arrayList4.size()) {
                 ah.i1 i1Var3 = (ah.i1) x51Var.A1.get(i10);
-                g51Var3.f37196x = i1Var3;
+                g51Var3.f37190x = i1Var3;
                 long j10 = i1Var3.f784g;
                 if (j10 == 0) {
                     boolean contains2 = x51Var.J.contains(i1Var3);
-                    g51Var3.f37197y = true;
+                    g51Var3.f37191y = true;
                     g51Var3.setDrawable(Emoji.getEmojiDrawable(i1Var3.f783f));
                     g51Var3.d(contains2, false);
                     return;
@@ -353,18 +353,18 @@ public final class h51 extends org.telegram.ui.Components.hm0 {
                 if (document != null) {
                     g51Var3.e = new org.telegram.ui.Components.a6(document, (Paint.FontMetricsInt) null);
                     g51Var3.d = document;
-                    contains = hashSet.contains(Long.valueOf(document.f20281id));
+                    contains = hashSet.contains(Long.valueOf(document.f20279id));
                 } else {
                     org.telegram.ui.Components.a6 a6Var = new org.telegram.ui.Components.a6(l4.longValue(), (Paint.FontMetricsInt) null);
                     g51Var3.e = a6Var;
                     g51Var3.d = a6Var.document;
                     contains = hashSet.contains(l4);
                 }
-                org.telegram.ui.Components.r5 r5Var2 = (org.telegram.ui.Components.r5) k41Var.f43628b3.get(g51Var3.e.getDocumentId());
+                org.telegram.ui.Components.r5 r5Var2 = (org.telegram.ui.Components.r5) k41Var.f43623b3.get(g51Var3.e.getDocumentId());
                 if (r5Var2 == null) {
                     cacheType = x51Var.getCacheType();
                     r5Var2 = org.telegram.ui.Components.r5.n(i15, g51Var3.e.getDocumentId(), null, cacheType);
-                    k41Var.f43628b3.put(g51Var3.e.getDocumentId(), r5Var2);
+                    k41Var.f43623b3.put(g51Var3.e.getDocumentId(), r5Var2);
                 }
                 g51Var3.setDrawable(r5Var2);
             }
@@ -376,7 +376,7 @@ public final class h51 extends org.telegram.ui.Components.hm0 {
     public final s4.b1 x(ViewGroup viewGroup, int i10) {
         View g51Var;
         boolean z10;
-        x51 x51Var = this.f37520s;
+        x51 x51Var = this.f37494s;
         if (i10 == 6) {
             Context context = x51Var.getContext();
             if (x51Var.W == 6) {

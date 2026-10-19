@@ -9,21 +9,21 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import v7.f7;
 public abstract class d extends FrameLayout {
-    public boolean f45309a;
-    public final c f45310b;
-    public boolean f45311c;
+    public boolean f45311a;
+    public final c f45312b;
+    public boolean f45313c;
     public float d;
     public float e;
-    public boolean f45312f;
+    public boolean f45314f;
 
     public d(Context context, c cVar) {
         super(context);
-        this.f45310b = cVar;
+        this.f45312b = cVar;
     }
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j10) {
-        if (this.f45309a && (view instanceof b2)) {
+        if (this.f45311a && (view instanceof b2)) {
             return true;
         }
         return super.drawChild(canvas, view, j10);
@@ -41,7 +41,7 @@ public abstract class d extends FrameLayout {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        c cVar = this.f45310b;
+        c cVar = this.f45312b;
         j b10 = cVar.b();
         if (b10 == null) {
             return false;
@@ -49,29 +49,29 @@ public abstract class d extends FrameLayout {
         if (motionEvent.getPointerCount() == 1) {
             int actionMasked = motionEvent.getActionMasked();
             if (actionMasked == 0) {
-                this.f45311c = false;
-                b10.f45395n = false;
-                b10.f45398r = false;
+                this.f45313c = false;
+                b10.f45397n = false;
+                b10.f45400r = false;
                 this.d = motionEvent.getX();
                 this.e = motionEvent.getY();
-                this.f45312f = false;
+                this.f45314f = false;
                 return true;
             }
-            if (!this.f45312f && actionMasked == 2) {
+            if (!this.f45314f && actionMasked == 2) {
                 float x10 = motionEvent.getX();
                 float y3 = motionEvent.getY();
-                if (this.f45311c || f7.a(x10, y3, this.d, this.e) > AndroidUtilities.touchSlop) {
-                    this.f45311c = true;
-                    b10.f45395n = true;
+                if (this.f45313c || f7.a(x10, y3, this.d, this.e) > AndroidUtilities.touchSlop) {
+                    this.f45313c = true;
+                    b10.f45397n = true;
                     b10.e(x10 - this.d, y3 - this.e);
                     this.d = x10;
                     this.e = y3;
                     return true;
                 }
             } else if (actionMasked == 1 || actionMasked == 3) {
-                b10.f45395n = false;
-                b10.f45398r = true;
-                if (!this.f45311c) {
+                b10.f45397n = false;
+                b10.f45400r = true;
+                if (!this.f45313c) {
                     cVar.a();
                 }
                 invalidate();
@@ -79,10 +79,10 @@ public abstract class d extends FrameLayout {
             }
             return true;
         }
-        b10.f45395n = false;
-        b10.f45398r = true;
-        this.f45311c = false;
-        this.f45312f = true;
+        b10.f45397n = false;
+        b10.f45400r = true;
+        this.f45313c = false;
+        this.f45314f = true;
         invalidate();
         return true;
     }

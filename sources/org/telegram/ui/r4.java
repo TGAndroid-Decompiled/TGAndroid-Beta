@@ -6,8 +6,8 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class r4 extends org.telegram.ui.ActionBar.n2 {
-    public org.telegram.ui.Components.im0 f41057a;
-    public q4 f41058b;
+    public org.telegram.ui.Components.im0 f41049a;
+    public q4 f41050b;
 
     @Override
     public final View createView(Context context) {
@@ -16,20 +16,20 @@ public final class r4 extends org.telegram.ui.ActionBar.n2 {
         this.actionBar.setTitle(LocaleController.getString(R.string.AudioRecorderSettings));
         this.actionBar.setActionBarMenuOnItemClick(new ah.s(this, 22));
         FrameLayout frameLayout = new FrameLayout(context);
-        frameLayout.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20931a7, false));
+        frameLayout.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20929a7, false));
         this.fragmentView = frameLayout;
         org.telegram.ui.Components.im0 im0Var = new org.telegram.ui.Components.im0(context, null);
-        this.f41057a = im0Var;
+        this.f41049a = im0Var;
         im0Var.p1();
-        this.actionBar.setAdaptiveBackground(this.f41057a);
-        this.f41057a.setLayoutManager(new s4.b0());
-        this.f41057a.setVerticalScrollBarEnabled(false);
-        org.telegram.ui.Components.im0 im0Var2 = this.f41057a;
+        this.actionBar.setAdaptiveBackground(this.f41049a);
+        this.f41049a.setLayoutManager(new s4.b0());
+        this.f41049a.setVerticalScrollBarEnabled(false);
+        org.telegram.ui.Components.im0 im0Var2 = this.f41049a;
         q4 q4Var = new q4(context);
-        this.f41058b = q4Var;
+        this.f41050b = q4Var;
         im0Var2.setAdapter(q4Var);
-        this.f41057a.setOnItemClickListener(new i(this, 2));
-        frameLayout.addView(this.f41057a, w7.z5.c(-1.0f, -1));
+        this.f41049a.setOnItemClickListener(new i(this, 2));
+        frameLayout.addView(this.f41049a, w7.z5.c(-1.0f, -1));
         return this.fragmentView;
     }
 }

@@ -13,18 +13,18 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public class ShutterButton extends View {
-    public Drawable f24367a;
-    public DecelerateInterpolator f24368b;
-    public Paint f24369c;
+    public Drawable f24365a;
+    public DecelerateInterpolator f24366b;
+    public Paint f24367c;
     public Paint d;
     public yv0 e;
-    public zv0 f24370f;
+    public zv0 f24368f;
     public boolean h;
-    public float f24371n;
-    public long f24372r;
-    public long f24373s;
+    public float f24369n;
+    public long f24370r;
+    public long f24371s;
     public boolean v;
-    public org.telegram.ui.Cells.k7 f24374w;
+    public org.telegram.ui.Cells.k7 f24372w;
 
     private void setHighlighted(boolean z10) {
         AnimatorSet animatorSet = new AnimatorSet();
@@ -37,17 +37,17 @@ public class ShutterButton extends View {
             animatorSet.setStartDelay(40L);
         }
         animatorSet.setDuration(120L);
-        animatorSet.setInterpolator(this.f24368b);
+        animatorSet.setInterpolator(this.f24366b);
         animatorSet.start();
     }
 
     public final void a(zv0 zv0Var) {
-        if (this.f24370f != zv0Var) {
-            this.f24370f = zv0Var;
-            this.f24372r = System.currentTimeMillis();
-            this.f24373s = 0L;
-            if (this.f24370f != zv0.f33045b) {
-                this.f24371n = 0.0f;
+        if (this.f24368f != zv0Var) {
+            this.f24368f = zv0Var;
+            this.f24370r = System.currentTimeMillis();
+            this.f24371s = 0L;
+            if (this.f24368f != zv0.f33045b) {
+                this.f24369n = 0.0f;
             }
             invalidate();
         }
@@ -58,21 +58,21 @@ public class ShutterButton extends View {
     }
 
     public zv0 getState() {
-        return this.f24370f;
+        return this.f24368f;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         Paint paint = this.d;
-        Paint paint2 = this.f24369c;
+        Paint paint2 = this.f24367c;
         int measuredWidth = getMeasuredWidth() / 2;
         int measuredHeight = getMeasuredHeight() / 2;
-        Drawable drawable = this.f24367a;
+        Drawable drawable = this.f24365a;
         drawable.setBounds(measuredWidth - AndroidUtilities.dp(36.0f), measuredHeight - AndroidUtilities.dp(36.0f), AndroidUtilities.dp(36.0f) + measuredWidth, AndroidUtilities.dp(36.0f) + measuredHeight);
         drawable.draw(canvas);
         if (!this.h && getScaleX() == 1.0f) {
-            if (this.f24371n != 0.0f) {
-                this.f24371n = 0.0f;
+            if (this.f24369n != 0.0f) {
+                this.f24369n = 0.0f;
                 return;
             }
             return;
@@ -82,22 +82,22 @@ public class ShutterButton extends View {
         float f7 = measuredWidth;
         float f10 = measuredHeight;
         canvas.drawCircle(f7, f10, AndroidUtilities.dp(26.0f), paint2);
-        if (this.f24370f == zv0.f33045b) {
-            if (this.f24371n != 1.0f) {
-                long abs = Math.abs(System.currentTimeMillis() - this.f24372r);
+        if (this.f24368f == zv0.f33045b) {
+            if (this.f24369n != 1.0f) {
+                long abs = Math.abs(System.currentTimeMillis() - this.f24370r);
                 if (abs > 17) {
                     abs = 17;
                 }
-                long j10 = this.f24373s + abs;
-                this.f24373s = j10;
+                long j10 = this.f24371s + abs;
+                this.f24371s = j10;
                 if (j10 > 120) {
-                    this.f24373s = 120L;
+                    this.f24371s = 120L;
                 }
-                this.f24371n = this.f24368b.getInterpolation(((float) this.f24373s) / 120.0f);
+                this.f24369n = this.f24366b.getInterpolation(((float) this.f24371s) / 120.0f);
                 invalidate();
             }
-            canvas.drawCircle(f7, f10, AndroidUtilities.dp(26.5f) * scaleX * this.f24371n, paint);
-        } else if (this.f24371n != 0.0f) {
+            canvas.drawCircle(f7, f10, AndroidUtilities.dp(26.5f) * scaleX * this.f24369n, paint);
+        } else if (this.f24369n != 0.0f) {
             canvas.drawCircle(f7, f10, AndroidUtilities.dp(26.5f) * scaleX, paint);
         }
     }

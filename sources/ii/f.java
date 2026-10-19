@@ -23,7 +23,7 @@ import org.telegram.ui.Components.t61;
 import org.telegram.ui.Components.w9;
 import s4.o0;
 public final class f extends f61 {
-    public static final int f13164a = 0;
+    public static final int f13162a = 0;
 
     static {
         f61.setup(new f61());
@@ -34,20 +34,20 @@ public final class f extends f61 {
         int i10;
         g gVar = (g) view;
         e eVar = (e) g61Var.G;
-        TLRPC.User user = eVar.f13162b;
-        long j10 = eVar.f13161a;
-        boolean z11 = eVar.f13163c;
-        boolean z12 = !g61Var.f26497j;
-        w9 w9Var = gVar.f13167c;
-        TextView textView = gVar.f13169n;
+        TLRPC.User user = eVar.f13160b;
+        long j10 = eVar.f13159a;
+        boolean z11 = eVar.f13161c;
+        boolean z12 = !g61Var.f26495j;
+        w9 w9Var = gVar.f13165c;
+        TextView textView = gVar.f13167n;
         TextView textView2 = gVar.d;
-        gVar.f13173x = (d) g61Var.H;
-        gVar.f13174y = j10;
-        gVar.E = user.f20422id;
-        int i11 = gVar.f13166b;
+        gVar.f13171x = (d) g61Var.H;
+        gVar.f13172y = j10;
+        gVar.E = user.f20420id;
+        int i11 = gVar.f13164b;
         TLRPC.Chat chat = MessagesController.getInstance(i11).getChat(Long.valueOf(-j10));
         TLRPC.User user2 = MessagesController.getInstance(i11).getUser(Long.valueOf(j10));
-        gVar.f13168f.setText(DialogObject.getName(j10));
+        gVar.f13166f.setText(DialogObject.getName(j10));
         TextView textView3 = gVar.h;
         if (user2 != null) {
             i10 = R.string.CommunityPendingRequestSuggestedBot;
@@ -56,12 +56,12 @@ public final class f extends f61 {
         } else {
             i10 = R.string.CommunityPendingRequestSuggestedGroup;
         }
-        textView3.setText(AndroidUtilities.replaceSingleLink(LocaleController.formatString(i10, DialogObject.getShortName(user)), h6.x0(null, h6.il, false), new j(17)));
+        textView3.setText(AndroidUtilities.replaceSingleLink(LocaleController.formatString(i10, DialogObject.getShortName(user)), h6.x0(null, h6.il, false), new j(18)));
         if (user2 != null) {
             textView2.setVisibility(8);
         } else if (chat != null && chat.participants_count > 0) {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("* ");
-            spannableStringBuilder.setSpan(gVar.f13170r, 0, 1, 33);
+            spannableStringBuilder.setSpan(gVar.f13168r, 0, 1, 33);
             spannableStringBuilder.append((CharSequence) LocaleController.formatNumberWithMillion(chat.participants_count, ','));
             textView2.setText(spannableStringBuilder);
             textView2.setVisibility(0);
@@ -73,7 +73,7 @@ public final class f extends f61 {
         } else {
             textView.setVisibility(8);
         }
-        gVar.f13172w = z12;
+        gVar.f13170w = z12;
         if (user2 != null) {
             w9Var.e(user2, new h9(0, user2));
         } else {
@@ -94,7 +94,7 @@ public final class f extends f61 {
     public final boolean equals(g61 g61Var, g61 g61Var2) {
         e eVar = (e) g61Var.G;
         e eVar2 = (e) g61Var2.G;
-        if (eVar.f13161a == eVar2.f13161a && DialogObject.getDialogId(eVar.f13162b) == DialogObject.getDialogId(eVar2.f13162b)) {
+        if (eVar.f13159a == eVar2.f13159a && DialogObject.getDialogId(eVar.f13160b) == DialogObject.getDialogId(eVar2.f13160b)) {
             return true;
         }
         return false;

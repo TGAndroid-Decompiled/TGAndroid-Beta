@@ -1,184 +1,153 @@
 package ai;
 
-import android.graphics.Bitmap;
-import android.view.View;
+import android.util.LongSparseArray;
 import java.util.ArrayList;
+import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MediaController;
+import org.telegram.messenger.FileRefController;
+import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.Utilities;
-public final class k2 implements Utilities.Callback3 {
-    public final int f1616a;
-    public final NotificationCenter.NotificationCenterDelegate f1617b;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.ui.Components.g30;
+import org.telegram.ui.Components.py0;
+import org.telegram.ui.PrivacyControlActivity;
+import org.telegram.ui.TwoStepVerificationActivity;
+import org.telegram.ui.bq;
+import org.telegram.ui.ck0;
+import org.telegram.ui.dg0;
+import org.telegram.ui.em0;
+import org.telegram.ui.ip;
+import org.telegram.ui.mm0;
+import org.telegram.ui.o21;
+import org.telegram.ui.ti;
+import org.telegram.ui.vm0;
+import org.telegram.ui.wh1;
+import org.telegram.ui.xr0;
+public final class k2 implements RequestDelegate {
+    public final int f1629a;
+    public final Object f1630b;
+    public final Object f1631c;
+    public final Object d;
+    public final Object e;
 
-    public k2(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, int i10) {
-        this.f1616a = i10;
-        this.f1617b = notificationCenterDelegate;
+    public k2(Object obj, Object obj2, Object obj3, Object obj4, int i10) {
+        this.f1629a = i10;
+        this.f1630b = obj;
+        this.f1631c = obj2;
+        this.d = obj3;
+        this.e = obj4;
     }
 
     @Override
-    public final void run(Object obj, Object obj2, Object obj3) {
-        boolean z10;
-        int i10;
-        ei.t tVar;
-        float f7;
-        switch (this.f1616a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        TLRPC.TL_messages_exportedChatInvite tL_messages_exportedChatInvite;
+        int i10 = this.f1629a;
+        Object obj = this.f1631c;
+        Object obj2 = this.e;
+        Object obj3 = this.d;
+        Object obj4 = this.f1630b;
+        switch (i10) {
             case 0:
-                ((k7) this.f1617b).S2((View) obj2, (CharSequence) obj, ((Boolean) obj3).booleanValue());
+                AndroidUtilities.runOnUIThread(new g3((l7) obj4, tLObject, (ug.m1[]) obj, (Long) obj3, (a3.l0) obj2, tL_error, 0));
                 return;
             case 1:
-                k7.j0((k7) this.f1617b, (ArrayList) obj, (Utilities.Callback2) obj2, (Runnable) obj3);
+                AndroidUtilities.runOnUIThread(new g3((l7) obj4, tLObject, (CharSequence) obj, (TL_stars.TL_starGiftUnique) obj3, (TLRPC.TL_inputInvoiceStarGiftDropOriginalDetails) obj2, tL_error, 1));
                 return;
-            default:
-                ei.vb vbVar = (ei.vb) this.f1617b;
-                Boolean bool = (Boolean) obj;
-                ArrayList arrayList = (ArrayList) obj2;
-                ArrayList arrayList2 = (ArrayList) obj3;
-                if (vbVar.f9967f0 == 0 && arrayList != null && !arrayList.isEmpty() && vbVar.f9998p2 == null && !vbVar.W && vbVar.I()) {
-                    vbVar.H1 = null;
-                    vbVar.I1 = null;
-                    vbVar.J1 = null;
-                    if (bool.booleanValue()) {
-                        if (arrayList.size() + vbVar.A0.getFilledCount() > vbVar.A0.getTotalCount()) {
-                            int size = arrayList.size() + vbVar.A0.getFilledCount();
-                            ArrayList a2 = ei.t.a();
-                            int size2 = a2.size();
-                            int i11 = 0;
-                            while (true) {
-                                if (i11 < size2) {
-                                    Object obj4 = a2.get(i11);
-                                    i11++;
-                                    tVar = (ei.t) obj4;
-                                    if (tVar.e.size() >= size) {
-                                    }
-                                } else {
-                                    tVar = null;
-                                }
-                            }
-                            if (tVar == null) {
-                                vbVar.A0.o(null);
-                                vbVar.A0.e();
-                                vbVar.I0.setSelected((ei.t) null);
-                                ei.ya yaVar = vbVar.B0;
-                                if (yaVar != null) {
-                                    yaVar.recordHevc = !vbVar.A0.j();
-                                }
-                                vbVar.I0.a(false, true);
-                                vbVar.l0(true);
-                                return;
-                            }
-                            ei.ib ibVar = vbVar.A0;
-                            vbVar.f10031z0 = tVar;
-                            ibVar.o(tVar);
-                            vbVar.I0.setSelected(tVar);
-                            int indexOf = ei.t.a().indexOf(tVar);
-                            if (indexOf >= 0) {
-                                vbVar.I0.f10121a.u0(indexOf);
-                            }
-                            ei.ya yaVar2 = vbVar.B0;
-                            if (yaVar2 != null) {
-                                yaVar2.recordHevc = !vbVar.A0.j();
-                            }
-                            vbVar.G0.setDrawable(new ei.u(tVar, false));
-                            vbVar.b0(vbVar.H0, vbVar.I0.e, true);
-                            ei.z6 z6Var = vbVar.O0;
-                            if (vbVar.A0.j()) {
-                                f7 = vbVar.A0.getFilledProgress();
-                            } else {
-                                f7 = 0.0f;
-                            }
-                            z6Var.e(f7, true);
-                        }
-                    }
-                    vbVar.L1 = true;
-                    int i12 = 0;
-                    while (true) {
-                        if (i12 < arrayList.size()) {
-                            ei.a8 l4 = ei.a8.l((MediaController.PhotoEntry) arrayList.get(i12));
-                            l4.M0 = (Bitmap) arrayList2.get(i12);
-                            l4.J0 = vbVar.f10016v0;
-                            l4.K0 = vbVar.f10020w0;
-                            l4.A();
-                            if (bool.booleanValue()) {
-                                if (vbVar.A0.l(l4)) {
-                                    vbVar.K1 = ei.a8.a(vbVar.A0.getLayout(), vbVar.A0.getContent());
-                                } else {
-                                    i12++;
-                                }
-                            } else {
-                                if (vbVar.K1 == null) {
-                                    vbVar.K1 = l4;
-                                } else {
-                                    if (vbVar.H1 == null) {
-                                        ArrayList arrayList3 = new ArrayList();
-                                        vbVar.H1 = arrayList3;
-                                        arrayList3.add(vbVar.K1);
-                                    }
-                                    if (vbVar.H1.size() < 10) {
-                                        vbVar.H1.add(l4);
-                                    }
-                                }
-                                i12++;
-                            }
-                        }
-                    }
-                    if (vbVar.H1 != null) {
-                        vbVar.h0(false, true);
-                        vbVar.Q0.a(vbVar.O1);
-                        ei.z6 z6Var2 = vbVar.O0;
-                        if (vbVar.O1 == 1) {
-                            z10 = true;
-                        } else {
-                            z10 = false;
-                        }
-                        z6Var2.f10224n0 = -1.0f;
-                        z6Var2.f10225o0 = z10;
-                        z6Var2.invalidate();
-                        vbVar.I1 = new ArrayList();
-                        vbVar.J1 = new ArrayList();
-                        for (int i13 = 0; i13 < vbVar.H1.size(); i13 = com.google.android.gms.internal.play_billing.k3.f(i13, i13, 1, vbVar.J1)) {
-                            vbVar.I1.add(Integer.valueOf(i13));
-                        }
-                        vbVar.A0.n(null);
-                        vbVar.I0.a(false, true);
-                        vbVar.l0(true);
-                        vbVar.e(false);
-                        vbVar.J(1, true);
-                        ei.ma maVar = vbVar.f9961d1;
-                        if (maVar != null) {
-                            com.google.firebase.messaging.s sVar = maVar.h;
-                            if (!maVar.I && !maVar.M && (i10 = MessagesController.getGlobalMainSettings().getInt("multistorieshint", 0)) < 3) {
-                                MessagesController.getGlobalMainSettings().edit().putInt("multistorieshint", i10 + 1).apply();
-                                AndroidUtilities.cancelRunOnUIThread(sVar);
-                                maVar.I = true;
-                                maVar.invalidate();
-                                AndroidUtilities.runOnUIThread(sVar, 5500L);
-                            }
-                        }
-                        ei.ua uaVar = vbVar.M0;
-                        if (uaVar != null) {
-                            vbVar.f9986l2 = uaVar.e.e0();
-                            vbVar.f9988m2 = vbVar.M0.getSelectedAlbum();
-                            return;
-                        }
-                        return;
-                    }
-                    ei.a8 a8Var = vbVar.K1;
-                    if (a8Var != null) {
-                        a8Var.B();
-                    }
-                    vbVar.I0.a(false, true);
-                    vbVar.l0(true);
-                    vbVar.e(false);
-                    ei.ua uaVar2 = vbVar.M0;
-                    if (uaVar2 != null) {
-                        vbVar.f9986l2 = uaVar2.e.e0();
-                        vbVar.f9988m2 = vbVar.M0.getSelectedAlbum();
-                        return;
-                    }
+            case 2:
+                AndroidUtilities.runOnUIThread(new t0((Object) ((ga) obj4), (org.telegram.ui.ActionBar.b2) obj, tLObject, (TLObject) ((TL_stars.InputSavedStarGift) obj3), (Object) ((Utilities.Callback) obj2), 5));
+                return;
+            case 3:
+                AndroidUtilities.runOnUIThread(new g3((ga) obj4, tLObject, (MessageObject) obj, (TLRPC.TL_inputInvoiceMessage) obj3, (ti) obj2, tL_error, 4));
+                return;
+            case 4:
+                v9 v9Var = (v9) obj4;
+                v9Var.getClass();
+                AndroidUtilities.runOnUIThread(new g3(v9Var, tLObject, (TL_stars.TL_starGiftCollection) obj, (y9) obj3, (Utilities.Callback) obj2, tL_error, 6));
+                return;
+            case 5:
+                AndroidUtilities.runOnUIThread(new t0((Object) ((ci.q4) obj4), (Object) ((Runnable) obj), tL_error, (TLObject) ((TL_stories.StoryItem) obj3), (Object) ((ei.p9) obj2), 9));
+                return;
+            case 6:
+                ei.a8 a8Var = (ei.a8) obj4;
+                TL_stories.StoryItem storyItem = (TL_stories.StoryItem) obj;
+                TLRPC.TL_messages_getAttachedStickers tL_messages_getAttachedStickers = (TLRPC.TL_messages_getAttachedStickers) obj3;
+                h hVar = (h) obj2;
+                if (tL_error != null && FileRefController.isFileRefError(tL_error.text) && storyItem != null) {
+                    FileRefController.getInstance(a8Var.f8694a).requestReference(storyItem, tL_messages_getAttachedStickers, hVar);
+                    return;
+                } else {
+                    hVar.run(tLObject, tL_error);
                     return;
                 }
+            case 7:
+                AndroidUtilities.runOnUIThread(new g3((hg.a1) obj4, (String) obj, tL_error, tLObject, (MessagesController) obj3, (MessagesStorage) obj2));
+                return;
+            case 8:
+                AndroidUtilities.runOnUIThread(new t0((hg.c2) obj4, (TLRPC.TL_messages_getStickers) obj, tLObject, (ArrayList) obj3, (LongSparseArray) obj2, 14));
+                return;
+            case 9:
+                org.telegram.ui.pb pbVar = (org.telegram.ui.pb) obj4;
+                TLRPC.TL_chatInviteExported tL_chatInviteExported = (TLRPC.TL_chatInviteExported) obj;
+                boolean[] zArr = (boolean[]) obj3;
+                org.telegram.ui.ActionBar.b2 b2Var = (org.telegram.ui.ActionBar.b2) obj2;
+                org.telegram.ui.vb vbVar = pbVar.f40168a.f41105n;
+                if (tL_error == null) {
+                    tL_messages_exportedChatInvite = (TLRPC.TL_messages_exportedChatInvite) tLObject;
+                    for (int i11 = 0; i11 < tL_messages_exportedChatInvite.users.size(); i11++) {
+                        TLRPC.User user = tL_messages_exportedChatInvite.users.get(i11);
+                        if (vbVar.f42188z0 == null) {
+                            vbVar.f42188z0 = new HashMap();
+                        }
+                        vbVar.f42188z0.put(Long.valueOf(user.f20420id), user);
+                    }
+                } else {
+                    tL_messages_exportedChatInvite = null;
+                }
+                AndroidUtilities.runOnUIThread(new t0(pbVar, tL_chatInviteExported, tL_messages_exportedChatInvite, zArr, b2Var));
+                return;
+            case 10:
+                AndroidUtilities.runOnUIThread(new org.telegram.messenger.camera.i((ip) obj4, (org.telegram.ui.ActionBar.b2[]) obj, (TLRPC.Chat) obj3, (org.telegram.ui.ActionBar.n2) obj2, 15));
+                return;
+            case 11:
+                AndroidUtilities.runOnUIThread(new t0((Object) ((bq) obj4), tL_error, (Object) ((TLRPC.InputCheckPasswordSRP) obj), (Object) ((TwoStepVerificationActivity) obj3), (TLObject) ((TLRPC.TL_channels_editCreator) obj2), 28));
+                return;
+            case 12:
+                py0.q((xr0) obj4, this.f1631c, (TLRPC.TL_messages_getAttachedStickers) obj3, (org.telegram.ui.vc) obj2, tLObject, tL_error);
+                return;
+            case 13:
+                AndroidUtilities.runOnUIThread(new g30((dg0) obj4, tL_error, (String) obj, (String) obj3, (String) obj2, 13));
+                return;
+            case 14:
+                AndroidUtilities.runOnUIThread(new g3((vm0) obj4, tL_error, (String) obj, (mm0) obj3, tLObject, (TL_account.sendVerifyPhoneCode) obj2));
+                return;
+            case 15:
+                AndroidUtilities.runOnUIThread(new g30((em0) obj4, tL_error, (ck0) obj, (mi.q) obj3, (TL_account.verifyEmail) obj2, 20));
+                return;
+            case 16:
+                AndroidUtilities.runOnUIThread(new g30((PrivacyControlActivity) obj4, tL_error, (boolean[]) obj, (TLRPC.GlobalPrivacySettings) obj3, (TL_account.setGlobalPrivacySettings) obj2, 24));
+                return;
+            case 17:
+                o21 o21Var = (o21) obj4;
+                o21Var.getClass();
+                AndroidUtilities.runOnUIThread(new g3(o21Var, tLObject, (CharSequence) obj, tL_error, (byte[]) obj3, (String) obj2));
+                return;
+            case 18:
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.web.b0((org.telegram.ui.web.a1) obj4, tLObject, (ci.z7) obj, (String) obj3, (String) obj2));
+                return;
+            case 19:
+                org.telegram.ui.web.a1 a1Var = (org.telegram.ui.web.a1) obj4;
+                a1Var.getClass();
+                AndroidUtilities.runOnUIThread(new g3(a1Var, tLObject, (TLRPC.TL_messages_requestUrlAuth) obj, (String) obj3, tL_error, (String) obj2));
+                return;
+            default:
+                AndroidUtilities.runOnUIThread(new g3((yh.o1) obj4, (org.telegram.ui.ActionBar.b2) obj, tLObject, (wh1) obj3, (Utilities.Callback) obj2, tL_error));
                 return;
         }
     }

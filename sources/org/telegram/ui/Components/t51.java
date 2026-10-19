@@ -15,7 +15,7 @@ public final class t51 extends xz {
     @Override
     public final boolean D1() {
         c61 c61Var = this.Y;
-        if (c61Var.f25094n.getAdapter() == c61Var.v) {
+        if (c61Var.f25092n.getAdapter() == c61Var.v) {
             return true;
         }
         return false;
@@ -44,7 +44,7 @@ public final class t51 extends xz {
                 if (i12 >= r()) {
                     break;
                 }
-                s51 s51Var = c61Var.f25094n;
+                s51 s51Var = c61Var.f25092n;
                 View q6 = q(i12);
                 s51Var.getClass();
                 int R = RecyclerView.R(q6);
@@ -54,7 +54,7 @@ public final class t51 extends xz {
                 }
                 i12++;
             }
-            if (i11 == 0 && (m10 = c61Var.f25095r.m(i11)) != null && m10.getTop() - i10 > AndroidUtilities.dp(58.0f)) {
+            if (i11 == 0 && (m10 = c61Var.f25093r.m(i11)) != null && m10.getTop() - i10 > AndroidUtilities.dp(58.0f)) {
                 i10 = m10.getTop() - AndroidUtilities.dp(58.0f);
             }
         }

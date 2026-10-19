@@ -8,35 +8,35 @@ import android.util.Property;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class zs0 extends AnimatorListenerAdapter {
-    public final int f43792a;
-    public final boolean f43793b;
-    public final PhotoViewer f43794c;
+    public final int f43794a;
+    public final boolean f43795b;
+    public final PhotoViewer f43796c;
 
     public zs0(PhotoViewer photoViewer, boolean z10, int i10) {
-        this.f43792a = i10;
-        this.f43794c = photoViewer;
-        this.f43793b = z10;
+        this.f43794a = i10;
+        this.f43796c = photoViewer;
+        this.f43795b = z10;
     }
 
     @Override
     public void onAnimationCancel(Animator animator) {
-        switch (this.f43792a) {
+        switch (this.f43794a) {
             case 1:
-                PhotoViewer photoViewer = this.f43794c;
+                PhotoViewer photoViewer = this.f43796c;
                 if (animator.equals(photoViewer.f33431w)) {
                     photoViewer.f33431w = null;
                     return;
                 }
                 return;
             case 2:
-                PhotoViewer photoViewer2 = this.f43794c;
+                PhotoViewer photoViewer2 = this.f43796c;
                 if (animator.equals(photoViewer2.L)) {
                     photoViewer2.L = null;
                     return;
                 }
                 return;
             case 3:
-                this.f43794c.U7 = null;
+                this.f43796c.U7 = null;
                 return;
             default:
                 super.onAnimationCancel(animator);
@@ -47,9 +47,9 @@ public final class zs0 extends AnimatorListenerAdapter {
     @Override
     public final void onAnimationEnd(Animator animator) {
         int i10;
-        int i11 = this.f43792a;
-        boolean z10 = this.f43793b;
-        PhotoViewer photoViewer = this.f43794c;
+        int i11 = this.f43794a;
+        boolean z10 = this.f43795b;
+        PhotoViewer photoViewer = this.f43796c;
         switch (i11) {
             case 0:
                 if (!z10) {
@@ -106,9 +106,9 @@ public final class zs0 extends AnimatorListenerAdapter {
                         photoViewer.O7.setVisibility(4);
                         photoViewer.P7.setVisibility(4);
                         AnimatorSet animatorSet2 = photoViewer.U7;
-                        ai.n5 n5Var = photoViewer.P0;
+                        ai.o5 o5Var = photoViewer.P0;
                         Property property2 = View.TRANSLATION_Y;
-                        animatorSet2.playTogether(ObjectAnimator.ofFloat(n5Var, property2, 0.0f), ObjectAnimator.ofFloat(photoViewer.P0, View.ALPHA, 1.0f), ObjectAnimator.ofFloat(photoViewer.S0, property2, 0.0f));
+                        animatorSet2.playTogether(ObjectAnimator.ofFloat(o5Var, property2, 0.0f), ObjectAnimator.ofFloat(photoViewer.P0, View.ALPHA, 1.0f), ObjectAnimator.ofFloat(photoViewer.S0, property2, 0.0f));
                     }
                     photoViewer.U7.addListener(new zb0(this, 14));
                     photoViewer.U7.setDuration(200L);

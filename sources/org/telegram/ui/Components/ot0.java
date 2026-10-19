@@ -8,17 +8,17 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import androidx.recyclerview.widget.RecyclerView;
 public final class ot0 implements ViewTreeObserver.OnPreDrawListener {
-    public final im0 f29092a;
-    public final SparseBooleanArray f29093b;
-    public final View f29094c;
+    public final im0 f29090a;
+    public final SparseBooleanArray f29091b;
+    public final View f29092c;
     public final int d;
     public final tv0 e;
 
     public ot0(tv0 tv0Var, im0 im0Var, SparseBooleanArray sparseBooleanArray, b10 b10Var, int i10) {
         this.e = tv0Var;
-        this.f29092a = im0Var;
-        this.f29093b = sparseBooleanArray;
-        this.f29094c = b10Var;
+        this.f29090a = im0Var;
+        this.f29091b = sparseBooleanArray;
+        this.f29092c = b10Var;
         this.d = i10;
     }
 
@@ -27,14 +27,14 @@ public final class ot0 implements ViewTreeObserver.OnPreDrawListener {
         View childAt;
         tv0 tv0Var = this.e;
         tv0Var.getViewTreeObserver().removeOnPreDrawListener(this);
-        final im0 im0Var = this.f29092a;
+        final im0 im0Var = this.f29090a;
         s4.g0 adapter = im0Var.getAdapter();
         if (adapter != tv0Var.H && adapter != tv0Var.K && adapter != tv0Var.M && adapter != tv0Var.L) {
             int childCount = im0Var.getChildCount();
             AnimatorSet animatorSet = new AnimatorSet();
             for (int i10 = 0; i10 < childCount; i10++) {
                 View childAt2 = im0Var.getChildAt(i10);
-                View view = this.f29094c;
+                View view = this.f29092c;
                 if (childAt2 != view && RecyclerView.R(childAt2) >= this.d - 1) {
                     childAt2.setAlpha(0.0f);
                     ObjectAnimator ofFloat = ObjectAnimator.ofFloat(childAt2, View.ALPHA, 0.0f, 1.0f);
@@ -112,7 +112,7 @@ public final class ot0 implements ViewTreeObserver.OnPreDrawListener {
             animatorSet.start();
             return true;
         }
-        SparseBooleanArray sparseBooleanArray = this.f29093b;
+        SparseBooleanArray sparseBooleanArray = this.f29091b;
         if (sparseBooleanArray != null) {
             int childCount2 = im0Var.getChildCount();
             for (int i11 = 0; i11 < childCount2; i11++) {

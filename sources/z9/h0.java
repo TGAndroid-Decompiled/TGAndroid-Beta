@@ -2,49 +2,49 @@ package z9;
 
 import java.util.List;
 public final class h0 extends d2 {
-    public final String f51373a;
-    public final String f51374b;
-    public final String f51375c;
+    public final String f51375a;
+    public final String f51376b;
+    public final String f51377c;
     public final long d;
     public final Long e;
-    public final boolean f51376f;
-    public final l1 f51377g;
+    public final boolean f51378f;
+    public final l1 f51379g;
     public final c2 h;
-    public final b2 f51378i;
-    public final m1 f51379j;
-    public final List f51380k;
-    public final int f51381l;
+    public final b2 f51380i;
+    public final m1 f51381j;
+    public final List f51382k;
+    public final int f51383l;
 
     public h0(String str, String str2, String str3, long j10, Long l4, boolean z10, l1 l1Var, c2 c2Var, b2 b2Var, m1 m1Var, List list, int i10) {
-        this.f51373a = str;
-        this.f51374b = str2;
-        this.f51375c = str3;
+        this.f51375a = str;
+        this.f51376b = str2;
+        this.f51377c = str3;
         this.d = j10;
         this.e = l4;
-        this.f51376f = z10;
-        this.f51377g = l1Var;
+        this.f51378f = z10;
+        this.f51379g = l1Var;
         this.h = c2Var;
-        this.f51378i = b2Var;
-        this.f51379j = m1Var;
-        this.f51380k = list;
-        this.f51381l = i10;
+        this.f51380i = b2Var;
+        this.f51381j = m1Var;
+        this.f51382k = list;
+        this.f51383l = i10;
     }
 
     @Override
     public final g0 a() {
         ?? obj = new Object();
-        obj.f51363a = this.f51373a;
-        obj.f51364b = this.f51374b;
-        obj.f51365c = this.f51375c;
+        obj.f51365a = this.f51375a;
+        obj.f51366b = this.f51376b;
+        obj.f51367c = this.f51377c;
         obj.d = Long.valueOf(this.d);
         obj.e = this.e;
-        obj.f51366f = Boolean.valueOf(this.f51376f);
-        obj.f51367g = this.f51377g;
+        obj.f51368f = Boolean.valueOf(this.f51378f);
+        obj.f51369g = this.f51379g;
         obj.h = this.h;
-        obj.f51368i = this.f51378i;
-        obj.f51369j = this.f51379j;
-        obj.f51370k = this.f51380k;
-        obj.f51371l = Integer.valueOf(this.f51381l);
+        obj.f51370i = this.f51380i;
+        obj.f51371j = this.f51381j;
+        obj.f51372k = this.f51382k;
+        obj.f51373l = Integer.valueOf(this.f51383l);
         return obj;
     }
 
@@ -60,13 +60,13 @@ public final class h0 extends d2 {
         }
         if (obj instanceof d2) {
             h0 h0Var = (h0) ((d2) obj);
-            List list2 = h0Var.f51380k;
-            m1 m1Var2 = h0Var.f51379j;
-            b2 b2Var2 = h0Var.f51378i;
+            List list2 = h0Var.f51382k;
+            m1 m1Var2 = h0Var.f51381j;
+            b2 b2Var2 = h0Var.f51380i;
             c2 c2Var2 = h0Var.h;
             Long l10 = h0Var.e;
-            String str2 = h0Var.f51375c;
-            if (this.f51373a.equals(h0Var.f51373a) && this.f51374b.equals(h0Var.f51374b) && ((str = this.f51375c) != null ? str.equals(str2) : str2 == null) && this.d == h0Var.d && ((l4 = this.e) != null ? l4.equals(l10) : l10 == null) && this.f51376f == h0Var.f51376f && this.f51377g.equals(h0Var.f51377g) && ((c2Var = this.h) != null ? c2Var.equals(c2Var2) : c2Var2 == null) && ((b2Var = this.f51378i) != null ? b2Var.equals(b2Var2) : b2Var2 == null) && ((m1Var = this.f51379j) != null ? m1Var.equals(m1Var2) : m1Var2 == null) && ((list = this.f51380k) != null ? list.equals(list2) : list2 == null) && this.f51381l == h0Var.f51381l) {
+            String str2 = h0Var.f51377c;
+            if (this.f51375a.equals(h0Var.f51375a) && this.f51376b.equals(h0Var.f51376b) && ((str = this.f51377c) != null ? str.equals(str2) : str2 == null) && this.d == h0Var.d && ((l4 = this.e) != null ? l4.equals(l10) : l10 == null) && this.f51378f == h0Var.f51378f && this.f51379g.equals(h0Var.f51379g) && ((c2Var = this.h) != null ? c2Var.equals(c2Var2) : c2Var2 == null) && ((b2Var = this.f51380i) != null ? b2Var.equals(b2Var2) : b2Var2 == null) && ((m1Var = this.f51381j) != null ? m1Var.equals(m1Var2) : m1Var2 == null) && ((list = this.f51382k) != null ? list.equals(list2) : list2 == null) && this.f51383l == h0Var.f51383l) {
                 return true;
             }
         }
@@ -80,9 +80,9 @@ public final class h0 extends d2 {
         int hashCode3;
         int hashCode4;
         int hashCode5;
-        int hashCode6 = (((this.f51373a.hashCode() ^ 1000003) * 1000003) ^ this.f51374b.hashCode()) * 1000003;
+        int hashCode6 = (((this.f51375a.hashCode() ^ 1000003) * 1000003) ^ this.f51376b.hashCode()) * 1000003;
         int i11 = 0;
-        String str = this.f51375c;
+        String str = this.f51377c;
         if (str == null) {
             hashCode = 0;
         } else {
@@ -97,12 +97,12 @@ public final class h0 extends d2 {
             hashCode2 = l4.hashCode();
         }
         int i13 = (i12 ^ hashCode2) * 1000003;
-        if (this.f51376f) {
+        if (this.f51378f) {
             i10 = 1231;
         } else {
             i10 = 1237;
         }
-        int hashCode7 = (((i13 ^ i10) * 1000003) ^ this.f51377g.hashCode()) * 1000003;
+        int hashCode7 = (((i13 ^ i10) * 1000003) ^ this.f51379g.hashCode()) * 1000003;
         c2 c2Var = this.h;
         if (c2Var == null) {
             hashCode3 = 0;
@@ -110,51 +110,51 @@ public final class h0 extends d2 {
             hashCode3 = c2Var.hashCode();
         }
         int i14 = (hashCode7 ^ hashCode3) * 1000003;
-        b2 b2Var = this.f51378i;
+        b2 b2Var = this.f51380i;
         if (b2Var == null) {
             hashCode4 = 0;
         } else {
             hashCode4 = b2Var.hashCode();
         }
         int i15 = (i14 ^ hashCode4) * 1000003;
-        m1 m1Var = this.f51379j;
+        m1 m1Var = this.f51381j;
         if (m1Var == null) {
             hashCode5 = 0;
         } else {
             hashCode5 = m1Var.hashCode();
         }
         int i16 = (i15 ^ hashCode5) * 1000003;
-        List list = this.f51380k;
+        List list = this.f51382k;
         if (list != null) {
             i11 = list.hashCode();
         }
-        return ((i16 ^ i11) * 1000003) ^ this.f51381l;
+        return ((i16 ^ i11) * 1000003) ^ this.f51383l;
     }
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("Session{generator=");
-        sb2.append(this.f51373a);
+        sb2.append(this.f51375a);
         sb2.append(", identifier=");
-        sb2.append(this.f51374b);
+        sb2.append(this.f51376b);
         sb2.append(", appQualitySessionId=");
-        sb2.append(this.f51375c);
+        sb2.append(this.f51377c);
         sb2.append(", startedAt=");
         sb2.append(this.d);
         sb2.append(", endedAt=");
         sb2.append(this.e);
         sb2.append(", crashed=");
-        sb2.append(this.f51376f);
+        sb2.append(this.f51378f);
         sb2.append(", app=");
-        sb2.append(this.f51377g);
+        sb2.append(this.f51379g);
         sb2.append(", user=");
         sb2.append(this.h);
         sb2.append(", os=");
-        sb2.append(this.f51378i);
+        sb2.append(this.f51380i);
         sb2.append(", device=");
-        sb2.append(this.f51379j);
+        sb2.append(this.f51381j);
         sb2.append(", events=");
-        sb2.append(this.f51380k);
+        sb2.append(this.f51382k);
         sb2.append(", generatorType=");
-        return a1.g.n(this.f51381l, "}", sb2);
+        return a1.g.n(this.f51383l, "}", sb2);
     }
 }

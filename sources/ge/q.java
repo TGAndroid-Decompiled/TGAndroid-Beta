@@ -1,12 +1,12 @@
 package ge;
 public final class q {
-    public final k f11040a;
+    public final k f11038a;
 
     public q(k kVar) {
-        this.f11040a = kVar;
+        this.f11038a = kVar;
     }
 
     public final String toString() {
-        return "Removed[" + this.f11040a + ']';
+        return "Removed[" + this.f11038a + ']';
     }
 }

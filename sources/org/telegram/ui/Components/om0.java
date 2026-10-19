@@ -1,8 +1,8 @@
 package org.telegram.ui.Components;
 public final class om0 {
-    public final float f29027a;
-    public final float f29028b;
-    public final float f29029c;
+    public final float f29025a;
+    public final float f29026b;
+    public final float f29027c;
     public final float d;
     public final boolean e;
 
@@ -12,9 +12,9 @@ public final class om0 {
     }
 
     public om0(float f7, float f10, float f11, float f12) {
-        this.f29027a = f7;
-        this.f29028b = f10;
-        this.f29029c = f11;
+        this.f29025a = f7;
+        this.f29026b = f10;
+        this.f29027c = f11;
         this.d = f12;
     }
 }

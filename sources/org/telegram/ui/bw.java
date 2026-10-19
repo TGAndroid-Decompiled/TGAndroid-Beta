@@ -8,18 +8,18 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class bw implements org.telegram.ui.Components.n00 {
-    public final Context f35747a;
-    public final cy f35748b;
+    public final Context f35740a;
+    public final cy f35741b;
 
     public bw(Context context, cy cyVar) {
-        this.f35748b = cyVar;
-        this.f35747a = context;
+        this.f35741b = cyVar;
+        this.f35740a = context;
     }
 
     public final int a(int i10) {
-        cy cyVar = this.f35748b;
+        cy cyVar = this.f35741b;
         if (cyVar.R0 != 3) {
-            if (i10 == cyVar.f36219z0.getDefaultTabId()) {
+            if (i10 == cyVar.f36191z0.getDefaultTabId()) {
                 return cyVar.getMessagesStorage().getMainUnreadCount();
             }
             ArrayList<MessagesController.DialogFilter> dialogFilters = cyVar.getMessagesController().getDialogFilters();
@@ -33,31 +33,31 @@ public final class bw implements org.telegram.ui.Components.n00 {
 
     public final void b(float f7) {
         int i10 = (f7 > 1.0f ? 1 : (f7 == 1.0f ? 0 : -1));
-        cy cyVar = this.f35748b;
-        if (i10 != 0 || cyVar.f36113e0[1].getVisibility() == 0 || cyVar.f36141j2) {
-            if (cyVar.f36137i3) {
-                ay ayVar = cyVar.f36113e0[0];
+        cy cyVar = this.f35741b;
+        if (i10 != 0 || cyVar.f36085e0[1].getVisibility() == 0 || cyVar.f36113j2) {
+            if (cyVar.f36109i3) {
+                ay ayVar = cyVar.f36085e0[0];
                 ayVar.setTranslationX((-f7) * ayVar.getMeasuredWidth());
-                ay[] ayVarArr = cyVar.f36113e0;
-                ayVarArr[1].setTranslationX(ayVarArr[0].getMeasuredWidth() - (f7 * cyVar.f36113e0[0].getMeasuredWidth()));
+                ay[] ayVarArr = cyVar.f36085e0;
+                ayVarArr[1].setTranslationX(ayVarArr[0].getMeasuredWidth() - (f7 * cyVar.f36085e0[0].getMeasuredWidth()));
             } else {
-                ay ayVar2 = cyVar.f36113e0[0];
+                ay ayVar2 = cyVar.f36085e0[0];
                 ayVar2.setTranslationX(ayVar2.getMeasuredWidth() * f7);
-                ay[] ayVarArr2 = cyVar.f36113e0;
-                ayVarArr2[1].setTranslationX((f7 * ayVarArr2[0].getMeasuredWidth()) - cyVar.f36113e0[0].getMeasuredWidth());
+                ay[] ayVarArr2 = cyVar.f36085e0;
+                ayVarArr2[1].setTranslationX((f7 * ayVarArr2[0].getMeasuredWidth()) - cyVar.f36085e0[0].getMeasuredWidth());
             }
             if (i10 == 0) {
-                ay[] ayVarArr3 = cyVar.f36113e0;
+                ay[] ayVarArr3 = cyVar.f36085e0;
                 ay ayVar3 = ayVarArr3[0];
                 ayVarArr3[0] = ayVarArr3[1];
                 ayVarArr3[1] = ayVar3;
                 ayVar3.setVisibility(8);
                 cy.c1(cyVar, true);
                 cyVar.R4(false);
-                cyVar.f36219z0.O = false;
-                cyVar.p3(cyVar.f36113e0[0]);
-                cyVar.f36113e0[0].d.getClass();
-                cyVar.f36113e0[1].d.getClass();
+                cyVar.f36191z0.O = false;
+                cyVar.p3(cyVar.f36085e0[0]);
+                cyVar.f36085e0[0].d.getClass();
+                cyVar.f36085e0[1].d.getClass();
             }
         }
     }
@@ -65,48 +65,48 @@ public final class bw implements org.telegram.ui.Components.n00 {
     public final void c(org.telegram.ui.Components.p00 p00Var, boolean z10) {
         int i10;
         int i11;
-        cy cyVar = this.f35748b;
-        int i12 = cyVar.f36113e0[0].h;
-        int i13 = p00Var.f29128a;
+        cy cyVar = this.f35741b;
+        int i12 = cyVar.f36085e0[0].h;
+        int i13 = p00Var.f29126a;
         if (i12 != i13) {
-            if (p00Var.f29131f) {
-                cyVar.f36219z0.i(i13);
+            if (p00Var.f29129f) {
+                cyVar.f36191z0.i(i13);
                 i11 = ((org.telegram.ui.ActionBar.n2) cyVar).currentAccount;
-                cyVar.showDialog(new sg.k0(3, i11, this.f35747a, cyVar, null));
+                cyVar.showDialog(new sg.k0(3, i11, this.f35740a, cyVar, null));
                 return;
             }
             ArrayList<MessagesController.DialogFilter> dialogFilters = cyVar.getMessagesController().getDialogFilters();
-            if (!p00Var.e && ((i10 = p00Var.f29128a) < 0 || i10 >= dialogFilters.size())) {
+            if (!p00Var.e && ((i10 = p00Var.f29126a) < 0 || i10 >= dialogFilters.size())) {
                 return;
             }
-            ay ayVar = cyVar.f36113e0[1];
-            ayVar.h = p00Var.f29128a;
+            ay ayVar = cyVar.f36085e0[1];
+            ayVar.h = p00Var.f29126a;
             ayVar.setVisibility(0);
-            ay[] ayVarArr = cyVar.f36113e0;
+            ay[] ayVarArr = cyVar.f36085e0;
             ayVarArr[1].setTranslationX(ayVarArr[0].getMeasuredWidth());
             cy.c1(cyVar, false);
             cyVar.P4(true);
-            cyVar.f36137i3 = z10;
+            cyVar.f36109i3 = z10;
         }
     }
 
     public final void d(MessagesController.DialogFilter dialogFilter) {
         boolean isChatlist = dialogFilter.isChatlist();
-        cy cyVar = this.f35748b;
+        cy cyVar = this.f35741b;
         if (isChatlist) {
-            org.telegram.ui.Components.k10.U(cyVar, dialogFilter.f17801id, null);
+            org.telegram.ui.Components.k10.U(cyVar, dialogFilter.f17799id, null);
             return;
         }
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(cyVar.getParentActivity());
-        alertDialog$Builder.f20604a.R = LocaleController.getString(R.string.FilterDelete);
-        alertDialog$Builder.f20604a.T = LocaleController.getString(R.string.FilterDeleteAlert);
+        alertDialog$Builder.f20602a.R = LocaleController.getString(R.string.FilterDelete);
+        alertDialog$Builder.f20602a.T = LocaleController.getString(R.string.FilterDeleteAlert);
         alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
         alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new xu(4, this, dialogFilter));
-        org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20604a;
+        org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20602a;
         cyVar.showDialog(b2Var);
         TextView textView = (TextView) b2Var.d(-1);
         if (textView != null) {
-            textView.setTextColor(cyVar.getThemedColor(org.telegram.ui.ActionBar.h6.f21227q7));
+            textView.setTextColor(cyVar.getThemedColor(org.telegram.ui.ActionBar.h6.f21225q7));
         }
     }
 }

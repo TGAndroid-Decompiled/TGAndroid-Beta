@@ -24,7 +24,7 @@ public final class hb0 extends qn {
         super.onBecomeFullyVisible();
         if (!this.Rc) {
             this.Rc = true;
-            org.telegram.ui.Components.xc.a0(this).M(LocaleController.formatString(R.string.CreateManagedBotCreatedTitle, UserObject.getUserName(this.Sc)), AndroidUtilities.replaceSingleTag(LocaleController.formatString(R.string.CreateManagedBotCreatedText, UserObject.getUserName(this.Tc[0])), new ai.u3(this, this.Uc, 29)), R.raw.contact_check).j();
+            org.telegram.ui.Components.xc.a0(this).M(LocaleController.formatString(R.string.CreateManagedBotCreatedTitle, UserObject.getUserName(this.Sc)), AndroidUtilities.replaceSingleTag(LocaleController.formatString(R.string.CreateManagedBotCreatedText, UserObject.getUserName(this.Tc[0])), new ai.v3(this, this.Uc, 29)), R.raw.contact_check).j();
         }
     }
 }

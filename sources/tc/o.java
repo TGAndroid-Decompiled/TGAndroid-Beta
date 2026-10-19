@@ -7,7 +7,7 @@ import java.util.zip.Deflater;
 import java.util.zip.DeflaterOutputStream;
 public final class o extends w {
     public static final byte[] e = {0, 0, -1, -1};
-    public int f46949c;
+    public int f46951c;
     public c0 d;
 
     public static byte[] a(byte[] r13) {
@@ -15,7 +15,7 @@ public final class o extends w {
     }
 
     public final byte[] b(byte[] bArr) {
-        int i10 = this.f46949c;
+        int i10 = this.f46951c;
         if (i10 == 32768 || bArr.length < i10) {
             try {
                 ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
@@ -40,19 +40,19 @@ public final class o extends w {
             this.d = new c0(0, 11);
         }
         c0 c0Var2 = this.d;
-        int i10 = c0Var2.f4725b;
+        int i10 = c0Var2.f4723b;
         try {
             c.a(c0Var, c0Var2);
             c0 c0Var3 = this.d;
-            byte[] x10 = c0Var3.x(i10, c0Var3.f4725b);
+            byte[] x10 = c0Var3.x(i10, c0Var3.f4723b);
             c0 c0Var4 = this.d;
-            if (((ByteBuffer) c0Var4.f4726c).capacity() > 0) {
-                int i11 = c0Var4.f4725b;
+            if (((ByteBuffer) c0Var4.f4724c).capacity() > 0) {
+                int i11 = c0Var4.f4723b;
                 byte[] x11 = c0Var4.x(i11, i11);
                 ByteBuffer wrap = ByteBuffer.wrap(x11);
-                c0Var4.f4726c = wrap;
+                c0Var4.f4724c = wrap;
                 wrap.position(x11.length);
-                c0Var4.f4725b = x11.length;
+                c0Var4.f4723b = x11.length;
             }
             return x10;
         } catch (Exception e7) {

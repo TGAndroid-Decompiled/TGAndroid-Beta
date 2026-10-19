@@ -1,42 +1,42 @@
 package org.telegram.ui;
 public final class lo implements Runnable {
-    public final int f38986a;
-    public final wo f38987b;
+    public final int f38951a;
+    public final wo f38952b;
 
     public lo(wo woVar, int i10) {
-        this.f38986a = i10;
-        this.f38987b = woVar;
+        this.f38951a = i10;
+        this.f38952b = woVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f38986a) {
+        switch (this.f38951a) {
             case 0:
-                wo woVar = this.f38987b;
-                woVar.f42906c0 = true;
+                wo woVar = this.f38952b;
+                woVar.f42905c0 = true;
                 woVar.b0();
                 return;
             case 1:
-                wo woVar2 = this.f38987b;
+                wo woVar2 = this.f38952b;
                 woVar2.X = woVar2.getMessagesController().getChat(Long.valueOf(woVar2.Z));
                 woVar2.Y();
                 return;
             case 2:
-                this.f38987b.a0(false);
+                this.f38952b.a0(false);
                 return;
             case 3:
-                wo woVar3 = this.f38987b;
-                woVar3.f42906c0 = true;
-                if (woVar3.f42901a.length() > 0) {
-                    woVar3.W(woVar3.f42901a.getText().toString());
+                wo woVar3 = this.f38952b;
+                woVar3.f42905c0 = true;
+                if (woVar3.f42900a.length() > 0) {
+                    woVar3.W(woVar3.f42900a.getText().toString());
                 }
                 woVar3.b0();
                 return;
             case 4:
-                this.f38987b.Y();
+                this.f38952b.Y();
                 return;
             default:
-                this.f38987b.a0(true);
+                this.f38952b.a0(true);
                 return;
         }
     }

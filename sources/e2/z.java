@@ -19,43 +19,43 @@ import org.telegram.ui.Components.b81;
 import org.telegram.ui.Components.l60;
 import si.s0;
 public final class z implements d1 {
-    public final int f8299a;
-    public final Object f8300b;
+    public final int f8297a;
+    public final Object f8298b;
 
     public z(Object obj, int i10) {
-        this.f8299a = i10;
-        this.f8300b = obj;
+        this.f8297a = i10;
+        this.f8298b = obj;
     }
 
     @Override
     public final void onAudioAttributesChanged(b2.f fVar) {
-        int i10 = this.f8299a;
+        int i10 = this.f8297a;
     }
 
     @Override
     public final void onAudioSessionIdChanged(int i10) {
-        int i11 = this.f8299a;
+        int i11 = this.f8297a;
     }
 
     @Override
     public final void onAvailableCommandsChanged(b1 b1Var) {
-        int i10 = this.f8299a;
+        int i10 = this.f8297a;
     }
 
     @Override
     public final void onCues(d2.c cVar) {
-        int i10 = this.f8299a;
+        int i10 = this.f8297a;
     }
 
     @Override
     public final void onEvents(f1 f1Var, c1 c1Var) {
-        switch (this.f8299a) {
+        switch (this.f8297a) {
             case 0:
-                e0 e0Var = (e0) this.f8300b;
-                e0Var.f8220g.a();
+                e0 e0Var = (e0) this.f8298b;
+                e0Var.f8218g.a();
                 e0Var.h.a();
-                e0Var.f8221i.a();
-                e0Var.f8222j.a();
+                e0Var.f8219i.a();
+                e0Var.f8220j.a();
                 return;
             case 1:
             case 2:
@@ -66,22 +66,22 @@ public final class z implements d1 {
 
     @Override
     public final void onIsLoadingChanged(boolean z10) {
-        int i10 = this.f8299a;
+        int i10 = this.f8297a;
     }
 
     @Override
     public final void onIsPlayingChanged(boolean z10) {
-        switch (this.f8299a) {
+        switch (this.f8297a) {
             case 0:
             case 1:
                 return;
             case 2:
-                ri.p pVar = (ri.p) this.f8300b;
+                ri.p pVar = (ri.p) this.f8298b;
                 ri.g gVar = pVar.e;
                 ri.e eVar = pVar.E;
                 Handler handler = pVar.h;
-                if (pVar.f45842u != z10) {
-                    pVar.f45842u = z10;
+                if (pVar.f45844u != z10) {
+                    pVar.f45844u = z10;
                     handler.removeCallbacks(eVar);
                     if (z10) {
                         handler.post(eVar);
@@ -92,7 +92,7 @@ public final class z implements d1 {
                 }
                 return;
             default:
-                s0 s0Var = (s0) this.f8300b;
+                s0 s0Var = (s0) this.f8298b;
                 if (s0Var.W == 5) {
                     s0Var.x(z10);
                     return;
@@ -103,53 +103,53 @@ public final class z implements d1 {
 
     @Override
     public final void onLoadingChanged(boolean z10) {
-        int i10 = this.f8299a;
+        int i10 = this.f8297a;
     }
 
     @Override
     public final void onMediaItemTransition(b2.o0 o0Var, int i10) {
-        int i11 = this.f8299a;
+        int i11 = this.f8297a;
     }
 
     @Override
     public final void onMediaMetadataChanged(r0 r0Var) {
-        int i10 = this.f8299a;
+        int i10 = this.f8297a;
     }
 
     @Override
     public final void onMetadata(t0 t0Var) {
-        int i10 = this.f8299a;
+        int i10 = this.f8297a;
     }
 
     @Override
     public final void onPlayWhenReadyChanged(boolean z10, int i10) {
-        int i11 = this.f8299a;
+        int i11 = this.f8297a;
     }
 
     @Override
     public final void onPlaybackParametersChanged(z0 z0Var) {
-        int i10 = this.f8299a;
+        int i10 = this.f8297a;
     }
 
     @Override
     public final void onPlaybackStateChanged(int i10) {
         i2.i0 i0Var;
         i2.i0 i0Var2;
-        switch (this.f8299a) {
+        switch (this.f8297a) {
             case 0:
             case 1:
                 return;
             case 2:
-                ri.p pVar = (ri.p) this.f8300b;
-                if (i10 == 4 && pVar.f45834m == ri.n.e && (i0Var = pVar.A) != null) {
-                    i0Var.Z0(5, pVar.f45839r);
+                ri.p pVar = (ri.p) this.f8298b;
+                if (i10 == 4 && pVar.f45836m == ri.n.e && (i0Var = pVar.A) != null) {
+                    i0Var.Z0(5, pVar.f45841r);
                     pVar.A.e();
                     return;
                 }
                 return;
             default:
-                s0 s0Var = (s0) this.f8300b;
-                si.n nVar = s0Var.f46764m;
+                s0 s0Var = (s0) this.f8298b;
+                si.n nVar = s0Var.f46766m;
                 nVar.b("preview playback state=" + i10);
                 if (s0Var.W == 5 && i10 == 4 && (i0Var2 = s0Var.S) != null) {
                     i0Var2.Z0(5, s0Var.G);
@@ -162,22 +162,22 @@ public final class z implements d1 {
 
     @Override
     public final void onPlaybackSuppressionReasonChanged(int i10) {
-        int i11 = this.f8299a;
+        int i11 = this.f8297a;
     }
 
     @Override
     public final void onPlayerError(y0 y0Var) {
-        switch (this.f8299a) {
+        switch (this.f8297a) {
             case 0:
             case 1:
                 return;
             case 2:
-                ((ri.p) this.f8300b).g(y0Var);
+                ((ri.p) this.f8298b).g(y0Var);
                 return;
             default:
-                s0 s0Var = (s0) this.f8300b;
-                si.n nVar = s0Var.f46764m;
-                nVar.b("preview player error: code=" + y0Var.f4149a);
+                s0 s0Var = (s0) this.f8298b;
+                si.n nVar = s0Var.f46766m;
+                nVar.b("preview player error: code=" + y0Var.f4147a);
                 s0Var.h(y0Var);
                 return;
         }
@@ -185,16 +185,16 @@ public final class z implements d1 {
 
     @Override
     public final void onPlayerErrorChanged(y0 y0Var) {
-        int i10 = this.f8299a;
+        int i10 = this.f8297a;
     }
 
     @Override
     public final void onPlayerStateChanged(boolean z10, int i10) {
-        switch (this.f8299a) {
+        switch (this.f8297a) {
             case 0:
                 return;
             case 1:
-                b81 b81Var = (b81) this.f8300b;
+                b81 b81Var = (b81) this.f8298b;
                 if (!b81Var.H && i10 == 3) {
                     b81Var.H = true;
                     if (b81Var.G && b81Var.I) {
@@ -212,25 +212,25 @@ public final class z implements d1 {
 
     @Override
     public final void onPlaylistMetadataChanged(r0 r0Var) {
-        int i10 = this.f8299a;
+        int i10 = this.f8297a;
     }
 
     @Override
     public final void onPositionDiscontinuity(int i10) {
-        int i11 = this.f8299a;
+        int i11 = this.f8297a;
     }
 
     @Override
     public final void onRenderedFirstFrame() {
-        switch (this.f8299a) {
+        switch (this.f8297a) {
             case 0:
             case 1:
             case 2:
                 return;
             default:
-                s0 s0Var = (s0) this.f8300b;
+                s0 s0Var = (s0) this.f8298b;
                 if (s0Var.W == 5) {
-                    l60.m((l60) s0Var.d.f15845b);
+                    l60.m((l60) s0Var.d.f15843b);
                     return;
                 }
                 return;
@@ -239,57 +239,57 @@ public final class z implements d1 {
 
     @Override
     public final void onRepeatModeChanged(int i10) {
-        int i11 = this.f8299a;
+        int i11 = this.f8297a;
     }
 
     @Override
     public final void onShuffleModeEnabledChanged(boolean z10) {
-        int i10 = this.f8299a;
+        int i10 = this.f8297a;
     }
 
     @Override
     public final void onSkipSilenceEnabledChanged(boolean z10) {
-        int i10 = this.f8299a;
+        int i10 = this.f8297a;
     }
 
     @Override
     public final void onSurfaceSizeChanged(int i10, int i11) {
-        int i12 = this.f8299a;
+        int i12 = this.f8297a;
     }
 
     @Override
     public final void onTimelineChanged(o1 o1Var, int i10) {
-        int i11 = this.f8299a;
+        int i11 = this.f8297a;
     }
 
     @Override
     public final void onTrackSelectionParametersChanged(t1 t1Var) {
-        int i10 = this.f8299a;
+        int i10 = this.f8297a;
     }
 
     @Override
     public final void onTracksChanged(v1 v1Var) {
-        int i10 = this.f8299a;
+        int i10 = this.f8297a;
     }
 
     @Override
     public final void onVideoSizeChanged(a2 a2Var) {
-        int i10 = this.f8299a;
+        int i10 = this.f8297a;
     }
 
     @Override
     public final void onVolumeChanged(float f7) {
-        int i10 = this.f8299a;
+        int i10 = this.f8297a;
     }
 
     @Override
     public final void onCues(List list) {
-        int i10 = this.f8299a;
+        int i10 = this.f8297a;
     }
 
     @Override
     public final void onPositionDiscontinuity(e1 e1Var, e1 e1Var2, int i10) {
-        int i11 = this.f8299a;
+        int i11 = this.f8297a;
     }
 
     private final void C0() {

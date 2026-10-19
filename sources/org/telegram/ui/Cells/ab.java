@@ -9,29 +9,29 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
-import org.telegram.messenger.lk;
+import org.telegram.messenger.kk;
 import org.telegram.ui.Components.CheckBox;
 public abstract class ab extends FrameLayout {
-    public int f22017a;
-    public boolean f22018b;
-    public final za[] f22019c;
+    public int f22015a;
+    public boolean f22016b;
+    public final za[] f22017c;
     public int d;
     public boolean e;
-    public boolean f22020f;
+    public boolean f22018f;
     public int h;
-    public final Paint f22021n;
-    public final Paint f22022r;
-    public final Paint f22023s;
+    public final Paint f22019n;
+    public final Paint f22020r;
+    public final Paint f22021s;
     public final Drawable v;
 
     public ab(Context context, int i10) {
         super(context);
-        this.f22018b = true;
+        this.f22016b = true;
         this.d = 3;
-        this.f22019c = new za[i10];
+        this.f22017c = new za[i10];
         int i11 = 0;
         while (true) {
-            za[] zaVarArr = this.f22019c;
+            za[] zaVarArr = this.f22017c;
             if (i11 < zaVarArr.length) {
                 za zaVar = new za(this, context);
                 zaVarArr[i11] = zaVar;
@@ -41,12 +41,12 @@ public abstract class ab extends FrameLayout {
                 i11++;
             } else {
                 Paint paint = new Paint();
-                this.f22021n = paint;
+                this.f22019n = paint;
                 paint.setColor(855638016);
-                this.f22022r = new Paint(1);
+                this.f22020r = new Paint(1);
                 this.v = context.getResources().getDrawable(R.drawable.background_selected).mutate();
                 Paint paint2 = new Paint();
-                this.f22023s = paint2;
+                this.f22021s = paint2;
                 paint2.setColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.Lh, false));
                 return;
             }
@@ -62,22 +62,22 @@ public abstract class ab extends FrameLayout {
     public final void c(int i10, boolean z10, boolean z11) {
         float f7;
         float f10;
-        za zaVar = this.f22019c[i10];
-        ci.k4 k4Var = zaVar.f23886a;
-        CheckBox checkBox = zaVar.f23888c;
+        za zaVar = this.f22017c[i10];
+        ci.k4 k4Var = zaVar.f23884a;
+        CheckBox checkBox = zaVar.f23886c;
         if (checkBox.getVisibility() != 0) {
             checkBox.setVisibility(0);
         }
         checkBox.b(z10, z11);
-        AnimatorSet animatorSet = zaVar.f23889f;
+        AnimatorSet animatorSet = zaVar.f23887f;
         if (animatorSet != null) {
             animatorSet.cancel();
-            zaVar.f23889f = null;
+            zaVar.f23887f = null;
         }
         float f11 = 1.0f;
         if (z11) {
             AnimatorSet animatorSet2 = new AnimatorSet();
-            zaVar.f23889f = animatorSet2;
+            zaVar.f23887f = animatorSet2;
             if (z10) {
                 f10 = 0.8875f;
             } else {
@@ -88,9 +88,9 @@ public abstract class ab extends FrameLayout {
                 f11 = 0.8875f;
             }
             animatorSet2.playTogether(ofFloat, ObjectAnimator.ofFloat(k4Var, "scaleY", f11));
-            zaVar.f23889f.setDuration(200L);
-            zaVar.f23889f.addListener(new ah.p0(26, zaVar, z10));
-            zaVar.f23889f.start();
+            zaVar.f23887f.setDuration(200L);
+            zaVar.f23887f.addListener(new ah.p0(26, zaVar, z10));
+            zaVar.f23887f.start();
         } else {
             if (z10) {
                 f7 = 0.8875f;
@@ -110,10 +110,10 @@ public abstract class ab extends FrameLayout {
         int i11;
         this.d = i10;
         this.e = z10;
-        this.f22020f = z11;
+        this.f22018f = z11;
         int i12 = 0;
         while (true) {
-            za[] zaVarArr = this.f22019c;
+            za[] zaVarArr = this.f22017c;
             if (i12 < zaVarArr.length) {
                 za zaVar = zaVarArr[i12];
                 if (i12 < i10) {
@@ -132,7 +132,7 @@ public abstract class ab extends FrameLayout {
 
     public final void e(int i10, Object obj, Object obj2, int i11) {
         this.h = i10;
-        za[] zaVarArr = this.f22019c;
+        za[] zaVarArr = this.f22017c;
         if (obj == null) {
             zaVarArr[i11].setVisibility(8);
             zaVarArr[i11].clearAnimation();
@@ -146,7 +146,7 @@ public abstract class ab extends FrameLayout {
     public final void invalidate() {
         super.invalidate();
         for (int i10 = 0; i10 < this.d; i10++) {
-            this.f22019c[i10].invalidate();
+            this.f22017c[i10].invalidate();
         }
     }
 
@@ -164,7 +164,7 @@ public abstract class ab extends FrameLayout {
             i14 = 0;
         }
         for (int i15 = 0; i15 < this.d; i15++) {
-            za[] zaVarArr = this.f22019c;
+            za[] zaVarArr = this.f22017c;
             int measuredWidth = zaVarArr[i15].getMeasuredWidth();
             za zaVar = zaVarArr[i15];
             zaVar.layout(dp, i14, dp + measuredWidth, zaVar.getMeasuredHeight() + i14);
@@ -180,7 +180,7 @@ public abstract class ab extends FrameLayout {
         float f7 = 6.0f;
         int i14 = 0;
         if (this.d == 1) {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.f22017a, 1073741824), lk.C(6.0f, this.f22017a, 1073741824));
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.f22015a, 1073741824), kk.C(6.0f, this.f22015a, 1073741824));
             setPadding(0, 0, 0, AndroidUtilities.dp(6.0f));
             return;
         }
@@ -199,14 +199,14 @@ public abstract class ab extends FrameLayout {
             i12 = 0;
         }
         int i17 = i12 + dp;
-        if (this.f22020f) {
+        if (this.f22018f) {
             f7 = 14.0f;
         }
         setMeasuredDimension(size, AndroidUtilities.dp(f7) + i17);
         while (true) {
             int i18 = this.d;
             if (i14 < i18) {
-                za zaVar = this.f22019c[i14];
+                za zaVar = this.f22017c[i14];
                 if (i14 == i18 - 1) {
                     i13 = dp2;
                 } else {
@@ -222,8 +222,8 @@ public abstract class ab extends FrameLayout {
     }
 
     public void setSize(int i10) {
-        if (this.f22017a != i10) {
-            this.f22017a = i10;
+        if (this.f22015a != i10) {
+            this.f22015a = i10;
             requestLayout();
         }
     }

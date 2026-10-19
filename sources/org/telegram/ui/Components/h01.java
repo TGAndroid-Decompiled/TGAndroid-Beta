@@ -7,9 +7,9 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class h01 extends FrameLayout {
-    public final k01 f26735a;
-    public boolean f26736b;
-    public boolean f26737c;
+    public final k01 f26733a;
+    public boolean f26734b;
+    public boolean f26735c;
     public boolean d;
     public boolean e;
 
@@ -17,7 +17,7 @@ public final class h01 extends FrameLayout {
         super(k01Var.getContext());
         this.d = false;
         this.e = true;
-        this.f26735a = k01Var;
+        this.f26733a = k01Var;
         setWillNotDraw(false);
         if (!z10) {
             setPadding(AndroidUtilities.dp(12.66f), AndroidUtilities.dp(9.33f), AndroidUtilities.dp(12.66f), AndroidUtilities.dp(9.33f));
@@ -32,13 +32,13 @@ public final class h01 extends FrameLayout {
         float f10;
         float f11;
         float f12;
-        boolean z10 = this.f26736b;
-        k01 k01Var = this.f26735a;
-        if (z10 || this.f26737c) {
+        boolean z10 = this.f26734b;
+        k01 k01Var = this.f26733a;
+        if (z10 || this.f26735c) {
             canvas2 = canvas;
             float dp = AndroidUtilities.dp(10.0f);
-            float[] fArr = k01Var.f27651c;
-            boolean z11 = this.f26736b;
+            float[] fArr = k01Var.f27649c;
+            boolean z11 = this.f26734b;
             if (z11 && this.d) {
                 f7 = dp;
             } else {
@@ -53,7 +53,7 @@ public final class h01 extends FrameLayout {
             }
             fArr[3] = f10;
             fArr[2] = f10;
-            boolean z12 = this.f26737c;
+            boolean z12 = this.f26735c;
             if (z12 && this.e) {
                 f11 = dp;
             } else {
@@ -66,23 +66,23 @@ public final class h01 extends FrameLayout {
             }
             fArr[7] = dp;
             fArr[6] = dp;
-            k01Var.f27650b.rewind();
+            k01Var.f27648b.rewind();
             RectF rectF = AndroidUtilities.rectTmp;
             float f13 = k01Var.h;
             float width = getWidth() - k01Var.h;
             float height = getHeight();
             float f14 = k01Var.h;
-            if (this.f26737c) {
+            if (this.f26735c) {
                 f12 = -1.0f;
             } else {
                 f12 = 1.0f;
             }
             rectF.set(f13, f13, width, (f14 * f12) + height);
             if (!this.e) {
-                rectF.right += k01Var.f27652f;
+                rectF.right += k01Var.f27650f;
             }
-            k01Var.f27650b.addRoundRect(rectF, k01Var.f27651c, Path.Direction.CW);
-            canvas2.drawPath(k01Var.f27650b, k01Var.e);
+            k01Var.f27648b.addRoundRect(rectF, k01Var.f27649c, Path.Direction.CW);
+            canvas2.drawPath(k01Var.f27648b, k01Var.e);
         } else {
             float f15 = k01Var.h;
             canvas2 = canvas;

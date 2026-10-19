@@ -14,7 +14,7 @@ public class k2 extends bb implements org.telegram.ui.ActionBar.y5 {
     public t61 X;
     public final ViewGroup Y;
     public final Paint Z;
-    public float f34411a0;
+    public float f34413a0;
 
     public k2(Context context, ViewGroup viewGroup, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context, null, true, false, d6Var);
@@ -35,14 +35,14 @@ public class k2 extends bb implements org.telegram.ui.ActionBar.y5 {
 
     @Override
     public void F(float f7) {
-        this.f34411a0 = f7;
+        this.f34413a0 = f7;
         if (this.topBulletinContainer != null) {
             this.topBulletinContainer.setTranslationY(Math.max((this.containerView.getY() + f7) + this.backgroundPaddingTop, this.topBulletinContainer.getHeight() + (AndroidUtilities.dp(56.0f) + AndroidUtilities.statusBarHeight)) - this.topBulletinContainer.getBottom());
         }
     }
 
     public int Q() {
-        return getThemedColor(org.telegram.ui.ActionBar.h6.f20931a7);
+        return getThemedColor(org.telegram.ui.ActionBar.h6.f20929a7);
     }
 
     @Override
@@ -63,7 +63,7 @@ public class k2 extends bb implements org.telegram.ui.ActionBar.y5 {
         float f7;
         float width;
         float height = getContainer().getHeight();
-        float max = Math.max(height - AndroidUtilities.navigationBarHeight, this.containerView.getY() + this.f34411a0 + this.backgroundPaddingTop);
+        float max = Math.max(height - AndroidUtilities.navigationBarHeight, this.containerView.getY() + this.f34413a0 + this.backgroundPaddingTop);
         if (max >= height) {
             return;
         }

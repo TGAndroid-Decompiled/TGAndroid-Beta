@@ -1,39 +1,43 @@
 package ai;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class c7 extends AnimatorListenerAdapter {
-    public final int f1076a;
-    public final e7 f1077b;
+import android.content.Context;
+import android.view.View;
+public final class c7 extends org.telegram.ui.Components.w9 {
+    public final int G;
 
-    public c7(e7 e7Var, int i10) {
-        this.f1076a = i10;
-        this.f1077b = e7Var;
+    public c7(Context context, int i10) {
+        super(context);
+        this.G = i10;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f1076a) {
-            case 0:
-                this.f1077b.f1220g0 = false;
-                return;
+    public void onMeasure(int i10, int i11) {
+        switch (this.G) {
             case 1:
-                this.f1077b.f1220g0 = false;
-                return;
-            case 2:
-                this.f1077b.O.setVisibility(4);
-                return;
-            case 3:
-                e7 e7Var = this.f1077b;
-                e7Var.f1237v0 = e7Var.f1236u0;
-                e7Var.d(e7Var.f1211a0);
+                int size = View.MeasureSpec.getSize(i10);
+                setMeasuredDimension(size, size);
                 return;
             default:
-                e7 e7Var2 = this.f1077b;
-                e7Var2.f1239w0 = 1.0f;
-                e7Var2.f1212b.setScaleX(1.0f);
-                e7Var2.f1212b.setScaleY(e7Var2.f1239w0);
-                e7Var2.invalidate();
+                super.onMeasure(i10, i11);
+                return;
+        }
+    }
+
+    @Override
+    public void setAlpha(float f7) {
+        int i10;
+        switch (this.G) {
+            case 0:
+                super.setAlpha(f7);
+                if (f7 > 0.0f) {
+                    i10 = 0;
+                } else {
+                    i10 = 4;
+                }
+                setVisibility(i10);
+                return;
+            default:
+                super.setAlpha(f7);
                 return;
         }
     }

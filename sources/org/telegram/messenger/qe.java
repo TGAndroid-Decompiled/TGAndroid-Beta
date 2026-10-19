@@ -1,53 +1,29 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
+import org.telegram.messenger.MessagesStorage;
 public final class qe implements Runnable {
-    public final int f19361a;
-    public final MessagesStorage f19362b;
-    public final ArrayList f19363c;
-    public final long d;
+    public final int f19357a;
+    public final MessagesStorage.IntCallback f19358b;
+    public final int f19359c;
 
-    public qe(MessagesStorage messagesStorage, long j10, ArrayList arrayList, int i10) {
-        this.f19361a = i10;
-        this.f19362b = messagesStorage;
-        this.d = j10;
-        this.f19363c = arrayList;
+    public qe(MessagesStorage.IntCallback intCallback, int i10, int i11) {
+        this.f19357a = i11;
+        this.f19358b = intCallback;
+        this.f19359c = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f19361a) {
+        switch (this.f19357a) {
             case 0:
-                this.f19362b.lambda$deleteUserChatHistory$86(this.f19363c, this.d);
+                this.f19358b.run(this.f19359c);
                 return;
             case 1:
-                this.f19362b.lambda$emptyMessagesMedia$99(this.f19363c, this.d);
-                return;
-            case 2:
-                this.f19362b.lambda$deleteSavedDialog$54(this.d, this.f19363c);
-                return;
-            case 3:
-                this.f19362b.lambda$updateChannelUsers$125(this.d, this.f19363c);
-                return;
-            case 4:
-                this.f19362b.lambda$markVoiceMessageContentAsRead$217(this.f19363c, this.d);
-                return;
-            case 5:
-                this.f19362b.lambda$markMessagesAsDeletedInternal$226(this.f19363c, this.d);
-                return;
-            case 6:
-                this.f19362b.lambda$removeTopics$58(this.f19363c, this.d);
+                this.f19358b.run(this.f19359c);
                 return;
             default:
-                this.f19362b.lambda$createTaskForSecretChat$117(this.d, this.f19363c);
+                this.f19358b.run(this.f19359c);
                 return;
         }
-    }
-
-    public qe(MessagesStorage messagesStorage, ArrayList arrayList, long j10, int i10) {
-        this.f19361a = i10;
-        this.f19362b = messagesStorage;
-        this.f19363c = arrayList;
-        this.d = j10;
     }
 }

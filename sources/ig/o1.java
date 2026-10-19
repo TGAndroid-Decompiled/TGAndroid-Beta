@@ -9,10 +9,10 @@ import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.n2;
 public final class o1 extends org.telegram.ui.ActionBar.j {
-    public final x1 f12986a;
+    public final x1 f12984a;
 
     public o1(x1 x1Var) {
-        this.f12986a = x1Var;
+        this.f12984a = x1Var;
     }
 
     @Override
@@ -20,8 +20,8 @@ public final class o1 extends org.telegram.ui.ActionBar.j {
         int i11;
         int i12;
         d6 d6Var;
-        x1 x1Var = this.f12986a;
-        ArrayList arrayList = x1Var.f13086b;
+        x1 x1Var = this.f12984a;
+        ArrayList arrayList = x1Var.f13084b;
         if (i10 == -1) {
             if (arrayList.isEmpty()) {
                 x1Var.finishFragment();
@@ -42,11 +42,11 @@ public final class o1 extends org.telegram.ui.ActionBar.j {
             }
         } else if (i10 == 2) {
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(x1Var.getParentActivity(), 0, x1Var.getResourceProvider());
-            alertDialog$Builder.f20604a.R = LocaleController.formatPluralString("BusinessRepliesDeleteTitle", arrayList.size(), new Object[0]);
-            alertDialog$Builder.f20604a.T = LocaleController.formatPluralString("BusinessRepliesDeleteMessage", arrayList.size(), new Object[0]);
+            alertDialog$Builder.f20602a.R = LocaleController.formatPluralString("BusinessRepliesDeleteTitle", arrayList.size(), new Object[0]);
+            alertDialog$Builder.f20602a.T = LocaleController.formatPluralString("BusinessRepliesDeleteMessage", arrayList.size(), new Object[0]);
             alertDialog$Builder.k(LocaleController.getString(R.string.Remove), new e1.c(this, 22));
             alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-            x1Var.showDialog(alertDialog$Builder.f20604a);
+            x1Var.showDialog(alertDialog$Builder.f20602a);
         }
     }
 }

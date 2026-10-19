@@ -14,12 +14,12 @@ import org.telegram.messenger.SharedConfig;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.Components.Switch;
 public final class gx0 extends org.telegram.ui.Components.hm0 {
-    public final Context f37450c;
+    public final Context f37424c;
     public final PrivacySettingsActivity d;
 
     public gx0(PrivacySettingsActivity privacySettingsActivity, Context context) {
         this.d = privacySettingsActivity;
-        this.f37450c = context;
+        this.f37424c = context;
     }
 
     @Override
@@ -295,8 +295,8 @@ public final class gx0 extends org.telegram.ui.Components.hm0 {
         String str6;
         String string3;
         String str7;
-        int i42 = b1Var.f45913f;
-        View view = b1Var.f45910a;
+        int i42 = b1Var.f45915f;
+        View view = b1Var.f45912a;
         int i43 = 16;
         String str8 = null;
         boolean z17 = false;
@@ -315,7 +315,7 @@ public final class gx0 extends org.telegram.ui.Components.hm0 {
                             }
                             view.setTag(Integer.valueOf(i10));
                             q8Var.setPrioritizeTitleOverValue(false);
-                            org.telegram.ui.Components.q6 q6Var = q8Var.f22783c;
+                            org.telegram.ui.Components.q6 q6Var = q8Var.f22781c;
                             i34 = privacySettingsActivity.autoDeleteMesages;
                             if (i10 == i34) {
                                 int globalTTl = privacySettingsActivity.getUserConfig().getGlobalTTl();
@@ -409,10 +409,10 @@ public final class gx0 extends org.telegram.ui.Components.hm0 {
                                             int lastIndexOf = privacySettingsActivity.d.login_email_pattern.lastIndexOf(42);
                                             if (indexOf != lastIndexOf && indexOf != -1 && lastIndexOf != -1) {
                                                 ?? obj = new Object();
-                                                obj.f28359a |= 256;
-                                                obj.f28360b = indexOf;
+                                                obj.f28357a |= 256;
+                                                obj.f28358b = indexOf;
                                                 int i46 = lastIndexOf + 1;
-                                                obj.f28361c = i46;
+                                                obj.f28359c = i46;
                                                 valueOf.setSpan(new org.telegram.ui.Components.n11(obj, 0), indexOf, i46, 0);
                                             }
                                             z16 = false;
@@ -421,9 +421,9 @@ public final class gx0 extends org.telegram.ui.Components.hm0 {
                                         q8Var.setPrioritizeTitleOverValue(true);
                                         String string4 = LocaleController.getString(R.string.EmailLogin);
                                         int i47 = R.drawable.msg2_email;
-                                        q8Var.f22788w = 16;
-                                        q8Var.f22787s = 58;
-                                        org.telegram.ui.ActionBar.j5 j5Var = q8Var.f22781a;
+                                        q8Var.f22786w = 16;
+                                        q8Var.f22785s = 58;
+                                        org.telegram.ui.ActionBar.j5 j5Var = q8Var.f22779a;
                                         j5Var.l(string4, false);
                                         j5Var.i(null);
                                         org.telegram.ui.ActionBar.j5 j5Var2 = q8Var.d;
@@ -437,9 +437,9 @@ public final class gx0 extends org.telegram.ui.Components.hm0 {
                                         xj0Var.setTranslationY(0.0f);
                                         xj0Var.setPadding(0, AndroidUtilities.dp(7.0f), 0, 0);
                                         xj0Var.setImageResource(i47);
-                                        q8Var.f22786r = true;
+                                        q8Var.f22784r = true;
                                         q8Var.setWillNotDraw(false);
-                                        Switch r02 = q8Var.f22784f;
+                                        Switch r02 = q8Var.f22782f;
                                         if (r02 != null) {
                                             r02.setVisibility(8);
                                         }
@@ -694,7 +694,7 @@ public final class gx0 extends org.telegram.ui.Components.hm0 {
                                                         z14 = false;
                                                     }
                                                     baVar.c(u03, x02, false, z14);
-                                                    baVar.getValueImageView().setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21152m6, false), PorterDuff.Mode.MULTIPLY));
+                                                    baVar.getValueImageView().setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21150m6, false), PorterDuff.Mode.MULTIPLY));
                                                     z17 = z13;
                                                 }
                                             } else {
@@ -791,15 +791,15 @@ public final class gx0 extends org.telegram.ui.Components.hm0 {
         } else {
             baVar.b(LocaleController.getString("WebSessionsTitle", R.string.WebSessionsTitle), false);
         }
-        baVar.f22068r = z17;
-        baVar.f22072y = i43;
+        baVar.f22066r = z17;
+        baVar.f22070y = i43;
         if (!z10) {
             if (z17) {
                 f7 = 1.0f;
             } else {
                 f7 = 0.0f;
             }
-            baVar.f22071x = f7;
+            baVar.f22069x = f7;
         } else {
             baVar.E = true;
         }
@@ -809,7 +809,7 @@ public final class gx0 extends org.telegram.ui.Components.hm0 {
     @Override
     public final s4.b1 x(ViewGroup viewGroup, int i10) {
         View baVar;
-        Context context = this.f37450c;
+        Context context = this.f37424c;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 != 2) {

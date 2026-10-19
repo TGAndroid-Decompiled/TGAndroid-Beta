@@ -2,13 +2,13 @@ package hb;
 
 import j$.util.concurrent.ConcurrentHashMap;
 public final class j implements eb.v {
-    public static final i f11746c = new i(0);
+    public static final i f11744c = new i(0);
     public static final i d = new i(0);
-    public final qf.b f11747a;
-    public final ConcurrentHashMap f11748b = new ConcurrentHashMap();
+    public final qf.b f11745a;
+    public final ConcurrentHashMap f11746b = new ConcurrentHashMap();
 
     public j(qf.b bVar) {
-        this.f11747a = bVar;
+        this.f11745a = bVar;
     }
 
     public final eb.u a(qf.b bVar, eb.g gVar, lb.a aVar, fb.a aVar2, boolean z10) {
@@ -22,7 +22,7 @@ public final class j implements eb.v {
         } else if (f22 instanceof eb.v) {
             eb.v vVar = (eb.v) f22;
             if (z10) {
-                eb.v vVar2 = (eb.v) this.f11748b.putIfAbsent(aVar.f15996a, vVar);
+                eb.v vVar2 = (eb.v) this.f11746b.putIfAbsent(aVar.f15994a, vVar);
                 if (vVar2 != null) {
                     vVar = vVar2;
                 }
@@ -38,7 +38,7 @@ public final class j implements eb.v {
                 }
                 eb.o oVar2 = oVar;
                 if (z10) {
-                    iVar = f11746c;
+                    iVar = f11744c;
                 } else {
                     iVar = d;
                 }
@@ -46,7 +46,7 @@ public final class j implements eb.v {
                 nullSafe = false;
                 uVar = a0Var;
             } else {
-                throw new IllegalArgumentException("Invalid attempt to bind an instance of " + f22.getClass().getName() + " as a @JsonAdapter for " + gb.d.k(aVar.f15997b) + ". @JsonAdapter value must be a TypeAdapter, TypeAdapterFactory, JsonSerializer or JsonDeserializer.");
+                throw new IllegalArgumentException("Invalid attempt to bind an instance of " + f22.getClass().getName() + " as a @JsonAdapter for " + gb.d.k(aVar.f15995b) + ". @JsonAdapter value must be a TypeAdapter, TypeAdapterFactory, JsonSerializer or JsonDeserializer.");
             }
         }
         if (uVar != null && nullSafe) {
@@ -57,10 +57,10 @@ public final class j implements eb.v {
 
     @Override
     public final eb.u create(eb.g gVar, lb.a aVar) {
-        fb.a aVar2 = (fb.a) aVar.f15996a.getAnnotation(fb.a.class);
+        fb.a aVar2 = (fb.a) aVar.f15994a.getAnnotation(fb.a.class);
         if (aVar2 == null) {
             return null;
         }
-        return a(this.f11747a, gVar, aVar, aVar2, true);
+        return a(this.f11745a, gVar, aVar, aVar2, true);
     }
 }

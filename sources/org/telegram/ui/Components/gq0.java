@@ -20,23 +20,23 @@ public final class gq0 extends im0 {
         switch (this.V2) {
             case 0:
                 er0 er0Var = this.W2;
-                if (er0Var.f25989i0 && er0Var.f25996p0[1] != null) {
+                if (er0Var.f25987i0 && er0Var.f25994p0[1] != null) {
                     f10 = 111.0f;
                 } else {
                     f10 = 58.0f;
                 }
-                if (f7 >= AndroidUtilities.dp(f10) + er0Var.H0.f12286b) {
+                if (f7 >= AndroidUtilities.dp(f10) + er0Var.H0.f12284b) {
                     return true;
                 }
                 return false;
             default:
                 er0 er0Var2 = this.W2;
-                if (er0Var2.f25989i0 && er0Var2.f25996p0[1] != null) {
+                if (er0Var2.f25987i0 && er0Var2.f25994p0[1] != null) {
                     f11 = 111.0f;
                 } else {
                     f11 = 58.0f;
                 }
-                if (f7 >= AndroidUtilities.dp(f11) + er0Var2.H0.f12286b) {
+                if (f7 >= AndroidUtilities.dp(f11) + er0Var2.H0.f12284b) {
                     return true;
                 }
                 return false;
@@ -53,8 +53,8 @@ public final class gq0 extends im0 {
                 im0 im0Var = er0Var.F;
                 if (im0Var.getVisibility() != 8) {
                     canvas.save();
-                    int i10 = er0Var.f25997q0;
-                    if (er0Var.f25989i0 && er0Var.f25996p0[1] != null) {
+                    int i10 = er0Var.f25995q0;
+                    if (er0Var.f25987i0 && er0Var.f25994p0[1] != null) {
                         f7 = 111.0f;
                     } else {
                         f7 = 58.0f;
@@ -72,8 +72,8 @@ public final class gq0 extends im0 {
                 im0 im0Var2 = er0Var2.F;
                 if (im0Var2.getVisibility() != 8) {
                     canvas.save();
-                    int i11 = er0Var2.f25997q0;
-                    if (er0Var2.f25989i0 && er0Var2.f25996p0[1] != null) {
+                    int i11 = er0Var2.f25995q0;
+                    if (er0Var2.f25987i0 && er0Var2.f25994p0[1] != null) {
                         f10 = 111.0f;
                     } else {
                         f10 = 58.0f;

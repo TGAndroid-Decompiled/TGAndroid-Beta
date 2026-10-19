@@ -7,12 +7,12 @@ import androidx.appcompat.widget.ActionBarContextView;
 import java.lang.ref.WeakReference;
 import n4.s;
 public final class d extends a implements l.i {
-    public Context f14527c;
+    public Context f14525c;
     public ActionBarContextView d;
     public s e;
-    public WeakReference f14528f;
+    public WeakReference f14526f;
     public boolean h;
-    public l.k f14529n;
+    public l.k f14527n;
 
     @Override
     public final void a() {
@@ -25,7 +25,7 @@ public final class d extends a implements l.i {
 
     @Override
     public final View b() {
-        WeakReference weakReference = this.f14528f;
+        WeakReference weakReference = this.f14526f;
         if (weakReference != null) {
             return (View) weakReference.get();
         }
@@ -34,7 +34,7 @@ public final class d extends a implements l.i {
 
     @Override
     public final l.k c() {
-        return this.f14529n;
+        return this.f14527n;
     }
 
     @Override
@@ -54,7 +54,7 @@ public final class d extends a implements l.i {
 
     @Override
     public final void g() {
-        this.e.z(this, this.f14529n);
+        this.e.z(this, this.f14527n);
     }
 
     @Override
@@ -71,12 +71,12 @@ public final class d extends a implements l.i {
         } else {
             weakReference = null;
         }
-        this.f14528f = weakReference;
+        this.f14526f = weakReference;
     }
 
     @Override
     public final void j(int i10) {
-        k(this.f14527c.getString(i10));
+        k(this.f14525c.getString(i10));
     }
 
     @Override
@@ -86,7 +86,7 @@ public final class d extends a implements l.i {
 
     @Override
     public final void l(int i10) {
-        m(this.f14527c.getString(i10));
+        m(this.f14525c.getString(i10));
     }
 
     @Override
@@ -105,12 +105,12 @@ public final class d extends a implements l.i {
 
     @Override
     public final void o(boolean z10) {
-        this.f14523b = z10;
+        this.f14521b = z10;
         this.d.setTitleOptional(z10);
     }
 
     @Override
     public final boolean q(l.k kVar, MenuItem menuItem) {
-        return ((qi.e) this.e.f17127b).A(this, menuItem);
+        return ((qi.e) this.e.f17125b).A(this, menuItem);
     }
 }

@@ -11,23 +11,23 @@ import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 public final class t90 implements org.telegram.ui.Components.ke0, org.telegram.ui.ActionBar.a2 {
-    public final LaunchActivity f41618a;
+    public final LaunchActivity f41617a;
 
     public t90(LaunchActivity launchActivity) {
-        this.f41618a = launchActivity;
+        this.f41617a = launchActivity;
     }
 
     @Override
     public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
         Pattern pattern = LaunchActivity.C1;
-        MessagesController.getInstance(this.f41618a.O).performLogout(2);
+        MessagesController.getInstance(this.f41617a.O).performLogout(2);
     }
 
     @Override
     public void j(org.telegram.ui.Components.le0 le0Var) {
         Pattern pattern = LaunchActivity.C1;
         SharedConfig.isWaitingForPasscodeEnter = false;
-        LaunchActivity launchActivity = this.f41618a;
+        LaunchActivity launchActivity = this.f41617a;
         Intent intent = launchActivity.L0;
         if (intent != null) {
             launchActivity.X(intent, launchActivity.M0, launchActivity.N0, true, null, false, true);

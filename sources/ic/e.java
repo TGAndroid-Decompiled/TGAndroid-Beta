@@ -11,17 +11,17 @@ public enum e {
     FNC1_SECOND_POSITION(new int[]{0, 0, 0}, 9),
     HANZI(new int[]{8, 10, 12}, 13);
     
-    public final int[] f12761a;
-    public final int f12762b;
+    public final int[] f12759a;
+    public final int f12760b;
 
     e(int[] iArr, int i10) {
-        this.f12761a = iArr;
-        this.f12762b = i10;
+        this.f12759a = iArr;
+        this.f12760b = i10;
     }
 
     public final int a(f fVar) {
         char c10;
-        int i10 = fVar.f12764a;
+        int i10 = fVar.f12762a;
         if (i10 <= 9) {
             c10 = 0;
         } else if (i10 <= 26) {
@@ -29,6 +29,6 @@ public enum e {
         } else {
             c10 = 2;
         }
-        return this.f12761a[c10];
+        return this.f12759a[c10];
     }
 }

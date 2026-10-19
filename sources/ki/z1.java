@@ -9,25 +9,25 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Components.bs;
 public final class z1 extends ImageView implements org.telegram.ui.ActionBar.y5 {
-    public final int f15682a;
-    public int f15683b;
-    public boolean f15684c;
+    public final int f15680a;
+    public int f15681b;
+    public boolean f15682c;
     public boolean d;
     public int e;
-    public int f15685f;
+    public int f15683f;
     public final org.telegram.ui.ActionBar.d6 h;
-    public boolean f15686n;
-    public boolean f15687r;
-    public boolean f15688s;
+    public boolean f15684n;
+    public boolean f15685r;
+    public boolean f15686s;
 
     public z1(Context context, int i10, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
         this.e = 20;
-        this.f15685f = h6.f20989d6;
-        this.f15686n = true;
-        this.f15688s = true;
-        this.f15683b = i10;
-        this.f15682a = i10;
+        this.f15683f = h6.f20987d6;
+        this.f15684n = true;
+        this.f15686s = true;
+        this.f15681b = i10;
+        this.f15680a = i10;
         this.h = d6Var;
         if (i10 != 0) {
             setImageResource(i10);
@@ -38,61 +38,61 @@ public final class z1 extends ImageView implements org.telegram.ui.ActionBar.y5 
     }
 
     public final void a() {
-        f(this.f15682a);
+        f(this.f15680a);
     }
 
     public final void b() {
-        if (!this.f15688s) {
+        if (!this.f15686s) {
             return;
         }
-        this.f15688s = false;
+        this.f15686s = false;
         d();
     }
 
     public final void c(int i10) {
-        if (this.f15685f == i10) {
+        if (this.f15683f == i10) {
             return;
         }
-        this.f15685f = i10;
+        this.f15683f = i10;
         d();
     }
 
     @Override
     public final void d() {
         int i10;
-        boolean z10 = this.f15687r;
+        boolean z10 = this.f15685r;
         org.telegram.ui.ActionBar.d6 d6Var = this.h;
         if (z10) {
-            if (this.f15688s) {
+            if (this.f15686s) {
                 i10 = h6.Oh;
             } else {
                 i10 = h6.G6;
             }
             int x02 = h6.x0(null, i10, false);
-            setBackground(h6.a0(h6.v(h6.w0(this.f15685f, d6Var), h6.m1(0.1f, x02)), h6.m1(0.1f, x02), AndroidUtilities.dp(this.e), AndroidUtilities.dp(this.e)));
+            setBackground(h6.a0(h6.v(h6.w0(this.f15683f, d6Var), h6.m1(0.1f, x02)), h6.m1(0.1f, x02), AndroidUtilities.dp(this.e), AndroidUtilities.dp(this.e)));
             setColorFilter(new PorterDuffColorFilter(x02, PorterDuff.Mode.SRC_IN));
             return;
         }
-        setBackground(h6.a0(h6.w0(this.f15685f, d6Var), h6.w0(h6.f21078i6, d6Var), AndroidUtilities.dp(this.e), AndroidUtilities.dp(this.e)));
+        setBackground(h6.a0(h6.w0(this.f15683f, d6Var), h6.w0(h6.f21076i6, d6Var), AndroidUtilities.dp(this.e), AndroidUtilities.dp(this.e)));
         setColorFilter(new PorterDuffColorFilter(h6.w0(h6.G6, d6Var), PorterDuff.Mode.SRC_IN));
     }
 
     public final void e() {
-        this.f15684c = true;
-        b2 b2Var = new b2(getContext(), this.f15683b);
-        b2Var.d = this.f15685f;
+        this.f15682c = true;
+        b2 b2Var = new b2(getContext(), this.f15681b);
+        b2Var.d = this.f15683f;
         b2Var.a(this.d);
         setImageDrawable(b2Var);
     }
 
     public final void f(int i10) {
-        if (this.f15683b == i10) {
+        if (this.f15681b == i10) {
             return;
         }
-        this.f15683b = i10;
-        if (this.f15684c) {
+        this.f15681b = i10;
+        if (this.f15682c) {
             b2 b2Var = new b2(getContext(), i10);
-            b2Var.d = this.f15685f;
+            b2Var.d = this.f15683f;
             b2Var.a(this.d);
             AndroidUtilities.updateImageViewImageAnimated(this, b2Var);
             return;
@@ -107,12 +107,12 @@ public final class z1 extends ImageView implements org.telegram.ui.ActionBar.y5 
     @Override
     public void setEnabled(boolean z10) {
         float f7;
-        if (this.f15686n == z10) {
+        if (this.f15684n == z10) {
             return;
         }
         setClickable(z10);
         ViewPropertyAnimator animate = animate();
-        this.f15686n = z10;
+        this.f15684n = z10;
         if (z10) {
             f7 = 1.0f;
         } else {
@@ -130,10 +130,10 @@ public final class z1 extends ImageView implements org.telegram.ui.ActionBar.y5 
 
     @Override
     public void setSelected(boolean z10) {
-        if (this.f15687r == z10) {
+        if (this.f15685r == z10) {
             return;
         }
-        this.f15687r = z10;
+        this.f15685r = z10;
         d();
     }
 }

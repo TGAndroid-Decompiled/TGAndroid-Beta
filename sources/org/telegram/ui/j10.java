@@ -4,7 +4,7 @@ import android.text.TextUtils;
 import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.TLRPC;
 public final class j10 extends pg.a {
-    public CharSequence f38134c;
+    public CharSequence f38136c;
     public MessagesController.DialogFilter d;
     public TLRPC.TL_dialogFilterSuggested e;
 
@@ -20,15 +20,15 @@ public final class j10 extends pg.a {
             return false;
         }
         j10 j10Var = (j10) obj;
-        int i10 = j10Var.f44286a;
-        int i11 = this.f44286a;
+        int i10 = j10Var.f44288a;
+        int i11 = this.f44288a;
         if (i10 != i11) {
             return false;
         }
-        if ((i11 == 0 || i11 == 4 || i11 == 3 || i11 == 6) && !TextUtils.equals(this.f38134c, j10Var.f38134c)) {
+        if ((i11 == 0 || i11 == 4 || i11 == 3 || i11 == 6) && !TextUtils.equals(this.f38136c, j10Var.f38136c)) {
             return false;
         }
-        int i12 = this.f44286a;
+        int i12 = this.f44288a;
         if (i12 == 2) {
             MessagesController.DialogFilter dialogFilter = this.d;
             if (dialogFilter == null) {
@@ -45,7 +45,7 @@ public final class j10 extends pg.a {
             if (z12 != z13) {
                 return false;
             }
-            if (dialogFilter != null && dialogFilter.f17801id != dialogFilter2.f17801id) {
+            if (dialogFilter != null && dialogFilter.f17799id != dialogFilter2.f17799id) {
                 return false;
             }
         }
@@ -65,7 +65,7 @@ public final class j10 extends pg.a {
             if (z10 != z11) {
                 return false;
             }
-            if (tL_dialogFilterSuggested != null && tL_dialogFilterSuggested.filter.f20280id != tL_dialogFilterSuggested2.filter.f20280id) {
+            if (tL_dialogFilterSuggested != null && tL_dialogFilterSuggested.filter.f20278id != tL_dialogFilterSuggested2.filter.f20278id) {
                 return false;
             }
         }

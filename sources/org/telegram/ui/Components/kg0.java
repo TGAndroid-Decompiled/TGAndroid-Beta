@@ -23,20 +23,20 @@ public abstract class kg0 extends FrameLayout {
     public float J;
     public boolean K;
     public rc0 L;
-    public int f27843a;
-    public PhotoViewer f27844b;
-    public LinearLayout f27845c;
+    public int f27841a;
+    public PhotoViewer f27842b;
+    public LinearLayout f27843c;
     public TextView d;
     public TextView e;
-    public wu f27846f;
+    public wu f27844f;
     public ai.ic h;
-    public RadialProgressView f27847n;
-    public View f27848r;
-    public String f27849s;
+    public RadialProgressView f27845n;
+    public View f27846r;
+    public String f27847s;
     public ArrayList v;
-    public String f27850w;
-    public boolean f27851x;
-    public TLRPC.WebPage f27852y;
+    public String f27848w;
+    public boolean f27849x;
+    public TLRPC.WebPage f27850y;
 
     public static void a(org.telegram.ui.ot0 ot0Var, String str) {
         String str2;
@@ -88,7 +88,7 @@ public abstract class kg0 extends FrameLayout {
     }
 
     public final boolean d() {
-        return this.f27851x;
+        return this.f27849x;
     }
 
     @Override
@@ -101,7 +101,7 @@ public abstract class kg0 extends FrameLayout {
 
     public final boolean e() {
         boolean z10;
-        if (this.f27851x && "inapp".equals(MessagesController.getInstance(this.f27843a).youtubePipType)) {
+        if (this.f27849x && "inapp".equals(MessagesController.getInstance(this.f27841a).youtubePipType)) {
             z10 = true;
         } else {
             z10 = false;
@@ -109,18 +109,18 @@ public abstract class kg0 extends FrameLayout {
         if (!z10 && !Settings.canDrawOverlays(getContext())) {
             f5.A((Activity) getContext(), null, false);
             return false;
-        } else if (this.f27847n.getVisibility() == 0) {
+        } else if (this.f27845n.getVisibility() == 0) {
             return false;
         } else {
-            if (zg0.f32929p0.P) {
+            if (zg0.f32927p0.P) {
                 zg0.j(false);
                 AndroidUtilities.runOnUIThread(new fg0(this, 0), 300L);
                 return true;
             }
             this.h.setVisibility(0);
             Activity activity = (Activity) getContext();
-            wu wuVar = this.f27846f;
-            TLRPC.WebPage webPage = this.f27852y;
+            wu wuVar = this.f27844f;
+            TLRPC.WebPage webPage = this.f27850y;
             if (zg0.x(z10, activity, this, wuVar, webPage.embed_width, webPage.embed_height, false)) {
                 zg0.w(PhotoViewer.t1());
             }
@@ -129,7 +129,7 @@ public abstract class kg0 extends FrameLayout {
     }
 
     public final void f() {
-        if (this.G && this.f27851x) {
+        if (this.G && this.f27849x) {
             h("pauseVideo();");
             this.G = false;
             b(true);
@@ -137,7 +137,7 @@ public abstract class kg0 extends FrameLayout {
     }
 
     public final void g() {
-        if (!this.G && this.f27851x) {
+        if (!this.G && this.f27849x) {
             h("playVideo();");
             this.G = true;
             b(false);
@@ -157,11 +157,11 @@ public abstract class kg0 extends FrameLayout {
     }
 
     public WebView getWebView() {
-        return this.f27846f;
+        return this.f27844f;
     }
 
     public final void h(String str) {
-        this.f27846f.evaluateJavascript(str, null);
+        this.f27844f.evaluateJavascript(str, null);
     }
 
     public final void i(long j10) {
@@ -171,7 +171,7 @@ public abstract class kg0 extends FrameLayout {
             f();
         }
         if (z10) {
-            AndroidUtilities.runOnUIThread(new ai.u3(this, j10, 25), 100L);
+            AndroidUtilities.runOnUIThread(new ai.v3(this, j10, 25), 100L);
             return;
         }
         h("seekTo(" + Math.round(((float) j10) / 1000.0f) + ", true);");
@@ -179,9 +179,9 @@ public abstract class kg0 extends FrameLayout {
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        wu wuVar = this.f27846f;
+        wu wuVar = this.f27844f;
         if (wuVar.getParent() == this) {
-            TLRPC.WebPage webPage = this.f27852y;
+            TLRPC.WebPage webPage = this.f27850y;
             int i12 = webPage.embed_width;
             int i13 = 100;
             if (i12 == 0) {
@@ -209,8 +209,8 @@ public abstract class kg0 extends FrameLayout {
 
     public void setPlaybackSpeed(float f7) {
         this.E = f7;
-        if (this.f27847n.getVisibility() != 0) {
-            if (this.f27851x) {
+        if (this.f27845n.getVisibility() != 0) {
+            if (this.f27849x) {
                 h("setPlaybackSpeed(" + f7 + ");");
                 return;
             }

@@ -19,14 +19,14 @@ import org.telegram.ui.pc1;
 import org.telegram.ui.wc1;
 import org.telegram.ui.yc1;
 public final class b60 implements Runnable {
-    public final int f24809a;
-    public final boolean f24810b;
-    public final Object f24811c;
+    public final int f24807a;
+    public final boolean f24808b;
+    public final Object f24809c;
 
     public b60(int i10, Object obj, boolean z10) {
-        this.f24809a = i10;
-        this.f24811c = obj;
-        this.f24810b = z10;
+        this.f24807a = i10;
+        this.f24809c = obj;
+        this.f24808b = z10;
     }
 
     @Override
@@ -40,32 +40,32 @@ public final class b60 implements Runnable {
         CheckBoxBase checkBoxBase2;
         TLRPC.TL_chatInviteImporter tL_chatInviteImporter;
         boolean z10;
-        int i11 = this.f24809a;
+        int i11 = this.f24807a;
         xh.e eVar = null;
         int i12 = 8;
         int i13 = 0;
-        boolean z11 = this.f24810b;
-        Object obj = this.f24811c;
+        boolean z11 = this.f24808b;
+        Object obj = this.f24809c;
         switch (i11) {
             case 0:
                 m60 m60Var = ((f60) obj).H0;
-                if (!m60Var.f28428l0) {
+                if (!m60Var.f28426l0) {
                     try {
                         m60Var.performHapticFeedback(3, 2);
                     } catch (Exception unused) {
                     }
-                    AndroidUtilities.lockOrientation(m60Var.f28429n.getParentActivity());
+                    AndroidUtilities.lockOrientation(m60Var.f28427n.getParentActivity());
                     if (z11) {
-                        j10 = m60Var.f28426k0;
+                        j10 = m60Var.f28424k0;
                     } else {
                         j10 = 0;
                     }
-                    m60Var.f28422i0 = j10;
-                    m60Var.f28420h0 = System.currentTimeMillis();
-                    m60Var.f28424j0 = true;
+                    m60Var.f28420i0 = j10;
+                    m60Var.f28418h0 = System.currentTimeMillis();
+                    m60Var.f28422j0 = true;
                     m60Var.v();
                     m60Var.invalidate();
-                    NotificationCenter.getInstance(m60Var.f28415f).lambda$postNotificationNameOnUIThread$1(NotificationCenter.recordStarted, Integer.valueOf(m60Var.V), Boolean.FALSE);
+                    NotificationCenter.getInstance(m60Var.f28413f).lambda$postNotificationNameOnUIThread$1(NotificationCenter.recordStarted, Integer.valueOf(m60Var.V), Boolean.FALSE);
                     return;
                 }
                 return;
@@ -99,7 +99,7 @@ public final class b60 implements Runnable {
             case 4:
                 js0 js0Var = (js0) obj;
                 if (!z11) {
-                    js0Var.U.f30721q0.setVisibility(0);
+                    js0Var.U.f30719q0.setVisibility(0);
                     return;
                 } else {
                     js0Var.getClass();
@@ -108,7 +108,7 @@ public final class b60 implements Runnable {
             case 5:
                 os0 os0Var = (os0) obj;
                 if (!z11) {
-                    os0Var.H.f30721q0.setVisibility(0);
+                    os0Var.H.f30719q0.setVisibility(0);
                     return;
                 } else {
                     os0Var.getClass();
@@ -116,25 +116,25 @@ public final class b60 implements Runnable {
                 }
             case 6:
                 kw0 kw0Var = (kw0) obj;
-                ArrayList arrayList = kw0Var.f28016r;
-                jw0 jw0Var = kw0Var.f28011n;
+                ArrayList arrayList = kw0Var.f28014r;
+                jw0 jw0Var = kw0Var.f28009n;
                 if (jw0Var != null) {
-                    jw0Var.G(kw0Var.f28003f, z11);
+                    jw0Var.G(kw0Var.f28001f, z11);
                 }
                 while (i13 < arrayList.size()) {
-                    ((jw0) arrayList.get(i13)).G(kw0Var.f28003f, z11);
+                    ((jw0) arrayList.get(i13)).G(kw0Var.f28001f, z11);
                     i13++;
                 }
                 return;
             case 7:
                 lw0 lw0Var = (lw0) obj;
-                ArrayList arrayList2 = lw0Var.f28016r;
-                jw0 jw0Var2 = lw0Var.f28011n;
+                ArrayList arrayList2 = lw0Var.f28014r;
+                jw0 jw0Var2 = lw0Var.f28009n;
                 if (jw0Var2 != null) {
-                    jw0Var2.G(lw0Var.f28325y0, z11);
+                    jw0Var2.G(lw0Var.f28323y0, z11);
                 }
                 while (i13 < arrayList2.size()) {
-                    ((jw0) arrayList2.get(i13)).G(lw0Var.f28325y0, z11);
+                    ((jw0) arrayList2.get(i13)).G(lw0Var.f28323y0, z11);
                     i13++;
                 }
                 return;
@@ -159,9 +159,9 @@ public final class b60 implements Runnable {
                 lzVar.Z(lzVar.P, z11);
                 return;
             case 12:
-                org.telegram.ui.cg0 cg0Var = (org.telegram.ui.cg0) obj;
+                org.telegram.ui.dg0 dg0Var = (org.telegram.ui.dg0) obj;
                 if (!z11) {
-                    cg0Var.W.setVisibility(8);
+                    dg0Var.W.setVisibility(8);
                     return;
                 }
                 return;
@@ -198,23 +198,23 @@ public final class b60 implements Runnable {
                         wc1 wc1Var = yc1Var.I;
                         CheckBoxBase[] checkBoxBaseArr2 = u1Var2.R8;
                         if (checkBoxBaseArr2 != null && O2 >= 0 && O2 < checkBoxBaseArr2.length && (checkBoxBase = checkBoxBaseArr2[O2]) != null && wc1Var != null && (checkBoxBaseArr = wc1Var.R8) != null && O2 >= 0 && O2 < checkBoxBaseArr.length && (checkBoxBase2 = checkBoxBaseArr[O2]) != null) {
-                            ObjectAnimator objectAnimator = checkBoxBase.f24149p;
+                            ObjectAnimator objectAnimator = checkBoxBase.f24147p;
                             if (objectAnimator != null) {
                                 objectAnimator.cancel();
-                                checkBoxBase.f24149p = null;
+                                checkBoxBase.f24147p = null;
                             }
                             checkBoxBase.setProgress(checkBoxBase2.getProgress());
-                            checkBoxBase.f(-1, checkBoxBase2.f24150q, true);
+                            checkBoxBase.f(-1, checkBoxBase2.f24148q, true);
                         }
                     }
                     org.telegram.ui.Cells.u1 u1Var3 = yc1Var.K;
                     u1Var3.K7 = -1;
                     u1Var3.invalidate();
                 }
-                org.telegram.ui.nm nmVar = yc1Var.f43443c0;
+                org.telegram.ui.nm nmVar = yc1Var.f43447c0;
                 if (nmVar != null) {
                     AndroidUtilities.runOnUIThread(nmVar);
-                    yc1Var.f43443c0 = null;
+                    yc1Var.f43447c0 = null;
                     return;
                 }
                 return;
@@ -231,15 +231,15 @@ public final class b60 implements Runnable {
                 jVar.Q = jVar.F();
                 jVar.R = 0;
                 jVar.S = 0;
-                jVar.f46642j.b("torch requested: enabled=" + z11 + ", available=" + jVar.F() + ", cameraId=" + jVar.f46655o + ", facing=" + jVar.G);
+                jVar.f46644j.b("torch requested: enabled=" + z11 + ", available=" + jVar.F() + ", cameraId=" + jVar.f46657o + ", facing=" + jVar.G);
                 jVar.g();
                 return;
             default:
                 xh.k kVar = (xh.k) obj;
-                ArrayList arrayList3 = kVar.f49858c;
-                boolean isEmpty = TextUtils.isEmpty(kVar.f49872t);
-                String str2 = kVar.f49872t;
-                kVar.f49874w = true;
+                ArrayList arrayList3 = kVar.f49860c;
+                boolean isEmpty = TextUtils.isEmpty(kVar.f49874t);
+                String str2 = kVar.f49874t;
+                kVar.f49876w = true;
                 kVar.A = false;
                 if (isEmpty && !arrayList3.isEmpty()) {
                     tL_chatInviteImporter = (TLRPC.TL_chatInviteImporter) i2.e.h(1, arrayList3);
@@ -258,7 +258,7 @@ public final class b60 implements Runnable {
                 if (isEmpty) {
                     AndroidUtilities.runOnUIThread(eVar2, 300L);
                 }
-                kVar.v = kVar.f49861i.getImporters(kVar.f49862j, str2, tL_chatInviteImporter, kVar.d, new ai.w4(kVar, isEmpty, eVar2, str2, z10));
+                kVar.v = kVar.f49863i.getImporters(kVar.f49864j, str2, tL_chatInviteImporter, kVar.d, new ai.x4(kVar, isEmpty, eVar2, str2, z10));
                 return;
         }
     }

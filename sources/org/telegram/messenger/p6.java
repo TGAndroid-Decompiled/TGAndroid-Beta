@@ -1,54 +1,67 @@
 package org.telegram.messenger;
 
-import java.io.File;
-import java.io.Serializable;
+import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.HashMap;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.MessagesStorage;
 import org.telegram.tgnet.TLRPC;
 public final class p6 implements Runnable {
-    public final int f19228a = 0;
-    public final boolean f19229b;
-    public final int f19230c;
-    public final long d;
-    public final int e;
-    public final boolean f19231f;
-    public final Object h;
-    public final Serializable f19232n;
-    public final Object f19233r;
+    public final int f19244a;
+    public final boolean f19245b;
+    public final Object f19246c;
+    public final Object d;
 
-    public p6(MediaController mediaController, File file, TLRPC.TL_document tL_document, int i10, boolean z10, int i11, boolean z11, long j10) {
-        this.h = mediaController;
-        this.f19232n = file;
-        this.f19233r = tL_document;
-        this.f19230c = i10;
-        this.f19229b = z10;
-        this.e = i11;
-        this.f19231f = z11;
-        this.d = j10;
+    public p6(Object obj, Object obj2, boolean z10, int i10) {
+        this.f19244a = i10;
+        this.f19246c = obj;
+        this.d = obj2;
+        this.f19245b = z10;
     }
 
     @Override
     public final void run() {
-        switch (this.f19228a) {
+        switch (this.f19244a) {
             case 0:
-                ((MediaController) this.h).lambda$stopRecordingInternal$41((File) this.f19232n, (TLRPC.TL_document) this.f19233r, this.f19230c, this.f19229b, this.e, this.f19231f, this.d);
+                ((MediaController.AnonymousClass2) this.f19246c).lambda$run$1((ByteBuffer) this.d, this.f19245b);
+                return;
+            case 1:
+                ((FileLoader) this.f19246c).lambda$cancelFileUpload$2(this.f19245b, (String) this.d);
+                return;
+            case 2:
+                ((ImageLoader) this.f19246c).lambda$cancelLoadingForImageReceiver$4(this.f19245b, (ImageReceiver) this.d);
+                return;
+            case 3:
+                ((MediaDataController) this.f19246c).lambda$loadBotKeyboard$197((MessagesStorage.TopicKey) this.d, this.f19245b);
+                return;
+            case 4:
+                ((MediaDataController) this.f19246c).lambda$buildShortcuts$143(this.f19245b, (ArrayList) this.d);
+                return;
+            case 5:
+                ((MessagesController) this.f19246c).lambda$processDialogsUpdate$228((TLRPC.messages_Dialogs) this.d, this.f19245b);
+                return;
+            case 6:
+                ((MessagesStorage) this.f19246c).lambda$updateUserInfo$130((TLRPC.UserFull) this.d, this.f19245b);
+                return;
+            case 7:
+                ((MessagesStorage) this.f19246c).lambda$putCachedPhoneBook$149((HashMap) this.d, this.f19245b);
+                return;
+            case 8:
+                ((MessagesStorage) this.f19246c).lambda$updateEncryptedChatSeq$171((TLRPC.EncryptedChat) this.d, this.f19245b);
+                return;
+            case 9:
+                ((MessagesStorage) this.f19246c).lambda$updateChatInfo$134((TLRPC.ChatFull) this.d, this.f19245b);
                 return;
             default:
-                int i10 = this.e;
-                boolean z10 = this.f19231f;
-                ((MessagesStorage) this.h).lambda$updatePinnedMessages$138(this.f19229b, (HashMap) this.f19232n, this.f19230c, this.d, (ArrayList) this.f19233r, i10, z10);
+                ((MessagesStorage) this.f19246c).lambda$deleteEphemeralMessages$206((a0.h) this.d, this.f19245b);
                 return;
         }
     }
 
-    public p6(MessagesStorage messagesStorage, boolean z10, HashMap hashMap, int i10, long j10, ArrayList arrayList, int i11, boolean z11) {
-        this.h = messagesStorage;
-        this.f19229b = z10;
-        this.f19232n = hashMap;
-        this.f19230c = i10;
-        this.d = j10;
-        this.f19233r = arrayList;
-        this.e = i11;
-        this.f19231f = z11;
+    public p6(Object obj, boolean z10, Object obj2, int i10) {
+        this.f19244a = i10;
+        this.f19246c = obj;
+        this.f19245b = z10;
+        this.d = obj2;
     }
 }

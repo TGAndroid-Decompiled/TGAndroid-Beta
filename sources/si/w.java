@@ -9,34 +9,34 @@ import java.util.ArrayList;
 import org.telegram.messenger.video.MP4Builder;
 import org.telegram.messenger.video.Mp4Movie;
 public final class w {
-    public final File f46831a;
-    public final int f46832b;
-    public final boolean f46833c;
+    public final File f46833a;
+    public final int f46834b;
+    public final boolean f46835c;
     public final n d;
     public final org.telegram.ui.web.m e;
-    public MP4Builder f46836i;
-    public MediaFormat f46837j;
-    public MediaFormat f46838k;
-    public long f46841n;
-    public long f46842o;
-    public long f46843p;
-    public long f46845r;
-    public ByteBuffer f46846s;
-    public boolean f46848u;
+    public MP4Builder f46838i;
+    public MediaFormat f46839j;
+    public MediaFormat f46840k;
+    public long f46843n;
+    public long f46844o;
+    public long f46845p;
+    public long f46847r;
+    public ByteBuffer f46848s;
+    public boolean f46850u;
     public boolean v;
-    public boolean f46849w;
-    public final ArrayList f46834f = new ArrayList();
-    public final v f46835g = new v(33333);
+    public boolean f46851w;
+    public final ArrayList f46836f = new ArrayList();
+    public final v f46837g = new v(33333);
     public final v h = new v(21333);
-    public int f46839l = -1;
-    public int f46840m = -1;
-    public long f46844q = Long.MIN_VALUE;
-    public final MediaCodec.BufferInfo f46847t = new MediaCodec.BufferInfo();
+    public int f46841l = -1;
+    public int f46842m = -1;
+    public long f46846q = Long.MIN_VALUE;
+    public final MediaCodec.BufferInfo f46849t = new MediaCodec.BufferInfo();
 
     public w(File file, int i10, boolean z10, n nVar, org.telegram.ui.web.m mVar) {
-        this.f46831a = file;
-        this.f46832b = i10;
-        this.f46833c = z10;
+        this.f46833a = file;
+        this.f46834b = i10;
+        this.f46835c = z10;
         this.d = nVar;
         this.e = mVar;
     }
@@ -167,7 +167,7 @@ public final class w {
         long max;
         long max2;
         v vVar2 = this.h;
-        v vVar3 = this.f46835g;
+        v vVar3 = this.f46837g;
         if (z10) {
             vVar = vVar3;
         } else {
@@ -177,54 +177,54 @@ public final class w {
         if (j10 < 0) {
             max = Math.max(0L, j10 + bufferInfo.presentationTimeUs);
         } else {
-            if (this.f46844q != j10) {
-                this.f46844q = j10;
-                long j13 = vVar3.f46830c;
+            if (this.f46846q != j10) {
+                this.f46846q = j10;
+                long j13 = vVar3.f46832c;
                 if (j13 != Long.MIN_VALUE) {
                     j12 = Math.max(1L, vVar3.d) + j13;
                 }
-                long j14 = vVar2.f46830c;
+                long j14 = vVar2.f46832c;
                 if (j14 == Long.MIN_VALUE) {
                     max2 = 0;
                 } else {
                     max2 = Math.max(1L, vVar2.d) + j14;
                 }
-                this.f46845r = Math.max(j10, Math.max(j12, max2));
+                this.f46847r = Math.max(j10, Math.max(j12, max2));
                 j11 = Long.MIN_VALUE;
-                vVar3.f46828a = Long.MIN_VALUE;
-                vVar3.f46829b = Long.MIN_VALUE;
-                vVar2.f46828a = Long.MIN_VALUE;
-                vVar2.f46829b = Long.MIN_VALUE;
+                vVar3.f46830a = Long.MIN_VALUE;
+                vVar3.f46831b = Long.MIN_VALUE;
+                vVar2.f46830a = Long.MIN_VALUE;
+                vVar2.f46831b = Long.MIN_VALUE;
             } else {
                 j11 = Long.MIN_VALUE;
             }
-            if (vVar.f46828a == j11) {
-                vVar.f46828a = bufferInfo.presentationTimeUs;
+            if (vVar.f46830a == j11) {
+                vVar.f46830a = bufferInfo.presentationTimeUs;
             }
             j12 = 0;
-            max = this.f46845r + Math.max(0L, bufferInfo.presentationTimeUs - vVar.f46828a);
+            max = this.f46847r + Math.max(0L, bufferInfo.presentationTimeUs - vVar.f46830a);
         }
         long j15 = max;
         long j16 = bufferInfo.presentationTimeUs;
-        long j17 = vVar.f46829b;
+        long j17 = vVar.f46831b;
         if (j17 != Long.MIN_VALUE) {
             long j18 = j16 - j17;
             if (j18 > j12 && j18 < 1000000) {
                 vVar.d = j18;
             }
         }
-        vVar.f46829b = j16;
-        vVar.f46830c = Math.max(vVar.f46830c, j15);
+        vVar.f46831b = j16;
+        vVar.f46832c = Math.max(vVar.f46832c, j15);
         MediaCodec.BufferInfo bufferInfo2 = new MediaCodec.BufferInfo();
         bufferInfo2.set(bufferInfo.offset, bufferInfo.size, j15, bufferInfo.flags);
         return bufferInfo2;
     }
 
     public final synchronized void c(File file) {
-        if (this.f46836i != null) {
+        if (this.f46838i != null) {
             long nanoTime = System.nanoTime();
             try {
-                this.f46836i.finishMovie(file);
+                this.f46838i.finishMovie(file);
                 n nVar = this.d;
                 nVar.b("MP4 preview written: file=" + file.getName() + ", size=" + file.length() + ", elapsedMs=" + ((System.nanoTime() - nanoTime) / 1000000));
             } catch (Exception e) {
@@ -236,17 +236,17 @@ public final class w {
     }
 
     public final synchronized void g() {
-        if (this.f46849w) {
+        if (this.f46851w) {
             return;
         }
-        if (this.f46836i != null) {
+        if (this.f46838i != null) {
             long nanoTime = System.nanoTime();
             try {
-                this.f46836i.finishMovie();
-                this.f46849w = true;
-                j(this.f46831a.length());
+                this.f46838i.finishMovie();
+                this.f46851w = true;
+                j(this.f46833a.length());
                 n nVar = this.d;
-                nVar.b("MP4 finalized: file=" + this.f46831a.getName() + ", size=" + this.f46831a.length() + ", videoSamples=" + this.f46842o + ", audioSamples=" + this.f46843p + ", elapsedMs=" + ((System.nanoTime() - nanoTime) / 1000000));
+                nVar.b("MP4 finalized: file=" + this.f46833a.getName() + ", size=" + this.f46833a.length() + ", videoSamples=" + this.f46844o + ", audioSamples=" + this.f46845p + ", elapsedMs=" + ((System.nanoTime() - nanoTime) / 1000000));
                 return;
             } catch (Exception e) {
                 throw new IOException("Unable to finish MP4", e);
@@ -256,27 +256,27 @@ public final class w {
     }
 
     public final void h() {
-        ArrayList arrayList = this.f46834f;
-        if (this.f46837j != null) {
-            boolean z10 = this.f46833c;
-            if (!z10 || this.f46838k != null) {
+        ArrayList arrayList = this.f46836f;
+        if (this.f46839j != null) {
+            boolean z10 = this.f46835c;
+            if (!z10 || this.f46840k != null) {
                 Mp4Movie mp4Movie = new Mp4Movie();
-                File file = this.f46831a;
+                File file = this.f46833a;
                 mp4Movie.setCacheFile(file);
-                int i10 = this.f46832b;
+                int i10 = this.f46834b;
                 mp4Movie.setSize(i10, i10);
                 try {
                     MP4Builder createMovie = new MP4Builder().createMovie(mp4Movie, true, false);
-                    this.f46836i = createMovie;
-                    this.f46839l = createMovie.addTrack(this.f46837j, false);
+                    this.f46838i = createMovie;
+                    this.f46841l = createMovie.addTrack(this.f46839j, false);
                     if (z10) {
-                        this.f46840m = this.f46836i.addTrack(this.f46838k, true);
+                        this.f46842m = this.f46838i.addTrack(this.f46840k, true);
                     }
                     n nVar = this.d;
                     nVar.b("MP4 initialized: file=" + file.getName() + ", output=" + i10 + "x" + i10 + ", includeAudio=" + z10 + ", pendingSamples=" + arrayList.size());
                     for (int i11 = 0; i11 < arrayList.size(); i11++) {
                         u uVar = (u) arrayList.get(i11);
-                        p(uVar.f46825a, uVar.f46826b, uVar.f46827c);
+                        p(uVar.f46827a, uVar.f46828b, uVar.f46829c);
                     }
                     arrayList.clear();
                 } catch (Exception e) {
@@ -297,21 +297,21 @@ public final class w {
         int f7 = f(byteBuffer, i12, i13);
         if (f7 != bufferInfo.offset) {
             int i14 = bufferInfo.size;
-            ByteBuffer byteBuffer2 = this.f46846s;
+            ByteBuffer byteBuffer2 = this.f46848s;
             if (byteBuffer2 == null || byteBuffer2.capacity() < i14) {
-                this.f46846s = ByteBuffer.allocateDirect(i14);
+                this.f46848s = ByteBuffer.allocateDirect(i14);
             }
-            this.f46846s.clear();
+            this.f46848s.clear();
             position = byteBuffer.position();
             limit = byteBuffer.limit();
             try {
                 byteBuffer.position(bufferInfo.offset);
                 byteBuffer.limit(bufferInfo.offset + bufferInfo.size);
-                this.f46846s.put(byteBuffer);
+                this.f46848s.put(byteBuffer);
                 byteBuffer.limit(limit);
                 byteBuffer.position(position);
-                this.f46846s.flip();
-                this.f46847t.set(0, bufferInfo.size, bufferInfo.presentationTimeUs, bufferInfo.flags);
+                this.f46848s.flip();
+                this.f46849t.set(0, bufferInfo.size, bufferInfo.presentationTimeUs, bufferInfo.flags);
                 return;
             } finally {
             }
@@ -333,11 +333,11 @@ public final class w {
             }
         }
         if (i15 != 0) {
-            ByteBuffer byteBuffer3 = this.f46846s;
+            ByteBuffer byteBuffer3 = this.f46848s;
             if (byteBuffer3 == null || byteBuffer3.capacity() < i17) {
-                this.f46846s = ByteBuffer.allocateDirect(i17);
+                this.f46848s = ByteBuffer.allocateDirect(i17);
             }
-            this.f46846s.clear();
+            this.f46848s.clear();
             position = byteBuffer.position();
             limit = byteBuffer.limit();
             while (f7 >= 0) {
@@ -350,10 +350,10 @@ public final class w {
                         i10 = f10;
                     }
                     if (i10 > m11) {
-                        this.f46846s.putInt(i10 - m11);
+                        this.f46848s.putInt(i10 - m11);
                         byteBuffer.position(m11);
                         byteBuffer.limit(i10);
-                        this.f46846s.put(byteBuffer);
+                        this.f46848s.put(byteBuffer);
                     }
                     f7 = f10;
                 } finally {
@@ -361,29 +361,29 @@ public final class w {
             }
             byteBuffer.limit(limit);
             byteBuffer.position(position);
-            this.f46846s.flip();
-            this.f46847t.set(0, this.f46846s.remaining(), bufferInfo.presentationTimeUs, bufferInfo.flags);
+            this.f46848s.flip();
+            this.f46849t.set(0, this.f46848s.remaining(), bufferInfo.presentationTimeUs, bufferInfo.flags);
             return;
         }
         throw new IOException("Annex-B video sample contains no NAL units");
     }
 
     public final void j(long j10) {
-        if (j10 > this.f46841n) {
-            this.f46841n = j10;
+        if (j10 > this.f46843n) {
+            this.f46843n = j10;
             if (this.v) {
                 return;
             }
             org.telegram.ui.web.m mVar = this.e;
-            s0 s0Var = (s0) mVar.f42713b;
-            o0 o0Var = (o0) mVar.f42714c;
-            synchronized (s0Var.f46759g) {
+            s0 s0Var = (s0) mVar.f42714b;
+            o0 o0Var = (o0) mVar.f42715c;
+            synchronized (s0Var.f46761g) {
                 try {
-                    long j11 = o0Var.f46739c;
+                    long j11 = o0Var.f46741c;
                     long j12 = j10 - j11;
                     if (j12 > 0 && !o0Var.d) {
-                        o0Var.f46739c = j10;
-                        s0Var.f46762k.execute(new a3.h0(s0Var, o0Var, j11, j12, 16));
+                        o0Var.f46741c = j10;
+                        s0Var.f46764k.execute(new a3.h0(s0Var, o0Var, j11, j12, 16));
                     }
                 } finally {
                 }
@@ -395,16 +395,16 @@ public final class w {
         MediaFormat mediaFormat2;
         String str;
         try {
-            if (this.f46849w) {
+            if (this.f46851w) {
                 return;
             }
-            if (this.f46836i != null) {
+            if (this.f46838i != null) {
                 if (z10) {
-                    mediaFormat2 = this.f46837j;
+                    mediaFormat2 = this.f46839j;
                 } else {
-                    mediaFormat2 = this.f46838k;
+                    mediaFormat2 = this.f46840k;
                 }
-                if ((z10 && !k(mediaFormat2, mediaFormat, "csd-0", "csd-1")) || (!z10 && this.f46833c && !k(mediaFormat2, mediaFormat, "csd-0"))) {
+                if ((z10 && !k(mediaFormat2, mediaFormat, "csd-0", "csd-1")) || (!z10 && this.f46835c && !k(mediaFormat2, mediaFormat, "csd-0"))) {
                     StringBuilder sb2 = new StringBuilder();
                     if (z10) {
                         str = "Video";
@@ -418,9 +418,9 @@ public final class w {
                 return;
             }
             if (z10) {
-                this.f46837j = mediaFormat;
-            } else if (this.f46833c) {
-                this.f46838k = mediaFormat;
+                this.f46839j = mediaFormat;
+            } else if (this.f46835c) {
+                this.f46840k = mediaFormat;
             }
             h();
         } finally {
@@ -429,20 +429,20 @@ public final class w {
 
     public final synchronized void o(boolean z10, ByteBuffer byteBuffer, MediaCodec.BufferInfo bufferInfo, long j10) {
         try {
-            if (!this.f46849w) {
+            if (!this.f46851w) {
                 if (!z10) {
-                    if (this.f46833c) {
+                    if (this.f46835c) {
                     }
                 }
                 if (bufferInfo.size > 0) {
                     MediaCodec.BufferInfo b10 = b(z10, bufferInfo, j10);
-                    if (this.f46836i == null) {
+                    if (this.f46838i == null) {
                         ByteBuffer allocateDirect = ByteBuffer.allocateDirect(bufferInfo.size);
                         byteBuffer.position(bufferInfo.offset);
                         byteBuffer.limit(bufferInfo.offset + bufferInfo.size);
                         allocateDirect.put(byteBuffer).flip();
                         b10.offset = 0;
-                        this.f46834f.add(new u(z10, allocateDirect, b10));
+                        this.f46836f.add(new u(z10, allocateDirect, b10));
                         return;
                     }
                     p(z10, byteBuffer, b10);
@@ -462,14 +462,14 @@ public final class w {
         String str2 = null;
         if (z10) {
             try {
-                if (!this.f46848u) {
+                if (!this.f46850u) {
                     str2 = e(byteBuffer, bufferInfo);
                 }
                 i(byteBuffer, bufferInfo);
-                byteBuffer2 = this.f46846s;
-                bufferInfo2 = this.f46847t;
-                if (!this.f46848u) {
-                    this.f46848u = true;
+                byteBuffer2 = this.f46848s;
+                bufferInfo2 = this.f46849t;
+                if (!this.f46850u) {
+                    this.f46850u = true;
                     nVar.b("first video sample prepared: " + str2 + ", outputSize=" + bufferInfo2.size);
                 }
             } catch (Exception e) {
@@ -503,17 +503,17 @@ public final class w {
             byteBuffer2 = byteBuffer;
             bufferInfo2 = bufferInfo;
         }
-        MP4Builder mP4Builder = this.f46836i;
+        MP4Builder mP4Builder = this.f46838i;
         if (z10) {
-            i10 = this.f46839l;
+            i10 = this.f46841l;
         } else {
-            i10 = this.f46840m;
+            i10 = this.f46842m;
         }
         long writeSampleData = mP4Builder.writeSampleData(i10, byteBuffer2, bufferInfo2, false);
         if (z10) {
-            this.f46842o++;
+            this.f46844o++;
         } else {
-            this.f46843p++;
+            this.f46845p++;
         }
         if (writeSampleData > 0) {
             j(writeSampleData);

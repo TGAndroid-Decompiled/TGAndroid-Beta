@@ -4,18 +4,18 @@ import android.view.ScaleGestureDetector;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.x91;
 public final class tb extends ScaleGestureDetector.SimpleOnScaleGestureListener {
-    public final ub f9867a;
+    public final ub f9865a;
 
     public tb(ub ubVar) {
-        this.f9867a = ubVar;
+        this.f9865a = ubVar;
     }
 
     @Override
     public final boolean onScale(ScaleGestureDetector scaleGestureDetector) {
         ya yaVar;
-        ub ubVar = this.f9867a;
+        ub ubVar = this.f9865a;
         vb vbVar = ubVar.E0;
-        if (!ubVar.A0 || (yaVar = vbVar.B0) == null || vbVar.f9967f0 != 0 || yaVar.f8815s || vbVar.A0.getFilledProgress() >= 1.0f) {
+        if (!ubVar.A0 || (yaVar = vbVar.B0) == null || vbVar.f9965f0 != 0 || yaVar.f8813s || vbVar.A0.getFilledProgress() >= 1.0f) {
             return false;
         }
         float scaleFactor = vbVar.T1 + ((scaleGestureDetector.getScaleFactor() - 1.0f) * 0.75f);
@@ -32,9 +32,9 @@ public final class tb extends ScaleGestureDetector.SimpleOnScaleGestureListener 
 
     @Override
     public final boolean onScaleBegin(ScaleGestureDetector scaleGestureDetector) {
-        ub ubVar = this.f9867a;
+        ub ubVar = this.f9865a;
         vb vbVar = ubVar.E0;
-        if (vbVar.B0 != null && vbVar.f9967f0 == 0 && !vbVar.K0) {
+        if (vbVar.B0 != null && vbVar.f9965f0 == 0 && !vbVar.K0) {
             ubVar.A0 = true;
             return super.onScaleBegin(scaleGestureDetector);
         }
@@ -43,7 +43,7 @@ public final class tb extends ScaleGestureDetector.SimpleOnScaleGestureListener 
 
     @Override
     public final void onScaleEnd(ScaleGestureDetector scaleGestureDetector) {
-        ub ubVar = this.f9867a;
+        ub ubVar = this.f9865a;
         ubVar.A0 = false;
         ubVar.E0.e(false);
         vb.b(ubVar.E0);

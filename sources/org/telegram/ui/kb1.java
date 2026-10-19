@@ -16,31 +16,31 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.SharedConfig;
 public final class kb1 implements org.telegram.ui.ActionBar.d6 {
-    public org.telegram.ui.ActionBar.d6 f38498a;
-    public final SparseIntArray f38499b = new SparseIntArray();
-    public final Paint f38500c = new Paint(3);
+    public org.telegram.ui.ActionBar.d6 f38499a;
+    public final SparseIntArray f38500b = new SparseIntArray();
+    public final Paint f38501c = new Paint(3);
     public final Paint d = new Paint(3);
     public final Paint e;
-    public final TextPaint f38501f;
+    public final TextPaint f38502f;
     public final TextPaint h;
-    public final TextPaint f38502n;
-    public Bitmap f38503r;
-    public BitmapShader f38504s;
+    public final TextPaint f38503n;
+    public Bitmap f38504r;
+    public BitmapShader f38505s;
     public Matrix v;
-    public final kc1 f38505w;
-    public final kc1 f38506x;
+    public final kc1 f38506w;
+    public final kc1 f38507x;
 
     public kb1(kc1 kc1Var) {
-        this.f38506x = kc1Var;
-        this.f38505w = kc1Var;
+        this.f38507x = kc1Var;
+        this.f38506w = kc1Var;
         Paint paint = new Paint(3);
         this.e = paint;
         TextPaint textPaint = new TextPaint();
-        this.f38501f = textPaint;
+        this.f38502f = textPaint;
         TextPaint textPaint2 = new TextPaint();
         this.h = textPaint2;
         TextPaint textPaint3 = new TextPaint();
-        this.f38502n = textPaint3;
+        this.f38503n = textPaint3;
         textPaint.setTextSize(AndroidUtilities.dp(Math.max(16, SharedConfig.fontSize) - 2));
         textPaint2.setTextSize(AndroidUtilities.dp(Math.max(16, SharedConfig.fontSize) - 2));
         textPaint3.setTextSize(AndroidUtilities.dp(15.0f));
@@ -50,7 +50,7 @@ public final class kb1 implements org.telegram.ui.ActionBar.d6 {
 
     @Override
     public final int G(int i10) {
-        org.telegram.ui.ActionBar.d6 d6Var = this.f38498a;
+        org.telegram.ui.ActionBar.d6 d6Var = this.f38499a;
         if (d6Var != null) {
             return d6Var.G(i10);
         }
@@ -59,15 +59,15 @@ public final class kb1 implements org.telegram.ui.ActionBar.d6 {
 
     @Override
     public final boolean a() {
-        bc1 bc1Var = this.f38506x.f38552p1;
+        bc1 bc1Var = this.f38507x.f38553p1;
         if (bc1Var != null) {
             return bc1Var.a();
         }
-        bc1 bc1Var2 = this.f38505w.f38552p1;
+        bc1 bc1Var2 = this.f38506w.f38553p1;
         if (bc1Var2 != null) {
             return bc1Var2.a();
         }
-        org.telegram.ui.ActionBar.d6 d6Var = this.f38498a;
+        org.telegram.ui.ActionBar.d6 d6Var = this.f38499a;
         if (d6Var != null) {
             return d6Var.a();
         }
@@ -80,28 +80,28 @@ public final class kb1 implements org.telegram.ui.ActionBar.d6 {
         float f11;
         float f12;
         float f13;
-        int i10 = org.telegram.ui.ActionBar.h6.f21139lc;
+        int i10 = org.telegram.ui.ActionBar.h6.f21137lc;
         int w9 = w(i10);
-        int w10 = w(org.telegram.ui.ActionBar.h6.f21158mc);
+        int w10 = w(org.telegram.ui.ActionBar.h6.f21156mc);
         if (drawable == null) {
             drawable = drawable2;
         }
         boolean z10 = drawable instanceof org.telegram.ui.Components.wc0;
         TextPaint textPaint = this.h;
-        TextPaint textPaint2 = this.f38501f;
+        TextPaint textPaint2 = this.f38502f;
         if ((z10 || (drawable instanceof BitmapDrawable)) && SharedConfig.getDevicePerformanceClass() != 0 && LiteMode.isEnabled(32)) {
             if (z10) {
-                bitmap = ((org.telegram.ui.Components.wc0) drawable).f32090k;
+                bitmap = ((org.telegram.ui.Components.wc0) drawable).f32088k;
             } else if (drawable instanceof BitmapDrawable) {
                 bitmap = ((BitmapDrawable) drawable).getBitmap();
             } else {
                 bitmap = null;
             }
-            if (this.f38503r != bitmap) {
-                this.f38503r = bitmap;
-                Bitmap bitmap2 = this.f38503r;
+            if (this.f38504r != bitmap) {
+                this.f38504r = bitmap;
+                Bitmap bitmap2 = this.f38504r;
                 Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-                this.f38504s = new BitmapShader(bitmap2, tileMode, tileMode);
+                this.f38505s = new BitmapShader(bitmap2, tileMode, tileMode);
                 if (this.v == null) {
                     this.v = new Matrix();
                 }
@@ -109,24 +109,24 @@ public final class kb1 implements org.telegram.ui.ActionBar.d6 {
             textPaint2.setColor(-1);
             textPaint.setColor(-1);
             textPaint2.linkColor = -1;
-            this.f38502n.setColor(-1);
+            this.f38503n.setColor(-1);
         } else {
-            this.f38503r = null;
-            this.f38504s = null;
-            int i11 = org.telegram.ui.ActionBar.h6.f21083ic;
+            this.f38504r = null;
+            this.f38505s = null;
+            int i11 = org.telegram.ui.ActionBar.h6.f21081ic;
             textPaint2.setColor(w(i11));
             textPaint.setColor(w(i11));
-            textPaint2.linkColor = w(org.telegram.ui.ActionBar.h6.f21102jc);
+            textPaint2.linkColor = w(org.telegram.ui.ActionBar.h6.f21100jc);
         }
-        Paint paint = this.f38500c;
+        Paint paint = this.f38501c;
         paint.setColor(w9);
         Paint paint2 = this.d;
         paint2.setColor(w10);
-        if (this.f38504s != null && (this.f38499b.indexOfKey(i10) < 0 || z10 || (drawable instanceof BitmapDrawable))) {
+        if (this.f38505s != null && (this.f38500b.indexOfKey(i10) < 0 || z10 || (drawable instanceof BitmapDrawable))) {
             ColorMatrix colorMatrix = new ColorMatrix();
             if (z10) {
                 float f14 = -0.06f;
-                if (((org.telegram.ui.Components.wc0) drawable).f32096q >= 0.0f) {
+                if (((org.telegram.ui.Components.wc0) drawable).f32094q >= 0.0f) {
                     colorMatrix.setSaturation(1.6f);
                     if (a()) {
                         f13 = 0.97f;
@@ -167,7 +167,7 @@ public final class kb1 implements org.telegram.ui.ActionBar.d6 {
                 AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix, f11);
             }
             if (z10) {
-                float f15 = ((org.telegram.ui.Components.wc0) drawable).f32096q;
+                float f15 = ((org.telegram.ui.Components.wc0) drawable).f32094q;
                 if (f7 != null) {
                     f15 = f7.floatValue();
                 }
@@ -185,10 +185,10 @@ public final class kb1 implements org.telegram.ui.ActionBar.d6 {
                 AndroidUtilities.multiplyBrightnessColorMatrix(colorMatrix, 0.97f);
                 AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix, 0.06f);
             }
-            paint.setShader(this.f38504s);
+            paint.setShader(this.f38505s);
             paint.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
             paint.setAlpha(255);
-            paint2.setShader(this.f38504s);
+            paint2.setShader(this.f38505s);
             ColorMatrix colorMatrix2 = new ColorMatrix(colorMatrix);
             AndroidUtilities.multiplyBrightnessColorMatrix(colorMatrix2, 0.85f);
             paint2.setColorFilter(new ColorMatrixColorFilter(colorMatrix2));
@@ -204,8 +204,8 @@ public final class kb1 implements org.telegram.ui.ActionBar.d6 {
     @Override
     public final void d(float f7, float f10, int i10, int i11) {
         BitmapShader bitmapShader;
-        Bitmap bitmap = this.f38503r;
-        if (bitmap != null && (bitmapShader = this.f38504s) != null) {
+        Bitmap bitmap = this.f38504r;
+        if (bitmap != null && (bitmapShader = this.f38505s) != null) {
             org.telegram.ui.ActionBar.h6.r(bitmap, bitmapShader, this.v, i10, i11, f7, f10);
         } else {
             org.telegram.ui.ActionBar.h6.q(f7, f10, i10, i11);
@@ -214,7 +214,7 @@ public final class kb1 implements org.telegram.ui.ActionBar.d6 {
 
     @Override
     public final Drawable getDrawable(String str) {
-        org.telegram.ui.ActionBar.d6 d6Var = this.f38498a;
+        org.telegram.ui.ActionBar.d6 d6Var = this.f38499a;
         if (d6Var != null) {
             return d6Var.getDrawable(str);
         }
@@ -223,7 +223,7 @@ public final class kb1 implements org.telegram.ui.ActionBar.d6 {
 
     @Override
     public final ColorFilter j() {
-        return org.telegram.ui.ActionBar.h6.f21319v3;
+        return org.telegram.ui.ActionBar.h6.f21317v3;
     }
 
     @Override
@@ -272,17 +272,17 @@ public final class kb1 implements org.telegram.ui.ActionBar.d6 {
             case 0:
                 return this.h;
             case 1:
-                return this.f38500c;
+                return this.f38501c;
             case 2:
-                return this.f38502n;
+                return this.f38503n;
             case 3:
                 return this.e;
             case 4:
                 return this.d;
             case 5:
-                return this.f38501f;
+                return this.f38502f;
             default:
-                org.telegram.ui.ActionBar.d6 d6Var = this.f38498a;
+                org.telegram.ui.ActionBar.d6 d6Var = this.f38499a;
                 if (d6Var != null) {
                     return d6Var.n(str);
                 }
@@ -297,7 +297,7 @@ public final class kb1 implements org.telegram.ui.ActionBar.d6 {
 
     @Override
     public final boolean s() {
-        org.telegram.ui.ActionBar.d6 d6Var = this.f38498a;
+        org.telegram.ui.ActionBar.d6 d6Var = this.f38499a;
         if (d6Var != null) {
             return d6Var.s();
         }
@@ -306,7 +306,7 @@ public final class kb1 implements org.telegram.ui.ActionBar.d6 {
 
     @Override
     public final int w(int i10) {
-        org.telegram.ui.ActionBar.d6 d6Var = this.f38498a;
+        org.telegram.ui.ActionBar.d6 d6Var = this.f38499a;
         if (d6Var != null) {
             return d6Var.w(i10);
         }

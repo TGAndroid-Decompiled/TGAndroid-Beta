@@ -10,7 +10,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.SharedConfig;
-import org.telegram.messenger.lk;
+import org.telegram.messenger.kk;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.h6;
@@ -28,18 +28,18 @@ import org.telegram.ui.ul;
 import org.telegram.ui.xx;
 import org.telegram.ui.zx;
 public final class a0 implements Runnable {
-    public final int f12310a;
-    public final int f12311b;
-    public final int f12312c;
+    public final int f12308a;
+    public final int f12309b;
+    public final int f12310c;
     public final Object d;
     public final Object e;
 
     public a0(int i10, int i11, String str, String str2) {
-        this.f12310a = 1;
-        this.f12311b = i10;
+        this.f12308a = 1;
+        this.f12309b = i10;
         this.d = str;
         this.e = str2;
-        this.f12312c = i11;
+        this.f12310c = i11;
     }
 
     @Override
@@ -50,25 +50,25 @@ public final class a0 implements Runnable {
         int i11;
         float f7;
         int i12;
-        switch (this.f12310a) {
+        switch (this.f12308a) {
             case 0:
-                i0 i0Var = ((c0) this.d).f12327a;
+                i0 i0Var = ((c0) this.d).f12325a;
                 Surface surface = new Surface((SurfaceTexture) this.e);
                 i0Var.x1(surface);
                 i0Var.U = surface;
-                i0Var.q1(this.f12311b, this.f12312c);
+                i0Var.q1(this.f12309b, this.f12310c);
                 return;
             case 1:
-                ConnectionsManager.lambda$onIntegrityCheckClassic$27(this.f12311b, (String) this.d, (String) this.e, this.f12312c);
+                ConnectionsManager.lambda$onIntegrityCheckClassic$27(this.f12309b, (String) this.d, (String) this.e, this.f12310c);
                 return;
             case 2:
-                ((qn) this.d).didReceivedNotification(this.f12311b, this.f12312c, (Object[]) this.e);
+                ((qn) this.d).didReceivedNotification(this.f12309b, this.f12310c, (Object[]) this.e);
                 return;
             case 3:
                 ul ulVar = (ul) this.d;
                 ulVar.getClass();
                 MessageObject messageObject = ((org.telegram.ui.Cells.w0) this.e).getMessageObject();
-                dm dmVar = ulVar.f42006a;
+                dm dmVar = ulVar.f42005a;
                 qn qnVar = dmVar.Q;
                 int id2 = messageObject.getId();
                 if (messageObject.getDialogId() == dmVar.Q.L6) {
@@ -76,15 +76,15 @@ public final class a0 implements Runnable {
                 } else {
                     i10 = 0;
                 }
-                qnVar.bb(this.f12311b, id2, true, i10, true, 0, Integer.valueOf(this.f12312c), null, null);
+                qnVar.bb(this.f12309b, id2, true, i10, true, 0, Integer.valueOf(this.f12310c), null, null);
                 return;
             case 4:
                 u1 u1Var = (u1) this.e;
-                qn qnVar2 = ((cn) this.d).f36032a;
+                qn qnVar2 = ((cn) this.d).f36004a;
                 if (qnVar2.A1 != null) {
                     u1Var.getLocationInWindow(new int[2]);
-                    qnVar2.A1.setTranslationY(lk.D(520.0f, iArr[1] - x3Var.getTop(), this.f12311b));
-                    qnVar2.A1.m(0.0f, (-AndroidUtilities.dp(16.0f)) + iArr[0] + this.f12312c);
+                    qnVar2.A1.setTranslationY(kk.D(520.0f, iArr[1] - x3Var.getTop(), this.f12309b));
+                    qnVar2.A1.m(0.0f, (-AndroidUtilities.dp(16.0f)) + iArr[0] + this.f12310c);
                     qnVar2.A1.u();
                     return;
                 }
@@ -92,37 +92,37 @@ public final class a0 implements Runnable {
             default:
                 final zx zxVar = (zx) this.d;
                 TLRPC.Dialog dialog = (TLRPC.Dialog) this.e;
-                ay ayVar = zxVar.f43812g;
+                ay ayVar = zxVar.f43814g;
                 cy cyVar = zxVar.h;
                 ArrayList arrayList = cyVar.R1;
                 if (arrayList != null) {
                     arrayList.remove(dialog);
                     int i13 = dialog.pinnedNum;
                     cyVar.W0 = null;
-                    ayVar.f35452a.invalidate();
-                    int N0 = ayVar.f35454c.N0();
-                    if (N0 == this.f12311b - 1) {
-                        ayVar.f35454c.m(N0).requestLayout();
+                    ayVar.f35436a.invalidate();
+                    int N0 = ayVar.f35438c.N0();
+                    if (N0 == this.f12309b - 1) {
+                        ayVar.f35438c.m(N0).requestLayout();
                     }
                     boolean z10 = false;
-                    if (cyVar.getMessagesController().isPromoDialog(dialog.f20279id, false)) {
+                    if (cyVar.getMessagesController().isPromoDialog(dialog.f20277id, false)) {
                         cyVar.getMessagesController().hidePromoDialog();
-                        ayVar.f35460x.D();
+                        ayVar.f35444x.D();
                         ayVar.q(true);
                         return;
                     }
                     MessagesController messagesController = cyVar.getMessagesController();
-                    long j10 = dialog.f20279id;
+                    long j10 = dialog.f20277id;
                     if (cyVar.W2 == 0) {
                         i11 = 1;
                     } else {
                         i11 = 0;
                     }
                     int addDialogToFolder = messagesController.addDialogToFolder(j10, i11, -1, 0L);
-                    int i14 = this.f12312c;
+                    int i14 = this.f12310c;
                     int i15 = 2;
                     if (addDialogToFolder != 2 || i14 != 0) {
-                        ayVar.f35460x.D();
+                        ayVar.f35444x.D();
                         ayVar.q(true);
                     }
                     if (cyVar.W2 == 0) {
@@ -130,16 +130,16 @@ public final class a0 implements Runnable {
                             if (SharedConfig.archiveHidden) {
                                 SharedConfig.toggleArchiveHidden();
                             }
-                            ayVar.f35460x.D();
+                            ayVar.f35444x.D();
                             if (i14 == 0) {
                                 cyVar.y4(true, true);
                                 ayVar.q(true);
                                 cyVar.m3();
                             } else {
                                 ayVar.q(true);
-                                if (!SharedConfig.archiveHidden && ayVar.f35454c.L0() == 0) {
-                                    cyVar.f36115e2 = true;
-                                    xx xxVar = ayVar.f35452a;
+                                if (!SharedConfig.archiveHidden && ayVar.f35438c.L0() == 0) {
+                                    cyVar.f36087e2 = true;
+                                    xx xxVar = ayVar.f35436a;
                                     if (SharedConfig.useThreeLinesLayout) {
                                         f7 = 76.0f;
                                     } else {
@@ -149,7 +149,7 @@ public final class a0 implements Runnable {
                                 }
                             }
                             i12 = ((n2) cyVar).currentAccount;
-                            cyVar.R1.add(0, (TLRPC.Dialog) cyVar.P3(i12, ayVar.f35458s, cyVar.W2, false).get(0));
+                            cyVar.R1.add(0, (TLRPC.Dialog) cyVar.P3(i12, ayVar.f35442s, cyVar.W2, false).get(0));
                             ayVar.q(true);
                             AndroidUtilities.runOnUIThread(new Runnable() {
                                 @Override
@@ -165,16 +165,16 @@ public final class a0 implements Runnable {
                                 }
                             }, 300L);
                         } else if (addDialogToFolder == 1) {
-                            s4.b1 K = ayVar.f35452a.K(0);
+                            s4.b1 K = ayVar.f35436a.K(0);
                             if (K != null) {
-                                View view = K.f45910a;
+                                View view = K.f45912a;
                                 if (view instanceof r2) {
                                     r2 r2Var = (r2) view;
-                                    if (r2Var.a2.f26815n == 2) {
-                                        r2Var.f22810b2 = true;
-                                        r2Var.f22815c2 = 0.0f;
-                                        h6.f21300u1.T(0.0f, true);
-                                        h6.f21300u1.start();
+                                    if (r2Var.a2.f26813n == 2) {
+                                        r2Var.f22808b2 = true;
+                                        r2Var.f22813c2 = 0.0f;
+                                        h6.f21298u1.T(0.0f, true);
+                                        h6.f21298u1.start();
                                         r2Var.invalidate();
                                     }
                                 }
@@ -202,7 +202,7 @@ public final class a0 implements Runnable {
                         }
                         UndoView W3 = cyVar.W3();
                         if (W3 != null) {
-                            long j11 = dialog.f20279id;
+                            long j11 = dialog.f20277id;
                             if (!z10) {
                                 i15 = 3;
                             }
@@ -210,8 +210,8 @@ public final class a0 implements Runnable {
                         }
                     }
                     if (cyVar.W2 != 0 && cyVar.R1.isEmpty()) {
-                        ayVar.f35452a.setEmptyView(null);
-                        ayVar.f35459w.setVisibility(4);
+                        ayVar.f35436a.setEmptyView(null);
+                        ayVar.f35443w.setVisibility(4);
                         return;
                     }
                     return;
@@ -221,18 +221,18 @@ public final class a0 implements Runnable {
     }
 
     public a0(Object obj, Object obj2, int i10, int i11, int i12) {
-        this.f12310a = i12;
+        this.f12308a = i12;
         this.d = obj;
         this.e = obj2;
-        this.f12311b = i10;
-        this.f12312c = i11;
+        this.f12309b = i10;
+        this.f12310c = i11;
     }
 
     public a0(qn qnVar, int i10, int i11, Object[] objArr) {
-        this.f12310a = 2;
+        this.f12308a = 2;
         this.d = qnVar;
-        this.f12311b = i10;
-        this.f12312c = i11;
+        this.f12309b = i10;
+        this.f12310c = i11;
         this.e = objArr;
     }
 }

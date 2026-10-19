@@ -1,52 +1,31 @@
 package ai;
 
-import android.os.Bundle;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.qn;
-public final class m4 implements Runnable {
-    public final int f1810a;
-    public final long f1811b;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.TwoStepVerificationActivity;
+public final class m4 implements RequestDelegate {
+    public final int f1813a;
+    public final l7 f1814b;
+    public final TwoStepVerificationActivity f1815c;
+    public final boolean d;
 
-    public m4(long j10, int i10) {
-        this.f1810a = i10;
-        this.f1811b = j10;
+    public m4(l7 l7Var, TwoStepVerificationActivity twoStepVerificationActivity, boolean z10, int i10) {
+        this.f1813a = i10;
+        this.f1814b = l7Var;
+        this.f1815c = twoStepVerificationActivity;
+        this.d = z10;
     }
 
     @Override
-    public final void run() {
-        switch (this.f1810a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f1813a) {
             case 0:
-                org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
-                if (U != null) {
-                    Bundle bundle = new Bundle();
-                    bundle.putLong("user_id", this.f1811b);
-                    bundle.putBoolean("my_profile", true);
-                    bundle.putBoolean("open_gifts", true);
-                    U.presentFragment(new ProfileActivity(bundle, null));
-                    return;
-                }
-                return;
-            case 1:
-                org.telegram.ui.ActionBar.n2 U2 = LaunchActivity.U();
-                if (U2 != null) {
-                    U2.presentFragment(qn.W9(this.f1811b));
-                    return;
-                }
-                return;
-            case 2:
-                org.telegram.ui.ActionBar.n2 U3 = LaunchActivity.U();
-                if (U3 != null) {
-                    U3.presentFragment(qn.W9(this.f1811b));
-                    return;
-                }
+                AndroidUtilities.runOnUIThread(new b2(this.f1814b, tLObject, this.f1815c, this.d, tL_error));
                 return;
             default:
-                org.telegram.ui.ActionBar.n2 U4 = LaunchActivity.U();
-                if (U4 != null) {
-                    U4.presentFragment(qn.W9(this.f1811b));
-                    return;
-                }
+                AndroidUtilities.runOnUIThread(new b2(this.f1814b, tL_error, this.f1815c, tLObject, this.d));
                 return;
         }
     }

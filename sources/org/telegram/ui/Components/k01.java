@@ -29,24 +29,24 @@ import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class k01 extends TableLayout {
-    public final org.telegram.ui.ActionBar.d6 f27649a;
-    public final Path f27650b;
-    public final float[] f27651c;
+    public final org.telegram.ui.ActionBar.d6 f27647a;
+    public final Path f27648b;
+    public final float[] f27649c;
     public final Paint d;
     public final Paint e;
-    public final float f27652f;
+    public final float f27650f;
     public final float h;
 
     public k01(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
-        this.f27650b = new Path();
-        this.f27651c = new float[8];
+        this.f27648b = new Path();
+        this.f27649c = new float[8];
         this.d = new Paint(1);
         this.e = new Paint(1);
         float max = Math.max(1, AndroidUtilities.dp(0.66f));
-        this.f27652f = max;
+        this.f27650f = max;
         this.h = max / 2.0f;
-        this.f27649a = d6Var;
+        this.f27647a = d6Var;
         setClipToPadding(false);
         setColumnStretchable(1, true);
     }
@@ -54,9 +54,9 @@ public final class k01 extends TableLayout {
     public final i01 a(CharSequence charSequence) {
         wh.n nVar = new wh.n(getContext());
         int i10 = org.telegram.ui.ActionBar.h6.G6;
-        org.telegram.ui.ActionBar.d6 d6Var = this.f27649a;
+        org.telegram.ui.ActionBar.d6 d6Var = this.f27647a;
         nVar.setTextColor(org.telegram.ui.ActionBar.h6.w0(i10, d6Var));
-        nVar.setLinkTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21048gc, d6Var));
+        nVar.setLinkTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21046gc, d6Var));
         nVar.setTextSize(1, 14.0f);
         nVar.setText(Emoji.replaceEmoji(charSequence, nVar.getPaint().getFontMetricsInt(), false));
         NotificationCenter.listenEmojiLoading(nVar);
@@ -72,7 +72,7 @@ public final class k01 extends TableLayout {
 
     public final void b(CharSequence charSequence, ArrayList arrayList) {
         z5 z5Var = new z5(getContext());
-        z5Var.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.G6, this.f27649a));
+        z5Var.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.G6, this.f27647a));
         z5Var.setTextSize(1, 14.0f);
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(charSequence);
         MessageObject.addEntitiesToText(spannableStringBuilder, arrayList, false, false, false, false);
@@ -87,7 +87,7 @@ public final class k01 extends TableLayout {
 
     public final TableRow c(CharSequence charSequence, CharSequence charSequence2, j01[] j01VarArr, zc[] zcVarArr) {
         zc zcVar = new zc(getContext());
-        zcVar.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.G6, this.f27649a));
+        zcVar.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.G6, this.f27647a));
         zcVar.setTextSize(1, 14.0f);
         zcVar.setText(Emoji.replaceEmoji(charSequence2, zcVar.getPaint().getFontMetricsInt(), false));
         NotificationCenter.listenEmojiLoading(zcVar);
@@ -113,7 +113,7 @@ public final class k01 extends TableLayout {
     public final TableRow e(String str, CharSequence charSequence, String str2, Runnable runnable, Integer num) {
         zc zcVar = new zc(getContext());
         int i10 = org.telegram.ui.ActionBar.h6.G6;
-        org.telegram.ui.ActionBar.d6 d6Var = this.f27649a;
+        org.telegram.ui.ActionBar.d6 d6Var = this.f27647a;
         zcVar.setTextColor(org.telegram.ui.ActionBar.h6.w0(i10, d6Var));
         zcVar.setTextSize(1, 14.0f);
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(Emoji.replaceEmoji(charSequence, zcVar.getPaint().getFontMetricsInt(), false));
@@ -143,11 +143,11 @@ public final class k01 extends TableLayout {
 
     public final TableRow h(CharSequence charSequence, CharSequence charSequence2, Runnable runnable, String str, org.telegram.ui.Wallet.e4 e4Var) {
         Context context = getContext();
-        org.telegram.ui.ActionBar.d6 d6Var = this.f27649a;
+        org.telegram.ui.ActionBar.d6 d6Var = this.f27647a;
         zc zcVar = new zc(context, d6Var);
         zcVar.setPadding(AndroidUtilities.dp(12.66f), AndroidUtilities.dp(9.33f), AndroidUtilities.dp(12.66f), AndroidUtilities.dp(9.33f));
         zcVar.setEllipsize(TextUtils.TruncateAt.END);
-        int i10 = org.telegram.ui.ActionBar.h6.f21048gc;
+        int i10 = org.telegram.ui.ActionBar.h6.f21046gc;
         zcVar.setTextColor(org.telegram.ui.ActionBar.h6.w0(i10, d6Var));
         zcVar.setLinkTextColor(org.telegram.ui.ActionBar.h6.w0(i10, d6Var));
         zcVar.setTextSize(1, 14.0f);
@@ -172,8 +172,8 @@ public final class k01 extends TableLayout {
         x90Var.setTypeface(AndroidUtilities.getTypeface("fonts/rmono.ttf"));
         float f7 = i10;
         x90Var.setTextSize(1, f7);
-        int i11 = org.telegram.ui.ActionBar.h6.f21095j5;
-        org.telegram.ui.ActionBar.d6 d6Var = this.f27649a;
+        int i11 = org.telegram.ui.ActionBar.h6.f21093j5;
+        org.telegram.ui.ActionBar.d6 d6Var = this.f27647a;
         x90Var.setTextColor(org.telegram.ui.ActionBar.h6.w0(i11, d6Var));
         x90Var.setMaxLines(4);
         int i12 = 0;
@@ -213,7 +213,7 @@ public final class k01 extends TableLayout {
             ImageView imageView = new ImageView(getContext());
             imageView.setImageResource(R.drawable.msg_copy);
             imageView.setScaleType(ImageView.ScaleType.CENTER);
-            int i13 = org.telegram.ui.ActionBar.h6.f21322v6;
+            int i13 = org.telegram.ui.ActionBar.h6.f21320v6;
             imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(i13, d6Var), PorterDuff.Mode.SRC_IN));
             imageView.setOnClickListener(new ca(26, charSequence2, paVar));
             w7.b6.a(imageView);
@@ -241,7 +241,7 @@ public final class k01 extends TableLayout {
         String str3;
         boolean z11;
         Context context = getContext();
-        org.telegram.ui.ActionBar.d6 d6Var = this.f27649a;
+        org.telegram.ui.ActionBar.d6 d6Var = this.f27647a;
         zc zcVar = new zc(context, d6Var);
         zcVar.setPadding(AndroidUtilities.dp(12.66f), AndroidUtilities.dp(9.33f), AndroidUtilities.dp(12.66f), AndroidUtilities.dp(9.33f));
         zcVar.setEllipsize(TextUtils.TruncateAt.END);
@@ -253,7 +253,7 @@ public final class k01 extends TableLayout {
         zcVar.setDisablePaddingsOffsetY(true);
         org.telegram.ui.l5 l5Var = new org.telegram.ui.l5(zcVar, 24.0f, i10);
         int i12 = (j10 > 2666000L ? 1 : (j10 == 2666000L ? 0 : -1));
-        ImageReceiver imageReceiver = l5Var.f38784b;
+        ImageReceiver imageReceiver = l5Var.f38782b;
         if (i12 == 0) {
             str3 = LocaleController.getString(R.string.StarsTransactionHidden);
             zq a2 = ai.hd.a(44, "anonymous");
@@ -325,7 +325,7 @@ public final class k01 extends TableLayout {
         String str3;
         boolean z10;
         Context context = getContext();
-        org.telegram.ui.ActionBar.d6 d6Var = this.f27649a;
+        org.telegram.ui.ActionBar.d6 d6Var = this.f27647a;
         final v90 v90Var = new v90(context, d6Var);
         v90Var.setPadding(AndroidUtilities.dp(12.66f), AndroidUtilities.dp(9.33f), AndroidUtilities.dp(12.66f), AndroidUtilities.dp(9.33f));
         int i11 = org.telegram.ui.ActionBar.h6.Oh;
@@ -334,7 +334,7 @@ public final class k01 extends TableLayout {
         v90Var.setTextSize(14);
         org.telegram.ui.l5 l5Var = new org.telegram.ui.l5(v90Var, 24.0f, i10);
         int i12 = (j10 > 2666000L ? 1 : (j10 == 2666000L ? 0 : -1));
-        ImageReceiver imageReceiver = l5Var.f38784b;
+        ImageReceiver imageReceiver = l5Var.f38782b;
         if (i12 == 0) {
             str3 = LocaleController.getString(R.string.StarsTransactionHidden);
             zq a2 = ai.hd.a(44, "anonymous");
@@ -382,7 +382,7 @@ public final class k01 extends TableLayout {
         p5Var.k(Integer.valueOf(w02));
         p5Var.I = AndroidUtilities.dp(12.0f);
         p5Var.J = 0;
-        v90Var.addOnAttachStateChangeListener(new ai.m6(p5Var, 11));
+        v90Var.addOnAttachStateChangeListener(new ai.n6(p5Var, 11));
         final Drawable mutate = getContext().getResources().getDrawable(R.drawable.msg_premium_liststar).mutate();
         mutate.setColorFilter(new PorterDuffColorFilter(w02, PorterDuff.Mode.SRC_IN));
         Utilities.Callback<Object[]> callback = new Utilities.Callback() {
@@ -410,14 +410,14 @@ public final class k01 extends TableLayout {
         Paint.Style style = Paint.Style.STROKE;
         Paint paint = this.e;
         paint.setStyle(style);
-        paint.setStrokeWidth(this.f27652f);
-        int i14 = org.telegram.ui.ActionBar.h6.f21237qh;
-        org.telegram.ui.ActionBar.d6 d6Var = this.f27649a;
+        paint.setStrokeWidth(this.f27650f);
+        int i14 = org.telegram.ui.ActionBar.h6.f21235qh;
+        org.telegram.ui.ActionBar.d6 d6Var = this.f27647a;
         paint.setColor(org.telegram.ui.ActionBar.h6.w0(i14, d6Var));
         Paint.Style style2 = Paint.Style.FILL;
         Paint paint2 = this.d;
         paint2.setStyle(style2);
-        paint2.setColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21218ph, d6Var));
+        paint2.setColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21216ph, d6Var));
         int childCount = getChildCount();
         for (int i15 = 0; i15 < childCount; i15++) {
             if (getChildAt(i15) instanceof TableRow) {
@@ -436,9 +436,9 @@ public final class k01 extends TableLayout {
                         if (i15 != childCount - 1) {
                             z16 = false;
                         }
-                        if (j01Var.f27401b != z15 || j01Var.f27402c != z16) {
-                            j01Var.f27401b = z15;
-                            j01Var.f27402c = z16;
+                        if (j01Var.f27399b != z15 || j01Var.f27400c != z16) {
+                            j01Var.f27399b = z15;
+                            j01Var.f27400c = z16;
                             j01Var.invalidate();
                         }
                     } else if (childAt instanceof h01) {
@@ -453,9 +453,9 @@ public final class k01 extends TableLayout {
                         } else {
                             z13 = false;
                         }
-                        if (h01Var.f26736b != z12 || h01Var.f26737c != z13) {
-                            h01Var.f26736b = z12;
-                            h01Var.f26737c = z13;
+                        if (h01Var.f26734b != z12 || h01Var.f26735c != z13) {
+                            h01Var.f26734b = z12;
+                            h01Var.f26735c = z13;
                             h01Var.invalidate();
                         }
                         if (i16 == 0) {
@@ -481,8 +481,8 @@ public final class k01 extends TableLayout {
                         if (i15 != childCount - 1) {
                             z16 = false;
                         }
-                        if (i01Var.f27028c != z11 || i01Var.d != z16) {
-                            i01Var.f27028c = z11;
+                        if (i01Var.f27026c != z11 || i01Var.d != z16) {
+                            i01Var.f27026c = z11;
                             i01Var.d = z16;
                             i01Var.invalidate();
                         }
@@ -497,10 +497,10 @@ public final class k01 extends TableLayout {
         x90 x90Var = new x90(getContext(), null);
         x90Var.setTypeface(AndroidUtilities.getTypeface("fonts/rmono.ttf"));
         x90Var.setTextSize(1, 13.0f);
-        int i10 = org.telegram.ui.ActionBar.h6.f21095j5;
-        org.telegram.ui.ActionBar.d6 d6Var = this.f27649a;
+        int i10 = org.telegram.ui.ActionBar.h6.f21093j5;
+        org.telegram.ui.ActionBar.d6 d6Var = this.f27647a;
         x90Var.setTextColor(org.telegram.ui.ActionBar.h6.w0(i10, d6Var));
-        x90Var.setLinkTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21048gc, d6Var));
+        x90Var.setLinkTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21046gc, d6Var));
         x90Var.setMaxLines(1);
         x90Var.setSingleLine();
         x90Var.setEllipsize(TextUtils.TruncateAt.MIDDLE);

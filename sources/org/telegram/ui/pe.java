@@ -13,23 +13,23 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.Components.UndoView;
 public final class pe implements org.telegram.ui.Components.n60, org.telegram.ui.Components.q60, org.telegram.ui.ActionBar.a2, org.telegram.ui.Components.so, MessagesStorage.BooleanCallback, org.telegram.ui.Components.jk0, ResultCallback, xh.c, kh.a, kh.b, g60, es, org.telegram.ui.Components.yl0, kh.d, org.telegram.ui.Components.kl0 {
-    public final int f40201a;
-    public final qn f40202b;
+    public final int f40192a;
+    public final qn f40193b;
 
     public pe(qn qnVar, int i10) {
-        this.f40201a = i10;
-        this.f40202b = qnVar;
+        this.f40192a = i10;
+        this.f40193b = qnVar;
     }
 
     @Override
     public boolean a(int i10, View view) {
-        qn qnVar = this.f40202b;
+        qn qnVar = this.f40193b;
         boolean z10 = false;
         if (qnVar.getParentActivity() != null) {
             hg.j1 adapter = qnVar.I1.getAdapter();
             if ((adapter.I != null || adapter.J != null) && i10 != 0) {
                 hg.j1 adapter2 = qnVar.I1.getAdapter();
-                if (adapter2.f11948w0 != null && !adapter2.f11930h0) {
+                if (adapter2.f11946w0 != null && !adapter2.f11928h0) {
                     return false;
                 }
                 Object J = qnVar.I1.getAdapter().J(i10 - 1);
@@ -38,7 +38,7 @@ public final class pe implements org.telegram.ui.Components.n60, org.telegram.ui
                     if (qnVar.I1.getAdapter().J != null && org.telegram.ui.Components.h61.h) {
                         qnVar.Y.setFieldText("");
                         fk fkVar = qnVar.Y;
-                        String str = g1Var.f11871a;
+                        String str = g1Var.f11869a;
                         TLRPC.Chat chat = qnVar.e;
                         if (chat != null && chat.megagroup) {
                             z10 = true;
@@ -60,12 +60,12 @@ public final class pe implements org.telegram.ui.Components.n60, org.telegram.ui
                             return true;
                         }
                     } else {
-                        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(qnVar.getParentActivity(), 0, qnVar.f40675ea);
-                        alertDialog$Builder.f20604a.R = LocaleController.getString(R.string.AppName);
-                        alertDialog$Builder.f20604a.T = LocaleController.getString(R.string.ClearSearch);
+                        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(qnVar.getParentActivity(), 0, qnVar.f40667ea);
+                        alertDialog$Builder.f20602a.R = LocaleController.getString(R.string.AppName);
+                        alertDialog$Builder.f20602a.T = LocaleController.getString(R.string.ClearSearch);
                         alertDialog$Builder.k(LocaleController.getString(R.string.ClearButton), new pe(qnVar, 12));
                         alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-                        qnVar.showDialog(alertDialog$Builder.f20604a);
+                        qnVar.showDialog(alertDialog$Builder.f20602a);
                         return true;
                     }
                 }
@@ -76,39 +76,39 @@ public final class pe implements org.telegram.ui.Components.n60, org.telegram.ui
 
     @Override
     public void b() {
-        qn qnVar = this.f40202b;
+        qn qnVar = this.f40193b;
         qnVar.v9(1);
         qnVar.w9();
     }
 
     @Override
     public void c() {
-        qn qnVar = this.f40202b;
+        qn qnVar = this.f40193b;
         if (qnVar.y3 == null && qnVar.getParentActivity() != null) {
             qnVar.T7();
-            qnVar.y3.m(qnVar.T5, qnVar.f40678f, 8);
+            qnVar.y3.m(qnVar.T5, qnVar.f40670f, 8);
         }
     }
 
     @Override
     public void d(TLRPC.Document document) {
-        switch (this.f40201a) {
+        switch (this.f40192a) {
             case 4:
-                qn.j0(this.f40202b, document);
+                qn.j0(this.f40193b, document);
                 return;
             default:
-                qn.D0(this.f40202b, document);
+                qn.D0(this.f40193b, document);
                 return;
         }
     }
 
     @Override
     public void e(ArrayList arrayList) {
-        switch (this.f40201a) {
+        switch (this.f40192a) {
             case 11:
-                qn qnVar = this.f40202b;
+                qn qnVar = this.f40193b;
                 if (qnVar.getParentActivity() != null && qnVar.getParentActivity() != null) {
-                    ai aiVar = new ai(qnVar, qnVar, qnVar.getParentActivity(), qnVar.f40675ea, arrayList);
+                    ai aiVar = new ai(qnVar, qnVar, qnVar.getParentActivity(), qnVar.f40667ea, arrayList);
                     aiVar.setCalcMandatoryInsets(qnVar.C9());
                     aiVar.setDimBehind(false);
                     qnVar.D7(false);
@@ -117,9 +117,9 @@ public final class pe implements org.telegram.ui.Components.n60, org.telegram.ui
                 }
                 return;
             default:
-                qn qnVar2 = this.f40202b;
+                qn qnVar2 = this.f40193b;
                 if (qnVar2.getParentActivity() != null && qnVar2.getParentActivity() != null) {
-                    xi xiVar = new xi(qnVar2, qnVar2, qnVar2.getParentActivity(), qnVar2.f40675ea, arrayList);
+                    xi xiVar = new xi(qnVar2, qnVar2, qnVar2.getParentActivity(), qnVar2.f40667ea, arrayList);
                     xiVar.setCalcMandatoryInsets(qnVar2.C9());
                     xiVar.setDimBehind(false);
                     qnVar2.D7(false);
@@ -132,22 +132,22 @@ public final class pe implements org.telegram.ui.Components.n60, org.telegram.ui
 
     @Override
     public void f(boolean z10, boolean z11) {
-        qn qnVar = this.f40202b;
-        qnVar.M0.i(qnVar.f40688fa.c(), z10, z11);
+        qn qnVar = this.f40193b;
+        qnVar.M0.i(qnVar.f40680fa.c(), z10, z11);
     }
 
     @Override
     public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f40201a) {
+        switch (this.f40192a) {
             case 2:
-                lk lkVar = this.f40202b.B0;
+                lk lkVar = this.f40193b.B0;
                 if (lkVar != null) {
                     lkVar.callOnClick();
                     return;
                 }
                 return;
             case 3:
-                this.f40202b.finishFragment();
+                this.f40193b.finishFragment();
                 return;
             case 4:
             case 5:
@@ -156,34 +156,34 @@ public final class pe implements org.telegram.ui.Components.n60, org.telegram.ui
             case 13:
             case 14:
             default:
-                qn qnVar = this.f40202b;
+                qn qnVar = this.f40193b;
                 MessageObject messageObject = (MessageObject) qnVar.J4.get(Integer.valueOf(qnVar.L4));
                 if (messageObject == null) {
-                    messageObject = (MessageObject) qnVar.f40795o6[0].get(qnVar.L4);
+                    messageObject = (MessageObject) qnVar.f40787o6[0].get(qnVar.L4);
                 }
                 qnVar.gc(messageObject);
                 return;
             case 6:
-                qn qnVar2 = this.f40202b;
-                MessagePreviewParams messagePreviewParams = qnVar2.f40684f5;
+                qn qnVar2 = this.f40193b;
+                MessagePreviewParams messagePreviewParams = qnVar2.f40676f5;
                 if (messagePreviewParams != null) {
                     messagePreviewParams.updateForward(null, qnVar2.T5);
                 }
                 qnVar2.m8();
                 return;
             case 7:
-                this.f40202b.ha(1);
+                this.f40193b.ha(1);
                 return;
             case 8:
-                qn qnVar3 = this.f40202b;
-                qnVar3.getMessagesController().unblockPeer(qnVar3.f40678f.f20422id);
+                qn qnVar3 = this.f40193b;
+                qnVar3.getMessagesController().unblockPeer(qnVar3.f40670f.f20420id);
                 return;
             case 10:
-                this.f40202b.finishFragment();
+                this.f40193b.finishFragment();
                 return;
             case 12:
-                hg.j1 adapter = this.f40202b.I1.getAdapter();
-                adapter.f11947w.c();
+                hg.j1 adapter = this.f40193b.I1.getAdapter();
+                adapter.f11945w.c();
                 adapter.I.clear();
                 adapter.l();
                 org.telegram.ui.Components.db0 db0Var = adapter.V;
@@ -193,11 +193,11 @@ public final class pe implements org.telegram.ui.Components.n60, org.telegram.ui
                 }
                 return;
             case 15:
-                qn qnVar4 = this.f40202b;
+                qn qnVar4 = this.f40193b;
                 qnVar4.showDialog(new ol(qnVar4, qnVar4.getParentActivity(), qnVar4));
                 return;
             case 16:
-                qn qnVar5 = this.f40202b;
+                qn qnVar5 = this.f40193b;
                 qnVar5.T7();
                 UndoView undoView = qnVar5.y3;
                 if (undoView != null) {
@@ -206,31 +206,31 @@ public final class pe implements org.telegram.ui.Components.n60, org.telegram.ui
                 }
                 return;
             case 17:
-                qn qnVar6 = this.f40202b;
-                MessagePreviewParams messagePreviewParams2 = qnVar6.f40684f5;
+                qn qnVar6 = this.f40193b;
+                MessagePreviewParams messagePreviewParams2 = qnVar6.f40676f5;
                 if (messagePreviewParams2 != null && messagePreviewParams2.quote != null) {
                     qnVar6.ha(0);
                     return;
                 }
                 return;
             case 18:
-                this.f40202b.j9(true);
+                this.f40193b.j9(true);
                 return;
         }
     }
 
     @Override
     public void i(int i10, ArrayList arrayList) {
-        qn qnVar = this.f40202b;
+        qn qnVar = this.f40193b;
         qnVar.getMessagesController().addUsersToChat(qnVar.e, qnVar, arrayList, i10, null, null, null);
-        qnVar.getMessagesController().hidePeerSettingsBar(qnVar.T5, qnVar.f40678f, qnVar.e);
+        qnVar.getMessagesController().hidePeerSettingsBar(qnVar.T5, qnVar.f40670f, qnVar.e);
         qnVar.Uc(true);
         qnVar.sc(true);
     }
 
     @Override
     public void j(int i10) {
-        qn qnVar = this.f40202b;
+        qn qnVar = this.f40193b;
         if (i10 == 1) {
             qnVar.Z9();
         } else if (i10 == 2) {
@@ -240,7 +240,7 @@ public final class pe implements org.telegram.ui.Components.n60, org.telegram.ui
             qnVar.getMessagesController().getNextReactionMention(qnVar.T5, qnVar.d(), qnVar.l1, new eg(qnVar, 0));
         } else if (i10 == 4) {
             qnVar.D4 = true;
-            qnVar.getMessagesController().getNextPollVotesMention(qnVar.T5, qnVar.d(), qnVar.f40763m1, new eg(qnVar, 1));
+            qnVar.getMessagesController().getNextPollVotesMention(qnVar.T5, qnVar.d(), qnVar.f40755m1, new eg(qnVar, 1));
         } else if (i10 == 6) {
             qnVar.d9(true);
         } else if (i10 == 5) {
@@ -258,8 +258,8 @@ public final class pe implements org.telegram.ui.Components.n60, org.telegram.ui
     public void onComplete(Object obj) {
         boolean z10;
         org.telegram.ui.ActionBar.c4 c4Var = (org.telegram.ui.ActionBar.c4) obj;
-        qn qnVar = this.f40202b;
-        on onVar = qnVar.f40675ea;
+        qn qnVar = this.f40193b;
+        on onVar = qnVar.f40667ea;
         TLRPC.WallPaper wallPaper = onVar.h;
         if (qnVar.P5 != 0) {
             z10 = true;
@@ -276,13 +276,13 @@ public final class pe implements org.telegram.ui.Components.n60, org.telegram.ui
 
     @Override
     public void run(boolean z10) {
-        qn qnVar = this.f40202b;
+        qn qnVar = this.f40193b;
         NotificationCenter notificationCenter = qnVar.getNotificationCenter();
         int i10 = NotificationCenter.closeChats;
         notificationCenter.removeObserver(qnVar, i10);
         qnVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(i10, new Object[0]);
         qnVar.finishFragment();
-        qnVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needDeleteDialog, Long.valueOf(qnVar.T5), qnVar.f40678f, qnVar.e, Boolean.valueOf(z10));
+        qnVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needDeleteDialog, Long.valueOf(qnVar.T5), qnVar.f40670f, qnVar.e, Boolean.valueOf(z10));
     }
 
     @Override

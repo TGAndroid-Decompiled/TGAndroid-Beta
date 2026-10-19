@@ -2,31 +2,31 @@ package org.telegram.ui;
 
 import android.view.View;
 public final class kw extends org.telegram.ui.Components.s6 {
-    public final int f38671b;
-    public final cy f38672c;
+    public final int f38669b;
+    public final cy f38670c;
 
     public kw(cy cyVar, int i10) {
         super("animationValue", 0);
-        this.f38671b = i10;
+        this.f38669b = i10;
         switch (i10) {
             case 1:
-                this.f38672c = cyVar;
+                this.f38670c = cyVar;
                 super("viewPagerTranslation", 0);
                 return;
             default:
-                this.f38672c = cyVar;
+                this.f38670c = cyVar;
                 return;
         }
     }
 
     @Override
     public final void c(Object obj, float f7) {
-        switch (this.f38671b) {
+        switch (this.f38669b) {
             case 0:
                 ((cy) obj).A4(f7);
                 return;
             default:
-                cy cyVar = this.f38672c;
+                cy cyVar = this.f38670c;
                 cyVar.I0 = f7;
                 ((View) obj).setTranslationY(cyVar.J0 + f7);
                 cyVar.D3();
@@ -36,13 +36,13 @@ public final class kw extends org.telegram.ui.Components.s6 {
 
     @Override
     public final Object get(Object obj) {
-        switch (this.f38671b) {
+        switch (this.f38669b) {
             case 0:
                 cy cyVar = (cy) obj;
-                return Float.valueOf(this.f38672c.N);
+                return Float.valueOf(this.f38670c.N);
             default:
                 View view = (View) obj;
-                return Float.valueOf(this.f38672c.I0);
+                return Float.valueOf(this.f38670c.I0);
         }
     }
 }

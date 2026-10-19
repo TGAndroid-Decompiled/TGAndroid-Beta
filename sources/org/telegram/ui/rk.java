@@ -2,10 +2,10 @@ package org.telegram.ui;
 
 import android.app.Activity;
 public final class rk extends org.telegram.ui.Components.j51 {
-    public final qn f41226s;
+    public final qn f41224s;
 
     public rk(qn qnVar, Activity activity, qn qnVar2, org.telegram.ui.ActionBar.d6 d6Var) {
         super(activity, d6Var, qnVar2);
-        this.f41226s = qnVar;
+        this.f41224s = qnVar;
     }
 }

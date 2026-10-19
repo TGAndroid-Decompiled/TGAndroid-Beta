@@ -1,43 +1,46 @@
 package org.telegram.ui;
 
-import android.content.Context;
-public final class yh0 extends org.telegram.ui.Components.vg {
-    public final org.telegram.ui.Components.vg f43497l0;
-    public final boolean m0;
-    public final li0 f43498n0;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Utilities;
+public final class yh0 extends oy {
+    public final int[] N;
+    public final mi0 O;
 
-    public yh0(li0 li0Var, Context context, int i10, org.telegram.ui.ActionBar.d6 d6Var, org.telegram.ui.Components.vg vgVar, boolean z10) {
-        super(i10, context, d6Var, false);
-        this.f43498n0 = li0Var;
-        this.f43497l0 = vgVar;
-        this.m0 = z10;
+    public yh0(mi0 mi0Var, xh0 xh0Var, int i10) {
+        super(i10, xh0Var);
+        this.O = mi0Var;
+        this.N = new int[2];
     }
 
     @Override
-    public final boolean d() {
-        return this.f43497l0.d();
-    }
-
-    @Override
-    public final boolean e() {
-        return this.f43497l0.e();
-    }
-
-    @Override
-    public final boolean f() {
-        if (this.m0 && this.f43498n0.f38950q0 && this.f31281r <= 0) {
-            return false;
+    public final void g(ny nyVar) {
+        mi0 mi0Var = this.O;
+        fi0 fi0Var = mi0Var.K;
+        if (nyVar != null) {
+            if (mi0Var.f39263l0 != null) {
+                nyVar.f39700c = true;
+                float f7 = (oy.f() * AndroidUtilities.density) / 1.3f;
+                float f10 = f7 / 3.0f;
+                nyVar.d = f10;
+                nyVar.e = f10;
+                nyVar.f39698a = Utilities.clamp(mi0Var.f39263l0.right - (0.75f * f7), AndroidUtilities.displaySize.x - f7, 0.0f);
+                nyVar.f39699b = mi0Var.f39263l0.bottom - (f7 / 2.0f);
+                return;
+            }
+            org.telegram.ui.Cells.u1 u1Var = mi0Var.Q;
+            if (u1Var != null && u1Var.isAttachedToWindow() && mi0Var.Q.getMessageObject() != null && mi0Var.Q.getMessageObject().getId() == mi0Var.R) {
+                org.telegram.ui.Cells.u1 u1Var2 = mi0Var.Q;
+                int[] iArr = this.N;
+                u1Var2.getLocationOnScreen(iArr);
+                nyVar.f39700c = true;
+                float f11 = (oy.f() * AndroidUtilities.density) / 1.3f;
+                float f12 = f11 / 3.0f;
+                nyVar.d = f12;
+                nyVar.e = f12;
+                float f13 = f11 / 2.0f;
+                nyVar.f39698a = Utilities.clamp(((fi0Var.getScaleX() * mi0Var.Q.getTimeX()) + iArr[0]) - f13, AndroidUtilities.displaySize.x - f11, 0.0f);
+                nyVar.f39699b = ((fi0Var.getScaleY() * mi0Var.Q.getTimeY()) + iArr[1]) - f13;
+            }
         }
-        return true;
-    }
-
-    @Override
-    public final int getFillColor() {
-        return this.f43497l0.getFillColor();
-    }
-
-    @Override
-    public final boolean j() {
-        return this.f43497l0.j();
     }
 }

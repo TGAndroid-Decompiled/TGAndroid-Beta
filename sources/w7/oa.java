@@ -2,7 +2,7 @@ package w7;
 
 import java.util.HashMap;
 public abstract class oa {
-    public static final int f48786a = 0;
+    public static final int f48788a = 0;
 
     static {
         new HashMap();

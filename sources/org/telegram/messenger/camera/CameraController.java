@@ -1,9 +1,9 @@
 package org.telegram.messenger.camera;
 
-import ai.o4;
+import ai.p4;
 import ai.t0;
-import ai.x7;
 import ai.x9;
+import ai.y7;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.SurfaceTexture;
@@ -823,7 +823,7 @@ public class CameraController implements MediaRecorder.OnInfoListener {
             return;
         }
         this.loadingCameras = true;
-        this.threadPool.execute(new x7(this, z10, runnable, 10));
+        this.threadPool.execute(new y7(this, z10, runnable, 10));
     }
 
     public void close(CameraSession cameraSession, CountDownLatch countDownLatch, Runnable runnable, Runnable runnable2) {
@@ -846,7 +846,7 @@ public class CameraController implements MediaRecorder.OnInfoListener {
             this.recordingCurrentCameraView = iCameraView;
             this.onVideoTakeCallback = videoTakeCallback;
             this.recordedFile = file.getAbsolutePath();
-            this.threadPool.execute(new o4(this, obj, iCameraView, file, z11, runnable, 6));
+            this.threadPool.execute(new p4(this, obj, iCameraView, file, z11, runnable, 6));
         } else if (obj instanceof CameraSession) {
             CameraSession cameraSession = (CameraSession) obj;
             CameraInfo cameraInfo = cameraSession.cameraInfo;

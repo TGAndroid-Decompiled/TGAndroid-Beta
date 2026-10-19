@@ -15,6 +15,6 @@ public final class zx0 implements org.telegram.ui.ActionBar.q0, MessagesStorage.
 
     @Override
     public void run(String str) {
-        new g50(r1.getContext(), r1.f29434o0, null, this.f33052a.resourcesProvider).show();
+        new g50(r1.getContext(), r1.f29432o0, null, this.f33052a.resourcesProvider).show();
     }
 }

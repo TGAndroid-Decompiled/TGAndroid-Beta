@@ -7,23 +7,23 @@ import android.view.View;
 import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
 public final class nr0 extends AnimatorListenerAdapter {
-    public final int f39674a;
-    public final View f39675b;
-    public final PhotoViewer f39676c;
+    public final int f39673a;
+    public final View f39674b;
+    public final PhotoViewer f39675c;
 
     public nr0(PhotoViewer photoViewer, View view, int i10) {
-        this.f39674a = i10;
-        this.f39676c = photoViewer;
-        this.f39675b = view;
+        this.f39673a = i10;
+        this.f39675c = photoViewer;
+        this.f39674b = view;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f39674a) {
+        switch (this.f39673a) {
             case 0:
-                PhotoViewer photoViewer = this.f39676c;
+                PhotoViewer photoViewer = this.f39675c;
                 photoViewer.B3 = false;
-                this.f39675b.setOutlineProvider(null);
+                this.f39674b.setOutlineProvider(null);
                 ImageView imageView = photoViewer.f33445x3;
                 if (imageView != null) {
                     imageView.setOutlineProvider(null);
@@ -39,10 +39,10 @@ public final class nr0 extends AnimatorListenerAdapter {
                 }
                 return;
             default:
-                PhotoViewer photoViewer2 = this.f39676c;
+                PhotoViewer photoViewer2 = this.f39675c;
                 photoViewer2.B3 = false;
                 photoViewer2.f33311i4.run();
-                AndroidUtilities.runOnUIThread(new wg0(23, this, this.f39675b), 100L);
+                AndroidUtilities.runOnUIThread(new xg0(23, this, this.f39674b), 100L);
                 return;
         }
     }

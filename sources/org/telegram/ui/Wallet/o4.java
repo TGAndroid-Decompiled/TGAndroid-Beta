@@ -12,34 +12,34 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.tl.TL_wallet;
 import org.telegram.ui.Components.v81;
 public final class o4 extends v81 {
-    public final ArrayList f34629a;
-    public final Context f34630b;
-    public final org.telegram.ui.ActionBar.d6 f34631c;
+    public final ArrayList f34631a;
+    public final Context f34632b;
+    public final org.telegram.ui.ActionBar.d6 f34633c;
     public final Rect d;
     public final int e;
-    public final k2[] f34632f;
+    public final k2[] f34634f;
 
     public o4(ArrayList arrayList, Context context, org.telegram.ui.ActionBar.d6 d6Var, Rect rect, int i10, k2[] k2VarArr) {
-        this.f34629a = arrayList;
-        this.f34630b = context;
-        this.f34631c = d6Var;
+        this.f34631a = arrayList;
+        this.f34632b = context;
+        this.f34633c = d6Var;
         this.d = rect;
         this.e = i10;
-        this.f34632f = k2VarArr;
+        this.f34634f = k2VarArr;
     }
 
     @Override
     public final void b(View view, int i10, int i11) {
         FrameLayout frameLayout = (FrameLayout) view;
         frameLayout.removeAllViews();
-        k2[] k2VarArr = this.f34632f;
-        frameLayout.addView(o5.o0(this.f34630b, this.e, (TL_wallet.walletTransaction) this.f34629a.get(i10), null, null, null, null, this.f34631c, k2VarArr, true), w7.z5.c(-2.0f, -1));
+        k2[] k2VarArr = this.f34634f;
+        frameLayout.addView(o5.o0(this.f34632b, this.e, (TL_wallet.walletTransaction) this.f34631a.get(i10), null, null, null, null, this.f34633c, k2VarArr, true), w7.z5.c(-2.0f, -1));
     }
 
     @Override
     public final View d(int i10) {
-        FrameLayout frameLayout = new FrameLayout(this.f34630b);
-        ShapeDrawable d02 = org.telegram.ui.ActionBar.h6.d0(AndroidUtilities.dp(20.0f), 0, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20989d6, this.f34631c));
+        FrameLayout frameLayout = new FrameLayout(this.f34632b);
+        ShapeDrawable d02 = org.telegram.ui.ActionBar.h6.d0(AndroidUtilities.dp(20.0f), 0, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20987d6, this.f34633c));
         Rect rect = this.d;
         frameLayout.setBackground(new InsetDrawable((Drawable) d02, rect.left, 0, rect.right, 0));
         return frameLayout;
@@ -47,6 +47,6 @@ public final class o4 extends v81 {
 
     @Override
     public final int e() {
-        return this.f34629a.size();
+        return this.f34631a.size();
     }
 }

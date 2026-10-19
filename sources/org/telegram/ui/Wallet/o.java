@@ -3,42 +3,42 @@ package org.telegram.ui.Wallet;
 import java.util.ArrayList;
 import org.telegram.messenger.Utilities;
 public final class o implements Utilities.Callback {
-    public final int f34613a = 2;
-    public final Object f34614b;
-    public final m0 f34615c;
+    public final int f34615a = 2;
+    public final Object f34616b;
+    public final m0 f34617c;
     public final Object d;
     public final Object e;
 
     public o(m0 m0Var, d0 d0Var, String str, Runnable runnable) {
-        this.f34615c = m0Var;
+        this.f34617c = m0Var;
         this.d = d0Var;
-        this.f34614b = str;
+        this.f34616b = str;
         this.e = runnable;
     }
 
     @Override
     public final void run(Object obj) {
-        switch (this.f34613a) {
+        switch (this.f34615a) {
             case 0:
                 d0 d0Var = (d0) this.d;
                 Runnable runnable = (Runnable) this.e;
-                m0 m0Var = this.f34615c;
+                m0 m0Var = this.f34617c;
                 m0Var.getClass();
-                d0Var.f34082c = (byte[]) obj;
-                if (m0Var.N.get((String) this.f34614b) == d0Var) {
+                d0Var.f34084c = (byte[]) obj;
+                if (m0Var.N.get((String) this.f34616b) == d0Var) {
                     m0Var.h0(d0Var);
                     m0Var.J();
                 }
                 runnable.run();
                 return;
             case 1:
-                w7.U((w7) this.d, (String) this.f34614b, this.f34615c, (org.telegram.ui.ActionBar.n2) this.e, (String) obj);
+                w7.U((w7) this.d, (String) this.f34616b, this.f34617c, (org.telegram.ui.ActionBar.n2) this.e, (String) obj);
                 return;
             case 2:
                 h8 h8Var = (h8) this.d;
-                Utilities.Callback callback = (Utilities.Callback) this.f34614b;
+                Utilities.Callback callback = (Utilities.Callback) this.f34616b;
                 ArrayList arrayList = (ArrayList) this.e;
-                m0 m0Var2 = this.f34615c;
+                m0 m0Var2 = this.f34617c;
                 String str = (String) obj;
                 if (str != null) {
                     callback.run(str);
@@ -58,30 +58,30 @@ public final class o implements Utilities.Callback {
                     throw th2;
                 }
             default:
-                m0 m0Var3 = this.f34615c;
-                m0Var3.t((String) this.f34614b, new c8((h8) this.d, (Utilities.Callback) obj, (q0) this.e, m0Var3));
+                m0 m0Var3 = this.f34617c;
+                m0Var3.t((String) this.f34616b, new c8((h8) this.d, (Utilities.Callback) obj, (q0) this.e, m0Var3));
                 return;
         }
     }
 
     public o(w7 w7Var, String str, m0 m0Var, org.telegram.ui.ActionBar.n2 n2Var) {
         this.d = w7Var;
-        this.f34614b = str;
-        this.f34615c = m0Var;
+        this.f34616b = str;
+        this.f34617c = m0Var;
         this.e = n2Var;
     }
 
     public o(h8 h8Var, Utilities.Callback callback, ArrayList arrayList, m0 m0Var) {
         this.d = h8Var;
-        this.f34614b = callback;
+        this.f34616b = callback;
         this.e = arrayList;
-        this.f34615c = m0Var;
+        this.f34617c = m0Var;
     }
 
     public o(h8 h8Var, m0 m0Var, String str, q0 q0Var) {
         this.d = h8Var;
-        this.f34615c = m0Var;
-        this.f34614b = str;
+        this.f34617c = m0Var;
+        this.f34616b = str;
         this.e = q0Var;
     }
 }

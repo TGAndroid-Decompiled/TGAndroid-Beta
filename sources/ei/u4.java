@@ -9,36 +9,36 @@ import org.telegram.ui.Components.cn0;
 import org.telegram.ui.Components.py0;
 import org.telegram.ui.Components.xj0;
 public final class u4 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f9890a;
-    public final int f9891b;
-    public final int f9892c;
+    public final int f9888a;
+    public final int f9889b;
+    public final int f9890c;
     public final Object d;
 
     public u4(Object obj, int i10, int i11, int i12) {
-        this.f9890a = i12;
+        this.f9888a = i12;
         this.d = obj;
-        this.f9891b = i10;
-        this.f9892c = i11;
+        this.f9889b = i10;
+        this.f9890c = i11;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        int i10 = this.f9890a;
-        int i11 = this.f9892c;
-        int i12 = this.f9891b;
+        int i10 = this.f9888a;
+        int i11 = this.f9890c;
+        int i12 = this.f9889b;
         Object obj = this.d;
         switch (i10) {
             case 0:
                 f6 f6Var = (f6) obj;
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                f6Var.A1.f44647a = i0.a.f(floatValue, i12, i11);
+                f6Var.A1.f44649a = i0.a.f(floatValue, i12, i11);
                 f6Var.T0.invalidate();
                 return;
             case 1:
                 org.telegram.ui.Cells.d4 d4Var = (org.telegram.ui.Cells.d4) obj;
                 d4Var.getClass();
                 int offsetColor = AndroidUtilities.getOffsetColor(i12, i11, valueAnimator.getAnimatedFraction(), 1.0f);
-                xj0 xj0Var = d4Var.f22128f;
+                xj0 xj0Var = d4Var.f22126f;
                 xj0Var.setColorFilter(new PorterDuffColorFilter(offsetColor, PorterDuff.Mode.SRC_IN));
                 org.telegram.ui.ActionBar.h6.C1(xj0Var.getDrawable(), offsetColor & 620756991, true);
                 return;
@@ -50,30 +50,30 @@ public final class u4 implements ValueAnimator.AnimatorUpdateListener {
                 return;
             case 3:
                 ScrollSlidingTextTabStrip scrollSlidingTextTabStrip = (ScrollSlidingTextTabStrip) obj;
-                int i13 = ScrollSlidingTextTabStrip.f24343o0;
+                int i13 = ScrollSlidingTextTabStrip.f24341o0;
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 scrollSlidingTextTabStrip.W = i12 * floatValue2;
-                scrollSlidingTextTabStrip.f24345a0 = i11 * floatValue2;
-                scrollSlidingTextTabStrip.f24344a.invalidate();
+                scrollSlidingTextTabStrip.f24343a0 = i11 * floatValue2;
+                scrollSlidingTextTabStrip.f24342a.invalidate();
                 scrollSlidingTextTabStrip.invalidate();
                 return;
             case 4:
                 float animatedFraction = valueAnimator.getAnimatedFraction();
-                py0 py0Var = (py0) ((cn0) obj).f25289b;
-                py0Var.f29420c.setAlpha(animatedFraction);
+                py0 py0Var = (py0) ((cn0) obj).f25287b;
+                py0Var.f29418c.setAlpha(animatedFraction);
                 py0Var.h.setAlpha(animatedFraction);
                 if (i12 != 0) {
                     int i14 = (int) ((1.0f - animatedFraction) * i12);
                     py0Var.z0(i11 + i14);
-                    py0Var.f29420c.setTranslationY(i14);
+                    py0Var.f29418c.setTranslationY(i14);
                     return;
                 }
                 return;
             default:
                 rg.m0 m0Var = (rg.m0) obj;
                 float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                m0Var.K1.f44647a = i0.a.f(floatValue3, i12, i11);
-                m0Var.f45466c1.invalidate();
+                m0Var.K1.f44649a = i0.a.f(floatValue3, i12, i11);
+                m0Var.f45468c1.invalidate();
                 return;
         }
     }

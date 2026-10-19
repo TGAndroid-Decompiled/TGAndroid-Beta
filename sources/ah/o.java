@@ -1,15 +1,14 @@
 package ah;
 
-import ai.b6;
 import ai.c6;
 import ai.d6;
+import ai.e6;
 import ai.ga;
-import ai.t6;
+import ai.u6;
 import ai.ua;
 import ai.ub;
-import ai.w5;
-import ai.w6;
-import ai.z5;
+import ai.x5;
+import ai.x6;
 import android.content.Context;
 import android.graphics.SurfaceTexture;
 import android.text.Editable;
@@ -32,6 +31,7 @@ import java.util.concurrent.CopyOnWriteArraySet;
 import ki.e3;
 import ki.o5;
 import ki.r5;
+import ki.w5;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotGuardHelper;
 import org.telegram.messenger.LocaleController;
@@ -57,6 +57,7 @@ import org.telegram.ui.Components.bs;
 import org.telegram.ui.Stories.recorder.FfmpegAudioWaveformLoader;
 import org.telegram.ui.l4;
 import rg.r1;
+import w7.z5;
 public final class o implements Runnable {
     public final int f836a;
     public final int f837b;
@@ -93,61 +94,61 @@ public final class o implements Runnable {
                 }
                 return;
             case 1:
-                d6 d6Var = (d6) this.f838c;
+                e6 e6Var = (e6) this.f838c;
                 int i13 = this.f837b;
                 TL_stars.StarGift starGift = (TL_stars.StarGift) this.d;
-                int[] iArr = d6Var.V;
-                z5 z5Var = d6Var.f1146f;
-                w5 w5Var = d6Var.h;
+                int[] iArr = e6Var.V;
+                ai.a6 a6Var2 = e6Var.f1210f;
+                x5 x5Var = e6Var.h;
                 if (starGift != null) {
-                    b6 b6Var = new b6(d6Var.getContext());
-                    b6Var.a(starGift, false);
-                    b6Var.setRotation(180.0f);
-                    w5Var.f(i13, b6Var);
-                    b6Var.setScaleX(0.5f);
-                    b6Var.setScaleY(0.5f);
-                    b6Var.setAlpha(0.0f);
-                    ViewPropertyAnimator duration = b6Var.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(520L);
+                    c6 c6Var = new c6(e6Var.getContext());
+                    c6Var.a(starGift, false);
+                    c6Var.setRotation(180.0f);
+                    x5Var.f(i13, c6Var);
+                    c6Var.setScaleX(0.5f);
+                    c6Var.setScaleY(0.5f);
+                    c6Var.setAlpha(0.0f);
+                    ViewPropertyAnimator duration = c6Var.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(520L);
                     bs bsVar = bs.h;
                     ViewPropertyAnimator interpolator = duration.setInterpolator(bsVar);
-                    interpolator.setUpdateListener(new c0(d6Var, 2));
+                    interpolator.setUpdateListener(new c0(e6Var, 2));
                     interpolator.start();
-                    w5Var.f2363a[i13].setVisibility(8);
-                    z5Var.setVisibility(0);
-                    z5Var.setAlpha(0.0f);
-                    z5Var.animate().alpha(0.5f).setDuration(820L).setInterpolator(bsVar).start();
+                    x5Var.f2435a[i13].setVisibility(8);
+                    a6Var2.setVisibility(0);
+                    a6Var2.setAlpha(0.0f);
+                    a6Var2.animate().alpha(0.5f).setDuration(820L).setInterpolator(bsVar).start();
                     return;
                 }
-                FrameLayout frameLayout = new FrameLayout(d6Var.getContext());
-                ?? imageView = new ImageView(d6Var.getContext());
+                FrameLayout frameLayout = new FrameLayout(e6Var.getContext());
+                ?? imageView = new ImageView(e6Var.getContext());
                 imageView.f(R.raw.gift_broken, 32, 32, null);
-                frameLayout.addView((View) imageView, w7.z5.e(32, 32, 17));
+                frameLayout.addView((View) imageView, z5.e(32, 32, 17));
                 imageView.setScaleX(0.5f);
                 imageView.setScaleY(0.5f);
                 imageView.setAlpha(0.0f);
                 imageView.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).start();
-                d6Var.f1153l0 = imageView;
-                frameLayout.setBackground(new t6(AndroidUtilities.dp(12.0f), h6.m1(0.075f, -1)));
-                w5Var.f2363a[i13].setVisibility(8);
+                e6Var.f1217l0 = imageView;
+                frameLayout.setBackground(new u6(AndroidUtilities.dp(12.0f), h6.m1(0.075f, -1)));
+                x5Var.f2435a[i13].setVisibility(8);
                 frameLayout.setRotation(180.0f);
-                w5Var.f(i13, frameLayout);
-                d6Var.F.a(iArr[2], iArr[3]);
-                c6 c6Var = d6Var.f1140b;
-                int[] iArr2 = d6Var.U;
-                c6Var.a(iArr2[2], iArr2[3]);
-                z5Var.a(iArr[3], iArr[2]);
+                x5Var.f(i13, frameLayout);
+                e6Var.F.a(iArr[2], iArr[3]);
+                d6 d6Var = e6Var.f1204b;
+                int[] iArr2 = e6Var.U;
+                d6Var.a(iArr2[2], iArr2[3]);
+                a6Var2.a(iArr[3], iArr[2]);
                 return;
             case 2:
-                ((Utilities.Callback3) this.d).run(LocaleController.formatString(R.string.Gift2RarityHint, gi.l.H0(this.f837b)), (w6) this.f838c, Boolean.FALSE);
+                ((Utilities.Callback3) this.d).run(LocaleController.formatString(R.string.Gift2RarityHint, gi.l.H0(this.f837b)), (x6) this.f838c, Boolean.FALSE);
                 return;
             case 3:
                 ga gaVar = (ga) this.f838c;
                 int i14 = this.f837b;
                 TLObject tLObject = (TLObject) this.d;
-                boolean[] zArr = gaVar.f1362r;
-                ArrayList[] arrayListArr = gaVar.f1361q;
-                int i15 = gaVar.f1348a;
-                gaVar.f1364t[i14] = false;
+                boolean[] zArr = gaVar.f1377r;
+                ArrayList[] arrayListArr = gaVar.f1376q;
+                int i15 = gaVar.f1363a;
+                gaVar.f1379t[i14] = false;
                 if (tLObject instanceof TL_stars.StarsStatus) {
                     TL_stars.StarsStatus starsStatus = (TL_stars.StarsStatus) tLObject;
                     MessagesController.getInstance(i15).putUsers(starsStatus.users, false);
@@ -159,12 +160,12 @@ public final class o implements Runnable {
                         z10 = true;
                     }
                     zArr[i14] = z10;
-                    boolean[] zArr2 = gaVar.f1365u;
+                    boolean[] zArr2 = gaVar.f1380u;
                     if ((starsStatus.flags & 1) != 0) {
                         z11 = false;
                     }
                     zArr2[i14] = z11;
-                    String[] strArr = gaVar.f1363s;
+                    String[] strArr = gaVar.f1378s;
                     if (!z11) {
                         str = starsStatus.next_offset;
                     }
@@ -203,12 +204,12 @@ public final class o implements Runnable {
             case 7:
                 int i18 = this.f837b;
                 aa aaVar = ((r9) this.f838c).d;
-                q9 q9Var = aaVar.f5205n0;
+                q9 q9Var = aaVar.f5203n0;
                 int i19 = aaVar.h;
                 q9Var.A0 = (ArrayList) this.d;
-                q9Var.f5517y0 = i19;
+                q9Var.f5515y0 = i19;
                 q9Var.setAdapter(null);
-                q9Var.setAdapter(q9Var.f5518z0);
+                q9Var.setAdapter(q9Var.f5516z0);
                 q9Var.setCurrentItem(i18);
                 q9Var.C0 = true;
                 return;
@@ -220,10 +221,10 @@ public final class o implements Runnable {
                     e2.q qVar = (e2.q) it.next();
                     if (!qVar.d) {
                         if (i20 != -1) {
-                            qVar.f8272b.b(i20);
+                            qVar.f8270b.b(i20);
                         }
-                        qVar.f8273c = true;
-                        oVar.invoke(qVar.f8271a);
+                        qVar.f8271c = true;
+                        oVar.invoke(qVar.f8269a);
                     }
                 }
                 return;
@@ -238,13 +239,13 @@ public final class o implements Runnable {
                 qg.l lVar = (qg.l) this.d;
                 int i21 = this.f837b;
                 if (f6Var.O0.getCurrentBrush() instanceof qg.l) {
-                    f6Var.f9004c1 = true;
+                    f6Var.f9002c1 = true;
                 }
                 f6Var.o(lVar);
-                r1 r1Var = f6Var.f9020k1;
+                r1 r1Var = f6Var.f9018k1;
                 int i22 = r1Var.d + 1;
                 r1Var.a(i22);
-                AndroidUtilities.updateImageViewImageAnimated(r1Var.f45612a[i22], i21);
+                AndroidUtilities.updateImageViewImageAnimated(r1Var.f45614a[i22], i21);
                 r1Var.e = true;
                 return;
             case 12:
@@ -273,8 +274,8 @@ public final class o implements Runnable {
                 int i24 = this.f837b;
                 if (tLObject3 instanceof TLRPC.TL_webViewResultUrl) {
                     TLRPC.TL_webViewResultUrl tL_webViewResultUrl = (TLRPC.TL_webViewResultUrl) tLObject3;
-                    f4Var.f11214x = tL_webViewResultUrl.query_id;
-                    f4Var.f11210n.t(i24, tL_webViewResultUrl.url, tL_webViewResultUrl.same_origin);
+                    f4Var.f11212x = tL_webViewResultUrl.query_id;
+                    f4Var.f11208n.t(i24, tL_webViewResultUrl.url, tL_webViewResultUrl.same_origin);
                     AndroidUtilities.runOnUIThread(f4Var.U);
                     return;
                 }
@@ -283,35 +284,35 @@ public final class o implements Runnable {
                 hg.h0 h0Var = (hg.h0) this.f838c;
                 int i25 = this.f837b;
                 String str2 = (String) this.d;
-                int i26 = h0Var.f11896s0;
-                h0Var.f11893r = null;
-                if (i25 == h0Var.f11878d0) {
-                    if (h0Var.f11888n >= 0) {
-                        ConnectionsManager.getInstance(i26).cancelRequest(h0Var.f11888n, true);
+                int i26 = h0Var.f11894s0;
+                h0Var.f11891r = null;
+                if (i25 == h0Var.f11876d0) {
+                    if (h0Var.f11886n >= 0) {
+                        ConnectionsManager.getInstance(i26).cancelRequest(h0Var.f11886n, true);
                     }
                     TLRPC.TL_channels_searchPosts tL_channels_searchPosts = new TLRPC.TL_channels_searchPosts();
                     tL_channels_searchPosts.flags = 1 | tL_channels_searchPosts.flags;
                     tL_channels_searchPosts.hashtag = str2;
                     tL_channels_searchPosts.limit = 3;
                     tL_channels_searchPosts.offset_peer = new TLRPC.TL_inputPeerEmpty();
-                    h0Var.f11888n = ConnectionsManager.getInstance(i26).sendRequest(tL_channels_searchPosts, new hg.u(h0Var, i25, str2, 0));
+                    h0Var.f11886n = ConnectionsManager.getInstance(i26).sendRequest(tL_channels_searchPosts, new hg.u(h0Var, i25, str2, 0));
                     return;
                 }
                 return;
             case 17:
                 Pair pair = (Pair) this.d;
-                ((i2.f1) this.f838c).f12355b.h.a(((Integer) pair.first).intValue(), (u2.g0) pair.second, this.f837b);
+                ((i2.f1) this.f838c).f12353b.h.a(((Integer) pair.first).intValue(), (u2.g0) pair.second, this.f837b);
                 return;
             case 18:
                 ig.y yVar = (ig.y) this.f838c;
-                yVar.f13091b.add(this.f837b, (TL_account.TL_businessChatLink) this.d);
-                NotificationCenter.getInstance(yVar.f13090a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.businessLinksUpdated, new Object[0]);
+                yVar.f13089b.add(this.f837b, (TL_account.TL_businessChatLink) this.d);
+                NotificationCenter.getInstance(yVar.f13088a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.businessLinksUpdated, new Object[0]);
                 return;
             case 19:
                 int i27 = this.f837b;
                 r5 m10 = ((o5) this.f838c).getGrid().m((TL_iv.pageTableCell) this.d);
                 if (m10 != null) {
-                    ki.h1 h1Var = m10.f15493a;
+                    ki.h1 h1Var = m10.f15491a;
                     h1Var.r();
                     h1Var.setSelection(Math.max(0, Math.min(i27, h1Var.length())));
                     return;
@@ -320,16 +321,16 @@ public final class o implements Runnable {
             case 20:
                 ki.a aVar = (ki.a) this.d;
                 int i28 = this.f837b;
-                ki.c6 c6Var2 = ((ki.w5) this.f838c).f15629a;
-                if (c6Var2.f15190y != null) {
-                    ki.c6.f(aVar.f15097b, "");
-                    ((e3) c6Var2.f15190y).c(aVar, i28);
+                ki.c6 c6Var2 = ((w5) this.f838c).f15627a;
+                if (c6Var2.f15188y != null) {
+                    ki.c6.f(aVar.f15095b, "");
+                    ((e3) c6Var2.f15188y).c(aVar, i28);
                     return;
                 }
                 return;
             case 21:
                 n2.k kVar = (n2.k) this.f838c;
-                this.d.a(kVar.f17059a, kVar.f17060b, this.f837b);
+                this.d.a(kVar.f17057a, kVar.f17058b, this.f837b);
                 return;
             case 22:
                 ((View) this.d).postOnAnimation(new g((oh.a) this.f838c, this.f837b, 16));
@@ -358,8 +359,8 @@ public final class o implements Runnable {
                 l4 l4Var = (l4) this.f838c;
                 String str4 = (String) this.d;
                 int i30 = this.f837b;
-                HashMap hashMap = new HashMap(l4Var.f38774u0[0].f39749c.f38157w);
-                ArrayList arrayList2 = new ArrayList(l4Var.f38774u0[0].f39749c.f38158x);
+                HashMap hashMap = new HashMap(l4Var.f38772u0[0].f39748c.f38159w);
+                ArrayList arrayList2 = new ArrayList(l4Var.f38772u0[0].f39748c.f38160x);
                 l4Var.V0 = null;
                 Utilities.searchQueue.postRunnable(new ub(l4Var, arrayList2, hashMap, str4, i30, 15));
                 return;
@@ -380,7 +381,7 @@ public final class o implements Runnable {
                 int i32 = this.f837b;
                 TLRPC.TL_chatInviteJoinResultWebView tL_chatInviteJoinResultWebView = (TLRPC.TL_chatInviteJoinResultWebView) this.f838c;
                 MessagesController.getInstance(i32).putUsers(tL_chatInviteJoinResultWebView.users, false);
-                BotGuardHelper.getInstance(i32).openGuardBotWebApp(-((TLRPC.Chat) this.d).f20275id, tL_chatInviteJoinResultWebView.bot_id, tL_chatInviteJoinResultWebView.query_id);
+                BotGuardHelper.getInstance(i32).openGuardBotWebApp(-((TLRPC.Chat) this.d).f20273id, tL_chatInviteJoinResultWebView.bot_id, tL_chatInviteJoinResultWebView.query_id);
                 return;
         }
     }

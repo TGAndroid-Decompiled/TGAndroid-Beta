@@ -6,20 +6,20 @@ import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
 public final class ht0 extends ut0 {
-    public final int f37809p0;
-    public final NotificationCenter.NotificationCenterDelegate f37810q0;
+    public final int f37780p0;
+    public final NotificationCenter.NotificationCenterDelegate f37781q0;
 
     public ht0(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, Context context, xt0 xt0Var, FrameLayout frameLayout, int i10) {
         super(context, xt0Var, frameLayout);
-        this.f37809p0 = i10;
-        this.f37810q0 = notificationCenterDelegate;
+        this.f37780p0 = i10;
+        this.f37781q0 = notificationCenterDelegate;
     }
 
     @Override
     public boolean C() {
-        switch (this.f37809p0) {
+        switch (this.f37780p0) {
             case 0:
-                return !((PhotoViewer) this.f37810q0).f33394s;
+                return !((PhotoViewer) this.f37781q0).f33394s;
             default:
                 return super.C();
         }
@@ -27,11 +27,11 @@ public final class ht0 extends ut0 {
 
     @Override
     public void D() {
-        switch (this.f37809p0) {
+        switch (this.f37780p0) {
             case 1:
-                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f37810q0;
+                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f37781q0;
                 if (secretMediaViewer.J && getScrollY() <= 0) {
-                    AndroidUtilities.runOnUIThread(secretMediaViewer.f33814r1, 3000L);
+                    AndroidUtilities.runOnUIThread(secretMediaViewer.f33816r1, 3000L);
                     return;
                 }
                 return;
@@ -42,9 +42,9 @@ public final class ht0 extends ut0 {
 
     @Override
     public void F() {
-        switch (this.f37809p0) {
+        switch (this.f37780p0) {
             case 1:
-                AndroidUtilities.cancelRunOnUIThread(((SecretMediaViewer) this.f37810q0).f33814r1);
+                AndroidUtilities.cancelRunOnUIThread(((SecretMediaViewer) this.f37781q0).f33816r1);
                 return;
             default:
                 return;
@@ -54,11 +54,11 @@ public final class ht0 extends ut0 {
     @Override
     public void G() {
         boolean z10;
-        switch (this.f37809p0) {
+        switch (this.f37780p0) {
             case 1:
-                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f37810q0;
+                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f37781q0;
                 if (secretMediaViewer.K0 == null) {
-                    if (getScrollY() < getMeasuredHeight() / 3.0f && secretMediaViewer.f33799k0) {
+                    if (getScrollY() < getMeasuredHeight() / 3.0f && secretMediaViewer.f33801k0) {
                         z10 = true;
                     } else {
                         z10 = false;
@@ -78,10 +78,10 @@ public final class ht0 extends ut0 {
         boolean z11;
         int i10;
         boolean z12;
-        switch (this.f37809p0) {
+        switch (this.f37780p0) {
             case 0:
                 super.invalidate();
-                PhotoViewer photoViewer = (PhotoViewer) this.f37810q0;
+                PhotoViewer photoViewer = (PhotoViewer) this.f37781q0;
                 fu0[] fu0VarArr = photoViewer.W0;
                 ImageView[] imageViewArr = photoViewer.y3;
                 if (photoViewer.J) {
@@ -99,7 +99,7 @@ public final class ht0 extends ut0 {
                         z11 = false;
                     }
                     if (!z10) {
-                        int b10 = fu0VarArr[0].b() + fu0VarArr[0].f37084j;
+                        int b10 = fu0VarArr[0].b() + fu0VarArr[0].f37078j;
                         if (C()) {
                             i10 = AndroidUtilities.statusBarHeight;
                         } else {

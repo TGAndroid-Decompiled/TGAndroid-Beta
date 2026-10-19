@@ -1,40 +1,53 @@
 package ai;
-
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
 public final class h6 {
-    public final ag.b f1406a;
-    public final TLRPC.TL_payments_paymentFormStarGift f1407b;
-    public final ag.a f1408c;
+    public float f1423a;
+    public final int f1424b;
+    public final int f1425c;
 
-    public h6(ag.b bVar, TLRPC.TL_payments_paymentFormStarGift tL_payments_paymentFormStarGift) {
-        long j10;
-        this.f1406a = bVar;
-        this.f1407b = tL_payments_paymentFormStarGift;
-        ga[][] gaVarArr = ga.S;
-        if (tL_payments_paymentFormStarGift != null) {
-            ArrayList<TLRPC.TL_labeledPrice> arrayList = tL_payments_paymentFormStarGift.invoice.prices;
-            int size = arrayList.size();
-            int i10 = 0;
-            j10 = 0;
-            while (i10 < size) {
-                TLRPC.TL_labeledPrice tL_labeledPrice = arrayList.get(i10);
-                i10++;
-                j10 += tL_labeledPrice.amount;
-            }
-        } else {
-            j10 = 0;
+    public h6(float f7, int i10, int i11) {
+        this.f1423a = f7;
+        this.f1424b = i10;
+        this.f1425c = i11;
+    }
+
+    public float a(int i10) {
+        int i11 = this.f1424b;
+        int i12 = this.f1425c;
+        if (i12 == i10 && i11 == i10) {
+            return 1.0f;
         }
-        ag.b bVar2 = ag.b.f633a;
-        if (bVar == bVar2) {
-            this.f1408c = ag.a.g(j10, bVar2);
-            return;
+        if (i12 == i10) {
+            return this.f1423a;
         }
-        ag.b bVar3 = ag.b.f634b;
-        if (bVar == bVar3) {
-            this.f1408c = ag.a.i(j10, bVar3);
-        } else {
-            this.f1408c = ag.a.i(0L, bVar2);
+        if (i11 == i10) {
+            return 1.0f - this.f1423a;
         }
+        return 0.0f;
+    }
+
+    public boolean b(int i10) {
+        if (this.f1424b != i10 && this.f1425c != i10) {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean c(int i10) {
+        if (this.f1425c == i10) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean d(int i10) {
+        if (this.f1425c == i10) {
+            return true;
+        }
+        return false;
+    }
+
+    public h6(int i10, int i11) {
+        this.f1424b = i10;
+        this.f1425c = i11;
     }
 }

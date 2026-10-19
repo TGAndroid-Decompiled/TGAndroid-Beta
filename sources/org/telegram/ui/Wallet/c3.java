@@ -5,15 +5,15 @@ import android.graphics.Shader;
 import android.graphics.drawable.ShapeDrawable;
 import org.telegram.ui.Components.v40;
 public final class c3 extends ShapeDrawable.ShaderFactory {
-    public final v40 f34062a;
+    public final v40 f34064a;
 
     public c3(v40 v40Var) {
-        this.f34062a = v40Var;
+        this.f34064a = v40Var;
     }
 
     @Override
     public final Shader resize(int i10, int i11) {
-        v40 v40Var = this.f34062a;
-        return new LinearGradient(0.0f, 0.0f, 0.0f, i11, v40Var.f31151a, v40Var.f31152b, Shader.TileMode.CLAMP);
+        v40 v40Var = this.f34064a;
+        return new LinearGradient(0.0f, 0.0f, 0.0f, i11, v40Var.f31149a, v40Var.f31150b, Shader.TileMode.CLAMP);
     }
 }

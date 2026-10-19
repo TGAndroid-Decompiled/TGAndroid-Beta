@@ -11,7 +11,7 @@ public final class vw extends s4.b0 {
     @Override
     public final int R0() {
         ay ayVar = this.I;
-        if (ayVar.f35458s == 0 && this.J.W.X3() && ayVar.v == 2) {
+        if (ayVar.f35442s == 0 && this.J.W.X3() && ayVar.v == 2) {
             return 1;
         }
         return 0;

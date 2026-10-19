@@ -31,12 +31,12 @@ public final class dd extends org.telegram.ui.Components.bb implements Notificat
         im0Var.setPadding(i10, 0, i10, 0);
         this.d.setOnItemClickListener(new wa(this, 3));
         s4.k kVar = new s4.k();
-        kVar.f45944m = false;
+        kVar.f45946m = false;
         kVar.C = false;
         kVar.o(bs.h);
         kVar.n(350L);
         this.d.setItemAnimator(kVar);
-        int i11 = org.telegram.ui.ActionBar.h6.f20989d6;
+        int i11 = org.telegram.ui.ActionBar.h6.f20987d6;
         setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(i11, d6Var));
         fixNavigationBar(org.telegram.ui.ActionBar.h6.w0(i11, d6Var));
         this.e.setTitle(LocaleController.getString(R.string.StarsBuy));
@@ -46,12 +46,12 @@ public final class dd extends org.telegram.ui.Components.bb implements Notificat
         frameLayout.setPadding(0, AndroidUtilities.dp(11.0f), 0, AndroidUtilities.dp(11.0f));
         x90Var.setTextSize(1, 12.0f);
         x90Var.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.B6, d6Var));
-        x90Var.setLinkTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21048gc, d6Var));
+        x90Var.setLinkTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21046gc, d6Var));
         x90Var.setText(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.StarsTOS), new a3.d(this, 25)));
         x90Var.setGravity(17);
         x90Var.setMaxWidth(ei.x3.a(x90Var.getText(), x90Var.getPaint()));
         frameLayout.addView(x90Var, w7.z5.e(-2, -1, 17));
-        frameLayout.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21060h5, d6Var));
+        frameLayout.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21058h5, d6Var));
         this.containerView.addView(new z00(getContext()), w7.z5.c(-1.0f, -1));
         t61 t61Var = this.Y;
         if (t61Var != null) {
@@ -74,7 +74,7 @@ public final class dd extends org.telegram.ui.Components.bb implements Notificat
                     findActivity = LaunchActivity.H1;
                 }
                 if (findActivity != null) {
-                    ga.y(ddVar.currentAccount, false).f(findActivity, (TL_stars.TL_starsTopupOption) G.G, new q5(3, ddVar, G), null);
+                    ga.y(ddVar.currentAccount, false).f(findActivity, (TL_stars.TL_starsTopupOption) G.G, new r5(3, ddVar, G), null);
                 }
             }
         }
@@ -128,12 +128,12 @@ public final class dd extends org.telegram.ui.Components.bb implements Notificat
                     i10 = R.string.NotifyMoreOptions;
                 }
                 String string = LocaleController.getString(i10);
-                int i14 = qc.f2087a;
+                int i14 = qc.f2090a;
                 g61 J = g61.J(qc.class);
                 J.d = -1;
-                J.f26499l = string;
-                J.f26494f = !this.Z;
-                J.f26504q = true;
+                J.f26497l = string;
+                J.f26492f = !this.Z;
+                J.f26502q = true;
                 arrayList.add(J);
             }
         } else {
@@ -181,7 +181,7 @@ public final class dd extends org.telegram.ui.Components.bb implements Notificat
     public final hm0 x(im0 im0Var) {
         t61 t61Var = new t61(this.d, getContext(), this.currentAccount, 0, true, new q(this, 9), this.resourcesProvider);
         this.Y = t61Var;
-        t61Var.f30438r = false;
+        t61Var.f30436r = false;
         return t61Var;
     }
 }

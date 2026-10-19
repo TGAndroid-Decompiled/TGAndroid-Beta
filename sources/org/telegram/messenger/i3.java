@@ -1,21 +1,21 @@
 package org.telegram.messenger;
 public final class i3 implements Runnable {
-    public final int f18573a;
-    public final Throwable f18574b;
+    public final int f18572a;
+    public final Throwable f18573b;
 
     public i3(int i10, Throwable th2) {
-        this.f18573a = i10;
-        this.f18574b = th2;
+        this.f18572a = i10;
+        this.f18573b = th2;
     }
 
     @Override
     public final void run() {
-        switch (this.f18573a) {
+        switch (this.f18572a) {
             case 0:
-                FileLog.lambda$e$5(this.f18574b);
+                FileLog.lambda$e$5(this.f18573b);
                 return;
             default:
-                FileLog.lambda$fatal$6(this.f18574b);
+                FileLog.lambda$fatal$6(this.f18573b);
                 return;
         }
     }

@@ -7,20 +7,20 @@ import k2.w0;
 import ki.t1;
 import m.g3;
 public final class j implements v0.h {
-    public Context f15925a;
+    public Context f15923a;
 
     public j(Context context, int i10) {
         switch (i10) {
             case 2:
                 kotlin.jvm.internal.i.e(context, "context");
-                this.f15925a = context;
+                this.f15923a = context;
                 return;
             case 3:
-                this.f15925a = context;
+                this.f15923a = context;
                 return;
             default:
                 context.getClass();
-                this.f15925a = context;
+                this.f15923a = context;
                 return;
         }
     }
@@ -30,42 +30,42 @@ public final class j implements v0.h {
     }
 
     public k a() {
-        Context context = this.f15925a;
+        Context context = this.f15923a;
         if (context != null) {
             ?? obj = new Object();
-            obj.f15926a = n5.a.a(n.f15932a);
+            obj.f15924a = n5.a.a(n.f15930a);
             n5.c cVar = new n5.c(context);
-            obj.f15927b = cVar;
-            obj.f15928c = n5.a.a(new n4.s(29, cVar, new t1(cVar, 6)));
-            n5.c cVar2 = obj.f15927b;
+            obj.f15925b = cVar;
+            obj.f15926c = n5.a.a(new n4.s(29, cVar, new t1(cVar, 6)));
+            n5.c cVar2 = obj.f15925b;
             obj.d = new w0(cVar2, 22);
             hd.a a2 = n5.a.a(new mi.q(21, obj.d, n5.a.a(new le.b(cVar2, 21))));
             obj.e = a2;
             oa.d dVar = new oa.d(20);
-            n5.c cVar3 = obj.f15927b;
+            n5.c cVar3 = obj.f15925b;
             g3 g3Var = new g3(cVar3, a2, dVar, 21);
-            hd.a aVar = obj.f15926a;
-            hd.a aVar2 = obj.f15928c;
+            hd.a aVar = obj.f15924a;
+            hd.a aVar2 = obj.f15926c;
             ?? obj2 = new Object();
-            obj2.f6883b = aVar;
-            obj2.f6884c = aVar2;
-            obj2.f6882a = g3Var;
+            obj2.f6881b = aVar;
+            obj2.f6882c = aVar2;
+            obj2.f6880a = g3Var;
             obj2.d = a2;
             obj2.e = a2;
             ?? obj3 = new Object();
-            obj3.f16336a = cVar3;
-            obj3.f16337b = aVar2;
-            obj3.f16338c = a2;
+            obj3.f16334a = cVar3;
+            obj3.f16335b = aVar2;
+            obj3.f16336c = a2;
             obj3.d = g3Var;
             obj3.e = aVar;
-            obj3.f16339f = a2;
+            obj3.f16337f = a2;
             obj3.h = a2;
             ?? obj4 = new Object();
-            obj4.f44750a = aVar;
-            obj4.f44751b = a2;
-            obj4.f44752c = g3Var;
+            obj4.f44752a = aVar;
+            obj4.f44753b = a2;
+            obj4.f44754c = g3Var;
             obj4.d = a2;
-            obj.f15929f = n5.a.a(new androidx.biometric.e(obj2, obj3, obj4, 29));
+            obj.f15927f = n5.a.a(new androidx.biometric.e(obj2, obj3, obj4, 29));
             return obj;
         }
         throw new IllegalStateException(Context.class.getCanonicalName() + " must be set");
@@ -79,7 +79,7 @@ public final class j implements v0.h {
         w0 w0Var = new w0(mVar, 25);
         a3.b bVar = new a3.b(2);
         kotlin.jvm.internal.i.e(context, "context");
-        v0.j c10 = te.b.c(new te.b(this.f15925a), eVar);
+        v0.j c10 = te.b.c(new te.b(this.f15923a), eVar);
         if (c10 == null) {
             w0Var.onError(new w0.c("createCredentialAsync no provider dependencies found - please ensure the desired provider dependencies are added", 1));
         } else if (context.getPackageManager().hasSystemFeature("android.hardware.type.watch")) {
@@ -88,11 +88,11 @@ public final class j implements v0.h {
             c10.onCreateCredential(context, eVar, cancellationSignal, bVar, w0Var);
         }
         Object r10 = mVar.r();
-        ld.a aVar = ld.a.f16001a;
+        ld.a aVar = ld.a.f15999a;
         return r10;
     }
 
     public PackageInfo c(int i10, String str) {
-        return this.f15925a.getPackageManager().getPackageInfo(str, i10);
+        return this.f15923a.getPackageManager().getPackageInfo(str, i10);
     }
 }

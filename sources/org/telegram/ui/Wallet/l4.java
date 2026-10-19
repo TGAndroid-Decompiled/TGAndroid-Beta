@@ -5,6 +5,6 @@ import android.content.Context;
 public final class l4 extends org.telegram.ui.ActionBar.f3 {
     public l4(Activity activity, org.telegram.ui.ActionBar.d6 d6Var) {
         super(1, (Context) activity, d6Var, false);
-        this.behindKeyboardColorKey = org.telegram.ui.ActionBar.h6.f20931a7;
+        this.behindKeyboardColorKey = org.telegram.ui.ActionBar.h6.f20929a7;
     }
 }

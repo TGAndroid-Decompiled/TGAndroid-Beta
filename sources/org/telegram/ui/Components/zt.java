@@ -21,7 +21,7 @@ public final class zt implements Utilities.Callback0Return {
         switch (i10) {
             case 0:
                 EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) obj;
-                int i11 = EditTextBoldCursor.f24210a;
+                int i11 = EditTextBoldCursor.f24208a;
                 if (editTextBoldCursor.hasSelection() && editTextBoldCursor.getSelectionStart() >= 0 && editTextBoldCursor.getSelectionEnd() >= 0 && editTextBoldCursor.getSelectionStart() != editTextBoldCursor.getSelectionEnd() && (text = editTextBoldCursor.getText()) != null && ((oj0VarArr = (oj0[]) text.getSpans(editTextBoldCursor.getSelectionStart(), editTextBoldCursor.getSelectionEnd(), oj0.class)) == null || oj0VarArr.length == 0)) {
                     z10 = true;
                 } else {

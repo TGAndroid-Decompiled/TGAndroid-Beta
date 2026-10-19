@@ -1,37 +1,35 @@
 package ai;
 
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.p91;
 public final class o3 implements Runnable {
-    public final int f1928a = 0;
-    public final long f1929b;
-    public final long f1930c;
-    public final Utilities.Callback d;
-    public final Object e;
-    public final Object f1931f;
-    public final Object h;
+    public final int f1929a = 0;
+    public final TLRPC.Chat f1930b;
 
-    public o3(long j10, long j11, k7 k7Var, Utilities.Callback callback, TLObject tLObject, TLRPC.TL_error tL_error) {
-        this.e = k7Var;
-        this.d = callback;
-        this.f1931f = tL_error;
-        this.h = tLObject;
-        this.f1929b = j10;
-        this.f1930c = j11;
+    public o3(l7 l7Var, TLRPC.Chat chat) {
+        this.f1930b = chat;
     }
 
     @Override
     public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: ai.o3.run():void");
+        switch (this.f1929a) {
+            case 0:
+                l7.E2(p91.d0(this.f1930b, true));
+                return;
+            default:
+                TLRPC.Chat chat = this.f1930b;
+                if (chat != null) {
+                    ?? obj = new Object();
+                    obj.f21553a = true;
+                    LaunchActivity.R().showAsSheet(new org.telegram.ui.z5(-chat.f20273id), obj);
+                    return;
+                }
+                return;
+        }
     }
 
-    public o3(org.telegram.ui.Wallet.q0 q0Var, String str, org.telegram.ui.Wallet.j0 j0Var, long j10, long j11, Utilities.Callback callback) {
-        this.e = q0Var;
-        this.f1931f = str;
-        this.h = j0Var;
-        this.f1929b = j10;
-        this.f1930c = j11;
-        this.d = callback;
+    public o3(TLRPC.Chat chat) {
+        this.f1930b = chat;
     }
 }

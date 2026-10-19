@@ -4,26 +4,26 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.recaptcha.RecaptchaTasksClient;
 import org.telegram.messenger.CaptchaController;
 public final class s0 implements OnSuccessListener {
-    public final int f19467a;
-    public final String f19468b;
-    public final String f19469c;
+    public final int f19454a;
+    public final String f19455b;
+    public final String f19456c;
     public final CaptchaController.Request d;
 
     public s0(String str, String str2, CaptchaController.Request request, int i10) {
-        this.f19467a = i10;
-        this.f19468b = str;
-        this.f19469c = str2;
+        this.f19454a = i10;
+        this.f19455b = str;
+        this.f19456c = str2;
         this.d = request;
     }
 
     @Override
     public final void onSuccess(Object obj) {
-        switch (this.f19467a) {
+        switch (this.f19454a) {
             case 0:
-                CaptchaController.lambda$request$2(this.f19468b, this.f19469c, this.d, (RecaptchaTasksClient) obj);
+                CaptchaController.lambda$request$2(this.f19455b, this.f19456c, this.d, (RecaptchaTasksClient) obj);
                 return;
             default:
-                CaptchaController.lambda$request$0(this.f19468b, this.f19469c, this.d, (String) obj);
+                CaptchaController.lambda$request$0(this.f19455b, this.f19456c, this.d, (String) obj);
                 return;
         }
     }

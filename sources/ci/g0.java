@@ -13,25 +13,25 @@ import org.telegram.ui.Components.i80;
 import org.telegram.ui.Components.wl0;
 import org.telegram.ui.oa0;
 public final class g0 implements wl0 {
-    public final int f5411a;
-    public final Object f5412b;
-    public final Object f5413c;
+    public final int f5409a;
+    public final Object f5410b;
+    public final Object f5411c;
     public final Object d;
 
     public g0(Object obj, Object obj2, Object obj3, int i10) {
-        this.f5411a = i10;
-        this.f5412b = obj;
-        this.f5413c = obj2;
+        this.f5409a = i10;
+        this.f5410b = obj;
+        this.f5411c = obj2;
         this.d = obj3;
     }
 
     @Override
     public final void a(int i10, View view) {
-        int i11 = this.f5411a;
+        int i11 = this.f5409a;
         boolean z10 = true;
         Object obj = this.d;
-        Object obj2 = this.f5413c;
-        Object obj3 = this.f5412b;
+        Object obj2 = this.f5411c;
+        Object obj3 = this.f5410b;
         switch (i11) {
             case 0:
                 n2 n2Var = (n2) obj3;
@@ -65,10 +65,10 @@ public final class g0 implements wl0 {
                     return;
                 } else if (!w7.g6.a(oa0Var)) {
                     s4.c0 c0Var = new s4.c0(context);
-                    c0Var.f46051a = i10;
+                    c0Var.f46053a = i10;
                     tVar.W2.w0(c0Var);
                     w7.g6.b(oa0Var);
-                    int i12 = org.telegram.ui.Cells.s.f22961f;
+                    int i12 = org.telegram.ui.Cells.s.f22959f;
                     sVar.b(true, true);
                     for (int i13 = 0; i13 < tVar.getChildCount(); i13++) {
                         org.telegram.ui.Cells.s sVar2 = (org.telegram.ui.Cells.s) tVar.getChildAt(i13);

@@ -23,7 +23,7 @@ public final class zx implements Runnable {
                 tz tzVar = ((ay) this.d).F;
                 try {
                     li.n nVar = new li.n(tzVar.P.getContext(), 0, f7);
-                    nVar.f46051a = i10;
+                    nVar.f46053a = i10;
                     tzVar.Q.w0(nVar);
                     return;
                 } catch (Exception e) {
@@ -35,9 +35,9 @@ public final class zx implements Runnable {
                 float f10 = this.f33050b;
                 int i11 = this.f33051c;
                 try {
-                    li.n nVar2 = new li.n(x51Var.f43056h0.getContext(), 0, f10);
-                    nVar2.f46051a = i11;
-                    x51Var.f43076r0.w0(nVar2);
+                    li.n nVar2 = new li.n(x51Var.f43055h0.getContext(), 0, f10);
+                    nVar2.f46053a = i11;
+                    x51Var.f43075r0.w0(nVar2);
                     return;
                 } catch (Exception e7) {
                     FileLog.e(e7);

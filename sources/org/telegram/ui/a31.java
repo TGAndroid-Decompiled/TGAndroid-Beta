@@ -8,9 +8,9 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class a31 extends org.telegram.ui.ActionBar.n2 {
-    public static final int[] f35254c = {750000, 1000000, 1200000, 2000000};
-    public org.telegram.ui.Components.im0 f35255a;
-    public z21 f35256b;
+    public static final int[] f35256c = {750000, 1000000, 1200000, 2000000};
+    public org.telegram.ui.Components.im0 f35257a;
+    public z21 f35258b;
 
     public static String U(int i10) {
         if (i10 % 1000000 == 0) {
@@ -24,9 +24,9 @@ public final class a31 extends org.telegram.ui.ActionBar.n2 {
 
     public final void V(int i10, CharSequence[] charSequenceArr, fk0 fk0Var) {
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getParentActivity());
-        alertDialog$Builder.f20604a.R = LocaleController.getString(i10);
+        alertDialog$Builder.f20602a.R = LocaleController.getString(i10);
         alertDialog$Builder.f(charSequenceArr, new mg.j(11, this, fk0Var));
-        showDialog(alertDialog$Builder.f20604a);
+        showDialog(alertDialog$Builder.f20602a);
     }
 
     @Override
@@ -36,20 +36,20 @@ public final class a31 extends org.telegram.ui.ActionBar.n2 {
         this.actionBar.setTitle(LocaleController.getString(R.string.RoundVideoSettings));
         this.actionBar.setActionBarMenuOnItemClick(new y21(this, 0));
         FrameLayout frameLayout = new FrameLayout(context);
-        frameLayout.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20931a7, false));
+        frameLayout.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20929a7, false));
         this.fragmentView = frameLayout;
         org.telegram.ui.Components.im0 im0Var = new org.telegram.ui.Components.im0(context, null);
-        this.f35255a = im0Var;
+        this.f35257a = im0Var;
         im0Var.p1();
-        this.actionBar.setAdaptiveBackground(this.f35255a);
-        this.f35255a.setLayoutManager(new s4.b0());
-        this.f35255a.setVerticalScrollBarEnabled(false);
-        org.telegram.ui.Components.im0 im0Var2 = this.f35255a;
+        this.actionBar.setAdaptiveBackground(this.f35257a);
+        this.f35257a.setLayoutManager(new s4.b0());
+        this.f35257a.setVerticalScrollBarEnabled(false);
+        org.telegram.ui.Components.im0 im0Var2 = this.f35257a;
         z21 z21Var = new z21(context);
-        this.f35256b = z21Var;
+        this.f35258b = z21Var;
         im0Var2.setAdapter(z21Var);
-        this.f35255a.setOnItemClickListener(new f11(this, 3));
-        frameLayout.addView(this.f35255a, w7.z5.c(-1.0f, -1));
+        this.f35257a.setOnItemClickListener(new f11(this, 3));
+        frameLayout.addView(this.f35257a, w7.z5.c(-1.0f, -1));
         return this.fragmentView;
     }
 }

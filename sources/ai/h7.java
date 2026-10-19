@@ -1,252 +1,139 @@
 package ai;
 
-import android.app.Activity;
 import android.content.Context;
-import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import java.util.ArrayList;
+import java.util.Date;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.tgnet.TLObject;
-import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.d91;
-import org.telegram.ui.Components.e61;
-public final class h7 extends View {
-    public final int f1409a = 1;
-    public final Paint f1410b;
-    public final Object f1411c;
-    public final Object d;
-    public final Object e;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.Components.Premium.LimitPreviewView;
+import org.telegram.ui.Components.im0;
+import org.telegram.ui.Components.k01;
+public final class h7 extends org.telegram.ui.Components.ua {
+    public final ArrayList f1426a0;
+    public final LimitPreviewView f1427b0;
 
-    public h7(Activity activity, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(activity);
-        this.f1411c = new ne.b(this, bs.h, 380L);
-        this.f1410b = new Paint(1);
-        this.d = d6Var;
-        e61 e61Var = new e61(true);
-        this.e = e61Var;
-        e61Var.setCallback(this);
-        e61Var.b(-1);
-        e61Var.f25832i = true;
-    }
-
-    @Override
-    public void onAttachedToWindow() {
-        switch (this.f1409a) {
-            case 0:
-                super.onAttachedToWindow();
-                ((ImageReceiver) this.f1411c).onAttachedToWindow();
-                ((ImageReceiver) this.d).onAttachedToWindow();
-                return;
-            case 1:
-                super.onAttachedToWindow();
-                ((e61) this.e).d();
-                return;
-            default:
-                super.onAttachedToWindow();
-                return;
-        }
-    }
-
-    @Override
-    public void onDetachedFromWindow() {
-        switch (this.f1409a) {
-            case 0:
-                super.onDetachedFromWindow();
-                ((ImageReceiver) this.f1411c).onDetachedFromWindow();
-                ((ImageReceiver) this.d).onDetachedFromWindow();
-                return;
-            case 1:
-                super.onDetachedFromWindow();
-                ((e61) this.e).e();
-                return;
-            default:
-                super.onDetachedFromWindow();
-                return;
-        }
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
+    public h7(Context context, long j10, ArrayList arrayList, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context, d6Var);
+        float f7;
+        TL_stars.StarGiftUpgradePrice starGiftUpgradePrice;
+        float f10;
         int i10;
-        int i11;
-        View[] viewPages;
-        switch (this.f1409a) {
-            case 0:
-                int width = (getWidth() / 2) - (AndroidUtilities.dp(156.0f) / 2);
-                int height = (getHeight() / 2) - AndroidUtilities.dp(30.0f);
-                ImageReceiver imageReceiver = (ImageReceiver) this.f1411c;
-                float f7 = height;
-                imageReceiver.setImageCoords(width, f7, AndroidUtilities.dp(60.0f), AndroidUtilities.dp(60.0f));
-                imageReceiver.draw(canvas);
-                canvas.save();
-                canvas.translate((getWidth() / 2.0f) - (AndroidUtilities.dp(6.166f) / 2.0f), getHeight() / 2.0f);
-                canvas.drawPath((Path) this.e, this.f1410b);
-                canvas.restore();
-                ImageReceiver imageReceiver2 = (ImageReceiver) this.d;
-                imageReceiver2.setImageCoords(AndroidUtilities.dp(96.0f) + width, f7, AndroidUtilities.dp(60.0f), AndroidUtilities.dp(60.0f));
-                imageReceiver2.draw(canvas);
-                return;
-            case 1:
-                float width2 = getWidth() / 2.0f;
-                float height2 = getHeight() / 2.0f;
-                super.onDraw(canvas);
-                int w02 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Yd, (org.telegram.ui.ActionBar.d6) this.d);
-                Paint paint = this.f1410b;
-                paint.setColor(w02);
-                canvas.drawCircle(width2, height2, AndroidUtilities.dp(19.0f), paint);
-                float f10 = ((ne.b) this.f1411c).e;
-                float f11 = 1.0f - f10;
-                if (f11 > 0.0f) {
-                    zf.p.b(canvas, (e61) this.e, f11 * 1.35f);
-                    invalidate();
-                }
-                if (f10 > 0.0f) {
-                    float dp = AndroidUtilities.dp(6.666f) * f10;
-                    float dp2 = AndroidUtilities.dp(2.666f) * f10;
-                    canvas.drawRoundRect(width2 - dp, height2 - dp, width2 + dp, dp + height2, dp2, dp2, org.telegram.ui.ActionBar.h6.m0(-1));
-                    return;
-                }
-                return;
-            case 2:
-                super.onDraw(canvas);
-                RectF rectF = (RectF) this.e;
-                rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-                canvas.drawRoundRect(rectF, rectF.width() / 2.0f, rectF.height() / 2.0f, this.f1410b);
-                rectF.inset(AndroidUtilities.dp(1.33f), AndroidUtilities.dp(1.33f));
-                canvas.drawRoundRect(rectF, rectF.width() / 2.0f, rectF.height() / 2.0f, (Paint) this.d);
-                rectF.inset(AndroidUtilities.dpf2(4.67f), AndroidUtilities.dpf2(9.066f));
-                canvas.drawRoundRect(rectF, rectF.height() / 2.0f, rectF.height() / 2.0f, (Paint) this.f1411c);
-                return;
-            default:
-                org.telegram.ui.Wallet.p4 p4Var = (org.telegram.ui.Wallet.p4) this.e;
-                p4Var.getClass();
-                int themedColor = p4Var.getThemedColor(org.telegram.ui.ActionBar.h6.f20989d6);
-                Paint paint2 = this.f1410b;
-                paint2.setColor(themedColor);
-                ViewGroup viewGroup = p4Var.f34687b0;
-                int[] iArr = (int[]) this.f1411c;
-                viewGroup.getLocationInWindow(iArr);
-                int[] iArr2 = (int[]) this.d;
-                getLocationInWindow(iArr2);
-                float f12 = iArr[0] - iArr2[0];
-                View view = ((d91) p4Var.f34687b0).getViewPages()[0];
-                if (view != null) {
-                    i10 = view.getPaddingLeft();
-                } else {
-                    i10 = 0;
-                }
-                if (view != null) {
-                    i11 = view.getPaddingRight();
-                } else {
-                    i11 = 0;
-                }
-                canvas.save();
-                canvas.clipRect(i10 + f12, 0.0f, (f12 + p4Var.f34687b0.getWidth()) - i11, getHeight());
-                for (View view2 : ((d91) p4Var.f34687b0).getViewPages()) {
-                    if (view2 != null && view2.getVisibility() == 0) {
-                        canvas.save();
-                        canvas.translate(view2.getLeft() + (iArr[0] - iArr2[0]), view2.getTop() + (iArr[1] - iArr2[1]));
-                        canvas.concat(view2.getMatrix());
-                        canvas.drawRect(view2.getPaddingLeft(), 0.0f, view2.getWidth() - view2.getPaddingRight(), AndroidUtilities.dp(100.0f) + view2.getHeight(), paint2);
-                        canvas.restore();
-                    }
-                }
-                canvas.restore();
-                return;
+        this.f1426a0 = arrayList;
+        float f11 = this.backgroundPaddingLeft / AndroidUtilities.density;
+        LimitPreviewView limitPreviewView = new LimitPreviewView(getContext(), R.drawable.star, 0, d6Var, 0);
+        this.f1427b0 = limitPreviewView;
+        float f12 = 14.0f;
+        limitPreviewView.setTranslationY(-AndroidUtilities.dp(14.0f));
+        limitPreviewView.setIconScale(1.8f);
+        float f13 = f11;
+        this.X.addView(limitPreviewView, w7.z5.r(-1, -2, 17, f13, 20.0f, f13, 10.0f));
+        Q(j10);
+        int i11 = org.telegram.ui.ActionBar.h6.G6;
+        TextView b10 = w7.d6.b(context, 20.0f, i11, true, null);
+        b10.setGravity(17);
+        b10.setText(LocaleController.getString(R.string.Gift2UpgradeCostsTitle));
+        setTitle(LocaleController.getString(R.string.Gift2UpgradeCostsTitle));
+        this.X.addView(b10, w7.z5.t(-1, -2, 17, 32, 0, 32, 0));
+        TextView b11 = w7.d6.b(context, 14.0f, i11, false, null);
+        b11.setGravity(17);
+        b11.setText(LocaleController.getString(R.string.Gift2UpgradeCostsText));
+        this.X.addView(b11, w7.z5.t(-1, -2, 17, 32, 10, 32, 10));
+        int currentTime = ConnectionsManager.getInstance(this.currentAccount).getCurrentTime();
+        k01 k01Var = new k01(context, d6Var);
+        int i12 = 0;
+        boolean z10 = false;
+        while (true) {
+            f7 = f12;
+            if (i12 >= arrayList.size()) {
+                break;
+            }
+            if (currentTime > ((TL_stars.StarGiftUpgradePrice) arrayList.get(i12)).date && ((i10 = i12 + 1) >= arrayList.size() || currentTime > ((TL_stars.StarGiftUpgradePrice) arrayList.get(i10)).date)) {
+                f10 = f13;
+            } else {
+                f10 = f13;
+                Date date = new Date(starGiftUpgradePrice.date * 1000);
+                k01Var.c(LocaleController.getInstance().getFormatterDay().format(date) + ", " + LocaleController.getInstance().getFormatterDayMonth().format(date), md.Y0(false, org.telegram.messenger.g0.h((int) starGiftUpgradePrice.upgrade_stars, ',', new StringBuilder("⭐️ ")), 0.8f, null), null, null);
+                z10 = true;
+            }
+            i12++;
+            f12 = f7;
+            f13 = f10;
         }
-    }
-
-    @Override
-    public void onMeasure(int i10, int i11) {
-        switch (this.f1409a) {
-            case 0:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(100.0f), 1073741824));
-                return;
-            default:
-                super.onMeasure(i10, i11);
-                return;
+        float f14 = f13;
+        if (!z10) {
+            int size = arrayList.size();
+            int i13 = 0;
+            while (i13 < size) {
+                Object obj = arrayList.get(i13);
+                i13++;
+                TL_stars.StarGiftUpgradePrice starGiftUpgradePrice2 = (TL_stars.StarGiftUpgradePrice) obj;
+                Date date2 = new Date(starGiftUpgradePrice2.date * 1000);
+                k01Var.c(LocaleController.getInstance().getFormatterDay().format(date2) + ", " + LocaleController.getInstance().getFormatterDayMonth().format(date2), md.Y0(false, org.telegram.messenger.g0.h((int) starGiftUpgradePrice2.upgrade_stars, ',', new StringBuilder("⭐️ ")), 0.8f, null), null, null);
+            }
         }
+        float f15 = f14 + f7;
+        this.X.addView(k01Var, w7.z5.r(-1, -2, 7, f15, 16.0f, f15, 15.0f));
+        TextView b12 = w7.d6.b(context, 12.0f, org.telegram.ui.ActionBar.h6.f21375y6, false, null);
+        b12.setGravity(17);
+        b12.setText(LocaleController.getString(R.string.Gift2UpgradeCostsFooter));
+        this.X.addView(b12, w7.z5.t(-1, -2, 17, 32, 0, 32, 15));
+        float f16 = this.backgroundPaddingLeft / AndroidUtilities.density;
+        FrameLayout frameLayout = new FrameLayout(getContext());
+        this.Y = frameLayout;
+        frameLayout.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21058h5, this.resourcesProvider));
+        View view = new View(getContext());
+        view.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20988d7, this.resourcesProvider));
+        this.Y.addView(view, w7.z5.a(-1.0f, 1.0f / AndroidUtilities.density, 55));
+        ei.d dVar = new ei.d(getContext(), this.resourcesProvider, true);
+        this.Z = dVar;
+        float f17 = f16 + 16.0f;
+        this.Y.addView(dVar, w7.z5.d(-1, 48.0f, 119, f17, 16.0f, f17, 16.0f));
+        this.containerView.addView(this.Y, w7.z5.e(-1, -2, 87));
+        im0 im0Var = this.d;
+        im0Var.setPadding(im0Var.getPaddingLeft(), im0Var.getPaddingTop(), im0Var.getPaddingRight(), AndroidUtilities.dp(80.0f) + im0Var.getPaddingBottom());
+        this.Z.g(l7.I2(LocaleController.getString(R.string.Understood)), false, true);
+        this.Z.setOnClickListener(new ah.g0(this, 8));
     }
 
-    @Override
-    public void onSizeChanged(int i10, int i11, int i12, int i13) {
-        switch (this.f1409a) {
-            case 1:
-                super.onSizeChanged(i10, i11, i12, i13);
-                zf.p.d((e61) this.e, i10 / 2.0f, i11 / 2.0f, 17);
-                return;
-            default:
-                super.onSizeChanged(i10, i11, i12, i13);
-                return;
+    public final void Q(long j10) {
+        int w02;
+        ArrayList arrayList = this.f1426a0;
+        if (arrayList != null && !arrayList.isEmpty()) {
+            TL_stars.StarGiftUpgradePrice starGiftUpgradePrice = (TL_stars.StarGiftUpgradePrice) arrayList.get(0);
+            TL_stars.StarGiftUpgradePrice starGiftUpgradePrice2 = (TL_stars.StarGiftUpgradePrice) i2.e.h(1, arrayList);
+            LimitPreviewView limitPreviewView = this.f1427b0;
+            limitPreviewView.M = true;
+            Paint paint = limitPreviewView.K;
+            int i10 = org.telegram.ui.ActionBar.h6.Oh;
+            org.telegram.ui.ActionBar.d6 d6Var = limitPreviewView.S;
+            paint.setColor(org.telegram.ui.ActionBar.h6.w0(i10, d6Var));
+            limitPreviewView.f24277a = AndroidUtilities.ilerp((float) j10, (float) starGiftUpgradePrice.upgrade_stars, (float) starGiftUpgradePrice2.upgrade_stars);
+            org.telegram.ui.Components.q6 q6Var = limitPreviewView.N;
+            q6Var.setText(LocaleController.formatPluralStringComma("Stars", (int) starGiftUpgradePrice.upgrade_stars));
+            org.telegram.ui.Components.q6 q6Var2 = limitPreviewView.v;
+            q6Var2.setText(LocaleController.formatPluralStringComma("Stars", (int) starGiftUpgradePrice2.upgrade_stars));
+            ((FrameLayout.LayoutParams) q6Var2.getLayoutParams()).gravity = 5;
+            limitPreviewView.setType(17);
+            limitPreviewView.f24295w.setVisibility(8);
+            limitPreviewView.O.setVisibility(8);
+            if (limitPreviewView.L) {
+                w02 = -1;
+            } else {
+                w02 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.G6, d6Var);
+            }
+            q6Var2.setTextColor(w02);
+            q6Var.setTextColor(-1);
+            limitPreviewView.g((int) j10, false);
+            limitPreviewView.P = true;
+            limitPreviewView.Q = true;
+            limitPreviewView.R = true;
         }
-    }
-
-    @Override
-    public boolean verifyDrawable(Drawable drawable) {
-        switch (this.f1409a) {
-            case 1:
-                if (!super.verifyDrawable(drawable) && (drawable != ((e61) this.e) || ((ne.b) this.f1411c).f17386f)) {
-                    return false;
-                }
-                return true;
-            default:
-                return super.verifyDrawable(drawable);
-        }
-    }
-
-    public h7(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context);
-        Paint paint = new Paint(1);
-        this.f1410b = paint;
-        Paint paint2 = new Paint(1);
-        this.f1411c = paint2;
-        Paint paint3 = new Paint(1);
-        this.d = paint3;
-        this.e = new RectF();
-        paint2.setColor(-1);
-        paint.setColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20989d6, d6Var));
-        paint3.setColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.wj, d6Var));
-    }
-
-    public h7(org.telegram.ui.Wallet.p4 p4Var, Context context) {
-        super(context);
-        this.e = p4Var;
-        this.f1410b = new Paint(1);
-        this.f1411c = new int[2];
-        this.d = new int[2];
-    }
-
-    public h7(Context context, TLObject tLObject, TLObject tLObject2) {
-        super(context);
-        Path path = new Path();
-        this.e = path;
-        Paint paint = new Paint(1);
-        this.f1410b = paint;
-        org.telegram.ui.Components.h9 h9Var = new org.telegram.ui.Components.h9((org.telegram.ui.ActionBar.d6) null);
-        h9Var.p(tLObject);
-        ImageReceiver imageReceiver = new ImageReceiver(this);
-        this.f1411c = imageReceiver;
-        imageReceiver.setRoundRadius(AndroidUtilities.dp(30.0f));
-        imageReceiver.setForUserOrChat(tLObject, h9Var);
-        org.telegram.ui.Components.h9 h9Var2 = new org.telegram.ui.Components.h9((org.telegram.ui.ActionBar.d6) null);
-        h9Var2.p(tLObject2);
-        ImageReceiver imageReceiver2 = new ImageReceiver(this);
-        this.d = imageReceiver2;
-        imageReceiver2.setRoundRadius(AndroidUtilities.dp(30.0f));
-        imageReceiver2.setForUserOrChat(tLObject2, h9Var2);
-        paint.setColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.E6, false));
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint.setStrokeJoin(Paint.Join.ROUND);
-        paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
-        path.rewind();
-        path.moveTo(0.0f, -AndroidUtilities.dp(8.0f));
-        path.lineTo(AndroidUtilities.dp(6.166f), 0.0f);
-        path.lineTo(0.0f, AndroidUtilities.dp(8.0f));
     }
 }

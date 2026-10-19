@@ -8,21 +8,21 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 public final class xy0 extends x51 {
-    public final o51[] f43302d2;
-    public final ProfileActivity f43303e2;
+    public final o51[] f43306d2;
+    public final ProfileActivity f43307e2;
 
     public xy0(ProfileActivity profileActivity, ProfileActivity profileActivity2, Activity activity, Integer num, int i10, org.telegram.ui.ActionBar.d6 d6Var, int i11, o51[] o51VarArr) {
         super(profileActivity2, activity, true, num, i10, true, d6Var, i11);
-        this.f43303e2 = profileActivity;
-        this.f43302d2 = o51VarArr;
+        this.f43307e2 = profileActivity;
+        this.f43306d2 = o51VarArr;
     }
 
     @Override
     public final boolean F(TL_stars.TL_starGiftUnique tL_starGiftUnique) {
         int i10;
         if (tL_starGiftUnique != null) {
-            i10 = ((org.telegram.ui.ActionBar.n2) this.f43303e2).currentAccount;
-            if (ai.ga.y(i10, false).n(tL_starGiftUnique.f20499id) != null && MessagesController.getGlobalMainSettings().getInt("statusgiftpage", 0) < 2) {
+            i10 = ((org.telegram.ui.ActionBar.n2) this.f43307e2).currentAccount;
+            if (ai.ga.y(i10, false).n(tL_starGiftUnique.f20497id) != null && MessagesController.getGlobalMainSettings().getInt("statusgiftpage", 0) < 2) {
                 return false;
             }
             return true;
@@ -32,7 +32,7 @@ public final class xy0 extends x51 {
 
     @Override
     public final long getDialogId() {
-        return this.f43303e2.a();
+        return this.f43307e2.a();
     }
 
     @Override
@@ -44,21 +44,21 @@ public final class xy0 extends x51 {
         int i10;
         int i11;
         int i12;
-        ProfileActivity profileActivity = this.f43303e2;
+        ProfileActivity profileActivity = this.f43307e2;
         org.telegram.ui.Components.p5[] p5VarArr = profileActivity.G;
-        o51[] o51VarArr = this.f43302d2;
+        o51[] o51VarArr = this.f43306d2;
         if (tL_starGiftUnique != null) {
             i10 = ((org.telegram.ui.ActionBar.n2) profileActivity).currentAccount;
-            TL_stars.SavedStarGift n10 = ai.ga.y(i10, false).n(tL_starGiftUnique.f20499id);
+            TL_stars.SavedStarGift n10 = ai.ga.y(i10, false).n(tL_starGiftUnique.f20497id);
             if (n10 != null && MessagesController.getGlobalMainSettings().getInt("statusgiftpage", 0) < 2) {
                 MessagesController.getGlobalMainSettings().edit().putInt("statusgiftpage", MessagesController.getGlobalMainSettings().getInt("statusgiftpage", 0) + 1).apply();
                 Context context = getContext();
                 i11 = ((org.telegram.ui.ActionBar.n2) profileActivity).currentAccount;
                 i12 = ((org.telegram.ui.ActionBar.n2) profileActivity).currentAccount;
-                ai.k7 k7Var = new ai.k7(context, i11, UserConfig.getInstance(i12).getClientUserId(), profileActivity.A0, null);
-                k7Var.M2(n10, null);
-                k7Var.Q2();
-                k7Var.show();
+                ai.l7 l7Var = new ai.l7(context, i11, UserConfig.getInstance(i12).getClientUserId(), profileActivity.A0, null);
+                l7Var.M2(n10, null);
+                l7Var.Q2();
+                l7Var.show();
                 o51 o51Var = o51VarArr[0];
                 if (o51Var != null) {
                     profileActivity.D5 = null;
@@ -68,7 +68,7 @@ public final class xy0 extends x51 {
                 return;
             }
             TLRPC.TL_inputEmojiStatusCollectible tL_inputEmojiStatusCollectible2 = new TLRPC.TL_inputEmojiStatusCollectible();
-            tL_inputEmojiStatusCollectible2.collectible_id = tL_starGiftUnique.f20499id;
+            tL_inputEmojiStatusCollectible2.collectible_id = tL_starGiftUnique.f20497id;
             tL_inputEmojiStatusCollectible = tL_inputEmojiStatusCollectible2;
             if (num != null) {
                 tL_inputEmojiStatusCollectible2.flags |= 1;
@@ -88,7 +88,7 @@ public final class xy0 extends x51 {
             }
         }
         if (tL_starGiftUnique != null) {
-            l10 = Long.valueOf(tL_starGiftUnique.f20499id);
+            l10 = Long.valueOf(tL_starGiftUnique.f20497id);
         } else {
             l10 = null;
         }
@@ -98,7 +98,7 @@ public final class xy0 extends x51 {
         if (chat == null) {
             j10 = 0;
         } else {
-            j10 = -chat.f20275id;
+            j10 = -chat.f20273id;
         }
         messagesController.updateEmojiStatus(j10, tL_inputEmojiStatusCollectible, tL_starGiftUnique);
         for (int i13 = 0; i13 < 2; i13++) {

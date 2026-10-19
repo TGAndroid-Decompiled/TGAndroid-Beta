@@ -5,12 +5,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import org.telegram.messenger.SharedConfig;
 public final class zt extends org.telegram.ui.Components.hm0 {
-    public final Context f43795c;
+    public final Context f43797c;
     public final DataSettingsActivity d;
 
     public zt(DataSettingsActivity dataSettingsActivity, Context context) {
         this.d = dataSettingsActivity;
-        this.f43795c = context;
+        this.f43797c = context;
     }
 
     @Override
@@ -103,7 +103,7 @@ public final class zt extends org.telegram.ui.Components.hm0 {
     @Override
     public final s4.b1 x(ViewGroup viewGroup, int i10) {
         View z6Var;
-        Context context = this.f43795c;
+        Context context = this.f43797c;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 != 2) {
@@ -134,8 +134,8 @@ public final class zt extends org.telegram.ui.Components.hm0 {
 
     @Override
     public final void y(s4.b1 b1Var) {
-        if (b1Var.f45913f == 3) {
-            org.telegram.ui.Cells.v8 v8Var = (org.telegram.ui.Cells.v8) b1Var.f45910a;
+        if (b1Var.f45915f == 3) {
+            org.telegram.ui.Cells.v8 v8Var = (org.telegram.ui.Cells.v8) b1Var.f45912a;
             int b10 = b1Var.b();
             DataSettingsActivity dataSettingsActivity = this.d;
             if (b10 == dataSettingsActivity.E) {

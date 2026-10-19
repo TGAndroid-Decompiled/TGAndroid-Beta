@@ -11,9 +11,9 @@ import ci.o1;
 import org.telegram.ui.v3;
 import org.telegram.ui.xo0;
 public abstract class j0 {
-    public static final o1 f51574a = new o1(23);
-    public static final o1 f51575b = new o1(24);
-    public static Path f51576c;
+    public static final o1 f51576a = new o1(23);
+    public static final o1 f51577b = new o1(24);
+    public static Path f51578c;
     public static Outline d;
     public static Rect e;
 
@@ -24,12 +24,12 @@ public abstract class j0 {
         ViewOutlineProvider outlineProvider = xo0Var.getOutlineProvider();
         if (!canvas.isHardwareAccelerated() && Build.VERSION.SDK_INT >= 24 && xo0Var.getClipToOutline() && outlineProvider != null) {
             if (Looper.myLooper() == Looper.getMainLooper()) {
-                if (f51576c == null) {
-                    f51576c = new Path();
+                if (f51578c == null) {
+                    f51578c = new Path();
                     d = new Outline();
                     e = new Rect();
                 }
-                path = f51576c;
+                path = f51578c;
                 outline = d;
                 rect = e;
                 outline.setEmpty();

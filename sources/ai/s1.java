@@ -7,7 +7,7 @@ import android.graphics.Path;
 import android.graphics.drawable.Drawable;
 import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
-public final class s1 extends e7 {
+public final class s1 extends f7 {
     public final float[] D0;
     public final Path E0;
     public final float[] F0;
@@ -22,8 +22,8 @@ public final class s1 extends e7 {
     }
 
     @Override
-    public final void d(g6 g6Var) {
-        super.d(g6Var);
+    public final void d(h6 h6Var) {
+        super.d(h6Var);
         this.G0.U(true);
     }
 
@@ -69,8 +69,8 @@ public final class s1 extends e7 {
             fArr[1] = Math.min(1.0f, fArr[1] * 1.1f);
             fArr[2] = Math.min(1.0f, fArr[2] * 1.1f);
             int HSVToColor = Color.HSVToColor(fArr);
-            if (q6Var.getSizeableBackground() instanceof t6) {
-                ((t6) q6Var.getSizeableBackground()).f2203b.setColor(HSVToColor);
+            if (q6Var.getSizeableBackground() instanceof u6) {
+                ((u6) q6Var.getSizeableBackground()).f2254b.setColor(HSVToColor);
                 q6Var.invalidate();
             } else if (org.telegram.ui.ActionBar.h6.C1(q6Var.getSizeableBackground(), HSVToColor, false)) {
                 q6Var.invalidate();

@@ -7,12 +7,12 @@ import org.telegram.messenger.Emoji;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.UserConfig;
 public final class ez0 extends hm0 {
-    public final hz0 f26051c;
+    public final hz0 f26049c;
     public final hz0 d;
 
     public ez0(hz0 hz0Var, hz0 hz0Var2) {
         this.d = hz0Var;
-        this.f26051c = hz0Var2;
+        this.f26049c = hz0Var2;
     }
 
     @Override
@@ -22,7 +22,7 @@ public final class ez0 extends hm0 {
 
     @Override
     public final int h() {
-        ArrayList arrayList = this.f26051c.f26961w;
+        ArrayList arrayList = this.f26049c.f26959w;
         if (arrayList == null) {
             return 0;
         }
@@ -31,7 +31,7 @@ public final class ez0 extends hm0 {
 
     @Override
     public final long i(int i10) {
-        ArrayList arrayList = this.f26051c.f26961w;
+        ArrayList arrayList = this.f26049c.f26959w;
         if (arrayList == null) {
             return 0L;
         }
@@ -41,22 +41,22 @@ public final class ez0 extends hm0 {
     @Override
     public final void v(s4.b1 b1Var, int i10) {
         String str;
-        gz0 gz0Var = (gz0) b1Var.f45910a;
-        hz0 hz0Var = this.f26051c;
-        ArrayList arrayList = hz0Var.f26961w;
+        gz0 gz0Var = (gz0) b1Var.f45912a;
+        hz0 hz0Var = this.f26049c;
+        ArrayList arrayList = hz0Var.f26959w;
         if (arrayList == null) {
             str = null;
         } else {
             str = ((MediaDataController.KeywordResult) arrayList.get(i10)).emoji;
         }
         int direction = hz0Var.getDirection();
-        gz0Var.f26726a = str;
+        gz0Var.f26724a = str;
         if (str != null && str.startsWith("animated_")) {
             try {
                 long parseLong = Long.parseLong(str.substring(9));
-                Drawable drawable = gz0Var.f26727b;
+                Drawable drawable = gz0Var.f26725b;
                 if (!(drawable instanceof r5) || ((r5) drawable).i() != parseLong) {
-                    gz0Var.setImageDrawable(r5.n(UserConfig.selectedAccount, parseLong, null, gz0Var.f26729f.d()));
+                    gz0Var.setImageDrawable(r5.n(UserConfig.selectedAccount, parseLong, null, gz0Var.f26727f.d()));
                 }
             } catch (Exception unused) {
                 gz0Var.setImageDrawable(null);
@@ -72,6 +72,6 @@ public final class ez0 extends hm0 {
 
     @Override
     public final s4.b1 x(ViewGroup viewGroup, int i10) {
-        return new s4.b1(new gz0(this.d, this.f26051c.getContext()));
+        return new s4.b1(new gz0(this.d, this.f26049c.getContext()));
     }
 }

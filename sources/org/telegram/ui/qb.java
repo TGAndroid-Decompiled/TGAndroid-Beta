@@ -4,22 +4,22 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import org.telegram.messenger.AndroidUtilities;
 public final class qb implements ViewTreeObserver.OnPreDrawListener {
-    public final View f40519a;
-    public final s4.b1 f40520b;
-    public final rb f40521c;
+    public final View f40514a;
+    public final s4.b1 f40515b;
+    public final rb f40516c;
 
     public qb(rb rbVar, View view, s4.b1 b1Var) {
-        this.f40521c = rbVar;
-        this.f40519a = view;
-        this.f40520b = b1Var;
+        this.f40516c = rbVar;
+        this.f40514a = view;
+        this.f40515b = b1Var;
     }
 
     @Override
     public final boolean onPreDraw() {
         int i10;
-        View view = this.f40519a;
+        View view = this.f40514a;
         view.getViewTreeObserver().removeOnPreDrawListener(this);
-        vb vbVar = this.f40521c.f41113n;
+        vb vbVar = this.f40516c.f41105n;
         int measuredHeight = vbVar.v.getMeasuredHeight();
         int top = view.getTop();
         view.getBottom();
@@ -33,7 +33,7 @@ public final class qb implements ViewTreeObserver.OnPreDrawListener {
         if (measuredHeight2 > measuredHeight) {
             measuredHeight2 = i11 + measuredHeight;
         }
-        View view2 = this.f40520b.f45910a;
+        View view2 = this.f40515b.f45912a;
         if (view2 instanceof org.telegram.ui.Cells.u1) {
             ((org.telegram.ui.Cells.u1) view).b4(i11, measuredHeight2 - i11, (vbVar.X.getHeightWithKeyboard() - AndroidUtilities.dp(48.0f)) - vbVar.v.getTop(), 0.0f, (view.getY() + vb.G0(vbVar).getMeasuredHeight()) - vbVar.X.getBackgroundTranslationY(), vbVar.X.getMeasuredWidth(), vbVar.X.getBackgroundSizeY(), 0, 0, 0);
             return true;

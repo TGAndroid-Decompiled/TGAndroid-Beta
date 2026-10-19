@@ -1,15 +1,15 @@
 package u2;
 public abstract class t1 extends m {
-    public final a f47436k;
+    public final a f47438k;
 
     public t1(a aVar) {
-        this.f47436k = aVar;
+        this.f47438k = aVar;
     }
 
     public abstract void A(b2.o1 o1Var);
 
     public final void B() {
-        y(null, this.f47436k);
+        y(null, this.f47438k);
     }
 
     public void C() {
@@ -18,34 +18,34 @@ public abstract class t1 extends m {
 
     @Override
     public boolean a(b2.o0 o0Var) {
-        return this.f47436k.a(o0Var);
+        return this.f47438k.a(o0Var);
     }
 
     @Override
     public b2.o1 h() {
-        return this.f47436k.h();
+        return this.f47438k.h();
     }
 
     @Override
     public final b2.o0 i() {
-        return this.f47436k.i();
+        return this.f47438k.i();
     }
 
     @Override
     public boolean j() {
-        return this.f47436k.j();
+        return this.f47438k.j();
     }
 
     @Override
     public final void m(g2.c0 c0Var) {
-        this.f47355j = c0Var;
-        this.f47354i = e2.m0.q(null);
+        this.f47357j = c0Var;
+        this.f47356i = e2.m0.q(null);
         C();
     }
 
     @Override
     public void t(b2.o0 o0Var) {
-        this.f47436k.t(o0Var);
+        this.f47438k.t(o0Var);
     }
 
     @Override

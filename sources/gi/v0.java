@@ -7,17 +7,17 @@ import ei.bc;
 import org.json.JSONObject;
 import org.telegram.messenger.AndroidUtilities;
 public final class v0 implements SensorEventListener {
-    public final int f11511a;
-    public long f11512b;
-    public float[] f11513c;
+    public final int f11509a;
+    public long f11510b;
+    public float[] f11511c;
     public final y0 d;
 
     public v0(y0 y0Var, int i10) {
-        this.f11511a = i10;
+        this.f11509a = i10;
         switch (i10) {
             case 1:
                 this.d = y0Var;
-                this.f11513c = new float[3];
+                this.f11511c = new float[3];
                 return;
             default:
                 this.d = y0Var;
@@ -26,17 +26,17 @@ public final class v0 implements SensorEventListener {
     }
 
     public final void c() {
-        switch (this.f11511a) {
+        switch (this.f11509a) {
             case 0:
                 y0 y0Var = this.d;
-                if (y0Var.f11557k != null && this.f11513c != null) {
-                    this.f11512b = System.currentTimeMillis();
+                if (y0Var.f11555k != null && this.f11511c != null) {
+                    this.f11510b = System.currentTimeMillis();
                     try {
                         JSONObject jSONObject = new JSONObject();
-                        jSONObject.put("x", -this.f11513c[0]);
-                        jSONObject.put("y", -this.f11513c[1]);
-                        jSONObject.put("z", -this.f11513c[2]);
-                        org.telegram.ui.web.x0 x0Var = y0Var.f11557k;
+                        jSONObject.put("x", -this.f11511c[0]);
+                        jSONObject.put("y", -this.f11511c[1]);
+                        jSONObject.put("z", -this.f11511c[2]);
+                        org.telegram.ui.web.x0 x0Var = y0Var.f11555k;
                         x0Var.d("window.Telegram.WebView.receiveEvent('accelerometer_changed', " + jSONObject + ");");
                         return;
                     } catch (Exception unused) {
@@ -45,16 +45,16 @@ public final class v0 implements SensorEventListener {
                 }
                 return;
             default:
-                float[] fArr = this.f11513c;
+                float[] fArr = this.f11511c;
                 y0 y0Var2 = this.d;
-                if (y0Var2.f11557k != null) {
-                    this.f11512b = System.currentTimeMillis();
+                if (y0Var2.f11555k != null) {
+                    this.f11510b = System.currentTimeMillis();
                     try {
                         JSONObject jSONObject2 = new JSONObject();
                         jSONObject2.put("x", fArr[0]);
                         jSONObject2.put("y", fArr[1]);
                         jSONObject2.put("z", fArr[2]);
-                        org.telegram.ui.web.x0 x0Var2 = y0Var2.f11557k;
+                        org.telegram.ui.web.x0 x0Var2 = y0Var2.f11555k;
                         x0Var2.d("window.Telegram.WebView.receiveEvent('gyroscope_changed', " + jSONObject2 + ");");
                     } catch (Exception unused2) {
                     }
@@ -69,26 +69,26 @@ public final class v0 implements SensorEventListener {
 
     @Override
     public final void onAccuracyChanged(Sensor sensor, int i10) {
-        int i11 = this.f11511a;
+        int i11 = this.f11509a;
     }
 
     @Override
     public final void onSensorChanged(SensorEvent sensorEvent) {
-        switch (this.f11511a) {
+        switch (this.f11509a) {
             case 0:
                 y0 y0Var = this.d;
-                bc bcVar = y0Var.f11559m;
+                bc bcVar = y0Var.f11557m;
                 if (bcVar != null) {
                     AndroidUtilities.cancelRunOnUIThread(bcVar);
-                    y0Var.f11559m = null;
+                    y0Var.f11557m = null;
                 }
-                if (!y0Var.f11558l && y0Var.f11557k != null) {
-                    long currentTimeMillis = System.currentTimeMillis() - this.f11512b;
-                    this.f11513c = sensorEvent.values;
-                    long j10 = y0Var.f11552c;
+                if (!y0Var.f11556l && y0Var.f11555k != null) {
+                    long currentTimeMillis = System.currentTimeMillis() - this.f11510b;
+                    this.f11511c = sensorEvent.values;
+                    long j10 = y0Var.f11550c;
                     if (currentTimeMillis < j10) {
                         bc bcVar2 = new bc(this, 5);
-                        y0Var.f11559m = bcVar2;
+                        y0Var.f11557m = bcVar2;
                         AndroidUtilities.runOnUIThread(bcVar2, j10 - currentTimeMillis);
                         return;
                     }
@@ -98,23 +98,23 @@ public final class v0 implements SensorEventListener {
                 return;
             default:
                 y0 y0Var2 = this.d;
-                bc bcVar3 = y0Var2.f11561o;
+                bc bcVar3 = y0Var2.f11559o;
                 if (bcVar3 != null) {
                     AndroidUtilities.cancelRunOnUIThread(bcVar3);
-                    y0Var2.f11561o = null;
+                    y0Var2.f11559o = null;
                 }
-                if (!y0Var2.f11558l && y0Var2.f11557k != null) {
-                    float[] fArr = this.f11513c;
+                if (!y0Var2.f11556l && y0Var2.f11555k != null) {
+                    float[] fArr = this.f11511c;
                     float f7 = fArr[0];
                     float[] fArr2 = sensorEvent.values;
                     fArr[0] = f7 + fArr2[0];
                     fArr[1] = fArr[1] + fArr2[1];
                     fArr[2] = fArr[2] + fArr2[2];
-                    long currentTimeMillis2 = System.currentTimeMillis() - this.f11512b;
+                    long currentTimeMillis2 = System.currentTimeMillis() - this.f11510b;
                     long j11 = y0Var2.e;
                     if (currentTimeMillis2 < j11) {
                         bc bcVar4 = new bc(this, 6);
-                        y0Var2.f11561o = bcVar4;
+                        y0Var2.f11559o = bcVar4;
                         AndroidUtilities.runOnUIThread(bcVar4, j11 - currentTimeMillis2);
                         return;
                     }

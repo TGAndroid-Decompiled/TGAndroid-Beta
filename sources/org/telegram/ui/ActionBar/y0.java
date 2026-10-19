@@ -12,32 +12,32 @@ import org.telegram.ui.Components.bs;
 import org.telegram.ui.Components.ph0;
 import org.telegram.ui.Components.y9;
 public final class y0 extends AnimatorListenerAdapter {
-    public final int f21895a;
-    public final float f21896b;
-    public final Object f21897c;
+    public final int f21893a;
+    public final float f21894b;
+    public final Object f21895c;
 
     public y0(Object obj, float f7, int i10) {
-        this.f21895a = i10;
-        this.f21897c = obj;
-        this.f21896b = f7;
+        this.f21893a = i10;
+        this.f21895c = obj;
+        this.f21894b = f7;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        int i10 = this.f21895a;
-        float f7 = this.f21896b;
-        Object obj = this.f21897c;
+        int i10 = this.f21893a;
+        float f7 = this.f21894b;
+        Object obj = this.f21895c;
         switch (i10) {
             case 0:
                 b1 b1Var = (b1) obj;
                 b1Var.T = null;
-                b1Var.f20637a = f7;
+                b1Var.f20635a = f7;
                 b1Var.invalidate();
                 return;
             case 1:
                 v3 v3Var = (v3) obj;
-                v3Var.f21790i = f7;
-                w3 w3Var = v3Var.f21786b;
+                v3Var.f21788i = f7;
+                w3 w3Var = v3Var.f21784b;
                 if (w3Var != null) {
                     w3Var.invalidate();
                     return;
@@ -60,18 +60,18 @@ public final class y0 extends AnimatorListenerAdapter {
                 return;
             case 4:
                 y9 y9Var = (y9) obj;
-                y9Var.f32572g = f7;
+                y9Var.f32570g = f7;
                 y9Var.invalidateSelf();
                 return;
             case 5:
                 ph0 ph0Var = (ph0) obj;
                 ph0Var.H.unlock();
-                ph0Var.f29275b = f7;
+                ph0Var.f29273b = f7;
                 if (f7 <= 0.0f) {
                     ph0Var.G = -1;
                 }
                 ph0Var.c(true);
-                ph0Var.f29277f = false;
+                ph0Var.f29275f = false;
                 if (ph0Var.O != null && Math.abs(f7 - 1.0f) < 0.01f) {
                     ph0Var.O.run();
                     return;
@@ -79,7 +79,7 @@ public final class y0 extends AnimatorListenerAdapter {
                 return;
             case 6:
                 org.telegram.ui.Wallet.z2 z2Var = (org.telegram.ui.Wallet.z2) obj;
-                org.telegram.ui.Wallet.x5 x5Var = z2Var.f35165r;
+                org.telegram.ui.Wallet.x5 x5Var = z2Var.f35167r;
                 x5Var.getClass();
                 x5Var.setLayerType(0, null);
                 if (f7 == 0.0f) {
@@ -93,7 +93,7 @@ public final class y0 extends AnimatorListenerAdapter {
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(z2Var.Q, 1.0f);
                     z2Var.P = ofFloat;
                     ofFloat.setDuration(320L);
-                    z2Var.P.setInterpolator(bs.f25015g);
+                    z2Var.P.setInterpolator(bs.f25013g);
                     z2Var.P.addUpdateListener(new org.telegram.ui.Wallet.w2(z2Var, 1));
                     z2Var.P.start();
                     return;
@@ -102,10 +102,10 @@ public final class y0 extends AnimatorListenerAdapter {
                 }
             default:
                 org.telegram.ui.Wallet.o5 o5Var = (org.telegram.ui.Wallet.o5) obj;
-                if (o5Var.f34645l0 == animator) {
-                    o5Var.f34645l0 = null;
+                if (o5Var.f34647l0 == animator) {
+                    o5Var.f34647l0 = null;
                     o5Var.H0(f7);
-                    o5Var.f34648o0.o(false);
+                    o5Var.f34650o0.o(false);
                     return;
                 }
                 return;
@@ -114,11 +114,11 @@ public final class y0 extends AnimatorListenerAdapter {
 
     @Override
     public void onAnimationStart(Animator animator) {
-        switch (this.f21895a) {
+        switch (this.f21893a) {
             case 5:
-                ph0 ph0Var = (ph0) this.f21897c;
-                ph0Var.f29277f = true;
-                ph0Var.f29276c = this.f21896b;
+                ph0 ph0Var = (ph0) this.f21895c;
+                ph0Var.f29275f = true;
+                ph0Var.f29274c = this.f21894b;
                 return;
             default:
                 super.onAnimationStart(animator);

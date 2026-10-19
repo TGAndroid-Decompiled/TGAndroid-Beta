@@ -11,42 +11,42 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.e11;
 public final class m0 extends Drawable {
-    public final float f5601a = 0.75f;
-    public final Drawable f5602b;
-    public final e11 f5603c;
+    public final float f5599a = 0.75f;
+    public final Drawable f5600b;
+    public final e11 f5601c;
 
     public m0(Context context, int i10) {
-        this.f5602b = context.getResources().getDrawable(R.drawable.filled_stream_crown).mutate();
+        this.f5600b = context.getResources().getDrawable(R.drawable.filled_stream_crown).mutate();
         e11 e11Var = new e11(i2.e.j(i10, ""), 8.0f, AndroidUtilities.getTypeface("fonts/num.otf"));
-        this.f5603c = e11Var;
-        e11Var.f25728a.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+        this.f5601c = e11Var;
+        e11Var.f25726a.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
     }
 
     @Override
     public final void draw(Canvas canvas) {
         Rect bounds = getBounds();
         canvas.saveLayerAlpha(bounds.left, bounds.top, bounds.right, bounds.bottom, 255, 31);
-        Drawable drawable = this.f5602b;
+        Drawable drawable = this.f5600b;
         drawable.setBounds(bounds);
         drawable.draw(canvas);
         int centerY = bounds.centerY();
-        this.f5603c.c(bounds.centerX() - (this.f5603c.f25730c / 2.0f), AndroidUtilities.dp(0.15f) + centerY, drawable.getAlpha() / 255.0f, -1, canvas);
+        this.f5601c.c(bounds.centerX() - (this.f5601c.f25728c / 2.0f), AndroidUtilities.dp(0.15f) + centerY, drawable.getAlpha() / 255.0f, -1, canvas);
         canvas.restore();
     }
 
     @Override
     public final int getAlpha() {
-        return this.f5602b.getAlpha();
+        return this.f5600b.getAlpha();
     }
 
     @Override
     public final int getIntrinsicHeight() {
-        return (int) (this.f5602b.getIntrinsicHeight() * this.f5601a);
+        return (int) (this.f5600b.getIntrinsicHeight() * this.f5599a);
     }
 
     @Override
     public final int getIntrinsicWidth() {
-        return (int) (this.f5602b.getIntrinsicWidth() * this.f5601a);
+        return (int) (this.f5600b.getIntrinsicWidth() * this.f5599a);
     }
 
     @Override
@@ -56,11 +56,11 @@ public final class m0 extends Drawable {
 
     @Override
     public final void setAlpha(int i10) {
-        this.f5602b.setAlpha(i10);
+        this.f5600b.setAlpha(i10);
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        this.f5602b.setColorFilter(colorFilter);
+        this.f5600b.setColorFilter(colorFilter);
     }
 }

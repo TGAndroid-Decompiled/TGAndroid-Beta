@@ -1,12 +1,12 @@
 package c3;
 public final class d0 {
-    public static final d0 f4605c = new d0(0, 0);
-    public final long f4606a;
-    public final long f4607b;
+    public static final d0 f4603c = new d0(0, 0);
+    public final long f4604a;
+    public final long f4605b;
 
     public d0(long j10, long j11) {
-        this.f4606a = j10;
-        this.f4607b = j11;
+        this.f4604a = j10;
+        this.f4605b = j11;
     }
 
     public final boolean equals(Object obj) {
@@ -15,7 +15,7 @@ public final class d0 {
         }
         if (obj != null && d0.class == obj.getClass()) {
             d0 d0Var = (d0) obj;
-            if (this.f4606a == d0Var.f4606a && this.f4607b == d0Var.f4607b) {
+            if (this.f4604a == d0Var.f4604a && this.f4605b == d0Var.f4605b) {
                 return true;
             }
         }
@@ -23,13 +23,13 @@ public final class d0 {
     }
 
     public final int hashCode() {
-        return (((int) this.f4606a) * 31) + ((int) this.f4607b);
+        return (((int) this.f4604a) * 31) + ((int) this.f4605b);
     }
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("[timeUs=");
-        sb2.append(this.f4606a);
+        sb2.append(this.f4604a);
         sb2.append(", position=");
-        return a1.g.r(sb2, this.f4607b, "]");
+        return a1.g.r(sb2, this.f4605b, "]");
     }
 }

@@ -1,52 +1,32 @@
 package ai;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class v4 implements RequestDelegate {
-    public final int f2292a;
-    public final k7 f2293b;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.LaunchActivity;
+public final class v4 implements Runnable {
+    public final int f2296a;
+    public final org.telegram.ui.ActionBar.b2 f2297b;
 
-    public v4(k7 k7Var, int i10) {
-        this.f2292a = i10;
-        this.f2293b = k7Var;
+    public v4(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        this.f2296a = i10;
+        this.f2297b = b2Var;
     }
 
     @Override
-    public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f2292a) {
+    public final void run() {
+        switch (this.f2296a) {
             case 0:
-                final k7 k7Var = this.f2293b;
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r4) {
-                            case 0:
-                                k7.Z0(k7Var, tLObject, tL_error);
-                                return;
-                            default:
-                                k7.q1(k7Var, tLObject, tL_error);
-                                return;
-                        }
-                    }
-                });
+                this.f2297b.dismiss();
+                org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
+                if (U != null) {
+                    org.telegram.ui.Components.qc Q = org.telegram.ui.Components.xc.a0(U).Q(R.raw.error, 36, LocaleController.getString(R.string.MessageNotFound));
+                    Q.f29604t = true;
+                    Q.j();
+                    return;
+                }
                 return;
             default:
-                final k7 k7Var2 = this.f2293b;
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r4) {
-                            case 0:
-                                k7.Z0(k7Var2, tLObject, tL_error);
-                                return;
-                            default:
-                                k7.q1(k7Var2, tLObject, tL_error);
-                                return;
-                        }
-                    }
-                });
+                this.f2297b.dismiss();
                 return;
         }
     }

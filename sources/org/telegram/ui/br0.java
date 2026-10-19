@@ -4,21 +4,21 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 public final class br0 implements Runnable {
-    public final int f35736a;
-    public final PhotoViewer f35737b;
-    public final Bitmap f35738c;
+    public final int f35729a;
+    public final PhotoViewer f35730b;
+    public final Bitmap f35731c;
 
     public br0(PhotoViewer photoViewer, Bitmap bitmap, int i10) {
-        this.f35736a = i10;
-        this.f35737b = photoViewer;
-        this.f35738c = bitmap;
+        this.f35729a = i10;
+        this.f35730b = photoViewer;
+        this.f35731c = bitmap;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f35736a;
-        Bitmap bitmap = this.f35738c;
-        PhotoViewer photoViewer = this.f35737b;
+        int i10 = this.f35729a;
+        Bitmap bitmap = this.f35731c;
+        PhotoViewer photoViewer = this.f35730b;
         switch (i10) {
             case 0:
                 Drawable[] drawableArr = PhotoViewer.U8;

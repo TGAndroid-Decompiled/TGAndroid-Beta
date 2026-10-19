@@ -5,14 +5,14 @@ import java.util.ArrayList;
 import org.telegram.ui.Components.hm0;
 import s4.o;
 public abstract class b extends hm0 {
-    public final g f44288c = new g();
+    public final g f44290c = new g();
 
     public final void E(ArrayList arrayList, ArrayList arrayList2) {
         if (arrayList2 == null) {
             arrayList2 = new ArrayList();
         }
-        g gVar = this.f44288c;
-        gVar.f11867c = arrayList;
+        g gVar = this.f44290c;
+        gVar.f11865c = arrayList;
         gVar.d = arrayList2;
         o.c(gVar, true).c(this);
     }

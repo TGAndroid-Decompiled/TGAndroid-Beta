@@ -3,11 +3,11 @@ package org.telegram.ui;
 import java.util.ArrayList;
 import org.telegram.messenger.MediaController;
 public final class yt0 {
-    public String f43548a;
-    public String f43549b;
-    public MediaController.CropState f43550c;
+    public String f43543a;
+    public String f43544b;
+    public MediaController.CropState f43545c;
     public MediaController.SavedFilterState d;
     public ArrayList e;
-    public ArrayList f43551f;
-    public long f43552g;
+    public ArrayList f43546f;
+    public long f43547g;
 }

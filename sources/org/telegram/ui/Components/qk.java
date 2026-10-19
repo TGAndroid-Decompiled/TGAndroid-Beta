@@ -5,21 +5,21 @@ import android.text.Spanned;
 import android.text.TextUtils;
 import android.view.View;
 public final class qk implements InputFilter {
-    public final int f29659a;
-    public final View f29660b;
+    public final int f29657a;
+    public final View f29658b;
 
     public qk(int i10, View view) {
-        this.f29659a = i10;
-        this.f29660b = view;
+        this.f29657a = i10;
+        this.f29658b = view;
     }
 
     @Override
     public final CharSequence filter(CharSequence charSequence, int i10, int i11, Spanned spanned, int i12, int i13) {
-        switch (this.f29659a) {
+        switch (this.f29657a) {
             case 0:
-                return al.Q((al) this.f29660b, charSequence, i10, i11, spanned, i12, i13);
+                return al.Q((al) this.f29658b, charSequence, i10, i11, spanned, i12, i13);
             default:
-                sy0 sy0Var = (sy0) this.f29660b;
+                sy0 sy0Var = (sy0) this.f29658b;
                 if (charSequence.length() > 0 && Character.isWhitespace(charSequence.charAt(0))) {
                     if (TextUtils.isEmpty(sy0Var.getText()) || i12 == 0) {
                         return "";

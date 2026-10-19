@@ -1,8 +1,8 @@
 package org.telegram.ui;
 public final class ib {
-    public final vb f37932a;
+    public final vb f37903a;
 
     public ib(vb vbVar) {
-        this.f37932a = vbVar;
+        this.f37903a = vbVar;
     }
 }

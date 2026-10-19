@@ -35,7 +35,7 @@ public abstract class p10 {
         org.telegram.ui.Components.bz0 bz0Var;
         int i13;
         org.telegram.ui.ActionBar.f3 f3Var = new org.telegram.ui.ActionBar.f3(1, (Context) activity, d6Var, false);
-        f3Var.fixNavigationBar(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21060h5, d6Var));
+        f3Var.fixNavigationBar(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21058h5, d6Var));
         LinearLayout linearLayout = new LinearLayout(activity);
         linearLayout.setOrientation(1);
         linearLayout.setPadding(AndroidUtilities.dp(16.0f), 0, AndroidUtilities.dp(16.0f), 0);
@@ -116,14 +116,14 @@ public abstract class p10 {
         org.telegram.ui.Components.x90 x90Var = new org.telegram.ui.Components.x90(activity, null);
         x90Var.setTypeface(AndroidUtilities.bold());
         x90Var.setGravity(17);
-        int i17 = org.telegram.ui.ActionBar.h6.f21095j5;
+        int i17 = org.telegram.ui.ActionBar.h6.f21093j5;
         x90Var.setTextColor(org.telegram.ui.ActionBar.h6.w0(i17, d6Var));
-        x90Var.setLinkTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21192o6, d6Var));
+        x90Var.setLinkTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21190o6, d6Var));
         x90Var.setTextSize(1, 16.0f);
         x90Var.setText(replaceSingleTag);
         linearLayout.addView(x90Var, w7.z5.t(-1, -2, 1, 42, 0, 42, 0));
         FrameLayout frameLayout2 = new FrameLayout(activity);
-        frameLayout2.setBackground(org.telegram.ui.ActionBar.h6.d0(AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20982ci, d6Var)));
+        frameLayout2.setBackground(org.telegram.ui.ActionBar.h6.d0(AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20980ci, d6Var)));
         org.telegram.ui.Components.w9 w9Var = new org.telegram.ui.Components.w9(activity);
         w9Var.setRoundRadius(AndroidUtilities.dp(28.0f));
         org.telegram.ui.Components.h9 h9Var = new org.telegram.ui.Components.h9((org.telegram.ui.ActionBar.d6) null);
@@ -139,7 +139,7 @@ public abstract class p10 {
         linearLayout.addView(frameLayout2, w7.z5.t(-2, 28, 1, 42, 10, 42, 18));
         TextView textView2 = new TextView(activity);
         textView2.setGravity(17);
-        org.telegram.messenger.lk.o(i17, d6Var, textView2, 1, 14.0f);
+        org.telegram.messenger.kk.o(i17, d6Var, textView2, 1, 14.0f);
         textView2.setText(replaceCharSequence);
         linearLayout.addView(textView2, w7.z5.t(-1, -2, 1, 32, 0, 32, 19));
         ei.d dVar = new ei.d(activity, d6Var, true);

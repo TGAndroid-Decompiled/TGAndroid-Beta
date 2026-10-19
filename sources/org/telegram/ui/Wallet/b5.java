@@ -3,30 +3,30 @@ package org.telegram.ui.Wallet;
 import android.content.Context;
 import android.view.View;
 public final class b5 extends x5 {
-    public final o5 f34033l0;
+    public final o5 f34035l0;
 
     public b5(o5 o5Var, Context context) {
         super(context);
-        this.f34033l0 = o5Var;
+        this.f34035l0 = o5Var;
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
         int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, 0);
         super.onMeasure(i10, makeMeasureSpec);
-        o5 o5Var = this.f34033l0;
-        if (o5Var.f34646n > 0 && getMeasuredHeight() > o5Var.f34646n) {
+        o5 o5Var = this.f34035l0;
+        if (o5Var.f34648n > 0 && getMeasuredHeight() > o5Var.f34648n) {
             int paddingRight = getPaddingRight() + getPaddingLeft();
             int paddingBottom = getPaddingBottom() + getPaddingTop();
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(paddingRight + ((int) ((getMeasuredWidth() - paddingRight) * (Math.max(0, o5Var.f34646n - paddingBottom) / Math.max(1, getMeasuredHeight() - paddingBottom)))), 1073741824), makeMeasureSpec);
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(paddingRight + ((int) ((getMeasuredWidth() - paddingRight) * (Math.max(0, o5Var.f34648n - paddingBottom) / Math.max(1, getMeasuredHeight() - paddingBottom)))), 1073741824), makeMeasureSpec);
         }
     }
 
     @Override
     public final void setStickerStyle(float[] fArr) {
         super.setStickerStyle(fArr);
-        o5 o5Var = this.f34033l0;
-        o5Var.O0(o5Var.f34659w0);
+        o5 o5Var = this.f34035l0;
+        o5Var.O0(o5Var.f34661w0);
         o5Var.P0(fArr);
     }
 }

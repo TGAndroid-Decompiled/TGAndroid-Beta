@@ -1,37 +1,28 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.TLObject;
+import java.util.ArrayList;
+import org.telegram.messenger.MediaDataController;
 public final class d7 implements Runnable {
-    public final int f18159a;
-    public final MediaDataController f18160b;
-    public final TLObject f18161c;
+    public final int f18163a;
+    public final MediaDataController.KeywordResultCallback f18164b;
+    public final ArrayList f18165c;
+    public final String d;
 
-    public d7(MediaDataController mediaDataController, TLObject tLObject, int i10) {
-        this.f18159a = i10;
-        this.f18160b = mediaDataController;
-        this.f18161c = tLObject;
+    public d7(MediaDataController.KeywordResultCallback keywordResultCallback, ArrayList arrayList, String str, int i10) {
+        this.f18163a = i10;
+        this.f18164b = keywordResultCallback;
+        this.f18165c = arrayList;
+        this.d = str;
     }
 
     @Override
     public final void run() {
-        switch (this.f18159a) {
+        switch (this.f18163a) {
             case 0:
-                this.f18160b.lambda$checkPremiumGiftStickers$75(this.f18161c);
-                return;
-            case 1:
-                this.f18160b.lambda$loadReactions$13(this.f18161c);
-                return;
-            case 2:
-                this.f18160b.lambda$checkTonGiftStickers$77(this.f18161c);
-                return;
-            case 3:
-                this.f18160b.lambda$checkDefaultTopicIcons$81(this.f18161c);
-                return;
-            case 4:
-                this.f18160b.lambda$clearRecentStickers$18(this.f18161c);
+                this.f18164b.run(this.f18165c, this.d);
                 return;
             default:
-                this.f18160b.lambda$checkGenericAnimations$79(this.f18161c);
+                this.f18164b.run(this.f18165c, this.d);
                 return;
         }
     }

@@ -2,15 +2,15 @@ package cb;
 
 import java.util.regex.Pattern;
 public final class d {
-    public final ra.d f5059a;
-    public final androidx.biometric.e f5060b;
-    public final k f5061c;
+    public final ra.d f5057a;
+    public final androidx.biometric.e f5058b;
+    public final k f5059c;
     public final ke.d d = ke.e.a();
 
     public d(kd.h hVar, ra.d dVar, ab.b bVar, androidx.biometric.e eVar, k1.f fVar) {
-        this.f5059a = dVar;
-        this.f5060b = eVar;
-        this.f5061c = new k(fVar);
+        this.f5057a = dVar;
+        this.f5058b = eVar;
+        this.f5059c = new k(fVar);
     }
 
     public static String b(String str) {
@@ -22,9 +22,9 @@ public final class d {
     }
 
     public final Boolean a() {
-        e eVar = this.f5061c.f5082b;
+        e eVar = this.f5059c.f5080b;
         if (eVar != null) {
-            return eVar.f5062a;
+            return eVar.f5060a;
         }
         kotlin.jvm.internal.i.h("sessionConfigs");
         throw null;

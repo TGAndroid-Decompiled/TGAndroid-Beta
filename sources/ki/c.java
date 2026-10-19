@@ -17,27 +17,27 @@ import org.telegram.tgnet.tl.TL_wallet;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Components.xc;
 public final class c implements Utilities.Callback2 {
-    public final int f15163a = 0;
-    public final boolean[] f15164b;
-    public final ei.d f15165c;
+    public final int f15161a = 0;
+    public final boolean[] f15162b;
+    public final ei.d f15163c;
     public final boolean d;
     public final org.telegram.ui.ActionBar.d6 e;
-    public final Object f15166f;
-    public final Object f15167g;
+    public final Object f15164f;
+    public final Object f15165g;
     public final Object h;
-    public final Object f15168i;
-    public final KeyEvent.Callback f15169j;
+    public final Object f15166i;
+    public final KeyEvent.Callback f15167j;
 
     public c(String str, String[] strArr, ImageView imageView, org.telegram.ui.ActionBar.d6 d6Var, boolean z10, int[] iArr, ei.d dVar, HorizontalScrollView horizontalScrollView, boolean[] zArr) {
-        this.f15166f = str;
-        this.f15167g = strArr;
+        this.f15164f = str;
+        this.f15165g = strArr;
         this.h = imageView;
         this.e = d6Var;
         this.d = z10;
-        this.f15168i = iArr;
-        this.f15165c = dVar;
-        this.f15169j = horizontalScrollView;
-        this.f15164b = zArr;
+        this.f15166i = iArr;
+        this.f15163c = dVar;
+        this.f15167j = horizontalScrollView;
+        this.f15162b = zArr;
     }
 
     @Override
@@ -45,16 +45,16 @@ public final class c implements Utilities.Callback2 {
         int i10;
         String string;
         CharSequence formatSpannable;
-        int i11 = this.f15163a;
+        int i11 = this.f15161a;
         org.telegram.ui.ActionBar.d6 d6Var = this.e;
-        KeyEvent.Callback callback = this.f15169j;
-        Object obj3 = this.f15168i;
+        KeyEvent.Callback callback = this.f15167j;
+        Object obj3 = this.f15166i;
         Object obj4 = this.h;
         boolean z10 = this.d;
-        ei.d dVar = this.f15165c;
-        Object obj5 = this.f15167g;
-        Object obj6 = this.f15166f;
-        boolean[] zArr = this.f15164b;
+        ei.d dVar = this.f15163c;
+        Object obj5 = this.f15165g;
+        Object obj6 = this.f15164f;
+        boolean[] zArr = this.f15162b;
         switch (i11) {
             case 0:
                 ImageView imageView = (ImageView) obj4;
@@ -64,7 +64,7 @@ public final class c implements Utilities.Callback2 {
                 Boolean bool = (Boolean) obj2;
                 if (TextUtils.equals((String) obj6, ((String[]) obj5)[0])) {
                     if (bool.booleanValue()) {
-                        imageView.setColorFilter(new PorterDuffColorFilter(h6.w0(h6.f21227q7, d6Var), PorterDuff.Mode.SRC_IN));
+                        imageView.setColorFilter(new PorterDuffColorFilter(h6.w0(h6.f21225q7, d6Var), PorterDuff.Mode.SRC_IN));
                         if (!z10) {
                             int i12 = -iArr[0];
                             iArr[0] = i12;
@@ -95,8 +95,8 @@ public final class c implements Utilities.Callback2 {
                 org.telegram.ui.Wallet.j2 j2Var = (org.telegram.ui.Wallet.j2) callback;
                 TL_wallet.walletTransaction wallettransaction = (TL_wallet.walletTransaction) obj;
                 String str = (String) obj2;
-                if (!zArr[0] && !b2Var.f34016m && !b2Var.f34017n) {
-                    boolean z11 = b2Var.f34019p;
+                if (!zArr[0] && !b2Var.f34018m && !b2Var.f34019n) {
+                    boolean z11 = b2Var.f34021p;
                     zArr2[0] = z11;
                     dVar.setEnabled(z11);
                     boolean z12 = zArr2[0];
@@ -130,14 +130,14 @@ public final class c implements Utilities.Callback2 {
     }
 
     public c(boolean[] zArr, org.telegram.ui.Wallet.b2 b2Var, boolean[] zArr2, ei.d dVar, boolean z10, org.telegram.ui.Wallet.m0 m0Var, TextView textView, org.telegram.ui.Wallet.j2 j2Var, org.telegram.ui.ActionBar.d6 d6Var) {
-        this.f15164b = zArr;
-        this.f15166f = b2Var;
-        this.f15167g = zArr2;
-        this.f15165c = dVar;
+        this.f15162b = zArr;
+        this.f15164f = b2Var;
+        this.f15165g = zArr2;
+        this.f15163c = dVar;
         this.d = z10;
         this.h = m0Var;
-        this.f15168i = textView;
-        this.f15169j = j2Var;
+        this.f15166i = textView;
+        this.f15167j = j2Var;
         this.e = d6Var;
     }
 }

@@ -4,8 +4,8 @@ import b2.q0;
 import b2.s0;
 import v7.u6;
 public final class g implements s0 {
-    public final float f10290a;
-    public final float f10291b;
+    public final float f10288a;
+    public final float f10289b;
 
     public g(float f7, float f10) {
         boolean z10;
@@ -15,8 +15,8 @@ public final class g implements s0 {
             z10 = false;
         }
         u6.f("Invalid latitude or longitude", z10);
-        this.f10290a = f7;
-        this.f10291b = f10;
+        this.f10288a = f7;
+        this.f10289b = f10;
     }
 
     @Override
@@ -35,7 +35,7 @@ public final class g implements s0 {
         }
         if (obj != null && g.class == obj.getClass()) {
             g gVar = (g) obj;
-            if (this.f10290a == gVar.f10290a && this.f10291b == gVar.f10291b) {
+            if (this.f10288a == gVar.f10288a && this.f10289b == gVar.f10289b) {
                 return true;
             }
         }
@@ -43,11 +43,11 @@ public final class g implements s0 {
     }
 
     public final int hashCode() {
-        return Float.valueOf(this.f10291b).hashCode() + ((Float.valueOf(this.f10290a).hashCode() + 527) * 31);
+        return Float.valueOf(this.f10289b).hashCode() + ((Float.valueOf(this.f10288a).hashCode() + 527) * 31);
     }
 
     public final String toString() {
-        return "xyz: latitude=" + this.f10290a + ", longitude=" + this.f10291b;
+        return "xyz: latitude=" + this.f10288a + ", longitude=" + this.f10289b;
     }
 
     @Override

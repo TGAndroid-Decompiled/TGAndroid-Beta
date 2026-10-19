@@ -16,20 +16,20 @@ import org.telegram.ui.Cells.sa;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.bd;
-import org.telegram.ui.kj0;
+import org.telegram.ui.df0;
 import org.telegram.ui.r21;
 public final class e implements Utilities.Callback {
-    public final int f5344a;
+    public final int f5342a;
 
     public e(int i10) {
-        this.f5344a = i10;
+        this.f5342a = i10;
     }
 
     @Override
     public final void run(Object obj) {
         MessageObject messageObject;
         MessageObject messageObject2;
-        switch (this.f5344a) {
+        switch (this.f5342a) {
             case 0:
                 View view = (View) obj;
                 view.setAlpha(1.0f);
@@ -45,7 +45,7 @@ public final class e implements Utilities.Callback {
             case 3:
                 View view2 = (View) obj;
                 if (view2 instanceof ig.w1) {
-                    ((ig.w1) view2).f13076c.invalidate();
+                    ((ig.w1) view2).f13074c.invalidate();
                     return;
                 }
                 return;
@@ -65,11 +65,11 @@ public final class e implements Utilities.Callback {
                 return;
             case 7:
                 Boolean bool2 = (Boolean) obj;
-                int i10 = org.telegram.ui.ActionBar.l3.f21558r;
+                int i10 = org.telegram.ui.ActionBar.l3.f21556r;
                 return;
             case 8:
                 ArrayList arrayList = (ArrayList) obj;
-                int i11 = sa.f23059f;
+                int i11 = sa.f23057f;
                 return;
             case 9:
                 bd.Y0((View) obj);
@@ -102,11 +102,11 @@ public final class e implements Utilities.Callback {
                 View view7 = (View) obj;
                 if (view7 instanceof org.telegram.ui.Cells.g5) {
                     org.telegram.ui.Cells.g5 g5Var = (org.telegram.ui.Cells.g5) view7;
-                    g5Var.f22291b.invalidate();
-                    g5Var.f22292c.invalidate();
+                    g5Var.f22289b.invalidate();
+                    g5Var.f22290c.invalidate();
                     return;
                 } else if (view7 instanceof ig.w1) {
-                    ((ig.w1) view7).f13076c.invalidate();
+                    ((ig.w1) view7).f13074c.invalidate();
                     return;
                 } else {
                     view7.invalidate();
@@ -142,7 +142,7 @@ public final class e implements Utilities.Callback {
                     }
                     return;
                 }
-                AndroidUtilities.runOnUIThread(new kj0(1));
+                AndroidUtilities.runOnUIThread(new df0(2));
                 return;
             case 19:
                 Boolean bool3 = (Boolean) obj;
@@ -158,7 +158,7 @@ public final class e implements Utilities.Callback {
                     edit.putStringSet("translate_button_restricted_languages", hashSet);
                 }
                 edit.putInt("translate_button_restricted_languages_version", 2).apply();
-                r21.f41038s = false;
+                r21.f41030s = false;
                 for (int i12 = 0; i12 < 4; i12++) {
                     try {
                         MessagesController.getInstance(i12).getTranslateController().checkRestrictedLanguagesUpdate();
@@ -192,6 +192,6 @@ public final class e implements Utilities.Callback {
     }
 
     public e(bd bdVar) {
-        this.f5344a = 9;
+        this.f5342a = 9;
     }
 }

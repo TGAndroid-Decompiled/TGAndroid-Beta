@@ -28,17 +28,17 @@ public abstract class c {
                 int m10 = ((c0Var.m(i10 + 1) & 255) * 256) + (c0Var.m(i10) & 255);
                 int i11 = i10 + 4;
                 c0Var2.getClass();
-                byte[] array = ((ByteBuffer) c0Var.f4726c).array();
-                int capacity = ((ByteBuffer) c0Var2.f4726c).capacity();
-                int i12 = c0Var2.f4725b + m10;
+                byte[] array = ((ByteBuffer) c0Var.f4724c).array();
+                int capacity = ((ByteBuffer) c0Var2.f4724c).capacity();
+                int i12 = c0Var2.f4723b + m10;
                 if (capacity < i12) {
                     c0Var2.l(i12 + 1024);
                 }
-                ((ByteBuffer) c0Var2.f4726c).put(array, i11, m10);
-                c0Var2.f4725b += m10;
+                ((ByteBuffer) c0Var2.f4724c).put(array, i11, m10);
+                c0Var2.f4723b += m10;
                 iArr[0] = (i11 + m10) * 8;
             }
-            if (c0Var.f4725b <= iArr[0] / 8) {
+            if (c0Var.f4723b <= iArr[0] / 8) {
                 o10 = true;
                 continue;
             }
@@ -56,7 +56,7 @@ public abstract class c {
             } else {
                 int f7 = d.f(c0Var, iArr, i10);
                 int d = d.d(c0Var, iArr, j0Var2);
-                int i11 = c0Var2.f4725b;
+                int i11 = c0Var2.f4723b;
                 byte[] bArr = new byte[f7];
                 int i12 = i11 - d;
                 int i13 = 0;

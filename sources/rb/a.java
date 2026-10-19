@@ -5,6 +5,6 @@ import java.lang.ref.ReferenceQueue;
 import java.util.HashSet;
 import java.util.Set;
 public final class a {
-    public final ReferenceQueue f45173a = new ReferenceQueue();
-    public final Set f45174b = DesugarCollections.synchronizedSet(new HashSet());
+    public final ReferenceQueue f45175a = new ReferenceQueue();
+    public final Set f45176b = DesugarCollections.synchronizedSet(new HashSet());
 }

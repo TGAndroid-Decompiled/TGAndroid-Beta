@@ -1,34 +1,58 @@
 package org.telegram.messenger;
+public final class tg implements Runnable {
+    public final int f19585a;
+    public final NotificationsController f19586b;
 
-import android.app.NotificationChannel;
-import org.telegram.tgnet.InputSerializedData;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.Vector;
-import org.telegram.tgnet.tl.TL_iv;
-public final class tg implements Vector.TLDeserializer, org.telegram.ui.ActionBar.a2 {
-    public final int f19589a;
-
-    public tg(int i10) {
-        this.f19589a = i10;
-    }
-
-    public static NotificationChannel a(Object obj) {
-        return (NotificationChannel) obj;
+    public tg(NotificationsController notificationsController, int i10) {
+        this.f19585a = i10;
+        this.f19586b = notificationsController;
     }
 
     @Override
-    public TLObject deserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
-        switch (this.f19589a) {
+    public final void run() {
+        switch (this.f19585a) {
+            case 0:
+                NotificationsController.f(this.f19586b);
+                return;
+            case 1:
+                NotificationsController.H(this.f19586b);
+                return;
             case 2:
-                return TL_iv.RichText.TLdeserialize(inputSerializedData, i10, z10);
+                NotificationsController.p(this.f19586b);
+                return;
+            case 3:
+                NotificationsController.A(this.f19586b);
+                return;
+            case 4:
+                NotificationsController.J(this.f19586b);
+                return;
+            case 5:
+                NotificationsController.P(this.f19586b);
+                return;
+            case 6:
+                NotificationsController.G(this.f19586b);
+                return;
+            case 7:
+                NotificationsController.T(this.f19586b);
+                return;
+            case 8:
+                NotificationsController.W(this.f19586b);
+                return;
+            case 9:
+                NotificationsController.K(this.f19586b);
+                return;
+            case 10:
+                NotificationsController.c(this.f19586b);
+                return;
+            case 11:
+                NotificationsController.Y(this.f19586b);
+                return;
+            case 12:
+                NotificationsController.b(this.f19586b);
+                return;
             default:
-                return TLRPC.PollAnswer.TLdeserialize(inputSerializedData, i10, z10);
+                NotificationsController.y(this.f19586b);
+                return;
         }
-    }
-
-    @Override
-    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        SharedConfig.lambda$checkSdCard$1(b2Var, i10);
     }
 }

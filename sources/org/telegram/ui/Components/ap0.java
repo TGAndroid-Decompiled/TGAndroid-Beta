@@ -8,18 +8,18 @@ import org.telegram.ui.ProfileActivity;
 public final class ap0 extends e8 {
     public final Context E;
     public final Object F;
-    public final int f24671y;
+    public final int f24669y;
 
     public ap0(Object obj, Context context, Context context2, int i10) {
         super(context);
-        this.f24671y = i10;
+        this.f24669y = i10;
         this.F = obj;
         this.E = context2;
     }
 
     @Override
     public final TextView a() {
-        switch (this.f24671y) {
+        switch (this.f24669y) {
             case 0:
                 ma0 ma0Var = new ma0(this.E);
                 ma0Var.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Si, ((cp0) this.F).M));

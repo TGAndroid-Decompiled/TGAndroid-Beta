@@ -8,15 +8,15 @@ import org.telegram.ui.Components.e5;
 import org.telegram.ui.Components.nw0;
 import org.telegram.ui.Components.q6;
 public final class t implements e5, nw0, wg.f, wg.k {
-    public final z f47756a;
+    public final z f47758a;
 
     public t(z zVar) {
-        this.f47756a = zVar;
+        this.f47758a = zVar;
     }
 
     @Override
     public void C(int i10, int i11, boolean z10) {
-        z zVar = this.f47756a;
+        z zVar = this.f47758a;
         zVar.m0 = i10 * 1000;
         zVar.b0(false, true);
     }
@@ -28,26 +28,26 @@ public final class t implements e5, nw0, wg.f, wg.k {
         String string;
         String str2;
         String formatPluralString;
-        z zVar = this.f47756a;
-        int i12 = zVar.f47803h0;
+        z zVar = this.f47758a;
+        int i12 = zVar.f47805h0;
         int i13 = wg.d.v;
         if (i12 == 2) {
-            zVar.f47808n0 = i10;
+            zVar.f47810n0 = i10;
         } else {
-            zVar.f47809o0 = i10;
+            zVar.f47811o0 = i10;
         }
-        zVar.f47811q0.f48940a.b(zVar.W(), true);
-        if (zVar.f47803h0 == 3) {
+        zVar.f47813q0.f48942a.b(zVar.W(), true);
+        if (zVar.f47805h0 == 3) {
             zVar.b0(true, true);
         } else {
             zVar.b0(false, false);
         }
-        vg.b bVar = zVar.f47802g0;
+        vg.b bVar = zVar.f47804g0;
         int W = zVar.W();
-        for (int i14 = 0; i14 < bVar.f48347f.getChildCount(); i14++) {
-            View childAt = bVar.f48347f.getChildAt(i14);
+        for (int i14 = 0; i14 < bVar.f48349f.getChildCount(); i14++) {
+            View childAt = bVar.f48349f.getChildAt(i14);
             if (childAt instanceof wg.x) {
-                q6 q6Var = ((wg.x) childAt).f49007r;
+                q6 q6Var = ((wg.x) childAt).f49009r;
                 if (W <= 0) {
                     formatPluralString = "";
                 } else {
@@ -59,8 +59,8 @@ public final class t implements e5, nw0, wg.f, wg.k {
             if (childAt instanceof wg.g) {
                 wg.g gVar = (wg.g) childAt;
                 int F = bVar.F(gVar.getChat());
-                boolean isChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(gVar.f48968w);
-                if (gVar.f48969x) {
+                boolean isChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(gVar.f48970w);
+                if (gVar.f48971x) {
                     if (F >= 1) {
                         if (isChannelAndNotMegaGroup) {
                             str2 = "Subscribers";

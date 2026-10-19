@@ -5,20 +5,20 @@ import android.os.Message;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 public final class b extends Handler {
-    public final ArrayList f44080a = new ArrayList();
-    public final ArrayList f44081b = new ArrayList();
-    public final e f44082c;
+    public final ArrayList f44082a = new ArrayList();
+    public final ArrayList f44083b = new ArrayList();
+    public final e f44084c;
 
     public b(e eVar) {
-        this.f44082c = eVar;
+        this.f44084c = eVar;
     }
 
     public static void a(t tVar, int i10, Object obj, int i11) {
         v vVar;
         v vVar2;
         boolean z10;
-        x xVar = tVar.f44190a;
-        s sVar = tVar.f44191b;
+        x xVar = tVar.f44192a;
+        s sVar = tVar.f44193b;
         int i12 = 65280 & i10;
         if (i12 != 256) {
             if (i12 != 512) {
@@ -46,17 +46,17 @@ public final class b extends Handler {
         if (i10 != 264 && i10 != 262) {
             vVar = (v) obj;
         } else {
-            vVar = (v) ((q0.b) obj).f44317b;
+            vVar = (v) ((q0.b) obj).f44319b;
         }
         if (i10 != 264 && i10 != 262) {
             vVar2 = null;
         } else {
-            vVar2 = (v) ((q0.b) obj).f44316a;
+            vVar2 = (v) ((q0.b) obj).f44318a;
         }
         if (vVar != null) {
             boolean z11 = true;
-            if ((tVar.d & 2) == 0 && !vVar.h(tVar.f44192c)) {
-                z zVar = x.c().f44104u;
+            if ((tVar.d & 2) == 0 && !vVar.h(tVar.f44194c)) {
+                z zVar = x.c().f44106u;
                 if (zVar == null) {
                     z10 = false;
                 } else {
@@ -104,18 +104,18 @@ public final class b extends Handler {
     @Override
     public final void handleMessage(Message message) {
         int q6;
-        ArrayList arrayList = this.f44080a;
-        e eVar = this.f44082c;
-        ArrayList arrayList2 = eVar.f44092i;
-        j0 j0Var = eVar.f44102s;
+        ArrayList arrayList = this.f44082a;
+        e eVar = this.f44084c;
+        ArrayList arrayList2 = eVar.f44094i;
+        j0 j0Var = eVar.f44104s;
         int i10 = message.what;
         Object obj = message.obj;
         int i11 = message.arg1;
-        if (i10 == 259 && eVar.e().f44200c.equals(((v) obj).f44200c)) {
+        if (i10 == 259 && eVar.e().f44202c.equals(((v) obj).f44202c)) {
             eVar.o(true);
         }
         int i12 = 0;
-        ArrayList arrayList3 = this.f44081b;
+        ArrayList arrayList3 = this.f44083b;
         if (i10 != 262) {
             if (i10 != 264) {
                 switch (i10) {
@@ -135,13 +135,13 @@ public final class b extends Handler {
                         break;
                 }
             } else {
-                v vVar2 = (v) ((q0.b) obj).f44317b;
+                v vVar2 = (v) ((q0.b) obj).f44319b;
                 arrayList3.add(vVar2);
                 j0Var.v(vVar2);
                 j0Var.x(vVar2);
             }
         } else {
-            v vVar3 = (v) ((q0.b) obj).f44317b;
+            v vVar3 = (v) ((q0.b) obj).f44319b;
             j0Var.x(vVar3);
             if (eVar.v != null && vVar3.d()) {
                 int size = arrayList3.size();
@@ -163,7 +163,7 @@ public final class b extends Handler {
                     if (xVar == null) {
                         arrayList2.remove(size2);
                     } else {
-                        arrayList.addAll(xVar.f44219b);
+                        arrayList.addAll(xVar.f44221b);
                     }
                 } else {
                     int size3 = arrayList.size();

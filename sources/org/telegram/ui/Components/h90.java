@@ -2,26 +2,26 @@ package org.telegram.ui.Components;
 
 import android.view.KeyEvent;
 public final class h90 implements org.telegram.ui.ActionBar.a2, org.telegram.ui.ActionBar.k1 {
-    public final int f26827a;
-    public final q90 f26828b;
+    public final int f26825a;
+    public final q90 f26826b;
 
     public h90(q90 q90Var, int i10) {
-        this.f26827a = i10;
-        this.f26828b = q90Var;
+        this.f26825a = i10;
+        this.f26826b = q90Var;
     }
 
     @Override
     public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f26827a) {
+        switch (this.f26825a) {
             case 0:
-                p90 p90Var = this.f26828b.f29567r;
+                p90 p90Var = this.f26826b.f29565r;
                 if (p90Var != null) {
                     p90Var.k();
                     return;
                 }
                 return;
             default:
-                p90 p90Var2 = this.f26828b.f29567r;
+                p90 p90Var2 = this.f26826b.f29565r;
                 if (p90Var2 != null) {
                     p90Var2.d();
                     return;
@@ -32,10 +32,10 @@ public final class h90 implements org.telegram.ui.ActionBar.a2, org.telegram.ui.
 
     @Override
     public void n(KeyEvent keyEvent) {
-        q90 q90Var = this.f26828b;
+        q90 q90Var = this.f26826b;
         q90Var.getClass();
-        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && q90Var.f29568s.isShowing()) {
-            q90Var.f29568s.d(true);
+        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && q90Var.f29566s.isShowing()) {
+            q90Var.f29566s.d(true);
         }
     }
 }

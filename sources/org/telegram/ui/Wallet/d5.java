@@ -11,29 +11,29 @@ import android.view.View;
 import android.view.animation.LinearInterpolator;
 import org.telegram.messenger.AndroidUtilities;
 public final class d5 extends View {
-    public final Paint f34095a;
-    public final Path f34096b;
-    public final PathMeasure f34097c;
+    public final Paint f34097a;
+    public final Path f34098b;
+    public final PathMeasure f34099c;
     public final String d;
     public final RectF e;
-    public final float[] f34098f;
+    public final float[] f34100f;
     public final float[] h;
-    public String f34099n;
-    public float[] f34100r;
-    public float f34101s;
+    public String f34101n;
+    public float[] f34102r;
+    public float f34103s;
     public float v;
-    public float f34102w;
-    public float f34103x;
-    public ValueAnimator f34104y;
+    public float f34104w;
+    public float f34105x;
+    public ValueAnimator f34106y;
 
     public d5(Context context, String str) {
         super(context);
         Paint paint = new Paint(1);
-        this.f34095a = paint;
-        this.f34096b = new Path();
-        this.f34097c = new PathMeasure();
+        this.f34097a = paint;
+        this.f34098b = new Path();
+        this.f34099c = new PathMeasure();
         this.e = new RectF();
-        this.f34098f = new float[2];
+        this.f34100f = new float[2];
         this.h = new float[2];
         this.d = a1.g.s(new StringBuilder(), o5.q0(str.toUpperCase().replace('_', ' ').replace('-', ' ')), "   ·   ");
         paint.setColor(-16747826);
@@ -42,18 +42,18 @@ public final class d5 extends View {
     }
 
     public final void a() {
-        if (isAttachedToWindow() && this.f34102w > 0.0f) {
-            ValueAnimator valueAnimator = this.f34104y;
+        if (isAttachedToWindow() && this.f34104w > 0.0f) {
+            ValueAnimator valueAnimator = this.f34106y;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
             }
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, this.f34102w);
-            this.f34104y = ofFloat;
-            ofFloat.setDuration(Math.max(1L, (this.f34102w / AndroidUtilities.dp(24.0f)) * 1000.0f));
-            this.f34104y.setInterpolator(new LinearInterpolator());
-            this.f34104y.setRepeatCount(-1);
-            this.f34104y.addUpdateListener(new b3(this, 1));
-            this.f34104y.start();
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, this.f34104w);
+            this.f34106y = ofFloat;
+            ofFloat.setDuration(Math.max(1L, (this.f34104w / AndroidUtilities.dp(24.0f)) * 1000.0f));
+            this.f34106y.setInterpolator(new LinearInterpolator());
+            this.f34106y.setRepeatCount(-1);
+            this.f34106y.addUpdateListener(new b3(this, 1));
+            this.f34106y.start();
         }
     }
 
@@ -65,10 +65,10 @@ public final class d5 extends View {
 
     @Override
     public final void onDetachedFromWindow() {
-        ValueAnimator valueAnimator = this.f34104y;
+        ValueAnimator valueAnimator = this.f34106y;
         if (valueAnimator != null) {
             valueAnimator.cancel();
-            this.f34104y = null;
+            this.f34106y = null;
         }
         super.onDetachedFromWindow();
     }
@@ -78,26 +78,26 @@ public final class d5 extends View {
         Canvas canvas2;
         float[] fArr;
         super.onDraw(canvas);
-        if (this.f34100r != null && this.v > 0.0f && this.f34102w > 0.0f) {
+        if (this.f34102r != null && this.v > 0.0f && this.f34104w > 0.0f) {
             int i10 = 0;
             float f7 = 0.0f;
-            while (i10 < this.f34099n.length()) {
-                float f10 = this.f34100r[i10] * this.f34101s;
-                float f11 = ((f10 / 2.0f) + f7) - this.f34103x;
+            while (i10 < this.f34101n.length()) {
+                float f10 = this.f34102r[i10] * this.f34103s;
+                float f11 = ((f10 / 2.0f) + f7) - this.f34105x;
                 float f12 = this.v;
                 float f13 = f11 % f12;
                 if (f13 < 0.0f) {
                     f13 += f12;
                 }
-                if (this.f34099n.charAt(i10) != ' ') {
-                    PathMeasure pathMeasure = this.f34097c;
-                    float[] fArr2 = this.f34098f;
+                if (this.f34101n.charAt(i10) != ' ') {
+                    PathMeasure pathMeasure = this.f34099c;
+                    float[] fArr2 = this.f34100f;
                     if (pathMeasure.getPosTan(f13, fArr2, this.h)) {
                         canvas.save();
                         canvas.translate(fArr2[0], fArr2[1]);
                         canvas.rotate((float) Math.toDegrees(Math.atan2(fArr[1], fArr[0])));
                         canvas2 = canvas;
-                        canvas2.drawText(this.f34099n, i10, i10 + 1, (-this.f34100r[i10]) / 2.0f, AndroidUtilities.dp(3.0f), this.f34095a);
+                        canvas2.drawText(this.f34101n, i10, i10 + 1, (-this.f34102r[i10]) / 2.0f, AndroidUtilities.dp(3.0f), this.f34097a);
                         canvas2.restore();
                         f7 += f10;
                         i10++;
@@ -118,13 +118,13 @@ public final class d5 extends View {
         float dp = AndroidUtilities.dp(12.0f) + AndroidUtilities.dp(266.0f);
         RectF rectF = this.e;
         rectF.set(((i10 - AndroidUtilities.dp(212.0f)) / 2.0f) - AndroidUtilities.dp(12.0f), AndroidUtilities.dp(22.0f) - AndroidUtilities.dp(12.0f), ((AndroidUtilities.dp(212.0f) + i10) / 2.0f) + AndroidUtilities.dp(12.0f), dp);
-        Path path = this.f34096b;
+        Path path = this.f34098b;
         path.reset();
         path.addRoundRect(rectF, AndroidUtilities.dp(32.0f), AndroidUtilities.dp(32.0f), Path.Direction.CW);
-        PathMeasure pathMeasure = this.f34097c;
+        PathMeasure pathMeasure = this.f34099c;
         pathMeasure.setPath(path, true);
         this.v = pathMeasure.getLength();
-        Paint paint = this.f34095a;
+        Paint paint = this.f34097a;
         String str = this.d;
         int max = Math.max(1, Math.round(this.v / paint.measureText(str)));
         StringBuilder sb2 = new StringBuilder(str.length() * max);
@@ -133,18 +133,18 @@ public final class d5 extends View {
             sb2.append(str);
         }
         String sb3 = sb2.toString();
-        this.f34099n = sb3;
-        this.f34100r = new float[sb3.length()];
+        this.f34101n = sb3;
+        this.f34102r = new float[sb3.length()];
         float f7 = 0.0f;
-        while (i14 < this.f34099n.length()) {
+        while (i14 < this.f34101n.length()) {
             int i16 = i14 + 1;
-            this.f34100r[i14] = paint.measureText(this.f34099n, i14, i16);
-            f7 += this.f34100r[i14];
+            this.f34102r[i14] = paint.measureText(this.f34101n, i14, i16);
+            f7 += this.f34102r[i14];
             i14 = i16;
         }
         float f10 = this.v;
-        this.f34101s = f10 / f7;
-        this.f34102w = f10 / max;
+        this.f34103s = f10 / f7;
+        this.f34104w = f10 / max;
         a();
     }
 }

@@ -1,25 +1,37 @@
 package org.telegram.messenger;
-
-import org.telegram.tgnet.tl.TL_account;
 public final class gb implements Runnable {
-    public final int f18441a;
-    public final MessagesController f18442b;
-    public final TL_account.TL_webBrowserSettings f18443c;
+    public final int f18443a;
+    public final MessagesController f18444b;
+    public final long f18445c;
+    public final int d;
+    public final boolean e;
+    public final int f18446f;
+    public final int h;
 
-    public gb(MessagesController messagesController, TL_account.TL_webBrowserSettings tL_webBrowserSettings, int i10) {
-        this.f18441a = i10;
-        this.f18442b = messagesController;
-        this.f18443c = tL_webBrowserSettings;
+    public gb(MessagesController messagesController, long j10, int i10, boolean z10, int i11, int i12, int i13) {
+        this.f18443a = i13;
+        this.f18444b = messagesController;
+        this.f18445c = j10;
+        this.d = i10;
+        this.e = z10;
+        this.f18446f = i11;
+        this.h = i12;
     }
 
     @Override
     public final void run() {
-        switch (this.f18441a) {
+        switch (this.f18443a) {
             case 0:
-                this.f18442b.lambda$loadWebBrowserConfig$513(this.f18443c);
+                int i10 = this.f18446f;
+                int i11 = this.h;
+                int i12 = this.d;
+                this.f18444b.lambda$markDialogAsRead$242(this.f18445c, i12, this.e, i10, i11);
                 return;
             default:
-                this.f18442b.lambda$loadWebBrowserConfig$511(this.f18443c);
+                int i13 = this.f18446f;
+                int i14 = this.h;
+                int i15 = this.d;
+                this.f18444b.lambda$markDialogAsRead$243(this.f18445c, i15, this.e, i13, i14);
                 return;
         }
     }

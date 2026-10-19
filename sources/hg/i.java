@@ -10,9 +10,9 @@ public final class i extends d9 {
     public int E;
     public final m F;
     public int v;
-    public float f11910w;
-    public long f11911x;
-    public int f11912y;
+    public float f11908w;
+    public long f11909x;
+    public int f11910y;
 
     public i(m mVar, Context context) {
         super(context);
@@ -26,7 +26,7 @@ public final class i extends d9 {
         if (drawable != null) {
             Rect bounds = drawable.getBounds();
             Drawable drawable2 = mVar.O;
-            int i10 = this.f11912y;
+            int i10 = this.f11910y;
             drawable2.setBounds(i10, this.E, bounds.width() + i10, bounds.height() + this.E);
         }
     }
@@ -37,31 +37,31 @@ public final class i extends d9 {
         Drawable drawable = mVar.O;
         if (drawable != null) {
             Rect bounds = drawable.getBounds();
-            int dp = (int) (this.f11910w * AndroidUtilities.dp(3.0f));
+            int dp = (int) (this.f11908w * AndroidUtilities.dp(3.0f));
             int i10 = bounds.left;
-            this.f11912y = i10;
+            this.f11910y = i10;
             int i11 = bounds.top;
             this.E = i11;
-            mVar.O.setBounds(i10 + dp, AndroidUtilities.dp(1.0f) + i11, bounds.width() + this.f11912y + dp, bounds.height() + AndroidUtilities.dp(1.0f) + this.E);
+            mVar.O.setBounds(i10 + dp, AndroidUtilities.dp(1.0f) + i11, bounds.width() + this.f11910y + dp, bounds.height() + AndroidUtilities.dp(1.0f) + this.E);
             long elapsedRealtime = SystemClock.elapsedRealtime();
-            long j10 = elapsedRealtime - this.f11911x;
+            long j10 = elapsedRealtime - this.f11909x;
             if (j10 > 17) {
                 j10 = 17;
             }
-            this.f11911x = elapsedRealtime;
+            this.f11909x = elapsedRealtime;
             if (this.v == 0) {
-                float f7 = (((float) j10) / 664.0f) + this.f11910w;
-                this.f11910w = f7;
+                float f7 = (((float) j10) / 664.0f) + this.f11908w;
+                this.f11908w = f7;
                 if (f7 >= 1.0f) {
                     this.v = 1;
-                    this.f11910w = 1.0f;
+                    this.f11908w = 1.0f;
                 }
             } else {
-                float f10 = this.f11910w - (((float) j10) / 664.0f);
-                this.f11910w = f10;
+                float f10 = this.f11908w - (((float) j10) / 664.0f);
+                this.f11908w = f10;
                 if (f10 <= 0.0f) {
                     this.v = 0;
-                    this.f11910w = 0.0f;
+                    this.f11908w = 0.0f;
                 }
             }
             getTextView().invalidate();

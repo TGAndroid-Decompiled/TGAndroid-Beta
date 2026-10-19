@@ -4,14 +4,14 @@ import b2.q0;
 import b2.s0;
 import v7.c8;
 public final class h implements s0 {
-    public final long f10292a;
-    public final long f10293b;
-    public final long f10294c;
+    public final long f10290a;
+    public final long f10291b;
+    public final long f10292c;
 
     public h(long j10, long j11, long j12) {
-        this.f10292a = j10;
-        this.f10293b = j11;
-        this.f10294c = j12;
+        this.f10290a = j10;
+        this.f10291b = j11;
+        this.f10292c = j12;
     }
 
     @Override
@@ -32,19 +32,19 @@ public final class h implements s0 {
             return false;
         }
         h hVar = (h) obj;
-        if (this.f10292a == hVar.f10292a && this.f10293b == hVar.f10293b && this.f10294c == hVar.f10294c) {
+        if (this.f10290a == hVar.f10290a && this.f10291b == hVar.f10291b && this.f10292c == hVar.f10292c) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        int b10 = c8.b(this.f10293b);
-        return c8.b(this.f10294c) + ((b10 + ((c8.b(this.f10292a) + 527) * 31)) * 31);
+        int b10 = c8.b(this.f10291b);
+        return c8.b(this.f10292c) + ((b10 + ((c8.b(this.f10290a) + 527) * 31)) * 31);
     }
 
     public final String toString() {
-        return "Mp4Timestamp: creation time=" + this.f10292a + ", modification time=" + this.f10293b + ", timescale=" + this.f10294c;
+        return "Mp4Timestamp: creation time=" + this.f10290a + ", modification time=" + this.f10291b + ", timescale=" + this.f10292c;
     }
 
     @Override

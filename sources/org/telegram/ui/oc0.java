@@ -4,32 +4,32 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class oc0 implements Runnable {
-    public final int f39828a;
-    public final cg0 f39829b;
+    public final int f39827a;
+    public final dg0 f39828b;
 
-    public oc0(cg0 cg0Var, int i10) {
-        this.f39828a = i10;
-        this.f39829b = cg0Var;
+    public oc0(dg0 dg0Var, int i10) {
+        this.f39827a = i10;
+        this.f39828b = dg0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f39828a) {
+        switch (this.f39827a) {
             case 0:
-                this.f39829b.f35969c0 = false;
+                this.f39828b.f36365c0 = false;
                 return;
             case 1:
-                cg0 cg0Var = this.f39829b;
-                cg0Var.f35986r0 = false;
-                cg0Var.x1(true, true);
+                dg0 dg0Var = this.f39828b;
+                dg0Var.f36382r0 = false;
+                dg0Var.x1(true, true);
                 return;
             default:
-                cg0 cg0Var2 = this.f39829b;
-                if (cg0Var2.getParentActivity() != null && !cg0Var2.getParentActivity().isFinishing() && cg0Var2.getParentActivity() != null) {
-                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(cg0Var2.getParentActivity());
-                    alertDialog$Builder.f20604a.R = LocaleController.getString(R.string.RestorePasswordNoEmailTitle);
-                    alertDialog$Builder.f20604a.T = LocaleController.getString(R.string.SafetyNetErrorOccurred);
-                    alertDialog$Builder.k(LocaleController.getString(R.string.OK), new uc0(cg0Var2, 1));
+                dg0 dg0Var2 = this.f39828b;
+                if (dg0Var2.getParentActivity() != null && !dg0Var2.getParentActivity().isFinishing() && dg0Var2.getParentActivity() != null) {
+                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(dg0Var2.getParentActivity());
+                    alertDialog$Builder.f20602a.R = LocaleController.getString(R.string.RestorePasswordNoEmailTitle);
+                    alertDialog$Builder.f20602a.T = LocaleController.getString(R.string.SafetyNetErrorOccurred);
+                    alertDialog$Builder.k(LocaleController.getString(R.string.OK), new uc0(dg0Var2, 1));
                     alertDialog$Builder.o();
                     return;
                 }

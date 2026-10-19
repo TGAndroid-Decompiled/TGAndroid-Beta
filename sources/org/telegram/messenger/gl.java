@@ -1,61 +1,26 @@
 package org.telegram.messenger;
 
+import org.telegram.messenger.LanguageDetector;
 import org.telegram.messenger.TranslateController;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class gl implements RequestDelegate {
-    public final int f18477a = 1;
-    public final long f18478b;
-    public final String f18479c;
-    public final Runnable d;
-    public final BaseController e;
-    public final Object f18480f;
-    public final Object f18481g;
-    public final Object h;
+import org.telegram.tgnet.tl.TL_stories;
+public final class gl implements LanguageDetector.StringCallback, LanguageDetector.ExceptionCallback {
+    public final TranslateController f18480a;
+    public final TL_stories.StoryItem f18481b;
+    public final TranslateController.StoryKey f18482c;
 
-    public gl(MessagesController messagesController, long j10, String str, Runnable runnable, org.telegram.ui.ActionBar.n2 n2Var, TLRPC.TL_channels_updateUsername tL_channels_updateUsername, Runnable runnable2) {
-        this.e = messagesController;
-        this.f18478b = j10;
-        this.f18479c = str;
-        this.d = runnable;
-        this.f18480f = n2Var;
-        this.f18481g = tL_channels_updateUsername;
-        this.h = runnable2;
+    public gl(TranslateController translateController, TL_stories.StoryItem storyItem, TranslateController.StoryKey storyKey) {
+        this.f18480a = translateController;
+        this.f18481b = storyItem;
+        this.f18482c = storyKey;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f18477a) {
-            case 0:
-                ((TranslateController) this.e).lambda$translatePhoto$46((MessageObject) this.f18480f, this.f18479c, (TranslateController.MessageKey) this.f18481g, this.d, this.f18478b, (TLRPC.TL_textWithEntities) this.h, tLObject, tL_error);
-                return;
-            case 1:
-                ((MessagesController) this.e).lambda$updateChannelUserName$291(this.f18478b, this.f18479c, this.d, (org.telegram.ui.ActionBar.n2) this.f18480f, (TLRPC.TL_channels_updateUsername) this.f18481g, (Runnable) this.h, tLObject, tL_error);
-                return;
-            default:
-                ((MessagesController) this.e).lambda$changeChatAvatar$318((TLRPC.TL_inputChatPhoto) this.f18480f, (TLRPC.FileLocation) this.f18481g, (TLRPC.FileLocation) this.h, this.f18479c, this.f18478b, this.d, tLObject, tL_error);
-                return;
-        }
+    public void run(Exception exc) {
+        this.f18480a.lambda$detectStoryLanguage$34(this.f18481b, this.f18482c, exc);
     }
 
-    public gl(MessagesController messagesController, TLRPC.TL_inputChatPhoto tL_inputChatPhoto, TLRPC.FileLocation fileLocation, TLRPC.FileLocation fileLocation2, String str, long j10, Runnable runnable) {
-        this.e = messagesController;
-        this.f18480f = tL_inputChatPhoto;
-        this.f18481g = fileLocation;
-        this.h = fileLocation2;
-        this.f18479c = str;
-        this.f18478b = j10;
-        this.d = runnable;
-    }
-
-    public gl(TranslateController translateController, MessageObject messageObject, String str, TranslateController.MessageKey messageKey, Runnable runnable, long j10, TLRPC.TL_textWithEntities tL_textWithEntities) {
-        this.e = translateController;
-        this.f18480f = messageObject;
-        this.f18479c = str;
-        this.f18481g = messageKey;
-        this.d = runnable;
-        this.f18478b = j10;
-        this.h = tL_textWithEntities;
+    @Override
+    public void run(String str) {
+        this.f18480a.lambda$detectStoryLanguage$32(this.f18481b, this.f18482c, str);
     }
 }

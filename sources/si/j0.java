@@ -6,21 +6,21 @@ import java.io.File;
 import org.telegram.ui.Components.i60;
 import org.telegram.ui.Components.tv;
 public final class j0 {
-    public final Context f46684a;
-    public final TextureView f46685b;
-    public File f46686c;
+    public final Context f46686a;
+    public final TextureView f46687b;
+    public File f46688c;
     public l0 d;
     public q0 e;
-    public m0 f46687f;
-    public n0 f46688g;
+    public m0 f46689f;
+    public n0 f46690g;
     public int h;
-    public boolean f46689i = true;
-    public l2.f f46690j;
-    public p0 f46691k;
-    public tv f46692l;
+    public boolean f46691i = true;
+    public l2.f f46692j;
+    public p0 f46693k;
+    public tv f46694l;
 
     public j0(Context context, i60 i60Var) {
-        this.f46684a = context;
-        this.f46685b = i60Var;
+        this.f46686a = context;
+        this.f46687b = i60Var;
     }
 }

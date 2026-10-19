@@ -1,6 +1,6 @@
 package a3;
 
-import ai.k7;
+import ai.l7;
 import ci.x0;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -46,13 +46,13 @@ public final class h0 implements Runnable {
                 String str = (String) this.e;
                 long j10 = this.f120b;
                 long j11 = this.f121c;
-                String str2 = e2.m0.f8254a;
-                j2.f fVar = ((i2.c0) ((m0) ((n4.s) this.d).f17128c)).f12327a.f12415s;
+                String str2 = e2.m0.f8252a;
+                j2.f fVar = ((i2.c0) ((m0) ((n4.s) this.d).f17126c)).f12325a.f12413s;
                 j2.a p5 = fVar.p();
                 fVar.q(p5, 1016, new j2.c(p5, str, j11, j10, 17));
                 return;
             case 1:
-                k7.J0((k7) this.d, this.f120b, this.f121c, (Utilities.Callback) this.e);
+                l7.b1((l7) this.d, this.f120b, this.f121c, (Utilities.Callback) this.e);
                 return;
             case 2:
                 ((x0) this.d).n(this.f120b, (TLRPC.TL_textWithEntities) this.e, this.f121c);
@@ -61,8 +61,8 @@ public final class h0 implements Runnable {
                 String str3 = (String) this.e;
                 long j12 = this.f120b;
                 long j13 = this.f121c;
-                String str4 = e2.m0.f8254a;
-                j2.f fVar2 = ((i2.c0) ((k2.u) ((qf.b) this.d).f44438c)).f12327a.f12415s;
+                String str4 = e2.m0.f8252a;
+                j2.f fVar2 = ((i2.c0) ((k2.u) ((qf.b) this.d).f44440c)).f12325a.f12413s;
                 j2.a p9 = fVar2.p();
                 fVar2.q(p9, 1008, new j2.c(p9, str3, j13, j12, 5));
                 return;
@@ -105,7 +105,7 @@ public final class h0 implements Runnable {
                     ArrayList arrayList = new ArrayList();
                     arrayList.add(MessagesStorage.TopicKey.of(j14, j15));
                     cyVar.C2.w(cyVar, arrayList, null, false, cyVar.J2, cyVar.K2, cyVar.L2, re1Var);
-                    if (cyVar.f36136i2) {
+                    if (cyVar.f36108i2) {
                         cyVar.C2 = null;
                         return;
                     }
@@ -136,9 +136,9 @@ public final class h0 implements Runnable {
                 si.o0 o0Var = (si.o0) this.e;
                 long j18 = this.f120b;
                 long j19 = this.f121c;
-                synchronized (s0Var.f46759g) {
+                synchronized (s0Var.f46761g) {
                     if (!o0Var.d && !o0Var.e) {
-                        ((z01) s0Var.e).a(o0Var.f46737a, o0Var.f46738b, j18, j19);
+                        ((z01) s0Var.e).a(o0Var.f46739a, o0Var.f46740b, j18, j19);
                         return;
                     }
                     return;

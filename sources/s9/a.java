@@ -7,14 +7,14 @@ import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.atomic.AtomicLong;
 public final class a implements ThreadFactory {
     public static final ThreadFactory e = Executors.defaultThreadFactory();
-    public final AtomicLong f46117a = new AtomicLong();
-    public final String f46118b;
-    public final int f46119c;
+    public final AtomicLong f46119a = new AtomicLong();
+    public final String f46120b;
+    public final int f46121c;
     public final StrictMode.ThreadPolicy d;
 
     public a(String str, int i10, StrictMode.ThreadPolicy threadPolicy) {
-        this.f46118b = str;
-        this.f46119c = i10;
+        this.f46120b = str;
+        this.f46121c = i10;
         this.d = threadPolicy;
     }
 
@@ -22,8 +22,8 @@ public final class a implements ThreadFactory {
     public final Thread newThread(Runnable runnable) {
         Thread newThread = e.newThread(new p2.b(15, this, runnable));
         Locale locale = Locale.ROOT;
-        long andIncrement = this.f46117a.getAndIncrement();
-        newThread.setName(this.f46118b + " Thread #" + andIncrement);
+        long andIncrement = this.f46119a.getAndIncrement();
+        newThread.setName(this.f46120b + " Thread #" + andIncrement);
         return newThread;
     }
 }

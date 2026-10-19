@@ -1,11 +1,11 @@
 package v7;
 public abstract class n5 {
-    public final int f48096a = 1;
+    public final int f48098a = 1;
 
     public String toString() {
-        switch (this.f48096a) {
+        switch (this.f48098a) {
             case 1:
-                return ((com.google.android.gms.internal.cast.n4) this).f6736b.toString();
+                return ((com.google.android.gms.internal.cast.n4) this).f6734b.toString();
             default:
                 return super.toString();
         }

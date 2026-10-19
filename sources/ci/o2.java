@@ -12,44 +12,44 @@ import org.telegram.ui.gn;
 import org.telegram.ui.il;
 import org.telegram.ui.qn;
 public final class o2 extends w7.j0 {
-    public final int f5685a;
-    public final Object f5686b;
+    public final int f5683a;
+    public final Object f5684b;
 
     public o2(Object obj, int i10) {
-        this.f5685a = i10;
-        this.f5686b = obj;
+        this.f5683a = i10;
+        this.f5684b = obj;
     }
 
     @Override
     public final void a(boolean z10) {
         MessageObject messageObject;
-        switch (this.f5685a) {
+        switch (this.f5683a) {
             case 0:
-                q4 q4Var = (q4) this.f5686b;
+                q4 q4Var = (q4) this.f5684b;
                 j4 j4Var = q4Var.Q1;
                 boolean x10 = q4Var.K0.W.x();
                 aa aaVar = ((r9) j4Var).d;
-                aaVar.f5199j1 = x10;
+                aaVar.f5197j1 = x10;
                 aaVar.P();
                 return;
             case 1:
-                org.telegram.ui.ActionBar.f3 f3Var = ((org.telegram.ui.l4) this.f5686b).I;
+                org.telegram.ui.ActionBar.f3 f3Var = ((org.telegram.ui.l4) this.f5684b).I;
                 if (f3Var != null) {
                     f3Var.setDisableScroll(z10);
                     return;
                 }
                 return;
             case 2:
-                qn qnVar = (qn) this.f5686b;
-                qnVar.f40785n9 = !z10;
+                qn qnVar = (qn) this.f5684b;
+                qnVar.f40777n9 = !z10;
                 if (z10) {
-                    if (qnVar.f40663d9 != null) {
+                    if (qnVar.f40655d9 != null) {
                         qn.W1(qnVar, 0.0f);
-                        qnVar.f40663d9 = null;
+                        qnVar.f40655d9 = null;
                     }
-                    qnVar.f40674e9 = false;
-                    qnVar.f40687f9 = false;
-                    il ilVar = qnVar.f40712h9;
+                    qnVar.f40666e9 = false;
+                    qnVar.f40679f9 = false;
+                    il ilVar = qnVar.f40704h9;
                     if (ilVar != null) {
                         AndroidUtilities.cancelRunOnUIThread(ilVar.H);
                         ilVar.a();
@@ -58,16 +58,16 @@ public final class o2 extends w7.j0 {
                 qnVar.zc();
                 return;
             default:
-                ic0 ic0Var = (ic0) this.f5686b;
+                ic0 ic0Var = (ic0) this.f5684b;
                 ac0 ac0Var = ic0Var.e;
-                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = ic0Var.f27206s;
-                oc0 oc0Var = ic0Var.f27202c0;
-                if (oc0Var.f28955s) {
-                    if (!z10 && actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().f29275b > 0.0f) {
+                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = ic0Var.f27204s;
+                oc0 oc0Var = ic0Var.f27200c0;
+                if (oc0Var.f28953s) {
+                    if (!z10 && actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().f29273b > 0.0f) {
                         actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().b(true);
                         return;
                     } else if (z10) {
-                        if (ac0Var.v - ac0Var.f22012u > MessagesController.getInstance(oc0Var.f28956w).quoteLengthMax) {
+                        if (ac0Var.v - ac0Var.f22010u > MessagesController.getInstance(oc0Var.f28954w).quoteLengthMax) {
                             ic0Var.g();
                             return;
                         }
@@ -80,7 +80,7 @@ public final class o2 extends w7.j0 {
                         MessageObject c10 = ic0Var.c(messageObject);
                         MessagePreviewParams messagePreviewParams = oc0Var.d;
                         if (messagePreviewParams.quote == null) {
-                            int i10 = ac0Var.f22012u;
+                            int i10 = ac0Var.f22010u;
                             messagePreviewParams.quoteStart = i10;
                             int i11 = ac0Var.v;
                             messagePreviewParams.quoteEnd = i11;
@@ -101,9 +101,9 @@ public final class o2 extends w7.j0 {
     public void b() {
         org.telegram.ui.ActionBar.k kVar;
         org.telegram.ui.ActionBar.k kVar2;
-        switch (this.f5685a) {
+        switch (this.f5683a) {
             case 2:
-                qn qnVar = (qn) this.f5686b;
+                qn qnVar = (qn) this.f5684b;
                 kVar = ((org.telegram.ui.ActionBar.n2) qnVar).actionBar;
                 if (kVar != null) {
                     kVar2 = ((org.telegram.ui.ActionBar.n2) qnVar).actionBar;

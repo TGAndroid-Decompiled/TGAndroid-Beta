@@ -9,19 +9,19 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class m90 implements Utilities.Callback {
-    public final int f39188a;
-    public final LaunchActivity f39189b;
+    public final int f39153a;
+    public final LaunchActivity f39154b;
 
     public m90(LaunchActivity launchActivity, int i10) {
-        this.f39188a = i10;
-        this.f39189b = launchActivity;
+        this.f39153a = i10;
+        this.f39154b = launchActivity;
     }
 
     @Override
     public final void run(Object obj) {
         org.telegram.ui.ActionBar.n2 lastFragment;
-        int i10 = this.f39188a;
-        LaunchActivity launchActivity = this.f39189b;
+        int i10 = this.f39153a;
+        LaunchActivity launchActivity = this.f39154b;
         switch (i10) {
             case 0:
                 boolean booleanValue = ((Boolean) obj).booleanValue();
@@ -35,17 +35,17 @@ public final class m90 implements Utilities.Callback {
                     j80 j80Var = new j80(launchActivity, 9);
                     a02.getClass();
                     Context W = a02.W();
-                    org.telegram.ui.ActionBar.d6 d6Var = a02.f32366c;
+                    org.telegram.ui.ActionBar.d6 d6Var = a02.f32364c;
                     org.telegram.ui.Components.nc ncVar = new org.telegram.ui.Components.nc(W, d6Var);
-                    ncVar.f28747a.setImageDrawable(y9Var);
-                    ncVar.f28748b.setText(string);
-                    ncVar.f28749c.setText(formatString);
+                    ncVar.f28745a.setImageDrawable(y9Var);
+                    ncVar.f28746b.setText(string);
+                    ncVar.f28747c.setText(formatString);
                     org.telegram.ui.Components.oc ocVar = new org.telegram.ui.Components.oc(a02.W(), d6Var, true);
                     ocVar.e(string2);
-                    ocVar.f28946a = j80Var;
+                    ocVar.f28944a = j80Var;
                     ncVar.setButton(ocVar);
                     org.telegram.ui.Components.qc b10 = a02.b(ncVar, 2750);
-                    b10.f29596j = 5000;
+                    b10.f29594j = 5000;
                     b10.j();
                     return;
                 }

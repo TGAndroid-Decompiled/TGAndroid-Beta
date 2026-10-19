@@ -4,23 +4,23 @@ import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 public final class o1 implements b1 {
-    public static final AtomicIntegerFieldUpdater f4309b = AtomicIntegerFieldUpdater.newUpdater(o1.class, "_isCompleting$volatile");
-    public static final AtomicReferenceFieldUpdater f4310c = AtomicReferenceFieldUpdater.newUpdater(o1.class, Object.class, "_rootCause$volatile");
+    public static final AtomicIntegerFieldUpdater f4307b = AtomicIntegerFieldUpdater.newUpdater(o1.class, "_isCompleting$volatile");
+    public static final AtomicReferenceFieldUpdater f4308c = AtomicReferenceFieldUpdater.newUpdater(o1.class, Object.class, "_rootCause$volatile");
     public static final AtomicReferenceFieldUpdater d = AtomicReferenceFieldUpdater.newUpdater(o1.class, Object.class, "_exceptionsHolder$volatile");
     private volatile Object _exceptionsHolder$volatile;
     private volatile int _isCompleting$volatile = 0;
     private volatile Object _rootCause$volatile;
-    public final w1 f4311a;
+    public final w1 f4309a;
 
     public o1(w1 w1Var, Throwable th2) {
-        this.f4311a = w1Var;
+        this.f4309a = w1Var;
         this._rootCause$volatile = th2;
     }
 
     public final void a(Throwable th2) {
         Throwable b10 = b();
         if (b10 == null) {
-            f4310c.set(this, th2);
+            f4308c.set(this, th2);
         } else if (th2 != b10) {
             AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = d;
             Object obj = atomicReferenceFieldUpdater.get(this);
@@ -43,12 +43,12 @@ public final class o1 implements b1 {
     }
 
     public final Throwable b() {
-        return (Throwable) f4310c.get(this);
+        return (Throwable) f4308c.get(this);
     }
 
     @Override
     public final w1 c() {
-        return this.f4311a;
+        return this.f4309a;
     }
 
     public final boolean d() {
@@ -59,7 +59,7 @@ public final class o1 implements b1 {
     }
 
     public final boolean e() {
-        if (f4309b.get(this) != 0) {
+        if (f4307b.get(this) != 0) {
             return true;
         }
         return false;
@@ -100,6 +100,6 @@ public final class o1 implements b1 {
     }
 
     public final String toString() {
-        return "Finishing[cancelling=" + d() + ", completing=" + e() + ", rootCause=" + b() + ", exceptions=" + d.get(this) + ", list=" + this.f4311a + ']';
+        return "Finishing[cancelling=" + d() + ", completing=" + e() + ", rootCause=" + b() + ", exceptions=" + d.get(this) + ", list=" + this.f4309a + ']';
     }
 }

@@ -2,14 +2,14 @@ package ge;
 
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 public abstract class b extends p {
-    public static final AtomicReferenceFieldUpdater f11017a = AtomicReferenceFieldUpdater.newUpdater(b.class, Object.class, "_consensus$volatile");
-    private volatile Object _consensus$volatile = a.f11013a;
+    public static final AtomicReferenceFieldUpdater f11015a = AtomicReferenceFieldUpdater.newUpdater(b.class, Object.class, "_consensus$volatile");
+    private volatile Object _consensus$volatile = a.f11011a;
 
     @Override
     public final Object a(Object obj) {
-        AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = f11017a;
+        AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = f11015a;
         Object obj2 = atomicReferenceFieldUpdater.get(this);
-        com.google.android.gms.internal.clearcut.e eVar = a.f11013a;
+        com.google.android.gms.internal.clearcut.e eVar = a.f11011a;
         if (obj2 == eVar) {
             com.google.android.gms.internal.clearcut.e c10 = c(obj);
             obj2 = atomicReferenceFieldUpdater.get(this);

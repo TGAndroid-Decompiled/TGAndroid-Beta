@@ -33,15 +33,15 @@ public final class f extends k {
         h hVar = this.F;
         e eVar = hVar.S0;
         int b10 = b1Var.b();
-        List list = eVar.f16939c;
+        List list = eVar.f16937c;
         GroupCallMessage groupCallMessage = null;
         if (list != null && b10 >= 0 && b10 < list.size()) {
-            groupCallMessage = (GroupCallMessage) eVar.f16939c.get(b10);
+            groupCallMessage = (GroupCallMessage) eVar.f16937c.get(b10);
         }
         if (groupCallMessage != null && (i1Var = groupCallMessage.visibleReaction) != null) {
-            View view = b1Var.f45910a;
+            View view = b1Var.f45912a;
             if ((view instanceof c) && (gVar = hVar.X0) != null) {
-                q50 q50Var = ((n30) gVar).f39400a;
+                q50 q50Var = ((n30) gVar).f39396a;
                 Context context = q50Var.getContext();
                 cl0 cl0Var = q50Var.K;
                 i10 = ((f3) q50Var).currentAccount;

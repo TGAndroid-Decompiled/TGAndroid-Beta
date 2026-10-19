@@ -3,22 +3,22 @@ package org.telegram.ui.Components;
 import android.view.TextureView;
 import java.util.ArrayList;
 public final class t71 implements Runnable {
-    public final int f30450a;
-    public final Object f30451b;
+    public final int f30448a;
+    public final Object f30449b;
 
     public t71(Object obj, int i10) {
-        this.f30450a = i10;
-        this.f30451b = obj;
+        this.f30448a = i10;
+        this.f30449b = obj;
     }
 
     @Override
     public final void run() {
-        switch (this.f30450a) {
+        switch (this.f30448a) {
             case 0:
-                b81 b81Var = (b81) this.f30451b;
+                b81 b81Var = (b81) this.f30449b;
                 i2.i0 i0Var = b81Var.d;
                 if (i0Var != null) {
-                    TextureView textureView = b81Var.f24847n;
+                    TextureView textureView = b81Var.f24845n;
                     i0Var.F1();
                     if (textureView != null && textureView == i0Var.X) {
                         i0Var.F1();
@@ -26,7 +26,7 @@ public final class t71 implements Runnable {
                         i0Var.x1(null);
                         i0Var.q1(0, 0);
                     }
-                    b81Var.d.z1(b81Var.f24847n);
+                    b81Var.d.z1(b81Var.f24845n);
                     ArrayList arrayList = b81Var.N;
                     if (arrayList != null) {
                         b81Var.F(arrayList, b81Var.O);
@@ -40,18 +40,18 @@ public final class t71 implements Runnable {
                 }
                 return;
             case 1:
-                b81 b81Var2 = ((a81) this.f30451b).f24516f;
-                b81Var2.f24835a0.removeCallbacksAndMessages(null);
+                b81 b81Var2 = ((a81) this.f30449b).f24514f;
+                b81Var2.f24833a0.removeCallbacksAndMessages(null);
                 b81Var2.K.onVisualizerUpdate(false, true, null);
                 return;
             case 2:
-                ((d81) this.f30451b).f25469g = false;
+                ((d81) this.f30449b).f25467g = false;
                 return;
             case 3:
-                ((v91) ((t50) ((org.telegram.ui.Cells.ca) this.f30451b).f22111b).f30428b).v.b();
+                ((v91) ((t50) ((org.telegram.ui.Cells.ca) this.f30449b).f22109b).f30426b).v.b();
                 return;
             default:
-                ((r91) this.f30451b).d(false, true);
+                ((r91) this.f30449b).d(false, true);
                 return;
         }
     }

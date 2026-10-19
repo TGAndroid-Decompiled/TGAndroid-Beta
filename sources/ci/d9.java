@@ -5,19 +5,19 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.tgnet.tl.TL_stories;
 public final class d9 extends FrameLayout {
-    public final TL_stories.MediaArea f5342a;
-    public final rg.s0 f5343b;
+    public final TL_stories.MediaArea f5340a;
+    public final rg.s0 f5341b;
 
     public d9(Context context, rg.s0 s0Var, TL_stories.MediaArea mediaArea) {
         super(context);
-        this.f5342a = mediaArea;
-        this.f5343b = s0Var;
+        this.f5340a = mediaArea;
+        this.f5341b = s0Var;
         addView(s0Var);
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        rg.s0 s0Var = this.f5343b;
+        rg.s0 s0Var = this.f5341b;
         s0Var.measure(i10, i11);
         int measuredWidth = (s0Var.getMeasuredWidth() - s0Var.getPaddingLeft()) - s0Var.getPaddingRight();
         int measuredHeight = (s0Var.getMeasuredHeight() - s0Var.getPaddingTop()) - s0Var.getPaddingBottom();

@@ -9,23 +9,23 @@ import java.nio.ByteBuffer;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.bz0;
 public final class r0 implements Runnable {
-    public final int f52093a;
-    public final c1 f52094b;
-    public final int f52095c;
+    public final int f52095a;
+    public final c1 f52096b;
+    public final int f52097c;
 
     public r0(c1 c1Var, int i10, int i11) {
-        this.f52093a = i11;
-        this.f52094b = c1Var;
-        this.f52095c = i10;
+        this.f52095a = i11;
+        this.f52096b = c1Var;
+        this.f52097c = i10;
     }
 
     @Override
     public final void run() {
         byte[] bArr;
-        switch (this.f52093a) {
+        switch (this.f52095a) {
             case 0:
-                c1 c1Var = this.f52094b;
-                int i10 = this.f52095c;
+                c1 c1Var = this.f52096b;
+                int i10 = this.f52097c;
                 synchronized (c1.class) {
                     if (c1.O9 != null) {
                         bArr = c1.O9;
@@ -67,10 +67,10 @@ public final class r0 implements Runnable {
                 AndroidUtilities.runOnUIThread(new bz0(c1Var, createBitmap2, iArr, i10, 23));
                 return;
             case 1:
-                this.f52094b.F0(this.f52095c);
+                this.f52096b.F0(this.f52097c);
                 return;
             default:
-                this.f52094b.F0(this.f52095c);
+                this.f52096b.F0(this.f52097c);
                 return;
         }
     }

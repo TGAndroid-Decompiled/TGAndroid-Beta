@@ -7,16 +7,16 @@ import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MessagesController;
 public final class di0 implements z4.e {
-    public final org.telegram.ui.sy0 f25570a;
+    public final org.telegram.ui.sy0 f25568a;
 
     public di0(org.telegram.ui.sy0 sy0Var) {
-        this.f25570a = sy0Var;
+        this.f25568a = sy0Var;
     }
 
     @Override
     public final void a(float f7, int i10, int i11) {
         ImageLocation imageLocation;
-        org.telegram.ui.sy0 sy0Var = this.f25570a;
+        org.telegram.ui.sy0 sy0Var = this.f25568a;
         ji0 ji0Var = sy0Var.D0;
         ArrayList arrayList = sy0Var.W0;
         sy0Var.B(f7, i10);
@@ -57,8 +57,8 @@ public final class di0 implements z4.e {
     @Override
     public final void b(int i10) {
         boolean z10;
-        org.telegram.ui.sy0 sy0Var = this.f25570a;
-        int i11 = sy0Var.f27878o1;
+        org.telegram.ui.sy0 sy0Var = this.f25568a;
+        int i11 = sy0Var.f27876o1;
         int i12 = 0;
         if (i10 >= i11) {
             z10 = true;
@@ -66,7 +66,7 @@ public final class di0 implements z4.e {
             z10 = false;
         }
         if (i10 != i11) {
-            sy0Var.f27878o1 = i10;
+            sy0Var.f27876o1 = i10;
         }
         MessagesController.DialogPhotos dialogPhotos = sy0Var.S0;
         if (dialogPhotos != null) {

@@ -10,21 +10,21 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
 public final class h extends eb.u {
-    public static final e f11721c = new e();
-    public final g f11722a;
-    public final ArrayList f11723b;
+    public static final e f11719c = new e();
+    public final g f11720a;
+    public final ArrayList f11721b;
 
     public h(g gVar) {
         ArrayList arrayList = new ArrayList();
-        this.f11723b = arrayList;
+        this.f11721b = arrayList;
         Objects.requireNonNull(gVar);
-        this.f11722a = gVar;
+        this.f11720a = gVar;
         Locale locale = Locale.US;
         arrayList.add(DateFormat.getDateTimeInstance(2, 2, locale));
         if (!Locale.getDefault().equals(locale)) {
             arrayList.add(DateFormat.getDateTimeInstance(2, 2));
         }
-        if (gb.g.f10961a >= 9) {
+        if (gb.g.f10959a >= 9) {
             arrayList.add(new SimpleDateFormat(a1.g.C("MMM d, yyyy", " ", "h:mm:ss a"), locale));
         }
     }
@@ -39,9 +39,9 @@ public final class h extends eb.u {
             return null;
         }
         String v = aVar.v();
-        synchronized (this.f11723b) {
+        synchronized (this.f11721b) {
             try {
-                ArrayList arrayList = this.f11723b;
+                ArrayList arrayList = this.f11721b;
                 int size = arrayList.size();
                 int i10 = 0;
                 while (true) {
@@ -68,11 +68,11 @@ public final class h extends eb.u {
             } finally {
             }
         }
-        return this.f11722a.a(b10);
+        return this.f11720a.a(b10);
     }
 
     public final String toString() {
-        DateFormat dateFormat = (DateFormat) this.f11723b.get(0);
+        DateFormat dateFormat = (DateFormat) this.f11721b.get(0);
         if (dateFormat instanceof SimpleDateFormat) {
             return "DefaultDateTypeAdapter(" + ((SimpleDateFormat) dateFormat).toPattern() + ')';
         }
@@ -87,8 +87,8 @@ public final class h extends eb.u {
             bVar.i();
             return;
         }
-        DateFormat dateFormat = (DateFormat) this.f11723b.get(0);
-        synchronized (this.f11723b) {
+        DateFormat dateFormat = (DateFormat) this.f11721b.get(0);
+        synchronized (this.f11721b) {
             format = dateFormat.format(date);
         }
         bVar.r(format);

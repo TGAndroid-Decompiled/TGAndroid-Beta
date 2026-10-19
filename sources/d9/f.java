@@ -1,22 +1,22 @@
 package d9;
 public final class f extends d {
-    public final char f7890a;
-    public final char f7891b;
+    public final char f7888a;
+    public final char f7889b;
 
     public f(char c10, char c11) {
-        this.f7890a = c10;
-        this.f7891b = c11;
+        this.f7888a = c10;
+        this.f7889b = c11;
     }
 
     @Override
     public final boolean c(char c10) {
-        if (c10 != this.f7890a && c10 != this.f7891b) {
+        if (c10 != this.f7888a && c10 != this.f7889b) {
             return false;
         }
         return true;
     }
 
     public final String toString() {
-        return "CharMatcher.anyOf(\"" + i.a(this.f7890a) + i.a(this.f7891b) + "\")";
+        return "CharMatcher.anyOf(\"" + i.a(this.f7888a) + i.a(this.f7889b) + "\")";
     }
 }

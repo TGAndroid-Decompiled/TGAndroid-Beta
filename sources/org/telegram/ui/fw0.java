@@ -6,12 +6,12 @@ import android.graphics.RectF;
 import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
 public final class fw0 extends yv0 {
-    public final int f37132r = 0;
-    public final org.telegram.ui.Components.hm0 f37133s;
+    public final int f37126r = 0;
+    public final org.telegram.ui.Components.hm0 f37127s;
 
     public fw0(sg.l1 l1Var, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context, d6Var);
-        this.f37133s = l1Var;
+        this.f37127s = l1Var;
     }
 
     @Override
@@ -19,16 +19,16 @@ public final class fw0 extends yv0 {
         org.telegram.ui.ActionBar.d6 d6Var;
         boolean q6;
         org.telegram.ui.ActionBar.d6 d6Var2;
-        switch (this.f37132r) {
+        switch (this.f37126r) {
             case 0:
                 float dp = AndroidUtilities.dp(10.0f);
                 RectF rectF = AndroidUtilities.rectTmp;
-                ImageView imageView = this.f43564c;
+                ImageView imageView = this.f43559c;
                 rectF.set(imageView.getLeft(), imageView.getTop(), imageView.getRight(), imageView.getBottom());
-                PremiumPreviewFragment premiumPreviewFragment = ((gw0) this.f37133s).f37448c;
+                PremiumPreviewFragment premiumPreviewFragment = ((gw0) this.f37127s).f37422c;
                 premiumPreviewFragment.S.reset();
                 premiumPreviewFragment.S.postScale(1.0f, premiumPreviewFragment.N / 100.0f, 0.0f, 0.0f);
-                premiumPreviewFragment.S.postTranslate(0.0f, -this.f43565f.e);
+                premiumPreviewFragment.S.postTranslate(0.0f, -this.f43560f.e);
                 premiumPreviewFragment.R.setLocalMatrix(premiumPreviewFragment.S);
                 canvas.drawRoundRect(rectF, dp, dp, premiumPreviewFragment.T);
                 d6Var = ((org.telegram.ui.ActionBar.n2) premiumPreviewFragment).resourceProvider;
@@ -53,11 +53,11 @@ public final class fw0 extends yv0 {
                 return;
             default:
                 RectF rectF2 = AndroidUtilities.rectTmp;
-                ImageView imageView2 = this.f43564c;
+                ImageView imageView2 = this.f43559c;
                 rectF2.set(imageView2.getLeft(), imageView2.getTop(), imageView2.getRight(), imageView2.getBottom());
-                sg.l1 l1Var = (sg.l1) this.f37133s;
-                l1Var.f46318c.f46334p0.d(0, 0.0f, 0, getMeasuredWidth(), -this.f43565f.e, l1Var.f46318c.f46324e0);
-                canvas.drawRoundRect(rectF2, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), l1Var.f46318c.f46334p0.f46184f);
+                sg.l1 l1Var = (sg.l1) this.f37127s;
+                l1Var.f46320c.f46336p0.d(0, 0.0f, 0, getMeasuredWidth(), -this.f43560f.e, l1Var.f46320c.f46326e0);
+                canvas.drawRoundRect(rectF2, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), l1Var.f46320c.f46336p0.f46186f);
                 super.dispatchDraw(canvas);
                 return;
         }
@@ -65,6 +65,6 @@ public final class fw0 extends yv0 {
 
     public fw0(gw0 gw0Var, Context context) {
         super(context, null);
-        this.f37133s = gw0Var;
+        this.f37127s = gw0Var;
     }
 }

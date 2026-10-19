@@ -21,32 +21,32 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.ui.PhotoViewer;
 public final class ss0 extends jv0 {
-    public float f30322o3;
-    public float f30323p3;
-    public final ps0 f30324q3;
-    public final qs0 f30325r3;
-    public final tv0 f30326s3;
+    public float f30320o3;
+    public float f30321p3;
+    public final ps0 f30322q3;
+    public final qs0 f30323r3;
+    public final tv0 f30324s3;
 
     public ss0(tv0 tv0Var, Context context, ps0 ps0Var, qs0 qs0Var) {
         super(context);
-        this.f30326s3 = tv0Var;
-        this.f30324q3 = ps0Var;
-        this.f30325r3 = qs0Var;
+        this.f30324s3 = tv0Var;
+        this.f30322q3 = ps0Var;
+        this.f30323r3 = qs0Var;
     }
 
     @Override
     public final boolean A1() {
-        return this.f30326s3.f30718o1;
+        return this.f30324s3.f30716o1;
     }
 
     @Override
     public final boolean B1() {
-        return tv0.q0(this.f30326s3.f30720p1);
+        return tv0.q0(this.f30324s3.f30718p1);
     }
 
     @Override
     public final boolean C1() {
-        if (this == this.f30324q3.h) {
+        if (this == this.f30322q3.h) {
             return true;
         }
         return false;
@@ -69,7 +69,7 @@ public final class ss0 extends jv0 {
     @Override
     public final Integer W0(int i10) {
         s4.g0 adapter = getAdapter();
-        cu0 cu0Var = this.f30326s3.Q;
+        cu0 cu0Var = this.f30324s3.Q;
         if (adapter == cu0Var && cu0Var.e > 0 && i10 == cu0Var.d.size() - 1) {
             return 0;
         }
@@ -83,39 +83,39 @@ public final class ss0 extends jv0 {
         int i11;
         View childAt2;
         s4.g0 adapter = getAdapter();
-        tv0 tv0Var = this.f30326s3;
-        org.telegram.ui.ActionBar.n2 n2Var = tv0Var.f30734v1;
-        bu0 bu0Var = tv0Var.f30692c0;
-        hs0 hs0Var = tv0Var.f30697e0;
-        ps0 ps0Var = this.f30324q3;
+        tv0 tv0Var = this.f30324s3;
+        org.telegram.ui.ActionBar.n2 n2Var = tv0Var.f30732v1;
+        bu0 bu0Var = tv0Var.f30690c0;
+        hs0 hs0Var = tv0Var.f30695e0;
+        ps0 ps0Var = this.f30322q3;
         if ((adapter == hs0Var || getAdapter() == bu0Var) && getChildCount() > 0 && (childAt = getChildAt(0)) != null && RecyclerView.R(childAt) == 0) {
             int top = childAt.getTop();
-            if (tv0Var.f30718o1) {
-                int i12 = tv0Var.f30720p1;
+            if (tv0Var.f30716o1) {
+                int i12 = tv0Var.f30718p1;
                 if (getAdapter() == bu0Var) {
                     i11 = 8;
                 } else {
                     i11 = 9;
                 }
-                if (i12 == i11 && ps0Var.f28611r.getChildCount() > 0 && (childAt2 = ps0Var.f28611r.getChildAt(0)) != null) {
-                    ps0Var.f28611r.getClass();
+                if (i12 == i11 && ps0Var.f28609r.getChildCount() > 0 && (childAt2 = ps0Var.f28609r.getChildAt(0)) != null) {
+                    ps0Var.f28609r.getClass();
                     if (RecyclerView.R(childAt2) == 0) {
-                        top = AndroidUtilities.lerp(top, childAt2.getTop(), tv0Var.f30716n1);
+                        top = AndroidUtilities.lerp(top, childAt2.getTop(), tv0Var.f30714n1);
                     }
                 }
             }
             if (getAdapter() != bu0Var) {
                 boolean z10 = true;
-                if (this.f27611h3 == null) {
+                if (this.f27609h3 == null) {
                     TextPaint textPaint = new TextPaint(1);
-                    this.f27611h3 = textPaint;
+                    this.f27609h3 = textPaint;
                     textPaint.setTextSize(AndroidUtilities.dp(14.0f));
-                    this.f27611h3.setColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21394z6, this.f27301n2));
+                    this.f27609h3.setColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21392z6, this.f27299n2));
                 }
                 int measuredWidth = getMeasuredWidth() - AndroidUtilities.dp(60.0f);
-                StaticLayout staticLayout = this.f27612i3;
+                StaticLayout staticLayout = this.f27610i3;
                 if (staticLayout == null || staticLayout.getWidth() != measuredWidth) {
-                    z10 = (n2Var == null || !ChatObject.isChannelAndNotMegaGroup(n2Var.getMessagesController().getChat(Long.valueOf(-tv0Var.f30709j1)))) ? false : false;
+                    z10 = (n2Var == null || !ChatObject.isChannelAndNotMegaGroup(n2Var.getMessagesController().getChat(Long.valueOf(-tv0Var.f30707j1)))) ? false : false;
                     if (tv0Var.r0()) {
                         if (z10) {
                             i10 = R.string.ProfileStoriesArchiveChannelHint;
@@ -125,17 +125,17 @@ public final class ss0 extends jv0 {
                     } else {
                         i10 = R.string.ProfileStoriesArchiveHint;
                     }
-                    this.f27612i3 = new StaticLayout(LocaleController.getString(i10), this.f27611h3, measuredWidth, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
-                    this.f27613j3 = 0.0f;
-                    this.f27614k3 = measuredWidth;
-                    for (int i13 = 0; i13 < this.f27612i3.getLineCount(); i13++) {
-                        this.f27613j3 = Math.max(this.f27613j3, this.f27612i3.getLineWidth(i13));
-                        this.f27614k3 = Math.min(this.f27614k3, this.f27612i3.getLineLeft(i13));
+                    this.f27610i3 = new StaticLayout(LocaleController.getString(i10), this.f27609h3, measuredWidth, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
+                    this.f27611j3 = 0.0f;
+                    this.f27612k3 = measuredWidth;
+                    for (int i13 = 0; i13 < this.f27610i3.getLineCount(); i13++) {
+                        this.f27611j3 = Math.max(this.f27611j3, this.f27610i3.getLineWidth(i13));
+                        this.f27612k3 = Math.min(this.f27612k3, this.f27610i3.getLineLeft(i13));
                     }
                 }
                 canvas.save();
-                canvas.translate(((getWidth() - this.f27613j3) / 2.0f) - this.f27614k3, top - ((this.f27612i3.getHeight() + AndroidUtilities.dp(64.0f)) / 2.0f));
-                this.f27612i3.draw(canvas);
+                canvas.translate(((getWidth() - this.f27611j3) / 2.0f) - this.f27612k3, top - ((this.f27610i3.getHeight() + AndroidUtilities.dp(64.0f)) / 2.0f));
+                this.f27610i3.draw(canvas);
                 canvas.restore();
             }
         }
@@ -150,33 +150,33 @@ public final class ss0 extends jv0 {
             }
             invalidate();
         }
-        if (this.f27615l3 == null) {
+        if (this.f27613l3 == null) {
             int currentAccount = n2Var.getCurrentAccount();
-            ci.ia[] iaVarArr = ci.ia.f5521f;
+            ci.ia[] iaVarArr = ci.ia.f5519f;
             if (iaVarArr[currentAccount] == null) {
                 iaVarArr[currentAccount] = new ci.ia(currentAccount);
             }
-            this.f27615l3 = iaVarArr[currentAccount];
+            this.f27613l3 = iaVarArr[currentAccount];
         }
-        this.f27615l3.a(this);
-        if (!tv0Var.f30718o1) {
-            tv0Var.f30720p1 = -1;
+        this.f27613l3.a(this);
+        if (!tv0Var.f30716o1) {
+            tv0Var.f30718p1 = -1;
         }
     }
 
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        tv0 tv0Var = this.f30326s3;
-        org.telegram.ui.ActionBar.n2 n2Var = tv0Var.f30734v1;
+        tv0 tv0Var = this.f30324s3;
+        org.telegram.ui.ActionBar.n2 n2Var = tv0Var.f30732v1;
         if (n2Var != null && n2Var.isInPreviewMode()) {
-            this.f30322o3 = motionEvent.getY();
+            this.f30320o3 = motionEvent.getY();
             if (motionEvent.getAction() == 1) {
-                tv0Var.f30734v1.finishPreviewFragment();
+                tv0Var.f30732v1.finishPreviewFragment();
             } else if (motionEvent.getAction() == 2) {
-                float f7 = this.f30323p3 - this.f30322o3;
-                tv0Var.f30734v1.movePreviewFragment(f7);
+                float f7 = this.f30321p3 - this.f30320o3;
+                tv0Var.f30732v1.movePreviewFragment(f7);
                 if (f7 < 0.0f) {
-                    this.f30323p3 = this.f30322o3;
+                    this.f30321p3 = this.f30320o3;
                 }
             }
             return true;
@@ -186,57 +186,57 @@ public final class ss0 extends jv0 {
 
     @Override
     public final int getAnimateToColumnsCount() {
-        return this.f30326s3.f30722q1;
+        return this.f30324s3.f30720q1;
     }
 
     @Override
     public final float getChangeColumnsProgress() {
-        return this.f30326s3.f30716n1;
+        return this.f30324s3.f30714n1;
     }
 
     @Override
     public final int getColumnsCount() {
-        tv0 tv0Var = this.f30326s3;
-        if (tv0.q0(tv0Var.f30720p1)) {
-            return tv0Var.f30713m1[1];
+        tv0 tv0Var = this.f30324s3;
+        if (tv0.q0(tv0Var.f30718p1)) {
+            return tv0Var.f30711m1[1];
         }
-        return tv0Var.f30713m1[0];
+        return tv0Var.f30711m1[0];
     }
 
     @Override
     public final SparseArray getMessageAlphaEnter() {
-        return this.f30326s3.O1;
+        return this.f30324s3.O1;
     }
 
     @Override
     public final ql0 getMovingAdapter() {
-        tv0 tv0Var = this.f30326s3;
-        if (tv0.q0(tv0Var.f30720p1)) {
-            return tv0Var.m1(tv0Var.f30720p1);
+        tv0 tv0Var = this.f30324s3;
+        if (tv0.q0(tv0Var.f30718p1)) {
+            return tv0Var.m1(tv0Var.f30718p1);
         }
         return tv0Var.H;
     }
 
     @Override
     public final ql0 getSupportingAdapter() {
-        tv0 tv0Var = this.f30326s3;
-        if (tv0.q0(tv0Var.f30720p1)) {
-            return tv0Var.n1(tv0Var.f30720p1);
+        tv0 tv0Var = this.f30324s3;
+        if (tv0.q0(tv0Var.f30718p1)) {
+            return tv0Var.n1(tv0Var.f30718p1);
         }
         return tv0Var.I;
     }
 
     @Override
     public final lu0 getSupportingListView() {
-        return this.f30324q3.f28611r;
+        return this.f30322q3.f28609r;
     }
 
     @Override
     public final void k0(int i10, int i11) {
         org.telegram.ui.ActionBar.n2 n2Var;
         boolean z10 = this.I1;
-        tv0 tv0Var = this.f30326s3;
-        if (z10 && tv0Var.getSelectedTab() == 11 && (n2Var = tv0Var.f30734v1) != null) {
+        tv0 tv0Var = this.f30324s3;
+        if (z10 && tv0Var.getSelectedTab() == 11 && (n2Var = tv0Var.f30732v1) != null) {
             AndroidUtilities.hideKeyboard(n2Var.getParentActivity().getCurrentFocus());
         }
         tv0Var.I();
@@ -251,15 +251,15 @@ public final class ss0 extends jv0 {
                     arrayList.add(((org.telegram.ui.Cells.u1) childAt).getMessageObject());
                 }
             }
-            MessagesController.getInstance(av0Var.d).addToPollsQueue(av0Var.f24713s.f30709j1, arrayList);
+            MessagesController.getInstance(av0Var.d).addToPollsQueue(av0Var.f24711s.f30707j1, arrayList);
         }
     }
 
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
-        ps0 ps0Var = this.f30324q3;
-        this.f30326s3.G(ps0Var, ps0Var.h, this.f30325r3);
+        ps0 ps0Var = this.f30322q3;
+        this.f30324s3.G(ps0Var, ps0Var.h, this.f30323r3);
         if (ps0Var.F == 0) {
             PhotoViewer.t1().y0();
         }
@@ -292,8 +292,8 @@ public final class ss0 extends jv0 {
     public final void z1(org.telegram.ui.Cells.s7 s7Var) {
         float f7;
         int messageId = s7Var.getMessageId();
-        ps0 ps0Var = this.f30324q3;
-        if (messageId == ps0Var.J && s7Var.f23026c.hasBitmapImage()) {
+        ps0 ps0Var = this.f30322q3;
+        if (messageId == ps0Var.J && s7Var.f23024c.hasBitmapImage()) {
             if (!ps0Var.K) {
                 ps0Var.L = 0.0f;
                 ps0Var.K = true;

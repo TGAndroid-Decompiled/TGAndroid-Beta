@@ -12,21 +12,21 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 public final class wh extends FrameLayout {
-    public final int f32115a;
-    public final ti f32116b;
+    public final int f32113a;
+    public final ti f32114b;
 
     public wh(ti tiVar, Context context, int i10) {
         super(context);
-        this.f32115a = i10;
-        this.f32116b = tiVar;
+        this.f32113a = i10;
+        this.f32114b = tiVar;
     }
 
     @Override
     public void dispatchDraw(Canvas canvas) {
-        switch (this.f32115a) {
+        switch (this.f32113a) {
             case 2:
                 canvas.save();
-                canvas.clipRect(0.0f, this.f32116b.Y1, getMeasuredWidth(), getMeasuredHeight());
+                canvas.clipRect(0.0f, this.f32114b.Y1, getMeasuredWidth(), getMeasuredHeight());
                 super.dispatchDraw(canvas);
                 canvas.restore();
                 return;
@@ -38,9 +38,9 @@ public final class wh extends FrameLayout {
 
     @Override
     public void onDraw(Canvas canvas) {
-        switch (this.f32115a) {
+        switch (this.f32113a) {
             case 2:
-                ti tiVar = this.f32116b;
+                ti tiVar = this.f32114b;
                 wh whVar = tiVar.G0;
                 if (tiVar.F0.getAlpha() > 0.0f) {
                     float f7 = tiVar.Z1;
@@ -54,7 +54,7 @@ public final class wh extends FrameLayout {
                         ValueAnimator ofFloat = ValueAnimator.ofFloat(top, 0.0f);
                         tiVar.a2 = ofFloat;
                         ofFloat.addUpdateListener(new l6(this, 10));
-                        tiVar.a2.setInterpolator(bs.f25014f);
+                        tiVar.a2.setInterpolator(bs.f25012f);
                         tiVar.a2.setDuration(200L);
                         tiVar.a2.start();
                         tiVar.Z1 = 0.0f;
@@ -71,20 +71,20 @@ public final class wh extends FrameLayout {
 
     @Override
     public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        switch (this.f32115a) {
+        switch (this.f32113a) {
             case 3:
                 super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                ti tiVar = this.f32116b;
+                ti tiVar = this.f32114b;
                 li liVar = tiVar.B0;
-                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = tiVar.f30548j0;
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = tiVar.f30546j0;
                 if (liVar == chatAttachAlertPhotoLayout) {
                     accessibilityNodeInfo.setText(LocaleController.formatPluralString("AccDescrSendPhotos", chatAttachAlertPhotoLayout.getSelectedItemsCount(), new Object[0]));
                 } else {
-                    nk nkVar = tiVar.f30565p0;
+                    nk nkVar = tiVar.f30563p0;
                     if (liVar == nkVar) {
                         accessibilityNodeInfo.setText(LocaleController.formatPluralString("AccDescrSendFiles", nkVar.getSelectedItemsCount(), new Object[0]));
                     } else {
-                        fj fjVar = tiVar.f30554l0;
+                        fj fjVar = tiVar.f30552l0;
                         if (liVar == fjVar) {
                             accessibilityNodeInfo.setText(LocaleController.formatPluralString("AccDescrSendAudio", fjVar.getSelectedItemsCount(), new Object[0]));
                         }
@@ -102,9 +102,9 @@ public final class wh extends FrameLayout {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        switch (this.f32115a) {
+        switch (this.f32113a) {
             case 0:
-                if (this.f32116b.l1.getVisibility() != 0) {
+                if (this.f32114b.l1.getVisibility() != 0) {
                     return false;
                 }
                 return super.onInterceptTouchEvent(motionEvent);
@@ -115,9 +115,9 @@ public final class wh extends FrameLayout {
 
     @Override
     public void onMeasure(int i10, int i11) {
-        switch (this.f32115a) {
+        switch (this.f32113a) {
             case 1:
-                ti tiVar = this.f32116b;
+                ti tiVar = this.f32114b;
                 if (tiVar.H && tiVar.I != 0) {
                     super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i10), AndroidUtilities.dp(36.0f) + (AndroidUtilities.dp(80.0f) * Integer.bitCount(tiVar.I))), 1073741824), i11);
                     return;
@@ -132,9 +132,9 @@ public final class wh extends FrameLayout {
 
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f32115a) {
+        switch (this.f32113a) {
             case 0:
-                if (this.f32116b.l1.getVisibility() != 0) {
+                if (this.f32114b.l1.getVisibility() != 0) {
                     return false;
                 }
                 return super.onTouchEvent(motionEvent);
@@ -146,10 +146,10 @@ public final class wh extends FrameLayout {
     @Override
     public void setAlpha(float f7) {
         ViewGroup viewGroup;
-        switch (this.f32115a) {
+        switch (this.f32113a) {
             case 0:
                 super.setAlpha(f7);
-                ti tiVar = this.f32116b;
+                ti tiVar = this.f32114b;
                 tiVar.e2(0);
                 viewGroup = ((org.telegram.ui.ActionBar.f3) tiVar).containerView;
                 viewGroup.invalidate();
@@ -167,10 +167,10 @@ public final class wh extends FrameLayout {
 
     @Override
     public void setTranslationY(float f7) {
-        switch (this.f32115a) {
+        switch (this.f32113a) {
             case 1:
                 super.setTranslationY(f7);
-                this.f32116b.B0.k();
+                this.f32114b.B0.k();
                 return;
             default:
                 super.setTranslationY(f7);

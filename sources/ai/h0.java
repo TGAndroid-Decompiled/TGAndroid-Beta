@@ -5,41 +5,41 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_payments;
 public final class h0 {
-    public final int f1382a;
-    public final long f1383b;
-    public int f1384c;
+    public final int f1397a;
+    public final long f1398b;
+    public int f1399c;
     public boolean d;
     public final ArrayList e = new ArrayList();
-    public long f1385f;
-    public boolean f1386g;
+    public long f1400f;
+    public boolean f1401g;
     public boolean h;
-    public int f1387i;
+    public int f1402i;
 
     public h0(int i10, long j10) {
-        this.f1386g = false;
+        this.f1401g = false;
         this.h = false;
-        this.f1382a = i10;
-        this.f1383b = j10;
-        if (System.currentTimeMillis() - this.f1385f > 900000) {
-            this.f1384c = 0;
+        this.f1397a = i10;
+        this.f1398b = j10;
+        if (System.currentTimeMillis() - this.f1400f > 900000) {
+            this.f1399c = 0;
             this.h = false;
             this.d = false;
-            if (this.f1387i != 0) {
-                ConnectionsManager.getInstance(i10).cancelRequest(this.f1387i, true);
-                this.f1387i = 0;
+            if (this.f1402i != 0) {
+                ConnectionsManager.getInstance(i10).cancelRequest(this.f1402i, true);
+                this.f1402i = 0;
             }
-            this.f1386g = false;
+            this.f1401g = false;
             a();
         }
     }
 
     public final void a() {
-        if (!this.f1386g && !this.h && !this.d) {
-            this.f1385f = System.currentTimeMillis();
-            this.f1386g = true;
+        if (!this.f1401g && !this.h && !this.d) {
+            this.f1400f = System.currentTimeMillis();
+            this.f1401g = true;
             TL_payments.getConnectedStarRefBots getconnectedstarrefbots = new TL_payments.getConnectedStarRefBots();
-            int i10 = this.f1382a;
-            getconnectedstarrefbots.peer = MessagesController.getInstance(i10).getInputPeer(this.f1383b);
+            int i10 = this.f1397a;
+            getconnectedstarrefbots.peer = MessagesController.getInstance(i10).getInputPeer(this.f1398b);
             getconnectedstarrefbots.limit = 20;
             ArrayList arrayList = this.e;
             if (!arrayList.isEmpty()) {
@@ -48,7 +48,7 @@ public final class h0 {
                 getconnectedstarrefbots.offset_date = connectedbotstarref.date;
                 getconnectedstarrefbots.offset_link = connectedbotstarref.url;
             }
-            this.f1387i = ConnectionsManager.getInstance(i10).sendRequest(getconnectedstarrefbots, new h(this, 1));
+            this.f1402i = ConnectionsManager.getInstance(i10).sendRequest(getconnectedstarrefbots, new h(this, 1));
         }
     }
 }

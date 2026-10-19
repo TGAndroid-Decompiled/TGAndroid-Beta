@@ -2,7 +2,7 @@ package n2;
 
 import android.os.Looper;
 public interface n {
-    public static final sb.a f17063z = new sb.a(13);
+    public static final sb.a f17061z = new sb.a(13);
 
     void E(Looper looper, j2.k kVar);
 

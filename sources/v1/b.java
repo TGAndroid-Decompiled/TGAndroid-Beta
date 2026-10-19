@@ -5,12 +5,12 @@ import java.util.LinkedHashMap;
 import kotlin.jvm.internal.i;
 public final class b extends c1 {
     public b() {
-        this(a.f47863b);
+        this(a.f47865b);
     }
 
     public b(c1 initialExtras) {
         super(9);
         i.e(initialExtras, "initialExtras");
-        ((LinkedHashMap) this.f1057a).putAll((LinkedHashMap) initialExtras.f1057a);
+        ((LinkedHashMap) this.f1067a).putAll((LinkedHashMap) initialExtras.f1067a);
     }
 }

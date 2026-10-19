@@ -2,23 +2,23 @@ package ru.noties.jlatexmath.awt.geom;
 public class Line2D {
 
     public static class Float {
-        public double f45847x1;
-        public double f45848x2;
-        public double f45849y1;
-        public double f45850y2;
+        public double f45849x1;
+        public double f45850x2;
+        public double f45851y1;
+        public double f45852y2;
 
         public Float() {
         }
 
         public void setLine(double d, double d10, double d11, double d12) {
-            this.f45847x1 = d;
-            this.f45849y1 = d10;
-            this.f45848x2 = d11;
-            this.f45850y2 = d12;
+            this.f45849x1 = d;
+            this.f45851y1 = d10;
+            this.f45850x2 = d11;
+            this.f45852y2 = d12;
         }
 
         public String toString() {
-            return "Float{x1=" + this.f45847x1 + ", y1=" + this.f45849y1 + ", x2=" + this.f45848x2 + ", y2=" + this.f45850y2 + '}';
+            return "Float{x1=" + this.f45849x1 + ", y1=" + this.f45851y1 + ", x2=" + this.f45850x2 + ", y2=" + this.f45852y2 + '}';
         }
 
         public Float(float f7, float f10, float f11, float f12) {

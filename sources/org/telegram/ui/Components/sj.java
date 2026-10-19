@@ -6,31 +6,31 @@ import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 public final class sj implements Runnable {
-    public final int f30274a;
-    public final tj f30275b;
-    public final String f30276c;
+    public final int f30272a;
+    public final tj f30273b;
+    public final String f30274c;
     public final int d;
 
     public sj(tj tjVar, String str, int i10, int i11) {
-        this.f30274a = i11;
-        this.f30275b = tjVar;
-        this.f30276c = str;
+        this.f30272a = i11;
+        this.f30273b = tjVar;
+        this.f30274c = str;
         this.d = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f30274a) {
+        switch (this.f30272a) {
             case 0:
-                tj tjVar = this.f30275b;
-                String str = this.f30276c;
+                tj tjVar = this.f30273b;
+                String str = this.f30274c;
                 int i10 = this.d;
                 tjVar.getClass();
                 AndroidUtilities.runOnUIThread(new sj(tjVar, str, i10, 1));
                 return;
             default:
-                tj tjVar2 = this.f30275b;
-                String str2 = this.f30276c;
+                tj tjVar2 = this.f30273b;
+                String str2 = this.f30274c;
                 int i11 = this.d;
                 tjVar2.getClass();
                 int i12 = UserConfig.selectedAccount;

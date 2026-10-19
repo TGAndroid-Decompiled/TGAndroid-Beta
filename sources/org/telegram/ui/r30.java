@@ -6,18 +6,18 @@ import android.graphics.RectF;
 import android.os.Build;
 import android.widget.FrameLayout;
 public final class r30 extends FrameLayout {
-    public final RectF f41048a;
-    public final RectF f41049b;
-    public final RectF f41050c;
+    public final RectF f41040a;
+    public final RectF f41041b;
+    public final RectF f41042c;
     public final Paint d;
     public final q50 e;
 
     public r30(q50 q50Var, LaunchActivity launchActivity) {
         super(launchActivity);
         this.e = q50Var;
-        this.f41048a = new RectF();
-        this.f41049b = new RectF();
-        this.f41050c = new RectF();
+        this.f41040a = new RectF();
+        this.f41041b = new RectF();
+        this.f41042c = new RectF();
         this.d = new Paint(1);
     }
 
@@ -27,12 +27,12 @@ public final class r30 extends FrameLayout {
         s30 s30Var = q50Var.F;
         float y3 = s30Var.getY() + s30Var.getMeasuredHeight();
         ne.e eVar = q50Var.B3;
-        RectF rectF = this.f41048a;
+        RectF rectF = this.f41040a;
         rectF.set(0.0f, y3 - eVar.e, getMeasuredWidth(), getMeasuredHeight());
-        RectF rectF2 = this.f41049b;
+        RectF rectF2 = this.f41041b;
         rectF2.set(0.0f, s30Var.getY() + s30Var.getMeasuredHeight(), getMeasuredWidth(), getMeasuredHeight());
         float y10 = s30Var.getY() + s30Var.getMeasuredHeight();
-        RectF rectF3 = this.f41050c;
+        RectF rectF3 = this.f41042c;
         rectF3.set(0.0f, (s30Var.getY() + s30Var.getMeasuredHeight()) - eVar.e, getMeasuredWidth(), y10);
         int i10 = Build.VERSION.SDK_INT;
         Paint paint = this.d;

@@ -10,12 +10,12 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MediaController;
 public final class dt0 extends AnimatorListenerAdapter {
-    public final int f36450a;
-    public final PhotoViewer f36451b;
+    public final int f36441a;
+    public final PhotoViewer f36442b;
 
     public dt0(PhotoViewer photoViewer, int i10) {
-        this.f36451b = photoViewer;
-        this.f36450a = i10;
+        this.f36442b = photoViewer;
+        this.f36441a = i10;
     }
 
     @Override
@@ -23,7 +23,7 @@ public final class dt0 extends AnimatorListenerAdapter {
         int i10;
         float min;
         int i11;
-        PhotoViewer photoViewer = this.f36451b;
+        PhotoViewer photoViewer = this.f36442b;
         photoViewer.q6 = null;
         photoViewer.P0.setVisibility(8);
         photoViewer.S0.setVisibility(8);
@@ -74,7 +74,7 @@ public final class dt0 extends AnimatorListenerAdapter {
                     i10 = 0;
                 }
                 photoViewer.f33269d6 = i13 + i10;
-                MediaController.CropState cropState = photoViewer.X4.f43550c;
+                MediaController.CropState cropState = photoViewer.X4.f43545c;
                 if (cropState != null && ((i11 = cropState.transformRotation) == 90 || i11 == 270)) {
                     min = Math.min(photoViewer.k1(photoViewer.f33417u4) / bitmapHeight, photoViewer.i1() / bitmapWidth);
                 } else {
@@ -89,7 +89,7 @@ public final class dt0 extends AnimatorListenerAdapter {
         }
         AnimatorSet animatorSet = new AnimatorSet();
         photoViewer.f33373p6 = animatorSet;
-        animatorSet.playTogether(ObjectAnimator.ofFloat(photoViewer, org.telegram.ui.Components.t6.f30433g, 0.0f, 1.0f), ObjectAnimator.ofFloat(photoViewer.I1.getToolsView(), View.TRANSLATION_Y, AndroidUtilities.dp(186.0f), 0.0f));
+        animatorSet.playTogether(ObjectAnimator.ofFloat(photoViewer, org.telegram.ui.Components.t6.f30431g, 0.0f, 1.0f), ObjectAnimator.ofFloat(photoViewer.I1.getToolsView(), View.TRANSLATION_Y, AndroidUtilities.dp(186.0f), 0.0f));
         photoViewer.f33373p6.setDuration(200L);
         photoViewer.f33373p6.addListener(new zb0(this, 9));
         photoViewer.f33373p6.start();

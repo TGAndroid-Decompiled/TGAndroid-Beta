@@ -10,19 +10,19 @@ import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 public final class i31 extends Drawable {
-    public final Drawable f27065a;
-    public final Paint f27066b = new Paint(1);
-    public final RectF f27067c = new RectF();
+    public final Drawable f27063a;
+    public final Paint f27064b = new Paint(1);
+    public final RectF f27065c = new RectF();
 
     public i31(Context context) {
-        this.f27065a = context.getResources().getDrawable(R.drawable.menu_topic_add).mutate();
+        this.f27063a = context.getResources().getDrawable(R.drawable.menu_topic_add).mutate();
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        Paint paint = this.f27066b;
-        canvas.drawRoundRect(this.f27067c, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), paint);
-        this.f27065a.draw(canvas);
+        Paint paint = this.f27064b;
+        canvas.drawRoundRect(this.f27065c, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), paint);
+        this.f27063a.draw(canvas);
     }
 
     @Override
@@ -33,16 +33,16 @@ public final class i31 extends Drawable {
     @Override
     public final void onBoundsChange(Rect rect) {
         super.onBoundsChange(rect);
-        this.f27067c.set(rect);
+        this.f27065c.set(rect);
         int centerX = rect.centerX() - AndroidUtilities.dp(12.0f);
         int centerY = rect.centerY() - AndroidUtilities.dp(12.0f);
-        this.f27065a.setBounds(centerX, centerY, AndroidUtilities.dp(24.0f) + centerX, AndroidUtilities.dp(24.0f) + centerY);
+        this.f27063a.setBounds(centerX, centerY, AndroidUtilities.dp(24.0f) + centerX, AndroidUtilities.dp(24.0f) + centerY);
     }
 
     @Override
     public final void setAlpha(int i10) {
-        this.f27066b.setAlpha(i10);
-        this.f27065a.setAlpha(i10);
+        this.f27064b.setAlpha(i10);
+        this.f27063a.setAlpha(i10);
     }
 
     @Override

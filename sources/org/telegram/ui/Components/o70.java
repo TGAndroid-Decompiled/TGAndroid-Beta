@@ -15,11 +15,11 @@ public final class o70 extends sx0 {
         switch (this.K) {
             case 0:
                 super.onAttachedToWindow();
-                this.f30353b.getImageReceiver().startAnimation();
+                this.f30351b.getImageReceiver().startAnimation();
                 return;
             case 1:
                 super.onAttachedToWindow();
-                this.f30353b.getImageReceiver().startAnimation();
+                this.f30351b.getImageReceiver().startAnimation();
                 return;
             default:
                 super.onAttachedToWindow();

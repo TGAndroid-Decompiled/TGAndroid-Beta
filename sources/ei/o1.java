@@ -18,22 +18,22 @@ public final class o1 extends im0 {
     public float X2;
     public float Y2;
     public boolean Z2;
-    public final SparseArray f9541a3;
-    public final ArrayList f9542b3;
-    public final ArrayList f9543c3;
-    public final ArrayList f9544d3;
-    public final ArrayList f9545e3;
-    public final PorterDuffColorFilter f9546f3;
+    public final SparseArray f9539a3;
+    public final ArrayList f9540b3;
+    public final ArrayList f9541c3;
+    public final ArrayList f9542d3;
+    public final ArrayList f9543e3;
+    public final PorterDuffColorFilter f9544f3;
 
     public o1(Context context) {
         super(context, null);
         this.Z2 = false;
-        this.f9541a3 = new SparseArray();
-        this.f9542b3 = new ArrayList();
-        this.f9543c3 = new ArrayList();
-        this.f9544d3 = new ArrayList();
-        this.f9545e3 = new ArrayList();
-        this.f9546f3 = new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN);
+        this.f9539a3 = new SparseArray();
+        this.f9540b3 = new ArrayList();
+        this.f9541c3 = new ArrayList();
+        this.f9542d3 = new ArrayList();
+        this.f9543e3 = new ArrayList();
+        this.f9544f3 = new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN);
     }
 
     public static void x1(o1 o1Var, int i10, int i11) {
@@ -49,13 +49,13 @@ public final class o1 extends im0 {
                 } else {
                     i12 = 1;
                 }
-                ll0Var.f28244b = i12;
+                ll0Var.f28242b = i12;
                 o1Var.V2.c(i10, i11, false, false);
                 return;
             }
             l1 l1Var = new l1(o1Var, o1Var.getContext(), 0);
-            l1Var.f46051a = i10;
-            l1Var.f16146p = i11;
+            l1Var.f46053a = i10;
+            l1Var.f16144p = i11;
             sVar.w0(l1Var);
         }
     }
@@ -82,7 +82,7 @@ public final class o1 extends im0 {
         if (!rect.isEmpty()) {
             this.B1.setBounds(rect);
             canvas.save();
-            q0.a aVar = this.f27299m2;
+            q0.a aVar = this.f27297m2;
             if (aVar != null) {
                 aVar.accept(canvas);
             }
@@ -92,9 +92,9 @@ public final class o1 extends im0 {
         int i10 = 0;
         int i11 = 0;
         while (true) {
-            sparseArray = this.f9541a3;
+            sparseArray = this.f9539a3;
             int size = sparseArray.size();
-            arrayList = this.f9542b3;
+            arrayList = this.f9540b3;
             if (i11 >= size) {
                 break;
             }
@@ -127,9 +127,9 @@ public final class o1 extends im0 {
                 }
             }
         }
-        ArrayList arrayList5 = this.f9545e3;
+        ArrayList arrayList5 = this.f9543e3;
         arrayList5.clear();
-        ArrayList arrayList6 = this.f9544d3;
+        ArrayList arrayList6 = this.f9542d3;
         arrayList5.addAll(arrayList6);
         arrayList6.clear();
         canvas.save();
@@ -138,7 +138,7 @@ public final class o1 extends im0 {
         int i13 = 0;
         while (true) {
             int size2 = sparseArray.size();
-            arrayList2 = this.f9543c3;
+            arrayList2 = this.f9541c3;
             if (i13 >= size2) {
                 break;
             }
@@ -212,7 +212,7 @@ public final class o1 extends im0 {
         if (n0Var instanceof s4.b0) {
             ll0 ll0Var = new ll0(this, (s4.b0) n0Var);
             this.V2 = ll0Var;
-            ll0Var.f28248i = new k1(this, 0);
+            ll0Var.f28246i = new k1(this, 0);
             ll0Var.h = new e1.c(this, 3);
         }
     }

@@ -14,7 +14,7 @@ public final class yt0 extends nv0 {
         super.l();
         tv0 tv0Var = this.h;
         mu0 W = tv0Var.W(0);
-        if (W != null && W.f28611r.getVisibility() == 0) {
+        if (W != null && W.f28609r.getVisibility() == 0) {
             tv0Var.I.l();
         }
     }

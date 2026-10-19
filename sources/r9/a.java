@@ -9,22 +9,22 @@ import java.util.Set;
 import qg.h0;
 import w7.a7;
 public final class a {
-    public final String f45116a;
-    public final Set f45117b;
-    public final Set f45118c;
+    public final String f45118a;
+    public final Set f45119b;
+    public final Set f45120c;
     public final int d;
     public final int e;
-    public final d f45119f;
-    public final Set f45120g;
+    public final d f45121f;
+    public final Set f45122g;
 
     public a(String str, Set set, Set set2, int i10, int i11, d dVar, Set set3) {
-        this.f45116a = str;
-        this.f45117b = DesugarCollections.unmodifiableSet(set);
-        this.f45118c = DesugarCollections.unmodifiableSet(set2);
+        this.f45118a = str;
+        this.f45119b = DesugarCollections.unmodifiableSet(set);
+        this.f45120c = DesugarCollections.unmodifiableSet(set2);
         this.d = i10;
         this.e = i11;
-        this.f45119f = dVar;
-        this.f45120g = DesugarCollections.unmodifiableSet(set3);
+        this.f45121f = dVar;
+        this.f45122g = DesugarCollections.unmodifiableSet(set3);
     }
 
     public static m0 a(Class cls) {
@@ -36,16 +36,16 @@ public final class a {
         ?? obj = new Object();
         obj.d = null;
         HashSet hashSet = new HashSet();
-        obj.f3833c = hashSet;
+        obj.f3831c = hashSet;
         obj.e = new HashSet();
-        obj.f3831a = 0;
-        obj.f3832b = 0;
-        obj.f3835g = new HashSet();
+        obj.f3829a = 0;
+        obj.f3830b = 0;
+        obj.f3833g = new HashSet();
         hashSet.add(rVar);
         for (r rVar2 : rVarArr) {
             a7.a(rVar2, "Null interface");
         }
-        Collections.addAll((HashSet) obj.f3833c, rVarArr);
+        Collections.addAll((HashSet) obj.f3831c, rVarArr);
         return obj;
     }
 
@@ -62,6 +62,6 @@ public final class a {
     }
 
     public final String toString() {
-        return "Component<" + Arrays.toString(this.f45117b.toArray()) + ">{" + this.d + ", type=" + this.e + ", deps=" + Arrays.toString(this.f45118c.toArray()) + "}";
+        return "Component<" + Arrays.toString(this.f45119b.toArray()) + ">{" + this.d + ", type=" + this.e + ", deps=" + Arrays.toString(this.f45120c.toArray()) + "}";
     }
 }

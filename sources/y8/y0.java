@@ -22,12 +22,12 @@ public final class y0 extends n6.g {
     public final i2.c X;
     public final i2.c Y;
     public final i2.c Z;
-    public final i2.c f50067a0;
-    public final i2.c f50068b0;
-    public final i2.c f50069c0;
-    public final i2.c f50070d0;
-    public final i2.c f50071e0;
-    public final z0 f50072f0;
+    public final i2.c f50069a0;
+    public final i2.c f50070b0;
+    public final i2.c f50071c0;
+    public final i2.c f50072d0;
+    public final i2.c f50073e0;
+    public final z0 f50074f0;
 
     public y0(Context context, Looper looper, com.google.android.gms.common.api.k kVar, com.google.android.gms.common.api.l lVar, s3 s3Var) {
         super(context, looper, 14, s3Var, kVar, lVar, 0);
@@ -38,14 +38,14 @@ public final class y0 extends n6.g {
         this.X = new i2.c(1);
         this.Y = new i2.c(1);
         this.Z = new i2.c(1);
-        this.f50067a0 = new i2.c(1);
-        this.f50068b0 = new i2.c(1);
-        this.f50069c0 = new i2.c(1);
-        this.f50070d0 = new i2.c(1);
-        this.f50071e0 = new i2.c(1);
+        this.f50069a0 = new i2.c(1);
+        this.f50070b0 = new i2.c(1);
+        this.f50071c0 = new i2.c(1);
+        this.f50072d0 = new i2.c(1);
+        this.f50073e0 = new i2.c(1);
         n6.l.h(unconfigurableExecutorService);
         this.U = unconfigurableExecutorService;
-        this.f50072f0 = a2;
+        this.f50074f0 = a2;
         File file = new File(new File(context.getFilesDir(), "wearos_assets"), "streamtmp");
         file.mkdirs();
         File[] listFiles = file.listFiles();
@@ -66,11 +66,11 @@ public final class y0 extends n6.g {
             this.W.a(iBinder);
             this.X.a(iBinder);
             this.Z.a(iBinder);
-            this.f50067a0.a(iBinder);
-            this.f50068b0.a(iBinder);
-            this.f50069c0.a(iBinder);
-            this.f50070d0.a(iBinder);
-            this.f50071e0.a(iBinder);
+            this.f50069a0.a(iBinder);
+            this.f50070b0.a(iBinder);
+            this.f50071c0.a(iBinder);
+            this.f50072d0.a(iBinder);
+            this.f50073e0.a(iBinder);
             this.Y.a(iBinder);
             i10 = 0;
         }
@@ -87,7 +87,7 @@ public final class y0 extends n6.g {
         int i10;
         n6.a0 a0Var = this.v;
         AtomicInteger atomicInteger = this.R;
-        Context context = this.f17186n;
+        Context context = this.f17184n;
         if (!k()) {
             try {
                 Bundle bundle = context.getPackageManager().getApplicationInfo("com.google.android.wearable.app.cn", 128).metaData;
@@ -102,7 +102,7 @@ public final class y0 extends n6.g {
                     if (context.getPackageManager().resolveActivity(intent, 65536) == null) {
                         intent = new Intent("android.intent.action.VIEW", Uri.parse("market://details").buildUpon().appendQueryParameter("id", "com.google.android.wearable.app.cn").build());
                     }
-                    PendingIntent activity = PendingIntent.getActivity(context, 0, intent, f8.b.f10507a);
+                    PendingIntent activity = PendingIntent.getActivity(context, 0, intent, f8.b.f10505a);
                     n6.l.i(bVar, "Connection progress callbacks cannot be null.");
                     this.E = bVar;
                     a0Var.sendMessage(a0Var.obtainMessage(3, atomicInteger.get(), 6, activity));
@@ -120,7 +120,7 @@ public final class y0 extends n6.g {
 
     @Override
     public final boolean k() {
-        if (!this.f50072f0.b()) {
+        if (!this.f50074f0.b()) {
             return true;
         }
         return false;
@@ -145,7 +145,7 @@ public final class y0 extends n6.g {
 
     @Override
     public final k6.c[] r() {
-        return x8.j.f49648b;
+        return x8.j.f49650b;
     }
 
     @Override
@@ -160,7 +160,7 @@ public final class y0 extends n6.g {
 
     @Override
     public final String x() {
-        if (this.f50072f0.b()) {
+        if (this.f50074f0.b()) {
             return "com.google.android.wearable.app.cn";
         }
         return "com.google.android.gms";

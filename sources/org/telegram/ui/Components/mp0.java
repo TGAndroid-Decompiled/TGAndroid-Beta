@@ -13,17 +13,17 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 public final class mp0 extends hm0 {
-    public final org.telegram.ui.ActionBar.d6 f28581c;
+    public final org.telegram.ui.ActionBar.d6 f28579c;
     public final List d;
     public final MessagesController e;
-    public final int f28582f;
+    public final int f28580f;
     public final TLRPC.Peer h;
 
     public mp0(org.telegram.ui.ActionBar.d6 d6Var, List list, MessagesController messagesController, int i10, TLRPC.Peer peer) {
-        this.f28581c = d6Var;
+        this.f28579c = d6Var;
         this.d = list;
         this.e = messagesController;
-        this.f28582f = i10;
+        this.f28580f = i10;
         this.h = peer;
     }
 
@@ -41,7 +41,7 @@ public final class mp0 extends hm0 {
     public final void v(s4.b1 b1Var, int i10) {
         long j10;
         String str;
-        qp0 qp0Var = (qp0) b1Var.f45910a;
+        qp0 qp0Var = (qp0) b1Var.f45912a;
         TLRPC.TL_sendAsPeer tL_sendAsPeer = (TLRPC.TL_sendAsPeer) this.d.get(i10);
         TLRPC.Peer peer = tL_sendAsPeer.peer;
         long j11 = peer.channel_id;
@@ -66,8 +66,8 @@ public final class mp0 extends hm0 {
                 if (tL_sendAsPeer.premium_required) {
                     StringBuilder sb2 = new StringBuilder();
                     String str2 = chat.title;
-                    TextView textView = qp0Var.f29678b;
-                    sb2.append((Object) TextUtils.ellipsize(str2, textView.getPaint(), this.f28582f - AndroidUtilities.dp(100.0f), TextUtils.TruncateAt.END));
+                    TextView textView = qp0Var.f29676b;
+                    sb2.append((Object) TextUtils.ellipsize(str2, textView.getPaint(), this.f28580f - AndroidUtilities.dp(100.0f), TextUtils.TruncateAt.END));
                     sb2.append(" d");
                     SpannableString spannableString = new SpannableString(sb2.toString());
                     yq yqVar = new yq(R.drawable.msg_mini_premiumlock, 0);
@@ -78,19 +78,19 @@ public final class mp0 extends hm0 {
                     textView.setEllipsize(null);
                     textView.setText(spannableString);
                 } else {
-                    qp0Var.f29678b.setEllipsize(TextUtils.TruncateAt.END);
-                    qp0Var.f29678b.setText(chat.title);
+                    qp0Var.f29676b.setEllipsize(TextUtils.TruncateAt.END);
+                    qp0Var.f29676b.setText(chat.title);
                 }
-                TextView textView2 = qp0Var.f29679c;
+                TextView textView2 = qp0Var.f29677c;
                 if (ChatObject.isChannel(chat) && !chat.megagroup) {
                     str = "Subscribers";
                 } else {
                     str = "Members";
                 }
                 textView2.setText(LocaleController.formatPluralString(str, chat.participants_count, new Object[0]));
-                qp0Var.f29677a.setAvatar(chat);
+                qp0Var.f29675a.setAvatar(chat);
             }
-            aw0 aw0Var = qp0Var.f29677a;
+            aw0 aw0Var = qp0Var.f29675a;
             if (peer2 == null ? i10 != 0 : peer2.channel_id != peer.channel_id) {
                 z10 = false;
             }
@@ -99,11 +99,11 @@ public final class mp0 extends hm0 {
         }
         TLRPC.User user = messagesController.getUser(Long.valueOf(j10));
         if (user != null) {
-            qp0Var.f29678b.setText(UserObject.getUserName(user));
-            qp0Var.f29679c.setText(LocaleController.getString(R.string.VoipGroupPersonalAccount));
-            qp0Var.f29677a.setAvatar(user);
+            qp0Var.f29676b.setText(UserObject.getUserName(user));
+            qp0Var.f29677c.setText(LocaleController.getString(R.string.VoipGroupPersonalAccount));
+            qp0Var.f29675a.setAvatar(user);
         }
-        aw0 aw0Var2 = qp0Var.f29677a;
+        aw0 aw0Var2 = qp0Var.f29675a;
         if (peer2 == null ? i10 != 0 : peer2.user_id != peer.user_id) {
             z10 = false;
         }
@@ -112,6 +112,6 @@ public final class mp0 extends hm0 {
 
     @Override
     public final s4.b1 x(ViewGroup viewGroup, int i10) {
-        return new s4.b1(new qp0(viewGroup.getContext(), this.f28581c));
+        return new s4.b1(new qp0(viewGroup.getContext(), this.f28579c));
     }
 }

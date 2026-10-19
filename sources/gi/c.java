@@ -18,16 +18,16 @@ import org.telegram.ui.Wallet.o5;
 import org.telegram.ui.Wallet.r9;
 import org.telegram.ui.i10;
 public final class c implements Utilities.CallbackReturn {
-    public final int f11102a;
+    public final int f11100a;
 
     public c(int i10) {
-        this.f11102a = i10;
+        this.f11100a = i10;
     }
 
     @Override
     public final Object run(Object obj) {
         boolean z10 = true;
-        switch (this.f11102a) {
+        switch (this.f11100a) {
             case 0:
                 return String.format(Locale.US, "%.1f%%", Float.valueOf(((Integer) obj).intValue() / 10.0f));
             case 1:
@@ -82,7 +82,7 @@ public final class c implements Utilities.CallbackReturn {
                 return Boolean.valueOf(z10);
             default:
                 String str2 = (String) obj;
-                bs bsVar = zh.b0.f51641z0;
+                bs bsVar = zh.b0.f51643z0;
                 if (TextUtils.isEmpty(str2) || (!str2.startsWith("tg:") && !pf.d.e(Uri.parse(str2), false, null))) {
                     z10 = false;
                 }

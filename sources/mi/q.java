@@ -65,18 +65,18 @@ import org.telegram.ui.vu;
 import s4.g1;
 import s4.h1;
 public class q implements ne.f, d6, bp0, gu, zb, l7, km0, gh.a, y71, n5.b, y2.n, SuccessContinuation {
-    public final int f16974a;
-    public Object f16975b;
-    public Object f16976c;
+    public final int f16972a;
+    public Object f16973b;
+    public Object f16974c;
 
     public q(int i10, byte b10) {
-        this.f16974a = i10;
+        this.f16972a = i10;
     }
 
     @Override
     public void A(float f7, boolean z10) {
-        rc0 rc0Var = (rc0) this.f16975b;
-        dg0 dg0Var = (dg0) this.f16976c;
+        rc0 rc0Var = (rc0) this.f16973b;
+        dg0 dg0Var = (dg0) this.f16974c;
         b81 b81Var = dg0Var.d;
         if (b81Var != null) {
             long p5 = b81Var.p();
@@ -93,11 +93,11 @@ public class q implements ne.f, d6, bp0, gu, zb, l7, km0, gh.a, y71, n5.b, y2.n,
 
     @Override
     public void B(int i10, int i11) {
-        switch (this.f16974a) {
+        switch (this.f16972a) {
             case 7:
                 return;
             default:
-                d6 d6Var = (d6) this.f16976c;
+                d6 d6Var = (d6) this.f16974c;
                 if (d6Var != null) {
                     d6Var.B(i10, i11);
                     return;
@@ -108,22 +108,22 @@ public class q implements ne.f, d6, bp0, gu, zb, l7, km0, gh.a, y71, n5.b, y2.n,
 
     @Override
     public void E() {
-        ((iu) this.f16975b).getText();
-        ((f3) this.f16976c).b();
+        ((iu) this.f16973b).getText();
+        ((f3) this.f16974c).b();
     }
 
     @Override
     public void F() {
-        ((ne.k) this.f16975b).e((ne.l) this.f16976c);
+        ((ne.k) this.f16973b).e((ne.l) this.f16974c);
     }
 
     @Override
     public int G(int i10) {
-        switch (this.f16974a) {
+        switch (this.f16972a) {
             case 7:
-                return ((SparseIntArray) this.f16975b).get(i10);
+                return ((SparseIntArray) this.f16973b).get(i10);
             default:
-                d6 d6Var = (d6) this.f16976c;
+                d6 d6Var = (d6) this.f16974c;
                 if (d6Var == null) {
                     return h6.x0(null, i10, false);
                 }
@@ -132,22 +132,22 @@ public class q implements ne.f, d6, bp0, gu, zb, l7, km0, gh.a, y71, n5.b, y2.n,
     }
 
     public void H(Object obj, String str) {
-        ((ArrayList) this.f16975b).add(a1.g.C(str, "=", String.valueOf(obj)));
+        ((ArrayList) this.f16973b).add(a1.g.C(str, "=", String.valueOf(obj)));
     }
 
     @Override
     public void L(float f7, boolean z10) {
-        ((TextView) this.f16975b).setText("Alpha " + n5.e);
+        ((TextView) this.f16973b).setText("Alpha " + n5.e);
         n5.e = f7;
-        ((n5) this.f16976c).f39411b.M();
+        ((n5) this.f16974c).f39407b.M();
     }
 
     public void R() {
-        String str = (String) this.f16975b;
+        String str = (String) this.f16973b;
         try {
-            ca.c cVar = (ca.c) this.f16976c;
+            ca.c cVar = (ca.c) this.f16974c;
             cVar.getClass();
-            new File(cVar.f5048b, str).createNewFile();
+            new File(cVar.f5046b, str).createNewFile();
         } catch (IOException e) {
             Log.e("FirebaseCrashlytics", "Error creating marker: ".concat(str), e);
         }
@@ -156,8 +156,8 @@ public class q implements ne.f, d6, bp0, gu, zb, l7, km0, gh.a, y71, n5.b, y2.n,
     public ArrayList S() {
         ?? arrayList;
         ArrayList arrayList2 = new ArrayList();
-        Context context = (Context) this.f16975b;
-        Class cls = (Class) ((w0) this.f16976c).f14832b;
+        Context context = (Context) this.f16973b;
+        Class cls = (Class) ((w0) this.f16974c).f14830b;
         Bundle bundle = null;
         try {
             PackageManager packageManager = context.getPackageManager();
@@ -193,8 +193,8 @@ public class q implements ne.f, d6, bp0, gu, zb, l7, km0, gh.a, y71, n5.b, y2.n,
 
     public View U(int i10, int i11, int i12, int i13) {
         int i14;
-        g1 g1Var = (g1) this.f16976c;
-        h1 h1Var = (h1) this.f16975b;
+        g1 g1Var = (g1) this.f16974c;
+        h1 h1Var = (h1) this.f16973b;
         int l4 = h1Var.l();
         int r10 = h1Var.r();
         if (i11 > i10) {
@@ -207,18 +207,18 @@ public class q implements ne.f, d6, bp0, gu, zb, l7, km0, gh.a, y71, n5.b, y2.n,
             View x10 = h1Var.x(i10);
             int j10 = h1Var.j(x10);
             int B = h1Var.B(x10);
-            g1Var.f45958b = l4;
-            g1Var.f45959c = r10;
+            g1Var.f45960b = l4;
+            g1Var.f45961c = r10;
             g1Var.d = j10;
             g1Var.e = B;
             if (i12 != 0) {
-                g1Var.f45957a = i12;
+                g1Var.f45959a = i12;
                 if (g1Var.a()) {
                     return x10;
                 }
             }
             if (i13 != 0) {
-                g1Var.f45957a = i13;
+                g1Var.f45959a = i13;
                 if (g1Var.a()) {
                     view = x10;
                 }
@@ -229,14 +229,14 @@ public class q implements ne.f, d6, bp0, gu, zb, l7, km0, gh.a, y71, n5.b, y2.n,
     }
 
     public boolean W(v vVar, String str) {
-        Context context = (Context) this.f16975b;
-        int i10 = vVar.f17131b;
+        Context context = (Context) this.f16973b;
+        int i10 = vVar.f17129b;
         if (i10 < 0) {
-            if (context.getPackageManager().checkPermission(str, vVar.f17130a) == 0) {
+            if (context.getPackageManager().checkPermission(str, vVar.f17128a) == 0) {
                 return true;
             }
             return false;
-        } else if (context.checkPermission(str, i10, vVar.f17132c) == 0) {
+        } else if (context.checkPermission(str, i10, vVar.f17130c) == 0) {
             return true;
         } else {
             return false;
@@ -244,17 +244,17 @@ public class q implements ne.f, d6, bp0, gu, zb, l7, km0, gh.a, y71, n5.b, y2.n,
     }
 
     public boolean X(View view) {
-        g1 g1Var = (g1) this.f16976c;
-        h1 h1Var = (h1) this.f16975b;
+        g1 g1Var = (g1) this.f16974c;
+        h1 h1Var = (h1) this.f16973b;
         int l4 = h1Var.l();
         int r10 = h1Var.r();
         int j10 = h1Var.j(view);
         int B = h1Var.B(view);
-        g1Var.f45958b = l4;
-        g1Var.f45959c = r10;
+        g1Var.f45960b = l4;
+        g1Var.f45961c = r10;
         g1Var.d = j10;
         g1Var.e = B;
-        g1Var.f45957a = 24579;
+        g1Var.f45959a = 24579;
         return g1Var.a();
     }
 
@@ -265,7 +265,7 @@ public class q implements ne.f, d6, bp0, gu, zb, l7, km0, gh.a, y71, n5.b, y2.n,
 
     @Override
     public boolean a() {
-        switch (this.f16974a) {
+        switch (this.f16972a) {
             case 7:
             default:
                 return h6.I.q();
@@ -273,7 +273,7 @@ public class q implements ne.f, d6, bp0, gu, zb, l7, km0, gh.a, y71, n5.b, y2.n,
     }
 
     public int a0(Context context, com.google.android.gms.common.api.c cVar) {
-        SparseIntArray sparseIntArray = (SparseIntArray) this.f16975b;
+        SparseIntArray sparseIntArray = (SparseIntArray) this.f16973b;
         n6.l.h(context);
         n6.l.h(cVar);
         int i10 = 0;
@@ -299,7 +299,7 @@ public class q implements ne.f, d6, bp0, gu, zb, l7, km0, gh.a, y71, n5.b, y2.n,
             }
         }
         if (i10 == -1) {
-            i10 = ((k6.e) this.f16976c).d(context, l4);
+            i10 = ((k6.e) this.f16974c).d(context, l4);
         }
         sparseIntArray.put(l4, i10);
         return i10;
@@ -307,17 +307,17 @@ public class q implements ne.f, d6, bp0, gu, zb, l7, km0, gh.a, y71, n5.b, y2.n,
 
     @Override
     public void c() {
-        ((ne.k) this.f16975b).c();
+        ((ne.k) this.f16973b).c();
     }
 
     @Override
     public void d(float f7, float f10, int i10, int i11) {
-        switch (this.f16974a) {
+        switch (this.f16972a) {
             case 7:
                 h6.q(f7, f10, i10, i11);
                 return;
             default:
-                d6 d6Var = (d6) this.f16976c;
+                d6 d6Var = (d6) this.f16974c;
                 if (d6Var == null) {
                     h6.q(f7, f10, i10, i11);
                     return;
@@ -330,8 +330,8 @@ public class q implements ne.f, d6, bp0, gu, zb, l7, km0, gh.a, y71, n5.b, y2.n,
 
     @Override
     public Object d2(Uri uri, g2.k kVar) {
-        t2.a aVar = (t2.a) ((y2.n) this.f16975b).d2(uri, kVar);
-        List list = (List) this.f16976c;
+        t2.a aVar = (t2.a) ((y2.n) this.f16973b).d2(uri, kVar);
+        List list = (List) this.f16974c;
         if (list != null && !list.isEmpty()) {
             return (t2.a) aVar.a(list);
         }
@@ -340,14 +340,14 @@ public class q implements ne.f, d6, bp0, gu, zb, l7, km0, gh.a, y71, n5.b, y2.n,
 
     @Override
     public void dismiss() {
-        ((vu) this.f16976c).dismiss();
+        ((vu) this.f16974c).dismiss();
     }
 
     @Override
     public dh.d f() {
         if (Build.VERSION.SDK_INT >= 29) {
             dh.e eVar = new dh.e(this);
-            ((PhotoViewer) this.f16976c).Z.add(eVar);
+            ((PhotoViewer) this.f16974c).Z.add(eVar);
             return eVar;
         }
         return new dh.f(this);
@@ -357,9 +357,9 @@ public class q implements ne.f, d6, bp0, gu, zb, l7, km0, gh.a, y71, n5.b, y2.n,
     public Object mo27get() {
         rb.b bVar = new rb.b(24);
         pb.a aVar = new pb.a(24);
-        Object mo27get = ((hd.a) this.f16975b).mo27get();
-        hd.a aVar2 = (hd.a) this.f16976c;
-        return new s5.g(bVar, aVar, s5.a.f46086f, (s5.i) mo27get, aVar2);
+        Object mo27get = ((hd.a) this.f16973b).mo27get();
+        hd.a aVar2 = (hd.a) this.f16974c;
+        return new s5.g(bVar, aVar, s5.a.f46088f, (s5.i) mo27get, aVar2);
     }
 
     @Override
@@ -369,11 +369,11 @@ public class q implements ne.f, d6, bp0, gu, zb, l7, km0, gh.a, y71, n5.b, y2.n,
 
     @Override
     public Drawable getDrawable(String str) {
-        switch (this.f16974a) {
+        switch (this.f16972a) {
             case 7:
                 return null;
             default:
-                d6 d6Var = (d6) this.f16976c;
+                d6 d6Var = (d6) this.f16974c;
                 if (d6Var == null) {
                     return h6.P0(str);
                 }
@@ -388,13 +388,13 @@ public class q implements ne.f, d6, bp0, gu, zb, l7, km0, gh.a, y71, n5.b, y2.n,
 
     @Override
     public ColorFilter j() {
-        switch (this.f16974a) {
+        switch (this.f16972a) {
             case 7:
-                return h6.f21319v3;
+                return h6.f21317v3;
             default:
-                d6 d6Var = (d6) this.f16976c;
+                d6 d6Var = (d6) this.f16974c;
                 if (d6Var == null) {
-                    return h6.f21319v3;
+                    return h6.f21317v3;
                 }
                 return d6Var.j();
         }
@@ -407,11 +407,11 @@ public class q implements ne.f, d6, bp0, gu, zb, l7, km0, gh.a, y71, n5.b, y2.n,
 
     @Override
     public Paint n(String str) {
-        switch (this.f16974a) {
+        switch (this.f16972a) {
             case 7:
                 return h6.T0(str);
             default:
-                d6 d6Var = (d6) this.f16976c;
+                d6 d6Var = (d6) this.f16974c;
                 if (d6Var == null) {
                     return h6.T0(str);
                 }
@@ -421,11 +421,11 @@ public class q implements ne.f, d6, bp0, gu, zb, l7, km0, gh.a, y71, n5.b, y2.n,
 
     @Override
     public void onError(b81 b81Var, Exception exc) {
-        SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f16976c;
-        int i10 = secretMediaViewer.f33779b0;
+        SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f16974c;
+        int i10 = secretMediaViewer.f33781b0;
         if (i10 > 0) {
-            secretMediaViewer.f33779b0 = i10 - 1;
-            AndroidUtilities.runOnUIThread(new jv0(28, this, (File) this.f16975b), 100L);
+            secretMediaViewer.f33781b0 = i10 - 1;
+            AndroidUtilities.runOnUIThread(new jv0(28, this, (File) this.f16973b), 100L);
             return;
         }
         FileLog.e(exc);
@@ -437,28 +437,28 @@ public class q implements ne.f, d6, bp0, gu, zb, l7, km0, gh.a, y71, n5.b, y2.n,
 
     @Override
     public void onStateChanged(boolean z10, int i10) {
-        SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f16976c;
-        j31 j31Var = secretMediaViewer.f33796i1;
-        if (secretMediaViewer.f33829y != null && secretMediaViewer.f33793h0 != null) {
+        SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f16974c;
+        j31 j31Var = secretMediaViewer.f33798i1;
+        if (secretMediaViewer.f33831y != null && secretMediaViewer.f33795h0 != null) {
             AndroidUtilities.cancelRunOnUIThread(j31Var);
             AndroidUtilities.runOnUIThread(j31Var);
             if (i10 != 4 && i10 != 1) {
                 try {
-                    secretMediaViewer.f33778b.getWindow().addFlags(128);
+                    secretMediaViewer.f33780b.getWindow().addFlags(128);
                 } catch (Exception e) {
                     FileLog.e(e);
                 }
             } else {
                 try {
-                    secretMediaViewer.f33778b.getWindow().clearFlags(128);
+                    secretMediaViewer.f33780b.getWindow().clearFlags(128);
                 } catch (Exception e7) {
                     FileLog.e(e7);
                 }
             }
-            if (i10 == 3 && secretMediaViewer.f33824w.getVisibility() != 0) {
-                secretMediaViewer.f33824w.setVisibility(0);
+            if (i10 == 3 && secretMediaViewer.f33826w.getVisibility() != 0) {
+                secretMediaViewer.f33826w.setVisibility(0);
             }
-            if (secretMediaViewer.f33829y.y() && i10 != 4) {
+            if (secretMediaViewer.f33831y.y() && i10 != 4) {
                 if (!secretMediaViewer.E) {
                     secretMediaViewer.E = true;
                 }
@@ -467,11 +467,11 @@ public class q implements ne.f, d6, bp0, gu, zb, l7, km0, gh.a, y71, n5.b, y2.n,
                 if (i10 == 4) {
                     secretMediaViewer.H = true;
                     if (secretMediaViewer.I) {
-                        secretMediaViewer.e(true, !secretMediaViewer.f33811q1);
+                        secretMediaViewer.e(true, !secretMediaViewer.f33813q1);
                         return;
                     }
-                    secretMediaViewer.f33829y.L(0L, false);
-                    secretMediaViewer.f33829y.C();
+                    secretMediaViewer.f33831y.L(0L, false);
+                    secretMediaViewer.f33831y.C();
                 }
             }
         }
@@ -485,7 +485,7 @@ public class q implements ne.f, d6, bp0, gu, zb, l7, km0, gh.a, y71, n5.b, y2.n,
     @Override
     public void onVideoSizeChanged(int i10, int i11, int i12, float f7) {
         float f10;
-        o4 o4Var = ((SecretMediaViewer) this.f16976c).f33824w;
+        o4 o4Var = ((SecretMediaViewer) this.f16974c).f33826w;
         if (o4Var != null) {
             if (i11 == 0) {
                 f10 = 1.0f;
@@ -498,9 +498,9 @@ public class q implements ne.f, d6, bp0, gu, zb, l7, km0, gh.a, y71, n5.b, y2.n,
 
     @Override
     public void p(String str, String str2) {
-        vm0 vm0Var = ((em0) this.f16976c).f36686a;
+        vm0 vm0Var = ((em0) this.f16974c).f36680a;
         if ("PHONE_VERIFICATION_NEEDED".equals(str)) {
-            vm0Var.N1(true, str2, (ck0) this.f16975b, this, vm0Var.B1);
+            vm0Var.N1(true, str2, (ck0) this.f16973b, this, vm0Var.B1);
         } else {
             vm0Var.M1(true, false);
         }
@@ -508,11 +508,11 @@ public class q implements ne.f, d6, bp0, gu, zb, l7, km0, gh.a, y71, n5.b, y2.n,
 
     @Override
     public int r(int i10) {
-        switch (this.f16974a) {
+        switch (this.f16972a) {
             case 7:
                 return w(i10);
             default:
-                d6 d6Var = (d6) this.f16976c;
+                d6 d6Var = (d6) this.f16974c;
                 if (d6Var == null) {
                     return h6.x0(null, i10, false);
                 }
@@ -522,11 +522,11 @@ public class q implements ne.f, d6, bp0, gu, zb, l7, km0, gh.a, y71, n5.b, y2.n,
 
     @Override
     public boolean s() {
-        switch (this.f16974a) {
+        switch (this.f16972a) {
             case 7:
                 return false;
             default:
-                d6 d6Var = (d6) this.f16976c;
+                d6 d6Var = (d6) this.f16974c;
                 if (d6Var == null) {
                     return h6.b1();
                 }
@@ -536,50 +536,50 @@ public class q implements ne.f, d6, bp0, gu, zb, l7, km0, gh.a, y71, n5.b, y2.n,
 
     @Override
     public void s0(v6 v6Var, bi.b bVar, boolean z10) {
-        vu vuVar = (vu) this.f16976c;
+        vu vuVar = (vu) this.f16974c;
         uu uuVar = vuVar.X;
         if (bVar != null) {
-            ((bi.c) this.f16975b).i(bVar);
-            vuVar.f42368e0.d();
-            bi.c cVar = vuVar.f42370g0;
-            vy0[] vy0VarArr = vuVar.f42365b0;
-            a2[] a2VarArr = vuVar.f42366c0;
+            ((bi.c) this.f16973b).i(bVar);
+            vuVar.f42369e0.d();
+            bi.c cVar = vuVar.f42371g0;
+            vy0[] vy0VarArr = vuVar.f42366b0;
+            a2[] a2VarArr = vuVar.f42367c0;
             a2 a2Var = a2VarArr[0];
             if (a2Var != null) {
                 vy0 vy0Var = vy0VarArr[0];
-                boolean z11 = cVar.f4440m;
-                vy0Var.f31951c = z11;
+                boolean z11 = cVar.f4438m;
+                vy0Var.f31949c = z11;
                 a2Var.c(z11, true);
             }
             a2 a2Var2 = a2VarArr[1];
             if (a2Var2 != null) {
                 vy0 vy0Var2 = vy0VarArr[1];
-                boolean z12 = cVar.f4441n;
-                vy0Var2.f31951c = z12;
+                boolean z12 = cVar.f4439n;
+                vy0Var2.f31949c = z12;
                 a2Var2.c(z12, true);
             }
             a2 a2Var3 = a2VarArr[2];
             if (a2Var3 != null) {
                 vy0 vy0Var3 = vy0VarArr[2];
-                boolean z13 = cVar.f4442o;
-                vy0Var3.f31951c = z13;
+                boolean z13 = cVar.f4440o;
+                vy0Var3.f31949c = z13;
                 a2Var3.c(z13, true);
             }
             a2 a2Var4 = a2VarArr[3];
             if (a2Var4 != null) {
                 vy0 vy0Var4 = vy0VarArr[3];
-                boolean z14 = cVar.f4443p;
-                vy0Var4.f31951c = z14;
+                boolean z14 = cVar.f4441p;
+                vy0Var4.f31949c = z14;
                 a2Var4.c(z14, true);
             }
             a2 a2Var5 = a2VarArr[4];
             if (a2Var5 != null) {
                 vy0 vy0Var5 = vy0VarArr[4];
-                boolean z15 = cVar.f4444q;
-                vy0Var5.f31951c = z15;
+                boolean z15 = cVar.f4442q;
+                vy0Var5.f31949c = z15;
                 a2Var5.c(z15, true);
             }
-            vuVar.f42364a0.a(uuVar.d(), true);
+            vuVar.f42365a0.a(uuVar.d(), true);
             uuVar.c(true);
         }
     }
@@ -587,25 +587,25 @@ public class q implements ne.f, d6, bp0, gu, zb, l7, km0, gh.a, y71, n5.b, y2.n,
     @Override
     public Task then(Object obj) {
         ea.a aVar = (ea.a) obj;
-        u4.f fVar = (u4.f) this.f16976c;
+        u4.f fVar = (u4.f) this.f16974c;
         if (aVar == null) {
             Log.w("FirebaseCrashlytics", "Received null app settings at app startup. Cannot send cached reports", null);
             return Tasks.forResult(null);
         }
-        n2.e eVar = (n2.e) fVar.f47588c;
-        x9.m.b((x9.m) ((n2.e) fVar.f47588c).f17042c);
-        ((x9.m) eVar.f17042c).f49697m.D((Executor) this.f16975b, null);
-        ((x9.m) eVar.f17042c).f49701q.trySetResult(null);
+        n2.e eVar = (n2.e) fVar.f47590c;
+        x9.m.b((x9.m) ((n2.e) fVar.f47590c).f17040c);
+        ((x9.m) eVar.f17040c).f49699m.D((Executor) this.f16973b, null);
+        ((x9.m) eVar.f17040c).f49703q.trySetResult(null);
         return Tasks.forResult(null);
     }
 
     public String toString() {
-        switch (this.f16974a) {
+        switch (this.f16972a) {
             case 3:
                 StringBuilder sb2 = new StringBuilder(100);
-                sb2.append(this.f16976c.getClass().getSimpleName());
+                sb2.append(this.f16974c.getClass().getSimpleName());
                 sb2.append('{');
-                ArrayList arrayList = (ArrayList) this.f16975b;
+                ArrayList arrayList = (ArrayList) this.f16973b;
                 int size = arrayList.size();
                 for (int i10 = 0; i10 < size; i10++) {
                     sb2.append((String) arrayList.get(i10));
@@ -616,7 +616,7 @@ public class q implements ne.f, d6, bp0, gu, zb, l7, km0, gh.a, y71, n5.b, y2.n,
                 sb2.append('}');
                 return sb2.toString();
             case 18:
-                return "Bounds{lower=" + ((i0.b) this.f16975b) + " upper=" + ((i0.b) this.f16976c) + "}";
+                return "Bounds{lower=" + ((i0.b) this.f16973b) + " upper=" + ((i0.b) this.f16974c) + "}";
             default:
                 return super.toString();
         }
@@ -624,21 +624,21 @@ public class q implements ne.f, d6, bp0, gu, zb, l7, km0, gh.a, y71, n5.b, y2.n,
 
     @Override
     public int w(int i10) {
-        switch (this.f16974a) {
+        switch (this.f16972a) {
             case 7:
-                SparseIntArray sparseIntArray = (SparseIntArray) this.f16975b;
+                SparseIntArray sparseIntArray = (SparseIntArray) this.f16973b;
                 int indexOfKey = sparseIntArray.indexOfKey(i10);
                 if (indexOfKey >= 0) {
                     return sparseIntArray.valueAt(indexOfKey);
                 }
                 return h6.x0(null, i10, false);
             default:
-                SparseIntArray sparseIntArray2 = (SparseIntArray) this.f16975b;
+                SparseIntArray sparseIntArray2 = (SparseIntArray) this.f16973b;
                 int indexOfKey2 = sparseIntArray2.indexOfKey(i10);
                 if (indexOfKey2 >= 0) {
                     return sparseIntArray2.valueAt(indexOfKey2);
                 }
-                d6 d6Var = (d6) this.f16976c;
+                d6 d6Var = (d6) this.f16974c;
                 if (d6Var == null) {
                     return h6.x0(null, i10, false);
                 }
@@ -650,123 +650,123 @@ public class q implements ne.f, d6, bp0, gu, zb, l7, km0, gh.a, y71, n5.b, y2.n,
     public void y(Canvas canvas, float f7, float f10, float f11, float f12) {
         canvas.save();
         canvas.clipRect(f7, f10, f11, f12);
-        ((PhotoViewer) this.f16976c).U0(canvas, (na) this.f16975b, -14277082, 855638016, false, true, true);
+        ((PhotoViewer) this.f16974c).U0(canvas, (na) this.f16973b, -14277082, 855638016, false, true, true);
         canvas.drawColor(637534208);
         canvas.restore();
     }
 
     public q(int i10, Object obj, Object obj2) {
-        this.f16974a = i10;
-        this.f16975b = obj;
-        this.f16976c = obj2;
+        this.f16972a = i10;
+        this.f16973b = obj;
+        this.f16974c = obj2;
     }
 
     @Override
     public void onRenderedFirstFrame() {
-        SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f16976c;
-        if (secretMediaViewer.f33782c0) {
+        SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f16974c;
+        if (secretMediaViewer.f33784c0) {
             return;
         }
-        secretMediaViewer.f33782c0 = true;
+        secretMediaViewer.f33784c0 = true;
         secretMediaViewer.e.invalidate();
     }
 
     public q(Object obj, Object obj2, boolean z10, int i10) {
-        this.f16974a = i10;
-        this.f16976c = obj;
-        this.f16975b = obj2;
+        this.f16972a = i10;
+        this.f16974c = obj;
+        this.f16973b = obj2;
     }
 
     public q(Object obj) {
-        this.f16974a = 3;
-        this.f16976c = obj;
-        this.f16975b = new ArrayList();
+        this.f16972a = 3;
+        this.f16974c = obj;
+        this.f16973b = new ArrayList();
     }
 
     public q(k6.e eVar) {
-        this.f16974a = 4;
-        this.f16975b = new SparseIntArray();
+        this.f16972a = 4;
+        this.f16973b = new SparseIntArray();
         n6.l.h(eVar);
-        this.f16976c = eVar;
+        this.f16974c = eVar;
     }
 
     public q(d6 d6Var) {
-        this.f16974a = 15;
-        this.f16975b = new SparseIntArray();
-        this.f16976c = d6Var;
+        this.f16972a = 15;
+        this.f16973b = new SparseIntArray();
+        this.f16974c = d6Var;
         O();
     }
 
     public q(Context context) {
-        this.f16974a = 23;
-        this.f16975b = context;
-        this.f16976c = null;
+        this.f16972a = 23;
+        this.f16973b = context;
+        this.f16974c = null;
     }
 
     public q(byte[] bArr) {
-        this.f16974a = 1;
-        this.f16975b = bArr;
+        this.f16972a = 1;
+        this.f16973b = bArr;
     }
 
     public q(dg0 dg0Var) {
-        this.f16974a = 10;
-        this.f16976c = dg0Var;
-        this.f16975b = new rc0(this, 9);
+        this.f16972a = 10;
+        this.f16974c = dg0Var;
+        this.f16973b = new rc0(this, 9);
     }
 
     public q(String str, String str2) {
-        this.f16974a = 24;
-        this.f16975b = str;
-        this.f16976c = str2;
+        this.f16972a = 24;
+        this.f16973b = str;
+        this.f16974c = str2;
         if (str.length() <= 0) {
             throw new IllegalArgumentException("userId should not be empty");
         }
     }
 
     public q(h1 h1Var) {
-        this.f16974a = 20;
-        this.f16975b = h1Var;
+        this.f16972a = 20;
+        this.f16973b = h1Var;
         ?? obj = new Object();
-        obj.f45957a = 0;
-        this.f16976c = obj;
+        obj.f45959a = 0;
+        this.f16974c = obj;
     }
 
     public q(int i10) {
-        this.f16974a = 26;
+        this.f16972a = 26;
         Bitmap createBitmap = Bitmap.createBitmap(i10, i10, Bitmap.Config.ALPHA_8);
-        this.f16975b = createBitmap;
+        this.f16973b = createBitmap;
         Shader.TileMode tileMode = Shader.TileMode.REPEAT;
-        this.f16976c = new BitmapShader(createBitmap, tileMode, tileMode);
+        this.f16974c = new BitmapShader(createBitmap, tileMode, tileMode);
     }
 
     public q(EditText editText) {
-        this.f16974a = 16;
-        this.f16975b = editText;
+        this.f16972a = 16;
+        this.f16973b = editText;
         q1.i iVar = new q1.i(editText);
-        this.f16976c = iVar;
+        this.f16974c = iVar;
         editText.addTextChangedListener(iVar);
-        if (q1.a.f44319b == null) {
-            synchronized (q1.a.f44318a) {
+        if (q1.a.f44321b == null) {
+            synchronized (q1.a.f44320a) {
                 try {
-                    if (q1.a.f44319b == null) {
+                    if (q1.a.f44321b == null) {
                         ?? factory = new Editable.Factory();
                         try {
-                            q1.a.f44320c = Class.forName("android.text.DynamicLayout$ChangeWatcher", false, q1.a.class.getClassLoader());
+                            q1.a.f44322c = Class.forName("android.text.DynamicLayout$ChangeWatcher", false, q1.a.class.getClassLoader());
                         } catch (Throwable unused) {
                         }
-                        q1.a.f44319b = factory;
+                        q1.a.f44321b = factory;
                     }
                 } finally {
                 }
             }
         }
-        editText.setEditableFactory(q1.a.f44319b);
+        editText.setEditableFactory(q1.a.f44321b);
     }
 
     public q(PhotoViewer photoViewer) {
-        this.f16974a = 13;
-        this.f16976c = photoViewer;
-        this.f16975b = new na(photoViewer.f33244b0, photoViewer.f33272e0, 0, false);
+        this.f16972a = 13;
+        this.f16974c = photoViewer;
+        this.f16973b = new na(photoViewer.f33244b0, photoViewer.f33272e0, 0, false);
     }
 
     @Override

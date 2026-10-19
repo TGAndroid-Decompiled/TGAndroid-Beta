@@ -16,37 +16,37 @@ public final class zi implements TextWatcher {
     public final void afterTextChanged(Editable editable) {
         boolean z10;
         fj fjVar = this.f32957a;
-        ui uiVar = fjVar.f26233f0;
-        TextUtils.isEmpty(fjVar.f26245y);
-        fjVar.f26245y = editable.toString().trim();
-        ui uiVar2 = fjVar.f26228a0;
+        ui uiVar = fjVar.f26231f0;
+        TextUtils.isEmpty(fjVar.f26243y);
+        fjVar.f26243y = editable.toString().trim();
+        ui uiVar2 = fjVar.f26226a0;
         AndroidUtilities.cancelRunOnUIThread(uiVar2);
         boolean z11 = true;
-        if (!TextUtils.isEmpty(fjVar.f26245y)) {
-            String str = fjVar.f26245y;
+        if (!TextUtils.isEmpty(fjVar.f26243y)) {
+            String str = fjVar.f26243y;
             if (str != null && str.length() >= 0) {
                 z10 = true;
             } else {
                 z10 = false;
             }
             fjVar.W = z10;
-            if (!TextUtils.equals(fjVar.V, fjVar.f26245y)) {
+            if (!TextUtils.equals(fjVar.V, fjVar.f26243y)) {
                 fjVar.L.clear();
-                fjVar.f26229b0 = 0;
-                fjVar.f26230c0 = false;
+                fjVar.f26227b0 = 0;
+                fjVar.f26228c0 = false;
             }
             AndroidUtilities.runOnUIThread(uiVar2, 1500L);
         }
         AndroidUtilities.cancelRunOnUIThread(uiVar);
-        if (!TextUtils.isEmpty(fjVar.f26245y)) {
-            String str2 = fjVar.f26245y;
-            if (str2 == null || str2.length() < 3 || TextUtils.isEmpty(MessagesController.getInstance(fjVar.f28225b.M1).config.musicSearchUsername.get())) {
+        if (!TextUtils.isEmpty(fjVar.f26243y)) {
+            String str2 = fjVar.f26243y;
+            if (str2 == null || str2.length() < 3 || TextUtils.isEmpty(MessagesController.getInstance(fjVar.f28223b.M1).config.musicSearchUsername.get())) {
                 z11 = false;
             }
             fjVar.m0 = z11;
-            if (!TextUtils.equals(fjVar.f26232e0, fjVar.f26245y)) {
+            if (!TextUtils.equals(fjVar.f26230e0, fjVar.f26243y)) {
                 fjVar.M.clear();
-                fjVar.f26234g0 = false;
+                fjVar.f26232g0 = false;
             }
             AndroidUtilities.runOnUIThread(uiVar, 1500L);
         }

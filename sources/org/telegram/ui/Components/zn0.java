@@ -20,7 +20,7 @@ public final class zn0 extends EditTextBoldCursor {
         p6Var.n(0.2f, 160L, bs.h);
         p6Var.w(AndroidUtilities.dp(15.33f));
         p6Var.setCallback(this);
-        p6Var.f29182b = 5;
+        p6Var.f29180b = 5;
     }
 
     @Override
@@ -28,7 +28,7 @@ public final class zn0 extends EditTextBoldCursor {
         int i10;
         super.dispatchDraw(canvas);
         if (this.f32996c < 0) {
-            i10 = org.telegram.ui.ActionBar.h6.f21210p7;
+            i10 = org.telegram.ui.ActionBar.h6.f21208p7;
         } else {
             i10 = org.telegram.ui.ActionBar.h6.P5;
         }

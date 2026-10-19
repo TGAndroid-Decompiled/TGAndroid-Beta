@@ -3,15 +3,15 @@ package org.telegram.ui;
 import android.graphics.SurfaceTexture;
 import org.telegram.messenger.AndroidUtilities;
 public final class w31 implements org.telegram.ui.Components.y71, org.telegram.ui.Components.u71 {
-    public final x31 f42452a;
+    public final x31 f42453a;
 
     public w31(x31 x31Var) {
-        this.f42452a = x31Var;
+        this.f42453a = x31Var;
     }
 
     @Override
     public boolean needUpdate() {
-        if (this.f42452a.V.f28151i != null) {
+        if (this.f42453a.V.f28149i != null) {
             return true;
         }
         return false;
@@ -23,7 +23,7 @@ public final class w31 implements org.telegram.ui.Components.y71, org.telegram.u
 
     @Override
     public void onStateChanged(boolean z10, int i10) {
-        x31 x31Var = this.f42452a;
+        x31 x31Var = this.f42453a;
         if (i10 == 4) {
             x31Var.dismiss();
             return;
@@ -39,7 +39,7 @@ public final class w31 implements org.telegram.ui.Components.y71, org.telegram.u
 
     @Override
     public void onVisualizerUpdate(boolean z10, boolean z11, float[] fArr) {
-        this.f42452a.V.e(z10, true, fArr);
+        this.f42453a.V.e(z10, true, fArr);
     }
 
     @Override

@@ -15,7 +15,7 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.lk;
+import org.telegram.messenger.kk;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
@@ -32,25 +32,25 @@ import org.telegram.ui.qn;
 import org.telegram.ui.web.HttpGetFileTask;
 import org.telegram.ui.zh1;
 public final class b1 implements Runnable {
-    public final int f11091a = 0;
-    public final TLObject f11092b;
-    public final int f11093c;
+    public final int f11089a = 0;
+    public final TLObject f11090b;
+    public final int f11091c;
     public final long d;
     public final Object e;
-    public final Object f11094f;
+    public final Object f11092f;
     public final Object h;
-    public final Object f11095n;
-    public final Object f11096r;
+    public final Object f11093n;
+    public final Object f11094r;
 
     public b1(TLObject tLObject, int i10, org.telegram.ui.ActionBar.b2 b2Var, Context context, long j10, d6 d6Var, org.telegram.ui.web.t tVar, ai.s0 s0Var) {
-        this.f11092b = tLObject;
-        this.f11093c = i10;
+        this.f11090b = tLObject;
+        this.f11091c = i10;
         this.e = b2Var;
-        this.f11094f = context;
+        this.f11092f = context;
         this.d = j10;
         this.h = d6Var;
-        this.f11095n = tVar;
-        this.f11096r = s0Var;
+        this.f11093n = tVar;
+        this.f11094r = s0Var;
     }
 
     @Override
@@ -61,19 +61,19 @@ public final class b1 implements Runnable {
         cy cyVar;
         TLObject tLObject;
         String[] split;
-        switch (this.f11091a) {
+        switch (this.f11089a) {
             case 0:
                 org.telegram.ui.ActionBar.b2 b2Var = (org.telegram.ui.ActionBar.b2) this.e;
-                Context context = (Context) this.f11094f;
+                Context context = (Context) this.f11092f;
                 d6 d6Var = (d6) this.h;
-                org.telegram.ui.web.t tVar = (org.telegram.ui.web.t) this.f11095n;
-                ai.s0 s0Var = (ai.s0) this.f11096r;
-                TLObject tLObject2 = this.f11092b;
+                org.telegram.ui.web.t tVar = (org.telegram.ui.web.t) this.f11093n;
+                ai.s0 s0Var = (ai.s0) this.f11094r;
+                TLObject tLObject2 = this.f11090b;
                 if (tLObject2 instanceof TLRPC.TL_messages_preparedInlineMessage) {
                     TLRPC.TL_messages_preparedInlineMessage tL_messages_preparedInlineMessage = (TLRPC.TL_messages_preparedInlineMessage) tLObject2;
                     TLRPC.BotInlineMessage botInlineMessage = tL_messages_preparedInlineMessage.result.send_message;
                     boolean z10 = botInlineMessage instanceof TLRPC.TL_botInlineMessageMediaWebPage;
-                    int i11 = this.f11093c;
+                    int i11 = this.f11091c;
                     long j10 = this.d;
                     if (z10) {
                         TLRPC.TL_botInlineMessageMediaWebPage tL_botInlineMessageMediaWebPage = (TLRPC.TL_botInlineMessageMediaWebPage) botInlineMessage;
@@ -104,7 +104,7 @@ public final class b1 implements Runnable {
                             }
                             File file = new File(FileLoader.getDirectory(4), Utilities.MD5(str2) + h);
                             if (!file.exists()) {
-                                HttpGetFileTask httpGetFileTask = new HttpGetFileTask(new ai.n2(17, fileArr, d1Var), null);
+                                HttpGetFileTask httpGetFileTask = new HttpGetFileTask(new ai.o2(17, fileArr, d1Var), null);
                                 httpGetFileTask.setDestFile(file);
                                 httpGetFileTask.setMaxSize(8388608L);
                                 httpGetFileTask.execute(str2);
@@ -122,17 +122,17 @@ public final class b1 implements Runnable {
                 return;
             default:
                 LaunchActivity launchActivity = (LaunchActivity) this.e;
-                String str3 = (String) this.f11094f;
+                String str3 = (String) this.f11092f;
                 String str4 = (String) this.h;
-                TLRPC.User user = (TLRPC.User) this.f11095n;
-                String str5 = (String) this.f11096r;
+                TLRPC.User user = (TLRPC.User) this.f11093n;
+                String str5 = (String) this.f11094r;
                 ArrayList arrayList = launchActivity.f33159f0;
                 ArrayList arrayList2 = launchActivity.f33155d0;
                 ArrayList arrayList3 = launchActivity.E0;
-                TLObject tLObject3 = this.f11092b;
+                TLObject tLObject3 = this.f11090b;
                 if (tLObject3 instanceof TLRPC.TL_attachMenuBotsBot) {
                     TLRPC.TL_attachMenuBotsBot tL_attachMenuBotsBot = (TLRPC.TL_attachMenuBotsBot) tLObject3;
-                    int i12 = this.f11093c;
+                    int i12 = this.f11091c;
                     MessagesController.getInstance(i12).putUsers(tL_attachMenuBotsBot.users, false);
                     TLRPC.TL_attachMenuBot tL_attachMenuBot = tL_attachMenuBotsBot.bot;
                     if (str3 != null) {
@@ -190,7 +190,7 @@ public final class b1 implements Runnable {
                                 a02 = xc.a0(n2Var);
                                 i10 = R.string.BotAlreadyAddedToAttachMenu;
                             } else {
-                                qnVar.ba(user.f20422id, str5, false);
+                                qnVar.ba(user.f20420id, str5, false);
                                 return;
                             }
                         } else {
@@ -209,19 +209,19 @@ public final class b1 implements Runnable {
                     a02 = xc.a0((org.telegram.ui.ActionBar.n2) i2.e.h(1, arrayList2));
                     i10 = R.string.BotCantAddToAttachMenu;
                 }
-                lk.q(i10, a02, null);
+                kk.q(i10, a02, null);
                 return;
         }
     }
 
     public b1(LaunchActivity launchActivity, TLObject tLObject, int i10, String str, String str2, TLRPC.User user, String str3, long j10) {
         this.e = launchActivity;
-        this.f11092b = tLObject;
-        this.f11093c = i10;
-        this.f11094f = str;
+        this.f11090b = tLObject;
+        this.f11091c = i10;
+        this.f11092f = str;
         this.h = str2;
-        this.f11095n = user;
-        this.f11096r = str3;
+        this.f11093n = user;
+        this.f11094r = str3;
         this.d = j10;
     }
 }

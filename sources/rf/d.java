@@ -11,53 +11,53 @@ import i2.i0;
 import java.util.HashMap;
 import k2.n0;
 public final class d {
-    public static int f45259n;
-    public static final Rect f45260o = new Rect();
-    public final l f45261a;
-    public final tf.e f45262b;
-    public final String f45263c;
+    public static int f45261n;
+    public static final Rect f45262o = new Rect();
+    public final l f45263a;
+    public final tf.e f45264b;
+    public final String f45265c;
     public final int d;
     public final int e;
-    public final boolean f45264f;
-    public final tf.a f45265g;
+    public final boolean f45266f;
+    public final tf.a f45267g;
     public final n0 h;
-    public final r f45266i;
-    public View f45267j;
-    public View f45268k;
-    public i0 f45269l;
-    public boolean f45270m;
+    public final r f45268i;
+    public View f45269j;
+    public View f45270k;
+    public i0 f45271l;
+    public boolean f45272m;
 
     public d(l lVar, c cVar) {
-        int i10 = f45259n;
-        f45259n = i10 + 1;
+        int i10 = f45261n;
+        f45261n = i10 + 1;
         n0 n0Var = new n0();
         this.h = n0Var;
         r rVar = new r(new z3(this, 1));
-        this.f45266i = rVar;
+        this.f45268i = rVar;
         StringBuilder sb2 = new StringBuilder();
-        String str = cVar.f45253c;
+        String str = cVar.f45255c;
         sb2.append(str == null ? "pip-source" : str);
         sb2.append("-");
         sb2.append(i10);
         String sb3 = sb2.toString();
-        this.f45263c = sb3;
-        this.f45265g = cVar.f45252b;
+        this.f45265c = sb3;
+        this.f45267g = cVar.f45254b;
         this.d = cVar.e;
         this.e = cVar.d;
-        this.f45264f = cVar.f45254f;
-        this.f45261a = lVar;
-        n0Var.d(cVar.h, cVar.f45256i);
-        this.f45269l = cVar.f45255g;
-        this.f45268k = cVar.f45258k;
-        this.f45262b = new tf.e(this);
-        View view = cVar.f45257j;
+        this.f45266f = cVar.f45256f;
+        this.f45263a = lVar;
+        n0Var.d(cVar.h, cVar.f45258i);
+        this.f45271l = cVar.f45257g;
+        this.f45270k = cVar.f45260k;
+        this.f45264b = new tf.e(this);
+        View view = cVar.f45259j;
         rVar.t(view);
-        this.f45267j = view;
+        this.f45269j = view;
         if (view != null) {
             e(view);
         }
         b(false);
-        ((HashMap) lVar.f7647a).put(sb3, this);
+        ((HashMap) lVar.f7645a).put(sb3, this);
         lVar.N();
     }
 
@@ -79,25 +79,25 @@ public final class d {
 
     public final void b(boolean z10) {
         boolean z11;
-        if (this.h.c() && this.f45265g.g()) {
+        if (this.h.c() && this.f45267g.g()) {
             z11 = true;
         } else {
             z11 = false;
         }
-        if (this.f45270m != z11) {
-            this.f45270m = z11;
+        if (this.f45272m != z11) {
+            this.f45272m = z11;
             if (z10) {
-                l lVar = this.f45261a;
+                l lVar = this.f45263a;
                 lVar.N();
-                ((a) lVar.f7649c).invalidate();
+                ((a) lVar.f7647c).invalidate();
             }
         }
     }
 
     public final void c() {
-        this.f45266i.t(null);
-        l lVar = this.f45261a;
-        if (((HashMap) lVar.f7647a).remove(this.f45263c) != null) {
+        this.f45268i.t(null);
+        l lVar = this.f45263a;
+        if (((HashMap) lVar.f7645a).remove(this.f45265c) != null) {
             lVar.N();
         }
     }
@@ -105,7 +105,7 @@ public final class d {
     public final void d(int i10, int i11) {
         if (this.h.d(i10, i11)) {
             b(true);
-            this.f45261a.p(this);
+            this.f45263a.p(this);
         }
     }
 

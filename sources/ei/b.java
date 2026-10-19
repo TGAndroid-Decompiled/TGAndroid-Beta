@@ -2,43 +2,43 @@ package ei;
 
 import android.animation.ValueAnimator;
 public final class b implements ValueAnimator.AnimatorUpdateListener {
-    public final int f8764a;
-    public final d f8765b;
+    public final int f8762a;
+    public final d f8763b;
 
     public b(d dVar, int i10) {
-        this.f8764a = i10;
-        this.f8765b = dVar;
+        this.f8762a = i10;
+        this.f8763b = dVar;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f8764a) {
+        switch (this.f8762a) {
             case 0:
-                d dVar = this.f8765b;
+                d dVar = this.f8763b;
                 dVar.getClass();
                 dVar.P = Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue());
                 dVar.invalidate();
                 return;
             case 1:
-                d dVar2 = this.f8765b;
+                d dVar2 = this.f8763b;
                 dVar2.getClass();
                 dVar2.V = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 dVar2.invalidate();
                 return;
             case 2:
-                d dVar3 = this.f8765b;
+                d dVar3 = this.f8763b;
                 dVar3.getClass();
                 dVar3.M = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 dVar3.invalidate();
                 return;
             case 3:
-                d dVar4 = this.f8765b;
+                d dVar4 = this.f8763b;
                 dVar4.getClass();
                 dVar4.H = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 dVar4.invalidate();
                 return;
             default:
-                d dVar5 = this.f8765b;
+                d dVar5 = this.f8763b;
                 dVar5.getClass();
                 dVar5.H = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 dVar5.invalidate();

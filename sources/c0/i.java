@@ -1,30 +1,30 @@
 package c0;
 public final class i {
-    public Object f4471a;
-    public l f4472b;
-    public m f4473c;
+    public Object f4469a;
+    public l f4470b;
+    public m f4471c;
     public boolean d;
 
     public final void a(Boolean bool) {
         this.d = true;
-        l lVar = this.f4472b;
-        if (lVar != null && lVar.f4476b.k(bool)) {
-            this.f4471a = null;
-            this.f4472b = null;
-            this.f4473c = null;
+        l lVar = this.f4470b;
+        if (lVar != null && lVar.f4474b.k(bool)) {
+            this.f4469a = null;
+            this.f4470b = null;
+            this.f4471c = null;
         }
     }
 
     public final void finalize() {
         m mVar;
-        l lVar = this.f4472b;
+        l lVar = this.f4470b;
         if (lVar != null) {
-            k kVar = lVar.f4476b;
+            k kVar = lVar.f4474b;
             if (!kVar.isDone()) {
-                kVar.l(new b("The completer object was garbage collected - this future would otherwise never complete. The tag was: " + this.f4471a, 1));
+                kVar.l(new b("The completer object was garbage collected - this future would otherwise never complete. The tag was: " + this.f4469a, 1));
             }
         }
-        if (!this.d && (mVar = this.f4473c) != null) {
+        if (!this.d && (mVar = this.f4471c) != null) {
             mVar.k(null);
         }
     }

@@ -8,7 +8,7 @@ import org.telegram.ui.Components.g61;
 import org.telegram.ui.Components.im0;
 import org.telegram.ui.Components.t61;
 public final class f5 extends f61 {
-    public static final int f34196a = 0;
+    public static final int f34198a = 0;
 
     static {
         f61.setup(new f61());
@@ -16,7 +16,7 @@ public final class f5 extends f61 {
 
     @Override
     public final void bindView(View view, g61 g61Var, boolean z10, t61 t61Var, b71 b71Var) {
-        ((g5) view).a(g61Var.f26499l, g61Var.f26500m, g61Var.f26498k);
+        ((g5) view).a(g61Var.f26497l, g61Var.f26498m, g61Var.f26496k);
     }
 
     @Override

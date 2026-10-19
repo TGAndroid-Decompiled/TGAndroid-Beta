@@ -6,7 +6,7 @@ public class a implements eb.v {
     @Override
     public final eb.u create(eb.g gVar, lb.a aVar) {
         Type componentType;
-        Type type = aVar.f15997b;
+        Type type = aVar.f15995b;
         boolean z10 = type instanceof GenericArrayType;
         if (!z10 && (!(type instanceof Class) || !((Class) type).isArray())) {
             return null;

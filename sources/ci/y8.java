@@ -13,23 +13,23 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class y8 extends FrameLayout {
-    public final Paint f6233a;
-    public final Paint f6234b;
-    public final TextView f6235c;
+    public final Paint f6231a;
+    public final Paint f6232b;
+    public final TextView f6233c;
     public final TextView d;
     public final TextView e;
 
     public y8(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
         Paint paint = new Paint(1);
-        this.f6233a = paint;
+        this.f6231a = paint;
         Paint paint2 = new Paint(1);
-        this.f6234b = paint2;
-        paint.setColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21227q7, d6Var));
+        this.f6232b = paint2;
+        paint.setColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21225q7, d6Var));
         paint2.setColor(-1);
         setWillNotDraw(false);
         TextView textView = new TextView(context);
-        this.f6235c = textView;
+        this.f6233c = textView;
         textView.setTextSize(1, 14.0f);
         textView.setText(LocaleController.getString(R.string.StoryError));
         textView.setTextColor(-1);
@@ -59,17 +59,17 @@ public final class y8 extends FrameLayout {
         super.onDraw(canvas);
         float dp = AndroidUtilities.dp(23.0f);
         float height = getHeight() / 2.0f;
-        canvas.drawCircle(dp, height, AndroidUtilities.dp(10.0f), this.f6233a);
+        canvas.drawCircle(dp, height, AndroidUtilities.dp(10.0f), this.f6231a);
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set(dp - AndroidUtilities.dp(1.0f), height - AndroidUtilities.dpf2(4.6f), AndroidUtilities.dp(1.0f) + dp, AndroidUtilities.dpf2(1.6f) + height);
-        Paint paint = this.f6234b;
+        Paint paint = this.f6232b;
         canvas.drawRoundRect(rectF, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), paint);
         rectF.set(dp - AndroidUtilities.dp(1.0f), AndroidUtilities.dpf2(2.6f) + height, dp + AndroidUtilities.dp(1.0f), AndroidUtilities.dpf2(4.6f) + height);
         canvas.drawRoundRect(rectF, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), paint);
     }
 
     public void set(TLRPC.TL_error tL_error) {
-        TextView textView = this.f6235c;
+        TextView textView = this.f6233c;
         TextView textView2 = this.d;
         if (tL_error != null && !TextUtils.isEmpty(tL_error.text)) {
             textView.setTranslationY(-AndroidUtilities.dpf2(5.33f));

@@ -32,7 +32,7 @@ public final class zm {
     public float f32974f = 0.0f;
     public float f32975g = 0.0f;
     public final ArrayList h = new ArrayList();
-    public final bs f32977j = bs.f25017j;
+    public final bs f32977j = bs.f25015j;
     public final int f32979l = AndroidUtilities.dp(4.0f);
     public final int f32980m = AndroidUtilities.dp(2.0f) / 2;
     public final RectF f32987t = new RectF();
@@ -41,7 +41,7 @@ public final class zm {
     public zm(an anVar) {
         Drawable drawable;
         this.f32992z = anVar;
-        org.telegram.ui.ActionBar.d6 d6Var = anVar.P.f24992n;
+        org.telegram.ui.ActionBar.d6 d6Var = anVar.P.f24990n;
         if (d6Var != null) {
             drawable = d6Var.getDrawable("drawableMsgOutMedia");
         } else {
@@ -58,7 +58,7 @@ public final class zm {
         if (umVar == null) {
             return;
         }
-        HashMap hashMap = umVar.f31020b;
+        HashMap hashMap = umVar.f31018b;
         umVar.a();
         long elapsedRealtime = SystemClock.elapsedRealtime();
         long j11 = elapsedRealtime - zmVar.f32973c;
@@ -71,8 +71,8 @@ public final class zm {
             zmVar.f32975g = zmVar.e;
             zmVar.f32974f = zmVar.d;
         }
-        zmVar.d = umVar.f31021c / 1000.0f;
-        zmVar.e = umVar.f31022f;
+        zmVar.d = umVar.f31019c / 1000.0f;
+        zmVar.e = umVar.f31020f;
         if (z10) {
             j10 = elapsedRealtime;
         } else {
@@ -100,7 +100,7 @@ public final class zm {
                     break;
                 }
                 ym ymVar2 = (ym) arrayList.get(i12);
-                if (ymVar2.f32674b == photoEntry) {
+                if (ymVar2.f32672b == photoEntry) {
                     ymVar = ymVar2;
                     break;
                 }
@@ -122,12 +122,12 @@ public final class zm {
         int i13 = 0;
         while (i13 < size3) {
             ym ymVar4 = (ym) arrayList.get(i13);
-            if (!hashMap.containsKey(ymVar4.f32674b)) {
-                if (ymVar4.f32680k <= 0.0f && ymVar4.h + j14 <= elapsedRealtime) {
-                    wh.f fVar = ymVar4.f32688s;
+            if (!hashMap.containsKey(ymVar4.f32672b)) {
+                if (ymVar4.f32678k <= 0.0f && ymVar4.h + j14 <= elapsedRealtime) {
+                    wh.f fVar = ymVar4.f32686s;
                     if (fVar != null) {
                         fVar.b(ymVar4.O.f32992z);
-                        ymVar4.f32688s = null;
+                        ymVar4.f32686s = null;
                     }
                     arrayList.remove(i13);
                     i13--;

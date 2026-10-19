@@ -9,33 +9,33 @@ import java.util.Iterator;
 import java.util.List;
 import org.json.JSONObject;
 public class l {
-    public String f7894a;
+    public String f7892a;
 
     public l(String str, int i10) {
         switch (i10) {
             case 3:
-                this.f7894a = str;
+                this.f7892a = str;
                 return;
             default:
                 str.getClass();
-                this.f7894a = str;
+                this.f7892a = str;
                 return;
         }
     }
 
     public static void b(androidx.biometric.e eVar, ea.d dVar) {
-        String str = dVar.f8553a;
+        String str = dVar.f8551a;
         if (str != null) {
             eVar.q("X-CRASHLYTICS-GOOGLE-APP-ID", str);
         }
         eVar.q("X-CRASHLYTICS-API-CLIENT-TYPE", "android");
         eVar.q("X-CRASHLYTICS-API-CLIENT-VERSION", "18.6.0");
         eVar.q("Accept", "application/json");
-        String str2 = dVar.f8554b;
+        String str2 = dVar.f8552b;
         if (str2 != null) {
             eVar.q("X-CRASHLYTICS-DEVICE-MODEL", str2);
         }
-        String str3 = dVar.f8555c;
+        String str3 = dVar.f8553c;
         if (str3 != null) {
             eVar.q("X-CRASHLYTICS-OS-BUILD-VERSION", str3);
         }
@@ -43,7 +43,7 @@ public class l {
         if (str4 != null) {
             eVar.q("X-CRASHLYTICS-OS-DISPLAY-VERSION", str4);
         }
-        String str5 = dVar.e.b().f49666a;
+        String str5 = dVar.e.b().f49668a;
         if (str5 != null) {
             eVar.q("X-CRASHLYTICS-INSTALLATION-ID", str5);
         }
@@ -52,9 +52,9 @@ public class l {
     public static HashMap c(ea.d dVar) {
         HashMap hashMap = new HashMap();
         hashMap.put("build_version", dVar.h);
-        hashMap.put("display_version", dVar.f8557g);
-        hashMap.put("source", Integer.toString(dVar.f8558i));
-        String str = dVar.f8556f;
+        hashMap.put("display_version", dVar.f8555g);
+        hashMap.put("source", Integer.toString(dVar.f8556i));
+        String str = dVar.f8554f;
         if (!TextUtils.isEmpty(str)) {
             hashMap.put("instance", str);
         }
@@ -74,7 +74,7 @@ public class l {
             if (it.hasNext()) {
                 sb2.append(f(it.next()));
                 while (it.hasNext()) {
-                    sb2.append((CharSequence) this.f7894a);
+                    sb2.append((CharSequence) this.f7892a);
                     sb2.append(f(it.next()));
                 }
             }
@@ -84,9 +84,9 @@ public class l {
     }
 
     public JSONObject d(ba.a aVar) {
-        String str = this.f7894a;
-        int i10 = aVar.f4229c;
-        u9.b bVar = u9.b.f47619a;
+        String str = this.f7892a;
+        int i10 = aVar.f4227c;
+        u9.b bVar = u9.b.f47621a;
         bVar.c("Settings response code was: " + i10);
         if (i10 != 200 && i10 != 201 && i10 != 202 && i10 != 203) {
             String str2 = "Settings request failed; (status: " + i10 + ") from " + str;
@@ -95,7 +95,7 @@ public class l {
             }
             return null;
         }
-        String str3 = aVar.f4228b;
+        String str3 = aVar.f4226b;
         try {
             return new JSONObject(str3);
         } catch (Exception e) {

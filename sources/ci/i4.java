@@ -13,21 +13,21 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.lk;
+import org.telegram.messenger.kk;
 import org.telegram.ui.Components.x90;
 import org.telegram.ui.h31;
 import org.telegram.ui.t21;
 public final class i4 extends FrameLayout {
-    public final int f5489a;
+    public final int f5487a;
 
     public i4(Context context, int i10) {
         super(context);
-        this.f5489a = i10;
+        this.f5487a = i10;
     }
 
     @Override
     public void dispatchDraw(Canvas canvas) {
-        switch (this.f5489a) {
+        switch (this.f5487a) {
             case 24:
                 super.dispatchDraw(canvas);
                 return;
@@ -39,7 +39,7 @@ public final class i4 extends FrameLayout {
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        switch (this.f5489a) {
+        switch (this.f5487a) {
             case 15:
                 return false;
             default:
@@ -49,24 +49,24 @@ public final class i4 extends FrameLayout {
 
     @Override
     public void onDraw(Canvas canvas) {
-        switch (this.f5489a) {
+        switch (this.f5487a) {
             case 6:
-                int intrinsicHeight = org.telegram.ui.ActionBar.h6.f21075i3.getIntrinsicHeight();
-                org.telegram.ui.ActionBar.h6.f21075i3.setBounds(0, 0, getMeasuredWidth(), intrinsicHeight);
-                org.telegram.ui.ActionBar.h6.f21075i3.draw(canvas);
-                canvas.drawRect(0.0f, intrinsicHeight, getMeasuredWidth(), getMeasuredHeight(), org.telegram.ui.ActionBar.h6.f21092j2);
+                int intrinsicHeight = org.telegram.ui.ActionBar.h6.f21073i3.getIntrinsicHeight();
+                org.telegram.ui.ActionBar.h6.f21073i3.setBounds(0, 0, getMeasuredWidth(), intrinsicHeight);
+                org.telegram.ui.ActionBar.h6.f21073i3.draw(canvas);
+                canvas.drawRect(0.0f, intrinsicHeight, getMeasuredWidth(), getMeasuredHeight(), org.telegram.ui.ActionBar.h6.f21090j2);
                 return;
             case 8:
-                canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), AndroidUtilities.getShadowHeight(), org.telegram.ui.ActionBar.h6.f21110k0);
+                canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), AndroidUtilities.getShadowHeight(), org.telegram.ui.ActionBar.h6.f21108k0);
                 return;
             case 18:
-                canvas.drawLine(0.0f, AndroidUtilities.dp(40.0f), getMeasuredWidth(), AndroidUtilities.dp(40.0f), org.telegram.ui.ActionBar.h6.f21110k0);
+                canvas.drawLine(0.0f, AndroidUtilities.dp(40.0f), getMeasuredWidth(), AndroidUtilities.dp(40.0f), org.telegram.ui.ActionBar.h6.f21108k0);
                 return;
             case 26:
-                int intrinsicHeight2 = org.telegram.ui.ActionBar.h6.f21075i3.getIntrinsicHeight();
-                org.telegram.ui.ActionBar.h6.f21075i3.setBounds(0, 0, getMeasuredWidth(), intrinsicHeight2);
-                org.telegram.ui.ActionBar.h6.f21075i3.draw(canvas);
-                canvas.drawRect(0.0f, intrinsicHeight2, getMeasuredWidth(), getMeasuredHeight(), org.telegram.ui.ActionBar.h6.f21092j2);
+                int intrinsicHeight2 = org.telegram.ui.ActionBar.h6.f21073i3.getIntrinsicHeight();
+                org.telegram.ui.ActionBar.h6.f21073i3.setBounds(0, 0, getMeasuredWidth(), intrinsicHeight2);
+                org.telegram.ui.ActionBar.h6.f21073i3.draw(canvas);
+                canvas.drawRect(0.0f, intrinsicHeight2, getMeasuredWidth(), getMeasuredHeight(), org.telegram.ui.ActionBar.h6.f21090j2);
                 return;
             default:
                 super.onDraw(canvas);
@@ -76,7 +76,7 @@ public final class i4 extends FrameLayout {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        switch (this.f5489a) {
+        switch (this.f5487a) {
             case 19:
                 getParent().requestDisallowInterceptTouchEvent(true);
                 return true;
@@ -88,7 +88,7 @@ public final class i4 extends FrameLayout {
     @Override
     public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         float f7;
-        switch (this.f5489a) {
+        switch (this.f5487a) {
             case 5:
                 return;
             case 17:
@@ -130,7 +130,7 @@ public final class i4 extends FrameLayout {
 
     @Override
     public void onMeasure(int i10, int i11) {
-        switch (this.f5489a) {
+        switch (this.f5487a) {
             case 2:
                 super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(12.0f), 1073741824));
                 return;
@@ -174,7 +174,7 @@ public final class i4 extends FrameLayout {
                 super.onMeasure(i10, i11);
                 return;
             case 18:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), lk.C(48.0f, 1, 1073741824));
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), kk.C(48.0f, 1, 1073741824));
                 return;
             case 20:
                 super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
@@ -215,7 +215,7 @@ public final class i4 extends FrameLayout {
 
     @Override
     public void setTranslationY(float f7) {
-        switch (this.f5489a) {
+        switch (this.f5487a) {
             case 16:
                 super.setTranslationY(f7);
                 setPadding(0, 0, (int) f7, 0);
@@ -228,7 +228,7 @@ public final class i4 extends FrameLayout {
 
     public i4(h31 h31Var, Context context, int i10, String str, CharSequence charSequence) {
         super(context);
-        this.f5489a = 29;
+        this.f5487a = 29;
         boolean z10 = LocaleController.isRTL;
         ImageView imageView = new ImageView(getContext());
         Drawable mutate = getContext().getResources().getDrawable(i10).mutate();
@@ -245,7 +245,7 @@ public final class i4 extends FrameLayout {
         x90Var.setText(charSequence);
         x90Var.setTextSize(1, 14.0f);
         x90Var.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Pi, h31.T(h31Var)));
-        x90Var.setLinkTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21048gc, h31.U(h31Var)));
+        x90Var.setLinkTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21046gc, h31.U(h31Var)));
         x90Var.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
         x90Var.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
         addView(x90Var, w7.z5.d(-2, -2.0f, z10 ? 5 : 3, (z10 ? 27 : 68) - 4, 18.0f, (z10 ? 68 : 27) - 4, 0.0f));
@@ -253,7 +253,7 @@ public final class i4 extends FrameLayout {
 
     public i4(t21 t21Var, Context context, int i10, String str, CharSequence charSequence) {
         super(context);
-        this.f5489a = 28;
+        this.f5487a = 28;
         boolean z10 = LocaleController.isRTL;
         ImageView imageView = new ImageView(getContext());
         Drawable mutate = getContext().getResources().getDrawable(i10).mutate();
@@ -270,19 +270,19 @@ public final class i4 extends FrameLayout {
         x90Var.setText(charSequence);
         x90Var.setTextSize(1, 14.0f);
         x90Var.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Pi, t21.S(t21Var)));
-        x90Var.setLinkTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21048gc, t21.T(t21Var)));
+        x90Var.setLinkTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21046gc, t21.T(t21Var)));
         x90Var.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
         addView(x90Var, w7.z5.d(-2, -2.0f, z10 ? 5 : 3, z10 ? 27.0f : 68.0f, 18.0f, z10 ? 68.0f : 27.0f, 0.0f));
     }
 
     public i4(Context context, String str, int i10) {
         super(context);
-        this.f5489a = 23;
+        this.f5487a = 23;
         setPadding(0, AndroidUtilities.dp(7.0f), 0, AndroidUtilities.dp(7.0f));
         ImageView imageView = new ImageView(context);
         imageView.setImageResource(i10);
         imageView.setScaleType(ImageView.ScaleType.CENTER);
-        int i11 = org.telegram.ui.ActionBar.h6.f21095j5;
+        int i11 = org.telegram.ui.ActionBar.h6.f21093j5;
         imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.x0(null, i11, false), PorterDuff.Mode.MULTIPLY));
         boolean z10 = LocaleController.isRTL;
         addView(imageView, w7.z5.d(24, 24.0f, (z10 ? 5 : 3) | 16, z10 ? 0.0f : 22.0f, 0.0f, z10 ? 22.0f : 0.0f, 0.0f));
@@ -297,7 +297,7 @@ public final class i4 extends FrameLayout {
 
     public i4(Context context, int i10, String str, CharSequence charSequence, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
-        this.f5489a = 10;
+        this.f5487a = 10;
         ImageView imageView = new ImageView(context);
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         int i11 = org.telegram.ui.ActionBar.h6.G6;
@@ -311,13 +311,13 @@ public final class i4 extends FrameLayout {
         x90Var.setTypeface(AndroidUtilities.bold());
         x90Var.setTextSize(1, 14.0f);
         x90Var.setTextColor(org.telegram.ui.ActionBar.h6.w0(i11, d6Var));
-        int i12 = org.telegram.ui.ActionBar.h6.f21048gc;
+        int i12 = org.telegram.ui.ActionBar.h6.f21046gc;
         x90Var.setLinkTextColor(org.telegram.ui.ActionBar.h6.w0(i12, d6Var));
         x90Var.setText(str);
         linearLayout.addView(x90Var, w7.z5.t(-1, -2, 55, 0, 0, 0, 2));
         x90 x90Var2 = new x90(context, null);
         x90Var2.setTextSize(1, 14.0f);
-        x90Var2.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21377y6, d6Var));
+        x90Var2.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21375y6, d6Var));
         x90Var2.setLinkTextColor(org.telegram.ui.ActionBar.h6.w0(i12, d6Var));
         x90Var2.setText(charSequence);
         linearLayout.addView(x90Var2, w7.z5.t(-1, -2, 55, 0, 0, 0, 0));
@@ -325,7 +325,7 @@ public final class i4 extends FrameLayout {
 
     public i4(Context context) {
         super(context);
-        this.f5489a = 27;
+        this.f5487a = 27;
         setPadding(AndroidUtilities.dp(11.0f), AndroidUtilities.dp(11.0f), AndroidUtilities.dp(11.0f), AndroidUtilities.dp(11.0f));
     }
 

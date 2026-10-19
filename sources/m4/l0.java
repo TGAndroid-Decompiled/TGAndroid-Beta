@@ -27,17 +27,17 @@ import org.telegram.ui.mc0;
 import org.telegram.ui.nc0;
 import w7.z5;
 public final class l0 implements o0, IMapsProvider.OnMarkerClickListener {
-    public final float f16636a;
-    public final Object f16637b;
+    public final float f16634a;
+    public final Object f16635b;
 
     public l0(Object obj, float f7) {
-        this.f16637b = obj;
-        this.f16636a = f7;
+        this.f16635b = obj;
+        this.f16634a = f7;
     }
 
     @Override
     public void f(v vVar) {
-        ((p0) this.f16637b).f16663g.f16536t.a(this.f16636a);
+        ((p0) this.f16635b).f16661g.f16534t.a(this.f16634a);
     }
 
     @Override
@@ -45,15 +45,15 @@ public final class l0 implements o0, IMapsProvider.OnMarkerClickListener {
         int i10;
         int i11;
         int i12;
-        nc0 nc0Var = (nc0) this.f16637b;
-        ArrayList arrayList = nc0Var.f39506g0;
+        nc0 nc0Var = (nc0) this.f16635b;
+        ArrayList arrayList = nc0Var.f39502g0;
         if (iMarker.getTag() instanceof mc0) {
             nc0Var.X.setVisibility(4);
             if (!nc0Var.C0) {
-                ImageView imageView = nc0Var.f39496a;
+                ImageView imageView = nc0Var.f39492a;
                 int i13 = h6.ui;
                 imageView.setColorFilter(new PorterDuffColorFilter(nc0Var.getThemedColor(i13), PorterDuff.Mode.MULTIPLY));
-                nc0Var.f39496a.setTag(Integer.valueOf(i13));
+                nc0Var.f39492a.setTag(Integer.valueOf(i13));
                 nc0Var.C0 = true;
             }
             int i14 = 0;
@@ -63,21 +63,21 @@ public final class l0 implements o0, IMapsProvider.OnMarkerClickListener {
                 }
                 hc0 hc0Var = (hc0) arrayList.get(i14);
                 if (hc0Var != null && hc0Var.e == iMarker) {
-                    nc0Var.f39508i0 = hc0Var.f37589a;
-                    if (nc0Var.f39509j0) {
-                        nc0Var.f39509j0 = false;
+                    nc0Var.f39504i0 = hc0Var.f37563a;
+                    if (nc0Var.f39505j0) {
+                        nc0Var.f39505j0 = false;
                         nc0Var.B0();
                     }
-                    nc0Var.I.animateCamera(ApplicationLoader.getMapsProvider().newCameraUpdateLatLngZoom(hc0Var.e.getPosition(), this.f16636a));
+                    nc0Var.I.animateCamera(ApplicationLoader.getMapsProvider().newCameraUpdateLatLngZoom(hc0Var.e.getPosition(), this.f16634a));
                 } else {
                     i14++;
                 }
             }
-            kc0 kc0Var = nc0Var.f39526x;
-            nc0 nc0Var2 = kc0Var.f38508b;
-            HashMap hashMap = kc0Var.f38507a;
+            kc0 kc0Var = nc0Var.f39522x;
+            nc0 nc0Var2 = kc0Var.f38509b;
+            HashMap hashMap = kc0Var.f38508a;
             mc0 mc0Var = (mc0) iMarker.getTag();
-            if (mc0Var != null && nc0Var2.f39513n0 != mc0Var) {
+            if (mc0Var != null && nc0Var2.f39509n0 != mc0Var) {
                 nc0Var2.x0(false);
                 IMapsProvider.IMarker iMarker2 = nc0Var2.m0;
                 if (iMarker2 != null) {
@@ -88,18 +88,18 @@ public final class l0 implements o0, IMapsProvider.OnMarkerClickListener {
                     }
                     nc0Var2.m0 = null;
                 }
-                nc0Var2.f39513n0 = mc0Var;
+                nc0Var2.f39509n0 = mc0Var;
                 nc0Var2.m0 = iMarker;
                 Context context = kc0Var.getContext();
                 FrameLayout frameLayout = new FrameLayout(context);
                 kc0Var.addView(frameLayout, z5.c(114.0f, -2));
                 FrameLayout frameLayout2 = new FrameLayout(context);
-                nc0Var2.f39514o0 = frameLayout2;
+                nc0Var2.f39510o0 = frameLayout2;
                 frameLayout2.setBackgroundResource(R.drawable.venue_tooltip);
-                nc0Var2.f39514o0.getBackground().setColorFilter(new PorterDuffColorFilter(nc0Var2.getThemedColor(h6.f21060h5), PorterDuff.Mode.MULTIPLY));
-                frameLayout.addView(nc0Var2.f39514o0, z5.c(71.0f, -2));
-                nc0Var2.f39514o0.setAlpha(0.0f);
-                nc0Var2.f39514o0.setOnClickListener(new h51(27, kc0Var, mc0Var));
+                nc0Var2.f39510o0.getBackground().setColorFilter(new PorterDuffColorFilter(nc0Var2.getThemedColor(h6.f21058h5), PorterDuff.Mode.MULTIPLY));
+                frameLayout.addView(nc0Var2.f39510o0, z5.c(71.0f, -2));
+                nc0Var2.f39510o0.setAlpha(0.0f);
+                nc0Var2.f39510o0.setOnClickListener(new h51(27, kc0Var, mc0Var));
                 TextView textView = new TextView(context);
                 textView.setTextSize(1, 16.0f);
                 textView.setMaxLines(1);
@@ -115,7 +115,7 @@ public final class l0 implements o0, IMapsProvider.OnMarkerClickListener {
                     i10 = 3;
                 }
                 textView.setGravity(i10);
-                FrameLayout frameLayout3 = nc0Var2.f39514o0;
+                FrameLayout frameLayout3 = nc0Var2.f39510o0;
                 if (LocaleController.isRTL) {
                     i11 = 5;
                 } else {
@@ -133,18 +133,18 @@ public final class l0 implements o0, IMapsProvider.OnMarkerClickListener {
                     i12 = 3;
                 }
                 j10.setGravity(i12);
-                FrameLayout frameLayout4 = nc0Var2.f39514o0;
+                FrameLayout frameLayout4 = nc0Var2.f39510o0;
                 if (LocaleController.isRTL) {
                     i15 = 5;
                 }
                 frameLayout4.addView(j10, z5.d(-2, -2.0f, i15 | 48, 18.0f, 32.0f, 18.0f, 0.0f));
-                textView.setText(mc0Var.f39205c.title);
+                textView.setText(mc0Var.f39170c.title);
                 j10.setText(LocaleController.getString(R.string.TapToSendLocation));
                 FrameLayout frameLayout5 = new FrameLayout(context);
-                frameLayout5.setBackground(h6.K(AndroidUtilities.dp(36.0f), t4.a(mc0Var.f39203a)));
+                frameLayout5.setBackground(h6.K(AndroidUtilities.dp(36.0f), t4.a(mc0Var.f39168a)));
                 frameLayout.addView(frameLayout5, z5.d(36, 36.0f, 81, 0.0f, 0.0f, 0.0f, 4.0f));
                 w9 w9Var = new w9(context);
-                w9Var.f(a1.g.s(new StringBuilder("https://ss3.4sqi.net/img/categories_v2/"), mc0Var.f39205c.venue_type, "_64.png"), null, null);
+                w9Var.f(a1.g.s(new StringBuilder("https://ss3.4sqi.net/img/categories_v2/"), mc0Var.f39170c.venue_type, "_64.png"), null, null);
                 frameLayout5.addView(w9Var, z5.e(30, 30, 17));
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
                 ofFloat.addUpdateListener(new jc0(kc0Var, frameLayout5));

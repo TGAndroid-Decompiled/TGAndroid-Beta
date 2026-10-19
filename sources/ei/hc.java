@@ -18,41 +18,41 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.bs;
 public class hc extends View implements r2 {
-    public final Path f9171a;
-    public final Paint f9172b;
-    public final Paint f9173c;
+    public final Path f9169a;
+    public final Paint f9170b;
+    public final Paint f9171c;
     public boolean d;
     public final org.telegram.ui.Components.f6 e;
-    public Drawable f9174f;
+    public Drawable f9172f;
     public Bitmap h;
-    public int f9175n;
-    public ValueAnimator f9176r;
+    public int f9173n;
+    public ValueAnimator f9174r;
 
     public hc(Context context) {
         super(context);
-        this.f9171a = new Path();
+        this.f9169a = new Path();
         Paint paint = new Paint(1);
-        this.f9172b = paint;
+        this.f9170b = paint;
         Paint paint2 = new Paint(3);
-        this.f9173c = paint2;
+        this.f9171c = paint2;
         this.e = new org.telegram.ui.Components.f6(this, 0L, 380L, bs.h);
         paint.setColor(-1);
         paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
     }
 
     public final void a(u uVar, boolean z10) {
-        if (this.f9174f == uVar) {
+        if (this.f9172f == uVar) {
             return;
         }
-        ValueAnimator valueAnimator = this.f9176r;
+        ValueAnimator valueAnimator = this.f9174r;
         if (valueAnimator != null) {
             valueAnimator.cancel();
-            this.f9176r = null;
+            this.f9174r = null;
         }
         if (z10) {
-            this.f9176r = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(150L);
-            this.f9176r.addUpdateListener(new ci.o3(this, new AtomicBoolean(), uVar, 2));
-            this.f9176r.start();
+            this.f9174r = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(150L);
+            this.f9174r.addUpdateListener(new ci.o3(this, new AtomicBoolean(), uVar, 2));
+            this.f9174r.start();
             return;
         }
         setDrawable(uVar);
@@ -74,32 +74,32 @@ public class hc extends View implements r2 {
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        if (this.f9174f != null) {
+        if (this.f9172f != null) {
             float e = this.e.e(this.d);
-            int intrinsicWidth = this.f9174f.getIntrinsicWidth();
-            int intrinsicHeight = this.f9174f.getIntrinsicHeight();
+            int intrinsicWidth = this.f9172f.getIntrinsicWidth();
+            int intrinsicHeight = this.f9172f.getIntrinsicHeight();
             Rect rect = AndroidUtilities.rectTmp2;
             rect.set((getWidth() - intrinsicWidth) / 2, (getHeight() - intrinsicHeight) / 2, (getWidth() + intrinsicWidth) / 2, (getHeight() + intrinsicHeight) / 2);
             if (e <= 0.0f) {
-                this.f9174f.setBounds(rect);
-                this.f9174f.draw(canvas);
+                this.f9172f.setBounds(rect);
+                this.f9172f.draw(canvas);
             } else if (e < 1.0f) {
                 canvas.save();
-                Path path = this.f9171a;
+                Path path = this.f9169a;
                 path.rewind();
                 path.addCircle(getWidth() / 2.0f, getHeight() / 2.0f, AndroidUtilities.dp(16.0f) * e, Path.Direction.CW);
                 canvas.clipPath(path, Region.Op.DIFFERENCE);
-                this.f9174f.setBounds(rect);
-                this.f9174f.draw(canvas);
+                this.f9172f.setBounds(rect);
+                this.f9172f.draw(canvas);
                 canvas.restore();
             }
             if (e > 0.0f) {
                 canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
-                canvas.drawCircle(getWidth() / 2.0f, getHeight() / 2.0f, AndroidUtilities.dp(16.0f) * e, this.f9172b);
+                canvas.drawCircle(getWidth() / 2.0f, getHeight() / 2.0f, AndroidUtilities.dp(16.0f) * e, this.f9170b);
                 canvas.save();
                 Bitmap bitmap = this.h;
                 if (bitmap != null) {
-                    canvas.drawBitmap(bitmap, (Rect) null, rect, this.f9173c);
+                    canvas.drawBitmap(bitmap, (Rect) null, rect, this.f9171c);
                 }
                 canvas.restore();
                 canvas.restore();
@@ -110,8 +110,8 @@ public class hc extends View implements r2 {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        if (this.h == null && this.f9175n != 0) {
-            this.h = BitmapFactory.decodeResource(getResources(), this.f9175n);
+        if (this.h == null && this.f9173n != 0) {
+            this.h = BitmapFactory.decodeResource(getResources(), this.f9173n);
         }
     }
 
@@ -126,7 +126,7 @@ public class hc extends View implements r2 {
     }
 
     public void setDrawable(int i10) {
-        this.f9174f = getContext().getResources().getDrawable(i10).mutate();
+        this.f9172f = getContext().getResources().getDrawable(i10).mutate();
         Bitmap bitmap = this.h;
         if (bitmap != null) {
             bitmap.recycle();
@@ -140,11 +140,11 @@ public class hc extends View implements r2 {
 
     @Override
     public void setInvert(float f7) {
-        Drawable drawable = this.f9174f;
+        Drawable drawable = this.f9172f;
         if (drawable != null) {
             drawable.setColorFilter(new PorterDuffColorFilter(i0.a.f(f7, -1, -16777216), PorterDuff.Mode.MULTIPLY));
         }
-        this.f9172b.setColor(i0.a.f(f7, -1, -16777216));
+        this.f9170b.setColor(i0.a.f(f7, -1, -16777216));
         invalidate();
     }
 
@@ -155,7 +155,7 @@ public class hc extends View implements r2 {
     }
 
     public void setDrawable(Drawable drawable) {
-        this.f9174f = drawable;
+        this.f9172f = drawable;
         Bitmap bitmap = this.h;
         if (bitmap != null) {
             bitmap.recycle();

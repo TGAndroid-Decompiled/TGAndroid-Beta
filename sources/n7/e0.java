@@ -2,10 +2,10 @@ package n7;
 
 import java.io.Serializable;
 public final class e0 extends f0 implements Serializable {
-    public final byte[] f17264b;
+    public final byte[] f17262b;
 
     public e0(byte[] bArr) {
         bArr.getClass();
-        this.f17264b = bArr;
+        this.f17262b = bArr;
     }
 }

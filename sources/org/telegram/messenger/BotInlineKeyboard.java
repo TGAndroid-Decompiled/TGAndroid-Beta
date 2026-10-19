@@ -146,11 +146,11 @@ public class BotInlineKeyboard {
         public static final int SUGGESTION_DECLINE = 1;
         public static final int SUGGESTION_EDIT = 3;
         public final int icon;
-        public final int f17788id;
+        public final int f17786id;
         public final int text;
 
         public ButtonCustom(int i10, int i11, int i12) {
-            this.f17788id = i10;
+            this.f17786id = i10;
             this.text = i11;
             this.icon = i12;
         }

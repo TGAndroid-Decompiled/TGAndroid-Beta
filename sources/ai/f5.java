@@ -4,21 +4,37 @@ import android.text.TextPaint;
 import android.text.style.ClickableSpan;
 import android.view.View;
 public final class f5 extends ClickableSpan {
-    public final long f1278a;
-    public final k7 f1279b;
+    public final int f1257a;
 
-    public f5(k7 k7Var, long j10) {
-        this.f1279b = k7Var;
-        this.f1278a = j10;
+    public f5(int i10) {
+        this.f1257a = i10;
     }
 
     @Override
     public final void onClick(View view) {
-        this.f1279b.v2(this.f1278a);
+        switch (this.f1257a) {
+            case 0:
+                return;
+            default:
+                pf.d.r(view.getContext(), "https://t.me/BotFather");
+                return;
+        }
     }
 
     @Override
     public final void updateDrawState(TextPaint textPaint) {
-        textPaint.setColor(textPaint.linkColor);
+        switch (this.f1257a) {
+            case 0:
+                textPaint.setUnderlineText(false);
+                textPaint.setColor(-1);
+                return;
+            default:
+                super.updateDrawState(textPaint);
+                textPaint.setUnderlineText(false);
+                return;
+        }
+    }
+
+    private final void a(View view) {
     }
 }

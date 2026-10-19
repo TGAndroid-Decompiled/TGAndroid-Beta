@@ -5,43 +5,43 @@ import android.text.TextUtils;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
 public final class o implements Runnable {
-    public final int f21627a;
-    public final ActionBarLayout f21628b;
+    public final int f21625a;
+    public final ActionBarLayout f21626b;
 
     public o(ActionBarLayout actionBarLayout, int i10) {
-        this.f21627a = i10;
-        this.f21628b = actionBarLayout;
+        this.f21625a = i10;
+        this.f21626b = actionBarLayout;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f21627a;
-        ActionBarLayout actionBarLayout = this.f21628b;
+        int i10 = this.f21625a;
+        ActionBarLayout actionBarLayout = this.f21626b;
         switch (i10) {
             case 0:
                 actionBarLayout.invalidate();
                 return;
             case 1:
                 actionBarLayout.requestLayout();
-                actionBarLayout.f20582s.requestLayout();
+                actionBarLayout.f20580s.requestLayout();
                 actionBarLayout.v.requestLayout();
-                actionBarLayout.f20587w.requestLayout();
+                actionBarLayout.f20585w.requestLayout();
                 return;
             case 2:
-                if (actionBarLayout.f20545a && actionBarLayout.getLastFragment() != null && actionBarLayout.f20582s.getChildCount() == 0) {
+                if (actionBarLayout.f20543a && actionBarLayout.getLastFragment() != null && actionBarLayout.f20580s.getChildCount() == 0) {
                     if (BuildVars.DEBUG_VERSION) {
-                        FileLog.e(new RuntimeException(TextUtils.join(", ", actionBarLayout.f20566i1)));
+                        FileLog.e(new RuntimeException(TextUtils.join(", ", actionBarLayout.f20564i1)));
                     }
                     actionBarLayout.U(true, true);
                     return;
                 }
                 return;
             case 3:
-                Drawable drawable = ActionBarLayout.f20542p1;
+                Drawable drawable = ActionBarLayout.f20540p1;
                 actionBarLayout.F(false);
                 return;
             case 4:
-                Drawable drawable2 = ActionBarLayout.f20542p1;
+                Drawable drawable2 = ActionBarLayout.f20540p1;
                 actionBarLayout.F(false);
                 return;
             default:

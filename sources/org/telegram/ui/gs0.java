@@ -16,12 +16,12 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.Utilities;
 public final class gs0 implements Runnable {
-    public final int f37430a;
-    public final PhotoViewer f37431b;
+    public final int f37404a;
+    public final PhotoViewer f37405b;
 
     public gs0(PhotoViewer photoViewer, int i10) {
-        this.f37430a = i10;
-        this.f37431b = photoViewer;
+        this.f37404a = i10;
+        this.f37405b = photoViewer;
     }
 
     @Override
@@ -30,20 +30,20 @@ public final class gs0 implements Runnable {
         PhotoViewer photoViewer;
         PhotoViewer photoViewer2;
         ot0 ot0Var;
-        switch (this.f37430a) {
+        switch (this.f37404a) {
             case 0:
-                PhotoViewer photoViewer3 = this.f37431b;
+                PhotoViewer photoViewer3 = this.f37405b;
                 if (photoViewer3.f33336l3 && photoViewer3.P3 && !ApplicationLoader.mainInterfacePaused) {
-                    org.telegram.ui.ActionBar.u0 u0Var = this.f37431b.f33359o0;
+                    org.telegram.ui.ActionBar.u0 u0Var = this.f37405b.f33359o0;
                     if (u0Var == null || !u0Var.t()) {
-                        org.telegram.ui.ActionBar.u0 u0Var2 = this.f37431b.f33368p0;
+                        org.telegram.ui.ActionBar.u0 u0Var2 = this.f37405b.f33368p0;
                         if (u0Var2 == null || !u0Var2.t()) {
-                            ht0 ht0Var = this.f37431b.T1;
+                            ht0 ht0Var = this.f37405b.T1;
                             if (ht0Var == null || ht0Var.getScrollY() == 0) {
-                                kd kdVar = this.f37431b.X0;
+                                kd kdVar = this.f37405b.X0;
                                 if (kdVar == null || kdVar.getVisibility() != 0) {
                                     PhotoViewer photoViewer4 = PhotoViewer.f33233b9;
-                                    PhotoViewer photoViewer5 = this.f37431b;
+                                    PhotoViewer photoViewer5 = this.f37405b;
                                     if (photoViewer4 != photoViewer5) {
                                         photoViewer5.j3(false, true);
                                         return;
@@ -60,52 +60,52 @@ public final class gs0 implements Runnable {
                 }
                 return;
             case 1:
-                PhotoViewer photoViewer6 = this.f37431b;
-                if (photoViewer6.F2 != null || ((ot0Var = photoViewer6.f33281f0) != null && ot0Var.f27851x)) {
+                PhotoViewer photoViewer6 = this.f37405b;
+                if (photoViewer6.F2 != null || ((ot0Var = photoViewer6.f33281f0) != null && ot0Var.f27849x)) {
                     if (photoViewer6.f33386r1) {
-                        if (!photoViewer6.S7.f28478r) {
-                            float o12 = ((float) photoViewer6.o1()) / ((float) this.f37431b.A1());
-                            PhotoViewer photoViewer7 = this.f37431b;
+                        if (!photoViewer6.S7.f28476r) {
+                            float o12 = ((float) photoViewer6.o1()) / ((float) this.f37405b.A1());
+                            PhotoViewer photoViewer7 = this.f37405b;
                             if (!photoViewer7.B8 && (photoViewer7.f33417u4 != 0 || photoViewer7.R7.getVisibility() == 0)) {
-                                if (o12 >= this.f37431b.S7.getRightProgress()) {
-                                    es0 es0Var = this.f37431b.S7;
+                                if (o12 >= this.f37405b.S7.getRightProgress()) {
+                                    es0 es0Var = this.f37405b.S7;
                                     es0Var.setProgress(es0Var.getLeftProgress());
-                                    this.f37431b.F2.K((int) (photoViewer2.S7.getLeftProgress() * ((float) this.f37431b.A1())));
-                                    PhotoViewer photoViewer8 = this.f37431b;
+                                    this.f37405b.F2.K((int) (photoViewer2.S7.getLeftProgress() * ((float) this.f37405b.A1())));
+                                    PhotoViewer photoViewer8 = this.f37405b;
                                     photoViewer8.H2 = false;
                                     photoViewer8.u0();
-                                    PhotoViewer photoViewer9 = this.f37431b;
+                                    PhotoViewer photoViewer9 = this.f37405b;
                                     if (!photoViewer9.f33384r && photoViewer9.f33256c2 != 1 && photoViewer9.f33417u4 == 0 && photoViewer9.f33365o6 <= 0) {
                                         photoViewer9.h2();
                                     } else {
                                         photoViewer9.j2();
                                     }
-                                    this.f37431b.f33272e0.invalidate();
+                                    this.f37405b.f33272e0.invalidate();
                                 } else {
-                                    this.f37431b.S7.setProgress(o12);
+                                    this.f37405b.S7.setProgress(o12);
                                 }
                             } else {
-                                PhotoViewer photoViewer10 = this.f37431b;
+                                PhotoViewer photoViewer10 = this.f37405b;
                                 if (photoViewer10.f33256c2 != 1) {
                                     photoViewer10.S7.setProgress(o12);
                                 }
                             }
-                            this.f37431b.C3();
+                            this.f37405b.C3();
                         }
                     } else {
-                        float o13 = ((float) photoViewer6.o1()) / ((float) this.f37431b.A1());
-                        if (this.f37431b.f33303h5) {
+                        float o13 = ((float) photoViewer6.o1()) / ((float) this.f37405b.A1());
+                        if (this.f37405b.f33303h5) {
                             f7 = 1.0f;
                         } else {
                             long elapsedRealtime = SystemClock.elapsedRealtime();
-                            if (Math.abs(elapsedRealtime - this.f37431b.S3) >= 500) {
-                                PhotoViewer photoViewer11 = this.f37431b;
+                            if (Math.abs(elapsedRealtime - this.f37405b.S3) >= 500) {
+                                PhotoViewer photoViewer11 = this.f37405b;
                                 ot0 ot0Var2 = photoViewer11.f33281f0;
-                                if (ot0Var2 != null && ot0Var2.f27851x) {
+                                if (ot0Var2 != null && ot0Var2.f27849x) {
                                     f7 = ot0Var2.getBufferedPosition();
                                 } else if (photoViewer11.Q3) {
                                     FileLoader fileLoader = FileLoader.getInstance(photoViewer11.T);
-                                    PhotoViewer photoViewer12 = this.f37431b;
+                                    PhotoViewer photoViewer12 = this.f37405b;
                                     float f10 = photoViewer12.f33237a3;
                                     if (f10 == 0.0f) {
                                         f10 = o13;
@@ -114,33 +114,33 @@ public final class gs0 implements Runnable {
                                 } else {
                                     f7 = 1.0f;
                                 }
-                                this.f37431b.S3 = elapsedRealtime;
+                                this.f37405b.S3 = elapsedRealtime;
                             } else {
                                 f7 = -1.0f;
                             }
                         }
-                        PhotoViewer photoViewer13 = this.f37431b;
+                        PhotoViewer photoViewer13 = this.f37405b;
                         if (!photoViewer13.B8 && photoViewer13.R7.getVisibility() == 0) {
-                            if (o13 >= this.f37431b.S7.getRightProgress()) {
-                                PhotoViewer photoViewer14 = this.f37431b;
+                            if (o13 >= this.f37405b.S7.getRightProgress()) {
+                                PhotoViewer photoViewer14 = this.f37405b;
                                 photoViewer14.H2 = false;
                                 photoViewer14.h2();
-                                this.f37431b.f33379q3.h(0.0f, false);
-                                this.f37431b.t2((int) (photoViewer.S7.getLeftProgress() * ((float) this.f37431b.A1())));
-                                this.f37431b.f33272e0.invalidate();
+                                this.f37405b.f33379q3.h(0.0f, false);
+                                this.f37405b.t2((int) (photoViewer.S7.getLeftProgress() * ((float) this.f37405b.A1())));
+                                this.f37405b.f33272e0.invalidate();
                             } else {
-                                float leftProgress = o13 - this.f37431b.S7.getLeftProgress();
+                                float leftProgress = o13 - this.f37405b.S7.getLeftProgress();
                                 if (leftProgress < 0.0f) {
                                     leftProgress = 0.0f;
                                 }
-                                o13 = leftProgress / (this.f37431b.S7.getRightProgress() - this.f37431b.S7.getLeftProgress());
+                                o13 = leftProgress / (this.f37405b.S7.getRightProgress() - this.f37405b.S7.getLeftProgress());
                                 if (o13 > 1.0f) {
                                     o13 = 1.0f;
                                 }
-                                this.f37431b.f33379q3.h(o13, false);
+                                this.f37405b.f33379q3.h(o13, false);
                             }
                         } else {
-                            PhotoViewer photoViewer15 = this.f37431b;
+                            PhotoViewer photoViewer15 = this.f37405b;
                             if (photoViewer15.f33237a3 == 0.0f) {
                                 org.telegram.ui.Cells.h1 h1Var = photoViewer15.f33238a4;
                                 if (h1Var.rewindCount == 0 || (!h1Var.rewindByBackSeek && !photoViewer15.f33258c4.rewindByBackSeek)) {
@@ -148,47 +148,47 @@ public final class gs0 implements Runnable {
                                 }
                             }
                             if (f7 != -1.0f) {
-                                this.f37431b.f33379q3.f(f7);
-                                org.telegram.ui.Components.zg0 zg0Var = org.telegram.ui.Components.zg0.f32929p0;
-                                if (f7 > zg0Var.f32931a0) {
-                                    zg0Var.f32931a0 = f7;
-                                    ci.i3 i3Var = zg0Var.f32933b0;
+                                this.f37405b.f33379q3.f(f7);
+                                org.telegram.ui.Components.zg0 zg0Var = org.telegram.ui.Components.zg0.f32927p0;
+                                if (f7 > zg0Var.f32929a0) {
+                                    zg0Var.f32929a0 = f7;
+                                    ci.i3 i3Var = zg0Var.f32931b0;
                                     if (i3Var != null) {
                                         i3Var.invalidate();
                                     }
                                 }
                             }
                         }
-                        this.f37431b.f33388r3.invalidate();
-                        if (this.f37431b.f33247b3 != null && o13 >= 0.0f) {
+                        this.f37405b.f33388r3.invalidate();
+                        if (this.f37405b.f33247b3 != null && o13 >= 0.0f) {
                             long elapsedRealtime2 = SystemClock.elapsedRealtime();
-                            PhotoViewer photoViewer16 = this.f37431b;
+                            PhotoViewer photoViewer16 = this.f37405b;
                             if (elapsedRealtime2 - photoViewer16.f33266d3 >= 1000) {
                                 String str = photoViewer16.f33247b3;
                                 photoViewer16.f33266d3 = SystemClock.elapsedRealtime();
-                                MessageObject messageObject = this.f37431b.T4;
+                                MessageObject messageObject = this.f37405b.T4;
                                 if (messageObject != null) {
                                     messageObject.cachedSavedTimestamp = Float.valueOf(o13);
                                 }
                                 Utilities.globalQueue.postRunnable(new c0(str, o13, 4));
                             }
                         }
-                        this.f37431b.C3();
+                        this.f37405b.C3();
                     }
                 }
-                au0 au0Var = this.f37431b.E2;
+                au0 au0Var = this.f37405b.E2;
                 if (au0Var != null) {
                     au0.a(au0Var);
                 }
-                PhotoViewer photoViewer17 = this.f37431b;
+                PhotoViewer photoViewer17 = this.f37405b;
                 if (photoViewer17.P3) {
                     AndroidUtilities.runOnUIThread(photoViewer17.f33302h4, 17L);
                     return;
                 }
                 return;
             default:
-                PhotoViewer photoViewer18 = this.f37431b;
-                if (org.telegram.ui.Components.zg0.f32929p0.P) {
+                PhotoViewer photoViewer18 = this.f37405b;
+                if (org.telegram.ui.Components.zg0.f32927p0.P) {
                     org.telegram.ui.Components.zg0.j(false);
                     AndroidUtilities.runOnUIThread(this, 250L);
                     return;
@@ -224,7 +224,7 @@ public final class gs0 implements Runnable {
                         } else {
                             Bitmap createBitmap = Bitmaps.createBitmap(photoViewer18.C2.getWidth(), photoViewer18.C2.getHeight(), Bitmap.Config.ARGB_8888);
                             photoViewer18.C3 = createBitmap;
-                            AndroidUtilities.getBitmapFromSurface(photoViewer18.C2, createBitmap, new wg0(26, this, vVar));
+                            AndroidUtilities.getBitmapFromSurface(photoViewer18.C2, createBitmap, new xg0(26, this, vVar));
                         }
                     } else {
                         Bitmap createBitmap2 = Bitmaps.createBitmap(photoViewer18.B2.getWidth(), photoViewer18.B2.getHeight(), Bitmap.Config.ARGB_8888);

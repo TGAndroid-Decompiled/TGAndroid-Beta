@@ -23,8 +23,8 @@ public final class x2 extends ib0 {
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set(rect);
         rectF.offset(0.0f, 0.0f);
-        canvas.drawRoundRect(rectF, f7, f7, (Paint) lVar.f7647a);
-        canvas.drawRoundRect(rectF, f7, f7, q4Var.f5806n2);
+        canvas.drawRoundRect(rectF, f7, f7, (Paint) lVar.f7645a);
+        canvas.drawRoundRect(rectF, f7, f7, q4Var.f5804n2);
         if (rectF.top < getMeasuredHeight() - 1) {
             canvas.drawRect(0.0f, getMeasuredHeight(), getMeasuredWidth(), getMeasuredHeight() - 1, q4Var.B0.n("paintDivider"));
         }

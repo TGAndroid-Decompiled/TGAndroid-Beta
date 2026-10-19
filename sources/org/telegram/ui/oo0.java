@@ -11,30 +11,30 @@ import org.telegram.messenger.MessagesController;
 public class oo0 extends View {
     public boolean E;
     public boolean F;
-    public int f39945a;
-    public final org.telegram.ui.ActionBar.d6 f39946b;
-    public float f39947c;
+    public int f39936a;
+    public final org.telegram.ui.ActionBar.d6 f39937b;
+    public float f39938c;
     public boolean d;
     public int e;
-    public int f39948f;
+    public int f39939f;
     public final org.telegram.ui.Components.i5 h;
-    public final org.telegram.ui.Components.i5 f39949n;
-    public int f39950r;
-    public int f39951s;
+    public final org.telegram.ui.Components.i5 f39940n;
+    public int f39941r;
+    public int f39942s;
     public int v;
-    public int f39952w;
-    public RadialGradient f39953x;
-    public final Paint f39954y;
+    public int f39943w;
+    public RadialGradient f39944x;
+    public final Paint f39945y;
 
     public oo0(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
-        this.f39947c = 0.0f;
+        this.f39938c = 0.0f;
         org.telegram.ui.Components.bs bsVar = org.telegram.ui.Components.bs.h;
         this.h = new org.telegram.ui.Components.i5(this, 350L, bsVar);
-        this.f39949n = new org.telegram.ui.Components.i5(this, 350L, bsVar);
-        this.f39954y = new Paint(1);
-        this.f39946b = d6Var;
-        this.f39945a = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21268s8, d6Var);
+        this.f39940n = new org.telegram.ui.Components.i5(this, 350L, bsVar);
+        this.f39945y = new Paint(1);
+        this.f39937b = d6Var;
+        this.f39936a = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21266s8, d6Var);
         b(-1, -1, false);
     }
 
@@ -50,11 +50,11 @@ public class oo0 extends View {
     public final void c(MessagesController.PeerColor peerColor, boolean z10) {
         boolean q6;
         this.d = false;
-        org.telegram.ui.ActionBar.d6 d6Var = this.f39946b;
+        org.telegram.ui.ActionBar.d6 d6Var = this.f39937b;
         if (peerColor == null) {
             this.d = true;
-            int w02 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21268s8, d6Var);
-            this.f39948f = w02;
+            int w02 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21266s8, d6Var);
+            this.f39939f = w02;
             this.e = w02;
         } else {
             if (d6Var != null) {
@@ -63,11 +63,11 @@ public class oo0 extends View {
                 q6 = org.telegram.ui.ActionBar.h6.I.q();
             }
             this.e = peerColor.getBgColor1(q6);
-            this.f39948f = peerColor.getBgColor2(q6);
+            this.f39939f = peerColor.getBgColor2(q6);
         }
         if (!z10) {
             this.h.a(this.e, true);
-            this.f39949n.a(this.f39948f, true);
+            this.f39940n.a(this.f39939f, true);
         }
         invalidate();
     }
@@ -77,31 +77,31 @@ public class oo0 extends View {
         Canvas canvas2;
         int i10;
         int a2 = this.h.a(this.e, false);
-        int a10 = this.f39949n.a(this.f39948f, false);
-        RadialGradient radialGradient = this.f39953x;
-        Paint paint = this.f39954y;
-        if (radialGradient == null || this.f39950r != a2 || this.f39951s != a10 || this.v != getWidth() || this.f39952w != getHeight()) {
+        int a10 = this.f39940n.a(this.f39939f, false);
+        RadialGradient radialGradient = this.f39944x;
+        Paint paint = this.f39945y;
+        if (radialGradient == null || this.f39941r != a2 || this.f39942s != a10 || this.v != getWidth() || this.f39943w != getHeight()) {
             this.v = getWidth();
-            this.f39952w = getHeight();
+            this.f39943w = getHeight();
             float f7 = this.v;
-            float f10 = this.f39952w;
-            this.f39951s = a10;
-            this.f39950r = a2;
+            float f10 = this.f39943w;
+            this.f39942s = a10;
+            this.f39941r = a2;
             RadialGradient radialGradient2 = new RadialGradient(f7 / 2.0f, f10 * 0.4f, AndroidUtilities.distance(0.0f, 0.0f, f7, f10) * 0.75f, new int[]{a10, a2}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
-            this.f39953x = radialGradient2;
+            this.f39944x = radialGradient2;
             paint.setShader(radialGradient2);
             a();
         }
-        if (this.f39947c < 1.0f && !this.E) {
+        if (this.f39938c < 1.0f && !this.E) {
             canvas2 = canvas;
-            canvas2.drawColor(this.f39945a);
+            canvas2.drawColor(this.f39936a);
         } else {
             canvas2 = canvas;
         }
         if (this.E) {
             i10 = 255;
         } else {
-            i10 = (int) (this.f39947c * 255.0f);
+            i10 = (int) (this.f39938c * 255.0f);
         }
         paint.setAlpha(i10);
         canvas2.drawRect(0.0f, 0.0f, getWidth(), getHeight(), paint);
@@ -109,53 +109,53 @@ public class oo0 extends View {
 
     public int getActionBarButtonColor() {
         int i10;
-        int i11 = org.telegram.ui.ActionBar.h6.f21324v8;
-        org.telegram.ui.ActionBar.d6 d6Var = this.f39946b;
+        int i11 = org.telegram.ui.ActionBar.h6.f21322v8;
+        org.telegram.ui.ActionBar.d6 d6Var = this.f39937b;
         int w02 = org.telegram.ui.ActionBar.h6.w0(i11, d6Var);
         if (this.d) {
             i10 = org.telegram.ui.ActionBar.h6.w0(i11, d6Var);
         } else {
             i10 = -1;
         }
-        return i0.a.f(this.f39947c, w02, i10);
+        return i0.a.f(this.f39938c, w02, i10);
     }
 
     public int getColor() {
-        return i0.a.f(this.f39947c, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21268s8, this.f39946b), i0.a.f(0.75f, this.h.f27074c, this.f39949n.f27074c));
+        return i0.a.f(this.f39938c, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21266s8, this.f39937b), i0.a.f(0.75f, this.h.f27072c, this.f39940n.f27072c));
     }
 
     public int getTabsViewBackgroundColor() {
         int b10;
         int b11;
-        int i10 = org.telegram.ui.ActionBar.h6.f21268s8;
-        org.telegram.ui.ActionBar.d6 d6Var = this.f39946b;
+        int i10 = org.telegram.ui.ActionBar.h6.f21266s8;
+        org.telegram.ui.ActionBar.d6 d6Var = this.f39937b;
         if (AndroidUtilities.computePerceivedBrightness(org.telegram.ui.ActionBar.h6.w0(i10, d6Var)) > 0.721f) {
-            b10 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21324v8, d6Var);
+            b10 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21322v8, d6Var);
         } else {
             b10 = org.telegram.ui.ActionBar.h6.b(0.08f, -0.08f, org.telegram.ui.ActionBar.h6.w0(i10, d6Var));
         }
         org.telegram.ui.Components.i5 i5Var = this.h;
-        int i11 = i5Var.f27074c;
-        org.telegram.ui.Components.i5 i5Var2 = this.f39949n;
-        if (AndroidUtilities.computePerceivedBrightness(i0.a.f(0.75f, i11, i5Var2.f27074c)) > 0.721f) {
-            b11 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21322v6, d6Var);
+        int i11 = i5Var.f27072c;
+        org.telegram.ui.Components.i5 i5Var2 = this.f39940n;
+        if (AndroidUtilities.computePerceivedBrightness(i0.a.f(0.75f, i11, i5Var2.f27072c)) > 0.721f) {
+            b11 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21320v6, d6Var);
         } else {
-            b11 = org.telegram.ui.ActionBar.h6.b(0.08f, -0.08f, i0.a.f(0.75f, i5Var.f27074c, i5Var2.f27074c));
+            b11 = org.telegram.ui.ActionBar.h6.b(0.08f, -0.08f, i0.a.f(0.75f, i5Var.f27072c, i5Var2.f27072c));
         }
-        return i0.a.f(this.f39947c, b10, b11);
+        return i0.a.f(this.f39938c, b10, b11);
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
         if (!this.F) {
-            i11 = org.telegram.messenger.lk.C(230.0f, AndroidUtilities.statusBarHeight, 1073741824);
+            i11 = org.telegram.messenger.kk.C(230.0f, AndroidUtilities.statusBarHeight, 1073741824);
         }
         super.onMeasure(i10, i11);
     }
 
     public void setProgressToGradient(float f7) {
-        if (Math.abs(this.f39947c - f7) > 0.001f) {
-            this.f39947c = f7;
+        if (Math.abs(this.f39938c - f7) > 0.001f) {
+            this.f39938c = f7;
             a();
             invalidate();
         }

@@ -1,6 +1,6 @@
 package wg;
 
-import ai.z6;
+import ai.a7;
 import android.content.Context;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
@@ -14,46 +14,46 @@ import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Components.n11;
 import w7.z5;
 public final class t extends FrameLayout {
-    public final wh.n f48994a;
-    public final FrameLayout f48995b;
-    public String f48996c;
+    public final wh.n f48996a;
+    public final FrameLayout f48997b;
+    public String f48998c;
     public String d;
     public final ImageView e;
 
     public t(Context context, d6 d6Var) {
         super(context);
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f48995b = frameLayout;
+        this.f48997b = frameLayout;
         wh.n nVar = new wh.n(context);
-        this.f48994a = nVar;
+        this.f48996a = nVar;
         nVar.setPadding(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(13.0f), AndroidUtilities.dp(50.0f), AndroidUtilities.dp(13.0f));
         nVar.setTextSize(1, 16.0f);
         nVar.setEllipsize(TextUtils.TruncateAt.MIDDLE);
         nVar.setSingleLine(true);
         nVar.setTextColor(h6.w0(h6.G6, d6Var));
-        nVar.f49098r = false;
+        nVar.f49100r = false;
         frameLayout.addView(nVar, z5.e(-2, -2, 17));
         int dp = AndroidUtilities.dp(8.0f);
         int w02 = h6.w0(h6.e7, d6Var);
-        int i10 = h6.f21078i6;
+        int i10 = h6.f21076i6;
         int o10 = i0.a.o(h6.w0(i10, d6Var), 76);
         frameLayout.setBackground(h6.j0(dp, dp, dp, dp, w02, o10, o10));
         addView(frameLayout, z5.d(-1, -2.0f, 0, 14.0f, 0.0f, 14.0f, 0.0f));
         frameLayout.setOnClickListener(new View.OnClickListener(this) {
-            public final t f48993b;
+            public final t f48995b;
 
             {
-                this.f48993b = this;
+                this.f48995b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        AndroidUtilities.addToClipboard(this.f48993b.d);
+                        AndroidUtilities.addToClipboard(this.f48995b.d);
                         return;
                     default:
-                        AndroidUtilities.addToClipboard(this.f48993b.d);
+                        AndroidUtilities.addToClipboard(this.f48995b.d);
                         return;
                 }
             }
@@ -61,27 +61,27 @@ public final class t extends FrameLayout {
         ImageView imageView = new ImageView(getContext());
         this.e = imageView;
         imageView.setImageResource(R.drawable.menu_copy_s);
-        imageView.setColorFilter(h6.w0(h6.f21095j5, d6Var));
+        imageView.setColorFilter(h6.w0(h6.f21093j5, d6Var));
         imageView.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
         int dp2 = AndroidUtilities.dp(20.0f);
         int o11 = i0.a.o(h6.w0(i10, d6Var), 76);
         imageView.setBackground(h6.j0(dp2, dp2, dp2, dp2, 0, o11, o11));
         addView(imageView, z5.d(40, 40.0f, 21, 15.0f, 0.0f, 17.0f, 0.0f));
         imageView.setOnClickListener(new View.OnClickListener(this) {
-            public final t f48993b;
+            public final t f48995b;
 
             {
-                this.f48993b = this;
+                this.f48995b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        AndroidUtilities.addToClipboard(this.f48993b.d);
+                        AndroidUtilities.addToClipboard(this.f48995b.d);
                         return;
                     default:
-                        AndroidUtilities.addToClipboard(this.f48993b.d);
+                        AndroidUtilities.addToClipboard(this.f48995b.d);
                         return;
                 }
             }
@@ -94,22 +94,22 @@ public final class t extends FrameLayout {
         int dp2 = AndroidUtilities.dp(14.0f);
         int dp3 = AndroidUtilities.dp(14.0f);
         int dp4 = AndroidUtilities.dp(18.0f);
-        wh.n nVar = this.f48994a;
+        wh.n nVar = this.f48996a;
         nVar.setPadding(dp, dp2, dp3, dp4);
         ?? obj = new Object();
-        obj.f28359a |= 256;
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("t.me/giftcode/" + this.f48996c);
-        if (this.f48996c == null) {
+        obj.f28357a |= 256;
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("t.me/giftcode/" + this.f48998c);
+        if (this.f48998c == null) {
             spannableStringBuilder.append((CharSequence) "1234567891011123654897566536223");
         }
         spannableStringBuilder.setSpan(new n11(obj, 0), 0, spannableStringBuilder.length(), 33);
         nVar.setText(spannableStringBuilder);
-        this.f48995b.setOnClickListener(new z6(5, runnable));
+        this.f48997b.setOnClickListener(new a7(5, runnable));
     }
 
     public void setSlug(String str) {
-        this.f48996c = str;
+        this.f48998c = str;
         this.d = r4.c.h("https://t.me/giftcode/", str);
-        this.f48994a.setText("t.me/giftcode/" + str);
+        this.f48996a.setText("t.me/giftcode/" + str);
     }
 }

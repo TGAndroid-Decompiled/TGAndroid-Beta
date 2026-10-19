@@ -1,37 +1,57 @@
 package ai;
 
-import org.telegram.messenger.BillingController;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.tl.TL_stars;
-public final class b4 implements Runnable {
-    public final int f1022a;
-    public final s0 f1023b;
-    public final org.telegram.ui.Components.zc[] f1024c;
-    public final TL_stars.UniqueStarGiftValueInfo d;
-    public final String e;
+import org.telegram.ui.go0;
+import org.telegram.ui.ip0;
+public final class b4 implements Utilities.Callback2 {
+    public final int f1031a;
+    public final TL_stars.TL_starGiftUnique f1032b;
+    public final long f1033c;
+    public final NotificationCenter.NotificationCenterDelegate d;
+    public final Object e;
+    public final Object f1034f;
 
-    public b4(s0 s0Var, org.telegram.ui.Components.zc[] zcVarArr, TL_stars.UniqueStarGiftValueInfo uniqueStarGiftValueInfo, String str, int i10) {
-        this.f1022a = i10;
-        this.f1023b = s0Var;
-        this.f1024c = zcVarArr;
-        this.d = uniqueStarGiftValueInfo;
-        this.e = str;
+    public b4(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, Object obj, TL_stars.TL_starGiftUnique tL_starGiftUnique, long j10, Object obj2, int i10) {
+        this.f1031a = i10;
+        this.d = notificationCenterDelegate;
+        this.e = obj;
+        this.f1032b = tL_starGiftUnique;
+        this.f1033c = j10;
+        this.f1034f = obj2;
     }
 
     @Override
-    public final void run() {
-        int i10 = this.f1022a;
-        String str = this.e;
-        TL_stars.UniqueStarGiftValueInfo uniqueStarGiftValueInfo = this.d;
-        org.telegram.ui.Components.zc[] zcVarArr = this.f1024c;
-        s0 s0Var = this.f1023b;
-        switch (i10) {
+    public final void run(Object obj, Object obj2) {
+        boolean z10;
+        switch (this.f1031a) {
             case 0:
-                s0Var.run(zcVarArr[0], LocaleController.formatString(R.string.GiftValueMinPriceInfo, BillingController.getInstance().formatCurrency(uniqueStarGiftValueInfo.floor_price, uniqueStarGiftValueInfo.currency), str));
+                l7 l7Var = (l7) this.d;
+                yh.i0 i0Var = (yh.i0) this.f1034f;
+                String str = (String) obj2;
+                ((pf.c) this.e).b();
+                if (((Boolean) obj).booleanValue()) {
+                    n5 n5Var = l7Var.R0;
+                    if (n5Var != null) {
+                        if (i0Var != null) {
+                            z10 = true;
+                        } else {
+                            z10 = false;
+                        }
+                        n5Var.a(this.f1032b, this.f1033c, z10);
+                    }
+                    if (i0Var != null) {
+                        AndroidUtilities.runOnUIThread(new f4(i0Var, 0));
+                        l7Var.skipDismissAnimation();
+                    }
+                    l7Var.dismiss();
+                    return;
+                }
                 return;
             default:
-                s0Var.run(zcVarArr[0], LocaleController.formatString(R.string.GiftValueAveragePriceInfo, BillingController.getInstance().formatCurrency(uniqueStarGiftValueInfo.average_price, uniqueStarGiftValueInfo.currency), str));
+                ip0.U((ip0) this.d, (boolean[]) this.e, this.f1032b, this.f1033c, (go0) this.f1034f, (i6) obj, (pf.c) obj2);
                 return;
         }
     }

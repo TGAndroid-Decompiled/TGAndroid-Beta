@@ -12,11 +12,11 @@ import org.telegram.ui.Components.er0;
 import org.telegram.ui.Components.qc;
 import org.telegram.ui.Components.xc;
 public final class e3 extends er0 {
-    public final q4 f5354c1;
+    public final q4 f5352c1;
 
     public e3(q4 q4Var, Context context, String str, String str2, boolean z10, t2 t2Var) {
         super(context, null, null, str, null, false, str2, null, false, false, z10, null, t2Var);
-        this.f5354c1 = q4Var;
+        this.f5352c1 = q4Var;
     }
 
     @Override
@@ -25,13 +25,13 @@ public final class e3 extends er0 {
         if (!z10) {
             return;
         }
-        q4 q4Var = this.f5354c1;
-        xc xcVar = new xc(q4Var.f5771c1, this.resourcesProvider);
+        q4 q4Var = this.f5352c1;
+        xc xcVar = new xc(q4Var.f5769c1, this.resourcesProvider);
         if (hVar.m() == 1) {
             long j10 = hVar.j(0);
             if (j10 == UserConfig.getInstance(this.currentAccount).clientUserId) {
                 qc G = xcVar.G(R.raw.saved_messages, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.StorySharedToSavedMessages, new Object[0])));
-                G.f29604r = false;
+                G.f29602r = false;
                 G.j();
             } else if (j10 < 0) {
                 TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j10));
@@ -43,16 +43,16 @@ public final class e3 extends er0 {
                     str = chat.title;
                 }
                 qc G2 = xcVar.G(i11, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(i12, str)));
-                G2.f29604r = false;
+                G2.f29602r = false;
                 G2.j();
             } else {
                 qc G3 = xcVar.G(R.raw.forward, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.StorySharedTo, MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j10)).first_name)));
-                G3.f29604r = false;
+                G3.f29602r = false;
                 G3.j();
             }
         } else {
             qc Q = xcVar.Q(R.raw.forward, 36, AndroidUtilities.replaceTags(LocaleController.formatPluralString("StorySharedToManyChats", hVar.m(), Integer.valueOf(hVar.m()))));
-            Q.f29604r = false;
+            Q.f29602r = false;
             Q.j();
         }
         try {
@@ -63,12 +63,12 @@ public final class e3 extends er0 {
 
     @Override
     public final void U0(View view) {
-        this.f5354c1.e1();
+        this.f5352c1.e1();
     }
 
     @Override
     public final void dismissInternal() {
         super.dismissInternal();
-        this.f5354c1.Z2 = null;
+        this.f5352c1.Z2 = null;
     }
 }

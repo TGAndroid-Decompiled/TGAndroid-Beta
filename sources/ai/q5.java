@@ -1,25 +1,21 @@
 package ai;
 
 import org.telegram.messenger.Utilities;
-public final class q5 implements Utilities.Callback2 {
-    public final int f2060a;
-    public final Object f2061b;
-    public final Object f2062c;
+public final class q5 implements Utilities.Callback {
+    public final int f2058a;
+    public final long f2059b;
+    public final long f2060c;
+    public final Object d;
 
-    public q5(int i10, Object obj, Object obj2) {
-        this.f2060a = i10;
-        this.f2061b = obj;
-        this.f2062c = obj2;
+    public q5(Object obj, long j10, long j11, int i10) {
+        this.f2058a = i10;
+        this.d = obj;
+        this.f2059b = j10;
+        this.f2060c = j11;
     }
 
     @Override
-    public final void run(java.lang.Object r32, java.lang.Object r33) {
-        throw new UnsupportedOperationException("Method not decompiled: ai.q5.run(java.lang.Object, java.lang.Object):void");
-    }
-
-    public q5(org.telegram.ui.Wallet.m0 m0Var, String str, Utilities.Callback callback) {
-        this.f2060a = 23;
-        this.f2061b = str;
-        this.f2062c = callback;
+    public final void run(java.lang.Object r21) {
+        throw new UnsupportedOperationException("Method not decompiled: ai.q5.run(java.lang.Object):void");
     }
 }

@@ -31,7 +31,7 @@ public final class t6 extends a7 {
         ArrayList arrayList2 = new ArrayList();
         ArrayList arrayList3 = new ArrayList();
         TL_bots.reorderPreviewMedias reorderpreviewmedias = new TL_bots.reorderPreviewMedias();
-        int i10 = this.f5148c;
+        int i10 = this.f5146c;
         reorderpreviewmedias.bot = MessagesController.getInstance(i10).getInputUser(this.d);
         reorderpreviewmedias.lang_code = this.E;
         int size = arrayList.size();
@@ -54,7 +54,7 @@ public final class t6 extends a7 {
         }
         ((ArrayList) arrayList4.get(0)).clear();
         ((ArrayList) arrayList4.get(0)).addAll(arrayList3);
-        ArrayList arrayList5 = this.f5151i;
+        ArrayList arrayList5 = this.f5149i;
         arrayList5.clear();
         arrayList5.addAll(arrayList2);
     }
@@ -62,7 +62,7 @@ public final class t6 extends a7 {
     public final void F(ArrayList arrayList) {
         int i10 = 0;
         while (true) {
-            ArrayList arrayList2 = this.f5151i;
+            ArrayList arrayList2 = this.f5149i;
             if (i10 >= arrayList2.size()) {
                 break;
             }
@@ -85,13 +85,13 @@ public final class t6 extends a7 {
             i10++;
         }
         TL_bots.deletePreviewMedia deletepreviewmedia = new TL_bots.deletePreviewMedia();
-        int i12 = this.f5148c;
+        int i12 = this.f5146c;
         deletepreviewmedia.bot = MessagesController.getInstance(i12).getInputUser(this.d);
         for (int i13 = 0; i13 < arrayList.size(); i13++) {
             deletepreviewmedia.media.add(MessagesController.toInputMedia((TLRPC.MessageMedia) arrayList.get(i13)));
         }
         ConnectionsManager.getInstance(i12).sendRequest(deletepreviewmedia, null);
-        x6 x6Var = this.f5159q;
+        x6 x6Var = this.f5157q;
         AndroidUtilities.cancelRunOnUIThread(x6Var);
         AndroidUtilities.runOnUIThread(x6Var);
     }
@@ -105,16 +105,16 @@ public final class t6 extends a7 {
         TLRPC.Document document;
         int i10 = 0;
         while (true) {
-            arrayList = this.f5151i;
+            arrayList = this.f5149i;
             if (i10 < arrayList.size()) {
                 messageObject = (MessageObject) arrayList.get(i10);
                 if (inputMedia != null && (storyItem = messageObject.storyItem) != null && (messageMedia = storyItem.media) != null) {
                     if (inputMedia instanceof TLRPC.TL_inputMediaPhoto) {
                         TLRPC.Photo photo = messageMedia.photo;
-                        if (photo != null && photo.f20299id == ((TLRPC.TL_inputMediaPhoto) inputMedia).f20338id.f20294id) {
+                        if (photo != null && photo.f20297id == ((TLRPC.TL_inputMediaPhoto) inputMedia).f20336id.f20292id) {
                             break;
                         }
-                    } else if ((inputMedia instanceof TLRPC.TL_inputMediaDocument) && (document = messageMedia.document) != null && document.f20281id == ((TLRPC.TL_inputMediaDocument) inputMedia).f20336id.f20287id) {
+                    } else if ((inputMedia instanceof TLRPC.TL_inputMediaDocument) && (document = messageMedia.document) != null && document.f20279id == ((TLRPC.TL_inputMediaDocument) inputMedia).f20334id.f20285id) {
                         break;
                     }
                 }
@@ -135,7 +135,7 @@ public final class t6 extends a7 {
                 ((ArrayList) arrayList2.get(0)).remove(i10);
             }
         }
-        MessageObject messageObject2 = new MessageObject(this.f5148c, new s6(this, this.d, botpreviewmedia));
+        MessageObject messageObject2 = new MessageObject(this.f5146c, new s6(this, this.d, botpreviewmedia));
         TL_stories.StoryItem storyItem2 = messageObject2.storyItem;
         TLRPC.Message message = messageObject2.messageOwner;
         if (messageObject == null) {
@@ -144,8 +144,8 @@ public final class t6 extends a7 {
         } else {
             id2 = messageObject.getId();
         }
-        message.f20296id = id2;
-        storyItem2.f20509id = id2;
+        message.f20294id = id2;
+        storyItem2.f20507id = id2;
         messageObject2.parentStoriesList = this;
         messageObject2.generateThumbs(false);
         if (arrayList2.isEmpty()) {
@@ -153,7 +153,7 @@ public final class t6 extends a7 {
         }
         ((ArrayList) arrayList2.get(0)).add(i10, Integer.valueOf(messageObject2.getId()));
         arrayList.add(i10, messageObject2);
-        x6 x6Var = this.f5159q;
+        x6 x6Var = this.f5157q;
         AndroidUtilities.cancelRunOnUIThread(x6Var);
         AndroidUtilities.runOnUIThread(x6Var);
     }
@@ -163,7 +163,7 @@ public final class t6 extends a7 {
         if (!this.C && !this.D) {
             long j10 = this.d;
             String str = this.E;
-            int i10 = this.f5148c;
+            int i10 = this.f5146c;
             if (str != null) {
                 TL_bots.getPreviewInfo getpreviewinfo = new TL_bots.getPreviewInfo();
                 getpreviewinfo.bot = MessagesController.getInstance(i10).getInputUser(j10);
@@ -182,13 +182,13 @@ public final class t6 extends a7 {
     }
 
     public final void I(TL_bots.botPreviewMedia botpreviewmedia) {
-        MessageObject messageObject = new MessageObject(this.f5148c, new s6(this, this.d, botpreviewmedia));
+        MessageObject messageObject = new MessageObject(this.f5146c, new s6(this, this.d, botpreviewmedia));
         TL_stories.StoryItem storyItem = messageObject.storyItem;
         TLRPC.Message message = messageObject.messageOwner;
         int i10 = this.I;
         this.I = i10 + 1;
-        message.f20296id = i10;
-        storyItem.f20509id = i10;
+        message.f20294id = i10;
+        storyItem.f20507id = i10;
         messageObject.parentStoriesList = this;
         messageObject.generateThumbs(false);
         ArrayList arrayList = this.H;
@@ -196,8 +196,8 @@ public final class t6 extends a7 {
             arrayList.add(new ArrayList());
         }
         ((ArrayList) arrayList.get(0)).add(0, Integer.valueOf(messageObject.getId()));
-        this.f5151i.add(0, messageObject);
-        x6 x6Var = this.f5159q;
+        this.f5149i.add(0, messageObject);
+        x6 x6Var = this.f5157q;
         AndroidUtilities.cancelRunOnUIThread(x6Var);
         AndroidUtilities.runOnUIThread(x6Var);
     }
@@ -206,7 +206,7 @@ public final class t6 extends a7 {
     public final MessageObject f(int i10) {
         int i11 = 0;
         while (true) {
-            ArrayList arrayList = this.f5151i;
+            ArrayList arrayList = this.f5149i;
             if (i11 < arrayList.size()) {
                 if (((MessageObject) arrayList.get(i11)).getId() == i10) {
                     return (MessageObject) arrayList.get(i11);
@@ -220,7 +220,7 @@ public final class t6 extends a7 {
 
     @Override
     public final int g() {
-        return this.f5151i.size();
+        return this.f5149i.size();
     }
 
     @Override
@@ -230,7 +230,7 @@ public final class t6 extends a7 {
 
     @Override
     public final int i() {
-        return this.f5151i.size();
+        return this.f5149i.size();
     }
 
     @Override

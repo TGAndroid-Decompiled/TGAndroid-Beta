@@ -4,17 +4,17 @@ import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 public final class n3 {
-    public final int f15405a;
-    public final int f15406b;
-    public final int f15407c;
+    public final int f15403a;
+    public final int f15404b;
+    public final int f15405c;
     public final int d;
     public final w3 e;
 
     public n3(w3 w3Var, int i10, int i11, int i12, int i13) {
         this.e = w3Var;
-        this.f15405a = i10;
-        this.f15406b = i11;
-        this.f15407c = i12;
+        this.f15403a = i10;
+        this.f15404b = i11;
+        this.f15405c = i12;
         this.d = i13;
     }
 
@@ -22,46 +22,46 @@ public final class n3 {
         int i10;
         TL_iv.PageBlock M1;
         w3 w3Var = this.e;
-        ArrayList arrayList = w3Var.f15602j3;
-        int i11 = this.f15405a;
+        ArrayList arrayList = w3Var.f15600j3;
+        int i11 = this.f15403a;
         a aVar = (a) arrayList.get(i11);
-        ArrayList arrayList2 = w3Var.f15602j3;
-        int i12 = this.f15406b;
+        ArrayList arrayList2 = w3Var.f15600j3;
+        int i12 = this.f15404b;
         a aVar2 = (a) arrayList2.get(i12);
-        TL_iv.PageBlock pageBlock = aVar.f15097b;
-        TL_iv.PageBlock pageBlock2 = aVar2.f15097b;
+        TL_iv.PageBlock pageBlock = aVar.f15095b;
+        TL_iv.PageBlock pageBlock2 = aVar2.f15095b;
         int i13 = this.d;
         if (i11 == i12) {
             i10 = i13;
         } else {
             i10 = -1;
         }
-        TL_iv.PageBlock M12 = w3.M1(w3Var, aVar, this.f15407c, i10);
+        TL_iv.PageBlock M12 = w3.M1(w3Var, aVar, this.f15405c, i10);
         if (i11 == i12) {
             M1 = null;
         } else {
             M1 = w3.M1(w3Var, aVar2, 0, i13);
         }
         if (M12 != null) {
-            aVar.f15097b = M12;
+            aVar.f15095b = M12;
         }
         if (M1 != null) {
-            aVar2.f15097b = M1;
+            aVar2.f15095b = M1;
         }
         try {
             ArrayList<TL_iv.PageBlock> Z2 = w3Var.Z2(i11, i12 + 1, 0, false);
             ArrayList<TLRPC.Photo> B2 = w3Var.B2(i11, i12);
             ArrayList<TLRPC.Document> A2 = w3Var.A2(i11, i12);
-            aVar.f15097b = pageBlock;
-            aVar2.f15097b = pageBlock2;
+            aVar.f15095b = pageBlock;
+            aVar2.f15095b = pageBlock2;
             TL_iv.RichMessage richMessage = new TL_iv.RichMessage();
             richMessage.blocks = Z2;
             richMessage.photos = B2;
             richMessage.documents = A2;
             return richMessage;
         } catch (Throwable th2) {
-            aVar.f15097b = pageBlock;
-            aVar2.f15097b = pageBlock2;
+            aVar.f15095b = pageBlock;
+            aVar2.f15095b = pageBlock2;
             throw th2;
         }
     }

@@ -2,14 +2,14 @@ package be;
 
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 public final class u1 extends kotlin.jvm.internal.h implements td.q {
-    public static final u1 f4328a = new kotlin.jvm.internal.h(3, v1.class, "registerSelectForOnJoin", "registerSelectForOnJoin(Lkotlinx/coroutines/selects/SelectInstance;Ljava/lang/Object;)V", 0);
+    public static final u1 f4326a = new kotlin.jvm.internal.h(3, v1.class, "registerSelectForOnJoin", "registerSelectForOnJoin(Lkotlinx/coroutines/selects/SelectInstance;Ljava/lang/Object;)V", 0);
 
     @Override
     public final Object b(Object obj, Object obj2, md.c cVar) {
         Object u10;
         v1 v1Var = (v1) obj;
         if (obj2 == null) {
-            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = v1.f4332a;
+            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = v1.f4330a;
             do {
                 u10 = v1Var.u();
                 if (!(u10 instanceof b1)) {

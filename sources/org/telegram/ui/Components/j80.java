@@ -7,43 +7,43 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class j80 implements RequestDelegate {
-    public final int f27446a = 1;
-    public final Context f27447b;
-    public final long f27448c;
+    public final int f27444a = 1;
+    public final Context f27445b;
+    public final long f27446c;
     public final int d;
     public final Object e;
-    public final Object f27449f;
-    public final Object f27450g;
+    public final Object f27447f;
+    public final Object f27448g;
     public final Object h;
-    public final Object f27451i;
+    public final Object f27449i;
 
     public j80(Context context, ci.k0 k0Var, long j10, byte[] bArr, org.telegram.messenger.video.a aVar, xc xcVar, org.telegram.messenger.video.d dVar, int i10) {
-        this.f27447b = context;
+        this.f27445b = context;
         this.e = k0Var;
-        this.f27448c = j10;
-        this.f27449f = bArr;
-        this.f27450g = aVar;
+        this.f27446c = j10;
+        this.f27447f = bArr;
+        this.f27448g = aVar;
         this.h = xcVar;
-        this.f27451i = dVar;
+        this.f27449i = dVar;
         this.d = i10;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f27446a) {
+        switch (this.f27444a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new gi.d1((org.telegram.ui.ActionBar.b2) this.e, tLObject, (AccountInstance) this.f27449f, (p80) this.f27450g, this.f27448c, this.f27447b, (org.telegram.ui.ActionBar.n2) this.h, this.d, (TLRPC.Peer) this.f27451i));
+                AndroidUtilities.runOnUIThread(new gi.d1((org.telegram.ui.ActionBar.b2) this.e, tLObject, (AccountInstance) this.f27447f, (p80) this.f27448g, this.f27446c, this.f27445b, (org.telegram.ui.ActionBar.n2) this.h, this.d, (TLRPC.Peer) this.f27449i));
                 return;
             default:
                 ci.k0 k0Var = (ci.k0) this.e;
-                byte[] bArr = (byte[]) this.f27449f;
-                org.telegram.messenger.video.a aVar = (org.telegram.messenger.video.a) this.f27450g;
+                byte[] bArr = (byte[]) this.f27447f;
+                org.telegram.messenger.video.a aVar = (org.telegram.messenger.video.a) this.f27448g;
                 xc xcVar = (xc) this.h;
-                org.telegram.messenger.video.d dVar = (org.telegram.messenger.video.d) this.f27451i;
-                Context context = this.f27447b;
+                org.telegram.messenger.video.d dVar = (org.telegram.messenger.video.d) this.f27449i;
+                Context context = this.f27445b;
                 if (tLObject != null) {
                     if (tLObject instanceof TLRPC.TL_channels_sponsoredMessageReportResultChooseOption) {
-                        AndroidUtilities.runOnUIThread(new ai.p4(tLObject, context, k0Var, this.f27448c, bArr, aVar, xcVar, dVar));
+                        AndroidUtilities.runOnUIThread(new ai.q4(tLObject, context, k0Var, this.f27446c, bArr, aVar, xcVar, dVar));
                         return;
                     } else if (tLObject instanceof TLRPC.TL_channels_sponsoredMessageReportResultReported) {
                         AndroidUtilities.runOnUIThread(new org.telegram.ui.d21(aVar, xcVar, context, k0Var, 0), 200L);
@@ -65,12 +65,12 @@ public final class j80 implements RequestDelegate {
 
     public j80(org.telegram.ui.ActionBar.b2 b2Var, AccountInstance accountInstance, p80 p80Var, long j10, Context context, org.telegram.ui.ActionBar.n2 n2Var, int i10, TLRPC.Peer peer) {
         this.e = b2Var;
-        this.f27449f = accountInstance;
-        this.f27450g = p80Var;
-        this.f27448c = j10;
-        this.f27447b = context;
+        this.f27447f = accountInstance;
+        this.f27448g = p80Var;
+        this.f27446c = j10;
+        this.f27445b = context;
         this.h = n2Var;
         this.d = i10;
-        this.f27451i = peer;
+        this.f27449i = peer;
     }
 }

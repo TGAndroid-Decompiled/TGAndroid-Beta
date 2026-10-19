@@ -5,16 +5,16 @@ import java.util.concurrent.atomic.AtomicReference;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.TLRPC;
 public final class kq0 implements NotificationCenter.NotificationCenterDelegate {
-    public final TLRPC.Dialog f27937a;
-    public final AtomicReference f27938b;
-    public final View f27939c;
+    public final TLRPC.Dialog f27935a;
+    public final AtomicReference f27936b;
+    public final View f27937c;
     public final er0 d;
 
     public kq0(er0 er0Var, TLRPC.Dialog dialog, AtomicReference atomicReference, View view) {
         this.d = er0Var;
-        this.f27937a = dialog;
-        this.f27938b = atomicReference;
-        this.f27939c = view;
+        this.f27935a = dialog;
+        this.f27936b = atomicReference;
+        this.f27937c = view;
     }
 
     @Override

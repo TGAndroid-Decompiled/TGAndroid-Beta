@@ -5,21 +5,21 @@ import android.view.View;
 import java.util.ArrayList;
 import org.telegram.messenger.MessageObject;
 public final class lv implements org.telegram.ui.Components.wl0 {
-    public final int f39060a;
-    public final cy f39061b;
+    public final int f39025a;
+    public final cy f39026b;
 
     public lv(cy cyVar, int i10) {
-        this.f39060a = i10;
-        this.f39061b = cyVar;
+        this.f39025a = i10;
+        this.f39026b = cyVar;
     }
 
     @Override
     public final void a(int i10, View view) {
         hg.o0 o0Var;
-        switch (this.f39060a) {
+        switch (this.f39025a) {
             case 0:
-                cy cyVar = this.f39061b;
-                Object obj = cyVar.C0.f31370v0.G(i10).G;
+                cy cyVar = this.f39026b;
+                Object obj = cyVar.C0.f31368v0.G(i10).G;
                 if (obj instanceof MessageObject) {
                     MessageObject messageObject = (MessageObject) obj;
                     Bundle bundle = new Bundle();
@@ -44,11 +44,11 @@ public final class lv implements org.telegram.ui.Components.wl0 {
                     return;
                 }
             default:
-                cy cyVar2 = this.f39061b;
-                cyVar2.f36097b0.I0(true);
-                ArrayList arrayList = cyVar2.f36097b0.V2;
+                cy cyVar2 = this.f39026b;
+                cyVar2.f36069b0.I0(true);
+                ArrayList arrayList = cyVar2.f36069b0.V2;
                 if (arrayList.isEmpty()) {
-                    o0Var = hg.q0.f12017a3[i10];
+                    o0Var = hg.q0.f12015a3[i10];
                 } else {
                     o0Var = (hg.o0) arrayList.get(i10);
                 }

@@ -5,11 +5,11 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.we0;
 public abstract class uc {
-    public static String f9921a;
-    public static tc f9922b;
+    public static String f9919a;
+    public static tc f9920b;
 
     public static void a(boolean z10, Utilities.Callback callback) {
-        we0.c(R.raw.permission_request_location, R.string.PermissionNoLocationStory, new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new String[]{"android.permission.ACCESS_COARSE_LOCATION"}, new ai.x8(3, new ai.x8(2, callback, z10), z10));
+        we0.c(R.raw.permission_request_location, R.string.PermissionNoLocationStory, new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new String[]{"android.permission.ACCESS_COARSE_LOCATION"}, new ai.y8(3, new ai.y8(2, callback, z10), z10));
     }
 
     public static boolean b() {

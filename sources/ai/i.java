@@ -8,38 +8,38 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.TwoStepVerificationActivity;
 public final class i implements RequestDelegate {
-    public final int f1445a = 0;
-    public final boolean f1446b;
-    public final long f1447c;
+    public final int f1457a = 0;
+    public final boolean f1458b;
+    public final long f1459c;
     public final Object d;
     public final Object e;
-    public final Object f1448f;
+    public final Object f1460f;
 
     public i(x xVar, TwoStepVerificationActivity twoStepVerificationActivity, Activity activity, boolean z10, long j10) {
         this.d = xVar;
         this.e = twoStepVerificationActivity;
-        this.f1448f = activity;
-        this.f1446b = z10;
-        this.f1447c = j10;
+        this.f1460f = activity;
+        this.f1458b = z10;
+        this.f1459c = j10;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f1445a) {
+        switch (this.f1457a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new j((x) this.d, tL_error, (TwoStepVerificationActivity) this.e, (Activity) this.f1448f, this.f1446b, this.f1447c, tLObject));
+                AndroidUtilities.runOnUIThread(new j((x) this.d, tL_error, (TwoStepVerificationActivity) this.e, (Activity) this.f1460f, this.f1458b, this.f1459c, tLObject));
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new m((ci.i7) this.d, tL_error, this.f1446b, this.f1447c, (Utilities.Callback) this.e, (org.telegram.ui.ActionBar.d6) this.f1448f));
+                AndroidUtilities.runOnUIThread(new m((ci.i7) this.d, tL_error, this.f1458b, this.f1459c, (Utilities.Callback) this.e, (org.telegram.ui.ActionBar.d6) this.f1460f));
                 return;
         }
     }
 
     public i(ci.i7 i7Var, boolean z10, long j10, Utilities.Callback callback, org.telegram.ui.ActionBar.d6 d6Var) {
         this.d = i7Var;
-        this.f1446b = z10;
-        this.f1447c = j10;
+        this.f1458b = z10;
+        this.f1459c = j10;
         this.e = callback;
-        this.f1448f = d6Var;
+        this.f1460f = d6Var;
     }
 }

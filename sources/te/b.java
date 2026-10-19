@@ -28,11 +28,11 @@ import zh.b0;
 import zh.c1;
 import zh.m0;
 public final class b implements d, Continuation, a0 {
-    public final int f46996a;
-    public Object f46997b;
+    public final int f46998a;
+    public Object f46999b;
 
     public b(int i10, boolean z10) {
-        this.f46996a = i10;
+        this.f46998a = i10;
     }
 
     public static j c(b bVar, Object obj) {
@@ -40,10 +40,10 @@ public final class b implements d, Continuation, a0 {
             return bVar.e();
         }
         if (obj instanceof n) {
-            for (p pVar : ((n) obj).f47857a) {
+            for (p pVar : ((n) obj).f47859a) {
             }
         }
-        Context ctx = (Context) bVar.f46997b;
+        Context ctx = (Context) bVar.f46999b;
         i.e(ctx, "ctx");
         if (!ctx.getPackageManager().hasSystemFeature("android.software.leanback") && !ctx.getPackageManager().hasSystemFeature("android.hardware.type.automotive")) {
             int i10 = Build.VERSION.SDK_INT;
@@ -68,7 +68,7 @@ public final class b implements d, Continuation, a0 {
 
     @Override
     public void a(String str) {
-        m0 m0Var = (m0) this.f46997b;
+        m0 m0Var = (m0) this.f46999b;
         if (m0Var.getParentActivity() != null) {
             pf.d.r(m0Var.getParentActivity(), str);
         }
@@ -76,8 +76,8 @@ public final class b implements d, Continuation, a0 {
 
     @Override
     public void b(b0 b0Var) {
-        m0 m0Var = (m0) this.f46997b;
-        FrameLayout frameLayout = m0Var.f52032f;
+        m0 m0Var = (m0) this.f46999b;
+        FrameLayout frameLayout = m0Var.f52034f;
         if (frameLayout != null) {
             frameLayout.removeView(b0Var);
         }
@@ -91,19 +91,19 @@ public final class b implements d, Continuation, a0 {
     }
 
     public void d(e eVar) {
-        h8.j jVar = (h8.j) this.f46997b;
-        jVar.f11694a = eVar;
-        Iterator it = jVar.f11696c.iterator();
+        h8.j jVar = (h8.j) this.f46999b;
+        jVar.f11692a = eVar;
+        Iterator it = jVar.f11694c.iterator();
         while (it.hasNext()) {
             ((x6.e) it.next()).b();
         }
-        jVar.f11696c.clear();
-        jVar.f11695b = null;
+        jVar.f11694c.clear();
+        jVar.f11693b = null;
     }
 
     public j e() {
         String string;
-        Context context = (Context) this.f46997b;
+        Context context = (Context) this.f46999b;
         PackageInfo packageInfo = context.getPackageManager().getPackageInfo(context.getPackageName(), 132);
         ArrayList arrayList = new ArrayList();
         ServiceInfo[] serviceInfoArr = packageInfo.services;
@@ -141,17 +141,17 @@ public final class b implements d, Continuation, a0 {
 
     @Override
     public Object then(Task task) {
-        return ((Callable) this.f46997b).call();
+        return ((Callable) this.f46999b).call();
     }
 
     public String toString() {
-        switch (this.f46996a) {
+        switch (this.f46998a) {
             case 0:
                 c cVar = c.e;
                 StringBuffer stringBuffer = new StringBuffer();
                 stringBuffer.append("method-execution".substring(7));
                 stringBuffer.append("(");
-                stringBuffer.append(((s4.b) this.f46997b).n());
+                stringBuffer.append(((s4.b) this.f46999b).n());
                 stringBuffer.append(")");
                 return stringBuffer.toString();
             default:
@@ -160,24 +160,24 @@ public final class b implements d, Continuation, a0 {
     }
 
     public b(Object obj, int i10) {
-        this.f46996a = i10;
-        this.f46997b = obj;
+        this.f46998a = i10;
+        this.f46999b = obj;
     }
 
     public b(Context context) {
-        this.f46996a = 2;
+        this.f46998a = 2;
         i.e(context, "context");
-        this.f46997b = context;
+        this.f46999b = context;
     }
 
     public b(int i10) {
-        this.f46996a = i10;
+        this.f46998a = i10;
         switch (i10) {
             case 7:
-                this.f46997b = new CopyOnWriteArrayList();
+                this.f46999b = new CopyOnWriteArrayList();
                 return;
             default:
-                this.f46997b = new u(28);
+                this.f46999b = new u(28);
                 return;
         }
     }

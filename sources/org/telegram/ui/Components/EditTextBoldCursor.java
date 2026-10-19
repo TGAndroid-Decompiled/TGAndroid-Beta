@@ -45,7 +45,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.messenger.XiaomiUtilities;
 public class EditTextBoldCursor extends ku {
     private static final String BLINK_CLASS = "android.widget.Editor$Blink";
-    public static final int f24210a = 0;
+    public static final int f24208a = 0;
     private static Class editorClass;
     private static Method getVerticalOffsetMethod;
     private static Field mCursorDrawableResField;
@@ -297,13 +297,13 @@ public class EditTextBoldCursor extends ku {
     public final void f() {
         org.telegram.ui.ActionBar.x4 x4Var = this.floatingToolbar;
         if (x4Var != null) {
-            x4Var.f21877a.removeOnLayoutChangeListener(x4Var.f21885l);
-            org.telegram.ui.ActionBar.v4 v4Var = x4Var.f21878b;
+            x4Var.f21875a.removeOnLayoutChangeListener(x4Var.f21883l);
+            org.telegram.ui.ActionBar.v4 v4Var = x4Var.f21876b;
             if (!v4Var.F) {
                 v4Var.G = false;
                 v4Var.F = true;
-                v4Var.f21819x.cancel();
-                v4Var.f21818w.start();
+                v4Var.f21817x.cancel();
+                v4Var.f21816w.start();
                 v4Var.D.setEmpty();
             }
             this.floatingToolbar = null;
@@ -942,14 +942,14 @@ public class EditTextBoldCursor extends ku {
         }
         org.telegram.ui.ActionBar.x4 x4Var = new org.telegram.ui.ActionBar.x4(context, view, getActionModeStyle(), getResourcesProvider(), this.blurredBackgroundDrawableViewFactory);
         this.floatingToolbar = x4Var;
-        x4Var.f21883j = this.onPremiumMenuLockClickListener;
-        x4Var.f21884k = new zt(this, 0);
+        x4Var.f21881j = this.onPremiumMenuLockClickListener;
+        x4Var.f21882k = new zt(this, 0);
         org.telegram.ui.ActionBar.h4 h4Var2 = new org.telegram.ui.ActionBar.h4(getContext(), new org.telegram.ui.Cells.l9(this, callback), this, this.floatingToolbar);
         this.floatingActionMode = h4Var2;
         this.floatingToolbarPreDrawListener = new au(0, this);
-        callback.onCreateActionMode(h4Var2, h4Var2.f20908c);
+        callback.onCreateActionMode(h4Var2, h4Var2.f20906c);
         org.telegram.ui.ActionBar.h4 h4Var3 = this.floatingActionMode;
-        extendActionMode(h4Var3, h4Var3.f20908c);
+        extendActionMode(h4Var3, h4Var3.f20906c);
         this.floatingActionMode.invalidate();
         getViewTreeObserver().addOnPreDrawListener(this.floatingToolbarPreDrawListener);
         invalidate();
@@ -964,7 +964,7 @@ public class EditTextBoldCursor extends ku {
         this.hintAnimatedDrawable.w(getPaint().getTextSize());
         bu buVar2 = new bu(1, this);
         this.hintAnimatedDrawable2 = buVar2;
-        buVar2.f29182b = 5;
+        buVar2.f29180b = 5;
         buVar2.u(this.hintColor);
         this.hintAnimatedDrawable2.w(getPaint().getTextSize());
     }
@@ -1047,7 +1047,7 @@ public class EditTextBoldCursor extends ku {
                 ofFloat.addUpdateListener(new b80(zy0Var, 27));
                 zy0Var.f33059j.addListener(new c80(zy0Var, 26));
                 zy0Var.f33059j.setDuration(150L);
-                zy0Var.f33059j.setInterpolator(bs.f25014f);
+                zy0Var.f33059j.setInterpolator(bs.f25012f);
                 zy0Var.f33059j.start();
             }
         } else {

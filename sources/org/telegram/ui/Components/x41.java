@@ -13,9 +13,9 @@ public final class x41 extends f61 {
     public static g61 a(int i10, CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3, View.OnClickListener onClickListener, boolean z10, View.OnClickListener onClickListener2, n nVar) {
         g61 J = g61.J(x41.class);
         J.d = i10;
-        J.f26499l = charSequence;
-        J.f26500m = charSequence2;
-        J.f26501n = charSequence3;
+        J.f26497l = charSequence;
+        J.f26498m = charSequence2;
+        J.f26499n = charSequence3;
         J.D = onClickListener;
         J.e = z10;
         J.E = onClickListener2;
@@ -34,9 +34,9 @@ public final class x41 extends f61 {
         boolean z11;
         int i11;
         y41 y41Var = (y41) view;
-        CharSequence charSequence = g61Var.f26499l;
-        CharSequence charSequence2 = g61Var.f26500m;
-        CharSequence charSequence3 = g61Var.f26501n;
+        CharSequence charSequence = g61Var.f26497l;
+        CharSequence charSequence2 = g61Var.f26498m;
+        CharSequence charSequence3 = g61Var.f26499n;
         View.OnClickListener onClickListener2 = g61Var.D;
         boolean z12 = g61Var.e;
         View.OnClickListener onClickListener3 = g61Var.E;
@@ -46,13 +46,13 @@ public final class x41 extends f61 {
         } else {
             onClickListener = null;
         }
-        LinearLayout linearLayout = y41Var.f32552r;
+        LinearLayout linearLayout = y41Var.f32550r;
         LinearLayout linearLayout2 = y41Var.h;
-        LinearLayout linearLayout3 = y41Var.f32548b;
-        y41Var.f32549c.setText(charSequence);
+        LinearLayout linearLayout3 = y41Var.f32546b;
+        y41Var.f32547c.setText(charSequence);
         y41Var.d.setText(charSequence2);
         y41Var.e.setText(charSequence3);
-        ImageView imageView = y41Var.f32550f;
+        ImageView imageView = y41Var.f32548f;
         int i12 = 8;
         if (onClickListener2 != null) {
             i10 = 0;
@@ -67,7 +67,7 @@ public final class x41 extends f61 {
             z11 = false;
         }
         linearLayout3.setClickable(z11);
-        y41Var.f32551n.a(z12, false);
+        y41Var.f32549n.a(z12, false);
         if (onClickListener3 != null) {
             i11 = 0;
         } else {
@@ -85,7 +85,7 @@ public final class x41 extends f61 {
 
     @Override
     public final boolean contentsEquals(g61 g61Var, g61 g61Var2) {
-        if (TextUtils.equals(g61Var.f26499l, g61Var2.f26499l) && TextUtils.equals(g61Var.f26500m, g61Var2.f26500m) && TextUtils.equals(g61Var.f26501n, g61Var2.f26501n) && g61Var.E == g61Var2.E) {
+        if (TextUtils.equals(g61Var.f26497l, g61Var2.f26497l) && TextUtils.equals(g61Var.f26498m, g61Var2.f26498m) && TextUtils.equals(g61Var.f26499n, g61Var2.f26499n) && g61Var.E == g61Var2.E) {
             return true;
         }
         return false;

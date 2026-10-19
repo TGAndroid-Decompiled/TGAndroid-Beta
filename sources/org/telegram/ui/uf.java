@@ -7,25 +7,25 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class uf implements org.telegram.ui.Components.lk0 {
-    public final int f41957a;
-    public final qn f41958b;
-    public final boolean f41959c;
+    public final int f41941a;
+    public final qn f41942b;
+    public final boolean f41943c;
     public final MessageObject d;
 
     public uf(qn qnVar, boolean z10, MessageObject messageObject, int i10) {
-        this.f41957a = i10;
-        this.f41958b = qnVar;
-        this.f41959c = z10;
+        this.f41941a = i10;
+        this.f41942b = qnVar;
+        this.f41943c = z10;
         this.d = messageObject;
     }
 
     @Override
     public final void c(long j10, TLRPC.MessagePeerReaction messagePeerReaction) {
-        switch (this.f41957a) {
+        switch (this.f41941a) {
             case 0:
                 if (messagePeerReaction != null && messagePeerReaction.reaction != null) {
-                    final qn qnVar = this.f41958b;
-                    if (j10 != qnVar.getUserConfig().getClientUserId() && this.f41959c) {
+                    final qn qnVar = this.f41942b;
+                    if (j10 != qnVar.getUserConfig().getClientUserId() && this.f41943c) {
                         final ArrayList arrayList = new ArrayList(1);
                         arrayList.add(this.d);
                         TLObject userOrChat = qnVar.getMessagesController().getUserOrChat(j10);
@@ -52,7 +52,7 @@ public final class uf implements org.telegram.ui.Components.lk0 {
                                             qnVar2.getClass();
                                         }
                                         int i10 = qnVar2.R3;
-                                        ah.j jVar = new ah.j(21);
+                                        ah.j jVar = new ah.j(22);
                                         new org.telegram.ui.Components.ps(qnVar2, qnVar2.e, arrayList, arrayList2, channelParticipantArr2, qnVar2.L6, (int) qnVar2.d(), i10, true, jVar).show();
                                         return;
                                     default:
@@ -66,7 +66,7 @@ public final class uf implements org.telegram.ui.Components.lk0 {
                                             qnVar3.getClass();
                                         }
                                         int i11 = qnVar3.R3;
-                                        ah.j jVar2 = new ah.j(21);
+                                        ah.j jVar2 = new ah.j(22);
                                         new org.telegram.ui.Components.ps(qnVar3, qnVar3.e, arrayList, arrayList2, channelParticipantArr3, qnVar3.L6, (int) qnVar3.d(), i11, true, jVar2).show();
                                         return;
                                 }
@@ -79,9 +79,9 @@ public final class uf implements org.telegram.ui.Components.lk0 {
                 }
                 return;
             default:
-                final qn qnVar2 = this.f41958b;
+                final qn qnVar2 = this.f41942b;
                 qnVar2.getClass();
-                if (messagePeerReaction != null && messagePeerReaction.reaction != null && j10 != qnVar2.getUserConfig().getClientUserId() && this.f41959c) {
+                if (messagePeerReaction != null && messagePeerReaction.reaction != null && j10 != qnVar2.getUserConfig().getClientUserId() && this.f41943c) {
                     final ArrayList arrayList3 = new ArrayList(1);
                     arrayList3.add(this.d);
                     TLObject userOrChat2 = qnVar2.getMessagesController().getUserOrChat(j10);
@@ -108,7 +108,7 @@ public final class uf implements org.telegram.ui.Components.lk0 {
                                         qnVar22.getClass();
                                     }
                                     int i10 = qnVar22.R3;
-                                    ah.j jVar = new ah.j(21);
+                                    ah.j jVar = new ah.j(22);
                                     new org.telegram.ui.Components.ps(qnVar22, qnVar22.e, arrayList3, arrayList4, channelParticipantArr22, qnVar22.L6, (int) qnVar22.d(), i10, true, jVar).show();
                                     return;
                                 default:
@@ -122,7 +122,7 @@ public final class uf implements org.telegram.ui.Components.lk0 {
                                         qnVar3.getClass();
                                     }
                                     int i11 = qnVar3.R3;
-                                    ah.j jVar2 = new ah.j(21);
+                                    ah.j jVar2 = new ah.j(22);
                                     new org.telegram.ui.Components.ps(qnVar3, qnVar3.e, arrayList3, arrayList4, channelParticipantArr3, qnVar3.L6, (int) qnVar3.d(), i11, true, jVar2).show();
                                     return;
                             }

@@ -49,18 +49,18 @@ public final class ng1 extends org.telegram.ui.Components.d91 {
 
     @Override
     public final boolean j(MotionEvent motionEvent) {
-        org.telegram.ui.ActionBar.n2 X = ((mg0) this.V).X();
-        if (!(X instanceof lg0)) {
+        org.telegram.ui.ActionBar.n2 X = ((ng0) this.V).X();
+        if (!(X instanceof mg0)) {
             return false;
         }
-        return ((lg0) X).S(motionEvent, false);
+        return ((mg0) X).S(motionEvent, false);
     }
 
     @Override
     public final boolean k(MotionEvent motionEvent) {
-        org.telegram.ui.ActionBar.n2 X = ((mg0) this.V).X();
-        if (X instanceof lg0) {
-            return ((lg0) X).S(motionEvent, true);
+        org.telegram.ui.ActionBar.n2 X = ((ng0) this.V).X();
+        if (X instanceof mg0) {
+            return ((mg0) X).S(motionEvent, true);
         }
         return false;
     }
@@ -92,26 +92,26 @@ public final class ng1 extends org.telegram.ui.Components.d91 {
     public final void u() {
         cy cyVar;
         og1 og1Var = this.V;
-        mg0 mg0Var = (mg0) og1Var;
-        if (mg0Var.F != null) {
-            mg0Var.m0(mg0Var.f39888c.getCurrentPosition(), true);
-            mg0Var.n0(0.0f, false);
+        ng0 ng0Var = (ng0) og1Var;
+        if (ng0Var.F != null) {
+            ng0Var.m0(ng0Var.f39882c.getCurrentPosition(), true);
+            ng0Var.n0(0.0f, false);
         }
-        mg0Var.d0();
-        ng1 ng1Var = mg0Var.f39888c;
+        ng0Var.d0();
+        ng1 ng1Var = ng0Var.f39882c;
         if (ng1Var != null) {
             int currentPosition = ng1Var.getCurrentPosition();
-            if (currentPosition != 2 && mg0Var.f39267x) {
-                mg0Var.W(2);
-                mg0Var.f39267x = false;
+            if (currentPosition != 2 && ng0Var.f39585x) {
+                ng0Var.W(2);
+                ng0Var.f39585x = false;
             }
             if (currentPosition != 3) {
-                mg0Var.W(3);
+                ng0Var.W(3);
             }
-            Integer num = mg0Var.I;
-            if (num != null && currentPosition == 0 && (cyVar = mg0Var.J) != null) {
+            Integer num = ng0Var.I;
+            if (num != null && currentPosition == 0 && (cyVar = ng0Var.J) != null) {
                 cyVar.u4(num.intValue());
-                mg0Var.I = null;
+                ng0Var.I = null;
             }
         }
         og1Var.U();
@@ -120,18 +120,18 @@ public final class ng1 extends org.telegram.ui.Components.d91 {
     @Override
     public final void w(boolean z10) {
         og1 og1Var = this.V;
-        mg0 mg0Var = (mg0) og1Var;
+        ng0 ng0Var = (ng0) og1Var;
         boolean z11 = !z10;
-        if (mg0Var.F != null) {
-            float positionAnimated = mg0Var.f39888c.getPositionAnimated();
-            mg0Var.n0(positionAnimated, z11);
+        if (ng0Var.F != null) {
+            float positionAnimated = ng0Var.f39882c.getPositionAnimated();
+            ng0Var.n0(positionAnimated, z11);
             if (!z10) {
-                mg0Var.m0(Math.round(positionAnimated), true);
+                ng0Var.m0(Math.round(positionAnimated), true);
             }
         }
-        mg0Var.h0();
-        mg0Var.d0();
-        mg0Var.f39887b.invalidate();
+        ng0Var.h0();
+        ng0Var.d0();
+        ng0Var.f39881b.invalidate();
         og1Var.U();
         og1Var.checkSystemBarColors();
     }

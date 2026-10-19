@@ -22,32 +22,32 @@ public final class ub extends kw0 {
     public float C0;
     public float D0;
     public final vb E0;
-    public final le.b f9917w0;
-    public final ScaleGestureDetector f9918x0;
-    public boolean f9919y0;
-    public boolean f9920z0;
+    public final le.b f9915w0;
+    public final ScaleGestureDetector f9916x0;
+    public boolean f9917y0;
+    public boolean f9918z0;
 
     public ub(vb vbVar, Activity activity) {
         super(activity, null);
         this.E0 = vbVar;
         this.A0 = false;
-        this.f9917w0 = new le.b((Context) activity, (u20) new sb(this));
-        this.f9918x0 = new ScaleGestureDetector(activity, new tb(this));
+        this.f9915w0 = new le.b((Context) activity, (u20) new sb(this));
+        this.f9916x0 = new ScaleGestureDetector(activity, new tb(this));
     }
 
     public final void Z(Bitmap bitmap, float f7) {
         Canvas canvas = new Canvas(bitmap);
         canvas.drawColor(-16777216);
         vb vbVar = this.E0;
-        float width = bitmap.getWidth() / vbVar.f9989n.getWidth();
+        float width = bitmap.getWidth() / vbVar.f9987n.getWidth();
         canvas.scale(width, width);
         TextureView textureView = vbVar.X0.getTextureView();
         if (textureView == null) {
-            textureView = vbVar.X0.f9728r;
+            textureView = vbVar.X0.f9726r;
         }
         if (textureView != null) {
             canvas.save();
-            canvas.translate(vbVar.f9973h0.getX() + vbVar.f10002r.getX(), vbVar.f9973h0.getY() + vbVar.f10002r.getY());
+            canvas.translate(vbVar.f9971h0.getX() + vbVar.f10000r.getX(), vbVar.f9971h0.getY() + vbVar.f10000r.getY());
             try {
                 Bitmap bitmap2 = textureView.getBitmap((int) (textureView.getWidth() / f7), (int) (textureView.getHeight() / f7));
                 float f10 = 1.0f / width;
@@ -59,15 +59,15 @@ public final class ub extends kw0 {
             canvas.restore();
         }
         canvas.save();
-        canvas.translate(vbVar.f10002r.getX(), vbVar.f10002r.getY());
-        for (int i10 = 0; i10 < vbVar.f10002r.getChildCount(); i10++) {
-            View childAt = vbVar.f10002r.getChildAt(i10);
+        canvas.translate(vbVar.f10000r.getX(), vbVar.f10000r.getY());
+        for (int i10 = 0; i10 < vbVar.f10000r.getChildCount(); i10++) {
+            View childAt = vbVar.f10000r.getChildAt(i10);
             canvas.save();
             canvas.translate(childAt.getX(), childAt.getY());
             if (childAt.getVisibility() == 0) {
-                if (childAt == vbVar.f9973h0) {
-                    for (int i11 = 0; i11 < vbVar.f9973h0.getChildCount(); i11++) {
-                        View childAt2 = vbVar.f9973h0.getChildAt(i11);
+                if (childAt == vbVar.f9971h0) {
+                    for (int i11 = 0; i11 < vbVar.f9971h0.getChildCount(); i11++) {
+                        View childAt2 = vbVar.f9971h0.getChildAt(i11);
                         if (childAt2 != vbVar.X0 && childAt2 != vbVar.B0 && childAt2.getVisibility() == 0) {
                             canvas.save();
                             canvas.translate(childAt2.getX(), childAt2.getY());
@@ -101,29 +101,29 @@ public final class ub extends kw0 {
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
         boolean z10 = false;
-        this.f9919y0 = false;
+        this.f9917y0 = false;
         vb vbVar = this.E0;
         y yVar = vbVar.I0;
         boolean z11 = true;
         if (yVar != null && yVar.e) {
-            float y3 = vbVar.I0.getY() + vbVar.f9976i0.getY() + vbVar.f10002r.getY();
-            if ((motionEvent.getY() >= y3 && motionEvent.getY() <= y3 + vbVar.I0.getHeight()) || this.f9920z0) {
+            float y3 = vbVar.I0.getY() + vbVar.f9974i0.getY() + vbVar.f10000r.getY();
+            if ((motionEvent.getY() >= y3 && motionEvent.getY() <= y3 + vbVar.I0.getHeight()) || this.f9918z0) {
                 if (motionEvent.getAction() != 1 && motionEvent.getAction() != 3) {
                     z10 = true;
                 }
-                this.f9920z0 = z10;
+                this.f9918z0 = z10;
                 return super.dispatchTouchEvent(motionEvent);
             }
             vbVar.I0.a(false, true);
             vbVar.l0(true);
         }
-        if (this.f9920z0 && (motionEvent.getAction() == 1 || motionEvent.getAction() == 3)) {
-            this.f9920z0 = false;
+        if (this.f9918z0 && (motionEvent.getAction() == 1 || motionEvent.getAction() == 3)) {
+            this.f9918z0 = false;
         }
-        this.f9918x0.onTouchEvent(motionEvent);
-        this.f9917w0.k(motionEvent);
-        if (motionEvent.getAction() == 1 && !this.f9919y0) {
-            if (vbVar.f10002r.getTranslationY() > 0.0f) {
+        this.f9916x0.onTouchEvent(motionEvent);
+        this.f9915w0.k(motionEvent);
+        if (motionEvent.getAction() == 1 && !this.f9917y0) {
+            if (vbVar.f10000r.getTranslationY() > 0.0f) {
                 if (vbVar.K > 0.4f) {
                     vbVar.p(true);
                 } else {
@@ -149,11 +149,11 @@ public final class ub extends kw0 {
     public int getBottomPadding() {
         int height = getHeight();
         vb vbVar = this.E0;
-        return (height - vbVar.f10002r.getBottom()) + vbVar.U;
+        return (height - vbVar.f10000r.getBottom()) + vbVar.U;
     }
 
     public int getBottomPadding2() {
-        return getHeight() - this.E0.f10002r.getBottom();
+        return getHeight() - this.E0.f10000r.getBottom();
     }
 
     @Override
@@ -164,7 +164,7 @@ public final class ub extends kw0 {
     public int getPaddingUnderContainer() {
         int height = getHeight();
         vb vbVar = this.E0;
-        return (height - vbVar.f9953b0) - vbVar.f10002r.getBottom();
+        return (height - vbVar.f9951b0) - vbVar.f10000r.getBottom();
     }
 
     @Override
@@ -181,12 +181,12 @@ public final class ub extends kw0 {
             i15 = 0;
         }
         int i16 = vbVar.S;
-        int b10 = w7.r.b((measuredWidth - i16) / 2, vbVar.Y, (measuredWidth - vbVar.f9950a0) - i16);
+        int b10 = w7.r.b((measuredWidth - i16) / 2, vbVar.Y, (measuredWidth - vbVar.f9948a0) - i16);
         int i17 = vbVar.S + b10;
         if (vbVar.V) {
             i14 = vbVar.T;
         } else {
-            int i18 = vbVar.f9953b0;
+            int i18 = vbVar.f9951b0;
             int i19 = vbVar.T;
             int i20 = (((((measuredHeight - i15) - i18) - i19) - measuredHeight2) / 2) + i15;
             if (vbVar.J == 1) {
@@ -201,8 +201,8 @@ public final class ub extends kw0 {
             }
             i14 = vbVar.T;
         }
-        vbVar.f10002r.layout(b10, i15, i17, i14 + i15 + measuredHeight2);
-        vbVar.f10006s.f9769b.layout(0, 0, measuredWidth, measuredHeight);
+        vbVar.f10000r.layout(b10, i15, i17, i14 + i15 + measuredHeight2);
+        vbVar.f10004s.f9767b.layout(0, 0, measuredWidth, measuredHeight);
         db dbVar = vbVar.C2;
         if (dbVar != null) {
             dbVar.layout(0, 0, measuredWidth, measuredHeight);
@@ -211,22 +211,22 @@ public final class ub extends kw0 {
         if (uaVar != null) {
             uaVar.layout((measuredWidth - uaVar.getMeasuredWidth()) / 2, 0, (vbVar.M0.getMeasuredWidth() + measuredWidth) / 2, measuredHeight);
         }
-        lb lbVar = vbVar.f9958c1;
-        if (lbVar != null && (emojiView = lbVar.f9401f.getEmojiView()) != null) {
-            emojiView.layout(vbVar.Y, (measuredHeight - vbVar.f9953b0) - emojiView.getMeasuredHeight(), measuredWidth - vbVar.f9950a0, measuredHeight - vbVar.f9953b0);
+        lb lbVar = vbVar.f9956c1;
+        if (lbVar != null && (emojiView = lbVar.f9399f.getEmojiView()) != null) {
+            emojiView.layout(vbVar.Y, (measuredHeight - vbVar.f9951b0) - emojiView.getMeasuredHeight(), measuredWidth - vbVar.f9948a0, measuredHeight - vbVar.f9951b0);
         }
-        xa xaVar = vbVar.f10017v1;
+        xa xaVar = vbVar.f10015v1;
         if (xaVar != null) {
-            tz tzVar = xaVar.f9030p2;
+            tz tzVar = xaVar.f9028p2;
             if (tzVar != null) {
-                tzVar.layout(vbVar.Y, (measuredHeight - vbVar.f9953b0) - tzVar.getMeasuredHeight(), measuredWidth - vbVar.f9950a0, measuredHeight - vbVar.f9953b0);
+                tzVar.layout(vbVar.Y, (measuredHeight - vbVar.f9951b0) - tzVar.getMeasuredHeight(), measuredWidth - vbVar.f9948a0, measuredHeight - vbVar.f9951b0);
             }
-            cl0 cl0Var = vbVar.f10017v1.Z1;
+            cl0 cl0Var = vbVar.f10015v1.Z1;
             if (cl0Var != null) {
                 int i21 = vbVar.Y;
-                cl0Var.layout(i21, vbVar.Z, cl0Var.getMeasuredWidth() + i21, vbVar.f10017v1.Z1.getMeasuredHeight() + vbVar.Z);
-                if (vbVar.f10017v1.Z1.getReactionsWindow() != null) {
-                    vVar = vbVar.f10017v1.Z1.getReactionsWindow().f870c;
+                cl0Var.layout(i21, vbVar.Z, cl0Var.getMeasuredWidth() + i21, vbVar.f10015v1.Z1.getMeasuredHeight() + vbVar.Z);
+                if (vbVar.f10015v1.Z1.getReactionsWindow() != null) {
+                    vVar = vbVar.f10015v1.Z1.getReactionsWindow().f870c;
                 } else {
                     vVar = null;
                 }
@@ -236,17 +236,17 @@ public final class ub extends kw0 {
                 }
             }
         }
-        fb fbVar = vbVar.f10004r1;
+        fb fbVar = vbVar.f10002r1;
         if (fbVar != null) {
-            fbVar.e.setPadding(0, vbVar.Z, 0, vbVar.f9953b0);
-            vbVar.f10004r1.layout(0, 0, measuredWidth, measuredHeight);
-            vbVar.f10004r1.d.layout(0, 0, measuredWidth, measuredHeight);
+            fbVar.e.setPadding(0, vbVar.Z, 0, vbVar.f9951b0);
+            vbVar.f10002r1.layout(0, 0, measuredWidth, measuredHeight);
+            vbVar.f10002r1.d.layout(0, 0, measuredWidth, measuredHeight);
         }
-        gb gbVar = vbVar.f10008s1;
+        gb gbVar = vbVar.f10006s1;
         if (gbVar != null) {
-            gbVar.f9431f.setPadding(0, vbVar.Z, 0, vbVar.f9953b0);
-            vbVar.f10008s1.layout(0, 0, measuredWidth, measuredHeight);
-            vbVar.f10008s1.e.layout(0, 0, measuredWidth, measuredHeight);
+            gbVar.f9429f.setPadding(0, vbVar.Z, 0, vbVar.f9951b0);
+            vbVar.f10006s1.layout(0, 0, measuredWidth, measuredHeight);
+            vbVar.f10006s1.e.layout(0, 0, measuredWidth, measuredHeight);
         }
         for (int i23 = 0; i23 < getChildCount(); i23++) {
             View childAt = getChildAt(i23);
@@ -268,9 +268,9 @@ public final class ub extends kw0 {
         int size = View.MeasureSpec.getSize(i10);
         int size2 = View.MeasureSpec.getSize(i11);
         vb vbVar = this.E0;
-        int i16 = (size - vbVar.Y) - vbVar.f9950a0;
+        int i16 = (size - vbVar.Y) - vbVar.f9948a0;
         int i17 = vbVar.Z;
-        int i18 = vbVar.f9953b0;
+        int i18 = vbVar.f9951b0;
         int ceil = (int) Math.ceil((i16 / 9.0f) * 16.0f);
         int dp = AndroidUtilities.dp(48.0f);
         vbVar.U = dp;
@@ -304,8 +304,8 @@ public final class ub extends kw0 {
             i14 = systemUiVisibility & (-5);
         }
         setSystemUiVisibility(i14);
-        vbVar.f10002r.measure(View.MeasureSpec.makeMeasureSpec(vbVar.S, 1073741824), View.MeasureSpec.makeMeasureSpec(vbVar.T + vbVar.U, 1073741824));
-        vbVar.f10006s.f9769b.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
+        vbVar.f10000r.measure(View.MeasureSpec.makeMeasureSpec(vbVar.S, 1073741824), View.MeasureSpec.makeMeasureSpec(vbVar.T + vbVar.U, 1073741824));
+        vbVar.f10004s.f9767b.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
         db dbVar = vbVar.C2;
         if (dbVar != null) {
             dbVar.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
@@ -314,26 +314,26 @@ public final class ub extends kw0 {
         if (uaVar != null) {
             uaVar.measure(View.MeasureSpec.makeMeasureSpec(vbVar.S, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
         }
-        lb lbVar = vbVar.f9958c1;
+        lb lbVar = vbVar.f9956c1;
         if (lbVar != null) {
-            tz emojiView = lbVar.f9401f.getEmojiView();
+            tz emojiView = lbVar.f9399f.getEmojiView();
             R();
             AndroidUtilities.dp(20.0f);
             if (emojiView != null) {
                 emojiView.measure(View.MeasureSpec.makeMeasureSpec(i16, 1073741824), View.MeasureSpec.makeMeasureSpec(emojiView.getLayoutParams().height, 1073741824));
             }
         }
-        xa xaVar = vbVar.f10017v1;
+        xa xaVar = vbVar.f10015v1;
         if (xaVar != null) {
-            tz tzVar = xaVar.f9030p2;
+            tz tzVar = xaVar.f9028p2;
             if (tzVar != null) {
-                tzVar.measure(View.MeasureSpec.makeMeasureSpec(i16, 1073741824), View.MeasureSpec.makeMeasureSpec(vbVar.f10017v1.f9030p2.getLayoutParams().height, 1073741824));
+                tzVar.measure(View.MeasureSpec.makeMeasureSpec(i16, 1073741824), View.MeasureSpec.makeMeasureSpec(vbVar.f10015v1.f9028p2.getLayoutParams().height, 1073741824));
             }
-            cl0 cl0Var = vbVar.f10017v1.Z1;
+            cl0 cl0Var = vbVar.f10015v1.Z1;
             if (cl0Var != null) {
                 measureChild(cl0Var, i10, i11);
-                if (vbVar.f10017v1.Z1.getReactionsWindow() != null) {
-                    measureChild(vbVar.f10017v1.Z1.getReactionsWindow().f870c, i10, i11);
+                if (vbVar.f10015v1.Z1.getReactionsWindow() != null) {
+                    measureChild(vbVar.f10015v1.Z1.getReactionsWindow().f870c, i10, i11);
                 }
             }
         }
@@ -352,15 +352,15 @@ public final class ub extends kw0 {
                 childAt.measure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec(Math.min(dp2, size2 - i15), 1073741824));
             }
         }
-        fb fbVar = vbVar.f10004r1;
+        fb fbVar = vbVar.f10002r1;
         if (fbVar != null) {
             fbVar.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
-            vbVar.f10004r1.d.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
+            vbVar.f10002r1.d.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
         }
-        gb gbVar = vbVar.f10008s1;
+        gb gbVar = vbVar.f10006s1;
         if (gbVar != null) {
             gbVar.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
-            vbVar.f10008s1.e.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
+            vbVar.f10006s1.e.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
         }
         setMeasuredDimension(size, size2);
     }

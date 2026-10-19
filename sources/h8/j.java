@@ -14,24 +14,24 @@ import java.util.LinkedList;
 import n6.q;
 import v7.a8;
 public final class j {
-    public androidx.biometric.e f11694a;
-    public Bundle f11695b;
-    public LinkedList f11696c;
+    public androidx.biometric.e f11692a;
+    public Bundle f11693b;
+    public LinkedList f11694c;
     public final d e;
-    public final Context f11697f;
-    public te.b f11698g;
+    public final Context f11695f;
+    public te.b f11696g;
     public final te.b d = new te.b(this, 5);
     public final ArrayList h = new ArrayList();
 
     public j(d dVar, Context context) {
         this.e = dVar;
-        this.f11697f = context;
+        this.f11695f = context;
     }
 
     public static void a(d dVar) {
         k6.d dVar2 = k6.d.d;
         Context context = dVar.getContext();
-        int d = dVar2.d(context, k6.e.f14974a);
+        int d = dVar2.d(context, k6.e.f14972a);
         String c10 = q.c(context, d);
         String b10 = q.b(context, d);
         LinearLayout linearLayout = new LinearLayout(dVar.getContext());
@@ -54,45 +54,45 @@ public final class j {
     }
 
     public final void b(int i10) {
-        while (!this.f11696c.isEmpty() && ((x6.e) this.f11696c.getLast()).a() >= i10) {
-            this.f11696c.removeLast();
+        while (!this.f11694c.isEmpty() && ((x6.e) this.f11694c.getLast()).a() >= i10) {
+            this.f11694c.removeLast();
         }
     }
 
     public final void c(Bundle bundle, x6.e eVar) {
-        if (this.f11694a != null) {
+        if (this.f11692a != null) {
             eVar.b();
             return;
         }
-        if (this.f11696c == null) {
-            this.f11696c = new LinkedList();
+        if (this.f11694c == null) {
+            this.f11694c = new LinkedList();
         }
-        this.f11696c.add(eVar);
+        this.f11694c.add(eVar);
         if (bundle != null) {
-            Bundle bundle2 = this.f11695b;
+            Bundle bundle2 = this.f11693b;
             if (bundle2 == null) {
-                this.f11695b = (Bundle) bundle.clone();
+                this.f11693b = (Bundle) bundle.clone();
             } else {
                 bundle2.putAll(bundle);
             }
         }
-        this.f11698g = this.d;
+        this.f11696g = this.d;
         ArrayList arrayList = this.h;
-        Context context = this.f11697f;
-        if (this.f11694a == null) {
+        Context context = this.f11695f;
+        if (this.f11692a == null) {
             try {
                 synchronized (e.class) {
                     e.b(context);
                 }
                 i8.g W0 = a8.a(context).W0(new x6.b(context));
                 if (W0 != null) {
-                    this.f11698g.d(new androidx.biometric.e(this.e, W0));
+                    this.f11696g.d(new androidx.biometric.e(this.e, W0));
                     int size = arrayList.size();
                     int i10 = 0;
                     while (i10 < size) {
                         Object obj = arrayList.get(i10);
                         i10++;
-                        this.f11694a.n((f) obj);
+                        this.f11692a.n((f) obj);
                     }
                     arrayList.clear();
                 }

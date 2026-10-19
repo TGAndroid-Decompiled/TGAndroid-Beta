@@ -34,42 +34,42 @@ public final class wa0 extends org.telegram.ui.ActionBar.n2 implements mv0, ng.b
     public va0 R;
     public FrameLayout S;
     public ei.d T;
-    public ai.x7 U;
+    public ai.y7 U;
     public ta0 V;
     public int W;
     public int X;
     public final boolean[] Y;
     public final float[] Z;
-    public int f32055a;
-    public final boolean[] f32056a0;
-    public lv0 f32057b;
-    public final ValueAnimator[] f32058b0;
-    public TLRPC.ChatFull f32059c;
+    public int f32053a;
+    public final boolean[] f32054a0;
+    public lv0 f32055b;
+    public final ValueAnimator[] f32056b0;
+    public TLRPC.ChatFull f32057c;
     public TLRPC.UserFull d;
     public long e;
-    public long f32060f;
+    public long f32058f;
     public String h;
-    public String f32061n;
-    public int f32062r;
-    public FrameLayout f32063s;
+    public String f32059n;
+    public int f32060r;
+    public FrameLayout f32061s;
     public final FrameLayout[] v;
-    public final org.telegram.ui.ActionBar.j5[] f32064w;
-    public final q6[] f32065x;
-    public ra0 f32066y;
+    public final org.telegram.ui.ActionBar.j5[] f32062w;
+    public final q6[] f32063x;
+    public ra0 f32064y;
 
     public wa0(Bundle bundle, lv0 lv0Var) {
         super(bundle);
         this.v = new FrameLayout[2];
-        this.f32064w = new org.telegram.ui.ActionBar.j5[2];
-        this.f32065x = new q6[2];
+        this.f32062w = new org.telegram.ui.ActionBar.j5[2];
+        this.f32063x = new q6[2];
         this.L = true;
         this.M = true;
         this.N = -12;
         this.Y = new boolean[2];
         this.Z = new float[2];
-        this.f32056a0 = new boolean[]{true, true};
-        this.f32058b0 = new ValueAnimator[2];
-        this.f32057b = lv0Var;
+        this.f32054a0 = new boolean[]{true, true};
+        this.f32056b0 = new ValueAnimator[2];
+        this.f32055b = lv0Var;
     }
 
     public static org.telegram.ui.ActionBar.k V(wa0 wa0Var) {
@@ -84,7 +84,7 @@ public final class wa0 extends org.telegram.ui.ActionBar.n2 implements mv0, ng.b
     public final List B() {
         String str;
         Activity parentActivity = getParentActivity();
-        DispatchQueue dispatchQueue = qg.n1.f44567m;
+        DispatchQueue dispatchQueue = qg.n1.f44569m;
         if (parentActivity.getSharedPreferences("shapedetector_conf", 0).getBoolean("learning", false)) {
             str = "Disable";
         } else {
@@ -97,14 +97,14 @@ public final class wa0 extends org.telegram.ui.ActionBar.n2 implements mv0, ng.b
     public final void M() {
         lv0 lv0Var;
         ta0 ta0Var = this.V;
-        if (ta0Var != null && (lv0Var = this.f32057b) != null) {
-            ta0Var.setNewMediaCounts(lv0Var.f28313c);
+        if (ta0Var != null && (lv0Var = this.f32055b) != null) {
+            ta0Var.setNewMediaCounts(lv0Var.f28311c);
         }
         a0();
     }
 
     public final void X(TLRPC.ChatFull chatFull) {
-        this.f32059c = chatFull;
+        this.f32057c = chatFull;
     }
 
     public final void Y(int i10, boolean z10, boolean z11) {
@@ -112,12 +112,12 @@ public final class wa0 extends org.telegram.ui.ActionBar.n2 implements mv0, ng.b
         float f7;
         float f10;
         float dp;
-        int i11 = this.f32055a;
+        int i11 = this.f32053a;
         if (i11 != 3) {
             if (i10 != 1 || i11 != 2) {
                 boolean[] zArr = this.Y;
                 boolean z13 = zArr[i10];
-                boolean[] zArr2 = this.f32056a0;
+                boolean[] zArr2 = this.f32054a0;
                 if (z13 == z10 && !zArr2[i10]) {
                     return;
                 }
@@ -129,14 +129,14 @@ public final class wa0 extends org.telegram.ui.ActionBar.n2 implements mv0, ng.b
                 }
                 zArr2[i10] = false;
                 zArr[i10] = z10;
-                ValueAnimator[] valueAnimatorArr = this.f32058b0;
+                ValueAnimator[] valueAnimatorArr = this.f32056b0;
                 ValueAnimator valueAnimator = valueAnimatorArr[i10];
                 if (valueAnimator != null) {
                     valueAnimator.cancel();
                     valueAnimatorArr[i10] = null;
                 }
                 float[] fArr = this.Z;
-                q6[] q6VarArr = this.f32065x;
+                q6[] q6VarArr = this.f32063x;
                 float f11 = 0.0f;
                 if (z12) {
                     q6VarArr[i10].setVisibility(0);
@@ -159,7 +159,7 @@ public final class wa0 extends org.telegram.ui.ActionBar.n2 implements mv0, ng.b
                     f7 = 0.0f;
                 }
                 fArr[i10] = f7;
-                org.telegram.ui.ActionBar.j5[] j5VarArr = this.f32064w;
+                org.telegram.ui.ActionBar.j5[] j5VarArr = this.f32062w;
                 org.telegram.ui.ActionBar.j5 j5Var = j5VarArr[i10];
                 float f13 = 1.111f;
                 if (z10) {
@@ -198,14 +198,14 @@ public final class wa0 extends org.telegram.ui.ActionBar.n2 implements mv0, ng.b
         if (this.V.getSearchOptionsItem() != null) {
             this.V.getSearchOptionsItem().setColorFilter(new PorterDuffColorFilter(getThemedColor(org.telegram.ui.ActionBar.h6.G6), PorterDuff.Mode.SRC_IN));
         }
-        this.actionBar.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20931a7, false));
+        this.actionBar.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20929a7, false));
         org.telegram.ui.ActionBar.k kVar = this.actionBar;
         int i10 = org.telegram.ui.ActionBar.h6.G6;
         kVar.C(org.telegram.ui.ActionBar.h6.x0(null, i10, false), false);
         this.actionBar.C(org.telegram.ui.ActionBar.h6.x0(null, i10, false), true);
-        this.actionBar.B(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21396z8, false), false);
+        this.actionBar.B(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21394z8, false), false);
         this.actionBar.setTitleColor(org.telegram.ui.ActionBar.h6.x0(null, i10, false));
-        org.telegram.ui.ActionBar.j5[] j5VarArr = this.f32064w;
+        org.telegram.ui.ActionBar.j5[] j5VarArr = this.f32062w;
         org.telegram.ui.ActionBar.j5 j5Var = j5VarArr[0];
         if (j5Var != null) {
             j5Var.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, i10, false));
@@ -247,7 +247,7 @@ public final class wa0 extends org.telegram.ui.ActionBar.n2 implements mv0, ng.b
 
     @Override
     public final int getNavigationBarColor() {
-        int themedColor = getThemedColor(org.telegram.ui.ActionBar.h6.f20989d6);
+        int themedColor = getThemedColor(org.telegram.ui.ActionBar.h6.f20987d6);
         if (getLastStoryViewer() != null && getLastStoryViewer().attachedToParent()) {
             return getLastStoryViewer().getNavigationBarColor(themedColor);
         }
@@ -258,8 +258,8 @@ public final class wa0 extends org.telegram.ui.ActionBar.n2 implements mv0, ng.b
     public final ArrayList getThemeDescriptions() {
         z6 z6Var = new z6(this, 4);
         ArrayList arrayList = new ArrayList();
-        arrayList.add(new org.telegram.ui.ActionBar.j6(null, 0, null, null, null, z6Var, org.telegram.ui.ActionBar.h6.f20989d6));
-        arrayList.add(new org.telegram.ui.ActionBar.j6(null, 0, null, null, null, z6Var, org.telegram.ui.ActionBar.h6.f21396z8));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(null, 0, null, null, null, z6Var, org.telegram.ui.ActionBar.h6.f20987d6));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(null, 0, null, null, null, z6Var, org.telegram.ui.ActionBar.h6.f21394z8));
         arrayList.add(new org.telegram.ui.ActionBar.j6(null, 0, null, null, null, z6Var, org.telegram.ui.ActionBar.h6.G6));
         arrayList.addAll(this.V.getThemeDescriptions());
         return arrayList;
@@ -268,9 +268,9 @@ public final class wa0 extends org.telegram.ui.ActionBar.n2 implements mv0, ng.b
     @Override
     public final boolean isLightStatusBar() {
         if (getLastStoryViewer() == null || getLastStoryViewer().H0) {
-            int x02 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20989d6, false);
+            int x02 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20987d6, false);
             if (this.actionBar.t()) {
-                x02 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21343w8, false);
+                x02 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21341w8, false);
             }
             if (i0.a.h(x02) > 0.699999988079071d) {
                 return true;
@@ -319,13 +319,13 @@ public final class wa0 extends org.telegram.ui.ActionBar.n2 implements mv0, ng.b
     @Override
     public final boolean onFragmentCreate() {
         int i10;
-        this.f32055a = getArguments().getInt("type", 0);
+        this.f32053a = getArguments().getInt("type", 0);
         this.e = getArguments().getLong("dialog_id");
-        this.f32060f = getArguments().getLong("topic_id", 0L);
+        this.f32058f = getArguments().getLong("topic_id", 0L);
         this.h = getArguments().getString("hashtag", "");
-        this.f32061n = getArguments().getString("username", "");
-        this.f32062r = getArguments().getInt("storiesCount", -1);
-        int i11 = this.f32055a;
+        this.f32059n = getArguments().getString("username", "");
+        this.f32060r = getArguments().getInt("storiesCount", -1);
+        int i11 = this.f32053a;
         if (i11 == 2) {
             i10 = 9;
         } else if (i11 == 1) {
@@ -337,17 +337,17 @@ public final class wa0 extends org.telegram.ui.ActionBar.n2 implements mv0, ng.b
         getNotificationCenter().addObserver(this, NotificationCenter.userInfoDidLoad);
         getNotificationCenter().addObserver(this, NotificationCenter.currentUserPremiumStatusChanged);
         getNotificationCenter().addObserver(this, NotificationCenter.storiesEnabledUpdate);
-        if (DialogObject.isUserDialog(this.e) && this.f32060f == 0) {
+        if (DialogObject.isUserDialog(this.e) && this.f32058f == 0) {
             TLRPC.User user = getMessagesController().getUser(Long.valueOf(this.e));
             if (UserObject.isUserSelf(user)) {
                 getMessagesController().loadUserInfo(user, false, this.classGuid);
                 this.d = getMessagesController().getUserFull(this.e);
             }
         }
-        if (this.f32057b == null) {
-            this.f32057b = new lv0(this);
+        if (this.f32055b == null) {
+            this.f32055b = new lv0(this);
         }
-        this.f32057b.f28319x.add(this);
+        this.f32055b.f28317x.add(this);
         return super.onFragmentCreate();
     }
 
@@ -357,10 +357,10 @@ public final class wa0 extends org.telegram.ui.ActionBar.n2 implements mv0, ng.b
         getNotificationCenter().removeObserver(this, NotificationCenter.userInfoDidLoad);
         getNotificationCenter().removeObserver(this, NotificationCenter.currentUserPremiumStatusChanged);
         getNotificationCenter().removeObserver(this, NotificationCenter.storiesEnabledUpdate);
-        ai.x7 x7Var = this.U;
-        if (x7Var != null) {
+        ai.y7 y7Var = this.U;
+        if (y7Var != null) {
             this.U = null;
-            AndroidUtilities.runOnUIThread(x7Var);
+            AndroidUtilities.runOnUIThread(y7Var);
         }
     }
 

@@ -2,14 +2,14 @@ package u2;
 
 import java.util.concurrent.atomic.AtomicReference;
 public final class s0 implements c3.j0 {
-    public final c1 f47420a;
-    public final c1 f47421b;
-    public final c3.n f47422c = new c3.n();
-    public final AtomicReference d = new AtomicReference(r0.f47414a);
+    public final c1 f47422a;
+    public final c1 f47423b;
+    public final c3.n f47424c = new c3.n();
+    public final AtomicReference d = new AtomicReference(r0.f47416a);
 
     public s0(c1 c1Var) {
-        this.f47420a = c1Var;
-        this.f47421b = c1Var;
+        this.f47422a = c1Var;
+        this.f47423b = c1Var;
     }
 
     @Override
@@ -19,16 +19,16 @@ public final class s0 implements c3.j0 {
 
     @Override
     public final void b(b2.w wVar) {
-        this.f47420a.b(wVar);
+        this.f47422a.b(wVar);
     }
 
     @Override
     public final void c(long j10, int i10, int i11, int i12, c3.i0 i0Var) {
         h().c(j10, i10, i11, i12, i0Var);
         AtomicReference atomicReference = this.d;
-        if (atomicReference.get() == r0.f47415b) {
-            this.f47421b.G(false);
-            atomicReference.set(r0.f47416c);
+        if (atomicReference.get() == r0.f47417b) {
+            this.f47423b.G(false);
+            atomicReference.set(r0.f47418c);
         }
     }
 
@@ -48,10 +48,10 @@ public final class s0 implements c3.j0 {
     }
 
     public final c3.j0 h() {
-        if (this.d.get() == r0.f47416c) {
-            return this.f47422c;
+        if (this.d.get() == r0.f47418c) {
+            return this.f47424c;
         }
-        return this.f47421b;
+        return this.f47423b;
     }
 
     @Override

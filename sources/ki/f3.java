@@ -5,40 +5,40 @@ import org.telegram.messenger.FileLoader;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 public final class f3 implements z4 {
-    public final t f15262a;
-    public final a f15263b;
-    public final String f15264c;
+    public final t f15260a;
+    public final a f15261b;
+    public final String f15262c;
     public final w3 d;
 
     public f3(w3 w3Var, t tVar, a aVar, String str) {
         this.d = w3Var;
-        this.f15262a = tVar;
-        this.f15263b = aVar;
-        this.f15264c = str;
+        this.f15260a = tVar;
+        this.f15261b = aVar;
+        this.f15262c = str;
     }
 
     @Override
     public final void d(TLRPC.Document document) {
-        String str = this.f15264c;
+        String str = this.f15262c;
         document.localPath = str;
         w3 w3Var = this.d;
-        FileLoader.getInstance(w3Var.f15590d3).setLocalPathTo(document, str);
-        t tVar = this.f15262a;
+        FileLoader.getInstance(w3Var.f15588d3).setLocalPathTo(document, str);
+        t tVar = this.f15260a;
         tVar.h = document;
-        tVar.f15510a = 2;
-        TL_iv.PageBlock pageBlock = this.f15263b.f15097b;
+        tVar.f15508a = 2;
+        TL_iv.PageBlock pageBlock = this.f15261b.f15095b;
         if (pageBlock instanceof TL_iv.pageBlockDocument) {
-            ((TL_iv.pageBlockDocument) pageBlock).document_id = document.f20281id;
+            ((TL_iv.pageBlockDocument) pageBlock).document_id = document.f20279id;
         }
         w3Var.X3.remove(tVar);
         w3Var.W2.N(false);
-        w3Var.f15594f3.onContentChanged();
+        w3Var.f15592f3.onContentChanged();
     }
 
     @Override
     public final void f(float f7) {
-        this.f15262a.f15513f = f7;
-        a aVar = this.f15263b;
+        this.f15260a.f15511f = f7;
+        a aVar = this.f15261b;
         w3 w3Var = this.d;
         View A1 = w3Var.A1(aVar);
         if (A1 instanceof z0) {
@@ -49,18 +49,18 @@ public final class f3 implements z4 {
             z0Var.requestLayout();
             z0Var.invalidate();
         }
-        w3Var.f15594f3.onContentChanged();
+        w3Var.f15592f3.onContentChanged();
     }
 
     @Override
     public final void onError() {
-        t tVar = this.f15262a;
-        tVar.f15510a = 3;
+        t tVar = this.f15260a;
+        tVar.f15508a = 3;
         w3 w3Var = this.d;
         w3Var.X3.remove(tVar);
-        w3Var.f15602j3.remove(this.f15263b);
+        w3Var.f15600j3.remove(this.f15261b);
         w3Var.W2.N(true);
-        w3Var.f15594f3.onContentChanged();
+        w3Var.f15592f3.onContentChanged();
     }
 
     @Override

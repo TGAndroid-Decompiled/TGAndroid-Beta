@@ -23,7 +23,7 @@ public final class xf1 extends ViewGroup {
         int paddingBottom = getPaddingBottom();
         float navigationBarThirdButtonsFactor = AndroidUtilities.getNavigationBarThirdButtonsFactor(0.1f, 0.75f, paddingBottom);
         int x02 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.Oh, false);
-        int k10 = i0.a.k(org.telegram.ui.ActionBar.h6.m1(navigationBarThirdButtonsFactor, org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20989d6, false)), x02);
+        int k10 = i0.a.k(org.telegram.ui.ActionBar.h6.m1(navigationBarThirdButtonsFactor, org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20987d6, false)), x02);
         Paint paint = this.f43204a;
         paint.setColor(x02);
         canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight() - paddingBottom, paint);
@@ -66,7 +66,7 @@ public final class xf1 extends ViewGroup {
         }
         if (this.f43206c != z10) {
             this.f43206c = z10;
-            WeakHashMap weakHashMap = r0.i0.f44816a;
+            WeakHashMap weakHashMap = r0.i0.f44818a;
             r0.y.c(this);
         }
     }

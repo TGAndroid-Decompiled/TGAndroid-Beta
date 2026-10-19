@@ -5,20 +5,20 @@ import android.view.View;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 public final class jc extends x51 {
-    public final ec f38218d2;
-    public final o51[] f38219e2;
-    public final bd f38220f2;
+    public final ec f38220d2;
+    public final o51[] f38221e2;
+    public final bd f38222f2;
 
     public jc(bd bdVar, bd bdVar2, Activity activity, Integer num, int i10, org.telegram.ui.ActionBar.d6 d6Var, int i11, int i12, ec ecVar, o51[] o51VarArr) {
         super(bdVar2, activity, true, num, i10, true, d6Var, i11, i12);
-        this.f38220f2 = bdVar;
-        this.f38218d2 = ecVar;
-        this.f38219e2 = o51VarArr;
+        this.f38222f2 = bdVar;
+        this.f38220d2 = ecVar;
+        this.f38221e2 = o51VarArr;
     }
 
     @Override
     public final long getDialogId() {
-        return this.f38220f2.f35582a;
+        return this.f38222f2.f35566a;
     }
 
     @Override
@@ -34,10 +34,10 @@ public final class jc extends x51 {
         } else {
             longValue = l4.longValue();
         }
-        this.f38218d2.run(Long.valueOf(longValue), num, tL_starGiftUnique);
-        o51 o51Var = this.f38219e2[0];
+        this.f38220d2.run(Long.valueOf(longValue), num, tL_starGiftUnique);
+        o51 o51Var = this.f38221e2[0];
         if (o51Var != null) {
-            this.f38220f2.Q = null;
+            this.f38222f2.Q = null;
             o51Var.dismiss();
         }
     }

@@ -15,7 +15,7 @@ import ei.a8;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.MediaController;
-import org.telegram.messenger.lk;
+import org.telegram.messenger.kk;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.bs;
@@ -31,22 +31,22 @@ public final class y1 extends j {
     public final Rect E0;
     public final Paint F0;
     public MediaController.CropState G0;
-    public final TLObject f45703q0;
-    public final String f45704r0;
-    public final int f45705s0;
-    public boolean f45706t0;
-    public final f6 f45707u0;
-    public final ew0 f45708v0;
-    public final int f45709w0;
-    public boolean f45710x0;
-    public final f6 f45711y0;
-    public final x1 f45712z0;
+    public final TLObject f45705q0;
+    public final String f45706r0;
+    public final int f45707s0;
+    public boolean f45708t0;
+    public final f6 f45709u0;
+    public final ew0 f45710v0;
+    public final int f45711w0;
+    public boolean f45712x0;
+    public final f6 f45713y0;
+    public final x1 f45714z0;
 
     public y1(Context context, PointF pointF, ew0 ew0Var, String str, int i10) {
         super(context, pointF);
-        this.f45705s0 = -1;
-        this.f45706t0 = false;
-        this.f45710x0 = false;
+        this.f45707s0 = -1;
+        this.f45708t0 = false;
+        this.f45712x0 = false;
         new Rect();
         new RectF();
         new Paint(3);
@@ -55,15 +55,15 @@ public final class y1 extends j {
         this.F0 = new Paint(3);
         setRotation(0.0f);
         setScale(1.0f);
-        this.f45704r0 = str;
-        this.f45708v0 = ew0Var;
+        this.f45706r0 = str;
+        this.f45710v0 = ew0Var;
         x1 x1Var = new x1(this, context);
-        this.f45712z0 = x1Var;
+        this.f45714z0 = x1Var;
         addView(x1Var, z5.c(-1.0f, -1));
         bs bsVar = bs.h;
-        this.f45707u0 = new f6(x1Var, 0L, 500L, bsVar);
-        this.f45711y0 = new f6(x1Var, 0L, 350L, bsVar);
-        this.f45709w0 = i10;
+        this.f45709u0 = new f6(x1Var, 0L, 500L, bsVar);
+        this.f45713y0 = new f6(x1Var, 0L, 350L, bsVar);
+        this.f45711w0 = i10;
         Bitmap q6 = a8.q(new qg.h0(str, 10), 1920, 1920, 0, false);
         this.A0 = q6;
         if (q6 != null) {
@@ -84,11 +84,11 @@ public final class y1 extends j {
     }
 
     public int getAnchor() {
-        return this.f45705s0;
+        return this.f45707s0;
     }
 
     public ew0 getBaseSize() {
-        return this.f45708v0;
+        return this.f45710v0;
     }
 
     public int getContentHeight() {
@@ -108,7 +108,7 @@ public final class y1 extends j {
     }
 
     public int getOrientation() {
-        return this.f45709w0;
+        return this.f45711w0;
     }
 
     public Bitmap getSegmentedOutBitmap() {
@@ -129,15 +129,15 @@ public final class y1 extends j {
         getMeasuredHeight();
         getScale();
         AndroidUtilities.dp(64.0f);
-        float z10 = lk.z(dp, 2.0f, getPositionX(), scaleX);
-        return new el0(z10, lk.z(dp2, 2.0f, getPositionY(), scaleX), ((((AndroidUtilities.dp(64.0f) / scaleX) + scale2) * scaleX) + z10) - z10, dp2 * scaleX);
+        float z10 = kk.z(dp, 2.0f, getPositionX(), scaleX);
+        return new el0(z10, kk.z(dp2, 2.0f, getPositionY(), scaleX), ((((AndroidUtilities.dp(64.0f) / scaleX) + scale2) * scaleX) + z10) - z10, dp2 * scaleX);
     }
 
     @Override
     public final void k() {
-        ew0 ew0Var = this.f45708v0;
-        float f7 = ew0Var.f26040a / 2.0f;
-        float f10 = ew0Var.f26041b / 2.0f;
+        ew0 ew0Var = this.f45710v0;
+        float f7 = ew0Var.f26038a / 2.0f;
+        float f10 = ew0Var.f26039b / 2.0f;
         MediaController.CropState cropState = this.G0;
         if (cropState != null) {
             f7 *= cropState.cropPw;
@@ -160,9 +160,9 @@ public final class y1 extends j {
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        ew0 ew0Var = this.f45708v0;
-        float f7 = ew0Var.f26040a;
-        float f10 = ew0Var.f26041b;
+        ew0 ew0Var = this.f45710v0;
+        float f7 = ew0Var.f26038a;
+        float f10 = ew0Var.f26039b;
         MediaController.CropState cropState = this.G0;
         if (cropState != null) {
             f7 *= cropState.cropPw;
@@ -172,23 +172,23 @@ public final class y1 extends j {
     }
 
     public final String q(int i10) {
-        TLObject tLObject = this.f45703q0;
+        TLObject tLObject = this.f45705q0;
         if (tLObject instanceof TLRPC.Photo) {
             try {
                 return FileLoader.getInstance(i10).getPathToAttach(FileLoader.getClosestPhotoSizeWithSize(((TLRPC.Photo) tLObject).sizes, 1000), true).getAbsolutePath();
             } catch (Exception unused) {
             }
         }
-        return this.f45704r0;
+        return this.f45706r0;
     }
 
     public final void r(boolean z10) {
-        boolean z11 = !this.f45706t0;
-        this.f45706t0 = z11;
+        boolean z11 = !this.f45708t0;
+        this.f45708t0 = z11;
         if (!z10) {
-            this.f45707u0.f(z11, true);
+            this.f45709u0.f(z11, true);
         }
-        x1 x1Var = this.f45712z0;
+        x1 x1Var = this.f45714z0;
         if (x1Var != null) {
             x1Var.invalidate();
         }
@@ -197,20 +197,20 @@ public final class y1 extends j {
     public final void s(Bitmap bitmap) {
         if (!this.C0 && !this.B0 && bitmap != null && Build.VERSION.SDK_INT >= 24) {
             bc.d dVar = new bc.d();
-            dVar.f4248a = true;
+            dVar.f4246a = true;
             zzd a2 = v7.f0.a(new bc.e(dVar));
             this.B0 = true;
-            a2.g(wb.a.a(bitmap, this.f45709w0)).addOnSuccessListener(new qg.h0(this, 11)).addOnFailureListener(new org.telegram.ui.web.m(7, this, bitmap));
+            a2.g(wb.a.a(bitmap, this.f45711w0)).addOnSuccessListener(new qg.h0(this, 11)).addOnFailureListener(new org.telegram.ui.web.m(7, this, bitmap));
         }
     }
 
     public final void t(boolean z10) {
-        boolean z11 = !this.f45710x0;
-        this.f45710x0 = z11;
+        boolean z11 = !this.f45712x0;
+        this.f45712x0 = z11;
         if (!z10) {
-            this.f45711y0.f(z11, true);
+            this.f45713y0.f(z11, true);
         }
-        x1 x1Var = this.f45712z0;
+        x1 x1Var = this.f45714z0;
         if (x1Var != null) {
             x1Var.invalidate();
         }
@@ -218,9 +218,9 @@ public final class y1 extends j {
 
     public y1(Context context, PointF pointF, ew0 ew0Var, TLObject tLObject) {
         super(context, pointF);
-        this.f45705s0 = -1;
-        this.f45706t0 = false;
-        this.f45710x0 = false;
+        this.f45707s0 = -1;
+        this.f45708t0 = false;
+        this.f45712x0 = false;
         new Rect();
         new RectF();
         new Paint(3);
@@ -229,14 +229,14 @@ public final class y1 extends j {
         this.F0 = new Paint(3);
         setRotation(0.0f);
         setScale(1.0f);
-        this.f45703q0 = tLObject;
-        this.f45708v0 = ew0Var;
+        this.f45705q0 = tLObject;
+        this.f45710v0 = ew0Var;
         x1 x1Var = new x1(this, context);
-        this.f45712z0 = x1Var;
+        this.f45714z0 = x1Var;
         addView(x1Var, z5.c(-1.0f, -1));
         bs bsVar = bs.h;
-        this.f45707u0 = new f6(x1Var, 0L, 500L, bsVar);
-        this.f45711y0 = new f6(x1Var, 0L, 350L, bsVar);
+        this.f45709u0 = new f6(x1Var, 0L, 500L, bsVar);
+        this.f45713y0 = new f6(x1Var, 0L, 350L, bsVar);
         k();
     }
 }

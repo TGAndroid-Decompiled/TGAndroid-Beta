@@ -1,15 +1,15 @@
 package si;
 public final class l0 {
-    public static final l0 f46700a;
-    public static final l0 f46701b;
-    public static final l0[] f46702c;
+    public static final l0 f46702a;
+    public static final l0 f46703b;
+    public static final l0[] f46704c;
 
     static {
         ?? r02 = new Enum("FRONT", 0);
-        f46700a = r02;
+        f46702a = r02;
         ?? r12 = new Enum("BACK", 1);
-        f46701b = r12;
-        f46702c = new l0[]{r02, r12};
+        f46703b = r12;
+        f46704c = new l0[]{r02, r12};
     }
 
     public static l0 valueOf(String str) {
@@ -17,6 +17,6 @@ public final class l0 {
     }
 
     public static l0[] values() {
-        return (l0[]) f46702c.clone();
+        return (l0[]) f46704c.clone();
     }
 }

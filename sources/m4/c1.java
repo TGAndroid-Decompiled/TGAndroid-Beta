@@ -2,20 +2,20 @@ package m4;
 
 import v7.q8;
 public final class c1 implements g1, e2.j {
-    public final d f16499a;
+    public final d f16497a;
 
     public c1(d dVar) {
-        this.f16499a = dVar;
+        this.f16497a = dVar;
     }
 
     @Override
     public void accept(Object obj) {
-        this.f16499a.f((m1) obj);
+        this.f16497a.f((m1) obj);
     }
 
     @Override
     public Object e(f0 f0Var, v vVar, int i10) {
-        Object obj = this.f16499a.f16510g;
+        Object obj = this.f16497a.f16508g;
         obj.getClass();
         b2.g1 g1Var = (b2.g1) obj;
         pb.a aVar = f0Var.e;

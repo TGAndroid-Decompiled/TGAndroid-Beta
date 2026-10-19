@@ -1,10 +1,10 @@
 package c5;
 public final class s {
-    public final String f4781a;
-    public final String f4782b;
+    public final String f4779a;
+    public final String f4780b;
 
     public s(a aVar) {
-        this.f4781a = aVar.f4696a;
-        this.f4782b = aVar.f4697b;
+        this.f4779a = aVar.f4694a;
+        this.f4780b = aVar.f4695b;
     }
 }

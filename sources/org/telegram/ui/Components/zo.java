@@ -59,40 +59,40 @@ public final class zo {
         org.telegram.ui.ActionBar.e1 c11 = org.telegram.ui.ActionBar.u0.c(false, false, xoVar, R.drawable.msg_tone_on, LocaleController.getString(R.string.SoundOn), false, d6Var);
         this.f32998b = c11;
         c11.setOnClickListener(new View.OnClickListener(this) {
-            public final zo f31348b;
+            public final zo f31346b;
 
             {
-                this.f31348b = this;
+                this.f31346b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r3) {
                     case 0:
-                        this.f31348b.a();
+                        this.f31346b.a();
                         yoVar.t();
                         return;
                     case 1:
-                        zo zoVar = this.f31348b;
+                        zo zoVar = this.f31346b;
                         zoVar.a();
                         yoVar.x(zoVar.f33005l);
                         return;
                     case 2:
-                        zo zoVar2 = this.f31348b;
+                        zo zoVar2 = this.f31346b;
                         zoVar2.a();
                         yoVar.x(zoVar2.f33004k);
                         return;
                     case 3:
-                        this.f31348b.a();
+                        this.f31346b.a();
                         yoVar.o();
                         return;
                     case 4:
-                        this.f31348b.a();
+                        this.f31346b.a();
                         AndroidUtilities.runOnUIThread(new pg(yoVar, 27));
                         return;
                     default:
                         yoVar.m();
-                        this.f31348b.a();
+                        this.f31346b.a();
                         return;
                 }
             }
@@ -100,40 +100,40 @@ public final class zo {
         org.telegram.ui.ActionBar.e1 c12 = org.telegram.ui.ActionBar.u0.c(false, false, xoVar, R.drawable.msg_mute_1h, LocaleController.getString(R.string.MuteFor1h), false, d6Var);
         this.d = c12;
         c12.setOnClickListener(new View.OnClickListener(this) {
-            public final zo f31348b;
+            public final zo f31346b;
 
             {
-                this.f31348b = this;
+                this.f31346b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r3) {
                     case 0:
-                        this.f31348b.a();
+                        this.f31346b.a();
                         yoVar.t();
                         return;
                     case 1:
-                        zo zoVar = this.f31348b;
+                        zo zoVar = this.f31346b;
                         zoVar.a();
                         yoVar.x(zoVar.f33005l);
                         return;
                     case 2:
-                        zo zoVar2 = this.f31348b;
+                        zo zoVar2 = this.f31346b;
                         zoVar2.a();
                         yoVar.x(zoVar2.f33004k);
                         return;
                     case 3:
-                        this.f31348b.a();
+                        this.f31346b.a();
                         yoVar.o();
                         return;
                     case 4:
-                        this.f31348b.a();
+                        this.f31346b.a();
                         AndroidUtilities.runOnUIThread(new pg(yoVar, 27));
                         return;
                     default:
                         yoVar.m();
-                        this.f31348b.a();
+                        this.f31346b.a();
                         return;
                 }
             }
@@ -141,40 +141,40 @@ public final class zo {
         org.telegram.ui.ActionBar.e1 c13 = org.telegram.ui.ActionBar.u0.c(false, false, xoVar, R.drawable.msg_mute_1h, LocaleController.getString(R.string.MuteFor1h), false, d6Var);
         this.e = c13;
         c13.setOnClickListener(new View.OnClickListener(this) {
-            public final zo f31348b;
+            public final zo f31346b;
 
             {
-                this.f31348b = this;
+                this.f31346b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r3) {
                     case 0:
-                        this.f31348b.a();
+                        this.f31346b.a();
                         yoVar.t();
                         return;
                     case 1:
-                        zo zoVar = this.f31348b;
+                        zo zoVar = this.f31346b;
                         zoVar.a();
                         yoVar.x(zoVar.f33005l);
                         return;
                     case 2:
-                        zo zoVar2 = this.f31348b;
+                        zo zoVar2 = this.f31346b;
                         zoVar2.a();
                         yoVar.x(zoVar2.f33004k);
                         return;
                     case 3:
-                        this.f31348b.a();
+                        this.f31346b.a();
                         yoVar.o();
                         return;
                     case 4:
-                        this.f31348b.a();
+                        this.f31346b.a();
                         AndroidUtilities.runOnUIThread(new pg(yoVar, 27));
                         return;
                     default:
                         yoVar.m();
-                        this.f31348b.a();
+                        this.f31346b.a();
                         return;
                 }
             }
@@ -182,40 +182,40 @@ public final class zo {
         Integer num2 = num;
         org.telegram.ui.ActionBar.u0.c(false, false, xoVar, R.drawable.msg_mute_period, LocaleController.getString(R.string.MuteForPopup), false, d6Var).setOnClickListener(new wo(this, context, d6Var, i10, yoVar, 0));
         org.telegram.ui.ActionBar.u0.c(false, false, xoVar, R.drawable.msg_customize, LocaleController.getString(R.string.NotificationsCustomize), false, d6Var).setOnClickListener(new View.OnClickListener(this) {
-            public final zo f31348b;
+            public final zo f31346b;
 
             {
-                this.f31348b = this;
+                this.f31346b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r3) {
                     case 0:
-                        this.f31348b.a();
+                        this.f31346b.a();
                         yoVar.t();
                         return;
                     case 1:
-                        zo zoVar = this.f31348b;
+                        zo zoVar = this.f31346b;
                         zoVar.a();
                         yoVar.x(zoVar.f33005l);
                         return;
                     case 2:
-                        zo zoVar2 = this.f31348b;
+                        zo zoVar2 = this.f31346b;
                         zoVar2.a();
                         yoVar.x(zoVar2.f33004k);
                         return;
                     case 3:
-                        this.f31348b.a();
+                        this.f31346b.a();
                         yoVar.o();
                         return;
                     case 4:
-                        this.f31348b.a();
+                        this.f31346b.a();
                         AndroidUtilities.runOnUIThread(new pg(yoVar, 27));
                         return;
                     default:
                         yoVar.m();
-                        this.f31348b.a();
+                        this.f31346b.a();
                         return;
                 }
             }
@@ -223,40 +223,40 @@ public final class zo {
         org.telegram.ui.ActionBar.e1 c14 = org.telegram.ui.ActionBar.u0.c(false, false, xoVar, 0, "", false, d6Var);
         this.f32999c = c14;
         c14.setOnClickListener(new View.OnClickListener(this) {
-            public final zo f31348b;
+            public final zo f31346b;
 
             {
-                this.f31348b = this;
+                this.f31346b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r3) {
                     case 0:
-                        this.f31348b.a();
+                        this.f31346b.a();
                         yoVar.t();
                         return;
                     case 1:
-                        zo zoVar = this.f31348b;
+                        zo zoVar = this.f31346b;
                         zoVar.a();
                         yoVar.x(zoVar.f33005l);
                         return;
                     case 2:
-                        zo zoVar2 = this.f31348b;
+                        zo zoVar2 = this.f31346b;
                         zoVar2.a();
                         yoVar.x(zoVar2.f33004k);
                         return;
                     case 3:
-                        this.f31348b.a();
+                        this.f31346b.a();
                         yoVar.o();
                         return;
                     case 4:
-                        this.f31348b.a();
+                        this.f31346b.a();
                         AndroidUtilities.runOnUIThread(new pg(yoVar, 27));
                         return;
                     default:
                         yoVar.m();
-                        this.f31348b.a();
+                        this.f31346b.a();
                         return;
                 }
             }
@@ -275,40 +275,40 @@ public final class zo {
         xoVar.a(textView, w7.z5.n(-2, -2));
         textView.setBackground(org.telegram.ui.ActionBar.h6.Z(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.I5, d6Var), 0, 6));
         textView.setOnClickListener(new View.OnClickListener(this) {
-            public final zo f31348b;
+            public final zo f31346b;
 
             {
-                this.f31348b = this;
+                this.f31346b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r3) {
                     case 0:
-                        this.f31348b.a();
+                        this.f31346b.a();
                         yoVar.t();
                         return;
                     case 1:
-                        zo zoVar = this.f31348b;
+                        zo zoVar = this.f31346b;
                         zoVar.a();
                         yoVar.x(zoVar.f33005l);
                         return;
                     case 2:
-                        zo zoVar2 = this.f31348b;
+                        zo zoVar2 = this.f31346b;
                         zoVar2.a();
                         yoVar.x(zoVar2.f33004k);
                         return;
                     case 3:
-                        this.f31348b.a();
+                        this.f31346b.a();
                         yoVar.o();
                         return;
                     case 4:
-                        this.f31348b.a();
+                        this.f31346b.a();
                         AndroidUtilities.runOnUIThread(new pg(yoVar, 27));
                         return;
                     default:
                         yoVar.m();
-                        this.f31348b.a();
+                        this.f31346b.a();
                         return;
                 }
             }
@@ -360,7 +360,7 @@ public final class zo {
             org.telegram.ui.ActionBar.m1 m1Var = new org.telegram.ui.ActionBar.m1(xoVar, -2, -2);
             this.h = m1Var;
             m1Var.e = true;
-            m1Var.f21576c = 220;
+            m1Var.f21574c = 220;
             m1Var.setOutsideTouchable(true);
             this.h.setClippingEnabled(true);
             this.h.setAnimationStyle(R.style.PopupContextAnimation);
@@ -402,11 +402,11 @@ public final class zo {
         org.telegram.ui.ActionBar.e1 e1Var2 = this.f32999c;
         if (isDialogMuted) {
             e1Var2.g(LocaleController.getString(R.string.UnmuteNotifications), R.drawable.msg_unmute, null);
-            i10 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21359x6, false);
+            i10 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21357x6, false);
             e1Var.setVisibility(8);
         } else {
             e1Var2.g(LocaleController.getString(R.string.MuteNotifications), R.drawable.msg_mute, null);
-            int x02 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21227q7, false);
+            int x02 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21225q7, false);
             e1Var.setVisibility(0);
             if (MessagesController.getInstance(i13).isDialogNotificationsSoundEnabled(j10, j11)) {
                 e1Var.g(LocaleController.getString(R.string.SoundOff), R.drawable.msg_tone_off, null);
@@ -451,7 +451,7 @@ public final class zo {
         if (hashSet != null && !hashSet.isEmpty()) {
             frameLayout.setVisibility(0);
             textView.setVisibility(0);
-            textView.setText(AndroidUtilities.replaceSingleTag(LocaleController.formatPluralString("TopicNotificationsExceptions", hashSet.size(), new Object[0]), org.telegram.ui.ActionBar.h6.f21172n6, 1, null));
+            textView.setText(AndroidUtilities.replaceSingleTag(LocaleController.formatPluralString("TopicNotificationsExceptions", hashSet.size(), new Object[0]), org.telegram.ui.ActionBar.h6.f21170n6, 1, null));
             return;
         }
         frameLayout.setVisibility(8);

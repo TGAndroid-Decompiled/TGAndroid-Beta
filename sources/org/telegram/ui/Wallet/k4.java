@@ -9,12 +9,12 @@ import org.telegram.ui.Components.b71;
 import org.telegram.ui.Components.k51;
 import org.telegram.ui.Components.v81;
 public final class k4 extends v81 {
-    public final Context f34413a;
-    public final o5 f34414b;
+    public final Context f34415a;
+    public final o5 f34416b;
 
     public k4(o5 o5Var, Context context) {
-        this.f34414b = o5Var;
-        this.f34413a = context;
+        this.f34416b = o5Var;
+        this.f34415a = context;
     }
 
     @Override
@@ -28,8 +28,8 @@ public final class k4 extends v81 {
         int i12;
         org.telegram.ui.ActionBar.d6 d6Var;
         int i13;
-        o5 o5Var = this.f34414b;
-        b71[] b71VarArr = o5Var.f34650q0;
+        o5 o5Var = this.f34416b;
+        b71[] b71VarArr = o5Var.f34652q0;
         b71 b71Var = b71VarArr[i10];
         if (b71Var == null) {
             i11 = ((org.telegram.ui.ActionBar.n2) o5Var).currentAccount;
@@ -43,7 +43,7 @@ public final class k4 extends v81 {
             } else {
                 i13 = -1;
             }
-            b71 b71Var2 = new b71(this.f34413a, i11, i12, false, oVar, s3Var, s3Var2, d6Var, i13, 1);
+            b71 b71Var2 = new b71(this.f34415a, i11, i12, false, oVar, s3Var, s3Var2, d6Var, i13, 1);
             if (i10 == 1) {
                 b71Var2.setPadding(AndroidUtilities.dp(9.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(9.0f), AndroidUtilities.dp(12.0f));
             }
@@ -56,7 +56,7 @@ public final class k4 extends v81 {
                 b71Var2.setSelectorType(9);
                 b71Var2.setSelectorDrawableColor(0);
             }
-            b71Var2.W2.f30438r = false;
+            b71Var2.W2.f30436r = false;
             b71Var2.j(new k51(this, i10));
             b71VarArr[i10] = b71Var2;
             return b71Var2;
@@ -66,7 +66,7 @@ public final class k4 extends v81 {
 
     @Override
     public final int e() {
-        if (this.f34414b.f34637e0) {
+        if (this.f34416b.f34639e0) {
             return 2;
         }
         return 1;

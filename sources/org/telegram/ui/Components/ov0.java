@@ -20,11 +20,11 @@ public final class ov0 extends ci.ja {
         tv0 tv0Var = qv0Var.F;
         int i10 = 0;
         while (true) {
-            mu0[] mu0VarArr = tv0Var.f30710k0;
+            mu0[] mu0VarArr = tv0Var.f30708k0;
             if (i10 < mu0VarArr.length) {
                 ss0 ss0Var2 = mu0VarArr[i10].h;
                 if (ss0Var2 != null && ss0Var2.getAdapter() == qv0Var) {
-                    ss0Var = tv0Var.f30710k0[i10].h;
+                    ss0Var = tv0Var.f30708k0[i10].h;
                     break;
                 }
                 i10++;
@@ -37,7 +37,7 @@ public final class ov0 extends ci.ja {
             for (int i11 = 0; i11 < ss0Var.getChildCount(); i11++) {
                 View childAt = ss0Var.getChildAt(i11);
                 if ((childAt instanceof org.telegram.ui.Cells.s7) && (messageObject = ((org.telegram.ui.Cells.s7) childAt).getMessageObject()) != null && messageObject.isStory()) {
-                    arrayList.add(Integer.valueOf(messageObject.storyItem.f20509id));
+                    arrayList.add(Integer.valueOf(messageObject.storyItem.f20507id));
                 }
             }
         }
@@ -46,7 +46,7 @@ public final class ov0 extends ci.ja {
     @Override
     public final boolean d(ArrayList arrayList, TL_stories.TL_stories_storyViews tL_stories_storyViews) {
         TL_stories.StoryItem storyItem;
-        ci.a7 a7Var = this.h.f29723s;
+        ci.a7 a7Var = this.h.f29721s;
         ArrayList<TL_stories.StoryViews> arrayList2 = tL_stories_storyViews.views;
         a7Var.getClass();
         if (arrayList != null && arrayList2 != null) {
@@ -58,7 +58,7 @@ public final class ov0 extends ci.ja {
                     break;
                 }
                 TL_stories.StoryViews storyViews = arrayList2.get(i10);
-                MessageObject messageObject = (MessageObject) a7Var.f5152j.get(num);
+                MessageObject messageObject = (MessageObject) a7Var.f5150j.get(num);
                 if (messageObject != null && (storyItem = messageObject.storyItem) != null) {
                     storyItem.views = storyViews;
                     z10 = true;

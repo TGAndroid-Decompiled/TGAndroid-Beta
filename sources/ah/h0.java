@@ -1,9 +1,10 @@
 package ah;
 
-import ai.g2;
-import ai.k7;
-import ai.n2;
-import ai.r2;
+import ai.j2;
+import ai.k2;
+import ai.l7;
+import ai.o2;
+import ai.v3;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.RectF;
@@ -108,13 +109,13 @@ public final class h0 implements x41, hf1, a2, ih.h, OnFailureListener, v8, OnCo
             default:
                 o5 o5Var = (o5) this.f772b;
                 r5 r5Var = (r5) this.f773c;
-                TL_iv.pageTableCell pagetablecell = r5Var.f15494b;
+                TL_iv.pageTableCell pagetablecell = r5Var.f15492b;
                 if (pagetablecell != null) {
-                    g6.d(pagetablecell, r5Var.f15493a.getText());
+                    g6.d(pagetablecell, r5Var.f15491a.getText());
                 }
                 c3 c3Var = o5Var.E;
-                if (c3Var != null && o5Var.f15113a != null) {
-                    w3.P1(c3Var.f15177a);
+                if (c3Var != null && o5Var.f15111a != null) {
+                    w3.P1(c3Var.f15175a);
                     return;
                 }
                 return;
@@ -145,9 +146,9 @@ public final class h0 implements x41, hf1, a2, ih.h, OnFailureListener, v8, OnCo
                     m2 it = q0Var.values().iterator();
                     while (it.hasNext()) {
                         q1 q1Var = (q1) it.next();
-                        p1 p1Var = (p1) i1Var.d.f8528n.get(q1Var.f3929a.f3903b);
-                        if (p1Var != null && q1Var.f3929a.f3902a == p1Var.f3902a) {
-                            c10.a(new q1(p1Var, q1Var.f3930b));
+                        p1 p1Var = (p1) i1Var.d.f8526n.get(q1Var.f3927a.f3901b);
+                        if (p1Var != null && q1Var.f3927a.f3900a == p1Var.f3900a) {
+                            c10.a(new q1(p1Var, q1Var.f3928b));
                         } else {
                             c10.a(q1Var);
                         }
@@ -159,7 +160,7 @@ public final class h0 implements x41, hf1, a2, ih.h, OnFailureListener, v8, OnCo
             default:
                 m4.v vVar = (m4.v) this.f773c;
                 m4.m1 m1Var2 = (m4.m1) obj;
-                m4.f0 f0Var = (m4.f0) ((m4.i1) this.f772b).f16565a.get();
+                m4.f0 f0Var = (m4.f0) ((m4.i1) this.f772b).f16563a.get();
                 if (f0Var != null && !f0Var.j()) {
                     f0Var.g(vVar, false);
                     return;
@@ -206,51 +207,51 @@ public final class h0 implements x41, hf1, a2, ih.h, OnFailureListener, v8, OnCo
         k9 k9Var = (k9) this.f772b;
         Context context = (Context) this.f773c;
         ArrayList arrayList2 = k9Var.L;
-        a0.h hVar = k9Var.f9328b;
-        d9 d9Var = k9Var.f9335x;
-        ArrayList arrayList3 = k9Var.f9329c;
+        a0.h hVar = k9Var.f9326b;
+        d9 d9Var = k9Var.f9333x;
+        ArrayList arrayList3 = k9Var.f9327c;
         HashMap hashMap = k9Var.d;
         r9 r9Var = k9Var.W;
         if (i10 >= 0 && i10 < arrayList2.size()) {
             y8 y8Var = (y8) arrayList2.get(i10);
-            int i21 = y8Var.f44286a;
+            int i21 = y8Var.f44288a;
             int i22 = 0;
             if (i21 == 3) {
-                if (y8Var.f10145n && r9Var.F) {
+                if (y8Var.f10143n && r9Var.F) {
                     i20 = ((f3) r9Var).currentAccount;
                     boolean z11 = r9Var.K;
-                    TLRPC.InputPeer inputPeer = r9Var.f9748c;
+                    TLRPC.InputPeer inputPeer = r9Var.f9746c;
                     b9 b9Var = new b9(k9Var, 0);
                     d6Var9 = ((f3) r9Var).resourcesProvider;
                     new t8(context, i20, z11, inputPeer, b9Var, d6Var9).show();
                     return;
                 }
-                int i23 = y8Var.f10140i;
+                int i23 = y8Var.f10138i;
                 if (i23 == 1) {
                     if (r9Var.N == 1 || r9.K0(r9Var).isEmpty()) {
                         r9Var.M = 1;
-                        r9Var.f9746b.D(1);
+                        r9Var.f9744b.D(1);
                     }
                     r9Var.N = 1;
                     k9Var.f(true);
                 } else if (i23 == 3) {
-                    if (r9Var.N == 3 || (r9Var.f9751n.isEmpty() && r9Var.f9752r.isEmpty())) {
+                    if (r9Var.N == 3 || (r9Var.f9749n.isEmpty() && r9Var.f9750r.isEmpty())) {
                         r9Var.M = 3;
-                        r9Var.f9746b.D(1);
+                        r9Var.f9744b.D(1);
                     }
                     r9Var.N = 3;
                     k9Var.f(true);
                 } else if (i23 == 2) {
                     if (r9Var.N == 2) {
                         r9Var.M = 2;
-                        r9Var.f9746b.D(1);
+                        r9Var.f9744b.D(1);
                     }
                     r9Var.N = 2;
                     k9Var.f(true);
                 } else if (i23 == 4) {
                     if (r9Var.N == 4) {
                         r9Var.M = 4;
-                        r9Var.f9746b.D(1);
+                        r9Var.f9744b.D(1);
                     }
                     r9Var.N = 4;
                     k9Var.f(true);
@@ -258,12 +259,12 @@ public final class h0 implements x41, hf1, a2, ih.h, OnFailureListener, v8, OnCo
                     if (i23 > 0) {
                         arrayList3.clear();
                         hashMap.clear();
-                        r9Var.N = y8Var.f10140i;
-                        d9Var.f9562c.a();
+                        r9Var.N = y8Var.f10138i;
+                        d9Var.f9560c.a();
                     } else {
                         TLRPC.Chat chat = y8Var.h;
                         if (chat != null) {
-                            long j10 = chat.f20275id;
+                            long j10 = chat.f20273id;
                             if (r9.e1(r9Var, chat) > 200) {
                                 try {
                                     k9Var.performHapticFeedback(3, 1);
@@ -272,8 +273,8 @@ public final class h0 implements x41, hf1, a2, ih.h, OnFailureListener, v8, OnCo
                                 Context context2 = k9Var.getContext();
                                 d6Var7 = ((f3) r9Var).resourcesProvider;
                                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context2, 0, d6Var7);
-                                alertDialog$Builder.f20604a.R = LocaleController.getString(R.string.GroupTooLarge);
-                                alertDialog$Builder.f20604a.T = LocaleController.getString(R.string.GroupTooLargeMessage);
+                                alertDialog$Builder.f20602a.R = LocaleController.getString(R.string.GroupTooLarge);
+                                alertDialog$Builder.f20602a.T = LocaleController.getString(R.string.GroupTooLargeMessage);
                                 org.telegram.messenger.g0.p(R.string.OK, alertDialog$Builder, null);
                             } else if (!hashMap.containsKey(Long.valueOf(j10))) {
                                 i17 = ((f3) r9Var).currentAccount;
@@ -296,7 +297,7 @@ public final class h0 implements x41, hf1, a2, ih.h, OnFailureListener, v8, OnCo
                                     b2Var2.r(50L);
                                     i19 = ((f3) r9Var).currentAccount;
                                     MessagesStorage messagesStorage = MessagesStorage.getInstance(i19);
-                                    messagesStorage.getStorageQueue().postRunnable(new ai.b2(k9Var, chat2, messagesStorage, j10, 12));
+                                    messagesStorage.getStorageQueue().postRunnable(new ai.c3(k9Var, chat2, messagesStorage, j10, 12));
                                 }
                                 if (!TextUtils.isEmpty(k9Var.I)) {
                                     d9Var.setText("");
@@ -317,12 +318,12 @@ public final class h0 implements x41, hf1, a2, ih.h, OnFailureListener, v8, OnCo
                                 k9Var.i(true);
                             }
                         } else {
-                            TLRPC.User user = y8Var.f10139g;
+                            TLRPC.User user = y8Var.f10137g;
                             if (user != null) {
-                                if (k9Var.f9327a == 0) {
+                                if (k9Var.f9325a == 0) {
                                     r9Var.N = 0;
                                 }
-                                long j11 = user.f20422id;
+                                long j11 = user.f20420id;
                                 HashSet hashSet = new HashSet(arrayList3);
                                 if (arrayList3.contains(Long.valueOf(j11))) {
                                     Iterator it = hashMap.entrySet().iterator();
@@ -366,11 +367,11 @@ public final class h0 implements x41, hf1, a2, ih.h, OnFailureListener, v8, OnCo
                 if (view instanceof q8) {
                     q8 q8Var = (q8) view;
                     q8Var.setChecked(!q8Var.b());
-                    y8Var.f10142k = q8Var.b();
-                    int i24 = y8Var.f10137c;
+                    y8Var.f10140k = q8Var.b();
+                    int i24 = y8Var.f10135c;
                     if (i24 == 0) {
                         boolean b10 = q8Var.b();
-                        r9Var.f9755x = b10;
+                        r9Var.f9753x = b10;
                         if (r9Var.N == 4) {
                             z10 = true;
                         } else {
@@ -387,7 +388,7 @@ public final class h0 implements x41, hf1, a2, ih.h, OnFailureListener, v8, OnCo
                                 i16 = R.string.StoryEnabledScreenshots;
                             }
                             qc G = xcVar.G(i25, 4, LocaleController.getString(i16));
-                            G.f29596j = 5000;
+                            G.f29594j = 5000;
                             G.k(true);
                             return;
                         }
@@ -401,12 +402,12 @@ public final class h0 implements x41, hf1, a2, ih.h, OnFailureListener, v8, OnCo
                             i15 = R.string.StoryDisabledScreenshots;
                         }
                         qc G2 = xcVar2.G(i26, 4, LocaleController.getString(i15));
-                        G2.f29596j = 5000;
+                        G2.f29594j = 5000;
                         G2.k(true);
                     } else if (i24 == 1) {
                         boolean b11 = q8Var.b();
-                        r9Var.f9756y = b11;
-                        boolean z12 = r9Var.f9748c instanceof TLRPC.TL_inputPeerChannel;
+                        r9Var.f9754y = b11;
+                        boolean z12 = r9Var.f9746c instanceof TLRPC.TL_inputPeerChannel;
                         if (b11) {
                             d3 d3Var3 = r9Var.container;
                             d6Var4 = ((f3) r9Var).resourcesProvider;
@@ -418,7 +419,7 @@ public final class h0 implements x41, hf1, a2, ih.h, OnFailureListener, v8, OnCo
                                 i14 = R.string.StoryEnableKeep;
                             }
                             qc G3 = xcVar3.G(i27, 4, LocaleController.getString(i14));
-                            G3.f29596j = 5000;
+                            G3.f29594j = 5000;
                             G3.k(true);
                         } else {
                             d3 d3Var4 = r9Var.container;
@@ -431,24 +432,24 @@ public final class h0 implements x41, hf1, a2, ih.h, OnFailureListener, v8, OnCo
                                 i13 = R.string.StoryDisableKeep;
                             }
                             qc G4 = xcVar4.G(i28, 4, LocaleController.getString(i13));
-                            G4.f29596j = 5000;
+                            G4.f29594j = 5000;
                             G4.k(true);
                         }
                         k9Var.g(true);
                     } else if (i24 == 2) {
-                        r9Var.f9754w = q8Var.b();
+                        r9Var.f9752w = q8Var.b();
                         k9Var.g(true);
                     }
                 }
             } else if (i21 == 9) {
-                int i29 = y8Var.f10148q;
+                int i29 = y8Var.f10146q;
                 if (i29 == 0) {
-                    t9 t9Var = r9Var.f9749c0;
+                    t9 t9Var = r9Var.f9747c0;
                     if (t9Var != null) {
                         t9Var.run();
                     }
                 } else if (i29 == 1) {
-                    TLRPC.InputPeer inputPeer2 = r9Var.f9748c;
+                    TLRPC.InputPeer inputPeer2 = r9Var.f9746c;
                     if (inputPeer2 == null) {
                         i12 = ((f3) r9Var).currentAccount;
                         clientUserId = UserConfig.getInstance(i12).getClientUserId();
@@ -457,9 +458,9 @@ public final class h0 implements x41, hf1, a2, ih.h, OnFailureListener, v8, OnCo
                     }
                     d6Var2 = ((f3) r9Var).resourcesProvider;
                     i80 F = i80.F(k9Var, d6Var2, view);
-                    F.c(R.drawable.msg_addfolder, LocaleController.getString(R.string.StoriesAlbumNewAlbum), new ai.u3(k9Var, clientUserId, 7), false);
+                    F.c(R.drawable.msg_addfolder, LocaleController.getString(R.string.StoriesAlbumNewAlbum), new v3(k9Var, clientUserId, 7), false);
                     F.k();
-                    i80.f(F, r9Var.j1().B(clientUserId, true), r9Var.v, false, null, new n2(11, k9Var, F));
+                    i80.f(F, r9Var.j1().B(clientUserId, true), r9Var.v, false, null, new o2(11, k9Var, F));
                     F.Z();
                 } else if (i29 == 5) {
                     Context context4 = k9Var.getContext();
@@ -468,13 +469,13 @@ public final class h0 implements x41, hf1, a2, ih.h, OnFailureListener, v8, OnCo
                     b2Var3.r(500L);
                     TL_phone.getGroupCallStreamRtmpUrl getgroupcallstreamrtmpurl = new TL_phone.getGroupCallStreamRtmpUrl();
                     getgroupcallstreamrtmpurl.live_story = true;
-                    TLRPC.InputPeer inputPeer3 = r9Var.f9748c;
+                    TLRPC.InputPeer inputPeer3 = r9Var.f9746c;
                     if (inputPeer3 == null) {
                         inputPeer3 = new TLRPC.TL_inputPeerSelf();
                     }
                     getgroupcallstreamrtmpurl.peer = inputPeer3;
                     i11 = ((f3) r9Var).currentAccount;
-                    ConnectionsManager.getInstance(i11).sendRequest(getgroupcallstreamrtmpurl, new g2(k9Var, b2Var3, getgroupcallstreamrtmpurl));
+                    ConnectionsManager.getInstance(i11).sendRequest(getgroupcallstreamrtmpurl, new j2(k9Var, b2Var3, getgroupcallstreamrtmpurl));
                 } else if (i29 == 6) {
                     r9Var.G = false;
                     k9Var.g(true);
@@ -492,26 +493,26 @@ public final class h0 implements x41, hf1, a2, ih.h, OnFailureListener, v8, OnCo
                 TL_stories.StoryItem storyItem = (TL_stories.StoryItem) this.f773c;
                 TL_stories.TL_stories_editStory tL_stories_editStory = new TL_stories.TL_stories_editStory();
                 tL_stories_editStory.peer = MessagesController.getInstance(q4Var.C2).getInputPeer(storyItem.dialogId);
-                tL_stories_editStory.f20513id = storyItem.f20509id;
+                tL_stories_editStory.f20511id = storyItem.f20507id;
                 tL_stories_editStory.flags |= 4;
-                tL_stories_editStory.privacy_rules = p9Var.f9602b;
-                ConnectionsManager.getInstance(q4Var.C2).sendRequest(tL_stories_editStory, new r2(q4Var, p6Var, storyItem, p9Var, 5));
+                tL_stories_editStory.privacy_rules = p9Var.f9600b;
+                ConnectionsManager.getInstance(q4Var.C2).sendRequest(tL_stories_editStory, new k2(q4Var, p6Var, storyItem, p9Var, 5));
                 return;
             default:
                 h4 h4Var = (h4) this.f772b;
                 r9 r9Var = (r9) this.f773c;
-                q4 q4Var2 = h4Var.f5463l;
+                q4 q4Var2 = h4Var.f5461l;
                 o4 o4Var = q4Var2.O1;
-                TL_stories.StoryItem storyItem2 = o4Var.f5690a;
+                TL_stories.StoryItem storyItem2 = o4Var.f5688a;
                 if (storyItem2 != null && storyItem2.pinned) {
                     z14 = true;
                 } else {
                     z14 = false;
                 }
                 if (z14 != z12) {
-                    MessagesController.getInstance(q4Var2.C2).getStoriesController().o0(q4Var2.B1, q4Var2.f5829v1, z12, null);
+                    MessagesController.getInstance(q4Var2.C2).getStoriesController().o0(q4Var2.B1, q4Var2.f5827v1, z12, null);
                 }
-                TL_stories.StoryItem storyItem3 = o4Var.f5690a;
+                TL_stories.StoryItem storyItem3 = o4Var.f5688a;
                 if (storyItem3 != null) {
                     TLRPC.MessageMedia messageMedia = storyItem3.media;
                     if (messageMedia instanceof TLRPC.TL_messageMediaVideoStream) {
@@ -533,17 +534,17 @@ public final class h0 implements x41, hf1, a2, ih.h, OnFailureListener, v8, OnCo
     public void f(m4.v vVar) {
         switch (this.f771a) {
             case 26:
-                ((m4.d) this.f773c).f(((m4.p0) this.f772b).f16663g.f16536t);
+                ((m4.d) this.f773c).f(((m4.p0) this.f772b).f16661g.f16534t);
                 return;
             default:
                 m4.p0 p0Var = (m4.p0) this.f772b;
                 p0Var.getClass();
-                String str = ((n4.h) this.f773c).f17094a;
+                String str = ((n4.h) this.f773c).f17092a;
                 if (TextUtils.isEmpty(str)) {
                     e2.a.l("MediaSessionLegacyStub", "onRemoveQueueItem(): Media ID shouldn't be null");
                     return;
                 }
-                m4.m1 m1Var = p0Var.f16663g.f16536t;
+                m4.m1 m1Var = p0Var.f16661g.f16534t;
                 if (!m1Var.o0(17)) {
                     e2.a.l("MediaSessionLegacyStub", "Can't remove item by ID without COMMAND_GET_TIMELINE being available");
                     return;
@@ -551,7 +552,7 @@ public final class h0 implements x41, hf1, a2, ih.h, OnFailureListener, v8, OnCo
                 o1 y02 = m1Var.y0();
                 n1 n1Var = new n1();
                 for (int i10 = 0; i10 < y02.o(); i10++) {
-                    if (TextUtils.equals(y02.m(i10, n1Var, 0L).f3871c.f3888a, str)) {
+                    if (TextUtils.equals(y02.m(i10, n1Var, 0L).f3869c.f3886a, str)) {
                         m1Var.Q(i10);
                         return;
                     }
@@ -564,22 +565,22 @@ public final class h0 implements x41, hf1, a2, ih.h, OnFailureListener, v8, OnCo
     public void g(b2 b2Var, int i10) {
         switch (this.f771a) {
             case 2:
-                k7.V0((k7) this.f772b, (ug.m1) this.f773c, b2Var, i10);
+                l7.K0((l7) this.f772b, (ug.m1) this.f773c, b2Var, i10);
                 return;
             case 7:
                 h4 h4Var = (h4) this.f772b;
                 ci.h1 h1Var = ((aa) this.f773c).A0;
                 if (h1Var != null) {
-                    if (!h1Var.f5449w) {
+                    if (!h1Var.f5447w) {
                         TL_phone.discardGroupCall discardgroupcall = new TL_phone.discardGroupCall();
-                        discardgroupcall.call = h1Var.f5445f;
+                        discardgroupcall.call = h1Var.f5443f;
                         ConnectionsManager.getInstance(h1Var.e).sendRequest(discardgroupcall, new ci.z0(h1Var, 4));
                         h1Var.e();
                         return;
                     }
                     return;
                 }
-                q4.f0(h4Var.f5463l);
+                q4.f0(h4Var.f5461l);
                 return;
             case 13:
                 u3.z0((u3) this.f772b, (TL_payments.connectedBotStarRef) this.f773c);
@@ -598,7 +599,7 @@ public final class h0 implements x41, hf1, a2, ih.h, OnFailureListener, v8, OnCo
 
     @Override
     public i80 h(ki.h1 h1Var) {
-        ki.q qVar = (ki.q) ((n4.s) this.f772b).f17128c;
+        ki.q qVar = (ki.q) ((n4.s) this.f772b).f17126c;
         i80 i80Var = new i80(qVar, (d6) this.f773c, h1Var, false, false, true);
         qVar.H = i80Var;
         return i80Var;
@@ -631,7 +632,7 @@ public final class h0 implements x41, hf1, a2, ih.h, OnFailureListener, v8, OnCo
         r9.a aVar = (r9.a) this.f773c;
         try {
             Trace.beginSection(str);
-            return aVar.f45119f.j2(z5Var);
+            return aVar.f45121f.j2(z5Var);
         } finally {
             Trace.endSection();
         }
@@ -658,7 +659,7 @@ public final class h0 implements x41, hf1, a2, ih.h, OnFailureListener, v8, OnCo
                 c1.e eVar = (c1.e) this.f772b;
                 CancellationSignal cancellationSignal = (CancellationSignal) this.f773c;
                 kotlin.jvm.internal.i.e(e, "e");
-                if ((e instanceof com.google.android.gms.common.api.f) && b1.d.f3659b.contains(Integer.valueOf(((com.google.android.gms.common.api.f) e).getStatusCode()))) {
+                if ((e instanceof com.google.android.gms.common.api.f) && b1.d.f3657b.contains(Integer.valueOf(((com.google.android.gms.common.api.f) e).getStatusCode()))) {
                     str = "GET_INTERRUPTED";
                 } else {
                     str = "GET_NO_CREDENTIALS";
@@ -693,7 +694,7 @@ public final class h0 implements x41, hf1, a2, ih.h, OnFailureListener, v8, OnCo
                 d1.e eVar2 = (d1.e) this.f772b;
                 CancellationSignal cancellationSignal2 = (CancellationSignal) this.f773c;
                 kotlin.jvm.internal.i.e(e, "e");
-                if ((e instanceof com.google.android.gms.common.api.f) && b1.d.f3659b.contains(Integer.valueOf(((com.google.android.gms.common.api.f) e).getStatusCode()))) {
+                if ((e instanceof com.google.android.gms.common.api.f) && b1.d.f3657b.contains(Integer.valueOf(((com.google.android.gms.common.api.f) e).getStatusCode()))) {
                     str2 = "CREATE_INTERRUPTED";
                 } else {
                     str2 = "CREATE_UNKNOWN";
@@ -708,7 +709,7 @@ public final class h0 implements x41, hf1, a2, ih.h, OnFailureListener, v8, OnCo
                 }
                 CredentialProviderPlayServicesImpl.Companion.getClass();
                 if (!a1.h.a(cancellationSignal2)) {
-                    Executor executor = eVar2.f7731g;
+                    Executor executor = eVar2.f7729g;
                     if (executor != null) {
                         executor.execute(new d1.a(eVar2, cVar, 1));
                         return;
@@ -733,7 +734,7 @@ public final class h0 implements x41, hf1, a2, ih.h, OnFailureListener, v8, OnCo
         com.google.firebase.messaging.i iVar = (com.google.firebase.messaging.i) this.f772b;
         String str = (String) this.f773c;
         synchronized (iVar) {
-            ((a0.f) iVar.f7643b).remove(str);
+            ((a0.f) iVar.f7641b).remove(str);
         }
         return task;
     }
@@ -749,10 +750,10 @@ public final class h0 implements x41, hf1, a2, ih.h, OnFailureListener, v8, OnCo
         ig.m mVar = (ig.m) this.f772b;
         TLRPC.Document document = (TLRPC.Document) obj2;
         Boolean bool = (Boolean) obj3;
-        mVar.f12962w = false;
+        mVar.f12960w = false;
         AndroidUtilities.cancelRunOnUIThread(mVar.d);
-        ig.i iVar = mVar.f12959n;
-        mVar.f12963x = document;
+        ig.i iVar = mVar.f12957n;
+        mVar.f12961x = document;
         iVar.setSticker(document);
         ((q8) ((View) this.f773c)).setValueSticker(document);
         mVar.e0(true);

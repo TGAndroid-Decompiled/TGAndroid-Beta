@@ -10,23 +10,23 @@ import java.util.Collections;
 import java.util.Map;
 import v7.u6;
 public final class n implements h {
-    public final Context f10798a;
-    public final ArrayList f10799b;
-    public final h f10800c;
+    public final Context f10796a;
+    public final ArrayList f10797b;
+    public final h f10798c;
     public t d;
     public b e;
-    public e f10801f;
+    public e f10799f;
     public h h;
-    public e0 f10802n;
-    public f f10803r;
-    public a0 f10804s;
+    public e0 f10800n;
+    public f f10801r;
+    public a0 f10802s;
     public h v;
 
     public n(Context context, h hVar) {
-        this.f10798a = context.getApplicationContext();
+        this.f10796a = context.getApplicationContext();
         hVar.getClass();
-        this.f10800c = hVar;
-        this.f10799b = new ArrayList();
+        this.f10798c = hVar;
+        this.f10797b = new ArrayList();
     }
 
     public static void d(h hVar, c0 c0Var) {
@@ -38,7 +38,7 @@ public final class n implements h {
     public final void a(h hVar) {
         int i10 = 0;
         while (true) {
-            ArrayList arrayList = this.f10799b;
+            ArrayList arrayList = this.f10797b;
             if (i10 < arrayList.size()) {
                 hVar.addTransferListener((c0) arrayList.get(i10));
                 i10++;
@@ -51,15 +51,15 @@ public final class n implements h {
     @Override
     public final void addTransferListener(c0 c0Var) {
         c0Var.getClass();
-        this.f10800c.addTransferListener(c0Var);
-        this.f10799b.add(c0Var);
+        this.f10798c.addTransferListener(c0Var);
+        this.f10797b.add(c0Var);
         d(this.d, c0Var);
         d(this.e, c0Var);
-        d(this.f10801f, c0Var);
+        d(this.f10799f, c0Var);
         d(this.h, c0Var);
-        d(this.f10802n, c0Var);
-        d(this.f10803r, c0Var);
-        d(this.f10804s, c0Var);
+        d(this.f10800n, c0Var);
+        d(this.f10801r, c0Var);
+        d(this.f10802s, c0Var);
     }
 
     @Override
@@ -101,12 +101,12 @@ public final class n implements h {
             z10 = false;
         }
         u6.p(z10);
-        Uri uri = mVar.f10793a;
+        Uri uri = mVar.f10791a;
         String scheme = uri.getScheme();
-        String str = m0.f8254a;
+        String str = m0.f8252a;
         String scheme2 = uri.getScheme();
         boolean isEmpty = TextUtils.isEmpty(scheme2);
-        Context context = this.f10798a;
+        Context context = this.f10796a;
         if (!isEmpty && !Objects.equals(scheme2, "file")) {
             if ("asset".equals(scheme)) {
                 if (this.e == null) {
@@ -116,15 +116,15 @@ public final class n implements h {
                 }
                 this.v = this.e;
             } else if ("content".equals(scheme)) {
-                if (this.f10801f == null) {
+                if (this.f10799f == null) {
                     e eVar = new e(context);
-                    this.f10801f = eVar;
+                    this.f10799f = eVar;
                     a(eVar);
                 }
-                this.v = this.f10801f;
+                this.v = this.f10799f;
             } else {
                 boolean equals = "rtmp".equals(scheme);
-                h hVar = this.f10800c;
+                h hVar = this.f10798c;
                 if (equals) {
                     if (this.h == null) {
                         try {
@@ -142,28 +142,28 @@ public final class n implements h {
                     }
                     this.v = this.h;
                 } else if ("udp".equals(scheme)) {
-                    if (this.f10802n == null) {
+                    if (this.f10800n == null) {
                         e0 e0Var = new e0();
-                        this.f10802n = e0Var;
+                        this.f10800n = e0Var;
                         a(e0Var);
                     }
-                    this.v = this.f10802n;
+                    this.v = this.f10800n;
                 } else if ("data".equals(scheme)) {
-                    if (this.f10803r == null) {
+                    if (this.f10801r == null) {
                         ?? cVar = new c(false);
-                        this.f10803r = cVar;
+                        this.f10801r = cVar;
                         a(cVar);
                     }
-                    this.v = this.f10803r;
+                    this.v = this.f10801r;
                 } else if (!"rawresource".equals(scheme) && !"android.resource".equals(scheme)) {
                     this.v = hVar;
                 } else {
-                    if (this.f10804s == null) {
+                    if (this.f10802s == null) {
                         a0 a0Var = new a0(context);
-                        this.f10804s = a0Var;
+                        this.f10802s = a0Var;
                         a(a0Var);
                     }
-                    this.v = this.f10804s;
+                    this.v = this.f10802s;
                 }
             }
         } else {

@@ -11,37 +11,37 @@ import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 public final class p0 extends Drawable {
     public static Path d;
-    public final int f40034a;
-    public Bitmap f40035b;
-    public final Paint f40036c;
+    public final int f40025a;
+    public Bitmap f40026b;
+    public final Paint f40027c;
 
     public p0(Bitmap bitmap, Paint paint, int i10) {
-        this.f40034a = i10;
-        this.f40035b = bitmap;
-        this.f40036c = paint;
+        this.f40025a = i10;
+        this.f40026b = bitmap;
+        this.f40027c = paint;
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        switch (this.f40034a) {
+        switch (this.f40025a) {
             case 0:
-                Bitmap bitmap = this.f40035b;
+                Bitmap bitmap = this.f40026b;
                 if (bitmap != null) {
                     canvas.save();
                     canvas.translate(getBounds().left, getBounds().top);
                     canvas.scale(getBounds().width() / bitmap.getWidth(), getBounds().height() / bitmap.getHeight());
-                    canvas.drawBitmap(bitmap, 0.0f, 0.0f, this.f40036c);
+                    canvas.drawBitmap(bitmap, 0.0f, 0.0f, this.f40027c);
                     canvas.restore();
                     return;
                 }
                 return;
             case 1:
-                Bitmap bitmap2 = this.f40035b;
+                Bitmap bitmap2 = this.f40026b;
                 if (bitmap2 != null) {
                     canvas.save();
                     canvas.translate(getBounds().left, getBounds().top);
                     canvas.scale(getBounds().width() / bitmap2.getWidth(), getBounds().height() / bitmap2.getHeight());
-                    canvas.drawBitmap(bitmap2, 0.0f, 0.0f, this.f40036c);
+                    canvas.drawBitmap(bitmap2, 0.0f, 0.0f, this.f40027c);
                     canvas.restore();
                     return;
                 }
@@ -49,9 +49,9 @@ public final class p0 extends Drawable {
             default:
                 Rect bounds = getBounds();
                 if (!bounds.isEmpty()) {
-                    Bitmap bitmap3 = this.f40035b;
-                    if (bitmap3 == null || bitmap3.getWidth() != bounds.width() || this.f40035b.getHeight() != bounds.height()) {
-                        this.f40035b = Bitmap.createBitmap(bounds.width(), bounds.height(), Bitmap.Config.ARGB_8888);
+                    Bitmap bitmap3 = this.f40026b;
+                    if (bitmap3 == null || bitmap3.getWidth() != bounds.width() || this.f40026b.getHeight() != bounds.height()) {
+                        this.f40026b = Bitmap.createBitmap(bounds.width(), bounds.height(), Bitmap.Config.ARGB_8888);
                         Path path = new Path();
                         Matrix matrix = new Matrix();
                         matrix.setScale(bounds.width() / 52.0f, bounds.height() / 52.0f);
@@ -61,9 +61,9 @@ public final class p0 extends Drawable {
                         d.transform(matrix, path);
                         Paint paint = new Paint(1);
                         paint.setColor(-1);
-                        new Canvas(this.f40035b).drawPath(path, paint);
+                        new Canvas(this.f40026b).drawPath(path, paint);
                     }
-                    canvas.drawBitmap(this.f40035b, bounds.left, bounds.top, this.f40036c);
+                    canvas.drawBitmap(this.f40026b, bounds.left, bounds.top, this.f40027c);
                     return;
                 }
                 return;
@@ -72,7 +72,7 @@ public final class p0 extends Drawable {
 
     @Override
     public final int getIntrinsicHeight() {
-        switch (this.f40034a) {
+        switch (this.f40025a) {
             case 0:
                 return AndroidUtilities.dp(24.0f);
             case 1:
@@ -84,7 +84,7 @@ public final class p0 extends Drawable {
 
     @Override
     public final int getIntrinsicWidth() {
-        switch (this.f40034a) {
+        switch (this.f40025a) {
             case 0:
                 return AndroidUtilities.dp(24.0f);
             case 1:
@@ -96,7 +96,7 @@ public final class p0 extends Drawable {
 
     @Override
     public final int getOpacity() {
-        switch (this.f40034a) {
+        switch (this.f40025a) {
             case 0:
                 return -2;
             case 1:
@@ -108,31 +108,31 @@ public final class p0 extends Drawable {
 
     @Override
     public final void setAlpha(int i10) {
-        switch (this.f40034a) {
+        switch (this.f40025a) {
             case 0:
             case 1:
                 return;
             default:
-                this.f40036c.setAlpha(i10);
+                this.f40027c.setAlpha(i10);
                 return;
         }
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        switch (this.f40034a) {
+        switch (this.f40025a) {
             case 0:
             case 1:
                 return;
             default:
-                this.f40036c.setColorFilter(colorFilter);
+                this.f40027c.setColorFilter(colorFilter);
                 return;
         }
     }
 
     public p0() {
-        this.f40034a = 2;
-        this.f40036c = new Paint(3);
+        this.f40025a = 2;
+        this.f40027c = new Paint(3);
     }
 
     private final void a(int i10) {

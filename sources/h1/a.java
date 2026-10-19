@@ -9,32 +9,32 @@ import org.telegram.ui.e01;
 import org.telegram.ui.qy0;
 import z4.g;
 public final class a extends DataSetObserver {
-    public final int f11618a;
-    public final Object f11619b;
+    public final int f11616a;
+    public final Object f11617b;
 
     public a(Object obj, int i10) {
-        this.f11618a = i10;
-        this.f11619b = obj;
+        this.f11616a = i10;
+        this.f11617b = obj;
     }
 
     @Override
     public final void onChanged() {
-        switch (this.f11618a) {
+        switch (this.f11616a) {
             case 0:
-                b3 b3Var = (b3) this.f11619b;
-                b3Var.f11620a = true;
+                b3 b3Var = (b3) this.f11617b;
+                b3Var.f11618a = true;
                 b3Var.notifyDataSetChanged();
                 return;
             case 1:
-                e2 e2Var = (e2) this.f11619b;
+                e2 e2Var = (e2) this.f11617b;
                 if (e2Var.O.isShowing()) {
                     e2Var.g();
                     return;
                 }
                 return;
             case 2:
-                e01 e01Var = (e01) this.f11619b;
-                ProfileActivity profileActivity = e01Var.f36487n;
+                e01 e01Var = (e01) this.f11617b;
+                ProfileActivity profileActivity = e01Var.f36478n;
                 int realCount = profileActivity.f33673o0.getRealCount();
                 if (profileActivity.B0 == 0 && realCount > 1 && realCount <= 20 && profileActivity.N.E) {
                     profileActivity.B0 = 1;
@@ -52,28 +52,28 @@ public final class a extends DataSetObserver {
                 }
                 return;
             default:
-                ((g) this.f11619b).f();
+                ((g) this.f11617b).f();
                 return;
         }
     }
 
     @Override
     public void onInvalidated() {
-        switch (this.f11618a) {
+        switch (this.f11616a) {
             case 0:
-                b3 b3Var = (b3) this.f11619b;
-                b3Var.f11620a = false;
+                b3 b3Var = (b3) this.f11617b;
+                b3Var.f11618a = false;
                 b3Var.notifyDataSetInvalidated();
                 return;
             case 1:
-                ((e2) this.f11619b).dismiss();
+                ((e2) this.f11617b).dismiss();
                 return;
             case 2:
             default:
                 super.onInvalidated();
                 return;
             case 3:
-                ((g) this.f11619b).f();
+                ((g) this.f11617b).f();
                 return;
         }
     }

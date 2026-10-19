@@ -1,33 +1,30 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
+import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-public final class p7 implements RequestDelegate {
-    public final int f19234a;
-    public final MediaDataController f19235b;
-    public final int f19236c;
+public final class p7 implements Utilities.Callback2 {
+    public final int f19247a;
+    public final MediaDataController f19248b;
+    public final String f19249c;
+    public final Utilities.Callback d;
 
-    public p7(MediaDataController mediaDataController, int i10, int i11) {
-        this.f19234a = i11;
-        this.f19235b = mediaDataController;
-        this.f19236c = i10;
+    public p7(MediaDataController mediaDataController, String str, Utilities.Callback callback, int i10) {
+        this.f19247a = i10;
+        this.f19248b = mediaDataController;
+        this.f19249c = str;
+        this.d = callback;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f19234a) {
+    public final void run(Object obj, Object obj2) {
+        Boolean bool = (Boolean) obj;
+        TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) obj2;
+        switch (this.f19247a) {
             case 0:
-                this.f19235b.lambda$loadArchivedStickersCount$72(this.f19236c, tLObject, tL_error);
-                return;
-            case 1:
-                this.f19235b.lambda$fetchEmojiStatuses$234(this.f19236c, tLObject, tL_error);
-                return;
-            case 2:
-                this.f19235b.lambda$loadRecents$50(this.f19236c, tLObject, tL_error);
+                this.f19248b.lambda$getStickerSet$32(this.f19249c, this.d, bool, tL_messages_stickerSet);
                 return;
             default:
-                this.f19235b.lambda$loadRecents$51(this.f19236c, tLObject, tL_error);
+                this.f19248b.lambda$getStickerSet$35(this.f19249c, this.d, bool, tL_messages_stickerSet);
                 return;
         }
     }

@@ -1,31 +1,31 @@
 package e2;
 public final class b implements Runnable {
-    public final int f8196a;
-    public final c f8197b;
-    public final Object f8198c;
+    public final int f8194a;
+    public final c f8195b;
+    public final Object f8196c;
 
     public b(c cVar, Object obj, int i10) {
-        this.f8196a = i10;
-        this.f8197b = cVar;
-        this.f8198c = obj;
+        this.f8194a = i10;
+        this.f8195b = cVar;
+        this.f8196c = obj;
     }
 
     @Override
     public final void run() {
-        switch (this.f8196a) {
+        switch (this.f8194a) {
             case 0:
-                c cVar = this.f8197b;
-                if (cVar.f8204a == 0) {
-                    cVar.n(this.f8198c);
+                c cVar = this.f8195b;
+                if (cVar.f8202a == 0) {
+                    cVar.n(this.f8196c);
                     return;
                 }
                 return;
             default:
-                c cVar2 = this.f8197b;
-                int i10 = cVar2.f8204a - 1;
-                cVar2.f8204a = i10;
+                c cVar2 = this.f8195b;
+                int i10 = cVar2.f8202a - 1;
+                cVar2.f8202a = i10;
                 if (i10 == 0) {
-                    cVar2.n(this.f8198c);
+                    cVar2.n(this.f8196c);
                     return;
                 }
                 return;

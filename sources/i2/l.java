@@ -3,13 +3,13 @@ package i2;
 import android.content.Context;
 import ci.p4;
 public class l {
-    public final Context f12473a;
-    public final k0.b f12474b;
-    public int f12475c = 0;
+    public final Context f12471a;
+    public final k0.b f12472b;
+    public int f12473c = 0;
 
     public l(Context context) {
-        this.f12473a = context;
-        this.f12474b = new k0.b(context);
+        this.f12471a = context;
+        this.f12472b = new k0.b(context);
     }
 
     public k2.t0 a(Context context) {

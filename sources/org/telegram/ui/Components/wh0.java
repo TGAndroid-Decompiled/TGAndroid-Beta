@@ -12,18 +12,18 @@ public final class wh0 {
     public static final wh0[] L;
     public static final wh0 d;
     public static final wh0 e;
-    public static final wh0 f32117f;
+    public static final wh0 f32115f;
     public static final wh0 h;
-    public static final wh0 f32118n;
-    public static final wh0 f32119r;
-    public static final wh0 f32120s;
+    public static final wh0 f32116n;
+    public static final wh0 f32117r;
+    public static final wh0 f32118s;
     public static final wh0 v;
-    public static final wh0 f32121w;
-    public static final wh0 f32122x;
-    public static final wh0 f32123y;
-    public final int f32124a;
-    public final int f32125b;
-    public final int f32126c;
+    public static final wh0 f32119w;
+    public static final wh0 f32120x;
+    public static final wh0 f32121y;
+    public final int f32122a;
+    public final int f32123b;
+    public final int f32124c;
 
     static {
         int i10 = R.string.ProfileActionsMessage;
@@ -34,25 +34,25 @@ public final class wh0 {
         wh0 wh0Var2 = new wh0("NOTIFICATION_MUTE", 1, R.string.ProfileButtonMute, R.drawable.filled_profile_mute_24, R.drawable.outline_profile_mute_24);
         e = wh0Var2;
         wh0 wh0Var3 = new wh0("NOTIFICATION_UNMUTE", 2, R.string.ProfileButtonUnmute, R.drawable.filled_profile_unmute_24, R.drawable.outline_profile_unmute_24);
-        f32117f = wh0Var3;
+        f32115f = wh0Var3;
         wh0 wh0Var4 = new wh0("DISCUSS", 3, R.string.ProfileActionsDiscuss, i11, i12);
         h = wh0Var4;
         wh0 wh0Var5 = new wh0("GIFT", 4, R.string.ProfileActionsGift, R.drawable.gift, R.drawable.input_gift_s);
-        f32118n = wh0Var5;
+        f32116n = wh0Var5;
         wh0 wh0Var6 = new wh0("SHARE", 5, R.string.ProfileActionsShare, R.drawable.action_share, R.drawable.msg_share);
-        f32119r = wh0Var6;
+        f32117r = wh0Var6;
         wh0 wh0Var7 = new wh0("CALL", 6, R.string.ProfileActionsCall, R.drawable.filled_profile_call_24, R.drawable.outline_profile_call_24);
-        f32120s = wh0Var7;
+        f32118s = wh0Var7;
         wh0 wh0Var8 = new wh0("VIDEO", 7, R.string.ProfileActionsVideo, R.drawable.filled_profile_video_24, R.drawable.outline_profile_video_24);
         v = wh0Var8;
         wh0 wh0Var9 = new wh0("JOIN", 8, R.string.ProfileActionsJoin, R.drawable.filled_profile_member_24, R.drawable.outline_profile_member_24);
-        f32121w = wh0Var9;
+        f32119w = wh0Var9;
         wh0 wh0Var10 = new wh0("REPORT", 9, R.string.ProfileActionsReport, R.drawable.report, R.drawable.msg_report);
-        f32122x = wh0Var10;
+        f32120x = wh0Var10;
         int i13 = R.string.ProfileActionsLeave;
         int i14 = R.drawable.leave;
         wh0 wh0Var11 = new wh0("LEAVE", 10, i13, i14, i14);
-        f32123y = wh0Var11;
+        f32121y = wh0Var11;
         int i15 = R.string.ProfileActionsVoiceChat;
         int i16 = R.drawable.live_stream;
         wh0 wh0Var12 = new wh0("VOICE_CHAT", 11, i15, i16, i16);
@@ -77,9 +77,9 @@ public final class wh0 {
     }
 
     public wh0(String str, int i10, int i11, int i12, int i13) {
-        this.f32124a = i11;
-        this.f32125b = i12;
-        this.f32126c = i13;
+        this.f32122a = i11;
+        this.f32123b = i12;
+        this.f32124c = i13;
     }
 
     public static wh0 valueOf(String str) {

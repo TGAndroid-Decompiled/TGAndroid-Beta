@@ -2,8 +2,8 @@ package c2;
 
 import v7.u6;
 public final class l {
-    public static final l f4518b = new l(0);
-    public final long f4519a;
+    public static final l f4516b = new l(0);
+    public final long f4517a;
 
     public l(long j10) {
         boolean z10;
@@ -13,6 +13,6 @@ public final class l {
             z10 = false;
         }
         u6.g(z10);
-        this.f4519a = j10;
+        this.f4517a = j10;
     }
 }

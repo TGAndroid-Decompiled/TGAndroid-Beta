@@ -12,26 +12,26 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.regex.Pattern;
 public class b implements Closeable, Flushable {
-    public static final Pattern f16838w = Pattern.compile("-?(?:0|[1-9][0-9]*)(?:\\.[0-9]+)?(?:[eE][-+]?[0-9]+)?");
-    public static final String[] f16839x = new String[128];
-    public static final String[] f16840y;
-    public final Writer f16841a;
-    public int[] f16842b;
-    public int f16843c;
+    public static final Pattern f16836w = Pattern.compile("-?(?:0|[1-9][0-9]*)(?:\\.[0-9]+)?(?:[eE][-+]?[0-9]+)?");
+    public static final String[] f16837x = new String[128];
+    public static final String[] f16838y;
+    public final Writer f16839a;
+    public int[] f16840b;
+    public int f16841c;
     public eb.c d;
     public String e;
-    public String f16844f;
+    public String f16842f;
     public boolean h;
-    public int f16845n;
-    public boolean f16846r;
-    public String f16847s;
+    public int f16843n;
+    public boolean f16844r;
+    public String f16845s;
     public boolean v;
 
     static {
         for (int i10 = 0; i10 <= 31; i10++) {
-            f16839x[i10] = String.format("\\u%04x", Integer.valueOf(i10));
+            f16837x[i10] = String.format("\\u%04x", Integer.valueOf(i10));
         }
-        String[] strArr = f16839x;
+        String[] strArr = f16837x;
         strArr[34] = "\\\"";
         strArr[92] = "\\\\";
         strArr[9] = "\\t";
@@ -40,7 +40,7 @@ public class b implements Closeable, Flushable {
         strArr[13] = "\\r";
         strArr[12] = "\\f";
         String[] strArr2 = (String[]) strArr.clone();
-        f16840y = strArr2;
+        f16838y = strArr2;
         strArr2[60] = "\\u003c";
         strArr2[62] = "\\u003e";
         strArr2[38] = "\\u0026";
@@ -50,88 +50,88 @@ public class b implements Closeable, Flushable {
 
     public b(Writer writer) {
         int[] iArr = new int[32];
-        this.f16842b = iArr;
-        this.f16843c = 0;
+        this.f16840b = iArr;
+        this.f16841c = 0;
         if (iArr.length == 0) {
-            this.f16842b = Arrays.copyOf(iArr, 0);
+            this.f16840b = Arrays.copyOf(iArr, 0);
         }
-        int[] iArr2 = this.f16842b;
-        int i10 = this.f16843c;
-        this.f16843c = i10 + 1;
+        int[] iArr2 = this.f16840b;
+        int i10 = this.f16841c;
+        this.f16841c = i10 + 1;
         iArr2[i10] = 6;
-        this.f16845n = 2;
+        this.f16843n = 2;
         this.v = true;
         Objects.requireNonNull(writer, "out == null");
-        this.f16841a = writer;
+        this.f16839a = writer;
         k(eb.c.d);
     }
 
     public final void a() {
         int j10 = j();
         if (j10 != 1) {
-            Writer writer = this.f16841a;
+            Writer writer = this.f16839a;
             if (j10 != 2) {
                 if (j10 != 4) {
                     if (j10 != 6) {
                         if (j10 == 7) {
-                            if (this.f16845n != 1) {
+                            if (this.f16843n != 1) {
                                 throw new IllegalStateException("JSON must have only one top-level value.");
                             }
                         } else {
                             throw new IllegalStateException("Nesting problem.");
                         }
                     }
-                    this.f16842b[this.f16843c - 1] = 7;
+                    this.f16840b[this.f16841c - 1] = 7;
                     return;
                 }
                 writer.append((CharSequence) this.e);
-                this.f16842b[this.f16843c - 1] = 5;
+                this.f16840b[this.f16841c - 1] = 5;
                 return;
             }
-            writer.append((CharSequence) this.f16844f);
+            writer.append((CharSequence) this.f16842f);
             h();
             return;
         }
-        this.f16842b[this.f16843c - 1] = 2;
+        this.f16840b[this.f16841c - 1] = 2;
         h();
     }
 
     public void b() {
         t();
         a();
-        int i10 = this.f16843c;
-        int[] iArr = this.f16842b;
+        int i10 = this.f16841c;
+        int[] iArr = this.f16840b;
         if (i10 == iArr.length) {
-            this.f16842b = Arrays.copyOf(iArr, i10 * 2);
+            this.f16840b = Arrays.copyOf(iArr, i10 * 2);
         }
-        int[] iArr2 = this.f16842b;
-        int i11 = this.f16843c;
-        this.f16843c = i11 + 1;
+        int[] iArr2 = this.f16840b;
+        int i11 = this.f16841c;
+        this.f16841c = i11 + 1;
         iArr2[i11] = 1;
-        this.f16841a.write(91);
+        this.f16839a.write(91);
     }
 
     public void c() {
         t();
         a();
-        int i10 = this.f16843c;
-        int[] iArr = this.f16842b;
+        int i10 = this.f16841c;
+        int[] iArr = this.f16840b;
         if (i10 == iArr.length) {
-            this.f16842b = Arrays.copyOf(iArr, i10 * 2);
+            this.f16840b = Arrays.copyOf(iArr, i10 * 2);
         }
-        int[] iArr2 = this.f16842b;
-        int i11 = this.f16843c;
-        this.f16843c = i11 + 1;
+        int[] iArr2 = this.f16840b;
+        int i11 = this.f16841c;
+        this.f16841c = i11 + 1;
         iArr2[i11] = 3;
-        this.f16841a.write(123);
+        this.f16839a.write(123);
     }
 
     @Override
     public void close() {
-        this.f16841a.close();
-        int i10 = this.f16843c;
-        if (i10 <= 1 && (i10 != 1 || this.f16842b[i10 - 1] == 7)) {
-            this.f16843c = 0;
+        this.f16839a.close();
+        int i10 = this.f16841c;
+        if (i10 <= 1 && (i10 != 1 || this.f16840b[i10 - 1] == 7)) {
+            this.f16841c = 0;
             return;
         }
         throw new IOException("Incomplete document");
@@ -142,15 +142,15 @@ public class b implements Closeable, Flushable {
         if (j10 != i11 && j10 != i10) {
             throw new IllegalStateException("Nesting problem.");
         }
-        if (this.f16847s == null) {
-            this.f16843c--;
+        if (this.f16845s == null) {
+            this.f16841c--;
             if (j10 == i11) {
                 h();
             }
-            this.f16841a.write(c10);
+            this.f16839a.write(c10);
             return;
         }
-        throw new IllegalStateException("Dangling name: " + this.f16847s);
+        throw new IllegalStateException("Dangling name: " + this.f16845s);
     }
 
     public void e() {
@@ -162,8 +162,8 @@ public class b implements Closeable, Flushable {
     }
 
     public void flush() {
-        if (this.f16843c != 0) {
-            this.f16841a.flush();
+        if (this.f16841c != 0) {
+            this.f16839a.flush();
             return;
         }
         throw new IllegalStateException("JsonWriter is closed.");
@@ -171,12 +171,12 @@ public class b implements Closeable, Flushable {
 
     public void g(String str) {
         Objects.requireNonNull(str, "name == null");
-        if (this.f16847s == null) {
+        if (this.f16845s == null) {
             int j10 = j();
             if (j10 != 3 && j10 != 5) {
                 throw new IllegalStateException("Please begin an object before writing a name.");
             }
-            this.f16847s = str;
+            this.f16845s = str;
             return;
         }
         throw new IllegalStateException("Already wrote a name, expecting a value.");
@@ -184,34 +184,34 @@ public class b implements Closeable, Flushable {
 
     public final void h() {
         if (!this.h) {
-            String str = this.d.f8560a;
-            Writer writer = this.f16841a;
+            String str = this.d.f8558a;
+            Writer writer = this.f16839a;
             writer.write(str);
-            int i10 = this.f16843c;
+            int i10 = this.f16841c;
             for (int i11 = 1; i11 < i10; i11++) {
-                writer.write(this.d.f8561b);
+                writer.write(this.d.f8559b);
             }
         }
     }
 
     public b i() {
-        if (this.f16847s != null) {
+        if (this.f16845s != null) {
             if (this.v) {
                 t();
             } else {
-                this.f16847s = null;
+                this.f16845s = null;
                 return this;
             }
         }
         a();
-        this.f16841a.write("null");
+        this.f16839a.write("null");
         return this;
     }
 
     public final int j() {
-        int i10 = this.f16843c;
+        int i10 = this.f16841c;
         if (i10 != 0) {
-            return this.f16842b[i10 - 1];
+            return this.f16840b[i10 - 1];
         }
         throw new IllegalStateException("JsonWriter is closed.");
     }
@@ -220,16 +220,16 @@ public class b implements Closeable, Flushable {
         boolean z10;
         Objects.requireNonNull(cVar);
         this.d = cVar;
-        this.f16844f = ",";
-        if (cVar.f8562c) {
+        this.f16842f = ",";
+        if (cVar.f8560c) {
             this.e = ": ";
-            if (cVar.f8560a.isEmpty()) {
-                this.f16844f = ", ";
+            if (cVar.f8558a.isEmpty()) {
+                this.f16842f = ", ";
             }
         } else {
             this.e = ":";
         }
-        if (this.d.f8560a.isEmpty() && this.d.f8561b.isEmpty()) {
+        if (this.d.f8558a.isEmpty() && this.d.f8559b.isEmpty()) {
             z10 = true;
         } else {
             z10 = false;
@@ -239,7 +239,7 @@ public class b implements Closeable, Flushable {
 
     public final void l(int i10) {
         if (i10 != 0) {
-            this.f16845n = i10;
+            this.f16843n = i10;
             return;
         }
         throw null;
@@ -251,17 +251,17 @@ public class b implements Closeable, Flushable {
 
     public void n(double d) {
         t();
-        if (this.f16845n != 1 && (Double.isNaN(d) || Double.isInfinite(d))) {
+        if (this.f16843n != 1 && (Double.isNaN(d) || Double.isInfinite(d))) {
             throw new IllegalArgumentException("Numeric values must be finite, but was " + d);
         }
         a();
-        this.f16841a.append((CharSequence) Double.toString(d));
+        this.f16839a.append((CharSequence) Double.toString(d));
     }
 
     public void o(long j10) {
         t();
         a();
-        this.f16841a.write(Long.toString(j10));
+        this.f16839a.write(Long.toString(j10));
     }
 
     public void p(Boolean bool) {
@@ -277,7 +277,7 @@ public class b implements Closeable, Flushable {
         } else {
             str = "false";
         }
-        this.f16841a.write(str);
+        this.f16839a.write(str);
     }
 
     public void q(Number number) {
@@ -289,14 +289,14 @@ public class b implements Closeable, Flushable {
         String obj = number.toString();
         if (!obj.equals("-Infinity") && !obj.equals("Infinity") && !obj.equals("NaN")) {
             Class<?> cls = number.getClass();
-            if (cls != Integer.class && cls != Long.class && cls != Double.class && cls != Float.class && cls != Byte.class && cls != Short.class && cls != BigDecimal.class && cls != BigInteger.class && cls != AtomicInteger.class && cls != AtomicLong.class && !f16838w.matcher(obj).matches()) {
+            if (cls != Integer.class && cls != Long.class && cls != Double.class && cls != Float.class && cls != Byte.class && cls != Short.class && cls != BigDecimal.class && cls != BigInteger.class && cls != AtomicInteger.class && cls != AtomicLong.class && !f16836w.matcher(obj).matches()) {
                 throw new IllegalArgumentException("String created by " + cls + " is not a valid JSON number: " + obj);
             }
-        } else if (this.f16845n != 1) {
+        } else if (this.f16843n != 1) {
             throw new IllegalArgumentException("Numeric values must be finite, but was ".concat(obj));
         }
         a();
-        this.f16841a.append((CharSequence) obj);
+        this.f16839a.append((CharSequence) obj);
     }
 
     public void r(String str) {
@@ -318,21 +318,21 @@ public class b implements Closeable, Flushable {
         } else {
             str = "false";
         }
-        this.f16841a.write(str);
+        this.f16839a.write(str);
     }
 
     public final void t() {
-        if (this.f16847s != null) {
+        if (this.f16845s != null) {
             int j10 = j();
             if (j10 == 5) {
-                this.f16841a.write(this.f16844f);
+                this.f16839a.write(this.f16842f);
             } else if (j10 != 3) {
                 throw new IllegalStateException("Nesting problem.");
             }
             h();
-            this.f16842b[this.f16843c - 1] = 4;
-            m(this.f16847s);
-            this.f16847s = null;
+            this.f16840b[this.f16841c - 1] = 4;
+            m(this.f16845s);
+            this.f16845s = null;
         }
     }
 }

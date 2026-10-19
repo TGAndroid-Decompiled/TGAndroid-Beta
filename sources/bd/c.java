@@ -14,7 +14,7 @@ public final class c extends h {
             return null;
         }
         ?? pVar = new p();
-        pVar.f4258g = k3.j(2, 2, a2);
+        pVar.f4256g = k3.j(2, 2, a2);
         return pVar;
     }
 

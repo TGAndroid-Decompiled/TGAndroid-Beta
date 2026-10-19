@@ -1,62 +1,189 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
 import android.graphics.RectF;
-import android.util.SparseArray;
+import android.graphics.drawable.Drawable;
 import android.view.View;
-import org.telegram.messenger.SharedConfig;
-public final class jg0 implements bh.h {
-    public final mg0 f38247a;
+import java.io.File;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.UserConfig;
+import org.telegram.tgnet.tl.TL_wallet;
+public final class jg0 implements Comparator {
+    public final int f38248a;
 
-    public jg0(mg0 mg0Var) {
-        this.f38247a = mg0Var;
+    public jg0(int i10) {
+        this.f38248a = i10;
     }
 
     @Override
-    public void J(bh.a aVar) {
-        mg0 mg0Var = this.f38247a;
-        RectF rectF = mg0Var.T;
-        aVar.a(mg0Var.getThemedColor(org.telegram.ui.ActionBar.h6.f20989d6));
-        aVar.b(SharedConfig.chatBlurEnabled());
-        SparseArray sparseArray = mg0Var.f39886a;
-        int size = sparseArray.size();
-        for (int i10 = 0; i10 < size; i10++) {
-            org.telegram.ui.ActionBar.n2 n2Var = ((mg1) sparseArray.valueAt(i10)).f39269a;
-            View view = n2Var.fragmentView;
-            if (view != null && ih.j.c(view, mg0Var.f39887b, rectF) && rectF.right > 0.0f && rectF.left < mg0Var.fragmentView.getMeasuredWidth() && (n2Var instanceof lg0) && ((lg0) n2Var).z() != null) {
-                aVar.c(rectF.left);
-                aVar.c(rectF.top);
-                aVar.a(n2Var.getClassGuid());
-            }
-        }
-    }
-
-    @Override
-    public void b(Canvas canvas) {
-        gh.d z10;
-        Canvas canvas2;
-        mg0 mg0Var = this.f38247a;
-        RectF rectF = mg0Var.T;
-        int measuredWidth = mg0Var.fragmentView.getMeasuredWidth();
-        int measuredHeight = mg0Var.fragmentView.getMeasuredHeight();
-        canvas.drawColor(mg0Var.getThemedColor(org.telegram.ui.ActionBar.h6.f20989d6));
-        SparseArray sparseArray = mg0Var.f39886a;
-        int size = sparseArray.size();
-        int i10 = 0;
-        while (i10 < size) {
-            org.telegram.ui.ActionBar.n2 n2Var = ((mg1) sparseArray.valueAt(i10)).f39269a;
-            View view = n2Var.fragmentView;
-            if (view == null || !ih.j.c(view, mg0Var.f39887b, rectF) || rectF.right <= 0.0f || rectF.left >= mg0Var.fragmentView.getMeasuredWidth() || !(n2Var instanceof lg0) || (z10 = ((lg0) n2Var).z()) == null) {
-                canvas2 = canvas;
-            } else {
-                canvas.save();
-                canvas.translate(rectF.left, rectF.top);
-                canvas2 = canvas;
-                z10.y(canvas2, 0.0f, 0.0f, measuredWidth, measuredHeight);
-                canvas2.restore();
-            }
-            i10++;
-            canvas = canvas2;
+    public final int compare(Object obj, Object obj2) {
+        int i10;
+        int i11;
+        e9.v1 a2;
+        switch (this.f38248a) {
+            case 0:
+                int i12 = (UserConfig.getInstance(((Integer) obj).intValue()).loginTime > UserConfig.getInstance(((Integer) obj2).intValue()).loginTime ? 1 : (UserConfig.getInstance(((Integer) obj).intValue()).loginTime == UserConfig.getInstance(((Integer) obj2).intValue()).loginTime ? 0 : -1));
+                if (i12 > 0) {
+                    return 1;
+                }
+                if (i12 < 0) {
+                    return -1;
+                }
+                return 0;
+            case 1:
+                int i13 = (UserConfig.getInstance(((Integer) obj).intValue()).loginTime > UserConfig.getInstance(((Integer) obj2).intValue()).loginTime ? 1 : (UserConfig.getInstance(((Integer) obj).intValue()).loginTime == UserConfig.getInstance(((Integer) obj2).intValue()).loginTime ? 0 : -1));
+                if (i13 > 0) {
+                    return 1;
+                }
+                if (i13 < 0) {
+                    return -1;
+                }
+                return 0;
+            case 2:
+                return ((String) obj).compareTo((String) obj2);
+            case 3:
+                Drawable[] drawableArr = PhotoViewer.U8;
+                return ((MessageObject) obj).getId() - ((MessageObject) obj2).getId();
+            case 4:
+                return (int) (((View) obj).getY() - ((View) obj2).getY());
+            case 5:
+                if (obj instanceof l01) {
+                    i10 = ((l01) obj).f38710g;
+                } else if (obj instanceof MessagesController.FaqSearchResult) {
+                    i10 = ((MessagesController.FaqSearchResult) obj).num;
+                } else {
+                    i10 = 0;
+                }
+                if (obj2 instanceof l01) {
+                    i11 = ((l01) obj2).f38710g;
+                } else if (obj2 instanceof MessagesController.FaqSearchResult) {
+                    i11 = ((MessagesController.FaqSearchResult) obj2).num;
+                } else {
+                    i11 = 0;
+                }
+                if (i10 < i11) {
+                    return -1;
+                }
+                if (i10 > i11) {
+                    return 1;
+                }
+                return 0;
+            case 6:
+                int i14 = (UserConfig.getInstance(((Integer) obj).intValue()).loginTime > UserConfig.getInstance(((Integer) obj2).intValue()).loginTime ? 1 : (UserConfig.getInstance(((Integer) obj).intValue()).loginTime == UserConfig.getInstance(((Integer) obj2).intValue()).loginTime ? 0 : -1));
+                if (i14 > 0) {
+                    return 1;
+                }
+                if (i14 < 0) {
+                    return -1;
+                }
+                return 0;
+            case 7:
+                return Integer.compare(((org.telegram.ui.ActionBar.g6) obj).V, ((org.telegram.ui.ActionBar.g6) obj2).V);
+            case 8:
+                int i15 = (UserConfig.getInstance(((Integer) obj).intValue()).loginTime > UserConfig.getInstance(((Integer) obj2).intValue()).loginTime ? 1 : (UserConfig.getInstance(((Integer) obj).intValue()).loginTime == UserConfig.getInstance(((Integer) obj2).intValue()).loginTime ? 0 : -1));
+                if (i15 > 0) {
+                    return 1;
+                }
+                if (i15 < 0) {
+                    return -1;
+                }
+                return 0;
+            case 9:
+                return Integer.compare(((org.telegram.ui.Wallet.i0) obj2).f34309b, ((org.telegram.ui.Wallet.i0) obj).f34309b);
+            case 10:
+                return Integer.compare(((TL_wallet.walletTransaction) obj2).date, ((TL_wallet.walletTransaction) obj).date);
+            case 11:
+                int i16 = (UserConfig.getInstance(((Integer) obj).intValue()).loginTime > UserConfig.getInstance(((Integer) obj2).intValue()).loginTime ? 1 : (UserConfig.getInstance(((Integer) obj).intValue()).loginTime == UserConfig.getInstance(((Integer) obj2).intValue()).loginTime ? 0 : -1));
+                if (i16 > 0) {
+                    return 1;
+                }
+                if (i16 < 0) {
+                    return -1;
+                }
+                return 0;
+            case 12:
+                return (int) (((org.telegram.ui.web.j) obj2).f42678c - ((org.telegram.ui.web.j) obj).f42678c);
+            case 13:
+                return (int) (((org.telegram.ui.web.j) obj2).f42678c - ((org.telegram.ui.web.j) obj).f42678c);
+            case 14:
+                return ((p2.f) obj).f43940a.compareTo(((p2.f) obj2).f43940a);
+            case 15:
+                return (int) ((((sg.p1) obj).f46368a * 100.0f) - (((sg.p1) obj2).f46368a * 100.0f));
+            case 16:
+                return ((String) obj).compareTo((String) obj2);
+            case 17:
+                return ((b2.w) obj2).f4119j - ((b2.w) obj).f4119j;
+            case 18:
+                Integer num = (Integer) obj;
+                Integer num2 = (Integer) obj2;
+                if (num.intValue() == -1) {
+                    if (num2.intValue() != -1) {
+                        return -1;
+                    }
+                    return 0;
+                } else if (num2.intValue() == -1) {
+                    return 1;
+                } else {
+                    return num.intValue() - num2.intValue();
+                }
+            case 19:
+                return Integer.compare(((x2.f) ((List) obj).get(0)).f49140f, ((x2.f) ((List) obj2).get(0)).f49140f);
+            case 20:
+                List list = (List) obj;
+                List list2 = (List) obj2;
+                return e9.z.f(x2.m.c((x2.m) Collections.max(list, new jg0(23)), (x2.m) Collections.max(list2, new jg0(23)))).a(list.size(), list2.size()).b((x2.m) Collections.max(list, new jg0(24)), (x2.m) Collections.max(list2, new jg0(24)), new jg0(24)).e();
+            case 21:
+                return ((x2.e) Collections.max((List) obj)).compareTo((x2.e) Collections.max((List) obj2));
+            case 22:
+                return ((x2.j) ((List) obj).get(0)).compareTo((x2.j) ((List) obj2).get(0));
+            case 23:
+                return x2.m.c((x2.m) obj, (x2.m) obj2);
+            case 24:
+                x2.m mVar = (x2.m) obj;
+                x2.m mVar2 = (x2.m) obj2;
+                boolean z10 = mVar.e;
+                int i17 = mVar.f49160s;
+                if (z10 && mVar.f49158n) {
+                    a2 = x2.n.f49164l;
+                } else {
+                    a2 = x2.n.f49164l.a();
+                }
+                boolean z11 = mVar.f49157f.F;
+                e9.b0 b0Var = e9.b0.f8415a;
+                if (z11) {
+                    b0Var = b0Var.b(Integer.valueOf(i17), Integer.valueOf(mVar2.f49160s), x2.n.f49164l.a());
+                }
+                e9.b0 b10 = b0Var.c(mVar.O, mVar2.O).b(Integer.valueOf(mVar.v), Integer.valueOf(mVar2.v), a2);
+                if (mVar.K && mVar.M) {
+                    b10 = b10.a(mVar.N, mVar2.N);
+                }
+                return b10.c(mVar.L, mVar2.L).b(Integer.valueOf(i17), Integer.valueOf(mVar2.f49160s), a2).e();
+            case 25:
+                return Long.compare(((File) obj2).lastModified(), ((File) obj).lastModified());
+            case 26:
+                return ((z9.d0) ((z9.h1) obj)).f51342a.compareTo(((z9.d0) ((z9.h1) obj2)).f51342a);
+            case 27:
+                return ((y2.p) obj).f49933a - ((y2.p) obj2).f49933a;
+            case 28:
+                return Float.compare(((y2.p) obj).f49935c, ((y2.p) obj2).f49935c);
+            default:
+                RectF rectF = (RectF) obj;
+                RectF rectF2 = (RectF) obj2;
+                if (Math.abs(rectF.top - rectF2.top) > 1.0E-4f) {
+                    if (rectF.top < rectF2.top) {
+                        return -1;
+                    }
+                } else if (Math.abs(rectF.left - rectF2.left) <= 1.0E-4f) {
+                    return 0;
+                } else {
+                    if (rectF.left < rectF2.left) {
+                        return -1;
+                    }
+                }
+                return 1;
         }
     }
 }

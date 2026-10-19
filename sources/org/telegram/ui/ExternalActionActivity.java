@@ -72,11 +72,11 @@ public class ExternalActionActivity extends Activity implements org.telegram.ui.
                     this.v = z11;
                     this.f33131r = i10;
                     this.f33132s = i11;
-                    cg0 cg0Var = new cg0();
+                    dg0 dg0Var = new dg0();
                     if (AndroidUtilities.isTablet()) {
-                        this.d.c(-1, cg0Var);
+                        this.d.c(-1, dg0Var);
                     } else {
-                        this.f33128c.c(-1, cg0Var);
+                        this.f33128c.c(-1, dg0Var);
                     }
                     if (!AndroidUtilities.isTablet()) {
                         this.e.setVisibility(8);
@@ -86,8 +86,8 @@ public class ExternalActionActivity extends Activity implements org.telegram.ui.
                         this.d.c0();
                     }
                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(this);
-                    alertDialog$Builder.f20604a.R = LocaleController.getString(R.string.AppName);
-                    alertDialog$Builder.f20604a.T = LocaleController.getString(R.string.PleaseLoginPassport);
+                    alertDialog$Builder.f20602a.R = LocaleController.getString(R.string.AppName);
+                    alertDialog$Builder.f20602a.T = LocaleController.getString(R.string.PleaseLoginPassport);
                     org.telegram.messenger.g0.p(R.string.OK, alertDialog$Builder, null);
                     return;
                 } else if (activatedAccountsCount >= 2) {
@@ -206,7 +206,7 @@ public class ExternalActionActivity extends Activity implements org.telegram.ui.
             return;
         }
         SharedConfig.appLocked = true;
-        if (SecretMediaViewer.g() && SecretMediaViewer.f().f33815s) {
+        if (SecretMediaViewer.g() && SecretMediaViewer.f().f33817s) {
             SecretMediaViewer.f().e(false, false);
         } else if (PhotoViewer.D1() && PhotoViewer.t1().R1()) {
             PhotoViewer.t1().G0(false, true);
@@ -245,7 +245,7 @@ public class ExternalActionActivity extends Activity implements org.telegram.ui.
 
     @Override
     public final boolean l(ActionBarLayout actionBarLayout, org.telegram.ui.ActionBar.b5 b5Var) {
-        org.telegram.ui.ActionBar.n2 n2Var = b5Var.f20703a;
+        org.telegram.ui.ActionBar.n2 n2Var = b5Var.f20701a;
         return true;
     }
 

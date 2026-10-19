@@ -1,38 +1,31 @@
 package org.telegram.messenger;
-public final class a7 implements Runnable {
-    public final int f17846a;
-    public final MediaDataController f17847b;
-    public final String f17848c;
 
-    public a7(MediaDataController mediaDataController, String str, int i10) {
-        this.f17846a = i10;
-        this.f17847b = mediaDataController;
-        this.f17848c = str;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class a7 implements RequestDelegate {
+    public final int f17847a;
+    public final int f17848b;
+    public final String f17849c;
+    public final String d;
+    public final BaseController e;
+
+    public a7(BaseController baseController, int i10, String str, String str2, int i11) {
+        this.f17847a = i11;
+        this.e = baseController;
+        this.f17848b = i10;
+        this.f17849c = str;
+        this.d = str2;
     }
 
     @Override
-    public final void run() {
-        switch (this.f17846a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f17847a) {
             case 0:
-                MediaDataController.h3(this.f17847b, this.f17848c);
-                return;
-            case 1:
-                MediaDataController.x1(this.f17847b, this.f17848c);
-                return;
-            case 2:
-                MediaDataController.Y0(this.f17847b, this.f17848c);
-                return;
-            case 3:
-                MediaDataController.e1(this.f17847b, this.f17848c);
-                return;
-            case 4:
-                MediaDataController.E(this.f17847b, this.f17848c);
-                return;
-            case 5:
-                MediaDataController.U0(this.f17847b, this.f17848c);
+                ((MediaDataController) this.e).lambda$fetchNewEmojiKeywords$213(this.f17848b, this.f17849c, this.d, tLObject, tL_error);
                 return;
             default:
-                MediaDataController.l(this.f17847b, this.f17848c);
+                ((MessagesController) this.e).lambda$checkPromoInfoInternal$168(this.f17848b, this.f17849c, this.d, tLObject, tL_error);
                 return;
         }
     }

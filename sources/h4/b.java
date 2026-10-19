@@ -13,13 +13,13 @@ import z3.d;
 import z3.m;
 public final class b implements m {
     public static final z3.a e;
-    public final x f11673a = new x();
-    public final x f11674b = new x();
-    public final a f11675c;
+    public final x f11671a = new x();
+    public final x f11672b = new x();
+    public final a f11673c;
     public Inflater d;
 
     static {
-        l0 l0Var = n0.f8476b;
+        l0 l0Var = n0.f8474b;
         e = new z3.a(-9223372036854775807L, -9223372036854775807L, x1.e);
     }
 
@@ -27,15 +27,15 @@ public final class b implements m {
         String[] split;
         int i10;
         a aVar = new a();
-        this.f11675c = aVar;
+        this.f11673c = aVar;
         String trim = new String((byte[]) list.get(0), StandardCharsets.UTF_8).trim();
-        String str = m0.f8254a;
+        String str = m0.f8252a;
         for (String str2 : trim.split("\\r?\\n", -1)) {
             if (str2.startsWith("palette: ")) {
                 String[] split2 = str2.substring(9).split(",", -1);
-                aVar.f11668f = new int[split2.length];
+                aVar.f11666f = new int[split2.length];
                 for (int i11 = 0; i11 < split2.length; i11++) {
-                    int[] iArr = aVar.f11668f;
+                    int[] iArr = aVar.f11666f;
                     try {
                         i10 = Integer.parseInt(split2[i11].trim(), 16);
                     } catch (RuntimeException e7) {
@@ -50,7 +50,7 @@ public final class b implements m {
                     e2.a.l("VobsubParser", "Ignoring malformed IDX size line: '" + str2 + "'");
                 } else {
                     try {
-                        aVar.f11669g = Integer.parseInt(split3[0]);
+                        aVar.f11667g = Integer.parseInt(split3[0]);
                         aVar.h = Integer.parseInt(split3[1]);
                         aVar.d = true;
                     } catch (RuntimeException e10) {

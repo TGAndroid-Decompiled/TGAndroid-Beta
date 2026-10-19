@@ -20,20 +20,20 @@ public final class rf0 extends FrameLayout {
     public boolean K;
     public qf0 L;
     public int M;
-    public PointF f29935a;
-    public float f29936b;
-    public float f29937c;
+    public PointF f29932a;
+    public float f29933b;
+    public float f29934c;
     public ew0 d;
     public PointF e;
-    public float f29938f;
+    public float f29935f;
     public float h;
-    public float f29939n;
-    public RectF f29940r;
-    public float f29941s;
+    public float f29936n;
+    public RectF f29937r;
+    public float f29938s;
     public float v;
-    public float f29942w;
-    public float f29943x;
-    public boolean f29944y;
+    public float f29939w;
+    public float f29940x;
+    public boolean f29941y;
 
     public static float a(float f7) {
         return (f7 * 3.1415927f) / 180.0f;
@@ -53,7 +53,7 @@ public final class rf0 extends FrameLayout {
     private PointF getActualCenterPoint() {
         int i10;
         ew0 ew0Var = this.d;
-        float f7 = ew0Var.f26040a;
+        float f7 = ew0Var.f26038a;
         float width = (this.e.x * f7) + ((getWidth() - f7) / 2.0f);
         if (!this.K) {
             i10 = AndroidUtilities.statusBarHeight;
@@ -61,20 +61,20 @@ public final class rf0 extends FrameLayout {
             i10 = 0;
         }
         float height = getHeight();
-        float f10 = ew0Var.f26041b;
+        float f10 = ew0Var.f26039b;
         float z10 = com.google.android.gms.internal.play_billing.k3.z(height, f10, 2.0f, i10);
-        float f11 = ew0Var.f26040a;
+        float f11 = ew0Var.f26038a;
         return new PointF(width, (this.e.y * f11) + org.telegram.messenger.g0.x(f11, f10, 2.0f, z10));
     }
 
     private float getActualInnerRadius() {
         ew0 ew0Var = this.d;
-        return Math.min(ew0Var.f26040a, ew0Var.f26041b) * this.f29938f;
+        return Math.min(ew0Var.f26038a, ew0Var.f26039b) * this.f29935f;
     }
 
     private float getActualOuterRadius() {
         ew0 ew0Var = this.d;
-        return Math.min(ew0Var.f26040a, ew0Var.f26041b) * this.h;
+        return Math.min(ew0Var.f26038a, ew0Var.f26039b) * this.h;
     }
 
     public final void c(int i10, MotionEvent motionEvent) {
@@ -93,10 +93,10 @@ public final class rf0 extends FrameLayout {
         float f11 = y3 - actualCenterPoint.y;
         float sqrt = (float) Math.sqrt((f11 * f11) + (f10 * f10));
         ew0 ew0Var = this.d;
-        float min = Math.min(ew0Var.f26040a, ew0Var.f26041b);
-        float f12 = this.f29938f * min;
+        float min = Math.min(ew0Var.f26038a, ew0Var.f26039b);
+        float f12 = this.f29935f * min;
         float f13 = this.h * min;
-        float abs = (float) Math.abs((Math.sin(a(this.f29939n) + 1.5707963267948966d) * f11) + (Math.cos(a(this.f29939n) + 1.5707963267948966d) * f10));
+        float abs = (float) Math.abs((Math.sin(a(this.f29936n) + 1.5707963267948966d) * f11) + (Math.cos(a(this.f29936n) + 1.5707963267948966d) * f10));
         float f14 = 0.0f;
         if (i10 != 1) {
             if (i10 != 2) {
@@ -113,7 +113,7 @@ public final class rf0 extends FrameLayout {
                     if (c10 != 2) {
                         if (c10 != 3) {
                             if (c10 == 5) {
-                                float f15 = x10 - this.f29941s;
+                                float f15 = x10 - this.f29938s;
                                 float f16 = y3 - this.v;
                                 if (x10 > actualCenterPoint.x) {
                                     z10 = true;
@@ -135,73 +135,73 @@ public final class rf0 extends FrameLayout {
                                 } else {
                                     i13 = 0;
                                 }
-                                this.f29939n = (((((float) Math.sqrt((f16 * f16) + (f15 * f15))) * ((i13 * 2) - 1)) / 3.1415927f) / 1.15f) + this.f29939n;
-                                this.f29941s = x10;
+                                this.f29936n = (((((float) Math.sqrt((f16 * f16) + (f15 * f15))) * ((i13 * 2) - 1)) / 3.1415927f) / 1.15f) + this.f29936n;
+                                this.f29938s = x10;
                                 this.v = y3;
                             }
                         } else {
-                            this.h = Math.max(this.f29938f + 0.02f, (this.f29937c + (abs - this.f29936b)) / min);
+                            this.h = Math.max(this.f29935f + 0.02f, (this.f29934c + (abs - this.f29933b)) / min);
                         }
                     } else {
-                        this.f29938f = Math.min(Math.max(0.1f, (this.f29937c + (abs - this.f29936b)) / min), this.h - 0.02f);
+                        this.f29935f = Math.min(Math.max(0.1f, (this.f29934c + (abs - this.f29933b)) / min), this.h - 0.02f);
                     }
                 } else {
-                    float f17 = x10 - this.f29941s;
+                    float f17 = x10 - this.f29938s;
                     float f18 = y3 - this.v;
-                    float width = (getWidth() - ew0Var.f26040a) / 2.0f;
+                    float width = (getWidth() - ew0Var.f26038a) / 2.0f;
                     if (!z13) {
                         i12 = AndroidUtilities.statusBarHeight;
                     } else {
                         i12 = 0;
                     }
                     float height = getHeight();
-                    float f19 = ew0Var.f26041b;
+                    float f19 = ew0Var.f26039b;
                     float z14 = com.google.android.gms.internal.play_billing.k3.z(height, f19, 2.0f, i12);
-                    PointF pointF = new PointF(Math.max(width, Math.min(ew0Var.f26040a + width, this.f29935a.x + f17)), Math.max(z14, Math.min(f19 + z14, this.f29935a.y + f18)));
+                    PointF pointF = new PointF(Math.max(width, Math.min(ew0Var.f26038a + width, this.f29932a.x + f17)), Math.max(z14, Math.min(f19 + z14, this.f29932a.y + f18)));
                     float f20 = pointF.x - width;
-                    float f21 = ew0Var.f26040a;
-                    this.e = new PointF(f20 / f21, (((f21 - ew0Var.f26041b) / 2.0f) + (pointF.y - z14)) / f21);
+                    float f21 = ew0Var.f26038a;
+                    this.e = new PointF(f20 / f21, (((f21 - ew0Var.f26039b) / 2.0f) + (pointF.y - z14)) / f21);
                 }
             } else if (i14 == 1) {
                 int c11 = m1.j.c(this.M);
                 if (c11 != 1) {
                     if (c11 != 2) {
                         if (c11 == 3) {
-                            this.h = Math.max(this.f29938f + 0.02f, (this.f29937c + (sqrt - this.f29936b)) / min);
+                            this.h = Math.max(this.f29935f + 0.02f, (this.f29934c + (sqrt - this.f29933b)) / min);
                         }
                     } else {
-                        this.f29938f = Math.min(Math.max(0.1f, (this.f29937c + (sqrt - this.f29936b)) / min), this.h - 0.02f);
+                        this.f29935f = Math.min(Math.max(0.1f, (this.f29934c + (sqrt - this.f29933b)) / min), this.h - 0.02f);
                     }
                 } else {
-                    float f22 = x10 - this.f29941s;
+                    float f22 = x10 - this.f29938s;
                     float f23 = y3 - this.v;
-                    float width2 = (getWidth() - ew0Var.f26040a) / 2.0f;
+                    float width2 = (getWidth() - ew0Var.f26038a) / 2.0f;
                     if (!z13) {
                         i11 = AndroidUtilities.statusBarHeight;
                     } else {
                         i11 = 0;
                     }
                     float height2 = getHeight();
-                    float f24 = ew0Var.f26041b;
+                    float f24 = ew0Var.f26039b;
                     float z15 = com.google.android.gms.internal.play_billing.k3.z(height2, f24, 2.0f, i11);
-                    PointF pointF2 = new PointF(Math.max(width2, Math.min(ew0Var.f26040a + width2, this.f29935a.x + f22)), Math.max(z15, Math.min(f24 + z15, this.f29935a.y + f23)));
+                    PointF pointF2 = new PointF(Math.max(width2, Math.min(ew0Var.f26038a + width2, this.f29932a.x + f22)), Math.max(z15, Math.min(f24 + z15, this.f29932a.y + f23)));
                     float f25 = pointF2.x - width2;
-                    float f26 = ew0Var.f26040a;
-                    this.e = new PointF(f25 / f26, (((f26 - ew0Var.f26041b) / 2.0f) + (pointF2.y - z15)) / f26);
+                    float f26 = ew0Var.f26038a;
+                    this.e = new PointF(f25 / f26, (((f26 - ew0Var.f26039b) / 2.0f) + (pointF2.y - z15)) / f26);
                 }
             }
             invalidate();
             qf0 qf0Var = this.L;
             if (qf0Var != null) {
                 PointF pointF3 = this.e;
-                float f27 = this.f29938f;
+                float f27 = this.f29935f;
                 float f28 = this.h;
-                cg0 cg0Var = ((uf0) qf0Var).f30952a;
-                cg0Var.f25183a0 = f28;
-                cg0Var.f25185b0 = pointF3;
-                cg0Var.f25187c0 = f27;
-                cg0Var.f25188d0 = a(this.f29939n) + 1.5707964f;
-                e00 e00Var = cg0Var.f25197l0;
+                cg0 cg0Var = ((uf0) qf0Var).f30950a;
+                cg0Var.f25181a0 = f28;
+                cg0Var.f25183b0 = pointF3;
+                cg0Var.f25185c0 = f27;
+                cg0Var.f25186d0 = a(this.f29936n) + 1.5707964f;
+                e00 e00Var = cg0Var.f25195l0;
                 if (e00Var != null) {
                     e00Var.d(false, false, false);
                     return;
@@ -211,7 +211,7 @@ public final class rf0 extends FrameLayout {
             return;
         }
         boolean z16 = false;
-        this.f29941s = motionEvent.getX();
+        this.f29938s = motionEvent.getX();
         this.v = motionEvent.getY();
         if (Math.abs(f13 - f12) < N) {
             z16 = true;
@@ -230,33 +230,33 @@ public final class rf0 extends FrameLayout {
         if (i15 == 0) {
             if (sqrt < f30) {
                 this.M = 2;
-                this.f29935a = actualCenterPoint;
+                this.f29932a = actualCenterPoint;
                 return;
             }
             float f31 = f12 - f29;
             if (abs > f31 && abs < f7 + f12) {
                 this.M = 3;
-                this.f29936b = abs;
-                this.f29937c = f12;
+                this.f29933b = abs;
+                this.f29934c = f12;
             } else if (abs > f13 - f14 && abs < f13 + f29) {
                 this.M = 4;
-                this.f29936b = abs;
-                this.f29937c = f13;
+                this.f29933b = abs;
+                this.f29934c = f13;
             } else if (abs <= f31 || abs >= f13 + f29) {
                 this.M = 6;
             }
         } else if (i15 == 1) {
             if (sqrt < f30) {
                 this.M = 2;
-                this.f29935a = actualCenterPoint;
+                this.f29932a = actualCenterPoint;
             } else if (sqrt > f12 - f29 && sqrt < f7 + f12) {
                 this.M = 3;
-                this.f29936b = sqrt;
-                this.f29937c = f12;
+                this.f29933b = sqrt;
+                this.f29934c = f12;
             } else if (sqrt > f13 - f14 && sqrt < f29 + f13) {
                 this.M = 4;
-                this.f29936b = sqrt;
-                this.f29937c = f13;
+                this.f29933b = sqrt;
+                this.f29934c = f13;
             }
         }
     }
@@ -271,30 +271,30 @@ public final class rf0 extends FrameLayout {
                 return;
             }
         } else {
-            this.f29942w = b(motionEvent);
-            this.f29943x = 1.0f;
+            this.f29939w = b(motionEvent);
+            this.f29940x = 1.0f;
             this.M = 5;
         }
         float b10 = b(motionEvent);
-        float d = a1.g.d(b10 - this.f29942w, AndroidUtilities.density, 0.01f, this.f29943x);
-        this.f29943x = d;
-        float max = Math.max(0.1f, this.f29938f * d);
-        this.f29938f = max;
-        this.h = Math.max(max + 0.02f, this.h * this.f29943x);
-        this.f29943x = 1.0f;
-        this.f29942w = b10;
+        float d = a1.g.d(b10 - this.f29939w, AndroidUtilities.density, 0.01f, this.f29940x);
+        this.f29940x = d;
+        float max = Math.max(0.1f, this.f29935f * d);
+        this.f29935f = max;
+        this.h = Math.max(max + 0.02f, this.h * this.f29940x);
+        this.f29940x = 1.0f;
+        this.f29939w = b10;
         invalidate();
         qf0 qf0Var = this.L;
         if (qf0Var != null) {
             PointF pointF = this.e;
-            float f7 = this.f29938f;
+            float f7 = this.f29935f;
             float f10 = this.h;
-            cg0 cg0Var = ((uf0) qf0Var).f30952a;
-            cg0Var.f25183a0 = f10;
-            cg0Var.f25185b0 = pointF;
-            cg0Var.f25187c0 = f7;
-            cg0Var.f25188d0 = a(this.f29939n) + 1.5707964f;
-            e00 e00Var = cg0Var.f25197l0;
+            cg0 cg0Var = ((uf0) qf0Var).f30950a;
+            cg0Var.f25181a0 = f10;
+            cg0Var.f25183b0 = pointF;
+            cg0Var.f25185c0 = f7;
+            cg0Var.f25186d0 = a(this.f29936n) + 1.5707964f;
+            e00 e00Var = cg0Var.f25195l0;
             if (e00Var != null) {
                 e00Var.d(false, false, false);
             }
@@ -306,7 +306,7 @@ public final class rf0 extends FrameLayout {
         Paint paint;
         Canvas canvas2 = canvas;
         Paint paint2 = this.J;
-        RectF rectF = this.f29940r;
+        RectF rectF = this.f29937r;
         Paint paint3 = paint2;
         Paint paint4 = this.I;
         super.onDraw(canvas);
@@ -317,7 +317,7 @@ public final class rf0 extends FrameLayout {
         int i10 = this.H;
         int i11 = 0;
         if (i10 == 0) {
-            canvas2.rotate(this.f29939n);
+            canvas2.rotate(this.f29936n);
             float dp = AndroidUtilities.dp(6.0f);
             float dp2 = AndroidUtilities.dp(12.0f);
             float dp3 = AndroidUtilities.dp(1.5f);

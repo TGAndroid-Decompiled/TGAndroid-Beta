@@ -3,17 +3,17 @@ package org.telegram.ui.Components;
 import android.app.Dialog;
 import android.content.Context;
 public final class nu extends Dialog {
-    public final ai.z4 f28840a;
+    public final ai.a5 f28838a;
 
-    public nu(ai.z4 z4Var, Context context) {
+    public nu(ai.a5 a5Var, Context context) {
         super(context);
-        this.f28840a = z4Var;
+        this.f28838a = a5Var;
     }
 
     @Override
     public final void dismiss() {
-        ou ouVar = (ou) this.f28840a.f2529b;
-        ouVar.f29095a.k(false);
-        ouVar.f29095a.e();
+        ou ouVar = (ou) this.f28838a.f957b;
+        ouVar.f29093a.k(false);
+        ouVar.f29093a.e();
     }
 }

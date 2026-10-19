@@ -5,9 +5,9 @@ import i2.p1;
 import j$.util.Objects;
 import v7.u6;
 public final class t {
-    public final int f49177a;
-    public final p1[] f49178b;
-    public final p[] f49179c;
+    public final int f49179a;
+    public final p1[] f49180b;
+    public final p[] f49181c;
     public final v1 d;
     public final Object e;
 
@@ -19,22 +19,22 @@ public final class t {
             z10 = false;
         }
         u6.g(z10);
-        this.f49178b = p1VarArr;
-        this.f49179c = (p[]) pVarArr.clone();
+        this.f49180b = p1VarArr;
+        this.f49181c = (p[]) pVarArr.clone();
         this.d = v1Var;
         this.e = obj;
-        this.f49177a = p1VarArr.length;
+        this.f49179a = p1VarArr.length;
     }
 
     public final boolean a(t tVar, int i10) {
-        if (tVar == null || !Objects.equals(this.f49178b[i10], tVar.f49178b[i10]) || !Objects.equals(this.f49179c[i10], tVar.f49179c[i10])) {
+        if (tVar == null || !Objects.equals(this.f49180b[i10], tVar.f49180b[i10]) || !Objects.equals(this.f49181c[i10], tVar.f49181c[i10])) {
             return false;
         }
         return true;
     }
 
     public final boolean b(int i10) {
-        if (this.f49178b[i10] != null) {
+        if (this.f49180b[i10] != null) {
             return true;
         }
         return false;

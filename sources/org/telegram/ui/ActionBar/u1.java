@@ -6,38 +6,38 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import org.telegram.messenger.AndroidUtilities;
 public final class u1 extends Drawable {
-    public final int f21759a;
-    public final GradientDrawable f21760b;
-    public final b2 f21761c;
+    public final int f21757a;
+    public final GradientDrawable f21758b;
+    public final b2 f21759c;
 
     public u1(b2 b2Var, GradientDrawable gradientDrawable) {
-        this.f21761c = b2Var;
-        this.f21760b = gradientDrawable;
-        this.f21759a = AndroidUtilities.dp(52.0f) + b2Var.Y;
+        this.f21759c = b2Var;
+        this.f21758b = gradientDrawable;
+        this.f21757a = AndroidUtilities.dp(52.0f) + b2Var.Y;
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        b2 b2Var = this.f21761c;
-        int width = b2Var.f20668k0.getWidth();
-        int i10 = this.f21759a;
-        GradientDrawable gradientDrawable = this.f21760b;
-        gradientDrawable.setBounds((int) ((width - i10) / 2.0f), (int) ((b2Var.f20668k0.getHeight() - i10) / 2.0f), (int) ((b2Var.f20668k0.getWidth() + i10) / 2.0f), (int) ((b2Var.f20668k0.getHeight() + i10) / 2.0f));
+        b2 b2Var = this.f21759c;
+        int width = b2Var.f20666k0.getWidth();
+        int i10 = this.f21757a;
+        GradientDrawable gradientDrawable = this.f21758b;
+        gradientDrawable.setBounds((int) ((width - i10) / 2.0f), (int) ((b2Var.f20666k0.getHeight() - i10) / 2.0f), (int) ((b2Var.f20666k0.getWidth() + i10) / 2.0f), (int) ((b2Var.f20666k0.getHeight() + i10) / 2.0f));
         gradientDrawable.draw(canvas);
     }
 
     @Override
     public final int getOpacity() {
-        return this.f21760b.getOpacity();
+        return this.f21758b.getOpacity();
     }
 
     @Override
     public final void setAlpha(int i10) {
-        this.f21760b.setAlpha(i10);
+        this.f21758b.setAlpha(i10);
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        this.f21760b.setColorFilter(colorFilter);
+        this.f21758b.setColorFilter(colorFilter);
     }
 }

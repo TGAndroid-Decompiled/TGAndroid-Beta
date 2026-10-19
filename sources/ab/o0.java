@@ -23,22 +23,22 @@ public final class o0 extends Handler {
         if (i10 != 1) {
             if (i10 == 2) {
                 n2.b bVar = (n2.b) this.f449b;
-                if (obj == bVar.f17034x && bVar.k()) {
-                    bVar.f17034x = null;
-                    synchronized (bVar.f17026o) {
-                        le.b bVar2 = bVar.f17035y;
+                if (obj == bVar.f17032x && bVar.k()) {
+                    bVar.f17032x = null;
+                    synchronized (bVar.f17024o) {
+                        le.b bVar2 = bVar.f17033y;
                         bVar2.getClass();
                         dVar = new oa.d(14);
-                        ((e9.k0) bVar2.f16011b).f();
-                        bVar.f17035y = null;
+                        ((e9.k0) bVar2.f16009b).f();
+                        bVar.f17033y = null;
                     }
                     if (!(obj2 instanceof Exception) && !(obj2 instanceof NoSuchMethodError)) {
                         try {
-                            byte[] g02 = bVar.f17016b.g0(bVar.v, ((n2.w) obj2).f17077a);
-                            if (bVar.f17033w != null && g02 != null && g02.length != 0) {
-                                bVar.f17033w = g02;
+                            byte[] g02 = bVar.f17014b.g0(bVar.v, ((n2.w) obj2).f17075a);
+                            if (bVar.f17031w != null && g02 != null && g02.length != 0) {
+                                bVar.f17031w = g02;
                             }
-                            bVar.f17027p = 4;
+                            bVar.f17025p = 4;
                             bVar.i(new j5.b(dVar, 19));
                             return;
                         } catch (Exception e) {
@@ -59,18 +59,18 @@ public final class o0 extends Handler {
             return;
         }
         n2.b bVar3 = (n2.b) this.f449b;
-        n2.e eVar = bVar3.f17017c;
-        if (obj == bVar3.f17036z) {
-            if (bVar3.f17027p == 2 || bVar3.k()) {
-                bVar3.f17036z = null;
+        n2.e eVar = bVar3.f17015c;
+        if (obj == bVar3.f17034z) {
+            if (bVar3.f17025p == 2 || bVar3.k()) {
+                bVar3.f17034z = null;
                 if (obj2 instanceof Exception) {
                     eVar.X((Exception) obj2, false);
                     return;
                 }
                 try {
-                    bVar3.f17016b.j0(((n2.w) obj2).f17077a);
-                    eVar.f17042c = null;
-                    HashSet hashSet = (HashSet) eVar.f17041b;
+                    bVar3.f17014b.j0(((n2.w) obj2).f17075a);
+                    eVar.f17040c = null;
+                    HashSet hashSet = (HashSet) eVar.f17039b;
                     e9.n0 u10 = e9.n0.u(hashSet);
                     hashSet.clear();
                     e9.l0 listIterator = u10.listIterator(0);
@@ -92,7 +92,7 @@ public final class o0 extends Handler {
         n4.l lVar;
         o0 o0Var;
         if (message.what == 1) {
-            synchronized (((n4.l) this.f449b).f17105a) {
+            synchronized (((n4.l) this.f449b).f17103a) {
                 nVar = (n4.n) ((n4.l) this.f449b).d.get();
                 lVar = (n4.l) this.f449b;
                 o0Var = lVar.e;

@@ -9,17 +9,17 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.v61;
 public final class o9 implements hg.f0, org.telegram.ui.ActionBar.a2 {
-    public final r9 f34670a;
+    public final r9 f34672a;
 
     public o9(r9 r9Var) {
-        this.f34670a = r9Var;
+        this.f34672a = r9Var;
     }
 
     @Override
     public void b(a0.h hVar, ArrayList arrayList) {
-        r9 r9Var = this.f34670a;
-        ArrayList arrayList2 = r9Var.f34808r;
-        if (!r9Var.f34807n) {
+        r9 r9Var = this.f34672a;
+        ArrayList arrayList2 = r9Var.f34810r;
+        if (!r9Var.f34809n) {
             arrayList2.clear();
             int size = arrayList.size();
             int i10 = 0;
@@ -27,12 +27,12 @@ public final class o9 implements hg.f0, org.telegram.ui.ActionBar.a2 {
                 Object obj = arrayList.get(i10);
                 i10++;
                 hg.g0 g0Var = (hg.g0) obj;
-                TLObject tLObject = g0Var.f11868a;
+                TLObject tLObject = g0Var.f11866a;
                 if ((tLObject instanceof TLRPC.User) && r9.c0((TLRPC.User) tLObject)) {
-                    arrayList2.add((TLRPC.User) g0Var.f11868a);
+                    arrayList2.add((TLRPC.User) g0Var.f11866a);
                 }
             }
-            v61 v61Var = r9Var.f32027a;
+            v61 v61Var = r9Var.f32025a;
             if (v61Var != null) {
                 v61Var.W2.N(true);
             }
@@ -41,7 +41,7 @@ public final class o9 implements hg.f0, org.telegram.ui.ActionBar.a2 {
 
     @Override
     public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        r9 r9Var = this.f34670a;
+        r9 r9Var = this.f34672a;
         r9Var.getClass();
         try {
             Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");

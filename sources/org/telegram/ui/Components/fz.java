@@ -3,13 +3,13 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import org.telegram.messenger.LiteMode;
 public final class fz extends qx0 {
-    public final int f26402x3;
+    public final int f26400x3;
     public final gz y3;
 
     public fz(gz gzVar, Context context, int i10, org.telegram.ui.ActionBar.d6 d6Var, int i11) {
         super(context, i10, d6Var);
         this.y3 = gzVar;
-        this.f26402x3 = i11;
+        this.f26400x3 = i11;
     }
 
     @Override
@@ -25,7 +25,7 @@ public final class fz extends qx0 {
         super.F1(i10);
         gz gzVar = this.y3;
         tz tzVar = gzVar.G;
-        fz fzVar = gzVar.f26721r;
+        fz fzVar = gzVar.f26719r;
         boolean z11 = true;
         if (fzVar.getSelectedCategory() == null) {
             z10 = true;
@@ -34,7 +34,7 @@ public final class fz extends qx0 {
         }
         int i11 = tz.O2;
         tzVar.M(z10);
-        int i12 = this.f26402x3;
+        int i12 = this.f26400x3;
         if (i12 == 1 && (vxVar = tzVar.I) != null) {
             if (fzVar.getSelectedCategory() != null) {
                 z11 = false;
@@ -44,7 +44,7 @@ public final class fz extends qx0 {
             if (fzVar.getSelectedCategory() != null) {
                 z11 = false;
             }
-            exVar.f26642o0 = z11;
+            exVar.f26640o0 = z11;
             exVar.invalidate();
         }
         gzVar.g(false);

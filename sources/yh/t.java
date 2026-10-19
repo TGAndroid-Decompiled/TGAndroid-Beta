@@ -1,6 +1,6 @@
 package yh;
 
-import ai.e7;
+import ai.f7;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Path;
@@ -8,7 +8,7 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
-public final class t extends e7 {
+public final class t extends f7 {
     public final Path D0;
     public final float[] E0;
     public final v F0;
@@ -41,9 +41,9 @@ public final class t extends e7 {
     @Override
     public final void k(int i10) {
         v vVar = this.F0;
-        TextView textView = vVar.f50536b0;
+        TextView textView = vVar.f50538b0;
         if (textView != null && h6.C1(textView.getBackground(), i10, false)) {
-            vVar.f50536b0.invalidate();
+            vVar.f50538b0.invalidate();
         }
     }
 

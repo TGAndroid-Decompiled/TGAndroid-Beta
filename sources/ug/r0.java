@@ -25,9 +25,9 @@ public final class r0 extends bb {
     public final ArrayList X;
     public final ArrayList Y;
     public final TLRPC.Chat Z;
-    public final c0 f47749a0;
-    public q0 f47750b0;
-    public k0 f47751c0;
+    public final c0 f47751a0;
+    public q0 f47752b0;
+    public k0 f47753c0;
 
     public r0(n2 n2Var, TL_stories.TL_premium_myBoosts tL_premium_myBoosts, TLRPC.Chat chat) {
         super(n2Var, false);
@@ -43,7 +43,7 @@ public final class r0 extends bb {
             i10++;
             TL_stories.TL_myBoost tL_myBoost2 = tL_myBoost;
             TLRPC.Peer peer = tL_myBoost2.peer;
-            if (peer != null && DialogObject.getPeerDialogId(peer) != (-chat.f20275id)) {
+            if (peer != null && DialogObject.getPeerDialogId(peer) != (-chat.f20273id)) {
                 this.Y.add(tL_myBoost2);
             }
         }
@@ -51,9 +51,9 @@ public final class r0 extends bb {
         bdVar.setClickable(true);
         bdVar.setOrientation(1);
         bdVar.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
-        bdVar.setBackgroundColor(h6.w0(h6.f21060h5, this.resourcesProvider));
+        bdVar.setBackgroundColor(h6.w0(h6.f21058h5, this.resourcesProvider));
         c0 c0Var = new c0(getContext(), this.resourcesProvider);
-        this.f47749a0 = c0Var;
+        this.f47751a0 = c0Var;
         c0Var.k();
         c0Var.setCounterColor(-6785796);
         c0Var.setOnClickListener(new qg.n(4, this, chat));
@@ -86,7 +86,7 @@ public final class r0 extends bb {
             }
             kVar.c(arrayList.contains(kVar.getBoost()), true);
             r0Var.T(true);
-            r0Var.f47750b0.a(arrayList, chat);
+            r0Var.f47752b0.a(arrayList, chat);
         }
     }
 
@@ -96,7 +96,7 @@ public final class r0 extends bb {
     }
 
     public final void T(boolean z10) {
-        c0 c0Var = this.f47749a0;
+        c0 c0Var = this.f47751a0;
         boolean z11 = false;
         c0Var.setShowZero(false);
         ArrayList arrayList = this.X;
@@ -115,18 +115,18 @@ public final class r0 extends bb {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f47751c0 = new k0(this);
+        this.f47753c0 = new k0(this);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f47751c0.cancel();
+        this.f47753c0.cancel();
     }
 
     @Override
     public final void onOpenAnimationEnd() {
-        this.f47751c0.start();
+        this.f47753c0.start();
     }
 
     @Override

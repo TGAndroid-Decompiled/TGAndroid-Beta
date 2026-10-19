@@ -2,26 +2,26 @@ package ai;
 
 import org.telegram.messenger.Utilities;
 public final class j4 implements Utilities.Callback {
-    public final int f1553a;
-    public final k7 f1554b;
-    public final pf.c f1555c;
+    public final int f1562a;
+    public final l7 f1563b;
+    public final pf.c f1564c;
     public final ug.m1 d;
 
-    public j4(k7 k7Var, pf.c cVar, ug.m1 m1Var, int i10) {
-        this.f1553a = i10;
-        this.f1554b = k7Var;
-        this.f1555c = cVar;
+    public j4(l7 l7Var, pf.c cVar, ug.m1 m1Var, int i10) {
+        this.f1562a = i10;
+        this.f1563b = l7Var;
+        this.f1564c = cVar;
         this.d = m1Var;
     }
 
     @Override
     public final void run(Object obj) {
-        switch (this.f1553a) {
+        switch (this.f1562a) {
             case 0:
-                k7.o1(this.f1554b, this.f1555c, this.d, (String) obj);
+                l7.g0(this.f1563b, this.f1564c, this.d, (String) obj);
                 return;
             default:
-                k7.o0(this.f1554b, this.f1555c, this.d, (String) obj);
+                l7.i0(this.f1563b, this.f1564c, this.d, (String) obj);
                 return;
         }
     }

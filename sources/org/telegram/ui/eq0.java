@@ -3,16 +3,16 @@ package org.telegram.ui;
 import android.view.View;
 import org.telegram.messenger.MediaController;
 public final class eq0 implements org.telegram.ui.Components.jm0 {
-    public final jq0 f36758a;
+    public final jq0 f36752a;
 
     public eq0(jq0 jq0Var) {
-        this.f36758a = jq0Var;
+        this.f36752a = jq0Var;
     }
 
     @Override
     public final void a(boolean z10) {
         org.telegram.ui.ActionBar.d5 d5Var;
-        jq0 jq0Var = this.f36758a;
+        jq0 jq0Var = this.f36752a;
         jq0Var.W = z10 ? 1 : 0;
         if (z10) {
             d5Var = ((org.telegram.ui.ActionBar.n2) jq0Var).parentLayout;
@@ -23,7 +23,7 @@ public final class eq0 implements org.telegram.ui.Components.jm0 {
 
     @Override
     public final boolean b(int i10) {
-        if (this.f36758a.L.j(i10) == 0) {
+        if (this.f36752a.L.j(i10) == 0) {
             return true;
         }
         return false;
@@ -31,22 +31,22 @@ public final class eq0 implements org.telegram.ui.Components.jm0 {
 
     @Override
     public final void c(View view, boolean z10) {
-        if (z10 == this.f36758a.X && (view instanceof org.telegram.ui.Cells.s5)) {
+        if (z10 == this.f36752a.X && (view instanceof org.telegram.ui.Cells.s5)) {
             org.telegram.ui.Cells.s5 s5Var = (org.telegram.ui.Cells.s5) view;
-            s5Var.f23009w.c(s5Var);
+            s5Var.f23007w.c(s5Var);
         }
     }
 
     @Override
     public final boolean d(int i10) {
         Object obj;
-        jq0 jq0Var = this.f36758a;
+        jq0 jq0Var = this.f36752a;
         MediaController.AlbumEntry albumEntry = jq0Var.J;
         if (albumEntry != null) {
             obj = Integer.valueOf(albumEntry.photos.get(i10).imageId);
         } else {
-            obj = ((MediaController.SearchImage) jq0Var.f38301f.get(i10)).f17795id;
+            obj = ((MediaController.SearchImage) jq0Var.f38302f.get(i10)).f17793id;
         }
-        return jq0Var.f38295b.containsKey(obj);
+        return jq0Var.f38296b.containsKey(obj);
     }
 }

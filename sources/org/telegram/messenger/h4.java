@@ -1,36 +1,26 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_payments;
-public final class h4 implements Utilities.Callback {
-    public final int f18494a = 0;
-    public final long f18495b;
-    public final BaseController f18496c;
-    public final Object d;
+import org.telegram.tgnet.tl.TL_stars;
+public final class h4 implements Utilities.Callback2 {
+    public final int f18495a;
+    public final Utilities.Callback f18496b;
 
-    public h4(GiftAuctionController giftAuctionController, long j10, TL_payments.TL_StarGiftAuctionState tL_StarGiftAuctionState) {
-        this.f18496c = giftAuctionController;
-        this.f18495b = j10;
-        this.d = tL_StarGiftAuctionState;
+    public h4(int i10, Utilities.Callback callback) {
+        this.f18495a = i10;
+        this.f18496b = callback;
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f18494a) {
+    public final void run(Object obj, Object obj2) {
+        switch (this.f18495a) {
             case 0:
-                ((GiftAuctionController) this.f18496c).lambda$subscribeToGiftAuctionStateInternal$0(this.f18495b, (TL_payments.TL_StarGiftAuctionState) this.d, (ArrayList) obj);
+                GiftAuctionController.lambda$requestAuctionUpgrades$5(this.f18496b, (TL_stars.starGiftUpgradeAttributes) obj, (TLRPC.TL_error) obj2);
                 return;
             default:
-                ((TranslateController) this.f18496c).lambda$checkTranslation$4((MessageObject) this.d, this.f18495b, (TLRPC.TL_textWithEntities) obj);
+                MediaDataController.lambda$searchStickerSets$250(this.f18496b, (TLRPC.messages_FoundStickerSets) obj, (TLRPC.TL_error) obj2);
                 return;
         }
-    }
-
-    public h4(TranslateController translateController, MessageObject messageObject, long j10) {
-        this.f18496c = translateController;
-        this.d = messageObject;
-        this.f18495b = j10;
     }
 }

@@ -5,18 +5,18 @@ import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.Crop.CropAreaView;
 public final class pq0 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f40281a;
-    public final PhotoViewer f40282b;
+    public final int f40276a;
+    public final PhotoViewer f40277b;
 
     public pq0(PhotoViewer photoViewer, int i10) {
-        this.f40281a = i10;
-        this.f40282b = photoViewer;
+        this.f40276a = i10;
+        this.f40277b = photoViewer;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        int i10 = this.f40281a;
-        PhotoViewer photoViewer = this.f40282b;
+        int i10 = this.f40276a;
+        PhotoViewer photoViewer = this.f40277b;
         switch (i10) {
             case 0:
                 Drawable[] drawableArr = PhotoViewer.U8;
@@ -24,14 +24,14 @@ public final class pq0 implements ValueAnimator.AnimatorUpdateListener {
                 photoViewer.f33310i3.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 return;
             case 1:
-                CropAreaView cropAreaView = photoViewer.C1.f28765b.f16919a;
+                CropAreaView cropAreaView = photoViewer.C1.f28763b.f16917a;
                 float lerp = AndroidUtilities.lerp(photoViewer.f33240a6, photoViewer.f33278e6, photoViewer.f33338l6);
                 float lerp2 = AndroidUtilities.lerp(photoViewer.X5, photoViewer.f33260c6, photoViewer.f33338l6);
                 float lerp3 = AndroidUtilities.lerp(photoViewer.Y5, photoViewer.f33269d6, photoViewer.f33338l6);
-                cropAreaView.f24198n0 = 0.0f;
-                cropAreaView.f24199o0 = lerp;
-                cropAreaView.f24200p0 = lerp2;
-                cropAreaView.f24201q0 = lerp3;
+                cropAreaView.f24196n0 = 0.0f;
+                cropAreaView.f24197o0 = lerp;
+                cropAreaView.f24198p0 = lerp2;
+                cropAreaView.f24199q0 = lerp3;
                 cropAreaView.invalidate();
                 return;
             case 2:
@@ -58,7 +58,7 @@ public final class pq0 implements ValueAnimator.AnimatorUpdateListener {
             case 8:
                 gt0 gt0Var = photoViewer.L1;
                 if (gt0Var != null) {
-                    gt0Var.f45468d1.invalidate();
+                    gt0Var.f45470d1.invalidate();
                     return;
                 }
                 return;

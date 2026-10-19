@@ -5,7 +5,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.fh;
+import org.telegram.messenger.eh;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_stars;
@@ -19,24 +19,24 @@ import org.telegram.ui.l80;
 import org.telegram.ui.po0;
 import org.telegram.ui.qn;
 public final class s1 implements Utilities.Callback2 {
-    public final int f34824a;
-    public final Object f34825b;
-    public final Object f34826c;
+    public final int f34826a;
+    public final Object f34827b;
+    public final Object f34828c;
 
     public s1(int i10, Object obj, Object obj2) {
-        this.f34824a = i10;
-        this.f34825b = obj;
-        this.f34826c = obj2;
+        this.f34826a = i10;
+        this.f34827b = obj;
+        this.f34828c = obj2;
     }
 
     @Override
     public final void run(Object obj, Object obj2) {
         boolean z10;
-        int i10 = this.f34824a;
+        int i10 = this.f34826a;
         Object obj3 = null;
         int i11 = 0;
-        Object obj4 = this.f34826c;
-        Object obj5 = this.f34825b;
+        Object obj4 = this.f34828c;
+        Object obj5 = this.f34827b;
         switch (i10) {
             case 0:
                 TL_wallet.inputTonConnectOauthSession[] inputtonconnectoauthsessionArr = (TL_wallet.inputTonConnectOauthSession[]) obj5;
@@ -54,7 +54,7 @@ public final class s1 implements Utilities.Callback2 {
                 return;
             case 2:
                 ((j0) obj5).close();
-                ((fh) obj4).run((b2) obj, (String) obj2);
+                ((eh) obj4).run((b2) obj, (String) obj2);
                 return;
             case 3:
                 h8.b0((h8) obj5, (Utilities.Callback) obj4, (j0) obj, (String) obj2);
@@ -77,7 +77,7 @@ public final class s1 implements Utilities.Callback2 {
                 String str2 = (String) obj4;
                 TL_account.webPagePreview webpagepreview = (TL_account.webPagePreview) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                int i12 = rVar.f45786a;
+                int i12 = rVar.f45788a;
                 if (webpagepreview != null) {
                     MessagesController.getInstance(i12).putUsers(webpagepreview.users, false);
                     MessagesController.getInstance(i12).putChats(webpagepreview.chats, false);
@@ -86,8 +86,8 @@ public final class s1 implements Utilities.Callback2 {
                         obj3 = messageMedia.webpage;
                     }
                 }
-                rVar.f45787b.put(str2, obj3);
-                ArrayList arrayList = (ArrayList) rVar.f45788c.remove(str2);
+                rVar.f45789b.put(str2, obj3);
+                ArrayList arrayList = (ArrayList) rVar.f45790c.remove(str2);
                 if (arrayList != null) {
                     int size = arrayList.size();
                     while (i11 < size) {
@@ -103,14 +103,14 @@ public final class s1 implements Utilities.Callback2 {
                 TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption = (TL_stars.TL_starsGiveawayOption) obj4;
                 Boolean bool = (Boolean) obj;
                 String str3 = (String) obj2;
-                zVar.f47811q0.f48940a.setLoading(false);
+                zVar.f47813q0.f48942a.setLoading(false);
                 if (zVar.getContext() != null) {
                     org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
                     ja0 ja0Var = LaunchActivity.H1.f33193x0;
                     if (U != null) {
                         if (bool.booleanValue()) {
                             zVar.dismiss();
-                            qn W9 = qn.W9(-zVar.f47797b0.f20275id);
+                            qn W9 = qn.W9(-zVar.f47799b0.f20273id);
                             U.presentFragment(W9);
                             U.whenFullyVisible(new uf.c(5, W9, tL_starsGiveawayOption));
                             if (ja0Var != null) {
@@ -133,7 +133,7 @@ public final class s1 implements Utilities.Callback2 {
                 yh.o2 o2Var = (yh.o2) obj5;
                 ArrayList arrayList2 = (ArrayList) obj;
                 t61 t61Var = (t61) obj2;
-                ArrayList arrayList3 = ((ai.y9) obj4).f2499l;
+                ArrayList arrayList3 = ((ai.y9) obj4).f2504l;
                 int size2 = arrayList3.size();
                 int i13 = 0;
                 while (i13 < size2) {
@@ -141,16 +141,16 @@ public final class s1 implements Utilities.Callback2 {
                     i13++;
                     TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj7;
                     if (savedStarGift.pinned_to_top) {
-                        int i14 = po0.f40265a;
+                        int i14 = po0.f40260a;
                         g61 J = g61.J(po0.class);
                         J.G = savedStarGift;
-                        if (o2Var.f50445b == savedStarGift.gift.f20499id) {
+                        if (o2Var.f50447b == savedStarGift.gift.f20497id) {
                             z10 = true;
                         } else {
                             z10 = false;
                         }
                         J.K(z10);
-                        J.f26508u = 1;
+                        J.f26506u = 1;
                         arrayList2.add(J);
                     }
                 }

@@ -1,7 +1,7 @@
 package org.scilab.forge.jlatexmath;
 public class CharFont {
     public int boldFontId;
-    public char f17766c;
+    public char f17764c;
     public int fontId;
 
     public CharFont(char c10, int i10) {
@@ -9,7 +9,7 @@ public class CharFont {
     }
 
     public CharFont(char c10, int i10, int i11) {
-        this.f17766c = c10;
+        this.f17764c = c10;
         this.fontId = i10;
         this.boldFontId = i11;
     }

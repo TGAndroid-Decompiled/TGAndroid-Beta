@@ -10,17 +10,17 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.ThemeEditorView;
 public final class i21 extends hm0 {
-    public final Context f27046c;
+    public final Context f27044c;
     public int d;
     public ArrayList e = new ArrayList();
-    public ArrayList f27047f = new ArrayList();
+    public ArrayList f27045f = new ArrayList();
     public org.telegram.ui.i4 h;
-    public String f27048n;
-    public final ThemeEditorView.EditorAlert f27049r;
+    public String f27046n;
+    public final ThemeEditorView.EditorAlert f27047r;
 
     public i21(ThemeEditorView.EditorAlert editorAlert, Context context) {
-        this.f27049r = editorAlert;
-        this.f27046c = context;
+        this.f27047r = editorAlert;
+        this.f27044c = context;
     }
 
     public static CharSequence E(String str, String str2) {
@@ -82,18 +82,18 @@ public final class i21 extends hm0 {
     @Override
     public final void v(s4.b1 b1Var, int i10) {
         int c10;
-        if (b1Var.f45913f == 0) {
+        if (b1Var.f45915f == 0) {
             boolean z10 = true;
             int i11 = i10 - 1;
             org.telegram.ui.ActionBar.j6 j6Var = (org.telegram.ui.ActionBar.j6) ((ArrayList) this.e.get(i11)).get(0);
-            if (j6Var.f21458f == org.telegram.ui.ActionBar.h6.Nd) {
+            if (j6Var.f21456f == org.telegram.ui.ActionBar.h6.Nd) {
                 c10 = 0;
             } else {
                 c10 = j6Var.c();
             }
-            org.telegram.ui.Cells.y8 y8Var = (org.telegram.ui.Cells.y8) b1Var.f45910a;
-            y8Var.f23853a.setText((CharSequence) this.f27047f.get(i11));
-            y8Var.f23854b = c10;
+            org.telegram.ui.Cells.y8 y8Var = (org.telegram.ui.Cells.y8) b1Var.f45912a;
+            y8Var.f23851a.setText((CharSequence) this.f27045f.get(i11));
+            y8Var.f23852b = c10;
             if (c10 != 0) {
                 z10 = false;
             }
@@ -105,7 +105,7 @@ public final class i21 extends hm0 {
     @Override
     public final s4.b1 x(ViewGroup viewGroup, int i10) {
         View y8Var;
-        Context context = this.f27046c;
+        Context context = this.f27044c;
         if (i10 != 0) {
             y8Var = new View(context);
             y8Var.setLayoutParams(new s4.o0(-1, AndroidUtilities.dp(56.0f)));

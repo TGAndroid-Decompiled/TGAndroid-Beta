@@ -2,22 +2,22 @@ package c3;
 
 import e2.m0;
 public final class f {
-    public final long f4617a;
-    public final long f4618b;
-    public final long f4619c;
+    public final long f4615a;
+    public final long f4616b;
+    public final long f4617c;
     public long d = 0;
     public long e;
-    public long f4620f;
-    public long f4621g;
+    public long f4618f;
+    public long f4619g;
     public long h;
 
     public f(long j10, long j11, long j12, long j13, long j14, long j15) {
-        this.f4617a = j10;
-        this.f4618b = j11;
+        this.f4615a = j10;
+        this.f4616b = j11;
         this.e = j12;
-        this.f4620f = j13;
-        this.f4621g = j14;
-        this.f4619c = j15;
+        this.f4618f = j13;
+        this.f4619g = j14;
+        this.f4617c = j15;
         this.h = a(j11, 0L, j12, j13, j14, j15);
     }
 

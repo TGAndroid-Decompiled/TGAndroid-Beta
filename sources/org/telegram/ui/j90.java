@@ -11,29 +11,29 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SharedPrefsHelper;
 import org.telegram.tgnet.TLRPC;
 public final class j90 implements Runnable {
-    public final LaunchActivity f38201a;
-    public final org.telegram.ui.ActionBar.n2 f38202b;
-    public final int f38203c;
+    public final LaunchActivity f38203a;
+    public final org.telegram.ui.ActionBar.n2 f38204b;
+    public final int f38205c;
     public final TLRPC.User d;
     public final TLRPC.TL_messages_botApp e;
-    public final AtomicBoolean f38204f;
+    public final AtomicBoolean f38206f;
     public final String h;
-    public final boolean f38205n;
-    public final boolean f38206r;
-    public final boolean f38207s;
+    public final boolean f38207n;
+    public final boolean f38208r;
+    public final boolean f38209s;
     public final boolean v;
 
     public j90(LaunchActivity launchActivity, org.telegram.ui.ActionBar.n2 n2Var, int i10, TLRPC.User user, TLRPC.TL_messages_botApp tL_messages_botApp, AtomicBoolean atomicBoolean, String str, boolean z10, boolean z11, boolean z12, boolean z13) {
-        this.f38201a = launchActivity;
-        this.f38202b = n2Var;
-        this.f38203c = i10;
+        this.f38203a = launchActivity;
+        this.f38204b = n2Var;
+        this.f38205c = i10;
         this.d = user;
         this.e = tL_messages_botApp;
-        this.f38204f = atomicBoolean;
+        this.f38206f = atomicBoolean;
         this.h = str;
-        this.f38205n = z10;
-        this.f38206r = z11;
-        this.f38207s = z12;
+        this.f38207n = z10;
+        this.f38208r = z11;
+        this.f38209s = z12;
         this.v = z13;
     }
 
@@ -42,33 +42,33 @@ public final class j90 implements Runnable {
         TLRPC.TL_attachMenuBot tL_attachMenuBot;
         String formatString;
         Pattern pattern = LaunchActivity.C1;
-        org.telegram.ui.ActionBar.n2 n2Var = this.f38202b;
+        org.telegram.ui.ActionBar.n2 n2Var = this.f38204b;
         if (n2Var != null && LaunchActivity.D1) {
-            LaunchActivity launchActivity = this.f38201a;
+            LaunchActivity launchActivity = this.f38203a;
             if (!launchActivity.isFinishing() && !launchActivity.isDestroyed()) {
                 TLRPC.User user = this.d;
-                long j10 = user.f20422id;
+                long j10 = user.f20420id;
                 TLRPC.TL_messages_botApp tL_messages_botApp = this.e;
                 TLRPC.BotApp botApp = tL_messages_botApp.app;
-                boolean z10 = this.f38204f.get();
-                int i10 = this.f38203c;
+                boolean z10 = this.f38206f.get();
+                int i10 = this.f38205c;
                 String str = this.h;
-                boolean z11 = this.f38205n;
-                boolean z12 = this.f38206r;
+                boolean z11 = this.f38207n;
+                boolean z12 = this.f38208r;
                 gi.t4 b10 = gi.t4.b(i10, j10, j10, null, null, 3, 0, 0L, botApp, z10, str, user, 0, z11, z12);
                 if (launchActivity.P() == null || launchActivity.P().k(b10) == null) {
-                    SharedPrefsHelper.setWebViewConfirmShown(launchActivity.O, user.f20422id, true);
+                    SharedPrefsHelper.setWebViewConfirmShown(launchActivity.O, user.f20420id, true);
                     gi.d3 d3Var = new gi.d3(launchActivity, n2Var.getResourceProvider());
-                    gi.v2 v2Var = d3Var.f11166x;
+                    gi.v2 v2Var = d3Var.f11164x;
                     if (v2Var != null) {
-                        v2Var.setWasOpenedByLinkIntent(this.f38207s);
+                        v2Var.setWasOpenedByLinkIntent(this.f38209s);
                     }
                     d3Var.x(!z11);
                     if (z12) {
-                        d3Var.y(true, false, d3Var.f11143e0);
+                        d3Var.y(true, false, d3Var.f11141e0);
                     }
                     d3Var.A0 = false;
-                    d3Var.f11150k0 = launchActivity;
+                    d3Var.f11148k0 = launchActivity;
                     d3Var.t(n2Var, b10);
                     d3Var.show();
                     if (tL_messages_botApp.inactive || this.v) {

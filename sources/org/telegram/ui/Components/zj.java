@@ -20,8 +20,8 @@ public final class zj implements ValueAnimator.AnimatorUpdateListener {
         switch (this.f32960a) {
             case 0:
                 nk nkVar = (nk) this.d;
-                ck ckVar = nkVar.f28792r;
-                ck ckVar2 = nkVar.f28793s;
+                ck ckVar = nkVar.f28790r;
+                ck ckVar2 = nkVar.f28791s;
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 int i10 = this.f32961b;
                 float f7 = this.f32962c;

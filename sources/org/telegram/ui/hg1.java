@@ -14,35 +14,35 @@ public final class hg1 implements TextWatcher {
     @Override
     public final void afterTextChanged(Editable editable) {
         UsersSelectActivity usersSelectActivity = this.f37618a;
-        if (usersSelectActivity.f33949c.length() != 0) {
+        if (usersSelectActivity.f33951c.length() != 0) {
             kg1 kg1Var = usersSelectActivity.h;
-            boolean z10 = kg1Var.f38599n;
+            boolean z10 = kg1Var.f38598n;
             if (!z10) {
                 usersSelectActivity.M = true;
                 usersSelectActivity.L = true;
                 if (!z10) {
-                    kg1Var.f38599n = true;
+                    kg1Var.f38598n = true;
                     kg1Var.l();
                 }
                 usersSelectActivity.d.setFastScrollVisible(false);
                 usersSelectActivity.d.setVerticalScrollBarEnabled(true);
-                usersSelectActivity.f33950f.d.setText(LocaleController.getString(R.string.NoResult));
+                usersSelectActivity.f33952f.d.setText(LocaleController.getString(R.string.NoResult));
             }
-            usersSelectActivity.f33950f.e(true, true);
-            usersSelectActivity.h.L(usersSelectActivity.f33949c.getText().toString());
+            usersSelectActivity.f33952f.e(true, true);
+            usersSelectActivity.h.L(usersSelectActivity.f33951c.getText().toString());
             return;
         }
         usersSelectActivity.M = false;
         usersSelectActivity.L = false;
         kg1 kg1Var2 = usersSelectActivity.h;
-        if (kg1Var2.f38599n) {
-            kg1Var2.f38599n = false;
+        if (kg1Var2.f38598n) {
+            kg1Var2.f38598n = false;
             kg1Var2.l();
         }
         usersSelectActivity.h.L(null);
         usersSelectActivity.d.setFastScrollVisible(true);
         usersSelectActivity.d.setVerticalScrollBarEnabled(false);
-        usersSelectActivity.f33950f.d.setText(LocaleController.getString(R.string.NoContacts));
+        usersSelectActivity.f33952f.d.setText(LocaleController.getString(R.string.NoContacts));
     }
 
     @Override

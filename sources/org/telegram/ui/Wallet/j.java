@@ -18,22 +18,22 @@ import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.gt0;
 import org.telegram.ui.z70;
 public final class j implements Runnable {
-    public final int f34361a;
-    public final int f34362b;
-    public final Object f34363c;
+    public final int f34363a;
+    public final int f34364b;
+    public final Object f34365c;
 
     public j(int i10, Object obj, int i11) {
-        this.f34361a = i11;
-        this.f34362b = i10;
-        this.f34363c = obj;
+        this.f34363a = i11;
+        this.f34364b = i10;
+        this.f34365c = obj;
     }
 
     @Override
     public final void run() {
         CharSequence text;
-        int i10 = this.f34361a;
-        Object obj = this.f34363c;
-        final int i11 = this.f34362b;
+        int i10 = this.f34363a;
+        Object obj = this.f34365c;
+        final int i11 = this.f34364b;
         switch (i10) {
             case 0:
                 m0 m0Var = (m0) obj;
@@ -62,8 +62,8 @@ public final class j implements Runnable {
                 return;
             case 3:
                 m6 m6Var = (m6) obj;
-                if (m6Var.f34524r && !m6Var.f34527x && i11 == m6Var.f34521k0) {
-                    m6Var.postDelayed(m6Var.f34522l0, 500L);
+                if (m6Var.f34526r && !m6Var.f34529x && i11 == m6Var.f34523k0) {
+                    m6Var.postDelayed(m6Var.f34524l0, 500L);
                     return;
                 }
                 return;
@@ -87,9 +87,9 @@ public final class j implements Runnable {
                 }
             case 5:
                 r9 r9Var = (r9) obj;
-                if (!r9Var.f34807n && i11 == r9Var.I) {
+                if (!r9Var.f34809n && i11 == r9Var.I) {
                     r9Var.K = false;
-                    r9Var.f32027a.W2.N(true);
+                    r9Var.f32025a.W2.N(true);
                     return;
                 }
                 return;
@@ -128,7 +128,7 @@ public final class j implements Runnable {
                 }
                 ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(150L);
                 jVar.P = duration;
-                duration.setInterpolator(bs.f25014f);
+                duration.setInterpolator(bs.f25012f);
                 jVar.P.addUpdateListener(new rg.f(jVar, 5));
                 jVar.P.addListener(new rg.g(jVar, 2));
                 jVar.P.start();
@@ -137,7 +137,7 @@ public final class j implements Runnable {
                 gt0 gt0Var = (gt0) obj;
                 qg.t1 t1Var = gt0Var.K1;
                 gt0Var.t0(t1Var, null);
-                qg.v0.e(i11).j(t1Var.f44649c);
+                qg.v0.e(i11).j(t1Var.f44651c);
                 return;
             case 9:
                 rg.n2 n2Var = (rg.n2) obj;
@@ -166,8 +166,8 @@ public final class j implements Runnable {
     }
 
     public j(Object obj, int i10, int i11) {
-        this.f34361a = i11;
-        this.f34363c = obj;
-        this.f34362b = i10;
+        this.f34363a = i11;
+        this.f34365c = obj;
+        this.f34364b = i10;
     }
 }

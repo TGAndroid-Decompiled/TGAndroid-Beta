@@ -47,20 +47,20 @@ public final class k9 extends FrameLayout implements View.OnClickListener, Notif
     public boolean U;
     public boolean V;
     public final r9 W;
-    public int f9327a;
-    public final a0.h f9328b;
-    public final ArrayList f9329c;
+    public int f9325a;
+    public final a0.h f9326b;
+    public final ArrayList f9327c;
     public final HashMap d;
     public final FrameLayout e;
-    public final im0 f9330f;
+    public final im0 f9328f;
     public final s4.b0 h;
-    public final g9 f9331n;
-    public final i9 f9332r;
-    public final View f9333s;
+    public final g9 f9329n;
+    public final i9 f9330r;
+    public final View f9331s;
     public final d v;
-    public final d f9334w;
-    public final d9 f9335x;
-    public final org.telegram.ui.Cells.u3 f9336y;
+    public final d f9332w;
+    public final d9 f9333x;
+    public final org.telegram.ui.Cells.u3 f9334y;
 
     public k9(r9 r9Var, Context context) {
         super(context);
@@ -76,8 +76,8 @@ public final class k9 extends FrameLayout implements View.OnClickListener, Notif
         org.telegram.ui.ActionBar.d6 d6Var8;
         org.telegram.ui.ActionBar.d6 d6Var9;
         this.W = r9Var;
-        this.f9328b = new a0.h();
-        this.f9329c = new ArrayList();
+        this.f9326b = new a0.h();
+        this.f9327c = new ArrayList();
         this.d = new HashMap();
         this.J = new ArrayList();
         this.K = new ArrayList();
@@ -85,11 +85,11 @@ public final class k9 extends FrameLayout implements View.OnClickListener, Notif
         this.R = -1;
         d6Var = ((org.telegram.ui.ActionBar.f3) r9Var).resourcesProvider;
         org.telegram.ui.Cells.u3 u3Var = new org.telegram.ui.Cells.u3(context, d6Var);
-        this.f9336y = u3Var;
+        this.f9334y = u3Var;
         d6Var2 = ((org.telegram.ui.ActionBar.f3) r9Var).resourcesProvider;
         d9 d9Var = new d9(this, context, d6Var2, new a9(this, 4));
-        this.f9335x = d9Var;
-        int i12 = org.telegram.ui.ActionBar.h6.f21060h5;
+        this.f9333x = d9Var;
+        int i12 = org.telegram.ui.ActionBar.h6.f21058h5;
         d9Var.setBackgroundColor(r9Var.getThemedColor(i12));
         d9Var.setOnSearchTextChange(new b9(this, 3));
         d6Var3 = ((org.telegram.ui.ActionBar.f3) r9Var).resourcesProvider;
@@ -103,12 +103,12 @@ public final class k9 extends FrameLayout implements View.OnClickListener, Notif
         addView(frameLayout, w7.z5.e(-1, -1, 119));
         d6Var4 = ((org.telegram.ui.ActionBar.f3) r9Var).resourcesProvider;
         im0 im0Var = new im0(context, d6Var4);
-        this.f9330f = im0Var;
+        this.f9328f = im0Var;
         im0Var.setClipToPadding(false);
         im0Var.setTranslateSelector(true);
         d6Var5 = ((org.telegram.ui.ActionBar.f3) r9Var).resourcesProvider;
         g9 g9Var = new g9(this, context, d6Var5, d9Var, new ci.e4(r9Var, 2));
-        this.f9331n = g9Var;
+        this.f9329n = g9Var;
         im0Var.setAdapter(g9Var);
         g9Var.h = im0Var;
         s4.b0 b0Var = new s4.b0();
@@ -121,13 +121,13 @@ public final class k9 extends FrameLayout implements View.OnClickListener, Notif
         f9Var.n(350L);
         f9Var.o(bs.h);
         f9Var.C = false;
-        f9Var.f45944m = false;
+        f9Var.f45946m = false;
         im0Var.setItemAnimator(f9Var);
         frameLayout.addView(d9Var, w7.z5.e(-1, -2, 55));
         frameLayout.addView(u3Var, w7.z5.e(-1, 32, 55));
         addView(x8Var, w7.z5.e(-1, -2, 55));
         i9 i9Var = new i9(this, context);
-        this.f9332r = i9Var;
+        this.f9330r = i9Var;
         i9Var.setClickable(true);
         i9Var.setOrientation(1);
         int dp = AndroidUtilities.dp(10.0f);
@@ -147,12 +147,12 @@ public final class k9 extends FrameLayout implements View.OnClickListener, Notif
         i9Var.addView(dVar, w7.z5.q(-1, 48, 87));
         d6Var8 = ((org.telegram.ui.ActionBar.f3) r9Var).resourcesProvider;
         d dVar2 = new d(context, d6Var8, false);
-        this.f9334w = dVar2;
+        this.f9332w = dVar2;
         dVar2.setOnClickListener(new z8(this, 1));
         dVar2.e();
         i9Var.addView(dVar2, w7.z5.t(-1, 48, 87, 0, 8, 0, 0));
         View view = new View(context);
-        this.f9333s = view;
+        this.f9331s = view;
         d6Var9 = ((org.telegram.ui.ActionBar.f3) r9Var).resourcesProvider;
         view.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(i12, d6Var9));
         addView(view, w7.z5.d(-1, 500.0f, 87, 0.0f, 0.0f, 0.0f, -500.0f));
@@ -161,14 +161,14 @@ public final class k9 extends FrameLayout implements View.OnClickListener, Notif
 
     public final void a(boolean z10) {
         int i10;
-        if (this.f9327a == 6) {
-            ArrayList arrayList = this.f9329c;
+        if (this.f9325a == 6) {
+            ArrayList arrayList = this.f9327c;
             arrayList.clear();
             i10 = ((org.telegram.ui.ActionBar.f3) this.W).currentAccount;
             arrayList.addAll(MessagesController.getInstance(i10).getStoriesController().L);
             int i11 = 0;
             while (true) {
-                a0.h hVar = this.f9328b;
+                a0.h hVar = this.f9326b;
                 if (i11 >= hVar.m()) {
                     break;
                 }
@@ -192,9 +192,9 @@ public final class k9 extends FrameLayout implements View.OnClickListener, Notif
 
     public final void b(int i10) {
         int i11;
-        this.f9327a = i10;
-        this.f9328b.b();
-        ArrayList arrayList = this.f9329c;
+        this.f9325a = i10;
+        this.f9326b.b();
+        ArrayList arrayList = this.f9327c;
         arrayList.clear();
         HashMap hashMap = this.d;
         hashMap.clear();
@@ -206,20 +206,20 @@ public final class k9 extends FrameLayout implements View.OnClickListener, Notif
             arrayList.addAll(r9Var.J);
         } else if (i10 == 1) {
             ArrayList K0 = r9.K0(r9Var);
-            for (int i12 = 0; i12 < K0.size(); i12 = com.google.android.gms.internal.play_billing.k3.h(((TLRPC.User) K0.get(i12)).f20422id, arrayList, i12, 1)) {
+            for (int i12 = 0; i12 < K0.size(); i12 = com.google.android.gms.internal.play_billing.k3.h(((TLRPC.User) K0.get(i12)).f20420id, arrayList, i12, 1)) {
             }
         } else if (i10 == 2) {
             arrayList.addAll(r9Var.h);
         } else if (i10 == 3) {
-            arrayList.addAll(r9Var.f9751n);
-            hashMap.putAll(r9Var.f9752r);
+            arrayList.addAll(r9Var.f9749n);
+            hashMap.putAll(r9Var.f9750r);
         } else if (i10 == 6) {
             a(false);
         }
-        this.f9331n.getClass();
+        this.f9329n.getClass();
         this.h.k1(false);
         i(false);
-        d9 d9Var = this.f9335x;
+        d9 d9Var = this.f9333x;
         d9Var.setText("");
         if (i10 == 0) {
             i11 = 8;
@@ -232,8 +232,8 @@ public final class k9 extends FrameLayout implements View.OnClickListener, Notif
         g(false);
         e(false);
         f(false);
-        int i13 = this.f9327a;
-        im0 im0Var = this.f9330f;
+        int i13 = this.f9325a;
+        im0 im0Var = this.f9328f;
         if (i13 != 0) {
             im0Var.u0(0);
         }
@@ -243,9 +243,9 @@ public final class k9 extends FrameLayout implements View.OnClickListener, Notif
 
     public final float c() {
         int i10 = 0;
-        float f7 = -org.telegram.messenger.g0.b(150.0f, Math.min(AndroidUtilities.dp(150.0f), this.f9335x.J), 0);
+        float f7 = -org.telegram.messenger.g0.b(150.0f, Math.min(AndroidUtilities.dp(150.0f), this.f9333x.J), 0);
         while (true) {
-            im0 im0Var = this.f9330f;
+            im0 im0Var = this.f9328f;
             if (i10 < im0Var.getChildCount()) {
                 View childAt = im0Var.getChildAt(i10);
                 if ((childAt.getTag() instanceof Integer) && ((Integer) childAt.getTag()).intValue() == 34) {
@@ -265,7 +265,7 @@ public final class k9 extends FrameLayout implements View.OnClickListener, Notif
         int i10;
         ArrayList arrayList = new ArrayList();
         ArrayList arrayList2 = new ArrayList();
-        int i11 = this.f9327a;
+        int i11 = this.f9325a;
         int i12 = 0;
         if (i11 != 1 && i11 != 2) {
             z10 = false;
@@ -278,13 +278,13 @@ public final class k9 extends FrameLayout implements View.OnClickListener, Notif
                 long j11 = chatParticipants.participants.get(i13).user_id;
                 i10 = ((org.telegram.ui.ActionBar.f3) r9Var).currentAccount;
                 TLRPC.User user = MessagesController.getInstance(i10).getUser(Long.valueOf(j11));
-                if (user != null && !UserObject.isUserSelf(user) && !user.bot && user.f20422id != 777000 && j11 != 0) {
+                if (user != null && !UserObject.isUserSelf(user) && !user.bot && user.f20420id != 777000 && j11 != 0) {
                     if (z10 && !user.contact) {
                         arrayList2.add(Long.valueOf(j11));
                     } else {
                         arrayList.add(Long.valueOf(j11));
                     }
-                    this.f9329c.remove(Long.valueOf(j11));
+                    this.f9327c.remove(Long.valueOf(j11));
                 }
             }
         }
@@ -293,7 +293,7 @@ public final class k9 extends FrameLayout implements View.OnClickListener, Notif
                 Context context = getContext();
                 d6Var2 = ((org.telegram.ui.ActionBar.f3) r9Var).resourcesProvider;
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, d6Var2);
-                alertDialog$Builder.f20604a.T = "All group members are not in your contact list.";
+                alertDialog$Builder.f20602a.T = "All group members are not in your contact list.";
                 alertDialog$Builder.h("Cancel", null);
                 alertDialog$Builder.o();
                 return;
@@ -301,8 +301,8 @@ public final class k9 extends FrameLayout implements View.OnClickListener, Notif
             Context context2 = getContext();
             d6Var = ((org.telegram.ui.ActionBar.f3) r9Var).resourcesProvider;
             AlertDialog$Builder alertDialog$Builder2 = new AlertDialog$Builder(context2, 0, d6Var);
-            alertDialog$Builder2.f20604a.T = arrayList2.size() + " members are not in your contact list";
-            alertDialog$Builder2.k("Add " + arrayList.size() + " contacts", new ai.f(this, j10, arrayList, 1));
+            alertDialog$Builder2.f20602a.T = arrayList2.size() + " members are not in your contact list";
+            alertDialog$Builder2.k("Add " + arrayList.size() + " contacts", new ai.f(this, j10, arrayList, 2));
             alertDialog$Builder2.h("Cancel", null);
             alertDialog$Builder2.o();
             return;
@@ -312,23 +312,23 @@ public final class k9 extends FrameLayout implements View.OnClickListener, Notif
         while (i12 < size) {
             Object obj = arrayList.get(i12);
             i12++;
-            this.f9328b.k(Boolean.TRUE, ((Long) obj).longValue());
+            this.f9326b.k(Boolean.TRUE, ((Long) obj).longValue());
         }
         i(true);
         e(true);
         f(true);
-        this.f9335x.K = true;
+        this.f9333x.K = true;
     }
 
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         TLRPC.ChatFull chatFull;
         org.telegram.ui.ActionBar.b2 b2Var;
-        if (i10 == NotificationCenter.chatInfoDidLoad && (chatFull = (TLRPC.ChatFull) objArr[0]) != null && (b2Var = this.G) != null && this.H == chatFull.f20276id) {
+        if (i10 == NotificationCenter.chatInfoDidLoad && (chatFull = (TLRPC.ChatFull) objArr[0]) != null && (b2Var = this.G) != null && this.H == chatFull.f20274id) {
             b2Var.c(350L);
             this.G = null;
             this.H = -1L;
-            d(chatFull.f20276id, chatFull.participants);
+            d(chatFull.f20274id, chatFull.participants);
         }
     }
 
@@ -336,9 +336,9 @@ public final class k9 extends FrameLayout implements View.OnClickListener, Notif
         int i10;
         boolean z11;
         int i11;
-        int i12 = this.f9327a;
+        int i12 = this.f9325a;
         r9 r9Var = this.W;
-        d dVar = this.f9334w;
+        d dVar = this.f9332w;
         int i13 = 0;
         boolean z12 = false;
         d dVar2 = this.v;
@@ -366,7 +366,7 @@ public final class k9 extends FrameLayout implements View.OnClickListener, Notif
             dVar.setVisibility(8);
             return;
         }
-        ArrayList arrayList = this.f9329c;
+        ArrayList arrayList = this.f9327c;
         if (i12 == 1) {
             dVar2.setShowZero(false);
             dVar2.setEnabled(true);
@@ -375,10 +375,10 @@ public final class k9 extends FrameLayout implements View.OnClickListener, Notif
             dVar.setVisibility(8);
             return;
         }
-        i9 i9Var = this.f9332r;
+        i9 i9Var = this.f9330r;
         if (i12 == 3) {
             int size = r9.m1(arrayList, this.d).size();
-            r9Var.f9753s = size;
+            r9Var.f9751s = size;
             dVar2.g(LocaleController.getString(R.string.StoryPrivacyButtonSave), z10, true);
             dVar2.setShowZero(false);
             if (size <= 0) {
@@ -417,7 +417,7 @@ public final class k9 extends FrameLayout implements View.OnClickListener, Notif
             ci.i7 storiesController = MessagesController.getInstance(i10).getStoriesController();
             if (!storiesController.O) {
                 while (true) {
-                    a0.h hVar = this.f9328b;
+                    a0.h hVar = this.f9326b;
                     if (i13 >= hVar.m()) {
                         break;
                     }
@@ -432,7 +432,7 @@ public final class k9 extends FrameLayout implements View.OnClickListener, Notif
             dVar.setVisibility(8);
         } else if (i12 == 4) {
             int size2 = r9.m1(r9Var.d, r9Var.e).size();
-            r9Var.f9750f = size2;
+            r9Var.f9748f = size2;
             dVar2.g(LocaleController.getString(R.string.StoryPrivacyButtonSave), z10, true);
             dVar2.setShowZero(false);
             i9Var.b(false, z10);
@@ -448,14 +448,14 @@ public final class k9 extends FrameLayout implements View.OnClickListener, Notif
         boolean z11;
         r9 r9Var = this.W;
         ArrayList arrayList2 = r9Var.J;
-        HashMap hashMap = r9Var.f9752r;
-        ArrayList arrayList3 = r9Var.f9751n;
+        HashMap hashMap = r9Var.f9750r;
+        ArrayList arrayList3 = r9Var.f9749n;
         ArrayList arrayList4 = r9Var.h;
         HashMap hashMap2 = r9Var.e;
         ArrayList arrayList5 = r9Var.d;
-        int i10 = this.f9327a;
+        int i10 = this.f9325a;
         HashMap hashMap3 = this.d;
-        ArrayList arrayList6 = this.f9329c;
+        ArrayList arrayList6 = this.f9327c;
         if (i10 == 4) {
             arrayList5.clear();
             hashMap2.clear();
@@ -473,7 +473,7 @@ public final class k9 extends FrameLayout implements View.OnClickListener, Notif
             arrayList2.clear();
             arrayList2.addAll(arrayList6);
         }
-        if (this.f9327a == 3 && (r9Var.N != 3 || (arrayList6.isEmpty() && hashMap3.isEmpty()))) {
+        if (this.f9325a == 3 && (r9Var.N != 3 || (arrayList6.isEmpty() && hashMap3.isEmpty()))) {
             if (arrayList6.isEmpty() && hashMap3.isEmpty()) {
                 int i11 = this.R;
                 if (i11 != -1) {
@@ -494,27 +494,27 @@ public final class k9 extends FrameLayout implements View.OnClickListener, Notif
             }
             y8 y8Var = (y8) arrayList.get(i12);
             if (y8Var != null) {
-                int i13 = y8Var.f10140i;
+                int i13 = y8Var.f10138i;
                 if (i13 > 0) {
                     if (r9Var.N != i13) {
                         z12 = false;
                     }
-                    y8Var.f10142k = z12;
-                    y8Var.f10143l = false;
+                    y8Var.f10140k = z12;
+                    y8Var.f10141l = false;
                 } else {
-                    TLRPC.User user = y8Var.f10139g;
+                    TLRPC.User user = y8Var.f10137g;
                     if (user != null) {
-                        boolean contains = arrayList6.contains(Long.valueOf(user.f20422id));
-                        y8Var.f10142k = contains;
-                        if (contains || !m12.contains(Long.valueOf(y8Var.f10139g.f20422id))) {
+                        boolean contains = arrayList6.contains(Long.valueOf(user.f20420id));
+                        y8Var.f10140k = contains;
+                        if (contains || !m12.contains(Long.valueOf(y8Var.f10137g.f20420id))) {
                             z12 = false;
                         }
-                        y8Var.f10143l = z12;
+                        y8Var.f10141l = z12;
                     } else {
                         TLRPC.Chat chat = y8Var.h;
                         if (chat != null) {
-                            y8Var.f10142k = hashMap3.containsKey(Long.valueOf(chat.f20275id));
-                            y8Var.f10143l = false;
+                            y8Var.f10140k = hashMap3.containsKey(Long.valueOf(chat.f20273id));
+                            y8Var.f10141l = false;
                         }
                     }
                 }
@@ -523,13 +523,13 @@ public final class k9 extends FrameLayout implements View.OnClickListener, Notif
         }
         int i14 = 0;
         while (true) {
-            im0 im0Var = this.f9330f;
+            im0 im0Var = this.f9328f;
             if (i14 < im0Var.getChildCount()) {
                 View childAt = im0Var.getChildAt(i14);
                 if ((childAt instanceof q9) && (R = RecyclerView.R(childAt)) >= 0 && R < arrayList.size()) {
                     y8 y8Var2 = (y8) arrayList.get(R);
                     q9 q9Var = (q9) childAt;
-                    if (!y8Var2.f10142k && !y8Var2.f10143l) {
+                    if (!y8Var2.f10140k && !y8Var2.f10141l) {
                         z11 = false;
                     } else {
                         z11 = true;
@@ -543,7 +543,7 @@ public final class k9 extends FrameLayout implements View.OnClickListener, Notif
                         }
                         q9Var.b(f7, z10);
                     } else {
-                        if (y8Var2.f10143l && !y8Var2.f10142k) {
+                        if (y8Var2.f10141l && !y8Var2.f10140k) {
                             f7 = 0.5f;
                         }
                         q9Var.b(f7, z10);
@@ -562,16 +562,16 @@ public final class k9 extends FrameLayout implements View.OnClickListener, Notif
     }
 
     public final void h(boolean z10) {
-        org.telegram.ui.Cells.u3 u3Var = this.f9336y;
+        org.telegram.ui.Cells.u3 u3Var = this.f9334y;
         if (u3Var == null) {
             return;
         }
-        if (r9.m1(this.f9329c, this.d).size() > 0) {
+        if (r9.m1(this.f9327c, this.d).size() > 0) {
             u3Var.b(LocaleController.getString(R.string.UsersDeselectAll), new z8(this, 2));
         } else if (z10) {
             u3Var.setRightText(null);
         } else {
-            org.telegram.ui.Cells.t3 t3Var = u3Var.f23590b;
+            org.telegram.ui.Cells.t3 t3Var = u3Var.f23588b;
             t3Var.c(null, false, true);
             t3Var.setOnClickListener(null);
             t3Var.setVisibility(0);
@@ -587,13 +587,13 @@ public final class k9 extends FrameLayout implements View.OnClickListener, Notif
         Property property3;
         Object chat;
         org.telegram.ui.ActionBar.d6 d6Var;
-        HashSet m12 = r9.m1(this.f9329c, this.d);
-        int i11 = this.f9327a;
+        HashSet m12 = r9.m1(this.f9327c, this.d);
+        int i11 = this.f9325a;
         r9 r9Var = this.W;
         if (i11 == 3) {
-            r9Var.f9753s = m12.size();
+            r9Var.f9751s = m12.size();
         } else if (i11 == 4) {
-            r9Var.f9750f = m12.size();
+            r9Var.f9748f = m12.size();
         }
         i10 = ((org.telegram.ui.ActionBar.f3) r9Var).currentAccount;
         MessagesController messagesController = MessagesController.getInstance(i10);
@@ -601,7 +601,7 @@ public final class k9 extends FrameLayout implements View.OnClickListener, Notif
         ArrayList arrayList3 = new ArrayList();
         int i12 = 0;
         while (true) {
-            d9Var = this.f9335x;
+            d9Var = this.f9333x;
             ArrayList arrayList4 = d9Var.d;
             arrayList = d9Var.d;
             if (i12 >= arrayList4.size()) {
@@ -644,11 +644,11 @@ public final class k9 extends FrameLayout implements View.OnClickListener, Notif
         if (arrayList2.isEmpty() && arrayList3.isEmpty()) {
             return;
         }
-        n9 n9Var = d9Var.f9562c;
+        n9 n9Var = d9Var.f9560c;
         ArrayList arrayList5 = n9Var.e;
         ArrayList arrayList6 = n9Var.d;
-        ArrayList arrayList7 = n9Var.f9528f;
-        o9 o9Var = (o9) n9Var.f9529n;
+        ArrayList arrayList7 = n9Var.f9526f;
+        o9 o9Var = (o9) n9Var.f9527n;
         o9Var.G = true;
         ArrayList arrayList8 = o9Var.d;
         arrayList8.removeAll(arrayList2);
@@ -661,9 +661,9 @@ public final class k9 extends FrameLayout implements View.OnClickListener, Notif
         }
         n9Var.c();
         if (z10) {
-            n9Var.f9527c = false;
+            n9Var.f9525c = false;
             AnimatorSet animatorSet = new AnimatorSet();
-            n9Var.f9526b = animatorSet;
+            n9Var.f9524b = animatorSet;
             animatorSet.addListener(new m9(n9Var, arrayList2, 0));
             arrayList7.clear();
             arrayList6.clear();
@@ -696,9 +696,9 @@ public final class k9 extends FrameLayout implements View.OnClickListener, Notif
                 n9Var.removeView((View) arrayList2.get(i17));
             }
             arrayList9.clear();
-            n9Var.f9526b = null;
-            n9Var.f9527c = false;
-            o9Var.f9560a.setAllowDrawCursor(true);
+            n9Var.f9524b = null;
+            n9Var.f9525c = false;
+            o9Var.f9558a.setAllowDrawCursor(true);
         }
         for (int i18 = 0; i18 < arrayList3.size(); i18++) {
             n9Var.addView((View) arrayList3.get(i18));
@@ -711,7 +711,7 @@ public final class k9 extends FrameLayout implements View.OnClickListener, Notif
         boolean z10 = this.M;
         boolean z11 = false;
         float f7 = 1.0f;
-        d9 d9Var = this.f9335x;
+        d9 d9Var = this.f9333x;
         if (!z10 && !this.U && getTranslationX() == 0.0f) {
             if (!this.N || Math.abs(this.O - c10) > 1.0f) {
                 this.N = true;
@@ -749,7 +749,7 @@ public final class k9 extends FrameLayout implements View.OnClickListener, Notif
         float f10 = -x8Var.getHeight();
         int i10 = 0;
         while (true) {
-            im0 im0Var = this.f9330f;
+            im0 im0Var = this.f9328f;
             if (i10 < im0Var.getChildCount()) {
                 View childAt = im0Var.getChildAt(i10);
                 if ((childAt.getTag() instanceof Integer) && ((Integer) childAt.getTag()).intValue() == 35) {
@@ -765,7 +765,7 @@ public final class k9 extends FrameLayout implements View.OnClickListener, Notif
         if (this.Q != z11) {
             this.Q = z11;
             org.telegram.ui.ActionBar.g2 g2Var = (org.telegram.ui.ActionBar.g2) x8Var.e;
-            if (z11 || this.f9327a != 0) {
+            if (z11 || this.f9325a != 0) {
                 f7 = 0.0f;
             }
             g2Var.c(f7, true);
@@ -783,22 +783,22 @@ public final class k9 extends FrameLayout implements View.OnClickListener, Notif
 
     @Override
     public final void onClick(View view) {
-        d9 d9Var = this.f9335x;
+        d9 d9Var = this.f9333x;
         if (!d9Var.d.contains(view)) {
             return;
         }
         v30 v30Var = (v30) view;
-        if (v30Var.f31139y) {
+        if (v30Var.f31137y) {
             d9Var.e = null;
-            n9 n9Var = d9Var.f9562c;
-            o9 o9Var = (o9) n9Var.f9529n;
+            n9 n9Var = d9Var.f9560c;
+            o9 o9Var = (o9) n9Var.f9527n;
             o9Var.G = true;
             o9Var.d.remove(v30Var);
             v30Var.setOnClickListener(null);
             n9Var.c();
-            n9Var.f9527c = false;
+            n9Var.f9525c = false;
             AnimatorSet animatorSet = new AnimatorSet();
-            n9Var.f9526b = animatorSet;
+            n9Var.f9524b = animatorSet;
             animatorSet.addListener(new me(6, n9Var, v30Var));
             ArrayList arrayList = n9Var.h;
             arrayList.clear();
@@ -807,7 +807,7 @@ public final class k9 extends FrameLayout implements View.OnClickListener, Notif
             arrayList2.clear();
             n9Var.e.clear();
             arrayList2.add(v30Var);
-            ArrayList arrayList3 = n9Var.f9528f;
+            ArrayList arrayList3 = n9Var.f9526f;
             arrayList3.clear();
             arrayList3.add(ObjectAnimator.ofFloat(v30Var, View.SCALE_X, 1.0f, 0.01f));
             arrayList3.add(ObjectAnimator.ofFloat(v30Var, View.SCALE_Y, 1.0f, 0.01f));
@@ -817,7 +817,7 @@ public final class k9 extends FrameLayout implements View.OnClickListener, Notif
             Iterator it = this.d.entrySet().iterator();
             while (true) {
                 boolean hasNext = it.hasNext();
-                ArrayList arrayList4 = this.f9329c;
+                ArrayList arrayList4 = this.f9327c;
                 if (hasNext) {
                     Map.Entry entry = (Map.Entry) it.next();
                     if (((ArrayList) entry.getValue()).contains(Long.valueOf(uid))) {
@@ -879,7 +879,7 @@ public final class k9 extends FrameLayout implements View.OnClickListener, Notif
         }
         super.onMeasure(i10, i11);
         int i16 = AndroidUtilities.statusBarHeight;
-        if (this.f9327a == 0) {
+        if (this.f9325a == 0) {
             dp = 0;
         } else {
             dp = AndroidUtilities.dp(56.0f);
@@ -887,19 +887,19 @@ public final class k9 extends FrameLayout implements View.OnClickListener, Notif
         this.e.setPadding(0, i16 + dp, 0, 0);
         boolean z17 = this.V;
         z10 = ((org.telegram.ui.ActionBar.f3) r9Var).keyboardVisible;
-        im0 im0Var = this.f9330f;
-        i9 i9Var = this.f9332r;
+        im0 im0Var = this.f9328f;
+        i9 i9Var = this.f9330r;
         if (z17 != z10) {
             float c10 = c();
             z11 = ((org.telegram.ui.ActionBar.f3) r9Var).keyboardVisible;
-            if (z11 && c10 + Math.min(AndroidUtilities.dp(150.0f), this.f9335x.J) > im0Var.getPaddingTop()) {
+            if (z11 && c10 + Math.min(AndroidUtilities.dp(150.0f), this.f9333x.J) > im0Var.getPaddingTop()) {
                 li.n nVar = new li.n(getContext(), 2, 0.7f);
-                nVar.f46051a = 1;
-                nVar.f16146p = -AndroidUtilities.dp(56.0f);
+                nVar.f46053a = 1;
+                nVar.f16144p = -AndroidUtilities.dp(56.0f);
                 this.h.w0(nVar);
             }
-            int i17 = this.f9327a;
-            View view = this.f9333s;
+            int i17 = this.f9325a;
+            View view = this.f9331s;
             float f10 = 0.0f;
             if (i17 == 0) {
                 z15 = ((org.telegram.ui.ActionBar.f3) r9Var).keyboardVisible;
@@ -933,7 +933,7 @@ public final class k9 extends FrameLayout implements View.OnClickListener, Notif
                 i9Var.d.addListener(new ah.b(i9Var, 24));
                 i9Var.d.setDuration(250L);
                 ValueAnimator valueAnimator2 = i9Var.d;
-                bs bsVar = org.telegram.ui.ActionBar.o1.f21631w;
+                bs bsVar = org.telegram.ui.ActionBar.o1.f21629w;
                 valueAnimator2.setInterpolator(bsVar);
                 i9Var.d.start();
                 z13 = ((org.telegram.ui.ActionBar.f3) r9Var).keyboardVisible;

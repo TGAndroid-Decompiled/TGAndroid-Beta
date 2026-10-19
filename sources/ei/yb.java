@@ -8,37 +8,37 @@ import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.bs;
 import org.telegram.ui.Stories.recorder.FfmpegAudioWaveformLoader;
 public final class yb {
-    public final org.telegram.ui.Components.f6 f10153a;
-    public final int f10154b;
+    public final org.telegram.ui.Components.f6 f10151a;
+    public final int f10152b;
     public final short[] d;
     public short e;
-    public final MediaExtractor f10156f;
-    public final MediaFormat f10157g;
+    public final MediaExtractor f10154f;
+    public final MediaFormat f10155g;
     public final long h;
-    public final FfmpegAudioWaveformLoader f10160k;
-    public final gc f10161l;
-    public int f10155c = 0;
-    public final Object f10158i = new Object();
-    public boolean f10159j = false;
+    public final FfmpegAudioWaveformLoader f10158k;
+    public final gc f10159l;
+    public int f10153c = 0;
+    public final Object f10156i = new Object();
+    public boolean f10157j = false;
 
     public yb(gc gcVar, String str, int i10) {
         long j10;
-        this.f10161l = gcVar;
-        this.f10153a = new org.telegram.ui.Components.f6(gcVar, 0L, 600L, bs.h);
+        this.f10159l = gcVar;
+        this.f10151a = new org.telegram.ui.Components.f6(gcVar, 0L, 600L, bs.h);
         int i11 = 0;
         MediaExtractor mediaExtractor = new MediaExtractor();
-        this.f10156f = mediaExtractor;
+        this.f10154f = mediaExtractor;
         String str2 = null;
         try {
             mediaExtractor.setDataSource(str);
             int trackCount = mediaExtractor.getTrackCount();
             while (true) {
                 if (i11 < trackCount) {
-                    MediaFormat trackFormat = this.f10156f.getTrackFormat(i11);
+                    MediaFormat trackFormat = this.f10154f.getTrackFormat(i11);
                     str2 = trackFormat.getString("mime");
                     if (str2 != null && str2.startsWith("audio/")) {
-                        this.f10156f.selectTrack(i11);
-                        this.f10157g = trackFormat;
+                        this.f10154f.selectTrack(i11);
+                        this.f10155g = trackFormat;
                         break;
                     }
                     i11++;
@@ -46,7 +46,7 @@ public final class yb {
                     break;
                 }
             }
-            MediaFormat mediaFormat = this.f10157g;
+            MediaFormat mediaFormat = this.f10155g;
             if (mediaFormat != null) {
                 this.h = mediaFormat.getLong("durationUs") / 1000000;
             }
@@ -56,7 +56,7 @@ public final class yb {
         ac acVar = gcVar.h;
         if (acVar != null) {
             j10 = acVar.e;
-        } else if (!gcVar.f9121s.isEmpty()) {
+        } else if (!gcVar.f9119s.isEmpty()) {
             j10 = gcVar.getBaseDuration();
         } else if (gcVar.E) {
             j10 = gcVar.H;
@@ -64,31 +64,31 @@ public final class yb {
             j10 = this.h * 1000;
         }
         int min = Math.min(Math.round(((((float) (this.h * 1000)) / ((float) Math.min(j10, gcVar.getMaxScrollDuration()))) * i10) / Math.round(AndroidUtilities.dpf2(3.3333f))), 4000);
-        this.f10154b = min;
+        this.f10152b = min;
         this.d = new short[min];
-        if (this.h > 0 && this.f10157g != null) {
+        if (this.h > 0 && this.f10155g != null) {
             if (!"audio/mpeg".equals(str2) && !"audio/mp3".equals(str2) && !"audio/mp4a".equals(str2) && !"audio/mp4a-latm".equals(str2)) {
                 Utilities.phoneBookQueue.postRunnable(new com.google.firebase.messaging.s(this, 28));
             } else {
-                this.f10160k = new FfmpegAudioWaveformLoader(str, min, new ai.q(this, 20));
+                this.f10158k = new FfmpegAudioWaveformLoader(str, min, new ai.q(this, 20));
             }
         }
     }
 
     public final void a() {
-        FfmpegAudioWaveformLoader ffmpegAudioWaveformLoader = this.f10160k;
+        FfmpegAudioWaveformLoader ffmpegAudioWaveformLoader = this.f10158k;
         if (ffmpegAudioWaveformLoader != null) {
             ffmpegAudioWaveformLoader.destroy();
         }
         Utilities.phoneBookQueue.cancelRunnable(new com.google.firebase.messaging.s(this, 28));
-        synchronized (this.f10158i) {
-            this.f10159j = true;
+        synchronized (this.f10156i) {
+            this.f10157j = true;
         }
     }
 
     public final void b(short[] sArr, int i10) {
         for (int i11 = 0; i11 < i10; i11++) {
-            int i12 = this.f10155c;
+            int i12 = this.f10153c;
             int i13 = i12 + i11;
             short[] sArr2 = this.d;
             if (i13 >= sArr2.length) {
@@ -101,7 +101,7 @@ public final class yb {
                 this.e = s11;
             }
         }
-        this.f10155c += i10;
-        this.f10161l.invalidate();
+        this.f10153c += i10;
+        this.f10159l.invalidate();
     }
 }

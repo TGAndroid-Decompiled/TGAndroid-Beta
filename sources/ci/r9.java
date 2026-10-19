@@ -13,16 +13,16 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.FileStreamLoadOperation;
 import org.telegram.tgnet.TLRPC;
 public final class r9 implements j4 {
-    public final a7 f5940a;
-    public final ArrayList f5941b;
-    public final Context f5942c;
+    public final a7 f5938a;
+    public final ArrayList f5939b;
+    public final Context f5940c;
     public final aa d;
 
     public r9(aa aaVar, a7 a7Var, ArrayList arrayList, Context context) {
         this.d = aaVar;
-        this.f5940a = a7Var;
-        this.f5941b = arrayList;
-        this.f5942c = context;
+        this.f5938a = a7Var;
+        this.f5939b = arrayList;
+        this.f5940c = context;
     }
 
     public final void a(int i10, long j10) {
@@ -37,9 +37,9 @@ public final class r9 implements j4 {
     public final void b(boolean z10) {
         int i10;
         aa aaVar = this.d;
-        org.telegram.ui.ActionBar.n2 n2Var = aaVar.f5189f;
-        if (aaVar.f5179b) {
-            if (!aaVar.f5182c) {
+        org.telegram.ui.ActionBar.n2 n2Var = aaVar.f5187f;
+        if (aaVar.f5177b) {
+            if (!aaVar.f5180c) {
                 if (z10) {
                     AndroidUtilities.requestAdjustNothing(n2Var.getParentActivity(), n2Var.getClassGuid());
                     return;
@@ -50,7 +50,7 @@ public final class r9 implements j4 {
             }
             return;
         }
-        WindowManager.LayoutParams layoutParams = aaVar.f5213r;
+        WindowManager.LayoutParams layoutParams = aaVar.f5211r;
         if (z10) {
             i10 = 48;
         } else {
@@ -58,7 +58,7 @@ public final class r9 implements j4 {
         }
         layoutParams.softInputMode = i10;
         try {
-            aaVar.f5204n.updateViewLayout(aaVar.f5216s, layoutParams);
+            aaVar.f5202n.updateViewLayout(aaVar.f5214s, layoutParams);
         } catch (Exception e) {
             FileLog.e(e);
         }
@@ -85,16 +85,16 @@ public final class r9 implements j4 {
             }
             boolean equals = TextUtils.equals(uri2, uri3);
             boolean z10 = true;
-            if (equals && (z9Var = aaVar.f5232z0) != null) {
+            if (equals && (z9Var = aaVar.f5230z0) != null) {
                 if (equals) {
                     aaVar.G0 = p4Var;
-                    p4Var.f5729c = z9Var;
-                    p4Var.f5728b = null;
+                    p4Var.f5727c = z9Var;
+                    p4Var.f5726b = null;
                     z9Var.setSpeed(aa.B1);
                     p4 p4Var2 = aaVar.G0;
-                    p4Var2.f5727a = aaVar.f5232z0.firstFrameRendered;
-                    p4Var2.e = aaVar.f5231y0;
-                    p4Var2.f5730f = aaVar.B0;
+                    p4Var2.f5725a = aaVar.f5230z0.firstFrameRendered;
+                    p4Var2.e = aaVar.f5229y0;
+                    p4Var2.f5728f = aaVar.B0;
                     p4Var2.d = aaVar.C0;
                     FileLog.d("StoryViewer requestPlayer: same url");
                 }
@@ -106,25 +106,25 @@ public final class r9 implements j4 {
                 }
                 h1 h1Var = aaVar.A0;
                 if (h1Var != null) {
-                    if (h1Var.f5446n) {
+                    if (h1Var.f5444n) {
                         h1Var.s(null);
                     } else {
                         h1Var.e();
                     }
                     aaVar.A0 = null;
                 }
-                z9 z9Var2 = aaVar.f5232z0;
+                z9 z9Var2 = aaVar.f5230z0;
                 if (z9Var2 != null) {
                     z9Var2.release(null);
-                    aaVar.f5232z0 = null;
+                    aaVar.f5230z0 = null;
                 }
                 p4 p4Var3 = aaVar.G0;
                 if (p4Var3 != null) {
-                    p4Var3.f5729c = null;
-                    p4Var3.f5728b = null;
-                    p4Var3.f5727a = false;
+                    p4Var3.f5727c = null;
+                    p4Var3.f5726b = null;
+                    p4Var3.f5725a = false;
                     p4Var3.e = null;
-                    p4Var3.f5730f = null;
+                    p4Var3.f5728f = null;
                     p4Var3.d = null;
                     p4Var3.b();
                     aaVar.G0 = null;
@@ -136,43 +136,43 @@ public final class r9 implements j4 {
                         if (i10 >= arrayList.size()) {
                             break;
                         } else if (((z9) arrayList.get(i10)).uri.equals(uri)) {
-                            aaVar.f5232z0 = (z9) arrayList.remove(i10);
+                            aaVar.f5230z0 = (z9) arrayList.remove(i10);
                             break;
                         } else {
                             i10++;
                         }
                     }
-                    if (aaVar.f5232z0 == null) {
+                    if (aaVar.f5230z0 == null) {
                         z9 z9Var3 = new z9(aaVar, aaVar.C0, aaVar.B0);
-                        aaVar.f5232z0 = z9Var3;
+                        aaVar.f5230z0 = z9Var3;
                         z9Var3.document = document;
                     }
-                    z9 z9Var4 = aaVar.f5232z0;
+                    z9 z9Var4 = aaVar.f5230z0;
                     z9Var4.uri = uri;
                     z9Var4.setSpeed(aa.B1);
                     p4 p4Var4 = aaVar.G0;
-                    z9 z9Var5 = aaVar.f5232z0;
-                    p4Var4.f5729c = z9Var5;
-                    p4Var4.f5727a = false;
-                    p4Var4.e = aaVar.f5231y0;
-                    p4Var4.f5730f = aaVar.B0;
+                    z9 z9Var5 = aaVar.f5230z0;
+                    p4Var4.f5727c = z9Var5;
+                    p4Var4.f5725a = false;
+                    p4Var4.e = aaVar.f5229y0;
+                    p4Var4.f5728f = aaVar.B0;
                     p4Var4.d = aaVar.C0;
-                    p4Var4.f5728b = null;
+                    p4Var4.f5726b = null;
                     FileStreamLoadOperation.setPriorityForDocument(z9Var5.document, 3);
-                    FileLoader.getInstance(aaVar.h).changePriority(3, aaVar.f5232z0.document, null, null, null, null, null);
+                    FileLoader.getInstance(aaVar.h).changePriority(3, aaVar.f5230z0.document, null, null, null, null, null);
                     if (j10 == 0) {
-                        long j12 = aaVar.f5220t1;
+                        long j12 = aaVar.f5218t1;
                         if (j12 != 0) {
-                            aaVar.G0.f5727a = true;
+                            aaVar.G0.f5725a = true;
                             j11 = j12;
                             FileLog.d("StoryViewer requestPlayer: currentPlayerScope.player start " + uri);
-                            ((z9) aaVar.G0.f5729c).start(false, aaVar.w(), uri, j11, aa.D1, aa.B1);
+                            ((z9) aaVar.G0.f5727c).start(false, aaVar.w(), uri, j11, aa.D1, aa.B1);
                             aaVar.G0.b();
                         }
                     }
                     j11 = j10;
                     FileLog.d("StoryViewer requestPlayer: currentPlayerScope.player start " + uri);
-                    ((z9) aaVar.G0.f5729c).start(false, aaVar.w(), uri, j11, aa.D1, aa.B1);
+                    ((z9) aaVar.G0.f5727c).start(false, aaVar.w(), uri, j11, aa.D1, aa.B1);
                     aaVar.G0.b();
                 } else {
                     FileLog.d("StoryViewer requestPlayer: url is null (1)");
@@ -182,7 +182,7 @@ public final class r9 implements j4 {
                 z10 = false;
             }
             i(false, z10);
-            aaVar.f5220t1 = 0L;
+            aaVar.f5218t1 = 0L;
             aaVar.P();
             return;
         }
@@ -192,7 +192,7 @@ public final class r9 implements j4 {
         }
         h1 h1Var2 = aaVar.A0;
         if (h1Var2 != null) {
-            if (h1Var2.f5446n) {
+            if (h1Var2.f5444n) {
                 h1Var2.s(null);
             } else {
                 h1Var2.e();
@@ -200,30 +200,30 @@ public final class r9 implements j4 {
             aaVar.A0 = null;
         }
         FileLog.d("StoryViewer requestPlayer ignored, because closed: " + aaVar.H0 + ", " + aaVar.U);
-        p4Var.f5727a = false;
-        p4Var.f5729c = null;
-        p4Var.f5728b = null;
+        p4Var.f5725a = false;
+        p4Var.f5727c = null;
+        p4Var.f5726b = null;
     }
 
     public final void d(float f7) {
         aa aaVar = this.d;
-        if (aaVar.f5214r0 != f7) {
-            aaVar.f5214r0 = f7;
+        if (aaVar.f5212r0 != f7) {
+            aaVar.f5212r0 = f7;
             aaVar.v.invalidate();
         }
     }
 
     public final void e() {
-        this.d.f5203m1 = false;
+        this.d.f5201m1 = false;
     }
 
     public final void f(boolean z10) {
         z9 z9Var;
         aa aaVar = this.d;
-        if (!aaVar.f5191f1 && z10 && aaVar.f5200k0) {
-            aaVar.f5200k0 = false;
+        if (!aaVar.f5189f1 && z10 && aaVar.f5198k0) {
+            aaVar.f5198k0 = false;
             p4 p4Var = aaVar.G0;
-            if (p4Var != null && (z9Var = (z9) p4Var.f5729c) != null) {
+            if (p4Var != null && (z9Var = (z9) p4Var.f5727c) != null) {
                 z9Var.setSeeking(false);
             }
             q4 t10 = aaVar.t();
@@ -231,7 +231,7 @@ public final class r9 implements j4 {
                 t10.invalidate();
             }
         }
-        aaVar.f5191f1 = z10;
+        aaVar.f5189f1 = z10;
         aaVar.P();
     }
 
@@ -282,38 +282,38 @@ public final class r9 implements j4 {
     public final void j() {
         int indexOf;
         aa aaVar = this.d;
-        a7 a7Var = this.f5940a;
+        a7 a7Var = this.f5938a;
         if (a7Var != null) {
-            if (aaVar.f5205n0.f5516x0 == null) {
+            if (aaVar.f5203n0.f5514x0 == null) {
                 return;
             }
-            ArrayList arrayList = new ArrayList(aaVar.f5205n0.f5516x0);
-            if (aaVar.f5205n0.getCurrentPeerView() == null) {
+            ArrayList arrayList = new ArrayList(aaVar.f5203n0.f5514x0);
+            if (aaVar.f5203n0.getCurrentPeerView() == null) {
                 indexOf = -1;
             } else {
-                indexOf = arrayList.indexOf(aaVar.f5205n0.getCurrentPeerView().getCurrentDay());
+                indexOf = arrayList.indexOf(aaVar.f5203n0.getCurrentPeerView().getCurrentDay());
             }
             if (indexOf >= 0) {
                 arrayList.remove(indexOf);
-                if (!aaVar.f5205n0.E(true)) {
+                if (!aaVar.f5203n0.E(true)) {
                     aaVar.q(false);
                     return;
                 }
-                aaVar.f5205n0.G0 = new a3.l0(this, a7Var, arrayList, 25);
+                aaVar.f5203n0.G0 = new a3.l0(this, a7Var, arrayList, 25);
                 return;
             }
             aaVar.q(false);
             return;
         }
-        ArrayList arrayList2 = new ArrayList(this.f5941b);
-        int indexOf2 = arrayList2.indexOf(Long.valueOf(aaVar.f5205n0.getCurrentPeerView().getCurrentPeer()));
+        ArrayList arrayList2 = new ArrayList(this.f5939b);
+        int indexOf2 = arrayList2.indexOf(Long.valueOf(aaVar.f5203n0.getCurrentPeerView().getCurrentPeer()));
         if (indexOf2 >= 0) {
             arrayList2.remove(indexOf2);
-            if (!aaVar.f5205n0.E(true)) {
+            if (!aaVar.f5203n0.E(true)) {
                 aaVar.q(false);
                 return;
             }
-            aaVar.f5205n0.G0 = new ah.o(this, arrayList2, indexOf2, 7);
+            aaVar.f5203n0.G0 = new ah.o(this, arrayList2, indexOf2, 7);
             return;
         }
         aaVar.q(false);

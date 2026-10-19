@@ -18,7 +18,7 @@ public final class AudioRecorderV2Controller {
     private final Object outputLock = new Object();
     private final HashMap<Long, File> outputFiles = new HashMap<>();
     private final HashSet<Long> deliveredOutputIds = new HashSet<>();
-    private ri.n previousState = ri.n.f45817a;
+    private ri.n previousState = ri.n.f45819a;
 
     public interface Listener {
         void onCompleted(ri.m mVar);
@@ -43,13 +43,13 @@ public final class AudioRecorderV2Controller {
     public AudioRecorderV2Controller(Context context, File file, final Listener listener) {
         this.listener = listener;
         ?? obj = new Object();
-        obj.f7649c = ri.i.f45805a;
-        obj.f7650f = ri.p.G;
-        obj.f7647a = context;
-        obj.f7648b = file;
-        ri.i iVar = (ri.i) ti.e.f47214c.a();
+        obj.f7647c = ri.i.f45807a;
+        obj.f7648f = ri.p.G;
+        obj.f7645a = context;
+        obj.f7646b = file;
+        ri.i iVar = (ri.i) ti.e.f47216c.a();
         if (iVar != null) {
-            obj.f7649c = iVar;
+            obj.f7647c = iVar;
             obj.d = new ri.g() {
                 {
                     AudioRecorderV2Controller.this = this;
@@ -76,9 +76,9 @@ public final class AudioRecorderV2Controller {
                     ri.p pVar = AudioRecorderV2Controller.this.session;
                     pVar.getClass();
                     ri.p.p();
-                    ri.j jVar = pVar.f45846z;
-                    if (pVar.f45834m == ri.n.e && jVar != null) {
-                        file2 = jVar.f45809b;
+                    ri.j jVar = pVar.f45848z;
+                    if (pVar.f45836m == ri.n.e && jVar != null) {
+                        file2 = jVar.f45811b;
                     } else {
                         file2 = null;
                     }
@@ -101,13 +101,13 @@ public final class AudioRecorderV2Controller {
 
                 @Override
                 public void onStateChanged(ri.o oVar) {
-                    ri.n nVar = oVar.f45824a;
+                    ri.n nVar = oVar.f45826a;
                     ri.n nVar2 = AudioRecorderV2Controller.this.previousState;
                     AudioRecorderV2Controller.this.previousState = nVar;
-                    if (nVar == ri.n.f45819c) {
-                        if (!AudioRecorderV2Controller.this.finishRequested && nVar2 == ri.n.f45818b) {
+                    if (nVar == ri.n.f45821c) {
+                        if (!AudioRecorderV2Controller.this.finishRequested && nVar2 == ri.n.f45820b) {
                             listener.onRecordingStarted();
-                        } else if (!AudioRecorderV2Controller.this.finishRequested && nVar2 == ri.n.f45820f) {
+                        } else if (!AudioRecorderV2Controller.this.finishRequested && nVar2 == ri.n.f45822f) {
                             listener.onRecordingResumed();
                         }
                         AudioRecorderV2Controller.this.completePendingFinish(nVar);
@@ -127,7 +127,7 @@ public final class AudioRecorderV2Controller {
                 }
             };
             obj.e = new AnonymousClass2(listener);
-            obj.f7650f = new ri.h() {
+            obj.f7648f = new ri.h() {
                 {
                     AudioRecorderV2Controller.this = this;
                 }
@@ -158,7 +158,7 @@ public final class AudioRecorderV2Controller {
 
     public void completePendingFinish(ri.n nVar) {
         if (this.finishRequested) {
-            if (nVar != ri.n.f45819c && nVar != ri.n.e) {
+            if (nVar != ri.n.f45821c && nVar != ri.n.e) {
                 return;
             }
             this.finishRequested = false;
@@ -181,23 +181,23 @@ public final class AudioRecorderV2Controller {
         mVar = null;
         mVar = null;
         mVar = null;
-        if (pVar.f45834m == ri.n.e && pVar.f45846z != null && pVar.f45839r == 0 && pVar.f45840s == pVar.j()) {
+        if (pVar.f45836m == ri.n.e && pVar.f45848z != null && pVar.f45841r == 0 && pVar.f45842s == pVar.j()) {
             pVar.o();
-            ri.j jVar = pVar.f45846z;
+            ri.j jVar = pVar.f45848z;
             long j10 = pVar.j();
-            long length = jVar.f45809b.length();
+            long length = jVar.f45811b.length();
             pVar.a(jVar, length);
-            synchronized (pVar.f45832k) {
+            synchronized (pVar.f45834k) {
                 if (jVar.d && !jVar.e) {
                     jVar.e = true;
-                    pVar.f45831j.execute(new ri.c(pVar, jVar, length, j10, 0));
-                    File file = jVar.f45809b;
+                    pVar.f45833j.execute(new ri.c(pVar, jVar, length, j10, 0));
+                    File file = jVar.f45811b;
                     byte[] bArr2 = pVar.B;
                     if (bArr2 != null) {
                         bArr = (byte[]) bArr2.clone();
                     }
                     pVar.C = new ri.m(file, j10, bArr);
-                    pVar.r(ri.n.f45821n);
+                    pVar.r(ri.n.f45823n);
                     pVar.c();
                     pVar.s();
                     pVar.l("detached_preview");
@@ -218,14 +218,14 @@ public final class AudioRecorderV2Controller {
         ri.p pVar = this.session;
         pVar.getClass();
         ri.p.p();
-        completePendingFinish(pVar.e().f45824a);
+        completePendingFinish(pVar.e().f45826a);
     }
 
     public boolean isPreviewing() {
         ri.p pVar = this.session;
         pVar.getClass();
         ri.p.p();
-        if (pVar.e().f45824a == ri.n.e) {
+        if (pVar.e().f45826a == ri.n.e) {
             return true;
         }
         return false;
@@ -241,20 +241,20 @@ public final class AudioRecorderV2Controller {
         pVar.getClass();
         ri.g gVar = pVar.e;
         ri.p.p();
-        if (pVar.f45834m == ri.n.e) {
+        if (pVar.f45836m == ri.n.e) {
             long j12 = pVar.j();
             long max = Math.max(0L, Math.min(j12, j10));
             long max2 = Math.max(max, Math.min(j12, j11));
-            if (max2 - max < Math.min(pVar.f45827c, j12)) {
+            if (max2 - max < Math.min(pVar.f45829c, j12)) {
                 return false;
             }
-            pVar.f45839r = max;
-            pVar.f45840s = max2;
+            pVar.f45841r = max;
+            pVar.f45842s = max2;
             i2.i0 i0Var = pVar.A;
             if (i0Var != null) {
                 i0Var.Z0(5, max);
             }
-            gVar.onPreviewProgress(pVar.f45839r, j12);
+            gVar.onPreviewProgress(pVar.f45841r, j12);
             gVar.onStateChanged(pVar.e());
             return true;
         }
@@ -265,14 +265,14 @@ public final class AudioRecorderV2Controller {
         ri.p pVar = this.session;
         pVar.getClass();
         ri.p.p();
-        if (pVar.f45834m != ri.n.f45817a) {
+        if (pVar.f45836m != ri.n.f45819a) {
             return false;
         }
-        File file = pVar.f45826b;
+        File file = pVar.f45828b;
         if ((file.isDirectory() || file.mkdirs()) && file.canWrite()) {
-            pVar.f45829g.b("start requested");
+            pVar.f45831g.b("start requested");
             pVar.d();
-            pVar.r(ri.n.f45818b);
+            pVar.r(ri.n.f45820b);
             pVar.t(null);
             return true;
         }
@@ -284,8 +284,8 @@ public final class AudioRecorderV2Controller {
         ri.p pVar = this.session;
         pVar.getClass();
         ri.p.p();
-        ri.n nVar = pVar.e().f45824a;
-        if (nVar == ri.n.f45819c) {
+        ri.n nVar = pVar.e().f45826a;
+        if (nVar == ri.n.f45821c) {
             return this.session.m();
         }
         ri.n nVar2 = ri.n.e;
@@ -293,21 +293,21 @@ public final class AudioRecorderV2Controller {
             final ri.p pVar2 = this.session;
             pVar2.getClass();
             ri.p.p();
-            if (pVar2.f45834m == nVar2) {
-                ri.b bVar = pVar2.f45829g;
-                bVar.b("resume requested: trim=" + pVar2.f45839r + ".." + pVar2.f45840s + ", sourceDurationMs=" + pVar2.j());
+            if (pVar2.f45836m == nVar2) {
+                ri.b bVar = pVar2.f45831g;
+                bVar.b("resume requested: trim=" + pVar2.f45841r + ".." + pVar2.f45842s + ", sourceDurationMs=" + pVar2.j());
                 pVar2.o();
-                pVar2.r(ri.n.f45820f);
-                final ri.j jVar = pVar2.f45846z;
+                pVar2.r(ri.n.f45822f);
+                final ri.j jVar = pVar2.f45848z;
                 if (jVar == null) {
                     pVar2.g(new IllegalStateException("Output generation is missing"));
                     return true;
                 }
-                final long j10 = pVar2.f45839r;
-                final long j11 = pVar2.f45840s;
+                final long j10 = pVar2.f45841r;
+                final long j11 = pVar2.f45842s;
                 final long j12 = ((j11 - j10) * 48000) / 1000;
-                pVar2.k(ri.k.f45811a);
-                pVar2.f45830i.execute(new Runnable() {
+                pVar2.k(ri.k.f45813a);
+                pVar2.f45832i.execute(new Runnable() {
                     @Override
                     public final void run() {
                         File file;
@@ -316,16 +316,16 @@ public final class AudioRecorderV2Controller {
                         p pVar3 = p.this;
                         Handler handler = pVar3.h;
                         long elapsedRealtime = SystemClock.elapsedRealtime();
-                        File file3 = jVar.f45809b;
+                        File file3 = jVar.f45811b;
                         long j14 = j10;
                         int i10 = (j14 > 0L ? 1 : (j14 == 0L ? 0 : -1));
                         long j15 = j11;
                         if (i10 <= 0) {
                             file = file3;
                             try {
-                                if (j15 >= p.q(pVar3.f45837p)) {
+                                if (j15 >= p.q(pVar3.f45839p)) {
                                     file2 = file;
-                                    ri.b bVar2 = pVar3.f45829g;
+                                    ri.b bVar2 = pVar3.f45831g;
                                     bVar2.b("resume prefix prepared: source=" + file.getName() + ", prefix=" + file2.getName() + ", trim=" + j14 + ".." + j15 + ", bytes=" + file2.length() + ", elapsedMs=" + (SystemClock.elapsedRealtime() - elapsedRealtime));
                                     handler.post(new yb0(pVar3, j13, file2, 3));
                                 }
@@ -342,7 +342,7 @@ public final class AudioRecorderV2Controller {
                         if (!b10) {
                             throw new IllegalStateException("Unable to trim Opus prefix");
                         }
-                        ri.b bVar22 = pVar3.f45829g;
+                        ri.b bVar22 = pVar3.f45831g;
                         bVar22.b("resume prefix prepared: source=" + file.getName() + ", prefix=" + file2.getName() + ", trim=" + j14 + ".." + j15 + ", bytes=" + file2.length() + ", elapsedMs=" + (SystemClock.elapsedRealtime() - elapsedRealtime));
                         handler.post(new yb0(pVar3, j13, file2, 3));
                     }

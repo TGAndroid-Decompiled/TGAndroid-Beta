@@ -6,7 +6,7 @@ import e2.x;
 import java.nio.charset.StandardCharsets;
 import java.util.regex.Pattern;
 public abstract class i {
-    public static final Pattern f12704a = Pattern.compile("^NOTE([ \t].*)?$");
+    public static final Pattern f12702a = Pattern.compile("^NOTE([ \t].*)?$");
 
     public static boolean a(x xVar) {
         xVar.getClass();
@@ -25,7 +25,7 @@ public abstract class i {
     }
 
     public static long c(String str) {
-        String str2 = m0.f8254a;
+        String str2 = m0.f8252a;
         String[] split = str.split("\\.", 2);
         long j10 = 0;
         for (String str3 : split[0].split(":", -1)) {
@@ -44,7 +44,7 @@ public abstract class i {
     }
 
     public static void d(x xVar) {
-        int i10 = xVar.f8294b;
+        int i10 = xVar.f8292b;
         if (a(xVar)) {
             return;
         }

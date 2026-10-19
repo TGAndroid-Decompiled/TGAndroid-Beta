@@ -6,12 +6,12 @@ import org.json.JSONObject;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.ui.w9;
 public final class d0 implements NotificationCenter.NotificationCenterDelegate {
-    public final z7 f42613a;
-    public final a1 f42614b;
+    public final z7 f42614a;
+    public final a1 f42615b;
 
     public d0(a1 a1Var, z7 z7Var) {
-        this.f42614b = a1Var;
-        this.f42613a = z7Var;
+        this.f42615b = a1Var;
+        this.f42614a = z7Var;
     }
 
     @Override
@@ -23,16 +23,16 @@ public final class d0 implements NotificationCenter.NotificationCenterDelegate {
             if (intValue == 5000) {
                 NotificationCenter.getGlobalInstance().removeObserver(this, i12);
                 int i13 = iArr[0];
-                a1 a1Var = this.f42614b;
+                a1 a1Var = this.f42615b;
                 if (i13 == 0) {
                     Activity activity = a1Var.W;
                     if (activity != null) {
-                        a1Var.f42564g0 = w9.e0(activity, 3, new le.b(a1Var, 13));
+                        a1Var.f42565g0 = w9.e0(activity, 3, new le.b(a1Var, 13));
                         return;
                     }
                     return;
                 }
-                a1Var.x(this.f42613a, "scan_qr_popup_closed", new JSONObject());
+                a1Var.x(this.f42614a, "scan_qr_popup_closed", new JSONObject());
             }
         }
     }

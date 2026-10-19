@@ -9,25 +9,25 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.HashSet;
 public abstract class jv0 extends lu0 {
-    public final HashSet f27607d3;
-    public final ArrayList f27608e3;
-    public final ArrayList f27609f3;
-    public final ArrayList f27610g3;
-    public TextPaint f27611h3;
-    public StaticLayout f27612i3;
-    public float f27613j3;
-    public float f27614k3;
-    public ci.ia f27615l3;
-    public int f27616m3;
-    public final ArrayList f27617n3;
+    public final HashSet f27605d3;
+    public final ArrayList f27606e3;
+    public final ArrayList f27607f3;
+    public final ArrayList f27608g3;
+    public TextPaint f27609h3;
+    public StaticLayout f27610i3;
+    public float f27611j3;
+    public float f27612k3;
+    public ci.ia f27613l3;
+    public int f27614m3;
+    public final ArrayList f27615n3;
 
     public jv0(Context context) {
         super(context, null);
-        this.f27607d3 = new HashSet();
-        this.f27608e3 = new ArrayList();
-        this.f27609f3 = new ArrayList();
-        this.f27610g3 = new ArrayList();
-        this.f27617n3 = new ArrayList();
+        this.f27605d3 = new HashSet();
+        this.f27606e3 = new ArrayList();
+        this.f27607f3 = new ArrayList();
+        this.f27608g3 = new ArrayList();
+        this.f27615n3 = new ArrayList();
     }
 
     public abstract boolean A1();

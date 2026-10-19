@@ -12,7 +12,7 @@ public class u0 extends eb.u {
                 if (c10 != 7) {
                     if (c10 == 8) {
                         aVar.t();
-                        return eb.k.f8575a;
+                        return eb.k.f8573a;
                     }
                     throw new IllegalStateException("Unexpected token: ".concat(i2.e.E(i10)));
                 }
@@ -29,7 +29,7 @@ public class u0 extends eb.u {
             if (z10) {
                 if (z10) {
                     eb.m mVar = (eb.m) iVar;
-                    Serializable serializable = mVar.f8577a;
+                    Serializable serializable = mVar.f8575a;
                     if (serializable instanceof Number) {
                         bVar.q(mVar.q());
                         return;
@@ -47,7 +47,7 @@ public class u0 extends eb.u {
             if (z11) {
                 bVar.b();
                 if (z11) {
-                    ArrayList arrayList = ((eb.h) iVar).f8574a;
+                    ArrayList arrayList = ((eb.h) iVar).f8572a;
                     int size = arrayList.size();
                     int i10 = 0;
                     while (i10 < size) {
@@ -61,7 +61,7 @@ public class u0 extends eb.u {
                 throw new IllegalStateException("Not a JSON Array: " + iVar);
             } else if (iVar instanceof eb.l) {
                 bVar.c();
-                Iterator it = ((gb.k) iVar.h().f8576a.entrySet()).iterator();
+                Iterator it = ((gb.k) iVar.h().f8574a.entrySet()).iterator();
                 while (((gb.j) it).hasNext()) {
                     gb.l b10 = ((gb.j) it).b();
                     bVar.g((String) b10.getKey());
@@ -138,7 +138,7 @@ public class u0 extends eb.u {
                     hVar2 = a(aVar, x12);
                 }
                 if (hVar instanceof eb.h) {
-                    ((eb.h) hVar).f8574a.add(hVar2);
+                    ((eb.h) hVar).f8572a.add(hVar2);
                 } else {
                     ((eb.l) hVar).n(str, hVar2);
                 }

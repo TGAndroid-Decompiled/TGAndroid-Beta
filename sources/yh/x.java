@@ -1,13 +1,13 @@
 package yh;
 
-import ai.e7;
+import ai.f7;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Path;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.d6;
-public final class x extends e7 {
+public final class x extends f7 {
     public final Path D0;
     public final float[] E0;
     public final int F0;
@@ -31,7 +31,7 @@ public final class x extends e7 {
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j10) {
-        if (view == this.f1212b) {
+        if (view == this.f1263b) {
             return true;
         }
         return super.drawChild(canvas, view, j10);
@@ -50,7 +50,7 @@ public final class x extends e7 {
     @Override
     public final void invalidate() {
         super.invalidate();
-        z zVar = this.G0.f50178c0;
+        z zVar = this.G0.f50180c0;
         if (zVar != null) {
             zVar.invalidate();
         }
@@ -58,7 +58,7 @@ public final class x extends e7 {
 
     @Override
     public final void k(int i10) {
-        this.G0.f50178c0.setRibbonColor(i10);
+        this.G0.f50180c0.setRibbonColor(i10);
     }
 
     @Override

@@ -16,7 +16,7 @@ import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.FileStreamLoadOperation;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.p8;
+import org.telegram.messenger.o8;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.b81;
 import org.telegram.ui.Components.y71;
@@ -212,9 +212,9 @@ public class VideoPlayerHolderBase {
         }
         b81 b81Var2 = new b81(false, z10);
         this.videoPlayer = b81Var2;
-        b81Var2.f24852y = this.allowMultipleInstances;
+        b81Var2.f24850y = this.allowMultipleInstances;
         b81Var2.J = new AnonymousClass2();
-        this.videoPlayer.f24838c = true;
+        this.videoPlayer.f24836c = true;
     }
 
     public void lambda$loopBack$9() {
@@ -362,7 +362,7 @@ public class VideoPlayerHolderBase {
         boolean y3 = b81Var.y();
         if (z10) {
             b81 b81Var2 = this.videoPlayer;
-            if (b81Var2.f24837b0) {
+            if (b81Var2.f24835b0) {
                 b81Var2.B();
                 long n10 = this.videoPlayer.n();
                 this.videoPlayer.H();
@@ -715,7 +715,7 @@ public class VideoPlayerHolderBase {
     }
 
     public void seekTo(long j10, boolean z10, Runnable runnable) {
-        this.dispatchQueue.postRunnable(new p8(this, j10, z10, runnable, 7));
+        this.dispatchQueue.postRunnable(new o8(this, j10, z10, runnable, 7));
     }
 
     public VideoPlayerHolderBase with(TextureView textureView) {

@@ -25,14 +25,14 @@ public final class y3 extends RadialProgressView {
         switch (this.K) {
             case 0:
                 d4 d4Var = (d4) this.M;
-                org.telegram.ui.Components.w9 w9Var = d4Var.f22122b;
+                org.telegram.ui.Components.w9 w9Var = d4Var.f22120b;
                 if (w9Var.getImageReceiver().hasNotThumb() && w9Var.getAlpha() > 0.0f) {
                     int alpha = (int) (w9Var.getAlpha() * w9Var.getImageReceiver().getCurrentAlpha() * 85.0f);
                     Paint paint = this.L;
                     paint.setAlpha(alpha);
                     canvas.drawCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, getMeasuredWidth() / 2.0f, paint);
                 }
-                d4Var.f22133x.setProgressColor(i0.a.o(-1, (int) (w9Var.getAlpha() * w9Var.getImageReceiver().getCurrentAlpha() * 255.0f)));
+                d4Var.f22131x.setProgressColor(i0.a.o(-1, (int) (w9Var.getAlpha() * w9Var.getImageReceiver().getCurrentAlpha() * 255.0f)));
                 super.onDraw(canvas);
                 return;
             case 1:

@@ -1,8 +1,8 @@
 package org.telegram.ui;
 public final class nu0 {
-    public final float f39683a;
+    public final float f39682a;
 
     public nu0(float f7) {
-        this.f39683a = f7;
+        this.f39682a = f7;
     }
 }

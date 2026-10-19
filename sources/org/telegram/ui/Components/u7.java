@@ -4,22 +4,22 @@ import android.content.Context;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.ui.PhotoViewer;
 public final class u7 extends ld {
-    public final int f30904b;
-    public final NotificationCenter.NotificationCenterDelegate f30905c;
+    public final int f30902b;
+    public final NotificationCenter.NotificationCenterDelegate f30903c;
 
     public u7(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, Context context, int i10) {
         super(context);
-        this.f30904b = i10;
-        this.f30905c = notificationCenterDelegate;
+        this.f30902b = i10;
+        this.f30903c = notificationCenterDelegate;
     }
 
     @Override
     public final void c(boolean z10) {
         boolean z11;
         int i10;
-        switch (this.f30904b) {
+        switch (this.f30902b) {
             case 0:
-                k8 k8Var = (k8) this.f30905c;
+                k8 k8Var = (k8) this.f30903c;
                 k8Var.d();
                 org.telegram.ui.lr lrVar = k8Var.O;
                 if (lrVar != null) {
@@ -28,7 +28,7 @@ public final class u7 extends ld {
                 }
                 return;
             default:
-                PhotoViewer photoViewer = (PhotoViewer) this.f30905c;
+                PhotoViewer photoViewer = (PhotoViewer) this.f30903c;
                 org.telegram.ui.ActionBar.e1 e1Var = photoViewer.F0;
                 if (e1Var != null) {
                     e1Var.d(z10);

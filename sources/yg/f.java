@@ -6,15 +6,15 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import org.telegram.ui.Components.v30;
 public final class f implements View.OnKeyListener {
-    public boolean f50140a;
-    public final HashSet f50141b;
-    public final Runnable f50142c;
+    public boolean f50142a;
+    public final HashSet f50143b;
+    public final Runnable f50144c;
     public final h d;
 
     public f(h hVar, HashSet hashSet, Runnable runnable) {
         this.d = hVar;
-        this.f50141b = hashSet;
-        this.f50142c = runnable;
+        this.f50143b = hashSet;
+        this.f50144c = runnable;
     }
 
     @Override
@@ -24,13 +24,13 @@ public final class f implements View.OnKeyListener {
         if (i10 == 67) {
             boolean z10 = true;
             if (keyEvent.getAction() == 0) {
-                if (hVar.f50147b.length() != 0) {
+                if (hVar.f50149b.length() != 0) {
                     z10 = false;
                 }
-                this.f50140a = z10;
+                this.f50142a = z10;
                 return false;
-            } else if (keyEvent.getAction() == 1 && this.f50140a && !arrayList.isEmpty()) {
-                hVar.a((v30) i2.e.h(1, arrayList), this.f50141b, this.f50142c);
+            } else if (keyEvent.getAction() == 1 && this.f50142a && !arrayList.isEmpty()) {
+                hVar.a((v30) i2.e.h(1, arrayList), this.f50143b, this.f50144c);
                 return true;
             }
         }

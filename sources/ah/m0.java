@@ -63,7 +63,7 @@ public final class m0 implements ob {
             case 0:
                 return;
             case 1:
-                if (qcVar.f29590a == 2 && (j4Var = ((r3) this.f829b).f5914x.Q1) != null) {
+                if (qcVar.f29588a == 2 && (j4Var = ((r3) this.f829b).f5912x.Q1) != null) {
                     aa aaVar = ((r9) j4Var).d;
                     aaVar.Y0 = true;
                     aaVar.P();
@@ -88,7 +88,7 @@ public final class m0 implements ob {
                 eVar.e = new ci.i1(20);
                 float dpf2 = AndroidUtilities.dpf2(0.5f);
                 float dpf22 = AndroidUtilities.dpf2(0.5f);
-                eVar.f8662f = dpf2;
+                eVar.f8660f = dpf2;
                 eVar.h = dpf22;
                 c10.o(eVar);
                 c10.q(AndroidUtilities.dp(16.0f));
@@ -109,7 +109,7 @@ public final class m0 implements ob {
             case 0:
                 return;
             case 1:
-                if (qcVar.f29590a == 2 && (j4Var = ((r3) this.f829b).f5914x.Q1) != null) {
+                if (qcVar.f29588a == 2 && (j4Var = ((r3) this.f829b).f5912x.Q1) != null) {
                     aa aaVar = ((r9) j4Var).d;
                     aaVar.Y0 = false;
                     aaVar.P();
@@ -168,16 +168,16 @@ public final class m0 implements ob {
             case 0:
                 return (int) ((t0) ((v) this.f829b).f895c).f885u;
             case 1:
-                if (((r3) this.f829b).f5914x.f5838x2) {
+                if (((r3) this.f829b).f5912x.f5836x2) {
                     return 0;
                 }
                 return AndroidUtilities.dp(64.0f);
             case 2:
-                return ((u5) this.f829b).f6053r.getPaddingBottom();
+                return ((u5) this.f829b).f6051r.getPaddingBottom();
             case 3:
                 return 0;
             case 4:
-                editTextHeight = ((vb) this.f829b).f9958c1.getEditTextHeight();
+                editTextHeight = ((vb) this.f829b).f9956c1.getEditTextHeight();
                 dp = AndroidUtilities.dp(12.0f);
                 break;
             case 5:
@@ -192,10 +192,10 @@ public final class m0 implements ob {
                 return obVar.f(i10);
             case 8:
                 editTextHeight = AndroidUtilities.dp(126.0f);
-                dp = ((om) this.f829b).f29026c.f28225b.getBottomInset();
+                dp = ((om) this.f829b).f29024c.f28223b.getBottomInset();
                 break;
             case 9:
-                FrameLayout frameLayout = ((py0) this.f829b).f29442w;
+                FrameLayout frameLayout = ((py0) this.f829b).f29440w;
                 if (frameLayout != null) {
                     return frameLayout.getHeight();
                 }
@@ -260,7 +260,7 @@ public final class m0 implements ob {
             case 2:
                 return 0;
             case 3:
-                return (int) (((f6) this.f829b).f5390a + AndroidUtilities.dp(58.0f));
+                return (int) (((f6) this.f829b).f5388a + AndroidUtilities.dp(58.0f));
             case 4:
                 return 0;
             case 5:

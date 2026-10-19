@@ -16,8 +16,8 @@ public final class o41 extends m51 {
     public final void dispatchDraw(Canvas canvas) {
         float y3;
         x51 x51Var = this.E;
-        j41 j41Var = x51Var.f43054g0;
-        o41 o41Var = x51Var.f43052f0;
+        j41 j41Var = x51Var.f43053g0;
+        o41 o41Var = x51Var.f43051f0;
         x41 x41Var = x51Var.U;
         if (x41Var != null) {
             int measuredWidth = getMeasuredWidth();

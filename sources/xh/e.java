@@ -1,24 +1,24 @@
 package xh;
 public final class e implements Runnable {
-    public final int f49838a;
-    public final k f49839b;
+    public final int f49840a;
+    public final k f49841b;
 
     public e(k kVar, int i10) {
-        this.f49838a = i10;
-        this.f49839b = kVar;
+        this.f49840a = i10;
+        this.f49841b = kVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f49838a) {
+        switch (this.f49840a) {
             case 0:
-                this.f49839b.e();
+                this.f49841b.e();
                 return;
             case 1:
-                k.k(this.f49839b.f49869q, true, true);
+                k.k(this.f49841b.f49871q, true, true);
                 return;
             default:
-                this.f49839b.e();
+                this.f49841b.e();
                 return;
         }
     }

@@ -24,16 +24,16 @@ import yh.g1;
 import yh.l2;
 import yh.o2;
 public final class o implements Runnable {
-    public final int f46734a;
-    public final Object f46735b;
-    public final Object f46736c;
+    public final int f46736a;
+    public final Object f46737b;
+    public final Object f46738c;
     public final Object d;
     public final Object e;
 
     public o(Object obj, Object obj2, Object obj3, Object obj4, int i10) {
-        this.f46734a = i10;
-        this.f46735b = obj;
-        this.f46736c = obj2;
+        this.f46736a = i10;
+        this.f46737b = obj;
+        this.f46738c = obj2;
         this.d = obj3;
         this.e = obj4;
     }
@@ -45,28 +45,28 @@ public final class o implements Runnable {
         int max2;
         String str = null;
         int i10 = 1;
-        switch (this.f46734a) {
+        switch (this.f46736a) {
             case 0:
-                t tVar = (t) this.f46735b;
-                l0 l0Var = (l0) this.f46736c;
+                t tVar = (t) this.f46737b;
+                l0 l0Var = (l0) this.f46738c;
                 l0 l0Var2 = (l0) this.d;
                 Handler handler = (Handler) this.e;
-                if (tVar.f46808r0 && tVar.W == 0 && tVar.T) {
+                if (tVar.f46810r0 && tVar.W == 0 && tVar.T) {
                     tVar.N.g(tVar.L, tVar.D, false);
                     tVar.U = false;
                     tVar.V = false;
-                    tVar.f46782c0 = 0.0f;
+                    tVar.f46784c0 = 0.0f;
                     tVar.W = 1;
                     long elapsedRealtimeNanos = SystemClock.elapsedRealtimeNanos();
                     tVar.X = elapsedRealtimeNanos;
                     tVar.Y = elapsedRealtimeNanos;
-                    tVar.f46783d0 = l0Var;
-                    tVar.f46784e0 = l0Var2;
-                    String[] strArr = t0.f46822a;
+                    tVar.f46785d0 = l0Var;
+                    tVar.f46786e0 = l0Var2;
+                    String[] strArr = t0.f46824a;
                     synchronized (t0.class) {
                         t0.b();
                         if (l0Var != l0Var2) {
-                            if (l0Var == l0.f46701b) {
+                            if (l0Var == l0.f46703b) {
                                 i10 = 0;
                             }
                             a2 = t0.a(i10);
@@ -74,19 +74,19 @@ public final class o implements Runnable {
                             throw new IllegalArgumentException("Camera switch direction must change");
                         }
                     }
-                    tVar.f46780b0 = a2;
+                    tVar.f46782b0 = a2;
                     tVar.Z = ((Math.max(210, Math.min(300, 300 - ((Math.max(0, a2 - 400) * 3) / 20))) * 45) / 100) * 1000000;
-                    tVar.f46778a0 = (max - max2) * 1000000;
-                    tVar.f46790i.b("synthetic camera switch started: from=" + l0Var + ", to=" + l0Var2 + ", expectedWaitMs=" + tVar.f46780b0 + ", targetBlurRadiusPx=" + (((tVar.N.f46563a * 4.0f) / 48.0f) * 1.15f) + ", overdueBlurGrowth=0.35, revealMs=" + ((tVar.Z + tVar.f46778a0) / 1000000));
+                    tVar.f46780a0 = (max - max2) * 1000000;
+                    tVar.f46792i.b("synthetic camera switch started: from=" + l0Var + ", to=" + l0Var2 + ", expectedWaitMs=" + tVar.f46782b0 + ", targetBlurRadiusPx=" + (((tVar.N.f46565a * 4.0f) / 48.0f) * 1.15f) + ", overdueBlurGrowth=0.35, revealMs=" + ((tVar.Z + tVar.f46780a0) / 1000000));
                     tVar.Q = -1L;
-                    handler.removeCallbacks(tVar.f46819x0);
-                    handler.post(tVar.f46819x0);
+                    handler.removeCallbacks(tVar.f46821x0);
+                    handler.post(tVar.f46821x0);
                     return;
                 }
                 return;
             case 1:
-                TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f46735b;
-                Utilities.Callback callback = (Utilities.Callback) this.f46736c;
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f46737b;
+                Utilities.Callback callback = (Utilities.Callback) this.f46738c;
                 TLObject tLObject = (TLObject) this.d;
                 Utilities.Callback callback2 = (Utilities.Callback) this.e;
                 if (tL_error != null) {
@@ -99,44 +99,44 @@ public final class o implements Runnable {
                     return;
                 }
             case 2:
-                final l2 l2Var = (l2) this.f46735b;
-                TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) this.f46736c;
+                final l2 l2Var = (l2) this.f46737b;
+                TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) this.f46738c;
                 g1 g1Var = (g1) this.d;
                 final View view = (View) this.e;
-                js0 js0Var = l2Var.f50358a;
+                js0 js0Var = l2Var.f50360a;
                 if (savedStarGift.unsaved) {
                     savedStarGift.unsaved = false;
                     g1Var.h(savedStarGift, true, false);
                     TL_stars.saveStarGift savestargift = new TL_stars.saveStarGift();
                     savestargift.stargift = l2Var.e.h(savedStarGift);
                     savestargift.unsave = savedStarGift.unsaved;
-                    ConnectionsManager.getInstance(l2Var.f50359b).sendRequest(savestargift, null, 64);
+                    ConnectionsManager.getInstance(l2Var.f50361b).sendRequest(savestargift, null, 64);
                 }
                 boolean z10 = savedStarGift.pinned_to_top;
                 final boolean z11 = !z10;
-                if (l2Var.e.n(savedStarGift, z11, false)) {
-                    new o2(l2Var.getContext(), js0Var.f50458c, savedStarGift, l2Var.f50360c, new Utilities.Callback0Return() {
+                if (l2Var.e.o(savedStarGift, z11, false)) {
+                    new o2(l2Var.getContext(), js0Var.f50460c, savedStarGift, l2Var.f50362c, new Utilities.Callback0Return() {
                         @Override
                         public final Object run() {
                             ((g1) view).c(z11, true);
                             l2 l2Var2 = l2.this;
-                            l2Var2.f50361f.u0(0);
-                            return xc.a0(l2Var2.f50358a.f50456a);
+                            l2Var2.f50363f.u0(0);
+                            return xc.a0(l2Var2.f50360a.f50458a);
                         }
                     }).show();
                     return;
                 }
                 if (!z10) {
-                    xc.a0(js0Var.f50456a).M(LocaleController.getString(R.string.Gift2PinnedTitle), LocaleController.getString(R.string.Gift2PinnedSubtitle), R.raw.ic_pin).j();
+                    xc.a0(js0Var.f50458a).M(LocaleController.getString(R.string.Gift2PinnedTitle), LocaleController.getString(R.string.Gift2PinnedSubtitle), R.raw.ic_pin).j();
                 } else {
-                    org.telegram.messenger.g0.q(R.string.Gift2Unpinned, xc.a0(js0Var.f50456a), R.raw.ic_unpin, 36);
+                    org.telegram.messenger.g0.q(R.string.Gift2Unpinned, xc.a0(js0Var.f50458a), R.raw.ic_unpin, 36);
                 }
                 ((g1) view).c(z11, true);
-                l2Var.f50361f.u0(0);
+                l2Var.f50363f.u0(0);
                 return;
             case 3:
-                w61 w61Var = (w61) this.f46735b;
-                zh.b0 b0Var = (zh.b0) this.f46736c;
+                w61 w61Var = (w61) this.f46737b;
+                zh.b0 b0Var = (zh.b0) this.f46738c;
                 Utilities.CallbackReturn callbackReturn = (Utilities.CallbackReturn) this.d;
                 Utilities.Callback callback3 = (Utilities.Callback) this.e;
                 if (zh.b0.d(w61Var.getParentActivity())) {
@@ -144,15 +144,15 @@ public final class o implements Runnable {
                     sp0 sp0Var = new sp0(10, false, false, null);
                     sp0Var.G = 1;
                     sp0Var.H = false;
-                    sp0Var.f41509x = false;
+                    sp0Var.f41508x = false;
                     sp0Var.V = new zh.y(callbackReturn, w61Var, callback3);
                     w61Var.presentFragment(sp0Var);
                     return;
                 }
                 return;
             default:
-                String str2 = (String) this.f46735b;
-                Utilities.CallbackReturn callbackReturn2 = (Utilities.CallbackReturn) this.f46736c;
+                String str2 = (String) this.f46737b;
+                Utilities.CallbackReturn callbackReturn2 = (Utilities.CallbackReturn) this.f46738c;
                 n2 n2Var = (n2) this.d;
                 Utilities.Callback callback4 = (Utilities.Callback) this.e;
                 try {

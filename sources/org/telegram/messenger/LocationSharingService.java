@@ -87,7 +87,7 @@ public class LocationSharingService extends Service implements NotificationCente
     public void didReceivedNotification(int i10, int i11, Object... objArr) {
         Handler handler;
         if (i10 == NotificationCenter.liveLocationsChanged && (handler = this.handler) != null) {
-            handler.post(new y5(this, 1));
+            handler.post(new x5(this, 1));
         }
     }
 
@@ -101,9 +101,9 @@ public class LocationSharingService extends Service implements NotificationCente
         super.onCreate();
         Handler handler = new Handler();
         this.handler = handler;
-        y5 y5Var = new y5(this, 0);
-        this.runnable = y5Var;
-        handler.postDelayed(y5Var, 1000L);
+        x5 x5Var = new x5(this, 0);
+        this.runnable = x5Var;
+        handler.postDelayed(x5Var, 1000L);
     }
 
     @Override
@@ -134,10 +134,10 @@ public class LocationSharingService extends Service implements NotificationCente
                 qVar.E.when = System.currentTimeMillis();
                 e0.q qVar2 = this.builder;
                 qVar2.E.icon = R.drawable.live_loc;
-                qVar2.f8147g = activity;
+                qVar2.f8145g = activity;
                 NotificationsController.checkOtherNotificationsChannel();
                 e0.q qVar3 = this.builder;
-                qVar3.f8163y = NotificationsController.OTHER_NOTIFICATIONS_CHANNEL;
+                qVar3.f8161y = NotificationsController.OTHER_NOTIFICATIONS_CHANNEL;
                 qVar3.g(LocaleController.getString(R.string.AppName));
                 this.builder.a(0, LocaleController.getString(R.string.StopLiveLocation), PendingIntent.getBroadcast(ApplicationLoader.applicationContext, 2, new Intent(ApplicationLoader.applicationContext, StopLiveLocationReceiver.class), 167772160));
             }

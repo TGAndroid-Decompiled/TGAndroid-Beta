@@ -1,9 +1,9 @@
 package org.telegram.ui;
 public final class gi implements org.telegram.ui.Components.zl0 {
-    public final qn f37356a;
+    public final qn f37328a;
 
     public gi(qn qnVar) {
-        this.f37356a = qnVar;
+        this.f37328a = qnVar;
     }
 
     @Override

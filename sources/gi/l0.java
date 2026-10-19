@@ -14,22 +14,22 @@ import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Components.a6;
 import w7.z5;
 public final class l0 extends FrameLayout {
-    public final wh.n f11311a;
-    public final ImageView f11312b;
-    public final TL_keyboard.KeyboardButton f11313c;
+    public final wh.n f11309a;
+    public final ImageView f11310b;
+    public final TL_keyboard.KeyboardButton f11311c;
     public boolean d;
     public boolean e;
-    public boolean f11314f;
+    public boolean f11312f;
     public boolean h;
-    public final n0 f11315n;
+    public final n0 f11313n;
 
     public l0(n0 n0Var, Context context, TL_keyboard.KeyboardButton keyboardButton) {
         super(context);
-        this.f11315n = n0Var;
-        this.f11313c = keyboardButton;
+        this.f11313n = n0Var;
+        this.f11311c = keyboardButton;
         wh.n nVar = new wh.n(context);
-        this.f11311a = nVar;
-        nVar.f49098r = false;
+        this.f11309a = nVar;
+        nVar.f49100r = false;
         nVar.setTextSize(1, 14.0f);
         nVar.setTypeface(AndroidUtilities.bold());
         NotificationCenter.listenEmojiLoading(nVar);
@@ -44,8 +44,8 @@ public final class l0 extends FrameLayout {
         }
         spannableStringBuilder.append(Emoji.replaceEmoji(keyboardButton.text, nVar.getPaint().getFontMetricsInt(), false));
         ImageView imageView = new ImageView(getContext());
-        this.f11312b = imageView;
-        imageView.setColorFilter(h6.w0(h6.Xe, n0Var.f11348a));
+        this.f11310b = imageView;
+        imageView.setColorFilter(h6.w0(h6.Xe, n0Var.f11346a));
         if (ag.c.b(keyboardButton)) {
             imageView.setImageResource(R.drawable.bot_webview);
             imageView.setVisibility(0);
@@ -70,34 +70,34 @@ public final class l0 extends FrameLayout {
         int dp = AndroidUtilities.dp(21.0f);
         int dp2 = AndroidUtilities.dp(11.0f);
         int i16 = h6.Ye;
-        d6 d6Var = this.f11315n.f11348a;
+        d6 d6Var = this.f11313n.f11346a;
         int w02 = h6.w0(i16, d6Var);
         int w03 = h6.w0(h6.Ze, d6Var);
         int w04 = h6.w0(h6.Xe, d6Var);
-        TL_keyboard.KeyboardButtonStyle keyboardButtonStyle = this.f11313c.style;
+        TL_keyboard.KeyboardButtonStyle keyboardButtonStyle = this.f11311c.style;
         if (keyboardButtonStyle != null) {
             if (keyboardButtonStyle.bg_primary) {
                 m12 = h6.m1(0.8f, h6.w0(h6.dl, d6Var));
-                k10 = i0.a.k(h6.w0(h6.f21078i6, d6Var), m12);
+                k10 = i0.a.k(h6.w0(h6.f21076i6, d6Var), m12);
             } else if (keyboardButtonStyle.bg_danger) {
                 m12 = h6.m1(0.8f, h6.w0(h6.el, d6Var));
-                k10 = i0.a.k(h6.w0(h6.f21078i6, d6Var), m12);
+                k10 = i0.a.k(h6.w0(h6.f21076i6, d6Var), m12);
             } else if (keyboardButtonStyle.bg_success) {
                 m12 = h6.m1(0.8f, h6.w0(h6.fl, d6Var));
-                k10 = i0.a.k(h6.w0(h6.f21078i6, d6Var), m12);
+                k10 = i0.a.k(h6.w0(h6.f21076i6, d6Var), m12);
             }
             i10 = m12;
             i11 = k10;
             w04 = -1;
-            this.f11312b.setColorFilter(w04);
-            this.f11311a.setTextColor(w04);
+            this.f11310b.setColorFilter(w04);
+            this.f11309a.setTextColor(w04);
             z10 = this.d;
             if (!z10 && this.e) {
                 i12 = dp;
             } else {
                 i12 = dp2;
             }
-            z11 = this.f11314f;
+            z11 = this.f11312f;
             if (!z11 && this.e) {
                 i13 = dp;
             } else {
@@ -117,13 +117,13 @@ public final class l0 extends FrameLayout {
         }
         i10 = w02;
         i11 = w03;
-        this.f11312b.setColorFilter(w04);
-        this.f11311a.setTextColor(w04);
+        this.f11310b.setColorFilter(w04);
+        this.f11309a.setTextColor(w04);
         z10 = this.d;
         if (!z10) {
         }
         i12 = dp2;
-        z11 = this.f11314f;
+        z11 = this.f11312f;
         if (!z11) {
         }
         i13 = dp2;

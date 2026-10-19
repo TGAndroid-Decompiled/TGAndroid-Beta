@@ -4,14 +4,14 @@ import com.google.firebase.messaging.r;
 import java.util.Hashtable;
 import java.util.StringTokenizer;
 public final class a {
-    public static final Hashtable f46993b;
-    public static final Object[] f46994c;
+    public static final Hashtable f46995b;
+    public static final Object[] f46996c;
     public static Class d;
-    public final ClassLoader f46995a;
+    public final ClassLoader f46997a;
 
     static {
         Hashtable hashtable = new Hashtable();
-        f46993b = hashtable;
+        f46995b = hashtable;
         hashtable.put("void", Void.TYPE);
         hashtable.put("boolean", Boolean.TYPE);
         hashtable.put("byte", Byte.TYPE);
@@ -21,18 +21,18 @@ public final class a {
         hashtable.put("long", Long.TYPE);
         hashtable.put("float", Float.TYPE);
         hashtable.put("double", Double.TYPE);
-        f46994c = new Object[0];
+        f46996c = new Object[0];
     }
 
     public a(Class cls, String str) {
-        this.f46995a = cls.getClassLoader();
+        this.f46997a = cls.getClassLoader();
     }
 
     public static Class a(ClassLoader classLoader, String str) {
         if (str.equals("*")) {
             return null;
         }
-        Class cls = (Class) f46993b.get(str);
+        Class cls = (Class) f46995b.get(str);
         if (cls != null) {
             return cls;
         }
@@ -56,7 +56,7 @@ public final class a {
     }
 
     public static r b(b bVar, Object obj, Object obj2) {
-        return new r(bVar, obj, obj2, f46994c);
+        return new r(bVar, obj, obj2, f46996c);
     }
 
     public static r c(b bVar, Object obj, Object obj2, Object obj3) {
@@ -65,7 +65,7 @@ public final class a {
 
     public final s4.b d(String str, String str2, String str3, String str4, String str5) {
         int parseInt = Integer.parseInt("1", 16);
-        ClassLoader classLoader = this.f46995a;
+        ClassLoader classLoader = this.f46997a;
         Class a2 = a(classLoader, str2);
         StringTokenizer stringTokenizer = new StringTokenizer(str3, ":");
         int countTokens = stringTokenizer.countTokens();
@@ -87,17 +87,17 @@ public final class a {
         }
         Class a10 = a(classLoader, str5);
         s4.b bVar = new s4.b(3);
-        bVar.f45894b = parseInt;
-        bVar.f45895c = str;
+        bVar.f45896b = parseInt;
+        bVar.f45897c = str;
         bVar.e = a2;
-        bVar.f45897g = clsArr;
+        bVar.f45899g = clsArr;
         bVar.h = a10;
         return bVar;
     }
 
     public final b e(s4.b bVar) {
         b bVar2 = new b(0, false);
-        bVar2.f46997b = bVar;
+        bVar2.f46999b = bVar;
         return bVar2;
     }
 }

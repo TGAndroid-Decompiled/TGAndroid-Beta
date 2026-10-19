@@ -12,12 +12,12 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MessageObject;
 import org.telegram.ui.Components.Crop.CropAreaView;
 public final class bt0 extends AnimatorListenerAdapter {
-    public final int f35742a;
-    public final PhotoViewer f35743b;
+    public final int f35735a;
+    public final PhotoViewer f35736b;
 
     public bt0(PhotoViewer photoViewer, int i10) {
-        this.f35743b = photoViewer;
-        this.f35742a = i10;
+        this.f35736b = photoViewer;
+        this.f35735a = i10;
     }
 
     @Override
@@ -27,21 +27,21 @@ public final class bt0 extends AnimatorListenerAdapter {
         hu0 hu0Var;
         int i11;
         boolean z11;
-        PhotoViewer photoViewer = this.f35743b;
+        PhotoViewer photoViewer = this.f35736b;
         int i12 = photoViewer.f33417u4;
         int i13 = 8;
         if (i12 == 1) {
             photoViewer.C1.a();
-            mg.p pVar = photoViewer.C1.f28765b;
+            mg.p pVar = photoViewer.C1.f28763b;
             pVar.d = null;
             pVar.J = false;
             photoViewer.U0.setVisibility(8);
             photoViewer.C1.setVisibility(8);
-            CropAreaView cropAreaView = photoViewer.C1.f28765b.f16919a;
-            cropAreaView.f24198n0 = 0.0f;
-            cropAreaView.f24199o0 = 1.0f;
-            cropAreaView.f24200p0 = 0.0f;
-            cropAreaView.f24201q0 = 0.0f;
+            CropAreaView cropAreaView = photoViewer.C1.f28763b.f16917a;
+            cropAreaView.f24196n0 = 0.0f;
+            cropAreaView.f24197o0 = 1.0f;
+            cropAreaView.f24198p0 = 0.0f;
+            cropAreaView.f24199q0 = 0.0f;
             cropAreaView.invalidate();
         } else if (i12 == 2) {
             try {
@@ -61,7 +61,7 @@ public final class bt0 extends AnimatorListenerAdapter {
         } else if (i12 == 4) {
             photoViewer.O1 = true;
             photoViewer.f33272e0.invalidate();
-            photoViewer.f33272e0.post(new wg0(25, this, photoViewer.N1));
+            photoViewer.f33272e0.post(new xg0(25, this, photoViewer.N1));
             photoViewer.N1 = null;
             photoViewer.f33427v5.m(false, true);
             photoViewer.f33437w5.m(false, true);
@@ -69,11 +69,11 @@ public final class bt0 extends AnimatorListenerAdapter {
             photoViewer.f33381q5.setVisibility(8);
             org.telegram.ui.Components.dg0 dg0Var = photoViewer.f33381q5;
             dg0Var.d = null;
-            dg0Var.f25556a.o(false, null, 0L, 0.0f);
+            dg0Var.f25554a.o(false, null, 0L, 0.0f);
         }
         photoViewer.f33373p6 = null;
         int i14 = photoViewer.f33417u4;
-        photoViewer.f33417u4 = this.f35742a;
+        photoViewer.f33417u4 = this.f35735a;
         ei.b4 b4Var = photoViewer.f1().L;
         if (photoViewer.f33417u4 != 0) {
             z10 = true;
@@ -114,7 +114,7 @@ public final class bt0 extends AnimatorListenerAdapter {
         mu0 mu0Var = photoViewer.f33314i7;
         if (mu0Var != null) {
             PhotoViewer photoViewer2 = mu0Var.d;
-            photoViewer2.d = mu0Var.f39350c;
+            photoViewer2.d = mu0Var.f39346c;
             WindowManager.LayoutParams layoutParams = photoViewer2.f33263d0;
             layoutParams.flags = -2147286784;
             layoutParams.softInputMode = 272;
@@ -122,24 +122,24 @@ public final class bt0 extends AnimatorListenerAdapter {
             photoViewer2.f33272e0.setFocusable(false);
             photoViewer2.L0.setAlpha(255);
             photoViewer2.f33272e0.setAlpha(1.0f);
-            ArrayList arrayList = mu0Var.f39349b;
-            int i15 = mu0Var.f39348a;
-            photoViewer2.Z1(null, null, null, null, arrayList, null, null, i15, mu0Var.f39350c.E((MessageObject) arrayList.get(i15), null, mu0Var.f39348a, true, false));
+            ArrayList arrayList = mu0Var.f39345b;
+            int i15 = mu0Var.f39344a;
+            photoViewer2.Z1(null, null, null, null, arrayList, null, null, i15, mu0Var.f39346c.E((MessageObject) arrayList.get(i15), null, mu0Var.f39344a, true, false));
             photoViewer.f33314i7 = null;
             rt0 rt0Var = new rt0();
-            rt0Var.f41276c = false;
+            rt0Var.f41274c = false;
             photoViewer.k3(false, false, rt0Var);
             photoViewer.k3(true, true, rt0Var);
             return;
         }
         AnimatorSet animatorSet = new AnimatorSet();
         ArrayList arrayList2 = new ArrayList();
-        ai.n5 n5Var = photoViewer.P0;
+        ai.o5 o5Var = photoViewer.P0;
         Property property = View.TRANSLATION_Y;
-        arrayList2.add(ObjectAnimator.ofFloat(n5Var, property, 0.0f));
-        ai.n5 n5Var2 = photoViewer.P0;
+        arrayList2.add(ObjectAnimator.ofFloat(o5Var, property, 0.0f));
+        ai.o5 o5Var2 = photoViewer.P0;
         Property property2 = View.ALPHA;
-        arrayList2.add(ObjectAnimator.ofFloat(n5Var2, property2, 1.0f));
+        arrayList2.add(ObjectAnimator.ofFloat(o5Var2, property2, 1.0f));
         rg.n2 n2Var = photoViewer.p5;
         if (n2Var != null) {
             arrayList2.add(ObjectAnimator.ofFloat(n2Var, property2, 1.0f));

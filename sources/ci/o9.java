@@ -27,16 +27,16 @@ public final class o9 extends kw0 {
     public final SparseArray G0;
     public final org.telegram.ui.ActionBar.n2 H0;
     public final aa I0;
-    public float f5706w0;
-    public float f5707x0;
-    public float f5708y0;
-    public final float[] f5709z0;
+    public float f5704w0;
+    public float f5705x0;
+    public float f5706y0;
+    public final float[] f5707z0;
 
     public o9(aa aaVar, Context context, org.telegram.ui.ActionBar.n2 n2Var) {
         super(context, null);
         this.I0 = aaVar;
         this.H0 = n2Var;
-        this.f5709z0 = new float[8];
+        this.f5707z0 = new float[8];
         this.A0 = new Path();
         this.B0 = new RectF();
         this.C0 = new RectF();
@@ -78,8 +78,8 @@ public final class o9 extends kw0 {
         int i11;
         cl0 cl0Var;
         aa aaVar = this.I0;
-        float[] fArr = aaVar.f5207o0;
-        q4 currentPeerView = aaVar.f5205n0.getCurrentPeerView();
+        float[] fArr = aaVar.f5205o0;
+        q4 currentPeerView = aaVar.f5203n0.getCurrentPeerView();
         if (currentPeerView != null) {
             v3 v3Var = currentPeerView.K0;
             if (v3Var.W.x()) {
@@ -93,15 +93,15 @@ public final class o9 extends kw0 {
             }
         }
         float f7 = 0.0f;
-        if (aaVar.f5210p1 && currentPeerView != null && (cl0Var = currentPeerView.f5819r3) != null) {
+        if (aaVar.f5208p1 && currentPeerView != null && (cl0Var = currentPeerView.f5817r3) != null) {
             float f10 = 0.0f;
             for (View view = currentPeerView; view != null && (view.getParent() instanceof View); view = (View) view.getParent()) {
                 f7 += view.getX();
                 f10 += view.getY();
             }
-            if (currentPeerView.f5819r3.getReactionsWindow() != null && currentPeerView.f5819r3.getReactionsWindow().f870c != null) {
-                motionEvent.offsetLocation(-f7, (-f10) - currentPeerView.f5819r3.getReactionsWindow().f870c.getTranslationY());
-                currentPeerView.f5819r3.getReactionsWindow().f870c.dispatchTouchEvent(motionEvent);
+            if (currentPeerView.f5817r3.getReactionsWindow() != null && currentPeerView.f5817r3.getReactionsWindow().f870c != null) {
+                motionEvent.offsetLocation(-f7, (-f10) - currentPeerView.f5817r3.getReactionsWindow().f870c.getTranslationY());
+                currentPeerView.f5817r3.getReactionsWindow().f870c.dispatchTouchEvent(motionEvent);
                 return true;
             }
             Rect rect = AndroidUtilities.rectTmp2;
@@ -118,8 +118,8 @@ public final class o9 extends kw0 {
         if (motionEvent.getAction() != 1 && motionEvent.getAction() != 3) {
             z10 = false;
         } else {
-            aaVar.f5198j0 = false;
-            AndroidUtilities.cancelRunOnUIThread(aaVar.f5181b1);
+            aaVar.f5196j0 = false;
+            AndroidUtilities.cancelRunOnUIThread(aaVar.f5179b1);
             float f11 = aaVar.X;
             if (f11 != 0.0f) {
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(f11, 0.0f);
@@ -127,7 +127,7 @@ public final class o9 extends kw0 {
                 ofFloat.addUpdateListener(new l9(this, 0));
                 aaVar.G.addListener(new m9(this, 0));
                 aaVar.G.setDuration(250L);
-                aaVar.G.setInterpolator(bs.f25014f);
+                aaVar.G.setInterpolator(bs.f25012f);
                 aaVar.G.start();
             }
             if (aaVar.V >= 0.3f) {
@@ -138,32 +138,32 @@ public final class o9 extends kw0 {
             z10 = true;
         }
         if (motionEvent.getAction() == 0) {
-            aaVar.f5177a0 = false;
+            aaVar.f5175a0 = false;
             if (currentPeerView != null) {
-                i4 i4Var = currentPeerView.f5840y0;
+                i4 i4Var = currentPeerView.f5838y0;
                 f9 f9Var = currentPeerView.C0;
-                r3 r3Var = currentPeerView.f5771c1;
+                r3 r3Var = currentPeerView.f5769c1;
                 ei.x3 x3Var = currentPeerView.F0;
                 if (x3Var != null && x3Var.V && f9Var != null) {
-                    if (!x3Var.f10089r0.contains(motionEvent.getX() - (currentPeerView.F0.getX() + (r3Var.getX() + currentPeerView.getX())), motionEvent.getY() - (currentPeerView.F0.getY() + (r3Var.getY() + currentPeerView.getY()))) && !currentPeerView.H0(motionEvent, f9Var)) {
+                    if (!x3Var.f10087r0.contains(motionEvent.getX() - (currentPeerView.F0.getX() + (r3Var.getX() + currentPeerView.getX())), motionEvent.getY() - (currentPeerView.F0.getY() + (r3Var.getY() + currentPeerView.getY()))) && !currentPeerView.H0(motionEvent, f9Var)) {
                         currentPeerView.F0.e(true);
                     }
                 }
                 ei.x3 x3Var2 = currentPeerView.G0;
-                if (x3Var2 != null && x3Var2.V && i4Var != null && !x3Var2.f10089r0.contains(motionEvent.getX() - (currentPeerView.G0.getX() + (r3Var.getX() + currentPeerView.getX())), motionEvent.getY() - (currentPeerView.G0.getY() + (r3Var.getY() + currentPeerView.getY()))) && !currentPeerView.H0(motionEvent, i4Var)) {
+                if (x3Var2 != null && x3Var2.V && i4Var != null && !x3Var2.f10087r0.contains(motionEvent.getX() - (currentPeerView.G0.getX() + (r3Var.getX() + currentPeerView.getX())), motionEvent.getY() - (currentPeerView.G0.getY() + (r3Var.getY() + currentPeerView.getY()))) && !currentPeerView.H0(motionEvent, i4Var)) {
                     currentPeerView.G0.e(true);
                 }
             }
-            aaVar.f5205n0.onTouchEvent(MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0));
+            aaVar.f5203n0.onTouchEvent(MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0));
         }
-        if (!aaVar.f5228x && !aaVar.H0 && !aaVar.I0) {
+        if (!aaVar.f5226x && !aaVar.H0 && !aaVar.I0) {
             z11 = true;
         } else {
             z11 = false;
         }
-        int i12 = (aaVar.f5187e0 > 0.0f ? 1 : (aaVar.f5187e0 == 0.0f ? 0 : -1));
+        int i12 = (aaVar.f5185e0 > 0.0f ? 1 : (aaVar.f5185e0 == 0.0f ? 0 : -1));
         SparseArray sparseArray = this.G0;
-        if (i12 == 0 && !aaVar.f5198j0 && aaVar.f5205n0.F0 == 1 && motionEvent.getAction() == 2 && z11 && (((((Float) sparseArray.get(motionEvent.getPointerId(0), Float.valueOf(0.0f))).floatValue() - motionEvent.getX(0)) != 0.0f && (((i11 = (q9Var = aaVar.f5205n0).I0) == 0 && q9Var.K0 == 0.0f && floatValue < 0.0f) || (i11 == q9Var.getAdapter().b() - 1 && q9Var.K0 == 0.0f && i10 > 0))) || aaVar.X != 0.0f)) {
+        if (i12 == 0 && !aaVar.f5196j0 && aaVar.f5203n0.F0 == 1 && motionEvent.getAction() == 2 && z11 && (((((Float) sparseArray.get(motionEvent.getPointerId(0), Float.valueOf(0.0f))).floatValue() - motionEvent.getX(0)) != 0.0f && (((i11 = (q9Var = aaVar.f5203n0).I0) == 0 && q9Var.K0 == 0.0f && floatValue < 0.0f) || (i11 == q9Var.getAdapter().b() - 1 && q9Var.K0 == 0.0f && i10 > 0))) || aaVar.X != 0.0f)) {
             float f12 = aaVar.X;
             if (f12 == 0.0f) {
                 aaVar.Y = -floatValue;
@@ -181,11 +181,11 @@ public final class o9 extends kw0 {
         } else {
             z12 = false;
         }
-        if (currentPeerView != null && aaVar.f5187e0 == 0.0f && !aaVar.f5198j0 && !aaVar.L0 && !aaVar.I0 && aaVar.f5205n0.F0 != 1) {
-            AndroidUtilities.getViewPositionInParent(currentPeerView.f5771c1, this, fArr);
+        if (currentPeerView != null && aaVar.f5185e0 == 0.0f && !aaVar.f5196j0 && !aaVar.L0 && !aaVar.I0 && aaVar.f5203n0.F0 != 1) {
+            AndroidUtilities.getViewPositionInParent(currentPeerView.f5769c1, this, fArr);
             motionEvent.offsetLocation(-fArr[0], -fArr[1]);
-            q4 currentPeerView2 = aaVar.f5205n0.getCurrentPeerView();
-            currentPeerView2.X2.a(motionEvent, currentPeerView2.f5771c1, null, null, 0);
+            q4 currentPeerView2 = aaVar.f5203n0.getCurrentPeerView();
+            currentPeerView2.X2.a(motionEvent, currentPeerView2.f5769c1, null, null, 0);
             motionEvent.offsetLocation(fArr[0], fArr[1]);
         }
         if (motionEvent.getAction() != 1 && motionEvent.getAction() != 3) {
@@ -198,8 +198,8 @@ public final class o9 extends kw0 {
         if (!z12) {
             boolean dispatchTouchEvent = super.dispatchTouchEvent(motionEvent);
             if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                if (aaVar.f5187e0 != 0.0f && !aaVar.f5193g1 && aaVar.f5209p0 < AndroidUtilities.dp(20.0f)) {
-                    if (aaVar.f5225w.f5282f > 0.5f) {
+                if (aaVar.f5185e0 != 0.0f && !aaVar.f5191g1 && aaVar.f5207p0 < AndroidUtilities.dp(20.0f)) {
+                    if (aaVar.f5223w.f5280f > 0.5f) {
                         z13 = true;
                     } else {
                         z13 = false;
@@ -208,13 +208,13 @@ public final class o9 extends kw0 {
                 }
                 q4 t10 = aaVar.t();
                 if (t10 != null) {
-                    t10.K0.f5999w0 = false;
+                    t10.K0.f5997w0 = false;
                 }
             }
-            if (z10 && !aaVar.f5177a0) {
+            if (z10 && !aaVar.f5175a0) {
                 aaVar.m();
             }
-            if (!dispatchTouchEvent && (!aa.f5173x1 || !aaVar.f5211q0)) {
+            if (!dispatchTouchEvent && (!aa.f5171x1 || !aaVar.f5209q0)) {
                 return false;
             }
         }
@@ -223,7 +223,7 @@ public final class o9 extends kw0 {
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j10) {
-        if (view == this.I0.f5231y0) {
+        if (view == this.I0.f5229y0) {
             return false;
         }
         return super.drawChild(canvas, view, j10);
@@ -233,7 +233,7 @@ public final class o9 extends kw0 {
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
         aa aaVar = this.I0;
-        if (aaVar.f5179b && !aaVar.f5182c) {
+        if (aaVar.f5177b && !aaVar.f5180c) {
             org.telegram.ui.ActionBar.n2 n2Var = this.H0;
             AndroidUtilities.requestAdjustResize(n2Var.getParentActivity(), n2Var.getClassGuid());
         }
@@ -265,8 +265,8 @@ public final class o9 extends kw0 {
     @Override
     public final void onMeasure(int i10, int i11) {
         aa aaVar = this.I0;
-        ((FrameLayout.LayoutParams) aaVar.f5186d1.getLayoutParams()).topMargin = AndroidUtilities.statusBarHeight - AndroidUtilities.dp(2.0f);
-        aaVar.f5186d1.getLayoutParams().height = AndroidUtilities.dp(2.0f);
+        ((FrameLayout.LayoutParams) aaVar.f5184d1.getLayoutParams()).topMargin = AndroidUtilities.statusBarHeight - AndroidUtilities.dp(2.0f);
+        aaVar.f5184d1.getLayoutParams().height = AndroidUtilities.dp(2.0f);
         super.onMeasure(i10, i11);
     }
 
@@ -276,7 +276,7 @@ public final class o9 extends kw0 {
         int action = motionEvent.getAction();
         aa aaVar = this.I0;
         if (action == 1 || motionEvent.getAction() == 3) {
-            aaVar.f5198j0 = false;
+            aaVar.f5196j0 = false;
             aaVar.K(false);
             if (aaVar.V >= 1.0f) {
                 aaVar.q(true);
@@ -286,7 +286,7 @@ public final class o9 extends kw0 {
                 ofFloat.addUpdateListener(new l9(this, 1));
                 aaVar.G.addListener(new m9(this, 1));
                 aaVar.G.setDuration(150L);
-                aaVar.G.setInterpolator(bs.f25014f);
+                aaVar.G.setInterpolator(bs.f25012f);
                 aaVar.G.start();
             }
             q4 t10 = aaVar.t();
@@ -294,16 +294,16 @@ public final class o9 extends kw0 {
                 n2Var.setAllowTouches(true);
             }
         }
-        if (!aaVar.f5198j0 && !aaVar.f5228x && aaVar.Z == 0.0f && ((aaVar.f5187e0 == 0.0f || (!aaVar.f5190f0 && !aaVar.f5192g0)) && !aaVar.f5199j1)) {
+        if (!aaVar.f5196j0 && !aaVar.f5226x && aaVar.Z == 0.0f && ((aaVar.f5185e0 == 0.0f || (!aaVar.f5188f0 && !aaVar.f5190g0)) && !aaVar.f5197j1)) {
             return false;
         }
-        aaVar.f5196i0.onTouchEvent(motionEvent);
+        aaVar.f5194i0.onTouchEvent(motionEvent);
         return true;
     }
 
     @Override
     public final void requestDisallowInterceptTouchEvent(boolean z10) {
         super.requestDisallowInterceptTouchEvent(z10);
-        this.I0.f5190f0 = false;
+        this.I0.f5188f0 = false;
     }
 }

@@ -8,18 +8,18 @@ import android.widget.Button;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
-import org.telegram.messenger.lk;
+import org.telegram.messenger.kk;
 public final class vd extends TextView {
-    public final int f2344a;
+    public final int f2335a;
 
     public vd(Context context, int i10) {
         super(context);
-        this.f2344a = i10;
+        this.f2335a = i10;
     }
 
     @Override
     public void dispatchDraw(Canvas canvas) {
-        switch (this.f2344a) {
+        switch (this.f2335a) {
             case 2:
                 super.dispatchDraw(canvas);
                 canvas.drawCircle(AndroidUtilities.dp(3.5f), AndroidUtilities.dp(11.5f), AndroidUtilities.dp(2.5f), getPaint());
@@ -39,7 +39,7 @@ public final class vd extends TextView {
 
     @Override
     public CharSequence getAccessibilityClassName() {
-        switch (this.f2344a) {
+        switch (this.f2335a) {
             case 15:
                 return Button.class.getName();
             case 16:
@@ -63,9 +63,9 @@ public final class vd extends TextView {
 
     @Override
     public void onDraw(Canvas canvas) {
-        switch (this.f2344a) {
+        switch (this.f2335a) {
             case 5:
-                canvas.drawLine(0.0f, getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, org.telegram.ui.l4.f38745r1);
+                canvas.drawLine(0.0f, getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, org.telegram.ui.l4.f38743r1);
                 super.onDraw(canvas);
                 return;
             default:
@@ -76,7 +76,7 @@ public final class vd extends TextView {
 
     @Override
     public void onMeasure(int i10, int i11) {
-        switch (this.f2344a) {
+        switch (this.f2335a) {
             case 0:
                 super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(org.telegram.ui.ActionBar.k.getCurrentActionBarHeight(), 1073741824));
                 return;
@@ -146,7 +146,7 @@ public final class vd extends TextView {
                 return;
             case 28:
                 if (View.MeasureSpec.getMode(i10) == Integer.MIN_VALUE) {
-                    i10 = lk.c(52.0f, View.MeasureSpec.getSize(i10), Integer.MIN_VALUE);
+                    i10 = kk.c(52.0f, View.MeasureSpec.getSize(i10), Integer.MIN_VALUE);
                 }
                 super.onMeasure(i10, i11);
                 return;
@@ -161,7 +161,7 @@ public final class vd extends TextView {
 
     @Override
     public void setText(CharSequence charSequence, TextView.BufferType bufferType) {
-        switch (this.f2344a) {
+        switch (this.f2335a) {
             case 3:
                 super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false), bufferType);
                 return;

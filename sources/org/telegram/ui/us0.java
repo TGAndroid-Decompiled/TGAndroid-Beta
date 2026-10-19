@@ -70,7 +70,7 @@ public final class us0 extends org.telegram.ui.Components.b81 {
             i2.i0 i0Var = this.d;
             float f7 = 1.0f;
             if (i0Var != null && (h = i0Var.h()) != null) {
-                f7 = h.f4154a;
+                f7 = h.f4152a;
             }
             b5.d.z(f7);
         }

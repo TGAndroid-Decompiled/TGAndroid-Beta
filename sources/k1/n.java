@@ -1,37 +1,37 @@
 package k1;
 public final class n extends md.i implements td.p {
-    public final int f14586a;
-    public int f14587b;
-    public Object f14588c;
+    public final int f14584a;
+    public int f14585b;
+    public Object f14586c;
     public final z d;
 
     public n(z zVar, kd.c cVar, int i10) {
         super(2, cVar);
-        this.f14586a = i10;
+        this.f14584a = i10;
         this.d = zVar;
     }
 
     @Override
     public final kd.c create(Object obj, kd.c cVar) {
-        switch (this.f14586a) {
+        switch (this.f14584a) {
             case 0:
                 n nVar = new n(this.d, cVar, 0);
-                nVar.f14588c = obj;
+                nVar.f14586c = obj;
                 return nVar;
             default:
                 n nVar2 = new n(this.d, cVar, 1);
-                nVar2.f14588c = obj;
+                nVar2.f14586c = obj;
                 return nVar2;
         }
     }
 
     @Override
     public final Object invoke(Object obj, Object obj2) {
-        switch (this.f14586a) {
+        switch (this.f14584a) {
             case 0:
-                return ((n) create((k) obj, (kd.c) obj2)).invokeSuspend(id.i.f12777a);
+                return ((n) create((k) obj, (kd.c) obj2)).invokeSuspend(id.i.f12775a);
             default:
-                return ((n) create((ee.c) obj, (kd.c) obj2)).invokeSuspend(id.i.f12777a);
+                return ((n) create((ee.c) obj, (kd.c) obj2)).invokeSuspend(id.i.f12775a);
         }
     }
 

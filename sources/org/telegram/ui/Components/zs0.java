@@ -18,7 +18,7 @@ public final class zs0 implements zl0 {
 
     @Override
     public final void h() {
-        org.telegram.ui.ActionBar.n2 n2Var = this.f33038b.f30734v1;
+        org.telegram.ui.ActionBar.n2 n2Var = this.f33038b.f30732v1;
         if (n2Var != null) {
             Point point = AndroidUtilities.displaySize;
             if (point.x > point.y) {
@@ -29,7 +29,7 @@ public final class zs0 implements zl0 {
 
     @Override
     public final void o(float f7) {
-        org.telegram.ui.ActionBar.n2 n2Var = this.f33038b.f30734v1;
+        org.telegram.ui.ActionBar.n2 n2Var = this.f33038b.f30732v1;
         if (n2Var != null) {
             Point point = AndroidUtilities.displaySize;
             if (point.x > point.y) {

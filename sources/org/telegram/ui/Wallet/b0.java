@@ -5,19 +5,19 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.ui.z70;
 public final class b0 implements Runnable, NotificationCenter.NotificationCenterDelegate {
-    public boolean f34002a;
-    public final NotificationCenter f34003b;
-    public final z70 f34004c;
+    public boolean f34004a;
+    public final NotificationCenter f34005b;
+    public final z70 f34006c;
     public final m0 d;
 
     public b0(NotificationCenter notificationCenter, z70 z70Var, m0 m0Var) {
-        this.f34003b = notificationCenter;
-        this.f34004c = z70Var;
+        this.f34005b = notificationCenter;
+        this.f34006c = z70Var;
         this.d = m0Var;
     }
 
     public final void a() {
-        if (!this.f34002a) {
+        if (!this.f34004a) {
             m0 m0Var = this.d;
             if (m0Var.e != null) {
                 ArrayList arrayList = m0Var.G;
@@ -44,12 +44,12 @@ public final class b0 implements Runnable, NotificationCenter.NotificationCenter
 
     @Override
     public final void run() {
-        if (this.f34002a) {
+        if (this.f34004a) {
             return;
         }
-        this.f34002a = true;
+        this.f34004a = true;
         AndroidUtilities.cancelRunOnUIThread(this);
-        this.f34003b.removeObserver(this, NotificationCenter.walletUpdate);
-        this.f34004c.run();
+        this.f34005b.removeObserver(this, NotificationCenter.walletUpdate);
+        this.f34006c.run();
     }
 }

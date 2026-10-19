@@ -114,7 +114,7 @@ public final class h1 extends d91 {
                 return;
             case 7:
                 p91 p91Var = (p91) this.U;
-                p91Var.m0(p91Var.f40142i0.getCurrentPosition(), true);
+                p91Var.m0(p91Var.f40133i0.getCurrentPosition(), true);
                 p91Var.n0(0.0f, false);
                 p91.W(p91Var);
                 return;
@@ -128,7 +128,7 @@ public final class h1 extends d91 {
         m21 m21Var;
         switch (this.T) {
             case 6:
-                if ((getCurrentView() instanceof n21) && (m21Var = ((n21) getCurrentView()).f39396n) != null) {
+                if ((getCurrentView() instanceof n21) && (m21Var = ((n21) getCurrentView()).f39392n) != null) {
                     AndroidUtilities.hideKeyboard(m21Var);
                     return;
                 }
@@ -143,7 +143,7 @@ public final class h1 extends d91 {
         switch (this.T) {
             case 0:
                 n2 n2Var = (n2) this.U;
-                h1 h1Var = n2Var.f9503f;
+                h1 h1Var = n2Var.f9501f;
                 m2 m2Var = n2Var.h;
                 if (m2Var != null) {
                     m2Var.F = h1Var.getPositionAnimated();
@@ -177,8 +177,8 @@ public final class h1 extends d91 {
                 if (dVar != null && C0 != null && C0 != ip0Var.R) {
                     ip0Var.R = C0;
                     n2.e eVar = C0.e;
-                    dVar.g((CharSequence) eVar.f17041b, true, true);
-                    ip0Var.Q.f((SpannableStringBuilder) eVar.f17042c, true);
+                    dVar.g((CharSequence) eVar.f17039b, true, true);
+                    ip0Var.Q.f((SpannableStringBuilder) eVar.f17040c, true);
                 }
                 ip0Var.D0(1);
                 return;
@@ -190,7 +190,7 @@ public final class h1 extends d91 {
                 return;
             case 7:
                 p91 p91Var = (p91) this.U;
-                float positionAnimated2 = p91Var.f40142i0.getPositionAnimated();
+                float positionAnimated2 = p91Var.f40133i0.getPositionAnimated();
                 p91Var.n0(positionAnimated2, !z10);
                 if (!z10) {
                     p91Var.m0(Math.round(positionAnimated2), true);
@@ -207,8 +207,8 @@ public final class h1 extends d91 {
             default:
                 org.telegram.ui.Wallet.o5 o5Var = (org.telegram.ui.Wallet.o5) this.U;
                 o5Var.T0();
-                org.telegram.ui.Wallet.t7 t7Var = o5Var.f34642i0;
-                if (t7Var != null && t7Var.f34925h1) {
+                org.telegram.ui.Wallet.t7 t7Var = o5Var.f34644i0;
+                if (t7Var != null && t7Var.f34924h1) {
                     t7Var.f0();
                     return;
                 }
@@ -222,12 +222,12 @@ public final class h1 extends d91 {
         switch (this.T) {
             case 10:
                 org.telegram.ui.Wallet.o5 o5Var = (org.telegram.ui.Wallet.o5) this.U;
-                o5Var.f34636d0 = i10;
-                if (i10 != 1 && (n8Var = o5Var.f34641h0) != null) {
+                o5Var.f34638d0 = i10;
+                if (i10 != 1 && (n8Var = o5Var.f34643h0) != null) {
                     n8Var.b(false);
                 }
                 if (i10 == 1) {
-                    o5Var.f34648o0.post(new org.telegram.ui.Wallet.p3(o5Var, 13));
+                    o5Var.f34650o0.post(new org.telegram.ui.Wallet.p3(o5Var, 13));
                     return;
                 }
                 return;
@@ -242,9 +242,9 @@ public final class h1 extends d91 {
             case 3:
                 if (i10 == 0) {
                     qn qnVar = (qn) this.U;
-                    if (qnVar.f40839s1) {
-                        qnVar.f40839s1 = false;
-                        qnVar.f40812q1.h.clear();
+                    if (qnVar.f40831s1) {
+                        qnVar.f40831s1 = false;
+                        qnVar.f40804q1.h.clear();
                         return;
                     }
                     return;

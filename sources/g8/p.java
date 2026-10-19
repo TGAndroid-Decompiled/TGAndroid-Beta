@@ -1,4 +1,4 @@
 package g8;
 public abstract class p extends b8.b implements q {
-    public static final int f10941b = 0;
+    public static final int f10939b = 0;
 }

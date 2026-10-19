@@ -3,27 +3,27 @@ package org.telegram.ui;
 import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 public final class va implements MessagesStorage.IntCallback {
-    public final int f42148a;
-    public final Object f42149b;
+    public final int f42147a;
+    public final Object f42148b;
 
     public va(Object obj, int i10) {
-        this.f42148a = i10;
-        this.f42149b = obj;
+        this.f42147a = i10;
+        this.f42148b = obj;
     }
 
     @Override
     public final void run(int i10) {
         bu0 bu0Var;
-        int i11 = this.f42148a;
-        Object obj = this.f42149b;
+        int i11 = this.f42147a;
+        Object obj = this.f42148b;
         switch (i11) {
             case 0:
                 ((vb) obj).U0(true);
                 return;
             case 1:
-                qn qnVar = ((cn) obj).f36032a;
+                qn qnVar = ((cn) obj).f36004a;
                 if (i10 > 0 && qnVar.getParentActivity() != null && qnVar.fragmentView != null) {
-                    org.telegram.ui.Components.xc.a0(qnVar).m(org.telegram.ui.Components.wc.I, i10, 0, 0, qnVar.f40675ea).j();
+                    org.telegram.ui.Components.xc.a0(qnVar).m(org.telegram.ui.Components.wc.I, i10, 0, 0, qnVar.f40667ea).j();
                     return;
                 }
                 return;
@@ -51,7 +51,7 @@ public final class va implements MessagesStorage.IntCallback {
                 profileActivity.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.peerSettingsDidLoad, Long.valueOf(profileActivity.f33613f1));
                 return;
             default:
-                re1 re1Var = ((wd1) obj).f42536a;
+                re1 re1Var = ((wd1) obj).f42537a;
                 if (i10 == 0) {
                     re1Var.O0(false);
                     return;

@@ -26,7 +26,7 @@ public abstract class m7 {
             if (i13 != 0) {
                 boolean z10 = true;
                 int i14 = ((i10 ^ i11) >> 31) | 1;
-                switch (g9.d.f10945a[roundingMode.ordinal()]) {
+                switch (g9.d.f10943a[roundingMode.ordinal()]) {
                     case 1:
                         if (i13 != 0) {
                             z10 = false;
@@ -75,7 +75,7 @@ public abstract class m7 {
         RoundingMode roundingMode = RoundingMode.UNNECESSARY;
         if (i10 > 0) {
             boolean z11 = true;
-            switch (g9.d.f10945a[roundingMode.ordinal()]) {
+            switch (g9.d.f10943a[roundingMode.ordinal()]) {
                 case 1:
                     if (i10 > 0) {
                         z10 = true;

@@ -5,33 +5,33 @@ import android.animation.ObjectAnimator;
 import java.util.ArrayList;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
 public final class q40 extends org.telegram.ui.ActionBar.m1 {
-    public final q50 f40368o;
+    public final q50 f40363o;
 
     public q40(q50 q50Var, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout) {
         super(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
-        this.f40368o = q50Var;
+        this.f40363o = q50Var;
     }
 
     @Override
     public final void dismiss() {
         d(true);
-        q50 q50Var = this.f40368o;
-        if (q50Var.f40399f3 != this) {
+        q50 q50Var = this.f40363o;
+        if (q50Var.f40394f3 != this) {
             return;
         }
-        q50Var.f40399f3 = null;
-        AnimatorSet animatorSet = q50Var.f40394e3;
+        q50Var.f40394f3 = null;
+        AnimatorSet animatorSet = q50Var.f40389e3;
         if (animatorSet != null) {
             animatorSet.cancel();
-            q50Var.f40394e3 = null;
+            q50Var.f40389e3 = null;
         }
         q50Var.Y.X = true;
-        q50Var.f40394e3 = new AnimatorSet();
+        q50Var.f40389e3 = new AnimatorSet();
         ArrayList arrayList = new ArrayList();
-        arrayList.add(ObjectAnimator.ofInt(q50Var.W2, org.telegram.ui.Components.t6.f30430b, 0));
-        q50Var.f40394e3.playTogether(arrayList);
-        q50Var.f40394e3.setDuration(220L);
-        q50Var.f40394e3.addListener(new org.telegram.ui.Components.o31(this, 27));
-        q50Var.f40394e3.start();
+        arrayList.add(ObjectAnimator.ofInt(q50Var.W2, org.telegram.ui.Components.t6.f30428b, 0));
+        q50Var.f40389e3.playTogether(arrayList);
+        q50Var.f40389e3.setDuration(220L);
+        q50Var.f40389e3.addListener(new org.telegram.ui.Components.o31(this, 27));
+        q50Var.f40389e3.start();
     }
 }

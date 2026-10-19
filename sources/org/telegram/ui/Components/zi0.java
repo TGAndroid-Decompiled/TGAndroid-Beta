@@ -19,18 +19,18 @@ public final class zi0 extends AnimatorListenerAdapter {
         switch (this.f32958a) {
             case 1:
                 aj0 aj0Var = this.f32959b;
-                AnimatorSet animatorSet = aj0Var.f24590s;
+                AnimatorSet animatorSet = aj0Var.f24588s;
                 if (animatorSet != null && animatorSet.equals(animator)) {
-                    aj0Var.f24590s = null;
+                    aj0Var.f24588s = null;
                     aj0Var.getClass();
                     return;
                 }
                 return;
             case 2:
                 aj0 aj0Var2 = this.f32959b;
-                AnimatorSet animatorSet2 = aj0Var2.f24590s;
+                AnimatorSet animatorSet2 = aj0Var2.f24588s;
                 if (animatorSet2 != null && animatorSet2.equals(animator)) {
-                    aj0Var2.f24590s = null;
+                    aj0Var2.f24588s = null;
                     aj0Var2.getClass();
                     return;
                 }
@@ -54,19 +54,19 @@ public final class zi0 extends AnimatorListenerAdapter {
                 NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);
                 return;
             case 1:
-                AnimatorSet animatorSet2 = aj0Var.f24590s;
+                AnimatorSet animatorSet2 = aj0Var.f24588s;
                 if (animatorSet2 != null && animatorSet2.equals(animator)) {
-                    aj0Var.f24590s = null;
-                    if (aj0Var.f24591w) {
+                    aj0Var.f24588s = null;
+                    if (aj0Var.f24589w) {
                         aj0Var.setLayerType(0, null);
                     }
                 }
                 NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);
                 return;
             default:
-                AnimatorSet animatorSet3 = aj0Var.f24590s;
+                AnimatorSet animatorSet3 = aj0Var.f24588s;
                 if (animatorSet3 != null && animatorSet3.equals(animator)) {
-                    aj0Var.f24590s = null;
+                    aj0Var.f24588s = null;
                     AndroidUtilities.runOnUIThread(new rc0(this, 14));
                 }
                 NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);

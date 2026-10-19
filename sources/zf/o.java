@@ -11,25 +11,25 @@ import org.telegram.ui.Components.pj0;
 public abstract class o {
     public static void a(m11 m11Var, StringBuilder sb2) {
         if (m11Var != null) {
-            if ((m11Var.f28359a & 768) > 0) {
+            if ((m11Var.f28357a & 768) > 0) {
                 sb2.append("<spoiler>");
             }
-            if ((m11Var.f28359a & 1) > 0) {
+            if ((m11Var.f28357a & 1) > 0) {
                 sb2.append("<b>");
             }
-            if ((m11Var.f28359a & 2) > 0) {
+            if ((m11Var.f28357a & 2) > 0) {
                 sb2.append("<i>");
             }
-            if ((m11Var.f28359a & 16) > 0) {
+            if ((m11Var.f28357a & 16) > 0) {
                 sb2.append("<u>");
             }
-            if ((m11Var.f28359a & 8) > 0) {
+            if ((m11Var.f28357a & 8) > 0) {
                 sb2.append("<s>");
             }
-            if ((m11Var.f28359a & 4) > 0) {
+            if ((m11Var.f28357a & 4) > 0) {
                 sb2.append("<code>");
             }
-            if ((m11Var.f28359a & 128) > 0 && m11Var.d != null) {
+            if ((m11Var.f28357a & 128) > 0 && m11Var.d != null) {
                 sb2.append("<a href=\"");
                 sb2.append(m11Var.d.url);
                 sb2.append("\">");
@@ -39,25 +39,25 @@ public abstract class o {
 
     public static void b(m11 m11Var, StringBuilder sb2) {
         if (m11Var != null) {
-            if ((m11Var.f28359a & 128) > 0 && m11Var.d != null) {
+            if ((m11Var.f28357a & 128) > 0 && m11Var.d != null) {
                 sb2.append("</a>");
             }
-            if ((m11Var.f28359a & 4) > 0) {
+            if ((m11Var.f28357a & 4) > 0) {
                 sb2.append("</code>");
             }
-            if ((m11Var.f28359a & 8) > 0) {
+            if ((m11Var.f28357a & 8) > 0) {
                 sb2.append("</s>");
             }
-            if ((m11Var.f28359a & 16) > 0) {
+            if ((m11Var.f28357a & 16) > 0) {
                 sb2.append("</u>");
             }
-            if ((m11Var.f28359a & 2) > 0) {
+            if ((m11Var.f28357a & 2) > 0) {
                 sb2.append("</i>");
             }
-            if ((m11Var.f28359a & 1) > 0) {
+            if ((m11Var.f28357a & 1) > 0) {
                 sb2.append("</b>");
             }
-            if ((m11Var.f28359a & 768) > 0) {
+            if ((m11Var.f28357a & 768) > 0) {
                 sb2.append("</spoiler>");
             }
         }
@@ -102,7 +102,7 @@ public abstract class o {
                 if (n11VarArr != null) {
                     for (n11 n11Var : n11VarArr) {
                         if (n11Var != null) {
-                            a(n11Var.f28647b, sb2);
+                            a(n11Var.f28645b, sb2);
                         }
                     }
                 }
@@ -115,7 +115,7 @@ public abstract class o {
                     String str5 = "\">";
                     if (m61VarArr != null) {
                         for (m61 m61Var : m61VarArr) {
-                            a(m61Var.f28448a, sb2);
+                            a(m61Var.f28446a, sb2);
                             sb2.append("<a href=\"");
                             sb2.append(m61Var.getURL());
                             sb2.append("\">");
@@ -150,7 +150,7 @@ public abstract class o {
                                 while (i20 < hVarArr.length) {
                                     mi.h hVar = hVarArr[i20];
                                     if (hVar != null) {
-                                        String str6 = hVar.f16955a;
+                                        String str6 = hVar.f16953a;
                                         if (TextUtils.isEmpty(str6)) {
                                             sb2.append(str4);
                                         } else {
@@ -332,7 +332,7 @@ public abstract class o {
                     if (m61VarArr != null) {
                         for (m61 m61Var2 : m61VarArr) {
                             sb2.append("</a>");
-                            b(m61Var2.f28448a, sb2);
+                            b(m61Var2.f28446a, sb2);
                         }
                     }
                     length = i37;
@@ -347,7 +347,7 @@ public abstract class o {
                 if (n11VarArr != null) {
                     for (n11 n11Var2 : n11VarArr) {
                         if (n11Var2 != null) {
-                            b(n11Var2.f28647b, sb2);
+                            b(n11Var2.f28645b, sb2);
                         }
                     }
                 }

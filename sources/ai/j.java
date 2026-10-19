@@ -13,39 +13,39 @@ import org.telegram.ui.Components.i80;
 import org.telegram.ui.Components.r31;
 import org.telegram.ui.TwoStepVerificationActivity;
 public final class j implements Runnable {
-    public final int f1529a = 0;
-    public final boolean f1530b;
-    public final long f1531c;
+    public final int f1538a = 0;
+    public final boolean f1539b;
+    public final long f1540c;
     public final NotificationCenter.NotificationCenterDelegate d;
     public final Object e;
-    public final Object f1532f;
+    public final Object f1541f;
     public final Object h;
-    public final TLObject f1533n;
+    public final TLObject f1542n;
 
     public j(x xVar, TLRPC.TL_error tL_error, TwoStepVerificationActivity twoStepVerificationActivity, Activity activity, boolean z10, long j10, TLObject tLObject) {
         this.d = xVar;
         this.e = tL_error;
-        this.f1532f = twoStepVerificationActivity;
+        this.f1541f = twoStepVerificationActivity;
         this.h = activity;
-        this.f1530b = z10;
-        this.f1531c = j10;
-        this.f1533n = tLObject;
+        this.f1539b = z10;
+        this.f1540c = j10;
+        this.f1542n = tLObject;
     }
 
     @Override
     public final void run() {
         int i10;
-        switch (this.f1529a) {
+        switch (this.f1538a) {
             case 0:
-                x.Z((x) this.d, (TLRPC.TL_error) this.e, (TwoStepVerificationActivity) this.f1532f, (Activity) this.h, this.f1530b, this.f1531c, this.f1533n);
+                x.Z((x) this.d, (TLRPC.TL_error) this.e, (TwoStepVerificationActivity) this.f1541f, (Activity) this.h, this.f1539b, this.f1540c, this.f1542n);
                 return;
             default:
                 final r31 r31Var = (r31) this.d;
                 org.telegram.ui.ActionBar.e1 e1Var = (org.telegram.ui.ActionBar.e1) this.e;
-                final i80 i80Var = (i80) this.f1532f;
+                final i80 i80Var = (i80) this.f1541f;
                 final TLRPC.User user = (TLRPC.User) this.h;
-                final TLRPC.Chat chat = (TLRPC.Chat) this.f1533n;
-                boolean z10 = this.f1530b;
+                final TLRPC.Chat chat = (TLRPC.Chat) this.f1542n;
+                boolean z10 = this.f1539b;
                 final boolean z11 = !z10;
                 e1Var.setVisibility(0);
                 if (!z10) {
@@ -54,12 +54,12 @@ public final class j implements Runnable {
                     i10 = R.string.BanUserMonoforum;
                 }
                 e1Var.setText(LocaleController.getString(i10));
-                final long j10 = this.f1531c;
+                final long j10 = this.f1540c;
                 e1Var.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
                         r31 r31Var2 = r31.this;
-                        int i11 = r31Var2.f29816b;
+                        int i11 = r31Var2.f29814b;
                         i80Var.u();
                         boolean z12 = z11;
                         TLRPC.User user2 = user;
@@ -80,11 +80,11 @@ public final class j implements Runnable {
 
     public j(r31 r31Var, boolean z10, org.telegram.ui.ActionBar.e1 e1Var, i80 i80Var, long j10, TLRPC.User user, TLRPC.Chat chat) {
         this.d = r31Var;
-        this.f1530b = z10;
+        this.f1539b = z10;
         this.e = e1Var;
-        this.f1532f = i80Var;
-        this.f1531c = j10;
+        this.f1541f = i80Var;
+        this.f1540c = j10;
         this.h = user;
-        this.f1533n = chat;
+        this.f1542n = chat;
     }
 }

@@ -1,29 +1,33 @@
 package org.telegram.messenger;
-public final class da implements Runnable {
-    public final int f18168a;
-    public final MessagesController f18169b;
-    public final int f18170c;
 
-    public da(MessagesController messagesController, int i10, int i11) {
-        this.f18168a = i11;
-        this.f18169b = messagesController;
-        this.f18170c = i10;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class da implements RequestDelegate {
+    public final int f18177a;
+    public final BaseController f18178b;
+    public final int f18179c;
+
+    public da(BaseController baseController, int i10, int i11) {
+        this.f18177a = i11;
+        this.f18178b = baseController;
+        this.f18179c = i10;
     }
 
     @Override
-    public final void run() {
-        switch (this.f18168a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f18177a) {
             case 0:
-                this.f18169b.lambda$updateTimerProc$156(this.f18170c);
+                ((MessagesController) this.f18178b).lambda$migrateDialogs$215(this.f18179c, tLObject, tL_error);
                 return;
             case 1:
-                this.f18169b.lambda$onFolderEmpty$196(this.f18170c);
+                ((MessagesController) this.f18178b).lambda$loadPinnedDialogs$366(this.f18179c, tLObject, tL_error);
                 return;
             case 2:
-                this.f18169b.lambda$ensureMessagesLoaded$465(this.f18170c);
+                ((MessagesController) this.f18178b).lambda$loadGlobalNotificationsSettings$200(this.f18179c, tLObject, tL_error);
                 return;
             default:
-                this.f18169b.lambda$didAddedNewTask$80(this.f18170c);
+                ((ContactsController) this.f18178b).lambda$loadPrivacySettings$65(this.f18179c, tLObject, tL_error);
                 return;
         }
     }

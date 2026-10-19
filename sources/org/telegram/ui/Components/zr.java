@@ -15,14 +15,14 @@ public final class zr implements Drawable.Callback {
         switch (this.f33026a) {
             case 0:
                 as asVar = this.f33027b;
-                if (asVar.f24691c < 1.0f) {
+                if (asVar.f24689c < 1.0f) {
                     asVar.invalidateSelf();
                     return;
                 }
                 return;
             default:
                 as asVar2 = this.f33027b;
-                if (asVar2.f24691c > 0.0f) {
+                if (asVar2.f24689c > 0.0f) {
                     asVar2.invalidateSelf();
                     return;
                 }
@@ -35,14 +35,14 @@ public final class zr implements Drawable.Callback {
         switch (this.f33026a) {
             case 0:
                 as asVar = this.f33027b;
-                if (asVar.f24691c < 1.0f) {
+                if (asVar.f24689c < 1.0f) {
                     asVar.scheduleSelf(runnable, j10);
                     return;
                 }
                 return;
             default:
                 as asVar2 = this.f33027b;
-                if (asVar2.f24691c > 0.0f) {
+                if (asVar2.f24689c > 0.0f) {
                     asVar2.scheduleSelf(runnable, j10);
                     return;
                 }
@@ -55,14 +55,14 @@ public final class zr implements Drawable.Callback {
         switch (this.f33026a) {
             case 0:
                 as asVar = this.f33027b;
-                if (asVar.f24691c < 1.0f) {
+                if (asVar.f24689c < 1.0f) {
                     asVar.unscheduleSelf(runnable);
                     return;
                 }
                 return;
             default:
                 as asVar2 = this.f33027b;
-                if (asVar2.f24691c > 0.0f) {
+                if (asVar2.f24689c > 0.0f) {
                     asVar2.unscheduleSelf(runnable);
                     return;
                 }

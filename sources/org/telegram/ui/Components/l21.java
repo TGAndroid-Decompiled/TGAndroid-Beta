@@ -8,10 +8,10 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.ThemeEditorView;
 public final class l21 implements TextWatcher {
-    public final m21 f28062a;
+    public final m21 f28060a;
 
     public l21(m21 m21Var) {
-        this.f28062a = m21Var;
+        this.f28060a = m21Var;
     }
 
     @Override
@@ -19,19 +19,19 @@ public final class l21 implements TextWatcher {
         boolean z10;
         boolean z11;
         float f7;
-        if (this.f28062a.f28369b.length() > 0) {
+        if (this.f28060a.f28367b.length() > 0) {
             z10 = true;
         } else {
             z10 = false;
         }
         float f10 = 0.0f;
-        if (this.f28062a.f28368a.getAlpha() != 0.0f) {
+        if (this.f28060a.f28366a.getAlpha() != 0.0f) {
             z11 = true;
         } else {
             z11 = false;
         }
         if (z10 != z11) {
-            ViewPropertyAnimator animate = this.f28062a.f28368a.animate();
+            ViewPropertyAnimator animate = this.f28060a.f28366a.animate();
             float f11 = 1.0f;
             if (z10) {
                 f10 = 1.0f;
@@ -48,37 +48,37 @@ public final class l21 implements TextWatcher {
             }
             scaleX.scaleY(f11).start();
         }
-        String obj = this.f28062a.f28369b.getText().toString();
+        String obj = this.f28060a.f28367b.getText().toString();
         if (obj.length() != 0) {
-            vz vzVar = this.f28062a.f28370c.e;
+            vz vzVar = this.f28060a.f28368c.e;
             if (vzVar != null) {
                 vzVar.setText(LocaleController.getString(R.string.NoResult));
             }
         } else {
-            s4.g0 adapter = this.f28062a.f28370c.f24397c.getAdapter();
-            ThemeEditorView.EditorAlert editorAlert = this.f28062a.f28370c;
-            if (adapter != editorAlert.f24399n) {
+            s4.g0 adapter = this.f28060a.f28368c.f24395c.getAdapter();
+            ThemeEditorView.EditorAlert editorAlert = this.f28060a.f28368c;
+            if (adapter != editorAlert.f24397n) {
                 int K = ThemeEditorView.EditorAlert.K(editorAlert);
-                this.f28062a.f28370c.e.setText(LocaleController.getString(R.string.NoChats));
-                this.f28062a.f28370c.e.c();
-                ThemeEditorView.EditorAlert editorAlert2 = this.f28062a.f28370c;
-                editorAlert2.f24397c.setAdapter(editorAlert2.f24399n);
-                this.f28062a.f28370c.f24399n.l();
+                this.f28060a.f28368c.e.setText(LocaleController.getString(R.string.NoChats));
+                this.f28060a.f28368c.e.c();
+                ThemeEditorView.EditorAlert editorAlert2 = this.f28060a.f28368c;
+                editorAlert2.f24395c.setAdapter(editorAlert2.f24397n);
+                this.f28060a.f28368c.f24397n.l();
                 if (K > 0) {
-                    this.f28062a.f28370c.h.h1(0, -K);
+                    this.f28060a.f28368c.h.h1(0, -K);
                 }
             }
         }
-        i21 i21Var = this.f28062a.f28370c.f24400r;
-        if (i21Var != null && !obj.equals(i21Var.f27048n)) {
-            i21Var.f27048n = obj;
+        i21 i21Var = this.f28060a.f28368c.f24398r;
+        if (i21Var != null && !obj.equals(i21Var.f27046n)) {
+            i21Var.f27046n = obj;
             if (i21Var.h != null) {
                 Utilities.searchQueue.cancelRunnable(i21Var.h);
                 i21Var.h = null;
             }
             if (obj.length() == 0) {
                 i21Var.e.clear();
-                ThemeEditorView.EditorAlert editorAlert3 = i21Var.f27049r;
+                ThemeEditorView.EditorAlert editorAlert3 = i21Var.f27047r;
                 editorAlert3.F = ThemeEditorView.EditorAlert.K(editorAlert3);
                 i21Var.d = -1;
                 i21Var.l();

@@ -3,11 +3,11 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import android.util.SparseIntArray;
 public final class t81 extends c91 {
-    public final d91 f30455t0;
+    public final d91 f30453t0;
 
     public t81(d91 d91Var, Context context, boolean z10, int i10, org.telegram.ui.ActionBar.d6 d6Var) {
         super(i10, context, d6Var, z10);
-        this.f30455t0 = d91Var;
+        this.f30453t0 = d91Var;
     }
 
     @Override
@@ -23,12 +23,12 @@ public final class t81 extends c91 {
             f10 = f7;
         }
         this.F = i10;
-        SparseIntArray sparseIntArray = this.f25130b0;
+        SparseIntArray sparseIntArray = this.f25128b0;
         this.G = sparseIntArray.get(i10);
         if (f10 > 0.0f) {
-            b91 b91Var = this.f25153y;
+            b91 b91Var = this.f25151y;
             if (b91Var != null) {
-                v81 v81Var = ((d91) ((l2.f) b91Var).f15845b).L;
+                v81 v81Var = ((d91) ((l2.f) b91Var).f15843b).L;
             }
             this.L = i11;
             this.M = sparseIntArray.get(i11);
@@ -46,9 +46,9 @@ public final class t81 extends c91 {
             this.F = i11;
             this.G = sparseIntArray.get(i11);
         }
-        b91 b91Var2 = this.f25153y;
+        b91 b91Var2 = this.f25151y;
         if (b91Var2 != null) {
-            ((d91) ((l2.f) b91Var2).f15845b).s();
+            ((d91) ((l2.f) b91Var2).f15843b).s();
         }
         if (f7 <= 0.5f) {
             i12 = i10;
@@ -60,6 +60,6 @@ public final class t81 extends c91 {
         } else {
             z10 = false;
         }
-        this.f30455t0.y(i12, z10);
+        this.f30453t0.y(i12, z10);
     }
 }

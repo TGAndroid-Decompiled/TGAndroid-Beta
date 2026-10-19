@@ -51,7 +51,7 @@ public final class f implements View.OnClickListener {
                 PhotoViewer.t1().j0(1.0f, 0.0f, 0.0f, false);
                 return;
             case 5:
-                int i13 = gi.n.f11343n;
+                int i13 = gi.n.f11341n;
                 return;
             case 6:
                 int i14 = kh.c.e;
@@ -80,17 +80,17 @@ public final class f implements View.OnClickListener {
                 }
                 return;
             case 11:
-                int i16 = wq.f32188e0;
+                int i16 = wq.f32186e0;
                 return;
             case 12:
-                int i17 = fs.f26369s;
+                int i17 = fs.f26367s;
                 return;
             case 13:
                 float[] fArr = FragmentContextView.Q0;
                 MediaController.getInstance().updateSilent(false);
                 return;
             case 14:
-                zg0 zg0Var = zg0.f32929p0;
+                zg0 zg0Var = zg0.f32927p0;
                 cv cvVar = zg0Var.U;
                 if (cvVar != null) {
                     cvVar.G();
@@ -158,10 +158,10 @@ public final class f implements View.OnClickListener {
                 int i19 = yh.m.A0;
                 return;
             case 28:
-                zc[] zcVarArr = yh.v.f50533p0;
+                zc[] zcVarArr = yh.v.f50535p0;
                 return;
             default:
-                int i20 = yh.c0.f50175f0;
+                int i20 = yh.c0.f50177f0;
                 return;
         }
     }
