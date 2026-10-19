@@ -1,17 +1,109 @@
 package org.telegram.ui;
-public final class gm0 extends org.telegram.ui.ActionBar.j {
-    public final xm0 f37203a;
 
-    public gm0(xm0 xm0Var) {
-        this.f37203a = xm0Var;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+public final class gm0 implements RequestDelegate {
+    public final int f37375a;
+    public final im0 f37376b;
+
+    public gm0(im0 im0Var, int i10) {
+        this.f37375a = i10;
+        this.f37376b = im0Var;
     }
 
     @Override
-    public final void b(int r23) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.gm0.b(int):void");
-    }
-
-    public final boolean c(org.telegram.ui.ek0 r33, mi.q r34) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.gm0.c(org.telegram.ui.ek0, mi.q):boolean");
+    public final void run(TLObject tLObject, final TLRPC.TL_error tL_error) {
+        switch (this.f37375a) {
+            case 0:
+                AndroidUtilities.runOnUIThread(new hm0(this.f37376b, tLObject, tL_error));
+                return;
+            case 1:
+                final im0 im0Var = this.f37376b;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        int i10;
+                        int i11;
+                        switch (r3) {
+                            case 0:
+                                im0 im0Var2 = im0Var;
+                                TLRPC.TL_error tL_error2 = tL_error;
+                                vm0 vm0Var = im0Var2.e;
+                                if (tL_error2 != null && "SRP_ID_INVALID".equals(tL_error2.text)) {
+                                    TL_account.getPassword getpassword = new TL_account.getPassword();
+                                    i10 = ((org.telegram.ui.ActionBar.n2) vm0Var).currentAccount;
+                                    ConnectionsManager.getInstance(i10).sendRequest(getpassword, new gm0(im0Var2, 4), 8);
+                                    return;
+                                }
+                                if (vm0Var.f42329y == null) {
+                                    vm0Var.f42329y = new TL_account.authorizationForm();
+                                }
+                                im0Var2.a();
+                                return;
+                            default:
+                                im0 im0Var3 = im0Var;
+                                TLRPC.TL_error tL_error3 = tL_error;
+                                if (tL_error3 != null && "SRP_ID_INVALID".equals(tL_error3.text)) {
+                                    TL_account.getPassword getpassword2 = new TL_account.getPassword();
+                                    i11 = ((org.telegram.ui.ActionBar.n2) im0Var3.e).currentAccount;
+                                    ConnectionsManager.getInstance(i11).sendRequest(getpassword2, new gm0(im0Var3, 3), 8);
+                                    return;
+                                }
+                                Utilities.globalQueue.postRunnable(new ve0(im0Var3, im0Var3.f38020b, im0Var3.d, 13));
+                                return;
+                        }
+                    }
+                });
+                return;
+            case 2:
+                final im0 im0Var2 = this.f37376b;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        int i10;
+                        int i11;
+                        switch (r3) {
+                            case 0:
+                                im0 im0Var22 = im0Var2;
+                                TLRPC.TL_error tL_error2 = tL_error;
+                                vm0 vm0Var = im0Var22.e;
+                                if (tL_error2 != null && "SRP_ID_INVALID".equals(tL_error2.text)) {
+                                    TL_account.getPassword getpassword = new TL_account.getPassword();
+                                    i10 = ((org.telegram.ui.ActionBar.n2) vm0Var).currentAccount;
+                                    ConnectionsManager.getInstance(i10).sendRequest(getpassword, new gm0(im0Var22, 4), 8);
+                                    return;
+                                }
+                                if (vm0Var.f42329y == null) {
+                                    vm0Var.f42329y = new TL_account.authorizationForm();
+                                }
+                                im0Var22.a();
+                                return;
+                            default:
+                                im0 im0Var3 = im0Var2;
+                                TLRPC.TL_error tL_error3 = tL_error;
+                                if (tL_error3 != null && "SRP_ID_INVALID".equals(tL_error3.text)) {
+                                    TL_account.getPassword getpassword2 = new TL_account.getPassword();
+                                    i11 = ((org.telegram.ui.ActionBar.n2) im0Var3.e).currentAccount;
+                                    ConnectionsManager.getInstance(i11).sendRequest(getpassword2, new gm0(im0Var3, 3), 8);
+                                    return;
+                                }
+                                Utilities.globalQueue.postRunnable(new ve0(im0Var3, im0Var3.f38020b, im0Var3.d, 13));
+                                return;
+                        }
+                    }
+                });
+                return;
+            case 3:
+                AndroidUtilities.runOnUIThread(new hm0(this.f37376b, tL_error, tLObject, 1));
+                return;
+            default:
+                AndroidUtilities.runOnUIThread(new hm0(this.f37376b, tL_error, tLObject, 2));
+                return;
+        }
     }
 }

@@ -1,47 +1,15 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-public final class bg1 implements Utilities.Callback {
-    public final int f35660a;
-    public final UserInfoActivity f35661b;
+import java.util.ArrayList;
+public final class bg1 {
+    public final int f35650a;
+    public boolean f35652c;
+    public boolean d;
+    public final ArrayList e = new ArrayList();
+    public final ArrayList f35653f = new ArrayList();
+    public final boolean f35651b = true;
 
-    public bg1(UserInfoActivity userInfoActivity, int i10) {
-        this.f35660a = i10;
-        this.f35661b = userInfoActivity;
-    }
-
-    @Override
-    public final void run(Object obj) {
-        switch (this.f35660a) {
-            case 0:
-                UserInfoActivity userInfoActivity = this.f35661b;
-                userInfoActivity.J = (TL_account.TL_birthday) obj;
-                org.telegram.ui.Components.u61 u61Var = userInfoActivity.f33939x;
-                if (u61Var != null) {
-                    u61Var.W2.N(true);
-                }
-                userInfoActivity.b0(true);
-                return;
-            default:
-                TLRPC.Chat chat = (TLRPC.Chat) obj;
-                UserInfoActivity userInfoActivity2 = this.f35661b;
-                if (userInfoActivity2.K != chat) {
-                    userInfoActivity2.K = chat;
-                    if (chat != null) {
-                        org.telegram.messenger.g0.q(R.string.EditProfileChannelSet, org.telegram.ui.Components.xc.a0(userInfoActivity2), R.raw.contact_check, 36);
-                    }
-                    userInfoActivity2.b0(true);
-                    org.telegram.ui.Components.u61 u61Var2 = userInfoActivity2.f33939x;
-                    if (u61Var2 != null) {
-                        u61Var2.W2.N(true);
-                        return;
-                    }
-                    return;
-                }
-                return;
-        }
+    public bg1(int i10) {
+        this.f35650a = i10;
     }
 }

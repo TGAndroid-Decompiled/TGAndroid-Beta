@@ -215,7 +215,7 @@ public class Camera1Session implements CameraSession {
                 if (i10 == 100) {
                     j10 = "Camera server died!";
                 } else {
-                    j10 = i2.d.j(i10, "Camera error: ");
+                    j10 = i2.e.j(i10, "Camera error: ");
                 }
                 Logging.e("Camera1Session", j10);
                 Camera1Session.this.stopInternal();

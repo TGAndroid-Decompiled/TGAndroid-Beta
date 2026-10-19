@@ -17,7 +17,7 @@ public final class w6 extends org.telegram.ui.Components.zc {
         setPadding(0, AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f));
     }
 
-    public final void e(String str, int i10, h2 h2Var) {
+    public final void e(String str, int i10, k2 k2Var) {
         ah.o oVar;
         if (str == this.Q && this.R == i10) {
             return;
@@ -25,8 +25,8 @@ public final class w6 extends org.telegram.ui.Components.zc {
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(Emoji.replaceEmoji(str, getPaint().getFontMetricsInt(), false));
         SpannableStringBuilder append = spannableStringBuilder.append((CharSequence) " ");
         String H0 = gi.l.H0(i10);
-        if (h2Var != null) {
-            oVar = new ah.o(this, h2Var, i10, 2);
+        if (k2Var != null) {
+            oVar = new ah.o(this, k2Var, i10, 2);
         } else {
             oVar = null;
         }

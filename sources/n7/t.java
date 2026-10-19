@@ -1,127 +1,30 @@
 package n7;
 
-import j$.util.SortedSet;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.NavigableSet;
-public abstract class t extends p implements NavigableSet, d0, SortedSet {
-    public final transient Comparator d;
-    public transient t e;
+import java.util.NoSuchElementException;
+public final class t extends d0 {
+    public static final Object f17314b = new Object();
+    public Object f17315a;
 
-    public t(Comparator comparator) {
-        this.d = comparator;
+    public t(Object obj) {
+        this.f17315a = obj;
     }
 
-    public static a0 w(Comparator comparator) {
-        if (w.f17319b.equals(comparator)) {
-            return a0.h;
+    @Override
+    public final boolean hasNext() {
+        if (this.f17315a != f17314b) {
+            return true;
         }
-        j jVar = n.f17293b;
-        return new a0(y.e, comparator);
-    }
-
-    public final void addFirst(Object obj) {
-        throw new UnsupportedOperationException();
-    }
-
-    public final void addLast(Object obj) {
-        throw new UnsupportedOperationException();
+        return false;
     }
 
     @Override
-    public final Comparator comparator() {
-        return this.d;
-    }
-
-    public abstract Object first();
-
-    public final Object getFirst() {
-        return first();
-    }
-
-    public final Object getLast() {
-        return last();
-    }
-
-    @Override
-    public final java.util.SortedSet headSet(Object obj) {
-        obj.getClass();
-        a0 a0Var = (a0) this;
-        return a0Var.z(0, a0Var.x(obj, false));
-    }
-
-    public abstract Object last();
-
-    @Override
-    public final Object pollFirst() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final Object pollLast() {
-        throw new UnsupportedOperationException();
-    }
-
-    public final Object removeFirst() {
-        throw new UnsupportedOperationException();
-    }
-
-    public final Object removeLast() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final java.util.SortedSet subSet(Object obj, Object obj2) {
-        return subSet(obj, true, obj2, false);
-    }
-
-    @Override
-    public final java.util.SortedSet tailSet(Object obj) {
-        obj.getClass();
-        a0 a0Var = (a0) this;
-        return a0Var.z(a0Var.y(obj, true), a0Var.f17254f.size());
-    }
-
-    @Override
-    public final t descendingSet() {
-        a0 a0Var = this.e;
-        if (a0Var == null) {
-            a0 a0Var2 = (a0) this;
-            Comparator reverseOrder = Collections.reverseOrder(a0Var2.d);
-            if (a0Var2.isEmpty()) {
-                a0Var = w(reverseOrder);
-            } else {
-                a0Var = new a0(a0Var2.f17254f.q(), reverseOrder);
-            }
-            this.e = a0Var;
-            a0Var.e = this;
+    public final Object next() {
+        Object obj = this.f17315a;
+        Object obj2 = f17314b;
+        if (obj != obj2) {
+            this.f17315a = obj2;
+            return obj;
         }
-        return a0Var;
-    }
-
-    @Override
-    public final a0 subSet(Object obj, boolean z10, Object obj2, boolean z11) {
-        obj.getClass();
-        obj2.getClass();
-        if (this.d.compare(obj, obj2) <= 0) {
-            a0 a0Var = (a0) this;
-            a0 z12 = a0Var.z(a0Var.y(obj, z10), a0Var.f17254f.size());
-            return z12.z(0, z12.x(obj2, z11));
-        }
-        throw new IllegalArgumentException();
-    }
-
-    @Override
-    public final NavigableSet headSet(Object obj, boolean z10) {
-        obj.getClass();
-        a0 a0Var = (a0) this;
-        return a0Var.z(0, a0Var.x(obj, z10));
-    }
-
-    @Override
-    public final NavigableSet tailSet(Object obj, boolean z10) {
-        obj.getClass();
-        a0 a0Var = (a0) this;
-        return a0Var.z(a0Var.y(obj, z10), a0Var.f17254f.size());
+        throw new NoSuchElementException();
     }
 }

@@ -7,7 +7,7 @@ import android.os.SystemClock;
 import java.io.File;
 import java.util.HashMap;
 import java.util.HashSet;
-import org.telegram.ui.ac0;
+import org.telegram.ui.yb0;
 import ri.p;
 public final class AudioRecorderV2Controller {
     private boolean finishRequested;
@@ -43,13 +43,13 @@ public final class AudioRecorderV2Controller {
     public AudioRecorderV2Controller(Context context, File file, final Listener listener) {
         this.listener = listener;
         ?? obj = new Object();
-        obj.f7648c = ri.i.f45805a;
-        obj.f7649f = ri.p.G;
-        obj.f7646a = context;
-        obj.f7647b = file;
-        ri.i iVar = (ri.i) ti.e.f47212c.a();
+        obj.f7649c = ri.i.f45805a;
+        obj.f7650f = ri.p.G;
+        obj.f7647a = context;
+        obj.f7648b = file;
+        ri.i iVar = (ri.i) ti.e.f47214c.a();
         if (iVar != null) {
-            obj.f7648c = iVar;
+            obj.f7649c = iVar;
             obj.d = new ri.g() {
                 {
                     AudioRecorderV2Controller.this = this;
@@ -127,7 +127,7 @@ public final class AudioRecorderV2Controller {
                 }
             };
             obj.e = new AnonymousClass2(listener);
-            obj.f7649f = new ri.h() {
+            obj.f7650f = new ri.h() {
                 {
                     AudioRecorderV2Controller.this = this;
                 }
@@ -250,9 +250,9 @@ public final class AudioRecorderV2Controller {
             }
             pVar.f45839r = max;
             pVar.f45840s = max2;
-            i2.h0 h0Var = pVar.A;
-            if (h0Var != null) {
-                h0Var.Z0(5, max);
+            i2.i0 i0Var = pVar.A;
+            if (i0Var != null) {
+                i0Var.Z0(5, max);
             }
             gVar.onPreviewProgress(pVar.f45839r, j12);
             gVar.onStateChanged(pVar.e());
@@ -327,7 +327,7 @@ public final class AudioRecorderV2Controller {
                                     file2 = file;
                                     ri.b bVar2 = pVar3.f45829g;
                                     bVar2.b("resume prefix prepared: source=" + file.getName() + ", prefix=" + file2.getName() + ", trim=" + j14 + ".." + j15 + ", bytes=" + file2.length() + ", elapsedMs=" + (SystemClock.elapsedRealtime() - elapsedRealtime));
-                                    handler.post(new ac0(pVar3, j13, file2, 3));
+                                    handler.post(new yb0(pVar3, j13, file2, 3));
                                 }
                             } catch (Throwable th2) {
                                 handler.post(new ri.d(pVar3, th2, 1));
@@ -344,7 +344,7 @@ public final class AudioRecorderV2Controller {
                         }
                         ri.b bVar22 = pVar3.f45829g;
                         bVar22.b("resume prefix prepared: source=" + file.getName() + ", prefix=" + file2.getName() + ", trim=" + j14 + ".." + j15 + ", bytes=" + file2.length() + ", elapsedMs=" + (SystemClock.elapsedRealtime() - elapsedRealtime));
-                        handler.post(new ac0(pVar3, j13, file2, 3));
+                        handler.post(new yb0(pVar3, j13, file2, 3));
                     }
                 });
                 return true;

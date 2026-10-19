@@ -9,23 +9,23 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 public final class u0 extends FrameLayout {
-    public final r0 f5965a;
-    public final org.telegram.ui.Components.w9 f5966b;
-    public final org.telegram.ui.Components.h9 f5967c;
+    public final r0 f6032a;
+    public final org.telegram.ui.Components.w9 f6033b;
+    public final org.telegram.ui.Components.h9 f6034c;
     public final ImageView d;
     public final s0 e;
-    public w0 f5968f;
+    public w0 f6035f;
 
     public u0(Context context) {
         super(context);
         w7.b6.a(this);
         r0 r0Var = new r0(this, context);
-        this.f5965a = r0Var;
+        this.f6032a = r0Var;
         r0Var.setOrientation(0);
         addView(r0Var, w7.z5.d(-2, -2.0f, 119, 0.0f, 0.0f, 6.0f, 0.0f));
-        this.f5967c = new org.telegram.ui.Components.h9((org.telegram.ui.ActionBar.d6) null);
+        this.f6034c = new org.telegram.ui.Components.h9((org.telegram.ui.ActionBar.d6) null);
         org.telegram.ui.Components.w9 w9Var = new org.telegram.ui.Components.w9(context);
-        this.f5966b = w9Var;
+        this.f6033b = w9Var;
         w9Var.setRoundRadius(AndroidUtilities.dp(11.0f));
         r0Var.addView(w9Var, w7.z5.p(22, 22, 0.0f, 51, 3, 2, 7, 2));
         ImageView imageView = new ImageView(context);
@@ -43,16 +43,16 @@ public final class u0 extends FrameLayout {
     }
 
     public void set(w0 w0Var) {
-        this.f5968f = w0Var;
-        int i10 = (w0Var.f6031b > 0L ? 1 : (w0Var.f6031b == 0L ? 0 : -1));
-        org.telegram.ui.Components.w9 w9Var = this.f5966b;
-        org.telegram.ui.Components.h9 h9Var = this.f5967c;
+        this.f6035f = w0Var;
+        int i10 = (w0Var.f6100b > 0L ? 1 : (w0Var.f6100b == 0L ? 0 : -1));
+        org.telegram.ui.Components.w9 w9Var = this.f6033b;
+        org.telegram.ui.Components.h9 h9Var = this.f6034c;
         if (i10 >= 0) {
-            TLRPC.User user = MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(w0Var.f6031b));
+            TLRPC.User user = MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(w0Var.f6100b));
             h9Var.r(user);
             w9Var.e(user, h9Var);
         } else {
-            TLRPC.Chat chat = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(-w0Var.f6031b));
+            TLRPC.Chat chat = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(-w0Var.f6100b));
             h9Var.q(chat);
             w9Var.e(chat, h9Var);
         }
@@ -64,7 +64,7 @@ public final class u0 extends FrameLayout {
         } else {
             imageView.setVisibility(8);
         }
-        this.e.setText(DialogObject.getName(w0Var.f6031b));
-        this.f5965a.invalidate();
+        this.e.setText(DialogObject.getName(w0Var.f6100b));
+        this.f6032a.invalidate();
     }
 }

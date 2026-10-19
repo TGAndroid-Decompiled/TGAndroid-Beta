@@ -10,11 +10,11 @@ public final class z8 {
         switch (i10) {
             case 1:
                 this.f48244b = new AtomicLong(-1L);
-                this.f48243a = new com.google.android.gms.common.api.j(context, p6.b.f44231k, new n6.p("mlkit:vision"), com.google.android.gms.common.api.i.f6357c);
+                this.f48243a = new com.google.android.gms.common.api.j(context, p6.b.f44226k, new n6.p("mlkit:vision"), com.google.android.gms.common.api.i.f6358c);
                 return;
             default:
                 this.f48244b = new AtomicLong(-1L);
-                this.f48243a = new com.google.android.gms.common.api.j(context, p6.b.f44231k, new n6.p("mlkit:natural_language"), com.google.android.gms.common.api.i.f6357c);
+                this.f48243a = new com.google.android.gms.common.api.j(context, p6.b.f44226k, new n6.p("mlkit:natural_language"), com.google.android.gms.common.api.i.f6358c);
                 return;
         }
     }

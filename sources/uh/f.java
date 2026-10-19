@@ -41,7 +41,7 @@ import org.telegram.ui.Components.im0;
 import org.telegram.ui.Components.k20;
 import org.telegram.ui.Components.kv;
 import org.telegram.ui.Components.o20;
-import org.telegram.ui.Components.s61;
+import org.telegram.ui.Components.t61;
 import org.telegram.ui.Components.v30;
 import r0.a0;
 import s4.k;
@@ -56,7 +56,7 @@ public final class f extends bb implements ne.d {
     public final ArrayList f47833a0;
     public final ArrayList f47834b0;
     public String f47835c0;
-    public s61 f47836d0;
+    public t61 f47836d0;
     public final ei.d f47837e0;
     public final n f47838f0;
     public final n5 f47839g0;
@@ -85,7 +85,7 @@ public final class f extends bb implements ne.d {
         this.occupyNavigationBar = true;
         this.drawNavigationBar = false;
         this.L = false;
-        this.f24918w = false;
+        this.f24902w = false;
         this.m0 = MessagesController.getInstance(this.currentAccount).config.pollCountriesMax.get();
         AndroidUtilities.enableEdgeToEdge(getWindow());
         im0 im0Var = this.d;
@@ -114,7 +114,7 @@ public final class f extends bb implements ne.d {
         nVar.setOnClickListener(new a(this, 1));
         k20 k20Var = new k20(context, d6Var);
         String string = LocaleController.getString(R.string.PollV2SearchHint);
-        e2 e2Var = k20Var.f27712r;
+        e2 e2Var = k20Var.f27688r;
         e2Var.setHint(string);
         e2Var.addTextChangedListener(new u(this, 21));
         o20 o20Var = new o20(context, this.currentAccount);
@@ -248,7 +248,7 @@ public final class f extends bb implements ne.d {
 
     public final void T(View view) {
         v30 v30Var = (v30) view;
-        if (v30Var.f31161y) {
+        if (v30Var.f31139y) {
             this.f47848q0 = null;
             this.f47840h0.c(v30Var);
             String countryIso2 = v30Var.getCountryIso2();
@@ -274,7 +274,7 @@ public final class f extends bb implements ne.d {
     }
 
     @Override
-    public final void u(int i10, float f7, float f10, ne.e eVar) {
+    public final void r(int i10, float f7, float f10, ne.e eVar) {
         if (i10 == 3) {
             R();
             this.f47841i0.setTranslationY(AndroidUtilities.dp(48.0f) + f7);
@@ -286,13 +286,13 @@ public final class f extends bb implements ne.d {
 
     @Override
     public final hm0 x(im0 im0Var) {
-        s61 s61Var = new s61(im0Var, getContext(), this.currentAccount, 0, true, new o(this, 19), this.resourcesProvider);
-        this.f47836d0 = s61Var;
-        s61Var.f30201r = false;
-        return s61Var;
+        t61 t61Var = new t61(im0Var, getContext(), this.currentAccount, 0, true, new o(this, 19), this.resourcesProvider);
+        this.f47836d0 = t61Var;
+        t61Var.f30438r = false;
+        return t61Var;
     }
 
     @Override
-    public final void E(float f7, int i10) {
+    public final void H(float f7, int i10) {
     }
 }

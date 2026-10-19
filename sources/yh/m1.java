@@ -9,38 +9,38 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.a71;
-import org.telegram.ui.Components.e61;
+import org.telegram.ui.Components.b71;
 import org.telegram.ui.Components.f61;
+import org.telegram.ui.Components.g61;
 import org.telegram.ui.Components.im0;
-import org.telegram.ui.Components.s61;
+import org.telegram.ui.Components.t61;
 import org.telegram.ui.Components.x90;
-import org.telegram.ui.sa1;
+import org.telegram.ui.qa1;
 import w7.b6;
 import w7.z5;
-public final class m1 extends e61 {
-    public static final int f50396a = 0;
+public final class m1 extends f61 {
+    public static final int f50395a = 0;
 
     static {
-        e61.setup(new e61());
+        f61.setup(new f61());
     }
 
     @Override
-    public final void bindView(View view, f61 f61Var, boolean z10, s61 s61Var, a71 a71Var) {
+    public final void bindView(View view, g61 g61Var, boolean z10, t61 t61Var, b71 b71Var) {
         boolean z11;
         n1 n1Var = (n1) view;
-        int i10 = f61Var.d;
-        ArrayList arrayList = (ArrayList) f61Var.G;
-        int i11 = f61Var.f26153z;
-        Utilities.Callback callback = (Utilities.Callback) f61Var.H;
-        sa1 sa1Var = n1Var.f50408a;
+        int i10 = g61Var.d;
+        ArrayList arrayList = (ArrayList) g61Var.G;
+        int i11 = g61Var.f26512z;
+        Utilities.Callback callback = (Utilities.Callback) g61Var.H;
+        qa1 qa1Var = n1Var.f50407a;
         ArrayList arrayList2 = n1Var.d;
-        if (n1Var.f50413r == i10) {
+        if (n1Var.f50412r == i10) {
             z11 = true;
         } else {
             z11 = false;
         }
-        n1Var.f50413r = i10;
+        n1Var.f50412r = i10;
         if (arrayList2.size() != arrayList.size()) {
             int i12 = 0;
             int i13 = 0;
@@ -53,7 +53,7 @@ public final class m1 extends e61 {
                     charSequence = (CharSequence) arrayList.get(i13);
                 }
                 if (charSequence == null) {
-                    sa1Var.removeView((View) arrayList2.remove(i12));
+                    qa1Var.removeView((View) arrayList2.remove(i12));
                     i12--;
                 } else {
                     ((TextView) arrayList2.get(i12)).setText(charSequence);
@@ -66,31 +66,31 @@ public final class m1 extends e61 {
                 x90Var.setGravity(17);
                 x90Var.setText((CharSequence) arrayList.get(i13));
                 x90Var.setTypeface(AndroidUtilities.bold());
-                x90Var.setTextColor(h6.v(h6.x0(null, h6.f20947b6, false), h6.x0(null, h6.f20967c6, false)));
+                x90Var.setTextColor(h6.v(h6.x0(null, h6.f20950b6, false), h6.x0(null, h6.f20970c6, false)));
                 x90Var.setTextSize(1, 14.0f);
                 x90Var.setPadding(AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f), 0);
                 x90Var.setEllipsize(TextUtils.TruncateAt.END);
                 x90Var.setSingleLine();
                 x90Var.setMaxLines(1);
                 b6.b(x90Var, 0.075f, 1.4f);
-                sa1Var.addView(x90Var, z5.n(-2, 26));
+                qa1Var.addView(x90Var, z5.n(-2, 26));
                 arrayList2.add(x90Var);
                 i13++;
             }
         }
-        n1Var.f50409b = i11;
+        n1Var.f50408b = i11;
         if (!z11) {
-            n1Var.f50410c.d(i11, true);
+            n1Var.f50409c.d(i11, true);
         }
-        sa1Var.invalidate();
+        qa1Var.invalidate();
         for (int i14 = 0; i14 < arrayList2.size(); i14++) {
             ((TextView) arrayList2.get(i14)).setOnClickListener(new org.telegram.ui.Components.a0(i14, 1, callback));
         }
     }
 
     @Override
-    public final boolean contentsEquals(f61 f61Var, f61 f61Var2) {
-        if (f61Var.f26153z == f61Var2.f26153z && f61Var.H == f61Var2.H && equals(f61Var, f61Var2)) {
+    public final boolean contentsEquals(g61 g61Var, g61 g61Var2) {
+        if (g61Var.f26512z == g61Var2.f26512z && g61Var.H == g61Var2.H && equals(g61Var, g61Var2)) {
             return true;
         }
         return false;
@@ -102,10 +102,10 @@ public final class m1 extends e61 {
     }
 
     @Override
-    public final boolean equals(f61 f61Var, f61 f61Var2) {
-        if (f61Var.d == f61Var2.d) {
-            ArrayList arrayList = (ArrayList) f61Var.G;
-            ArrayList arrayList2 = (ArrayList) f61Var2.G;
+    public final boolean equals(g61 g61Var, g61 g61Var2) {
+        if (g61Var.d == g61Var2.d) {
+            ArrayList arrayList = (ArrayList) g61Var.G;
+            ArrayList arrayList2 = (ArrayList) g61Var2.G;
             if (arrayList != arrayList2) {
                 if (arrayList != null || arrayList2 != null) {
                     if (arrayList != null && arrayList2 != null && arrayList.size() == arrayList2.size()) {

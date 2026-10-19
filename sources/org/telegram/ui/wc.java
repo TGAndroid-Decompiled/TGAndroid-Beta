@@ -1,39 +1,15 @@
 package org.telegram.ui;
 
-import android.view.View;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-public final class wc implements Utilities.Callback {
-    public final int f42480a;
-    public final bd f42481b;
-
-    public wc(bd bdVar, int i10) {
-        this.f42480a = i10;
-        this.f42481b = bdVar;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class wc extends org.telegram.ui.Components.q21 {
+    @Override
+    public final String b() {
+        return LocaleController.getString(R.string.ChannelNoWallpaper);
     }
 
     @Override
-    public final void run(Object obj) {
-        TLRPC.WallPaper wallPaper;
-        View view = (View) obj;
-        switch (this.f42480a) {
-            case 0:
-                bd bdVar = this.f42481b;
-                bdVar.getClass();
-                ((org.telegram.ui.Components.p21) view).setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21074i5, bdVar.f35631b));
-                return;
-            default:
-                if (view instanceof org.telegram.ui.Components.p21) {
-                    org.telegram.ui.Components.p21 p21Var = (org.telegram.ui.Components.p21) view;
-                    if (p21Var.G.f31889a.f20720b) {
-                        wallPaper = null;
-                    } else {
-                        wallPaper = this.f42481b.v;
-                    }
-                    p21Var.setFallbackWallpaper(wallPaper);
-                    return;
-                }
-                return;
-        }
+    public final int c() {
+        return 13;
     }
 }

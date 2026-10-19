@@ -9,8 +9,8 @@ import java.util.Iterator;
 import java.util.List;
 public final class q0 extends u0 {
     public static final PathInterpolator e = new PathInterpolator(0.0f, 1.1f, 0.0f, 1.0f);
-    public static final u1.a f44838f = new u1.b(u1.a.f47238c);
-    public static final DecelerateInterpolator f44839g = new DecelerateInterpolator(1.5f);
+    public static final u1.a f44836f = new u1.b(u1.a.f47240c);
+    public static final DecelerateInterpolator f44837g = new DecelerateInterpolator(1.5f);
     public static final AccelerateInterpolator h = new AccelerateInterpolator(1.5f);
 
     public static void e(View view, v0 v0Var) {
@@ -28,7 +28,7 @@ public final class q0 extends u0 {
     public static void f(View view, k1 k1Var, boolean z10) {
         ai.c1 i10 = i(view);
         if (i10 != null) {
-            i10.f1058a = k1Var;
+            i10.f1057a = k1Var;
             if (!z10) {
                 z10 = true;
             }
@@ -57,13 +57,13 @@ public final class q0 extends u0 {
         ai.c1 i10 = i(view);
         if (i10 != null) {
             qh.e eVar = (qh.e) i10;
-            if (eVar.f44725c == 0) {
+            if (eVar.f44723c == 0) {
                 Iterator it = eVar.d.iterator();
                 while (it.hasNext()) {
-                    ((qh.d) it.next()).t();
+                    ((qh.d) it.next()).u();
                 }
             }
-            eVar.f44725c++;
+            eVar.f44723c++;
         } else if (view instanceof ViewGroup) {
             ViewGroup viewGroup = (ViewGroup) view;
             for (int i11 = 0; i11 < viewGroup.getChildCount(); i11++) {
@@ -75,7 +75,7 @@ public final class q0 extends u0 {
     public static ai.c1 i(View view) {
         Object tag = view.getTag(2131296698);
         if (tag instanceof p0) {
-            return ((p0) tag).f44835a;
+            return ((p0) tag).f44833a;
         }
         return null;
     }

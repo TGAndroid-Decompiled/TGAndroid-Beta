@@ -1,47 +1,63 @@
 package org.telegram.ui;
 
-import android.content.ComponentName;
-import android.content.Context;
-import org.telegram.messenger.R;
-public final class qa0 {
-    public static final qa0 h;
-    public static final qa0[] f40310n;
-    public final String f40311a;
-    public final int f40312b;
-    public final int f40313c;
-    public final int d;
-    public final boolean e;
-    public ComponentName f40314f;
+import java.util.ArrayList;
+import org.telegram.messenger.LocaleController;
+public final class qa0 implements org.telegram.ui.Components.e5, org.telegram.ui.ActionBar.a2, org.telegram.ui.Components.nw0 {
+    public final int f40515a;
+    public final ab0 f40516b;
 
-    static {
-        int i10 = R.drawable.icon_background_sa;
-        int i11 = R.mipmap.icon_foreground_sa;
-        qa0 qa0Var = new qa0("DEFAULT", 0, "DefaultIcon", i10, i11, R.string.AppIconDefault, false);
-        h = qa0Var;
-        f40310n = new qa0[]{qa0Var, new qa0("VINTAGE", 1, "VintageIcon", R.drawable.icon_6_background_sa, R.mipmap.icon_6_foreground_sa, R.string.AppIconVintage, false), new qa0("AQUA", 2, "AquaIcon", R.drawable.icon_4_background_sa, i11, R.string.AppIconAqua, false), new qa0("PREMIUM", 3, "PremiumIcon", R.drawable.icon_3_background_sa, R.mipmap.icon_3_foreground_sa, R.string.AppIconPremium, true), new qa0("TURBO", 4, "TurboIcon", R.drawable.icon_5_background_sa, R.mipmap.icon_5_foreground_sa, R.string.AppIconTurbo, true), new qa0("NOX", 5, "NoxIcon", R.mipmap.icon_2_background_sa, i11, R.string.AppIconNox, true)};
+    public qa0(ab0 ab0Var, int i10) {
+        this.f40515a = i10;
+        this.f40516b = ab0Var;
     }
 
-    public qa0(String str, int i10, String str2, int i11, int i12, int i13, boolean z10) {
-        this.f40311a = str2;
-        this.f40312b = i11;
-        this.f40313c = i12;
-        this.d = i13;
-        this.e = z10;
+    @Override
+    public void C(int i10, int i11, boolean z10) {
+        this.f40516b.V(i10);
     }
 
-    public static qa0 valueOf(String str) {
-        return (qa0) Enum.valueOf(qa0.class, str);
+    @Override
+    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        ab0 ab0Var = this.f40516b;
+        ab0Var.T.a(ab0Var.e);
+        ab0Var.finishFragment();
     }
 
-    public static qa0[] values() {
-        return (qa0[]) f40310n.clone();
-    }
-
-    public final ComponentName a(Context context) {
-        if (this.f40314f == null) {
-            String packageName = context.getPackageName();
-            this.f40314f = new ComponentName(packageName, "org.telegram.messenger." + this.f40311a);
+    @Override
+    public void h(int i10) {
+        switch (this.f40515a) {
+            case 2:
+                ab0 ab0Var = this.f40516b;
+                ArrayList arrayList = ab0Var.P;
+                if (i10 < arrayList.size()) {
+                    ab0Var.f35326w.setText(LocaleController.formatDateAudio(ab0Var.getConnectionsManager().getCurrentTime() + ((Integer) arrayList.get(i10)).intValue(), false));
+                    return;
+                }
+                ab0Var.f35326w.setText("");
+                return;
+            default:
+                ab0 ab0Var2 = this.f40516b;
+                ab0Var2.F.clearFocus();
+                ab0Var2.O = true;
+                ArrayList arrayList2 = ab0Var2.R;
+                if (i10 < arrayList2.size()) {
+                    ab0Var2.F.setText(((Integer) arrayList2.get(i10)).toString());
+                } else {
+                    ab0Var2.F.setText("");
+                }
+                ab0Var2.O = false;
+                return;
         }
-        return this.f40314f;
+    }
+
+    @Override
+    public void m() {
+        int i10 = this.f40515a;
+    }
+
+    private final void a() {
+    }
+
+    private final void b() {
     }
 }

@@ -3,13 +3,13 @@ package f2;
 import java.util.ArrayList;
 import java.util.Arrays;
 public final class d extends f {
-    public final long f10285c;
+    public final long f10286c;
     public final ArrayList d;
     public final ArrayList e;
 
     public d(int i10, long j10) {
         super(i10, 0);
-        this.f10285c = j10;
+        this.f10286c = j10;
         this.d = new ArrayList();
         this.e = new ArrayList();
     }
@@ -19,7 +19,7 @@ public final class d extends f {
         int size = arrayList.size();
         for (int i11 = 0; i11 < size; i11++) {
             d dVar = (d) arrayList.get(i11);
-            if (dVar.f10288b == i10) {
+            if (dVar.f10289b == i10) {
                 return dVar;
             }
         }
@@ -31,7 +31,7 @@ public final class d extends f {
         int size = arrayList.size();
         for (int i11 = 0; i11 < size; i11++) {
             e eVar = (e) arrayList.get(i11);
-            if (eVar.f10288b == i10) {
+            if (eVar.f10289b == i10) {
                 return eVar;
             }
         }
@@ -40,6 +40,6 @@ public final class d extends f {
 
     @Override
     public final String toString() {
-        return f.a(this.f10288b) + " leaves: " + Arrays.toString(this.d.toArray()) + " containers: " + Arrays.toString(this.e.toArray());
+        return f.a(this.f10289b) + " leaves: " + Arrays.toString(this.d.toArray()) + " containers: " + Arrays.toString(this.e.toArray());
     }
 }

@@ -1,36 +1,37 @@
 package org.telegram.ui;
-public final class ag1 implements Runnable {
-    public final int f35401a;
-    public final UserInfoActivity f35402b;
 
-    public ag1(UserInfoActivity userInfoActivity, int i10) {
-        this.f35401a = i10;
-        this.f35402b = userInfoActivity;
+import android.content.Context;
+import android.text.Editable;
+public final class ag1 extends org.telegram.ui.Cells.i3 {
+    public final int f35363x;
+    public final UserInfoActivity f35364y;
+
+    public ag1(UserInfoActivity userInfoActivity, Context context, String str, org.telegram.ui.ActionBar.d6 d6Var, int i10) {
+        super(context, str, false, false, -1, d6Var);
+        this.f35363x = i10;
+        this.f35364y = userInfoActivity;
     }
 
     @Override
-    public final void run() {
-        switch (this.f35401a) {
+    public final void b(Editable editable) {
+        switch (this.f35363x) {
             case 0:
-                this.f35402b.presentFragment(new PrivacyControlActivity(9, true));
+                this.f35364y.b0(true);
                 return;
             case 1:
-                org.telegram.ui.Components.u61 u61Var = this.f35402b.f33939x;
-                if (u61Var != null) {
-                    u61Var.W2.N(true);
-                    return;
-                }
-                return;
-            case 2:
-                UserInfoActivity userInfoActivity = this.f35402b;
-                userInfoActivity.getClass();
-                userInfoActivity.presentFragment(new PrivacyControlActivity(11, false));
+                this.f35364y.b0(true);
                 return;
             default:
-                UserInfoActivity userInfoActivity2 = this.f35402b;
-                userInfoActivity2.getClass();
-                userInfoActivity2.presentFragment(new PremiumPreviewFragment(0, "add_account"));
+                UserInfoActivity userInfoActivity = this.f35364y;
+                userInfoActivity.b0(true);
+                userInfoActivity.e0();
                 return;
         }
+    }
+
+    public ag1(UserInfoActivity userInfoActivity, Context context, String str, int i10, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context, str, true, false, i10, d6Var);
+        this.f35363x = 2;
+        this.f35364y = userInfoActivity;
     }
 }

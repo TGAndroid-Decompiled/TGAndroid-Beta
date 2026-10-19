@@ -5,7 +5,6 @@ import java.util.Locale;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.atomic.AtomicLong;
-import org.telegram.ui.web.g2;
 public final class a implements ThreadFactory {
     public static final ThreadFactory e = Executors.defaultThreadFactory();
     public final AtomicLong f46117a = new AtomicLong();
@@ -21,7 +20,7 @@ public final class a implements ThreadFactory {
 
     @Override
     public final Thread newThread(Runnable runnable) {
-        Thread newThread = e.newThread(new g2(16, this, runnable));
+        Thread newThread = e.newThread(new p2.b(15, this, runnable));
         Locale locale = Locale.ROOT;
         long andIncrement = this.f46117a.getAndIncrement();
         newThread.setName(this.f46118b + " Thread #" + andIncrement);

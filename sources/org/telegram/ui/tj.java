@@ -1,24 +1,60 @@
 package org.telegram.ui;
+public final class tj implements Runnable {
+    public final int f41699a;
+    public final qn f41700b;
 
-import org.telegram.messenger.MessageObject;
-public final class tj extends g.o {
-    public final sn f41744c;
-
-    public tj(sn snVar) {
-        this.f41744c = snVar;
+    public tj(qn qnVar, int i10) {
+        this.f41699a = i10;
+        this.f41700b = qnVar;
     }
 
     @Override
-    public final int i(int i10) {
-        int i11;
-        MessageObject messageObject;
-        MessageObject.GroupedMessages c92;
-        sn snVar = this.f41744c;
-        fm fmVar = snVar.A0;
-        int i12 = fmVar.J;
-        if (i10 >= i12 && i10 < fmVar.K && (i11 = i10 - i12) >= 0 && i11 < fmVar.L().size() && (c92 = snVar.c9((messageObject = (MessageObject) snVar.A0.L().get(i11)))) != null) {
-            return c92.getPosition(messageObject).spanSize;
+    public final void run() {
+        int i10 = this.f41699a;
+        qn qnVar = this.f41700b;
+        switch (i10) {
+            case 0:
+                int i11 = qn.Ic;
+                qnVar.c7();
+                return;
+            case 1:
+                qn.j2(qnVar);
+                return;
+            case 2:
+                qn.j2(qnVar);
+                return;
+            case 3:
+                int i12 = qn.Ic;
+                qnVar.Qa();
+                return;
+            case 4:
+                int i13 = qn.Ic;
+                qnVar.Qa();
+                return;
+            case 5:
+                int i14 = qn.Ic;
+                qnVar.Qa();
+                return;
+            case 6:
+                int i15 = qn.Ic;
+                qnVar.Qa();
+                return;
+            case 7:
+                int i16 = qn.Ic;
+                qnVar.Qa();
+                return;
+            case 8:
+                int i17 = qn.Ic;
+                qnVar.Qa();
+                return;
+            case 9:
+                int i18 = qn.Ic;
+                qnVar.Qa();
+                return;
+            default:
+                int i19 = qn.Ic;
+                qnVar.Qa();
+                return;
         }
-        return 1000;
     }
 }

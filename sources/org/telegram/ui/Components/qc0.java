@@ -6,27 +6,27 @@ import org.telegram.messenger.MediaDataController;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PremiumPreviewFragment;
 public final class qc0 implements View.OnClickListener {
-    public final int f29650a = 1;
-    public final boolean f29651b;
-    public final Object f29652c;
+    public final int f29608a = 1;
+    public final boolean f29609b;
+    public final Object f29610c;
     public final Object d;
 
-    public qc0(org.telegram.ui.ct ctVar, ArrayList arrayList, boolean z10) {
-        this.f29652c = ctVar;
+    public qc0(org.telegram.ui.at atVar, ArrayList arrayList, boolean z10) {
+        this.f29610c = atVar;
         this.d = arrayList;
-        this.f29651b = z10;
+        this.f29609b = z10;
     }
 
     @Override
     public final void onClick(View view) {
         String str;
-        switch (this.f29650a) {
+        switch (this.f29608a) {
             case 0:
-                org.telegram.ui.ActionBar.f3 f3Var = (org.telegram.ui.ActionBar.f3) this.f29652c;
+                org.telegram.ui.ActionBar.f3 f3Var = (org.telegram.ui.ActionBar.f3) this.f29610c;
                 Runnable runnable = (Runnable) this.d;
                 org.telegram.ui.ActionBar.n2 R = LaunchActivity.R();
                 if (R != null) {
-                    if (this.f29651b) {
+                    if (this.f29609b) {
                         str = "lastseen";
                     } else {
                         str = "readtime";
@@ -42,23 +42,23 @@ public final class qc0 implements View.OnClickListener {
                 return;
             default:
                 ArrayList arrayList = (ArrayList) this.d;
-                org.telegram.ui.gt gtVar = ((org.telegram.ui.ct) this.f29652c).f35970a;
-                if (gtVar.f37313w != null && gtVar.f37303l != null) {
+                org.telegram.ui.et etVar = ((org.telegram.ui.at) this.f29610c).f35425a;
+                if (etVar.f36796w != null && etVar.f36786l != null) {
                     int intValue = ((Integer) arrayList.get(((Integer) view.getTag()).intValue())).intValue();
                     if (intValue == 0) {
-                        gtVar.f37303l.C(gtVar.W);
+                        etVar.f36786l.C(etVar.W);
                     } else if (intValue == 1) {
-                        gtVar.f37303l.v(gtVar.W);
+                        etVar.f36786l.v(etVar.W);
                     } else if (intValue == 2) {
-                        gtVar.f37303l.v(null);
+                        etVar.f36786l.v(null);
                     } else if (intValue == 3) {
-                        gtVar.f37303l.H(gtVar.W);
+                        etVar.f36786l.H(etVar.W);
                     } else if (intValue == 4) {
-                        gtVar.f37303l.p(gtVar.W);
+                        etVar.f36786l.p(etVar.W);
                     } else if (intValue == 5) {
-                        MediaDataController.getInstance(gtVar.f37309r).addRecentSticker(2, gtVar.f37293b0, gtVar.W, (int) (System.currentTimeMillis() / 1000), this.f29651b);
+                        MediaDataController.getInstance(etVar.f36792r).addRecentSticker(2, etVar.f36776b0, etVar.W, (int) (System.currentTimeMillis() / 1000), this.f29609b);
                     }
-                    gtVar.p();
+                    etVar.p();
                     return;
                 }
                 return;
@@ -66,8 +66,8 @@ public final class qc0 implements View.OnClickListener {
     }
 
     public qc0(boolean z10, org.telegram.ui.ActionBar.f3 f3Var, Runnable runnable) {
-        this.f29651b = z10;
-        this.f29652c = f3Var;
+        this.f29609b = z10;
+        this.f29610c = f3Var;
         this.d = runnable;
     }
 }

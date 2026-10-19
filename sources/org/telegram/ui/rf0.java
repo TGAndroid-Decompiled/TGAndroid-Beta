@@ -1,62 +1,54 @@
 package org.telegram.ui;
+public final class rf0 implements Runnable {
+    public final int f41203a;
+    public final bg0 f41204b;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.drawable.BitmapDrawable;
-import android.view.ViewGroup;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-public final class rf0 extends AnimatorListenerAdapter {
-    public final int f40716a;
-    public final sf0 f40717b;
-
-    public rf0(sf0 sf0Var, int i10) {
-        this.f40716a = i10;
-        this.f40717b = sf0Var;
+    public rf0(bg0 bg0Var, int i10) {
+        this.f41203a = i10;
+        this.f41204b = bg0Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f40716a) {
+    public final void run() {
+        switch (this.f41203a) {
             case 0:
-                if (AndroidUtilities.isAccessibilityTouchExplorationEnabled()) {
-                    this.f40717b.h.requestFocus();
+                bg0 bg0Var = this.f41204b;
+                jj0 jj0Var = bg0Var.f35640a;
+                cg0 cg0Var = bg0Var.V;
+                yf0 yf0Var = bg0Var.f35641b;
+                if (yf0Var != null) {
+                    if (cg0Var.f35969c0) {
+                        jj0Var.clearFocus();
+                        yf0Var.clearFocus();
+                    } else if (jj0Var.length() != 0) {
+                        yf0Var.requestFocus();
+                        if (!bg0Var.R) {
+                            yf0Var.setSelection(yf0Var.length());
+                        }
+                        cg0.T0(cg0Var, yf0Var);
+                    } else {
+                        jj0Var.requestFocus();
+                        cg0.T0(cg0Var, jj0Var);
+                    }
+                }
+                if (cg0Var.F == 0) {
+                    bg0Var.s(false);
                     return;
                 }
                 return;
-            default:
-                sf0 sf0Var = this.f40717b;
-                if (sf0Var.getParent() instanceof ViewGroup) {
-                    ((ViewGroup) sf0Var.getParent()).removeView(sf0Var);
-                }
-                sf0Var.f41078c.setVisibility(0);
+            case 1:
+                bg0 bg0Var2 = this.f41204b;
+                bg0Var2.postDelayed(new rf0(bg0Var2, 2), 200L);
                 return;
-        }
-    }
-
-    @Override
-    public void onAnimationStart(Animator animator) {
-        switch (this.f40716a) {
-            case 0:
-                sf0 sf0Var = this.f40717b;
-                sf0Var.f41078c.setVisibility(8);
-                int measuredWidth = (int) (sf0Var.f41077b.getMeasuredWidth() / 10.0f);
-                int measuredHeight = (int) (sf0Var.f41077b.getMeasuredHeight() / 10.0f);
-                Bitmap createBitmap = Bitmap.createBitmap(measuredWidth, measuredHeight, Bitmap.Config.ARGB_8888);
-                Canvas canvas = new Canvas(createBitmap);
-                canvas.scale(0.1f, 0.1f);
-                canvas.drawColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20986d6, false));
-                sf0Var.f41077b.draw(canvas);
-                Utilities.stackBlurBitmap(createBitmap, Math.max(8, Math.max(measuredWidth, measuredHeight) / 150));
-                sf0Var.d.setBackground(new BitmapDrawable(sf0Var.getContext().getResources(), createBitmap));
-                sf0Var.d.setAlpha(0.0f);
-                sf0Var.d.setVisibility(0);
-                sf0Var.f41077b.addView(sf0Var);
+            case 2:
+                this.f41204b.h(null);
+                return;
+            case 3:
+                this.f41204b.s(true);
                 return;
             default:
-                super.onAnimationStart(animator);
+                bg0 bg0Var3 = this.f41204b;
+                cg0.T0(bg0Var3.V, bg0Var3.f35641b);
                 return;
         }
     }

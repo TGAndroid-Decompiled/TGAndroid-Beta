@@ -1,8 +1,8 @@
 package gi;
 
 import android.os.Bundle;
-import org.telegram.ui.sn;
-public final class p3 extends sn {
+import org.telegram.ui.qn;
+public final class p3 extends qn {
     public final org.telegram.ui.ActionBar.f3 Rc;
 
     public p3(Bundle bundle, org.telegram.ui.ActionBar.f3 f3Var) {

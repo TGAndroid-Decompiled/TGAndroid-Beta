@@ -19,22 +19,22 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.at;
 import org.telegram.ui.Components.ct;
-import org.telegram.ui.Components.s61;
+import org.telegram.ui.Components.t61;
 public final class db implements Runnable {
-    public final int f1172a;
-    public final int f1173b;
-    public final boolean f1174c;
+    public final int f1169a;
+    public final int f1170b;
+    public final boolean f1171c;
     public final Object d;
     public final Object e;
-    public final Object f1175f;
+    public final Object f1172f;
 
     public db(m4.p0 p0Var, int i10, n4.t tVar, m4.o0 o0Var, boolean z10) {
-        this.f1172a = 1;
+        this.f1169a = 1;
         this.d = p0Var;
-        this.f1173b = i10;
+        this.f1170b = i10;
         this.e = tVar;
-        this.f1175f = o0Var;
-        this.f1174c = z10;
+        this.f1172f = o0Var;
+        this.f1171c = z10;
     }
 
     @Override
@@ -42,13 +42,13 @@ public final class db implements Runnable {
         String str;
         TLRPC.Document document;
         RectF rectF;
-        switch (this.f1172a) {
+        switch (this.f1169a) {
             case 0:
                 String str2 = (String) this.d;
                 ImageReceiver imageReceiver = (ImageReceiver) this.e;
-                boolean[] zArr = (boolean[]) this.f1175f;
-                boolean z10 = this.f1174c;
-                int i10 = this.f1173b;
+                boolean[] zArr = (boolean[]) this.f1172f;
+                boolean z10 = this.f1171c;
+                int i10 = this.f1170b;
                 if (z10) {
                     str = UserConfig.getInstance(i10).premiumTonStickerPack;
                     if (str == null) {
@@ -76,7 +76,7 @@ public final class db implements Runnable {
                                 long longValue = tL_stickerPack.documents.get(0).longValue();
                                 for (int i12 = 0; i12 < tL_messages_stickerSet.documents.size(); i12++) {
                                     document = tL_messages_stickerSet.documents.get(i12);
-                                    if (document == null || document.f20278id != longValue) {
+                                    if (document == null || document.f20281id != longValue) {
                                     }
                                 }
                             } else {
@@ -95,7 +95,7 @@ public final class db implements Runnable {
                 if (document != null) {
                     imageReceiver.setAllowStartLottieAnimation(true);
                     imageReceiver.setDelegate(new nc(zArr));
-                    SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(document, org.telegram.ui.ActionBar.h6.f20928a7, 0.3f);
+                    SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(document, org.telegram.ui.ActionBar.h6.f20931a7, 0.3f);
                     TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 160, true, null, true);
                     imageReceiver.setAutoRepeat(0);
                     imageReceiver.setImage(ImageLocation.getForDocument(document), "160_160_nr", ImageLocation.getForDocument(closestPhotoSizeWithSize, document), "160_160", svgThumb, document.size, "tgs", tL_messages_stickerSet, 1);
@@ -110,20 +110,20 @@ public final class db implements Runnable {
             case 1:
                 m4.p0 p0Var = (m4.p0) this.d;
                 n4.t tVar = (n4.t) this.e;
-                m4.o0 o0Var = (m4.o0) this.f1175f;
-                m4.f0 f0Var = p0Var.f16660g;
+                m4.o0 o0Var = (m4.o0) this.f1172f;
+                m4.f0 f0Var = p0Var.f16663g;
                 if (!f0Var.j()) {
-                    boolean isActive = ((n4.n) p0Var.f16665m.f17124b).f17107a.isActive();
-                    int i13 = this.f1173b;
+                    boolean isActive = ((n4.n) p0Var.f16668m.f17127b).f17110a.isActive();
+                    int i13 = this.f1170b;
                     if (!isActive) {
-                        StringBuilder l4 = i2.d.l(i13, "Ignore incoming player command before initialization. command=", ", pid=");
-                        l4.append(tVar.f17126a.f17128b);
+                        StringBuilder l4 = i2.e.l(i13, "Ignore incoming player command before initialization. command=", ", pid=");
+                        l4.append(tVar.f17129a.f17131b);
                         e2.a.l("MediaSessionLegacyStub", l4.toString());
                         return;
                     }
                     m4.v L = p0Var.L(tVar);
-                    if (!p0Var.f16659f.x(L, i13)) {
-                        if (i13 == 1 && !f0Var.f16533t.t()) {
+                    if (!p0Var.f16662f.x(L, i13)) {
+                        if (i13 == 1 && !f0Var.f16536t.t()) {
                             e2.a.l("MediaSessionLegacyStub", "Calling play() omitted due to COMMAND_PLAY_PAUSE not being available. If this play command has started the service for instance for playback resumption, this may prevent the service from being started into the foreground.");
                             return;
                         }
@@ -137,7 +137,7 @@ public final class db implements Runnable {
                     } catch (RemoteException e) {
                         e2.a.m("MediaSessionLegacyStub", "Exception in " + L, e);
                     }
-                    if (this.f1174c) {
+                    if (this.f1171c) {
                         new SparseBooleanArray().append(i13, true);
                         f0Var.p(L);
                         return;
@@ -146,17 +146,17 @@ public final class db implements Runnable {
                 }
                 return;
             case 2:
-                ((MessagesController) this.d).lambda$startShortPoll$332((TLRPC.Chat) this.e, this.f1174c, this.f1173b, (q0.a) this.f1175f);
+                ((MessagesController) this.d).lambda$startShortPoll$332((TLRPC.Chat) this.e, this.f1171c, this.f1170b, (q0.a) this.f1172f);
                 return;
             case 3:
                 at atVar = (at) this.d;
                 TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal = (TLRPC.TL_messages_searchGlobal) this.e;
-                TLObject tLObject = (TLObject) this.f1175f;
+                TLObject tLObject = (TLObject) this.f1172f;
                 ArrayList arrayList = atVar.T;
                 int i14 = atVar.N;
-                if (this.f1173b == atVar.f24711d0 && TextUtils.equals(tL_messages_searchGlobal.f20383q, atVar.f24712e0)) {
+                if (this.f1170b == atVar.f24701d0 && TextUtils.equals(tL_messages_searchGlobal.f20386q, atVar.f24702e0)) {
                     atVar.Z = false;
-                    if (!this.f1174c) {
+                    if (!this.f1171c) {
                         arrayList.clear();
                     }
                     if (tLObject instanceof TLRPC.messages_Messages) {
@@ -171,12 +171,12 @@ public final class db implements Runnable {
                             TLRPC.Message message = arrayList2.get(i15);
                             i15++;
                             MessageObject messageObject = new MessageObject(i14, message, false, true);
-                            messageObject.setQuery(atVar.f24712e0);
+                            messageObject.setQuery(atVar.f24702e0);
                             arrayList.add(messageObject);
                         }
-                        atVar.f24709b0 = messages_messages instanceof TLRPC.TL_messages_messagesSlice;
+                        atVar.f24699b0 = messages_messages instanceof TLRPC.TL_messages_messagesSlice;
                         Math.max(arrayList.size(), messages_messages.count);
-                        atVar.f24710c0 = messages_messages.next_rate;
+                        atVar.f24700c0 = messages_messages.next_rate;
                     }
                     atVar.N(true);
                     return;
@@ -185,12 +185,12 @@ public final class db implements Runnable {
             case 4:
                 ct ctVar = (ct) this.d;
                 TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal2 = (TLRPC.TL_messages_searchGlobal) this.e;
-                TLObject tLObject2 = (TLObject) this.f1175f;
+                TLObject tLObject2 = (TLObject) this.f1172f;
                 ArrayList arrayList3 = ctVar.P;
                 int i16 = ctVar.N;
-                if (this.f1173b == ctVar.f25364a0 && TextUtils.equals(tL_messages_searchGlobal2.f20383q, ctVar.f25365b0)) {
+                if (this.f1170b == ctVar.f25340a0 && TextUtils.equals(tL_messages_searchGlobal2.f20386q, ctVar.f25341b0)) {
                     ctVar.W = false;
-                    if (!this.f1174c) {
+                    if (!this.f1171c) {
                         arrayList3.clear();
                     }
                     if (tLObject2 instanceof TLRPC.messages_Messages) {
@@ -205,7 +205,7 @@ public final class db implements Runnable {
                             TLRPC.Message message2 = arrayList4.get(i17);
                             i17++;
                             MessageObject messageObject2 = new MessageObject(i16, message2, false, true);
-                            messageObject2.setQuery(ctVar.f25365b0);
+                            messageObject2.setQuery(ctVar.f25341b0);
                             arrayList3.add(messageObject2);
                         }
                         ctVar.Y = messages_messages2 instanceof TLRPC.TL_messages_messagesSlice;
@@ -217,18 +217,18 @@ public final class db implements Runnable {
                 }
                 return;
             default:
-                qg.s0 s0Var = (qg.s0) this.d;
-                qg.t0 t0Var = (qg.t0) this.e;
-                Runnable runnable = (Runnable) this.f1175f;
-                boolean z12 = this.f1174c;
+                qg.t0 t0Var = (qg.t0) this.d;
+                qg.u0 u0Var = (qg.u0) this.e;
+                Runnable runnable = (Runnable) this.f1172f;
+                boolean z12 = this.f1171c;
                 if (z12) {
-                    rectF = s0Var.h;
+                    rectF = t0Var.h;
                 } else {
                     rectF = null;
                 }
-                s0Var.d(t0Var, this.f1173b, rectF);
+                t0Var.d(u0Var, this.f1170b, rectF);
                 if (z12) {
-                    s0Var.h = null;
+                    t0Var.h = null;
                 }
                 if (runnable != null) {
                     runnable.run();
@@ -239,38 +239,38 @@ public final class db implements Runnable {
     }
 
     public db(MessagesController messagesController, TLRPC.Chat chat, boolean z10, int i10, q0.a aVar) {
-        this.f1172a = 2;
+        this.f1169a = 2;
         this.d = messagesController;
         this.e = chat;
-        this.f1174c = z10;
-        this.f1173b = i10;
-        this.f1175f = aVar;
+        this.f1171c = z10;
+        this.f1170b = i10;
+        this.f1172f = aVar;
     }
 
-    public db(s61 s61Var, int i10, TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal, boolean z10, TLObject tLObject, int i11) {
-        this.f1172a = i11;
-        this.d = s61Var;
-        this.f1173b = i10;
+    public db(t61 t61Var, int i10, TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal, boolean z10, TLObject tLObject, int i11) {
+        this.f1169a = i11;
+        this.d = t61Var;
+        this.f1170b = i10;
         this.e = tL_messages_searchGlobal;
-        this.f1174c = z10;
-        this.f1175f = tLObject;
+        this.f1171c = z10;
+        this.f1172f = tLObject;
     }
 
-    public db(qg.s0 s0Var, qg.t0 t0Var, int i10, boolean z10, Runnable runnable) {
-        this.f1172a = 5;
-        this.d = s0Var;
-        this.e = t0Var;
-        this.f1173b = i10;
-        this.f1174c = z10;
-        this.f1175f = runnable;
+    public db(qg.t0 t0Var, qg.u0 u0Var, int i10, boolean z10, Runnable runnable) {
+        this.f1169a = 5;
+        this.d = t0Var;
+        this.e = u0Var;
+        this.f1170b = i10;
+        this.f1171c = z10;
+        this.f1172f = runnable;
     }
 
     public db(boolean z10, int i10, String str, ImageReceiver imageReceiver, boolean[] zArr) {
-        this.f1172a = 0;
-        this.f1174c = z10;
-        this.f1173b = i10;
+        this.f1169a = 0;
+        this.f1171c = z10;
+        this.f1170b = i10;
         this.d = str;
         this.e = imageReceiver;
-        this.f1175f = zArr;
+        this.f1172f = zArr;
     }
 }

@@ -39,17 +39,17 @@ public final class y implements RequestDelegate {
                                     hashMap.put(Long.valueOf(j11), null);
                                 }
                                 k0Var2.d.put(Long.valueOf(j11), Long.valueOf(System.currentTimeMillis()));
-                                NotificationCenter.getInstance(k0Var2.f1614a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.botStarsUpdated, Long.valueOf(j11));
+                                NotificationCenter.getInstance(k0Var2.f1606a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.botStarsUpdated, Long.valueOf(j11));
                                 return;
                             default:
-                                HashMap hashMap2 = k0Var2.f1616c;
+                                HashMap hashMap2 = k0Var2.f1608c;
                                 if (tLObject2 instanceof TLRPC.TL_payments_starsRevenueStats) {
                                     hashMap2.put(Long.valueOf(j11), (TLRPC.TL_payments_starsRevenueStats) tLObject2);
                                 } else {
                                     hashMap2.put(Long.valueOf(j11), null);
                                 }
-                                k0Var2.f1615b.put(Long.valueOf(j11), Long.valueOf(System.currentTimeMillis()));
-                                NotificationCenter.getInstance(k0Var2.f1614a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.botStarsUpdated, Long.valueOf(j11));
+                                k0Var2.f1607b.put(Long.valueOf(j11), Long.valueOf(System.currentTimeMillis()));
+                                NotificationCenter.getInstance(k0Var2.f1606a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.botStarsUpdated, Long.valueOf(j11));
                                 return;
                         }
                     }
@@ -74,17 +74,17 @@ public final class y implements RequestDelegate {
                                     hashMap.put(Long.valueOf(j112), null);
                                 }
                                 k0Var22.d.put(Long.valueOf(j112), Long.valueOf(System.currentTimeMillis()));
-                                NotificationCenter.getInstance(k0Var22.f1614a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.botStarsUpdated, Long.valueOf(j112));
+                                NotificationCenter.getInstance(k0Var22.f1606a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.botStarsUpdated, Long.valueOf(j112));
                                 return;
                             default:
-                                HashMap hashMap2 = k0Var22.f1616c;
+                                HashMap hashMap2 = k0Var22.f1608c;
                                 if (tLObject2 instanceof TLRPC.TL_payments_starsRevenueStats) {
                                     hashMap2.put(Long.valueOf(j112), (TLRPC.TL_payments_starsRevenueStats) tLObject2);
                                 } else {
                                     hashMap2.put(Long.valueOf(j112), null);
                                 }
-                                k0Var22.f1615b.put(Long.valueOf(j112), Long.valueOf(System.currentTimeMillis()));
-                                NotificationCenter.getInstance(k0Var22.f1614a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.botStarsUpdated, Long.valueOf(j112));
+                                k0Var22.f1607b.put(Long.valueOf(j112), Long.valueOf(System.currentTimeMillis()));
+                                NotificationCenter.getInstance(k0Var22.f1606a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.botStarsUpdated, Long.valueOf(j112));
                                 return;
                         }
                     }

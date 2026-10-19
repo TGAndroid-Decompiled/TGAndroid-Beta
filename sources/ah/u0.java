@@ -5,20 +5,20 @@ import android.view.View;
 import ki.c6;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class u0 implements View.OnFocusChangeListener {
-    public final int f893a;
-    public final Object f894b;
+    public final int f891a;
+    public final Object f892b;
 
     public u0(Object obj, int i10) {
-        this.f893a = i10;
-        this.f894b = obj;
+        this.f891a = i10;
+        this.f892b = obj;
     }
 
     @Override
     public final void onFocusChange(View view, boolean z10) {
         float f7;
-        switch (this.f893a) {
+        switch (this.f891a) {
             case 0:
-                w wVar = (w) this.f894b;
+                w wVar = (w) this.f892b;
                 if (z10) {
                     wVar.n(true);
                     Runnable runnable = wVar.e;
@@ -31,7 +31,7 @@ public final class u0 implements View.OnFocusChangeListener {
                 wVar.m();
                 return;
             case 1:
-                ai.s sVar = ((ai.x) this.f894b).M;
+                ai.s sVar = ((ai.x) this.f892b).M;
                 if (z10) {
                     f7 = 1.0f;
                 } else {
@@ -40,29 +40,29 @@ public final class u0 implements View.OnFocusChangeListener {
                 sVar.b(f7, f7, true);
                 return;
             case 2:
-                ai.b1 b1Var = (ai.b1) this.f894b;
-                b1Var.f999c0.c(z10, !TextUtils.isEmpty(b1Var.f1000d0.getText()));
+                ai.b1 b1Var = (ai.b1) this.f892b;
+                b1Var.f996c0.c(z10, !TextUtils.isEmpty(b1Var.f997d0.getText()));
                 return;
             case 3:
-                ai.h1 h1Var = (ai.h1) this.f894b;
-                h1Var.f1394f.c(z10, !TextUtils.isEmpty(h1Var.h.getText()));
+                ai.h1 h1Var = (ai.h1) this.f892b;
+                h1Var.f1390f.c(z10, !TextUtils.isEmpty(h1Var.h.getText()));
                 return;
             case 4:
-                ai.l1 l1Var = (ai.l1) this.f894b;
-                l1Var.f1744b.c(z10, !TextUtils.isEmpty(l1Var.f1745c.getText()));
+                ai.l1 l1Var = (ai.l1) this.f892b;
+                l1Var.f1734b.c(z10, !TextUtils.isEmpty(l1Var.f1735c.getText()));
                 return;
             case 5:
-                c6.a((c6) this.f894b, z10);
+                c6.a((c6) this.f892b, z10);
                 return;
             case 6:
-                EditTextBoldCursor editTextBoldCursor = ((qg.v) this.f894b).f44676c;
+                EditTextBoldCursor editTextBoldCursor = ((qg.w) this.f892b).f44678c;
                 if (!z10 && TextUtils.isEmpty(editTextBoldCursor.getText())) {
                     editTextBoldCursor.setText("0");
                     return;
                 }
                 return;
             default:
-                EditTextBoldCursor editTextBoldCursor2 = ((qg.w) this.f894b).d;
+                EditTextBoldCursor editTextBoldCursor2 = ((qg.x) this.f892b).d;
                 if (!z10 && TextUtils.isEmpty(editTextBoldCursor2.getText())) {
                     editTextBoldCursor2.setText("0");
                     return;

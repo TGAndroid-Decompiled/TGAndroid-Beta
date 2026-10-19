@@ -3,10 +3,11 @@ package p4;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executor;
+import k2.w0;
 public abstract class p extends q {
-    public final Object f44166a = new Object();
-    public Executor f44167b;
-    public l2.f f44168c;
+    public final Object f44161a = new Object();
+    public Executor f44162b;
+    public w0 f44163c;
     public m d;
     public ArrayList e;
 
@@ -20,12 +21,12 @@ public abstract class p extends q {
 
     public final void l(m mVar, ArrayList arrayList) {
         if (mVar != null) {
-            synchronized (this.f44166a) {
+            synchronized (this.f44161a) {
                 try {
                     try {
-                        Executor executor = this.f44167b;
+                        Executor executor = this.f44162b;
                         if (executor != null) {
-                            executor.execute(new com.google.android.gms.internal.cast.p(this, this.f44168c, mVar, arrayList, false, 3));
+                            executor.execute(new com.google.android.gms.internal.cast.p(this, this.f44163c, mVar, arrayList, false, 3));
                         } else {
                             this.d = mVar;
                             this.e = new ArrayList(arrayList);

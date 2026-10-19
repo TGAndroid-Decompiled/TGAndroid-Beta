@@ -4,9 +4,9 @@ import android.app.Activity;
 import android.app.Application;
 import android.os.Bundle;
 public final class t0 implements Application.ActivityLifecycleCallbacks {
-    public static final t0 f463a = new Object();
-    public static boolean f464b;
-    public static com.google.firebase.messaging.r f465c;
+    public static final t0 f462a = new Object();
+    public static boolean f463b;
+    public static com.google.firebase.messaging.r f464c;
 
     @Override
     public final void onActivityCreated(Activity activity, Bundle bundle) {
@@ -21,7 +21,7 @@ public final class t0 implements Application.ActivityLifecycleCallbacks {
     @Override
     public final void onActivityPaused(Activity activity) {
         kotlin.jvm.internal.i.e(activity, "activity");
-        com.google.firebase.messaging.r rVar = f465c;
+        com.google.firebase.messaging.r rVar = f464c;
         if (rVar != null) {
             rVar.r(2);
         }
@@ -31,15 +31,15 @@ public final class t0 implements Application.ActivityLifecycleCallbacks {
     public final void onActivityResumed(Activity activity) {
         id.i iVar;
         kotlin.jvm.internal.i.e(activity, "activity");
-        com.google.firebase.messaging.r rVar = f465c;
+        com.google.firebase.messaging.r rVar = f464c;
         if (rVar != null) {
             rVar.r(1);
-            iVar = id.i.f12775a;
+            iVar = id.i.f12777a;
         } else {
             iVar = null;
         }
         if (iVar == null) {
-            f464b = true;
+            f463b = true;
         }
     }
 

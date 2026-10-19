@@ -9,8 +9,8 @@ import org.telegram.messenger.Utilities;
 import org.telegram.messenger.voip.ConferenceCall;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.jr;
-import org.telegram.ui.sn;
+import org.telegram.ui.hr;
+import org.telegram.ui.qn;
 public final class z implements Runnable {
     public final int f2515a;
     public final Object f2516b;
@@ -51,13 +51,13 @@ public final class z implements Runnable {
         this.f2518f = runnable;
     }
 
-    public z(le leVar, long j10, ga gaVar, MessageObject messageObject, sn snVar) {
+    public z(le leVar, long j10, ga gaVar, MessageObject messageObject, qn qnVar) {
         this.f2515a = 6;
         this.d = leVar;
         this.f2517c = j10;
         this.e = gaVar;
         this.f2516b = messageObject;
-        this.f2518f = snVar;
+        this.f2518f = qnVar;
     }
 
     public z(Object obj, Object obj2, long j10, Object obj3, Object obj4, int i10) {
@@ -96,9 +96,9 @@ public final class z implements Runnable {
         this.f2518f = booleanCallback;
     }
 
-    public z(jr jrVar, long j10, TLObject tLObject, String str, TLObject tLObject2, int i10) {
+    public z(hr hrVar, long j10, TLObject tLObject, String str, TLObject tLObject2, int i10) {
         this.f2515a = i10;
-        this.d = jrVar;
+        this.d = hrVar;
         this.f2517c = j10;
         this.e = tLObject;
         this.f2518f = str;

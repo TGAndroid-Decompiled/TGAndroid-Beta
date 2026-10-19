@@ -8,21 +8,21 @@ import com.google.firebase.messaging.q;
 import java.util.concurrent.Executor;
 import r9.r;
 public final class i implements r9.d, s {
-    public static final i f15973b = new i(0);
-    public static final i f15974c = new i(1);
+    public static final i f15976b = new i(0);
+    public static final i f15977c = new i(1);
     public static final i d = new i(2);
     public static final i e = new i(3);
-    public final int f15975a;
+    public final int f15978a;
 
     public i(int i10) {
-        this.f15975a = i10;
+        this.f15978a = i10;
     }
 
     @Override
     public Exception a(Status status) {
-        int i10 = status.f6345a;
-        int i11 = status.f6345a;
-        String str = status.f6346b;
+        int i10 = status.f6346a;
+        int i11 = status.f6346a;
+        String str = status.f6347b;
         if (i10 == 8) {
             if (str == null) {
                 str = x8.j.a(i11);
@@ -37,23 +37,23 @@ public final class i implements r9.d, s {
 
     @Override
     public Object j2(z5 z5Var) {
-        switch (this.f15975a) {
+        switch (this.f15978a) {
             case 0:
-                Object f7 = z5Var.f(new r(n9.a.class, Executor.class));
-                kotlin.jvm.internal.i.d(f7, "c.get(Qualified.qualifie…a, Executor::class.java))");
-                return new z0((Executor) f7);
+                Object c10 = z5Var.c(new r(n9.a.class, Executor.class));
+                kotlin.jvm.internal.i.d(c10, "c.get(Qualified.qualifie…a, Executor::class.java))");
+                return new z0((Executor) c10);
             case 1:
-                Object f10 = z5Var.f(new r(n9.c.class, Executor.class));
-                kotlin.jvm.internal.i.d(f10, "c.get(Qualified.qualifie…a, Executor::class.java))");
-                return new z0((Executor) f10);
+                Object c11 = z5Var.c(new r(n9.c.class, Executor.class));
+                kotlin.jvm.internal.i.d(c11, "c.get(Qualified.qualifie…a, Executor::class.java))");
+                return new z0((Executor) c11);
             case 2:
-                Object f11 = z5Var.f(new r(n9.b.class, Executor.class));
-                kotlin.jvm.internal.i.d(f11, "c.get(Qualified.qualifie…a, Executor::class.java))");
-                return new z0((Executor) f11);
+                Object c12 = z5Var.c(new r(n9.b.class, Executor.class));
+                kotlin.jvm.internal.i.d(c12, "c.get(Qualified.qualifie…a, Executor::class.java))");
+                return new z0((Executor) c12);
             default:
-                Object f12 = z5Var.f(new r(n9.d.class, Executor.class));
-                kotlin.jvm.internal.i.d(f12, "c.get(Qualified.qualifie…a, Executor::class.java))");
-                return new z0((Executor) f12);
+                Object c13 = z5Var.c(new r(n9.d.class, Executor.class));
+                kotlin.jvm.internal.i.d(c13, "c.get(Qualified.qualifie…a, Executor::class.java))");
+                return new z0((Executor) c13);
         }
     }
 }

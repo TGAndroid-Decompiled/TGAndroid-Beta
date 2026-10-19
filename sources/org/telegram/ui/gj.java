@@ -1,27 +1,89 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.tgnet.TLRPC;
-public final class gj implements MessagesStorage.BooleanCallback {
-    public final boolean f37192a;
-    public final hj f37193b;
+import android.content.Context;
+import android.graphics.Rect;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.ImageView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+public final class gj implements View.OnTouchListener {
+    public View f37357a;
+    public org.telegram.ui.ActionBar.m1 f37358b;
+    public final Rect f37359c = new Rect();
+    public boolean d;
+    public boolean e;
+    public final org.telegram.ui.Components.s20 f37360f;
+    public final int[] h;
+    public View f37361n;
+    public float f37362r;
+    public float f37363s;
+    public final View v;
+    public final qn f37364w;
 
-    public gj(hj hjVar, boolean z10) {
-        this.f37193b = hjVar;
-        this.f37192a = z10;
+    public gj(qn qnVar, ImageView imageView) {
+        this.f37364w = qnVar;
+        this.v = imageView;
+        org.telegram.ui.Components.s20 s20Var = new org.telegram.ui.Components.s20((Context) null, new g(this, 24));
+        this.f37360f = s20Var;
+        this.h = new int[2];
+        s20Var.v = true;
     }
 
     @Override
-    public final void run(boolean z10) {
-        sn snVar = this.f37193b.f37546b;
-        if (z10) {
-            TLRPC.User user = snVar.f41194f;
-            boolean z11 = this.f37192a;
-            if (user != null || z11) {
-                snVar.getMessagesStorage().getMessagesCount(snVar.T5, new fj(1, this, z11));
-                return;
+    public final boolean onTouch(View view, MotionEvent motionEvent) {
+        View view2;
+        this.f37357a = view;
+        if (motionEvent.getAction() == 0) {
+            this.f37362r = motionEvent.getX();
+            this.f37363s = motionEvent.getY();
+            this.e = false;
+        }
+        this.f37360f.a(motionEvent);
+        if (this.f37358b != null && !this.d && motionEvent.getAction() == 2) {
+            View view3 = this.f37357a;
+            int[] iArr = this.h;
+            view3.getLocationOnScreen(iArr);
+            float x10 = motionEvent.getX() + iArr[0];
+            float y3 = motionEvent.getY() + iArr[1];
+            this.f37358b.getContentView().getLocationOnScreen(iArr);
+            float f7 = x10 - iArr[0];
+            float f10 = y3 - iArr[1];
+            this.f37361n = null;
+            ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = (ActionBarPopupWindow$ActionBarPopupWindowLayout) this.f37358b.getContentView();
+            for (int i10 = 0; i10 < actionBarPopupWindow$ActionBarPopupWindowLayout.getItemsCount(); i10++) {
+                View childAt = actionBarPopupWindow$ActionBarPopupWindowLayout.L.getChildAt(i10);
+                Rect rect = this.f37359c;
+                childAt.getHitRect(rect);
+                childAt.getTag();
+                if (childAt.getVisibility() == 0 && childAt.isClickable()) {
+                    if (!rect.contains((int) f7, (int) f10)) {
+                        childAt.setPressed(false);
+                        childAt.setSelected(false);
+                    } else {
+                        childAt.setPressed(true);
+                        childAt.setSelected(true);
+                        childAt.drawableHotspotChanged(f7, f10 - childAt.getTop());
+                        this.f37361n = childAt;
+                    }
+                }
             }
         }
-        snVar.va(snVar.f41174d4, z10);
+        if ((motionEvent.getAction() == 2 && Math.abs(motionEvent.getX() - this.f37362r) > AndroidUtilities.touchSlop * 2.0f) || Math.abs(motionEvent.getY() - this.f37363s) > AndroidUtilities.touchSlop * 2.0f) {
+            this.e = true;
+            this.f37357a.setPressed(false);
+            this.f37357a.setSelected(false);
+        }
+        if (motionEvent.getAction() == 1 && !this.d && !this.e) {
+            View view4 = this.f37361n;
+            if (view4 != null) {
+                view4.callOnClick();
+                this.d = true;
+                return true;
+            } else if (this.f37358b == null && (view2 = this.f37357a) != null) {
+                view2.callOnClick();
+            }
+        }
+        return true;
     }
 }

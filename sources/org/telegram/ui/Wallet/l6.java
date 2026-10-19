@@ -12,7 +12,7 @@ public final class l6 extends tg.f {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (!this.L.f34555x && super.onTouchEvent(motionEvent)) {
+        if (!this.L.f34527x && super.onTouchEvent(motionEvent)) {
             return true;
         }
         return false;

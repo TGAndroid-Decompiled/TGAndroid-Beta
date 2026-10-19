@@ -4,45 +4,34 @@ import android.text.Editable;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.Cells.n9;
 public final class x5 implements g1 {
-    public final c6 f15654a;
+    public final c6 f15657a;
 
     public x5(c6 c6Var) {
-        this.f15654a = c6Var;
+        this.f15657a = c6Var;
     }
 
     @Override
-    public final void D(CharSequence charSequence) {
-        z5 z5Var = this.f15654a.f15187y;
-        if (z5Var != null) {
-            e3 e3Var = (e3) z5Var;
-            if (charSequence != null && charSequence.length() > 0) {
-                e3Var.f15244a.u4(charSequence.toString());
-            }
-        }
-    }
-
-    @Override
-    public final void M(Editable editable) {
-        c6 c6Var = this.f15654a;
-        if (c6Var.f15186x != null) {
+    public final void G(Editable editable) {
+        c6 c6Var = this.f15657a;
+        if (c6Var.f15189x != null) {
             c6Var.w();
-            z5 z5Var = c6Var.f15187y;
+            z5 z5Var = c6Var.f15190y;
             if (z5Var != null) {
-                w3 w3Var = ((e3) z5Var).f15244a;
+                w3 w3Var = ((e3) z5Var).f15247a;
                 h2 h2Var = w3Var.H3;
                 if (h2Var != null) {
                     h2Var.g();
                 }
-                w3Var.f15591f3.onContentChanged();
+                w3Var.f15594f3.onContentChanged();
             }
-            TL_iv.PageBlock pageBlock = c6Var.f15186x.f15094b;
+            TL_iv.PageBlock pageBlock = c6Var.f15189x.f15097b;
             if (pageBlock instanceof TL_iv.pageBlockPullquote) {
                 c6Var.invalidate();
             } else if (pageBlock instanceof TL_iv.pageBlockBlockquote) {
                 c6Var.invalidate();
                 int measuredWidth = c6Var.getMeasuredWidth();
                 if (measuredWidth > 0) {
-                    if (c6Var.h(measuredWidth, c6Var.getPaddingBottom() + c6Var.h.getMeasuredHeight() + c6Var.f15179b.getMeasuredHeight() + c6Var.getPaddingTop()) == c6Var.O) {
+                    if (c6Var.h(measuredWidth, c6Var.getPaddingBottom() + c6Var.h.getMeasuredHeight() + c6Var.f15182b.getMeasuredHeight() + c6Var.getPaddingTop()) == c6Var.O) {
                         return;
                     }
                 }
@@ -52,75 +41,86 @@ public final class x5 implements g1 {
     }
 
     @Override
-    public final boolean Q(boolean z10) {
+    public final boolean M(boolean z10) {
         return false;
     }
 
     @Override
-    public final boolean R(h1 h1Var) {
+    public final boolean P(h1 h1Var) {
         return false;
     }
 
     @Override
-    public final void V(h1 h1Var, int i10, int i11) {
+    public final void R(h1 h1Var, int i10, int i11) {
         z5 z5Var;
         n9 textSelectionHelper;
-        c6 c6Var = this.f15654a;
-        if (!c6Var.f15182n && i10 != i11 && (z5Var = c6Var.f15187y) != null && (textSelectionHelper = ((e3) z5Var).f15244a.getTextSelectionHelper()) != null) {
+        c6 c6Var = this.f15657a;
+        if (!c6Var.f15185n && i10 != i11 && (z5Var = c6Var.f15190y) != null && (textSelectionHelper = ((e3) z5Var).f15247a.getTextSelectionHelper()) != null) {
             h1Var.post(new gi.m4(this, h1Var, i11, textSelectionHelper, i10, 6));
         }
     }
 
     @Override
     public final void c(h1 h1Var) {
-        z5 z5Var = this.f15654a.f15187y;
+        z5 z5Var = this.f15657a.f15190y;
         if (z5Var != null) {
-            w3 w3Var = ((e3) z5Var).f15244a;
+            w3 w3Var = ((e3) z5Var).f15247a;
             w3.N1(w3Var, h1Var);
-            w3Var.f15591f3.n(h1Var, true);
+            w3Var.f15594f3.o(h1Var, true);
         }
     }
 
     @Override
-    public final boolean f() {
-        c6 c6Var = this.f15654a;
-        z5 z5Var = c6Var.f15187y;
-        if (z5Var != null && c6Var.f15186x != null) {
-            return ((e3) z5Var).f15244a.T4();
+    public final boolean e() {
+        c6 c6Var = this.f15657a;
+        z5 z5Var = c6Var.f15190y;
+        if (z5Var != null && c6Var.f15189x != null) {
+            return ((e3) z5Var).f15247a.T4();
         }
         return false;
     }
 
     @Override
-    public final void h(int i10, int i11) {
+    public final void f(int i10, int i11) {
         h2 h2Var;
-        c6 c6Var = this.f15654a;
-        z5 z5Var = c6Var.f15187y;
-        if (z5Var != null && c6Var.f15186x != null && (h2Var = ((e3) z5Var).f15244a.H3) != null) {
+        c6 c6Var = this.f15657a;
+        z5 z5Var = c6Var.f15190y;
+        if (z5Var != null && c6Var.f15189x != null && (h2Var = ((e3) z5Var).f15247a.H3) != null) {
             h2Var.f(i10, i11);
         }
     }
 
     @Override
-    public final void l(h1 h1Var) {
+    public final void k(h1 h1Var) {
         a aVar;
-        c6 c6Var = this.f15654a;
-        z5 z5Var = c6Var.f15187y;
-        if (z5Var != null && (aVar = c6Var.f15186x) != null) {
-            w3.Q1(((e3) z5Var).f15244a, aVar);
+        c6 c6Var = this.f15657a;
+        z5 z5Var = c6Var.f15190y;
+        if (z5Var != null && (aVar = c6Var.f15189x) != null) {
+            w3.Q1(((e3) z5Var).f15247a, aVar);
         }
     }
 
     @Override
-    public final boolean q(h1 h1Var) {
-        c6 c6Var = this.f15654a;
-        c6Var.f15181f.r();
-        h1 h1Var2 = c6Var.f15181f;
+    public final boolean s(h1 h1Var) {
+        c6 c6Var = this.f15657a;
+        c6Var.f15184f.r();
+        h1 h1Var2 = c6Var.f15184f;
         h1Var2.setSelection(h1Var2.length());
         return true;
     }
 
     @Override
-    public final void m() {
+    public final void x(CharSequence charSequence) {
+        z5 z5Var = this.f15657a.f15190y;
+        if (z5Var != null) {
+            e3 e3Var = (e3) z5Var;
+            if (charSequence != null && charSequence.length() > 0) {
+                e3Var.f15247a.u4(charSequence.toString());
+            }
+        }
+    }
+
+    @Override
+    public final void o() {
     }
 }

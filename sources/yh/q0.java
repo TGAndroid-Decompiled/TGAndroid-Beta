@@ -6,19 +6,19 @@ import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BillingController;
 public final class q0 implements BillingController.ProductDetailsResponseListenerLegacy, e2.j {
-    public final int f50473a;
-    public final Object f50474b;
+    public final int f50472a;
+    public final Object f50473b;
 
     public q0(Object obj, int i10) {
-        this.f50473a = i10;
-        this.f50474b = obj;
+        this.f50472a = i10;
+        this.f50473b = obj;
     }
 
     @Override
     public void accept(Object obj) {
-        switch (this.f50473a) {
+        switch (this.f50472a) {
             case 1:
-                z3.h hVar = (z3.h) this.f50474b;
+                z3.h hVar = (z3.h) this.f50473b;
                 z3.a aVar = (z3.a) obj;
                 z3.g gVar = new z3.g(aVar.f50635b, sb.a.s2(aVar.f50634a, aVar.f50636c));
                 hVar.f50645c.add(gVar);
@@ -29,7 +29,7 @@ public final class q0 implements BillingController.ProductDetailsResponseListene
                 }
                 return;
             default:
-                ((e9.k0) this.f50474b).c((z3.a) obj);
+                ((e9.k0) this.f50473b).c((z3.a) obj);
                 return;
         }
     }
@@ -37,8 +37,8 @@ public final class q0 implements BillingController.ProductDetailsResponseListene
     @Override
     public void onProductDetailsResponse(c5.i iVar, List list) {
         int i10;
-        o1 o1Var = (o1) this.f50474b;
-        ArrayList arrayList = o1Var.f50434n0;
+        o1 o1Var = (o1) this.f50473b;
+        ArrayList arrayList = o1Var.f50433n0;
         Iterator it = list.iterator();
         long j10 = 0;
         while (true) {
@@ -46,15 +46,15 @@ public final class q0 implements BillingController.ProductDetailsResponseListene
             if (!it.hasNext()) {
                 break;
             }
-            c5.o oVar = (c5.o) it.next();
+            c5.p pVar = (c5.p) it.next();
             int size = arrayList.size();
             while (true) {
                 if (i10 < size) {
                     Object obj = arrayList.get(i10);
                     i10++;
                     sg.k kVar = (sg.k) obj;
-                    if (kVar.h() != null && kVar.h().equals(oVar.f4776c)) {
-                        kVar.h = oVar;
+                    if (kVar.h() != null && kVar.h().equals(pVar.f4777c)) {
+                        kVar.h = pVar;
                         if (kVar.f() > j10) {
                             j10 = kVar.f();
                         }

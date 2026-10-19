@@ -7,32 +7,32 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.Components.a71;
-import org.telegram.ui.Components.c61;
-import org.telegram.ui.Components.e61;
+import org.telegram.ui.Components.b71;
+import org.telegram.ui.Components.d61;
 import org.telegram.ui.Components.f61;
+import org.telegram.ui.Components.g61;
 import org.telegram.ui.Components.im0;
 import org.telegram.ui.Components.r5;
-import org.telegram.ui.Components.s61;
+import org.telegram.ui.Components.t61;
 import org.telegram.ui.Components.xj0;
-public final class m3 extends e61 {
-    public static final int f50398a = 0;
+public final class m3 extends f61 {
+    public static final int f50397a = 0;
 
     static {
-        e61.setup(new e61());
+        f61.setup(new f61());
     }
 
     @Override
-    public final void bindView(View view, f61 f61Var, boolean z10, s61 s61Var, a71 a71Var) {
+    public final void bindView(View view, g61 g61Var, boolean z10, t61 t61Var, b71 b71Var) {
         n3 n3Var = (n3) view;
-        TL_stars.starGiftAttributeModel stargiftattributemodel = (TL_stars.starGiftAttributeModel) f61Var.G;
-        int i10 = f61Var.f26153z;
-        String str = (String) f61Var.f26140l;
-        boolean z11 = f61Var.e;
-        xj0 xj0Var = n3Var.f20759c;
+        TL_stars.starGiftAttributeModel stargiftattributemodel = (TL_stars.starGiftAttributeModel) g61Var.G;
+        int i10 = g61Var.f26512z;
+        String str = (String) g61Var.f26499l;
+        boolean z11 = g61Var.e;
+        xj0 xj0Var = n3Var.f20762c;
         l3 l3Var = n3Var.N;
-        if (l3Var == null || n3Var.M != stargiftattributemodel.document.f20278id) {
-            n3Var.M = stargiftattributemodel.document.f20278id;
+        if (l3Var == null || n3Var.M != stargiftattributemodel.document.f20281id) {
+            n3Var.M = stargiftattributemodel.document.f20281id;
             if (l3Var != null) {
                 l3Var.o(xj0Var);
             }
@@ -50,7 +50,7 @@ public final class m3 extends e61 {
             spannableStringBuilder2.append((CharSequence) "  ");
             int length = spannableStringBuilder2.length();
             spannableStringBuilder2.append((CharSequence) Integer.toString(i10));
-            spannableStringBuilder2.setSpan(new c61(AndroidUtilities.bold()), length, spannableStringBuilder2.length(), 33);
+            spannableStringBuilder2.setSpan(new d61(AndroidUtilities.bold()), length, spannableStringBuilder2.length(), 33);
             spannableStringBuilder = spannableStringBuilder2;
         }
         n3Var.g(spannableStringBuilder, 0, n3Var.N);

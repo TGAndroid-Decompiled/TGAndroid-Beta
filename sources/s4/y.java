@@ -21,7 +21,7 @@ public class y extends m0 {
     public VelocityTracker J;
     public ArrayList K;
     public ArrayList L;
-    public k0.b N;
+    public le.b N;
     public w O;
     public Rect Q;
     public long R;
@@ -197,7 +197,7 @@ public class y extends m0 {
                 }
                 recyclerView3.P.add(this);
                 this.O = new w(this);
-                this.N = new k0.b(this.H.getContext(), this.O);
+                this.N = new le.b(this.H.getContext(), this.O);
             }
         }
     }
@@ -254,7 +254,7 @@ public class y extends m0 {
                 if (b1Var != null) {
                     RecyclerView recyclerView = this.H;
                     int e = vVar.e(recyclerView, b1Var);
-                    WeakHashMap weakHashMap = r0.i0.f44818a;
+                    WeakHashMap weakHashMap = r0.i0.f44816a;
                     int b10 = (vVar.b(e, recyclerView.getLayoutDirection()) & 65280) >> 8;
                     if (b10 != 0) {
                         float x10 = motionEvent.getX(i11);
@@ -523,7 +523,7 @@ public class y extends m0 {
         RecyclerView recyclerView = this.H;
         v vVar = this.f46064x;
         int e = vVar.e(recyclerView, b1Var);
-        WeakHashMap weakHashMap = r0.i0.f44818a;
+        WeakHashMap weakHashMap = r0.i0.f44816a;
         if ((vVar.b(e, recyclerView.getLayoutDirection()) & 16711680) != 0) {
             if (b1Var.f45910a.getParent() != this.H) {
                 Log.e("ItemTouchHelper", "Start drag has been called with a view holder which is not a child of the RecyclerView which is controlled by this ItemTouchHelper.");

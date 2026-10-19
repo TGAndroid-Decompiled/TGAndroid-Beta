@@ -49,7 +49,7 @@ public final class g {
         if (this.f48485m) {
             s sVar = this.f48477b;
             d dVar = sVar.f48559a;
-            String str = m0.f8253a;
+            String str = m0.f8254a;
             int i10 = dVar.f48469a;
             r rVar = sVar.f48568m;
             if (rVar == null) {
@@ -95,7 +95,7 @@ public final class g {
             xVar = sVar.f48569n;
         } else {
             byte[] bArr = b10.e;
-            String str = m0.f8253a;
+            String str = m0.f8254a;
             int length = bArr.length;
             x xVar2 = this.f48484l;
             xVar2.L(length, bArr);
@@ -114,7 +114,7 @@ public final class g {
             z11 = true;
         }
         x xVar3 = this.f48483k;
-        byte[] bArr2 = xVar3.f8292a;
+        byte[] bArr2 = xVar3.f8293a;
         if (z11) {
             i12 = 128;
         } else {
@@ -131,7 +131,7 @@ public final class g {
         x xVar4 = this.f48478c;
         if (!z10) {
             xVar4.K(8);
-            byte[] bArr3 = xVar4.f8292a;
+            byte[] bArr3 = xVar4.f8293a;
             bArr3[0] = 0;
             bArr3[1] = 1;
             bArr3[2] = (byte) 0;
@@ -149,7 +149,7 @@ public final class g {
         int i15 = (H * 6) + 2;
         if (i11 != 0) {
             xVar4.K(i15);
-            byte[] bArr4 = xVar4.f8292a;
+            byte[] bArr4 = xVar4.f8293a;
             xVar5.k(0, i15, bArr4);
             int i16 = (((bArr4[2] & 255) << 8) | (bArr4[3] & 255)) + i11;
             bArr4[2] = (byte) ((i16 >> 8) & 255);

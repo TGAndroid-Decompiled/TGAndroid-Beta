@@ -47,7 +47,7 @@ public final class h implements c3.o {
     public final k0 f48492j;
     public final e2.c f48497o;
     public final j0 f48498p;
-    public final a6.m f48499q;
+    public final qb.c f48499q;
     public x1 f48500r;
     public int f48501s;
     public int f48502t;
@@ -59,7 +59,7 @@ public final class h implements c3.o {
     public long f48507z;
     public final n2.e f48493k = new n2.e(1);
     public final x f48494l = new x(16);
-    public final x e = new x(f2.q.f10336a);
+    public final x e = new x(f2.q.f10337a);
     public final x f48489f = new x(6);
     public final x f48490g = new x();
     public final ArrayDeque f48495m = new ArrayDeque();
@@ -68,7 +68,7 @@ public final class h implements c3.o {
 
     static {
         v vVar = new v();
-        vVar.f4079r = v0.n("application/x-emsg");
+        vVar.f4077r = v0.n("application/x-emsg");
         P = new w(vVar);
     }
 
@@ -81,16 +81,16 @@ public final class h implements c3.o {
         byte[] bArr = new byte[16];
         this.h = bArr;
         this.f48491i = new x(bArr);
-        l0 l0Var = n0.f8475b;
+        l0 l0Var = n0.f8476b;
         this.f48500r = x1.e;
         this.A = -9223372036854775807L;
         this.f48507z = -9223372036854775807L;
         this.B = -9223372036854775807L;
-        this.I = c3.q.f4658i;
+        this.I = c3.q.f4656i;
         this.J = new j0[0];
         this.K = new j0[0];
         this.f48497o = new e2.c(new e(this));
-        this.f48499q = new a6.m(9);
+        this.f48499q = new qb.c(10);
         this.N = -1L;
     }
 
@@ -113,16 +113,16 @@ public final class h implements c3.o {
         ArrayList arrayList = null;
         for (int i10 = 0; i10 < size; i10++) {
             f2.e eVar = (f2.e) list.get(i10);
-            if (eVar.f10288b == 1886614376) {
+            if (eVar.f10289b == 1886614376) {
                 if (arrayList == null) {
                     arrayList = new ArrayList();
                 }
-                byte[] bArr = eVar.f10286c.f8292a;
+                byte[] bArr = eVar.f10287c.f8293a;
                 j6.l i11 = p.i(bArr);
                 if (i11 == null) {
                     uuid = null;
                 } else {
-                    uuid = (UUID) i11.f14289b;
+                    uuid = (UUID) i11.f14291b;
                 }
                 if (uuid == null) {
                     e2.a.l("FragmentedMp4Extractor", "Skipped pssh atom (failed to extract uuid)");
@@ -160,12 +160,12 @@ public final class h implements c3.o {
                 xVar2.K(xVar.a());
                 sVar.f48566k = true;
                 sVar.f48570o = true;
-                xVar.k(0, xVar2.f8294c, xVar2.f8292a);
+                xVar.k(0, xVar2.f8295c, xVar2.f8293a);
                 xVar2.N(0);
                 sVar.f48570o = false;
                 return;
             }
-            StringBuilder l4 = i2.d.l(E, "Senc sample count ", " is different from fragment sample count");
+            StringBuilder l4 = i2.e.l(E, "Senc sample count ", " is different from fragment sample count");
             l4.append(sVar.e);
             throw w0.a(null, l4.toString());
         }
@@ -188,7 +188,7 @@ public final class h implements c3.o {
             G2 = xVar2.G();
         }
         long j11 = G2 + j10;
-        String str = m0.f8253a;
+        String str = m0.f8254a;
         long a02 = m0.a0(G, 1000000L, C, RoundingMode.DOWN);
         xVar2.O(2);
         int H = xVar2.H();
@@ -233,7 +233,7 @@ public final class h implements c3.o {
         if (m10 != null) {
             x1Var = n0.y(m10);
         } else {
-            l0 l0Var = n0.f8475b;
+            l0 l0Var = n0.f8476b;
             x1Var = x1.e;
         }
         this.f48500r = x1Var;

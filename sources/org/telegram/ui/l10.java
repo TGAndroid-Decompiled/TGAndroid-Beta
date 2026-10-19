@@ -1,74 +1,175 @@
 package org.telegram.ui;
 
+import android.content.Context;
+import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
-import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.TLRPC;
-public final class l10 extends pg.a {
-    public CharSequence f38664c;
-    public MessagesController.DialogFilter d;
-    public TLRPC.TL_dialogFilterSuggested e;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class l10 extends pg.b {
+    public final Context d;
+    public final FiltersSetupActivity e;
 
-    public final boolean equals(Object obj) {
-        boolean z10;
-        boolean z11;
-        boolean z12;
-        boolean z13;
-        if (obj == this) {
+    public l10(FiltersSetupActivity filtersSetupActivity, Context context) {
+        this.e = filtersSetupActivity;
+        this.d = context;
+    }
+
+    @Override
+    public final boolean D(s4.b1 b1Var) {
+        int i10 = b1Var.f45913f;
+        if (i10 != 3 && i10 != 0 && i10 != 5 && i10 != 1) {
             return true;
         }
-        if (!(obj instanceof l10)) {
-            return false;
+        return false;
+    }
+
+    @Override
+    public final int h() {
+        return this.e.f33138n.size();
+    }
+
+    @Override
+    public final int j(int i10) {
+        j10 j10Var;
+        if (i10 >= 0) {
+            FiltersSetupActivity filtersSetupActivity = this.e;
+            if (i10 >= filtersSetupActivity.f33138n.size() || (j10Var = (j10) filtersSetupActivity.f33138n.get(i10)) == null) {
+                return 3;
+            }
+            return j10Var.f44286a;
         }
-        l10 l10Var = (l10) obj;
-        int i10 = l10Var.f44291a;
-        int i11 = this.f44291a;
-        if (i10 != i11) {
-            return false;
-        }
-        if ((i11 == 0 || i11 == 4 || i11 == 3 || i11 == 6) && !TextUtils.equals(this.f38664c, l10Var.f38664c)) {
-            return false;
-        }
-        int i12 = this.f44291a;
-        if (i12 == 2) {
-            MessagesController.DialogFilter dialogFilter = this.d;
-            if (dialogFilter == null) {
-                z12 = true;
+        return 3;
+    }
+
+    @Override
+    public final void v(s4.b1 r22, int r23) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.l10.v(s4.b1, int):void");
+    }
+
+    @Override
+    public final s4.b1 x(ViewGroup viewGroup, int i10) {
+        h10 h10Var;
+        int i11;
+        int i12;
+        int i13;
+        int i14;
+        Context context = this.d;
+        if (i10 != 0) {
+            if (i10 != 1) {
+                if (i10 != 2) {
+                    int i15 = 3;
+                    if (i10 != 3) {
+                        if (i10 != 4) {
+                            if (i10 != 6) {
+                                ?? frameLayout = new FrameLayout(context);
+                                TextView textView = new TextView(context);
+                                frameLayout.f39121a = textView;
+                                org.telegram.messenger.lk.u(textView, org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.G6, false), 1, 16.0f, 1);
+                                textView.setMaxLines(1);
+                                textView.setSingleLine(true);
+                                TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
+                                textView.setEllipsize(truncateAt);
+                                if (LocaleController.isRTL) {
+                                    i11 = 5;
+                                } else {
+                                    i11 = 3;
+                                }
+                                textView.setGravity(i11);
+                                if (LocaleController.isRTL) {
+                                    i12 = 5;
+                                } else {
+                                    i12 = 3;
+                                }
+                                frameLayout.addView(textView, w7.z5.d(-2, -2.0f, i12, 22.0f, 10.0f, 22.0f, 0.0f));
+                                TextView textView2 = new TextView(context);
+                                frameLayout.f39122b = textView2;
+                                org.telegram.messenger.lk.u(textView2, org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21394z6, false), 1, 13.0f, 1);
+                                textView2.setMaxLines(1);
+                                textView2.setSingleLine(true);
+                                textView2.setEllipsize(truncateAt);
+                                if (LocaleController.isRTL) {
+                                    i13 = 5;
+                                } else {
+                                    i13 = 3;
+                                }
+                                textView2.setGravity(i13);
+                                if (LocaleController.isRTL) {
+                                    i14 = 5;
+                                } else {
+                                    i14 = 3;
+                                }
+                                frameLayout.addView(textView2, w7.z5.d(-2, -2.0f, i14, 22.0f, 35.0f, 22.0f, 0.0f));
+                                org.telegram.ui.Components.ti0 ti0Var = new org.telegram.ui.Components.ti0(context);
+                                frameLayout.f39123c = ti0Var;
+                                ti0Var.setText(LocaleController.getString(R.string.Add));
+                                ti0Var.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.Sh, false));
+                                ti0Var.setProgressColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.Nh, false));
+                                int x02 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.Oh, false);
+                                org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.Qh, false);
+                                ti0Var.setBackground(org.telegram.ui.ActionBar.x5.e(new float[]{14.0f}, x02));
+                                frameLayout.addView(ti0Var, w7.z5.i(-2.0f, 28.0f, 8388661, 0.0f, 18.0f, 14.0f, 0.0f));
+                                frameLayout.setAddOnClickListener(new org.telegram.ui.Components.h51(16, this, frameLayout));
+                                h10Var = frameLayout;
+                            } else {
+                                h10Var = new org.telegram.ui.Cells.v8(context);
+                            }
+                        } else {
+                            ?? frameLayout2 = new FrameLayout(context);
+                            org.telegram.ui.ActionBar.j5 j5Var = new org.telegram.ui.ActionBar.j5(context);
+                            frameLayout2.f39387a = j5Var;
+                            j5Var.setTextSize(16);
+                            if (LocaleController.isRTL) {
+                                i15 = 5;
+                            }
+                            j5Var.setGravity(i15);
+                            int i16 = org.telegram.ui.ActionBar.h6.f21192o6;
+                            j5Var.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, i16, false));
+                            j5Var.setTag(Integer.valueOf(i16));
+                            frameLayout2.addView(j5Var);
+                            ImageView imageView = new ImageView(context);
+                            frameLayout2.f39388b = imageView;
+                            imageView.setScaleType(ImageView.ScaleType.CENTER);
+                            frameLayout2.addView(imageView);
+                            h10Var = frameLayout2;
+                        }
+                    } else {
+                        h10Var = new org.telegram.ui.Cells.d9(context);
+                    }
+                } else {
+                    h10 h10Var2 = new h10(this.e, context);
+                    h10Var2.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20989d6, false));
+                    h10Var2.setOnReorderButtonTouchListener(new ei.p1(6, this, h10Var2));
+                    h10Var2.setOnOptionsClick(new a(this, 28));
+                    h10Var = h10Var2;
+                }
             } else {
-                z12 = false;
+                int i17 = R.raw.filters;
+                SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.formatString(R.string.CreateNewFilterInfo, new Object[0]));
+                ?? frameLayout3 = new FrameLayout(context);
+                ?? imageView2 = new ImageView(context);
+                frameLayout3.f37854a = imageView2;
+                imageView2.f(i17, 90, 90, null);
+                imageView2.setScaleType(ImageView.ScaleType.CENTER);
+                imageView2.d();
+                imageView2.setImportantForAccessibility(2);
+                frameLayout3.addView(imageView2, w7.z5.d(90, 90.0f, 49, 0.0f, 14.0f, 0.0f, 0.0f));
+                imageView2.setOnClickListener(new a(frameLayout3, 27));
+                TextView textView3 = new TextView(context);
+                textView3.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.B6, false));
+                textView3.setTextSize(1, 14.0f);
+                textView3.setGravity(17);
+                textView3.setText(replaceTags);
+                frameLayout3.addView(textView3, w7.z5.d(-1, -2.0f, 49, 40.0f, 121.0f, 40.0f, 24.0f));
+                h10Var = frameLayout3;
             }
-            MessagesController.DialogFilter dialogFilter2 = l10Var.d;
-            if (dialogFilter2 == null) {
-                z13 = true;
-            } else {
-                z13 = false;
-            }
-            if (z12 != z13) {
-                return false;
-            }
-            if (dialogFilter != null && dialogFilter.f17798id != dialogFilter2.f17798id) {
-                return false;
-            }
+        } else {
+            h10Var = new org.telegram.ui.Cells.l4(context);
         }
-        if (i12 == 5) {
-            TLRPC.TL_dialogFilterSuggested tL_dialogFilterSuggested = this.e;
-            if (tL_dialogFilterSuggested == null) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            TLRPC.TL_dialogFilterSuggested tL_dialogFilterSuggested2 = l10Var.e;
-            if (tL_dialogFilterSuggested2 == null) {
-                z11 = true;
-            } else {
-                z11 = false;
-            }
-            if (z10 != z11) {
-                return false;
-            }
-            if (tL_dialogFilterSuggested != null && tL_dialogFilterSuggested.filter.f20277id != tL_dialogFilterSuggested2.filter.f20277id) {
-                return false;
-            }
-        }
-        return true;
+        return new s4.b1(h10Var);
     }
 }

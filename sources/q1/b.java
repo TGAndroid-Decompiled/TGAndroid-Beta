@@ -9,16 +9,16 @@ import android.widget.EditText;
 import androidx.emoji2.text.l;
 import java.nio.ByteBuffer;
 public final class b extends InputConnectionWrapper {
-    public final EditText f44326a;
-    public final sb.a f44327b;
+    public final EditText f44321a;
+    public final sb.a f44322b;
 
     public b(EditText editText, InputConnection inputConnection, EditorInfo editorInfo) {
         super(inputConnection, false);
         int i10;
         sb.a aVar = new sb.a(19);
-        this.f44326a = editText;
-        this.f44327b = aVar;
-        if (l.f3106j != null) {
+        this.f44321a = editText;
+        this.f44322b = aVar;
+        if (l.f3104j != null) {
             l a2 = l.a();
             if (a2.b() != 1 || editorInfo == null) {
                 return;
@@ -29,10 +29,10 @@ public final class b extends InputConnectionWrapper {
             androidx.emoji2.text.f fVar = a2.e;
             fVar.getClass();
             Bundle bundle = editorInfo.extras;
-            p1.b bVar = (p1.b) ((qi.e) fVar.f3098c).f44752a;
+            p1.b bVar = (p1.b) ((qi.e) fVar.f3096c).f44750a;
             int a10 = bVar.a(4);
             if (a10 != 0) {
-                i10 = ((ByteBuffer) bVar.d).getInt(a10 + bVar.f43917a);
+                i10 = ((ByteBuffer) bVar.d).getInt(a10 + bVar.f43909a);
             } else {
                 i10 = 0;
             }
@@ -43,8 +43,8 @@ public final class b extends InputConnectionWrapper {
 
     @Override
     public final boolean deleteSurroundingText(int i10, int i11) {
-        Editable editableText = this.f44326a.getEditableText();
-        this.f44327b.getClass();
+        Editable editableText = this.f44321a.getEditableText();
+        this.f44322b.getClass();
         if (!sb.a.t2(this, editableText, i10, i11, false) && !super.deleteSurroundingText(i10, i11)) {
             return false;
         }
@@ -53,8 +53,8 @@ public final class b extends InputConnectionWrapper {
 
     @Override
     public final boolean deleteSurroundingTextInCodePoints(int i10, int i11) {
-        Editable editableText = this.f44326a.getEditableText();
-        this.f44327b.getClass();
+        Editable editableText = this.f44321a.getEditableText();
+        this.f44322b.getClass();
         if (sb.a.t2(this, editableText, i10, i11, true) || super.deleteSurroundingTextInCodePoints(i10, i11)) {
             return true;
         }

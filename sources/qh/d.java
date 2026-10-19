@@ -9,5 +9,5 @@ public interface d {
 
     void k(k1 k1Var);
 
-    void t();
+    void u();
 }

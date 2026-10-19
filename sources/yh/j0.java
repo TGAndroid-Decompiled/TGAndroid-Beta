@@ -31,49 +31,49 @@ import org.telegram.ui.Components.h9;
 import org.telegram.ui.Components.w5;
 import v7.v7;
 public final class j0 extends Drawable {
-    public NinePatchDrawable f50301a;
-    public NinePatchDrawable f50302b;
-    public final TextPaint f50303c;
+    public NinePatchDrawable f50300a;
+    public NinePatchDrawable f50301b;
+    public final TextPaint f50302c;
     public final ImageReceiver d;
     public final h9 e;
-    public final int f50304f;
-    public final int f50305g;
+    public final int f50303f;
+    public final int f50304g;
     public final float h;
-    public final float f50306i;
-    public final int f50307j;
-    public final int f50308k;
-    public boolean f50309l;
-    public CharSequence f50310m;
-    public StaticLayout f50311n;
-    public float f50312o;
-    public float f50313p;
-    public w5 f50314q;
-    public View f50315r;
-    public int f50316s;
-    public int f50317t;
-    public int f50318u;
+    public final float f50305i;
+    public final int f50306j;
+    public final int f50307k;
+    public boolean f50308l;
+    public CharSequence f50309m;
+    public StaticLayout f50310n;
+    public float f50311o;
+    public float f50312p;
+    public w5 f50313q;
+    public View f50314r;
+    public int f50315s;
+    public int f50316t;
+    public int f50317u;
 
     public j0() {
         TextPaint textPaint = new TextPaint(1);
-        this.f50303c = textPaint;
+        this.f50302c = textPaint;
         ImageReceiver imageReceiver = new ImageReceiver();
         this.d = imageReceiver;
         this.e = new h9((d6) null);
         int dp = AndroidUtilities.dp(10.66f);
-        this.f50304f = dp * 2;
-        this.f50305g = AndroidUtilities.dp(4.0f);
+        this.f50303f = dp * 2;
+        this.f50304g = AndroidUtilities.dp(4.0f);
         this.h = AndroidUtilities.dpf2(15.33f);
-        this.f50306i = AndroidUtilities.dpf2(7.33f);
-        this.f50307j = AndroidUtilities.dp(8.0f);
-        this.f50308k = (int) AndroidUtilities.dpf2(22.66f);
-        bs bsVar = bs.f25030f;
+        this.f50305i = AndroidUtilities.dpf2(7.33f);
+        this.f50306j = AndroidUtilities.dp(8.0f);
+        this.f50307k = (int) AndroidUtilities.dpf2(22.66f);
+        bs bsVar = bs.f25014f;
         textPaint.setTextSize(AndroidUtilities.dp(12.0f));
         textPaint.setColor(-1);
         imageReceiver.setRoundRadius(dp);
     }
 
     public final void a() {
-        if (this.f50301a == null) {
+        if (this.f50300a == null) {
             Drawable drawable = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.gift_message_bubble_24);
             int intrinsicWidth = drawable.getIntrinsicWidth();
             int intrinsicHeight = drawable.getIntrinsicHeight();
@@ -82,9 +82,9 @@ public final class j0 extends Drawable {
             drawable.setBounds(0, 0, intrinsicWidth, intrinsicHeight);
             drawable.draw(canvas);
             int i10 = (intrinsicHeight * 4) / 144;
-            this.f50301a = v7.a(createBitmap, new Rect((intrinsicWidth * 27) / 168, i10, (intrinsicWidth * 5) / 168, i10), (intrinsicWidth * 94) / 168, (intrinsicHeight * 71) / 144);
+            this.f50300a = v7.a(createBitmap, new Rect((intrinsicWidth * 27) / 168, i10, (intrinsicWidth * 5) / 168, i10), (intrinsicWidth * 94) / 168, (intrinsicHeight * 71) / 144);
         }
-        if (this.f50302b == null) {
+        if (this.f50301b == null) {
             Drawable drawable2 = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.gift_message_bubble_border_24);
             int intrinsicWidth2 = drawable2.getIntrinsicWidth();
             int intrinsicHeight2 = drawable2.getIntrinsicHeight();
@@ -99,7 +99,7 @@ public final class j0 extends Drawable {
             paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.MULTIPLY));
             canvas2.drawRect(0.0f, 0.0f, f7, f10, paint);
             int i11 = (intrinsicHeight2 * 4) / 144;
-            this.f50302b = v7.a(createBitmap2, new Rect((intrinsicWidth2 * 27) / 168, i11, (intrinsicWidth2 * 5) / 168, i11), (intrinsicWidth2 * 94) / 168, (intrinsicHeight2 * 71) / 144);
+            this.f50301b = v7.a(createBitmap2, new Rect((intrinsicWidth2 * 27) / 168, i11, (intrinsicWidth2 * 5) / 168, i11), (intrinsicWidth2 * 94) / 168, (intrinsicHeight2 * 71) / 144);
         }
     }
 
@@ -107,23 +107,23 @@ public final class j0 extends Drawable {
         int i11;
         int ceil;
         a();
-        if (i10 == this.f50316s && this.f50311n != null) {
+        if (i10 == this.f50315s && this.f50310n != null) {
             return;
         }
-        this.f50316s = i10;
-        if (!this.f50309l) {
+        this.f50315s = i10;
+        if (!this.f50308l) {
             i11 = 0;
         } else {
-            i11 = this.f50305g + this.f50304f;
+            i11 = this.f50304g + this.f50303f;
         }
-        int i12 = this.f50307j;
+        int i12 = this.f50306j;
         int i13 = i11 + i12;
         int i14 = (i10 - i13) - i12;
-        int i15 = this.f50308k;
-        if (i14 > 0 && !TextUtils.isEmpty(this.f50310m)) {
-            CharSequence charSequence = this.f50310m;
+        int i15 = this.f50307k;
+        if (i14 > 0 && !TextUtils.isEmpty(this.f50309m)) {
+            CharSequence charSequence = this.f50309m;
             Layout.Alignment alignment = Layout.Alignment.ALIGN_NORMAL;
-            TextPaint textPaint = this.f50303c;
+            TextPaint textPaint = this.f50302c;
             StaticLayout staticLayout = new StaticLayout(charSequence, textPaint, i14, alignment, 1.0f, 0.0f, false);
             int lineCount = staticLayout.getLineCount();
             float f7 = 0.0f;
@@ -132,7 +132,7 @@ public final class j0 extends Drawable {
                 f10 = Math.max(f10, staticLayout.getLineWidth(i16));
             }
             if (lineCount > 1 && (ceil = (int) Math.ceil(f10)) < i14) {
-                StaticLayout staticLayout2 = new StaticLayout(this.f50310m, textPaint, ceil, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+                StaticLayout staticLayout2 = new StaticLayout(this.f50309m, textPaint, ceil, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
                 if (staticLayout2.getLineCount() == lineCount) {
                     for (int i17 = 0; i17 < staticLayout2.getLineCount(); i17++) {
                         f7 = Math.max(f7, staticLayout2.getLineWidth(i17));
@@ -141,19 +141,19 @@ public final class j0 extends Drawable {
                     staticLayout = staticLayout2;
                 }
             }
-            this.f50311n = staticLayout;
-            this.f50312o = i13;
-            this.f50317t = ((int) Math.ceil(f10)) + i13 + i12;
-            float lineBaseline = this.f50311n.getLineBaseline(0);
-            StaticLayout staticLayout3 = this.f50311n;
+            this.f50310n = staticLayout;
+            this.f50311o = i13;
+            this.f50316t = ((int) Math.ceil(f10)) + i13 + i12;
+            float lineBaseline = this.f50310n.getLineBaseline(0);
+            StaticLayout staticLayout3 = this.f50310n;
             float f11 = this.h;
-            this.f50318u = Math.max(i15, (int) Math.ceil((staticLayout3.getLineBaseline(this.f50311n.getLineCount() - 1) - lineBaseline) + f11 + this.f50306i));
-            this.f50313p = f11 - lineBaseline;
+            this.f50317u = Math.max(i15, (int) Math.ceil((staticLayout3.getLineBaseline(this.f50310n.getLineCount() - 1) - lineBaseline) + f11 + this.f50305i));
+            this.f50312p = f11 - lineBaseline;
             return;
         }
-        this.f50311n = null;
-        this.f50317t = i15;
-        this.f50318u = i15;
+        this.f50310n = null;
+        this.f50316t = i15;
+        this.f50317u = i15;
     }
 
     public final void c(TLObject tLObject) {
@@ -163,7 +163,7 @@ public final class j0 extends Drawable {
         } else {
             z10 = false;
         }
-        this.f50309l = z10;
+        this.f50308l = z10;
         if (z10) {
             h9 h9Var = this.e;
             h9Var.p(tLObject);
@@ -177,7 +177,7 @@ public final class j0 extends Drawable {
                 imageReceiver.setImageBitmap(h9Var);
             }
         }
-        this.f50316s = -1;
+        this.f50315s = -1;
     }
 
     @Override
@@ -188,41 +188,41 @@ public final class j0 extends Drawable {
         a();
         Rect bounds = getBounds();
         canvas.save();
-        boolean z10 = this.f50309l;
+        boolean z10 = this.f50308l;
         if (z10) {
             f7 = 1.0f;
         } else {
             f7 = 0.0f;
         }
-        NinePatchDrawable ninePatchDrawable = this.f50301a;
+        NinePatchDrawable ninePatchDrawable = this.f50300a;
         int i12 = bounds.left;
-        int i13 = this.f50305g;
-        int i14 = this.f50304f;
+        int i13 = this.f50304g;
+        int i14 = this.f50303f;
         if (z10) {
             i10 = i13 + i14;
         } else {
             i10 = 0;
         }
         zf.p.g(ninePatchDrawable, i12 + i10, bounds.top, bounds.right, bounds.bottom);
-        this.f50301a.draw(canvas);
-        NinePatchDrawable ninePatchDrawable2 = this.f50302b;
+        this.f50300a.draw(canvas);
+        NinePatchDrawable ninePatchDrawable2 = this.f50301b;
         int i15 = bounds.left;
-        if (this.f50309l) {
+        if (this.f50308l) {
             i11 = i13 + i14;
         } else {
             i11 = 0;
         }
         zf.p.g(ninePatchDrawable2, i15 + i11, bounds.top, bounds.right, bounds.bottom);
-        this.f50302b.draw(canvas);
-        if (this.f50311n != null) {
+        this.f50301b.draw(canvas);
+        if (this.f50310n != null) {
             canvas.save();
-            canvas.translate(bounds.left + this.f50312o, bounds.top + this.f50313p);
-            this.f50311n.draw(canvas);
-            View view = this.f50315r;
-            if (view != null && (this.f50310m instanceof Spanned)) {
-                w5 update = a6.update(0, view, false, this.f50314q, this.f50311n);
-                this.f50314q = update;
-                a6.drawAnimatedEmojis(canvas, this.f50311n, update, 0.0f, null, 0.0f, 0.0f, 0.0f, 1.0f, null);
+            canvas.translate(bounds.left + this.f50311o, bounds.top + this.f50312p);
+            this.f50310n.draw(canvas);
+            View view = this.f50314r;
+            if (view != null && (this.f50309m instanceof Spanned)) {
+                w5 update = a6.update(0, view, false, this.f50313q, this.f50310n);
+                this.f50313q = update;
+                a6.drawAnimatedEmojis(canvas, this.f50310n, update, 0.0f, null, 0.0f, 0.0f, 0.0f, 1.0f, null);
             }
             canvas.restore();
         }
@@ -240,12 +240,12 @@ public final class j0 extends Drawable {
 
     @Override
     public final int getMinimumHeight() {
-        return this.f50318u;
+        return this.f50317u;
     }
 
     @Override
     public final int getMinimumWidth() {
-        return this.f50317t;
+        return this.f50316t;
     }
 
     @Override

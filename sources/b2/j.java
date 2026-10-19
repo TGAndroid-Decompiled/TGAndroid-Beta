@@ -5,10 +5,10 @@ import android.os.SharedMemory;
 import android.system.OsConstants;
 import java.nio.ByteBuffer;
 public final class j {
-    public final SharedMemory f3792a;
+    public final SharedMemory f3790a;
 
     public j(SharedMemory sharedMemory) {
-        this.f3792a = sharedMemory;
+        this.f3790a = sharedMemory;
     }
 
     public static j a(byte[] bArr) {
@@ -37,7 +37,7 @@ public final class j {
 
     public static byte[] b(Bundle bundle) {
         ByteBuffer byteBuffer;
-        SharedMemory sharedMemory = (SharedMemory) bundle.getParcelable(l.f3815f);
+        SharedMemory sharedMemory = (SharedMemory) bundle.getParcelable(l.f3813f);
         try {
             if (sharedMemory == null) {
                 return null;

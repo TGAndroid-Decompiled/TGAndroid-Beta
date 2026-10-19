@@ -14,40 +14,40 @@ import org.telegram.ui.Cells.b3;
 import org.telegram.ui.Components.w9;
 import w7.z5;
 public final class h extends b3 {
-    public final m f11872f;
+    public final m f11873f;
 
     public h(m mVar, Context context) {
         super(context);
-        this.f11872f = mVar;
-        this.f22033a = UserConfig.selectedAccount;
+        this.f11873f = mVar;
+        this.f22036a = UserConfig.selectedAccount;
         setOrientation(1);
-        setBackgroundColor(h6.x0(null, h6.f20928a7, false));
+        setBackgroundColor(h6.x0(null, h6.f20931a7, false));
         m5 m5Var = new m5(context, 3);
-        m5Var.f9468c = new Path();
+        m5Var.f9469c = new Path();
         Paint paint = new Paint(1);
-        m5Var.f9467b = paint;
-        paint.setColor(h6.x0(null, h6.f20986d6, false));
+        m5Var.f9468b = paint;
+        paint.setColor(h6.x0(null, h6.f20989d6, false));
         paint.setShadowLayer(AndroidUtilities.dp(1.33f), 0.0f, AndroidUtilities.dp(0.33f), 503316480);
         m5Var.setWillNotDraw(false);
         m5Var.setOrientation(1);
         m5Var.setPadding(AndroidUtilities.dp(32.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(32.0f), AndroidUtilities.dp(32.0f));
         w9 w9Var = new w9(context);
-        this.f22034b = w9Var;
+        this.f22037b = w9Var;
         w9Var.setOnClickListener(new View.OnClickListener(this) {
-            public final hg.h f21964b;
+            public final hg.h f21967b;
 
             {
-                this.f21964b = this;
+                this.f21967b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f21964b.f22034b.getImageReceiver().startAnimation();
+                        this.f21967b.f22037b.getImageReceiver().startAnimation();
                         return;
                     default:
-                        this.f21964b.f11872f.K();
+                        this.f21967b.f11873f.K();
                         return;
                 }
             }
@@ -55,7 +55,7 @@ public final class h extends b3 {
         a();
         m5Var.addView(w9Var, z5.q(130, 130, 49));
         TextView textView = new TextView(context);
-        this.f22035c = textView;
+        this.f22038c = textView;
         textView.setGravity(17);
         textView.setTextSize(1, 18.0f);
         textView.setTextColor(h6.x0(null, h6.G6, false));
@@ -65,7 +65,7 @@ public final class h extends b3 {
         this.d = textView2;
         textView2.setGravity(17);
         textView2.setTextSize(1, 14.0f);
-        textView2.setTextColor(h6.x0(null, h6.f21374y6, false));
+        textView2.setTextColor(h6.x0(null, h6.f21377y6, false));
         m5Var.addView(textView2, z5.t(-1, -2, 49, 0, 7, 0, 0));
         TextView textView3 = new TextView(context);
         this.e = textView3;
@@ -76,20 +76,20 @@ public final class h extends b3 {
         textView3.setTypeface(AndroidUtilities.bold());
         textView3.setPadding(AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f));
         textView3.setOnClickListener(new View.OnClickListener(this) {
-            public final hg.h f21964b;
+            public final hg.h f21967b;
 
             {
-                this.f21964b = this;
+                this.f21967b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f21964b.f22034b.getImageReceiver().startAnimation();
+                        this.f21967b.f22037b.getImageReceiver().startAnimation();
                         return;
                     default:
-                        this.f21964b.f11872f.K();
+                        this.f21967b.f11873f.K();
                         return;
                 }
             }

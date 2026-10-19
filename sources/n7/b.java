@@ -1,17 +1,29 @@
 package n7;
-public final class b {
-    public final Object f17257a;
+public final class b extends d {
+    public static final b f17260a = new Object();
 
-    public b(Object obj) {
-        this.f17257a = obj;
+    @Override
+    public final Object a() {
+        throw new IllegalStateException("Optional.get() cannot be called on an absent value");
     }
 
-    public Object a() {
-        if (a.f17252b == null) {
-            a.f17252b = new Exception();
+    @Override
+    public final boolean b() {
+        return false;
+    }
+
+    public final boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
         }
-        synchronized (a.f17251a) {
-        }
-        throw new IllegalStateException("Must call PhenotypeContext.setContext() first");
+        return false;
+    }
+
+    public final int hashCode() {
+        return 2040732332;
+    }
+
+    public final String toString() {
+        return "Optional.absent()";
     }
 }

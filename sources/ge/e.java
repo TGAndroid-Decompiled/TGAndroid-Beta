@@ -2,18 +2,18 @@ package ge;
 
 import be.c0;
 public final class e implements c0 {
-    public final kd.h f11020a;
+    public final kd.h f11021a;
 
     public e(kd.h hVar) {
-        this.f11020a = hVar;
+        this.f11021a = hVar;
     }
 
     @Override
     public final kd.h c() {
-        return this.f11020a;
+        return this.f11021a;
     }
 
     public final String toString() {
-        return "CoroutineScope(coroutineContext=" + this.f11020a + ')';
+        return "CoroutineScope(coroutineContext=" + this.f11021a + ')';
     }
 }

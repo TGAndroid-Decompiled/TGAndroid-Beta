@@ -6,16 +6,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.is0;
+import org.telegram.ui.Components.js0;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
 public final class i2 extends s4.v {
-    public final is0 d;
+    public final js0 d;
     public final l2 e;
 
-    public i2(l2 l2Var, is0 is0Var) {
+    public i2(l2 l2Var, js0 js0Var) {
         this.e = l2Var;
-        this.d = is0Var;
+        this.d = js0Var;
     }
 
     @Override
@@ -41,12 +41,12 @@ public final class i2 extends s4.v {
 
     @Override
     public final boolean j() {
-        return this.e.f50363n;
+        return this.e.f50362n;
     }
 
     @Override
     public final boolean k() {
-        return this.e.f50363n;
+        return this.e.f50362n;
     }
 
     @Override
@@ -54,8 +54,8 @@ public final class i2 extends s4.v {
         TL_stars.SavedStarGift savedStarGift;
         ai.j1 j1Var;
         l2 l2Var = this.e;
-        g2 g2Var = l2Var.f50362f;
-        if (l2Var.e != null && l2Var.f50363n) {
+        g2 g2Var = l2Var.f50361f;
+        if (l2Var.e != null && l2Var.f50362n) {
             View view = b1Var.f45910a;
             TL_stars.SavedStarGift savedStarGift2 = null;
             if (view instanceof g1) {
@@ -72,10 +72,10 @@ public final class i2 extends s4.v {
                     int b10 = b1Var.b();
                     int b11 = b1Var2.b();
                     boolean z10 = l2Var.d;
-                    is0 is0Var = this.d;
+                    js0 js0Var = this.d;
                     if (z10) {
                         l2Var.e.l(b10, b11);
-                        is0Var.e.n(l2Var.e.d);
+                        js0Var.e.n(l2Var.e.d);
                     } else {
                         y9 y9Var = l2Var.e;
                         if (y9Var.f2504q == null) {
@@ -87,10 +87,10 @@ public final class i2 extends s4.v {
                     g2Var.W2.S();
                     if (l2Var.d) {
                         HashMap hashMap = p2.T;
-                        is0Var.f(true);
+                        js0Var.f(true);
                     }
                     org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
-                    if ((U instanceof ProfileActivity) && (j1Var = ((ProfileActivity) U).f33724w0) != null) {
+                    if ((U instanceof ProfileActivity) && (j1Var = ((ProfileActivity) U).f33730w0) != null) {
                         j1Var.a();
                     }
                     return true;
@@ -126,7 +126,7 @@ public final class i2 extends s4.v {
             }
             return;
         }
-        g2 g2Var = l2Var.f50362f;
+        g2 g2Var = l2Var.f50361f;
         if (g2Var != null) {
             g2Var.I0(false);
         }
@@ -137,7 +137,7 @@ public final class i2 extends s4.v {
 
     public final boolean r(TL_stars.SavedStarGift savedStarGift) {
         l2 l2Var = this.e;
-        if (l2Var.f50363n) {
+        if (l2Var.f50362n) {
             if (l2Var.e == this.d.d) {
                 if (savedStarGift == null || !savedStarGift.pinned_to_top) {
                     return false;

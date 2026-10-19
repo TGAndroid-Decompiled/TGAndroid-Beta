@@ -1,54 +1,37 @@
 package org.telegram.ui.Wallet;
 
-import android.content.Intent;
-import android.net.Uri;
-import java.util.ArrayList;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.FileLog;
-import org.telegram.tgnet.TLObject;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.u61;
-public final class m9 implements hg.f0, org.telegram.ui.ActionBar.a2 {
-    public final r9 f34559a;
+public final class m9 implements Utilities.Callback {
+    public final int f34531a;
+    public final r9 f34532b;
 
-    public m9(r9 r9Var) {
-        this.f34559a = r9Var;
+    public m9(r9 r9Var, int i10) {
+        this.f34531a = i10;
+        this.f34532b = r9Var;
     }
 
     @Override
-    public void b(a0.h hVar, ArrayList arrayList) {
-        r9 r9Var = this.f34559a;
-        ArrayList arrayList2 = r9Var.f34792r;
-        if (!r9Var.f34791n) {
-            arrayList2.clear();
-            int size = arrayList.size();
-            int i10 = 0;
-            while (i10 < size) {
-                Object obj = arrayList.get(i10);
-                i10++;
-                hg.g0 g0Var = (hg.g0) obj;
-                TLObject tLObject = g0Var.f11867a;
-                if ((tLObject instanceof TLRPC.User) && r9.b0((TLRPC.User) tLObject)) {
-                    arrayList2.add((TLRPC.User) g0Var.f11867a);
+    public final void run(Object obj) {
+        ei.e2 e2Var;
+        switch (this.f34531a) {
+            case 0:
+                r9.Z(this.f34532b, (String) obj);
+                return;
+            default:
+                TLRPC.User user = (TLRPC.User) obj;
+                r9 r9Var = this.f34532b;
+                if (!r9Var.isFinished && (e2Var = r9Var.M) != null) {
+                    if (user == null) {
+                        AndroidUtilities.runOnUIThread(new n9(r9Var, 1));
+                        return;
+                    }
+                    AndroidUtilities.hideKeyboard(e2Var);
+                    r9Var.h0(null, user);
+                    return;
                 }
-            }
-            u61 u61Var = r9Var.f31190a;
-            if (u61Var != null) {
-                u61Var.W2.N(true);
-            }
-        }
-    }
-
-    @Override
-    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        r9 r9Var = this.f34559a;
-        r9Var.getClass();
-        try {
-            Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-            intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
-            r9Var.getParentActivity().startActivity(intent);
-        } catch (Exception e) {
-            FileLog.e(e);
+                return;
         }
     }
 }

@@ -73,15 +73,15 @@ public class BuildVars {
     }
 
     private static boolean hasDirectCurrency() {
-        c5.o oVar;
-        if (BillingController.getInstance().isReady() && (oVar = BillingController.PREMIUM_PRODUCT_DETAILS) != null) {
-            ArrayList arrayList = oVar.h;
+        c5.p pVar;
+        if (BillingController.getInstance().isReady() && (pVar = BillingController.PREMIUM_PRODUCT_DETAILS) != null) {
+            ArrayList arrayList = pVar.h;
             int size = arrayList.size();
             int i10 = 0;
             while (i10 < size) {
                 Object obj = arrayList.get(i10);
                 i10++;
-                ArrayList arrayList2 = (ArrayList) ((c5.n) obj).f4773b.f310b;
+                ArrayList arrayList2 = ((c5.o) obj).f4774b.f4772a;
                 int size2 = arrayList2.size();
                 int i11 = 0;
                 while (i11 < size2) {

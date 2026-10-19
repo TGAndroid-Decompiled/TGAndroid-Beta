@@ -116,8 +116,8 @@ public class g extends ViewGroup {
             setImportantForAccessibility(1);
         }
         ?? obj = new Object();
-        obj.f49776b = this;
-        obj.f49775a = new Rect();
+        obj.f49775b = this;
+        obj.f49774a = new Rect();
         a0.i(this, obj);
     }
 
@@ -277,7 +277,7 @@ public class g extends ViewGroup {
                     scrollTo(0, currY);
                 }
             }
-            WeakHashMap weakHashMap = i0.f44818a;
+            WeakHashMap weakHashMap = i0.f44816a;
             postInvalidateOnAnimation();
             return;
         }
@@ -337,7 +337,7 @@ public class g extends ViewGroup {
             }
         }
         if (z10) {
-            WeakHashMap weakHashMap = i0.f44818a;
+            WeakHashMap weakHashMap = i0.f44816a;
             postInvalidateOnAnimation();
         }
     }
@@ -391,7 +391,7 @@ public class g extends ViewGroup {
         if (z11) {
             p8.b bVar = this.f50696q0;
             if (z10) {
-                WeakHashMap weakHashMap = i0.f44818a;
+                WeakHashMap weakHashMap = i0.f44816a;
                 postOnAnimation(bVar);
                 return;
             }
@@ -474,7 +474,7 @@ public class g extends ViewGroup {
         }
         ArrayList arrayList = this.f50678b;
         if (arrayList.size() > 0) {
-            return Math.max(((c) arrayList.get(0)).f50665b, Math.min(i10, ((c) i2.d.h(1, arrayList)).f50665b));
+            return Math.max(((c) arrayList.get(0)).f50665b, Math.min(i10, ((c) i2.e.h(1, arrayList)).f50665b));
         }
         return i10;
     }
@@ -775,7 +775,7 @@ public class g extends ViewGroup {
                             this.N = true;
                         }
                         if (this.M && r(x10)) {
-                            WeakHashMap weakHashMap = i0.f44818a;
+                            WeakHashMap weakHashMap = i0.f44816a;
                             postInvalidateOnAnimation();
                         }
                     }
@@ -859,7 +859,7 @@ public class g extends ViewGroup {
             return;
         }
         f fVar = (f) parcelable;
-        super.onRestoreInstanceState(fVar.f12306a);
+        super.onRestoreInstanceState(fVar.f12307a);
         if (this.e != null) {
             y(fVar.f50671c, 0, false, true);
             return;
@@ -982,7 +982,7 @@ public class g extends ViewGroup {
                 this.V = motionEvent.getPointerId(0);
             }
             if (z10) {
-                WeakHashMap weakHashMap = i0.f44818a;
+                WeakHashMap weakHashMap = i0.f44816a;
                 postInvalidateOnAnimation();
             }
         }
@@ -1036,7 +1036,7 @@ public class g extends ViewGroup {
         ArrayList arrayList = this.f50678b;
         boolean z12 = false;
         c cVar = (c) arrayList.get(0);
-        c cVar2 = (c) i2.d.h(1, arrayList);
+        c cVar2 = (c) i2.e.h(1, arrayList);
         if (cVar.f50665b != 0) {
             f11 = cVar.e * clientWidth;
             z10 = false;
@@ -1313,7 +1313,7 @@ public class g extends ViewGroup {
                     int min = Math.min(abs, 600);
                     this.f50699s = false;
                     this.f50697r.startScroll(i13, scrollY, i14, i15, min);
-                    WeakHashMap weakHashMap = i0.f44818a;
+                    WeakHashMap weakHashMap = i0.f44816a;
                     postInvalidateOnAnimation();
                 }
             }

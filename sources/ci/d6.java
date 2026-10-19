@@ -1,101 +1,170 @@
 package ci;
 
-import android.graphics.Paint;
-import java.util.Comparator;
-import java.util.List;
-import java.util.regex.Pattern;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.view.KeyEvent;
+import android.view.View;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicReference;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.PasskeysController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.c11;
-import org.telegram.ui.Components.ex;
-import org.telegram.ui.Components.s00;
-import org.telegram.ui.ek0;
-import org.telegram.ui.go0;
-import org.telegram.ui.if0;
-import org.telegram.ui.tm0;
-import org.telegram.ui.ua;
-import org.telegram.ui.w61;
-import org.telegram.ui.xo;
-public final class d6 implements RequestDelegate {
-    public final int f5255a;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+import org.telegram.ui.Components.x31;
+import org.telegram.ui.Components.xc;
+import org.telegram.ui.ProfileActivity;
+import org.telegram.ui.q40;
+import org.telegram.ui.q50;
+import org.telegram.ui.re1;
+import org.telegram.ui.sj0;
+import org.telegram.ui.vb;
+public final class d6 implements View.OnClickListener {
+    public final int f5322a;
+    public final int f5323b;
+    public final Object f5324c;
+    public final Object d;
+    public final Object e;
 
-    public d6(int i10) {
-        this.f5255a = i10;
+    public d6(int i10, int i11, KeyEvent.Callback callback, Object obj, Object obj2) {
+        this.f5322a = i11;
+        this.f5324c = callback;
+        this.d = obj;
+        this.f5323b = i10;
+        this.e = obj2;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f5255a) {
+    public final void onClick(View view) {
+        switch (this.f5322a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new ah.j(8));
+                g6.n((g6) this.f5324c, (TLRPC.User) this.d, this.f5323b, (org.telegram.ui.ActionBar.d6) this.e);
                 return;
             case 1:
-                Comparator comparator = h7.X;
+                vb.W((vb) this.f5324c, this.f5323b, (ArrayList) this.d, (Integer) this.e);
                 return;
             case 2:
-                AndroidUtilities.runOnUIThread(new ah.j(22));
+                int[] iArr = (int[]) this.f5324c;
+                AlertDialog$Builder alertDialog$Builder = (AlertDialog$Builder) this.d;
+                sj0 sj0Var = (sj0) this.e;
+                iArr[0] = ((Integer) view.getTag()).intValue();
+                SharedPreferences.Editor edit = MessagesController.getNotificationsSettings(UserConfig.selectedAccount).edit();
+                int i10 = this.f5323b;
+                if (i10 == 1) {
+                    edit.putInt("popupAll", iArr[0]);
+                } else if (i10 == 0) {
+                    edit.putInt("popupGroup", iArr[0]);
+                } else {
+                    edit.putInt("popupChannel", iArr[0]);
+                }
+                edit.commit();
+                alertDialog$Builder.f20604a.L0.run();
+                sj0Var.run();
                 return;
             case 3:
-                AndroidUtilities.runOnUIThread(new ah.j(22));
+                q50 q50Var = (q50) this.f5324c;
+                ArrayList arrayList = (ArrayList) this.d;
+                TLRPC.GroupCallParticipant groupCallParticipant = (TLRPC.GroupCallParticipant) this.e;
+                int size = arrayList.size();
+                int i11 = this.f5323b;
+                if (i11 < size) {
+                    TLRPC.GroupCallParticipant groupCallParticipant2 = (TLRPC.GroupCallParticipant) q50Var.f40375a1.participants.f(MessageObject.getPeerId(groupCallParticipant.peer));
+                    if (groupCallParticipant2 != null) {
+                        groupCallParticipant = groupCallParticipant2;
+                    }
+                    q50Var.y1(groupCallParticipant, MessageObject.getPeerId(groupCallParticipant.peer), ((Integer) arrayList.get(i11)).intValue());
+                    q40 q40Var = q50Var.f40399f3;
+                    if (q40Var != null) {
+                        q40Var.dismiss();
+                        return;
+                    } else if (((Integer) arrayList.get(i11)).intValue() != 9 && ((Integer) arrayList.get(i11)).intValue() != 10 && ((Integer) arrayList.get(i11)).intValue() != 11) {
+                        q50Var.e1(true);
+                        return;
+                    } else {
+                        return;
+                    }
+                }
                 return;
             case 4:
-                int[] iArr = ei.c1.f8807a0;
+                ei.d dVar = (ei.d) this.f5324c;
+                Context context = (Context) this.d;
+                org.telegram.ui.ActionBar.f3 f3Var = (org.telegram.ui.ActionBar.f3) this.e;
+                if (!dVar.N) {
+                    dVar.setLoading(true);
+                    int i12 = this.f5323b;
+                    PasskeysController.create(context, i12, new ai.u0(dVar, context, f3Var, i12, 8));
+                    return;
+                }
                 return;
             case 5:
-                AndroidUtilities.runOnUIThread(new ah.j(16));
-                return;
+                ProfileActivity profileActivity = (ProfileActivity) this.f5324c;
+                String str = (String) this.e;
+                ((org.telegram.ui.ActionBar.m1) ((AtomicReference) this.d).get()).dismiss();
+                try {
+                    AndroidUtilities.addToClipboard(str);
+                    if (this.f5323b == profileActivity.P3) {
+                        xc.a0(profileActivity).i(LocaleController.getString(R.string.BusinessHoursCopied)).j();
+                    } else {
+                        xc.a0(profileActivity).i(LocaleController.getString(R.string.BusinessLocationCopied)).j();
+                    }
+                    return;
+                } catch (Exception e) {
+                    FileLog.e(e);
+                    return;
+                }
             case 6:
-                AndroidUtilities.runOnUIThread(new ah.j(16));
-                return;
-            case 7:
-                AndroidUtilities.runOnUIThread(new ah.j(16));
-                return;
-            case 8:
-                return;
-            case 9:
-                Paint paint = ua.H;
-                return;
-            case 10:
-                int i10 = xo.Z2;
-                return;
-            case 11:
-                AndroidUtilities.runOnUIThread(new ah.j(22));
-                return;
-            case 12:
-                Pattern pattern = org.telegram.ui.Components.f5.f26080a;
-                return;
-            case 13:
-                int i11 = ex.H0;
-                return;
-            case 14:
-                int i12 = s00.A0;
-                return;
-            case 15:
-                AndroidUtilities.runOnUIThread(new ah.j(22));
-                return;
-            case 16:
-                int i13 = c11.e;
-                return;
-            case 17:
-                int i14 = if0.f37852t0;
-                return;
-            case 18:
-                AndroidUtilities.runOnUIThread(new ek0(tLObject, 3));
-                return;
-            case 19:
-                int i15 = tm0.R;
-                return;
-            case 20:
-                List list = go0.f37213g1;
+                re1 re1Var = (re1) this.f5324c;
+                TLRPC.TL_forumTopic tL_forumTopic = (TLRPC.TL_forumTopic) this.d;
+                ActionBarPopupWindow$ActionBarPopupWindowLayout[] actionBarPopupWindow$ActionBarPopupWindowLayoutArr = (ActionBarPopupWindow$ActionBarPopupWindowLayout[]) this.e;
+                MessagesController messagesController = re1Var.getMessagesController();
+                long j10 = -re1Var.f41150a;
+                if (messagesController.isDialogMuted(j10, tL_forumTopic.f20327id)) {
+                    re1Var.getNotificationsController().muteDialog(j10, tL_forumTopic.f20327id, false);
+                    re1Var.finishPreviewFragment();
+                    if (xc.a(re1Var)) {
+                        xc.z(re1Var, 4, 0, re1Var.getResourceProvider()).j();
+                        return;
+                    }
+                    return;
+                }
+                actionBarPopupWindow$ActionBarPopupWindowLayoutArr[0].getSwipeBack().e(this.f5323b);
                 return;
             default:
-                int i16 = w61.e;
+                ei.d dVar2 = (ei.d) this.f5324c;
+                org.telegram.ui.ActionBar.f3 f3Var2 = (org.telegram.ui.ActionBar.f3) this.d;
+                org.telegram.ui.ActionBar.d6 d6Var = (org.telegram.ui.ActionBar.d6) this.e;
+                if (!dVar2.N) {
+                    dVar2.setLoading(true);
+                    org.telegram.ui.Wallet.u3 u3Var = new org.telegram.ui.Wallet.u3(dVar2, f3Var2, d6Var, 0);
+                    int i13 = this.f5323b;
+                    org.telegram.ui.Wallet.m0 w9 = org.telegram.ui.Wallet.m0.w(i13);
+                    w9.j0(new x31(i13, u3Var, w9));
+                    return;
+                }
                 return;
         }
     }
 
-    private final void a(TLObject tLObject, TLRPC.TL_error tL_error) {
+    public d6(Object obj, int i10, Object obj2, Object obj3, int i11) {
+        this.f5322a = i11;
+        this.f5324c = obj;
+        this.f5323b = i10;
+        this.d = obj2;
+        this.e = obj3;
+    }
+
+    public d6(org.telegram.ui.ActionBar.n2 n2Var, Object obj, Serializable serializable, int i10, int i11) {
+        this.f5322a = i11;
+        this.f5324c = n2Var;
+        this.d = obj;
+        this.e = serializable;
+        this.f5323b = i10;
     }
 }

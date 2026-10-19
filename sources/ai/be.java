@@ -3,15 +3,15 @@ package ai;
 import android.view.animation.Interpolator;
 import org.telegram.messenger.lk;
 public final class be implements Interpolator {
-    public final int f1050a;
+    public final int f1049a;
 
     public be(int i10) {
-        this.f1050a = i10;
+        this.f1049a = i10;
     }
 
     @Override
     public final float getInterpolation(float f7) {
-        switch (this.f1050a) {
+        switch (this.f1049a) {
             case 0:
                 return (float) Math.pow(f7, 2.0d);
             case 1:

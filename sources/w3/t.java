@@ -59,7 +59,7 @@ public final class t {
         int length = iArr.length - 1;
         int i11 = -1;
         while (i10 <= length) {
-            int C = i2.d.C(length, i10, 2, i10);
+            int C = i2.e.C(length, i10, 2, i10);
             if (jArr[iArr[C]] <= j10) {
                 i10 = C + 1;
                 i11 = C;
@@ -92,7 +92,7 @@ public final class t {
         int i10 = 0;
         int i11 = -1;
         while (i10 <= length) {
-            int C = i2.d.C(length, i10, 2, i10);
+            int C = i2.e.C(length, i10, 2, i10);
             if (jArr[iArr[C]] >= j10) {
                 length = C - 1;
                 i11 = C;

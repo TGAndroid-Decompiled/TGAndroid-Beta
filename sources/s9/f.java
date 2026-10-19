@@ -1,6 +1,6 @@
 package s9;
 
-import ai.w3;
+import ai.w2;
 import com.google.android.gms.internal.cast.i4;
 import java.util.Collection;
 import java.util.List;
@@ -56,7 +56,7 @@ public final class f implements ScheduledExecutorService, AutoCloseable {
 
     @Override
     public final ScheduledFuture schedule(Runnable runnable, long j10, TimeUnit timeUnit) {
-        return new h(new w3(this, runnable, j10, timeUnit, 6));
+        return new h(new w2(this, runnable, j10, timeUnit, 7));
     }
 
     @Override
@@ -96,7 +96,7 @@ public final class f implements ScheduledExecutorService, AutoCloseable {
 
     @Override
     public final ScheduledFuture schedule(Callable callable, long j10, TimeUnit timeUnit) {
-        return new h(new w3(this, callable, j10, timeUnit, 7));
+        return new h(new w2(this, callable, j10, timeUnit, 8));
     }
 
     @Override

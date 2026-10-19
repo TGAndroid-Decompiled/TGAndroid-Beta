@@ -44,8 +44,8 @@ public final class e implements q {
         if (c0Var instanceof c3.j) {
             return (c3.j) c0Var;
         }
-        if (c0Var instanceof u3.e) {
-            return ((u3.e) c0Var).f47509a;
+        if (c0Var instanceof u3.d) {
+            return ((u3.d) c0Var).f47507a;
         }
         return null;
     }

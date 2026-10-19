@@ -18,11 +18,11 @@ public final class i0 implements e2.j {
         switch (this.f47322a) {
             case 0:
                 a5.a aVar = this.f47323b;
-                k0Var.f(aVar.f280b, (g0) aVar.f281c, this.f47324c, this.d);
+                k0Var.f(aVar.f281b, (g0) aVar.f282c, this.f47324c, this.d);
                 return;
             default:
                 a5.a aVar2 = this.f47323b;
-                k0Var.k(aVar2.f280b, (g0) aVar2.f281c, this.f47324c, this.d);
+                k0Var.k(aVar2.f281b, (g0) aVar2.f282c, this.f47324c, this.d);
                 return;
         }
     }

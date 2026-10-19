@@ -4,8 +4,8 @@ import j$.util.Collection;
 import java.util.Arrays;
 public abstract class w0 extends i0 implements r1, Collection {
     public static final int d = 0;
-    public transient x1 f8523b;
-    public transient y0 f8524c;
+    public transient x1 f8524b;
+    public transient y0 f8525c;
 
     @Override
     public final boolean contains(Object obj) {
@@ -25,7 +25,7 @@ public abstract class w0 extends i0 implements r1, Collection {
                     w0 w0Var = (w0) r1Var;
                     if (t().size() == w0Var.t().size()) {
                         for (t1 t1Var : w0Var.t()) {
-                            if (d2Var.e.b(t1Var.f8505a) != t1Var.a()) {
+                            if (d2Var.e.b(t1Var.f8506a) != t1Var.a()) {
                                 return false;
                             }
                         }
@@ -42,10 +42,10 @@ public abstract class w0 extends i0 implements r1, Collection {
 
     @Override
     public final n0 h() {
-        x1 x1Var = this.f8523b;
+        x1 x1Var = this.f8524b;
         if (x1Var == null) {
             n0 h = super.h();
-            this.f8523b = (x1) h;
+            this.f8524b = (x1) h;
             return h;
         }
         return x1Var;
@@ -61,7 +61,7 @@ public abstract class w0 extends i0 implements r1, Collection {
         m2 it = t().iterator();
         while (it.hasNext()) {
             t1 t1Var = (t1) it.next();
-            Arrays.fill(objArr, i10, t1Var.a() + i10, t1Var.f8505a);
+            Arrays.fill(objArr, i10, t1Var.a() + i10, t1Var.f8506a);
             i10 += t1Var.a();
         }
         return i10;
@@ -75,14 +75,14 @@ public abstract class w0 extends i0 implements r1, Collection {
     public abstract y0 s();
 
     public final y0 t() {
-        y0 y0Var = this.f8524c;
+        y0 y0Var = this.f8525c;
         if (y0Var == null) {
             if (isEmpty()) {
-                y0Var = e2.f8439s;
+                y0Var = e2.f8440s;
             } else {
                 y0Var = new v0(this, 0);
             }
-            this.f8524c = y0Var;
+            this.f8525c = y0Var;
         }
         return y0Var;
     }

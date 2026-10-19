@@ -1,6 +1,6 @@
 package t7;
 
-import w7.p7;
+import w7.o7;
 public final class c extends d {
     public final transient int f46877c;
     public final transient int d;
@@ -14,7 +14,7 @@ public final class c extends d {
 
     @Override
     public final Object get(int i10) {
-        p7.a(i10, this.d);
+        o7.a(i10, this.d);
         return this.e.get(i10 + this.f46877c);
     }
 
@@ -35,7 +35,7 @@ public final class c extends d {
 
     @Override
     public final d subList(int i10, int i11) {
-        p7.c(i10, i11, this.d);
+        o7.c(i10, i11, this.d);
         int i12 = this.f46877c;
         return this.e.subList(i10 + i12, i11 + i12);
     }

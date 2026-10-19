@@ -7,16 +7,16 @@ import org.json.JSONException;
 import org.json.JSONObject;
 public final class g extends o6.a {
     public static final Parcelable.Creator<g> CREATOR = new r0(10);
-    public final k0 f4957a;
-    public final u0 f4958b;
-    public final h f4959c;
+    public final k0 f4956a;
+    public final u0 f4957b;
+    public final h f4958c;
     public final v0 d;
     public final String e;
 
     public g(k0 k0Var, u0 u0Var, h hVar, v0 v0Var, String str) {
-        this.f4957a = k0Var;
-        this.f4958b = u0Var;
-        this.f4959c = hVar;
+        this.f4956a = k0Var;
+        this.f4957b = u0Var;
+        this.f4958c = hVar;
         this.d = v0Var;
         this.e = str;
     }
@@ -24,17 +24,17 @@ public final class g extends o6.a {
     public final JSONObject b() {
         try {
             JSONObject jSONObject = new JSONObject();
-            h hVar = this.f4959c;
+            h hVar = this.f4958c;
             if (hVar != null) {
                 try {
                     JSONObject jSONObject2 = new JSONObject();
-                    jSONObject2.put("rk", hVar.f4960a);
+                    jSONObject2.put("rk", hVar.f4959a);
                     jSONObject.put("credProps", jSONObject2);
                 } catch (JSONException e) {
                     throw new RuntimeException("Error encoding AuthenticationExtensionsCredPropsOutputs to JSON object", e);
                 }
             }
-            k0 k0Var = this.f4957a;
+            k0 k0Var = this.f4956a;
             if (k0Var != null) {
                 jSONObject.put("uvm", k0Var.b());
             }
@@ -57,14 +57,14 @@ public final class g extends o6.a {
             return false;
         }
         g gVar = (g) obj;
-        if (!n6.l.l(this.f4957a, gVar.f4957a) || !n6.l.l(this.f4958b, gVar.f4958b) || !n6.l.l(this.f4959c, gVar.f4959c) || !n6.l.l(this.d, gVar.d) || !n6.l.l(this.e, gVar.e)) {
+        if (!n6.l.l(this.f4956a, gVar.f4956a) || !n6.l.l(this.f4957b, gVar.f4957b) || !n6.l.l(this.f4958c, gVar.f4958c) || !n6.l.l(this.d, gVar.d) || !n6.l.l(this.e, gVar.e)) {
             return false;
         }
         return true;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f4957a, this.f4958b, this.f4959c, this.d, this.e});
+        return Arrays.hashCode(new Object[]{this.f4956a, this.f4957b, this.f4958c, this.d, this.e});
     }
 
     public final String toString() {
@@ -74,9 +74,9 @@ public final class g extends o6.a {
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         int q6 = w7.f0.q(parcel, 20293);
-        w7.f0.k(parcel, 1, this.f4957a, i10);
-        w7.f0.k(parcel, 2, this.f4958b, i10);
-        w7.f0.k(parcel, 3, this.f4959c, i10);
+        w7.f0.k(parcel, 1, this.f4956a, i10);
+        w7.f0.k(parcel, 2, this.f4957b, i10);
+        w7.f0.k(parcel, 3, this.f4958c, i10);
         w7.f0.k(parcel, 4, this.d, i10);
         w7.f0.l(parcel, 5, this.e);
         w7.f0.r(parcel, q6);

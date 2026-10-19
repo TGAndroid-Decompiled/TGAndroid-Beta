@@ -18,7 +18,7 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.Components.ThemeEditorView;
 public class BubbleActivity extends m5 implements org.telegram.ui.ActionBar.a5 {
-    public static BubbleActivity f21934a0;
+    public static BubbleActivity f21937a0;
     public boolean P;
     public final ArrayList Q = new ArrayList();
     public org.telegram.ui.Components.le0 R;
@@ -53,7 +53,7 @@ public class BubbleActivity extends m5 implements org.telegram.ui.ActionBar.a5 {
                 this.Y = null;
             }
             this.P = true;
-            f21934a0 = null;
+            f21937a0 = null;
         }
         finish();
         return false;
@@ -61,17 +61,17 @@ public class BubbleActivity extends m5 implements org.telegram.ui.ActionBar.a5 {
 
     @Override
     public final boolean l(ActionBarLayout actionBarLayout, org.telegram.ui.ActionBar.b5 b5Var) {
-        org.telegram.ui.ActionBar.n2 n2Var = b5Var.f20700a;
+        org.telegram.ui.ActionBar.n2 n2Var = b5Var.f20703a;
         return true;
     }
 
     @Override
     public final void onActivityResult(int i10, int i11, Intent intent) {
-        org.telegram.ui.Components.j91 j91Var;
+        org.telegram.ui.Components.k91 k91Var;
         super.onActivityResult(i10, i11, intent);
-        ThemeEditorView themeEditorView = ThemeEditorView.f24382n;
-        if (themeEditorView != null && (j91Var = themeEditorView.f24390k) != null) {
-            j91Var.a(i10, i11, intent);
+        ThemeEditorView themeEditorView = ThemeEditorView.f24385n;
+        if (themeEditorView != null && (k91Var = themeEditorView.f24393k) != null) {
+            k91Var.a(i10, i11, intent);
         }
         if (!this.S.getFragmentStack().isEmpty()) {
             ((org.telegram.ui.ActionBar.n2) this.S.getFragmentStack().get(this.S.getFragmentStack().size() - 1)).onActivityResultFragment(i10, i11, intent);
@@ -146,7 +146,7 @@ public class BubbleActivity extends m5 implements org.telegram.ui.ActionBar.a5 {
             z10 = false;
         }
         y(intent, false, z10, false, UserConfig.selectedAccount);
-        f21934a0 = this;
+        f21937a0 = this;
     }
 
     @Override
@@ -164,9 +164,9 @@ public class BubbleActivity extends m5 implements org.telegram.ui.ActionBar.a5 {
                 this.Y = null;
             }
             this.P = true;
-            f21934a0 = null;
+            f21937a0 = null;
         }
-        f21934a0 = null;
+        f21937a0 = null;
     }
 
     @Override
@@ -211,7 +211,7 @@ public class BubbleActivity extends m5 implements org.telegram.ui.ActionBar.a5 {
         if (le0Var != null) {
             le0Var.j();
         }
-        f21934a0 = null;
+        f21937a0 = null;
     }
 
     @Override
@@ -223,7 +223,7 @@ public class BubbleActivity extends m5 implements org.telegram.ui.ActionBar.a5 {
         if (!this.S.getFragmentStack().isEmpty()) {
             ((org.telegram.ui.ActionBar.n2) this.S.getFragmentStack().get(this.S.getFragmentStack().size() - 1)).onRequestPermissionsResultFragment(i10, strArr, iArr);
         }
-        jh1.p(i10, iArr);
+        hh1.p(i10, iArr);
     }
 
     @Override
@@ -249,11 +249,11 @@ public class BubbleActivity extends m5 implements org.telegram.ui.ActionBar.a5 {
             this.S.n();
             this.R.k();
         }
-        f21934a0 = this;
+        f21937a0 = this;
     }
 
     public final void y(Intent intent, boolean z10, boolean z11, boolean z12, int i10) {
-        sn snVar;
+        qn qnVar;
         if (!z12 && (AndroidUtilities.needShowPasscode(true) || SharedConfig.isWaitingForPasscodeEnter)) {
             z();
             this.U = intent;
@@ -280,19 +280,19 @@ public class BubbleActivity extends m5 implements org.telegram.ui.ActionBar.a5 {
                 this.Z = -longExtra;
                 bundle.putLong("chat_id", longExtra);
             }
-            snVar = new sn(bundle);
-            snVar.setInBubbleMode(true);
-            snVar.setCurrentAccount(this.O);
+            qnVar = new qn(bundle);
+            qnVar.setInBubbleMode(true);
+            qnVar.setCurrentAccount(this.O);
         } else {
-            snVar = null;
+            qnVar = null;
         }
-        if (snVar == null) {
+        if (qnVar == null) {
             finish();
             return;
         }
         NotificationCenter.getInstance(this.O).lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChats, Long.valueOf(this.Z));
         this.S.X();
-        this.S.c(-1, snVar);
+        this.S.c(-1, qnVar);
         AccountInstance.getInstance(this.O).getNotificationsController().setOpenedInBubble(this.Z, true);
         AccountInstance.getInstance(this.O).getConnectionsManager().setAppPaused(false, false);
         this.S.c0();
@@ -303,7 +303,7 @@ public class BubbleActivity extends m5 implements org.telegram.ui.ActionBar.a5 {
             return;
         }
         SharedConfig.appLocked = true;
-        if (SecretMediaViewer.g() && SecretMediaViewer.f().f33809s) {
+        if (SecretMediaViewer.g() && SecretMediaViewer.f().f33815s) {
             SecretMediaViewer.f().e(false, false);
         } else if (PhotoViewer.D1() && PhotoViewer.t1().R1()) {
             PhotoViewer.t1().G0(false, true);

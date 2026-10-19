@@ -13,7 +13,7 @@ public final class w {
     public final int f46832b;
     public final boolean f46833c;
     public final n d;
-    public final org.telegram.ui.web.n e;
+    public final org.telegram.ui.web.m e;
     public MP4Builder f46836i;
     public MediaFormat f46837j;
     public MediaFormat f46838k;
@@ -33,12 +33,12 @@ public final class w {
     public long f46844q = Long.MIN_VALUE;
     public final MediaCodec.BufferInfo f46847t = new MediaCodec.BufferInfo();
 
-    public w(File file, int i10, boolean z10, n nVar, org.telegram.ui.web.n nVar2) {
+    public w(File file, int i10, boolean z10, n nVar, org.telegram.ui.web.m mVar) {
         this.f46831a = file;
         this.f46832b = i10;
         this.f46833c = z10;
         this.d = nVar;
-        this.e = nVar2;
+        this.e = mVar;
     }
 
     public static int a(ByteBuffer byteBuffer) {
@@ -374,9 +374,9 @@ public final class w {
             if (this.v) {
                 return;
             }
-            org.telegram.ui.web.n nVar = this.e;
-            s0 s0Var = (s0) nVar.f42675b;
-            o0 o0Var = (o0) nVar.f42676c;
+            org.telegram.ui.web.m mVar = this.e;
+            s0 s0Var = (s0) mVar.f42713b;
+            o0 o0Var = (o0) mVar.f42714c;
             synchronized (s0Var.f46759g) {
                 try {
                     long j11 = o0Var.f46739c;

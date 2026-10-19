@@ -1,20 +1,22 @@
 package org.telegram.ui;
 
 import android.app.Activity;
-import java.util.ArrayList;
-public final class ji extends org.telegram.ui.Components.aw {
-    public final sn W;
+import org.telegram.tgnet.TLRPC;
+public final class ji extends org.telegram.ui.Components.to {
+    public final qn M;
 
-    public ji(sn snVar, org.telegram.ui.ActionBar.n2 n2Var, Activity activity, org.telegram.ui.ActionBar.d6 d6Var, ArrayList arrayList) {
-        super(n2Var, activity, d6Var, arrayList);
-        this.W = snVar;
+    public ji(qn qnVar, Activity activity, int i10, TLRPC.Document document, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(activity, i10, document, d6Var);
+        this.M = qnVar;
     }
 
     @Override
-    public final void dismiss() {
-        super.dismiss();
-        sn snVar = this.W;
-        snVar.getClass();
-        snVar.j8(false, true, 0.0f);
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        float y3 = getY();
+        qn qnVar = this.M;
+        float y10 = qnVar.R0.getY() + y3;
+        this.J = qnVar.X0.getBackgroundSizeY();
+        this.I = y10;
     }
 }

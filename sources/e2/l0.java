@@ -4,15 +4,15 @@ import java.util.concurrent.ThreadFactory;
 import org.telegram.ui.Components.uj0;
 import org.telegram.ui.Wallet.WalletEngine2;
 public final class l0 implements ThreadFactory {
-    public final int f8252a;
+    public final int f8253a;
 
     public l0(int i10) {
-        this.f8252a = i10;
+        this.f8253a = i10;
     }
 
     @Override
     public final Thread newThread(Runnable runnable) {
-        switch (this.f8252a) {
+        switch (this.f8253a) {
             case 0:
                 return new Thread(runnable, "ExoPlayer:AudioTrackReleaseThread");
             case 1:

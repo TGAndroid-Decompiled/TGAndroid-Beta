@@ -1,28 +1,48 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-public final class ht0 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f26933a;
-    public final lu0 f26934b;
-    public final sv0 f26935c;
+import android.view.ViewGroup;
+public final class ht0 extends g.o {
+    public final int f26935c;
+    public final Object d;
+    public final ViewGroup e;
 
-    public ht0(sv0 sv0Var, lu0 lu0Var, int i10) {
-        this.f26933a = i10;
-        this.f26935c = sv0Var;
-        this.f26934b = lu0Var;
+    public ht0(ViewGroup viewGroup, Object obj, int i10) {
+        this.f26935c = i10;
+        this.e = viewGroup;
+        this.d = obj;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f26933a) {
+    public final int i(int i10) {
+        int i11;
+        switch (this.f26935c) {
             case 0:
-                this.f26935c.f30370n1 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                this.f26934b.h.invalidate();
-                return;
+                mu0 mu0Var = (mu0) this.d;
+                s4.g0 adapter = mu0Var.f28611r.getAdapter();
+                tv0 tv0Var = (tv0) this.e;
+                nv0 nv0Var = tv0Var.I;
+                if (adapter == nv0Var) {
+                    if (nv0Var.j(i10) != 2) {
+                        return 1;
+                    }
+                    return mu0Var.f28612s.J;
+                } else if (tv0.p(tv0Var, adapter) == -1) {
+                    return 1;
+                } else {
+                    ((qv0) adapter).getClass();
+                    return 1;
+                }
             default:
-                this.f26935c.f30370n1 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                this.f26934b.h.invalidate();
-                return;
+                di.h hVar = (di.h) this.d;
+                t61 t61Var = ((b71) this.e).W2;
+                if (t61Var == null) {
+                    return hVar.J;
+                }
+                g61 G = t61Var.G(i10);
+                if (G == null || (i11 = G.f26508u) == -1) {
+                    return hVar.J;
+                }
+                return i11;
         }
     }
 }

@@ -8,32 +8,32 @@ import org.telegram.messenger.R;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PremiumPreviewFragment;
 public final class k30 implements Runnable {
-    public final int f27718a;
-    public final Context f27719b;
+    public final int f27694a;
+    public final Context f27695b;
 
     public k30(Context context, int i10) {
-        this.f27718a = i10;
-        this.f27719b = context;
+        this.f27694a = i10;
+        this.f27695b = context;
     }
 
     @Override
     public final void run() {
-        switch (this.f27718a) {
+        switch (this.f27694a) {
             case 0:
-                i30.j(this.f27719b);
+                i30.j(this.f27695b);
                 return;
             case 1:
-                pf.d.r(this.f27719b, LocaleController.getString(R.string.StarsTOSLink));
+                pf.d.r(this.f27695b, LocaleController.getString(R.string.StarsTOSLink));
                 return;
             case 2:
-                Activity findActivity = AndroidUtilities.findActivity(this.f27719b);
+                Activity findActivity = AndroidUtilities.findActivity(this.f27695b);
                 if (findActivity instanceof LaunchActivity) {
                     ((LaunchActivity) findActivity).t0(new PremiumPreviewFragment(0, sg.k0.B1(10)));
                     return;
                 }
                 return;
             default:
-                Activity findActivity2 = AndroidUtilities.findActivity(this.f27719b);
+                Activity findActivity2 = AndroidUtilities.findActivity(this.f27695b);
                 if (findActivity2 instanceof LaunchActivity) {
                     ((LaunchActivity) findActivity2).t0(new PremiumPreviewFragment(0, sg.k0.B1(9)));
                     return;

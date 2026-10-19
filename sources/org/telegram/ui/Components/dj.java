@@ -2,20 +2,20 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.view.View;
-public final class dj extends e61 {
-    public static final int f25598a = 0;
+public final class dj extends f61 {
+    public static final int f25571a = 0;
 
     static {
-        e61.setup(new e61());
+        f61.setup(new f61());
     }
 
     @Override
-    public final void bindView(View view, f61 f61Var, boolean z10, s61 s61Var, a71 a71Var) {
+    public final void bindView(View view, g61 g61Var, boolean z10, t61 t61Var, b71 b71Var) {
         ej ejVar = (ej) view;
-        CharSequence charSequence = f61Var.f26140l;
-        CharSequence charSequence2 = f61Var.f26141m;
-        ejVar.f25925b.setText(charSequence);
-        ejVar.f25926c.setText(charSequence2);
+        CharSequence charSequence = g61Var.f26499l;
+        CharSequence charSequence2 = g61Var.f26500m;
+        ejVar.f25916b.setText(charSequence);
+        ejVar.f25917c.setText(charSequence2);
     }
 
     @Override

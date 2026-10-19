@@ -29,11 +29,11 @@ public final class k2 extends k7 {
     public xc getBulletinFactory() {
         switch (this.B1) {
             case 0:
-                return xc.a0(((l2) this.C1).f50359a.f50457a);
+                return xc.a0(((l2) this.C1).f50358a.f50456a);
             case 1:
-                return xc.a0(((l2) this.C1).f50359a.f50457a);
+                return xc.a0(((l2) this.C1).f50358a.f50456a);
             case 2:
-                return xc.a0(((l2) this.C1).f50359a.f50457a);
+                return xc.a0(((l2) this.C1).f50358a.f50456a);
             default:
                 return super.getBulletinFactory();
         }

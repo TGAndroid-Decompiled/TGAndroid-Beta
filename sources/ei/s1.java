@@ -9,23 +9,23 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.Components.bz;
 import org.telegram.ui.Components.iu;
-import org.telegram.ui.go0;
-import org.telegram.ui.xf1;
+import org.telegram.ui.eo0;
+import org.telegram.ui.vf1;
 public final class s1 implements Runnable {
-    public final int f9763a;
-    public final boolean f9764b;
-    public final Object f9765c;
+    public final int f9764a;
+    public final boolean f9765b;
+    public final Object f9766c;
     public final Object d;
     public final Object e;
-    public final Object f9766f;
+    public final Object f9767f;
 
     public s1(Object obj, Object obj2, Object obj3, Object obj4, boolean z10, int i10) {
-        this.f9763a = i10;
-        this.f9765c = obj;
+        this.f9764a = i10;
+        this.f9766c = obj;
         this.d = obj2;
         this.e = obj3;
-        this.f9766f = obj4;
-        this.f9764b = z10;
+        this.f9767f = obj4;
+        this.f9765b = z10;
     }
 
     @Override
@@ -34,101 +34,101 @@ public final class s1 implements Runnable {
     }
 
     public s1(Object obj, Object obj2, Object obj3, boolean z10, Object obj4, int i10) {
-        this.f9763a = i10;
-        this.f9765c = obj;
+        this.f9764a = i10;
+        this.f9766c = obj;
         this.d = obj2;
         this.e = obj3;
-        this.f9764b = z10;
-        this.f9766f = obj4;
+        this.f9765b = z10;
+        this.f9767f = obj4;
     }
 
     public s1(Object obj, Object obj2, TLObject tLObject, Object obj3, boolean z10, int i10) {
-        this.f9763a = i10;
-        this.f9765c = obj;
+        this.f9764a = i10;
+        this.f9766c = obj;
         this.e = obj2;
         this.d = tLObject;
-        this.f9766f = obj3;
-        this.f9764b = z10;
+        this.f9767f = obj3;
+        this.f9765b = z10;
     }
 
     public s1(Object obj, Object obj2, boolean z10, Object obj3, Object obj4, int i10) {
-        this.f9763a = i10;
-        this.f9765c = obj;
+        this.f9764a = i10;
+        this.f9766c = obj;
         this.d = obj2;
-        this.f9764b = z10;
+        this.f9765b = z10;
         this.e = obj3;
-        this.f9766f = obj4;
+        this.f9767f = obj4;
     }
 
     public s1(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, TLObject tLObject, boolean z10, TLObject tLObject2, Object obj, int i10) {
-        this.f9763a = i10;
-        this.f9765c = notificationCenterDelegate;
+        this.f9764a = i10;
+        this.f9766c = notificationCenterDelegate;
         this.e = tLObject;
-        this.f9764b = z10;
+        this.f9765b = z10;
         this.d = tLObject2;
-        this.f9766f = obj;
+        this.f9767f = obj;
     }
 
     public s1(TLRPC.payments_GiveawayInfo payments_giveawayinfo, boolean z10, String str, long j10, TLRPC.TL_messageMediaGiveaway tL_messageMediaGiveaway, org.telegram.ui.ActionBar.n2 n2Var) {
-        this.f9763a = 24;
-        this.f9765c = payments_giveawayinfo;
-        this.f9764b = z10;
-        this.f9766f = str;
+        this.f9764a = 24;
+        this.f9766c = payments_giveawayinfo;
+        this.f9765b = z10;
+        this.f9767f = str;
         this.d = tL_messageMediaGiveaway;
         this.e = n2Var;
     }
 
     public s1(org.telegram.ui.Components.oa oaVar, String str, Bitmap bitmap, boolean z10, Bitmap bitmap2) {
-        this.f9763a = 15;
-        this.f9765c = oaVar;
-        this.f9766f = str;
+        this.f9764a = 15;
+        this.f9766c = oaVar;
+        this.f9767f = str;
         this.d = bitmap;
-        this.f9764b = z10;
+        this.f9765b = z10;
         this.e = bitmap2;
     }
 
     public s1(iu iuVar, boolean z10, ai.t tVar, String str, TextView textView) {
-        this.f9763a = 16;
-        this.f9765c = iuVar;
-        this.f9764b = z10;
+        this.f9764a = 16;
+        this.f9766c = iuVar;
+        this.f9765b = z10;
         this.d = tVar;
-        this.f9766f = str;
+        this.f9767f = str;
         this.e = textView;
     }
 
     public s1(bz bzVar, String str, boolean z10, String str2, TLObject tLObject) {
-        this.f9763a = 17;
-        this.f9765c = bzVar;
-        this.f9766f = str;
-        this.f9764b = z10;
+        this.f9764a = 17;
+        this.f9766c = bzVar;
+        this.f9767f = str;
+        this.f9765b = z10;
         this.e = str2;
         this.d = tLObject;
     }
 
-    public s1(go0 go0Var, boolean z10, String str, String str2, TL_account.updatePasswordSettings updatepasswordsettings) {
-        this.f9763a = 20;
-        this.f9765c = go0Var;
-        this.f9764b = z10;
-        this.f9766f = str;
+    public s1(eo0 eo0Var, boolean z10, String str, String str2, TL_account.updatePasswordSettings updatepasswordsettings) {
+        this.f9764a = 20;
+        this.f9766c = eo0Var;
+        this.f9765b = z10;
+        this.f9767f = str;
         this.d = str2;
         this.e = updatepasswordsettings;
     }
 
-    public s1(xf1 xf1Var, TLObject tLObject, boolean z10, String str, TL_account.passwordInputSettings passwordinputsettings) {
-        this.f9763a = 22;
-        this.f9765c = xf1Var;
+    public s1(vf1 vf1Var, TLObject tLObject, boolean z10, String str, TL_account.passwordInputSettings passwordinputsettings) {
+        this.f9764a = 22;
+        this.f9766c = vf1Var;
         this.d = tLObject;
-        this.f9764b = z10;
-        this.f9766f = str;
+        this.f9765b = z10;
+        this.f9767f = str;
         this.e = passwordinputsettings;
     }
 
     public s1(si.s0 s0Var, boolean z10, si.w wVar, si.o0 o0Var, File file) {
-        this.f9763a = 23;
-        this.f9765c = s0Var;
-        this.f9764b = z10;
+        this.f9764a = 23;
+        this.f9766c = s0Var;
+        this.f9765b = z10;
         this.d = wVar;
         this.e = o0Var;
-        this.f9766f = file;
+        this.f9767f = file;
     }
 }

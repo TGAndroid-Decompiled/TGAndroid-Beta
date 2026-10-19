@@ -29,7 +29,7 @@ public final class g extends rh.e {
                 radialProgress2.i(null, null, null);
             }
         }
-        radialProgress2.g(h6.f21082ie, h6.f21101je, h6.f21307uc, h6.f21325vc);
+        radialProgress2.g(h6.f21085ie, h6.f21104je, h6.f21310uc, h6.f21328vc);
     }
 
     @Override

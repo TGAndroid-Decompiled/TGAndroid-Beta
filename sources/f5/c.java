@@ -2,7 +2,7 @@ package f5;
 
 import com.google.android.gms.internal.play_billing.k3;
 public abstract class c extends com.googlecode.mp4parser.c {
-    public static final le.b e;
+    public static final te.b e;
 
     static {
         te.a aVar = new te.a(c.class, "ChunkOffsetBox.java");
@@ -17,6 +17,6 @@ public abstract class c extends com.googlecode.mp4parser.c {
         sb2.append("[entryCount=");
         t tVar = (t) this;
         k3.p(te.a.b(t.h, tVar, tVar));
-        return a1.g.n(tVar.f10446f.length, "]", sb2);
+        return a1.g.n(tVar.f10447f.length, "]", sb2);
     }
 }

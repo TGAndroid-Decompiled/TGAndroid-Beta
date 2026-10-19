@@ -6,7 +6,7 @@ import android.graphics.drawable.Drawable;
 public interface d6 {
     void B(int i10, int i11);
 
-    int I(int i10);
+    int G(int i10);
 
     boolean a();
 
@@ -22,5 +22,5 @@ public interface d6 {
 
     boolean s();
 
-    int u(int i10);
+    int w(int i10);
 }

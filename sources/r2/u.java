@@ -10,5 +10,5 @@ public interface u {
 
     int k();
 
-    boolean u();
+    boolean v();
 }

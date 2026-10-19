@@ -9,24 +9,24 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.lk;
 public final class fd extends LinearLayout {
-    public final int f1313a;
-    public final org.telegram.ui.ActionBar.d6 f1314b;
-    public final org.telegram.ui.Components.w9 f1315c;
+    public final int f1307a;
+    public final org.telegram.ui.ActionBar.d6 f1308b;
+    public final org.telegram.ui.Components.w9 f1309c;
     public final org.telegram.ui.ActionBar.j5 d;
     public final TextView e;
-    public final TextView f1316f;
+    public final TextView f1310f;
     public final TextView h;
-    public final TextView f1317n;
-    public boolean f1318r;
-    public boolean f1319s;
+    public final TextView f1311n;
+    public boolean f1312r;
+    public boolean f1313s;
 
     public fd(Context context, int i10, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
-        this.f1313a = i10;
-        this.f1314b = d6Var;
+        this.f1307a = i10;
+        this.f1308b = d6Var;
         setOrientation(0);
         org.telegram.ui.Components.w9 w9Var = new org.telegram.ui.Components.w9(context);
-        this.f1315c = w9Var;
+        this.f1309c = w9Var;
         w9Var.setRoundRadius(AndroidUtilities.dp(46.0f));
         addView(w9Var, w7.z5.p(46, 46, 0.0f, 19, 13, 0, 13, 0));
         LinearLayout linearLayout = new LinearLayout(context);
@@ -45,8 +45,8 @@ public final class fd extends LinearLayout {
         lk.o(i11, d6Var, textView, 1, 13.0f);
         textView.setVisibility(8);
         TextView i12 = com.google.android.gms.internal.play_billing.k3.i(linearLayout, textView, w7.z5.k(0.0f, 0.0f, 0.0f, 1.0f, -1, -2), context);
-        this.f1316f = i12;
-        int i13 = org.telegram.ui.ActionBar.h6.f21391z6;
+        this.f1310f = i12;
+        int i13 = org.telegram.ui.ActionBar.h6.f21394z6;
         lk.o(i13, d6Var, i12, 1, 14.0f);
         linearLayout.addView(i12, w7.z5.k(0.0f, 0.0f, 0.0f, 0.0f, -1, -2));
         LinearLayout linearLayout2 = new LinearLayout(context);
@@ -57,7 +57,7 @@ public final class fd extends LinearLayout {
         org.telegram.ui.Cells.c1.r(i11, d6Var, textView2, 1, 16.0f);
         textView2.setGravity(5);
         TextView i14 = com.google.android.gms.internal.play_billing.k3.i(linearLayout2, textView2, w7.z5.t(-1, -2, 5, 0, 0, 0, 1), context);
-        this.f1317n = i14;
+        this.f1311n = i14;
         lk.o(i13, d6Var, i14, 1, 13.0f);
         i14.setGravity(5);
         linearLayout2.addView(i14, w7.z5.t(-1, -2, 5, 0, 0, 0, 0));
@@ -66,8 +66,8 @@ public final class fd extends LinearLayout {
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        if (this.f1319s) {
-            canvas.drawRect(AndroidUtilities.dp(72.0f), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight(), org.telegram.ui.ActionBar.h6.f21107k0);
+        if (this.f1313s) {
+            canvas.drawRect(AndroidUtilities.dp(72.0f), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight(), org.telegram.ui.ActionBar.h6.f21110k0);
         }
     }
 
@@ -75,7 +75,7 @@ public final class fd extends LinearLayout {
     public final void onMeasure(int i10, int i11) {
         float f7;
         int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824);
-        if (this.f1318r) {
+        if (this.f1312r) {
             f7 = 68.0f;
         } else {
             f7 = 58.0f;

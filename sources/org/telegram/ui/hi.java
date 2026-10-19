@@ -1,24 +1,20 @@
 package org.telegram.ui;
-public final class hi implements org.telegram.ui.Components.oh0 {
-    public boolean f37541a = true;
-    public final org.telegram.ui.Components.cl0 f37542b;
 
-    public hi(org.telegram.ui.Components.cl0 cl0Var) {
-        this.f37542b = cl0Var;
+import android.app.Activity;
+import java.util.ArrayList;
+public final class hi extends org.telegram.ui.Components.aw {
+    public final qn W;
+
+    public hi(qn qnVar, org.telegram.ui.ActionBar.n2 n2Var, Activity activity, org.telegram.ui.ActionBar.d6 d6Var, ArrayList arrayList) {
+        super(n2Var, activity, d6Var, arrayList);
+        this.W = qnVar;
     }
 
     @Override
-    public final void a(float f7, float f10) {
-        int i10 = (f7 > 0.0f ? 1 : (f7 == 0.0f ? 0 : -1));
-        org.telegram.ui.Components.cl0 cl0Var = this.f37542b;
-        if (i10 == 0 && !this.f37541a) {
-            cl0Var.r(false);
-            this.f37541a = true;
-        } else if (f7 == 1.0f && this.f37541a) {
-            cl0Var.setAlpha(1.0f - f10);
-            if (f10 == 1.0f) {
-                this.f37541a = false;
-            }
-        }
+    public final void dismiss() {
+        super.dismiss();
+        qn qnVar = this.W;
+        qnVar.getClass();
+        qnVar.j8(false, true, 0.0f);
     }
 }

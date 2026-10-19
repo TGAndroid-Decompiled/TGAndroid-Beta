@@ -21,7 +21,7 @@ public final class p {
         bundle2.putByteArray("androidx.credentials.BUNDLE_KEY_CLIENT_DATA_HASH", null);
         this.f47860a = bundle;
         this.f47861b = bundle2;
-        this.f47862c = jd.q.f14392a;
+        this.f47862c = jd.q.f14394a;
         bundle.putBoolean("androidx.credentials.BUNDLE_KEY_IS_AUTO_SELECT_ALLOWED", true);
         bundle2.putBoolean("androidx.credentials.BUNDLE_KEY_IS_AUTO_SELECT_ALLOWED", true);
         bundle.putInt("androidx.credentials.BUNDLE_KEY_TYPE_PRIORITY_VALUE", 100);

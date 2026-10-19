@@ -15,36 +15,36 @@ import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_wallet;
-import org.telegram.ui.Components.a71;
-import org.telegram.ui.Components.e61;
+import org.telegram.ui.Components.b71;
 import org.telegram.ui.Components.f61;
+import org.telegram.ui.Components.g61;
 import org.telegram.ui.Components.im0;
-import org.telegram.ui.Components.s61;
+import org.telegram.ui.Components.t61;
 import org.telegram.ui.Components.zq;
-public final class b extends e61 {
-    public static final int f33991a = 0;
+public final class b extends f61 {
+    public static final int f34001a = 0;
 
     static {
-        e61.setup(new e61());
+        f61.setup(new f61());
     }
 
     @Override
-    public final void bindView(View view, f61 f61Var, boolean z10, s61 s61Var, a71 a71Var) {
+    public final void bindView(View view, g61 g61Var, boolean z10, t61 t61Var, b71 b71Var) {
         boolean z11;
         float f7;
         ImageLocation imageLocation;
         c cVar = (c) view;
         boolean z12 = false;
-        if (f61Var.f26149u == 1) {
+        if (g61Var.f26508u == 1) {
             z11 = true;
         } else {
             z11 = false;
         }
         cVar.setGrid(z11);
-        TL_wallet.nftItem nftitem = (TL_wallet.nftItem) f61Var.G;
+        TL_wallet.nftItem nftitem = (TL_wallet.nftItem) g61Var.G;
         TextView textView = cVar.d;
-        TextView textView2 = cVar.f34029c;
-        org.telegram.ui.Components.w9 w9Var = cVar.f34028b;
+        TextView textView2 = cVar.f34048c;
+        org.telegram.ui.Components.w9 w9Var = cVar.f34047b;
         if (TextUtils.isEmpty(nftitem.name)) {
             textView2.setText(LocaleController.getString(R.string.WalletCollectible));
         } else {
@@ -62,30 +62,30 @@ public final class b extends e61 {
         } else {
             textView.setText(nftitem.description);
         }
-        ImageLocation c10 = c.c(nftitem, !cVar.f34030f);
-        int w02 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21374y6, cVar.f34027a);
+        ImageLocation c10 = c.c(nftitem, !cVar.f34049f);
+        int w02 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21377y6, cVar.f34046a);
         Drawable mutate = cVar.getContext().getResources().getDrawable(R.drawable.wallet_nft_placeholder).mutate();
         mutate.setColorFilter(new PorterDuffColorFilter(w02, PorterDuff.Mode.SRC_IN));
-        if (cVar.f34030f) {
+        if (cVar.f34049f) {
             f7 = 11.0f;
         } else {
             f7 = 8.0f;
         }
         zq zqVar = new zq(org.telegram.ui.ActionBar.h6.c0(AndroidUtilities.dp(f7), org.telegram.ui.ActionBar.h6.m1(0.1f, w02)), mutate);
-        if (c10 != null && cVar.f34030f) {
+        if (c10 != null && cVar.f34049f) {
             if (nftitem.image_small != null && nftitem.image != null) {
                 imageLocation = c.c(nftitem, true);
             } else {
                 imageLocation = null;
             }
-            w9Var.f32033a.setImage(c10, "160_160", imageLocation, "100_100", zqVar, 0L, null, nftitem, 0);
+            w9Var.f32042a.setImage(c10, "160_160", imageLocation, "100_100", zqVar, 0L, null, nftitem, 0);
             w9Var.d();
         } else if (c10 != null) {
             w9Var.h(c10, "46_46", zqVar, nftitem);
         } else {
             w9Var.setImageDrawable(zqVar);
         }
-        if (z10 && !cVar.f34030f) {
+        if (z10 && !cVar.f34049f) {
             z12 = true;
         }
         cVar.e = z12;
@@ -94,10 +94,10 @@ public final class b extends e61 {
     }
 
     @Override
-    public final boolean contentsEquals(f61 f61Var, f61 f61Var2) {
-        if (equals(f61Var, f61Var2)) {
-            TL_wallet.nftItem nftitem = (TL_wallet.nftItem) f61Var.G;
-            TL_wallet.nftItem nftitem2 = (TL_wallet.nftItem) f61Var2.G;
+    public final boolean contentsEquals(g61 g61Var, g61 g61Var2) {
+        if (equals(g61Var, g61Var2)) {
+            TL_wallet.nftItem nftitem = (TL_wallet.nftItem) g61Var.G;
+            TL_wallet.nftItem nftitem2 = (TL_wallet.nftItem) g61Var2.G;
             if (nftitem != nftitem2) {
                 if (nftitem == null || nftitem2 == null || !Objects.equals(nftitem.name, nftitem2.name) || !Objects.equals(nftitem.image, nftitem2.image) || !Objects.equals(nftitem.image_small, nftitem2.image_small) || !Objects.equals(nftitem.description, nftitem2.description) || !Objects.equals(nftitem.attributes, nftitem2.attributes) || !Objects.equals(nftitem.extra, nftitem2.extra)) {
                     return false;
@@ -115,9 +115,9 @@ public final class b extends e61 {
     }
 
     @Override
-    public final boolean equals(f61 f61Var, f61 f61Var2) {
-        TL_wallet.nftItem nftitem = (TL_wallet.nftItem) f61Var.G;
-        TL_wallet.nftItem nftitem2 = (TL_wallet.nftItem) f61Var2.G;
+    public final boolean equals(g61 g61Var, g61 g61Var2) {
+        TL_wallet.nftItem nftitem = (TL_wallet.nftItem) g61Var.G;
+        TL_wallet.nftItem nftitem2 = (TL_wallet.nftItem) g61Var2.G;
         if (nftitem != null && nftitem2 != null) {
             return TextUtils.equals(nftitem.address, nftitem2.address);
         }

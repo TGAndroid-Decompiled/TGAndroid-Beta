@@ -14,24 +14,24 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.Components.a6;
-import org.telegram.ui.Components.is0;
-import org.telegram.ui.Components.u81;
-public final class v1 extends u81 {
-    public final int f50550a;
-    public final d6 f50551b;
-    public final is0 f50552c;
+import org.telegram.ui.Components.js0;
+import org.telegram.ui.Components.v81;
+public final class v1 extends v81 {
+    public final int f50549a;
+    public final d6 f50550b;
+    public final js0 f50551c;
 
-    public v1(is0 is0Var, int i10, d6 d6Var) {
-        this.f50552c = is0Var;
-        this.f50550a = i10;
-        this.f50551b = d6Var;
+    public v1(js0 js0Var, int i10, d6 d6Var) {
+        this.f50551c = js0Var;
+        this.f50549a = i10;
+        this.f50550b = d6Var;
     }
 
     @Override
     public final void a(ArrayList arrayList) {
-        is0 is0Var = this.f50552c;
-        q1 q1Var = is0Var.N;
-        v9 v9Var = is0Var.e;
+        js0 js0Var = this.f50551c;
+        q1 q1Var = js0Var.N;
+        v9 v9Var = js0Var.e;
         ArrayList arrayList2 = new ArrayList();
         int size = arrayList.size();
         int i10 = 0;
@@ -72,12 +72,12 @@ public final class v1 extends u81 {
         arrayList3.clear();
         arrayList3.addAll(arrayList4);
         v9Var.j();
-        l2 currentPage = is0Var.getCurrentPage();
+        l2 currentPage = js0Var.getCurrentPage();
         if (currentPage != null) {
             if (currentPage.d) {
                 i10 = v9Var.f(currentPage.e.d) + 1;
             }
-            is0Var.f50461n.e(0.0f, i10, i10);
+            js0Var.f50460n.e(0.0f, i10, i10);
         }
         AndroidUtilities.cancelRunOnUIThread(q1Var);
         AndroidUtilities.runOnUIThread(q1Var, 1000L);
@@ -87,12 +87,12 @@ public final class v1 extends u81 {
     public final void b(View view, int i10, int i11) {
         y9 y9Var;
         boolean z10;
-        is0 is0Var = this.f50552c;
-        v9 v9Var = is0Var.e;
+        js0 js0Var = this.f50551c;
+        v9 v9Var = js0Var.e;
         l2 l2Var = (l2) view;
         int i12 = 0;
         if (i11 == 0) {
-            y9Var = is0Var.d;
+            y9Var = js0Var.d;
             z10 = false;
         } else {
             int i13 = i10 - 1;
@@ -115,12 +115,12 @@ public final class v1 extends u81 {
         l2Var.f(false);
         LinearLayout linearLayout = l2Var.E;
         if (linearLayout != null) {
-            if (!l2Var.f50359a.e.h()) {
+            if (!l2Var.f50358a.e.h()) {
                 i12 = 8;
             }
             linearLayout.setVisibility(i12);
         }
-        l2Var.setVisibleHeight(is0Var.Q);
+        l2Var.setVisibleHeight(js0Var.Q);
         l2Var.setHasTabs(!v9Var.d().isEmpty());
     }
 
@@ -137,12 +137,12 @@ public final class v1 extends u81 {
         if (i10 == -1) {
             return null;
         }
-        return new l2(this.f50552c, this.f50550a, this.f50551b);
+        return new l2(this.f50551c, this.f50549a, this.f50550b);
     }
 
     @Override
     public final int e() {
-        return this.f50552c.e.d().size() + 1;
+        return this.f50551c.e.d().size() + 1;
     }
 
     @Override
@@ -150,7 +150,7 @@ public final class v1 extends u81 {
         if (i10 == 0) {
             return -2;
         }
-        return ((TL_stars.TL_starGiftCollection) this.f50552c.e.d().get(i10 - 1)).collection_id;
+        return ((TL_stars.TL_starGiftCollection) this.f50551c.e.d().get(i10 - 1)).collection_id;
     }
 
     @Override
@@ -158,7 +158,7 @@ public final class v1 extends u81 {
         if (i10 == 0) {
             return LocaleController.getString(R.string.Gift2CollectionAll);
         }
-        TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) this.f50552c.e.d().get(i10 - 1);
+        TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) this.f50551c.e.d().get(i10 - 1);
         if (tL_starGiftCollection == null) {
             return null;
         }

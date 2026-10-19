@@ -1,11 +1,11 @@
 package ei;
 public final class a0 implements Runnable {
-    public final int f8671a;
-    public final e0 f8672b;
+    public final int f8672a;
+    public final e0 f8673b;
 
     public a0(e0 e0Var, int i10) {
-        this.f8671a = i10;
-        this.f8672b = e0Var;
+        this.f8672a = i10;
+        this.f8673b = e0Var;
     }
 
     @Override

@@ -1,31 +1,92 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-public final class on0 implements eo0 {
-    public final go0 f39833a;
+import android.content.ActivityNotFoundException;
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+import android.webkit.RenderProcessGoneDetail;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class on0 extends WebViewClient {
+    public final Context f39942a;
+    public final eo0 f39943b;
 
-    public on0(go0 go0Var) {
-        this.f39833a = go0Var;
+    public on0(eo0 eo0Var, Context context) {
+        this.f39943b = eo0Var;
+        this.f39942a = context;
     }
 
     @Override
-    public final boolean c(String str, String str2, boolean z10, TLRPC.TL_inputPaymentCredentialsGooglePay tL_inputPaymentCredentialsGooglePay, TLRPC.TL_paymentSavedCredentialsCard tL_paymentSavedCredentialsCard) {
-        return false;
+    public final void onPageFinished(WebView webView, String str) {
+        super.onPageFinished(webView, str);
+        eo0 eo0Var = this.f39943b;
+        eo0Var.f36738z0 = false;
+        eo0Var.H0(true, false);
+        eo0Var.K0();
     }
 
     @Override
-    public final void d(TLRPC.TL_payments_validateRequestedInfo tL_payments_validateRequestedInfo) {
-        go0 go0Var = this.f39833a;
-        go0Var.I0 = tL_payments_validateRequestedInfo;
-        go0Var.B0(tL_payments_validateRequestedInfo.info);
+    public final boolean onRenderProcessGone(WebView webView, RenderProcessGoneDetail renderProcessGoneDetail) {
+        eo0 eo0Var = this.f39943b;
+        try {
+            if (!AndroidUtilities.isSafeToShow(eo0Var.getParentActivity())) {
+                return true;
+            }
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(eo0Var.getParentActivity(), 0, eo0Var.Y0);
+            alertDialog$Builder.f20604a.R = LocaleController.getString(R.string.ChromeCrashTitle);
+            alertDialog$Builder.f20604a.T = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ChromeCrashMessage), new ck0(this, 8));
+            alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
+            alertDialog$Builder.o();
+            return true;
+        } catch (Exception e) {
+            FileLog.e(e);
+            return false;
+        }
     }
 
     @Override
-    public final void a(TL_account.Password password) {
-    }
-
-    @Override
-    public final void b() {
+    public final boolean shouldOverrideUrlLoading(WebView webView, String str) {
+        Uri parse;
+        boolean equals;
+        eo0 eo0Var;
+        boolean z10;
+        try {
+            parse = Uri.parse(str);
+            equals = "t.me".equals(parse.getHost());
+            eo0Var = this.f39943b;
+        } catch (Exception unused) {
+        }
+        if (equals) {
+            eo0Var.t0();
+            return true;
+        }
+        if (!eo0.f36697h1.contains(parse.getScheme())) {
+            if (!eo0.f36696g1.contains(parse.getScheme())) {
+                try {
+                    if (eo0Var.getParentActivity() != null) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    if (z10) {
+                        eo0Var.getParentActivity().startActivityForResult(new Intent("android.intent.action.VIEW", parse), 210);
+                        return true;
+                    }
+                } catch (ActivityNotFoundException unused2) {
+                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(this.f39942a);
+                    alertDialog$Builder.f20604a.R = eo0Var.f36723p0;
+                    alertDialog$Builder.f20604a.T = LocaleController.getString(R.string.PaymentAppNotFoundForDeeplink);
+                    alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
+                    alertDialog$Builder.o();
+                }
+            }
+            return false;
+        }
+        return true;
     }
 }

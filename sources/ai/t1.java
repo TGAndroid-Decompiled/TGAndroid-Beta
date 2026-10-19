@@ -3,8 +3,8 @@ package ai;
 import android.content.Context;
 import android.view.View;
 import org.telegram.ui.Components.im0;
-import org.telegram.ui.Components.s61;
-public final class t1 extends s61 {
+import org.telegram.ui.Components.t61;
+public final class t1 extends t61 {
     public final a2 N;
 
     public t1(a2 a2Var, im0 im0Var, Context context, int i10, q qVar, org.telegram.ui.ActionBar.d6 d6Var) {

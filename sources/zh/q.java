@@ -10,45 +10,45 @@ import android.widget.LinearLayout;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.sa1;
+import org.telegram.ui.qa1;
 public final class q extends HorizontalScrollView {
-    public org.telegram.ui.web.n f51781a;
-    public x f51782b;
-    public final sa1 f51783c;
+    public org.telegram.ui.web.m f52069a;
+    public c0 f52070b;
+    public final qa1 f52071c;
     public final Paint d;
     public int e;
-    public float f51784f;
-    public final d0 h;
+    public float f52072f;
+    public final j0 h;
 
-    public q(d0 d0Var, Context context) {
+    public q(j0 j0Var, Context context) {
         super(context);
-        this.h = d0Var;
+        this.h = j0Var;
         Paint paint = new Paint(1);
         this.d = paint;
         this.e = -1;
-        this.f51784f = Float.NaN;
+        this.f52072f = Float.NaN;
         setHorizontalScrollBarEnabled(false);
         setOverScrollMode(2);
         setFillViewport(true);
         setWillNotDraw(false);
-        sa1 sa1Var = new sa1(this, context, 22);
-        this.f51783c = sa1Var;
-        sa1Var.setOrientation(0);
-        sa1Var.setGravity(16);
-        sa1Var.setPadding(AndroidUtilities.dp(3.0f), 0, AndroidUtilities.dp(3.0f), 0);
-        addView(sa1Var, new FrameLayout.LayoutParams(-2, -1));
+        qa1 qa1Var = new qa1(this, context, 22);
+        this.f52071c = qa1Var;
+        qa1Var.setOrientation(0);
+        qa1Var.setGravity(16);
+        qa1Var.setPadding(AndroidUtilities.dp(3.0f), 0, AndroidUtilities.dp(3.0f), 0);
+        addView(qa1Var, new FrameLayout.LayoutParams(-2, -1));
         paint.setColor(1560281087);
     }
 
     public final void a(int i10, boolean z10) {
         if (i10 != this.e && i10 >= 0) {
-            sa1 sa1Var = this.f51783c;
-            if (i10 < sa1Var.getChildCount()) {
+            qa1 qa1Var = this.f52071c;
+            if (i10 < qa1Var.getChildCount()) {
                 this.e = i10;
                 if (!z10) {
-                    this.f51784f = Float.NaN;
+                    this.f52072f = Float.NaN;
                 }
-                View childAt = sa1Var.getChildAt(i10);
+                View childAt = qa1Var.getChildAt(i10);
                 int left = childAt.getLeft() - AndroidUtilities.dp(30.0f);
                 int dp = AndroidUtilities.dp(30.0f) + childAt.getRight();
                 if (left < getScrollX()) {
@@ -66,7 +66,7 @@ public final class q extends HorizontalScrollView {
                         }
                     }
                 }
-                sa1Var.invalidate();
+                qa1Var.invalidate();
             }
         }
     }
@@ -78,23 +78,23 @@ public final class q extends HorizontalScrollView {
 
     public void setSections(ArrayList<o> arrayList) {
         TLRPC.Document document;
-        sa1 sa1Var = this.f51783c;
-        sa1Var.removeAllViews();
+        qa1 qa1Var = this.f52071c;
+        qa1Var.removeAllViews();
         for (int i10 = 0; i10 < arrayList.size(); i10++) {
             o oVar = arrayList.get(i10);
             Context context = getContext();
-            int i11 = oVar.f51770a;
+            int i11 = oVar.f52056a;
             if (i11 == 2) {
-                document = (TLRPC.Document) oVar.f51772c.get(0);
+                document = (TLRPC.Document) oVar.f52058c.get(0);
             } else {
                 document = null;
             }
             p pVar = new p(this.h, context, i11, document);
             pVar.setOnClickListener(new n1(this, i10, 29));
-            pVar.setContentDescription(oVar.f51771b);
-            sa1Var.addView(pVar, new LinearLayout.LayoutParams(AndroidUtilities.dp(34.0f), AndroidUtilities.dp(30.0f)));
+            pVar.setContentDescription(oVar.f52057b);
+            qa1Var.addView(pVar, new LinearLayout.LayoutParams(AndroidUtilities.dp(34.0f), AndroidUtilities.dp(30.0f)));
         }
         this.e = -1;
-        this.f51784f = Float.NaN;
+        this.f52072f = Float.NaN;
     }
 }

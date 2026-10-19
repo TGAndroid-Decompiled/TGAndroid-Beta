@@ -2,43 +2,43 @@ package org.telegram.ui;
 
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-public final class c60 implements org.telegram.ui.Components.l20, org.telegram.ui.ActionBar.a2, r0.n {
-    public final int f35799a;
-    public final n60 f35800b;
+public final class c60 implements View.OnClickListener {
+    public final int f35826a;
+    public final l60 f35827b;
 
-    public c60(n60 n60Var, int i10) {
-        this.f35799a = i10;
-        this.f35800b = n60Var;
+    public c60(l60 l60Var, int i10) {
+        this.f35826a = i10;
+        this.f35827b = l60Var;
     }
 
     @Override
-    public r0.k1 B0(View view, r0.k1 k1Var) {
-        int i10 = AndroidUtilities.getDefaultWindowInsets(k1Var, false).d;
-        n60 n60Var = this.f35800b;
-        n60Var.m0 = i10;
-        ai.w1 w1Var = n60Var.F;
-        if (w1Var != null) {
-            w1Var.setPadding(0, 0, 0, i10);
-        }
-        n60Var.j0();
-        n60Var.h0();
-        return r0.k1.f44826b;
-    }
-
-    @Override
-    public void a(int i10) {
-        n60 n60Var = this.f35800b;
-        n60Var.f39315b.a(Math.min(i10, n60Var.f39318c0));
-    }
-
-    @Override
-    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f35799a) {
+    public final void onClick(View view) {
+        switch (this.f35826a) {
+            case 0:
+                l60 l60Var = this.f35827b;
+                l60Var.f38804f.f27688r.clearFocus();
+                l60Var.f38804f.f27688r.requestFocus();
+                AndroidUtilities.showKeyboard(l60Var.f38804f.f27688r);
+                return;
             case 1:
-                this.f35800b.o0();
+                this.f35827b.o0();
+                return;
+            case 2:
+                l60 l60Var2 = this.f35827b;
+                l60Var2.n0(l60Var2.l0());
+                return;
+            case 3:
+                l60 l60Var3 = this.f35827b;
+                l60Var3.n0(l60Var3.l0());
                 return;
             default:
-                this.f35800b.finishFragment();
+                l60 l60Var4 = this.f35827b;
+                l60Var4.X = null;
+                l60Var4.Z.b();
+                l60Var4.h.b();
+                l60Var4.k0();
+                l60Var4.r0();
+                l60Var4.s0();
                 return;
         }
     }

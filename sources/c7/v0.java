@@ -8,26 +8,26 @@ import org.json.JSONException;
 import org.json.JSONObject;
 public final class v0 extends o6.a {
     public static final Parcelable.Creator<v0> CREATOR = new r0(14);
-    public final boolean f5023a;
-    public final n7.t0 f5024b;
+    public final boolean f5022a;
+    public final n7.s0 f5023b;
 
-    public v0(boolean z10, n7.t0 t0Var) {
-        this.f5023a = z10;
-        this.f5024b = t0Var;
+    public v0(boolean z10, n7.s0 s0Var) {
+        this.f5022a = z10;
+        this.f5023b = s0Var;
     }
 
     public final JSONObject b() {
         byte[] t10;
         try {
             JSONObject jSONObject = new JSONObject();
-            if (this.f5023a) {
+            if (this.f5022a) {
                 jSONObject.put("enabled", true);
             }
-            n7.t0 t0Var = this.f5024b;
-            if (t0Var == null) {
+            n7.s0 s0Var = this.f5023b;
+            if (s0Var == null) {
                 t10 = null;
             } else {
-                t10 = t0Var.t();
+                t10 = s0Var.t();
             }
             if (t10 != null) {
                 JSONObject jSONObject2 = new JSONObject();
@@ -48,14 +48,14 @@ public final class v0 extends o6.a {
             return false;
         }
         v0 v0Var = (v0) obj;
-        if (this.f5023a != v0Var.f5023a || !n6.l.l(this.f5024b, v0Var.f5024b)) {
+        if (this.f5022a != v0Var.f5022a || !n6.l.l(this.f5023b, v0Var.f5023b)) {
             return false;
         }
         return true;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Boolean.valueOf(this.f5023a), this.f5024b});
+        return Arrays.hashCode(new Object[]{Boolean.valueOf(this.f5022a), this.f5023b});
     }
 
     public final String toString() {
@@ -67,12 +67,12 @@ public final class v0 extends o6.a {
         byte[] t10;
         int q6 = w7.f0.q(parcel, 20293);
         w7.f0.s(parcel, 1, 4);
-        parcel.writeInt(this.f5023a ? 1 : 0);
-        n7.t0 t0Var = this.f5024b;
-        if (t0Var == null) {
+        parcel.writeInt(this.f5022a ? 1 : 0);
+        n7.s0 s0Var = this.f5023b;
+        if (s0Var == null) {
             t10 = null;
         } else {
-            t10 = t0Var.t();
+            t10 = s0Var.t();
         }
         w7.f0.c(parcel, 2, t10);
         w7.f0.r(parcel, q6);

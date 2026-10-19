@@ -1,16 +1,16 @@
 package org.telegram.ui.Components;
 public final class ka {
-    public int f27811a;
-    public int f27812b;
-    public int f27813c;
+    public int f27791a;
+    public int f27792b;
+    public int f27793c;
     public int d;
     public int e;
-    public int f27814f;
-    public int f27815g;
+    public int f27794f;
+    public int f27795g;
     public int h;
-    public int f27816i;
-    public int f27817j;
-    public int f27818k;
-    public int f27819l;
-    public int f27820m;
+    public int f27796i;
+    public int f27797j;
+    public int f27798k;
+    public int f27799l;
+    public int f27800m;
 }

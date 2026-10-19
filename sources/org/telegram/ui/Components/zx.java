@@ -2,24 +2,24 @@ package org.telegram.ui.Components;
 
 import org.telegram.messenger.FileLog;
 public final class zx implements Runnable {
-    public final int f33040a;
-    public final float f33041b;
-    public final int f33042c;
+    public final int f33049a;
+    public final float f33050b;
+    public final int f33051c;
     public final Object d;
 
     public zx(Object obj, float f7, int i10, int i11) {
-        this.f33040a = i11;
+        this.f33049a = i11;
         this.d = obj;
-        this.f33041b = f7;
-        this.f33042c = i10;
+        this.f33050b = f7;
+        this.f33051c = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f33040a) {
+        switch (this.f33049a) {
             case 0:
-                float f7 = this.f33041b;
-                int i10 = this.f33042c;
+                float f7 = this.f33050b;
+                int i10 = this.f33051c;
                 tz tzVar = ((ay) this.d).F;
                 try {
                     li.n nVar = new li.n(tzVar.P.getContext(), 0, f7);
@@ -31,13 +31,13 @@ public final class zx implements Runnable {
                     return;
                 }
             default:
-                org.telegram.ui.z51 z51Var = (org.telegram.ui.z51) this.d;
-                float f10 = this.f33041b;
-                int i11 = this.f33042c;
+                org.telegram.ui.x51 x51Var = (org.telegram.ui.x51) this.d;
+                float f10 = this.f33050b;
+                int i11 = this.f33051c;
                 try {
-                    li.n nVar2 = new li.n(z51Var.f43586h0.getContext(), 0, f10);
+                    li.n nVar2 = new li.n(x51Var.f43056h0.getContext(), 0, f10);
                     nVar2.f46051a = i11;
-                    z51Var.f43606r0.w0(nVar2);
+                    x51Var.f43076r0.w0(nVar2);
                     return;
                 } catch (Exception e7) {
                     FileLog.e(e7);

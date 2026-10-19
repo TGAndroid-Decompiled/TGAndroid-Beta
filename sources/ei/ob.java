@@ -1,25 +1,25 @@
 package ei;
 
-import org.telegram.ui.qz0;
+import org.telegram.ui.oz0;
 public final class ob extends qb {
-    public final int f9571g;
+    public final int f9572g;
     public final Object h;
 
     public ob(Object obj, int i10) {
-        this.f9571g = i10;
+        this.f9572g = i10;
         this.h = obj;
     }
 
     @Override
     public final void e() {
-        switch (this.f9571g) {
+        switch (this.f9572g) {
             case 0:
-                qz0 qz0Var = (qz0) this.h;
-                qz0Var.Q = false;
-                qz0Var.invalidate();
+                oz0 oz0Var = (oz0) this.h;
+                oz0Var.Q = false;
+                oz0Var.invalidate();
                 return;
             case 1:
-                ci.p4 t10 = ((ci.z9) this.h).t();
+                ci.q4 t10 = ((ci.aa) this.h).t();
                 if (t10 != null) {
                     t10.m0(true);
                     return;
@@ -34,21 +34,21 @@ public final class ob extends qb {
 
     @Override
     public final void f(boolean z10) {
-        switch (this.f9571g) {
+        switch (this.f9572g) {
             case 0:
-                qz0 qz0Var = (qz0) this.h;
-                qz0Var.Q = true;
-                qz0Var.invalidate();
+                oz0 oz0Var = (oz0) this.h;
+                oz0Var.Q = true;
+                oz0Var.invalidate();
                 return;
             case 1:
-                ci.p4 t10 = ((ci.z9) this.h).t();
+                ci.q4 t10 = ((ci.aa) this.h).t();
                 if (t10 != null) {
                     t10.m0(false);
                 }
-                ci.q3 q3Var = this.f9667f;
-                if (q3Var != null) {
-                    q3Var.setTranslationX(0.0f);
-                    this.f9667f.setTranslationY(0.0f);
+                ci.r3 r3Var = this.f9668f;
+                if (r3Var != null) {
+                    r3Var.setTranslationX(0.0f);
+                    this.f9668f.setTranslationY(0.0f);
                     return;
                 }
                 return;

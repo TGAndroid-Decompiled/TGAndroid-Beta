@@ -8,9 +8,9 @@ import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.ActionBar.n2;
 import org.telegram.ui.Cells.l4;
 import org.telegram.ui.Components.im0;
-import org.telegram.ui.Components.s61;
+import org.telegram.ui.Components.t61;
 import s4.b1;
-public final class d extends s61 {
+public final class d extends t61 {
     public final g N;
 
     public d(g gVar, im0 im0Var, Activity activity, int i10, int i11, q qVar, d6 d6Var) {

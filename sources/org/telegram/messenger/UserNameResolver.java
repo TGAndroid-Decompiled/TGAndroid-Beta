@@ -87,7 +87,7 @@ public class UserNameResolver {
         this.resolvedCache.remove(user.username);
         String str2 = user2.username;
         if (str2 != null) {
-            this.resolvedCache.put(str2, new CachedPeer(user2.f20419id));
+            this.resolvedCache.put(str2, new CachedPeer(user2.f20422id));
         }
     }
 
@@ -104,7 +104,7 @@ public class UserNameResolver {
                 StringBuilder sb2 = new StringBuilder("resolve username from cache ");
                 sb2.append(str);
                 sb2.append(" ");
-                i2.d.x(sb2, cachedPeer.peerId);
+                i2.e.x(sb2, cachedPeer.peerId);
                 return null;
             }
             this.resolvedCache.remove(str);
@@ -141,7 +141,7 @@ public class UserNameResolver {
         this.resolvedCache.remove(chat.username);
         String str2 = chat2.username;
         if (str2 != null) {
-            this.resolvedCache.put(str2, new CachedPeer(-chat2.f20272id));
+            this.resolvedCache.put(str2, new CachedPeer(-chat2.f20275id));
         }
     }
 }

@@ -1,44 +1,40 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class ts0 extends org.telegram.ui.Components.c10 {
-    public final bs0 e;
-    public final PhotoViewer f41793f;
+import android.app.Activity;
+import android.content.Context;
+import android.view.OrientationEventListener;
+public final class ts0 extends OrientationEventListener {
+    public final PhotoViewer f41754a;
 
-    public ts0(PhotoViewer photoViewer, bs0 bs0Var) {
-        super(false);
-        this.f41793f = photoViewer;
-        this.e = bs0Var;
+    public ts0(Context context, PhotoViewer photoViewer) {
+        super(context);
+        this.f41754a = photoViewer;
     }
 
     @Override
-    public final CharSequence d() {
-        StringBuilder sb2 = new StringBuilder();
-        PhotoViewer photoViewer = this.f41793f;
-        int[] iArr = photoViewer.f33337m3;
-        sb2.append(LocaleController.formatPluralString("Minutes", iArr[0], new Object[0]));
-        sb2.append(' ');
-        sb2.append(LocaleController.formatPluralString("Seconds", iArr[1], new Object[0]));
-        String sb3 = sb2.toString();
-        StringBuilder sb4 = new StringBuilder();
-        int[] iArr2 = photoViewer.f33347n3;
-        sb4.append(LocaleController.formatPluralString("Minutes", iArr2[0], new Object[0]));
-        sb4.append(' ');
-        sb4.append(LocaleController.formatPluralString("Seconds", iArr2[1], new Object[0]));
-        return LocaleController.formatString("AccDescrPlayerDuration", R.string.AccDescrPlayerDuration, sb3, sb4.toString());
-    }
-
-    @Override
-    public final float k() {
-        return this.f41793f.f33373q3.c();
-    }
-
-    @Override
-    public final void l(float f7) {
-        this.e.b(f7);
-        PhotoViewer photoViewer = this.f41793f;
-        photoViewer.f33373q3.h(f7, false);
-        photoViewer.f33382r3.invalidate();
+    public final void onOrientationChanged(int i10) {
+        ys0 ys0Var;
+        Activity activity;
+        int i11;
+        PhotoViewer photoViewer = this.f41754a;
+        if (photoViewer.W3 != null && (ys0Var = photoViewer.f33454y2) != null && ys0Var.getVisibility() == 0 && (activity = photoViewer.f33451y) != null && (i11 = photoViewer.Y3) != 0) {
+            if (i11 == 1) {
+                if (i10 >= 240 && i10 <= 300) {
+                    photoViewer.Z3 = true;
+                } else if (photoViewer.Z3 && i10 > 0) {
+                    if (i10 >= 330 || i10 <= 30) {
+                        activity.setRequestedOrientation(photoViewer.X3);
+                        photoViewer.Y3 = 0;
+                        photoViewer.Z3 = false;
+                    }
+                }
+            } else if (i10 > 0 && (i10 >= 330 || i10 <= 30)) {
+                photoViewer.Z3 = true;
+            } else if (photoViewer.Z3 && i10 >= 240 && i10 <= 300) {
+                activity.setRequestedOrientation(photoViewer.X3);
+                photoViewer.Y3 = 0;
+                photoViewer.Z3 = false;
+            }
+        }
     }
 }

@@ -1,57 +1,38 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
-public final class sn0 implements eo0 {
-    public final Runnable f41456a;
-    public final go0 f41457b;
+public final class sn0 implements co0 {
+    public final eo0 f41494a;
 
-    public sn0(go0 go0Var, Runnable runnable) {
-        this.f41457b = go0Var;
-        this.f41456a = runnable;
-    }
-
-    @Override
-    public final boolean c(String str, String str2, boolean z10, TLRPC.TL_inputPaymentCredentialsGooglePay tL_inputPaymentCredentialsGooglePay, TLRPC.TL_paymentSavedCredentialsCard tL_paymentSavedCredentialsCard) {
-        String str3;
-        go0 go0Var = this.f41457b;
-        go0Var.f37254y0 = tL_paymentSavedCredentialsCard;
-        go0Var.f37250w0 = str;
-        go0Var.U0 = z10;
-        go0Var.f37252x0 = str2;
-        go0Var.J0 = tL_inputPaymentCredentialsGooglePay;
-        org.telegram.ui.Cells.c9[] c9VarArr = go0Var.Y;
-        org.telegram.ui.Cells.c9 c9Var = c9VarArr[0];
-        if (c9Var != null) {
-            c9Var.setVisibility(0);
-            org.telegram.ui.Cells.c9 c9Var2 = c9VarArr[0];
-            String str4 = go0Var.f37252x0;
-            if (str4 != null && str4.length() > 1) {
-                str3 = go0Var.f37252x0.substring(0, 1).toUpperCase() + go0Var.f37252x0.substring(1);
-            } else {
-                str3 = go0Var.f37252x0;
-            }
-            c9Var2.b(R.drawable.msg_payment_card, str3, LocaleController.getString(R.string.PaymentCheckoutMethod), true);
-            org.telegram.ui.Cells.c9 c9Var3 = c9VarArr[1];
-            if (c9Var3 != null) {
-                c9Var3.setVisibility(0);
-            }
-        }
-        Runnable runnable = this.f41456a;
-        if (runnable != null) {
-            runnable.run();
-        }
-        return false;
+    public sn0(eo0 eo0Var) {
+        this.f41494a = eo0Var;
     }
 
     @Override
     public final void a(TL_account.Password password) {
+        this.f41494a.f36699a0 = password;
     }
 
     @Override
     public final void b() {
+        this.f41494a.f36712f0 = null;
+    }
+
+    @Override
+    public final boolean c(String str, String str2, boolean z10, TLRPC.TL_inputPaymentCredentialsGooglePay tL_inputPaymentCredentialsGooglePay, TLRPC.TL_paymentSavedCredentialsCard tL_paymentSavedCredentialsCard) {
+        eo0 eo0Var = this.f41494a;
+        co0 co0Var = eo0Var.T;
+        if (co0Var != null) {
+            co0Var.c(str, str2, z10, tL_inputPaymentCredentialsGooglePay, tL_paymentSavedCredentialsCard);
+        }
+        if (eo0Var.S0) {
+            eo0Var.removeSelfFromStack();
+        }
+        if (eo0Var.T != null) {
+            return true;
+        }
+        return false;
     }
 
     @Override

@@ -1,6 +1,6 @@
 package wg;
 
-import ci.k4;
+import ci.l4;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
@@ -24,7 +24,7 @@ public final class e extends d {
         } else {
             i10 = 3;
         }
-        this.f48953c.setLayoutParams(z5.d(40, 40.0f, i10 | 16, 16.0f, 0.0f, 16.0f, 0.0f));
+        this.f48952c.setLayoutParams(z5.d(40, 40.0f, i10 | 16, 16.0f, 0.0f, 16.0f, 0.0f));
         boolean z10 = LocaleController.isRTL;
         if (z10) {
             i11 = 5;
@@ -62,17 +62,17 @@ public final class e extends d {
     }
 
     public void setGiveaway(TL_stories.PrepaidGiveaway prepaidGiveaway) {
-        this.e.setTextColor(h6.w0(h6.f21242r5, this.f48951a));
+        this.e.setTextColor(h6.w0(h6.f21245r5, this.f48950a));
         boolean z10 = prepaidGiveaway instanceof TL_stories.TL_prepaidStarsGiveaway;
-        k4 k4Var = this.d;
-        h9 h9Var = this.f48952b;
+        l4 l4Var = this.d;
+        h9 h9Var = this.f48951b;
         if (z10) {
             TL_stories.TL_prepaidStarsGiveaway tL_prepaidStarsGiveaway = (TL_stories.TL_prepaidStarsGiveaway) prepaidGiveaway;
             h9Var.g(26);
-            k4Var.k(LocaleController.formatPluralStringComma("BoostingStarsPreparedGiveawaySubscriptionsPlural", (int) tL_prepaidStarsGiveaway.stars));
+            l4Var.k(LocaleController.formatPluralStringComma("BoostingStarsPreparedGiveawaySubscriptionsPlural", (int) tL_prepaidStarsGiveaway.stars));
             setSubtitle(LocaleController.formatPluralString("AmongWinners", tL_prepaidStarsGiveaway.quantity, new Object[0]));
         } else if (prepaidGiveaway instanceof TL_stories.TL_prepaidGiveaway) {
-            k4Var.k(LocaleController.getString(R.string.BoostingPreparedGiveawayOne));
+            l4Var.k(LocaleController.getString(R.string.BoostingPreparedGiveawayOne));
             h9Var.g(16);
             TL_stories.TL_prepaidGiveaway tL_prepaidGiveaway = (TL_stories.TL_prepaidGiveaway) prepaidGiveaway;
             int i10 = tL_prepaidGiveaway.months;
@@ -85,7 +85,7 @@ public final class e extends d {
             }
             setSubtitle(LocaleController.formatPluralString("BoostingPreparedGiveawaySubscriptionsPlural", prepaidGiveaway.quantity, LocaleController.formatPluralString("Months", tL_prepaidGiveaway.months, new Object[0])));
         }
-        w9 w9Var = this.f48953c;
+        w9 w9Var = this.f48952c;
         w9Var.setImageDrawable(h9Var);
         w9Var.setRoundRadius(AndroidUtilities.dp(20.0f));
     }

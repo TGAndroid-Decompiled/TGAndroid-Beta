@@ -32,7 +32,7 @@ public final class n0 extends FrameLayout {
         Paint paint2 = new Paint(1);
         view.f47737a = paint2;
         view.f47738b = view.getContext().getDrawable(R.drawable.mini_boost_remove);
-        int i10 = h6.f21057h5;
+        int i10 = h6.f21060h5;
         paint2.setColor(h6.x0(null, i10, false));
         this.f47732b = view;
         view.setAlpha(0.0f);

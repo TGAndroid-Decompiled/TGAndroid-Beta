@@ -9,20 +9,20 @@ import android.media.AudioManager;
 import android.os.Build;
 import android.util.Rational;
 public final class n0 {
-    public final Object f14764a;
-    public Object f14765b;
+    public final Object f14766a;
+    public Object f14767b;
 
     public n0() {
-        this.f14764a = new Rect();
-        this.f14765b = new Point();
+        this.f14766a = new Rect();
+        this.f14767b = new Point();
     }
 
     public PictureInPictureParams.Builder a() {
         int i10;
         Rational rational;
-        Rect rect = (Rect) this.f14764a;
+        Rect rect = (Rect) this.f14766a;
         PictureInPictureParams.Builder builder = new PictureInPictureParams.Builder();
-        Point point = (Point) this.f14765b;
+        Point point = (Point) this.f14767b;
         int i11 = point.x;
         if (i11 > 0 && (i10 = point.y) > 0) {
             double d = i11 / i10;
@@ -59,8 +59,8 @@ public final class n0 {
         fVar.getClass();
         int i11 = Build.VERSION.SDK_INT;
         if (i11 >= 29 && i10 != -1) {
-            Context context = (Context) this.f14764a;
-            Boolean bool = (Boolean) this.f14765b;
+            Context context = (Context) this.f14766a;
+            Boolean bool = (Boolean) this.f14767b;
             boolean z11 = false;
             if (bool != null) {
                 booleanValue = bool.booleanValue();
@@ -72,15 +72,15 @@ public final class n0 {
                     } else {
                         z10 = false;
                     }
-                    this.f14765b = Boolean.valueOf(z10);
+                    this.f14767b = Boolean.valueOf(z10);
                 } else {
-                    this.f14765b = Boolean.FALSE;
+                    this.f14767b = Boolean.FALSE;
                 }
-                booleanValue = ((Boolean) this.f14765b).booleanValue();
+                booleanValue = ((Boolean) this.f14767b).booleanValue();
             }
-            String str = wVar.f4132s;
+            String str = wVar.f4130s;
             str.getClass();
-            int c10 = b2.v0.c(str, wVar.f4124k);
+            int c10 = b2.v0.c(str, wVar.f4122k);
             if (c10 != 0 && i11 >= e2.m0.s(c10)) {
                 int t10 = e2.m0.t(wVar.K);
                 if (t10 == 0) {
@@ -97,9 +97,9 @@ public final class n0 {
                             z11 = true;
                         }
                         ?? obj = new Object();
-                        obj.f4250a = true;
-                        obj.f4251b = z11;
-                        obj.f4252c = booleanValue;
+                        obj.f4248a = true;
+                        obj.f4249b = z11;
+                        obj.f4250c = booleanValue;
                         return obj.a();
                     } else if (i11 >= 31) {
                         int playbackOffloadSupport = AudioManager.getPlaybackOffloadSupport(build, fVar.b());
@@ -110,16 +110,16 @@ public final class n0 {
                         if (i11 > 32 && playbackOffloadSupport == 2) {
                             z11 = true;
                         }
-                        obj2.f4250a = true;
-                        obj2.f4251b = z11;
-                        obj2.f4252c = booleanValue;
+                        obj2.f4248a = true;
+                        obj2.f4249b = z11;
+                        obj2.f4250c = booleanValue;
                         return obj2.a();
                     } else if (!AudioManager.isOffloadedPlaybackSupported(build, fVar.b())) {
                         return g.d;
                     } else {
                         ?? obj3 = new Object();
-                        obj3.f4250a = true;
-                        obj3.f4252c = booleanValue;
+                        obj3.f4248a = true;
+                        obj3.f4250c = booleanValue;
                         return obj3.a();
                     }
                 } catch (IllegalArgumentException unused) {
@@ -132,8 +132,8 @@ public final class n0 {
     }
 
     public boolean c() {
-        if (!((Rect) this.f14764a).isEmpty()) {
-            Point point = (Point) this.f14765b;
+        if (!((Rect) this.f14766a).isEmpty()) {
+            Point point = (Point) this.f14767b;
             if (point.x > 0 && point.y > 0) {
                 return true;
             }
@@ -143,7 +143,7 @@ public final class n0 {
     }
 
     public boolean d(int i10, int i11) {
-        Point point = (Point) this.f14765b;
+        Point point = (Point) this.f14767b;
         if (point.x == i10 && point.y == i11) {
             return false;
         }
@@ -152,6 +152,6 @@ public final class n0 {
     }
 
     public n0(Context context) {
-        this.f14764a = context == null ? null : context.getApplicationContext();
+        this.f14766a = context == null ? null : context.getApplicationContext();
     }
 }

@@ -5,7 +5,7 @@ import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.view.View;
-import ci.o1;
+import ci.p1;
 import ei.c4;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
@@ -26,15 +26,15 @@ import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.PremiumPreviewFragment;
 import org.telegram.ui.Wallet.z2;
 public final class f implements View.OnClickListener {
-    public final int f724a;
+    public final int f722a;
 
     public f(int i10) {
-        this.f724a = i10;
+        this.f722a = i10;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f724a) {
+        switch (this.f722a) {
             case 0:
                 int i10 = i.e;
                 return;
@@ -42,7 +42,7 @@ public final class f implements View.OnClickListener {
                 int i11 = a2.D0;
                 return;
             case 2:
-                o1.j();
+                p1.j();
                 return;
             case 3:
                 int i12 = c4.d;
@@ -51,7 +51,7 @@ public final class f implements View.OnClickListener {
                 PhotoViewer.t1().j0(1.0f, 0.0f, 0.0f, false);
                 return;
             case 5:
-                int i13 = gi.n.f11342n;
+                int i13 = gi.n.f11343n;
                 return;
             case 6:
                 int i14 = kh.c.e;
@@ -80,20 +80,20 @@ public final class f implements View.OnClickListener {
                 }
                 return;
             case 11:
-                int i16 = wq.f32189e0;
+                int i16 = wq.f32188e0;
                 return;
             case 12:
-                int i17 = fs.f26378s;
+                int i17 = fs.f26369s;
                 return;
             case 13:
                 float[] fArr = FragmentContextView.Q0;
                 MediaController.getInstance().updateSilent(false);
                 return;
             case 14:
-                zg0 zg0Var = zg0.f32905p0;
+                zg0 zg0Var = zg0.f32929p0;
                 cv cvVar = zg0Var.U;
                 if (cvVar != null) {
-                    cvVar.H();
+                    cvVar.G();
                 } else {
                     PhotoViewer photoViewer = zg0Var.V;
                     if (photoViewer != null) {
@@ -123,7 +123,7 @@ public final class f implements View.OnClickListener {
                 ug.m1.f0(0, null);
                 return;
             case 19:
-                ArrayList arrayList = ExternalActionActivity.f33118x;
+                ArrayList arrayList = ExternalActionActivity.f33124x;
                 return;
             case 20:
                 return;
@@ -141,7 +141,7 @@ public final class f implements View.OnClickListener {
                     return;
                 }
             case 24:
-                int i18 = z2.U;
+                int i18 = z2.W;
                 return;
             case 25:
                 PhotoViewer.t1().j0(1.0f, 0.0f, 0.0f, false);
@@ -158,16 +158,16 @@ public final class f implements View.OnClickListener {
                 int i19 = yh.m.A0;
                 return;
             case 28:
-                zc[] zcVarArr = yh.v.f50534p0;
+                zc[] zcVarArr = yh.v.f50533p0;
                 return;
             default:
-                int i20 = yh.c0.f50176f0;
+                int i20 = yh.c0.f50175f0;
                 return;
         }
     }
 
     public f(Object obj, int i10) {
-        this.f724a = i10;
+        this.f722a = i10;
     }
 
     private final void a(View view) {

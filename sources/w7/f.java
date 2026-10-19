@@ -10,9 +10,9 @@ import java.util.HashMap;
 import java.util.Map;
 public final class f implements ja.e {
     public static final Charset f48634f = Charset.forName("UTF-8");
-    public static final ja.c f48635g = new ja.c("key", i2.d.o(r4.c.l(d.class, new a(1))));
-    public static final ja.c h = new ja.c("value", i2.d.o(r4.c.l(d.class, new a(2))));
-    public static final e f48636i = e.f48619b;
+    public static final ja.c f48635g = new ja.c("key", i2.e.o(r4.c.l(d.class, new a(1))));
+    public static final ja.c h = new ja.c("value", i2.e.o(r4.c.l(d.class, new a(2))));
+    public static final e f48636i = e.f48621b;
     public OutputStream f48637a;
     public final HashMap f48638b;
     public final HashMap f48639c;
@@ -104,9 +104,9 @@ public final class f implements ja.e {
                 ja.f fVar = (ja.f) this.f48639c.get(obj.getClass());
                 if (fVar != null) {
                     ma.h hVar = this.e;
-                    hVar.f16823b = false;
+                    hVar.f16826b = false;
                     hVar.d = cVar;
-                    hVar.f16824c = z10;
+                    hVar.f16827c = z10;
                     fVar.a(obj, hVar);
                 } else if (obj instanceof b) {
                     h(cVar, ((b) obj).zza(), true);
@@ -166,13 +166,13 @@ public final class f implements ja.e {
 
     public final void j(ja.d dVar, ja.c cVar, Object obj, boolean z10) {
         ma.b bVar = new ma.b(2);
-        bVar.f16812b = 0L;
+        bVar.f16815b = 0L;
         try {
             OutputStream outputStream = this.f48637a;
             this.f48637a = bVar;
             dVar.a(obj, this);
             this.f48637a = outputStream;
-            long j10 = bVar.f16812b;
+            long j10 = bVar.f16815b;
             bVar.close();
             if (z10 && j10 == 0) {
                 return;

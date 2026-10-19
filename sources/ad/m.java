@@ -41,7 +41,7 @@ public abstract class m {
             return new j(iVar, str, new ByteArrayInputStream(new byte[0]), 0L);
         }
         String str4 = "US-ASCII";
-        String str5 = bVar.f501c;
+        String str5 = bVar.f500c;
         if (str5 == null) {
             str3 = "US-ASCII";
         } else {
@@ -51,7 +51,7 @@ public abstract class m {
             if (!Charset.forName(str3).newEncoder().canEncode(str2) && str5 == null) {
                 bVar = new b(str + "; charset=UTF-8");
             }
-            String str6 = bVar.f501c;
+            String str6 = bVar.f500c;
             if (str6 != null) {
                 str4 = str6;
             }
@@ -60,7 +60,7 @@ public abstract class m {
             d.log(Level.SEVERE, "encoding problem, responding nothing", (Throwable) e);
             bArr = new byte[0];
         }
-        return new j(iVar, bVar.f499a, new ByteArrayInputStream(bArr), bArr.length);
+        return new j(iVar, bVar.f498a, new ByteArrayInputStream(bArr), bArr.length);
     }
 
     public static final void d(Object obj) {

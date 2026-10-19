@@ -8,8 +8,8 @@ import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.Components.qc;
 import org.telegram.ui.Components.xc;
 import org.telegram.ui.Components.z00;
-import org.telegram.ui.sn;
-public final class a3 extends sn {
+import org.telegram.ui.qn;
+public final class a3 extends qn {
     public boolean Rc;
     public final TL_stars.TL_starGiftUnique Sc;
     public final long Tc;
@@ -27,9 +27,9 @@ public final class a3 extends sn {
         if (!this.Rc) {
             this.Rc = true;
             qc O = xc.a0(this).O(this.Sc.getDocument(), LocaleController.getString(R.string.BoughtResoldGiftToTitle), LocaleController.formatString(R.string.BoughtResoldGiftToText, DialogObject.getShortName(this.currentAccount, this.Tc)));
-            O.f29646r = false;
+            O.f29604r = false;
             O.j();
-            z00 z00Var = this.f41287m9;
+            z00 z00Var = this.f40771m9;
             if (z00Var != null) {
                 z00Var.c(true);
             }

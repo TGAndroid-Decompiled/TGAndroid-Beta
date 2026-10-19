@@ -1,54 +1,63 @@
 package org.telegram.ui;
 
-import android.text.TextUtils;
-public final class eu extends pg.a {
-    public final int f36598c;
-    public final int d;
-    public final int e;
-    public final CharSequence f36599f;
-    public final CharSequence f36600g;
-    public final int h;
+import android.content.Context;
+public final class eu extends org.telegram.ui.Components.dd {
+    public final fu f36803e0;
 
-    public eu(int i10, String str) {
-        super(i10, false);
-        this.f36599f = str;
+    public eu(fu fuVar, Context context, int i10, int[] iArr, int[] iArr2) {
+        super(context, i10, iArr, 1, iArr2);
+        this.f36803e0 = fuVar;
     }
 
-    public static eu b(CharSequence charSequence, String str) {
-        return new eu(-1, 0, 0, 0, charSequence, str);
+    @Override
+    public final int c() {
+        return 216;
     }
 
-    public final boolean equals(Object obj) {
-        if (!(obj instanceof eu)) {
-            return false;
-        }
-        eu euVar = (eu) obj;
-        CharSequence charSequence = euVar.f36599f;
-        int i10 = euVar.f44291a;
-        int i11 = this.f44291a;
-        if (i10 != i11) {
-            return false;
-        }
-        CharSequence charSequence2 = this.f36599f;
-        if (i11 != 1 && i11 != 4 && i11 != 3 && i11 != 5) {
-            if (i11 != 2) {
-                return true;
+    @Override
+    public final void d(int i10, boolean z10) {
+        int i11;
+        hu huVar = (hu) this.f36803e0.e;
+        if (!z10) {
+            huVar.j1();
+        } else if (i10 >= 0 && i10 < huVar.f37816e3.length) {
+            int i12 = 0;
+            while (true) {
+                gu[] guVarArr = huVar.f37816e3;
+                i11 = -1;
+                if (i12 < guVarArr.length) {
+                    if (guVarArr[i12].d == i10) {
+                        break;
+                    }
+                    i12++;
+                } else {
+                    i12 = -1;
+                    break;
+                }
             }
-            if (euVar.h != this.h || !TextUtils.equals(charSequence2, charSequence) || euVar.d != this.d || euVar.e != this.e || euVar.f36598c != this.f36598c) {
-                return false;
+            int i13 = 0;
+            while (true) {
+                if (i13 < huVar.f37812a3.size()) {
+                    cu cuVar = (cu) huVar.f37812a3.get(i13);
+                    if (cuVar != null && cuVar.f44286a == 2 && cuVar.h == i12) {
+                        i11 = i13;
+                        break;
+                    }
+                    i13++;
+                } else {
+                    break;
+                }
             }
-            return true;
+            if (i11 >= 0) {
+                huVar.e1(new i2.w(i11, 7), 0, true);
+            } else {
+                huVar.j1();
+            }
         }
-        return TextUtils.equals(charSequence2, charSequence);
     }
 
-    public eu(int i10, int i11, int i12, int i13, CharSequence charSequence, CharSequence charSequence2) {
-        super(2, false);
-        this.h = i10;
-        this.f36598c = i11;
-        this.d = i12;
-        this.e = i13;
-        this.f36599f = charSequence;
-        this.f36600g = charSequence2;
+    @Override
+    public final int e() {
+        return 10;
     }
 }

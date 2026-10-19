@@ -3,21 +3,21 @@ package org.telegram.ui.Components.voip;
 import android.content.Context;
 import android.view.View;
 import android.widget.ImageView;
-import org.telegram.ui.j30;
+import org.telegram.ui.h30;
 public final class e0 extends ImageView {
-    public final j30 f31434a;
+    public final h30 f31445a;
 
-    public e0(j30 j30Var, Context context) {
+    public e0(h30 h30Var, Context context) {
         super(context);
-        this.f31434a = j30Var;
+        this.f31445a = h30Var;
     }
 
     @Override
     public final void invalidate() {
         super.invalidate();
-        j30 j30Var = this.f31434a;
-        j30Var.f31561f0.invalidate();
-        j30Var.invalidate();
+        h30 h30Var = this.f31445a;
+        h30Var.f31572f0.invalidate();
+        h30Var.invalidate();
     }
 
     @Override

@@ -1,6 +1,6 @@
 package be;
 public final class y extends kotlin.jvm.internal.j implements td.l {
-    public static final y f4343b = new kotlin.jvm.internal.j(1);
+    public static final y f4341b = new kotlin.jvm.internal.j(1);
 
     @Override
     public final Object invoke(Object obj) {

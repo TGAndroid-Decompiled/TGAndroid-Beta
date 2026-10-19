@@ -1,54 +1,32 @@
 package org.telegram.ui.Components;
+public final class eq0 extends g.o {
+    public final int f25970c;
+    public final er0 d;
 
-import android.os.Build;
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-public final class eq0 extends s4.r0 {
-    public final int f25979a;
-    public final dr0 f25980b;
-
-    public eq0(dr0 dr0Var, int i10) {
-        this.f25979a = i10;
-        this.f25980b = dr0Var;
+    public eq0(er0 er0Var, int i10) {
+        this.f25970c = i10;
+        this.d = er0Var;
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        bh.f fVar;
-        ub ubVar;
-        switch (this.f25979a) {
+    public final int i(int i10) {
+        switch (this.f25970c) {
             case 0:
-                if (i11 != 0) {
-                    dr0 dr0Var = this.f25980b;
-                    dr0.t0(dr0Var);
-                    dr0Var.f25671q0 = dr0Var.f25670p0;
-                    return;
+                if (i10 == 0) {
+                    return this.d.J.J;
                 }
-                return;
+                return 1;
             case 1:
-                dr0 dr0Var2 = this.f25980b;
-                if (i11 != 0) {
-                    dr0.t0(dr0Var2);
-                    dr0Var2.f25671q0 = dr0Var2.f25670p0;
+                if (i10 == 0) {
+                    return this.d.I.J;
                 }
-                qc qcVar = qc.f29631w;
-                if (qcVar != null && (ubVar = qcVar.e) != null && (ubVar.getParent() instanceof View) && ((View) qc.f29631w.e.getParent()).getParent() == dr0Var2.f25679w) {
-                    qc.e();
-                }
-                if (Build.VERSION.SDK_INT >= 31 && (fVar = dr0Var2.O0) != null) {
-                    fVar.f(i10, i11);
-                    dr0.B0(dr0Var2);
-                    return;
-                }
-                return;
+                return 1;
             default:
-                if (i11 != 0) {
-                    dr0 dr0Var3 = this.f25980b;
-                    dr0.t0(dr0Var3);
-                    dr0Var3.f25671q0 = dr0Var3.f25670p0;
-                    return;
+                ar0 ar0Var = this.d.N;
+                if (i10 != ar0Var.f24686w && i10 != ar0Var.f24687x && i10 != ar0Var.f24688y && i10 != ar0Var.F && ar0Var.j(i10) != 0) {
+                    return 1;
                 }
-                return;
+                return 4;
         }
     }
 }

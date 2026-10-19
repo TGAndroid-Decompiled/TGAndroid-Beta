@@ -8,25 +8,25 @@ import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import v7.u6;
 public final class f extends c {
-    public m f10776a;
-    public byte[] f10777b;
-    public int f10778c;
+    public m f10777a;
+    public byte[] f10778b;
+    public int f10779c;
     public int d;
 
     @Override
     public final void close() {
-        if (this.f10777b != null) {
-            this.f10777b = null;
+        if (this.f10778b != null) {
+            this.f10778b = null;
             transferEnded();
         }
-        this.f10776a = null;
+        this.f10777a = null;
     }
 
     @Override
     public final Uri getUri() {
-        m mVar = this.f10776a;
+        m mVar = this.f10777a;
         if (mVar != null) {
-            return mVar.f10792a;
+            return mVar.f10793a;
         }
         return null;
     }
@@ -34,31 +34,31 @@ public final class f extends c {
     @Override
     public final long open(m mVar) {
         transferInitializing(mVar);
-        this.f10776a = mVar;
-        Uri uri = mVar.f10792a;
-        long j10 = mVar.f10795f;
+        this.f10777a = mVar;
+        Uri uri = mVar.f10793a;
+        long j10 = mVar.f10796f;
         Uri normalizeScheme = uri.normalizeScheme();
         String scheme = normalizeScheme.getScheme();
         u6.h("data".equals(scheme), "Unsupported scheme: %s", scheme);
         String schemeSpecificPart = normalizeScheme.getSchemeSpecificPart();
-        String str = m0.f8253a;
+        String str = m0.f8254a;
         String[] split = schemeSpecificPart.split(",", -1);
         if (split.length == 2) {
             String str2 = split[1];
             if (split[0].contains(";base64")) {
                 try {
-                    this.f10777b = Base64.decode(str2, 0);
+                    this.f10778b = Base64.decode(str2, 0);
                 } catch (IllegalArgumentException e) {
                     throw new w0(r4.c.h("Error while parsing Base64 encoded string: ", str2), e, true, 0);
                 }
             } else {
-                this.f10777b = URLDecoder.decode(str2, StandardCharsets.US_ASCII.name()).getBytes(StandardCharsets.UTF_8);
+                this.f10778b = URLDecoder.decode(str2, StandardCharsets.US_ASCII.name()).getBytes(StandardCharsets.UTF_8);
             }
             long j11 = mVar.e;
-            byte[] bArr = this.f10777b;
+            byte[] bArr = this.f10778b;
             if (j11 <= bArr.length) {
                 int i10 = (int) j11;
-                this.f10778c = i10;
+                this.f10779c = i10;
                 int length = bArr.length - i10;
                 this.d = length;
                 int i11 = (j10 > (-1L) ? 1 : (j10 == (-1L) ? 0 : -1));
@@ -71,7 +71,7 @@ public final class f extends c {
                 }
                 return this.d;
             }
-            this.f10777b = null;
+            this.f10778b = null;
             throw new j(2008);
         }
         throw new w0("Unexpected URI format: " + normalizeScheme, null, true, 0);
@@ -87,10 +87,10 @@ public final class f extends c {
             return -1;
         }
         int min = Math.min(i11, i12);
-        byte[] bArr2 = this.f10777b;
-        String str = m0.f8253a;
-        System.arraycopy(bArr2, this.f10778c, bArr, i10, min);
-        this.f10778c += min;
+        byte[] bArr2 = this.f10778b;
+        String str = m0.f8254a;
+        System.arraycopy(bArr2, this.f10779c, bArr, i10, min);
+        this.f10779c += min;
         this.d -= min;
         bytesTransferred(min);
         return min;

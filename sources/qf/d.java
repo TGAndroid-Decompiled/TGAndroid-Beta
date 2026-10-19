@@ -21,25 +21,25 @@ import java.util.logging.Level;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.secretmedia.ExtendedDefaultDataSourceFactory;
-import org.telegram.ui.hk0;
+import org.telegram.ui.fk0;
 import t7.u;
 public final class d extends m {
-    public static final f f44447l;
-    public static final HashMap f44448m;
+    public static final f f44442l;
+    public static final HashMap f44443m;
     public final ExtendedDefaultDataSourceFactory e;
-    public final hk0 f44449f;
-    public final u f44450g;
+    public final fk0 f44444f;
+    public final u f44445g;
     public final HashMap h;
-    public Pair f44451i;
-    public boolean f44452j;
-    public final AtomicInteger f44453k;
+    public Pair f44446i;
+    public boolean f44447j;
+    public final AtomicInteger f44448k;
 
     static {
         f fVar = new f(new e(Uri.parse("file:///android_asset/cast/default.png"), "image/png", "/assets/default"));
-        f44447l = fVar;
+        f44442l = fVar;
         f[] fVarArr = {fVar};
         HashMap hashMap = new HashMap();
-        f44448m = hashMap;
+        f44443m = hashMap;
         f fVar2 = fVarArr[0];
         hashMap.put(fVar2.d, fVar2);
     }
@@ -47,11 +47,11 @@ public final class d extends m {
     public d() {
         this.f539c = new ad.d(0);
         this.h = new HashMap();
-        this.f44451i = null;
-        this.f44452j = false;
-        this.f44453k = new AtomicInteger();
-        this.f44449f = new hk0(24);
-        this.f44450g = new u(8);
+        this.f44446i = null;
+        this.f44447j = false;
+        this.f44448k = new AtomicInteger();
+        this.f44444f = new fk0(24);
+        this.f44445g = new u(8);
         this.e = new ExtendedDefaultDataSourceFactory(ApplicationLoader.applicationContext, "Mozilla/5.0 (X11; Linux x86_64; rv:10.0) Gecko/20150101 Firefox/47.0 (Chrome)");
     }
 
@@ -87,8 +87,8 @@ public final class d extends m {
     @Override
     public final j e(ad.f fVar) {
         String str;
-        int incrementAndGet = this.f44453k.incrementAndGet();
-        StringBuilder l4 = i2.d.l(incrementAndGet, "Request ", " ");
+        int incrementAndGet = this.f44448k.incrementAndGet();
+        StringBuilder l4 = i2.e.l(incrementAndGet, "Request ", " ");
         switch (fVar.f512g) {
             case 1:
                 str = "GET";
@@ -170,20 +170,20 @@ public final class d extends m {
 
     public final void h() {
         if (this.h.isEmpty()) {
-            if (this.f44452j) {
+            if (this.f44447j) {
                 try {
                     m.d(this.f537a);
                     ad.d dVar = this.f539c;
                     dVar.getClass();
-                    ArrayList arrayList = new ArrayList((List) dVar.f506c);
+                    ArrayList arrayList = new ArrayList((List) dVar.f505c);
                     int size = arrayList.size();
                     int i10 = 0;
                     while (i10 < size) {
                         Object obj = arrayList.get(i10);
                         i10++;
                         ad.a aVar = (ad.a) obj;
-                        m.d(aVar.f495a);
-                        m.d(aVar.f496b);
+                        m.d(aVar.f494a);
+                        m.d(aVar.f495b);
                     }
                     Thread thread = this.f538b;
                     if (thread != null) {
@@ -192,12 +192,12 @@ public final class d extends m {
                 } catch (Exception e) {
                     m.d.log(Level.SEVERE, "Could not stop all connections", (Throwable) e);
                 }
-                this.f44452j = false;
+                this.f44447j = false;
             }
-        } else if (!this.f44452j) {
+        } else if (!this.f44447j) {
             try {
                 f();
-                this.f44452j = true;
+                this.f44447j = true;
             } catch (IOException e7) {
                 throw new RuntimeException(e7);
             }
@@ -210,16 +210,16 @@ public final class d extends m {
 
     public final void l(File file, String str) {
         if (str != null && file != null) {
-            this.f44451i = new Pair(str, file);
+            this.f44446i = new Pair(str, file);
         } else {
-            Pair pair = this.f44451i;
+            Pair pair = this.f44446i;
             if (pair != null && ((File) pair.second).exists()) {
                 try {
-                    ((File) this.f44451i.second).delete();
+                    ((File) this.f44446i.second).delete();
                 } catch (Exception unused) {
                 }
             }
-            this.f44451i = null;
+            this.f44446i = null;
         }
         h();
     }

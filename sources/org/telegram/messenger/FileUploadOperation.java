@@ -220,7 +220,7 @@ public class FileUploadOperation {
                 StringBuilder sb2 = new StringBuilder("debug_uploading:  response reqId ");
                 sb2.append(iArr[0]);
                 sb2.append(" time");
-                i2.d.v(this.uploadingFilePath, sb2);
+                i2.e.v(this.uploadingFilePath, sb2);
             }
             if (tLObject != null) {
                 currentNetworkType = tLObject.networkType;
@@ -269,7 +269,7 @@ public class FileUploadOperation {
                                 tL_inputFile.md5_checksum = "";
                             }
                             tL_inputFile.parts = this.currentPartNum;
-                            tL_inputFile.f20286id = this.currentFileId;
+                            tL_inputFile.f20289id = this.currentFileId;
                             String str2 = this.uploadingFilePath;
                             tL_inputFile.name = str2.substring(str2.lastIndexOf("/") + 1);
                             this.delegate.didFinishUploadingFile(this, tL_inputFile, null, null, null);
@@ -282,7 +282,7 @@ public class FileUploadOperation {
                                 tL_inputEncryptedFileUploaded.md5_checksum = "";
                             }
                             tL_inputEncryptedFileUploaded.parts = this.currentPartNum;
-                            tL_inputEncryptedFileUploaded.f20285id = this.currentFileId;
+                            tL_inputEncryptedFileUploaded.f20288id = this.currentFileId;
                             tL_inputEncryptedFileUploaded.key_fingerprint = this.fingerprint;
                             this.delegate.didFinishUploadingFile(this, null, tL_inputEncryptedFileUploaded, this.key, this.iv);
                             cleanup();

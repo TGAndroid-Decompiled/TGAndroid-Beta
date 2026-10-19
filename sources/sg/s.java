@@ -126,7 +126,7 @@ public final class s extends View {
             TextPaint textPaint = this.f46416c;
             if (z10) {
                 e = paint;
-            } else if (limitPreviewView.f24283e0 != null) {
+            } else if (limitPreviewView.f24286e0 != null) {
                 e = textPaint;
             } else {
                 e = b1.d().e();
@@ -135,11 +135,11 @@ public final class s extends View {
             Paint e7 = b1.d().e();
             CornerPathEffect cornerPathEffect = this.f46415b;
             e7.setPathEffect(cornerPathEffect);
-            if (limitPreviewView.f24283e0 != null) {
+            if (limitPreviewView.f24286e0 != null) {
                 textPaint.setPathEffect(cornerPathEffect);
             }
             if (!limitPreviewView.R) {
-                if (limitPreviewView.f24283e0 != null) {
+                if (limitPreviewView.f24286e0 != null) {
                     paint = textPaint;
                 } else {
                     paint = b1.d().e();
@@ -147,15 +147,15 @@ public final class s extends View {
             }
             canvas.drawPath(this.f46414a, paint);
             b1.d().e().setPathEffect(null);
-            if (limitPreviewView.f24283e0 != null) {
+            if (limitPreviewView.f24286e0 != null) {
                 textPaint.setPathEffect(null);
             }
-            if (limitPreviewView.f24282d0) {
+            if (limitPreviewView.f24285d0) {
                 invalidate();
             }
         }
         int i10 = measuredHeight;
-        if (limitPreviewView.f24283e0 != null) {
+        if (limitPreviewView.f24286e0 != null) {
             canvas.saveLayer(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), this.f46421w, 31);
         }
         float measuredWidth = (getMeasuredWidth() - this.e) / 2.0f;
@@ -210,10 +210,10 @@ public final class s extends View {
             }
             canvas.restore();
         }
-        if (limitPreviewView.f24283e0 != null) {
+        if (limitPreviewView.f24286e0 != null) {
             canvas.restore();
             canvas.saveLayer(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), this.f46422x, 31);
-            canvas.drawRect(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(10.0f), getMeasuredWidth() - AndroidUtilities.dp(12.0f), getMeasuredHeight() - AndroidUtilities.dp(10.0f), ((z5) ((org.telegram.ui.b1) limitPreviewView.f24283e0).f35511b).u0(getX(), getY()));
+            canvas.drawRect(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(10.0f), getMeasuredWidth() - AndroidUtilities.dp(12.0f), getMeasuredHeight() - AndroidUtilities.dp(10.0f), ((z5) ((org.telegram.ui.b1) limitPreviewView.f24286e0).f35480b).u0(getX(), getY()));
             canvas.restore();
         }
     }

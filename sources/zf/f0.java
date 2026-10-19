@@ -3,9 +3,9 @@ package zf;
 import android.graphics.RectF;
 import java.util.ArrayList;
 import java.util.Collections;
-import org.telegram.ui.kg0;
+import org.telegram.ui.ig0;
 public abstract class f0 {
-    public static final kg0 f51557a = new kg0(29);
+    public static final ig0 f51557a = new ig0(29);
 
     public static int a(ArrayList arrayList, int i10, ArrayList arrayList2) {
         boolean z10;

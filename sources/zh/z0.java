@@ -1,0 +1,44 @@
+package zh;
+
+import android.graphics.Bitmap;
+import android.graphics.Paint;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.Components.r5;
+public final class z0 {
+    public TLRPC.Document A;
+    public TL_stars.TL_starGiftUnique B;
+    public long C;
+    public Bitmap D;
+    public long E;
+    public s F;
+    public boolean G;
+    public int f52149a;
+    public Drawable[] f52150b;
+    public r5 f52151c;
+    public r5 d;
+    public Bitmap e;
+    public Bitmap f52152f;
+    public long f52153g;
+    public boolean h;
+    public int f52155j;
+    public Bitmap f52156k;
+    public Bitmap f52157l;
+    public Bitmap f52158m;
+    public Bitmap f52159n;
+    public int f52160o;
+    public int f52161p;
+    public int f52163r;
+    public PorterDuffColorFilter f52166u;
+    public long[] f52167w;
+    public boolean[] f52168x;
+    public long[] f52169y;
+    public TLRPC.Document f52170z;
+    public final Paint f52154i = new Paint(2);
+    public int f52162q = -1;
+    public int f52164s = -1;
+    public int f52165t = -1;
+    public final Paint v = new Paint(2);
+}

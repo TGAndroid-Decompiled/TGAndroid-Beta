@@ -1,117 +1,57 @@
 package org.telegram.ui;
+public final class eg implements q0.a {
+    public final int f36655a;
+    public final qn f36656b;
 
-import java.util.ArrayList;
-import java.util.regex.Pattern;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-import org.telegram.tgnet.tl.TL_wallet;
-public final class eg implements Utilities.Callback2 {
-    public final int f36485a;
-    public final int f36486b;
-    public final Object f36487c;
-    public final Object d;
-
-    public eg(Object obj, int i10, TLObject tLObject, int i11) {
-        this.f36485a = i11;
-        this.f36487c = obj;
-        this.f36486b = i10;
-        this.d = tLObject;
+    public eg(qn qnVar, int i10) {
+        this.f36655a = i10;
+        this.f36656b = qnVar;
     }
 
     @Override
-    public final void run(Object obj, Object obj2) {
-        TLRPC.Updates updates;
-        int i10 = this.f36485a;
-        int i11 = this.f36486b;
-        Object obj3 = this.d;
-        Object obj4 = this.f36487c;
-        switch (i10) {
+    public final void accept(Object obj) {
+        switch (this.f36655a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new ai.ub((sn) obj4, this.f36486b, (Boolean) obj, (TLRPC.WebPage) obj2, (TL_account.getWebPagePreview) obj3, 17));
+                Integer num = (Integer) obj;
+                qn qnVar = this.f36656b;
+                qnVar.getClass();
+                if (num.intValue() == 0) {
+                    qnVar.l1 = 0;
+                    qnVar.Fc(true);
+                    qnVar.getMessagesController().markReactionsAsRead(qnVar.T5, qnVar.d());
+                    return;
+                }
+                qnVar.Fc(true);
+                qnVar.j(num.intValue(), 0, false, 0, true, 0);
                 return;
             case 1:
-                LaunchActivity launchActivity = (LaunchActivity) obj4;
-                b80 b80Var = (b80) obj3;
-                TLRPC.ChatInviteJoinResult chatInviteJoinResult = (TLRPC.ChatInviteJoinResult) obj;
-                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                Pattern pattern = LaunchActivity.C1;
-                if (chatInviteJoinResult instanceof TLRPC.TL_chatInviteJoinResultOk) {
-                    TLRPC.Updates updates2 = ((TLRPC.TL_chatInviteJoinResultOk) chatInviteJoinResult).updates;
-                    MessagesController.getInstance(launchActivity.O).lambda$processUpdates$377(updates2, false);
-                    updates = updates2;
-                } else {
-                    if (chatInviteJoinResult instanceof TLRPC.TL_chatInviteJoinResultWebView) {
-                        AndroidUtilities.runOnUIThread(new b80(2, launchActivity, (TLRPC.TL_chatInviteJoinResultWebView) chatInviteJoinResult));
-                    }
-                    updates = null;
+                Integer num2 = (Integer) obj;
+                qn qnVar2 = this.f36656b;
+                qnVar2.getClass();
+                if (num2.intValue() == 0) {
+                    qnVar2.f40763m1 = 0;
+                    qnVar2.Ec(true);
+                    qnVar2.getMessagesController().markPollVotesAsRead(qnVar2.T5, qnVar2.d());
+                    return;
                 }
-                AndroidUtilities.runOnUIThread(new ai.ub(launchActivity, b80Var, tL_error, updates, this.f36486b, 26));
+                int i10 = qnVar2.f40763m1 - 1;
+                qnVar2.f40763m1 = i10;
+                if (i10 <= 0) {
+                    qnVar2.getMessagesController().markPollVotesAsRead(qnVar2.T5, qnVar2.d());
+                }
+                qnVar2.Ec(true);
+                qnVar2.j(num2.intValue(), 0, false, 0, true, 0);
                 return;
-            case 2:
-                PasskeysActivity passkeysActivity = (PasskeysActivity) obj4;
-                TL_account.Passkey passkey = (TL_account.Passkey) obj3;
-                TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
-                ArrayList arrayList = passkeysActivity.f33224b;
-                if (((TLRPC.Bool) obj) instanceof TLRPC.TL_boolFalse) {
-                    org.telegram.ui.Components.xc.a0(passkeysActivity).e0("FALSE", false);
-                    arrayList.add(Utilities.clamp(i11, arrayList.size(), 0), passkey);
-                    passkeysActivity.f33223a.W2.N(true);
-                    return;
-                } else if (tL_error2 != null) {
-                    org.telegram.ui.Components.xc.a0(passkeysActivity).f0(tL_error2, false);
-                    arrayList.add(Utilities.clamp(i11, arrayList.size(), 0), passkey);
-                    passkeysActivity.f33223a.W2.N(true);
-                    return;
-                } else {
-                    return;
-                }
             default:
-                org.telegram.ui.Wallet.t7 t7Var = (org.telegram.ui.Wallet.t7) obj4;
-                TL_wallet.card cardVar = (TL_wallet.card) obj3;
-                TL_wallet.card cardVar2 = (TL_wallet.card) obj;
-                TLRPC.TL_error tL_error3 = (TLRPC.TL_error) obj2;
-                t7Var.f34907f1 = 0;
-                if (cardVar2 != null) {
-                    org.telegram.ui.Wallet.t7.e0(i11, cardVar2);
-                    if (!t7Var.f34894a1) {
-                        if (t7Var.f34902d1) {
-                            t7Var.f34897b1 = cardVar2;
-                            t7Var.f34900c1 = org.telegram.ui.Wallet.t7.T(cardVar2);
-                            t7Var.Q();
-                            return;
-                        }
-                        t7Var.d(cardVar2);
-                        return;
-                    }
-                    return;
-                }
-                if (cardVar != null) {
-                    org.telegram.ui.Wallet.t7.e0(i11, cardVar);
-                }
-                if (!t7Var.f34894a1) {
-                    if (tL_error3 != null) {
-                        org.telegram.ui.Components.xc.a0(t7Var.f34892a).f0(tL_error3, false);
-                    }
-                    t7Var.f34902d1 = false;
-                    TL_wallet.card cardVar3 = t7Var.f34897b1;
-                    if (cardVar3 != null) {
-                        t7Var.d(cardVar3);
-                        return;
-                    }
+                qn qnVar3 = this.f36656b;
+                qnVar3.getClass();
+                boolean booleanValue = ((Boolean) obj).booleanValue();
+                qnVar3.f7 = booleanValue;
+                if (!booleanValue) {
+                    qnVar3.v8();
                     return;
                 }
                 return;
         }
-    }
-
-    public eg(LaunchActivity launchActivity, b80 b80Var, int i10) {
-        this.f36485a = 1;
-        this.f36487c = launchActivity;
-        this.d = b80Var;
-        this.f36486b = i10;
     }
 }

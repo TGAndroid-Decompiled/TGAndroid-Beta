@@ -1,34 +1,54 @@
 package org.telegram.ui;
 
-import android.graphics.Bitmap;
-public final class ts implements Runnable {
-    public final int f41791a;
-    public final gt f41792b;
+import android.app.Activity;
+import android.view.View;
+public final class ts implements View.OnClickListener {
+    public final int f41752a;
+    public final et f41753b;
 
-    public ts(gt gtVar, int i10) {
-        this.f41791a = i10;
-        this.f41792b = gtVar;
+    public ts(et etVar, int i10) {
+        this.f41752a = i10;
+        this.f41753b = etVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f41791a) {
+    public final void onClick(View view) {
+        switch (this.f41752a) {
             case 0:
-                this.f41792b.f37295c0 = null;
+                et etVar = this.f41753b;
+                etVar.K = false;
+                etVar.f36799z.invalidate();
+                etVar.n();
                 return;
             case 1:
-                gt gtVar = this.f41792b;
-                gtVar.A.setImageBitmap((Bitmap) null);
-                org.telegram.ui.Components.zd0 zd0Var = gtVar.C;
-                if (zd0Var != null) {
-                    zd0Var.a();
-                    gtVar.f37316z.removeView(gtVar.C);
-                    gtVar.C = null;
-                    return;
+                et etVar2 = this.f41753b;
+                Activity activity = etVar2.f36796w;
+                if (activity instanceof LaunchActivity) {
+                    LaunchActivity launchActivity = (LaunchActivity) activity;
+                    if (launchActivity.O() != null && launchActivity.O().getLastFragment() != null) {
+                        launchActivity.O().getLastFragment().dismissCurrentDialog();
+                    }
+                    launchActivity.t0(new PremiumPreviewFragment(0, PremiumPreviewFragment.l0(5)));
                 }
+                etVar2.K = false;
+                etVar2.f36799z.invalidate();
+                etVar2.n();
+                return;
+            case 2:
+                et etVar3 = this.f41753b;
+                ct ctVar = etVar3.f36786l;
+                if (ctVar != null) {
+                    ctVar.K();
+                }
+                etVar3.p();
                 return;
             default:
-                this.f41792b.Q.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(420L).setInterpolator(org.telegram.ui.Components.bs.h).start();
+                et etVar4 = this.f41753b;
+                ct ctVar2 = etVar4.f36786l;
+                if (ctVar2 != null) {
+                    ctVar2.q();
+                }
+                etVar4.p();
                 return;
         }
     }

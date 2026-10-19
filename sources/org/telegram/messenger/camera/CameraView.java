@@ -1596,7 +1596,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
             if (this.videoFirst == -1) {
                 this.videoFirst = j10 / 1000;
                 if (BuildVars.LOGS_ENABLED) {
-                    i2.d.x(new StringBuilder("CameraView first video frame was at "), this.videoFirst);
+                    i2.e.x(new StringBuilder("CameraView first video frame was at "), this.videoFirst);
                 }
             }
             this.videoLast = j10;
@@ -3102,7 +3102,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
             }
         });
         this.flipAnimator.setDuration(500L);
-        this.flipAnimator.setInterpolator(bs.f25030f);
+        this.flipAnimator.setInterpolator(bs.f25014f);
         this.flipAnimator.start();
         invalidate();
     }

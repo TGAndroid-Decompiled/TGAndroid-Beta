@@ -9,25 +9,25 @@ import org.telegram.ui.Components.bs;
 import org.telegram.ui.Components.el0;
 import org.telegram.ui.Components.f6;
 public abstract class i extends FrameLayout {
-    public final Paint f45368a;
-    public final Paint f45369b;
-    public final Paint f45370c;
+    public final Paint f45359a;
+    public final Paint f45360b;
+    public final Paint f45361c;
     public int d;
     public final f6 e;
-    public boolean f45371f;
+    public boolean f45362f;
     public final j h;
 
     public i(j jVar, Context context) {
         super(context);
         this.h = jVar;
         Paint paint = new Paint(1);
-        this.f45368a = paint;
+        this.f45359a = paint;
         Paint paint2 = new Paint(1);
-        this.f45369b = paint2;
+        this.f45360b = paint2;
         Paint paint3 = new Paint(1);
-        this.f45370c = paint3;
+        this.f45361c = paint3;
         this.e = new f6(this, 0L, 250L, bs.h);
-        this.f45371f = true;
+        this.f45362f = true;
         setWillNotDraw(false);
         paint.setColor(-1);
         Paint.Style style = Paint.Style.STROKE;
@@ -49,16 +49,16 @@ public abstract class i extends FrameLayout {
         j jVar = this.h;
         el0 selectionBounds = jVar.getSelectionBounds();
         FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) getLayoutParams();
-        layoutParams.leftMargin = (int) selectionBounds.f25956a;
-        layoutParams.topMargin = (int) selectionBounds.f25957b;
-        layoutParams.width = (int) selectionBounds.f25958c;
+        layoutParams.leftMargin = (int) selectionBounds.f25947a;
+        layoutParams.topMargin = (int) selectionBounds.f25948b;
+        layoutParams.width = (int) selectionBounds.f25949c;
         layoutParams.height = (int) selectionBounds.d;
         setLayoutParams(layoutParams);
         setRotation(jVar.getRotation());
     }
 
     public float getShowAlpha() {
-        return this.e.e(this.f45371f);
+        return this.e.e(this.f45362f);
     }
 
     @Override

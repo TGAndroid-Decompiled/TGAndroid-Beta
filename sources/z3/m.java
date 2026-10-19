@@ -4,7 +4,7 @@ public interface m {
 
     int c();
 
-    void g(byte[] bArr, int i10, int i11, l lVar, e2.j jVar);
+    void f(byte[] bArr, int i10, int i11, l lVar, e2.j jVar);
 
     void reset();
 }

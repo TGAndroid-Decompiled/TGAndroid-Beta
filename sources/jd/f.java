@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import v7.t8;
-import w7.q9;
+import w7.p9;
 public abstract class f extends t8 {
     public static boolean a(Object[] objArr, Object obj) {
         int i10;
@@ -70,7 +70,7 @@ public abstract class f extends t8 {
             if (i10 > 1) {
                 sb2.append((CharSequence) ",");
             }
-            q9.a(sb2, obj, null);
+            p9.a(sb2, obj, null);
         }
         sb2.append((CharSequence) "]");
         return sb2.toString();
@@ -91,7 +91,7 @@ public abstract class f extends t8 {
             }
             return h.b(Long.valueOf(jArr[0]));
         }
-        return o.f14390a;
+        return o.f14392a;
     }
 
     public static List h(Object[] objArr) {
@@ -103,6 +103,6 @@ public abstract class f extends t8 {
             }
             return h.b(objArr[0]);
         }
-        return o.f14390a;
+        return o.f14392a;
     }
 }

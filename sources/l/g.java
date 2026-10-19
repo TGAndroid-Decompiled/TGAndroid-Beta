@@ -8,16 +8,16 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import androidx.appcompat.view.menu.ExpandedMenuView;
 public final class g implements x, AdapterView.OnItemClickListener {
-    public Context f15743a;
-    public LayoutInflater f15744b;
-    public k f15745c;
+    public Context f15746a;
+    public LayoutInflater f15747b;
+    public k f15748c;
     public ExpandedMenuView d;
     public w e;
-    public f f15746f;
+    public f f15749f;
 
     public g(ContextWrapper contextWrapper) {
-        this.f15743a = contextWrapper;
-        this.f15744b = LayoutInflater.from(contextWrapper);
+        this.f15746a = contextWrapper;
+        this.f15747b = LayoutInflater.from(contextWrapper);
     }
 
     @Override
@@ -40,7 +40,7 @@ public final class g implements x, AdapterView.OnItemClickListener {
 
     @Override
     public final void e() {
-        f fVar = this.f15746f;
+        f fVar = this.f15749f;
         if (fVar != null) {
             fVar.notifyDataSetChanged();
         }
@@ -53,14 +53,14 @@ public final class g implements x, AdapterView.OnItemClickListener {
 
     @Override
     public final void i(Context context, k kVar) {
-        if (this.f15743a != null) {
-            this.f15743a = context;
-            if (this.f15744b == null) {
-                this.f15744b = LayoutInflater.from(context);
+        if (this.f15746a != null) {
+            this.f15746a = context;
+            if (this.f15747b == null) {
+                this.f15747b = LayoutInflater.from(context);
             }
         }
-        this.f15745c = kVar;
-        f fVar = this.f15746f;
+        this.f15748c = kVar;
+        f fVar = this.f15749f;
         if (fVar != null) {
             fVar.notifyDataSetChanged();
         }
@@ -69,42 +69,42 @@ public final class g implements x, AdapterView.OnItemClickListener {
     @Override
     public final boolean j(d0 d0Var) {
         boolean hasVisibleItems = d0Var.hasVisibleItems();
-        Context context = d0Var.f15752a;
+        Context context = d0Var.f15755a;
         if (!hasVisibleItems) {
             return false;
         }
         ?? obj = new Object();
-        obj.f15772a = d0Var;
-        c5.b0 b0Var = new c5.b0(context);
-        g.b bVar = (g.b) b0Var.f4704c;
-        g gVar = new g(bVar.f10639a);
-        obj.f15774c = gVar;
+        obj.f15775a = d0Var;
+        c5.c0 c0Var = new c5.c0(context);
+        g.b bVar = (g.b) c0Var.f4726c;
+        g gVar = new g(bVar.f10640a);
+        obj.f15777c = gVar;
         gVar.e = obj;
         d0Var.b(gVar, context);
-        g gVar2 = obj.f15774c;
-        if (gVar2.f15746f == null) {
-            gVar2.f15746f = new f(gVar2);
+        g gVar2 = obj.f15777c;
+        if (gVar2.f15749f == null) {
+            gVar2.f15749f = new f(gVar2);
         }
-        bVar.f10644i = gVar2.f15746f;
-        bVar.f10645j = obj;
-        View view = d0Var.f15763o;
+        bVar.f10645i = gVar2.f15749f;
+        bVar.f10646j = obj;
+        View view = d0Var.f15766o;
         if (view != null) {
             bVar.e = view;
         } else {
-            bVar.f10641c = d0Var.f15762n;
-            bVar.d = d0Var.f15761m;
+            bVar.f10642c = d0Var.f15765n;
+            bVar.d = d0Var.f15764m;
         }
         bVar.h = obj;
-        g.f i10 = b0Var.i();
-        obj.f15773b = i10;
+        g.f i10 = c0Var.i();
+        obj.f15776b = i10;
         i10.setOnDismissListener(obj);
-        WindowManager.LayoutParams attributes = obj.f15773b.getWindow().getAttributes();
+        WindowManager.LayoutParams attributes = obj.f15776b.getWindow().getAttributes();
         attributes.type = 1003;
         attributes.flags |= 131072;
-        obj.f15773b.show();
+        obj.f15776b.show();
         w wVar = this.e;
         if (wVar != null) {
-            wVar.u(d0Var);
+            wVar.r(d0Var);
             return true;
         }
         return true;
@@ -117,6 +117,6 @@ public final class g implements x, AdapterView.OnItemClickListener {
 
     @Override
     public final void onItemClick(AdapterView adapterView, View view, int i10, long j10) {
-        this.f15745c.q(this.f15746f.getItem(i10), this, 0);
+        this.f15748c.q(this.f15749f.getItem(i10), this, 0);
     }
 }

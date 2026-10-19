@@ -31,12 +31,12 @@ public final class g implements h {
     }
 
     @Override
-    public final Object i() {
+    public final Object j() {
         return this.f46862a;
     }
 
     @Override
-    public final void n() {
+    public final void k() {
         this.f46862a.releasePermission();
     }
 

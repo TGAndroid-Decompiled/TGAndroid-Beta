@@ -1,90 +1,52 @@
 package org.telegram.ui;
 
-import android.app.Dialog;
+import android.widget.TextView;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class sf1 implements Runnable {
-    public final int f41086a;
-    public final xf1 f41087b;
-    public final TLRPC.TL_error f41088c;
+public final class sf1 extends org.telegram.ui.ActionBar.j {
+    public final vf1 f41454a;
 
-    public sf1(xf1 xf1Var, TLRPC.TL_error tL_error, int i10) {
-        this.f41086a = i10;
-        this.f41087b = xf1Var;
-        this.f41088c = tL_error;
+    public sf1(vf1 vf1Var) {
+        this.f41454a = vf1Var;
     }
 
     @Override
-    public final void run() {
-        String formatPluralString;
-        String formatPluralString2;
-        int i10 = this.f41086a;
-        TLRPC.TL_error tL_error = this.f41088c;
-        xf1 xf1Var = this.f41087b;
-        switch (i10) {
-            case 0:
-                xf1Var.w0();
-                if (tL_error == null) {
-                    xf1Var.getMessagesController().removeSuggestion(0L, "VALIDATE_PASSWORD");
-                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(xf1Var.getParentActivity());
-                    alertDialog$Builder.k(LocaleController.getString(R.string.OK), new nf1(xf1Var, 3));
-                    String string = LocaleController.getString(R.string.PasswordReset);
-                    org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20601a;
-                    b2Var.T = string;
-                    b2Var.R = LocaleController.getString(R.string.TwoStepVerificationTitle);
-                    Dialog showDialog = xf1Var.showDialog(b2Var);
-                    if (showDialog != null) {
-                        showDialog.setCanceledOnTouchOutside(false);
-                        showDialog.setCancelable(false);
-                        return;
-                    }
-                    return;
-                } else if (tL_error.text.startsWith("FLOOD_WAIT")) {
-                    int intValue = Utilities.parseInt((CharSequence) tL_error.text).intValue();
-                    if (intValue < 60) {
-                        formatPluralString = LocaleController.formatPluralString("Seconds", intValue, new Object[0]);
-                    } else {
-                        formatPluralString = LocaleController.formatPluralString("Minutes", intValue / 60, new Object[0]);
-                    }
-                    xf1Var.G0(LocaleController.getString(R.string.TwoStepVerificationTitle), LocaleController.formatString("FloodWaitTime", R.string.FloodWaitTime, formatPluralString));
-                    return;
-                } else {
-                    xf1Var.G0(LocaleController.getString(R.string.TwoStepVerificationTitle), tL_error.text);
+    public final void b(int i10) {
+        String string;
+        org.telegram.ui.ActionBar.d5 d5Var;
+        vf1 vf1Var = this.f41454a;
+        if (i10 == -1) {
+            if (vf1Var.G >= 0) {
+                d5Var = ((org.telegram.ui.ActionBar.n2) vf1Var).parentLayout;
+                if (d5Var.getFragmentStack().size() == 1) {
+                    vf1Var.I0();
                     return;
                 }
-            case 1:
-                xf1Var.w0();
-                if (tL_error == null) {
-                    if (xf1Var.getParentActivity() != null) {
-                        xf1Var.u0(new of1(xf1Var, 5));
-                        return;
-                    }
-                    return;
-                } else if (tL_error.text.startsWith("CODE_INVALID")) {
-                    xf1Var.y0();
-                    return;
-                } else if (tL_error.text.startsWith("FLOOD_WAIT")) {
-                    int intValue2 = Utilities.parseInt((CharSequence) tL_error.text).intValue();
-                    if (intValue2 < 60) {
-                        formatPluralString2 = LocaleController.formatPluralString("Seconds", intValue2, new Object[0]);
-                    } else {
-                        formatPluralString2 = LocaleController.formatPluralString("Minutes", intValue2 / 60, new Object[0]);
-                    }
-                    xf1Var.G0(LocaleController.getString(R.string.AppName), LocaleController.formatString("FloodWaitTime", R.string.FloodWaitTime, formatPluralString2));
-                    return;
-                } else {
-                    xf1Var.G0(LocaleController.getString(R.string.AppName), tL_error.text);
-                    return;
-                }
-            case 2:
-                xf1.e0(xf1Var, tL_error);
-                return;
-            default:
-                xf1.Z(xf1Var, tL_error);
-                return;
+            }
+            vf1Var.finishFragment();
+        } else if (i10 == 1) {
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(vf1Var.getParentActivity());
+            TL_account.Password password = vf1Var.U;
+            if (password != null && password.has_password) {
+                string = LocaleController.getString(R.string.CancelEmailQuestion);
+            } else {
+                string = LocaleController.getString(R.string.CancelPasswordQuestion);
+            }
+            String string2 = LocaleController.getString(R.string.CancelEmailQuestionTitle);
+            String string3 = LocaleController.getString(R.string.Abort);
+            org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20604a;
+            b2Var.T = string;
+            b2Var.R = string2;
+            alertDialog$Builder.k(string3, new pp0(this, 23));
+            alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
+            org.telegram.ui.ActionBar.b2 b2Var2 = alertDialog$Builder.f20604a;
+            vf1Var.showDialog(b2Var2);
+            TextView textView = (TextView) b2Var2.d(-1);
+            if (textView != null) {
+                textView.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21227q7, false));
+            }
         }
     }
 }

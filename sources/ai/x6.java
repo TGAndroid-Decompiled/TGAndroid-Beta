@@ -7,21 +7,21 @@ import android.graphics.RectF;
 import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.u10;
+import org.telegram.ui.s10;
 public final class x6 extends FrameLayout {
-    public final h2 f2436a;
+    public final k2 f2436a;
     public final w6 f2437b;
     public final w6 f2438c;
     public final w6 d;
     public boolean e;
-    public final u10 f2439f;
+    public final s10 f2439f;
     public final RectF h;
 
-    public x6(Context context, org.telegram.ui.ActionBar.d6 d6Var, h2 h2Var) {
+    public x6(Context context, org.telegram.ui.ActionBar.d6 d6Var, k2 k2Var) {
         super(context);
-        this.f2439f = new u10();
+        this.f2439f = new s10();
         this.h = new RectF();
-        this.f2436a = h2Var;
+        this.f2436a = k2Var;
         w6 w6Var = new w6(context, d6Var);
         this.f2437b = w6Var;
         w6 w6Var2 = new w6(context, d6Var);
@@ -34,14 +34,14 @@ public final class x6 extends FrameLayout {
     }
 
     public final void a(n6 n6Var, float f7, boolean z10, n6 n6Var2, float f10, boolean z11, n6 n6Var3, float f11, boolean z12) {
-        h2 h2Var = this.f2436a;
+        k2 k2Var = this.f2436a;
         w6 w6Var = this.f2437b;
         if (n6Var != null) {
             if (z10) {
                 f7 = Math.max(0.5f, f7);
             }
             w6Var.setVisibility(0);
-            w6Var.e(n6Var.f1894a, n6Var.f1895b, h2Var);
+            w6Var.e(n6Var.f1889a, n6Var.f1890b, k2Var);
             w6Var.setTranslationY(AndroidUtilities.dp(36.0f) * ((f7 - 0.5f) / 1.5f));
         } else {
             w6Var.setVisibility(4);
@@ -54,7 +54,7 @@ public final class x6 extends FrameLayout {
             }
             float f13 = (f12 - 0.5f) / 1.5f;
             w6Var2.setVisibility(0);
-            w6Var2.e(n6Var2.f1894a, n6Var2.f1895b, h2Var);
+            w6Var2.e(n6Var2.f1889a, n6Var2.f1890b, k2Var);
             w6Var2.setTranslationY(AndroidUtilities.dp(36.0f) * f13);
             if (z11 && f13 <= 0.0f && !this.e) {
                 this.e = true;
@@ -73,7 +73,7 @@ public final class x6 extends FrameLayout {
                 f14 = Math.max(0.5f, f14);
             }
             w6Var3.setVisibility(0);
-            w6Var3.e(n6Var3.f1894a, n6Var3.f1895b, h2Var);
+            w6Var3.e(n6Var3.f1889a, n6Var3.f1890b, k2Var);
             w6Var3.setTranslationY(AndroidUtilities.dp(36.0f) * ((f14 - 0.5f) / 1.5f));
             return;
         }
@@ -87,10 +87,10 @@ public final class x6 extends FrameLayout {
         canvas.save();
         RectF rectF = this.h;
         rectF.set(0.0f, 0.0f, getWidth(), AndroidUtilities.dp(8.0f));
-        u10 u10Var = this.f2439f;
-        u10Var.b(canvas, rectF, 1, 1.0f);
+        s10 s10Var = this.f2439f;
+        s10Var.b(canvas, rectF, 1, 1.0f);
         rectF.set(0.0f, getHeight() - AndroidUtilities.dp(8.0f), getWidth(), getHeight());
-        u10Var.b(canvas, rectF, 3, 1.0f);
+        s10Var.b(canvas, rectF, 3, 1.0f);
         canvas.restore();
         canvas.restore();
     }

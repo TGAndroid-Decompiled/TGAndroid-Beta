@@ -3,40 +3,40 @@ package org.telegram.ui.Components.voip;
 import android.animation.ValueAnimator;
 import android.view.ViewTreeObserver;
 import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.n31;
+import org.telegram.ui.Components.o31;
 public final class q1 implements ViewTreeObserver.OnPreDrawListener {
-    public final float f31680a;
-    public final float f31681b;
-    public final s1 f31682c;
+    public final float f31691a;
+    public final float f31692b;
+    public final s1 f31693c;
 
     public q1(s1 s1Var, float f7, float f10) {
-        this.f31682c = s1Var;
-        this.f31680a = f7;
-        this.f31681b = f10;
+        this.f31693c = s1Var;
+        this.f31691a = f7;
+        this.f31692b = f10;
     }
 
     @Override
     public final boolean onPreDraw() {
-        s1 s1Var = this.f31682c;
+        s1 s1Var = this.f31693c;
         if (!s1Var.P) {
-            ValueAnimator valueAnimator = s1Var.f31731d0;
+            ValueAnimator valueAnimator = s1Var.f31742d0;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
             }
             ValueAnimator ofFloat = ValueAnimator.ofFloat(s1Var.J, 0.0f);
-            s1Var.f31731d0 = ofFloat;
-            ofFloat.addUpdateListener(s1Var.f31732e0);
-            s1Var.f31731d0.setDuration(300L);
-            s1Var.f31731d0.start();
-            float measuredWidth = this.f31680a - ((s1Var.getMeasuredWidth() - (s1Var.getMeasuredWidth() * 0.23f)) / 2.0f);
-            float measuredHeight = this.f31681b - ((s1Var.getMeasuredHeight() - (s1Var.getMeasuredHeight() * 0.23f)) / 2.0f);
+            s1Var.f31742d0 = ofFloat;
+            ofFloat.addUpdateListener(s1Var.f31743e0);
+            s1Var.f31742d0.setDuration(300L);
+            s1Var.f31742d0.start();
+            float measuredWidth = this.f31691a - ((s1Var.getMeasuredWidth() - (s1Var.getMeasuredWidth() * 0.23f)) / 2.0f);
+            float measuredHeight = this.f31692b - ((s1Var.getMeasuredHeight() - (s1Var.getMeasuredHeight() * 0.23f)) / 2.0f);
             s1Var.getViewTreeObserver().removeOnPreDrawListener(this);
             s1Var.setTranslationX(measuredWidth);
             s1Var.setTranslationY(measuredHeight);
             s1Var.setScaleX(0.23f);
             s1Var.setScaleY(0.23f);
             s1Var.animate().setListener(null).cancel();
-            s1Var.animate().setListener(new n31(this, 13)).scaleX(1.0f).scaleY(1.0f).translationX(0.0f).translationY(0.0f).alpha(1.0f).setDuration(300L).setStartDelay(0L).setInterpolator(bs.f25030f).start();
+            s1Var.animate().setListener(new o31(this, 13)).scaleX(1.0f).scaleY(1.0f).translationX(0.0f).translationY(0.0f).alpha(1.0f).setDuration(300L).setStartDelay(0L).setInterpolator(bs.f25014f).start();
             return false;
         }
         s1Var.M = false;

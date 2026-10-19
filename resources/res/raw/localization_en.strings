@@ -530,6 +530,9 @@ Story";
 "Gift2TransactionRefundedAuctionBid" = "Refunded Auction Bid";
 "WebNoSearchedHistory" = "No search results";
 "CantPlayVideo" = "App was unable to play this video. Try to play it with external player?";
+"Gift2DeleteText" = "Do you want to delete this gift?
+
+It will disappear from your profile and can't be restored.";
 "ColorThemeChanged" = "Color theme changed.";
 "AutoNightPreferred" = "Preferred night theme";
 "PhoneCopied" = "Phone copied to clipboard";
@@ -5514,6 +5517,7 @@ TON address, balance and activity.";
 "PsaHideChatAlertText" = "Are you sure you want to hide the selected chat?";
 "SendAsFile" = "Send as file";
 "LanguageUnknownTitle" = "Insufficient data";
+"Gift2DeleteOption" = "Delete Gift";
 "Gift2ActionWonActionText" = "You bought this gift at auction for %s Stars.";
 "FeaturedStickersPremium" = "Trending Premium Stickers";
 "PermissionNoCameraMicVideo" = "**Telegram** needs camera and microphone access so that you can send video messages. Tap Settings -> Permissions, and turn **Microphone** and **Camera** on.";
@@ -8979,6 +8983,7 @@ a **Telegram Premium** subscription.";
 "StarRatingLevel" = "Level %d";
 "PassportAddPassportInfo" = "Upload scans of a certified English translation of your passport.";
 "TypePublicGroup" = "Public";
+"Gift2Deleted" = "Gift deleted";
 "TwoStepVerificationPasswordReturnSettings" = "Return to Settings";
 "StealthModeOnHint" = "The creators of stories you viewed in the last 5 minutes or will view in the next 25 minutes won’t see you in viewers’ lists.";
 "PollV2ShowWhoVotedInfo" = "Display voter name on each option";

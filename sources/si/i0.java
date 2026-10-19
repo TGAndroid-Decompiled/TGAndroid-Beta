@@ -3,8 +3,8 @@ package si;
 import android.os.SystemClock;
 import java.io.File;
 import java.io.IOException;
-import org.telegram.ui.Components.ay0;
-import w7.n7;
+import org.telegram.ui.Components.by0;
+import w7.m7;
 public final class i0 implements Runnable {
     public final int f46616a;
     public final s0 f46617b;
@@ -40,10 +40,10 @@ public final class i0 implements Runnable {
                         }
                     } catch (IOException unused) {
                     }
-                    n7.c(wVar.f46831a);
+                    m7.c(wVar.f46831a);
                 }
                 if (file != null) {
-                    n7.c(file);
+                    m7.c(file);
                     return;
                 }
                 return;
@@ -86,7 +86,7 @@ public final class i0 implements Runnable {
                         s0Var4.J = System.nanoTime();
                         n nVar3 = s0Var4.f46764m;
                         nVar3.b("preview snapshot started: file=" + d.getName());
-                        s0Var4.f46761j.execute(new ay0(s0Var4, s0Var4.Q, d, 21));
+                        s0Var4.f46761j.execute(new by0(s0Var4, s0Var4.Q, d, 21));
                         return;
                     } catch (IOException e) {
                         s0Var4.h(e);

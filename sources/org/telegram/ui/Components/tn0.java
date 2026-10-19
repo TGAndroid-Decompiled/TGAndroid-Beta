@@ -26,50 +26,50 @@ public final class tn0 extends FrameLayout implements NotificationCenter.Notific
     public final Activity F;
     public final org.telegram.ui.ActionBar.n2 G;
     public boolean H;
-    public org.telegram.ui.f10 I;
-    public final org.telegram.ui.y00 J;
+    public org.telegram.ui.d10 I;
+    public final org.telegram.ui.w00 J;
     public String K;
     public String L;
     public mn0 M;
     public final nl0 N;
     public boolean O;
     public boolean P;
-    public final rx0 f30668a;
-    public final ai.u1 f30669b;
-    public final sn0 f30670c;
+    public final sx0 f30630a;
+    public final ai.u1 f30631b;
+    public final sn0 f30632c;
     public final int d;
     public final ArrayList e;
-    public final ArrayList f30671f;
+    public final ArrayList f30633f;
     public final ArrayList h;
-    public final ArrayList f30672n;
-    public int f30673r;
-    public int f30674s;
+    public final ArrayList f30634n;
+    public int f30635r;
+    public int f30636s;
     public int v;
-    public int f30675w;
-    public int f30676x;
-    public int f30677y;
+    public int f30637w;
+    public int f30638x;
+    public int f30639y;
 
     public tn0(int i10, org.telegram.ui.ActionBar.n2 n2Var) {
         super(n2Var.getParentActivity());
         sn0 sn0Var = new sn0(this);
-        this.f30670c = sn0Var;
+        this.f30632c = sn0Var;
         ArrayList<MessageObject> arrayList = new ArrayList<>();
         this.e = arrayList;
-        this.f30671f = new ArrayList();
+        this.f30633f = new ArrayList();
         this.h = new ArrayList();
-        this.f30672n = new ArrayList();
-        this.f30674s = -1;
+        this.f30634n = new ArrayList();
+        this.f30636s = -1;
         this.v = -1;
-        this.f30675w = -1;
-        this.f30676x = -1;
-        this.f30677y = -1;
+        this.f30637w = -1;
+        this.f30638x = -1;
+        this.f30639y = -1;
         this.E = -1;
-        this.J = new org.telegram.ui.y00(0, 0L);
+        this.J = new org.telegram.ui.w00(0, 0L);
         this.G = n2Var;
         this.F = n2Var.getParentActivity();
         this.d = i10;
         ai.u1 u1Var = new ai.u1(this, getContext(), 20);
-        this.f30669b = u1Var;
+        this.f30631b = u1Var;
         new s4.y(new di.f(this, 3)).d(u1Var);
         addView(u1Var);
         n2Var.getParentActivity();
@@ -88,10 +88,10 @@ public final class tn0 extends FrameLayout implements NotificationCenter.Notific
         b10Var.setUseHeaderOffset(true);
         b10Var.setViewType(3);
         b10Var.setVisibility(8);
-        rx0 rx0Var = new rx0(getContext(), b10Var, 1, null);
-        this.f30668a = rx0Var;
-        addView(rx0Var);
-        u1Var.setEmptyView(rx0Var);
+        sx0 sx0Var = new sx0(getContext(), b10Var, 1, null);
+        this.f30630a = sx0Var;
+        addView(sx0Var);
+        u1Var.setEmptyView(sx0Var);
         FileLoader.getInstance(i10).getCurrentLoadingFiles(arrayList);
     }
 
@@ -99,11 +99,11 @@ public final class tn0 extends FrameLayout implements NotificationCenter.Notific
         ai.u1 u1Var;
         MessageObject message;
         int i10 = this.d;
-        if (!UserConfig.getInstance(i10).isPremium() && (u1Var = this.f30669b) != null) {
+        if (!UserConfig.getInstance(i10).isPremium() && (u1Var = this.f30631b) != null) {
             for (int i11 = 0; i11 < u1Var.getChildCount(); i11++) {
                 try {
                     View childAt = u1Var.getChildAt(i11);
-                    if ((childAt instanceof pn0) && (message = ((pn0) childAt).f29386a.getMessage()) != null) {
+                    if ((childAt instanceof pn0) && (message = ((pn0) childAt).f29358a.getMessage()) != null) {
                         if (FileLoader.getInstance(i10).checkLoadCaughtPremiumFloodWait(message.getFileName())) {
                             c(false);
                         } else if (FileLoader.getInstance(i10).checkLoadCaughtPremiumFloodWait(message.getFileName())) {
@@ -124,7 +124,7 @@ public final class tn0 extends FrameLayout implements NotificationCenter.Notific
         setClipToPadding(false);
         this.P = z10;
         setPadding(0, i10, 0, i11);
-        ai.u1 u1Var = this.f30669b;
+        ai.u1 u1Var = this.f30631b;
         if (z10) {
             u1Var.o1(0, i10, 0, i11);
         } else {
@@ -141,7 +141,7 @@ public final class tn0 extends FrameLayout implements NotificationCenter.Notific
         int i10;
         int i11;
         org.telegram.ui.ActionBar.n2 n2Var = this.G;
-        if (n2Var != null && this.f30669b.G) {
+        if (n2Var != null && this.f30631b.G) {
             long currentTimeMillis = System.currentTimeMillis();
             int i12 = this.d;
             if (currentTimeMillis - ConnectionsManager.lastPremiumFloodWaitShown >= MessagesController.getInstance(i12).uploadPremiumSpeedupNotifyPeriod * 1000) {
@@ -153,7 +153,7 @@ public final class tn0 extends FrameLayout implements NotificationCenter.Notific
                         f7 = MessagesController.getInstance(i12).uploadPremiumSpeedupDownload;
                     }
                     SpannableString spannableString = new SpannableString(Double.toString(Math.round(f7 * 10.0f) / 10.0d).replaceAll("\\.0$", ""));
-                    spannableString.setSpan(new c61(AndroidUtilities.bold()), 0, spannableString.length(), 33);
+                    spannableString.setSpan(new d61(AndroidUtilities.bold()), 0, spannableString.length(), 33);
                     if (!n2Var.hasStoryViewer()) {
                         xc a02 = xc.a0(n2Var);
                         int i13 = R.raw.speed_limit;
@@ -169,7 +169,7 @@ public final class tn0 extends FrameLayout implements NotificationCenter.Notific
                             i11 = R.string.DownloadSpeedLimitedMessage;
                         }
                         qc M = a02.M(string, AndroidUtilities.replaceCharSequence("%d", AndroidUtilities.premiumText(LocaleController.getString(i11), new b60(2, this, z10)), spannableString), i13);
-                        M.f29638j = 8000;
+                        M.f29596j = 8000;
                         M.k(false);
                     }
                 }
@@ -179,12 +179,12 @@ public final class tn0 extends FrameLayout implements NotificationCenter.Notific
 
     public final void d(boolean z10) {
         long j10;
-        sn0 sn0Var = this.f30670c;
-        sn0Var.q(0, sn0Var.f30299c.f30673r);
+        sn0 sn0Var = this.f30632c;
+        sn0Var.q(0, sn0Var.f30293c.f30635r);
         if (!TextUtils.isEmpty(this.K)) {
             int i10 = this.d;
             if (!DownloadController.getInstance(i10).downloadingFiles.isEmpty() || !DownloadController.getInstance(i10).recentDownloadingFiles.isEmpty()) {
-                this.f30668a.setStickerType(1);
+                this.f30630a.setStickerType(1);
                 ArrayList<MessageObject> arrayList = new ArrayList<>();
                 ArrayList<MessageObject> arrayList2 = new ArrayList<>();
                 FileLoader.getInstance(this.d).getCurrentLoadingFiles(arrayList);
@@ -202,39 +202,39 @@ public final class tn0 extends FrameLayout implements NotificationCenter.Notific
                     j10 = 300;
                 }
                 dispatchQueue.postRunnable(mn0Var, j10);
-                this.f30672n.clear();
+                this.f30634n.clear();
                 this.h.clear();
                 if (!equals) {
-                    this.f30668a.e(true, true);
-                    e(this.h, this.f30672n, z10);
+                    this.f30630a.e(true, true);
+                    e(this.h, this.f30634n, z10);
                     return;
                 }
                 return;
             }
         }
-        if (this.f30673r == 0) {
+        if (this.f30635r == 0) {
             this.N.b(0);
         }
         if (this.O) {
             this.h.clear();
-            this.f30672n.clear();
+            this.f30634n.clear();
         }
         FileLoader.getInstance(this.d).getCurrentLoadingFiles(this.h);
-        FileLoader.getInstance(this.d).getRecentLoadingFiles(this.f30672n);
+        FileLoader.getInstance(this.d).getRecentLoadingFiles(this.f30634n);
         for (int i11 = 0; i11 < this.e.size(); i11++) {
             ((MessageObject) this.e.get(i11)).setQuery(null);
         }
-        for (int i12 = 0; i12 < this.f30671f.size(); i12++) {
-            ((MessageObject) this.f30671f.get(i12)).setQuery(null);
+        for (int i12 = 0; i12 < this.f30633f.size(); i12++) {
+            ((MessageObject) this.f30633f.get(i12)).setQuery(null);
         }
         this.L = null;
-        e(this.h, this.f30672n, z10);
-        if (this.f30673r == 0) {
-            this.f30668a.e(false, false);
-            this.f30668a.d.setText(LocaleController.getString(R.string.SearchEmptyViewDownloads));
-            this.f30668a.e.setVisibility(8);
+        e(this.h, this.f30634n, z10);
+        if (this.f30635r == 0) {
+            this.f30630a.e(false, false);
+            this.f30630a.d.setText(LocaleController.getString(R.string.SearchEmptyViewDownloads));
+            this.f30630a.e.setVisibility(8);
         }
-        this.f30668a.setStickerType(9);
+        this.f30630a.setStickerType(9);
     }
 
     @Override
@@ -251,22 +251,22 @@ public final class tn0 extends FrameLayout implements NotificationCenter.Notific
 
     public final void e(ArrayList arrayList, ArrayList arrayList2, boolean z10) {
         s4.b1 T;
-        sn0 sn0Var = this.f30670c;
+        sn0 sn0Var = this.f30632c;
         if (z10) {
-            int i10 = this.f30674s;
+            int i10 = this.f30636s;
             int i11 = this.v;
-            int i12 = this.f30675w;
-            int i13 = this.f30676x;
-            int i14 = this.f30677y;
+            int i12 = this.f30637w;
+            int i13 = this.f30638x;
+            int i14 = this.f30639y;
             int i15 = this.E;
-            int i16 = this.f30673r;
+            int i16 = this.f30635r;
             ArrayList arrayList3 = new ArrayList(this.e);
-            ArrayList arrayList4 = new ArrayList(this.f30671f);
+            ArrayList arrayList4 = new ArrayList(this.f30633f);
             f(arrayList, arrayList2);
             s4.o.c(new on0(this, i16, i10, i13, i11, i12, arrayList3, i14, i15, arrayList4), true).c(sn0Var);
             int i17 = 0;
             while (true) {
-                ai.u1 u1Var = this.f30669b;
+                ai.u1 u1Var = this.f30631b;
                 if (i17 < u1Var.getChildCount()) {
                     View childAt = u1Var.getChildAt(i17);
                     int R = RecyclerView.R(childAt);
@@ -274,14 +274,14 @@ public final class tn0 extends FrameLayout implements NotificationCenter.Notific
                         if (childAt instanceof org.telegram.ui.Cells.u3) {
                             sn0Var.v(T, R);
                         } else if (childAt instanceof pn0) {
-                            org.telegram.ui.Cells.i7 i7Var = ((pn0) childAt).f29386a;
+                            org.telegram.ui.Cells.i7 i7Var = ((pn0) childAt).f29358a;
                             i7Var.f(true);
                             int id2 = i7Var.getMessage().getId();
                             long dialogId = i7Var.getMessage().getDialogId();
-                            org.telegram.ui.y00 y00Var = this.J;
-                            y00Var.f43287a = dialogId;
-                            y00Var.f43288b = id2;
-                            i7Var.b(this.I.b(y00Var), true);
+                            org.telegram.ui.w00 w00Var = this.J;
+                            w00Var.f42418a = dialogId;
+                            w00Var.f42419b = id2;
+                            i7Var.b(this.I.b(w00Var), true);
                         }
                     }
                     i17++;
@@ -309,7 +309,7 @@ public final class tn0 extends FrameLayout implements NotificationCenter.Notific
                 arrayList3.add(messageObject);
             }
         }
-        ArrayList arrayList4 = this.f30671f;
+        ArrayList arrayList4 = this.f30633f;
         arrayList4.clear();
         int size2 = arrayList2.size();
         int i12 = 0;
@@ -321,23 +321,23 @@ public final class tn0 extends FrameLayout implements NotificationCenter.Notific
                 arrayList4.add(messageObject2);
             }
         }
-        this.f30673r = 0;
-        this.f30674s = -1;
+        this.f30635r = 0;
+        this.f30636s = -1;
         this.v = -1;
-        this.f30675w = -1;
-        this.f30676x = -1;
-        this.f30677y = -1;
+        this.f30637w = -1;
+        this.f30638x = -1;
+        this.f30639y = -1;
         this.E = -1;
         this.H = false;
         if (!arrayList3.isEmpty()) {
-            int i13 = this.f30673r;
+            int i13 = this.f30635r;
             int i14 = i13 + 1;
-            this.f30673r = i14;
-            this.f30674s = i13;
+            this.f30635r = i14;
+            this.f30636s = i13;
             this.v = i14;
             int size3 = arrayList3.size() + i14;
-            this.f30673r = size3;
-            this.f30675w = size3;
+            this.f30635r = size3;
+            this.f30637w = size3;
             while (true) {
                 if (i10 >= arrayList3.size()) {
                     break;
@@ -350,13 +350,13 @@ public final class tn0 extends FrameLayout implements NotificationCenter.Notific
             }
         }
         if (!arrayList4.isEmpty()) {
-            int i15 = this.f30673r;
+            int i15 = this.f30635r;
             int i16 = i15 + 1;
-            this.f30673r = i16;
-            this.f30676x = i15;
-            this.f30677y = i16;
+            this.f30635r = i16;
+            this.f30638x = i15;
+            this.f30639y = i16;
             int size4 = arrayList4.size() + i16;
-            this.f30673r = size4;
+            this.f30635r = size4;
             this.E = size4;
         }
     }
@@ -392,7 +392,7 @@ public final class tn0 extends FrameLayout implements NotificationCenter.Notific
         super.requestLayout();
     }
 
-    public void setUiCallback(org.telegram.ui.f10 f10Var) {
-        this.I = f10Var;
+    public void setUiCallback(org.telegram.ui.d10 d10Var) {
+        this.I = d10Var;
     }
 }

@@ -1,14 +1,25 @@
 package u2;
-public final class r0 extends c3.v {
-    public final x0 f47416b;
+public final class r0 {
+    public static final r0 f47414a;
+    public static final r0 f47415b;
+    public static final r0 f47416c;
+    public static final r0[] d;
 
-    public r0(x0 x0Var, c3.c0 c0Var) {
-        super(c0Var);
-        this.f47416b = x0Var;
+    static {
+        ?? r02 = new Enum("PASS_THROUGH", 0);
+        f47414a = r02;
+        ?? r12 = new Enum("DISCARD_AFTER_NEXT_SAMPLE_METADATA", 1);
+        f47415b = r12;
+        ?? r32 = new Enum("DISCARDING", 2);
+        f47416c = r32;
+        d = new r0[]{r02, r12, r32};
     }
 
-    @Override
-    public final long h() {
-        return this.f47416b.T;
+    public static r0 valueOf(String str) {
+        return (r0) Enum.valueOf(r0.class, str);
+    }
+
+    public static r0[] values() {
+        return (r0[]) d.clone();
     }
 }

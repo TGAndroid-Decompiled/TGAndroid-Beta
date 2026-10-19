@@ -6,13 +6,13 @@ import java.util.concurrent.locks.LockSupport;
 public final class g0 extends w0 implements Runnable {
     private static volatile Thread _thread;
     private static volatile int debugStatus;
-    public static final g0 f4292s;
+    public static final g0 f4290s;
     public static final long v;
 
     static {
         Long l4;
         ?? w0Var = new w0();
-        f4292s = w0Var;
+        f4290s = w0Var;
         w0Var.h(false);
         TimeUnit timeUnit = TimeUnit.MILLISECONDS;
         try {
@@ -39,7 +39,7 @@ public final class g0 extends w0 implements Runnable {
             o(nanoTime, t0Var);
             return t0Var;
         }
-        return x1.f4342a;
+        return x1.f4340a;
     }
 
     @Override
@@ -89,7 +89,7 @@ public final class g0 extends w0 implements Runnable {
         }
         debugStatus = 3;
         w0.h.set(this, null);
-        w0.f4336n.set(this, null);
+        w0.f4334n.set(this, null);
         notifyAll();
     }
 
@@ -98,7 +98,7 @@ public final class g0 extends w0 implements Runnable {
         boolean z10;
         boolean z11;
         boolean n10;
-        d2.f4274a.set(this);
+        d2.f4272a.set(this);
         try {
             synchronized (this) {
                 int i10 = debugStatus;

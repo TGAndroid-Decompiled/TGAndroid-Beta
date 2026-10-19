@@ -4,17 +4,17 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
-import org.telegram.ui.Components.az0;
-import org.telegram.ui.Components.w31;
+import org.telegram.ui.Components.bz0;
+import org.telegram.ui.Components.x31;
 public final class z0 {
-    public final int f35158a;
-    public final long f35159b;
-    public final a1 f35160c;
+    public final int f35154a;
+    public final long f35155b;
+    public final a1 f35156c;
 
     public z0(a1 a1Var, int i10, long j10) {
-        this.f35160c = a1Var;
-        this.f35158a = i10;
-        this.f35159b = j10;
+        this.f35156c = a1Var;
+        this.f35154a = i10;
+        this.f35155b = j10;
     }
 
     public final void a(tc.u uVar, tc.x xVar, tc.x xVar2, boolean z10) {
@@ -34,22 +34,22 @@ public final class z0 {
             obj = Integer.valueOf(xVar2.b());
         }
         sb2.append(obj);
-        AndroidUtilities.runOnUIThread(new az0(this.f35160c, uVar, this.f35158a, sb2.toString(), 15, false));
+        AndroidUtilities.runOnUIThread(new bz0(this.f35156c, uVar, this.f35154a, sb2.toString(), 15, false));
     }
 
     public final void b(tc.u uVar, String str) {
         StringBuilder sb2 = new StringBuilder("[gram-wallet-streaming] account=");
-        sb2.append(this.f35160c.f33956a);
+        sb2.append(this.f35156c.f33962a);
         sb2.append(" generation=");
-        int i10 = this.f35158a;
+        int i10 = this.f35154a;
         sb2.append(i10);
         sb2.append(" receive <- ");
         sb2.append(str);
         FileLog.d(sb2.toString());
         try {
-            AndroidUtilities.runOnUIThread(new az0(this, uVar, i10, new JSONObject(str), 16));
+            AndroidUtilities.runOnUIThread(new bz0(this, uVar, i10, new JSONObject(str), 16));
         } catch (JSONException unused) {
-            AndroidUtilities.runOnUIThread(new w31(this, uVar, i10, 16));
+            AndroidUtilities.runOnUIThread(new x31(this, uVar, i10, 16));
         }
     }
 }

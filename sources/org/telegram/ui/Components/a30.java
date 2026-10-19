@@ -10,16 +10,16 @@ public final class a30 extends hm0 {
     public ChatObject.Call f24471c;
     public final int d;
     public ArrayList h;
-    public org.telegram.ui.j30 f24473n;
-    public final org.telegram.ui.s50 f24474r;
+    public org.telegram.ui.h30 f24473n;
+    public final org.telegram.ui.q50 f24474r;
     public final ArrayList e = new ArrayList();
     public final ArrayList f24472f = new ArrayList();
     public boolean f24475s = false;
 
-    public a30(ChatObject.Call call, int i10, org.telegram.ui.s50 s50Var) {
+    public a30(ChatObject.Call call, int i10, org.telegram.ui.q50 q50Var) {
         this.f24471c = call;
         this.d = i10;
-        this.f24474r = s50Var;
+        this.f24474r = q50Var;
     }
 
     @Override
@@ -27,15 +27,15 @@ public final class a30 extends hm0 {
         return false;
     }
 
-    public final void E(ArrayList arrayList, org.telegram.ui.j30 j30Var) {
+    public final void E(ArrayList arrayList, org.telegram.ui.h30 h30Var) {
         this.h = arrayList;
-        this.f24473n = j30Var;
+        this.f24473n = h30Var;
     }
 
-    public final void F(org.telegram.ui.f30 f30Var, boolean z10) {
+    public final void F(org.telegram.ui.d30 d30Var, boolean z10) {
         this.f24475s = z10;
-        for (int i10 = 0; i10 < f30Var.getChildCount(); i10++) {
-            View childAt = f30Var.getChildAt(i10);
+        for (int i10 = 0; i10 < d30Var.getChildCount(); i10++) {
+            View childAt = d30Var.getChildAt(i10);
             if (childAt instanceof z20) {
                 z20 z20Var = (z20) childAt;
                 if (z20Var.getVideoParticipant() != null) {
@@ -91,7 +91,7 @@ public final class a30 extends hm0 {
         TLRPC.GroupCallParticipant groupCallParticipant;
         ChatObject.VideoParticipant videoParticipant;
         z20 z20Var = (z20) b1Var.f45910a;
-        ChatObject.VideoParticipant videoParticipant2 = z20Var.f32812f;
+        ChatObject.VideoParticipant videoParticipant2 = z20Var.f32816f;
         ArrayList arrayList = this.e;
         if (i10 < arrayList.size()) {
             videoParticipant = (ChatObject.VideoParticipant) arrayList.get(i10);

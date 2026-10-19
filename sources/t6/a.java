@@ -62,7 +62,7 @@ public final class a {
             String packageName = component.getPackageName();
             "com.google.android.gms".equals(packageName);
             try {
-                if ((b.a(context).f44345a.getPackageManager().getApplicationInfo(packageName, 0).flags & 2097152) != 0) {
+                if ((b.a(context).f15925a.getPackageManager().getApplicationInfo(packageName, 0).flags & 2097152) != 0) {
                     Log.w("ConnectionTracker", "Attempted to bind to a service in a STOPPED package.");
                     return false;
                 }

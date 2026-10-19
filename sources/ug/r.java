@@ -1,6 +1,6 @@
 package ug;
 
-import ai.k2;
+import ai.g2;
 import ai.s9;
 import android.text.TextUtils;
 import android.util.Pair;
@@ -34,7 +34,7 @@ public abstract class r {
         tL_premium_applyBoost.peer = messagesController.getInputPeer(-j10);
         tL_premium_applyBoost.flags |= 1;
         tL_premium_applyBoost.slots.addAll(list);
-        connectionsManager.sendRequest(tL_premium_applyBoost, new k2(callback2, messagesController, callback, 21), 66);
+        connectionsManager.sendRequest(tL_premium_applyBoost, new g2(callback2, messagesController, callback, 21), 66);
     }
 
     public static ArrayList b(int i10, List list) {
@@ -92,8 +92,8 @@ public abstract class r {
         ArrayList<TLRPC.Dialog> allDialogs = messagesController.getAllDialogs();
         for (int i10 = 0; i10 < allDialogs.size(); i10++) {
             TLRPC.Dialog dialog = allDialogs.get(i10);
-            if (DialogObject.isChatDialog(dialog.f20276id) && ChatObject.isBoostSupported(messagesController.getChat(Long.valueOf(-dialog.f20276id)))) {
-                long j11 = dialog.f20276id;
+            if (DialogObject.isChatDialog(dialog.f20279id) && ChatObject.isBoostSupported(messagesController.getChat(Long.valueOf(-dialog.f20279id)))) {
+                long j11 = dialog.f20279id;
                 if ((-j11) != j10) {
                     arrayList.add(messagesController.getInputPeer(j11));
                 }
@@ -142,7 +142,7 @@ public abstract class r {
         TLRPC.TL_payments_getPremiumGiftCodeOptions tL_payments_getPremiumGiftCodeOptions = new TLRPC.TL_payments_getPremiumGiftCodeOptions();
         if (chat != null) {
             tL_payments_getPremiumGiftCodeOptions.flags = 1;
-            tL_payments_getPremiumGiftCodeOptions.boost_peer = messagesController.getInputPeer(-chat.f20272id);
+            tL_payments_getPremiumGiftCodeOptions.boost_peer = messagesController.getInputPeer(-chat.f20275id);
         }
         return connectionsManager.sendRequest(tL_payments_getPremiumGiftCodeOptions, new hg.u(chat, i10, callback, 9));
     }
@@ -176,7 +176,7 @@ public abstract class r {
             }
             if (chat != null) {
                 tL_inputStorePaymentPremiumGiftCode.flags |= 1;
-                tL_inputStorePaymentPremiumGiftCode.boost_peer = messagesController.getInputPeer(-chat.f20272id);
+                tL_inputStorePaymentPremiumGiftCode.boost_peer = messagesController.getInputPeer(-chat.f20275id);
             }
             tL_inputStorePaymentPremiumGiftCode.currency = tL_premiumGiftCodeOption.currency;
             tL_inputStorePaymentPremiumGiftCode.amount = tL_premiumGiftCodeOption.amount;
@@ -209,15 +209,15 @@ public abstract class r {
         }
         if (chat != null) {
             tL_inputStorePaymentPremiumGiftCode2.flags = 1;
-            tL_inputStorePaymentPremiumGiftCode2.boost_peer = messagesController2.getInputPeer(-chat.f20272id);
+            tL_inputStorePaymentPremiumGiftCode2.boost_peer = messagesController2.getInputPeer(-chat.f20275id);
         }
         if (tL_textWithEntities != null && !TextUtils.isEmpty(tL_textWithEntities.text)) {
             tL_inputStorePaymentPremiumGiftCode2.flags |= 2;
             tL_inputStorePaymentPremiumGiftCode2.message = tL_textWithEntities;
         }
         ?? obj3 = new Object();
-        obj3.f4699b = "inapp";
-        obj3.f4698a = tL_premiumGiftCodeOption.store_product;
+        obj3.f4697b = "inapp";
+        obj3.f4696a = tL_premiumGiftCodeOption.store_product;
         BillingController.getInstance().queryProductDetails(Arrays.asList(obj3.a()), new org.telegram.ui.Components.d1(tL_inputStorePaymentPremiumGiftCode2, tL_premiumGiftCodeOption, connectionsManager2, callback2, callback, n2Var, 2));
     }
 

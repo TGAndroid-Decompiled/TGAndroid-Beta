@@ -19,7 +19,7 @@ public final class bx extends s4.s {
             tzVar.Y();
         }
         if (tzVar.T0 == null) {
-            hg.f1 f1Var = new hg.f1(tzVar, tzVar.f30747c1, tzVar.f30800t1.a(), tzVar.f30800t1.f(), 1);
+            hg.f1 f1Var = new hg.f1(tzVar, tzVar.f30770c1, tzVar.f30823t1.a(), tzVar.f30823t1.f(), 1);
             tzVar.T0 = f1Var;
             f1Var.a();
         }

@@ -1,7 +1,6 @@
 package s3;
 
 import a4.g;
-import a4.l;
 import b2.s0;
 import b2.t0;
 import e2.k0;
@@ -10,6 +9,7 @@ import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import ki.t1;
 import w7.m;
 public final class c extends m {
     public final x f45875a = new x();
@@ -32,10 +32,10 @@ public final class c extends m {
         boolean z17;
         long j12;
         k0 k0Var = this.f45877c;
-        if (k0Var == null || aVar.f15892r != k0Var.e()) {
+        if (k0Var == null || aVar.f15895r != k0Var.e()) {
             k0 k0Var2 = new k0(aVar.e);
             this.f45877c = k0Var2;
-            k0Var2.a(aVar.e - aVar.f15892r);
+            k0Var2.a(aVar.e - aVar.f15895r);
         }
         byte[] array = byteBuffer.array();
         int limit = byteBuffer.limit();
@@ -168,7 +168,7 @@ public final class c extends m {
                             xVar.A();
                             xVar.A();
                         }
-                        arrayList2.add(new l(arrayList3));
+                        arrayList2.add(new t1(arrayList3));
                     }
                     obj = new f(arrayList2);
                 }

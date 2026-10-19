@@ -1,26 +1,41 @@
 package org.telegram.ui;
 
-import android.content.Context;
-public final class v50 extends org.telegram.ui.Components.voip.l {
-    public final x50 h;
+import java.util.ArrayList;
+import org.telegram.messenger.ChatObject;
+public final class v50 extends s4.o {
+    public final ArrayList f42107b;
+    public final w50 f42108c;
 
-    public v50(x50 x50Var, Context context) {
-        super(context, true);
-        this.h = x50Var;
+    public v50(w50 w50Var, ArrayList arrayList) {
+        this.f42108c = w50Var;
+        this.f42107b = arrayList;
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        x50 x50Var = this.h;
-        if (x50Var.f42983r && getParticipant() != null) {
-            x50Var.E(this, true);
+    public final boolean a(int i10, int i11) {
+        return true;
+    }
+
+    @Override
+    public final boolean b(int i10, int i11) {
+        ArrayList arrayList = this.f42107b;
+        if (i10 < arrayList.size()) {
+            w50 w50Var = this.f42108c;
+            if (i11 < w50Var.e.size()) {
+                return ((ChatObject.VideoParticipant) arrayList.get(i10)).equals(w50Var.e.get(i11));
+            }
+            return false;
         }
+        return false;
     }
 
     @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.h.E(this, false);
+    public final int d() {
+        return this.f42108c.e.size();
+    }
+
+    @Override
+    public final int e() {
+        return this.f42107b.size();
     }
 }

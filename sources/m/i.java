@@ -21,25 +21,25 @@ public final class i implements l.x {
     public e J;
     public g K;
     public f L;
-    public final Context f16215a;
-    public Context f16216b;
-    public l.k f16217c;
+    public final Context f16218a;
+    public Context f16219b;
+    public l.k f16220c;
     public final LayoutInflater d;
     public l.w e;
-    public l.z f16219n;
-    public h f16220r;
-    public Drawable f16221s;
+    public l.z f16222n;
+    public h f16223r;
+    public Drawable f16224s;
     public boolean v;
-    public boolean f16222w;
-    public boolean f16223x;
-    public int f16224y;
-    public final int f16218f = 2131492867;
+    public boolean f16225w;
+    public boolean f16226x;
+    public int f16227y;
+    public final int f16221f = 2131492867;
     public final int h = 2131492866;
     public final SparseBooleanArray H = new SparseBooleanArray();
-    public final k0.b M = new k0.b(this, 5);
+    public final k2.w0 M = new k2.w0(this, 4);
 
     public i(Context context) {
-        this.f16215a = context;
+        this.f16218a = context;
         this.d = LayoutInflater.from(context);
     }
 
@@ -55,7 +55,7 @@ public final class i implements l.x {
             }
             yVar.b(mVar);
             ActionMenuItemView actionMenuItemView = (ActionMenuItemView) yVar;
-            actionMenuItemView.setItemInvoker((ActionMenuView) this.f16219n);
+            actionMenuItemView.setItemInvoker((ActionMenuView) this.f16222n);
             if (this.L == null) {
                 this.L = new f(this);
             }
@@ -89,7 +89,7 @@ public final class i implements l.x {
         boolean z12;
         boolean z13;
         i iVar = this;
-        l.k kVar = iVar.f16217c;
+        l.k kVar = iVar.f16220c;
         if (kVar != null) {
             arrayList = kVar.l();
             i10 = arrayList.size();
@@ -100,7 +100,7 @@ public final class i implements l.x {
         int i12 = iVar.F;
         int i13 = iVar.E;
         int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, 0);
-        ViewGroup viewGroup = (ViewGroup) iVar.f16219n;
+        ViewGroup viewGroup = (ViewGroup) iVar.f16222n;
         int i14 = 0;
         boolean z14 = false;
         int i15 = 0;
@@ -112,7 +112,7 @@ public final class i implements l.x {
                 break;
             }
             l.m mVar = (l.m) arrayList.get(i14);
-            int i17 = mVar.f15795y;
+            int i17 = mVar.f15798y;
             if ((i17 & 2) == 2) {
                 i15++;
             } else if ((i17 & 1) == 1) {
@@ -125,7 +125,7 @@ public final class i implements l.x {
             }
             i14++;
         }
-        if (iVar.f16222w && (z14 || i16 + i15 > i12)) {
+        if (iVar.f16225w && (z14 || i16 + i15 > i12)) {
             i12--;
         }
         int i18 = i12 - i15;
@@ -135,13 +135,13 @@ public final class i implements l.x {
         int i20 = 0;
         while (i19 < i10) {
             l.m mVar2 = (l.m) arrayList.get(i19);
-            int i21 = mVar2.f15795y;
+            int i21 = mVar2.f15798y;
             if ((i21 & 2) == i11) {
                 z11 = z10;
             } else {
                 z11 = false;
             }
-            int i22 = mVar2.f15776b;
+            int i22 = mVar2.f15779b;
             if (z11) {
                 View a2 = iVar.a(mVar2, null, viewGroup);
                 a2.measure(makeMeasureSpec, makeMeasureSpec);
@@ -182,8 +182,8 @@ public final class i implements l.x {
                     sparseBooleanArray.put(i22, false);
                     for (int i23 = 0; i23 < i19; i23++) {
                         l.m mVar3 = (l.m) arrayList.get(i23);
-                        if (mVar3.f15776b == i22) {
-                            if ((mVar3.f15794x & 32) == 32) {
+                        if (mVar3.f15779b == i22) {
+                            if ((mVar3.f15797x & 32) == 32) {
                                 i18++;
                             }
                             mVar3.f(false);
@@ -214,7 +214,7 @@ public final class i implements l.x {
         f();
         e eVar = this.J;
         if (eVar != null && eVar.b()) {
-            eVar.f15812i.dismiss();
+            eVar.f15815i.dismiss();
         }
         l.w wVar = this.e;
         if (wVar != null) {
@@ -226,19 +226,19 @@ public final class i implements l.x {
     public final void e() {
         int i10;
         l.m mVar;
-        ViewGroup viewGroup = (ViewGroup) this.f16219n;
+        ViewGroup viewGroup = (ViewGroup) this.f16222n;
         ArrayList arrayList = null;
         boolean z10 = false;
         if (viewGroup != null) {
-            l.k kVar = this.f16217c;
+            l.k kVar = this.f16220c;
             if (kVar != null) {
                 kVar.i();
-                ArrayList l4 = this.f16217c.l();
+                ArrayList l4 = this.f16220c.l();
                 int size = l4.size();
                 i10 = 0;
                 for (int i11 = 0; i11 < size; i11++) {
                     l.m mVar2 = (l.m) l4.get(i11);
-                    if ((mVar2.f15794x & 32) == 32) {
+                    if ((mVar2.f15797x & 32) == 32) {
                         View childAt = viewGroup.getChildAt(i10);
                         if (childAt instanceof l.y) {
                             mVar = ((l.y) childAt).getItemData();
@@ -255,7 +255,7 @@ public final class i implements l.x {
                             if (viewGroup2 != null) {
                                 viewGroup2.removeView(a2);
                             }
-                            ((ViewGroup) this.f16219n).addView(a2, i10);
+                            ((ViewGroup) this.f16222n).addView(a2, i10);
                         }
                         i10++;
                     }
@@ -264,29 +264,29 @@ public final class i implements l.x {
                 i10 = 0;
             }
             while (i10 < viewGroup.getChildCount()) {
-                if (viewGroup.getChildAt(i10) == this.f16220r) {
+                if (viewGroup.getChildAt(i10) == this.f16223r) {
                     i10++;
                 } else {
                     viewGroup.removeViewAt(i10);
                 }
             }
         }
-        ((View) this.f16219n).requestLayout();
-        l.k kVar2 = this.f16217c;
+        ((View) this.f16222n).requestLayout();
+        l.k kVar2 = this.f16220c;
         if (kVar2 != null) {
             kVar2.i();
-            ArrayList arrayList2 = kVar2.f15757i;
+            ArrayList arrayList2 = kVar2.f15760i;
             int size2 = arrayList2.size();
             for (int i12 = 0; i12 < size2; i12++) {
                 l.n nVar = ((l.m) arrayList2.get(i12)).A;
             }
         }
-        l.k kVar3 = this.f16217c;
+        l.k kVar3 = this.f16220c;
         if (kVar3 != null) {
             kVar3.i();
-            arrayList = kVar3.f15758j;
+            arrayList = kVar3.f15761j;
         }
-        if (this.f16222w && arrayList != null) {
+        if (this.f16225w && arrayList != null) {
             int size3 = arrayList.size();
             if (size3 == 1) {
                 z10 = !((l.m) arrayList.get(0)).C;
@@ -295,38 +295,38 @@ public final class i implements l.x {
             }
         }
         if (z10) {
-            if (this.f16220r == null) {
-                this.f16220r = new h(this, this.f16215a);
+            if (this.f16223r == null) {
+                this.f16223r = new h(this, this.f16218a);
             }
-            ViewGroup viewGroup3 = (ViewGroup) this.f16220r.getParent();
-            if (viewGroup3 != this.f16219n) {
+            ViewGroup viewGroup3 = (ViewGroup) this.f16223r.getParent();
+            if (viewGroup3 != this.f16222n) {
                 if (viewGroup3 != null) {
-                    viewGroup3.removeView(this.f16220r);
+                    viewGroup3.removeView(this.f16223r);
                 }
-                ActionMenuView actionMenuView = (ActionMenuView) this.f16219n;
-                h hVar = this.f16220r;
+                ActionMenuView actionMenuView = (ActionMenuView) this.f16222n;
+                h hVar = this.f16223r;
                 actionMenuView.getClass();
                 k i13 = ActionMenuView.i();
-                i13.f16236a = true;
+                i13.f16239a = true;
                 actionMenuView.addView(hVar, i13);
             }
         } else {
-            h hVar2 = this.f16220r;
+            h hVar2 = this.f16223r;
             if (hVar2 != null) {
                 ViewParent parent = hVar2.getParent();
-                l.z zVar = this.f16219n;
+                l.z zVar = this.f16222n;
                 if (parent == zVar) {
-                    ((ViewGroup) zVar).removeView(this.f16220r);
+                    ((ViewGroup) zVar).removeView(this.f16223r);
                 }
             }
         }
-        ((ActionMenuView) this.f16219n).setOverflowReserved(this.f16222w);
+        ((ActionMenuView) this.f16222n).setOverflowReserved(this.f16225w);
     }
 
     public final boolean f() {
         l.z zVar;
         g gVar = this.K;
-        if (gVar != null && (zVar = this.f16219n) != null) {
+        if (gVar != null && (zVar = this.f16222n) != null) {
             ((View) zVar).removeCallbacks(gVar);
             this.K = null;
             return true;
@@ -334,7 +334,7 @@ public final class i implements l.x {
         e eVar = this.I;
         if (eVar != null) {
             if (eVar.b()) {
-                eVar.f15812i.dismiss();
+                eVar.f15815i.dismiss();
             }
             return true;
         }
@@ -356,15 +356,15 @@ public final class i implements l.x {
 
     @Override
     public final void i(Context context, l.k kVar) {
-        this.f16216b = context;
+        this.f16219b = context;
         LayoutInflater.from(context);
-        this.f16217c = kVar;
+        this.f16220c = kVar;
         Resources resources = context.getResources();
-        if (!this.f16223x) {
-            this.f16222w = true;
+        if (!this.f16226x) {
+            this.f16225w = true;
         }
         int i10 = 2;
-        this.f16224y = context.getResources().getDisplayMetrics().widthPixels / 2;
+        this.f16227y = context.getResources().getDisplayMetrics().widthPixels / 2;
         Configuration configuration = context.getResources().getConfiguration();
         int i11 = configuration.screenWidthDp;
         int i12 = configuration.screenHeightDp;
@@ -380,22 +380,22 @@ public final class i implements l.x {
             i10 = 5;
         }
         this.F = i10;
-        int i13 = this.f16224y;
-        if (this.f16222w) {
-            if (this.f16220r == null) {
-                h hVar = new h(this, this.f16215a);
-                this.f16220r = hVar;
+        int i13 = this.f16227y;
+        if (this.f16225w) {
+            if (this.f16223r == null) {
+                h hVar = new h(this, this.f16218a);
+                this.f16223r = hVar;
                 if (this.v) {
-                    hVar.setImageDrawable(this.f16221s);
-                    this.f16221s = null;
+                    hVar.setImageDrawable(this.f16224s);
+                    this.f16224s = null;
                     this.v = false;
                 }
                 int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, 0);
-                this.f16220r.measure(makeMeasureSpec, makeMeasureSpec);
+                this.f16223r.measure(makeMeasureSpec, makeMeasureSpec);
             }
-            i13 -= this.f16220r.getMeasuredWidth();
+            i13 -= this.f16223r.getMeasuredWidth();
         } else {
-            this.f16220r = null;
+            this.f16223r = null;
         }
         this.E = i13;
         float f7 = resources.getDisplayMetrics().density;
@@ -407,14 +407,14 @@ public final class i implements l.x {
         if (d0Var.hasVisibleItems()) {
             l.d0 d0Var2 = d0Var;
             while (true) {
-                l.k kVar = d0Var2.f15731z;
-                if (kVar == this.f16217c) {
+                l.k kVar = d0Var2.f15734z;
+                if (kVar == this.f16220c) {
                     break;
                 }
                 d0Var2 = (l.d0) kVar;
             }
             l.m mVar = d0Var2.A;
-            ViewGroup viewGroup = (ViewGroup) this.f16219n;
+            ViewGroup viewGroup = (ViewGroup) this.f16222n;
             View view = null;
             if (viewGroup != null) {
                 int childCount = viewGroup.getChildCount();
@@ -433,7 +433,7 @@ public final class i implements l.x {
             }
             if (view != null) {
                 d0Var.A.getClass();
-                int size = d0Var.f15755f.size();
+                int size = d0Var.f15758f.size();
                 int i11 = 0;
                 while (true) {
                     if (i11 < size) {
@@ -448,10 +448,10 @@ public final class i implements l.x {
                         break;
                     }
                 }
-                e eVar = new e(this, this.f16216b, d0Var, view);
+                e eVar = new e(this, this.f16219b, d0Var, view);
                 this.J = eVar;
-                eVar.f15811g = z10;
-                l.s sVar = eVar.f15812i;
+                eVar.f15814g = z10;
+                l.s sVar = eVar.f15815i;
                 if (sVar != null) {
                     sVar.o(z10);
                 }
@@ -465,7 +465,7 @@ public final class i implements l.x {
                 }
                 l.w wVar = this.e;
                 if (wVar != null) {
-                    wVar.u(d0Var);
+                    wVar.r(d0Var);
                 }
                 return true;
             }
@@ -480,12 +480,12 @@ public final class i implements l.x {
 
     public final boolean l() {
         l.k kVar;
-        if (this.f16222w && !g() && (kVar = this.f16217c) != null && this.f16219n != null && this.K == null) {
+        if (this.f16225w && !g() && (kVar = this.f16220c) != null && this.f16222n != null && this.K == null) {
             kVar.i();
-            if (!kVar.f15758j.isEmpty()) {
-                g gVar = new g(this, new e(this, this.f16216b, this.f16217c, this.f16220r));
+            if (!kVar.f15761j.isEmpty()) {
+                g gVar = new g(this, new e(this, this.f16219b, this.f16220c, this.f16223r));
                 this.K = gVar;
-                ((View) this.f16219n).post(gVar);
+                ((View) this.f16222n).post(gVar);
                 return true;
             }
             return false;

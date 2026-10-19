@@ -1,54 +1,20 @@
 package org.telegram.ui;
 
+import android.view.MotionEvent;
 import android.view.View;
-import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.TLRPC;
-public final class sd1 implements xh.c, MessagesController.ErrorDelegate, r0.n, org.telegram.ui.Components.zl0 {
-    public final te1 f41067a;
-
-    public sd1(te1 te1Var) {
-        this.f41067a = te1Var;
-    }
+import java.util.HashSet;
+public final class sd1 implements View.OnTouchListener {
+    public final int f41442a;
 
     @Override
-    public r0.k1 B0(View view, r0.k1 k1Var) {
-        int i10 = k1Var.f44827a.f(519).d;
-        te1 te1Var = this.f41067a;
-        te1Var.f41682e1 = i10;
-        pe1 pe1Var = te1Var.f41704r0;
-        if (pe1Var != null) {
-            pe1Var.setPadding(0, 0, 0, i10);
+    public final boolean onTouch(View view, MotionEvent motionEvent) {
+        switch (this.f41442a) {
+            case 0:
+                HashSet hashSet = re1.f41149n1;
+                return true;
+            default:
+                int[][] iArr = WallpapersListActivity.f35198k0;
+                return true;
         }
-        je1 je1Var = te1Var.f41698n;
-        if (je1Var != null) {
-            je1Var.f38126a.setTranslationY((-te1Var.f41682e1) - te1Var.f41680d1);
-        }
-        te1Var.h.setTranslationY(((-te1Var.X0) - te1Var.f41682e1) - te1Var.f41680d1);
-        te1Var.B0();
-        return r0.k1.f44826b;
-    }
-
-    @Override
-    public boolean mo17d(float f7, float f10, int i10, View view) {
-        return te1.W(this.f41067a, view, f7);
-    }
-
-    @Override
-    public void f(boolean z10, boolean z11) {
-        te1 te1Var = this.f41067a;
-        te1Var.U0.i(te1Var.R0.c(), z10, z11);
-    }
-
-    @Override
-    public boolean run(TLRPC.TL_error tL_error) {
-        return te1.U(this.f41067a, tL_error);
-    }
-
-    @Override
-    public void h() {
-    }
-
-    @Override
-    public void o(float f7) {
     }
 }

@@ -13,30 +13,30 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.ca0;
 public final class i8 extends FrameLayout {
-    public final Paint f9201a;
-    public final ImageView f9202b;
-    public final ImageView f9203c;
+    public final Paint f9202a;
+    public final ImageView f9203b;
+    public final ImageView f9204c;
     public final org.telegram.ui.Components.q6 d;
     public final org.telegram.ui.Components.q6 e;
-    public final ImageView f9204f;
+    public final ImageView f9205f;
     public final SpannableString h;
-    public final SpannableString f9205n;
+    public final SpannableString f9206n;
 
     public i8(Context context) {
         super(context);
         Paint paint = new Paint(1);
-        this.f9201a = paint;
+        this.f9202a = paint;
         setWillNotDraw(false);
         paint.setColor(-16777216);
         ImageView imageView = new ImageView(context);
-        this.f9202b = imageView;
+        this.f9203b = imageView;
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
         imageView.setScaleType(scaleType);
         imageView.setImageResource(R.drawable.filled_link);
         imageView.setColorFilter(new PorterDuffColorFilter(-15033089, PorterDuff.Mode.SRC_IN));
         addView(imageView, w7.z5.d(48, 48.0f, 19, 9.0f, 0.0f, 0.0f, 0.0f));
         ImageView imageView2 = new ImageView(context);
-        this.f9203c = imageView2;
+        this.f9204c = imageView2;
         imageView2.setBackground(new g8(AndroidUtilities.dp(20.0f), AndroidUtilities.dp(2.4f), -15033089));
         addView(imageView2, w7.z5.d(48, 48.0f, 19, 9.0f, 0.0f, 0.0f, 0.0f));
         org.telegram.ui.Components.q6 q6Var = new org.telegram.ui.Components.q6(context, false, false, false);
@@ -63,13 +63,13 @@ public final class i8 extends FrameLayout {
         spannableString.setSpan(ca0Var, 0, spannableString.length(), 33);
         int textColor2 = q6Var2.getTextColor();
         SpannableString spannableString2 = new SpannableString("x");
-        this.f9205n = spannableString2;
+        this.f9206n = spannableString2;
         ca0 ca0Var2 = new ca0(AndroidUtilities.dp(140.0f), q6Var2);
         ca0Var2.e = 0.8f;
         ca0Var2.a(org.telegram.ui.ActionBar.h6.m1(0.4f, textColor2), org.telegram.ui.ActionBar.h6.m1(0.08f, textColor2));
         spannableString2.setSpan(ca0Var2, 0, spannableString2.length(), 33);
         ImageView imageView3 = new ImageView(context);
-        this.f9204f = imageView3;
+        this.f9205f = imageView3;
         imageView3.setColorFilter(new PorterDuffColorFilter(1694498815, PorterDuff.Mode.MULTIPLY));
         imageView3.setImageResource(R.drawable.input_clear);
         imageView3.setScaleType(scaleType);
@@ -80,7 +80,7 @@ public final class i8 extends FrameLayout {
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        Paint paint = this.f9201a;
+        Paint paint = this.f9202a;
         canvas.drawRect(0.0f, 0.0f, getWidth(), AndroidUtilities.getShadowHeight(), paint);
         canvas.drawRect(0.0f, getHeight() - AndroidUtilities.getShadowHeight(), getWidth(), getHeight(), paint);
     }

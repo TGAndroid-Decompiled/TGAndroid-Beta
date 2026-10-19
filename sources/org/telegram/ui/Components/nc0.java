@@ -11,37 +11,37 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 public final class nc0 extends View {
-    public final p6 f28732a;
-    public final jc0 f28733b;
-    public boolean f28734c;
+    public final p6 f28750a;
+    public final jc0 f28751b;
+    public boolean f28752c;
     public boolean d;
     public final String e;
-    public final String f28735f;
+    public final String f28753f;
     public final int h;
 
     public nc0(Context context, int i10, String str, int i11, String str2, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
-        this.f28734c = true;
+        this.f28752c = true;
         this.e = str;
-        this.f28735f = str2;
-        setBackground(org.telegram.ui.ActionBar.h6.g0(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21075i6, d6Var), 2, -1));
+        this.f28753f = str2;
+        setBackground(org.telegram.ui.ActionBar.h6.g0(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21078i6, d6Var), 2, -1));
         p6 p6Var = new p6(true, true, true);
-        this.f28732a = p6Var;
+        this.f28750a = p6Var;
         p6Var.n(0.35f, 300L, bs.h);
         p6Var.w(AndroidUtilities.dp(16.0f));
         p6Var.u(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.E8, d6Var));
         p6Var.setCallback(this);
         p6Var.q(!LocaleController.isRTL);
         if (LocaleController.isRTL) {
-            p6Var.f29192b = 5;
+            p6Var.f29182b = 5;
         }
-        TextPaint textPaint = p6Var.f29190a;
+        TextPaint textPaint = p6Var.f29180a;
         int max = (int) (Math.max(textPaint.measureText(str), textPaint.measureText(str2)) + AndroidUtilities.dp(77.0f));
         this.h = max;
         p6Var.M = max;
         jc0 jc0Var = new jc0(0);
         uj0 uj0Var = new uj0(i10, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f));
-        jc0Var.f27504c = uj0Var;
+        jc0Var.f27507c = uj0Var;
         uj0Var.R(this);
         uj0Var.J(true);
         uj0Var.h = true;
@@ -53,7 +53,7 @@ public final class nc0 extends View {
         uj0Var2.h = true;
         uj0Var2.K(0);
         jc0Var.e = uj0Var;
-        this.f28733b = jc0Var;
+        this.f28751b = jc0Var;
         jc0Var.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.F8, d6Var), PorterDuff.Mode.SRC_IN));
     }
 
@@ -61,26 +61,26 @@ public final class nc0 extends View {
         String str;
         boolean z12;
         uj0 uj0Var;
-        if (!this.f28734c && z10 == this.d) {
+        if (!this.f28752c && z10 == this.d) {
             return;
         }
         this.d = z10;
         if (z10) {
             str = this.e;
         } else {
-            str = this.f28735f;
+            str = this.f28753f;
         }
         if (z11 && !LocaleController.isRTL) {
             z12 = true;
         } else {
             z12 = false;
         }
-        p6 p6Var = this.f28732a;
+        p6 p6Var = this.f28750a;
         p6Var.t(str, z12, true);
-        jc0 jc0Var = this.f28733b;
+        jc0 jc0Var = this.f28751b;
         uj0 uj0Var2 = (uj0) jc0Var.d;
-        uj0 uj0Var3 = (uj0) jc0Var.f27504c;
-        jc0Var.f27503b = z10;
+        uj0 uj0Var3 = (uj0) jc0Var.f27507c;
+        jc0Var.f27506b = z10;
         if (z11) {
             if (z10) {
                 uj0Var = uj0Var3;
@@ -98,15 +98,15 @@ public final class nc0 extends View {
             jc0Var.e = uj0Var2;
             uj0Var2.M(uj0Var2.e[0] - 1);
         }
-        this.f28734c = false;
-        setContentDescription(p6Var.f29198i);
+        this.f28752c = false;
+        setContentDescription(p6Var.f29187i);
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         boolean z10 = LocaleController.isRTL;
-        p6 p6Var = this.f28732a;
-        jc0 jc0Var = this.f28733b;
+        p6 p6Var = this.f28750a;
+        jc0 jc0Var = this.f28751b;
         if (z10) {
             jc0Var.setBounds(getMeasuredWidth() - AndroidUtilities.dp(41.0f), org.telegram.messenger.lk.A(24.0f, getMeasuredHeight(), 2), getMeasuredWidth() - AndroidUtilities.dp(17.0f), (AndroidUtilities.dp(24.0f) + getMeasuredHeight()) / 2);
             p6Var.setBounds(0, 0, getMeasuredWidth() - AndroidUtilities.dp(59.0f), getMeasuredHeight());
@@ -145,7 +145,7 @@ public final class nc0 extends View {
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f28732a && !super.verifyDrawable(drawable)) {
+        if (drawable != this.f28750a && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

@@ -10,32 +10,32 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 public final class r2 implements Runnable {
-    public final int f29799a = 0;
-    public final long f29800b;
-    public final boolean f29801c;
+    public final int f29796a = 0;
+    public final long f29797b;
+    public final boolean f29798c;
     public final Object d;
     public final Object e;
-    public final Object f29802f;
+    public final Object f29799f;
 
     public r2(Context context, String str, long j10, boolean z10, pf.c cVar) {
         this.d = context;
         this.e = str;
-        this.f29800b = j10;
-        this.f29801c = z10;
-        this.f29802f = cVar;
+        this.f29797b = j10;
+        this.f29798c = z10;
+        this.f29799f = cVar;
     }
 
     @Override
     public final void run() {
         boolean z10;
         org.telegram.ui.Wallet.j0 j0Var;
-        uy0 r10;
-        switch (this.f29799a) {
+        vy0 r10;
+        switch (this.f29796a) {
             case 0:
                 Context context = (Context) this.d;
-                long j10 = this.f29800b;
-                boolean z11 = this.f29801c;
-                pf.c cVar = (pf.c) this.f29802f;
+                long j10 = this.f29797b;
+                boolean z11 = this.f29798c;
+                pf.c cVar = (pf.c) this.f29799f;
                 Uri parse = Uri.parse((String) this.e);
                 if (j10 == 0) {
                     z10 = true;
@@ -45,17 +45,17 @@ public final class r2 implements Runnable {
                 pf.d.p(context, parse, z10, z11, cVar);
                 return;
             case 1:
-                k8.B((k8) this.d, this.f29800b, this.f29801c, (TLRPC.Document) this.e, (Runnable) this.f29802f);
+                k8.B((k8) this.d, this.f29797b, this.f29798c, (TLRPC.Document) this.e, (Runnable) this.f29799f);
                 return;
             default:
                 org.telegram.ui.Wallet.q0 q0Var = (org.telegram.ui.Wallet.q0) this.d;
-                long j11 = this.f29800b;
+                long j11 = this.f29797b;
                 String str = (String) this.e;
-                boolean z12 = this.f29801c;
-                Utilities.Callback callback = (Utilities.Callback) this.f29802f;
+                boolean z12 = this.f29798c;
+                Utilities.Callback callback = (Utilities.Callback) this.f29799f;
                 org.telegram.ui.Wallet.j0 j0Var2 = null;
                 try {
-                    Object obj = org.telegram.ui.Wallet.q0.f34724f;
+                    Object obj = org.telegram.ui.Wallet.q0.f34744f;
                     synchronized (obj) {
                         q0Var.c(j11);
                         r10 = q0Var.r();
@@ -67,10 +67,10 @@ public final class r2 implements Runnable {
                                 q0Var.c(j11);
                                 if (z12) {
                                     try {
-                                        r10.f31106b = ConnectionsManager.getInstance(q0Var.f34728b).getCurrentTime();
+                                        r10.f31950b = ConnectionsManager.getInstance(q0Var.f34748b).getCurrentTime();
                                         if (!q0Var.d.exists()) {
-                                            if (q0Var.q().edit().putInt("lastUsageDate", r10.f31106b).commit()) {
-                                                AndroidUtilities.runOnUIThread(new org.telegram.ui.mj0(8));
+                                            if (q0Var.q().edit().putInt("lastUsageDate", r10.f31950b).commit()) {
+                                                AndroidUtilities.runOnUIThread(new org.telegram.ui.kj0(8));
                                             } else {
                                                 throw new IOException("usage write");
                                             }
@@ -89,7 +89,7 @@ public final class r2 implements Runnable {
                             if (j0Var != null) {
                                 j0Var.close();
                             }
-                            AndroidUtilities.runOnUIThread(new ai.b3(q0Var, j0Var2, callback, j11, 26));
+                            AndroidUtilities.runOnUIThread(new ai.b2(q0Var, j0Var2, callback, j11, 26));
                             return;
                         }
                     }
@@ -97,24 +97,24 @@ public final class r2 implements Runnable {
                     e = e10;
                     j0Var = null;
                 }
-                AndroidUtilities.runOnUIThread(new ai.b3(q0Var, j0Var2, callback, j11, 26));
+                AndroidUtilities.runOnUIThread(new ai.b2(q0Var, j0Var2, callback, j11, 26));
                 return;
         }
     }
 
     public r2(k8 k8Var, long j10, boolean z10, TLRPC.Document document, Runnable runnable) {
         this.d = k8Var;
-        this.f29800b = j10;
-        this.f29801c = z10;
+        this.f29797b = j10;
+        this.f29798c = z10;
         this.e = document;
-        this.f29802f = runnable;
+        this.f29799f = runnable;
     }
 
     public r2(org.telegram.ui.Wallet.q0 q0Var, long j10, String str, boolean z10, Utilities.Callback callback) {
         this.d = q0Var;
-        this.f29800b = j10;
+        this.f29797b = j10;
         this.e = str;
-        this.f29801c = z10;
-        this.f29802f = callback;
+        this.f29798c = z10;
+        this.f29799f = callback;
     }
 }

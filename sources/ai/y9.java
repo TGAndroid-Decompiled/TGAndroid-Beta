@@ -102,7 +102,7 @@ public final class y9 implements z9 {
 
     @Override
     public final int b(int i10) {
-        if (!k7.c2(this.f2491a, this.f2492b)) {
+        if (!k7.j2(this.f2491a, this.f2492b)) {
             return -1;
         }
         int i11 = i10 + 1;
@@ -245,7 +245,7 @@ public final class y9 implements z9 {
                     ArrayList arrayList2 = this.f2499l;
                     if (i12 < arrayList2.size()) {
                         TL_stars.StarGift starGift3 = ((TL_stars.SavedStarGift) arrayList2.get(i12)).gift;
-                        if (starGift3 != null && starGift3.f20496id == starGift2.f20496id) {
+                        if (starGift3 != null && starGift3.f20499id == starGift2.f20499id) {
                             arrayList2.remove(i12);
                             this.f2501n = Math.max(0, this.f2501n - 1);
                             z10 = true;
@@ -311,7 +311,7 @@ public final class y9 implements z9 {
             i10++;
             togglestargiftspinnedtotop.stargift.add(h((TL_stars.SavedStarGift) obj2));
         }
-        ConnectionsManager.getInstance(i11).sendRequest(togglestargiftspinnedtotop, new ci.d6(8), 64);
+        ConnectionsManager.getInstance(i11).sendRequest(togglestargiftspinnedtotop, new ci.e6(8), 64);
     }
 
     public final boolean n(TL_stars.SavedStarGift savedStarGift, boolean z10, boolean z11) {
@@ -342,7 +342,7 @@ public final class y9 implements z9 {
                         return true;
                     }
                     while (i10.size() > 0 && i10.size() + 1 > MessagesController.getInstance(i11).stargiftsPinnedToTopLimit) {
-                        ((TL_stars.SavedStarGift) i2.d.A(1, i10)).pinned_to_top = false;
+                        ((TL_stars.SavedStarGift) i2.e.A(1, i10)).pinned_to_top = false;
                     }
                     z12 = true;
                 } else {

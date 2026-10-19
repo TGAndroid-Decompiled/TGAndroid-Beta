@@ -5,14 +5,14 @@ import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
 public final class y20 extends s4.o {
-    public final ArrayList f32518b;
-    public final ArrayList f32519c;
+    public final ArrayList f32537b;
+    public final ArrayList f32538c;
     public final a30 d;
 
     public y20(a30 a30Var, ArrayList arrayList, ArrayList arrayList2) {
         this.d = a30Var;
-        this.f32518b = arrayList;
-        this.f32519c = arrayList2;
+        this.f32537b = arrayList;
+        this.f32538c = arrayList2;
     }
 
     @Override
@@ -24,7 +24,7 @@ public final class y20 extends s4.o {
     public final boolean b(int i10, int i11) {
         TLRPC.GroupCallParticipant groupCallParticipant;
         TLRPC.GroupCallParticipant groupCallParticipant2;
-        ArrayList arrayList = this.f32518b;
+        ArrayList arrayList = this.f32537b;
         int size = arrayList.size();
         a30 a30Var = this.d;
         if (i10 < size && i11 < a30Var.e.size()) {
@@ -32,7 +32,7 @@ public final class y20 extends s4.o {
         }
         int size2 = i10 - arrayList.size();
         int size3 = i11 - a30Var.e.size();
-        ArrayList arrayList2 = this.f32519c;
+        ArrayList arrayList2 = this.f32538c;
         if (size3 >= 0 && size3 < a30Var.f24472f.size() && size2 >= 0 && size2 < arrayList2.size()) {
             if (MessageObject.getPeerId(((TLRPC.GroupCallParticipant) arrayList2.get(size2)).peer) != MessageObject.getPeerId(((TLRPC.GroupCallParticipant) a30Var.f24472f.get(size3)).peer)) {
                 return false;
@@ -63,6 +63,6 @@ public final class y20 extends s4.o {
 
     @Override
     public final int e() {
-        return this.f32519c.size() + this.f32518b.size();
+        return this.f32538c.size() + this.f32537b.size();
     }
 }

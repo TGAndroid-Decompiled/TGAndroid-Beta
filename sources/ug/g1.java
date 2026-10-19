@@ -27,7 +27,7 @@ public final class g1 extends yg.h {
                 im0 im0Var = m1Var.d;
                 li.n nVar = new li.n(m1Var.getContext(), 2, 0.6f);
                 nVar.f46051a = 1;
-                nVar.f16143p = AndroidUtilities.dp(36.0f);
+                nVar.f16146p = AndroidUtilities.dp(36.0f);
                 im0Var.getLayoutManager().w0(nVar);
             }
         }

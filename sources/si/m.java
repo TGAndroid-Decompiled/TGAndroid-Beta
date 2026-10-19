@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
-import org.telegram.ui.web.g2;
+import k2.w0;
 public final class m implements s {
     public long A;
     public long B;
@@ -123,7 +123,7 @@ public final class m implements s {
             this.f46715p = this.f46712m.createInputSurface();
             return;
         }
-        throw new IOException(a1.g.n(i11, " fps", i2.d.m("Video encoder does not support ", i10, "x", i10, " at ")));
+        throw new IOException(a1.g.n(i11, " fps", i2.e.m("Video encoder does not support ", i10, "x", i10, " at ")));
     }
 
     public final boolean c(MediaCodec.BufferInfo bufferInfo, long j10) {
@@ -355,8 +355,8 @@ public final class m implements s {
         sb2.append(str);
         this.f46706f.a(sb2.toString(), runtimeException);
         if (this.h.compareAndSet(false, true)) {
-            l2.f fVar = this.f46707g.f46555a;
-            ((s0) fVar.f15842b).f46760i.post(new g2(26, fVar, runtimeException));
+            w0 w0Var = this.f46707g.f46555a;
+            ((s0) w0Var.f14832b).f46760i.post(new p2.b(25, w0Var, runtimeException));
         }
     }
 

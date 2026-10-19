@@ -13,59 +13,59 @@ import org.json.JSONObject;
 import org.telegram.messenger.SegmentTree;
 import org.telegram.ui.ActionBar.g5;
 public class b {
-    public long[] f15051a;
-    public float[] f15052b;
-    public String[] f15053c;
+    public long[] f15054a;
+    public float[] f15055b;
+    public String[] f15056c;
     public ArrayList d = new ArrayList();
     public long e = 0;
-    public long f15054f = Long.MAX_VALUE;
-    public float f15055g = 0.0f;
+    public long f15057f = Long.MAX_VALUE;
+    public float f15058g = 0.0f;
     public float h = 0.0f;
-    public int f15056i;
-    public int f15057j;
-    public long f15058k;
+    public int f15059i;
+    public int f15060j;
+    public long f15061k;
 
     public b(JSONObject jSONObject) {
-        this.f15056i = 0;
-        this.f15057j = 0;
+        this.f15059i = 0;
+        this.f15060j = 0;
         JSONArray jSONArray = jSONObject.getJSONArray("columns");
         jSONArray.length();
         for (int i10 = 0; i10 < jSONArray.length(); i10++) {
             JSONArray jSONArray2 = jSONArray.getJSONArray(i10);
             if (jSONArray2.getString(0).equals("x")) {
                 int length = jSONArray2.length() - 1;
-                this.f15051a = new long[length];
+                this.f15054a = new long[length];
                 int i11 = 0;
                 while (i11 < length) {
                     int i12 = i11 + 1;
-                    this.f15051a[i11] = jSONArray2.getLong(i12);
+                    this.f15054a[i11] = jSONArray2.getLong(i12);
                     i11 = i12;
                 }
             } else {
                 a aVar = new a();
                 this.d.add(aVar);
                 int length2 = jSONArray2.length() - 1;
-                aVar.f15047c = jSONArray2.getString(0);
-                aVar.f15045a = new long[length2];
+                aVar.f15050c = jSONArray2.getString(0);
+                aVar.f15048a = new long[length2];
                 int i13 = 0;
                 while (i13 < length2) {
                     int i14 = i13 + 1;
-                    aVar.f15045a[i13] = jSONArray2.getLong(i14);
-                    long j10 = aVar.f15045a[i13];
+                    aVar.f15048a[i13] = jSONArray2.getLong(i14);
+                    long j10 = aVar.f15048a[i13];
                     if (j10 > aVar.e) {
                         aVar.e = j10;
                     }
-                    if (j10 < aVar.f15048f) {
-                        aVar.f15048f = j10;
+                    if (j10 < aVar.f15051f) {
+                        aVar.f15051f = j10;
                     }
                     i13 = i14;
                 }
             }
-            long[] jArr = this.f15051a;
+            long[] jArr = this.f15054a;
             if (jArr.length > 1) {
-                this.f15058k = jArr[1] - jArr[0];
+                this.f15061k = jArr[1] - jArr[0];
             } else {
-                this.f15058k = 86400000L;
+                this.f15061k = 86400000L;
             }
             e();
         }
@@ -73,27 +73,27 @@ public class b {
         JSONObject optJSONObject2 = jSONObject.optJSONObject("names");
         try {
             d(jSONObject.getString("xTickFormatter"));
-            this.f15056i = d(jSONObject.getString("yTickFormatter"));
+            this.f15059i = d(jSONObject.getString("yTickFormatter"));
             d(jSONObject.getString("xTooltipFormatter"));
-            this.f15057j = d(jSONObject.getString("yTooltipFormatter"));
+            this.f15060j = d(jSONObject.getString("yTooltipFormatter"));
         } catch (Exception unused) {
         }
         Pattern compile = Pattern.compile("(.*)(#.*)");
         for (int i15 = 0; i15 < this.d.size(); i15++) {
             a aVar2 = (a) this.d.get(i15);
             if (optJSONObject != null) {
-                Matcher matcher = compile.matcher(optJSONObject.getString(aVar2.f15047c));
+                Matcher matcher = compile.matcher(optJSONObject.getString(aVar2.f15050c));
                 if (matcher.matches()) {
                     if (!TextUtils.isEmpty(matcher.group(1))) {
-                        aVar2.f15049g = g5.v("statisticChartLine_" + matcher.group(1).toLowerCase());
+                        aVar2.f15052g = g5.v("statisticChartLine_" + matcher.group(1).toLowerCase());
                     }
                     int parseColor = Color.parseColor(matcher.group(2));
                     aVar2.h = parseColor;
-                    aVar2.f15050i = i0.a.f(0.85f, -1, parseColor);
+                    aVar2.f15053i = i0.a.f(0.85f, -1, parseColor);
                 }
             }
             if (optJSONObject2 != null) {
-                aVar2.d = optJSONObject2.getString(aVar2.f15047c);
+                aVar2.d = optJSONObject2.getString(aVar2.f15050c);
             }
         }
     }
@@ -112,7 +112,7 @@ public class b {
     }
 
     public final int a(float f7, int i10) {
-        int length = this.f15052b.length;
+        int length = this.f15055b.length;
         if (f7 == 1.0f) {
             return length - 1;
         }
@@ -120,7 +120,7 @@ public class b {
         int i12 = i11;
         while (i10 <= i12) {
             int i13 = (i12 + i10) >> 1;
-            float[] fArr = this.f15052b;
+            float[] fArr = this.f15055b;
             float f10 = fArr[i13];
             if ((f7 > f10 && (i13 == i11 || f7 < fArr[i13 + 1])) || f7 == f10) {
                 return i13;
@@ -135,7 +135,7 @@ public class b {
     }
 
     public final int b(float f7, int i10, int i11) {
-        float[] fArr = this.f15052b;
+        float[] fArr = this.f15055b;
         int length = fArr.length;
         if (f7 <= fArr[i10]) {
             return i10;
@@ -145,7 +145,7 @@ public class b {
         }
         while (i10 <= i11) {
             int i12 = (i11 + i10) >> 1;
-            float[] fArr2 = this.f15052b;
+            float[] fArr2 = this.f15055b;
             float f10 = fArr2[i12];
             if ((f7 > f10 && (i12 == length - 1 || f7 < fArr2[i12 + 1])) || f7 == f10) {
                 return i12;
@@ -162,13 +162,13 @@ public class b {
     public final int c(float f7) {
         int length;
         int i10 = 0;
-        if (f7 == 0.0f || (length = this.f15052b.length) < 2) {
+        if (f7 == 0.0f || (length = this.f15055b.length) < 2) {
             return 0;
         }
         int i11 = length - 1;
         while (i10 <= i11) {
             int i12 = (i11 + i10) >> 1;
-            float[] fArr = this.f15052b;
+            float[] fArr = this.f15055b;
             float f10 = fArr[i12];
             if ((f7 < f10 && (i12 == 0 || f7 > fArr[i12 - 1])) || f7 == f10) {
                 return i12;
@@ -184,7 +184,7 @@ public class b {
 
     public void e() {
         SimpleDateFormat simpleDateFormat;
-        long[] jArr = this.f15051a;
+        long[] jArr = this.f15054a;
         int length = jArr.length;
         if (length == 0) {
             return;
@@ -192,25 +192,25 @@ public class b {
         long j10 = jArr[0];
         long j11 = jArr[length - 1];
         float[] fArr = new float[length];
-        this.f15052b = fArr;
+        this.f15055b = fArr;
         if (length == 1) {
             fArr[0] = 1.0f;
         } else {
             for (int i10 = 0; i10 < length; i10++) {
-                this.f15052b[i10] = ((float) (this.f15051a[i10] - j10)) / ((float) (j11 - j10));
+                this.f15055b[i10] = ((float) (this.f15054a[i10] - j10)) / ((float) (j11 - j10));
             }
         }
         for (int i11 = 0; i11 < this.d.size(); i11++) {
             if (((a) this.d.get(i11)).e > this.e) {
                 this.e = ((a) this.d.get(i11)).e;
             }
-            if (((a) this.d.get(i11)).f15048f < this.f15054f) {
-                this.f15054f = ((a) this.d.get(i11)).f15048f;
+            if (((a) this.d.get(i11)).f15051f < this.f15057f) {
+                this.f15057f = ((a) this.d.get(i11)).f15051f;
             }
-            ((a) this.d.get(i11)).f15046b = new SegmentTree(((a) this.d.get(i11)).f15045a);
+            ((a) this.d.get(i11)).f15049b = new SegmentTree(((a) this.d.get(i11)).f15048a);
         }
-        long j12 = this.f15058k;
-        this.f15053c = new String[((int) ((j11 - j10) / j12)) + 10];
+        long j12 = this.f15061k;
+        this.f15056c = new String[((int) ((j11 - j10) / j12)) + 10];
         if (j12 == 1) {
             simpleDateFormat = null;
         } else if (j12 < 86400000) {
@@ -220,17 +220,17 @@ public class b {
         }
         int i12 = 0;
         while (true) {
-            String[] strArr = this.f15053c;
+            String[] strArr = this.f15056c;
             if (i12 < strArr.length) {
-                if (this.f15058k == 1) {
+                if (this.f15061k == 1) {
                     strArr[i12] = String.format(Locale.ENGLISH, "%02d:00", Integer.valueOf(i12));
                 } else {
-                    strArr[i12] = simpleDateFormat.format(new Date((i12 * this.f15058k) + j10));
+                    strArr[i12] = simpleDateFormat.format(new Date((i12 * this.f15061k) + j10));
                 }
                 i12++;
             } else {
-                long[] jArr2 = this.f15051a;
-                this.f15055g = ((float) this.f15058k) / ((float) (jArr2[jArr2.length - 1] - jArr2[0]));
+                long[] jArr2 = this.f15054a;
+                this.f15058g = ((float) this.f15061k) / ((float) (jArr2[jArr2.length - 1] - jArr2[0]));
                 return;
             }
         }

@@ -29,7 +29,7 @@ public final class m extends f3 {
         this.useBackgroundTopPadding = false;
         setBackgroundColor(0);
         fixNavigationBar();
-        if (i0.a.h(h6.w0(h6.f21057h5, this.resourcesProvider)) > 0.699999988079071d) {
+        if (i0.a.h(h6.w0(h6.f21060h5, this.resourcesProvider)) > 0.699999988079071d) {
             z11 = true;
         } else {
             z11 = false;

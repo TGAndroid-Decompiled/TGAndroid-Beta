@@ -1,89 +1,10 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.camera.Size;
-import org.telegram.ui.Components.AnimatedFileNative;
-public final class rt0 implements Runnable {
-    public final String f40792a;
-    public final long f40793b;
-    public final int f40794c;
-    public final PhotoViewer d;
-
-    public rt0(PhotoViewer photoViewer, String str, long j10, int i10) {
-        this.d = photoViewer;
-        this.f40792a = str;
-        this.f40793b = j10;
-        this.f40794c = i10;
-    }
-
-    @Override
-    public final void run() {
-        boolean z10;
-        boolean z11;
-        if (this.d.f33444x8 == this) {
-            int videoBitrate = MediaController.getVideoBitrate(this.f40792a);
-            int[] iArr = new int[11];
-            AnimatedFileNative.d(this.f40792a, iArr, this.f40793b);
-            if (iArr[10] != 0) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            PhotoViewer photoViewer = this.d;
-            if (iArr[0] != 0 && (!z10 || iArr[9] != 0)) {
-                z11 = true;
-            } else {
-                z11 = false;
-            }
-            photoViewer.f33327k8 = z11;
-            PhotoViewer photoViewer2 = this.d;
-            if (videoBitrate == -1) {
-                videoBitrate = iArr[3];
-            }
-            photoViewer2.f33291g8 = videoBitrate;
-            photoViewer2.f33300h8 = videoBitrate;
-            if (this.d.f33327k8) {
-                PhotoViewer photoViewer3 = this.d;
-                int i10 = iArr[1];
-                photoViewer3.f33256c8 = i10;
-                photoViewer3.f33273e8 = i10;
-                PhotoViewer photoViewer4 = this.d;
-                int i11 = iArr[2];
-                photoViewer4.f33265d8 = i11;
-                photoViewer4.f33282f8 = i11;
-                PhotoViewer photoViewer5 = this.d;
-                int max = Math.max(photoViewer5.f33256c8, this.d.f33265d8);
-                if (max > 1280) {
-                    photoViewer5.Z7 = 4;
-                } else if (max > 854) {
-                    photoViewer5.Z7 = 3;
-                } else if (max > 640) {
-                    photoViewer5.Z7 = 2;
-                } else {
-                    photoViewer5.Z7 = 1;
-                }
-                PhotoViewer photoViewer6 = this.d;
-                int i12 = this.f40794c;
-                if (i12 == -1) {
-                    i12 = photoViewer6.v2();
-                }
-                photoViewer6.Y7 = i12;
-                PhotoViewer photoViewer7 = this.d;
-                if (photoViewer7.f33291g8 != 0 && photoViewer7.f33250c2 != 1) {
-                    Size p02 = photoViewer7.p0();
-                    if (p02.getWidth() == photoViewer7.f33256c8 && p02.getHeight() == photoViewer7.f33265d8) {
-                        MediaController.extractRealEncoderBitrate(p02.getWidth(), p02.getHeight(), photoViewer7.f33300h8, false);
-                    } else {
-                        MediaController.extractRealEncoderBitrate(p02.getWidth(), p02.getHeight(), MediaController.makeVideoBitrate(photoViewer7.f33265d8, photoViewer7.f33256c8, photoViewer7.f33300h8, p02.getHeight(), p02.getWidth()), false);
-                    }
-                }
-                this.d.f33334l8 = MediaController.isH264Video(this.f40792a);
-            }
-            if (this.d.f33444x8 != this) {
-                return;
-            }
-            AndroidUtilities.runOnUIThread(new xe0(this, this, iArr, 21));
-        }
-    }
+import android.view.animation.DecelerateInterpolator;
+public final class rt0 {
+    public static final rt0 e = new rt0();
+    public DecelerateInterpolator f41275b;
+    public int f41274a = 200;
+    public boolean f41276c = true;
+    public boolean d = true;
 }

@@ -6,22 +6,22 @@ import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-public final class k9 extends org.telegram.ui.Components.e61 {
-    public static final int f38434a = 0;
+public final class k9 extends org.telegram.ui.Components.f61 {
+    public static final int f38459a = 0;
 
     static {
-        org.telegram.ui.Components.e61.setup(new org.telegram.ui.Components.e61());
+        org.telegram.ui.Components.f61.setup(new org.telegram.ui.Components.f61());
     }
 
     @Override
-    public final void bindView(View view, org.telegram.ui.Components.f61 f61Var, boolean z10, org.telegram.ui.Components.s61 s61Var, org.telegram.ui.Components.a71 a71Var) {
+    public final void bindView(View view, org.telegram.ui.Components.g61 g61Var, boolean z10, org.telegram.ui.Components.t61 t61Var, org.telegram.ui.Components.b71 b71Var) {
         String lowerCase;
         l9 l9Var = (l9) view;
-        TLRPC.Chat chat = (TLRPC.Chat) f61Var.G;
-        View.OnClickListener onClickListener = f61Var.D;
-        l9Var.f38774c = chat;
-        org.telegram.ui.Components.ti0 ti0Var = l9Var.f38773b;
-        ti0Var.setTag(Long.valueOf(chat.f20272id));
+        TLRPC.Chat chat = (TLRPC.Chat) g61Var.G;
+        View.OnClickListener onClickListener = g61Var.D;
+        l9Var.f38844c = chat;
+        org.telegram.ui.Components.ti0 ti0Var = l9Var.f38843b;
+        ti0Var.setTag(Long.valueOf(chat.f20275id));
         if (ChatObject.isChannel(chat) && !chat.megagroup) {
             if (!ChatObject.isPublic(chat)) {
                 lowerCase = LocaleController.getString(R.string.ChannelPrivate).toLowerCase();
@@ -35,7 +35,7 @@ public final class k9 extends org.telegram.ui.Components.e61 {
         } else {
             lowerCase = LocaleController.getString(R.string.MegaPublic).toLowerCase();
         }
-        l9Var.f38772a.t(chat, null, null, lowerCase, false, false);
+        l9Var.f38842a.u(chat, null, null, lowerCase, false, false);
         ti0Var.setOnClickListener(onClickListener);
     }
 

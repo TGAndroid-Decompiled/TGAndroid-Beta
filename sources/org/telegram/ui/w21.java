@@ -1,35 +1,46 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-public final class w21 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f42333a;
-    public final z21 f42334b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import org.telegram.messenger.NotificationCenter;
+public final class w21 extends AnimatorListenerAdapter {
+    public final int f42444a;
+    public final x21 f42445b;
 
-    public w21(z21 z21Var, int i10) {
-        this.f42333a = i10;
-        this.f42334b = z21Var;
+    public w21(x21 x21Var, int i10) {
+        this.f42444a = i10;
+        this.f42445b = x21Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f42333a) {
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f42444a) {
             case 0:
-                z21 z21Var = this.f42334b;
-                z21Var.getClass();
-                z21Var.e = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                z21Var.g();
-                return;
-            case 1:
-                z21 z21Var2 = this.f42334b;
-                z21Var2.getClass();
-                z21Var2.e = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                z21Var2.g();
+                x21 x21Var = this.f42445b;
+                if (x21Var.h != null) {
+                    x21Var.h = null;
+                    x21Var.e = 0.0f;
+                    x21Var.g();
+                    x21Var.f42998n.unlock();
+                    dx dxVar = x21Var.f42994a;
+                    if (dxVar != null) {
+                        dxVar.onPause();
+                        x21Var.f42994a.onFragmentDestroy();
+                        x21Var.removeAllViews();
+                        x21Var.f42994a = null;
+                        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needCheckSystemBarColors, new Object[0]);
+                    }
+                    x21Var.d(false);
+                    return;
+                }
                 return;
             default:
-                z21 z21Var3 = this.f42334b;
-                z21Var3.getClass();
-                z21Var3.e = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                z21Var3.g();
+                x21 x21Var2 = this.f42445b;
+                if (x21Var2.h != null) {
+                    x21Var2.h = null;
+                    x21Var2.d(true);
+                    return;
+                }
                 return;
         }
     }

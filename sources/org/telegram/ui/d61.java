@@ -1,11 +1,15 @@
 package org.telegram.ui;
 
 import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-public final class d61 extends FrameLayout {
+public final class d61 implements View.OnLayoutChangeListener {
+    public final h61 f36298a;
+
+    public d61(h61 h61Var) {
+        this.f36298a = h61Var;
+    }
+
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(240.0f), 1073741824));
+    public final void onLayoutChange(View view, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17) {
+        h61.T(this.f36298a);
     }
 }

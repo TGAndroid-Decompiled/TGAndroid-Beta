@@ -9,9 +9,9 @@ public interface p0 {
 
     void c(int i10);
 
-    CharSequence d();
-
     void dismiss();
+
+    CharSequence e();
 
     Drawable h();
 

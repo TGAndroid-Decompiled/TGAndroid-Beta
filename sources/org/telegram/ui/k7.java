@@ -5,18 +5,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
-public final class k7 extends bu0 {
-    public org.telegram.ui.Components.im0 f38401a;
-    public final v7 f38402b;
+public final class k7 extends zt0 {
+    public org.telegram.ui.Components.im0 f38425a;
+    public final v7 f38426b;
 
     public k7(v7 v7Var) {
-        this.f38402b = v7Var;
+        this.f38426b = v7Var;
     }
 
     @Override
-    public final lu0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
+    public final ju0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
         org.telegram.ui.Cells.s7 s7Var;
-        org.telegram.ui.Components.im0 listView = this.f38402b.getListView();
+        org.telegram.ui.Components.im0 listView = this.f38426b.getListView();
         int i11 = 0;
         while (true) {
             if (i11 < listView.getChildCount()) {
@@ -36,14 +36,14 @@ public final class k7 extends bu0 {
         }
         int[] iArr = new int[2];
         s7Var.getLocationInWindow(iArr);
-        lu0 lu0Var = new lu0();
-        lu0Var.f38918b = iArr[0];
-        lu0Var.f38919c = iArr[1];
-        lu0Var.d = this.f38401a;
-        ImageReceiver imageReceiver = s7Var.f23023c;
-        lu0Var.f38917a = imageReceiver;
-        lu0Var.e = imageReceiver.getBitmapSafe();
-        lu0Var.f38924k = s7Var.getScaleX();
-        return lu0Var;
+        ju0 ju0Var = new ju0();
+        ju0Var.f38344b = iArr[0];
+        ju0Var.f38345c = iArr[1];
+        ju0Var.d = this.f38425a;
+        ImageReceiver imageReceiver = s7Var.f23026c;
+        ju0Var.f38343a = imageReceiver;
+        ju0Var.e = imageReceiver.getBitmapSafe();
+        ju0Var.f38350k = s7Var.getScaleX();
+        return ju0Var;
     }
 }

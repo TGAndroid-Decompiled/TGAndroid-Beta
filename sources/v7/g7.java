@@ -5,8 +5,8 @@ public final class g7 {
     public final e7 f48032c;
 
     public g7(u2.c cVar) {
-        this.f48030a = (b6) cVar.f47260b;
-        this.f48031b = (f6) cVar.f47261c;
+        this.f48030a = (b6) cVar.f47259b;
+        this.f48031b = (f6) cVar.f47260c;
         this.f48032c = (e7) cVar.d;
     }
 }

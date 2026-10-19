@@ -6,9 +6,9 @@ public interface yo {
 
     void n();
 
-    void p();
+    void o();
 
     void t();
 
-    void y(int i10);
+    void x(int i10);
 }

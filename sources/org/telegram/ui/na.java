@@ -1,80 +1,88 @@
 package org.telegram.ui;
 
-import android.text.Editable;
-import android.text.SpannableStringBuilder;
-import android.text.TextWatcher;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
 import org.telegram.messenger.R;
-public final class na implements TextWatcher {
-    public final oa f39386a;
+import org.telegram.tgnet.TLRPC;
+public final class na extends s4.v {
+    public final sa d;
 
-    public na(oa oaVar) {
-        this.f39386a = oaVar;
+    public na(sa saVar) {
+        this.d = saVar;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        int i10;
-        ua uaVar = this.f39386a.f39711c;
-        if (uaVar.f41910r.startsWith("@")) {
-            uaVar.f41910r = uaVar.f41910r.substring(1);
+    public final void a(RecyclerView recyclerView, s4.b1 b1Var) {
+        super.a(recyclerView, b1Var);
+        View view = b1Var.f45910a;
+        view.setPressed(false);
+        view.setTag(R.id.dragging, null);
+    }
+
+    @Override
+    public final int e(RecyclerView recyclerView, s4.b1 b1Var) {
+        if (b1Var.f45913f == 4 && ((pa) b1Var.f45910a).G) {
+            return s4.v.l(3, 0);
         }
-        if (uaVar.f41910r.length() > 0) {
-            StringBuilder sb2 = new StringBuilder("https://");
-            i10 = ((org.telegram.ui.ActionBar.n2) uaVar).currentAccount;
-            sb2.append(MessagesController.getInstance(i10).linkPrefix);
-            sb2.append("/");
-            sb2.append(uaVar.f41910r);
-            String sb3 = sb2.toString();
-            String formatString = LocaleController.formatString("UsernameHelpLink", R.string.UsernameHelpLink, sb3);
-            int indexOf = formatString.indexOf(sb3);
-            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(formatString);
-            if (indexOf >= 0) {
-                spannableStringBuilder.setSpan(new org.telegram.ui.Cells.i(sb3, uaVar, 3), indexOf, sb3.length() + indexOf, 33);
+        return s4.v.l(0, 0);
+    }
+
+    @Override
+    public final boolean n(RecyclerView recyclerView, s4.b1 b1Var, s4.b1 b1Var2) {
+        if (b1Var.f45913f == b1Var2.f45913f) {
+            View view = b1Var2.f45910a;
+            if (!(view instanceof pa) || ((pa) view).G) {
+                ja jaVar = this.d.f41409c;
+                int b10 = b1Var.b();
+                int b11 = b1Var2.b();
+                int i10 = b10 - 4;
+                int i11 = b11 - 4;
+                sa saVar = jaVar.f38211c;
+                ArrayList arrayList = saVar.v;
+                if (i10 < arrayList.size() && i11 < arrayList.size()) {
+                    if (b10 != b11) {
+                        saVar.d = true;
+                    }
+                    arrayList.set(i10, (TLRPC.TL_username) arrayList.get(i11));
+                    arrayList.set(i11, (TLRPC.TL_username) arrayList.get(i10));
+                    jaVar.p(b10, b11);
+                    int size = arrayList.size() + 3;
+                    if (b10 == size || b11 == size) {
+                        jaVar.n(b10, 3);
+                        jaVar.n(b11, 3);
+                    }
+                }
+                return true;
             }
+            return false;
+        }
+        return false;
+    }
+
+    @Override
+    public final void p(s4.b1 b1Var, int i10) {
+        Boolean bool;
+        sa saVar = this.d;
+        if (i10 == 0) {
+            sa.Y(saVar);
+        } else {
+            saVar.f41408b.I0(false);
+            b1Var.f45910a.setPressed(true);
+        }
+        if (b1Var != null) {
+            View view = b1Var.f45910a;
+            int i11 = R.id.dragging;
+            if (i10 == 2) {
+                bool = Boolean.TRUE;
+            } else {
+                bool = null;
+            }
+            view.setTag(i11, bool);
         }
     }
 
     @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        String charSequence2;
-        oa oaVar = this.f39386a;
-        ua uaVar = oaVar.f39711c;
-        String str = uaVar.f41910r;
-        if (charSequence == null) {
-            charSequence2 = "";
-        } else {
-            charSequence2 = charSequence.toString();
-        }
-        uaVar.f41910r = charSequence2;
-        ua uaVar2 = oaVar.f39711c;
-        ra raVar = uaVar2.E;
-        if (raVar != null && str != null) {
-            raVar.b(uaVar2.f41910r);
-        }
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        String charSequence2;
-        oa oaVar = this.f39386a;
-        ua uaVar = oaVar.f39711c;
-        String str = uaVar.f41910r;
-        if (charSequence == null) {
-            charSequence2 = "";
-        } else {
-            charSequence2 = charSequence.toString();
-        }
-        uaVar.f41910r = charSequence2;
-        ua uaVar2 = oaVar.f39711c;
-        ra raVar = uaVar2.E;
-        if (raVar != null && str != null) {
-            raVar.b(uaVar2.f41910r);
-        }
-        if (uaVar.f41909n) {
-            return;
-        }
-        uaVar.d0(uaVar.f41910r);
+    public final void q(s4.b1 b1Var) {
     }
 }

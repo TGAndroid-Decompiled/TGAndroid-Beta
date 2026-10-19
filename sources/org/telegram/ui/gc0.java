@@ -1,34 +1,29 @@
 package org.telegram.ui;
 
-import androidx.recyclerview.widget.RecyclerView;
-public final class gc0 extends s4.r0 {
-    public final pc0 f37151a;
+import android.content.Context;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class gc0 extends hg.t0 {
+    public final nc0 N;
 
-    public gc0(pc0 pc0Var) {
-        this.f37151a = pc0Var;
+    public gc0(nc0 nc0Var, Context context, org.telegram.ui.ActionBar.d6 d6Var, boolean z10) {
+        super(context, d6Var, false, z10);
+        this.N = nc0Var;
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, int i10) {
-        boolean z10;
-        if (i10 != 0) {
-            z10 = true;
-        } else {
-            z10 = false;
+    public final void l() {
+        nc0 nc0Var = this.N;
+        org.telegram.ui.ActionBar.u0 u0Var = nc0Var.f39524w;
+        if (u0Var != null) {
+            u0Var.setShowSearchProgress(nc0Var.W.J);
         }
-        pc0 pc0Var = this.f37151a;
-        pc0Var.Q = z10;
-        if (!z10 && pc0Var.L != null) {
-            pc0Var.L = null;
+        TextView textView = nc0Var.f39517r;
+        if (textView != null) {
+            textView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("NoPlacesFoundInfo", R.string.NoPlacesFoundInfo, nc0Var.W.f11822x)));
         }
-    }
-
-    @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        pc0 pc0Var = this.f37151a;
-        pc0Var.z0(false);
-        if (pc0Var.L != null) {
-            pc0Var.N += i11;
-        }
+        super.l();
     }
 }

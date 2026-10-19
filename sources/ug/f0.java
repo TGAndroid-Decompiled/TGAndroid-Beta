@@ -16,7 +16,7 @@ import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.ActionBar.n2;
 import org.telegram.ui.Components.im0;
 import org.telegram.ui.Components.qc;
-import org.telegram.ui.ey;
+import org.telegram.ui.cy;
 import w7.z5;
 public final class f0 extends sg.m1 {
     public static f0 S0;
@@ -36,10 +36,10 @@ public final class f0 extends sg.m1 {
             aVar.setOnClickListener(new hg.r0(this, 22));
             wg.a aVar2 = this.Q0;
             aVar2.e = true;
-            ei.d dVar = aVar2.f48941a;
+            ei.d dVar = aVar2.f48940a;
             dVar.setEnabled(true);
             dVar.g(LocaleController.getString(R.string.GiftPremiumActivateForFree), false, true);
-            aVar2.f48942b.setBackgroundColor(h6.w0(h6.f21057h5, aVar2.f48943c));
+            aVar2.f48941b.setBackgroundColor(h6.w0(h6.f21060h5, aVar2.f48942c));
             this.containerView.addView(this.Q0, z5.d(-1, 68.0f, 80, 0.0f, 0.0f, 0.0f, 0.0f));
         }
         fixNavigationBar();
@@ -51,17 +51,17 @@ public final class f0 extends sg.m1 {
     }
 
     public static void e0(f0 f0Var) {
-        sg.m1 m1Var = new sg.m1(f0Var.f24915n, UserConfig.selectedAccount, null, null, null, f0Var.resourcesProvider);
+        sg.m1 m1Var = new sg.m1(f0Var.f24899n, UserConfig.selectedAccount, null, null, null, f0Var.resourcesProvider);
         m1Var.J0 = true;
         m1Var.K0 = true;
         m1Var.f46322c0 = true;
-        f0Var.f24915n.showDialog(m1Var);
+        f0Var.f24899n.showDialog(m1Var);
     }
 
     public static void f0(f0 f0Var) {
-        ey eyVar = new ey(lk.d(3, "onlySelect", "dialogsType", true));
-        eyVar.C2 = new org.telegram.ui.web.n(17, f0Var, "https://t.me/giftcode/" + f0Var.R0);
-        f0Var.f24915n.presentFragment(eyVar);
+        cy cyVar = new cy(lk.d(3, "onlySelect", "dialogsType", true));
+        cyVar.C2 = new org.telegram.ui.web.m(17, f0Var, "https://t.me/giftcode/" + f0Var.R0);
+        f0Var.f24899n.presentFragment(cyVar);
         f0Var.dismiss();
     }
 
@@ -91,7 +91,7 @@ public final class f0 extends sg.m1 {
         this.P0.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
         ((ViewGroup.MarginLayoutParams) this.P0.getLayoutParams()).bottomMargin = AndroidUtilities.dp(14.0f);
         ((ViewGroup.MarginLayoutParams) this.P0.getLayoutParams()).topMargin = AndroidUtilities.dp(12.0f);
-        this.P0.setText(AndroidUtilities.replaceCharSequence("%1$s", AndroidUtilities.replaceSingleTag(LocaleController.getString("GiftPremiumAboutThisLink", R.string.GiftPremiumAboutThisLink), h6.f21045gc, 0, new d0(this, 0)), AndroidUtilities.replaceTags(LocaleController.getString("GiftPremiumAboutThisLinkEnd", R.string.GiftPremiumAboutThisLinkEnd))));
+        this.P0.setText(AndroidUtilities.replaceCharSequence("%1$s", AndroidUtilities.replaceSingleTag(LocaleController.getString("GiftPremiumAboutThisLink", R.string.GiftPremiumAboutThisLink), h6.f21048gc, 0, new d0(this, 0)), AndroidUtilities.replaceTags(LocaleController.getString("GiftPremiumAboutThisLinkEnd", R.string.GiftPremiumAboutThisLinkEnd))));
     }
 
     @Override

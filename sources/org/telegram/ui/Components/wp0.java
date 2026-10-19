@@ -6,96 +6,96 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.PhotoViewer;
 public final class wp0 implements View.OnClickListener {
-    public final int f32187a;
-    public final dr0 f32188b;
+    public final int f32186a;
+    public final er0 f32187b;
 
-    public wp0(dr0 dr0Var, int i10) {
-        this.f32187a = i10;
-        this.f32188b = dr0Var;
+    public wp0(er0 er0Var, int i10) {
+        this.f32186a = i10;
+        this.f32187b = er0Var;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f32187a) {
+        switch (this.f32186a) {
             case 0:
-                dr0 dr0Var = this.f32188b;
-                xp xpVar = dr0Var.f25658e0;
-                xpVar.a(!xpVar.f32428a.f24147q, true);
-                dr0Var.a1();
+                er0 er0Var = this.f32187b;
+                xp xpVar = er0Var.f25986f0;
+                xpVar.a(!xpVar.f32432a.f24150q, true);
+                er0Var.b1();
                 return;
             case 1:
-                dr0 dr0Var2 = this.f32188b;
-                org.telegram.ui.ActionBar.m1 m1Var = dr0Var2.J0;
+                er0 er0Var2 = this.f32187b;
+                org.telegram.ui.ActionBar.m1 m1Var = er0Var2.K0;
                 if (m1Var != null && m1Var.isShowing()) {
-                    dr0Var2.J0.d(true);
+                    er0Var2.K0.d(true);
                 }
-                dr0Var2.W0(false);
+                er0Var2.X0(false);
                 return;
             case 2:
-                dr0 dr0Var3 = this.f32188b;
-                org.telegram.ui.ActionBar.m1 m1Var2 = dr0Var3.J0;
+                er0 er0Var3 = this.f32187b;
+                org.telegram.ui.ActionBar.m1 m1Var2 = er0Var3.K0;
                 if (m1Var2 != null && m1Var2.isShowing()) {
-                    dr0Var3.J0.d(true);
+                    er0Var3.K0.d(true);
                 }
-                dr0Var3.W0(true);
+                er0Var3.X0(true);
                 return;
             case 3:
-                dr0 dr0Var4 = this.f32188b;
-                String[] strArr = dr0Var4.f25669o0;
-                if (dr0Var4.U.m() == 0) {
-                    if (dr0Var4.f25668n0 || strArr[0] != null) {
-                        dr0Var4.dismiss();
+                er0 er0Var4 = this.f32187b;
+                String[] strArr = er0Var4.f25996p0;
+                if (er0Var4.V.m() == 0) {
+                    if (er0Var4.f25995o0 || strArr[0] != null) {
+                        er0Var4.dismiss();
                         PhotoViewer.t1().G0(true, false);
-                        if (strArr[0] == null && dr0Var4.f25666l0) {
-                            dr0Var4.m0 = true;
-                            Toast.makeText(dr0Var4.getContext(), LocaleController.getString(R.string.Loading), 0).show();
+                        if (strArr[0] == null && er0Var4.m0) {
+                            er0Var4.f25994n0 = true;
+                            Toast.makeText(er0Var4.getContext(), LocaleController.getString(R.string.Loading), 0).show();
                             return;
                         }
-                        dr0Var4.getContext();
-                        dr0Var4.N0();
+                        er0Var4.getContext();
+                        er0Var4.O0();
                         return;
                     }
                     return;
                 }
                 return;
             case 4:
-                dr0 dr0Var5 = this.f32188b;
-                String[] strArr2 = dr0Var5.f25669o0;
-                if (dr0Var5.U.m() == 0) {
-                    if (dr0Var5.f25668n0 || strArr2[0] != null) {
-                        dr0Var5.dismiss();
-                        if (strArr2[0] == null && dr0Var5.f25666l0) {
-                            dr0Var5.m0 = true;
-                            Toast.makeText(dr0Var5.getContext(), LocaleController.getString(R.string.Loading), 0).show();
+                er0 er0Var5 = this.f32187b;
+                String[] strArr2 = er0Var5.f25996p0;
+                if (er0Var5.V.m() == 0) {
+                    if (er0Var5.f25995o0 || strArr2[0] != null) {
+                        er0Var5.dismiss();
+                        if (strArr2[0] == null && er0Var5.m0) {
+                            er0Var5.f25994n0 = true;
+                            Toast.makeText(er0Var5.getContext(), LocaleController.getString(R.string.Loading), 0).show();
                             return;
                         }
-                        dr0Var5.getContext();
-                        dr0Var5.N0();
+                        er0Var5.getContext();
+                        er0Var5.O0();
                         return;
                     }
                     return;
                 }
                 return;
             case 5:
-                dr0 dr0Var6 = this.f32188b;
-                String[] strArr3 = dr0Var6.f25669o0;
-                if (dr0Var6.U.m() == 0) {
-                    if (dr0Var6.f25668n0 || strArr3[0] != null) {
-                        dr0Var6.dismiss();
-                        if (strArr3[0] == null && dr0Var6.f25666l0) {
-                            dr0Var6.m0 = true;
-                            Toast.makeText(dr0Var6.getContext(), LocaleController.getString(R.string.Loading), 0).show();
+                er0 er0Var6 = this.f32187b;
+                String[] strArr3 = er0Var6.f25996p0;
+                if (er0Var6.V.m() == 0) {
+                    if (er0Var6.f25995o0 || strArr3[0] != null) {
+                        er0Var6.dismiss();
+                        if (strArr3[0] == null && er0Var6.m0) {
+                            er0Var6.f25994n0 = true;
+                            Toast.makeText(er0Var6.getContext(), LocaleController.getString(R.string.Loading), 0).show();
                             return;
                         }
-                        dr0Var6.getContext();
-                        dr0Var6.N0();
+                        er0Var6.getContext();
+                        er0Var6.O0();
                         return;
                     }
                     return;
                 }
                 return;
             default:
-                this.f32188b.W0(true);
+                this.f32187b.X0(true);
                 return;
         }
     }

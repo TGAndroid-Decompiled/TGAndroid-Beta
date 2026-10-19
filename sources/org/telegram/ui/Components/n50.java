@@ -1,11 +1,11 @@
 package org.telegram.ui.Components;
 public final class n50 implements Runnable {
-    public final int f28659a;
-    public final m60 f28660b;
+    public final int f28682a;
+    public final m60 f28683b;
 
     public n50(m60 m60Var, int i10) {
-        this.f28659a = i10;
-        this.f28660b = m60Var;
+        this.f28682a = i10;
+        this.f28683b = m60Var;
     }
 
     @Override

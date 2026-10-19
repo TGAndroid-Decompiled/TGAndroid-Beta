@@ -7,25 +7,25 @@ import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MessagesController;
 public final class di0 implements z4.e {
-    public final org.telegram.ui.uy0 f25597a;
+    public final org.telegram.ui.sy0 f25570a;
 
-    public di0(org.telegram.ui.uy0 uy0Var) {
-        this.f25597a = uy0Var;
+    public di0(org.telegram.ui.sy0 sy0Var) {
+        this.f25570a = sy0Var;
     }
 
     @Override
     public final void a(float f7, int i10, int i11) {
         ImageLocation imageLocation;
-        org.telegram.ui.uy0 uy0Var = this.f25597a;
-        ji0 ji0Var = uy0Var.D0;
-        ArrayList arrayList = uy0Var.W0;
-        uy0Var.B(f7, i10);
+        org.telegram.ui.sy0 sy0Var = this.f25570a;
+        ji0 ji0Var = sy0Var.D0;
+        ArrayList arrayList = sy0Var.W0;
+        sy0Var.B(f7, i10);
         if (i11 == 0) {
             int k10 = ji0Var.k(i10);
-            uy0Var.getCurrentItemView();
-            int childCount = uy0Var.getChildCount();
+            sy0Var.getCurrentItemView();
+            int childCount = sy0Var.getChildCount();
             for (int i12 = 0; i12 < childCount; i12++) {
-                View childAt = uy0Var.getChildAt(i12);
+                View childAt = sy0Var.getChildAt(i12);
                 if (childAt instanceof w9) {
                     int k11 = ji0Var.k(ji0Var.d.indexOf(childAt));
                     ImageReceiver imageReceiver = ((w9) childAt).getImageReceiver();
@@ -38,7 +38,7 @@ public final class di0 implements z4.e {
                             }
                             ImageLocation imageLocation2 = (ImageLocation) arrayList.get(k11);
                             if (imageLocation2 != null) {
-                                FileLoader.getInstance(uy0Var.L0).setForceStreamLoadingFile(imageLocation2.location, "mp4");
+                                FileLoader.getInstance(sy0Var.L0).setForceStreamLoadingFile(imageLocation2.location, "mp4");
                             }
                         } else if (allowStartAnimation) {
                             e6 animation = imageReceiver.getAnimation();
@@ -57,8 +57,8 @@ public final class di0 implements z4.e {
     @Override
     public final void b(int i10) {
         boolean z10;
-        org.telegram.ui.uy0 uy0Var = this.f25597a;
-        int i11 = uy0Var.f27898o1;
+        org.telegram.ui.sy0 sy0Var = this.f25570a;
+        int i11 = sy0Var.f27878o1;
         int i12 = 0;
         if (i10 >= i11) {
             z10 = true;
@@ -66,11 +66,11 @@ public final class di0 implements z4.e {
             z10 = false;
         }
         if (i10 != i11) {
-            uy0Var.f27898o1 = i10;
+            sy0Var.f27878o1 = i10;
         }
-        MessagesController.DialogPhotos dialogPhotos = uy0Var.S0;
+        MessagesController.DialogPhotos dialogPhotos = sy0Var.S0;
         if (dialogPhotos != null) {
-            ji0 ji0Var = uy0Var.D0;
+            ji0 ji0Var = sy0Var.D0;
             if (ji0Var != null) {
                 i12 = ji0Var.j();
             }

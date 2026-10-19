@@ -1,47 +1,10 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.widget.ImageView;
-import org.telegram.ui.Components.RadialProgressView;
-public final class sl extends AnimatorListenerAdapter {
-    public final boolean f41119a;
-    public final boolean f41120b;
-    public final boolean f41121c;
-    public final sn d;
-
-    public sl(sn snVar, boolean z10, boolean z11, boolean z12) {
-        this.d = snVar;
-        this.f41119a = z10;
-        this.f41120b = z11;
-        this.f41121c = z12;
-    }
-
+import android.view.accessibility.AccessibilityNodeInfo;
+public final class sl extends org.telegram.ui.Cells.w0 {
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        int i10;
-        int i11;
-        sn snVar = this.d;
-        snVar.M2 = null;
-        ImageView imageView = snVar.J2;
-        int i12 = 4;
-        if (this.f41119a) {
-            i10 = 0;
-        } else {
-            i10 = 4;
-        }
-        imageView.setVisibility(i10);
-        ImageView imageView2 = snVar.L2;
-        if (this.f41120b) {
-            i11 = 0;
-        } else {
-            i11 = 4;
-        }
-        imageView2.setVisibility(i11);
-        RadialProgressView radialProgressView = snVar.K2;
-        if (this.f41121c) {
-            i12 = 0;
-        }
-        radialProgressView.setVisibility(i12);
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        accessibilityNodeInfo.setVisibleToUser(true);
     }
 }

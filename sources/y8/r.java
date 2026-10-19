@@ -5,20 +5,20 @@ import android.os.ParcelFileDescriptor;
 import android.os.Parcelable;
 public final class r extends o6.a {
     public static final Parcelable.Creator<r> CREATOR = new c(13);
-    public final int f50038a;
-    public final ParcelFileDescriptor f50039b;
+    public final int f50037a;
+    public final ParcelFileDescriptor f50038b;
 
     public r(int i10, ParcelFileDescriptor parcelFileDescriptor) {
-        this.f50038a = i10;
-        this.f50039b = parcelFileDescriptor;
+        this.f50037a = i10;
+        this.f50038b = parcelFileDescriptor;
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         int q6 = w7.f0.q(parcel, 20293);
         w7.f0.s(parcel, 2, 4);
-        parcel.writeInt(this.f50038a);
-        w7.f0.k(parcel, 3, this.f50039b, i10);
+        parcel.writeInt(this.f50037a);
+        w7.f0.k(parcel, 3, this.f50038b, i10);
         w7.f0.r(parcel, q6);
     }
 }

@@ -9,8 +9,8 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.voip.GroupCallMessage;
 import org.telegram.ui.ActionBar.f3;
 import org.telegram.ui.Components.cl0;
-import org.telegram.ui.p30;
-import org.telegram.ui.s50;
+import org.telegram.ui.n30;
+import org.telegram.ui.q50;
 import s4.b1;
 import s4.k;
 public final class f extends k {
@@ -33,24 +33,24 @@ public final class f extends k {
         h hVar = this.F;
         e eVar = hVar.S0;
         int b10 = b1Var.b();
-        List list = eVar.f16936c;
+        List list = eVar.f16939c;
         GroupCallMessage groupCallMessage = null;
         if (list != null && b10 >= 0 && b10 < list.size()) {
-            groupCallMessage = (GroupCallMessage) eVar.f16936c.get(b10);
+            groupCallMessage = (GroupCallMessage) eVar.f16939c.get(b10);
         }
         if (groupCallMessage != null && (i1Var = groupCallMessage.visibleReaction) != null) {
             View view = b1Var.f45910a;
             if ((view instanceof c) && (gVar = hVar.X0) != null) {
-                s50 s50Var = ((p30) gVar).f39930a;
-                Context context = s50Var.getContext();
-                cl0 cl0Var = s50Var.K;
-                i10 = ((f3) s50Var).currentAccount;
+                q50 q50Var = ((n30) gVar).f39400a;
+                Context context = q50Var.getContext();
+                cl0 cl0Var = q50Var.K;
+                i10 = ((f3) q50Var).currentAccount;
                 d1 d1Var = new d1(context, null, cl0Var, (c) view, null, 0.0f, 0.0f, i1Var, i10, 1, false);
                 d1.B = d1Var;
-                d1Var.f695i.setTag(R.id.parent_tag, 1);
-                s50Var.container.addView(d1Var.f695i);
-                d1Var.f705s = true;
-                d1Var.f710y = System.currentTimeMillis();
+                d1Var.f693i.setTag(R.id.parent_tag, 1);
+                q50Var.container.addView(d1Var.f693i);
+                d1Var.f703s = true;
+                d1Var.f708y = System.currentTimeMillis();
             }
         }
     }

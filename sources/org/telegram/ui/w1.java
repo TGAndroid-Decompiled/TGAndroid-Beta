@@ -16,27 +16,27 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 public final class w1 extends View implements org.telegram.ui.Cells.m9 {
-    public final d70 f42309a;
-    public final j4 f42310b;
-    public final ImageReceiver f42311c;
+    public final b70 f42422a;
+    public final j4 f42423b;
+    public final ImageReceiver f42424c;
     public final org.telegram.ui.Components.h9 d;
     public d3 e;
-    public d3 f42312f;
+    public d3 f42425f;
     public d3 h;
-    public d3 f42313n;
-    public boolean f42314r;
-    public int f42315s;
+    public d3 f42426n;
+    public boolean f42427r;
+    public int f42428s;
     public int v;
-    public int f42316w;
-    public int f42317x;
-    public TL_iv.pageBlockEmbedPost f42318y;
+    public int f42429w;
+    public int f42430x;
+    public TL_iv.pageBlockEmbedPost f42431y;
 
-    public w1(Context context, d70 d70Var, j4 j4Var) {
+    public w1(Context context, b70 b70Var, j4 j4Var) {
         super(context);
-        this.f42309a = d70Var;
-        this.f42310b = j4Var;
+        this.f42422a = b70Var;
+        this.f42423b = j4Var;
         ImageReceiver imageReceiver = new ImageReceiver(this);
-        this.f42311c = imageReceiver;
+        this.f42424c = imageReceiver;
         imageReceiver.setRoundRadius(AndroidUtilities.dp(20.0f));
         imageReceiver.setImageCoords(AndroidUtilities.dp(32.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(40.0f), AndroidUtilities.dp(40.0f));
         this.d = new org.telegram.ui.Components.h9((org.telegram.ui.ActionBar.d6) null);
@@ -44,7 +44,7 @@ public final class w1 extends View implements org.telegram.ui.Cells.m9 {
 
     @Override
     public final void fillTextLayoutBlocks(ArrayList arrayList) {
-        d3 d3Var = this.f42312f;
+        d3 d3Var = this.f42425f;
         if (d3Var != null) {
             arrayList.add(d3Var);
         }
@@ -56,7 +56,7 @@ public final class w1 extends View implements org.telegram.ui.Cells.m9 {
         if (d3Var3 != null) {
             arrayList.add(d3Var3);
         }
-        d3 d3Var4 = this.f42313n;
+        d3 d3Var4 = this.f42426n;
         if (d3Var4 != null) {
             arrayList.add(d3Var4);
         }
@@ -65,7 +65,7 @@ public final class w1 extends View implements org.telegram.ui.Cells.m9 {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        d3 d3Var = this.f42312f;
+        d3 d3Var = this.f42425f;
         if (d3Var != null) {
             d3Var.attach(this);
         }
@@ -77,7 +77,7 @@ public final class w1 extends View implements org.telegram.ui.Cells.m9 {
         if (d3Var3 != null) {
             d3Var3.attach(this);
         }
-        d3 d3Var4 = this.f42313n;
+        d3 d3Var4 = this.f42426n;
         if (d3Var4 != null) {
             d3Var4.attach(this);
         }
@@ -86,7 +86,7 @@ public final class w1 extends View implements org.telegram.ui.Cells.m9 {
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        d3 d3Var = this.f42312f;
+        d3 d3Var = this.f42425f;
         if (d3Var != null) {
             d3Var.detach(this);
         }
@@ -98,7 +98,7 @@ public final class w1 extends View implements org.telegram.ui.Cells.m9 {
         if (d3Var3 != null) {
             d3Var3.detach(this);
         }
-        d3 d3Var4 = this.f42313n;
+        d3 d3Var4 = this.f42426n;
         if (d3Var4 != null) {
             d3Var4.detach(this);
         }
@@ -110,19 +110,19 @@ public final class w1 extends View implements org.telegram.ui.Cells.m9 {
         int i10;
         int i11;
         float f7;
-        TL_iv.pageBlockEmbedPost pageblockembedpost = this.f42318y;
+        TL_iv.pageBlockEmbedPost pageblockembedpost = this.f42431y;
         if (pageblockembedpost != null) {
             boolean z10 = pageblockembedpost instanceof z3;
-            d70 d70Var = this.f42309a;
+            b70 b70Var = this.f42422a;
             int i12 = 0;
             if (!z10) {
-                if (this.f42314r) {
-                    this.f42311c.draw(canvas);
+                if (this.f42427r) {
+                    this.f42424c.draw(canvas);
                 }
                 int i13 = 54;
-                if (this.f42312f != null) {
+                if (this.f42425f != null) {
                     canvas.save();
-                    if (this.f42314r) {
+                    if (this.f42427r) {
                         i11 = 54;
                     } else {
                         i11 = 0;
@@ -134,8 +134,8 @@ public final class w1 extends View implements org.telegram.ui.Cells.m9 {
                         f7 = 19.0f;
                     }
                     canvas.translate(dp, AndroidUtilities.dp(f7));
-                    l4.v(d70Var, canvas, this, 0);
-                    this.f42312f.draw(canvas, this);
+                    l4.v(b70Var, canvas, this, 0);
+                    this.f42425f.draw(canvas, this);
                     canvas.restore();
                     i10 = 1;
                 } else {
@@ -143,11 +143,11 @@ public final class w1 extends View implements org.telegram.ui.Cells.m9 {
                 }
                 if (this.e != null) {
                     canvas.save();
-                    if (!this.f42314r) {
+                    if (!this.f42427r) {
                         i13 = 0;
                     }
                     canvas.translate(AndroidUtilities.dp(i13 + 32), AndroidUtilities.dp(29.0f));
-                    l4.v(d70Var, canvas, this, i10);
+                    l4.v(b70Var, canvas, this, i10);
                     this.e.draw(canvas, this);
                     canvas.restore();
                     i10++;
@@ -155,29 +155,29 @@ public final class w1 extends View implements org.telegram.ui.Cells.m9 {
                 float dp2 = AndroidUtilities.dp(18.0f);
                 float dp3 = AndroidUtilities.dp(6.0f);
                 float dp4 = AndroidUtilities.dp(20.0f);
-                int i14 = this.f42317x;
-                if (this.f42318y.level == 0) {
+                int i14 = this.f42430x;
+                if (this.f42431y.level == 0) {
                     i12 = AndroidUtilities.dp(6.0f);
                 }
                 canvas2 = canvas;
-                canvas2.drawRect(dp2, dp3, dp4, i14 - i12, l4.f38695q1);
+                canvas2.drawRect(dp2, dp3, dp4, i14 - i12, l4.f38744q1);
                 i12 = i10;
             } else {
                 canvas2 = canvas;
             }
             if (this.h != null) {
                 canvas2.save();
-                canvas2.translate(this.f42315s, this.v);
-                l4.v(d70Var, canvas2, this, i12);
+                canvas2.translate(this.f42428s, this.v);
+                l4.v(b70Var, canvas2, this, i12);
                 this.h.draw(canvas2, this);
                 canvas2.restore();
                 i12++;
             }
-            if (this.f42313n != null) {
+            if (this.f42426n != null) {
                 canvas2.save();
-                canvas2.translate(this.f42315s, this.v + this.f42316w);
-                l4.v(d70Var, canvas2, this, i12);
-                this.f42313n.draw(canvas2, this);
+                canvas2.translate(this.f42428s, this.v + this.f42429w);
+                l4.v(b70Var, canvas2, this, i12);
+                this.f42426n.draw(canvas2, this);
                 canvas2.restore();
             }
         }
@@ -188,9 +188,9 @@ public final class w1 extends View implements org.telegram.ui.Cells.m9 {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setEnabled(true);
         StringBuilder sb2 = new StringBuilder(LocaleController.getString(R.string.AccDescrIVEmbedPost));
-        if (this.f42312f != null) {
+        if (this.f42425f != null) {
             sb2.append(", ");
-            sb2.append(this.f42312f.d.getText());
+            sb2.append(this.f42425f.d.getText());
         }
         if (this.e != null) {
             sb2.append(", ");
@@ -200,9 +200,9 @@ public final class w1 extends View implements org.telegram.ui.Cells.m9 {
             sb2.append(", ");
             sb2.append(this.h.d.getText());
         }
-        if (this.f42313n != null) {
+        if (this.f42426n != null) {
             sb2.append(", ");
-            sb2.append(this.f42313n.d.getText());
+            sb2.append(this.f42426n.d.getText());
         }
         accessibilityNodeInfo.setText(sb2);
     }
@@ -217,35 +217,35 @@ public final class w1 extends View implements org.telegram.ui.Cells.m9 {
         float f7;
         Layout.Alignment alignment2;
         int size = View.MeasureSpec.getSize(i10);
-        TL_iv.pageBlockEmbedPost pageblockembedpost = this.f42318y;
+        TL_iv.pageBlockEmbedPost pageblockembedpost = this.f42431y;
         int i15 = 1;
         if (pageblockembedpost != null) {
             boolean z11 = pageblockembedpost instanceof z3;
-            j4 j4Var = this.f42310b;
+            j4 j4Var = this.f42423b;
             int i16 = 0;
             if (z11) {
-                this.f42315s = AndroidUtilities.dp(18.0f);
+                this.f42428s = AndroidUtilities.dp(18.0f);
                 this.v = AndroidUtilities.dp(4.0f);
                 int dp = size - AndroidUtilities.dp(50.0f);
-                TL_iv.pageBlockEmbedPost pageblockembedpost2 = this.f42318y;
-                d3 q6 = l4.q(this.f42309a, this, null, pageblockembedpost2.caption.text, dp, this.v, pageblockembedpost2, this.f42310b);
+                TL_iv.pageBlockEmbedPost pageblockembedpost2 = this.f42431y;
+                d3 q6 = l4.q(this.f42422a, this, null, pageblockembedpost2.caption.text, dp, this.v, pageblockembedpost2, this.f42423b);
                 this.h = q6;
                 if (q6 != null) {
                     int height = this.h.d.getHeight() + AndroidUtilities.dp(4.0f);
-                    this.f42316w = height;
+                    this.f42429w = height;
                     i16 = AndroidUtilities.dp(4.0f) + height;
                 }
-                TL_iv.pageBlockEmbedPost pageblockembedpost3 = this.f42318y;
+                TL_iv.pageBlockEmbedPost pageblockembedpost3 = this.f42431y;
                 TL_iv.RichText richText = pageblockembedpost3.caption.credit;
                 if (j4Var.G) {
-                    alignment2 = org.telegram.ui.Components.dx0.a();
+                    alignment2 = org.telegram.ui.Components.ex0.a();
                 } else {
                     alignment2 = Layout.Alignment.ALIGN_NORMAL;
                 }
-                d3 p5 = l4.p(this.f42309a, this, null, richText, dp, 0, pageblockembedpost3, alignment2, 0, this.f42310b);
-                this.f42313n = p5;
+                d3 p5 = l4.p(this.f42422a, this, null, richText, dp, 0, pageblockembedpost3, alignment2, 0, this.f42423b);
+                this.f42426n = p5;
                 if (p5 != null) {
-                    i16 += this.f42313n.d.getHeight() + AndroidUtilities.dp(4.0f);
+                    i16 += this.f42426n.d.getHeight() + AndroidUtilities.dp(4.0f);
                 }
                 i15 = i16;
             } else {
@@ -255,37 +255,37 @@ public final class w1 extends View implements org.telegram.ui.Cells.m9 {
                 } else {
                     z10 = false;
                 }
-                this.f42314r = z10;
+                this.f42427r = z10;
                 if (z10) {
                     TLRPC.Photo e = h4.e(j4Var.E, j10);
                     boolean z12 = e instanceof TLRPC.TL_photo;
-                    this.f42314r = z12;
+                    this.f42427r = z12;
                     if (z12) {
-                        String str = this.f42318y.author;
+                        String str = this.f42431y.author;
                         org.telegram.ui.Components.h9 h9Var = this.d;
                         h9Var.n(0L, str, null);
-                        this.f42311c.setImage(ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(e.sizes, AndroidUtilities.dp(40.0f), true), e), "40_40", h9Var, 0L, (String) null, j4Var.E, 1);
+                        this.f42424c.setImage(ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(e.sizes, AndroidUtilities.dp(40.0f), true), e), "40_40", h9Var, 0L, (String) null, j4Var.E, 1);
                     }
                 }
-                String str2 = this.f42318y.author;
-                if (this.f42314r) {
+                String str2 = this.f42431y.author;
+                if (this.f42427r) {
                     i12 = 54;
                 } else {
                     i12 = 0;
                 }
                 int dp2 = size - AndroidUtilities.dp(i12 + 50);
-                TL_iv.pageBlockEmbedPost pageblockembedpost4 = this.f42318y;
+                TL_iv.pageBlockEmbedPost pageblockembedpost4 = this.f42431y;
                 Layout.Alignment alignment3 = Layout.Alignment.ALIGN_NORMAL;
-                d3 p9 = l4.p(this.f42309a, this, str2, null, dp2, 0, pageblockembedpost4, alignment3, 1, this.f42310b);
-                this.f42312f = p9;
+                d3 p9 = l4.p(this.f42422a, this, str2, null, dp2, 0, pageblockembedpost4, alignment3, 1, this.f42423b);
+                this.f42425f = p9;
                 if (p9 != null) {
-                    if (this.f42314r) {
+                    if (this.f42427r) {
                         i14 = 54;
                     } else {
                         i14 = 0;
                     }
-                    p9.f36046s = AndroidUtilities.dp(i14 + 32);
-                    d3 d3Var = this.f42312f;
+                    p9.f36263s = AndroidUtilities.dp(i14 + 32);
+                    d3 d3Var = this.f42425f;
                     if (this.e != null) {
                         f7 = 10.0f;
                     } else {
@@ -293,78 +293,78 @@ public final class w1 extends View implements org.telegram.ui.Cells.m9 {
                     }
                     d3Var.v = AndroidUtilities.dp(f7);
                 }
-                if (this.f42318y.date != 0) {
-                    String format = LocaleController.getInstance().getChatFullDate().format(this.f42318y.date * 1000);
-                    if (this.f42314r) {
+                if (this.f42431y.date != 0) {
+                    String format = LocaleController.getInstance().getChatFullDate().format(this.f42431y.date * 1000);
+                    if (this.f42427r) {
                         i13 = 54;
                     } else {
                         i13 = 0;
                     }
-                    this.e = l4.q(this.f42309a, this, format, null, size - AndroidUtilities.dp(i13 + 50), AndroidUtilities.dp(29.0f), this.f42318y, this.f42310b);
+                    this.e = l4.q(this.f42422a, this, format, null, size - AndroidUtilities.dp(i13 + 50), AndroidUtilities.dp(29.0f), this.f42431y, this.f42423b);
                 } else {
                     this.e = null;
                 }
                 int dp3 = AndroidUtilities.dp(56.0f);
-                if (this.f42318y.blocks.isEmpty()) {
-                    this.f42315s = AndroidUtilities.dp(32.0f);
+                if (this.f42431y.blocks.isEmpty()) {
+                    this.f42428s = AndroidUtilities.dp(32.0f);
                     this.v = AndroidUtilities.dp(56.0f);
                     int dp4 = size - AndroidUtilities.dp(50.0f);
-                    TL_iv.pageBlockEmbedPost pageblockembedpost5 = this.f42318y;
-                    d3 q10 = l4.q(this.f42309a, this, null, pageblockembedpost5.caption.text, dp4, this.v, pageblockembedpost5, this.f42310b);
+                    TL_iv.pageBlockEmbedPost pageblockembedpost5 = this.f42431y;
+                    d3 q10 = l4.q(this.f42422a, this, null, pageblockembedpost5.caption.text, dp4, this.v, pageblockembedpost5, this.f42423b);
                     this.h = q10;
                     if (q10 != null) {
                         int height2 = this.h.d.getHeight() + AndroidUtilities.dp(4.0f);
-                        this.f42316w = height2;
+                        this.f42429w = height2;
                         dp3 = org.telegram.messenger.g0.C(4.0f, height2, dp3);
                     }
                     int i17 = dp3;
-                    TL_iv.pageBlockEmbedPost pageblockembedpost6 = this.f42318y;
+                    TL_iv.pageBlockEmbedPost pageblockembedpost6 = this.f42431y;
                     TL_iv.RichText richText2 = pageblockembedpost6.caption.credit;
                     if (j4Var.G) {
-                        alignment = org.telegram.ui.Components.dx0.a();
+                        alignment = org.telegram.ui.Components.ex0.a();
                     } else {
                         alignment = alignment3;
                     }
-                    d3 p10 = l4.p(this.f42309a, this, null, richText2, dp4, 0, pageblockembedpost6, alignment, 0, this.f42310b);
-                    this.f42313n = p10;
+                    d3 p10 = l4.p(this.f42422a, this, null, richText2, dp4, 0, pageblockembedpost6, alignment, 0, this.f42423b);
+                    this.f42426n = p10;
                     if (p10 != null) {
-                        dp3 = this.f42313n.d.getHeight() + AndroidUtilities.dp(4.0f) + i17;
+                        dp3 = this.f42426n.d.getHeight() + AndroidUtilities.dp(4.0f) + i17;
                     } else {
                         dp3 = i17;
                     }
                 } else {
                     this.h = null;
-                    this.f42313n = null;
+                    this.f42426n = null;
                 }
                 d3 d3Var2 = this.e;
                 if (d3Var2 != null) {
-                    if (this.f42314r) {
+                    if (this.f42427r) {
                         i16 = 54;
                     }
-                    d3Var2.f36046s = AndroidUtilities.dp(i16 + 32);
+                    d3Var2.f36263s = AndroidUtilities.dp(i16 + 32);
                     this.e.v = AndroidUtilities.dp(29.0f);
                 }
                 d3 d3Var3 = this.h;
                 if (d3Var3 != null) {
-                    d3Var3.f36046s = this.f42315s;
+                    d3Var3.f36263s = this.f42428s;
                     d3Var3.v = this.v;
                 }
-                d3 d3Var4 = this.f42313n;
+                d3 d3Var4 = this.f42426n;
                 if (d3Var4 != null) {
-                    d3Var4.f36046s = this.f42315s;
+                    d3Var4.f36263s = this.f42428s;
                     d3Var4.v = this.v;
                 }
                 i15 = dp3;
             }
-            this.f42317x = i15;
+            this.f42430x = i15;
         }
         setMeasuredDimension(size, i15);
     }
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (!l4.l(this.f42309a, this.f42310b, motionEvent, this, this.h, this.f42315s, this.v)) {
-            if (!l4.l(this.f42309a, this.f42310b, motionEvent, this, this.f42313n, this.f42315s, this.v + this.f42316w) && !super.onTouchEvent(motionEvent)) {
+        if (!l4.l(this.f42422a, this.f42423b, motionEvent, this, this.h, this.f42428s, this.v)) {
+            if (!l4.l(this.f42422a, this.f42423b, motionEvent, this, this.f42426n, this.f42428s, this.v + this.f42429w) && !super.onTouchEvent(motionEvent)) {
                 return false;
             }
             return true;
@@ -373,7 +373,7 @@ public final class w1 extends View implements org.telegram.ui.Cells.m9 {
     }
 
     public void setBlock(TL_iv.pageBlockEmbedPost pageblockembedpost) {
-        this.f42318y = pageblockembedpost;
+        this.f42431y = pageblockembedpost;
         requestLayout();
     }
 }

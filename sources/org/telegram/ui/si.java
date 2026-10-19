@@ -1,59 +1,41 @@
 package org.telegram.ui;
 
-import android.text.style.CharacterStyle;
-import org.telegram.messenger.AndroidUtilities;
-public final class si extends pf.c {
-    public final int d;
-    public final int e;
-    public final org.telegram.ui.Cells.u1 f41104f;
-    public final sn f41105g;
-    public final Object h;
+import android.util.SparseArray;
+import org.telegram.messenger.MessageObject;
+public final class si {
+    public boolean f41475a;
+    public final boolean f41476b;
+    public final SparseArray f41477c;
+    public final qn d;
 
-    public si(sn snVar, int i10, Object obj, org.telegram.ui.Cells.u1 u1Var, int i11) {
-        this.d = i11;
-        this.f41105g = snVar;
-        this.e = i10;
-        this.h = obj;
-        this.f41104f = u1Var;
+    public si(qn qnVar, boolean z10, SparseArray sparseArray) {
+        this.d = qnVar;
+        this.f41476b = z10;
+        this.f41477c = sparseArray;
     }
 
-    @Override
-    public final void c(boolean z10) {
-        switch (this.d) {
-            case 0:
-                if (!z10) {
-                    AndroidUtilities.runOnUIThread(new ah.g(this, this.e, 22), 240L);
-                    return;
+    public final boolean a(int i10) {
+        qn qnVar = this.d;
+        int i11 = i10 - qnVar.A0.J;
+        if (i11 >= 0 && i11 < qnVar.f40870u6.size()) {
+            MessageObject messageObject = (MessageObject) qnVar.f40870u6.get(i11);
+            if (messageObject.contentType == 0) {
+                SparseArray sparseArray = this.f41477c;
+                boolean z10 = this.f41476b;
+                if (!z10 && sparseArray.get(messageObject.getId(), null) == null) {
+                    return true;
                 }
-                return;
-            default:
-                if (!z10) {
-                    AndroidUtilities.runOnUIThread(new ah.g(this, this.e, 25), 240L);
-                    return;
+                if (z10 && sparseArray.get(messageObject.getId(), null) != null) {
+                    return true;
                 }
-                return;
+                return false;
+            }
+            return false;
         }
+        return false;
     }
 
-    @Override
-    public final void d() {
-        switch (this.d) {
-            case 0:
-                int i10 = this.e;
-                sn snVar = this.f41105g;
-                snVar.f41416wb = i10;
-                snVar.f41430xb = 1;
-                snVar.f41443yb = (CharacterStyle) this.h;
-                this.f41104f.invalidate();
-                return;
-            default:
-                int i11 = this.e;
-                sn snVar2 = this.f41105g;
-                snVar2.f41416wb = i11;
-                snVar2.f41430xb = 3;
-                snVar2.f41455zb = (String) this.h;
-                this.f41104f.invalidate();
-                return;
-        }
+    public final void b(int r8, boolean r9, float r10, float r11) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.si.b(int, boolean, float, float):void");
     }
 }

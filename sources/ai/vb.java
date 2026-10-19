@@ -35,43 +35,43 @@ import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.Components.kh0;
 import org.telegram.ui.Components.qy;
 import org.telegram.ui.Components.t60;
-import org.telegram.ui.ci0;
-import org.telegram.ui.d60;
-import org.telegram.ui.d70;
-import org.telegram.ui.hk0;
-import org.telegram.ui.hs;
-import org.telegram.ui.j61;
-import org.telegram.ui.rw0;
-import org.telegram.ui.tk0;
-import org.telegram.ui.vi;
-import org.telegram.ui.wk0;
+import org.telegram.ui.ai0;
+import org.telegram.ui.b60;
+import org.telegram.ui.b70;
+import org.telegram.ui.fk0;
+import org.telegram.ui.fs;
+import org.telegram.ui.h61;
+import org.telegram.ui.pw0;
+import org.telegram.ui.rk0;
+import org.telegram.ui.ti;
+import org.telegram.ui.uk0;
 public final class vb implements Runnable {
-    public final int f2340a;
-    public final Object f2341b;
-    public final int f2342c;
+    public final int f2337a;
+    public final Object f2338b;
+    public final int f2339c;
     public final Object d;
     public final Object e;
-    public final Object f2343f;
+    public final Object f2340f;
     public final Object h;
 
     public vb(int i10, int i11, Object obj, Object obj2, Object obj3, Object obj4, TLObject tLObject) {
-        this.f2340a = i11;
-        this.f2341b = tLObject;
-        this.f2342c = i10;
+        this.f2337a = i11;
+        this.f2338b = tLObject;
+        this.f2339c = i10;
         this.d = obj;
         this.e = obj2;
-        this.f2343f = obj3;
+        this.f2340f = obj3;
         this.h = obj4;
     }
 
     @Override
     public final void run() {
         TLRPC.PhotoSize photoSize;
-        switch (this.f2340a) {
+        switch (this.f2337a) {
             case 0:
-                TLObject tLObject = (TLObject) this.f2341b;
+                TLObject tLObject = (TLObject) this.f2338b;
                 org.telegram.ui.ActionBar.f3[] f3VarArr = (org.telegram.ui.ActionBar.f3[]) this.e;
-                org.telegram.ui.ActionBar.d6 d6Var = (org.telegram.ui.ActionBar.d6) this.f2343f;
+                org.telegram.ui.ActionBar.d6 d6Var = (org.telegram.ui.ActionBar.d6) this.f2340f;
                 TLRPC.TL_messages_checkChatInvite tL_messages_checkChatInvite = (TLRPC.TL_messages_checkChatInvite) this.h;
                 ((ei.d) this.d).setLoading(false);
                 if (tLObject instanceof TLRPC.ChatInvite) {
@@ -82,7 +82,7 @@ public final class vb implements Runnable {
                         return;
                     }
                     final long j10 = tL_starsSubscriptionPricing.amount;
-                    final int i10 = this.f2342c;
+                    final int i10 = this.f2339c;
                     ga.y(i10, false).j0(tL_messages_checkChatInvite.hash, chatInvite, new Utilities.Callback2() {
                         @Override
                         public final void run(Object obj, Object obj2) {
@@ -97,38 +97,38 @@ public final class vb implements Runnable {
                 new org.telegram.ui.Components.xc(f3VarArr[0].topBulletinContainer, d6Var).t(LocaleController.getString(R.string.LinkHashExpired), null).k(false);
                 return;
             case 1:
-                ci.u8.a((ci.u8) this.d, (TLObject) this.f2341b, this.e, (ArrayList) this.f2343f, (boolean[]) this.h, this.f2342c);
+                ci.v8.a((ci.v8) this.d, (TLObject) this.f2338b, this.e, (ArrayList) this.f2340f, (boolean[]) this.h, this.f2339c);
                 return;
             case 2:
                 m4.i1 i1Var = (m4.i1) this.d;
-                m4.v vVar = (m4.v) this.f2341b;
+                m4.v vVar = (m4.v) this.f2338b;
                 m4.o1 o1Var = (m4.o1) this.e;
-                String str = o1Var.f16656b;
-                m4.f0 f0Var = (m4.f0) this.f2343f;
-                int i11 = this.f2342c;
+                String str = o1Var.f16659b;
+                m4.f0 f0Var = (m4.f0) this.f2340f;
+                int i11 = this.f2339c;
                 m4.l lVar = (m4.l) this.h;
-                qi.e eVar = i1Var.f16563b;
+                qi.e eVar = i1Var.f16566b;
                 if (eVar.w(vVar)) {
                     try {
                         m4.d d = m4.d.d(o1Var);
-                        Object obj = d.f16507g;
-                        int i12 = d.f16504b;
+                        Object obj = d.f16510g;
+                        int i12 = d.f16507b;
                         if (!d.b()) {
                             e2.a.l("MediaSessionStub", "Can't execute predefined custom command: " + str);
                             m4.i1.P0(f0Var, vVar, i11, new m4.s1(-6));
                             return;
                         }
-                        m4.o1 o1Var2 = d.f16503a;
+                        m4.o1 o1Var2 = d.f16506a;
                         boolean z10 = false;
                         if (o1Var2 != null) {
-                            if (o1Var2.f16655a == 40010) {
+                            if (o1Var2.f16658a == 40010) {
                                 z10 = true;
                             }
                             v7.u6.p(z10);
                             i1Var.H0(lVar, i11, null, 40010, new m4.z0(new m4.c1(d), 1));
                             return;
                         }
-                        m4.m1 m1Var = f0Var.f16533t;
+                        m4.m1 m1Var = f0Var.f16536t;
                         if (i12 == 1) {
                             if (obj == null) {
                                 if (!m1Var.t()) {
@@ -156,30 +156,30 @@ public final class vb implements Runnable {
                 }
                 return;
             case 3:
-                ((ChatObject.Call) this.d).lambda$loadUnknownParticipants$5(this.f2342c, (TLObject) this.f2341b, (ChatObject.Call.OnParticipantsLoad) this.e, (ArrayList) this.f2343f, (HashSet) this.h);
+                ((ChatObject.Call) this.d).lambda$loadUnknownParticipants$5(this.f2339c, (TLObject) this.f2338b, (ChatObject.Call.OnParticipantsLoad) this.e, (ArrayList) this.f2340f, (HashSet) this.h);
                 return;
             case 4:
-                ((LocaleController) this.d).lambda$saveRemoteLocaleStrings$10(this.f2342c, (LocaleController.LocaleInfo) this.f2341b, (TLRPC.TL_langPackDifference) this.e, (HashMap) this.f2343f, (Runnable) this.h);
+                ((LocaleController) this.d).lambda$saveRemoteLocaleStrings$10(this.f2339c, (LocaleController.LocaleInfo) this.f2338b, (TLRPC.TL_langPackDifference) this.e, (HashMap) this.f2340f, (Runnable) this.h);
                 return;
             case 5:
-                ((MediaDataController) this.d).lambda$removeMultipleStickerSets$111((boolean[]) this.f2341b, (ArrayList) this.e, (Context) this.f2343f, (org.telegram.ui.ActionBar.n2) this.h, this.f2342c);
+                ((MediaDataController) this.d).lambda$removeMultipleStickerSets$111((boolean[]) this.f2338b, (ArrayList) this.e, (Context) this.f2340f, (org.telegram.ui.ActionBar.n2) this.h, this.f2339c);
                 return;
             case 6:
-                d70 d70Var = (d70) this.d;
-                TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f2343f;
-                TLObject tLObject2 = (TLObject) this.f2341b;
+                b70 b70Var = (b70) this.d;
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f2340f;
+                TLObject tLObject2 = (TLObject) this.f2338b;
                 org.telegram.ui.f1 f1Var = (org.telegram.ui.f1) this.h;
-                d70Var.f36082r = false;
+                b70Var.f35536r = false;
                 if (!((org.telegram.ui.j4) this.e).e.isEmpty()) {
                     if (tL_error == null) {
                         TLRPC.TL_contacts_resolvedPeer tL_contacts_resolvedPeer = (TLRPC.TL_contacts_resolvedPeer) tLObject2;
                         if (!tL_contacts_resolvedPeer.chats.isEmpty()) {
-                            int i13 = this.f2342c;
+                            int i13 = this.f2339c;
                             MessagesController.getInstance(i13).putUsers(tL_contacts_resolvedPeer.users, false);
                             MessagesController.getInstance(i13).putChats(tL_contacts_resolvedPeer.chats, false);
                             MessagesStorage.getInstance(i13).putUsersAndChats(tL_contacts_resolvedPeer.users, tL_contacts_resolvedPeer.chats, false, true);
                             TLRPC.Chat chat = tL_contacts_resolvedPeer.chats.get(0);
-                            d70Var.f36081n = chat;
+                            b70Var.f35535n = chat;
                             if (chat.left && !chat.kicked) {
                                 f1Var.a(0, false);
                                 return;
@@ -196,13 +196,13 @@ public final class vb implements Runnable {
                 }
                 return;
             case 7:
-                TLObject tLObject3 = (TLObject) this.f2341b;
+                TLObject tLObject3 = (TLObject) this.f2338b;
                 org.telegram.ui.ActionBar.b2 b2Var = (org.telegram.ui.ActionBar.b2) this.d;
                 Context context = (Context) this.e;
-                org.telegram.ui.ActionBar.d6 d6Var2 = (org.telegram.ui.ActionBar.d6) this.f2343f;
-                d60 d60Var = (d60) this.h;
+                org.telegram.ui.ActionBar.d6 d6Var2 = (org.telegram.ui.ActionBar.d6) this.f2340f;
+                b60 b60Var = (b60) this.h;
                 boolean z11 = tLObject3 instanceof TLRPC.Updates;
-                int i14 = this.f2342c;
+                int i14 = this.f2339c;
                 int i15 = 0;
                 if (z11) {
                     TLRPC.Updates updates = (TLRPC.Updates) tLObject3;
@@ -219,10 +219,10 @@ public final class vb implements Runnable {
                     b2Var.dismiss();
                     if (groupCall != null) {
                         TLRPC.TL_inputGroupCall tL_inputGroupCall = new TLRPC.TL_inputGroupCall();
-                        tL_inputGroupCall.f20289id = groupCall.f20282id;
+                        tL_inputGroupCall.f20292id = groupCall.f20285id;
                         tL_inputGroupCall.access_hash = groupCall.access_hash;
                         org.telegram.ui.m9.o0(context, i14, tL_inputGroupCall, groupCall.invite_link, d6Var2, true, true);
-                        AndroidUtilities.runOnUIThread(d60Var);
+                        AndroidUtilities.runOnUIThread(b60Var);
                         return;
                     }
                     return;
@@ -234,115 +234,115 @@ public final class vb implements Runnable {
                     TLRPC.TL_inputGroupCall tL_inputGroupCall2 = new TLRPC.TL_inputGroupCall();
                     exportgroupcallinvite.call = tL_inputGroupCall2;
                     TLRPC.GroupCall groupCall2 = groupcall.call;
-                    tL_inputGroupCall2.f20289id = groupCall2.f20282id;
+                    tL_inputGroupCall2.f20292id = groupCall2.f20285id;
                     tL_inputGroupCall2.access_hash = groupCall2.access_hash;
-                    ConnectionsManager.getInstance(i14).sendRequest(exportgroupcallinvite, new gi(b2Var, context, i14, exportgroupcallinvite, d6Var2, d60Var));
+                    ConnectionsManager.getInstance(i14).sendRequest(exportgroupcallinvite, new gi(b2Var, context, i14, exportgroupcallinvite, d6Var2, b60Var));
                     return;
                 } else {
                     b2Var.dismiss();
-                    AndroidUtilities.runOnUIThread(d60Var);
+                    AndroidUtilities.runOnUIThread(b60Var);
                     return;
                 }
             case 8:
-                new j61((Context) this.d, (TLRPC.Chat) this.f2341b, (TLRPC.User) this.e, new org.telegram.ui.Components.e2(this.f2342c, (MessagesStorage.BooleanCallback) this.h, 0), (org.telegram.ui.ActionBar.d6) this.f2343f).show();
+                new h61((Context) this.d, (TLRPC.Chat) this.f2338b, (TLRPC.User) this.e, new org.telegram.ui.Components.e2(this.f2339c, (MessagesStorage.BooleanCallback) this.h, 0), (org.telegram.ui.ActionBar.d6) this.f2340f).show();
                 return;
             case 9:
-                org.telegram.ui.Components.v9.a((org.telegram.ui.Components.v9) this.d, (Runnable[]) this.f2341b, (Bitmap) this.e, (t60) this.f2343f, this.f2342c, (w7.w5[]) this.h);
+                org.telegram.ui.Components.v9.a((org.telegram.ui.Components.v9) this.d, (Runnable[]) this.f2338b, (Bitmap) this.e, (t60) this.f2340f, this.f2339c, (w7.w5[]) this.h);
                 return;
             case 10:
-                kh0.n((kh0) this.d, (Integer[]) this.e, this.f2342c, (TLObject) this.f2341b, (ArrayList) this.f2343f, (TLRPC.PollAnswerVoters) this.h);
+                kh0.n((kh0) this.d, (Integer[]) this.e, this.f2339c, (TLObject) this.f2338b, (ArrayList) this.f2340f, (TLRPC.PollAnswerVoters) this.h);
                 return;
             case 11:
-                hs.Y((hs) this.d, (TLRPC.FileLocation) this.e, (TLRPC.InputFile) this.f2343f, (TLObject) this.f2341b, (TLRPC.FileLocation) this.h, this.f2342c);
+                fs.Y((fs) this.d, (TLRPC.FileLocation) this.e, (TLRPC.InputFile) this.f2340f, (TLObject) this.f2338b, (TLRPC.FileLocation) this.h, this.f2339c);
                 return;
             case 12:
                 TLRPC.TL_urlAuthResultRequest tL_urlAuthResultRequest = (TLRPC.TL_urlAuthResultRequest) this.d;
-                String[] strArr = (String[]) this.f2341b;
+                String[] strArr = (String[]) this.f2338b;
                 Context context2 = (Context) this.e;
-                tk0 tk0Var = (tk0) this.f2343f;
+                rk0 rk0Var = (rk0) this.f2340f;
                 org.telegram.ui.ActionBar.n2 n2Var = (org.telegram.ui.ActionBar.n2) this.h;
                 if (!tL_urlAuthResultRequest.match_codes.isEmpty() && TextUtils.isEmpty(strArr[0])) {
-                    wk0.c(context2, this.f2342c, tL_urlAuthResultRequest.match_codes, tL_urlAuthResultRequest.domain, new qy(16, strArr, tk0Var), true, new ah.j(22), n2Var.getResourceProvider());
+                    uk0.c(context2, this.f2339c, tL_urlAuthResultRequest.match_codes, tL_urlAuthResultRequest.domain, new qy(16, strArr, rk0Var), true, new ah.j(22), n2Var.getResourceProvider());
                     return;
                 }
-                tk0Var.run();
+                rk0Var.run();
                 return;
             case 13:
-                org.telegram.ui.ActionBar.n2 n2Var2 = (org.telegram.ui.ActionBar.n2) this.f2341b;
+                org.telegram.ui.ActionBar.n2 n2Var2 = (org.telegram.ui.ActionBar.n2) this.f2338b;
                 List<Purchase> list = (List) this.e;
-                c5.g gVar = (c5.g) this.f2343f;
-                rw0 rw0Var = (rw0) this.h;
-                if (((c5.i) this.d).f4757a == 0) {
-                    ci0 ci0Var = new ci0(1, n2Var2);
-                    int i16 = this.f2342c;
+                c5.g gVar = (c5.g) this.f2340f;
+                pw0 pw0Var = (pw0) this.h;
+                if (((c5.i) this.d).f4754a == 0) {
+                    ai0 ai0Var = new ai0(1, n2Var2);
+                    int i16 = this.f2339c;
                     if (list != null && !list.isEmpty() && !UserConfig.getInstance(i16).isPremium()) {
                         for (Purchase purchase : list) {
                             if (purchase.b().contains("telegram_premium")) {
                                 TLRPC.TL_payments_assignPlayMarketTransaction tL_payments_assignPlayMarketTransaction = new TLRPC.TL_payments_assignPlayMarketTransaction();
                                 TLRPC.TL_dataJSON tL_dataJSON = new TLRPC.TL_dataJSON();
                                 tL_payments_assignPlayMarketTransaction.receipt = tL_dataJSON;
-                                tL_dataJSON.data = purchase.f6270a;
+                                tL_dataJSON.data = purchase.f6271a;
                                 TLRPC.TL_inputStorePaymentPremiumSubscription tL_inputStorePaymentPremiumSubscription = new TLRPC.TL_inputStorePaymentPremiumSubscription();
                                 tL_inputStorePaymentPremiumSubscription.restore = true;
                                 if (gVar != null) {
                                     tL_inputStorePaymentPremiumSubscription.upgrade = true;
                                 }
                                 tL_payments_assignPlayMarketTransaction.purpose = tL_inputStorePaymentPremiumSubscription;
-                                ConnectionsManager.getInstance(i16).sendRequest(tL_payments_assignPlayMarketTransaction, new ci.s8(i16, ci0Var, n2Var2, tL_payments_assignPlayMarketTransaction), 66);
+                                ConnectionsManager.getInstance(i16).sendRequest(tL_payments_assignPlayMarketTransaction, new ci.t8(i16, ai0Var, n2Var2, tL_payments_assignPlayMarketTransaction), 66);
                                 return;
                             }
                         }
                     }
-                    BillingController.getInstance().addResultListener("telegram_premium", new org.telegram.ui.j3(ci0Var, 4));
+                    BillingController.getInstance().addResultListener("telegram_premium", new org.telegram.ui.j3(ai0Var, 4));
                     TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore = new TLRPC.TL_payments_canPurchaseStore();
                     TLRPC.TL_inputStorePaymentPremiumSubscription tL_inputStorePaymentPremiumSubscription2 = new TLRPC.TL_inputStorePaymentPremiumSubscription();
                     if (gVar != null) {
                         tL_inputStorePaymentPremiumSubscription2.upgrade = true;
                     }
                     tL_payments_canPurchaseStore.purpose = tL_inputStorePaymentPremiumSubscription2;
-                    ConnectionsManager.getInstance(i16).sendRequest(tL_payments_canPurchaseStore, new gi(i16, 5, n2Var2, rw0Var, gVar, tL_payments_canPurchaseStore, tL_inputStorePaymentPremiumSubscription2));
+                    ConnectionsManager.getInstance(i16).sendRequest(tL_payments_canPurchaseStore, new gi(i16, 5, n2Var2, pw0Var, gVar, tL_payments_canPurchaseStore, tL_inputStorePaymentPremiumSubscription2));
                     return;
                 }
                 return;
             case 14:
-                org.telegram.ui.web.b1 b1Var = (org.telegram.ui.web.b1) this.d;
-                org.telegram.ui.web.y0 y0Var = (org.telegram.ui.web.y0) this.e;
-                ci.y7 y7Var = (ci.y7) this.f2343f;
+                org.telegram.ui.web.a1 a1Var = (org.telegram.ui.web.a1) this.d;
+                org.telegram.ui.web.x0 x0Var = (org.telegram.ui.web.x0) this.e;
+                ci.z7 z7Var = (ci.z7) this.f2340f;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) this.h;
-                boolean z12 = ((TLObject) this.f2341b) instanceof TLRPC.TL_boolTrue;
-                int i17 = this.f2342c;
+                boolean z12 = ((TLObject) this.f2338b) instanceof TLRPC.TL_boolTrue;
+                int i17 = this.f2339c;
                 if (z12) {
                     try {
                         JSONObject jSONObject = new JSONObject();
                         jSONObject.put("status", "allowed");
-                        org.telegram.ui.web.b1.w(i17, y0Var, y7Var, "write_access_requested", jSONObject);
+                        org.telegram.ui.web.a1.w(i17, x0Var, z7Var, "write_access_requested", jSONObject);
                         return;
                     } catch (Exception e7) {
                         FileLog.e(e7);
                         return;
                     }
                 } else if (tL_error2 != null) {
-                    b1Var.Y(tL_error2.text);
+                    a1Var.Y(tL_error2.text);
                     return;
                 } else {
                     String[] strArr2 = {"cancelled"};
-                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(b1Var.getContext());
-                    alertDialog$Builder.f20601a.R = LocaleController.getString(R.string.BotWebViewRequestWriteTitle);
-                    alertDialog$Builder.f20601a.T = LocaleController.getString(R.string.BotWebViewRequestWriteMessage);
-                    alertDialog$Builder.k(LocaleController.getString(R.string.BotWebViewRequestAllow), new org.telegram.ui.web.n(1, b1Var, strArr2));
-                    alertDialog$Builder.h(LocaleController.getString(R.string.BotWebViewRequestDontAllow), new hk0(18));
-                    b1Var.X(3, alertDialog$Builder.f20601a, new org.telegram.ui.web.y(strArr2, i17, y0Var, y7Var, 1));
+                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(a1Var.getContext());
+                    alertDialog$Builder.f20604a.R = LocaleController.getString(R.string.BotWebViewRequestWriteTitle);
+                    alertDialog$Builder.f20604a.T = LocaleController.getString(R.string.BotWebViewRequestWriteMessage);
+                    alertDialog$Builder.k(LocaleController.getString(R.string.BotWebViewRequestAllow), new org.telegram.ui.web.m(1, a1Var, strArr2));
+                    alertDialog$Builder.h(LocaleController.getString(R.string.BotWebViewRequestDontAllow), new fk0(18));
+                    a1Var.X(3, alertDialog$Builder.f20604a, new org.telegram.ui.web.x(strArr2, i17, x0Var, z7Var, 1));
                     return;
                 }
             default:
-                TLObject tLObject4 = (TLObject) this.f2341b;
+                TLObject tLObject4 = (TLObject) this.f2338b;
                 TLRPC.PhotoSize photoSize2 = (TLRPC.PhotoSize) this.d;
                 TLRPC.PhotoSize photoSize3 = (TLRPC.PhotoSize) this.e;
-                vi viVar = (vi) this.f2343f;
+                ti tiVar = (ti) this.f2340f;
                 org.telegram.ui.ActionBar.d5 d5Var = (org.telegram.ui.ActionBar.d5) this.h;
                 if (tLObject4 instanceof TLRPC.TL_photos_photo) {
                     TLRPC.TL_photos_photo tL_photos_photo = (TLRPC.TL_photos_photo) tLObject4;
-                    int i18 = this.f2342c;
+                    int i18 = this.f2339c;
                     MessagesController.getInstance(i18).putUsers(tL_photos_photo.users, false);
                     TLRPC.User user = MessagesController.getInstance(i18).getUser(Long.valueOf(UserConfig.getInstance(i18).clientUserId));
                     TLRPC.Photo photo = tL_photos_photo.photo;
@@ -369,7 +369,7 @@ public final class vb implements Runnable {
                         zf.e0.a(tL_photos_photo.photo, user, false);
                         UserConfig.getInstance(i18).setCurrentUser(user);
                         UserConfig.getInstance(i18).saveConfig(true);
-                        viVar.run();
+                        tiVar.run();
                         org.telegram.ui.Components.xc.a0(d5Var.getLastFragment()).V(Collections.singletonList(user), AndroidUtilities.replaceTags(LocaleController.getString(R.string.ApplyAvatarHintTitle)), AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ApplyAvatarHint), new org.telegram.ui.Wallet.j(i18, d5Var, 11)), null).j();
                         return;
                     }
@@ -380,92 +380,92 @@ public final class vb implements Runnable {
     }
 
     public vb(Context context, TLRPC.Chat chat, TLRPC.User user, int i10, MessagesStorage.BooleanCallback booleanCallback, org.telegram.ui.ActionBar.d6 d6Var) {
-        this.f2340a = 8;
+        this.f2337a = 8;
         this.d = context;
-        this.f2341b = chat;
+        this.f2338b = chat;
         this.e = user;
-        this.f2342c = i10;
+        this.f2339c = i10;
         this.h = booleanCallback;
-        this.f2343f = d6Var;
+        this.f2340f = d6Var;
     }
 
     public vb(Object obj, int i10, Object obj2, Object obj3, Object obj4, Object obj5, int i11) {
-        this.f2340a = i11;
+        this.f2337a = i11;
         this.d = obj;
-        this.f2342c = i10;
-        this.f2341b = obj2;
+        this.f2339c = i10;
+        this.f2338b = obj2;
         this.e = obj3;
-        this.f2343f = obj4;
+        this.f2340f = obj4;
         this.h = obj5;
     }
 
     public vb(Object obj, Object obj2, Object obj3, int i10, Object obj4, Object obj5, int i11) {
-        this.f2340a = i11;
+        this.f2337a = i11;
         this.d = obj;
-        this.f2341b = obj2;
+        this.f2338b = obj2;
         this.e = obj3;
-        this.f2342c = i10;
-        this.f2343f = obj4;
+        this.f2339c = i10;
+        this.f2340f = obj4;
         this.h = obj5;
     }
 
     public vb(Object obj, Object obj2, Object obj3, Object obj4, int i10, Object obj5, int i11) {
-        this.f2340a = i11;
+        this.f2337a = i11;
         this.d = obj;
-        this.f2341b = obj2;
+        this.f2338b = obj2;
         this.e = obj3;
-        this.f2343f = obj4;
-        this.f2342c = i10;
+        this.f2340f = obj4;
+        this.f2339c = i10;
         this.h = obj5;
     }
 
     public vb(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, int i10, int i11) {
-        this.f2340a = i11;
+        this.f2337a = i11;
         this.d = obj;
-        this.f2341b = obj2;
+        this.f2338b = obj2;
         this.e = obj3;
-        this.f2343f = obj4;
+        this.f2340f = obj4;
         this.h = obj5;
-        this.f2342c = i10;
+        this.f2339c = i10;
     }
 
     public vb(kh0 kh0Var, Integer[] numArr, int i10, TLObject tLObject, ArrayList arrayList, TLRPC.PollAnswerVoters pollAnswerVoters) {
-        this.f2340a = 10;
+        this.f2337a = 10;
         this.d = kh0Var;
         this.e = numArr;
-        this.f2342c = i10;
-        this.f2341b = tLObject;
-        this.f2343f = arrayList;
+        this.f2339c = i10;
+        this.f2338b = tLObject;
+        this.f2340f = arrayList;
         this.h = pollAnswerVoters;
     }
 
-    public vb(hs hsVar, TLRPC.FileLocation fileLocation, TLRPC.InputFile inputFile, TLObject tLObject, TLRPC.FileLocation fileLocation2, int i10) {
-        this.f2340a = 11;
-        this.d = hsVar;
+    public vb(fs fsVar, TLRPC.FileLocation fileLocation, TLRPC.InputFile inputFile, TLObject tLObject, TLRPC.FileLocation fileLocation2, int i10) {
+        this.f2337a = 11;
+        this.d = fsVar;
         this.e = fileLocation;
-        this.f2343f = inputFile;
-        this.f2341b = tLObject;
+        this.f2340f = inputFile;
+        this.f2338b = tLObject;
         this.h = fileLocation2;
-        this.f2342c = i10;
+        this.f2339c = i10;
     }
 
-    public vb(d70 d70Var, org.telegram.ui.j4 j4Var, TLRPC.TL_error tL_error, TLObject tLObject, int i10, org.telegram.ui.f1 f1Var) {
-        this.f2340a = 6;
-        this.d = d70Var;
+    public vb(b70 b70Var, org.telegram.ui.j4 j4Var, TLRPC.TL_error tL_error, TLObject tLObject, int i10, org.telegram.ui.f1 f1Var) {
+        this.f2337a = 6;
+        this.d = b70Var;
         this.e = j4Var;
-        this.f2343f = tL_error;
-        this.f2341b = tLObject;
-        this.f2342c = i10;
+        this.f2340f = tL_error;
+        this.f2338b = tLObject;
+        this.f2339c = i10;
         this.h = f1Var;
     }
 
-    public vb(org.telegram.ui.web.b1 b1Var, TLObject tLObject, int i10, org.telegram.ui.web.y0 y0Var, ci.y7 y7Var, TLRPC.TL_error tL_error) {
-        this.f2340a = 14;
-        this.d = b1Var;
-        this.f2341b = tLObject;
-        this.f2342c = i10;
-        this.e = y0Var;
-        this.f2343f = y7Var;
+    public vb(org.telegram.ui.web.a1 a1Var, TLObject tLObject, int i10, org.telegram.ui.web.x0 x0Var, ci.z7 z7Var, TLRPC.TL_error tL_error) {
+        this.f2337a = 14;
+        this.d = a1Var;
+        this.f2338b = tLObject;
+        this.f2339c = i10;
+        this.e = x0Var;
+        this.f2340f = z7Var;
         this.h = tL_error;
     }
 }

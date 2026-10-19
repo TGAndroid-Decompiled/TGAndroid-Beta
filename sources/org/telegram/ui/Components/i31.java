@@ -1,30 +1,51 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-public final class i31 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f27064a;
-    public final k31 f27065b;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.R;
+public final class i31 extends Drawable {
+    public final Drawable f27065a;
+    public final Paint f27066b = new Paint(1);
+    public final RectF f27067c = new RectF();
 
-    public i31(k31 k31Var, int i10) {
-        this.f27064a = i10;
-        this.f27065b = k31Var;
+    public i31(Context context) {
+        this.f27065a = context.getResources().getDrawable(R.drawable.menu_topic_add).mutate();
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f27064a) {
-            case 0:
-                ci.h3 h3Var = this.f27065b.f27723f;
-                h3Var.setScaleX(Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue()));
-                h3Var.setScaleY(Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue()));
-                h3Var.invalidate();
-                return;
-            default:
-                k31 k31Var = this.f27065b;
-                k31Var.getClass();
-                k31Var.F = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                k31Var.h();
-                return;
-        }
+    public final void draw(Canvas canvas) {
+        Paint paint = this.f27066b;
+        canvas.drawRoundRect(this.f27067c, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), paint);
+        this.f27065a.draw(canvas);
+    }
+
+    @Override
+    public final int getOpacity() {
+        return 0;
+    }
+
+    @Override
+    public final void onBoundsChange(Rect rect) {
+        super.onBoundsChange(rect);
+        this.f27067c.set(rect);
+        int centerX = rect.centerX() - AndroidUtilities.dp(12.0f);
+        int centerY = rect.centerY() - AndroidUtilities.dp(12.0f);
+        this.f27065a.setBounds(centerX, centerY, AndroidUtilities.dp(24.0f) + centerX, AndroidUtilities.dp(24.0f) + centerY);
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+        this.f27066b.setAlpha(i10);
+        this.f27065a.setAlpha(i10);
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

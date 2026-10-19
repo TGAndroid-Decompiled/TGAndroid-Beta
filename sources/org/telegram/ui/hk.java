@@ -1,246 +1,48 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import android.app.Activity;
-import android.view.MotionEvent;
-import android.view.View;
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.ChatActivityEnterView;
-public final class hk extends ChatActivityEnterView {
-    public int f37549o5;
-    public int p5;
-    public int f37550q5;
-    public final sn f37551r5;
+public final class hk extends org.telegram.ui.Components.nd {
+    public final boolean e;
+    public final qn f37703f;
 
-    public hk(sn snVar, Activity activity, org.telegram.ui.Components.jw0 jw0Var, sn snVar2, boolean z10, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(activity, jw0Var, snVar2, z10, d6Var);
-        this.f37551r5 = snVar;
+    public hk(qn qnVar, Context context, boolean z10) {
+        super(context);
+        this.f37703f = qnVar;
+        this.e = z10;
     }
 
     @Override
-    public final void A0(int i10, int i11) {
-        org.telegram.ui.ActionBar.k kVar;
-        org.telegram.ui.ActionBar.k kVar2;
-        sn snVar = this.f37551r5;
-        if (snVar.Y != null) {
-            if (snVar.f41419x0 != null) {
-                if (snVar.Ea <= 0.0f) {
-                    kVar = ((org.telegram.ui.ActionBar.n2) snVar).actionBar;
-                    if (kVar != null) {
-                        kVar2 = ((org.telegram.ui.ActionBar.n2) snVar).actionBar;
-                        if (kVar2.s()) {
-                            return;
-                        }
-                    }
-                } else {
-                    return;
-                }
-            }
-            this.f23987n3 = true;
-            this.p5 = this.E0.getMeasuredHeight();
-            this.f37550q5 = this.E0.getScrollY();
-            snVar.X0.invalidate();
-            snVar.f41143b0 = snVar.Y.getBackgroundTop();
-        }
-    }
-
-    @Override
-    public final void F0() {
-        if (this.f37551r5.Fa != null) {
-            return;
-        }
-        super.F0();
-    }
-
-    @Override
-    public final boolean L0() {
-        if (!this.f37551r5.N5) {
-            return false;
-        }
-        return true;
-    }
-
-    public final void S1() {
-        org.telegram.ui.ActionBar.k kVar;
-        sn snVar = this.f37551r5;
-        kVar = ((org.telegram.ui.ActionBar.n2) snVar).actionBar;
-        if (!kVar.s() && !snVar.F9()) {
-            int backgroundTop = getBackgroundTop();
-            int i10 = snVar.f41143b0;
-            if (i10 != 0 && backgroundTop != i10 && this.f37549o5 == snVar.X0.getMeasuredHeight()) {
-                int i11 = (this.T1 + snVar.f41143b0) - backgroundTop;
-                setAnimatedTop(i11);
-                this.f24045y1.invalidate();
-                ValueAnimator valueAnimator = snVar.p9;
-                if (valueAnimator != null) {
-                    valueAnimator.removeAllListeners();
-                    snVar.p9.cancel();
-                }
-                View view = this.G1;
-                if (view != null && view.getVisibility() == 0) {
-                    this.G1.setTranslationY(((1.0f - getTopViewEnterProgress()) * this.G1.getLayoutParams().height) + this.T1);
-                }
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(i11, 0.0f);
-                snVar.p9 = ofFloat;
-                ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                    public final hk f37197b;
-
-                    {
-                        this.f37197b = this;
-                    }
-
-                    @Override
-                    public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        switch (r2) {
-                            case 0:
-                                hk hkVar = this.f37197b;
-                                sn snVar2 = hkVar.f37551r5;
-                                float floatValue = ((Float) valueAnimator2.getAnimatedValue()).floatValue();
-                                hkVar.setAnimatedTop((int) floatValue);
-                                View view2 = hkVar.G1;
-                                if (view2 != null && view2.getVisibility() == 0) {
-                                    hkVar.G1.setTranslationY(((1.0f - hkVar.getTopViewEnterProgress()) * hkVar.G1.getLayoutParams().height) + floatValue);
-                                } else {
-                                    snVar2.t9();
-                                    snVar2.w9();
-                                }
-                                hkVar.f24045y1.invalidate();
-                                hkVar.invalidate();
-                                return;
-                            default:
-                                this.f37197b.E0.setOffsetY(((Float) valueAnimator2.getAnimatedValue()).floatValue());
-                                return;
-                        }
-                    }
-                });
-                snVar.p9.addListener(new m.a(this, 24));
-                snVar.p9.setDuration(250L);
-                snVar.p9.setInterpolator(li.m.V);
-                if (!snVar.f41314o9) {
-                    snVar.p9.start();
-                }
-                snVar.t9();
-                snVar.w9();
-                snVar.f41143b0 = 0;
-            } else if (this.f37549o5 != snVar.X0.getMeasuredHeight()) {
-                snVar.f41143b0 = 0;
-            }
-            if (this.f23987n3) {
-                float scrollY = (this.f37550q5 - this.E0.getScrollY()) + (this.p5 - this.E0.getMeasuredHeight());
-                org.telegram.ui.Components.pf pfVar = this.E0;
-                pfVar.setOffsetY(pfVar.getOffsetY() - scrollY);
-                ValueAnimator ofFloat2 = ValueAnimator.ofFloat(this.E0.getOffsetY(), 0.0f);
-                ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                    public final hk f37197b;
-
-                    {
-                        this.f37197b = this;
-                    }
-
-                    @Override
-                    public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        switch (r2) {
-                            case 0:
-                                hk hkVar = this.f37197b;
-                                sn snVar2 = hkVar.f37551r5;
-                                float floatValue = ((Float) valueAnimator2.getAnimatedValue()).floatValue();
-                                hkVar.setAnimatedTop((int) floatValue);
-                                View view2 = hkVar.G1;
-                                if (view2 != null && view2.getVisibility() == 0) {
-                                    hkVar.G1.setTranslationY(((1.0f - hkVar.getTopViewEnterProgress()) * hkVar.G1.getLayoutParams().height) + floatValue);
-                                } else {
-                                    snVar2.t9();
-                                    snVar2.w9();
-                                }
-                                hkVar.f24045y1.invalidate();
-                                hkVar.invalidate();
-                                return;
-                            default:
-                                this.f37197b.E0.setOffsetY(((Float) valueAnimator2.getAnimatedValue()).floatValue());
-                                return;
-                        }
-                    }
-                });
-                ValueAnimator valueAnimator2 = snVar.f41335q9;
-                if (valueAnimator2 != null) {
-                    valueAnimator2.cancel();
-                }
-                snVar.f41335q9 = ofFloat2;
-                ofFloat2.setDuration(250L);
-                ofFloat2.setInterpolator(li.m.V);
-                ofFloat2.start();
-                this.f23987n3 = false;
-            }
-            this.f37549o5 = snVar.X0.getMeasuredHeight();
-            return;
-        }
-        ValueAnimator valueAnimator3 = snVar.f41335q9;
-        if (valueAnimator3 != null) {
-            valueAnimator3.cancel();
-        }
-        ValueAnimator valueAnimator4 = snVar.p9;
-        if (valueAnimator4 != null) {
-            valueAnimator4.cancel();
-        }
-        snVar.f41143b0 = 0;
-        this.f23987n3 = false;
-    }
-
-    @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (getAlpha() != 1.0f) {
-            return false;
-        }
-        return super.dispatchTouchEvent(motionEvent);
-    }
-
-    @Override
-    public final void o0(boolean z10) {
-        super.o0(z10);
-        sn snVar = this.f37551r5;
-        mf mfVar = snVar.f41303nb;
-        if (mfVar != null) {
-            AndroidUtilities.runOnUIThread(mfVar);
-            snVar.f41303nb = null;
-        }
-    }
-
-    @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (getAlpha() != 1.0f) {
-            return false;
-        }
-        return super.onInterceptTouchEvent(motionEvent);
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (getAlpha() != 1.0f) {
-            return false;
-        }
-        return super.onTouchEvent(motionEvent);
-    }
-
-    @Override
-    public final void setVisibility(int i10) {
-        boolean z10;
-        super.setVisibility(i10);
-        sn snVar = this.f37551r5;
-        j6.l lVar = snVar.Cc;
-        boolean z11 = false;
-        if (i10 == 0) {
-            z10 = true;
+    public final void d() {
+        int i10;
+        if (this.e) {
+            i10 = AndroidUtilities.dp(4.0f);
         } else {
-            z10 = false;
+            i10 = 0;
         }
-        if (getMeasuredWidth() > 0 && !snVar.f41366sc) {
-            z11 = true;
-        }
-        lVar.h(1, z10, z11);
+        int i11 = i10;
+        int i12 = org.telegram.ui.ActionBar.h6.f21330ve;
+        qn qnVar = this.f37703f;
+        setBackground(org.telegram.ui.ActionBar.h6.X(AndroidUtilities.dp(19.0f), 436207615 & qnVar.getThemedColor(i12), i11, AndroidUtilities.dp(3.0f), 0, AndroidUtilities.dp(3.0f)));
+        getImageView().setColorFilter(new PorterDuffColorFilter(qnVar.getThemedColor(i12), PorterDuff.Mode.MULTIPLY));
+        getTextView().setTextColor(qnVar.getThemedColor(i12));
     }
 
     @Override
-    public final void y0(float f7) {
-        this.f37551r5.t7();
+    public final void setEditButton(boolean z10) {
+        int i10;
+        super.setEditButton(z10);
+        if (this.e) {
+            TextView textView = getTextView();
+            if (z10) {
+                i10 = AndroidUtilities.dp(116.0f);
+            } else {
+                i10 = Integer.MAX_VALUE;
+            }
+            textView.setMaxWidth(i10);
+        }
     }
 }

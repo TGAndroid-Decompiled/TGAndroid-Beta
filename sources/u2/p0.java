@@ -1,28 +1,28 @@
 package u2;
 public final class p0 implements Runnable {
-    public final int f47400a;
-    public final x0 f47401b;
+    public final int f47401a;
+    public final w0 f47402b;
 
-    public p0(x0 x0Var, int i10) {
-        this.f47400a = i10;
-        this.f47401b = x0Var;
+    public p0(w0 w0Var, int i10) {
+        this.f47401a = i10;
+        this.f47402b = w0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f47400a) {
+        switch (this.f47401a) {
             case 0:
-                this.f47401b.f47462b0 = true;
+                this.f47402b.f47455b0 = true;
                 return;
             case 1:
-                this.f47401b.w();
+                this.f47402b.w();
                 return;
             default:
-                x0 x0Var = this.f47401b;
-                if (!x0Var.f47470h0) {
-                    d0 d0Var = x0Var.I;
+                w0 w0Var = this.f47402b;
+                if (!w0Var.f47463h0) {
+                    d0 d0Var = w0Var.I;
                     d0Var.getClass();
-                    d0Var.v(x0Var);
+                    d0Var.h(w0Var);
                     return;
                 }
                 return;

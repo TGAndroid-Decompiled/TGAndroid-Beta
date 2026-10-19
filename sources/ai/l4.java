@@ -1,53 +1,48 @@
 package ai;
 
-import android.os.Bundle;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.sn;
-public final class l4 implements Runnable {
-    public final int f1761a;
-    public final long f1762b;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.cy;
+public final class l4 implements RequestDelegate {
+    public final int f1752a = 0;
+    public final org.telegram.ui.ActionBar.b2 f1753b;
+    public final long f1754c;
+    public final NotificationCenter.NotificationCenterDelegate d;
+    public final Object e;
+    public final TLObject f1755f;
+    public final Object f1756g;
 
-    public l4(long j10, int i10) {
-        this.f1761a = i10;
-        this.f1762b = j10;
+    public l4(k7 k7Var, pf.c cVar, org.telegram.ui.ActionBar.b2 b2Var, TL_stars.TL_starGiftUnique tL_starGiftUnique, long j10, CharSequence charSequence) {
+        this.d = k7Var;
+        this.e = cVar;
+        this.f1753b = b2Var;
+        this.f1755f = tL_starGiftUnique;
+        this.f1754c = j10;
+        this.f1756g = charSequence;
     }
 
     @Override
-    public final void run() {
-        switch (this.f1761a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f1752a) {
             case 0:
-                org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
-                if (U != null) {
-                    Bundle bundle = new Bundle();
-                    bundle.putLong("user_id", this.f1762b);
-                    bundle.putBoolean("my_profile", true);
-                    bundle.putBoolean("open_gifts", true);
-                    U.presentFragment(new ProfileActivity(bundle, null));
-                    return;
-                }
-                return;
-            case 1:
-                org.telegram.ui.ActionBar.n2 U2 = LaunchActivity.U();
-                if (U2 != null) {
-                    U2.presentFragment(sn.W9(this.f1762b));
-                    return;
-                }
-                return;
-            case 2:
-                org.telegram.ui.ActionBar.n2 U3 = LaunchActivity.U();
-                if (U3 != null) {
-                    U3.presentFragment(sn.W9(this.f1762b));
-                    return;
-                }
+                AndroidUtilities.runOnUIThread(new p4((k7) this.d, (pf.c) this.e, this.f1753b, tLObject, (TL_stars.TL_starGiftUnique) this.f1755f, tL_error, this.f1754c, (CharSequence) this.f1756g));
                 return;
             default:
-                org.telegram.ui.ActionBar.n2 U4 = LaunchActivity.U();
-                if (U4 != null) {
-                    U4.presentFragment(sn.W9(this.f1762b));
-                    return;
-                }
+                AndroidUtilities.runOnUIThread(new p4((cy) this.d, this.f1753b, tLObject, (TLRPC.User) this.e, (TLRPC.Chat) this.f1755f, this.f1754c, tL_error, (TLRPC.TL_messages_checkHistoryImportPeer) this.f1756g));
                 return;
         }
+    }
+
+    public l4(cy cyVar, org.telegram.ui.ActionBar.b2 b2Var, TLRPC.User user, TLRPC.Chat chat, long j10, TLRPC.TL_messages_checkHistoryImportPeer tL_messages_checkHistoryImportPeer) {
+        this.d = cyVar;
+        this.f1753b = b2Var;
+        this.e = user;
+        this.f1755f = chat;
+        this.f1754c = j10;
+        this.f1756g = tL_messages_checkHistoryImportPeer;
     }
 }

@@ -3,12 +3,12 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import android.view.ViewGroup;
 public final class o00 extends hm0 {
-    public final Context f28851c;
+    public final Context f28873c;
     public final s00 d;
 
     public o00(s00 s00Var, Context context) {
         this.d = s00Var;
-        this.f28851c = context;
+        this.f28873c = context;
     }
 
     @Override
@@ -23,7 +23,7 @@ public final class o00 extends hm0 {
 
     @Override
     public final long i(int i10) {
-        return this.d.f30107k0.get(i10);
+        return this.d.f30088k0.get(i10);
     }
 
     @Override
@@ -40,67 +40,67 @@ public final class o00 extends hm0 {
         int i13;
         int i14;
         q00 q00Var = (q00) b1Var.f45910a;
-        if (q00Var.f29486b != null) {
+        if (q00Var.f29460b != null) {
             i11 = q00Var.getId();
         } else {
             i11 = -1;
         }
         p00 p00Var = (p00) this.d.h.get(i10);
-        q00Var.f29486b = p00Var;
+        q00Var.f29460b = p00Var;
         q00Var.e = i10;
-        q00Var.setContentDescription(p00Var.f29120b);
+        q00Var.setContentDescription(p00Var.f29129b);
         q00Var.requestLayout();
-        boolean z11 = q00Var.f29500n;
-        p00 p00Var2 = q00Var.f29486b;
-        if (p00Var2 != null && p00Var2.f29123g) {
+        boolean z11 = q00Var.f29474n;
+        p00 p00Var2 = q00Var.f29460b;
+        if (p00Var2 != null && p00Var2.f29132g) {
             z10 = true;
         } else {
             z10 = false;
         }
         if (z11 != z10) {
-            a6.release(q00Var, q00Var.f29501r);
+            a6.release(q00Var, q00Var.f29475r);
             a6.release(q00Var, q00Var.O);
             a6.release(q00Var, q00Var.Q);
             a6.release(q00Var, q00Var.S);
-            if (q00Var.f29499l0) {
+            if (q00Var.f29473l0) {
                 int i15 = 26;
-                if (q00Var.f29486b.f29123g) {
+                if (q00Var.f29460b.f29132g) {
                     i12 = 26;
                 } else {
                     i12 = 0;
                 }
-                q00Var.f29501r = a6.update(i12, q00Var, q00Var.f29501r, q00Var.f29502s);
-                if (q00Var.f29486b.f29123g) {
+                q00Var.f29475r = a6.update(i12, q00Var, q00Var.f29475r, q00Var.f29476s);
+                if (q00Var.f29460b.f29132g) {
                     i13 = 26;
                 } else {
                     i13 = 0;
                 }
                 q00Var.O = a6.update(i13, q00Var, q00Var.O, q00Var.P);
-                if (q00Var.f29486b.f29123g) {
+                if (q00Var.f29460b.f29132g) {
                     i14 = 26;
                 } else {
                     i14 = 0;
                 }
                 q00Var.Q = a6.update(i14, q00Var, q00Var.Q, q00Var.R);
-                if (!q00Var.f29486b.f29123g) {
+                if (!q00Var.f29460b.f29132g) {
                     i15 = 0;
                 }
                 q00Var.S = a6.update(i15, q00Var, q00Var.S, q00Var.T);
             }
-            q00Var.f29500n = q00Var.f29486b.f29123g;
+            q00Var.f29474n = q00Var.f29460b.f29132g;
         }
         if (i11 != q00Var.getId()) {
-            if (q00Var.f29486b.f29122f) {
+            if (q00Var.f29460b.f29131f) {
                 f7 = 1.0f;
             } else {
                 f7 = 0.0f;
             }
-            q00Var.f29498k0 = f7;
+            q00Var.f29472k0 = f7;
         }
     }
 
     @Override
     public final s4.b1 x(ViewGroup viewGroup, int i10) {
-        return new s4.b1(new q00(this.d, this.f28851c));
+        return new s4.b1(new q00(this.d, this.f28873c));
     }
 }

@@ -7,28 +7,28 @@ import v8.s;
 import w7.f0;
 public final class d extends o6.a {
     public static final Parcelable.Creator<d> CREATOR = new s(28);
-    public final boolean f49292a;
+    public final boolean f49291a;
 
     public d(boolean z10) {
-        this.f49292a = z10;
+        this.f49291a = z10;
     }
 
     public final boolean equals(Object obj) {
-        if (!(obj instanceof d) || this.f49292a != ((d) obj).f49292a) {
+        if (!(obj instanceof d) || this.f49291a != ((d) obj).f49291a) {
             return false;
         }
         return true;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Boolean.valueOf(this.f49292a)});
+        return Arrays.hashCode(new Object[]{Boolean.valueOf(this.f49291a)});
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         int q6 = f0.q(parcel, 20293);
         f0.s(parcel, 1, 4);
-        parcel.writeInt(this.f49292a ? 1 : 0);
+        parcel.writeInt(this.f49291a ? 1 : 0);
         f0.r(parcel, q6);
     }
 }

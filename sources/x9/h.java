@@ -6,6 +6,7 @@ import android.content.res.Resources;
 import android.os.Build;
 import android.os.Debug;
 import android.util.Log;
+import c5.x;
 import java.io.Closeable;
 import java.io.File;
 import java.io.FileInputStream;
@@ -20,10 +21,10 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
 public abstract class h {
-    public static final char[] f49677a = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
+    public static final char[] f49676a = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
 
     public static ExecutorService a(String str) {
-        ExecutorService unconfigurableExecutorService = Executors.unconfigurableExecutorService(new ThreadPoolExecutor(1, 1, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingQueue(), new c5.w(str, new AtomicLong(1L)), new ThreadPoolExecutor.DiscardPolicy()));
+        ExecutorService unconfigurableExecutorService = Executors.unconfigurableExecutorService(new ThreadPoolExecutor(1, 1, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingQueue(), new x(str, new AtomicLong(1L)), new ThreadPoolExecutor.DiscardPolicy()));
         TimeUnit timeUnit = TimeUnit.SECONDS;
         Runtime.getRuntime().addShutdownHook(new Thread(new t(str, unconfigurableExecutorService), "Crashlytics Shutdown Hook for ".concat(str)));
         return unconfigurableExecutorService;
@@ -85,7 +86,7 @@ public abstract class h {
         for (int i10 = 0; i10 < bArr.length; i10++) {
             byte b10 = bArr[i10];
             int i11 = i10 * 2;
-            char[] cArr2 = f49677a;
+            char[] cArr2 = f49676a;
             cArr[i11] = cArr2[(b10 & 255) >>> 4];
             cArr[i11 + 1] = cArr2[b10 & 15];
         }

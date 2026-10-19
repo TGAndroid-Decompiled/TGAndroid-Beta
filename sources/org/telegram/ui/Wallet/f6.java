@@ -1,75 +1,101 @@
 package org.telegram.ui.Wallet;
 
 import android.graphics.Bitmap;
+import android.graphics.BlurMaskFilter;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.R;
 public final class f6 extends Drawable {
-    public static int[] f34191k;
-    public static int f34192l;
-    public static Bitmap f34193m;
-    public static Bitmap f34194n;
-    public static final int[] f34195o = new int[2];
-    public static final int[] f34196p = new int[2];
-    public final int f34199c;
-    public final int d;
-    public Bitmap e;
-    public float f34201g;
-    public float h;
-    public final Paint f34197a = new Paint(3);
-    public final Paint f34198b = new Paint(3);
-    public float f34200f = -1.0f;
-    public int f34202i = 255;
-    public float f34203j = 1.0f;
+    public static float[] f34198k;
+    public static Bitmap f34199l;
+    public static Bitmap f34200m;
+    public final int f34204b;
+    public final int f34205c;
+    public final Drawable d;
+    public float f34206f;
+    public float f34207g;
+    public static final float[] f34197j = {0.2126f, 0.7152f, 0.0722f};
+    public static final int[] f34201n = new int[2];
+    public static final int[] f34202o = new int[2];
+    public final Paint f34203a = new Paint(3);
+    public float e = -1.0f;
+    public int h = 255;
+    public float f34208i = 1.0f;
 
     public f6(int i10, int i11) {
-        this.f34199c = i10;
-        this.d = i11;
+        this.f34204b = i10;
+        this.f34205c = i11;
+        Drawable mutate = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.wallet_card_diamond).mutate();
+        this.d = mutate;
+        if (f34199l != null) {
+            return;
+        }
+        Bitmap createBitmap = Bitmap.createBitmap(84, 84, Bitmap.Config.ARGB_8888);
+        mutate.setBounds(0, 0, 84, 84);
+        mutate.draw(new Canvas(createBitmap));
+        Paint paint = new Paint();
+        BlurMaskFilter.Blur blur = BlurMaskFilter.Blur.NORMAL;
+        paint.setMaskFilter(new BlurMaskFilter(15.0f, blur));
+        f34199l = createBitmap.extractAlpha(paint, f34201n);
+        paint.setMaskFilter(new BlurMaskFilter(4.5f, blur));
+        f34200m = createBitmap.extractAlpha(paint, f34202o);
+        createBitmap.recycle();
     }
 
-    public static int a(float f7) {
-        return Math.max(0, Math.min(255, Math.round(f7 * 0.97f * 255.0f)));
+    public static float[] a(float f7, float f10, float f11) {
+        float max = Math.max(f7, Math.max(f10, f11));
+        float min = max - Math.min(f7, Math.min(f10, f11));
+        float f12 = 0.55f * max;
+        if (min > f12) {
+            float f13 = f12 / min;
+            f7 = com.google.android.gms.internal.play_billing.k3.y(f7, max, f13, max);
+            f10 = com.google.android.gms.internal.play_billing.k3.y(f10, max, f13, max);
+            f11 = com.google.android.gms.internal.play_billing.k3.y(f11, max, f13, max);
+        }
+        return new float[]{f7, f10, f11};
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        if (this.e != null && this.f34202i > 0) {
+        if (this.h > 0 && this.e >= 0.0f) {
             Rect bounds = getBounds();
-            float width = bounds.width() / this.e.getWidth();
-            canvas.save();
-            canvas.translate(bounds.left, bounds.top);
-            canvas.scale(width, bounds.height() / this.e.getHeight());
-            if (this.f34203j > 0.0f) {
-                Paint paint = this.f34198b;
+            if (this.f34208i > 0.0f) {
+                float width = bounds.width() / 84.0f;
+                canvas.save();
+                canvas.translate(bounds.left, bounds.top);
+                canvas.scale(width, bounds.height() / 84.0f);
+                Paint paint = this.f34203a;
                 paint.setColor(-16777216);
-                paint.setAlpha((int) (this.f34202i * 0.35f * this.f34203j));
-                Bitmap bitmap = f34193m;
-                int[] iArr = f34195o;
+                paint.setAlpha((int) (this.h * 0.35f * this.f34208i));
+                Bitmap bitmap = f34199l;
+                int[] iArr = f34201n;
                 canvas.drawBitmap(bitmap, iArr[0], (AndroidUtilities.dp(1.0f) / width) + iArr[1], paint);
-                paint.setAlpha((int) (this.f34202i * 0.55f * this.f34203j));
-                Bitmap bitmap2 = f34194n;
-                int[] iArr2 = f34196p;
+                paint.setAlpha((int) (this.h * 0.55f * this.f34208i));
+                Bitmap bitmap2 = f34200m;
+                int[] iArr2 = f34202o;
                 canvas.drawBitmap(bitmap2, iArr2[0], iArr2[1], paint);
+                canvas.restore();
             }
-            int i10 = this.f34202i;
-            Paint paint2 = this.f34197a;
-            paint2.setAlpha(i10);
-            canvas.drawBitmap(this.e, 0.0f, 0.0f, paint2);
-            canvas.restore();
+            Drawable drawable = this.d;
+            drawable.setBounds(bounds);
+            drawable.setAlpha(this.h);
+            drawable.draw(canvas);
         }
     }
 
     @Override
     public final int getIntrinsicHeight() {
-        return this.d;
+        return this.f34205c;
     }
 
     @Override
     public final int getIntrinsicWidth() {
-        return this.f34199c;
+        return this.f34204b;
     }
 
     @Override
@@ -79,7 +105,7 @@ public final class f6 extends Drawable {
 
     @Override
     public final void setAlpha(int i10) {
-        this.f34202i = i10;
+        this.h = i10;
     }
 
     @Override

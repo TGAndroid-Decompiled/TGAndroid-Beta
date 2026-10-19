@@ -3,7 +3,7 @@ package ug;
 import ai.bd;
 import android.view.View;
 import android.view.ViewGroup;
-import ci.x4;
+import ci.y4;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.DialogObject;
@@ -43,7 +43,7 @@ public final class r0 extends bb {
             i10++;
             TL_stories.TL_myBoost tL_myBoost2 = tL_myBoost;
             TLRPC.Peer peer = tL_myBoost2.peer;
-            if (peer != null && DialogObject.getPeerDialogId(peer) != (-chat.f20272id)) {
+            if (peer != null && DialogObject.getPeerDialogId(peer) != (-chat.f20275id)) {
                 this.Y.add(tL_myBoost2);
             }
         }
@@ -51,12 +51,12 @@ public final class r0 extends bb {
         bdVar.setClickable(true);
         bdVar.setOrientation(1);
         bdVar.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
-        bdVar.setBackgroundColor(h6.w0(h6.f21057h5, this.resourcesProvider));
+        bdVar.setBackgroundColor(h6.w0(h6.f21060h5, this.resourcesProvider));
         c0 c0Var = new c0(getContext(), this.resourcesProvider);
         this.f47749a0 = c0Var;
         c0Var.k();
         c0Var.setCounterColor(-6785796);
-        c0Var.setOnClickListener(new org.telegram.ui.web.c(5, this, chat));
+        c0Var.setOnClickListener(new qg.n(4, this, chat));
         bdVar.addView(c0Var, z5.q(-1, 48, 87));
         ViewGroup viewGroup = this.containerView;
         int i11 = this.backgroundPaddingLeft;
@@ -64,7 +64,7 @@ public final class r0 extends bb {
         im0 im0Var = this.d;
         int i12 = this.backgroundPaddingLeft;
         im0Var.setPadding(i12, 0, i12, AndroidUtilities.dp(64.0f));
-        this.d.setOnItemClickListener(new x4(24, this, chat));
+        this.d.setOnItemClickListener(new y4(24, this, chat));
         fixNavigationBar();
         O();
         T(false);

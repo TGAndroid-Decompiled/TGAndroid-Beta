@@ -1,5 +1,8 @@
 package org.telegram.ui;
+public final class ib {
+    public final vb f37932a;
 
-import org.telegram.tgnet.TLRPC;
-public final class ib extends TLRPC.ChannelParticipant {
+    public ib(vb vbVar) {
+        this.f37932a = vbVar;
+    }
 }

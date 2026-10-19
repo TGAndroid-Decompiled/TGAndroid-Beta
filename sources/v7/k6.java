@@ -6,9 +6,9 @@ public final class k6 {
     public final g7 d;
 
     public k6(qi.e eVar) {
-        this.f48077a = (e8) eVar.f44752a;
-        this.f48078b = (j6) eVar.f44753b;
-        this.f48079c = (h6) eVar.f44754c;
+        this.f48077a = (e8) eVar.f44750a;
+        this.f48078b = (j6) eVar.f44751b;
+        this.f48079c = (h6) eVar.f44752c;
         this.d = (g7) eVar.d;
     }
 }

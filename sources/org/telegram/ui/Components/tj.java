@@ -8,16 +8,16 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ContactsController;
 import org.telegram.tgnet.TLRPC;
 public final class tj extends hm0 {
-    public final Context f30645c;
+    public final Context f30607c;
     public ArrayList d = new ArrayList();
     public ArrayList e = new ArrayList();
-    public sj f30646f;
+    public sj f30608f;
     public int h;
-    public final xj f30647n;
+    public final xj f30609n;
 
     public tj(xj xjVar, Context context) {
-        this.f30647n = xjVar;
-        this.f30645c = context;
+        this.f30609n = xjVar;
+        this.f30607c = context;
     }
 
     @Override
@@ -55,7 +55,7 @@ public final class tj extends hm0 {
     @Override
     public final void l() {
         super.l();
-        this.f30647n.Q();
+        this.f30609n.Q();
     }
 
     @Override
@@ -84,7 +84,7 @@ public final class tj extends hm0 {
             if (user != null) {
                 wjVar.a(user, (CharSequence) this.e.get(i10 - 1), new qj(1, user), z10);
             }
-            boolean containsKey = this.f30647n.f32404w.containsKey(nj.a(E));
+            boolean containsKey = this.f30609n.f32408w.containsKey(nj.a(E));
             xp xpVar = wjVar.d;
             if (xpVar.getVisibility() != 0) {
                 xpVar.setVisibility(0);
@@ -96,7 +96,7 @@ public final class tj extends hm0 {
     @Override
     public final s4.b1 x(ViewGroup viewGroup, int i10) {
         View wjVar;
-        Context context = this.f30645c;
+        Context context = this.f30607c;
         if (i10 != 0) {
             if (i10 != 1) {
                 wjVar = new View(context);
@@ -107,7 +107,7 @@ public final class tj extends hm0 {
                 wjVar.setTag(-33024);
             }
         } else {
-            wjVar = new wj(context, this.f30647n.f28237a);
+            wjVar = new wj(context, this.f30609n.f28224a);
         }
         return new s4.b1(wjVar);
     }

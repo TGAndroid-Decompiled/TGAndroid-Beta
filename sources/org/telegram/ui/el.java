@@ -1,81 +1,144 @@
 package org.telegram.ui;
 
-import android.animation.AnimatorSet;
-import android.app.Activity;
+import android.content.Context;
 import android.graphics.Canvas;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.FrameLayout;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.RectF;
 import org.telegram.messenger.AndroidUtilities;
-public final class el extends FrameLayout {
-    public float f36550a;
-    public float f36551b;
-    public final sn f36552c;
+public final class el extends org.telegram.ui.Components.w9 {
+    public final int G = 0;
+    public Object H;
+    public Object I;
+    public Object J;
 
-    public el(sn snVar, Activity activity) {
-        super(activity);
-        this.f36552c = snVar;
-        setOnLongClickListener(new u(this, 2));
+    public el(Context context) {
+        super(context);
     }
 
     @Override
-    public final boolean drawChild(Canvas canvas, View view, long j10) {
-        sn snVar = this.f36552c;
-        if (view == snVar.f41446z2) {
-            canvas.save();
-            canvas.clipRect(0, 0, getMeasuredWidth(), AndroidUtilities.dp(48.0f));
-        }
-        org.telegram.ui.ActionBar.j5[] j5VarArr = snVar.D2;
-        if (view != j5VarArr[0] && view != j5VarArr[1]) {
-            boolean drawChild = super.drawChild(canvas, view, j10);
-            if (view == snVar.f41446z2) {
-                canvas.restore();
-            }
-            return drawChild;
-        }
-        canvas.save();
-        canvas.clipRect(0, 0, getMeasuredWidth() - AndroidUtilities.dp(38.0f), getMeasuredHeight());
-        boolean drawChild2 = super.drawChild(canvas, view, j10);
-        canvas.restore();
-        return drawChild2;
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        sn snVar = this.f36552c;
-        if (snVar.A2) {
-            int i12 = 0;
-            while (true) {
-                AnimatorSet[] animatorSetArr = snVar.H2;
-                if (i12 < animatorSetArr.length) {
-                    AnimatorSet animatorSet = animatorSetArr[i12];
-                    if (animatorSet != null) {
-                        animatorSet.start();
-                    }
-                    i12++;
-                } else {
-                    snVar.A2 = false;
+    public void draw(Canvas canvas) {
+        switch (this.G) {
+            case 1:
+                wh.g gVar = (wh.g) this.I;
+                Path path = (Path) this.H;
+                super.draw(canvas);
+                if (((org.telegram.ui.Components.ap) this.J).h) {
+                    path.rewind();
+                    RectF rectF = AndroidUtilities.rectTmp;
+                    rectF.set(this.f32042a.getImageX(), this.f32042a.getImageY(), this.f32042a.getImageX2(), this.f32042a.getImageY2());
+                    path.addRoundRect(rectF, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), Path.Direction.CW);
+                    canvas.save();
+                    canvas.clipPath(path);
+                    gVar.h(i0.a.o(-1, (int) (Color.alpha(-1) * 0.325f)));
+                    gVar.setBounds((int) this.f32042a.getImageX(), (int) this.f32042a.getImageY(), (int) this.f32042a.getImageX2(), (int) this.f32042a.getImageY2());
+                    gVar.draw(canvas);
+                    invalidate();
+                    canvas.restore();
                     return;
                 }
-            }
+                return;
+            default:
+                super.draw(canvas);
+                return;
         }
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        this.f36550a = motionEvent.getY();
-        int action = motionEvent.getAction();
-        sn snVar = this.f36552c;
-        if (action == 1) {
-            snVar.finishPreviewFragment();
-        } else if (motionEvent.getAction() == 2) {
-            float f7 = this.f36551b - this.f36550a;
-            snVar.movePreviewFragment(f7);
-            if (f7 < 0.0f) {
-                this.f36551b = this.f36550a;
-            }
+    public void onDraw(Canvas canvas) {
+        switch (this.G) {
+            case 0:
+                float[] fArr = (float[]) this.J;
+                wh.g gVar = (wh.g) this.I;
+                Path path = (Path) this.H;
+                super.onDraw(canvas);
+                if (this.f32047r) {
+                    canvas.save();
+                    RectF rectF = AndroidUtilities.rectTmp;
+                    rectF.set(0.0f, 0.0f, getWidth(), getHeight());
+                    int[] roundRadius = this.f32042a.getRoundRadius();
+                    float f7 = roundRadius[0];
+                    fArr[1] = f7;
+                    fArr[0] = f7;
+                    float f10 = roundRadius[1];
+                    fArr[3] = f10;
+                    fArr[2] = f10;
+                    float f11 = roundRadius[2];
+                    fArr[5] = f11;
+                    fArr[4] = f11;
+                    float f12 = roundRadius[3];
+                    fArr[7] = f12;
+                    fArr[6] = f12;
+                    path.rewind();
+                    path.addRoundRect(rectF, fArr, Path.Direction.CW);
+                    canvas.clipPath(path);
+                    gVar.h(i0.a.o(-1, (int) (Color.alpha(-1) * 0.325f)));
+                    gVar.setBounds(0, 0, getWidth(), getHeight());
+                    gVar.draw(canvas);
+                    canvas.restore();
+                    invalidate();
+                    return;
+                }
+                return;
+            case 1:
+            default:
+                super.onDraw(canvas);
+                return;
+            case 2:
+                org.telegram.ui.Components.voip.h hVar = (org.telegram.ui.Components.voip.h) this.I;
+                super.onDraw(canvas);
+                org.telegram.ui.Components.m60 m60Var = (org.telegram.ui.Components.m60) this.J;
+                if (m60Var.f28444x0) {
+                    int i10 = m60Var.X0;
+                    hVar.f31478f = i10;
+                    RectF rectF2 = AndroidUtilities.rectTmp;
+                    float f13 = i10;
+                    rectF2.set(0.0f, 0.0f, f13, f13);
+                    float width = rectF2.width() / 2.0f;
+                    canvas.drawRoundRect(rectF2, width, width, (Paint) this.H);
+                    rectF2.inset(AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f));
+                    hVar.a(width, canvas, rectF2, null);
+                    invalidate();
+                    return;
+                }
+                return;
+            case 3:
+                org.telegram.ui.Components.voip.h hVar2 = (org.telegram.ui.Components.voip.h) this.I;
+                super.onDraw(canvas);
+                if (((org.telegram.ui.Components.l60) this.J).f28102l0) {
+                    float min = Math.min(getWidth(), getHeight()) * 0.5f;
+                    RectF rectF3 = AndroidUtilities.rectTmp;
+                    rectF3.set(0.0f, 0.0f, getWidth(), getHeight());
+                    canvas.drawRoundRect(rectF3, min, min, (Paint) this.H);
+                    rectF3.inset(AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f));
+                    hVar2.f31478f = getWidth();
+                    hVar2.a(min, canvas, rectF3, null);
+                    invalidate();
+                    return;
+                }
+                return;
         }
-        return super.onTouchEvent(motionEvent);
+    }
+
+    public el(org.telegram.ui.Components.ap apVar, Context context, wh.g gVar) {
+        super(context);
+        this.J = apVar;
+        this.I = gVar;
+        this.H = new Path();
+    }
+
+    public el(org.telegram.ui.Components.l60 l60Var, Context context, Paint paint) {
+        super(context);
+        this.J = l60Var;
+        this.H = paint;
+        this.I = new org.telegram.ui.Components.voip.h();
+    }
+
+    public el(org.telegram.ui.Components.m60 m60Var, Context context, Paint paint) {
+        super(context);
+        this.J = m60Var;
+        this.H = paint;
+        this.I = new org.telegram.ui.Components.voip.h();
     }
 }

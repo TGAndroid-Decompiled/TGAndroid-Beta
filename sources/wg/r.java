@@ -30,33 +30,33 @@ import org.telegram.ui.Components.x90;
 import sg.w1;
 import w7.z5;
 public final class r extends FrameLayout {
-    public final zd f48988a;
-    public final o f48989b;
-    public final TextView f48990c;
+    public final zd f48987a;
+    public final o f48988b;
+    public final TextView f48989c;
     public final x90 d;
     public final d6 e;
-    public final u90 f48991f;
+    public final u90 f48990f;
     public final Paint[] h;
-    public ValueAnimator f48992n;
+    public ValueAnimator f48991n;
 
     public r(Context context, d6 d6Var) {
         super(context);
         this.e = d6Var;
         LinearLayout e = lk.e(context, 1);
         zd zdVar = new zd(context, 1, 0, 4);
-        this.f48988a = zdVar;
+        this.f48987a = zdVar;
         Bitmap createBitmap = Bitmap.createBitmap(50, 50, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(createBitmap);
         int i10 = h6.Mj;
-        canvas.drawColor(i0.a.f(0.5f, h6.w0(i10, d6Var), h6.w0(h6.f21057h5, d6Var)));
+        canvas.drawColor(i0.a.f(0.5f, h6.w0(i10, d6Var), h6.w0(h6.f21060h5, d6Var)));
         zdVar.setBackgroundBitmap(createBitmap);
-        tg.g gVar = zdVar.f47099b;
-        gVar.f47083z = i10;
+        tg.g gVar = zdVar.f47101b;
+        gVar.f47085z = i10;
         gVar.A = h6.Lj;
         gVar.b();
         e.addView(zdVar, z5.q(160, 160, 1));
         o oVar = new o(this, context);
-        this.f48989b = oVar;
+        this.f48988b = oVar;
         this.h = new Paint[20];
         a(0.0f);
         w1 w1Var = oVar.f46497a;
@@ -68,13 +68,13 @@ public final class r extends FrameLayout {
         w1Var.c();
         zdVar.setStarParticlesView(oVar);
         TextView textView = new TextView(context);
-        this.f48990c = textView;
+        this.f48989c = textView;
         lk.k(22.0f, 1, textView);
         int i11 = h6.G6;
         c1.q(i11, d6Var, textView, 1);
         e.addView(textView, z5.t(-2, -2, 1, 24, -8, 24, 0));
         u90 u90Var = new u90(this);
-        this.f48991f = u90Var;
+        this.f48990f = u90Var;
         x90 x90Var = new x90(context, u90Var, d6Var);
         this.d = x90Var;
         x90Var.setTextSize(1, 15.0f);
@@ -113,7 +113,7 @@ public final class r extends FrameLayout {
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        u90 u90Var = this.f48991f;
+        u90 u90Var = this.f48990f;
         if (u90Var != null) {
             canvas.save();
             x90 x90Var = this.d;
@@ -128,9 +128,9 @@ public final class r extends FrameLayout {
     @Override
     public final void onMeasure(int i10, int i11) {
         super.onMeasure(i10, i11);
-        zd zdVar = this.f48988a;
+        zd zdVar = this.f48987a;
         float measuredHeight = (zdVar.getMeasuredHeight() / 2.0f) + zdVar.getTop();
-        o oVar = this.f48989b;
+        o oVar = this.f48988b;
         oVar.setTranslationY(measuredHeight - (oVar.getMeasuredHeight() / 2.0f));
     }
 
@@ -141,10 +141,10 @@ public final class r extends FrameLayout {
         ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) getLayoutParams();
         marginLayoutParams.topMargin = -AndroidUtilities.dp(6.0f);
         setLayoutParams(marginLayoutParams);
-        int i11 = h6.f20928a7;
+        int i11 = h6.f20931a7;
         d6 d6Var = this.e;
         setBackgroundColor(h6.w0(i11, d6Var));
-        this.f48990c.setText(LocaleController.formatString("BoostingBoostsViaGifts", R.string.BoostingBoostsViaGifts, new Object[0]));
+        this.f48989c.setText(LocaleController.formatString("BoostingBoostsViaGifts", R.string.BoostingBoostsViaGifts, new Object[0]));
         if (ChatObject.isChannelAndNotMegaGroup(chat)) {
             i10 = R.string.BoostingGetMoreBoost2;
         } else {
@@ -153,33 +153,33 @@ public final class r extends FrameLayout {
         String formatString = LocaleController.formatString(i10, new Object[0]);
         x90 x90Var = this.d;
         x90Var.setText(formatString);
-        x90Var.setTextColor(h6.w0(h6.f21242r5, d6Var));
+        x90Var.setTextColor(h6.w0(h6.f21245r5, d6Var));
     }
 
     public void setPaused(boolean z10) {
-        this.f48988a.setPaused(z10);
-        this.f48989b.setPaused(z10);
+        this.f48987a.setPaused(z10);
+        this.f48988b.setPaused(z10);
     }
 
     public void setStars(final boolean z10) {
         final float f7;
-        ValueAnimator valueAnimator = this.f48992n;
+        ValueAnimator valueAnimator = this.f48991n;
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
-        zd zdVar = this.f48988a;
-        final float f10 = zdVar.f47099b.f47070l;
+        zd zdVar = this.f48987a;
+        final float f10 = zdVar.f47101b.f47072l;
         if (z10) {
             f7 = 1.0f;
         } else {
             f7 = 0.0f;
         }
-        this.f48992n = ValueAnimator.ofFloat(0.0f, 1.0f);
+        this.f48991n = ValueAnimator.ofFloat(0.0f, 1.0f);
         final float[] fArr = {0.0f};
-        AndroidUtilities.cancelRunOnUIThread(zdVar.f47104e0);
+        AndroidUtilities.cancelRunOnUIThread(zdVar.f47106e0);
         zdVar.d();
         zdVar.l();
-        this.f48992n.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        this.f48991n.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
                 int i10;
@@ -191,23 +191,23 @@ public final class r extends FrameLayout {
                 float floatValue = ((Float) valueAnimator2.getAnimatedValue()).floatValue();
                 float f13 = floatValue - fArr2[0];
                 fArr2[0] = floatValue;
-                rVar.f48988a.f47099b.f47070l = AndroidUtilities.lerp(f11, f12, floatValue);
-                tg.g gVar = rVar.f48988a.f47099b;
-                float f14 = gVar.f47065f;
+                rVar.f48987a.f47101b.f47072l = AndroidUtilities.lerp(f11, f12, floatValue);
+                tg.g gVar = rVar.f48987a.f47101b;
+                float f14 = gVar.f47067f;
                 float f15 = f13 * 360.0f;
                 if (z11) {
                     i10 = 1;
                 } else {
                     i10 = -1;
                 }
-                gVar.f47065f = (f15 * i10) + f14;
-                rVar.f48988a.f47099b.b();
-                rVar.a(rVar.f48988a.f47099b.f47070l);
+                gVar.f47067f = (f15 * i10) + f14;
+                rVar.f48987a.f47101b.b();
+                rVar.a(rVar.f48987a.f47101b.f47072l);
             }
         });
-        this.f48992n.addListener(new q(this, fArr, f10, f7, z10));
-        this.f48992n.setDuration(680L);
-        this.f48992n.setInterpolator(bs.h);
-        this.f48992n.start();
+        this.f48991n.addListener(new q(this, fArr, f10, f7, z10));
+        this.f48991n.setDuration(680L);
+        this.f48991n.setInterpolator(bs.h);
+        this.f48991n.start();
     }
 }

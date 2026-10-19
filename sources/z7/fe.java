@@ -7,9 +7,9 @@ public final class fe {
     public final m e;
 
     public fe(com.google.android.gms.internal.cast.z5 z5Var) {
-        this.f50797a = (wa) z5Var.f6882b;
-        this.f50798b = (sa) z5Var.f6883c;
-        this.f50799c = (we) z5Var.f6881a;
+        this.f50797a = (wa) z5Var.f6883b;
+        this.f50798b = (sa) z5Var.f6884c;
+        this.f50799c = (we) z5Var.f6882a;
         this.d = (m) z5Var.d;
         this.e = (m) z5Var.e;
     }

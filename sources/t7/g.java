@@ -1,7 +1,7 @@
 package t7;
 
 import j$.util.Objects;
-import w7.p7;
+import w7.o7;
 public final class g extends d {
     public static final g e = new g(0, new Object[0]);
     public final transient Object[] f46883c;
@@ -14,7 +14,7 @@ public final class g extends d {
 
     @Override
     public final Object get(int i10) {
-        p7.a(i10, this.d);
+        o7.a(i10, this.d);
         Object obj = this.f46883c[i10];
         Objects.requireNonNull(obj);
         return obj;

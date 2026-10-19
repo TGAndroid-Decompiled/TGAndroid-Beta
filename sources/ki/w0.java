@@ -3,25 +3,25 @@ package ki;
 import android.content.Context;
 import android.view.View;
 import org.telegram.messenger.LocaleController;
-import org.telegram.ui.Components.a71;
-import org.telegram.ui.Components.e61;
+import org.telegram.ui.Components.b71;
 import org.telegram.ui.Components.f61;
+import org.telegram.ui.Components.g61;
 import org.telegram.ui.Components.im0;
-import org.telegram.ui.Components.s61;
-public final class w0 extends e61 {
-    public static final int f15581a = 0;
+import org.telegram.ui.Components.t61;
+public final class w0 extends f61 {
+    public static final int f15584a = 0;
 
     static {
-        e61.setup(new e61());
+        f61.setup(new f61());
     }
 
     @Override
-    public final void bindView(View view, f61 f61Var, boolean z10, s61 s61Var, a71 a71Var) {
+    public final void bindView(View view, g61 g61Var, boolean z10, t61 t61Var, b71 b71Var) {
         x0 x0Var = (x0) view;
-        a aVar = (a) f61Var.G;
-        x0Var.f15110a = aVar;
-        x0Var.v = (s2) f61Var.H;
-        x0Var.f15639w = LocaleController.isRTL;
+        a aVar = (a) g61Var.G;
+        x0Var.f15113a = aVar;
+        x0Var.v = (s2) g61Var.H;
+        x0Var.f15642w = LocaleController.isRTL;
         x0Var.c(aVar);
     }
 

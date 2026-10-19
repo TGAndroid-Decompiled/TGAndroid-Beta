@@ -18,12 +18,12 @@ public final class l0 extends a2 {
 
     public final com.google.firebase.messaging.l a() {
         ?? obj = new Object();
-        obj.f7646a = Long.valueOf(this.f51417a);
-        obj.f7647b = this.f51418b;
-        obj.f7648c = this.f51419c;
+        obj.f7647a = Long.valueOf(this.f51417a);
+        obj.f7648b = this.f51418b;
+        obj.f7649c = this.f51419c;
         obj.d = this.d;
         obj.e = this.e;
-        obj.f7649f = this.f51420f;
+        obj.f7650f = this.f51420f;
         return obj;
     }
 

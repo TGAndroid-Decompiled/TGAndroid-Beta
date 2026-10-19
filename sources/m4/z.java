@@ -1,13 +1,13 @@
 package m4;
 public final class z implements Runnable {
-    public final int f16779a;
-    public final Object f16780b;
-    public final Object f16781c;
+    public final int f16782a;
+    public final Object f16783b;
+    public final Object f16784c;
 
     public z(int i10, Object obj, Object obj2) {
-        this.f16779a = i10;
-        this.f16780b = obj;
-        this.f16781c = obj2;
+        this.f16782a = i10;
+        this.f16783b = obj;
+        this.f16784c = obj2;
     }
 
     @Override

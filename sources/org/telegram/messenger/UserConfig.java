@@ -99,40 +99,40 @@ public class UserConfig extends BaseController {
     private void checkPremiumSelf(TLRPC.User user, final TLRPC.User user2) {
         if (user != null && user2 != null && user.premium != user2.premium) {
             AndroidUtilities.runOnUIThread(new Runnable(this) {
-                public final UserConfig f19386b;
+                public final UserConfig f19389b;
 
                 {
-                    this.f19386b = this;
+                    this.f19389b = this;
                 }
 
                 @Override
                 public final void run() {
                     switch (r3) {
                         case 0:
-                            this.f19386b.lambda$checkPremiumSelf$1(user2);
+                            this.f19389b.lambda$checkPremiumSelf$1(user2);
                             return;
                         default:
-                            this.f19386b.lambda$checkPremiumSelf$2(user2);
+                            this.f19389b.lambda$checkPremiumSelf$2(user2);
                             return;
                     }
                 }
             });
         } else if (user == null) {
             AndroidUtilities.runOnUIThread(new Runnable(this) {
-                public final UserConfig f19386b;
+                public final UserConfig f19389b;
 
                 {
-                    this.f19386b = this;
+                    this.f19389b = this;
                 }
 
                 @Override
                 public final void run() {
                     switch (r3) {
                         case 0:
-                            this.f19386b.lambda$checkPremiumSelf$1(user2);
+                            this.f19389b.lambda$checkPremiumSelf$1(user2);
                             return;
                         default:
-                            this.f19386b.lambda$checkPremiumSelf$2(user2);
+                            this.f19389b.lambda$checkPremiumSelf$2(user2);
                             return;
                     }
                 }
@@ -216,7 +216,7 @@ public class UserConfig extends BaseController {
         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.premiumStatusChangedGlobal, new Object[0]);
         getMediaDataController().loadPremiumPromo(false);
         getMediaDataController().loadReactions(false, null);
-        ci.h7 storiesController = getMessagesController().getStoriesController();
+        ci.i7 storiesController = getMessagesController().getStoriesController();
         storiesController.R = false;
         storiesController.S = null;
     }
@@ -421,7 +421,7 @@ public class UserConfig extends BaseController {
             try {
                 TLRPC.User user = this.currentUser;
                 if (user != null) {
-                    j10 = user.f20419id;
+                    j10 = user.f20422id;
                 } else {
                     j10 = 0;
                 }
@@ -664,7 +664,7 @@ public class UserConfig extends BaseController {
         synchronized (this.sync) {
             TLRPC.User user2 = this.currentUser;
             this.currentUser = user;
-            this.clientUserId = user.f20419id;
+            this.clientUserId = user.f20422id;
             checkPremiumSelf(user2, user);
         }
     }

@@ -1,43 +1,68 @@
 package org.telegram.ui;
 
-import android.os.Build;
-import androidx.recyclerview.widget.RecyclerView;
-public final class yo0 extends s4.r0 {
-    public final int f43451a;
-    public final ep0 f43452b;
+import android.content.Context;
+import android.view.View;
+import org.telegram.messenger.MessagesController;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+public final class yo0 extends x51 {
+    public final bp0 f43532d2;
+    public final o51[] f43533e2;
+    public final cp0 f43534f2;
 
-    public yo0(ep0 ep0Var, int i10) {
-        this.f43452b = ep0Var;
-        this.f43451a = i10;
+    public yo0(cp0 cp0Var, org.telegram.ui.ActionBar.n2 n2Var, Context context, Integer num, int i10, org.telegram.ui.ActionBar.d6 d6Var, int i11, int i12, bp0 bp0Var, o51[] o51VarArr) {
+        super(n2Var, context, true, num, i10, true, d6Var, i11, i12);
+        this.f43534f2 = cp0Var;
+        this.f43532d2 = bp0Var;
+        this.f43533e2 = o51VarArr;
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        ai.y9 y9Var;
-        bh.f fVar;
-        ep0 ep0Var = this.f43452b;
-        kp0 kp0Var = ep0Var.f36583p0;
-        if (i11 != 0) {
-            kp0Var.D0(1);
-        }
-        if (Build.VERSION.SDK_INT >= 31 && (fVar = kp0Var.f38602f0) != null) {
-            fVar.f(i10, i11);
-        }
-        ep0Var.h();
-        if (ep0Var.K != null) {
-            if (ep0Var.J != null && ep0Var.c()) {
-                ep0Var.J.g(false);
-                return;
+    public final float getScrimDrawableTranslationY() {
+        return 0.0f;
+    }
+
+    @Override
+    public final void p(View view, Long l4, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, Integer num) {
+        long longValue;
+        cp0 cp0Var = this.f43534f2;
+        if (tL_starGiftUnique != null) {
+            if (cp0Var.m0 == 0) {
+                TLRPC.PeerColor peerColor = tL_starGiftUnique.peer_color;
+                if (peerColor instanceof TLRPC.TL_peerColorCollectible) {
+                    cp0Var.f36061s = (TLRPC.TL_peerColorCollectible) peerColor;
+                    cp0Var.f36060r = null;
+                } else {
+                    return;
+                }
+            } else {
+                cp0Var.f36061s = null;
+                cp0Var.f36060r = MessagesController.emojiStatusCollectibleFromGift(tL_starGiftUnique);
             }
-            return;
-        }
-        if (this.f43451a == 1) {
-            y9Var = kp0Var.f38597c;
+            cp0Var.I = null;
+            cp0Var.h = -1;
         } else {
-            y9Var = kp0Var.f38595b;
+            if (l4 == null) {
+                longValue = 0;
+            } else {
+                longValue = l4.longValue();
+            }
+            cp0Var.f36056n = longValue;
+            cp0Var.f36060r = null;
+            cp0Var.f36061s = null;
+            cp0Var.I = null;
         }
-        if (y9Var != null && ep0Var.c()) {
-            y9Var.a();
+        bp0 bp0Var = this.f43532d2;
+        if (bp0Var != null) {
+            bp0Var.b(true);
+        }
+        cp0Var.j(true);
+        cp0Var.i();
+        cp0Var.f(true);
+        o51 o51Var = this.f43533e2[0];
+        if (o51Var != null) {
+            cp0Var.f36058o0 = null;
+            o51Var.dismiss();
         }
     }
 }

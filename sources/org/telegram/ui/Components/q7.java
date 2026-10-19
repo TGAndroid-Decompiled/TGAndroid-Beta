@@ -7,27 +7,27 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 public final class q7 extends FrameLayout {
-    public final int f29583a;
-    public final k8 f29584b;
+    public final int f29534a;
+    public final k8 f29535b;
 
     public q7(k8 k8Var, Context context, int i10) {
         super(context);
-        this.f29583a = i10;
-        this.f29584b = k8Var;
+        this.f29534a = i10;
+        this.f29535b = k8Var;
     }
 
     @Override
     public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         TextView textView;
-        switch (this.f29583a) {
+        switch (this.f29534a) {
             case 0:
                 int A = org.telegram.messenger.lk.A(248.0f, i12 - i10, 4);
                 for (int i14 = 0; i14 < 5; i14++) {
                     int dp = (A * i14) + AndroidUtilities.dp((i14 * 48) + 4);
                     int dp2 = AndroidUtilities.dp(9.0f);
-                    k8 k8Var = this.f29584b;
-                    View view = k8Var.f27780n0[i14];
-                    view.layout(dp, dp2, view.getMeasuredWidth() + dp, k8Var.f27780n0[i14].getMeasuredHeight() + dp2);
+                    k8 k8Var = this.f29535b;
+                    View view = k8Var.f27759n0[i14];
+                    view.layout(dp, dp2, view.getMeasuredWidth() + dp, k8Var.f27759n0[i14].getMeasuredHeight() + dp2);
                 }
                 return;
             case 1:
@@ -36,8 +36,8 @@ public final class q7 extends FrameLayout {
                 return;
             case 2:
                 super.onLayout(z10, i10, i11, i12, i13);
-                k8 k8Var2 = this.f29584b;
-                if (k8Var2.V != null && (textView = k8Var2.f27764a0) != null) {
+                k8 k8Var2 = this.f29535b;
+                if (k8Var2.V != null && (textView = k8Var2.f27743a0) != null) {
                     int left = (textView.getLeft() - AndroidUtilities.dp(4.0f)) - k8Var2.V.getMeasuredWidth();
                     org.telegram.ui.ActionBar.u0 u0Var = k8Var2.V;
                     u0Var.layout(left, u0Var.getTop(), k8Var2.V.getMeasuredWidth() + left, k8Var2.V.getBottom());
@@ -49,10 +49,10 @@ public final class q7 extends FrameLayout {
 
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f29583a) {
+        switch (this.f29534a) {
             case 1:
-                k8 k8Var = this.f29584b;
-                if (k8Var.f27775i0.getTag() != null) {
+                k8 k8Var = this.f29535b;
+                if (k8Var.f27754i0.getTag() != null) {
                     k8Var.B0(false, true);
                 }
                 return true;

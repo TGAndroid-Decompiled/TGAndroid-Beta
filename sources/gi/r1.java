@@ -11,18 +11,18 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.xc;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.ey;
-import org.telegram.ui.te1;
+import org.telegram.ui.cy;
+import org.telegram.ui.re1;
 public final class r1 implements Utilities.Callback {
-    public final te1 f11421a;
-    public final ey f11422b;
-    public final long f11423c;
+    public final re1 f11422a;
+    public final cy f11423b;
+    public final long f11424c;
     public final int d;
 
-    public r1(te1 te1Var, ey eyVar, long j10, int i10) {
-        this.f11421a = te1Var;
-        this.f11422b = eyVar;
-        this.f11423c = j10;
+    public r1(re1 re1Var, cy cyVar, long j10, int i10) {
+        this.f11422a = re1Var;
+        this.f11423b = cyVar;
+        this.f11424c = j10;
         this.d = i10;
     }
 
@@ -32,19 +32,19 @@ public final class r1 implements Utilities.Callback {
         TLRPC.User user;
         int i10;
         Boolean bool = (Boolean) obj;
-        te1 te1Var = this.f11421a;
-        ey eyVar = this.f11422b;
-        if (te1Var != null) {
-            te1Var.finishFragment();
-            eyVar.removeSelfFromStack();
+        re1 re1Var = this.f11422a;
+        cy cyVar = this.f11423b;
+        if (re1Var != null) {
+            re1Var.finishFragment();
+            cyVar.removeSelfFromStack();
         } else {
-            eyVar.finishFragment();
+            cyVar.finishFragment();
         }
         org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
         if (U == null) {
             return;
         }
-        long j10 = this.f11423c;
+        long j10 = this.f11424c;
         int i11 = (j10 > 0L ? 1 : (j10 == 0L ? 0 : -1));
         int i12 = this.d;
         if (i11 >= 0) {

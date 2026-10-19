@@ -1,45 +1,36 @@
 package ci;
 
-import android.app.Activity;
-import android.content.Context;
-import android.graphics.Canvas;
+import android.animation.ValueAnimator;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.dq;
-public final class s1 extends View {
-    public final int f5904a = 1;
-    public final dq f5905b;
+public final class s1 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f5953a;
+    public final u1 f5954b;
 
-    public s1(Context context) {
-        super(context);
-        this.f5905b = new dq(AndroidUtilities.dp(36.0f), AndroidUtilities.dp(2.0f), -13522392);
+    public s1(u1 u1Var, int i10) {
+        this.f5953a = i10;
+        this.f5954b = u1Var;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        switch (this.f5904a) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f5953a) {
             case 0:
-                int dp = AndroidUtilities.dp(1.0f);
-                dq dqVar = this.f5905b;
-                dqVar.setBounds(dp, dp, (getWidth() - dp) - dp, (getHeight() - dp) - dp);
-                dqVar.draw(canvas);
-                invalidate();
+                this.f5954b.d.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 return;
             default:
-                int width = getWidth();
-                int height = getHeight();
-                dq dqVar2 = this.f5905b;
-                dqVar2.setBounds(0, 0, width, height);
-                dqVar2.setAlpha(255);
-                dqVar2.draw(canvas);
-                invalidate();
-                super.onDraw(canvas);
+                u1 u1Var = this.f5954b;
+                u1Var.getClass();
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                u1Var.f6040n = floatValue;
+                View view = u1Var.f6037b;
+                view.setAlpha(1.0f - floatValue);
+                view.setScaleX(1.0f - u1Var.f6040n);
+                view.setScaleY(1.0f - u1Var.f6040n);
+                u1Var.f6038c.setColorFilter(new PorterDuffColorFilter(i0.a.f(u1Var.f6040n, -1, -2960428), PorterDuff.Mode.SRC_IN));
+                u1Var.f6036a.invalidate();
                 return;
         }
-    }
-
-    public s1(Activity activity) {
-        super(activity);
-        this.f5905b = new dq(AndroidUtilities.dp(30.0f), AndroidUtilities.dp(3.0f), org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21148m5, false));
     }
 }

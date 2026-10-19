@@ -120,7 +120,7 @@ public abstract class h9 extends e9 implements List, RandomAccess {
 
     @Override
     public h9 subList(int i10, int i11) {
-        w7.c8.b(i10, i11, size());
+        w7.b8.b(i10, i11, size());
         int i12 = i11 - i10;
         if (i12 == size()) {
             return this;
@@ -140,7 +140,7 @@ public abstract class h9 extends e9 implements List, RandomAccess {
             }
             return new f9(this, i10);
         }
-        throw new IndexOutOfBoundsException(w7.c8.c(i10, size, "index"));
+        throw new IndexOutOfBoundsException(w7.b8.c(i10, size, "index"));
     }
 
     @Override

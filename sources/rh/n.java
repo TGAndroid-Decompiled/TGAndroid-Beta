@@ -5,13 +5,13 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.Components.b10;
-import org.telegram.ui.Components.e61;
+import org.telegram.ui.Components.f61;
 import org.telegram.ui.Components.im0;
-public final class n extends e61 {
+public final class n extends f61 {
     public static final int f45774a = 0;
 
     static {
-        e61.setup(new e61());
+        f61.setup(new f61());
     }
 
     @Override

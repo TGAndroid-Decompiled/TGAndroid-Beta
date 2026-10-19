@@ -1,4 +1,4 @@
 package w2;
 public interface d {
-    public static final le.b C = new le.b(25);
+    public static final te.b C = new te.b(4);
 }

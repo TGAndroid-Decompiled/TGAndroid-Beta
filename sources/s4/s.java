@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.view.accessibility.AccessibilityNodeInfo;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.WeakHashMap;
-import org.telegram.ui.su;
+import org.telegram.ui.qu;
 public class s extends b0 {
     public boolean I;
     public int J;
@@ -26,7 +26,7 @@ public class s extends b0 {
         this.J = -1;
         this.M = new SparseIntArray();
         this.N = new SparseIntArray();
-        this.O = new su(1);
+        this.O = new qu(1);
         this.P = new Rect();
         y1(i10);
     }
@@ -147,25 +147,25 @@ public class s extends b0 {
     @Override
     public void V(RecyclerView recyclerView, int i10, int i11) {
         this.O.j();
-        ((SparseIntArray) this.O.f10686b).clear();
+        ((SparseIntArray) this.O.f10687b).clear();
     }
 
     @Override
     public void W(RecyclerView recyclerView) {
         this.O.j();
-        ((SparseIntArray) this.O.f10686b).clear();
+        ((SparseIntArray) this.O.f10687b).clear();
     }
 
     @Override
     public void X(RecyclerView recyclerView, int i10, int i11) {
         this.O.j();
-        ((SparseIntArray) this.O.f10686b).clear();
+        ((SparseIntArray) this.O.f10687b).clear();
     }
 
     @Override
     public void Y(RecyclerView recyclerView, int i10, int i11) {
         this.O.j();
-        ((SparseIntArray) this.O.f10686b).clear();
+        ((SparseIntArray) this.O.f10687b).clear();
     }
 
     @Override
@@ -176,11 +176,11 @@ public class s extends b0 {
     @Override
     public void a0(RecyclerView recyclerView, int i10, int i11, Object obj) {
         this.O.j();
-        ((SparseIntArray) this.O.f10686b).clear();
+        ((SparseIntArray) this.O.f10687b).clear();
     }
 
     @Override
-    public final void a1(qf.e eVar, y0 y0Var, i2.n0 n0Var, int i10) {
+    public final void a1(qf.e eVar, y0 y0Var, i2.o0 o0Var, int i10) {
         boolean z10;
         A1();
         if (y0Var.b() > 0 && !y0Var.f46070g) {
@@ -189,20 +189,20 @@ public class s extends b0 {
             } else {
                 z10 = false;
             }
-            int u12 = u1(n0Var.f12490b, eVar, y0Var);
+            int u12 = u1(o0Var.f12495b, eVar, y0Var);
             if (z10) {
                 while (u12 > 0) {
-                    int i11 = n0Var.f12490b;
+                    int i11 = o0Var.f12495b;
                     if (i11 <= 0) {
                         break;
                     }
                     int i12 = i11 - 1;
-                    n0Var.f12490b = i12;
+                    o0Var.f12495b = i12;
                     u12 = u1(i12, eVar, y0Var);
                 }
             } else {
                 int b10 = y0Var.b() - 1;
-                int i13 = n0Var.f12490b;
+                int i13 = o0Var.f12495b;
                 while (i13 < b10) {
                     int i14 = i13 + 1;
                     int u13 = u1(i14, eVar, y0Var);
@@ -212,7 +212,7 @@ public class s extends b0 {
                     i13 = i14;
                     u12 = u13;
                 }
-                n0Var.f12490b = i13;
+                o0Var.f12495b = i13;
             }
         }
         r1();
@@ -378,14 +378,14 @@ public class s extends b0 {
         if (this.f45898o == 1) {
             int height = rect.height() + C;
             RecyclerView recyclerView = this.f46003b;
-            WeakHashMap weakHashMap = r0.i0.f44818a;
+            WeakHashMap weakHashMap = r0.i0.f44816a;
             g11 = n0.g(i11, height, recyclerView.getMinimumHeight());
             int[] iArr = this.K;
             g10 = n0.g(i10, iArr[iArr.length - 1] + E, this.f46003b.getMinimumWidth());
         } else {
             int width = rect.width() + E;
             RecyclerView recyclerView2 = this.f46003b;
-            WeakHashMap weakHashMap2 = r0.i0.f44818a;
+            WeakHashMap weakHashMap2 = r0.i0.f44816a;
             g10 = n0.g(i10, width, recyclerView2.getMinimumWidth());
             int[] iArr2 = this.K;
             g11 = n0.g(i11, iArr2[iArr2.length - 1] + C, this.f46003b.getMinimumHeight());
@@ -522,7 +522,7 @@ public class s extends b0 {
             l0();
             return;
         }
-        throw new IllegalArgumentException(i2.d.j(i10, "Span count should be at least 1. Provided "));
+        throw new IllegalArgumentException(i2.e.j(i10, "Span count should be at least 1. Provided "));
     }
 
     public final void z1(g.o oVar) {
@@ -535,7 +535,7 @@ public class s extends b0 {
         this.J = -1;
         this.M = new SparseIntArray();
         this.N = new SparseIntArray();
-        this.O = new su(1);
+        this.O = new qu(1);
         this.P = new Rect();
         y1(i10);
     }

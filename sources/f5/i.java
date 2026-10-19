@@ -4,11 +4,11 @@ import com.google.android.gms.internal.play_billing.k3;
 import java.nio.ByteBuffer;
 import java.util.LinkedList;
 public final class i extends com.googlecode.mp4parser.a {
-    public static final le.b d;
-    public static final le.b e;
-    public String f10411a;
-    public long f10412b;
-    public LinkedList f10413c;
+    public static final te.b d;
+    public static final te.b e;
+    public String f10412a;
+    public long f10413b;
+    public LinkedList f10414c;
 
     static {
         te.a aVar = new te.a(i.class, "FileTypeBox.java");
@@ -22,37 +22,37 @@ public final class i extends com.googlecode.mp4parser.a {
 
     @Override
     public final void _parseDetails(ByteBuffer byteBuffer) {
-        this.f10411a = e5.b.d(byteBuffer);
-        this.f10412b = e5.b.i(byteBuffer);
+        this.f10412a = e5.b.d(byteBuffer);
+        this.f10413b = e5.b.i(byteBuffer);
         int remaining = byteBuffer.remaining() / 4;
-        this.f10413c = new LinkedList();
+        this.f10414c = new LinkedList();
         for (int i10 = 0; i10 < remaining; i10++) {
-            this.f10413c.add(e5.b.d(byteBuffer));
+            this.f10414c.add(e5.b.d(byteBuffer));
         }
     }
 
     @Override
     public final void getContent(ByteBuffer byteBuffer) {
-        byteBuffer.put(e5.c.d(this.f10411a));
-        byteBuffer.putInt((int) this.f10412b);
-        for (String str : this.f10413c) {
+        byteBuffer.put(e5.c.d(this.f10412a));
+        byteBuffer.putInt((int) this.f10413b);
+        for (String str : this.f10414c) {
             byteBuffer.put(e5.c.d(str));
         }
     }
 
     @Override
     public final long getContentSize() {
-        return (this.f10413c.size() * 4) + 8;
+        return (this.f10414c.size() * 4) + 8;
     }
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("FileTypeBox[majorBrand=");
         k3.p(te.a.b(d, this, this));
-        sb2.append(this.f10411a);
+        sb2.append(this.f10412a);
         sb2.append(";minorVersion=");
         k3.p(te.a.b(e, this, this));
-        sb2.append(this.f10412b);
-        for (String str : this.f10413c) {
+        sb2.append(this.f10413b);
+        for (String str : this.f10414c) {
             sb2.append(";compatibleBrand=");
             sb2.append(str);
         }

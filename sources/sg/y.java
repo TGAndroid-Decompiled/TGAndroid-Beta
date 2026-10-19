@@ -21,7 +21,7 @@ public final class y implements org.telegram.ui.ActionBar.a2, qa.a, r9.d, d9.k, 
     public void accept(Object obj) {
         switch (this.f46501a) {
             case 9:
-                ((u2.b1) obj).f47258b.release();
+                ((u2.a1) obj).f47249b.release();
                 return;
             default:
                 ((ExecutorService) obj).shutdown();
@@ -35,9 +35,9 @@ public final class y implements org.telegram.ui.ActionBar.a2, qa.a, r9.d, d9.k, 
             case 7:
                 return ((c3.o) obj).b().getClass().getSimpleName();
             case 8:
-                return e9.n0.u(e9.s.x(((u2.e0) obj).r().f47422b, new y(10)));
+                return e9.n0.u(e9.s.x(((u2.e0) obj).r().f47418b, new y(10)));
             case 10:
-                return Integer.valueOf(((b2.p1) obj).f3906c);
+                return Integer.valueOf(((b2.p1) obj).f3904c);
             case 23:
                 return Long.valueOf(((z3.a) obj).f50635b);
             case 24:
@@ -45,11 +45,11 @@ public final class y implements org.telegram.ui.ActionBar.a2, qa.a, r9.d, d9.k, 
             case 25:
                 return (w3.q) obj;
             default:
-                u2.s1 s1Var = (u2.s1) obj;
-                s1Var.getClass();
+                u2.r1 r1Var = (u2.r1) obj;
+                r1Var.getClass();
                 Bundle bundle = new Bundle();
-                String str = u2.s1.e;
-                e9.x1 x1Var = s1Var.f47422b;
+                String str = u2.r1.e;
+                e9.x1 x1Var = r1Var.f47418b;
                 ArrayList<? extends Parcelable> arrayList = new ArrayList<>(x1Var.d);
                 e9.l0 listIterator = x1Var.listIterator(0);
                 while (listIterator.hasNext()) {
@@ -127,10 +127,10 @@ public final class y implements org.telegram.ui.ActionBar.a2, qa.a, r9.d, d9.k, 
         File file;
         if (task.isSuccessful()) {
             x9.b bVar = (x9.b) task.getResult();
-            u9.b bVar2 = u9.b.f47621a;
-            bVar2.b("Crashlytics report successfully enqueued to DataTransport: " + bVar.f49665b);
+            u9.b bVar2 = u9.b.f47619a;
+            bVar2.b("Crashlytics report successfully enqueued to DataTransport: " + bVar.f49664b);
             z10 = true;
-            if (bVar.f49666c.delete()) {
+            if (bVar.f49665c.delete()) {
                 bVar2.b("Deleted report file: " + file.getPath());
             } else {
                 bVar2.d("Crashlytics could not delete report file: " + file.getPath(), null);

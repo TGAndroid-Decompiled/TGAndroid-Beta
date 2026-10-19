@@ -14,7 +14,7 @@ import android.os.SystemClock;
 import android.util.Size;
 import android.view.Surface;
 import java.util.concurrent.CountDownLatch;
-import org.telegram.ui.Components.ay0;
+import org.telegram.ui.Components.by0;
 public final class t {
     public EGLSurface B;
     public EGLSurface C;
@@ -514,7 +514,7 @@ public final class t {
         this.f46808r0 = false;
         if (handler != null && handlerThread != null) {
             CountDownLatch countDownLatch = new CountDownLatch(1);
-            handler.post(new ay0(this, handlerThread, countDownLatch, 20));
+            handler.post(new by0(this, handlerThread, countDownLatch, 20));
             try {
                 countDownLatch.await();
             } catch (InterruptedException unused) {

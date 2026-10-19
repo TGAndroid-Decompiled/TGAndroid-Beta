@@ -1,41 +1,34 @@
 package ci;
-public final class z3 implements Runnable {
-    public final int f6174a;
-    public final g4 f6175b;
 
-    public z3(g4 g4Var, int i10) {
-        this.f6174a = i10;
-        this.f6175b = g4Var;
+import android.view.View;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.vm0;
+public final class z3 implements View.OnClickListener {
+    public final int f6249a;
+    public final boolean f6250b;
+    public final Object f6251c;
+    public final Object d;
+    public final Object e;
+
+    public z3(Object obj, Object obj2, boolean z10, Object obj3, int i10) {
+        this.f6249a = i10;
+        this.f6251c = obj;
+        this.d = obj2;
+        this.f6250b = z10;
+        this.e = obj3;
     }
 
     @Override
-    public final void run() {
-        switch (this.f6174a) {
-            case 0:
-                ((q9) this.f6175b.f5357l.Q1).g(false);
-                return;
-            case 1:
-                p4 p4Var = this.f6175b.f5357l;
-                i4 i4Var = p4Var.Q1;
-                if (i4Var != null) {
-                    z9 z9Var = ((q9) i4Var).d;
-                    z9Var.Z0 = false;
-                    z9Var.P();
-                }
-                p4Var.f1(false);
-                p4Var.f5671h3 = true;
-                p4Var.K0.D(true);
-                return;
-            case 2:
-                p4 p4Var2 = this.f6175b.f5357l;
-                p4Var2.U3 = true;
-                p4Var2.setActive(false);
-                return;
-            default:
-                p4 p4Var3 = this.f6175b.f5357l;
-                p4Var3.U3 = true;
-                p4Var3.setActive(false);
-                return;
-        }
+    public final void onClick(android.view.View r11) {
+        throw new UnsupportedOperationException("Method not decompiled: ci.z3.onClick(android.view.View):void");
+    }
+
+    public z3(ArrayList arrayList, TLRPC.TL_secureRequiredType tL_secureRequiredType, vm0 vm0Var, boolean z10) {
+        this.f6249a = 2;
+        this.f6251c = vm0Var;
+        this.d = arrayList;
+        this.e = tL_secureRequiredType;
+        this.f6250b = z10;
     }
 }

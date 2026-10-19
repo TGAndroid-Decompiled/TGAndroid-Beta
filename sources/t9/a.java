@@ -16,8 +16,8 @@ public final class a implements v9.a {
     public void a(y yVar) {
         f fVar = this.f46907a;
         synchronized (fVar) {
-            ((ArrayList) fVar.f3097b).add(yVar);
-            ((u) fVar.f3098c).getClass();
+            ((ArrayList) fVar.f3095b).add(yVar);
+            ((u) fVar.f3096c).getClass();
             if (Log.isLoggable("FirebaseCrashlytics", 3)) {
                 Log.d("FirebaseCrashlytics", "Could not register handler for breadcrumbs events.", null);
             }
@@ -26,6 +26,6 @@ public final class a implements v9.a {
 
     @Override
     public void o(Bundle bundle) {
-        ((rb.b) this.f46907a.f3096a).o(bundle);
+        ((rb.b) this.f46907a.f3094a).o(bundle);
     }
 }

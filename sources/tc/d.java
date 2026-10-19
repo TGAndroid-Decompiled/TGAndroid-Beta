@@ -1,6 +1,6 @@
 package tc;
 
-import c5.b0;
+import c5.c0;
 import e2.j0;
 public abstract class d {
     public static final int[] f46932a = {16, 17, 18, 0, 8, 7, 9, 6, 10, 5, 11, 4, 12, 3, 13, 2, 14, 1, 15};
@@ -95,28 +95,28 @@ public abstract class d {
         return true;
     }
 
-    public static void c(b0 b0Var, int[] iArr, int[] iArr2, j0 j0Var) {
+    public static void c(c0 c0Var, int[] iArr, int[] iArr2, j0 j0Var) {
         int i10;
         int s10;
         int s11;
         int i11 = 0;
         while (i11 < iArr2.length) {
-            int i12 = j0Var.i(b0Var, iArr);
+            int i12 = j0Var.i(c0Var, iArr);
             if (i12 >= 0 && i12 <= 15) {
                 iArr2[i11] = i12;
             } else {
                 switch (i12) {
                     case 16:
                         i10 = iArr2[i11 - 1];
-                        s10 = b0Var.s(2, iArr) + 3;
+                        s10 = c0Var.s(2, iArr) + 3;
                         break;
                     case 17:
-                        s11 = b0Var.s(3, iArr) + 3;
+                        s11 = c0Var.s(3, iArr) + 3;
                         s10 = s11;
                         i10 = 0;
                         break;
                     case 18:
-                        s11 = b0Var.s(7, iArr) + 11;
+                        s11 = c0Var.s(7, iArr) + 11;
                         s10 = s11;
                         i10 = 0;
                         break;
@@ -132,9 +132,9 @@ public abstract class d {
         }
     }
 
-    public static int d(b0 b0Var, int[] iArr, j0 j0Var) {
+    public static int d(c0 c0Var, int[] iArr, j0 j0Var) {
         int i10;
-        int i11 = j0Var.i(b0Var, iArr);
+        int i11 = j0Var.i(c0Var, iArr);
         int i12 = 2;
         int i13 = 5;
         switch (i11) {
@@ -249,29 +249,29 @@ public abstract class d {
             default:
                 throw new Exception(String.format("[%s] Bad distance code '%d' at the bit index '%d'.", d.class.getSimpleName(), Integer.valueOf(i11), Integer.valueOf(iArr[0])));
         }
-        return b0Var.s(i12, iArr) + i13;
+        return c0Var.s(i12, iArr) + i13;
     }
 
-    public static void e(b0 b0Var, int[] iArr, j0[] j0VarArr) {
-        int s10 = b0Var.s(5, iArr) + 257;
-        int s11 = b0Var.s(5, iArr) + 1;
-        int s12 = b0Var.s(4, iArr) + 4;
+    public static void e(c0 c0Var, int[] iArr, j0[] j0VarArr) {
+        int s10 = c0Var.s(5, iArr) + 257;
+        int s11 = c0Var.s(5, iArr) + 1;
+        int s12 = c0Var.s(4, iArr) + 4;
         int[] iArr2 = new int[19];
         for (int i10 = 0; i10 < s12; i10++) {
-            iArr2[f46932a[i10]] = (byte) b0Var.s(3, iArr);
+            iArr2[f46932a[i10]] = (byte) c0Var.s(3, iArr);
         }
         j0 j0Var = new j0(iArr2);
         int[] iArr3 = new int[s10];
-        c(b0Var, iArr, iArr3, j0Var);
+        c(c0Var, iArr, iArr3, j0Var);
         j0 j0Var2 = new j0(iArr3);
         int[] iArr4 = new int[s11];
-        c(b0Var, iArr, iArr4, j0Var);
+        c(c0Var, iArr, iArr4, j0Var);
         j0 j0Var3 = new j0(iArr4);
         j0VarArr[0] = j0Var2;
         j0VarArr[1] = j0Var3;
     }
 
-    public static int f(b0 b0Var, int[] iArr, int i10) {
+    public static int f(c0 c0Var, int[] iArr, int i10) {
         int i11;
         int i12 = 1;
         switch (i10) {
@@ -365,6 +365,6 @@ public abstract class d {
             default:
                 throw new Exception(String.format("[%s] Bad literal/length code '%d' at the bit index '%d'.", d.class.getSimpleName(), Integer.valueOf(i10), Integer.valueOf(iArr[0])));
         }
-        return b0Var.s(i12, iArr) + i11;
+        return c0Var.s(i12, iArr) + i11;
     }
 }

@@ -3,18 +3,18 @@ package bb;
 import kotlin.jvm.internal.i;
 import x9.j;
 public final class a {
-    public final ke.d f4232a;
-    public j f4233b = null;
+    public final ke.d f4230a;
+    public j f4231b = null;
 
     public a(ke.d dVar) {
-        this.f4232a = dVar;
+        this.f4230a = dVar;
     }
 
     public final boolean equals(Object obj) {
         if (this != obj) {
             if (obj instanceof a) {
                 a aVar = (a) obj;
-                if (!this.f4232a.equals(aVar.f4232a) || !i.a(this.f4233b, aVar.f4233b)) {
+                if (!this.f4230a.equals(aVar.f4230a) || !i.a(this.f4231b, aVar.f4231b)) {
                     return false;
                 }
                 return true;
@@ -26,8 +26,8 @@ public final class a {
 
     public final int hashCode() {
         int hashCode;
-        int hashCode2 = this.f4232a.hashCode() * 31;
-        j jVar = this.f4233b;
+        int hashCode2 = this.f4230a.hashCode() * 31;
+        j jVar = this.f4231b;
         if (jVar == null) {
             hashCode = 0;
         } else {
@@ -37,6 +37,6 @@ public final class a {
     }
 
     public final String toString() {
-        return "Dependency(mutex=" + this.f4232a + ", subscriber=" + this.f4233b + ')';
+        return "Dependency(mutex=" + this.f4230a + ", subscriber=" + this.f4231b + ')';
     }
 }

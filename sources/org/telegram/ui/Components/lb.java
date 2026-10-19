@@ -10,17 +10,17 @@ import java.util.WeakHashMap;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 public final class lb extends Dialog {
-    public final kb f28190a;
-    public final WindowManager.LayoutParams f28191b;
+    public final kb f28177a;
+    public final WindowManager.LayoutParams f28178b;
 
     public lb(Context context, ei.o8 o8Var) {
         super(context);
         AndroidUtilities.enableEdgeToEdge(getWindow());
         kb kbVar = new kb(this, context);
-        this.f28190a = kbVar;
+        this.f28177a = kbVar;
         setContentView(kbVar, new ViewGroup.LayoutParams(-1, -1));
         s sVar = new s(this, 15);
-        WeakHashMap weakHashMap = r0.i0.f44818a;
+        WeakHashMap weakHashMap = r0.i0.f44816a;
         r0.a0.i(kbVar, sVar);
         int i10 = Build.VERSION.SDK_INT;
         if (i10 >= 30) {
@@ -34,7 +34,7 @@ public final class lb extends Dialog {
             window.setWindowAnimations(R.style.DialogNoAnimation);
             window.setBackgroundDrawable(null);
             WindowManager.LayoutParams attributes = window.getAttributes();
-            this.f28191b = attributes;
+            this.f28178b = attributes;
             attributes.width = -1;
             attributes.height = -1;
             attributes.gravity = 51;
@@ -46,7 +46,7 @@ public final class lb extends Dialog {
                 attributes.layoutInDisplayCutoutMode = 1;
             }
             window.setAttributes(attributes);
-            if (AndroidUtilities.computePerceivedBrightness(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20928a7, false)) <= 0.721f) {
+            if (AndroidUtilities.computePerceivedBrightness(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20931a7, false)) <= 0.721f) {
                 z10 = false;
             }
             AndroidUtilities.setLightNavigationBar(this, z10);
@@ -55,7 +55,7 @@ public final class lb extends Dialog {
     }
 
     public static kb a(Context context) {
-        return new lb(context, null).f28190a;
+        return new lb(context, null).f28177a;
     }
 
     @Override

@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import ci.n1;
+import ci.o1;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
@@ -19,7 +19,7 @@ import org.telegram.ui.Components.h9;
 import org.telegram.ui.Components.im0;
 import org.telegram.ui.Components.x90;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.sa1;
+import org.telegram.ui.qa1;
 import w7.z5;
 public final class i0 extends sg.m1 {
     public final ArrayList Q0;
@@ -96,15 +96,15 @@ public final class i0 extends sg.m1 {
     @Override
     public final void W(int i10, View view) {
         if (i10 == 0) {
-            view.setOutlineProvider(new n1(21));
+            view.setOutlineProvider(new o1(21));
             view.setClipToOutline(true);
-            view.setBackgroundColor(h6.w0(h6.f20928a7, this.resourcesProvider));
+            view.setBackgroundColor(h6.w0(h6.f20931a7, this.resourcesProvider));
             ((ViewGroup.MarginLayoutParams) view.getLayoutParams()).topMargin = -AndroidUtilities.dp(6.0f);
         }
     }
 
     @Override
-    public final void X(sa1 sa1Var) {
+    public final void X(qa1 qa1Var) {
         int i10;
         float f7;
         float f10;
@@ -127,7 +127,7 @@ public final class i0 extends sg.m1 {
         } else {
             f10 = 14.0f;
         }
-        sa1Var.addView(view, z5.k(0.0f, f11, 0.0f, f10, -1, i11));
+        qa1Var.addView(view, z5.k(0.0f, f11, 0.0f, f10, -1, i11));
     }
 
     @Override

@@ -8,8 +8,8 @@ import android.util.Log;
 import com.google.android.gms.internal.cast.a0;
 import java.util.concurrent.atomic.AtomicBoolean;
 public final class j extends a0 {
-    public final Context f14979a;
-    public final d f14980b;
+    public final Context f14982a;
+    public final d f14983b;
 
     public j(k6.d r2, android.content.Context r3) {
         throw new UnsupportedOperationException("Method not decompiled: k6.j.<init>(k6.d, android.content.Context):void");
@@ -23,11 +23,11 @@ public final class j extends a0 {
             Log.w("GoogleApiAvailability", "Don't know how to handle this message: " + i10);
             return;
         }
-        int i11 = e.f14971a;
-        d dVar = this.f14980b;
-        Context context = this.f14979a;
+        int i11 = e.f14974a;
+        d dVar = this.f14983b;
+        Context context = this.f14982a;
         int d = dVar.d(context, i11);
-        AtomicBoolean atomicBoolean = g.f14974a;
+        AtomicBoolean atomicBoolean = g.f14977a;
         if (d != 1 && d != 2 && d != 3 && d != 9) {
             return;
         }

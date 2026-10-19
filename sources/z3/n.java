@@ -17,7 +17,7 @@ public final class n implements j0 {
     public boolean f50661i;
     public int d = 0;
     public int e = 0;
-    public byte[] f50659f = m0.f8254b;
+    public byte[] f50659f = m0.f8255b;
     public final x f50658c = new x();
 
     public n(j0 j0Var, k kVar) {
@@ -34,8 +34,8 @@ public final class n implements j0 {
     public final void b(w wVar) {
         boolean z10;
         m mVar;
-        wVar.f4132s.getClass();
-        String str = wVar.f4132s;
+        wVar.f4130s.getClass();
+        String str = wVar.f4130s;
         if (v0.h(str) == 3) {
             z10 = true;
         } else {
@@ -60,11 +60,11 @@ public final class n implements j0 {
             return;
         }
         v a2 = wVar.a();
-        a2.f4079r = v0.n("application/x-media3-cues");
-        a2.f4071j = str;
-        a2.f4083w = Long.MAX_VALUE;
+        a2.f4077r = v0.n("application/x-media3-cues");
+        a2.f4069j = str;
+        a2.f4081w = Long.MAX_VALUE;
         a2.P = kVar.L(wVar);
-        i2.d.u(a2, j0Var);
+        i2.e.u(a2, j0Var);
     }
 
     @Override

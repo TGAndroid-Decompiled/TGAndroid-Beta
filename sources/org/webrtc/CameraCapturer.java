@@ -328,7 +328,7 @@ abstract class CameraCapturer implements CameraVideoCapturer {
 
     @Override
     public void changeCaptureFormat(int i10, int i11, int i12) {
-        StringBuilder m10 = i2.d.m("changeCaptureFormat: ", i10, "x", i11, "@");
+        StringBuilder m10 = i2.e.m("changeCaptureFormat: ", i10, "x", i11, "@");
         m10.append(i12);
         Logging.d("CameraCapturer", m10.toString());
         synchronized (this.stateLock) {
@@ -392,7 +392,7 @@ abstract class CameraCapturer implements CameraVideoCapturer {
 
     @Override
     public void startCapture(int i10, int i11, int i12) {
-        StringBuilder m10 = i2.d.m("startCapture: ", i10, "x", i11, "@");
+        StringBuilder m10 = i2.e.m("startCapture: ", i10, "x", i11, "@");
         m10.append(i12);
         Logging.d("CameraCapturer", m10.toString());
         if (this.applicationContext != null) {

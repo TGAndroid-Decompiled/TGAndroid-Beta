@@ -1,41 +1,34 @@
 package org.telegram.ui;
 
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.NotificationCenter;
-public final class zk0 implements Runnable {
-    public final int f43743a;
-    public final PasscodeActivity f43744b;
-    public final boolean f43745c;
+public final class zk0 extends org.telegram.ui.ActionBar.j {
+    public final org.telegram.ui.ActionBar.e1 f43764a;
+    public final PasscodeActivity f43765b;
 
-    public zk0(PasscodeActivity passcodeActivity, boolean z10, int i10) {
-        this.f43743a = i10;
-        this.f43744b = passcodeActivity;
-        this.f43745c = z10;
+    public zk0(PasscodeActivity passcodeActivity, org.telegram.ui.ActionBar.e1 e1Var) {
+        this.f43765b = passcodeActivity;
+        this.f43764a = e1Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f43743a) {
-            case 0:
-                PasscodeActivity passcodeActivity = this.f43744b;
-                passcodeActivity.getMediaDataController().buildShortcuts();
-                if (this.f43745c) {
-                    passcodeActivity.presentFragment(new PasscodeActivity(0), true);
-                    gb0 gb0Var = passcodeActivity.U;
-                    if (gb0Var != null) {
-                        AndroidUtilities.runOnUIThread(gb0Var);
-                        passcodeActivity.U = null;
-                    }
-                } else {
-                    passcodeActivity.finishFragment();
-                }
-                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didSetPasscode, new Object[0]);
-                return;
-            default:
-                PasscodeActivity passcodeActivity2 = this.f43744b;
-                passcodeActivity2.f33220w.e(true, this.f43745c);
-                AndroidUtilities.cancelRunOnUIThread(passcodeActivity2.T);
-                return;
+    public final void b(int i10) {
+        PasscodeActivity passcodeActivity = this.f43765b;
+        if (i10 == -1) {
+            passcodeActivity.finishFragment();
+            return;
+        }
+        int i11 = 1;
+        if (i10 == 1) {
+            if (passcodeActivity.f33228y != 0) {
+                i11 = 0;
+            }
+            passcodeActivity.f33228y = i11;
+            AndroidUtilities.runOnUIThread(new wg0(8, this, this.f43764a), 150L);
+            passcodeActivity.h.setText("");
+            for (tr trVar : passcodeActivity.f33223n.f40961f) {
+                trVar.setText("");
+            }
+            passcodeActivity.o0();
         }
     }
 }

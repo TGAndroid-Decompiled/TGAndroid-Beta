@@ -1,6 +1,6 @@
 package ig;
 
-import ai.k2;
+import ai.g2;
 import ai.x7;
 import android.text.TextUtils;
 import java.util.ArrayList;
@@ -14,27 +14,27 @@ import org.telegram.ui.Components.rd;
 import org.telegram.ui.Components.xc;
 public final class y {
     public static volatile y[] e = new y[4];
-    public static final Object[] f13087f = new Object[4];
-    public final int f13088a;
-    public final ArrayList f13089b = new ArrayList();
-    public boolean f13090c = false;
+    public static final Object[] f13089f = new Object[4];
+    public final int f13090a;
+    public final ArrayList f13091b = new ArrayList();
+    public boolean f13092c = false;
     public boolean d = false;
 
     static {
         for (int i10 = 0; i10 < 4; i10++) {
-            f13087f[i10] = new Object();
+            f13089f[i10] = new Object();
         }
     }
 
     public y(int i10) {
-        this.f13088a = i10;
+        this.f13090a = i10;
     }
 
     public static y d(int i10) {
         y yVar;
         y yVar2 = e[i10];
         if (yVar2 == null) {
-            synchronized (f13087f[i10]) {
+            synchronized (f13089f[i10]) {
                 try {
                     yVar = e[i10];
                     if (yVar == null) {
@@ -55,10 +55,10 @@ public final class y {
     public final void a(v vVar, String str) {
         TL_account.TL_businessChatLink c10 = c(str);
         if (c10 != null) {
-            ArrayList arrayList = this.f13089b;
+            ArrayList arrayList = this.f13091b;
             int indexOf = arrayList.indexOf(c10);
             arrayList.remove(c10);
-            NotificationCenter.getInstance(this.f13088a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.businessLinksUpdated, new Object[0]);
+            NotificationCenter.getInstance(this.f13090a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.businessLinksUpdated, new Object[0]);
             xc.a0(vVar).U(LocaleController.getString(R.string.BusinessLinkDeleted), true, new ah.o(this, indexOf, c10, 18), new ei.z1(this, str, c10, 26)).j();
         }
     }
@@ -73,14 +73,14 @@ public final class y {
             tL_inputBusinessChatLink.flags |= 2;
         }
         editbusinesschatlink.link = tL_inputBusinessChatLink;
-        ConnectionsManager.getInstance(this.f13088a).sendRequest(editbusinesschatlink, new k2(this, tL_businessChatLink, rdVar, 9));
+        ConnectionsManager.getInstance(this.f13090a).sendRequest(editbusinesschatlink, new g2(this, tL_businessChatLink, rdVar, 9));
     }
 
     public final TL_account.TL_businessChatLink c(String str) {
         TL_account.TL_businessChatLink tL_businessChatLink;
         int i10 = 0;
         while (true) {
-            ArrayList arrayList = this.f13089b;
+            ArrayList arrayList = this.f13091b;
             if (i10 < arrayList.size()) {
                 tL_businessChatLink = (TL_account.TL_businessChatLink) arrayList.get(i10);
                 if (!TextUtils.equals(tL_businessChatLink.link, str)) {
@@ -109,10 +109,10 @@ public final class y {
     }
 
     public final void e(boolean z10, boolean z11) {
-        if (!this.f13090c) {
+        if (!this.f13092c) {
             if (!this.d || (z11 && !z10)) {
-                this.f13090c = true;
-                int i10 = this.f13088a;
+                this.f13092c = true;
+                int i10 = this.f13090a;
                 if (z10) {
                     MessagesStorage messagesStorage = MessagesStorage.getInstance(i10);
                     messagesStorage.getStorageQueue().postRunnable(new x7(this, messagesStorage, z11, 5));
@@ -124,8 +124,8 @@ public final class y {
     }
 
     public final void f() {
-        ArrayList arrayList = new ArrayList(this.f13089b);
-        MessagesStorage messagesStorage = MessagesStorage.getInstance(this.f13088a);
+        ArrayList arrayList = new ArrayList(this.f13091b);
+        MessagesStorage messagesStorage = MessagesStorage.getInstance(this.f13090a);
         messagesStorage.getStorageQueue().postRunnable(new ei.w0(1, arrayList, messagesStorage));
     }
 }

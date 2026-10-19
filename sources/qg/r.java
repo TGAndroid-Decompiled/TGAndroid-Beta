@@ -1,125 +1,51 @@
 package qg;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.LinearGradient;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.graphics.Shader;
-import android.view.MotionEvent;
+import ai.uc;
 import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class r extends View {
-    public final Paint f44600a;
-    public final Paint f44601b;
-    public int f44602c;
-    public int d;
-    public final x e;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.Components.v81;
+public final class r extends v81 {
+    public final uc f44595a;
 
-    public r(x xVar, Context context) {
-        super(context);
-        this.e = xVar;
-        this.f44600a = new Paint(1);
-        Paint paint = new Paint(1);
-        this.f44601b = paint;
-        paint.setColor(-1);
-        paint.setStyle(Paint.Style.FILL_AND_STROKE);
-        paint.setStrokeWidth(AndroidUtilities.dp(3.0f));
-    }
-
-    public final void a() {
-        int argb;
-        int argb2;
-        int i10 = this.f44602c;
-        x xVar = this.e;
-        if (i10 != 1) {
-            if (i10 != 2) {
-                argb = Color.argb(255, 0, Color.green(xVar.f44696f), Color.blue(xVar.f44696f));
-                argb2 = Color.argb(255, 255, Color.green(xVar.f44696f), Color.blue(xVar.f44696f));
-            } else {
-                argb = Color.argb(255, Color.red(xVar.f44696f), Color.green(xVar.f44696f), 0);
-                argb2 = Color.argb(255, Color.red(xVar.f44696f), Color.green(xVar.f44696f), 255);
-            }
-        } else {
-            argb = Color.argb(255, Color.red(xVar.f44696f), 0, Color.blue(xVar.f44696f));
-            argb2 = Color.argb(255, Color.red(xVar.f44696f), 255, Color.blue(xVar.f44696f));
-        }
-        this.f44600a.setShader(new LinearGradient(0.0f, 0.0f, getWidth(), 0.0f, new int[]{argb, argb2}, (float[]) null, Shader.TileMode.CLAMP));
-    }
-
-    public final void b(float f7) {
-        int argb;
-        float dp = AndroidUtilities.dp(6.0f);
-        float a2 = w7.r.a(((f7 - dp) + (AndroidUtilities.dp(13.0f) - (this.f44601b.getStrokeWidth() / 2.0f))) / (getWidth() - (dp * 2.0f)), 0.0f, 1.0f);
-        int i10 = this.f44602c;
-        x xVar = this.e;
-        if (i10 != 1) {
-            if (i10 != 2) {
-                argb = Color.argb(255, (int) (a2 * 255.0f), Color.green(xVar.f44696f), Color.blue(xVar.f44696f));
-            } else {
-                argb = Color.argb(255, Color.red(xVar.f44696f), Color.green(xVar.f44696f), (int) (a2 * 255.0f));
-            }
-        } else {
-            argb = Color.argb(255, Color.red(xVar.f44696f), (int) (a2 * 255.0f), Color.blue(xVar.f44696f));
-        }
-        xVar.n(i0.a.o(argb, Color.alpha(xVar.f44696f)), 4);
-        invalidate();
+    public r(uc ucVar) {
+        this.f44595a = ucVar;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        int green;
-        super.onDraw(canvas);
-        float height = getHeight() / 2.0f;
-        float dp = AndroidUtilities.dp(6.0f);
-        RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(dp, height - dp, getWidth() - dp, height + dp);
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), this.f44600a);
-        int i10 = this.f44602c;
-        x xVar = this.e;
+    public final View d(int i10) {
+        uc ucVar = this.f44595a;
         if (i10 != 1) {
             if (i10 != 2) {
-                green = Color.red(xVar.f44696f);
-            } else {
-                green = Color.blue(xVar.f44696f);
+                return (u) ucVar.f2275b;
             }
-        } else {
-            green = Color.green(xVar.f44696f);
+            return (x) ucVar.d;
         }
-        float f7 = green / 255.0f;
-        float dp2 = AndroidUtilities.dp(13.0f);
-        Paint paint = this.f44601b;
-        float strokeWidth = dp2 - (paint.getStrokeWidth() / 2.0f);
-        float max = Math.max(dp + strokeWidth, (((getWidth() - (2.0f * dp)) * f7) + dp) - strokeWidth);
-        canvas.drawCircle(max, height, dp2, paint);
-        rg.i1.y1(max, height, strokeWidth, this.d, canvas);
+        return (t) ucVar.f2276c;
     }
 
     @Override
-    public final void onSizeChanged(int i10, int i11, int i12, int i13) {
-        super.onSizeChanged(i10, i11, i12, i13);
-        a();
+    public final int e() {
+        return 3;
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        int actionMasked = motionEvent.getActionMasked();
-        if (actionMasked != 0) {
-            if (actionMasked != 1) {
-                if (actionMasked != 2) {
-                    if (actionMasked == 3) {
-                        getParent().requestDisallowInterceptTouchEvent(false);
-                    }
-                }
-            } else {
-                b(motionEvent.getX());
-                getParent().requestDisallowInterceptTouchEvent(false);
+    public final CharSequence g(int i10) {
+        if (i10 != 1) {
+            if (i10 != 2) {
+                return LocaleController.getString(R.string.PaintPaletteGrid).toUpperCase();
             }
-            return true;
+            return LocaleController.getString(R.string.PaintPaletteSliders).toUpperCase();
         }
-        getParent().requestDisallowInterceptTouchEvent(true);
-        b(motionEvent.getX());
-        return true;
+        return LocaleController.getString(R.string.PaintPaletteSpectrum).toUpperCase();
+    }
+
+    @Override
+    public final int h(int i10) {
+        return i10;
+    }
+
+    @Override
+    public final void b(View view, int i10, int i11) {
     }
 }

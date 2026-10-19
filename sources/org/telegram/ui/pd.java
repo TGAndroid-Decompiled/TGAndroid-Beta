@@ -1,90 +1,141 @@
 package org.telegram.ui;
 
-import android.text.SpannableStringBuilder;
+import android.view.View;
+import android.widget.EditText;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
-import org.telegram.tgnet.ConnectionsManager;
-public final class pd implements Runnable {
-    public final int f40053a;
-    public final ke f40054b;
-    public final int f40055c;
+public final class pd implements View.OnFocusChangeListener {
+    public final int f40195a;
+    public final Object f40196b;
 
-    public pd(ke keVar, int i10, int i11) {
-        this.f40053a = i11;
-        this.f40054b = keVar;
-        this.f40055c = i10;
+    public pd(Object obj, int i10) {
+        this.f40195a = i10;
+        this.f40196b = obj;
     }
 
     @Override
-    public final void run() {
-        boolean z10;
-        String formatPluralStringSpaced;
-        int i10 = this.f40053a;
-        int i11 = this.f40055c;
-        ke keVar = this.f40054b;
-        switch (i10) {
+    public final void onFocusChange(View view, boolean z10) {
+        float f7;
+        float f10;
+        float f11;
+        float f12;
+        float f13;
+        float f14;
+        float f15;
+        float f16;
+        switch (this.f40195a) {
             case 0:
-                pf.d.r(keVar.getContext(), LocaleController.getString(i11));
+                ai.s sVar = ((ie) this.f40196b).U0;
+                if (z10) {
+                    f7 = 1.0f;
+                } else {
+                    f7 = 0.0f;
+                }
+                sVar.b(f7, f7, true);
                 return;
             case 1:
-                pd pdVar = keVar.f38481i1;
-                ai.t tVar = keVar.Y0;
-                org.telegram.ui.Components.qc.e();
-                if (keVar.N0.amount < MessagesController.getInstance(i11).starsRevenueWithdrawalMin) {
-                    keVar.W0 = true;
-                    keVar.X0 = keVar.N0.amount;
-                } else {
-                    keVar.W0 = false;
-                    keVar.X0 = MessagesController.getInstance(i11).starsRevenueWithdrawalMin;
-                }
-                keVar.V0 = true;
-                tVar.setText(Long.toString(keVar.X0));
-                tVar.setSelection(tVar.getText().length());
-                keVar.V0 = false;
-                AndroidUtilities.cancelRunOnUIThread(pdVar);
-                pdVar.run();
-                return;
-            default:
-                pd pdVar2 = keVar.f38481i1;
-                int currentTime = ConnectionsManager.getInstance(i11).getCurrentTime();
-                be beVar = keVar.Q0;
-                if (keVar.X0 <= 0 && keVar.L0 <= currentTime) {
-                    z10 = false;
-                } else {
-                    z10 = true;
-                }
-                beVar.setEnabled(z10);
-                if (currentTime < keVar.L0) {
-                    beVar.g(LocaleController.getString(R.string.MonetizationStarsWithdrawUntil), true, true);
-                    if (keVar.f38480h1 == null) {
-                        keVar.f38480h1 = new SpannableStringBuilder("l");
-                        org.telegram.ui.Components.yq yqVar = new org.telegram.ui.Components.yq(R.drawable.mini_switch_lock, 0);
-                        yqVar.setTopOffset(1);
-                        keVar.f38480h1.setSpan(yqVar, 0, 1, 33);
-                    }
-                    SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-                    spannableStringBuilder.append((CharSequence) keVar.f38480h1).append((CharSequence) ai.x.j0(keVar.L0 - currentTime));
-                    beVar.f(spannableStringBuilder, true);
-                    org.telegram.ui.Components.qc qcVar = keVar.Z0;
-                    if (qcVar != null) {
-                        org.telegram.ui.Components.ub ubVar = qcVar.e;
-                        if ((ubVar instanceof org.telegram.ui.Components.yb) && ubVar.isAttachedToWindow()) {
-                            org.telegram.messenger.lk.r(R.string.BotStarsWithdrawalToast, new Object[]{ai.x.j0(keVar.L0 - currentTime)}, ((org.telegram.ui.Components.yb) keVar.Z0.e).f32599b);
-                        }
-                    }
-                    AndroidUtilities.cancelRunOnUIThread(pdVar2);
-                    AndroidUtilities.runOnUIThread(pdVar2, 1000L);
+                cy cyVar = (cy) this.f40196b;
+                if (z10) {
+                    cyVar.Y.b(true);
                     return;
                 }
-                beVar.f(null, true);
-                if (keVar.W0) {
-                    formatPluralStringSpaced = LocaleController.getString(R.string.MonetizationStarsWithdrawAll);
-                } else {
-                    formatPluralStringSpaced = LocaleController.formatPluralStringSpaced("MonetizationStarsWithdraw", (int) keVar.X0);
+                return;
+            case 2:
+                cg0 cg0Var = ((md0) this.f40196b).W;
+                if (z10) {
+                    cg0Var.f35968c.setEditText((EditText) view);
+                    cg0Var.f35968c.setDispatchBackWhenEmpty(true);
+                    return;
                 }
-                beVar.g(ai.md.W0(false, formatPluralStringSpaced, keVar.R0), true, true);
+                return;
+            case 3:
+                org.telegram.ui.Components.sd0 sd0Var = (org.telegram.ui.Components.sd0) this.f40196b;
+                if (z10) {
+                    f10 = 1.0f;
+                } else {
+                    f10 = 0.0f;
+                }
+                sd0Var.b(f10, f10, true);
+                return;
+            case 4:
+                org.telegram.ui.Components.sd0 sd0Var2 = ((vd0) this.f40196b).f42211x;
+                if (z10) {
+                    f11 = 1.0f;
+                } else {
+                    f11 = 0.0f;
+                }
+                sd0Var2.b(f11, f11, true);
+                return;
+            case 5:
+                org.telegram.ui.Components.sd0 sd0Var3 = ((de0) this.f40196b).f36367b;
+                if (z10) {
+                    f12 = 1.0f;
+                } else {
+                    f12 = 0.0f;
+                }
+                sd0Var3.b(f12, f12, true);
+                return;
+            case 6:
+                cg0 cg0Var2 = ((ge0) this.f40196b).f37307y;
+                if (z10) {
+                    cg0Var2.f35968c.setEditText((EditText) view);
+                    cg0Var2.f35968c.setDispatchBackWhenEmpty(true);
+                    return;
+                }
+                return;
+            case 7:
+                org.telegram.ui.Components.sd0 sd0Var4 = ((re0) this.f40196b).f41139a;
+                if (z10) {
+                    f13 = 1.0f;
+                } else {
+                    f13 = 0.0f;
+                }
+                sd0Var4.b(f13, f13, true);
+                return;
+            case 8:
+                cg0 cg0Var3 = ((gf0) this.f40196b).f37335s0;
+                if (z10) {
+                    cg0Var3.f35968c.setEditText((EditText) view);
+                    cg0Var3.f35968c.setDispatchBackWhenEmpty(true);
+                    return;
+                }
+                return;
+            case 9:
+                org.telegram.ui.Components.sd0 sd0Var5 = ((bg0) this.f40196b).e;
+                if (z10) {
+                    f14 = 1.0f;
+                } else {
+                    f14 = 0.0f;
+                }
+                sd0Var5.b(f14, f14, true);
+                return;
+            case 10:
+                org.telegram.ui.Components.sd0 sd0Var6 = ((PasscodeActivity) this.f40196b).f33222f;
+                if (z10) {
+                    f15 = 1.0f;
+                } else {
+                    f15 = 0.0f;
+                }
+                sd0Var6.b(f15, f15, true);
+                return;
+            case 11:
+                oc1 oc1Var = (oc1) this.f40196b;
+                if (z10) {
+                    oc1Var.d.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.ThemeCreateHelp2)));
+                    return;
+                } else {
+                    oc1Var.d.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.ThemeCreateHelp)));
+                    return;
+                }
+            default:
+                org.telegram.ui.Components.sd0 sd0Var7 = ((TwoStepVerificationActivity) this.f40196b).v;
+                if (z10) {
+                    f16 = 1.0f;
+                } else {
+                    f16 = 0.0f;
+                }
+                sd0Var7.b(f16, f16, true);
                 return;
         }
     }

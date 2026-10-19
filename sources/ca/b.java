@@ -22,18 +22,18 @@ import x9.j;
 import z9.a2;
 public final class b {
     public static final Charset e = Charset.forName("UTF-8");
-    public static final int f5042f = 15;
-    public static final aa.b f5043g = new Object();
+    public static final int f5041f = 15;
+    public static final aa.b f5042g = new Object();
     public static final d h = new d(7);
-    public static final a f5044i = new a(0);
-    public final AtomicInteger f5045a = new AtomicInteger(0);
-    public final c f5046b;
-    public final ea.b f5047c;
+    public static final a f5043i = new a(0);
+    public final AtomicInteger f5044a = new AtomicInteger(0);
+    public final c f5045b;
+    public final ea.b f5046c;
     public final j d;
 
     public b(c cVar, ea.b bVar, j jVar) {
-        this.f5046b = cVar;
-        this.f5047c = bVar;
+        this.f5045b = cVar;
+        this.f5046c = bVar;
         this.d = jVar;
     }
 
@@ -86,9 +86,9 @@ public final class b {
 
     public final ArrayList b() {
         ArrayList arrayList = new ArrayList();
-        c cVar = this.f5046b;
+        c cVar = this.f5045b;
         arrayList.addAll(c.e(cVar.e.listFiles()));
-        arrayList.addAll(c.e(cVar.f5051f.listFiles()));
+        arrayList.addAll(c.e(cVar.f5050f.listFiles()));
         d dVar = h;
         Collections.sort(arrayList, dVar);
         List e7 = c.e(cVar.d.listFiles());
@@ -98,29 +98,29 @@ public final class b {
     }
 
     public final NavigableSet c() {
-        return new TreeSet(c.e(this.f5046b.f5050c.list())).descendingSet();
+        return new TreeSet(c.e(this.f5045b.f5049c.list())).descendingSet();
     }
 
     public final void d(a2 a2Var, String str, boolean z10) {
         String str2;
-        c cVar = this.f5046b;
-        int i10 = this.f5047c.d().f8542a.f6564a;
-        f5043g.getClass();
-        String m10 = aa.b.f362a.m(a2Var);
-        String format = String.format(Locale.US, "%010d", Integer.valueOf(this.f5045a.getAndIncrement()));
+        c cVar = this.f5045b;
+        int i10 = this.f5046c.d().f8543a.f6565a;
+        f5042g.getClass();
+        String M = aa.b.f361a.M(a2Var);
+        String format = String.format(Locale.US, "%010d", Integer.valueOf(this.f5044a.getAndIncrement()));
         if (z10) {
             str2 = "_";
         } else {
             str2 = "";
         }
         try {
-            f(cVar.b(str, g.p("event", format, str2)), m10);
+            f(cVar.b(str, g.p("event", format, str2)), M);
         } catch (IOException e7) {
             Log.w("FirebaseCrashlytics", "Could not persist event for session " + str, e7);
         }
         a aVar = new a(1);
         cVar.getClass();
-        File file = new File(cVar.f5050c, str);
+        File file = new File(cVar.f5049c, str);
         file.mkdirs();
         List<File> e10 = c.e(file.listFiles(aVar));
         Collections.sort(e10, new d(8));

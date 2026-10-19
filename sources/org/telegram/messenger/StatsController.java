@@ -97,7 +97,7 @@ public class StatsController extends BaseController {
         };
         File filesDirFixed = ApplicationLoader.getFilesDirFixed();
         if (i10 != 0) {
-            filesDirFixed = new File(ApplicationLoader.getFilesDirFixed(), i2.d.k(i10, "account", "/"));
+            filesDirFixed = new File(ApplicationLoader.getFilesDirFixed(), i2.e.k(i10, "account", "/"));
             filesDirFixed.mkdirs();
         }
         try {

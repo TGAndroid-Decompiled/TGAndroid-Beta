@@ -12,7 +12,7 @@ public final class k {
     public int e;
     public long f46277f;
     public long f46278g;
-    public c5.o h;
+    public c5.p h;
 
     public k(TLRPC.TL_premiumGiftOption tL_premiumGiftOption) {
         this.f46274a = tL_premiumGiftOption;
@@ -33,11 +33,11 @@ public final class k {
                 return tL_premiumGiftCodeOption.currency;
             }
         }
-        c5.o oVar = this.h;
-        if (oVar == null) {
+        c5.p pVar = this.h;
+        if (pVar == null) {
             return "";
         }
-        return oVar.a().f4766c;
+        return pVar.a().f4766c;
     }
 
     public final int b() {
@@ -92,11 +92,11 @@ public final class k {
                 return tL_premiumGiftCodeOption.amount;
             }
         }
-        c5.o oVar = this.h;
-        if (oVar == null) {
+        c5.p pVar = this.h;
+        if (pVar == null) {
             return 0L;
         }
-        return oVar.a().f4765b;
+        return pVar.a().f4765b;
     }
 
     public final long f() {

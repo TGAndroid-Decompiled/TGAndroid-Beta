@@ -9,40 +9,40 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.ey;
+import org.telegram.ui.cy;
 public final class ga implements Runnable {
-    public final int f9076a = 0;
-    public final long f9077b;
-    public final boolean f9078c;
+    public final int f9077a = 0;
+    public final long f9078b;
+    public final boolean f9079c;
     public final boolean d;
     public final NotificationCenter.NotificationCenterDelegate e;
-    public final TLObject f9079f;
+    public final TLObject f9080f;
     public final TLObject h;
 
     public ga(vb vbVar, boolean z10, TL_stories.StoryItem storyItem, long j10, TLRPC.InputGroupCall inputGroupCall, boolean z11) {
         this.e = vbVar;
-        this.f9078c = z10;
-        this.f9079f = storyItem;
-        this.f9077b = j10;
+        this.f9079c = z10;
+        this.f9080f = storyItem;
+        this.f9078b = j10;
         this.h = inputGroupCall;
         this.d = z11;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f9076a;
+        int i10 = this.f9077a;
         TLObject tLObject = this.h;
-        TLObject tLObject2 = this.f9079f;
+        TLObject tLObject2 = this.f9080f;
         NotificationCenter.NotificationCenterDelegate notificationCenterDelegate = this.e;
         switch (i10) {
             case 0:
                 vb vbVar = (vb) notificationCenterDelegate;
                 TL_stories.StoryItem storyItem = (TL_stories.StoryItem) tLObject2;
                 TLRPC.InputGroupCall inputGroupCall = (TLRPC.InputGroupCall) tLObject;
-                boolean z10 = this.f9078c;
-                long j10 = this.f9077b;
+                boolean z10 = this.f9079c;
+                long j10 = this.f9078b;
                 if (!z10) {
-                    ci.h1.W = new ci.h1(vbVar.f9951b, vbVar.f9955c, storyItem, j10, storyItem.f20506id, z10, inputGroupCall, true, this.d);
+                    ci.h1.W = new ci.h1(vbVar.f9952b, vbVar.f9956c, storyItem, j10, storyItem.f20509id, z10, inputGroupCall, true, this.d);
                 }
                 qb qbVar = vbVar.F;
                 if (qbVar != null) {
@@ -58,38 +58,38 @@ public final class ga implements Runnable {
                 org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
                 storyItem.dialogId = j10;
                 storyItem.justUploaded = true;
-                U.getOrCreateStoryViewer().F(vbVar.f9951b, storyItem, null);
-                NotificationCenter.getInstance(vbVar.f9955c).lambda$postNotificationNameOnUIThread$1(NotificationCenter.liveStoryUpdated, Long.valueOf(inputGroupCall.f20289id));
+                U.getOrCreateStoryViewer().F(vbVar.f9952b, storyItem, null);
+                NotificationCenter.getInstance(vbVar.f9956c).lambda$postNotificationNameOnUIThread$1(NotificationCenter.liveStoryUpdated, Long.valueOf(inputGroupCall.f20292id));
                 return;
             default:
-                ey eyVar = (ey) notificationCenterDelegate;
+                cy cyVar = (cy) notificationCenterDelegate;
                 TLRPC.Chat chat = (TLRPC.Chat) tLObject2;
                 TLRPC.User user = (TLRPC.User) tLObject;
-                long j11 = this.f9077b;
-                boolean z11 = this.f9078c;
+                long j11 = this.f9078b;
+                boolean z11 = this.f9079c;
                 if (chat != null) {
-                    eyVar.getClass();
+                    cyVar.getClass();
                     if (ChatObject.isNotInChat(chat)) {
-                        eyVar.getMessagesController().deleteDialog(j11, 0, z11);
+                        cyVar.getMessagesController().deleteDialog(j11, 0, z11);
                     } else {
-                        eyVar.getMessagesController().deleteParticipantFromChat(-j11, eyVar.getMessagesController().getUser(Long.valueOf(eyVar.getUserConfig().getClientUserId())), (TLRPC.Chat) null, z11, z11);
+                        cyVar.getMessagesController().deleteParticipantFromChat(-j11, cyVar.getMessagesController().getUser(Long.valueOf(cyVar.getUserConfig().getClientUserId())), (TLRPC.Chat) null, z11, z11);
                     }
                 } else {
-                    eyVar.getMessagesController().deleteDialog(j11, 0, z11);
+                    cyVar.getMessagesController().deleteDialog(j11, 0, z11);
                     if (user != null && user.bot && this.d) {
-                        eyVar.getMessagesController().blockPeer(user.f20419id);
+                        cyVar.getMessagesController().blockPeer(user.f20422id);
                     }
                 }
-                eyVar.getMessagesController().checkIfFolderEmpty(eyVar.W2);
+                cyVar.getMessagesController().checkIfFolderEmpty(cyVar.W2);
                 return;
         }
     }
 
-    public ga(ey eyVar, TLRPC.Chat chat, long j10, boolean z10, TLRPC.User user, boolean z11) {
-        this.e = eyVar;
-        this.f9079f = chat;
-        this.f9077b = j10;
-        this.f9078c = z10;
+    public ga(cy cyVar, TLRPC.Chat chat, long j10, boolean z10, TLRPC.User user, boolean z11) {
+        this.e = cyVar;
+        this.f9080f = chat;
+        this.f9078b = j10;
+        this.f9079c = z10;
         this.h = user;
         this.d = z11;
     }

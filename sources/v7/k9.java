@@ -11,7 +11,7 @@ public final class k9 extends h9 {
     @Override
     public final Object get(int i10) {
         a aVar = this.f48080c;
-        w7.c8.a(i10, aVar.e);
+        w7.b8.a(i10, aVar.e);
         int i11 = i10 + i10;
         Object[] objArr = aVar.d;
         Object obj = objArr[i11];

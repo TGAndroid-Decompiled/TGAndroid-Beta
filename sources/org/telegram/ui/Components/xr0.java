@@ -1,69 +1,32 @@
 package org.telegram.ui.Components;
 
-import android.content.DialogInterface;
-import org.telegram.tgnet.ConnectionsManager;
-public final class xr0 implements Runnable {
-    public final int f32440a;
-    public final org.telegram.ui.ActionBar.b2[] f32441b;
-    public final int f32442c;
-    public final int d;
+import java.util.ArrayList;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesStorage;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.tl.TL_stories;
+public final class xr0 implements org.telegram.ui.ActionBar.a2, MessagesStorage.StringCallback {
+    public final tv0 f32447a;
+    public final TL_stories.StoryItem f32448b;
 
-    public xr0(org.telegram.ui.ActionBar.b2[] b2VarArr, int i10, int i11, int i12) {
-        this.f32440a = i12;
-        this.f32441b = b2VarArr;
-        this.f32442c = i10;
-        this.d = i11;
+    public xr0(tv0 tv0Var, TL_stories.StoryItem storyItem) {
+        this.f32447a = tv0Var;
+        this.f32448b = storyItem;
     }
 
     @Override
-    public final void run() {
-        switch (this.f32440a) {
-            case 0:
-                org.telegram.ui.ActionBar.b2[] b2VarArr = this.f32441b;
-                org.telegram.ui.ActionBar.b2 b2Var = b2VarArr[0];
-                if (b2Var != null) {
-                    final int i10 = this.f32442c;
-                    final int i11 = this.d;
-                    b2Var.setOnCancelListener(new DialogInterface.OnCancelListener() {
-                        @Override
-                        public final void onCancel(DialogInterface dialogInterface) {
-                            switch (r3) {
-                                case 0:
-                                    ConnectionsManager.getInstance(i10).cancelRequest(i11, true);
-                                    return;
-                                default:
-                                    ConnectionsManager.getInstance(i10).cancelRequest(i11, true);
-                                    return;
-                            }
-                        }
-                    });
-                    b2VarArr[0].show();
-                    return;
-                }
-                return;
-            default:
-                org.telegram.ui.ActionBar.b2[] b2VarArr2 = this.f32441b;
-                org.telegram.ui.ActionBar.b2 b2Var2 = b2VarArr2[0];
-                if (b2Var2 != null) {
-                    final int i12 = this.f32442c;
-                    final int i13 = this.d;
-                    b2Var2.setOnCancelListener(new DialogInterface.OnCancelListener() {
-                        @Override
-                        public final void onCancel(DialogInterface dialogInterface) {
-                            switch (r3) {
-                                case 0:
-                                    ConnectionsManager.getInstance(i12).cancelRequest(i13, true);
-                                    return;
-                                default:
-                                    ConnectionsManager.getInstance(i12).cancelRequest(i13, true);
-                                    return;
-                            }
-                        }
-                    });
-                    b2VarArr2[0].show();
-                    return;
-                }
-                return;
-        }
+    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        ArrayList arrayList = new ArrayList(1);
+        arrayList.add(this.f32448b);
+        tv0 tv0Var = this.f32447a;
+        org.telegram.ui.ActionBar.n2 n2Var = tv0Var.f30734v1;
+        n2Var.getMessagesController().getStoriesController().s(tv0Var.f30709j1, arrayList);
+        xc.a0(n2Var).Q(R.raw.ic_delete, 36, LocaleController.formatPluralString("StoriesDeleted", 1, new Object[0])).j();
+        tv0Var.L(false);
+    }
+
+    @Override
+    public void run(String str) {
+        r0.getStoriesController().r(r0.f30709j1, str, new qy(5, this.f32447a, this.f32448b));
     }
 }

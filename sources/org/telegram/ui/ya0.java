@@ -1,29 +1,55 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.view.MotionEvent;
-import android.widget.EditText;
-public final class ya0 extends EditText {
-    public final int f43360a;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.widget.TextView;
+import org.telegram.messenger.BillingController;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+public final class ya0 extends org.telegram.ui.Cells.i3 {
+    public boolean f43424x;
+    public final ab0 f43425y;
 
-    public ya0(Context context, int i10) {
-        super(context);
-        this.f43360a = i10;
+    public ya0(ab0 ab0Var, Context context, String str, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context, str, false, false, -1, d6Var);
+        this.f43425y = ab0Var;
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f43360a) {
-            case 0:
-                if (motionEvent.getAction() == 1) {
-                    setCursorVisible(true);
-                }
-                return super.onTouchEvent(motionEvent);
-            default:
-                if (motionEvent.getAction() == 1) {
-                    setCursorVisible(true);
-                }
-                return super.onTouchEvent(motionEvent);
+    public final void b(Editable editable) {
+        int i10;
+        int i11;
+        if (this.f43424x) {
+            return;
+        }
+        boolean isEmpty = TextUtils.isEmpty(editable);
+        ab0 ab0Var = this.f43425y;
+        if (isEmpty) {
+            ab0Var.f35325s.setText("");
+            return;
+        }
+        try {
+            long parseLong = Long.parseLong(editable.toString());
+            if (parseLong > ab0Var.getMessagesController().starsSubscriptionAmountMax) {
+                this.f43424x = true;
+                parseLong = ab0Var.getMessagesController().starsSubscriptionAmountMax;
+                setText(Long.toString(parseLong));
+                this.f43424x = false;
+            }
+            TextView textView = ab0Var.f35325s;
+            if (ab0Var.getConnectionsManager().isTestBackend()) {
+                i10 = R.string.RequireMonthlyFeePriceTest5Minutes;
+            } else {
+                i10 = R.string.RequireMonthlyFeePrice;
+            }
+            BillingController billingController = BillingController.getInstance();
+            i11 = ((org.telegram.ui.ActionBar.n2) ab0Var).currentAccount;
+            textView.setText(LocaleController.formatString(i10, billingController.formatCurrency((long) ((parseLong / 1000.0d) * MessagesController.getInstance(i11).starsUsdWithdrawRate1000), "USD")));
+        } catch (Exception e) {
+            FileLog.e(e);
         }
     }
 }

@@ -20,19 +20,19 @@ import android.view.inputmethod.InputConnection;
 import android.widget.AbsSeekBar;
 import android.widget.EditText;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
-import w7.l6;
+import w7.k6;
 public class z {
     public static final int[] d = {16843067, 16843068};
-    public final int f16391a = 2;
-    public View f16392b;
-    public Object f16393c;
+    public final int f16394a = 2;
+    public View f16395b;
+    public Object f16396c;
 
     public z() {
     }
 
     public KeyListener a(KeyListener keyListener) {
         if (!(keyListener instanceof NumberKeyListener)) {
-            ((mi.q) ((k0.b) this.f16393c).f14564b).getClass();
+            ((mi.q) ((le.b) this.f16396c).f16011b).getClass();
             if (keyListener instanceof q1.e) {
                 return keyListener;
             }
@@ -49,9 +49,9 @@ public class z {
 
     public void b(AttributeSet attributeSet, int i10) {
         boolean z10 = true;
-        switch (this.f16391a) {
+        switch (this.f16394a) {
             case 0:
-                AbsSeekBar absSeekBar = (AbsSeekBar) this.f16392b;
+                AbsSeekBar absSeekBar = (AbsSeekBar) this.f16395b;
                 g3 P = g3.P(absSeekBar.getContext(), attributeSet, d, i10);
                 Drawable G = P.G(0);
                 if (G != null) {
@@ -77,7 +77,7 @@ public class z {
                 P.Q();
                 return;
             default:
-                TypedArray obtainStyledAttributes = ((EditText) this.f16392b).getContext().obtainStyledAttributes(attributeSet, f.a.f10255i, i10, 0);
+                TypedArray obtainStyledAttributes = ((EditText) this.f16395b).getContext().obtainStyledAttributes(attributeSet, f.a.f10256i, i10, 0);
                 try {
                     if (obtainStyledAttributes.hasValue(14)) {
                         z10 = obtainStyledAttributes.getBoolean(14, true);
@@ -93,39 +93,39 @@ public class z {
     }
 
     public q1.b c(InputConnection inputConnection, EditorInfo editorInfo) {
-        k0.b bVar = (k0.b) this.f16393c;
+        le.b bVar = (le.b) this.f16396c;
         if (inputConnection == null) {
             bVar.getClass();
             inputConnection = null;
         } else {
-            mi.q qVar = (mi.q) bVar.f14564b;
+            mi.q qVar = (mi.q) bVar.f16011b;
             qVar.getClass();
             if (!(inputConnection instanceof q1.b)) {
-                inputConnection = new q1.b((EditText) qVar.f16972b, inputConnection, editorInfo);
+                inputConnection = new q1.b((EditText) qVar.f16975b, inputConnection, editorInfo);
             }
         }
         return (q1.b) inputConnection;
     }
 
     public void d(boolean z10) {
-        q1.i iVar = (q1.i) ((mi.q) ((k0.b) this.f16393c).f14564b).f16973c;
-        if (iVar.f44341c != z10) {
-            if (iVar.f44340b != null) {
+        q1.i iVar = (q1.i) ((mi.q) ((le.b) this.f16396c).f16011b).f16976c;
+        if (iVar.f44336c != z10) {
+            if (iVar.f44335b != null) {
                 androidx.emoji2.text.l a2 = androidx.emoji2.text.l.a();
-                q1.h hVar = iVar.f44340b;
+                q1.h hVar = iVar.f44335b;
                 a2.getClass();
-                l6.a(hVar, "initCallback cannot be null");
-                ReentrantReadWriteLock reentrantReadWriteLock = a2.f3107a;
+                k6.a(hVar, "initCallback cannot be null");
+                ReentrantReadWriteLock reentrantReadWriteLock = a2.f3105a;
                 reentrantReadWriteLock.writeLock().lock();
                 try {
-                    a2.f3108b.remove(hVar);
+                    a2.f3106b.remove(hVar);
                 } finally {
                     reentrantReadWriteLock.writeLock().unlock();
                 }
             }
-            iVar.f44341c = z10;
+            iVar.f44336c = z10;
             if (z10) {
-                q1.i.a(iVar.f44339a, androidx.emoji2.text.l.a().b());
+                q1.i.a(iVar.f44334a, androidx.emoji2.text.l.a().b());
             }
         }
     }
@@ -165,8 +165,8 @@ public class z {
         } else if (drawable instanceof BitmapDrawable) {
             BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
             Bitmap bitmap = bitmapDrawable.getBitmap();
-            if (((Bitmap) this.f16393c) == null) {
-                this.f16393c = bitmap;
+            if (((Bitmap) this.f16396c) == null) {
+                this.f16396c = bitmap;
             }
             ShapeDrawable shapeDrawable = new ShapeDrawable(new RoundRectShape(new float[]{5.0f, 5.0f, 5.0f, 5.0f, 5.0f, 5.0f, 5.0f, 5.0f}, null, null));
             shapeDrawable.getPaint().setShader(new BitmapShader(bitmap, Shader.TileMode.REPEAT, Shader.TileMode.CLAMP));
@@ -180,11 +180,11 @@ public class z {
     }
 
     public z(AbsSeekBar absSeekBar) {
-        this.f16392b = absSeekBar;
+        this.f16395b = absSeekBar;
     }
 
     public z(EditText editText) {
-        this.f16392b = editText;
-        this.f16393c = new k0.b(editText);
+        this.f16395b = editText;
+        this.f16396c = new le.b(editText);
     }
 }

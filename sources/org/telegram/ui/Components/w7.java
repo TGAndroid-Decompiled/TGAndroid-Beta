@@ -31,25 +31,25 @@ public final class w7 extends s4.v {
         int b10 = b1Var.b();
         int b11 = b1Var2.b();
         k8 k8Var = this.d;
-        if (k8Var.f27790v0) {
+        if (k8Var.f27769v0) {
             if (b10 > 0 && b11 > 0) {
-                k8Var.f27792w0.move(b10 - 1, b11 - 1);
+                k8Var.f27771w0.move(b10 - 1, b11 - 1);
             } else {
                 return false;
             }
         } else {
-            k8Var.f27792w0.move(b10, b11);
+            k8Var.f27771w0.move(b10, b11);
         }
-        k8Var.f27794x0.clear();
-        k8Var.f27794x0.addAll(k8Var.f27792w0.list);
-        k8Var.f27786s.p(b10, b11);
+        k8Var.f27773x0.clear();
+        k8Var.f27773x0.addAll(k8Var.f27771w0.list);
+        k8Var.f27765s.p(b10, b11);
         return true;
     }
 
     @Override
     public final void p(s4.b1 b1Var, int i10) {
         Boolean bool;
-        v7 v7Var = this.d.f27779n;
+        v7 v7Var = this.d.f27758n;
         if (b1Var != null) {
             v7Var.d1(false);
         }

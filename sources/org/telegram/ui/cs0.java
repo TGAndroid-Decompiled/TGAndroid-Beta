@@ -1,21 +1,22 @@
 package org.telegram.ui;
+public final class cs0 extends org.telegram.ui.Cells.x9 {
+    public final int f36071q0 = 0;
 
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.MessageObject;
-public final class cs0 implements Runnable {
-    public final PhotoViewer f35969a;
-
-    public cs0(PhotoViewer photoViewer) {
-        this.f35969a = photoViewer;
+    public cs0(ci.r8 r8Var, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(r8Var, d6Var);
     }
 
     @Override
-    public final void run() {
-        PhotoViewer photoViewer = this.f35969a;
-        MessageObject messageObject = photoViewer.T4;
-        if (messageObject == null) {
-            return;
+    public final int o() {
+        switch (this.f36071q0) {
+            case 0:
+                return 0;
+            default:
+                return 0;
         }
-        FileLoader.getInstance(messageObject.currentAccount).setLoadingVideo(photoViewer.T4.getDocument(), true, false);
+    }
+
+    public cs0(ci.b bVar) {
+        super(null, bVar);
     }
 }

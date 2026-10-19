@@ -1,45 +1,13 @@
 package org.telegram.ui;
-
-import java.util.regex.Pattern;
-public final class ja0 implements sf.c {
-    public final pa0 f38102a;
-    public final LaunchActivity f38103b;
-
-    public ja0(LaunchActivity launchActivity) {
-        this.f38103b = launchActivity;
-        Pattern pattern = LaunchActivity.C1;
-        this.f38102a = new pa0(launchActivity, false);
-    }
-
+public final class ja0 extends org.telegram.ui.Components.z00 {
     @Override
     public final void b() {
-        Pattern pattern = LaunchActivity.C1;
-        this.f38103b.getWindow();
+        setVisibility(8);
     }
 
     @Override
-    public final void d() {
-        this.f38102a.a(false);
-    }
-
-    @Override
-    public final void f() {
-        Pattern pattern = LaunchActivity.C1;
-        LaunchActivity launchActivity = this.f38103b;
-        launchActivity.getClass();
-        this.f38102a.a(true);
-        launchActivity.getWindow();
-    }
-
-    @Override
-    public final void a() {
-    }
-
-    @Override
-    public final void c() {
-    }
-
-    @Override
-    public final void e() {
+    public final void c(boolean z10) {
+        setVisibility(0);
+        super.c(z10);
     }
 }

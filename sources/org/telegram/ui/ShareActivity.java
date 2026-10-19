@@ -18,8 +18,8 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLRPC;
 public class ShareActivity extends Activity {
-    public static final int f33839b = 0;
-    public org.telegram.ui.Components.dr0 f33840a;
+    public static final int f33845b = 0;
+    public org.telegram.ui.Components.er0 f33846a;
 
     @Override
     public final void onCreate(Bundle bundle) {
@@ -55,11 +55,11 @@ public class ShareActivity extends Activity {
                 MessageObject messageObject = new MessageObject(UserConfig.selectedAccount, TLdeserialize, false, true);
                 messageObject.messageOwner.with_my_score = true;
                 try {
-                    org.telegram.ui.Components.dr0 O0 = org.telegram.ui.Components.dr0.O0(this, messageObject, null, false, string2);
-                    this.f33840a = O0;
-                    O0.setCanceledOnTouchOutside(true);
-                    this.f33840a.setOnDismissListener(new w5(this, 15));
-                    this.f33840a.show();
+                    org.telegram.ui.Components.er0 P0 = org.telegram.ui.Components.er0.P0(this, messageObject, null, false, string2);
+                    this.f33846a = P0;
+                    P0.setCanceledOnTouchOutside(true);
+                    this.f33846a.setOnDismissListener(new w5(this, 15));
+                    this.f33846a.show();
                     return;
                 } catch (Exception e) {
                     FileLog.e(e);
@@ -77,10 +77,10 @@ public class ShareActivity extends Activity {
     public final void onPause() {
         super.onPause();
         try {
-            org.telegram.ui.Components.dr0 dr0Var = this.f33840a;
-            if (dr0Var != null && dr0Var.isShowing()) {
-                this.f33840a.dismiss();
-                this.f33840a = null;
+            org.telegram.ui.Components.er0 er0Var = this.f33846a;
+            if (er0Var != null && er0Var.isShowing()) {
+                this.f33846a.dismiss();
+                this.f33846a = null;
             }
         } catch (Exception e) {
             FileLog.e(e);

@@ -12,8 +12,8 @@ import v7.a8;
 import v7.o8;
 import v7.s7;
 public abstract class e {
-    public static boolean f11687a = false;
-    public static int f11688b = 1;
+    public static boolean f11688a = false;
+    public static int f11689b = 1;
 
     public static final ArrayList a(ArrayList arrayList) {
         ArrayList arrayList2 = new ArrayList();
@@ -24,8 +24,8 @@ public abstract class e {
             i10++;
             w wVar = (w) obj;
             Bundle bundle = new Bundle();
-            bundle.putInt("event_type", wVar.f358a);
-            bundle.putLong("event_timestamp", wVar.f359b);
+            bundle.putInt("event_type", wVar.f357a);
+            bundle.putLong("event_timestamp", wVar.f358b);
             arrayList2.add(bundle);
         }
         return arrayList2;
@@ -37,7 +37,7 @@ public abstract class e {
             try {
                 l.i(context, "Context is null");
                 Log.d("e", "preferredRenderer: ".concat("null"));
-                if (f11687a) {
+                if (f11688a) {
                     return 0;
                 }
                 try {
@@ -51,13 +51,13 @@ public abstract class e {
                             l.i(X0, "delegate must not be null");
                             o8.f48102a = X0;
                         }
-                        f11687a = true;
+                        f11688a = true;
                         try {
                             Parcel M0 = a2.M0(a2.N0(), 9);
                             int readInt = M0.readInt();
                             M0.recycle();
                             if (readInt == 2) {
-                                f11688b = 2;
+                                f11689b = 2;
                             }
                             x6.b bVar = new x6.b(context);
                             Parcel N0 = a2.N0();
@@ -67,7 +67,7 @@ public abstract class e {
                         } catch (RemoteException e) {
                             Log.e("e", "Failed to retrieve renderer type or log initialization.", e);
                         }
-                        int i10 = f11688b;
+                        int i10 = f11689b;
                         if (i10 != 1) {
                             if (i10 != 2) {
                                 str = "null";
@@ -83,7 +83,7 @@ public abstract class e {
                         throw new RuntimeException(e7);
                     }
                 } catch (k6.f e10) {
-                    return e10.f14973a;
+                    return e10.f14976a;
                 }
             } catch (Throwable th2) {
                 throw th2;

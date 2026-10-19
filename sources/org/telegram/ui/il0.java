@@ -1,115 +1,110 @@
 package org.telegram.ui;
 
-import android.view.KeyEvent;
-import android.view.MotionEvent;
+import android.view.View;
 import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class il0 implements TextView.OnEditorActionListener {
-    public final int f37912a;
-    public final xm0 f37913b;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class il0 implements View.OnClickListener {
+    public final int f38016a;
+    public final vm0 f38017b;
 
-    public il0(xm0 xm0Var, int i10) {
-        this.f37912a = i10;
-        this.f37913b = xm0Var;
+    public il0(vm0 vm0Var, int i10) {
+        this.f38016a = i10;
+        this.f38017b = vm0Var;
     }
 
     @Override
-    public final boolean onEditorAction(TextView textView, int i10, KeyEvent keyEvent) {
-        switch (this.f37912a) {
+    public final void onClick(View view) {
+        switch (this.f38016a) {
             case 0:
-                xm0 xm0Var = this.f37913b;
-                if (i10 == 5) {
-                    xm0Var.Y[2].requestFocus();
-                    return true;
-                } else if (i10 == 6) {
-                    xm0Var.L.callOnClick();
-                    return true;
-                } else {
-                    xm0Var.getClass();
-                    return false;
-                }
+                vm0 vm0Var = this.f38017b;
+                vm0Var.S0 = 2;
+                vm0Var.C1();
+                return;
             case 1:
-                xm0 xm0Var2 = this.f37913b;
-                xm0Var2.getClass();
-                if (i10 == 5) {
-                    int intValue = ((Integer) textView.getTag()).intValue() + 1;
-                    EditTextBoldCursor[] editTextBoldCursorArr = xm0Var2.Y;
-                    if (intValue >= editTextBoldCursorArr.length) {
-                        return true;
-                    }
-                    if (editTextBoldCursorArr[intValue].isFocusable()) {
-                        xm0Var2.Y[intValue].requestFocus();
-                        return true;
-                    }
-                    xm0Var2.Y[intValue].dispatchTouchEvent(MotionEvent.obtain(0L, 0L, 1, 0.0f, 0.0f, 0));
-                    textView.clearFocus();
-                    AndroidUtilities.hideKeyboard(textView);
-                    return true;
-                }
-                return false;
+                this.f38017b.c1();
+                return;
             case 2:
-                xm0 xm0Var3 = this.f37913b;
-                xm0Var3.getClass();
-                if (i10 == 5) {
-                    int intValue2 = ((Integer) textView.getTag()).intValue() + 1;
-                    EditTextBoldCursor[] editTextBoldCursorArr2 = xm0Var3.f43146a0;
-                    if (intValue2 >= editTextBoldCursorArr2.length) {
-                        return true;
-                    }
-                    if (editTextBoldCursorArr2[intValue2].isFocusable()) {
-                        xm0Var3.f43146a0[intValue2].requestFocus();
-                        return true;
-                    }
-                    xm0Var3.f43146a0[intValue2].dispatchTouchEvent(MotionEvent.obtain(0L, 0L, 1, 0.0f, 0.0f, 0));
-                    textView.clearFocus();
-                    AndroidUtilities.hideKeyboard(textView);
-                    return true;
-                }
-                return false;
+                vm0 vm0Var2 = this.f38017b;
+                vm0Var2.S0 = 3;
+                vm0Var2.C1();
+                return;
             case 3:
-                xm0 xm0Var4 = this.f37913b;
-                xm0Var4.getClass();
-                if (i10 != 6 && i10 != 5) {
-                    return false;
-                }
-                xm0Var4.L.callOnClick();
-                return true;
+                vm0 vm0Var3 = this.f38017b;
+                vm0Var3.S0 = 1;
+                vm0Var3.C1();
+                return;
             case 4:
-                xm0 xm0Var5 = this.f37913b;
-                xm0Var5.getClass();
-                if (i10 == 5) {
-                    int intValue3 = ((Integer) textView.getTag()).intValue() + 1;
-                    EditTextBoldCursor[] editTextBoldCursorArr3 = xm0Var5.Y;
-                    if (intValue3 >= editTextBoldCursorArr3.length) {
-                        return true;
-                    }
-                    if (editTextBoldCursorArr3[intValue3].isFocusable()) {
-                        xm0Var5.Y[intValue3].requestFocus();
-                        return true;
-                    }
-                    xm0Var5.Y[intValue3].dispatchTouchEvent(MotionEvent.obtain(0L, 0L, 1, 0.0f, 0.0f, 0));
-                    textView.clearFocus();
-                    AndroidUtilities.hideKeyboard(textView);
-                    return true;
-                }
-                return false;
+                vm0 vm0Var4 = this.f38017b;
+                vm0Var4.S0 = 4;
+                vm0Var4.C1();
+                return;
             case 5:
-                xm0 xm0Var6 = this.f37913b;
-                xm0Var6.getClass();
-                if (i10 != 5 && i10 != 6) {
-                    return false;
+                vm0 vm0Var5 = this.f38017b;
+                if (vm0Var5.getParentActivity().checkSelfPermission("android.permission.CAMERA") != 0) {
+                    vm0Var5.getParentActivity().requestPermissions(new String[]{"android.permission.CAMERA"}, 22);
+                    return;
                 }
-                xm0Var6.L.callOnClick();
-                return true;
+                w9 w9Var = new w9(0);
+                w9Var.M = new tl0(vm0Var5);
+                vm0Var5.presentFragment(w9Var);
+                return;
+            case 6:
+                vm0 vm0Var6 = this.f38017b;
+                vm0Var6.f42287f = true;
+                vm0Var6.L.callOnClick();
+                vm0Var6.f42287f = false;
+                return;
+            case 7:
+                vm0 vm0Var7 = this.f38017b;
+                vm0Var7.S0 = 0;
+                vm0Var7.C1();
+                return;
+            case 8:
+                vm0 vm0Var8 = this.f38017b;
+                vm0Var8.S0 = 4;
+                vm0Var8.C1();
+                return;
+            case 9:
+                this.f38017b.c1();
+                return;
+            case 10:
+                vm0.b0(this.f38017b);
+                return;
+            case 11:
+                vm0.c0(this.f38017b);
+                return;
+            case 12:
+                this.f38017b.B1();
+                return;
+            case 13:
+                vm0 vm0Var9 = this.f38017b;
+                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(vm0Var9.getParentActivity());
+                alertDialog$Builder.f20604a.R = LocaleController.getString(R.string.TelegramPassportDeleteTitle);
+                alertDialog$Builder.f20604a.T = LocaleController.getString(R.string.TelegramPassportDeleteAlert);
+                alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new kl0(vm0Var9, 5));
+                alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
+                org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20604a;
+                vm0Var9.showDialog(b2Var);
+                TextView textView = (TextView) b2Var.d(-1);
+                if (textView != null) {
+                    textView.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21227q7, false));
+                    return;
+                }
+                return;
+            case 14:
+                this.f38017b.B1();
+                return;
+            case 15:
+                vm0.V(this.f38017b);
+                return;
             default:
-                xm0 xm0Var7 = this.f37913b;
-                xm0Var7.getClass();
-                if (i10 != 6 && i10 != 5) {
-                    return false;
-                }
-                xm0Var7.L.callOnClick();
-                return true;
+                vm0 vm0Var10 = this.f38017b;
+                vm0Var10.f42287f = true;
+                vm0Var10.L.callOnClick();
+                vm0Var10.f42287f = false;
+                return;
         }
     }
 }

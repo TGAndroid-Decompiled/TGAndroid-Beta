@@ -18,9 +18,9 @@ public final class qz extends w9 {
         super.onDraw(canvas);
         rz rzVar = this.G;
         tz tzVar = rzVar.d;
-        boolean z10 = rzVar.f30085c;
-        if (!z10 && MediaDataController.getInstance(tzVar.f30747c1).isStickerPackUnread(z10, ((TLRPC.StickerSetCovered) getTag()).set.f20299id) && tzVar.f30797s1 != null) {
-            canvas.drawCircle(canvas.getWidth() - AndroidUtilities.dp(8.0f), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(3.0f), tzVar.f30797s1);
+        boolean z10 = rzVar.f30069c;
+        if (!z10 && MediaDataController.getInstance(tzVar.f30770c1).isStickerPackUnread(z10, ((TLRPC.StickerSetCovered) getTag()).set.f20302id) && tzVar.f30820s1 != null) {
+            canvas.drawCircle(canvas.getWidth() - AndroidUtilities.dp(8.0f), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(3.0f), tzVar.f30820s1);
         }
     }
 }

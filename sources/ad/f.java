@@ -215,7 +215,7 @@ public final class f {
                                 e.d(outputStream);
                                 if (z10 && !e.b()) {
                                     m.d(e);
-                                    eVar.b();
+                                    eVar.clear();
                                     return;
                                 }
                                 throw new SocketException("NanoHttpd Shutdown");
@@ -232,18 +232,18 @@ public final class f {
                         m.c(e10.a(), "text/plain", e10.getMessage()).d(outputStream);
                         m.d(outputStream);
                         m.d(null);
-                        eVar.b();
+                        eVar.clear();
                     }
                 } catch (SSLException e11) {
                     m.c(iVar, "text/plain", "SSL PROTOCOL FAILURE: " + e11.getMessage()).d(outputStream);
                     m.d(outputStream);
                     m.d(null);
-                    eVar.b();
+                    eVar.clear();
                 } catch (IOException e12) {
                     m.c(iVar, "text/plain", "SERVER INTERNAL ERROR: IOException: " + e12.getMessage()).d(outputStream);
                     m.d(outputStream);
                     m.d(null);
-                    eVar.b();
+                    eVar.clear();
                 }
             } catch (SocketException e13) {
                 throw e13;
@@ -252,7 +252,7 @@ public final class f {
             }
         } catch (Throwable th2) {
             m.d(null);
-            eVar.b();
+            eVar.clear();
             throw th2;
         }
     }

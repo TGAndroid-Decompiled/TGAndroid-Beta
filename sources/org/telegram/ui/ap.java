@@ -1,69 +1,14 @@
 package org.telegram.ui;
+public final class ap implements r60 {
+    public final ip f35410a;
 
-import android.content.DialogInterface;
-import org.telegram.tgnet.ConnectionsManager;
-public final class ap implements Runnable {
-    public final int f35459a;
-    public final kp f35460b;
-    public final org.telegram.ui.ActionBar.b2[] f35461c;
-    public final int d;
-
-    public ap(kp kpVar, org.telegram.ui.ActionBar.b2[] b2VarArr, int i10, int i11) {
-        this.f35459a = i11;
-        this.f35460b = kpVar;
-        this.f35461c = b2VarArr;
-        this.d = i10;
+    public ap(ip ipVar) {
+        this.f35410a = ipVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f35459a) {
-            case 0:
-                org.telegram.ui.ActionBar.b2[] b2VarArr = this.f35461c;
-                org.telegram.ui.ActionBar.b2 b2Var = b2VarArr[0];
-                if (b2Var != null) {
-                    final kp kpVar = this.f35460b;
-                    final int i10 = this.d;
-                    b2Var.setOnCancelListener(new DialogInterface.OnCancelListener() {
-                        @Override
-                        public final void onCancel(DialogInterface dialogInterface) {
-                            switch (r3) {
-                                case 0:
-                                    ConnectionsManager.getInstance(kpVar.currentAccount).cancelRequest(i10, true);
-                                    return;
-                                default:
-                                    ConnectionsManager.getInstance(kpVar.currentAccount).cancelRequest(i10, true);
-                                    return;
-                            }
-                        }
-                    });
-                    kpVar.showDialog(b2VarArr[0]);
-                    return;
-                }
-                return;
-            default:
-                org.telegram.ui.ActionBar.b2[] b2VarArr2 = this.f35461c;
-                org.telegram.ui.ActionBar.b2 b2Var2 = b2VarArr2[0];
-                if (b2Var2 != null) {
-                    final kp kpVar2 = this.f35460b;
-                    final int i11 = this.d;
-                    b2Var2.setOnCancelListener(new DialogInterface.OnCancelListener() {
-                        @Override
-                        public final void onCancel(DialogInterface dialogInterface) {
-                            switch (r3) {
-                                case 0:
-                                    ConnectionsManager.getInstance(kpVar2.currentAccount).cancelRequest(i11, true);
-                                    return;
-                                default:
-                                    ConnectionsManager.getInstance(kpVar2.currentAccount).cancelRequest(i11, true);
-                                    return;
-                            }
-                        }
-                    });
-                    kpVar2.showDialog(b2VarArr2[0]);
-                    return;
-                }
-                return;
-        }
+    public final void a(s60 s60Var, long j10) {
+        ip ipVar = this.f35410a;
+        ipVar.Y(ipVar.getMessagesController().getChat(Long.valueOf(j10)), s60Var);
     }
 }

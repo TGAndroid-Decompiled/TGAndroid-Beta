@@ -6,17 +6,17 @@ import org.telegram.messenger.fh;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_wallet;
 public final class t1 implements Utilities.Callback2 {
-    public final int f34874a;
-    public final f2 f34875b;
-    public final long f34876c;
+    public final int f34892a;
+    public final f2 f34893b;
+    public final long f34894c;
     public final int d;
     public final Object e;
 
     public t1(f2 f2Var, Object obj, long j10, int i10, int i11) {
-        this.f34874a = i11;
-        this.f34875b = f2Var;
+        this.f34892a = i11;
+        this.f34893b = f2Var;
         this.e = obj;
-        this.f34876c = j10;
+        this.f34894c = j10;
         this.d = i10;
     }
 
@@ -26,20 +26,20 @@ public final class t1 implements Utilities.Callback2 {
         final int i10;
         final TL_wallet.tonConnectRequest tonconnectrequest;
         TL_wallet.tonConnectSession tonconnectsession;
-        switch (this.f34874a) {
+        switch (this.f34892a) {
             case 0:
                 final fh fhVar = (fh) this.e;
                 final TL_wallet.tonConnectPending tonconnectpending = (TL_wallet.tonConnectPending) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                final f2 f2Var = this.f34875b;
-                m0 m0Var = f2Var.f34169b;
+                final f2 f2Var = this.f34893b;
+                m0 m0Var = f2Var.f34187b;
                 byte[] bArr = null;
                 if (tL_error == null && tonconnectpending != null) {
                     ArrayList<TL_wallet.tonConnectRequest> arrayList = tonconnectpending.requests;
                     int size = arrayList.size();
                     int i11 = 0;
                     while (true) {
-                        j10 = this.f34876c;
+                        j10 = this.f34894c;
                         i10 = this.d;
                         if (i11 < size) {
                             TL_wallet.tonConnectRequest tonconnectrequest2 = arrayList.get(i11);
@@ -52,7 +52,7 @@ public final class t1 implements Utilities.Callback2 {
                             tonconnectrequest = null;
                         }
                     }
-                    if (tonconnectrequest != null && (tonconnectsession = tonconnectpending.session) != null && tonconnectsession.f20530id == j10 && tonconnectrequest.expires > f2Var.f34171f.getCurrentTime()) {
+                    if (tonconnectrequest != null && (tonconnectsession = tonconnectpending.session) != null && tonconnectsession.f20533id == j10 && tonconnectrequest.expires > f2Var.f34189f.getCurrentTime()) {
                         final String s10 = m0Var.s();
                         if (m0Var.x() != null) {
                             bArr = (byte[]) m0Var.x().clone();
@@ -97,10 +97,10 @@ public final class t1 implements Utilities.Callback2 {
                 Utilities.Callback callback = (Utilities.Callback) this.e;
                 TLRPC.Bool bool = (TLRPC.Bool) obj;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
-                f2 f2Var2 = this.f34875b;
+                f2 f2Var2 = this.f34893b;
                 f2Var2.getClass();
                 if (tL_error2 == null && (bool instanceof TLRPC.TL_boolTrue)) {
-                    f2Var2.d(this.f34876c, this.d, callback);
+                    f2Var2.d(this.f34894c, this.d, callback);
                     return;
                 } else {
                     callback.run(f2.x(tL_error2, "closeSession"));

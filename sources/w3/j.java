@@ -35,7 +35,7 @@ public final class j implements c0 {
         long j16 = j10;
         k[] kVarArr = this.f48512b;
         int length = kVarArr.length;
-        d0 d0Var = d0.f4607c;
+        d0 d0Var = d0.f4605c;
         if (length == 0) {
             return new b0(d0Var, d0Var);
         }

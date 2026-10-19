@@ -55,7 +55,7 @@ public final class i extends SQLiteOpenHelper {
             }
             return;
         }
-        StringBuilder m10 = i2.d.m("Migration from ", i10, " to ", i11, " was requested, but cannot be performed. Only ");
+        StringBuilder m10 = i2.e.m("Migration from ", i10, " to ", i11, " was requested, but cannot be performed. Only ");
         m10.append(list.size());
         m10.append(" migrations are provided");
         throw new IllegalArgumentException(m10.toString());

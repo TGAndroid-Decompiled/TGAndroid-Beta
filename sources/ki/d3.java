@@ -3,16 +3,16 @@ package ki;
 import java.util.ArrayList;
 import org.telegram.tgnet.tl.TL_iv;
 public final class d3 {
-    public final w3 f15230a;
+    public final w3 f15233a;
 
     public d3(w3 w3Var) {
-        this.f15230a = w3Var;
+        this.f15233a = w3Var;
     }
 
     public final void a(a aVar) {
         a aVar2;
-        w3 w3Var = this.f15230a;
-        ArrayList arrayList = w3Var.f15599j3;
+        w3 w3Var = this.f15233a;
+        ArrayList arrayList = w3Var.f15602j3;
         int indexOf = arrayList.indexOf(aVar);
         if (indexOf >= 0 && w3.y3(aVar)) {
             int Q3 = w3Var.Q3(indexOf);
@@ -33,7 +33,7 @@ public final class d3 {
             } else {
                 aVar2 = null;
             }
-            if (aVar2 != null && !aVar2.f15098i && !w3.y3(aVar2) && !w3.F3(aVar2.f15094b)) {
+            if (aVar2 != null && !aVar2.f15101i && !w3.y3(aVar2) && !w3.F3(aVar2.f15097b)) {
                 aVar3 = aVar2;
             }
             if (arrayList.isEmpty()) {

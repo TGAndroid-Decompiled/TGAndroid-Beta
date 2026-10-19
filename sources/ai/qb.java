@@ -3,7 +3,7 @@ package ai;
 import android.content.DialogInterface;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.it0;
+import org.telegram.ui.gt0;
 public final class qb implements DialogInterface.OnDismissListener {
     public final int f2084a = 0;
     public final int f2085b;
@@ -22,7 +22,7 @@ public final class qb implements DialogInterface.OnDismissListener {
                 return;
             default:
                 rg.m0 m0Var = (rg.m0) this.f2086c;
-                PhotoViewer photoViewer = ((it0) m0Var).f37974o2;
+                PhotoViewer photoViewer = ((gt0) m0Var).f37433o2;
                 if (photoViewer.F2 != null) {
                     photoViewer.H2 = false;
                     photoViewer.u0();

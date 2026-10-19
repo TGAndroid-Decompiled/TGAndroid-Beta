@@ -1,22 +1,31 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.view.View;
-public final class ms implements bh.k {
-    public final int f39225a;
-    public final org.telegram.ui.Components.im0 f39226b;
+import android.content.Context;
+import java.util.ArrayList;
+public final class ms extends hg.t1 {
+    public final ContactsActivity K;
 
-    public ms(org.telegram.ui.Components.im0 im0Var, int i10) {
-        this.f39225a = i10;
-        this.f39226b = im0Var;
+    public ms(ContactsActivity contactsActivity, Context context, a0.h hVar, boolean z10, boolean z11, boolean z12) {
+        this.K = contactsActivity;
+        this.d = new ArrayList();
+        this.e = new ArrayList();
+        this.H = new ArrayList();
+        this.f12057c = context;
+        this.h = hVar;
+        this.f12060r = z10;
+        this.f12061s = z11;
+        this.f12063x = 0;
+        this.v = z12;
+        this.f12062w = true;
+        hg.a2 a2Var = new hg.a2(true);
+        this.f12058f = a2Var;
+        a2Var.f11794a = new hg.q1(this);
     }
 
     @Override
-    public final boolean a(Canvas canvas, View view, long j10) {
-        switch (this.f39225a) {
-            case 0:
-            default:
-                return this.f39226b.drawChild(canvas, view, j10);
+    public final void F() {
+        if (!this.f12064y && !this.f12058f.e() && h() == 0) {
+            this.K.e.e(false, true);
         }
     }
 }

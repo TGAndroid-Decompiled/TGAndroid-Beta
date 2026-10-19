@@ -1,36 +1,45 @@
 package org.telegram.ui;
 
 import android.content.Context;
-public final class kd0 extends sr {
-    public final int h;
-    public final Object f38468n;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+public final class kd0 extends TextView {
+    public final int f38578a;
 
-    public kd0(Object obj, Context context, int i10) {
+    public kd0(Context context, int i10) {
         super(context);
-        this.h = i10;
-        this.f38468n = obj;
+        this.f38578a = i10;
     }
 
     @Override
-    public final void a() {
-        switch (this.h) {
+    public CharSequence getAccessibilityClassName() {
+        switch (this.f38578a) {
+            case 4:
+                return Button.class.getName();
+            default:
+                return super.getAccessibilityClassName();
+        }
+    }
+
+    @Override
+    public void onMeasure(int i10, int i11) {
+        switch (this.f38578a) {
             case 0:
-                ((od0) this.f38468n).h(null);
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(Math.max(View.MeasureSpec.getSize(i11), AndroidUtilities.dp(100.0f)), Integer.MIN_VALUE));
                 return;
             case 1:
-                ((ie0) this.f38468n).h(null);
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(100.0f), Integer.MIN_VALUE));
                 return;
             case 2:
-                PasscodeActivity passcodeActivity = (PasscodeActivity) this.f38468n;
-                if (passcodeActivity.E == 0) {
-                    postDelayed(new ek0(this, 1), 260L);
-                    return;
-                } else {
-                    passcodeActivity.j0();
-                    return;
-                }
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(100.0f), Integer.MIN_VALUE));
+                return;
+            case 3:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(AndroidUtilities.dp(26.0f)), 1073741824));
+                return;
             default:
-                ((xf1) this.f38468n).C0();
+                super.onMeasure(i10, i11);
                 return;
         }
     }

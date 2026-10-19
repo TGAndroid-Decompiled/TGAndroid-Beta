@@ -1,113 +1,57 @@
 package c5;
 
-import android.text.TextUtils;
 import java.util.ArrayList;
 import org.json.JSONArray;
 import org.json.JSONObject;
 public final class o {
-    public final String f4774a;
-    public final JSONObject f4775b;
-    public final String f4776c;
-    public final String d;
-    public final String e;
-    public final String f4777f;
-    public final String f4778g;
-    public final ArrayList h;
-    public final ArrayList f4779i;
+    public final String f4773a;
+    public final n f4774b;
 
-    public o(String str) {
-        ArrayList arrayList;
-        this.f4774a = str;
-        JSONObject jSONObject = new JSONObject(str);
-        this.f4775b = jSONObject;
-        String optString = jSONObject.optString("productId");
-        this.f4776c = optString;
-        String optString2 = jSONObject.optString("type");
-        this.d = optString2;
-        if (!TextUtils.isEmpty(optString)) {
-            if (!TextUtils.isEmpty(optString2)) {
-                this.e = jSONObject.optString("title");
-                jSONObject.optString("name");
-                jSONObject.optString("description");
-                jSONObject.optString("packageDisplayName");
-                jSONObject.optString("iconUrl");
-                this.f4777f = jSONObject.optString("skuDetailsToken");
-                this.f4778g = jSONObject.optString("serializedDocid");
-                JSONArray optJSONArray = jSONObject.optJSONArray("subscriptionOfferDetails");
-                if (optJSONArray != null) {
-                    ArrayList arrayList2 = new ArrayList();
-                    for (int i10 = 0; i10 < optJSONArray.length(); i10++) {
-                        arrayList2.add(new n(optJSONArray.getJSONObject(i10)));
-                    }
-                    this.h = arrayList2;
-                } else {
-                    if (!optString2.equals("subs") && !optString2.equals("play_pass_subs")) {
-                        arrayList = null;
-                    } else {
-                        arrayList = new ArrayList();
-                    }
-                    this.h = arrayList;
-                }
-                JSONObject optJSONObject = this.f4775b.optJSONObject("oneTimePurchaseOfferDetails");
-                JSONArray optJSONArray2 = this.f4775b.optJSONArray("oneTimePurchaseOfferDetailsList");
-                ArrayList arrayList3 = new ArrayList();
-                if (optJSONArray2 != null) {
-                    for (int i11 = 0; i11 < optJSONArray2.length(); i11++) {
-                        arrayList3.add(new l(optJSONArray2.getJSONObject(i11)));
-                    }
-                    this.f4779i = arrayList3;
-                    return;
-                } else if (optJSONObject != null) {
-                    arrayList3.add(new l(optJSONObject));
-                    this.f4779i = arrayList3;
-                    return;
-                } else {
-                    this.f4779i = null;
-                    return;
+    public o(JSONObject jSONObject) {
+        jSONObject.optString("basePlanId");
+        jSONObject.optString("offerId").getClass();
+        this.f4773a = jSONObject.getString("offerIdToken");
+        JSONArray jSONArray = jSONObject.getJSONArray("pricingPhases");
+        ?? obj = new Object();
+        ArrayList arrayList = new ArrayList();
+        if (jSONArray != null) {
+            for (int i10 = 0; i10 < jSONArray.length(); i10++) {
+                JSONObject optJSONObject = jSONArray.optJSONObject(i10);
+                if (optJSONObject != null) {
+                    arrayList.add(new m(optJSONObject));
                 }
             }
-            throw new IllegalArgumentException("Product type cannot be empty.");
         }
-        throw new IllegalArgumentException("Product id cannot be empty.");
-    }
-
-    public final l a() {
-        ArrayList arrayList = this.f4779i;
-        if (arrayList != null && !arrayList.isEmpty()) {
-            return (l) arrayList.get(0);
+        obj.f4772a = arrayList;
+        this.f4774b = obj;
+        JSONObject optJSONObject2 = jSONObject.optJSONObject("installmentPlanDetails");
+        if (optJSONObject2 != null) {
+            optJSONObject2.getInt("commitmentPaymentsCount");
+            optJSONObject2.optInt("subsequentCommitmentPaymentsCount");
         }
-        return null;
-    }
-
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+        JSONObject optJSONObject3 = jSONObject.optJSONObject("transitionPlanDetails");
+        if (optJSONObject3 != null) {
+            optJSONObject3.getString("productId");
+            optJSONObject3.optString("title");
+            optJSONObject3.optString("name");
+            optJSONObject3.optString("description");
+            optJSONObject3.optString("basePlanId");
+            JSONObject optJSONObject4 = optJSONObject3.optJSONObject("pricingPhase");
+            if (optJSONObject4 != null) {
+                optJSONObject4.optString("billingPeriod");
+                optJSONObject4.optString("priceCurrencyCode");
+                optJSONObject4.optString("formattedPrice");
+                optJSONObject4.optLong("priceAmountMicros");
+                optJSONObject4.optInt("recurrenceMode");
+                optJSONObject4.optInt("billingCycleCount");
+            }
         }
-        if (!(obj instanceof o)) {
-            return false;
+        ArrayList arrayList2 = new ArrayList();
+        JSONArray optJSONArray = jSONObject.optJSONArray("offerTags");
+        if (optJSONArray != null) {
+            for (int i11 = 0; i11 < optJSONArray.length(); i11++) {
+                arrayList2.add(optJSONArray.getString(i11));
+            }
         }
-        return TextUtils.equals(this.f4774a, ((o) obj).f4774a);
-    }
-
-    public final int hashCode() {
-        return this.f4774a.hashCode();
-    }
-
-    public final String toString() {
-        String obj = this.f4775b.toString();
-        String valueOf = String.valueOf(this.h);
-        StringBuilder sb2 = new StringBuilder("ProductDetails{jsonString='");
-        a1.g.A(sb2, this.f4774a, "', parsedJson=", obj, ", productId='");
-        sb2.append(this.f4776c);
-        sb2.append("', productType='");
-        sb2.append(this.d);
-        sb2.append("', title='");
-        sb2.append(this.e);
-        sb2.append("', productDetailsToken='");
-        sb2.append(this.f4777f);
-        sb2.append("', subscriptionOfferDetails=");
-        sb2.append(valueOf);
-        sb2.append("}");
-        return sb2.toString();
     }
 }

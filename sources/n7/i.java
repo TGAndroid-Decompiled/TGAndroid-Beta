@@ -1,146 +1,80 @@
 package n7;
 
-import j$.lang.Iterable$CC;
-import j$.util.Collection;
-import j$.util.Spliterator;
-import j$.util.Spliterators;
-import j$.util.stream.Stream;
-import java.io.Serializable;
-import java.util.AbstractCollection;
-import java.util.Arrays;
-import java.util.Spliterator;
-import java.util.function.Consumer;
-import java.util.function.IntFunction;
-import java.util.function.Predicate;
-import java.util.stream.Stream;
-public abstract class i extends AbstractCollection implements Serializable, Collection {
-    public static final Object[] f17274a = new Object[0];
+import java.util.ListIterator;
+import java.util.NoSuchElementException;
+public final class i extends d0 implements ListIterator {
+    public final int f17277a;
+    public int f17278b;
+    public final m f17279c;
 
-    @Override
-    public final boolean add(Object obj) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final boolean addAll(java.util.Collection collection) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final void clear() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public void forEach(Consumer consumer) {
-        Iterable$CC.$default$forEach(this, consumer);
-    }
-
-    public int h(Object[] objArr) {
-        e0 o10 = o();
-        int i10 = 0;
-        while (o10.hasNext()) {
-            objArr[i10] = o10.next();
-            i10++;
+    public i(m mVar, int i10) {
+        int size = mVar.size();
+        if (i10 >= 0 && i10 <= size) {
+            this.f17277a = size;
+            this.f17278b = i10;
+            this.f17279c = mVar;
+            return;
         }
-        return i10;
+        throw new IndexOutOfBoundsException(a.n(i10, size, "index"));
     }
 
-    public int m() {
-        throw new UnsupportedOperationException();
-    }
-
-    public int n() {
-        throw new UnsupportedOperationException();
-    }
-
-    public abstract e0 o();
-
-    public Object[] p() {
-        return null;
+    public final Object a(int i10) {
+        return this.f17279c.get(i10);
     }
 
     @Override
-    public Stream parallelStream() {
-        return Stream.Wrapper.convert(parallelStream());
-    }
-
-    @Override
-    public final boolean remove(Object obj) {
+    public final void add(Object obj) {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public final boolean removeAll(java.util.Collection collection) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public boolean removeIf(Predicate predicate) {
-        return Collection.CC.$default$removeIf(this, predicate);
-    }
-
-    @Override
-    public final boolean retainAll(java.util.Collection collection) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public Spliterator spliterator() {
-        return Spliterator.Wrapper.convert(spliterator());
-    }
-
-    @Override
-    public java.util.stream.Stream stream() {
-        return Stream.Wrapper.convert(stream());
-    }
-
-    @Override
-    public Object[] toArray(IntFunction intFunction) {
-        Object[] array;
-        array = toArray((Object[]) intFunction.apply(0));
-        return array;
-    }
-
-    @Override
-    public j$.util.stream.Stream parallelStream() {
-        return Collection.CC.$default$parallelStream(this);
-    }
-
-    @Override
-    public final j$.util.Spliterator spliterator() {
-        return Spliterators.spliterator(this, 1296);
-    }
-
-    @Override
-    public j$.util.stream.Stream stream() {
-        return Collection.CC.$default$stream(this);
-    }
-
-    @Override
-    public final Object[] toArray() {
-        return toArray(f17274a);
-    }
-
-    @Override
-    public final Object[] toArray(Object[] objArr) {
-        objArr.getClass();
-        int size = size();
-        int length = objArr.length;
-        if (length < size) {
-            Object[] p5 = p();
-            if (p5 == null) {
-                if (length != 0) {
-                    objArr = Arrays.copyOf(objArr, 0);
-                }
-                objArr = Arrays.copyOf(objArr, size);
-            } else {
-                return Arrays.copyOfRange(p5, n(), m(), objArr.getClass());
-            }
-        } else if (length > size) {
-            objArr[size] = null;
+    public final boolean hasNext() {
+        if (this.f17278b < this.f17277a) {
+            return true;
         }
-        h(objArr);
-        return objArr;
+        return false;
+    }
+
+    @Override
+    public final boolean hasPrevious() {
+        if (this.f17278b > 0) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final Object next() {
+        if (hasNext()) {
+            int i10 = this.f17278b;
+            this.f17278b = i10 + 1;
+            return a(i10);
+        }
+        throw new NoSuchElementException();
+    }
+
+    @Override
+    public final int nextIndex() {
+        return this.f17278b;
+    }
+
+    @Override
+    public final Object previous() {
+        if (hasPrevious()) {
+            int i10 = this.f17278b - 1;
+            this.f17278b = i10;
+            return a(i10);
+        }
+        throw new NoSuchElementException();
+    }
+
+    @Override
+    public final int previousIndex() {
+        return this.f17278b - 1;
+    }
+
+    @Override
+    public final void set(Object obj) {
+        throw new UnsupportedOperationException();
     }
 }

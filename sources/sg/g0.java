@@ -45,7 +45,7 @@ public final class g0 extends FrameLayout {
         j5 j5Var = new j5(context);
         this.f46252b = j5Var;
         j5Var.setWidthWrapContent(true);
-        j5Var.setTextColor(h6.w0(h6.f21092j5, d6Var));
+        j5Var.setTextColor(h6.w0(h6.f21095j5, d6Var));
         j5Var.setTextSize(14);
         boolean z10 = LocaleController.isRTL;
         int i13 = (z10 ? 5 : 3) | 16;

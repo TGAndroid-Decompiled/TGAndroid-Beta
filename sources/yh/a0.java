@@ -3,15 +3,15 @@ package yh;
 import android.content.Context;
 import android.view.View;
 public final class a0 extends View {
-    public final float f50165a;
+    public final float f50164a;
 
     public a0(Context context, float f7) {
         super(context);
-        this.f50165a = f7;
+        this.f50164a = f7;
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) (View.MeasureSpec.getSize(i10) * this.f50165a), 1073741824), i11);
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) (View.MeasureSpec.getSize(i10) * this.f50164a), 1073741824), i11);
     }
 }

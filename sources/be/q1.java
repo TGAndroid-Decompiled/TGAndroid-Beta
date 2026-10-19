@@ -2,15 +2,15 @@ package be;
 
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 public final class q1 extends ge.b {
-    public final l1 f4315b;
-    public w1 f4316c;
+    public final l1 f4313b;
+    public w1 f4314c;
     public final v1 d;
     public final b1 e;
 
     public q1(l1 l1Var, v1 v1Var, b1 b1Var) {
         this.d = v1Var;
         this.e = b1Var;
-        this.f4315b = l1Var;
+        this.f4313b = l1Var;
     }
 
     @Override
@@ -23,21 +23,21 @@ public final class q1 extends ge.b {
         } else {
             z10 = false;
         }
-        l1 l1Var = this.f4315b;
+        l1 l1Var = this.f4313b;
         if (z10) {
             b1Var = l1Var;
         } else {
-            b1Var = this.f4316c;
+            b1Var = this.f4314c;
         }
         if (b1Var != null) {
-            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = ge.k.f11028a;
+            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = ge.k.f11029a;
             while (!atomicReferenceFieldUpdater.compareAndSet(kVar, this, b1Var)) {
                 if (atomicReferenceFieldUpdater.get(kVar) != this) {
                     return;
                 }
             }
             if (z10) {
-                w1 w1Var = this.f4316c;
+                w1 w1Var = this.f4314c;
                 kotlin.jvm.internal.i.b(w1Var);
                 l1Var.e(w1Var);
             }

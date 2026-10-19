@@ -20,7 +20,7 @@ public final class a extends k implements h {
 
     @Override
     public final long a(long j10) {
-        return (Math.max(0L, j10 - this.f4637b) * 8000000) / this.e;
+        return (Math.max(0L, j10 - this.f4635b) * 8000000) / this.e;
     }
 
     @Override

@@ -1,11 +1,11 @@
 package org.telegram.ui;
 public final class a6 implements Runnable {
-    public final int f35272a;
-    public final Object f35273b;
+    public final int f35276a;
+    public final Object f35277b;
 
     public a6(Object obj, int i10) {
-        this.f35272a = i10;
-        this.f35273b = obj;
+        this.f35276a = i10;
+        this.f35277b = obj;
     }
 
     @Override

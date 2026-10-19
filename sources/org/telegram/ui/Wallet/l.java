@@ -6,25 +6,25 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.x90;
-import org.telegram.ui.n80;
+import org.telegram.ui.l80;
 public final class l implements Utilities.Callback {
-    public final int f34413a;
-    public final Object f34414b;
+    public final int f34436a;
+    public final Object f34437b;
 
     public l(Object obj, int i10) {
-        this.f34413a = i10;
-        this.f34414b = obj;
+        this.f34436a = i10;
+        this.f34437b = obj;
     }
 
     @Override
     public final void run(Object obj) {
         String str;
+        int i10;
         CharSequence formatSpannable;
-        int i10 = this.f34413a;
-        int i11 = 12;
+        int i11 = this.f34436a;
         boolean z10 = false;
-        Object obj2 = this.f34414b;
-        switch (i10) {
+        Object obj2 = this.f34437b;
+        switch (i11) {
             case 0:
                 ai.x8 x8Var = (ai.x8) obj2;
                 if (((String) obj) == null) {
@@ -45,7 +45,7 @@ public final class l implements Utilities.Callback {
             case 2:
                 String str2 = (String) obj;
                 f2.k("approve session", str2);
-                ((n80) obj2).run(str2);
+                ((l80) obj2).run(str2);
                 return;
             case 3:
                 String str3 = (String) obj;
@@ -53,23 +53,25 @@ public final class l implements Utilities.Callback {
                 ((Utilities.Callback) obj2).run(str3);
                 return;
             case 4:
-                AndroidUtilities.runOnUIThread(new v3(12, (t7) obj2, (TLRPC.UserFull) obj));
+                AndroidUtilities.runOnUIThread(new z3(11, (t7) obj2, (TLRPC.UserFull) obj));
                 return;
             default:
                 w7 w7Var = (w7) obj2;
                 w7Var.getClass();
-                if (((Integer) obj).intValue() != 0) {
-                    i11 = 24;
+                if (((Integer) obj).intValue() == 0) {
+                    i10 = 12;
+                } else {
+                    i10 = 24;
                 }
-                if (w7Var.f35047a != i11) {
-                    w7Var.f35047a = i11;
+                if (w7Var.f35061a != i10) {
+                    w7Var.f35061a = i10;
                     w7Var.W(w7Var.getParentActivity());
                     w7Var.Y();
                     x90 x90Var = w7Var.h;
-                    if (w7Var.f35053s != null) {
-                        formatSpannable = LocaleController.formatSpannable(R.string.WalletImportCurrentPhraseInfo, Integer.valueOf(i11));
+                    if (w7Var.f35067s != null) {
+                        formatSpannable = LocaleController.formatSpannable(R.string.WalletImportCurrentPhraseInfo, Integer.valueOf(i10));
                     } else {
-                        formatSpannable = LocaleController.formatSpannable(R.string.WalletImportPhraseInfo, Integer.valueOf(i11));
+                        formatSpannable = LocaleController.formatSpannable(R.string.WalletImportPhraseInfo, Integer.valueOf(i10));
                     }
                     x90Var.setText(formatSpannable);
                     return;

@@ -22,45 +22,45 @@ public class CheckBoxBase {
     public org.telegram.ui.ActionBar.d6 F;
     public GenericProvider G;
     public long H;
-    public View f24134a;
+    public View f24137a;
     public final Paint d;
-    public final Paint f24137f;
-    public TextPaint f24138g;
-    public boolean f24139i;
-    public boolean f24142l;
-    public boolean f24144n;
-    public float f24145o;
-    public ObjectAnimator f24146p;
-    public boolean f24147q;
-    public int f24149s;
-    public int f24150t;
-    public int f24151u;
+    public final Paint f24140f;
+    public TextPaint f24141g;
+    public boolean f24142i;
+    public boolean f24145l;
+    public boolean f24147n;
+    public float f24148o;
+    public ObjectAnimator f24149p;
+    public boolean f24150q;
+    public int f24152s;
+    public int f24153t;
+    public int f24154u;
     public float v;
-    public float f24152w;
-    public int f24153x;
-    public boolean f24154y;
-    public boolean f24155z;
-    public final Rect f24135b = new Rect();
-    public final RectF f24136c = new RectF();
+    public float f24155w;
+    public int f24156x;
+    public boolean f24157y;
+    public boolean f24158z;
+    public final Rect f24138b = new Rect();
+    public final RectF f24139c = new RectF();
     public float e = 1.0f;
     public float h = 1.0f;
-    public final Path f24140j = new Path();
-    public boolean f24141k = true;
-    public float f24143m = 1.0f;
-    public int f24148r = org.telegram.ui.ActionBar.h6.f21114k7;
+    public final Path f24143j = new Path();
+    public boolean f24144k = true;
+    public float f24146m = 1.0f;
+    public int f24151r = org.telegram.ui.ActionBar.h6.f21117k7;
 
     public CheckBoxBase(int i10, View view, org.telegram.ui.ActionBar.d6 d6Var) {
-        int i11 = org.telegram.ui.ActionBar.h6.f21136lc;
-        this.f24149s = i11;
-        this.f24150t = i11;
-        this.f24151u = org.telegram.ui.ActionBar.h6.f21057h5;
+        int i11 = org.telegram.ui.ActionBar.h6.f21139lc;
+        this.f24152s = i11;
+        this.f24153t = i11;
+        this.f24154u = org.telegram.ui.ActionBar.h6.f21060h5;
         this.v = 0.0f;
-        this.f24152w = 1.0f;
-        this.f24155z = true;
+        this.f24155w = 1.0f;
+        this.f24158z = true;
         this.G = new k2(14);
         this.H = 200L;
         this.F = d6Var;
-        this.f24134a = view;
+        this.f24137a = view;
         this.B = i10;
         if (I == null) {
             I = new Paint(1);
@@ -73,7 +73,7 @@ public class CheckBoxBase {
         paint.setStrokeJoin(Paint.Join.ROUND);
         paint.setStrokeWidth(AndroidUtilities.dp(1.9f));
         Paint paint2 = new Paint(1);
-        this.f24137f = paint2;
+        this.f24140f = paint2;
         paint2.setStyle(style);
         paint2.setStrokeWidth(AndroidUtilities.dp(1.2f));
     }
@@ -83,21 +83,21 @@ public class CheckBoxBase {
     }
 
     public final void b() {
-        View view = this.f24134a;
+        View view = this.f24137a;
         if (view == null) {
             return;
         }
         if (view.getParent() != null) {
-            ((View) this.f24134a.getParent()).invalidate();
+            ((View) this.f24137a.getParent()).invalidate();
         }
-        this.f24134a.invalidate();
+        this.f24137a.invalidate();
     }
 
     public final void c(float f7) {
-        if (this.f24143m == f7) {
+        if (this.f24146m == f7) {
             return;
         }
-        this.f24143m = f7;
+        this.f24146m = f7;
         b();
     }
 
@@ -106,7 +106,7 @@ public class CheckBoxBase {
             return;
         }
         this.A = i10;
-        Paint paint = this.f24137f;
+        Paint paint = this.f24140f;
         if (i10 != 12 && i10 != 13) {
             if (i10 != 4 && i10 != 5) {
                 if (i10 == 3) {
@@ -129,7 +129,7 @@ public class CheckBoxBase {
     public final void e(int i10, int i11, int i12, int i13) {
         int i14 = i12 + i10;
         int i15 = i13 + i11;
-        Rect rect = this.f24135b;
+        Rect rect = this.f24138b;
         if (rect.left == i10 && rect.top == i11 && rect.right == i14 && rect.bottom == i15) {
             return;
         }
@@ -149,27 +149,27 @@ public class CheckBoxBase {
                 b();
             }
         }
-        if (z10 == this.f24147q) {
+        if (z10 == this.f24150q) {
             return;
         }
-        this.f24147q = z10;
+        this.f24150q = z10;
         float f7 = 0.0f;
-        if (this.f24142l && z11) {
+        if (this.f24145l && z11) {
             if (z10) {
                 f7 = 1.0f;
             }
             ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, "progress", f7);
-            this.f24146p = ofFloat;
-            ofFloat.addListener(new org.telegram.ui.pq(this, 18));
-            this.f24146p.setInterpolator(bs.f25031g);
-            this.f24146p.setDuration(this.H);
-            this.f24146p.start();
+            this.f24149p = ofFloat;
+            ofFloat.addListener(new org.telegram.ui.nq(this, 18));
+            this.f24149p.setInterpolator(bs.f25015g);
+            this.f24149p.setDuration(this.H);
+            this.f24149p.start();
             return;
         }
-        ObjectAnimator objectAnimator = this.f24146p;
+        ObjectAnimator objectAnimator = this.f24149p;
         if (objectAnimator != null) {
             objectAnimator.cancel();
-            this.f24146p = null;
+            this.f24149p = null;
         }
         if (z10) {
             f7 = 1.0f;
@@ -182,16 +182,16 @@ public class CheckBoxBase {
     }
 
     public float getProgress() {
-        return this.f24145o;
+        return this.f24148o;
     }
 
     public final void h(int i10, int i11, int i12) {
-        if (this.f24149s == i10 && this.f24150t == i11 && this.f24148r == i12) {
+        if (this.f24152s == i10 && this.f24153t == i11 && this.f24151r == i12) {
             return;
         }
-        this.f24149s = i10;
-        this.f24150t = i11;
-        this.f24148r = i12;
+        this.f24152s = i10;
+        this.f24153t = i11;
+        this.f24151r = i12;
         b();
     }
 
@@ -205,10 +205,10 @@ public class CheckBoxBase {
 
     public final void j(boolean z10) {
         PorterDuffXfermode porterDuffXfermode;
-        if (this.f24139i == z10) {
+        if (this.f24142i == z10) {
             return;
         }
-        this.f24139i = z10;
+        this.f24142i = z10;
         if (z10) {
             porterDuffXfermode = new PorterDuffXfermode(PorterDuff.Mode.CLEAR);
         } else {
@@ -219,10 +219,10 @@ public class CheckBoxBase {
     }
 
     public final void k(boolean z10) {
-        if (this.f24155z == z10) {
+        if (this.f24158z == z10) {
             return;
         }
-        this.f24155z = z10;
+        this.f24158z = z10;
         b();
     }
 
@@ -235,8 +235,8 @@ public class CheckBoxBase {
     }
 
     public void setProgress(float f7) {
-        if (this.f24145o != f7) {
-            this.f24145o = f7;
+        if (this.f24148o != f7) {
+            this.f24148o = f7;
             b();
             yp ypVar = this.D;
             if (ypVar != null) {

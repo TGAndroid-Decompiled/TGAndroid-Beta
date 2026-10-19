@@ -24,7 +24,7 @@ import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.SvgHelper;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.mj0;
+import org.telegram.ui.kj0;
 public final class a2 extends FrameLayout implements m0, NotificationCenter.NotificationCenterDelegate {
     public static final float[] U = {0.02f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0.02f};
     public boolean E;
@@ -51,7 +51,7 @@ public final class a2 extends FrameLayout implements m0, NotificationCenter.Noti
     public float f46198f;
     public final String h;
     public final ImageReceiver f46199n;
-    public org.telegram.ui.web.a2 f46200r;
+    public org.telegram.ui.web.z1 f46200r;
     public final int f46201s;
     public final int v;
     public boolean f46202w;
@@ -68,13 +68,13 @@ public final class a2 extends FrameLayout implements m0, NotificationCenter.Noti
             File file2 = this.e;
             if (file2 != null && file2.exists()) {
                 if ((NotificationCenter.getGlobalInstance().getCurrentHeavyOperationFlags() & 512) != 0) {
-                    org.telegram.ui.web.a2 a2Var = this.f46200r;
-                    if (a2Var != null) {
-                        AndroidUtilities.cancelRunOnUIThread(a2Var);
+                    org.telegram.ui.web.z1 z1Var = this.f46200r;
+                    if (z1Var != null) {
+                        AndroidUtilities.cancelRunOnUIThread(z1Var);
                     }
-                    org.telegram.ui.web.a2 a2Var2 = new org.telegram.ui.web.a2(this, 26);
-                    this.f46200r = a2Var2;
-                    AndroidUtilities.runOnUIThread(a2Var2, 300L);
+                    org.telegram.ui.web.z1 z1Var2 = new org.telegram.ui.web.z1(this, 26);
+                    this.f46200r = z1Var2;
+                    AndroidUtilities.runOnUIThread(z1Var2, 300L);
                     return;
                 }
                 try {
@@ -114,7 +114,7 @@ public final class a2 extends FrameLayout implements m0, NotificationCenter.Noti
                     StringBuilder sb2 = new StringBuilder("?account=");
                     sb2.append(i10);
                     sb2.append("&id=");
-                    sb2.append(this.R.f20278id);
+                    sb2.append(this.R.f20281id);
                     sb2.append("&hash=");
                     sb2.append(this.R.access_hash);
                     sb2.append("&dc=");
@@ -206,7 +206,7 @@ public final class a2 extends FrameLayout implements m0, NotificationCenter.Noti
         NotificationCenter.getInstance(this.f46201s).removeObserver(this, NotificationCenter.fileLoaded);
         org.telegram.ui.Cells.u0 u0Var = this.P;
         if (u0Var != null) {
-            HashMap hashMap = (HashMap) u0Var.f23210f;
+            HashMap hashMap = (HashMap) u0Var.f23213f;
             for (Bitmap bitmap : hashMap.values()) {
                 bitmap.recycle();
             }
@@ -216,7 +216,7 @@ public final class a2 extends FrameLayout implements m0, NotificationCenter.Noti
         ei.c0 c0Var = this.H;
         if (c0Var != null) {
             this.T = c0Var.getCurrentPosition();
-            this.H.release(new mj0(20));
+            this.H.release(new kj0(20));
             this.H = null;
         }
     }
@@ -274,10 +274,10 @@ public final class a2 extends FrameLayout implements m0, NotificationCenter.Noti
             }
             org.telegram.ui.Cells.u0 u0Var = this.P;
             if (u0Var != null) {
-                ((RectF) u0Var.f23211g).set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+                ((RectF) u0Var.f23214g).set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
                 ((RectF) this.P.h).set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-                ((RectF) this.P.f23211g).inset(AndroidUtilities.dp(0.0f), getMeasuredHeight() * 0.1f);
-                ArrayList arrayList2 = this.P.f23209c;
+                ((RectF) this.P.f23214g).inset(AndroidUtilities.dp(0.0f), getMeasuredHeight() * 0.1f);
+                ArrayList arrayList2 = this.P.f23212c;
                 System.currentTimeMillis();
                 for (int i16 = 0; i16 < arrayList2.size(); i16++) {
                     ((l) arrayList2.get(i16)).a(i16, true);
@@ -371,7 +371,7 @@ public final class a2 extends FrameLayout implements m0, NotificationCenter.Noti
             ei.c0 c0Var = this.H;
             if (c0Var != null) {
                 this.T = c0Var.getCurrentPosition();
-                this.H.release(new mj0(20));
+                this.H.release(new kj0(20));
                 this.H = null;
             }
             imageReceiver.stopAnimation();

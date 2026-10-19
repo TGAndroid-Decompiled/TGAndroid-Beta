@@ -21,10 +21,10 @@ public final class k2 extends e2 implements f2 {
     }
 
     @Override
-    public final void e(l.k kVar, MenuItem menuItem) {
+    public final void d(l.k kVar, MenuItem menuItem) {
         ki.t1 t1Var = this.S;
         if (t1Var != null) {
-            t1Var.e(kVar, menuItem);
+            t1Var.d(kVar, menuItem);
         }
     }
 

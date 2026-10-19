@@ -13,20 +13,20 @@ import n6.l;
 import v7.h5;
 import v8.t;
 public final class a extends Binder implements j, IInterface {
-    public final int f8396a;
-    public final TaskCompletionSource f8397b;
+    public final int f8397a;
+    public final TaskCompletionSource f8398b;
 
     public a(int i10, TaskCompletionSource taskCompletionSource) {
-        this.f8396a = i10;
+        this.f8397a = i10;
         attachInterface(this, "com.google.android.gms.wallet.internal.IWalletServiceCallbacks");
-        this.f8397b = taskCompletionSource;
+        this.f8398b = taskCompletionSource;
     }
 
     @Override
     public void I(int i10, boolean z10) {
-        switch (this.f8396a) {
+        switch (this.f8397a) {
             case 1:
-                h5.a(new Status(i10, null, null, null), Boolean.valueOf(z10), this.f8397b);
+                h5.a(new Status(i10, null, null, null), Boolean.valueOf(z10), this.f8398b);
                 return;
             default:
                 return;
@@ -35,11 +35,11 @@ public final class a extends Binder implements j, IInterface {
 
     @Override
     public void O(Status status, v8.i iVar) {
-        switch (this.f8396a) {
+        switch (this.f8397a) {
             case 0:
                 int i10 = v8.a.f48247c;
                 boolean b10 = status.b();
-                TaskCompletionSource taskCompletionSource = this.f8397b;
+                TaskCompletionSource taskCompletionSource = this.f8398b;
                 if (b10) {
                     taskCompletionSource.setResult(iVar);
                     return;
@@ -54,9 +54,9 @@ public final class a extends Binder implements j, IInterface {
 
     @Override
     public void j0(Status status, boolean z10) {
-        switch (this.f8396a) {
+        switch (this.f8397a) {
             case 1:
-                h5.a(status, Boolean.valueOf(z10), this.f8397b);
+                h5.a(status, Boolean.valueOf(z10), this.f8398b);
                 return;
             default:
                 return;
@@ -86,7 +86,7 @@ public final class a extends Binder implements j, IInterface {
                 return true;
             case 3:
                 int readInt = parcel.readInt();
-                int i12 = c.f8398a;
+                int i12 = c.f8399a;
                 if (parcel.readInt() != 0) {
                     z10 = true;
                 }
@@ -102,7 +102,7 @@ public final class a extends Binder implements j, IInterface {
                 return false;
             case 6:
                 parcel.readInt();
-                int i13 = c.f8398a;
+                int i13 = c.f8399a;
                 parcel.readInt();
                 Bundle bundle5 = (Bundle) c.a(parcel, Bundle.CREATOR);
                 return true;

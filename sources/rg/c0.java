@@ -1,24 +1,24 @@
 package rg;
 
-import org.telegram.ui.it0;
-import org.telegram.ui.sq0;
-public final class c0 implements qg.d1 {
-    public final sq0 f45306a;
-    public final it0 f45307b;
+import org.telegram.ui.gt0;
+import org.telegram.ui.qq0;
+public final class c0 implements qg.e1 {
+    public final qq0 f45296a;
+    public final gt0 f45297b;
 
-    public c0(it0 it0Var, sq0 sq0Var) {
-        this.f45307b = it0Var;
-        this.f45306a = sq0Var;
+    public c0(gt0 gt0Var, qq0 qq0Var) {
+        this.f45297b = gt0Var;
+        this.f45296a = qq0Var;
     }
 
     @Override
     public final void a() {
-        this.f45306a.run();
+        this.f45296a.run();
     }
 
     @Override
     public final void b() {
-        d0 d0Var = this.f45307b.X0;
+        d0 d0Var = this.f45297b.X0;
         if (d0Var != null) {
             d0Var.invalidate();
         }
@@ -26,43 +26,43 @@ public final class c0 implements qg.d1 {
 
     @Override
     public final void c() {
-        it0 it0Var = this.f45307b;
-        if (it0Var.f45485k1) {
-            it0Var.f45485k1 = false;
+        gt0 gt0Var = this.f45297b;
+        if (gt0Var.f45482k1) {
+            gt0Var.f45482k1 = false;
             return;
         }
-        it0Var.f45497t1.b(1);
-        it0Var.o((qg.m) qg.m.f44561a.get(0));
+        gt0Var.f45494t1.b(1);
+        gt0Var.o((qg.m) qg.m.f44551a.get(0));
     }
 
     @Override
     public final boolean d() {
         boolean z10;
-        it0 it0Var = this.f45307b;
-        if (it0Var.S0 == null) {
+        gt0 gt0Var = this.f45297b;
+        if (gt0Var.S0 == null) {
             z10 = true;
         } else {
             z10 = false;
         }
         if (!z10) {
-            it0Var.s0(null, true);
+            gt0Var.s0(null, true);
         }
         return z10;
     }
 
     @Override
     public final void e() {
-        it0 it0Var = this.f45307b;
-        it0Var.F0.f44683a.e();
-        it0Var.l1.setViewHidden(false);
+        gt0 gt0Var = this.f45297b;
+        gt0Var.F0.f44685a.e();
+        gt0Var.l1.setViewHidden(false);
     }
 
     @Override
     public final void f() {
-        it0 it0Var = this.f45307b;
-        if (it0Var.S0 != null) {
-            it0Var.s0(null, true);
+        gt0 gt0Var = this.f45297b;
+        if (gt0Var.S0 != null) {
+            gt0Var.s0(null, true);
         }
-        it0Var.l1.setViewHidden(true);
+        gt0Var.l1.setViewHidden(true);
     }
 }

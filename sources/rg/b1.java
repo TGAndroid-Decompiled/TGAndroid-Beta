@@ -17,9 +17,9 @@ public final class b1 extends s4.t {
         MessageObject.GroupedMessagePosition position;
         byte b10;
         r5 r5Var = this.S;
-        ArrayList arrayList = r5Var.f45327s0;
+        ArrayList arrayList = r5Var.f45325s0;
         int size = (arrayList.size() - 1) - i10;
-        MessageObject.GroupedMessages groupedMessages = r5Var.f45328t0;
+        MessageObject.GroupedMessages groupedMessages = r5Var.f45326t0;
         if (groupedMessages != null && size >= 0 && size < arrayList.size() && (position = groupedMessages.getPosition((MessageObject) arrayList.get(size))) != null && position.minX != position.maxX && (b10 = position.minY) == position.maxY && b10 != 0) {
             int size2 = groupedMessages.posArray.size();
             for (int i11 = 0; i11 < size2; i11++) {

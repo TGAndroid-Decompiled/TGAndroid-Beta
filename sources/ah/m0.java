@@ -1,34 +1,34 @@
 package ah;
 
 import android.widget.FrameLayout;
-import ci.e6;
-import ci.i4;
-import ci.q3;
-import ci.q9;
-import ci.t5;
-import ci.z9;
+import ci.aa;
+import ci.f6;
+import ci.j4;
+import ci.r3;
+import ci.r9;
+import ci.u5;
 import ei.vb;
 import gi.e4;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.n2;
 import org.telegram.ui.Components.ob;
 import org.telegram.ui.Components.om;
-import org.telegram.ui.Components.oy0;
+import org.telegram.ui.Components.py0;
 import org.telegram.ui.Components.qc;
 import org.telegram.ui.Components.ub;
 import org.telegram.ui.Components.y7;
 public final class m0 implements ob {
-    public final int f830a;
-    public final Object f831b;
+    public final int f828a;
+    public final Object f829b;
 
     public m0(Object obj, int i10) {
-        this.f830a = i10;
-        this.f831b = obj;
+        this.f828a = i10;
+        this.f829b = obj;
     }
 
     @Override
     public final boolean a() {
-        switch (this.f830a) {
+        switch (this.f828a) {
             case 0:
                 return true;
             case 1:
@@ -58,15 +58,15 @@ public final class m0 implements ob {
 
     @Override
     public final void b(qc qcVar) {
-        i4 i4Var;
-        switch (this.f830a) {
+        j4 j4Var;
+        switch (this.f828a) {
             case 0:
                 return;
             case 1:
-                if (qcVar.f29632a == 2 && (i4Var = ((q3) this.f831b).f5778x.Q1) != null) {
-                    z9 z9Var = ((q9) i4Var).d;
-                    z9Var.Y0 = true;
-                    z9Var.P();
+                if (qcVar.f29590a == 2 && (j4Var = ((r3) this.f829b).f5914x.Q1) != null) {
+                    aa aaVar = ((r9) j4Var).d;
+                    aaVar.Y0 = true;
+                    aaVar.P();
                     return;
                 }
                 return;
@@ -82,13 +82,13 @@ public final class m0 implements ob {
                 return;
             default:
                 ub ubVar = qcVar.e;
-                yh.i0 i0Var = (yh.i0) this.f831b;
+                yh.i0 i0Var = (yh.i0) this.f829b;
                 dh.d c10 = i0Var.e.c(ubVar, null, true);
                 eh.e eVar = new eh.e(yh.i0.n(i0Var));
                 eVar.e = new ci.i1(20);
                 float dpf2 = AndroidUtilities.dpf2(0.5f);
                 float dpf22 = AndroidUtilities.dpf2(0.5f);
-                eVar.f8661f = dpf2;
+                eVar.f8662f = dpf2;
                 eVar.h = dpf22;
                 c10.o(eVar);
                 c10.q(AndroidUtilities.dp(16.0f));
@@ -99,20 +99,20 @@ public final class m0 implements ob {
 
     @Override
     public final void c(float f7) {
-        int i10 = this.f830a;
+        int i10 = this.f828a;
     }
 
     @Override
     public final void d(qc qcVar) {
-        i4 i4Var;
-        switch (this.f830a) {
+        j4 j4Var;
+        switch (this.f828a) {
             case 0:
                 return;
             case 1:
-                if (qcVar.f29632a == 2 && (i4Var = ((q3) this.f831b).f5778x.Q1) != null) {
-                    z9 z9Var = ((q9) i4Var).d;
-                    z9Var.Y0 = false;
-                    z9Var.P();
+                if (qcVar.f29590a == 2 && (j4Var = ((r3) this.f829b).f5914x.Q1) != null) {
+                    aa aaVar = ((r9) j4Var).d;
+                    aaVar.Y0 = false;
+                    aaVar.P();
                     return;
                 }
                 return;
@@ -132,7 +132,7 @@ public final class m0 implements ob {
 
     @Override
     public final boolean e() {
-        switch (this.f830a) {
+        switch (this.f828a) {
             case 0:
                 return true;
             case 1:
@@ -164,46 +164,46 @@ public final class m0 implements ob {
     public final int f(int i10) {
         int editTextHeight;
         int dp;
-        switch (this.f830a) {
+        switch (this.f828a) {
             case 0:
-                return (int) ((t0) ((v) this.f831b).f897c).f887u;
+                return (int) ((t0) ((v) this.f829b).f895c).f885u;
             case 1:
-                if (((q3) this.f831b).f5778x.f5719x2) {
+                if (((r3) this.f829b).f5914x.f5838x2) {
                     return 0;
                 }
                 return AndroidUtilities.dp(64.0f);
             case 2:
-                return ((t5) this.f831b).f5952r.getPaddingBottom();
+                return ((u5) this.f829b).f6053r.getPaddingBottom();
             case 3:
                 return 0;
             case 4:
-                editTextHeight = ((vb) this.f831b).f9957c1.getEditTextHeight();
+                editTextHeight = ((vb) this.f829b).f9958c1.getEditTextHeight();
                 dp = AndroidUtilities.dp(12.0f);
                 break;
             case 5:
-                return ((y7) this.f831b).e.E.getHeight();
+                return ((y7) this.f829b).e.E.getHeight();
             case 6:
-                return ((n2) this.f831b).getBottomInset();
+                return ((n2) this.f829b).getBottomInset();
             case 7:
-                ob obVar = (ob) this.f831b;
+                ob obVar = (ob) this.f829b;
                 if (obVar == null) {
                     return 0;
                 }
                 return obVar.f(i10);
             case 8:
                 editTextHeight = AndroidUtilities.dp(126.0f);
-                dp = ((om) this.f831b).f28998c.f28238b.getBottomInset();
+                dp = ((om) this.f829b).f29026c.f28225b.getBottomInset();
                 break;
             case 9:
-                FrameLayout frameLayout = ((oy0) this.f831b).f29105w;
+                FrameLayout frameLayout = ((py0) this.f829b).f29442w;
                 if (frameLayout != null) {
                     return frameLayout.getHeight();
                 }
                 return 0;
             case 10:
-                org.telegram.ui.web.b1 b1Var = (org.telegram.ui.web.b1) this.f831b;
-                if (b1Var.getParent() instanceof e4) {
-                    e4 e4Var = (e4) b1Var.getParent();
+                org.telegram.ui.web.a1 a1Var = (org.telegram.ui.web.a1) this.f829b;
+                if (a1Var.getParent() instanceof e4) {
+                    e4 e4Var = (e4) a1Var.getParent();
                     return (int) ((e4Var.getSwipeOffsetY() + e4Var.getOffsetY()) - e4Var.getTopActionBarOffsetY());
                 }
                 return 0;
@@ -215,7 +215,7 @@ public final class m0 implements ob {
 
     @Override
     public final boolean g(int i10) {
-        switch (this.f830a) {
+        switch (this.f828a) {
             case 0:
                 return false;
             case 1:
@@ -234,7 +234,7 @@ public final class m0 implements ob {
             case 6:
                 return false;
             case 7:
-                ob obVar = (ob) this.f831b;
+                ob obVar = (ob) this.f829b;
                 if (obVar != null && obVar.g(i10)) {
                     return true;
                 }
@@ -252,7 +252,7 @@ public final class m0 implements ob {
 
     @Override
     public final int h(int i10) {
-        switch (this.f830a) {
+        switch (this.f828a) {
             case 0:
                 return 0;
             case 1:
@@ -260,7 +260,7 @@ public final class m0 implements ob {
             case 2:
                 return 0;
             case 3:
-                return (int) (((e6) this.f831b).f5289a + AndroidUtilities.dp(58.0f));
+                return (int) (((f6) this.f829b).f5390a + AndroidUtilities.dp(58.0f));
             case 4:
                 return 0;
             case 5:
@@ -268,7 +268,7 @@ public final class m0 implements ob {
             case 6:
                 return 0;
             case 7:
-                ob obVar = (ob) this.f831b;
+                ob obVar = (ob) this.f829b;
                 if (obVar == null) {
                     return AndroidUtilities.statusBarHeight;
                 }

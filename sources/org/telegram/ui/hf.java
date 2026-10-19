@@ -1,29 +1,23 @@
 package org.telegram.ui;
-public final class hf implements Runnable {
-    public final int f37514a;
-    public final sn f37515b;
-    public final boolean f37516c;
 
-    public hf(sn snVar, boolean z10, int i10) {
-        this.f37514a = i10;
-        this.f37515b = snVar;
-        this.f37516c = z10;
+import android.content.DialogInterface;
+public final class hf implements DialogInterface.OnShowListener {
+    public final int f37609a;
+    public final qn f37610b;
+
+    public hf(qn qnVar, int i10) {
+        this.f37609a = i10;
+        this.f37610b = qnVar;
     }
 
     @Override
-    public final void run() {
-        String str;
-        switch (this.f37514a) {
+    public final void onShow(DialogInterface dialogInterface) {
+        switch (this.f37609a) {
             case 0:
-                if (this.f37516c) {
-                    str = "upload_speed";
-                } else {
-                    str = "download_speed";
-                }
-                this.f37515b.presentFragment(new PremiumPreviewFragment(0, str));
+                this.f37610b.Rb(false);
                 return;
             default:
-                this.f37515b.Cc(0, this.f37516c);
+                this.f37610b.Rb(false);
                 return;
         }
     }

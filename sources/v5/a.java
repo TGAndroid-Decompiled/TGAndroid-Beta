@@ -1,6 +1,7 @@
 package v5;
 
 import android.util.SparseArray;
+import i2.e;
 import i5.d;
 import java.util.HashMap;
 public abstract class a {
@@ -10,9 +11,9 @@ public abstract class a {
     static {
         HashMap hashMap = new HashMap();
         f47952b = hashMap;
-        hashMap.put(d.f12708a, 0);
-        hashMap.put(d.f12709b, 1);
-        hashMap.put(d.f12710c, 2);
+        hashMap.put(d.f12710a, 0);
+        hashMap.put(d.f12711b, 1);
+        hashMap.put(d.f12712c, 2);
         for (d dVar : hashMap.keySet()) {
             f47951a.append(((Integer) f47952b.get(dVar)).intValue(), dVar);
         }
@@ -31,6 +32,6 @@ public abstract class a {
         if (dVar != null) {
             return dVar;
         }
-        throw new IllegalArgumentException(i2.d.j(i10, "Unknown Priority for value "));
+        throw new IllegalArgumentException(e.j(i10, "Unknown Priority for value "));
     }
 }

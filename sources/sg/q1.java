@@ -13,7 +13,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.bs;
 import org.telegram.ui.Components.im0;
 import org.telegram.ui.Components.kv;
-import org.telegram.ui.kg0;
+import org.telegram.ui.ig0;
 public abstract class q1 extends im0 implements NotificationCenter.NotificationCenterDelegate, m0 {
     public final ArrayList V2;
     public final s4.b0 W2;
@@ -25,7 +25,7 @@ public abstract class q1 extends im0 implements NotificationCenter.NotificationC
     public final p8.b f46388c3;
     public final bs f46389d3;
     public final ArrayList f46390e3;
-    public final kg0 f46391f3;
+    public final ig0 f46391f3;
     public View f46392g3;
     public boolean f46393h3;
     public int f46394i3;
@@ -43,7 +43,7 @@ public abstract class q1 extends im0 implements NotificationCenter.NotificationC
         this.f46388c3 = new p8.b(t0Var, 4);
         this.f46389d3 = new bs(0.0f, 0.5f, 0.5f, 1.0f);
         this.f46390e3 = new ArrayList();
-        this.f46391f3 = new kg0(15);
+        this.f46391f3 = new ig0(15);
         this.f46395j3 = -1;
         this.Z2 = i10;
         s4.b0 b0Var = new s4.b0();
@@ -89,13 +89,13 @@ public abstract class q1 extends im0 implements NotificationCenter.NotificationC
             }
             Collections.sort(arrayList, this.f46391f3);
             if ((this.Y2 || this.f46393h3) && arrayList.size() > 0 && !this.V2.isEmpty()) {
-                View view = (View) i2.d.h(1, arrayList);
+                View view = (View) i2.e.h(1, arrayList);
                 this.f46392g3 = view;
                 x1(view, !this.Y2);
                 this.Y2 = false;
                 this.f46393h3 = false;
-            } else if (this.f46392g3 != i2.d.h(1, arrayList)) {
-                this.f46392g3 = (View) i2.d.h(1, arrayList);
+            } else if (this.f46392g3 != i2.e.h(1, arrayList)) {
+                this.f46392g3 = (View) i2.e.h(1, arrayList);
                 if (this.f46387b3) {
                     try {
                         performHapticFeedback(3);
@@ -135,7 +135,7 @@ public abstract class q1 extends im0 implements NotificationCenter.NotificationC
         super.onLayout(z10, i10, i11, i12, i13);
         if (this.X2 && !this.V2.isEmpty() && getChildCount() > 0) {
             this.X2 = false;
-            AndroidUtilities.runOnUIThread(new org.telegram.ui.web.a2(this, 24));
+            AndroidUtilities.runOnUIThread(new org.telegram.ui.web.z1(this, 24));
         }
         int i14 = this.f46395j3;
         if (i14 > 0) {

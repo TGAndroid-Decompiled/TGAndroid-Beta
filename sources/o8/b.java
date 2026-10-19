@@ -8,32 +8,32 @@ import com.google.android.gms.common.api.q;
 import w7.f0;
 public final class b extends o6.a implements q {
     public static final Parcelable.Creator<b> CREATOR = new m8.h(20);
-    public final int f17701a;
-    public final int f17702b;
-    public final Intent f17703c;
+    public final int f17704a;
+    public final int f17705b;
+    public final Intent f17706c;
 
     public b(int i10, int i11, Intent intent) {
-        this.f17701a = i10;
-        this.f17702b = i11;
-        this.f17703c = intent;
+        this.f17704a = i10;
+        this.f17705b = i11;
+        this.f17706c = intent;
     }
 
     @Override
     public final Status h() {
-        if (this.f17702b == 0) {
+        if (this.f17705b == 0) {
             return Status.e;
         }
-        return Status.f6344r;
+        return Status.f6345r;
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         int q6 = f0.q(parcel, 20293);
         f0.s(parcel, 1, 4);
-        parcel.writeInt(this.f17701a);
+        parcel.writeInt(this.f17704a);
         f0.s(parcel, 2, 4);
-        parcel.writeInt(this.f17702b);
-        f0.k(parcel, 3, this.f17703c, i10);
+        parcel.writeInt(this.f17705b);
+        f0.k(parcel, 3, this.f17706c, i10);
         f0.r(parcel, q6);
     }
 }

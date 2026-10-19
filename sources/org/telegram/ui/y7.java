@@ -3,10 +3,10 @@ package org.telegram.ui;
 import java.util.List;
 import org.telegram.messenger.MessagesStorage;
 public final class y7 implements MessagesStorage.BooleanCallback {
-    public final k8 f43321a;
+    public final k8 f43352a;
 
     public y7(k8 k8Var) {
-        this.f43321a = k8Var;
+        this.f43352a = k8Var;
     }
 
     @Override
@@ -15,7 +15,7 @@ public final class y7 implements MessagesStorage.BooleanCallback {
         org.telegram.ui.ActionBar.d5 d5Var2;
         org.telegram.ui.ActionBar.d5 d5Var3;
         org.telegram.ui.ActionBar.d5 d5Var4;
-        k8 k8Var = this.f43321a;
+        k8 k8Var = this.f43352a;
         k8Var.finishFragment();
         d5Var = ((org.telegram.ui.ActionBar.n2) k8Var).parentLayout;
         if (d5Var != null) {
@@ -25,16 +25,16 @@ public final class y7 implements MessagesStorage.BooleanCallback {
                 List fragmentStack = d5Var3.getFragmentStack();
                 d5Var4 = ((org.telegram.ui.ActionBar.n2) k8Var).parentLayout;
                 org.telegram.ui.ActionBar.n2 n2Var = (org.telegram.ui.ActionBar.n2) fragmentStack.get(d5Var4.getFragmentStack().size() - 2);
-                if (n2Var instanceof sn) {
-                    ((sn) n2Var).V7(k8Var.P, k8Var.Q + 86400, z10);
+                if (n2Var instanceof qn) {
+                    ((qn) n2Var).V7(k8Var.P, k8Var.Q + 86400, z10);
                     return;
                 }
                 return;
             }
         }
-        sn snVar = k8Var.N;
-        if (snVar != null) {
-            snVar.V7(k8Var.P, k8Var.Q + 86400, z10);
+        qn qnVar = k8Var.N;
+        if (qnVar != null) {
+            qnVar.V7(k8Var.P, k8Var.Q + 86400, z10);
         }
     }
 }

@@ -15,10 +15,10 @@ import org.telegram.messenger.lk;
 public final class x8 extends FrameLayout {
     public static Paint d;
     public static final int[] e = {-1031100, -29183, -12769, -8792480, -12521994, -12140801, -2984711, -45162, -4473925};
-    public static final int[] f23807f = {-65536, -29183, -256, -16711936, -16711681, -16776961, -2984711, -65281, -1};
-    public final TextView f23808a;
-    public boolean f23809b;
-    public int f23810c;
+    public static final int[] f23810f = {-65536, -29183, -256, -16711936, -16711681, -16776961, -2984711, -65281, -1};
+    public final TextView f23811a;
+    public boolean f23812b;
+    public int f23813c;
 
     public x8(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
@@ -27,7 +27,7 @@ public final class x8 extends FrameLayout {
             d = new Paint(1);
         }
         TextView textView = new TextView(context);
-        this.f23808a = textView;
+        this.f23811a = textView;
         lk.o(org.telegram.ui.ActionBar.h6.G6, d6Var, textView, 1, 16.0f);
         textView.setLines(1);
         textView.setMaxLines(1);
@@ -45,7 +45,7 @@ public final class x8 extends FrameLayout {
         float f7;
         float f10;
         setEnabled(z10);
-        TextView textView = this.f23808a;
+        TextView textView = this.f23811a;
         float f11 = 0.5f;
         if (arrayList != null) {
             if (z10) {
@@ -76,9 +76,9 @@ public final class x8 extends FrameLayout {
 
     public final void b(int i10, String str, boolean z10) {
         boolean z11;
-        this.f23808a.setText(str);
-        this.f23809b = z10;
-        this.f23810c = i10;
+        this.f23811a.setText(str);
+        this.f23812b = z10;
+        this.f23813c = i10;
         if (!z10 && i10 == 0) {
             z11 = true;
         } else {
@@ -94,7 +94,7 @@ public final class x8 extends FrameLayout {
         int measuredWidth;
         float dp;
         int i10;
-        if (this.f23809b) {
+        if (this.f23812b) {
             if (LocaleController.isRTL) {
                 dp = 0.0f;
             } else {
@@ -109,11 +109,11 @@ public final class x8 extends FrameLayout {
                 i10 = 0;
             }
             canvas2 = canvas;
-            canvas2.drawLine(f7, measuredHeight, measuredWidth2 - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.h6.f21107k0);
+            canvas2.drawLine(f7, measuredHeight, measuredWidth2 - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.h6.f21110k0);
         } else {
             canvas2 = canvas;
         }
-        int i11 = this.f23810c;
+        int i11 = this.f23813c;
         if (i11 != 0) {
             d.setColor(i11);
             if (LocaleController.isRTL) {
@@ -127,6 +127,6 @@ public final class x8 extends FrameLayout {
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f) + (this.f23809b ? 1 : 0), 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f) + (this.f23812b ? 1 : 0), 1073741824));
     }
 }

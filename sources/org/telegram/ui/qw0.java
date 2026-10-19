@@ -1,15 +1,34 @@
 package org.telegram.ui;
-public final class qw0 {
-    public final int f40499a;
-    public final int f40500b;
-    public final CharSequence f40501c;
-    public final String d;
-    public int e;
+public final class qw0 implements Runnable {
+    public final int f41001a;
+    public final PrivacyControlActivity f41002b;
 
-    public qw0(int i10, int i11, String str, String str2) {
-        this.f40499a = i10;
-        this.f40500b = i11;
-        this.f40501c = str;
-        this.d = str2;
+    public qw0(PrivacyControlActivity privacyControlActivity, int i10) {
+        this.f41001a = i10;
+        this.f41002b = privacyControlActivity;
+    }
+
+    @Override
+    public final void run() {
+        switch (this.f41001a) {
+            case 0:
+                PrivacyControlActivity privacyControlActivity = this.f41002b;
+                privacyControlActivity.getClass();
+                privacyControlActivity.presentFragment(new PremiumPreviewFragment(0, "noncontacts"));
+                return;
+            case 1:
+                PrivacyControlActivity.U(this.f41002b);
+                return;
+            case 2:
+                PrivacyControlActivity privacyControlActivity2 = this.f41002b;
+                privacyControlActivity2.getClass();
+                privacyControlActivity2.presentFragment(new PremiumPreviewFragment(0, "noncontacts"));
+                return;
+            default:
+                PrivacyControlActivity privacyControlActivity3 = this.f41002b;
+                privacyControlActivity3.getClass();
+                privacyControlActivity3.presentFragment(new PremiumPreviewFragment(0, "settings"));
+                return;
+        }
     }
 }

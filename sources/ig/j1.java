@@ -20,9 +20,9 @@ import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Components.ba0;
 import w7.z5;
 public final class j1 extends LinearLayout {
-    public final d6 f12937a;
-    public final ba0 f12938b;
-    public final ImageReceiver f12939c;
+    public final d6 f12939a;
+    public final ba0 f12940b;
+    public final ImageReceiver f12941c;
     public final TextView d;
     public boolean e;
 
@@ -34,16 +34,16 @@ public final class j1 extends LinearLayout {
         int i13;
         int i14;
         ImageReceiver imageReceiver = new ImageReceiver(this);
-        this.f12939c = imageReceiver;
-        this.f12937a = d6Var;
+        this.f12941c = imageReceiver;
+        this.f12939a = d6Var;
         setOrientation(1);
         ba0 ba0Var = new ba0();
-        this.f12938b = ba0Var;
+        this.f12940b = ba0Var;
         int i15 = h6.G6;
         int w02 = h6.w0(i15, d6Var);
         ba0Var.g(h6.m1(0.05f, w02), h6.m1(0.15f, w02), h6.m1(0.1f, w02), h6.m1(0.3f, w02));
         ba0Var.k(4.0f);
-        ba0Var.f24909x.setStrokeWidth(AndroidUtilities.dp(1.0f));
+        ba0Var.f24893x.setStrokeWidth(AndroidUtilities.dp(1.0f));
         imageReceiver.setRoundRadius(AndroidUtilities.dp(4.0f));
         TextView textView = new TextView(context);
         this.d = textView;
@@ -69,7 +69,7 @@ public final class j1 extends LinearLayout {
         addView(textView, z5.t(-1, -2, 55, i11, 10, i12, 4));
         TextView textView2 = new TextView(context);
         textView2.setGravity(LocaleController.isRTL ? 5 : 3);
-        textView2.setTextColor(h6.w0(h6.f21391z6, d6Var));
+        textView2.setTextColor(h6.w0(h6.f21394z6, d6Var));
         lk.j(13.0f, R.string.BusinessProfileLocation, 1, textView2);
         boolean z11 = LocaleController.isRTL;
         if (z11) {
@@ -90,9 +90,9 @@ public final class j1 extends LinearLayout {
         if (tL_businessLocation != null) {
             this.d.setText(tL_businessLocation.address);
             if (tL_businessLocation.geo_point != null) {
-                this.f12939c.setImage(ImageLocation.getForWebFile(WebFile.createWithGeoPoint(tL_businessLocation.geo_point, AndroidUtilities.dp(44.0f), AndroidUtilities.dp(44.0f), 15, Math.min(2, (int) Math.ceil(AndroidUtilities.density)))), "44_44", this.f12938b, 0L, (String) null, (Object) null, 0);
+                this.f12941c.setImage(ImageLocation.getForWebFile(WebFile.createWithGeoPoint(tL_businessLocation.geo_point, AndroidUtilities.dp(44.0f), AndroidUtilities.dp(44.0f), 15, Math.min(2, (int) Math.ceil(AndroidUtilities.density)))), "44_44", this.f12940b, 0L, (String) null, (Object) null, 0);
             } else {
-                this.f12939c.setImageBitmap((Drawable) null);
+                this.f12941c.setImageBitmap((Drawable) null);
             }
         }
         this.e = z10;
@@ -110,14 +110,14 @@ public final class j1 extends LinearLayout {
             width = getWidth() - AndroidUtilities.dp(60.0f);
         }
         float f10 = width;
-        ImageReceiver imageReceiver = this.f12939c;
+        ImageReceiver imageReceiver = this.f12941c;
         imageReceiver.setImageCoords(f10, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(44.0f), AndroidUtilities.dp(44.0f));
         imageReceiver.draw(canvas);
         super.onDraw(canvas);
         if (this.e) {
-            Paint U0 = h6.U0("paintDivider", this.f12937a);
+            Paint U0 = h6.U0("paintDivider", this.f12939a);
             if (U0 == null) {
-                U0 = h6.f21107k0;
+                U0 = h6.f21110k0;
             }
             Paint paint = U0;
             float f11 = 21.33f;
@@ -143,7 +143,7 @@ public final class j1 extends LinearLayout {
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f12938b && !super.verifyDrawable(drawable)) {
+        if (drawable != this.f12940b && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

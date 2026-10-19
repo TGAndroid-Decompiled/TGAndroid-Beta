@@ -1,11 +1,9 @@
 package org.telegram.ui.Wallet;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.BlurMaskFilter;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.ColorMatrixColorFilter;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Path;
@@ -26,75 +24,119 @@ import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.BillingController;
-import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.Components.bs;
-import org.telegram.ui.mk;
-import org.telegram.ui.x10;
+import org.telegram.ui.kk;
+import org.telegram.ui.v10;
 public class x5 extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
-    public static Typeface f35080n0;
-    public static Typeface f35081o0;
+    public static Typeface f35086j0;
+    public static Typeface f35087k0;
     public final FrameLayout E;
-    public Bitmap F;
-    public View.OnClickListener G;
-    public final mk H;
-    public final x10 I;
-    public final Paint J;
-    public float K;
-    public final org.telegram.ui.Components.f6 L;
-    public final View M;
-    public final LinearLayout N;
+    public View.OnClickListener F;
+    public final kk G;
+    public final v10 H;
+    public final Paint I;
+    public float J;
+    public final org.telegram.ui.Components.f6 K;
+    public final View L;
+    public final LinearLayout M;
+    public final v5 N;
     public final v5 O;
-    public final v5 P;
-    public final FrameLayout.LayoutParams Q;
-    public String R;
-    public int S;
-    public final int T;
+    public final FrameLayout.LayoutParams P;
+    public String Q;
+    public int R;
+    public final int S;
+    public float T;
     public float U;
-    public float V;
-    public int W;
-    public boolean f35082a;
-    public m0 f35083a0;
-    public float f35084b;
-    public float[] f35085b0;
-    public final Matrix f35086c;
-    public float[] f35087c0;
+    public int V;
+    public m0 W;
+    public boolean f35088a;
+    public float[] f35089a0;
+    public float f35090b;
+    public int f35091b0;
+    public final Matrix f35092c;
+    public int f35093c0;
     public final Matrix d;
-    public float[] f35088d0;
+    public float f35094d0;
     public final Matrix e;
-    public String f35089e0;
-    public final RectF f35090f;
-    public int f35091f0;
-    public int f35092g0;
+    public float f35095e0;
+    public final RectF f35096f;
+    public final org.telegram.ui.Components.f6 f35097f0;
+    public final org.telegram.ui.Components.f6 f35098g0;
     public float h;
-    public float f35093h0;
-    public float f35094i0;
-    public final org.telegram.ui.Components.f6 f35095j0;
-    public final org.telegram.ui.Components.f6 f35096k0;
-    public f6 f35097l0;
-    public boolean m0;
-    public boolean f35098n;
-    public float f35099r;
-    public float f35100s;
+    public f6 f35099h0;
+    public boolean f35100i0;
+    public boolean f35101n;
+    public float f35102r;
+    public float f35103s;
     public final Matrix v;
-    public final Matrix f35101w;
-    public final Matrix f35102x;
-    public final s5 f35103y;
+    public final Matrix f35104w;
+    public final Matrix f35105x;
+    public final s5 f35106y;
 
     public x5(Context context) {
         this(context, R.drawable.wallet_card_qr, 46);
     }
 
-    public static String c(String str) {
+    public static void a(final x5 x5Var, final Canvas canvas, float f7) {
+        float f10;
+        float height = x5Var.getFrontFace().getHeight();
+        float width = x5Var.getFrontFace().getWidth() / 1640.0f;
+        Paint paint = x5Var.I;
+        Context context = x5Var.getContext();
+        if (f35086j0 == null) {
+            if (Build.VERSION.SDK_INT >= 26) {
+                f35086j0 = new Typeface.Builder(context.getAssets(), "fonts/rmono_var.ttf").setFontVariationSettings("'wght' 400").setWeight(400).build();
+            } else {
+                f35086j0 = AndroidUtilities.getTypeface("fonts/rmono.ttf");
+            }
+        }
+        paint.setTypeface(f35086j0);
+        paint.setTextSize(47.345238f * width);
+        paint.setTextAlign(Paint.Align.CENTER);
+        float[] fArr = x5Var.f35089a0;
+        int b10 = h7.b(fArr, 0);
+        int b11 = h7.b(fArr, 1);
+        if (fArr != null && fArr.length >= 18) {
+            f10 = fArr[8];
+        } else {
+            f10 = 0.0f;
+        }
+        paint.setColor(i0.a.f(f10, b10, b11));
+        Paint.FontMetrics fontMetrics = paint.getFontMetrics();
+        final float f11 = (-(fontMetrics.ascent + fontMetrics.descent)) * 0.5f;
+        final float f12 = width * 27.333332f;
+        final String[] split = f(x5Var.Q).split("\\n");
+        canvas.save();
+        canvas.translate(width * 1527.738f, 0.5002976f * height);
+        canvas.rotate(90.0f);
+        x5Var.c(f7, new o2(x5Var, 2), new Runnable() {
+            @Override
+            public final void run() {
+                x5 x5Var2 = x5.this;
+                x5Var2.getClass();
+                String[] strArr = split;
+                String str = strArr[0];
+                float f13 = f12;
+                float f14 = f11;
+                Paint paint2 = x5Var2.I;
+                Canvas canvas2 = canvas;
+                canvas2.drawText(str, 0.0f, (-f13) + f14, paint2);
+                if (strArr.length > 1) {
+                    canvas2.drawText(strArr[1], 0.0f, f13 + f14, paint2);
+                }
+            }
+        });
+        canvas.restore();
+    }
+
+    public static String d(String str) {
         StringBuilder sb2 = new StringBuilder((str.length() / 4) + str.length());
         for (int i10 = 0; i10 < str.length(); i10++) {
             if (i10 > 0 && i10 % 4 == 0) {
@@ -105,11 +147,11 @@ public class x5 extends FrameLayout implements NotificationCenter.NotificationCe
         return sb2.toString();
     }
 
-    public static SpannableStringBuilder d(long j10) {
+    public static SpannableStringBuilder e(long j10) {
         return m0.p(new DecimalFormat("#,##0.#########", new DecimalFormatSymbols(Locale.US)).format(new BigDecimal(m0.o(j10, false))), 0.8f);
     }
 
-    public static String e(String str) {
+    public static String f(String str) {
         char c10;
         String[] split = str.split(" ");
         if (split.length < 2) {
@@ -131,17 +173,6 @@ public class x5 extends FrameLayout implements NotificationCenter.NotificationCe
         return sb2.toString();
     }
 
-    public static Typeface f(Context context) {
-        if (f35080n0 == null) {
-            if (Build.VERSION.SDK_INT >= 26) {
-                f35080n0 = new Typeface.Builder(context.getAssets(), "fonts/rmono_var.ttf").setFontVariationSettings("'wght' 400").setWeight(400).build();
-            } else {
-                f35080n0 = AndroidUtilities.getTypeface("fonts/rmono.ttf");
-            }
-        }
-        return f35080n0;
-    }
-
     public static void k(View view, Matrix matrix) {
         if (view.getParent() instanceof View) {
             View view2 = (View) view.getParent();
@@ -153,50 +184,38 @@ public class x5 extends FrameLayout implements NotificationCenter.NotificationCe
         matrix.reset();
     }
 
-    public final float a() {
-        float c10 = this.O.getDrawable().c();
-        float max = Math.max(0.0f, (((((336.0f - this.T) - 48.0f) * this.E.getWidth()) / 336.0f) - this.Q.leftMargin) - AndroidUtilities.dp(8.0f));
+    public final float b() {
+        float c10 = this.N.getDrawable().c();
+        float max = Math.max(0.0f, (((((336.0f - this.S) - 48.0f) * this.E.getWidth()) / 336.0f) - this.P.leftMargin) - AndroidUtilities.dp(8.0f));
         if (c10 <= 0.0f) {
             return 1.0f;
         }
         return Math.min(1.0f, max / c10);
     }
 
-    public final void b(float f7, boolean z10, o2 o2Var, Runnable runnable) {
+    public final void c(float f7, o2 o2Var, Runnable runnable) {
         float f10;
-        if (z10) {
-            float lerp = AndroidUtilities.lerp(AndroidUtilities.dp(1.0f), AndroidUtilities.dp(5.0f), f7);
-            float lerp2 = AndroidUtilities.lerp(AndroidUtilities.dp(1.0f), 0, f7);
-            float dp = AndroidUtilities.dp(1.0f);
-            float[] fArr = this.f35085b0;
-            int i10 = -16611884;
-            if (fArr != null) {
-                i10 = i0.a.f(fArr[8], h7.q(fArr, -16611884, 0), h7.q(fArr, -16611884, 3));
-            }
-            o2Var.a(lerp, lerp2, dp, i0.a.f(f7, i10, 1493172224));
+        if (f7 > 0.0f) {
+            f10 = AndroidUtilities.dp(5.0f);
         } else {
-            if (f7 > 0.0f) {
-                f10 = AndroidUtilities.dp(5.0f);
-            } else {
-                f10 = 0.0f;
-            }
-            o2Var.a(f10, 0.0f, AndroidUtilities.dp(1.0f), Color.argb((int) (89.0f * f7), 0, 0, 0));
+            f10 = 0.0f;
         }
+        o2Var.a(f10, AndroidUtilities.dp(1.0f), Color.argb((int) (89.0f * f7), 0, 0, 0));
         runnable.run();
         if (f7 <= 0.0f) {
             return;
         }
-        o2Var.a(AndroidUtilities.dpf2(1.5f), 0.0f, 0.0f, Color.argb((int) (f7 * 140.0f), 0, 0, 0));
-        this.m0 = true;
+        o2Var.a(AndroidUtilities.dpf2(1.5f), 0.0f, Color.argb((int) (f7 * 140.0f), 0, 0, 0));
+        this.f35100i0 = true;
         runnable.run();
-        this.m0 = false;
+        this.f35100i0 = false;
     }
 
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         if (i10 == NotificationCenter.walletUpdate) {
             Object obj = objArr[0];
-            m0 m0Var = this.f35083a0;
+            m0 m0Var = this.W;
             if (obj == m0Var) {
                 l(m0Var);
             }
@@ -206,18 +225,20 @@ public class x5 extends FrameLayout implements NotificationCenter.NotificationCe
     public final boolean g(View view, Matrix matrix) {
         if (isAttachedToWindow() && view.isAttachedToWindow() && getRootView() == view.getRootView()) {
             View view2 = (View) this.E.getParent();
-            Matrix matrix2 = this.f35103y.e.f34779a;
-            Matrix matrix3 = this.v;
-            matrix3.set(matrix2);
-            k(view2, matrix);
-            matrix.preConcat(matrix3);
+            s5 s5Var = this.f35106y;
+            Matrix matrix2 = this.v;
+            matrix2.set((Matrix) s5Var.e.f30376c);
+            ci.m1 m1Var = s5Var.f34840f;
+            matrix2.preTranslate(m1Var.getLeft(), m1Var.getTop());
+            k((View) view2.getParent(), matrix);
+            matrix.preConcat(matrix2);
             matrix.preTranslate(this.E.getLeft() - view2.getScrollX(), this.E.getTop() - view2.getScrollY());
             matrix.preConcat(this.E.getMatrix());
-            Matrix matrix4 = this.f35101w;
-            k(view, matrix4);
-            Matrix matrix5 = this.f35102x;
-            if (matrix4.invert(matrix5)) {
-                matrix.postConcat(matrix5);
+            Matrix matrix3 = this.f35104w;
+            k(view, matrix3);
+            Matrix matrix4 = this.f35105x;
+            if (matrix3.invert(matrix4)) {
+                matrix.postConcat(matrix4);
                 return true;
             }
             return false;
@@ -226,31 +247,27 @@ public class x5 extends FrameLayout implements NotificationCenter.NotificationCe
     }
 
     public View getBalanceAnchor() {
-        return this.M;
+        return this.L;
     }
 
     public LinearLayout getBalanceLayout() {
-        return this.N;
+        return this.M;
     }
 
     public org.telegram.ui.Components.q6 getBalanceView() {
-        return this.O;
+        return this.N;
     }
 
     public TextView getCardHolderView() {
-        return this.H;
+        return this.G;
     }
 
     public float getCardRotationX() {
-        return this.f35103y.getCardRotationX();
+        return this.f35106y.getCardRotationX();
     }
 
     public float getCardRotationY() {
-        return this.f35103y.getCardRotationY();
-    }
-
-    public String getDebugBackdropName() {
-        return this.f35089e0;
+        return this.f35106y.getCardRotationY();
     }
 
     public FrameLayout getFrontFace() {
@@ -258,8 +275,8 @@ public class x5 extends FrameLayout implements NotificationCenter.NotificationCe
     }
 
     public int getStickerLayerIndex() {
-        int indexOfChild = this.E.indexOfChild(this.H);
-        int indexOfChild2 = this.E.indexOfChild(this.N);
+        int indexOfChild = this.E.indexOfChild(this.G);
+        int indexOfChild2 = this.E.indexOfChild(this.M);
         if (indexOfChild < 0) {
             if (indexOfChild2 < 0) {
                 return this.E.getChildCount();
@@ -277,17 +294,17 @@ public class x5 extends FrameLayout implements NotificationCenter.NotificationCe
         RectF rectF;
         ArrayList<RectF> arrayList = new ArrayList<>();
         float width = this.E.getWidth() / 336.0f;
-        float a2 = a();
-        v5 v5Var2 = this.O;
-        float c10 = this.P.getDrawable().c();
-        FrameLayout.LayoutParams layoutParams = this.Q;
+        float b10 = b();
+        v5 v5Var2 = this.N;
+        float c10 = this.O.getDrawable().c();
+        FrameLayout.LayoutParams layoutParams = this.P;
         float f7 = layoutParams.leftMargin;
         float f10 = layoutParams.topMargin;
         float bottom = ((v5Var2.getBottom() + v5Var2.getTop()) / 2.0f) + f10;
-        float height = (v5Var2.getHeight() * a2) / 2.0f;
-        arrayList.add(new RectF(f7, bottom - height, (v5Var2.getDrawable().c() * a2) + f7, bottom + height));
-        mk mkVar = this.H;
-        arrayList.add(new RectF(mkVar.getLeft(), mkVar.getTop(), mkVar.getLeft() + Math.min(mkVar.getWidth(), mkVar.getPaint().measureText(mkVar.getText().toString())), mkVar.getBottom()));
+        float height = (v5Var2.getHeight() * b10) / 2.0f;
+        arrayList.add(new RectF(f7, bottom - height, (v5Var2.getDrawable().c() * b10) + f7, bottom + height));
+        kk kkVar = this.G;
+        arrayList.add(new RectF(kkVar.getLeft(), kkVar.getTop(), kkVar.getLeft() + Math.min(kkVar.getWidth(), kkVar.getPaint().measureText(kkVar.getText().toString())), kkVar.getBottom()));
         arrayList.add(new RectF(this.E.getWidth() - (34.0f * width), 18.0f * width, this.E.getWidth() - (12.0f * width), width * 187.0f));
         Path path = new Path();
         h(path, this.E.getWidth(), this.E.getHeight());
@@ -295,8 +312,8 @@ public class x5 extends FrameLayout implements NotificationCenter.NotificationCe
         path.computeBounds(rectF2, true);
         arrayList.add(rectF2);
         arrayList.add(new RectF(f7, v5Var.getTop() + f10, c10 + f7, f10 + v5Var.getBottom()));
-        if (this.f35082a) {
-            rectF = new RectF(this.f35090f);
+        if (this.f35088a) {
+            rectF = new RectF(this.f35096f);
         } else {
             rectF = new RectF();
         }
@@ -305,30 +322,30 @@ public class x5 extends FrameLayout implements NotificationCenter.NotificationCe
     }
 
     public float[] getStickerStyle() {
-        return this.f35085b0;
+        return this.f35089a0;
     }
 
     public org.telegram.ui.Components.q6 getUsdBalanceView() {
-        return this.P;
+        return this.O;
     }
 
     public final void h(Path path, float f7, float f10) {
         path.rewind();
-        float f11 = 336 - this.T;
+        float f11 = 336 - this.S;
         path.addRoundRect(((f11 - 48.0f) * f7) / 336.0f, 0.36097562f * f10, (f11 * f7) / 336.0f, 0.5365854f * f10, (f7 * 8.0f) / 336.0f, 0.03902439f * f10, Path.Direction.CW);
     }
 
     public final void i(float f7, float f10) {
-        if (this.U == f7 && this.V == f10) {
+        if (this.T == f7 && this.U == f10) {
             return;
         }
-        this.U = f7;
+        this.T = f7;
         if (f7 == 0.0f) {
-            this.f35098n = false;
+            this.f35101n = false;
         }
-        this.V = f10;
+        this.U = f10;
+        this.N.invalidate();
         this.O.invalidate();
-        this.P.invalidate();
     }
 
     public final void j(int i10, long j10) {
@@ -337,26 +354,26 @@ public class x5 extends FrameLayout implements NotificationCenter.NotificationCe
         boolean z10 = false;
         spannableString.setSpan(new w5(this, R.drawable.wallet_gram_large), 0, spannableString.length(), 33);
         spannableStringBuilder.append((CharSequence) spannableString).append((CharSequence) " ");
-        spannableStringBuilder.append((CharSequence) d(j10));
+        spannableStringBuilder.append((CharSequence) e(j10));
         spannableStringBuilder.append((CharSequence) " ");
         int length = spannableStringBuilder.length();
         spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.GramCurrency));
         spannableStringBuilder.setSpan(new ki.y5(this, 4), length, spannableStringBuilder.length(), 33);
-        this.O.setText(spannableStringBuilder);
+        this.N.setText(spannableStringBuilder);
         long round = Math.round(MessagesController.getInstance(i10).config.tonUsdRate.get() * (j10 / 1.0E9d) * 100.0d);
         BillingController billingController = BillingController.getInstance();
         if (round % 100 == 0) {
             z10 = true;
         }
-        this.P.setText(billingController.formatCurrency(round, "USD", 2, z10));
+        this.O.setText(billingController.formatCurrency(round, "USD", 2, z10));
     }
 
     public final void l(m0 m0Var) {
         if (m0Var != null) {
-            int i10 = m0Var.f34451a;
+            int i10 = m0Var.f34468a;
             setCardHolder(UserObject.getUserName(UserConfig.getInstance(i10).getCurrentUser()).toUpperCase());
             if (m0Var.s() != null) {
-                setCardNumber(c(m0Var.s().toUpperCase()));
+                setCardNumber(d(m0Var.s().toUpperCase()));
             }
             if (m0Var.E()) {
                 j(i10, m0Var.u());
@@ -365,179 +382,192 @@ public class x5 extends FrameLayout implements NotificationCenter.NotificationCe
     }
 
     public final void m() {
+        float f7;
         int i10;
-        int[] iArr;
-        int f7;
-        char c10;
-        float f10;
+        double d;
+        int f10;
         float f11;
         float f12;
         float f13;
-        if (this.f35097l0 != null) {
-            float[] fArr = this.f35085b0;
-            char c11 = '\t';
-            char c12 = 1;
-            int i11 = 0;
-            float f14 = 0.0f;
-            float f15 = 1.0f;
+        float f14;
+        if (this.f35099h0 != null) {
+            float[] fArr = this.f35089a0;
+            char c10 = '\t';
+            int i11 = 2;
+            char c11 = 1;
+            float f15 = 0.0f;
+            float f16 = 1.0f;
             if (fArr == null) {
                 fArr = new float[]{0.0f, 1.0f, 1.0f, 0.0f, 1.0f, 1.0f, 0.5f, 0.5f, 1.0f, 1.0f};
             }
-            float[] fArr2 = h7.f34276c;
+            float[] fArr2 = h7.f34283c;
             float[] fArr3 = new float[42];
             int i12 = 0;
-            for (int i13 = 2; i12 < i13; i13 = 2) {
-                int i14 = i12 * 4;
-                int i15 = i14 + 10;
+            while (true) {
+                char c12 = c10;
+                if (i12 >= i11) {
+                    break;
+                }
+                int i13 = i12 * 4;
+                int i14 = i13 + 10;
                 char c13 = c11;
-                if (fArr.length < 18 || fArr[i15] < f14) {
-                    c10 = c12;
-                    f10 = f14;
-                    System.arraycopy(h7.f34275b, 0, fArr3, i12 * 12, 12);
+                if (fArr.length < 18 || fArr[i14] < f15) {
+                    f11 = f15;
+                    System.arraycopy(h7.f34282b, 0, fArr3, i12 * 12, 12);
                     fArr3[i12 + 28] = 1.0f;
                     System.arraycopy(fArr2, 0, fArr3, (i12 * 3) + 30, 3);
                 } else {
                     fArr3[i12 + 28] = 0.6f;
-                    int i16 = (int) fArr[i15];
-                    int i17 = i12 * 3;
-                    int i18 = i17 + 30;
-                    c10 = c12;
-                    float f16 = ((i16 >> 16) & 255) / 255.0f;
-                    f10 = f14;
-                    float f17 = ((i16 >> 8) & 255) / 255.0f;
-                    float f18 = (i16 & 255) / 255.0f;
-                    float min = Math.min(f16, Math.min(f17, f18));
-                    float max = Math.max(f16, Math.max(f17, f18)) - min;
-                    float f19 = (fArr2[i13] * 0.0722f) + (fArr2[c10] * 0.7152f) + (fArr2[0] * 0.2126f);
+                    int i15 = (int) fArr[i14];
+                    int i16 = i12 * 3;
+                    int i17 = i16 + 30;
+                    float f17 = ((i15 >> 16) & 255) / 255.0f;
+                    f11 = f15;
+                    float f18 = ((i15 >> 8) & 255) / 255.0f;
+                    float f19 = (i15 & 255) / 255.0f;
+                    float min = Math.min(f17, Math.min(f18, f19));
+                    float max = Math.max(f17, Math.max(f18, f19)) - min;
+                    float f20 = (fArr2[i11] * 0.0722f) + (fArr2[c13] * 0.7152f) + (fArr2[0] * 0.2126f);
                     float min2 = Math.min(1.0f, max / 0.15f);
-                    int i19 = (max > f10 ? 1 : (max == f10 ? 0 : -1));
-                    if (i19 > 0) {
-                        f11 = (f16 - min) / max;
-                    } else {
-                        f11 = f10;
-                    }
-                    fArr3[i18] = com.google.android.gms.internal.play_billing.k3.y(f11, f19, min2, f19);
-                    int i20 = i17 + 31;
-                    if (i19 > 0) {
+                    int i18 = (max > f11 ? 1 : (max == f11 ? 0 : -1));
+                    if (i18 > 0) {
                         f12 = (f17 - min) / max;
                     } else {
-                        f12 = f10;
+                        f12 = f11;
                     }
-                    fArr3[i20] = com.google.android.gms.internal.play_billing.k3.y(f12, f19, min2, f19);
-                    int i21 = i17 + 32;
-                    if (i19 > 0) {
+                    fArr3[i17] = com.google.android.gms.internal.play_billing.k3.y(f12, f20, min2, f20);
+                    int i19 = i16 + 31;
+                    if (i18 > 0) {
                         f13 = (f18 - min) / max;
                     } else {
-                        f13 = f10;
+                        f13 = f11;
                     }
-                    fArr3[i21] = com.google.android.gms.internal.play_billing.k3.y(f13, f19, min2, f19);
-                    int i22 = (int) fArr[i15];
-                    int i23 = (int) fArr[i14 + 11];
-                    int o10 = h7.o(-16216082, i22, i23);
-                    int o11 = h7.o(-15291399, i22, i23);
-                    for (int i24 = 0; i24 < 3; i24++) {
-                        int i25 = 16 - (i24 * 8);
-                        float i26 = h7.i(o10, i25) * 0.73f;
-                        float i27 = h7.i(o11, i25) * 0.73f;
-                        int i28 = i12 * 12;
-                        fArr3[i28 + i24] = (i26 + i27) / 2.0f;
-                        fArr3[i28 + 3 + i24] = i26;
-                        fArr3[i28 + 6 + i24] = i27;
-                        fArr3[i28 + 9 + i24] = i26;
+                    fArr3[i19] = com.google.android.gms.internal.play_billing.k3.y(f13, f20, min2, f20);
+                    int i20 = i16 + 32;
+                    if (i18 > 0) {
+                        f14 = (f19 - min) / max;
+                    } else {
+                        f14 = f11;
+                    }
+                    fArr3[i20] = com.google.android.gms.internal.play_billing.k3.y(f14, f20, min2, f20);
+                    int i21 = (int) fArr[i14];
+                    int i22 = (int) fArr[i13 + 11];
+                    int n10 = h7.n(-16216082, i21, i22);
+                    int n11 = h7.n(-15291399, i21, i22);
+                    for (int i23 = 0; i23 < 3; i23++) {
+                        int i24 = 16 - (i23 * 8);
+                        float h = h7.h(n10, i24) * 0.73f;
+                        float h10 = h7.h(n11, i24) * 0.73f;
+                        int i25 = i12 * 12;
+                        fArr3[i25 + i23] = (h + h10) / 2.0f;
+                        fArr3[i25 + 3 + i23] = h;
+                        fArr3[i25 + 6 + i23] = h10;
+                        fArr3[i25 + 9 + i23] = h;
                     }
                 }
                 i12++;
+                c10 = c12;
                 c11 = c13;
-                c12 = c10;
-                f14 = f10;
+                f15 = f11;
+                i11 = 2;
             }
-            float f20 = f14;
-            for (int i29 = 0; i29 < 2; i29++) {
-                int i30 = i29 * 4;
-                int i31 = i30 + 10;
-                if (fArr.length >= 18 && fArr[i31] >= f20) {
-                    f7 = i0.a.f(0.2f, ((int) fArr[i30 + 12]) | (-16777216), (-16777216) | ((int) fArr[i30 + 11]));
+            char c14 = c11;
+            float f21 = f15;
+            int i26 = 0;
+            for (int i27 = i11; i26 < i27; i27 = 2) {
+                int i28 = i26 * 4;
+                int i29 = i28 + 10;
+                if (fArr.length >= 18 && fArr[i29] >= f21) {
+                    f10 = i0.a.f(0.2f, ((int) fArr[i28 + 12]) | (-16777216), ((int) fArr[i28 + 11]) | (-16777216));
                 } else {
-                    f7 = i0.a.f(0.2f, -16611884, -16748084);
+                    f10 = i0.a.f(0.2f, -16611884, -16748084);
                 }
-                int i32 = i29 * 3;
-                fArr3[i32 + 36] = ((f7 >> 16) & 255) / 255.0f;
-                fArr3[i32 + 37] = ((f7 >> 8) & 255) / 255.0f;
-                fArr3[i32 + 38] = (f7 & 255) / 255.0f;
+                int i30 = i26 * 3;
+                fArr3[i30 + 36] = ((f10 >> 16) & 255) / 255.0f;
+                fArr3[i30 + 37] = ((f10 >> 8) & 255) / 255.0f;
+                fArr3[i30 + 38] = (f10 & 255) / 255.0f;
+                i26++;
             }
             System.arraycopy(fArr, 6, fArr3, 24, 4);
-            float[] fArr4 = this.f35085b0;
+            float[] fArr4 = this.f35089a0;
             if (fArr4 != null && fArr4.length > 8) {
-                f15 = Math.max(f20, Math.min(1.0f, fArr4[8]));
+                f7 = Math.max(f21, Math.min(1.0f, fArr4[8]));
+            } else {
+                f7 = 1.0f;
             }
-            f6 f6Var = this.f35097l0;
-            float lerp = AndroidUtilities.lerp(fArr3[30], fArr3[33], f15);
-            float lerp2 = AndroidUtilities.lerp(fArr3[31], fArr3[34], f15);
-            float lerp3 = AndroidUtilities.lerp(fArr3[32], fArr3[35], f15);
+            f6 f6Var = this.f35099h0;
+            float lerp = AndroidUtilities.lerp(fArr3[30], fArr3[33], f7);
+            float lerp2 = AndroidUtilities.lerp(fArr3[31], fArr3[34], f7);
+            float lerp3 = AndroidUtilities.lerp(fArr3[32], fArr3[35], f7);
             f6Var.getClass();
-            float max2 = Math.max(lerp, Math.max(lerp2, lerp3));
-            float min3 = max2 - Math.min(lerp, Math.min(lerp2, lerp3));
-            float f21 = 0.55f * max2;
-            if (min3 > f21) {
-                float f22 = f21 / min3;
-                lerp = com.google.android.gms.internal.play_billing.k3.y(lerp, max2, f22, max2);
-                lerp2 = com.google.android.gms.internal.play_billing.k3.y(lerp2, max2, f22, max2);
-                lerp3 = com.google.android.gms.internal.play_billing.k3.y(lerp3, max2, f22, max2);
-            }
-            if (f6Var.e != null && lerp == f6Var.f34200f && lerp2 == f6Var.f34201g && lerp3 == f6Var.h) {
+            float[] fArr5 = f6.f34197j;
+            float[] a2 = f6.a(lerp, lerp2, lerp3);
+            float f22 = a2[0];
+            float f23 = a2[c14];
+            float f24 = a2[2];
+            if (f22 == f6Var.e && f23 == f6Var.f34206f && f24 == f6Var.f34207g) {
                 return;
             }
-            f6Var.f34200f = lerp;
-            f6Var.f34201g = lerp2;
-            f6Var.h = lerp3;
-            if (f6.f34191k == null) {
-                BitmapFactory.Options options = new BitmapFactory.Options();
-                options.inPremultiplied = false;
-                options.inSampleSize = 2;
-                Bitmap decodeResource = BitmapFactory.decodeResource(ApplicationLoader.applicationContext.getResources(), R.drawable.wallet_card_diamond_layers, options);
-                int width = decodeResource.getWidth();
-                f6.f34192l = width;
-                int[] iArr2 = new int[decodeResource.getHeight() * width];
-                f6.f34191k = iArr2;
-                int i33 = f6.f34192l;
-                decodeResource.getPixels(iArr2, 0, i33, 0, 0, i33, decodeResource.getHeight());
-                decodeResource.recycle();
-                int[] iArr3 = new int[f6.f34191k.length];
-                int i34 = 0;
-                while (true) {
-                    iArr = f6.f34191k;
-                    if (i34 >= iArr.length) {
-                        break;
-                    }
-                    iArr3[i34] = iArr[i34] & (-16777216);
-                    i34++;
-                }
-                int i35 = f6.f34192l;
-                Bitmap createBitmap = Bitmap.createBitmap(iArr3, i35, iArr.length / i35, Bitmap.Config.ARGB_8888);
-                float f23 = f6.f34192l / 28.0f;
-                Paint paint = new Paint();
-                BlurMaskFilter.Blur blur = BlurMaskFilter.Blur.NORMAL;
-                paint.setMaskFilter(new BlurMaskFilter(5.0f * f23, blur));
-                f6.f34193m = createBitmap.extractAlpha(paint, f6.f34195o);
-                paint.setMaskFilter(new BlurMaskFilter(f23 * 1.5f, blur));
-                f6.f34194n = createBitmap.extractAlpha(paint, f6.f34196p);
-                createBitmap.recycle();
+            f6Var.e = f22;
+            f6Var.f34206f = f23;
+            f6Var.f34207g = f24;
+            if (f6.f34198k == null) {
+                f6.f34198k = f6.a(0.0f, 0.47809f, 1.0f);
             }
-            int[] iArr4 = new int[f6.f34191k.length];
+            float[] fArr6 = f6.f34198k;
+            double sqrt = (fArr6[0] - fArr6[c14]) / Math.sqrt(2.0d);
+            double sqrt2 = ((fArr6[0] + fArr6[c14]) - (fArr6[2] * 2.0f)) / Math.sqrt(6.0d);
+            double sqrt3 = (f22 - f23) / Math.sqrt(2.0d);
+            double sqrt4 = ((f22 + f23) - (f24 * 2.0f)) / Math.sqrt(6.0d);
+            double IEEEremainder = Math.IEEEremainder(Math.atan2(sqrt4, sqrt3) - Math.atan2(sqrt2, sqrt), 6.283185307179586d);
+            double min3 = ((Math.min(1.0d, Math.abs(IEEEremainder) / 1.0471975511965976d) * (-0.30000001192092896d)) + 1.0d) * (Math.hypot(sqrt3, sqrt4) / Math.hypot(sqrt, sqrt2));
+            double cos = Math.cos(IEEEremainder);
+            double sin = Math.sin(IEEEremainder) / Math.sqrt(3.0d);
+            double d10 = ((cos - (cos * 0.3333333333333333d)) * min3) + 0.3333333333333333d;
+            double d11 = 0.3333333333333333d - ((cos * min3) * 0.3333333333333333d);
+            float[] fArr7 = new float[20];
+            int i31 = 0;
             while (true) {
-                int[] iArr5 = f6.f34191k;
-                if (i11 < iArr5.length) {
-                    float f24 = ((i10 >> 16) & 255) / 255.0f;
-                    float f25 = ((i10 >> 8) & 255) / 255.0f;
-                    iArr4[i11] = (iArr5[i11] & (-16777216)) | (f6.a((f25 * lerp) + f24) << 16) | (f6.a((f25 * lerp2) + f24) << 8) | f6.a((f25 * lerp3) + f24);
-                    i11++;
-                } else {
-                    int i36 = f6.f34192l;
-                    f6Var.e = Bitmap.createBitmap(iArr4, i36, iArr5.length / i36, Bitmap.Config.ARGB_8888);
-                    f6Var.invalidateSelf();
-                    return;
+                i10 = 3;
+                if (i31 >= 3) {
+                    break;
                 }
+                int i32 = 0;
+                while (i32 < i10) {
+                    if (i31 == i32) {
+                        d = d10;
+                    } else {
+                        d = d11;
+                    }
+                    if (i32 == (i31 + 1) % 3) {
+                        d -= min3 * sin;
+                    } else if (i32 == (i31 + 2) % 3) {
+                        d = (min3 * sin) + d;
+                    }
+                    float f25 = f16;
+                    double d12 = d11;
+                    fArr7[(i31 * 5) + i32] = (float) d;
+                    i32++;
+                    f16 = f25;
+                    d11 = d12;
+                    i10 = 3;
+                }
+                i31++;
             }
+            float f26 = f16;
+            int i33 = 0;
+            while (i33 < i10) {
+                float f27 = (fArr5[2] * fArr7[i33 + 10]) + (fArr5[c14] * fArr7[i33 + 5]) + (fArr5[0] * fArr7[i33]);
+                for (int i34 = 0; i34 < 3; i34++) {
+                    int i35 = (i34 * 5) + i33;
+                    fArr7[i35] = (fArr5[i33] - f27) + fArr7[i35];
+                }
+                i33++;
+                i10 = 3;
+            }
+            fArr7[18] = f26;
+            f6Var.d.setColorFilter(new ColorMatrixColorFilter(fArr7));
+            f6Var.invalidateSelf();
         }
     }
 
@@ -558,8 +588,8 @@ public class x5 extends FrameLayout implements NotificationCenter.NotificationCe
                 viewGroup.setClipToPadding(false);
             }
         }
-        if (this.f35083a0 != null) {
-            NotificationCenter.getInstance(this.W).addObserver(this, NotificationCenter.walletUpdate);
+        if (this.W != null) {
+            NotificationCenter.getInstance(this.V).addObserver(this, NotificationCenter.walletUpdate);
         }
     }
 
@@ -575,96 +605,41 @@ public class x5 extends FrameLayout implements NotificationCenter.NotificationCe
             view.setTranslationZ(0.0f);
         }
         super.onDetachedFromWindow();
-        if (this.f35083a0 != null) {
-            NotificationCenter.getInstance(this.W).removeObserver(this, NotificationCenter.walletUpdate);
+        if (this.W != null) {
+            NotificationCenter.getInstance(this.V).removeObserver(this, NotificationCenter.walletUpdate);
         }
     }
 
     public void setAdditionalTilt(float f7) {
-        this.f35099r = f7;
-        this.f35103y.setAdditionalTilt(f7);
+        this.f35102r = f7;
+        this.f35106y.setAdditionalTilt(f7);
     }
 
     public void setCardHolder(CharSequence charSequence) {
-        this.H.setText(charSequence);
+        this.G.setText(charSequence);
     }
 
     public void setCardIcon(int i10) {
-        this.S = i10;
-        this.f35103y.setCardIcon(i10);
+        this.R = i10;
+        this.f35106y.setCardIcon(i10);
     }
 
     public void setCardNumber(String str) {
-        if (str != null && !str.equals(this.R)) {
-            this.R = str;
-            Context context = getContext();
-            Bitmap createBitmap = Bitmap.createBitmap(1640, 1000, Bitmap.Config.ARGB_8888);
-            Canvas canvas = new Canvas(createBitmap);
-            canvas.translate(1527.738f, 500.2976f);
-            canvas.rotate(90.0f);
-            Paint paint = new Paint(193);
-            paint.setColor(-1);
-            paint.setTypeface(f(context));
-            paint.setTextSize(47.345238f);
-            paint.setTextAlign(Paint.Align.CENTER);
-            Paint.FontMetrics fontMetrics = paint.getFontMetrics();
-            float f7 = (-(fontMetrics.ascent + fontMetrics.descent)) * 0.5f;
-            String[] split = e(str).split("\\n");
-            canvas.drawText(split[0], 0.0f, (-27.333332f) + f7, paint);
-            if (split.length > 1) {
-                canvas.drawText(split[1], 0.0f, f7 + 27.333332f, paint);
-            }
-            setEngravingBitmap(createBitmap);
+        if (str != null && !str.equals(this.Q)) {
+            this.Q = str;
+            this.f35106y.setHasCardNumber(true);
+            this.H.invalidate();
         }
     }
 
     public void setCardOnClickListener(View.OnClickListener onClickListener) {
-        this.G = onClickListener;
-        this.f35103y.setOnClickListener(onClickListener);
-    }
-
-    public void setDebugBackdrop(TLRPC.TL_shareThemeBackdropOption tL_shareThemeBackdropOption) {
-        String str;
-        if (!BuildVars.DEBUG_PRIVATE_VERSION) {
-            return;
-        }
-        if (tL_shareThemeBackdropOption == null) {
-            str = null;
-        } else {
-            str = tL_shareThemeBackdropOption.name;
-        }
-        this.f35089e0 = str;
-        this.f35088d0 = null;
-        if (tL_shareThemeBackdropOption != null) {
-            TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = new TL_stars.starGiftAttributeBackdrop();
-            stargiftattributebackdrop.center_color = tL_shareThemeBackdropOption.center_color;
-            stargiftattributebackdrop.edge_color = tL_shareThemeBackdropOption.edge_color;
-            stargiftattributebackdrop.pattern_color = tL_shareThemeBackdropOption.pattern_color;
-            stargiftattributebackdrop.text_color = tL_shareThemeBackdropOption.text_color;
-            float[] j10 = h7.j(stargiftattributebackdrop);
-            float[] fArr = new float[18];
-            this.f35088d0 = fArr;
-            System.arraycopy(j10, 0, fArr, 0, 3);
-            System.arraycopy(j10, 0, this.f35088d0, 3, 3);
-            float[] fArr2 = this.f35088d0;
-            fArr2[7] = 0.5f;
-            fArr2[6] = 0.5f;
-            fArr2[9] = 1.0f;
-            fArr2[8] = 1.0f;
-            h7.n(fArr2, 0, stargiftattributebackdrop);
-            h7.n(this.f35088d0, 1, stargiftattributebackdrop);
-        }
-        setStickerStyle(this.f35087c0);
+        this.F = onClickListener;
+        this.f35106y.setOnClickListener(onClickListener);
     }
 
     public void setDiamondOnCard(boolean z10) {
-        this.f35082a = z10;
-        this.O.invalidate();
-    }
-
-    public void setEngravingBitmap(Bitmap bitmap) {
-        this.F = bitmap;
-        this.f35103y.setEngravingBitmap(bitmap);
+        this.f35088a = z10;
+        this.N.invalidate();
     }
 
     public void setOnFrontContentPresented(Runnable runnable) {
@@ -674,172 +649,163 @@ public class x5 extends FrameLayout implements NotificationCenter.NotificationCe
     }
 
     public void setStickerImpact(float f7) {
-        this.f35103y.setScaleX(f7);
-        this.f35103y.setScaleY(f7);
+        this.f35106y.setScaleX(f7);
+        this.f35106y.setScaleY(f7);
     }
 
     public void setStickerStyle(float[] fArr) {
-        this.f35087c0 = fArr;
-        float[] fArr2 = this.f35088d0;
-        if (fArr2 != null) {
-            fArr = fArr2;
-        }
-        this.f35085b0 = fArr;
+        this.f35089a0 = fArr;
         m();
-        this.O.invalidate();
-        this.I.invalidate();
-        this.f35103y.setStickerStyle(fArr);
-        this.P.setTextColor(i0.a.f(fArr[8], h7.q(fArr, -7868417, 0), h7.q(fArr, -7868417, 3)));
+        this.N.invalidate();
         this.H.invalidate();
+        this.f35106y.setStickerStyle(fArr);
+        this.O.setTextColor(i0.a.f(fArr[8], h7.p(fArr, -7868417, 0), h7.p(fArr, -7868417, 3)));
+        this.G.invalidate();
     }
 
     public void setUseGyroscope(float f7) {
-        this.f35100s = f7;
-        this.f35103y.setUseGyroscope(f7);
+        this.f35103s = f7;
+        this.f35106y.setUseGyroscope(f7);
     }
 
     public x5(Context context, int i10, int i11) {
         super(context);
-        this.f35084b = 1.0f;
-        this.f35086c = new Matrix();
+        this.f35090b = 1.0f;
+        this.f35092c = new Matrix();
         this.d = new Matrix();
         this.e = new Matrix();
         new RectF();
-        this.f35090f = new RectF();
-        this.f35100s = 1.0f;
+        this.f35096f = new RectF();
+        this.f35103s = 1.0f;
         this.v = new Matrix();
-        this.f35101w = new Matrix();
-        this.f35102x = new Matrix();
-        this.J = new Paint(193);
+        this.f35104w = new Matrix();
+        this.f35105x = new Matrix();
+        this.I = new Paint(193);
         Runnable runnable = new Runnable(this) {
-            public final x5 f34888b;
+            public final x5 f34902b;
 
             {
-                this.f34888b = this;
+                this.f34902b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        this.f34888b.I.invalidate();
+                        this.f34902b.H.invalidate();
                         return;
                     case 1:
-                        x5 x5Var = this.f34888b;
+                        x5 x5Var = this.f34902b;
+                        x5Var.N.invalidate();
                         x5Var.O.invalidate();
-                        x5Var.P.invalidate();
                         return;
                     default:
-                        this.f34888b.H.invalidate();
+                        this.f34902b.G.invalidate();
                         return;
                 }
             }
         };
         bs bsVar = bs.h;
-        this.L = new org.telegram.ui.Components.f6(runnable, 240L, bsVar, 0);
-        this.W = UserConfig.selectedAccount;
-        this.f35095j0 = new org.telegram.ui.Components.f6(new Runnable(this) {
-            public final x5 f34888b;
+        this.K = new org.telegram.ui.Components.f6(runnable, 240L, bsVar, 0);
+        this.V = UserConfig.selectedAccount;
+        this.f35097f0 = new org.telegram.ui.Components.f6(new Runnable(this) {
+            public final x5 f34902b;
 
             {
-                this.f34888b = this;
+                this.f34902b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        this.f34888b.I.invalidate();
+                        this.f34902b.H.invalidate();
                         return;
                     case 1:
-                        x5 x5Var = this.f34888b;
+                        x5 x5Var = this.f34902b;
+                        x5Var.N.invalidate();
                         x5Var.O.invalidate();
-                        x5Var.P.invalidate();
                         return;
                     default:
-                        this.f34888b.H.invalidate();
+                        this.f34902b.G.invalidate();
                         return;
                 }
             }
         }, 240L, bsVar, 0);
-        this.f35096k0 = new org.telegram.ui.Components.f6(new Runnable(this) {
-            public final x5 f34888b;
+        this.f35098g0 = new org.telegram.ui.Components.f6(new Runnable(this) {
+            public final x5 f34902b;
 
             {
-                this.f34888b = this;
+                this.f34902b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        this.f34888b.I.invalidate();
+                        this.f34902b.H.invalidate();
                         return;
                     case 1:
-                        x5 x5Var = this.f34888b;
+                        x5 x5Var = this.f34902b;
+                        x5Var.N.invalidate();
                         x5Var.O.invalidate();
-                        x5Var.P.invalidate();
                         return;
                     default:
-                        this.f34888b.H.invalidate();
+                        this.f34902b.G.invalidate();
                         return;
                 }
             }
         }, 240L, bsVar, 0);
-        this.S = i10;
-        this.T = i11;
+        this.R = i10;
+        this.S = i11;
         setClipChildren(false);
         setClipToPadding(false);
         setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f));
-        s5 s5Var = new s5(getContext(), this.S, i11);
-        this.f35103y = s5Var;
+        s5 s5Var = new s5(getContext(), this.R, i11);
+        this.f35106y = s5Var;
         this.E = s5Var.getFrontFace();
-        if (this.f35085b0 != null) {
-            setStickerStyle(this.f35087c0);
+        float[] fArr = this.f35089a0;
+        if (fArr != null) {
+            setStickerStyle(fArr);
         }
-        setAdditionalTilt(this.f35099r);
-        setUseGyroscope(this.f35100s);
-        this.f35103y.setOnClickListener(this.G);
-        addView(this.f35103y, 0, w7.z5.c(-2.0f, -1));
-        Bitmap bitmap = this.F;
-        if (bitmap != null) {
-            setEngravingBitmap(bitmap);
-        }
-        mk mkVar = new mk(this, context, 6);
-        this.H = mkVar;
-        if (f35081o0 == null) {
+        setAdditionalTilt(this.f35102r);
+        setUseGyroscope(this.f35103s);
+        this.f35106y.setOnClickListener(this.F);
+        addView(this.f35106y, 0, w7.z5.c(-2.0f, -1));
+        kk kkVar = new kk(this, context, 6);
+        this.G = kkVar;
+        if (f35087k0 == null) {
             if (Build.VERSION.SDK_INT >= 26) {
-                f35081o0 = new Typeface.Builder(context.getAssets(), "fonts/rmono_var.ttf").setFontVariationSettings("'wght' 500").setWeight(500).build();
+                f35087k0 = new Typeface.Builder(context.getAssets(), "fonts/rmono_var.ttf").setFontVariationSettings("'wght' 500").setWeight(500).build();
             } else {
-                f35081o0 = AndroidUtilities.getTypeface("fonts/rmono.ttf");
+                f35087k0 = AndroidUtilities.getTypeface("fonts/rmono.ttf");
             }
         }
-        mkVar.setTypeface(f35081o0);
-        mkVar.setTextColor(-1);
-        mkVar.setTextSize(1, 13.0f);
-        mkVar.setShadowLayer(AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f), -16611884);
-        mkVar.setEllipsize(TextUtils.TruncateAt.END);
-        mkVar.setMaxLines(1);
-        mkVar.setSingleLine();
-        this.E.addView(mkVar, w7.z5.d(-1, -2.0f, 83, 24.0f, 0.0f, 64.0f, 17.2f));
-        x10 x10Var = new x10(this, context, 11);
-        this.I = x10Var;
-        this.E.addView(x10Var, w7.z5.c(-1.0f, -1));
+        kkVar.setTypeface(f35087k0);
+        kkVar.setTextColor(-1);
+        kkVar.setTextSize(1, 13.0f);
+        kkVar.setEllipsize(TextUtils.TruncateAt.END);
+        kkVar.setMaxLines(1);
+        kkVar.setSingleLine();
+        this.E.addView(kkVar, w7.z5.d(-1, -2.0f, 83, 24.0f, 0.0f, 64.0f, 17.2f));
+        v10 v10Var = new v10(this, context, 11);
+        this.H = v10Var;
+        this.E.addView(v10Var, w7.z5.c(-1.0f, -1));
         View view = new View(context);
-        this.M = view;
+        this.L = view;
         this.E.addView(view, w7.z5.d(1, 1.0f, 19, 24.0f, 0.0f, 0.0f, 0.0f));
         LinearLayout linearLayout = new LinearLayout(context);
-        this.N = linearLayout;
+        this.M = linearLayout;
         linearLayout.setOrientation(1);
         linearLayout.setClipChildren(false);
         linearLayout.setClipToPadding(false);
         FrameLayout.LayoutParams d = w7.z5.d(-1, -2.0f, 51, 24.0f, 71.0f, 24.0f, 0.0f);
-        this.Q = d;
+        this.P = d;
         this.E.addView(linearLayout, d);
         v5 v5Var = new v5(this, context, 0);
-        this.O = v5Var;
+        this.N = v5Var;
         v5Var.getDrawable().M = AndroidUtilities.dp(4096.0f);
-        v5Var.f29577c.m(0.35f, 320L, 3.5f, bsVar);
+        v5Var.f29528c.m(0.35f, 320L, 3.5f, bsVar);
         v5Var.setScaleProperty(0.6f);
         v5Var.setTypeface(AndroidUtilities.getTypeface("fonts/gram.ttf"));
         v5Var.setTextSize(AndroidUtilities.dp(23.0f));
@@ -847,8 +813,8 @@ public class x5 extends FrameLayout implements NotificationCenter.NotificationCe
         v5Var.setIgnoreRTL(true);
         linearLayout.addView(v5Var, w7.z5.n(-1, 28));
         v5 v5Var2 = new v5(this, context, 1);
-        this.P = v5Var2;
-        v5Var2.f29577c.m(0.35f, 320L, 3.5f, bsVar);
+        this.O = v5Var2;
+        v5Var2.f29528c.m(0.35f, 320L, 3.5f, bsVar);
         v5Var2.setScaleProperty(0.6f);
         v5Var2.setTypeface(AndroidUtilities.getTypeface("fonts/gram.ttf"));
         v5Var2.setTextSize(AndroidUtilities.dp(14.0f));

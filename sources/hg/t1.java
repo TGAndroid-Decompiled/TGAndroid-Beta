@@ -21,18 +21,18 @@ public abstract class t1 extends hm0 {
     public ArrayList H;
     public String I;
     public int J;
-    public Context f12056c;
+    public Context f12057c;
     public ArrayList d;
     public ArrayList e;
-    public a2 f12057f;
+    public a2 f12058f;
     public a0.h h;
-    public Timer f12058n;
-    public boolean f12059r;
-    public boolean f12060s;
+    public Timer f12059n;
+    public boolean f12060r;
+    public boolean f12061s;
     public boolean v;
-    public boolean f12061w;
-    public long f12062x;
-    public boolean f12063y;
+    public boolean f12062w;
+    public long f12063x;
+    public boolean f12064y;
 
     @Override
     public final boolean D(s4.b1 b1Var) {
@@ -46,9 +46,9 @@ public abstract class t1 extends hm0 {
     public final Object E(int i10) {
         int size = this.d.size();
         int size2 = this.H.size();
-        a2 a2Var = this.f12057f;
+        a2 a2Var = this.f12058f;
         int size3 = a2Var.e.size();
-        int size4 = a2Var.f11799j.size();
+        int size4 = a2Var.f11800j.size();
         if (i10 >= 0 && i10 < size) {
             return this.d.get(i10);
         }
@@ -63,7 +63,7 @@ public abstract class t1 extends hm0 {
             i11 -= size2 + 1;
         }
         if (i11 >= 0 && i11 < size4) {
-            return a2Var.f11799j.get(i11);
+            return a2Var.f11800j.get(i11);
         }
         int i12 = i11 - size4;
         if (i12 <= 0 || i12 > size3) {
@@ -76,7 +76,7 @@ public abstract class t1 extends hm0 {
 
     public final void G(String str) {
         try {
-            Timer timer = this.f12058n;
+            Timer timer = this.f12059n;
             if (timer != null) {
                 timer.cancel();
             }
@@ -86,20 +86,20 @@ public abstract class t1 extends hm0 {
         this.d.clear();
         this.H.clear();
         this.e.clear();
-        if (this.f12059r) {
-            this.f12057f.g(null, true, false, this.f12060s, this.v, this.f12062x, this.f12061w, 0, 0);
+        if (this.f12060r) {
+            this.f12058f.g(null, true, false, this.f12061s, this.v, this.f12063x, this.f12062w, 0, 0);
         }
         l();
         if (!TextUtils.isEmpty(str)) {
             Timer timer2 = new Timer();
-            this.f12058n = timer2;
+            this.f12059n = timer2;
             timer2.schedule(new r1(this, str, 0), 200L, 300L);
         }
     }
 
     @Override
     public final int h() {
-        a2 a2Var = this.f12057f;
+        a2 a2Var = this.f12058f;
         this.J = -1;
         int size = this.d.size();
         if (!this.H.isEmpty()) {
@@ -110,7 +110,7 @@ public abstract class t1 extends hm0 {
         if (size2 != 0) {
             size += size2 + 1;
         }
-        int size3 = a2Var.f11799j.size();
+        int size3 = a2Var.f11800j.size();
         if (size3 != 0) {
             return size + size3;
         }
@@ -143,7 +143,7 @@ public abstract class t1 extends hm0 {
     @Override
     public final s4.b1 x(ViewGroup viewGroup, int i10) {
         u3 u3Var;
-        Context context = this.f12056c;
+        Context context = this.f12057c;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 != 3) {
@@ -154,7 +154,7 @@ public abstract class t1 extends hm0 {
                             b10 b10Var = new b10(context, null);
                             b10Var.setIsSingleCell(true);
                             b10Var.setViewType(29);
-                            b10Var.setBackgroundColor(h6.x0(null, h6.f20986d6, false));
+                            b10Var.setBackgroundColor(h6.x0(null, h6.f20989d6, false));
                             u3Var = b10Var;
                         }
                     } else {

@@ -8,7 +8,7 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 public final class rv extends View {
     public ImageReceiver.BackgroundThreadDrawHolder[] f30056a;
-    public ci.f3 f30057b;
+    public ci.g3 f30057b;
     public a6 f30058c;
     public ValueAnimator d;
     public float e;
@@ -47,7 +47,7 @@ public final class rv extends View {
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(f7, 0.0f);
                     this.d = ofFloat;
                     ofFloat.addUpdateListener(new l6(this, 18));
-                    this.d.addListener(new org.telegram.ui.pq(this, 23));
+                    this.d.addListener(new org.telegram.ui.nq(this, 23));
                     org.telegram.messenger.lk.l(5.0f, this.d);
                     this.d.setDuration(350L);
                     this.d.start();

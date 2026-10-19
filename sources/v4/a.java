@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-import w7.e8;
+import w7.d8;
 public final class a {
     public static volatile a d;
     public static final Object e = new Object();
@@ -67,9 +67,9 @@ public final class a {
     public final Object b(Class cls, HashSet hashSet) {
         Object obj;
         HashMap hashMap = this.f47948a;
-        if (e8.b()) {
+        if (d8.b()) {
             try {
-                e8.a(cls.getSimpleName());
+                d8.a(cls.getSimpleName());
             } catch (Throwable th2) {
                 Trace.endSection();
                 throw th2;

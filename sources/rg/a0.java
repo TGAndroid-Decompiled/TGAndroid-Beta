@@ -13,13 +13,13 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.Components.a6;
-import org.telegram.ui.Components.b61;
+import org.telegram.ui.Components.c61;
 import org.telegram.ui.Components.uy;
 public final class a0 implements uy {
-    public final m0 f45274a;
+    public final m0 f45272a;
 
     public a0(m0 m0Var) {
-        this.f45274a = m0Var;
+        this.f45272a = m0Var;
     }
 
     @Override
@@ -59,7 +59,7 @@ public final class a0 implements uy {
 
     @Override
     public final boolean k() {
-        b editText = ((u2) this.f45274a.S0).getEditText();
+        b editText = ((v2) this.f45272a.S0).getEditText();
         if (editText == null || editText.length() == 0) {
             return false;
         }
@@ -69,17 +69,17 @@ public final class a0 implements uy {
 
     @Override
     public final void l(String str) {
-        u2 u2Var;
+        v2 v2Var;
         b editText;
         Emoji.EmojiSpan[] emojiSpanArr;
-        j jVar = this.f45274a.S0;
-        if ((jVar instanceof u2) && (editText = (u2Var = (u2) jVar).getEditText()) != null) {
+        j jVar = this.f45272a.S0;
+        if ((jVar instanceof v2) && (editText = (v2Var = (v2) jVar).getEditText()) != null) {
             int selectionEnd = editText.getSelectionEnd();
             if (selectionEnd < 0) {
                 selectionEnd = 0;
             }
             try {
-                CharSequence replaceEmoji = Emoji.replaceEmoji(str, u2Var.getFontMetricsInt(), false);
+                CharSequence replaceEmoji = Emoji.replaceEmoji(str, v2Var.getFontMetricsInt(), false);
                 if ((replaceEmoji instanceof Spanned) && (emojiSpanArr = (Emoji.EmojiSpan[]) ((Spanned) replaceEmoji).getSpans(0, replaceEmoji.length(), Emoji.EmojiSpan.class)) != null) {
                     for (Emoji.EmojiSpan emojiSpan : emojiSpanArr) {
                         emojiSpan.scale = 0.85f;
@@ -98,12 +98,12 @@ public final class a0 implements uy {
 
     @Override
     public final void n() {
-        m0 m0Var = this.f45274a;
+        m0 m0Var = this.f45272a;
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(m0Var.getContext(), 0, m0Var.Q1);
-        alertDialog$Builder.f20601a.R = LocaleController.getString(R.string.ClearRecentEmojiTitle);
-        alertDialog$Builder.f20601a.T = LocaleController.getString(R.string.ClearRecentEmojiText);
-        alertDialog$Builder.k(LocaleController.getString(R.string.ClearButton), new qg.g0(this, 9));
-        i2.d.r(R.string.Cancel, alertDialog$Builder, null);
+        alertDialog$Builder.f20604a.R = LocaleController.getString(R.string.ClearRecentEmojiTitle);
+        alertDialog$Builder.f20604a.T = LocaleController.getString(R.string.ClearRecentEmojiText);
+        alertDialog$Builder.k(LocaleController.getString(R.string.ClearButton), new qg.h0(this, 9));
+        i2.e.r(R.string.Cancel, alertDialog$Builder, null);
     }
 
     @Override
@@ -114,7 +114,7 @@ public final class a0 implements uy {
     @Override
     public final void x(long j10, TLRPC.Document document, String str, boolean z10) {
         a6 a6Var;
-        b editText = ((u2) this.f45274a.S0).getEditText();
+        b editText = ((v2) this.f45272a.S0).getEditText();
         if (editText != null) {
             int selectionEnd = editText.getSelectionEnd();
             if (selectionEnd < 0) {
@@ -153,7 +153,7 @@ public final class a0 implements uy {
     }
 
     @Override
-    public final void o(b61 b61Var) {
+    public final void o(c61 c61Var) {
     }
 
     @Override

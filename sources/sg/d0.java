@@ -34,7 +34,7 @@ import org.telegram.ui.Cells.f4;
 import org.telegram.ui.Cells.l4;
 import org.telegram.ui.Cells.z6;
 import org.telegram.ui.Components.b10;
-import org.telegram.ui.Components.c61;
+import org.telegram.ui.Components.d61;
 import org.telegram.ui.Components.ea0;
 import org.telegram.ui.Components.hm0;
 import org.telegram.ui.Components.un;
@@ -135,7 +135,7 @@ public final class d0 extends hm0 {
                         } else if (i12 == 11 || i12 == 34) {
                             TLRPC.User user = (TLRPC.User) k0Var.B0.get(i10 - k0Var.f46292o0);
                             ArrayList arrayList = k0Var.C0;
-                            if (arrayList != null && arrayList.contains(Long.valueOf(user.f20419id))) {
+                            if (arrayList != null && arrayList.contains(Long.valueOf(user.f20422id))) {
                                 z10 = true;
                             } else {
                                 z10 = false;
@@ -231,7 +231,7 @@ public final class d0 extends hm0 {
                         if (indexOf >= 0) {
                             spannableStringBuilder = new SpannableStringBuilder(string);
                             SpannableString spannableString = new SpannableString(a1.g.n(g0Var.e.e, "", new StringBuilder()));
-                            spannableString.setSpan(new c61(AndroidUtilities.bold()), 0, spannableString.length(), 33);
+                            spannableString.setSpan(new d61(AndroidUtilities.bold()), 0, spannableString.length(), 33);
                             spannableStringBuilder.replace(indexOf, indexOf + 2, (CharSequence) spannableString);
                         }
                         j5Var.l(spannableStringBuilder, false);
@@ -246,7 +246,7 @@ public final class d0 extends hm0 {
                             if (indexOf2 >= 0) {
                                 spannableStringBuilder2 = new SpannableStringBuilder(str4);
                                 SpannableString spannableString2 = new SpannableString(g0Var.e.f46245c);
-                                spannableString2.setSpan(new c61(AndroidUtilities.bold()), 0, spannableString2.length(), 33);
+                                spannableString2.setSpan(new d61(AndroidUtilities.bold()), 0, spannableString2.length(), 33);
                                 spannableStringBuilder2.replace(indexOf2, indexOf2 + 2, (CharSequence) spannableString2);
                             }
                             j5Var.l(spannableStringBuilder2, false);
@@ -270,7 +270,7 @@ public final class d0 extends hm0 {
         if (currentChannel == chat2) {
             z11 = true;
         }
-        nVar.f22619r.a(contains, z11);
+        nVar.f22622r.a(contains, z11);
     }
 
     @Override
@@ -305,7 +305,7 @@ public final class d0 extends hm0 {
                 j0Var = new org.telegram.ui.Cells.n(context, new c0(this), true, 9);
                 break;
             case 2:
-                int i19 = h6.f20928a7;
+                int i19 = h6.f20931a7;
                 d6Var = ((f3) k0Var).resourcesProvider;
                 j0Var = new z6(context, h6.w0(i19, d6Var), 0);
                 break;
@@ -345,7 +345,7 @@ public final class d0 extends hm0 {
                 frameLayout.setPadding(dp, 0, AndroidUtilities.dp(6.0f) + i14, 0);
                 TextView textView = new TextView(context);
                 if (k0Var.Q0 == null && ChatObject.hasAdminRights(k0Var.t1())) {
-                    k0Var.Q0 = new org.telegram.ui.web.a2(this, 21);
+                    k0Var.Q0 = new org.telegram.ui.web.z1(this, 21);
                 }
                 int dp2 = AndroidUtilities.dp(18.0f);
                 int dp3 = AndroidUtilities.dp(13.0f);
@@ -363,7 +363,7 @@ public final class d0 extends hm0 {
                 int i20 = h6.e7;
                 d6Var3 = ((f3) k0Var).resourcesProvider;
                 int w02 = h6.w0(i20, d6Var3);
-                int i21 = h6.f21075i6;
+                int i21 = h6.f21078i6;
                 d6Var4 = ((f3) k0Var).resourcesProvider;
                 int o10 = i0.a.o(h6.w0(i21, d6Var4), 76);
                 textView.setBackground(h6.j0(dp4, dp4, dp4, dp4, w02, o10, o10));
@@ -383,7 +383,7 @@ public final class d0 extends hm0 {
                         switch (r2) {
                             case 0:
                                 k0 k0Var2 = this.f46209b.f46233c;
-                                n2 n2Var = k0Var2.f24915n;
+                                n2 n2Var = k0Var2.f24899n;
                                 long j10 = k0Var2.f46279a0;
                                 d6Var13 = ((f3) k0Var2).resourcesProvider;
                                 ug.m.n(n2Var, d6Var13, j10, null);
@@ -407,7 +407,7 @@ public final class d0 extends hm0 {
                 if (k0Var.Q0 != null) {
                     ImageView imageView = new ImageView(k0Var.getContext());
                     imageView.setImageResource(R.drawable.msg_stats);
-                    int i23 = h6.f21092j5;
+                    int i23 = h6.f21095j5;
                     d6Var6 = ((f3) k0Var).resourcesProvider;
                     imageView.setColorFilter(h6.w0(i23, d6Var6));
                     imageView.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
@@ -429,7 +429,7 @@ public final class d0 extends hm0 {
                             switch (r2) {
                                 case 0:
                                     k0 k0Var2 = this.f46209b.f46233c;
-                                    n2 n2Var = k0Var2.f24915n;
+                                    n2 n2Var = k0Var2.f24899n;
                                     long j10 = k0Var2.f46279a0;
                                     d6Var13 = ((f3) k0Var2).resourcesProvider;
                                     ug.m.n(n2Var, d6Var13, j10, null);
@@ -475,7 +475,7 @@ public final class d0 extends hm0 {
                 spannableStringBuilder.setSpan(new kb(this, 10), 0, spannableStringBuilder.length(), 33);
                 SpannableString spannableString = new SpannableString(">");
                 Drawable mutate = k0Var.getContext().getResources().getDrawable(R.drawable.msg_arrowright).mutate();
-                int i24 = h6.f21045gc;
+                int i24 = h6.f21048gc;
                 mutate.setColorFilter(new PorterDuffColorFilter(i24, PorterDuff.Mode.SRC_IN));
                 yq yqVar = new yq(0, mutate);
                 yqVar.setColorKey(i24);
@@ -488,7 +488,7 @@ public final class d0 extends hm0 {
                 x90Var.setLineSpacing(AndroidUtilities.dp(3.0f), 1.0f);
                 d6Var8 = ((f3) k0Var).resourcesProvider;
                 if (d6Var8 instanceof ci.b) {
-                    int i25 = h6.f21374y6;
+                    int i25 = h6.f21377y6;
                     d6Var11 = ((f3) k0Var).resourcesProvider;
                     x90Var.setTextColor(h6.w0(i25, d6Var11));
                 } else {
@@ -510,7 +510,7 @@ public final class d0 extends hm0 {
                         switch (r2) {
                             case 0:
                                 k0 k0Var2 = this.f46209b.f46233c;
-                                n2 n2Var = k0Var2.f24915n;
+                                n2 n2Var = k0Var2.f24899n;
                                 long j10 = k0Var2.f46279a0;
                                 d6Var13 = ((f3) k0Var2).resourcesProvider;
                                 ug.m.n(n2Var, d6Var13, j10, null);
@@ -549,7 +549,7 @@ public final class d0 extends hm0 {
                             switch (r2) {
                                 case 0:
                                     k0 k0Var2 = this.f46209b.f46233c;
-                                    n2 n2Var = k0Var2.f24915n;
+                                    n2 n2Var = k0Var2.f24899n;
                                     long j10 = k0Var2.f46279a0;
                                     d6Var13 = ((f3) k0Var2).resourcesProvider;
                                     ug.m.n(n2Var, d6Var13, j10, null);

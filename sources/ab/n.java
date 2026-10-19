@@ -1,23 +1,23 @@
 package ab;
 public final class n {
-    public final String f444a;
+    public final String f443a;
 
     public n(String str) {
-        this.f444a = str;
+        this.f443a = str;
     }
 
     public final boolean equals(Object obj) {
         if (this == obj) {
             return true;
         }
-        if ((obj instanceof n) && kotlin.jvm.internal.i.a(this.f444a, ((n) obj).f444a)) {
+        if ((obj instanceof n) && kotlin.jvm.internal.i.a(this.f443a, ((n) obj).f443a)) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        String str = this.f444a;
+        String str = this.f443a;
         if (str == null) {
             return 0;
         }
@@ -25,6 +25,6 @@ public final class n {
     }
 
     public final String toString() {
-        return "FirebaseSessionsData(sessionId=" + this.f444a + ')';
+        return "FirebaseSessionsData(sessionId=" + this.f443a + ')';
     }
 }

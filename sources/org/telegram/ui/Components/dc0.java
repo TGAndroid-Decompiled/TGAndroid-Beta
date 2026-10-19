@@ -32,11 +32,11 @@ public final class dc0 extends li.m {
 
     @Override
     public final void W() {
-        oc0 oc0Var = this.Y.f27185c0;
-        AndroidUtilities.cancelRunOnUIThread(oc0Var.f28930y);
-        oc0Var.f28930y.run();
+        oc0 oc0Var = this.Y.f27202c0;
+        AndroidUtilities.cancelRunOnUIThread(oc0Var.f28958y);
+        oc0Var.f28958y.run();
         if (this.W == -1) {
-            this.W = NotificationCenter.getInstance(oc0Var.f28928w).setAnimationInProgress(this.W, null, false);
+            this.W = NotificationCenter.getInstance(oc0Var.f28956w).setAnimationInProgress(this.W, null, false);
         }
         Runnable runnable = this.X;
         if (runnable != null) {

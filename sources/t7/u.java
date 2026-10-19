@@ -41,7 +41,7 @@ import org.telegram.ui.Components.sb;
 import org.telegram.ui.Components.tb;
 import org.telegram.ui.Components.ub;
 import org.telegram.ui.Components.xl;
-import org.telegram.ui.xu0;
+import org.telegram.ui.vu0;
 public class u implements c3.g, cg.a, dg.a, ea.c, g2.g, gb.n, ri, n5.b, n2.r, r9.d, tb, l1, r4.d, OnFailureListener, y9.c, z3.k {
     public static u f46898b;
     public final int f46899a;
@@ -108,9 +108,9 @@ public class u implements c3.g, cg.a, dg.a, ea.c, g2.g, gb.n, ri, n5.b, n2.r, r9
     @Override
     public void C(ShortBuffer shortBuffer, int i10, ShortBuffer shortBuffer2, int i11, int i12) {
         if (i10 < i11) {
-            dg.a.f7991t.C(shortBuffer, i10, shortBuffer2, i11, i12);
+            dg.a.f7992t.C(shortBuffer, i10, shortBuffer2, i11, i12);
         } else if (i10 > i11) {
-            dg.a.f7990q.C(shortBuffer, i10, shortBuffer2, i11, i12);
+            dg.a.f7991q.C(shortBuffer, i10, shortBuffer2, i11, i12);
         } else if (i10 == i11) {
             shortBuffer2.put(shortBuffer);
         } else {
@@ -133,8 +133,8 @@ public class u implements c3.g, cg.a, dg.a, ea.c, g2.g, gb.n, ri, n5.b, n2.r, r9
         ubVar.setInOutOffset(ubVar.getMeasuredHeight());
         xlVar.accept(Float.valueOf(ubVar.getTranslationY()));
         o1.k kVar = new o1.k(ubVar, ub.IN_OUT_OFFSET_Y, 0.0f);
-        kVar.f17558u.a(0.8f);
-        kVar.f17558u.b(400.0f);
+        kVar.f17561u.a(0.8f);
+        kVar.f17561u.b(400.0f);
         kVar.a(new b4(1, ubVar, pgVar));
         kVar.b(new sb(xlVar, ubVar, 1));
         kVar.h();
@@ -252,7 +252,7 @@ public class u implements c3.g, cg.a, dg.a, ea.c, g2.g, gb.n, ri, n5.b, n2.r, r9
 
     @Override
     public int L(w wVar) {
-        String str = wVar.f4132s;
+        String str = wVar.f4130s;
         if (str != null) {
             char c10 = 65535;
             switch (str.hashCode()) {
@@ -401,7 +401,7 @@ public class u implements c3.g, cg.a, dg.a, ea.c, g2.g, gb.n, ri, n5.b, n2.r, r9
     }
 
     @Override
-    public xu0 P1() {
+    public vu0 P1() {
         switch (this.f46899a) {
             case 17:
                 return null;
@@ -547,7 +547,7 @@ public class u implements c3.g, cg.a, dg.a, ea.c, g2.g, gb.n, ri, n5.b, n2.r, r9
 
     @Override
     public boolean a0(w wVar) {
-        String str = wVar.f4132s;
+        String str = wVar.f4130s;
         if (!Objects.equals(str, "text/x-ssa") && !Objects.equals(str, "text/vtt") && !Objects.equals(str, "application/x-mp4-vtt") && !Objects.equals(str, "application/x-subrip") && !Objects.equals(str, "application/x-quicktime-tx3g") && !Objects.equals(str, "application/pgs") && !Objects.equals(str, "application/vobsub") && !Objects.equals(str, "application/dvbsubs") && !Objects.equals(str, "application/ttml+xml")) {
             return false;
         }
@@ -602,8 +602,8 @@ public class u implements c3.g, cg.a, dg.a, ea.c, g2.g, gb.n, ri, n5.b, n2.r, r9
     @Override
     public void d(ub ubVar, fb fbVar, db dbVar, gb gbVar) {
         o1.k kVar = new o1.k(ubVar, ub.IN_OUT_OFFSET_Y, ubVar.getHeight());
-        kVar.f17558u.a(0.8f);
-        kVar.f17558u.b(400.0f);
+        kVar.f17561u.a(0.8f);
+        kVar.f17561u.b(400.0f);
         kVar.a(new hb(dbVar, 1));
         kVar.b(new sb(gbVar, ubVar, 0));
         kVar.h();
@@ -732,8 +732,8 @@ public class u implements c3.g, cg.a, dg.a, ea.c, g2.g, gb.n, ri, n5.b, n2.r, r9
             case 15:
                 rb.a aVar = new rb.a();
                 androidx.emoji2.text.n nVar = new androidx.emoji2.text.n(7);
-                ReferenceQueue referenceQueue = aVar.f45175a;
-                Set set = aVar.f45176b;
+                ReferenceQueue referenceQueue = aVar.f45173a;
+                Set set = aVar.f45174b;
                 set.add(new rb.l(aVar, referenceQueue, set, nVar));
                 Thread thread = new Thread(new j9.u(25, referenceQueue, set), "MlKitCleaner");
                 thread.setDaemon(true);
@@ -865,8 +865,8 @@ public class u implements c3.g, cg.a, dg.a, ea.c, g2.g, gb.n, ri, n5.b, n2.r, r9
     }
 
     @Override
-    public void r(gh ghVar) {
-        ghVar.run();
+    public h2.b r(byte[] bArr) {
+        throw new IllegalStateException();
     }
 
     @Override
@@ -885,8 +885,8 @@ public class u implements c3.g, cg.a, dg.a, ea.c, g2.g, gb.n, ri, n5.b, n2.r, r9
     }
 
     @Override
-    public h2.b u(byte[] bArr) {
-        throw new IllegalStateException();
+    public void u(gh ghVar) {
+        ghVar.run();
     }
 
     @Override
@@ -951,7 +951,7 @@ public class u implements c3.g, cg.a, dg.a, ea.c, g2.g, gb.n, ri, n5.b, n2.r, r9
 
     @Override
     public z3.m y(w wVar) {
-        String str = wVar.f4132s;
+        String str = wVar.f4130s;
         List list = wVar.v;
         if (str != null) {
             char c10 = 65535;

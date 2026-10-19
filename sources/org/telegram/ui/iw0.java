@@ -1,99 +1,55 @@
 package org.telegram.ui;
 
-import android.content.Context;
+import android.animation.ValueAnimator;
 import android.view.View;
 import android.view.ViewGroup;
-public final class iw0 extends org.telegram.ui.Components.hm0 {
-    public final PremiumPreviewFragment f37989c;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.ChatActivityEnterView;
+public final class iw0 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f38115a;
+    public final Object f38116b;
+    public final View f38117c;
+    public final Object d;
 
-    public iw0(PremiumPreviewFragment premiumPreviewFragment) {
-        this.f37989c = premiumPreviewFragment;
+    public iw0(Object obj, ViewGroup viewGroup, Object obj2, int i10) {
+        this.f38115a = i10;
+        this.f38116b = obj;
+        this.f38117c = viewGroup;
+        this.d = obj2;
     }
 
     @Override
-    public final boolean D(s4.b1 b1Var) {
-        int i10 = b1Var.f45913f;
-        if (i10 == 1 || i10 == 8) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final int h() {
-        return this.f37989c.h;
-    }
-
-    @Override
-    public final int j(int i10) {
-        if (i10 != 0) {
-            PremiumPreviewFragment premiumPreviewFragment = this.f37989c;
-            if (i10 < premiumPreviewFragment.f33501n || i10 >= premiumPreviewFragment.f33506r) {
-                if (i10 >= premiumPreviewFragment.v && i10 < premiumPreviewFragment.f33513w) {
-                    return 1;
-                }
-                if (i10 == 0) {
-                    return 4;
-                }
-                if (i10 != premiumPreviewFragment.f33515x && i10 != premiumPreviewFragment.f33517y && i10 != premiumPreviewFragment.E && i10 != premiumPreviewFragment.H) {
-                    if (i10 == premiumPreviewFragment.F) {
-                        return 6;
-                    }
-                    if (i10 != premiumPreviewFragment.f33508s && i10 != premiumPreviewFragment.G) {
-                        if (i10 == premiumPreviewFragment.showAdsRow) {
-                            return 8;
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        float dp;
+        switch (this.f38115a) {
+            case 0:
+                nw0 nw0Var = (nw0) this.f38116b;
+                PremiumPreviewFragment premiumPreviewFragment = nw0Var.f39695n;
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                View view = this.f38117c;
+                view.setAlpha(floatValue);
+                view.setScaleX(floatValue);
+                view.setScaleY(floatValue);
+                float animatedFraction = ((ValueAnimator) this.d).getAnimatedFraction();
+                for (int i10 = 0; i10 < premiumPreviewFragment.U.getChildCount(); i10++) {
+                    View childAt = premiumPreviewFragment.U.getChildAt(i10);
+                    if (childAt != nw0Var.e) {
+                        if (childAt == nw0Var.f39693c) {
+                            dp = 0.0f - (AndroidUtilities.dp(15.0f) * animatedFraction);
+                        } else {
+                            dp = 0.0f + (AndroidUtilities.dp(8.0f) * animatedFraction);
                         }
-                        return 0;
+                        childAt.setTranslationY((view.getMeasuredHeight() * animatedFraction) + dp);
                     }
-                    return 7;
                 }
-                return 5;
-            }
-            return 1;
-        }
-        return 0;
-    }
-
-    @Override
-    public final void v(s4.b1 r18, int r19) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.iw0.v(s4.b1, int):void");
-    }
-
-    @Override
-    public final s4.b1 x(ViewGroup viewGroup, int i10) {
-        View hw0Var;
-        org.telegram.ui.ActionBar.d6 d6Var;
-        Context context = viewGroup.getContext();
-        switch (i10) {
-            case 1:
-                hw0Var = new hw0(this, context);
-                break;
-            case 2:
-                hw0Var = new org.telegram.ui.Cells.z6(context, 0, 0);
-                break;
-            case 3:
+                return;
             default:
-                hw0Var = new x10(this, context, 6);
-                hw0Var.setTag(-33024);
-                break;
-            case 4:
-                hw0Var = new sg.a(context);
-                break;
-            case 5:
-                hw0Var = new org.telegram.ui.Cells.d9(context);
-                break;
-            case 6:
-                hw0Var = new View(context);
-                hw0Var.setTag(-33024);
-                break;
-            case 7:
-                hw0Var = new org.telegram.ui.Cells.l4(context);
-                break;
-            case 8:
-                d6Var = ((org.telegram.ui.ActionBar.n2) this.f37989c).resourceProvider;
-                hw0Var = new org.telegram.ui.Cells.q8(23, context, d6Var, false, true);
-                break;
+                z91 z91Var = (z91) this.f38116b;
+                z91Var.getClass();
+                z91Var.f43681a = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                ((ChatActivityEnterView) this.f38117c).getEditField().setAlpha(z91Var.f43681a);
+                ((org.telegram.ui.Components.si) this.d).invalidate();
+                return;
         }
-        return com.google.android.gms.internal.play_billing.k3.l(hw0Var, hw0Var, -1, -2);
     }
 }

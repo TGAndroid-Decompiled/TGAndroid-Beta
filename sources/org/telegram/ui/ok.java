@@ -1,20 +1,33 @@
 package org.telegram.ui;
-public final class ok extends org.telegram.ui.Components.ll0 {
-    public final sn f39819l;
 
-    public ok(sn snVar, pj pjVar, sj sjVar) {
-        super(pjVar, sjVar);
-        this.f39819l = snVar;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+import android.view.View;
+import android.view.ViewGroup;
+import org.telegram.messenger.AndroidUtilities;
+public final class ok extends vu0 {
+    public ok(ViewGroup viewGroup, ViewGroup viewGroup2) {
+        super(viewGroup, viewGroup2);
     }
 
-    public final void e(int i10) {
-        if (this.f39819l.Qa) {
-            if (i10 == 0) {
-                i10 = 1;
-            } else if (i10 == 1) {
-                i10 = 0;
+    @Override
+    public final void c(Canvas canvas, float f7, float f10, float f11, float f12, float f13) {
+        if (f7 > 0.0f) {
+            View view = this.e;
+            if (view instanceof org.telegram.ui.Cells.u1) {
+                org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) view;
+                RectF rectF = AndroidUtilities.rectTmp;
+                rectF.set(f10, (int) Math.max(f12, f11), u1Var.getMeasuredWidth() + f10, (int) Math.min(f13, u1Var.getMeasuredHeight() + f11));
+                canvas.saveLayerAlpha(rectF, (int) (f7 * 255.0f), 31);
+                canvas.translate(f10, f11 + u1Var.getPaddingTop());
+                u1Var.Ed = true;
+                u1Var.Y1(canvas);
+                if (u1Var.f4() && u1Var.getCurrentMessagesGroup() == null) {
+                    u1Var.m2(1.0f, canvas, false);
+                }
+                u1Var.Ed = false;
+                canvas.restore();
             }
         }
-        this.f28257b = i10;
     }
 }

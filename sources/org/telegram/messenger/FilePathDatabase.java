@@ -36,13 +36,13 @@ public class FilePathDatabase {
     }
 
     public static class PathData {
-        public final int f17788dc;
-        public final long f17789id;
+        public final int f17791dc;
+        public final long f17792id;
         public final int type;
 
         public PathData(long j10, int i10, int i11) {
-            this.f17789id = j10;
-            this.f17788dc = i10;
+            this.f17792id = j10;
+            this.f17791dc = i10;
             this.type = i11;
         }
     }
@@ -192,7 +192,7 @@ public class FilePathDatabase {
             this.database.beginTransaction();
             for (int i10 = 0; i10 < list.size(); i10++) {
                 SQLiteDatabase sQLiteDatabase = this.database;
-                sQLiteDatabase.executeFast("DELETE FROM paths_by_dialog_id WHERE path = '" + shield(((bi.b) list.get(i10)).f4428a.getPath()) + "'").stepThis().dispose();
+                sQLiteDatabase.executeFast("DELETE FROM paths_by_dialog_id WHERE path = '" + shield(((bi.b) list.get(i10)).f4426a.getPath()) + "'").stepThis().dispose();
             }
         } catch (Throwable th2) {
             try {
@@ -308,7 +308,7 @@ public class FilePathDatabase {
             sb2.append(" time=");
             sb2.append(System.currentTimeMillis() - currentTimeMillis);
             sb2.append(" thread_time=");
-            i2.d.x(sb2, jArr[0]);
+            i2.e.x(sb2, jArr[0]);
             if (BuildVars.DEBUG_VERSION && Thread.currentThread() == Looper.getMainLooper().getThread()) {
                 FileLog.e(new Exception("warning, not allowed in main thread"));
             }

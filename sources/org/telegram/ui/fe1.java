@@ -1,34 +1,91 @@
 package org.telegram.ui;
-public final class fe1 implements Runnable {
-    public final int f36898a;
-    public final ge1 f36899b;
 
-    public fe1(ge1 ge1Var, int i10) {
-        this.f36898a = i10;
-        this.f36899b = ge1Var;
+import android.app.Activity;
+import android.view.View;
+import java.util.HashMap;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+public final class fe1 extends View {
+    public final HashMap f36985a;
+    public final ge1 f36986b;
+
+    public fe1(ge1 ge1Var, Activity activity) {
+        super(activity);
+        this.f36986b = ge1Var;
+        this.f36985a = new HashMap();
     }
 
     @Override
-    public final void run() {
-        switch (this.f36898a) {
-            case 0:
-                ge1 ge1Var = this.f36899b;
-                ge1Var.F = null;
-                if (ge1Var.G != -1) {
-                    ge1Var.H.getNotificationCenter().onAnimationFinish(ge1Var.G);
-                    ge1Var.G = -1;
-                    return;
+    public final void onMeasure(int i10, int i11) {
+        int i12;
+        int i13;
+        float f7;
+        int i14;
+        int dp;
+        boolean z10;
+        int i15;
+        ge1 ge1Var = this.f36986b;
+        re1 re1Var = ge1Var.d;
+        int size = View.MeasureSpec.getSize(i10);
+        int dp2 = AndroidUtilities.dp(64.0f);
+        int i16 = 0;
+        int i17 = 0;
+        for (int i18 = 0; i18 < ge1Var.F().size(); i18++) {
+            if (ge1Var.F().get(i18) != null && ((ie1) ge1Var.F().get(i18)).f37981c != null) {
+                String str = ((ie1) ge1Var.F().get(i18)).f37981c.title;
+                HashMap hashMap = this.f36985a;
+                Boolean bool = (Boolean) hashMap.get(str);
+                if (bool == null) {
+                    int i19 = 50;
+                    if (!LocaleController.isRTL) {
+                        if (re1Var.isInPreviewMode()) {
+                            i15 = 11;
+                        } else {
+                            i15 = 50;
+                        }
+                        f7 = i15 + 4;
+                    } else {
+                        f7 = 18.0f;
+                    }
+                    int dp3 = AndroidUtilities.dp(f7);
+                    if (!LocaleController.isRTL) {
+                        i14 = size - dp3;
+                        dp = AndroidUtilities.dp(22.0f);
+                    } else {
+                        i14 = size - dp3;
+                        if (re1Var.isInPreviewMode()) {
+                            i19 = 11;
+                        }
+                        dp = AndroidUtilities.dp(i19 + 13);
+                    }
+                    if (org.telegram.ui.ActionBar.h6.B0[0].measureText(str) <= (i14 - dp) - ((int) Math.ceil(org.telegram.ui.ActionBar.h6.I0.measureText("00:00")))) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    bool = Boolean.valueOf(z10);
+                    hashMap.put(str, bool);
                 }
-                return;
-            default:
-                ge1 ge1Var2 = this.f36899b;
-                ge1Var2.F = null;
-                if (ge1Var2.G != -1) {
-                    ge1Var2.H.getNotificationCenter().onAnimationFinish(ge1Var2.G);
-                    ge1Var2.G = -1;
-                    return;
+                if (!bool.booleanValue()) {
+                    i13 = 20;
+                } else {
+                    i13 = 0;
                 }
-                return;
+                int dp4 = AndroidUtilities.dp(i13 + 64);
+                if (((ie1) ge1Var.F().get(i18)).f37981c.f20327id == 1) {
+                    dp2 = dp4;
+                }
+                if (((ie1) ge1Var.F().get(i18)).f37981c.hidden) {
+                    i16++;
+                }
+                i17 += dp4;
+            }
         }
+        if (i16 > 0) {
+            i12 = (((re1Var.N.getMeasuredHeight() - re1Var.N.getPaddingTop()) - re1Var.N.getPaddingBottom()) - i17) + dp2;
+        } else {
+            i12 = 0;
+        }
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(Math.max(0, i12), 1073741824));
     }
 }

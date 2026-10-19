@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
 import java.util.concurrent.CountDownLatch;
-import org.telegram.ui.Components.ay0;
+import org.telegram.ui.Components.by0;
 import org.webrtc.EglBase;
 import org.webrtc.VideoFrame;
 public class VideoFileRenderer implements VideoSink {
@@ -122,7 +122,7 @@ public class VideoFileRenderer implements VideoSink {
         videoFrame.release();
         VideoFrame.I420Buffer i420 = cropAndScale.toI420();
         cropAndScale.release();
-        this.fileThreadHandler.post(new ay0(this, i420, videoFrame, 14));
+        this.fileThreadHandler.post(new by0(this, i420, videoFrame, 14));
     }
 
     @Override

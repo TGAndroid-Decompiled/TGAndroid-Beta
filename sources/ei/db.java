@@ -8,79 +8,79 @@ import android.view.View;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.ui.Components.wp;
 public final class db extends View {
-    public final int f8904a;
-    public final boolean f8905b;
-    public final Canvas f8906c;
+    public final int f8905a;
+    public final boolean f8906b;
+    public final Canvas f8907c;
     public final float d;
     public final float e;
-    public final float f8907f;
+    public final float f8908f;
     public final Paint h;
-    public final Bitmap f8908n;
-    public final Paint f8909r;
-    public final float f8910s;
+    public final Bitmap f8909n;
+    public final Paint f8910r;
+    public final float f8911s;
     public final float v;
-    public final NotificationCenter.NotificationCenterDelegate f8911w;
+    public final NotificationCenter.NotificationCenterDelegate f8912w;
 
     public db(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, Context context, boolean z10, Canvas canvas, float f7, float f10, float f11, Paint paint, Bitmap bitmap, Paint paint2, float f12, float f13, int i10) {
         super(context);
-        this.f8904a = i10;
-        this.f8911w = notificationCenterDelegate;
-        this.f8905b = z10;
-        this.f8906c = canvas;
+        this.f8905a = i10;
+        this.f8912w = notificationCenterDelegate;
+        this.f8906b = z10;
+        this.f8907c = canvas;
         this.d = f7;
         this.e = f10;
-        this.f8907f = f11;
+        this.f8908f = f11;
         this.h = paint;
-        this.f8908n = bitmap;
-        this.f8909r = paint2;
-        this.f8910s = f12;
+        this.f8909n = bitmap;
+        this.f8910r = paint2;
+        this.f8911s = f12;
         this.v = f13;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        switch (this.f8904a) {
+        switch (this.f8905a) {
             case 0:
-                vb vbVar = (vb) this.f8911w;
+                vb vbVar = (vb) this.f8912w;
                 super.onDraw(canvas);
-                boolean z10 = this.f8905b;
-                Paint paint = this.f8909r;
-                float f7 = this.f8907f;
+                boolean z10 = this.f8906b;
+                Paint paint = this.f8910r;
+                float f7 = this.f8908f;
                 float f10 = this.e;
                 float f11 = this.d;
                 if (z10) {
                     float f12 = vbVar.D2;
                     if (f12 > 0.0f) {
-                        this.f8906c.drawCircle(f11, f10, f7 * f12, this.h);
+                        this.f8907c.drawCircle(f11, f10, f7 * f12, this.h);
                     }
-                    canvas.drawBitmap(this.f8908n, 0.0f, 0.0f, paint);
+                    canvas.drawBitmap(this.f8909n, 0.0f, 0.0f, paint);
                 } else {
                     canvas.drawCircle(f11, f10, (1.0f - vbVar.D2) * f7, paint);
                 }
                 canvas.save();
-                canvas.translate(this.f8910s, this.v);
-                vbVar.f9976i1.draw(canvas);
+                canvas.translate(this.f8911s, this.v);
+                vbVar.f9977i1.draw(canvas);
                 canvas.restore();
                 return;
             default:
-                wp wpVar = (wp) this.f8911w;
+                wp wpVar = (wp) this.f8912w;
                 super.onDraw(canvas);
-                boolean z11 = this.f8905b;
-                Paint paint2 = this.f8909r;
-                float f13 = this.f8907f;
+                boolean z11 = this.f8906b;
+                Paint paint2 = this.f8910r;
+                float f13 = this.f8908f;
                 float f14 = this.e;
                 float f15 = this.d;
                 if (z11) {
                     float f16 = wpVar.S;
                     if (f16 > 0.0f) {
-                        this.f8906c.drawCircle(f15, f14, f13 * f16, this.h);
+                        this.f8907c.drawCircle(f15, f14, f13 * f16, this.h);
                     }
-                    canvas.drawBitmap(this.f8908n, 0.0f, 0.0f, paint2);
+                    canvas.drawBitmap(this.f8909n, 0.0f, 0.0f, paint2);
                 } else {
                     canvas.drawCircle(f15, f14, (1.0f - wpVar.S) * f13, paint2);
                 }
                 canvas.save();
-                canvas.translate(this.f8910s, this.v);
+                canvas.translate(this.f8911s, this.v);
                 wpVar.G.draw(canvas);
                 canvas.restore();
                 return;

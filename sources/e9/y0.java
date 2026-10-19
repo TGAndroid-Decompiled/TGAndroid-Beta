@@ -7,8 +7,8 @@ import java.util.Set;
 import java.util.SortedSet;
 import v7.u6;
 public abstract class y0 extends i0 implements Set, j$.util.Set {
-    public static final int f8537c = 0;
-    public transient n0 f8538b;
+    public static final int f8538c = 0;
+    public transient n0 f8539b;
 
     public static int s(int i10) {
         int max = Math.max(i10, 2);
@@ -56,7 +56,7 @@ public abstract class y0 extends i0 implements Set, j$.util.Set {
                             }
                         }
                     } else {
-                        throw new NullPointerException(i2.d.j(i14, "at index "));
+                        throw new NullPointerException(i2.e.j(i14, "at index "));
                     }
                 }
                 Arrays.fill(objArr, i13, i10, (Object) null);
@@ -78,7 +78,7 @@ public abstract class y0 extends i0 implements Set, j$.util.Set {
             Objects.requireNonNull(obj4);
             return new k2(obj4);
         }
-        return e2.f8439s;
+        return e2.f8440s;
     }
 
     public static y0 u(Collection collection) {
@@ -125,10 +125,10 @@ public abstract class y0 extends i0 implements Set, j$.util.Set {
 
     @Override
     public n0 h() {
-        n0 n0Var = this.f8538b;
+        n0 n0Var = this.f8539b;
         if (n0Var == null) {
             n0 v = v();
-            this.f8538b = v;
+            this.f8539b = v;
             return v;
         }
         return n0Var;
@@ -140,8 +140,8 @@ public abstract class y0 extends i0 implements Set, j$.util.Set {
     }
 
     public n0 v() {
-        Object[] array = toArray(i0.f8457a);
-        l0 l0Var = n0.f8475b;
+        Object[] array = toArray(i0.f8458a);
+        l0 l0Var = n0.f8476b;
         return n0.s(array.length, array);
     }
 }

@@ -10,9 +10,9 @@ import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.ActionBar.n2;
-import org.telegram.ui.Components.a71;
+import org.telegram.ui.Components.b71;
 import org.telegram.ui.Components.m9;
-import org.telegram.ui.web.a2;
+import org.telegram.ui.web.z1;
 import w7.z5;
 public final class q extends FrameLayout {
     public final m9 f45783a;
@@ -34,16 +34,16 @@ public final class q extends FrameLayout {
         addView(textView, z5.g());
     }
 
-    public final a71 a(n2 n2Var, long j10, int i10, byte[] bArr, int i11, Utilities.Callback callback) {
+    public final b71 a(n2 n2Var, long j10, int i10, byte[] bArr, int i11, Utilities.Callback callback) {
         k kVar = this.f45785c;
         if (kVar != null) {
             return kVar;
         }
-        p pVar = new p(n2Var.getCurrentAccount(), n2Var.getMessagesController().getInputPeer(j10), i10, bArr, new a2(this, 18), callback);
-        AndroidUtilities.runOnUIThread(new a2(pVar, 19), 1000L);
+        p pVar = new p(n2Var.getCurrentAccount(), n2Var.getMessagesController().getInputPeer(j10), i10, bArr, new z1(this, 18), callback);
+        AndroidUtilities.runOnUIThread(new z1(pVar, 19), 1000L);
         k kVar2 = new k(n2Var, new j(pVar, 0), i11);
         this.f45785c = kVar2;
-        kVar2.W2.f30201r = false;
+        kVar2.W2.f30438r = false;
         kVar2.j(new l(this, pVar));
         return this.f45785c;
     }
@@ -53,7 +53,7 @@ public final class q extends FrameLayout {
         super.dispatchDraw(canvas);
         int width = getWidth() - AndroidUtilities.dp(11.0f);
         m9 m9Var = this.f45783a;
-        m9Var.setBounds(width - ((int) m9Var.f28470c.d.f17399f.f17406a), AndroidUtilities.dp(12.0f), getWidth() - AndroidUtilities.dp(11.0f), AndroidUtilities.dp(24.0f) + AndroidUtilities.dp(12.0f));
+        m9Var.setBounds(width - ((int) m9Var.f28485c.d.f17402f.f17409a), AndroidUtilities.dp(12.0f), getWidth() - AndroidUtilities.dp(11.0f), AndroidUtilities.dp(24.0f) + AndroidUtilities.dp(12.0f));
         m9Var.c(canvas);
     }
 

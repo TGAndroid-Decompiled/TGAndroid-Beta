@@ -16,7 +16,7 @@ public final class k {
         this.f48514a = qVar;
         this.f48515b = tVar;
         this.f48516c = j0Var;
-        if ("audio/true-hd".equals(qVar.f48551g.f4132s)) {
+        if ("audio/true-hd".equals(qVar.f48551g.f4130s)) {
             k0Var = new k0();
         } else {
             k0Var = null;

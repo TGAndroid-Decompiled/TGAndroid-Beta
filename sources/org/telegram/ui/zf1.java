@@ -1,88 +1,47 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.view.View;
-import android.view.ViewGroup;
-import java.util.WeakHashMap;
-import org.telegram.messenger.AndroidUtilities;
-public final class zf1 extends ViewGroup {
-    public final Paint f43729a;
-    public View f43730b;
-    public boolean f43731c;
+import org.telegram.messenger.R;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+public final class zf1 implements Utilities.Callback {
+    public final int f43741a;
+    public final UserInfoActivity f43742b;
 
-    public zf1(Context context) {
-        super(context);
-        this.f43729a = new Paint(1);
-        setClipToPadding(false);
+    public zf1(UserInfoActivity userInfoActivity, int i10) {
+        this.f43741a = i10;
+        this.f43742b = userInfoActivity;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        int paddingBottom = getPaddingBottom();
-        float navigationBarThirdButtonsFactor = AndroidUtilities.getNavigationBarThirdButtonsFactor(0.1f, 0.75f, paddingBottom);
-        int x02 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.Oh, false);
-        int k10 = i0.a.k(org.telegram.ui.ActionBar.h6.m1(navigationBarThirdButtonsFactor, org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20986d6, false)), x02);
-        Paint paint = this.f43729a;
-        paint.setColor(x02);
-        canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight() - paddingBottom, paint);
-        paint.setColor(k10);
-        canvas.drawRect(0.0f, getMeasuredHeight() - paddingBottom, getMeasuredWidth(), getMeasuredHeight(), paint);
-        super.dispatchDraw(canvas);
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        int childCount = getChildCount();
-        for (int i14 = 0; i14 < childCount; i14++) {
-            View childAt = getChildAt(i14);
-            childAt.layout(0, 0, childAt.getMeasuredWidth(), childAt.getMeasuredHeight());
-        }
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        boolean z10;
-        int i12;
-        View view = this.f43730b;
-        if (view != null && view.getVisibility() == 0) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        int size = View.MeasureSpec.getSize(i10);
-        if (z10) {
-            i12 = getPaddingBottom() + AndroidUtilities.dp(44.0f);
-        } else {
-            i12 = 0;
-        }
-        setMeasuredDimension(size, i12);
-        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(size, 1073741824);
-        int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(i12, 1073741824);
-        int childCount = getChildCount();
-        for (int i13 = 0; i13 < childCount; i13++) {
-            getChildAt(i13).measure(makeMeasureSpec, makeMeasureSpec2);
-        }
-        if (this.f43731c != z10) {
-            this.f43731c = z10;
-            WeakHashMap weakHashMap = r0.i0.f44818a;
-            r0.y.c(this);
-        }
-    }
-
-    @Override
-    public final void onViewAdded(View view) {
-        super.onViewAdded(view);
-        this.f43730b = view;
-    }
-
-    @Override
-    public final void setPadding(int i10, int i11, int i12, int i13) {
-        super.setPadding(i10, i11, i12, i13);
-        int childCount = getChildCount();
-        for (int i14 = 0; i14 < childCount; i14++) {
-            getChildAt(i14).setPadding(i10, i11, i12, i13);
+    public final void run(Object obj) {
+        switch (this.f43741a) {
+            case 0:
+                UserInfoActivity userInfoActivity = this.f43742b;
+                userInfoActivity.J = (TL_account.TL_birthday) obj;
+                org.telegram.ui.Components.v61 v61Var = userInfoActivity.f33945x;
+                if (v61Var != null) {
+                    v61Var.W2.N(true);
+                }
+                userInfoActivity.b0(true);
+                return;
+            default:
+                TLRPC.Chat chat = (TLRPC.Chat) obj;
+                UserInfoActivity userInfoActivity2 = this.f43742b;
+                if (userInfoActivity2.K != chat) {
+                    userInfoActivity2.K = chat;
+                    if (chat != null) {
+                        org.telegram.messenger.g0.q(R.string.EditProfileChannelSet, org.telegram.ui.Components.xc.a0(userInfoActivity2), R.raw.contact_check, 36);
+                    }
+                    userInfoActivity2.b0(true);
+                    org.telegram.ui.Components.v61 v61Var2 = userInfoActivity2.f33945x;
+                    if (v61Var2 != null) {
+                        v61Var2.W2.N(true);
+                        return;
+                    }
+                    return;
+                }
+                return;
         }
     }
 }

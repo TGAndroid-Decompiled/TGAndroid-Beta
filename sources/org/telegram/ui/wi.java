@@ -1,36 +1,32 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
+import android.app.Activity;
+import android.view.KeyEvent;
 import android.view.View;
-public final class wi implements ValueAnimator.AnimatorUpdateListener {
-    public final int f42862a;
-    public final org.telegram.ui.ActionBar.n2 f42863b;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+public final class wi extends FrameLayout {
+    public final qn f42883a;
 
-    public wi(int i10, org.telegram.ui.ActionBar.n2 n2Var) {
-        this.f42862a = i10;
-        this.f42863b = n2Var;
+    public wi(qn qnVar, Activity activity) {
+        super(activity);
+        this.f42883a = qnVar;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f42862a) {
-            case 0:
-                sn snVar = (sn) this.f42863b;
-                snVar.f41276la = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                snVar.X0.invalidate();
-                return;
-            case 1:
-                ey eyVar = (ey) this.f42863b;
-                eyVar.H0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                View view = eyVar.fragmentView;
-                if (view != null) {
-                    view.invalidate();
-                    return;
-                }
-                return;
-            default:
-                ((mc1) this.f42863b).f39140x0.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                return;
+    public final boolean dispatchKeyEvent(KeyEvent keyEvent) {
+        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0) {
+            this.f42883a.D7(true);
         }
+        return super.dispatchKeyEvent(keyEvent);
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        int min = Math.min(View.MeasureSpec.getSize(i11), AndroidUtilities.dp(300.0f));
+        if (min == 0) {
+            min = AndroidUtilities.dp(300.0f);
+        }
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(min, Integer.MIN_VALUE));
     }
 }

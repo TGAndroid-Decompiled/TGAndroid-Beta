@@ -1,39 +1,58 @@
 package n7;
 
-import java.io.Serializable;
-public final class b0 extends x implements Serializable {
-    public final x f17258a;
+import java.util.Iterator;
+public final class b0 extends o {
+    public final transient Object d;
 
-    public b0(x xVar) {
-        this.f17258a = xVar;
+    public b0(Object obj) {
+        this.d = obj;
     }
 
     @Override
-    public final x a() {
-        return this.f17258a;
+    public final boolean contains(Object obj) {
+        return this.d.equals(obj);
     }
 
     @Override
-    public final int compare(Object obj, Object obj2) {
-        return this.f17258a.compare(obj2, obj);
+    public final int h(Object[] objArr) {
+        objArr[0] = this.d;
+        return 1;
     }
 
     @Override
-    public final boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (obj instanceof b0) {
-            return this.f17258a.equals(((b0) obj).f17258a);
-        }
-        return false;
-    }
-
     public final int hashCode() {
-        return -this.f17258a.hashCode();
+        return this.d.hashCode();
     }
 
+    @Override
+    public final Iterator iterator() {
+        return new t(this.d);
+    }
+
+    @Override
+    public final d0 o() {
+        return new t(this.d);
+    }
+
+    @Override
+    public final m s() {
+        Object[] objArr = {this.d};
+        for (int i10 = 0; i10 < 1; i10++) {
+            i iVar = m.f17293b;
+            if (objArr[i10] == null) {
+                throw new NullPointerException(i2.e.j(i10, "at index "));
+            }
+        }
+        return m.s(1, objArr);
+    }
+
+    @Override
+    public final int size() {
+        return 1;
+    }
+
+    @Override
     public final String toString() {
-        return this.f17258a.toString().concat(".reverse()");
+        return a1.g.p("[", this.d.toString(), "]");
     }
 }

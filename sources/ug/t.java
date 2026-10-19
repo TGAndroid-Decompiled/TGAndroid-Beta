@@ -5,9 +5,9 @@ import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.e5;
-import org.telegram.ui.Components.mw0;
+import org.telegram.ui.Components.nw0;
 import org.telegram.ui.Components.q6;
-public final class t implements e5, mw0, wg.f, wg.k {
+public final class t implements e5, nw0, wg.f, wg.k {
     public final z f47756a;
 
     public t(z zVar) {
@@ -36,7 +36,7 @@ public final class t implements e5, mw0, wg.f, wg.k {
         } else {
             zVar.f47809o0 = i10;
         }
-        zVar.f47811q0.f48941a.b(zVar.W(), true);
+        zVar.f47811q0.f48940a.b(zVar.W(), true);
         if (zVar.f47803h0 == 3) {
             zVar.b0(true, true);
         } else {
@@ -47,7 +47,7 @@ public final class t implements e5, mw0, wg.f, wg.k {
         for (int i14 = 0; i14 < bVar.f48347f.getChildCount(); i14++) {
             View childAt = bVar.f48347f.getChildAt(i14);
             if (childAt instanceof wg.x) {
-                q6 q6Var = ((wg.x) childAt).f49008r;
+                q6 q6Var = ((wg.x) childAt).f49007r;
                 if (W <= 0) {
                     formatPluralString = "";
                 } else {
@@ -59,8 +59,8 @@ public final class t implements e5, mw0, wg.f, wg.k {
             if (childAt instanceof wg.g) {
                 wg.g gVar = (wg.g) childAt;
                 int F = bVar.F(gVar.getChat());
-                boolean isChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(gVar.f48969w);
-                if (gVar.f48970x) {
+                boolean isChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(gVar.f48968w);
+                if (gVar.f48969x) {
                     if (F >= 1) {
                         if (isChannelAndNotMegaGroup) {
                             str2 = "Subscribers";

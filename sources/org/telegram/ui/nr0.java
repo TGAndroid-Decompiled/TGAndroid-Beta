@@ -1,49 +1,49 @@
 package org.telegram.ui;
 
-import android.animation.AnimatorSet;
-import android.graphics.drawable.Drawable;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.view.SurfaceView;
 import android.view.View;
-public final class nr0 implements Runnable {
-    public final PhotoViewer f39547a;
-    public final View f39548b;
-    public final ps0 f39549c;
-    public final float d;
-    public final float e;
-    public final AnimatorSet f39550f;
+import android.widget.ImageView;
+import org.telegram.messenger.AndroidUtilities;
+public final class nr0 extends AnimatorListenerAdapter {
+    public final int f39674a;
+    public final View f39675b;
+    public final PhotoViewer f39676c;
 
-    public nr0(PhotoViewer photoViewer, View view, ps0 ps0Var, float f7, float f10, AnimatorSet animatorSet) {
-        this.f39547a = photoViewer;
-        this.f39548b = view;
-        this.f39549c = ps0Var;
-        this.d = f7;
-        this.e = f10;
-        this.f39550f = animatorSet;
+    public nr0(PhotoViewer photoViewer, View view, int i10) {
+        this.f39674a = i10;
+        this.f39676c = photoViewer;
+        this.f39675b = view;
     }
 
     @Override
-    public final void run() {
-        Drawable[] drawableArr = PhotoViewer.U8;
-        View view = this.f39548b;
-        ps0 ps0Var = this.f39549c;
-        view.setOutlineProvider(ps0Var);
-        view.setClipToOutline(true);
-        PhotoViewer photoViewer = this.f39547a;
-        photoViewer.f33439x3.setOutlineProvider(ps0Var);
-        photoViewer.f33439x3.setClipToOutline(true);
-        cu0 cu0Var = photoViewer.E2;
-        if (cu0Var != null) {
-            cu0Var.setOutlineProvider(ps0Var);
-            photoViewer.E2.setClipToOutline(true);
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f39674a) {
+            case 0:
+                PhotoViewer photoViewer = this.f39676c;
+                photoViewer.B3 = false;
+                this.f39675b.setOutlineProvider(null);
+                ImageView imageView = photoViewer.f33445x3;
+                if (imageView != null) {
+                    imageView.setOutlineProvider(null);
+                }
+                au0 au0Var = photoViewer.E2;
+                if (au0Var != null) {
+                    au0Var.setOutlineProvider(null);
+                }
+                SurfaceView surfaceView = photoViewer.C2;
+                if (surfaceView != null) {
+                    surfaceView.setVisibility(0);
+                    return;
+                }
+                return;
+            default:
+                PhotoViewer photoViewer2 = this.f39676c;
+                photoViewer2.B3 = false;
+                photoViewer2.f33311i4.run();
+                AndroidUtilities.runOnUIThread(new wg0(23, this, this.f39675b), 100L);
+                return;
         }
-        photoViewer.f33439x3.setTranslationY(this.d);
-        float f7 = this.e;
-        view.setTranslationY(f7);
-        cu0 cu0Var2 = photoViewer.E2;
-        if (cu0Var2 != null) {
-            cu0Var2.setTranslationY(f7);
-        }
-        photoViewer.Y5 = 0.0f;
-        photoViewer.f33266e0.invalidate();
-        this.f39550f.start();
     }
 }

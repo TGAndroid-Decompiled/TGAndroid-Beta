@@ -8,7 +8,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.hm0;
 import org.telegram.ui.Components.im0;
-import org.telegram.ui.Components.s61;
+import org.telegram.ui.Components.t61;
 public final class o0 extends org.telegram.ui.Components.bb {
     public l0 X;
     public final LinearLayout Y;
@@ -29,8 +29,8 @@ public final class o0 extends org.telegram.ui.Components.bb {
         kc kcVar = new kc(context, 70, 0);
         frameLayout.addView(kcVar, w7.z5.c(-1.0f, -1));
         tg.n nVar = new tg.n(context, 1, 2);
-        tg.g gVar = nVar.f47099b;
-        gVar.f47083z = org.telegram.ui.ActionBar.h6.fk;
+        tg.g gVar = nVar.f47101b;
+        gVar.f47085z = org.telegram.ui.ActionBar.h6.fk;
         gVar.A = org.telegram.ui.ActionBar.h6.gk;
         gVar.b();
         nVar.setStarParticlesView(kcVar);
@@ -39,7 +39,7 @@ public final class o0 extends org.telegram.ui.Components.bb {
         linearLayout.addView(frameLayout, w7.z5.c(150.0f, -1));
         TextView textView = new TextView(context);
         com.google.android.gms.internal.play_billing.k3.m(20.0f, 1, textView);
-        int i11 = org.telegram.ui.ActionBar.h6.f21092j5;
+        int i11 = org.telegram.ui.ActionBar.h6.f21095j5;
         org.telegram.ui.Cells.c1.q(i11, this.resourcesProvider, textView, 17);
         textView.setText(LocaleController.getString(R.string.ExplainStarsTitle));
         TextView i12 = com.google.android.gms.internal.play_billing.k3.i(linearLayout, textView, w7.z5.t(-2, -2, 1, 0, 2, 0, 0), context);
@@ -54,7 +54,7 @@ public final class o0 extends org.telegram.ui.Components.bb {
         frameLayout2.addView(dVar, w7.z5.d(-1, 48.0f, 119, 10.0f, 10.0f, 10.0f, 10.0f));
         int i13 = this.backgroundPaddingLeft;
         frameLayout2.setPadding(i13, 0, i13, 0);
-        frameLayout2.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21057h5, false));
+        frameLayout2.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21060h5, false));
         this.containerView.addView(frameLayout2, w7.z5.e(-1, -2, 87));
         this.X.N(false);
     }
@@ -66,8 +66,8 @@ public final class o0 extends org.telegram.ui.Components.bb {
 
     @Override
     public final hm0 x(im0 im0Var) {
-        ?? s61Var = new s61(im0Var, getContext(), this.currentAccount, 0, true, new q(this, 1), this.resourcesProvider);
-        this.X = s61Var;
-        return s61Var;
+        ?? t61Var = new t61(im0Var, getContext(), this.currentAccount, 0, true, new q(this, 1), this.resourcesProvider);
+        this.X = t61Var;
+        return t61Var;
     }
 }

@@ -1,41 +1,76 @@
 package ci;
 
+import android.os.Bundle;
 import android.view.View;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.Components.i80;
-public final class b2 implements View.OnLongClickListener {
-    public final int f5166a;
-    public final p4 f5167b;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.Components.a90;
+import org.telegram.ui.Components.xc;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.ProfileActivity;
+import org.telegram.ui.cy;
+public final class b2 implements View.OnClickListener {
+    public final int f5241a;
+    public final long f5242b;
+    public final Object f5243c;
 
-    public b2(p4 p4Var, int i10) {
-        this.f5166a = i10;
-        this.f5167b = p4Var;
+    public b2(Object obj, long j10, int i10) {
+        this.f5241a = i10;
+        this.f5243c = obj;
+        this.f5242b = j10;
     }
 
     @Override
-    public final boolean onLongClick(View view) {
-        switch (this.f5166a) {
+    public final void onClick(View view) {
+        switch (this.f5241a) {
             case 0:
-                p4 p4Var = this.f5167b;
-                boolean z10 = false;
-                if (p4Var.D0(true)) {
-                    return false;
+                q4 q4Var = (q4) this.f5243c;
+                q4Var.getClass();
+                Bundle bundle = new Bundle();
+                long j10 = this.f5242b;
+                if (j10 >= 0) {
+                    bundle.putLong("user_id", j10);
+                } else {
+                    bundle.putLong("chat_id", -j10);
                 }
-                i80 F = i80.F(p4Var.J0.v, p4Var.B0, view);
-                F.c(R.drawable.msg_edit, LocaleController.getString(R.string.LiveStoryMessageEditStars), new c2(p4Var, 6), false);
-                if (p4Var.L3 > 0) {
-                    z10 = true;
+                q4Var.J0.H(new ProfileActivity(bundle, null));
+                return;
+            case 1:
+                a90.s((a90) this.f5243c, this.f5242b);
+                return;
+            case 2:
+                cy cyVar = (cy) this.f5243c;
+                MessagesController messagesController = cyVar.getMessagesController();
+                long j11 = this.f5242b;
+                boolean isDialogMuted = messagesController.isDialogMuted(j11, 0L);
+                if (!isDialogMuted) {
+                    cyVar.getNotificationsController().setDialogNotificationsSettings(j11, 0L, 3);
+                } else {
+                    cyVar.getNotificationsController().setDialogNotificationsSettings(j11, 0L, 4);
                 }
-                F.l(R.drawable.menu_delete_paid, LocaleController.getString(R.string.LiveStoryMessageRemoveStars), new c2(p4Var, 7), z10);
-                F.V(5);
-                F.U = true;
-                F.Z();
-                return true;
+                xc.A(cyVar, !isDialogMuted, null).j();
+                cyVar.finishPreviewFragment();
+                return;
+            case 3:
+                Utilities.Callback callback = ((rh.p) this.f5243c).f45779f;
+                if (callback != null) {
+                    callback.run(Long.valueOf(this.f5242b));
+                    return;
+                }
+                return;
+            case 4:
+                yh.m.Q((yh.m) this.f5243c, this.f5242b);
+                return;
             default:
-                p4 p4Var2 = this.f5167b;
-                p4Var2.L0.k(p4Var2.D0(false));
-                return true;
+                yh.o1 o1Var = (yh.o1) this.f5243c;
+                o1Var.getClass();
+                org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
+                if (U != null) {
+                    o1Var.dismiss();
+                    U.presentFragment(ProfileActivity.m4(this.f5242b));
+                    return;
+                }
+                return;
         }
     }
 }

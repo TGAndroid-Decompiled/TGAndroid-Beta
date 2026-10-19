@@ -5,22 +5,22 @@ import android.widget.TextView;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.sd0;
 public final class hc implements TextWatcher {
-    public boolean f1431a;
-    public int f1432b = 2;
-    public final EditTextBoldCursor f1433c;
+    public boolean f1427a;
+    public int f1428b = 2;
+    public final EditTextBoldCursor f1429c;
     public final sd0 d;
     public final long e;
-    public final boolean f1434f;
+    public final boolean f1430f;
     public final ei.d h;
-    public final TextView f1435n;
+    public final TextView f1431n;
 
     public hc(EditTextBoldCursor editTextBoldCursor, sd0 sd0Var, long j10, boolean z10, ei.d dVar, TextView textView) {
-        this.f1433c = editTextBoldCursor;
+        this.f1429c = editTextBoldCursor;
         this.d = sd0Var;
         this.e = j10;
-        this.f1434f = z10;
+        this.f1430f = z10;
         this.h = dVar;
-        this.f1435n = textView;
+        this.f1431n = textView;
     }
 
     @Override

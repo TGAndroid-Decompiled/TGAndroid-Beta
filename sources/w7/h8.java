@@ -1,10 +1,9 @@
 package w7;
+
+import android.content.Context;
 public abstract class h8 {
-    public static wd.e a(int i10, int i11) {
-        if (i11 <= Integer.MIN_VALUE) {
-            wd.e eVar = wd.e.d;
-            return wd.e.d;
-        }
-        return new wd.d(i10, i11 - 1, 1);
+    public static i7.b a(Context context) {
+        n6.l.h(context);
+        return new i7.b(context, new Object());
     }
 }

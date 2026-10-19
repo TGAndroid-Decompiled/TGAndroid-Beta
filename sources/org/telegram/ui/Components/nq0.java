@@ -2,18 +2,18 @@ package org.telegram.ui.Components;
 
 import org.telegram.messenger.AndroidUtilities;
 public final class nq0 extends org.telegram.ui.ActionBar.o1 {
-    public final oq0 f28814x;
+    public final oq0 f28832x;
 
     public nq0(oq0 oq0Var, oq0 oq0Var2) {
         super(oq0Var2);
-        this.f28814x = oq0Var;
+        this.f28832x = oq0Var;
     }
 
     @Override
     public final boolean b() {
-        dr0 dr0Var = this.f28814x.H0;
-        if (!dr0Var.isDismissed() && dr0Var.Y) {
-            return !dr0Var.d.m();
+        er0 er0Var = this.f28832x.H0;
+        if (!er0Var.isDismissed() && er0Var.Z) {
+            return !er0Var.d.m();
         }
         return false;
     }
@@ -25,44 +25,44 @@ public final class nq0 extends org.telegram.ui.ActionBar.o1 {
 
     @Override
     public final void f() {
-        dr0 dr0Var = this.f28814x.H0;
-        iq0 iq0Var = dr0Var.d;
+        er0 er0Var = this.f28832x.H0;
+        iq0 iq0Var = er0Var.d;
         if (iq0Var == null || !iq0Var.m()) {
-            int i10 = dr0Var.N0;
+            int i10 = er0Var.O0;
             AndroidUtilities.dp(20.0f);
         }
-        dr0Var.f25673r0 = false;
-        int i11 = dr0Var.f25670p0;
-        dr0Var.f25671q0 = i11;
-        dr0Var.F.setTopGlowOffset(i11);
-        dr0Var.f25653b.setTranslationY(dr0Var.f25670p0);
-        dr0Var.Q.setTranslationY(dr0Var.f25670p0);
-        dr0Var.F.setTranslationY(0.0f);
-        dr0Var.G.setTranslationY(0.0f);
-        dr0Var.Z0();
+        er0Var.f26001s0 = false;
+        int i11 = er0Var.f25997q0;
+        er0Var.f25999r0 = i11;
+        er0Var.G.setTopGlowOffset(i11);
+        er0Var.f25979b.setTranslationY(er0Var.f25997q0);
+        er0Var.R.setTranslationY(er0Var.f25997q0);
+        er0Var.G.setTranslationY(0.0f);
+        er0Var.H.setTranslationY(0.0f);
+        er0Var.a1();
     }
 
     @Override
     public final void g(int i10, boolean z10) {
         int i11;
-        oq0 oq0Var = this.f28814x;
-        dr0 dr0Var = oq0Var.H0;
-        int i12 = dr0Var.f25671q0;
-        int i13 = dr0Var.f25670p0;
+        oq0 oq0Var = this.f28832x;
+        er0 er0Var = oq0Var.H0;
+        int i12 = er0Var.f25999r0;
+        int i13 = er0Var.f25997q0;
         if (i12 != i13) {
             oq0Var.B0 = i12;
             oq0Var.C0 = i13;
-            dr0Var.f25673r0 = true;
-            dr0Var.f25670p0 = i12;
+            er0Var.f26001s0 = true;
+            er0Var.f25997q0 = i12;
         } else {
             oq0Var.B0 = -1;
         }
-        int i14 = oq0Var.f29051z0;
+        int i14 = oq0Var.f29079z0;
         int i15 = oq0Var.A0;
         if (i14 != i15) {
             oq0Var.D0 = 0;
             oq0Var.E0 = 0;
-            dr0Var.f25673r0 = true;
+            er0Var.f26001s0 = true;
             if (!z10) {
                 oq0Var.E0 = 0 - (i14 - i15);
             } else {
@@ -73,13 +73,13 @@ public final class nq0 extends org.telegram.ui.ActionBar.o1 {
             } else {
                 i11 = oq0Var.C0;
             }
-            dr0Var.f25670p0 = i11;
+            er0Var.f25997q0 = i11;
         } else {
             oq0Var.D0 = -1;
         }
-        dr0Var.F.setTopGlowOffset((int) (dr0Var.f25676t0 + dr0Var.f25670p0));
-        dr0Var.f25653b.setTranslationY(dr0Var.f25676t0 + dr0Var.f25670p0);
-        dr0Var.Q.setTranslationY(dr0Var.f25676t0 + dr0Var.f25670p0);
+        er0Var.G.setTopGlowOffset((int) (er0Var.f26003u0 + er0Var.f25997q0));
+        er0Var.f25979b.setTranslationY(er0Var.f26003u0 + er0Var.f25997q0);
+        er0Var.R.setTranslationY(er0Var.f26003u0 + er0Var.f25997q0);
         oq0Var.invalidate();
     }
 }

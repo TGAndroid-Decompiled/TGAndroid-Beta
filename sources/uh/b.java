@@ -21,13 +21,13 @@ public final class b implements l20, n {
         f fVar = this.f47824a;
         fVar.processLegacyContainerInsets(g10);
         ne.b bVar = fVar.Y;
-        if (k1Var.f44827a.f(8).d > 0) {
+        if (k1Var.f44825a.f(8).d > 0) {
             z10 = true;
         } else {
             z10 = false;
         }
         bVar.a(z10, true);
-        return k1.f44826b;
+        return k1.f44824b;
     }
 
     @Override

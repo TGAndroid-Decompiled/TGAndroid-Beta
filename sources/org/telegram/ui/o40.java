@@ -1,39 +1,29 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.view.ViewGroup;
-import org.telegram.messenger.AndroidUtilities;
-public final class o40 extends org.telegram.ui.ActionBar.k {
-    public final org.telegram.ui.Components.bq f39663u1;
-    public final s50 f39664v1;
+import android.content.DialogInterface;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class o40 implements DialogInterface.OnShowListener {
+    public final int f39764a;
+    public final org.telegram.ui.ActionBar.b2 f39765b;
+    public final EditTextBoldCursor f39766c;
+    public final Object d;
 
-    public o40(s50 s50Var, LaunchActivity launchActivity, org.telegram.ui.Components.bq bqVar) {
-        super(launchActivity, null);
-        this.f39664v1 = s50Var;
-        this.f39663u1 = bqVar;
+    public o40(Object obj, org.telegram.ui.ActionBar.b2 b2Var, EditTextBoldCursor editTextBoldCursor, int i10) {
+        this.f39764a = i10;
+        this.d = obj;
+        this.f39765b = b2Var;
+        this.f39766c = editTextBoldCursor;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        if (getAdditionalSubtitleTextView().getVisibility() == 0) {
-            canvas.save();
-            canvas.translate(getSubtitleTextView().getLeft(), getSubtitleTextView().getY() - AndroidUtilities.dp(1.0f));
-            org.telegram.ui.Components.bq bqVar = this.f39663u1;
-            bqVar.f25021f = (int) (getAdditionalSubtitleTextView().getAlpha() * 255.0f);
-            bqVar.draw(canvas);
-            canvas.restore();
-            invalidate();
-        }
-    }
-
-    @Override
-    public final void setAlpha(float f7) {
-        ViewGroup viewGroup;
-        if (getAlpha() != f7) {
-            super.setAlpha(f7);
-            viewGroup = ((org.telegram.ui.ActionBar.f3) this.f39664v1).containerView;
-            viewGroup.invalidate();
+    public final void onShow(DialogInterface dialogInterface) {
+        switch (this.f39764a) {
+            case 0:
+                ((t40) this.d).f41587b.t1(null, this.f39765b, this.f39766c, true);
+                return;
+            default:
+                ((p40) this.d).f40064n.f41587b.t1(null, this.f39765b, this.f39766c, true);
+                return;
         }
     }
 }

@@ -8,22 +8,22 @@ import org.telegram.messenger.lk;
 import org.telegram.ui.Components.el0;
 import w7.z5;
 public final class q0 extends j {
-    public final o0 f45601q0;
-    public int f45602r0;
-    public int f45603s0;
-    public boolean f45604t0;
-    public n0 f45605u0;
+    public final o0 f45598q0;
+    public int f45599r0;
+    public int f45600s0;
+    public boolean f45601t0;
+    public n0 f45602u0;
 
     public q0(Context context, PointF pointF, int i10, n0 n0Var, float f7, int i11) {
         super(context, pointF);
         o0 o0Var = new o0(context, f7);
-        this.f45601q0 = o0Var;
+        this.f45598q0 = o0Var;
         o0Var.setMaxWidth(i11);
-        this.f45605u0 = n0Var;
+        this.f45602u0 = n0Var;
         o0Var.b(i10, n0Var, false);
         m();
-        this.f45603s0 = 3;
-        o0Var.c(3, this.f45602r0);
+        this.f45600s0 = 3;
+        o0Var.c(3, this.f45599r0);
         addView(o0Var, z5.e(-2, -2, 51));
         setClipChildren(false);
         setClipToPadding(false);
@@ -36,7 +36,7 @@ public final class q0 extends j {
     }
 
     public int getColor() {
-        return this.f45602r0;
+        return this.f45599r0;
     }
 
     @Override
@@ -45,9 +45,9 @@ public final class q0 extends j {
     }
 
     public int getNextType() {
-        int i10 = this.f45603s0 + 1;
+        int i10 = this.f45600s0 + 1;
         if (i10 == 4) {
-            return !this.f45604t0 ? 1 : 0;
+            return !this.f45601t0 ? 1 : 0;
         }
         return i10;
     }
@@ -69,26 +69,26 @@ public final class q0 extends j {
 
     @Override
     public float getStickyPaddingBottom() {
-        return this.f45601q0.h;
+        return this.f45598q0.h;
     }
 
     @Override
     public float getStickyPaddingLeft() {
-        return this.f45601q0.f45559f;
+        return this.f45598q0.f45551f;
     }
 
     @Override
     public float getStickyPaddingRight() {
-        return this.f45601q0.f45559f;
+        return this.f45598q0.f45551f;
     }
 
     @Override
     public float getStickyPaddingTop() {
-        return this.f45601q0.h;
+        return this.f45598q0.h;
     }
 
     public int getType() {
-        return this.f45603s0;
+        return this.f45600s0;
     }
 
     @Override
@@ -104,16 +104,16 @@ public final class q0 extends j {
     }
 
     public void setColor(int i10) {
-        this.f45604t0 = true;
-        this.f45602r0 = i10;
+        this.f45601t0 = true;
+        this.f45599r0 = i10;
     }
 
     public void setMaxWidth(int i10) {
-        this.f45601q0.setMaxWidth(i10);
+        this.f45598q0.setMaxWidth(i10);
     }
 
     public void setType(int i10) {
-        this.f45603s0 = i10;
-        this.f45601q0.c(i10, this.f45602r0);
+        this.f45600s0 = i10;
+        this.f45598q0.c(i10, this.f45599r0);
     }
 }

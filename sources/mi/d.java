@@ -5,17 +5,17 @@ import android.text.style.CharacterStyle;
 import java.util.HashMap;
 import org.telegram.ui.ActionBar.h6;
 public final class d extends CharacterStyle {
-    public final int f16947a;
+    public final int f16950a;
 
     public d(int i10) {
-        this.f16947a = i10;
+        this.f16950a = i10;
     }
 
     @Override
     public final void updateDrawState(TextPaint textPaint) {
         int i10;
-        HashMap hashMap = s.f16983b;
-        int i11 = this.f16947a & 255;
+        HashMap hashMap = s.f16986b;
+        int i11 = this.f16950a & 255;
         switch (i11) {
             case 8:
             case 18:

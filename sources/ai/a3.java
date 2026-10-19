@@ -1,53 +1,37 @@
 package ai;
 
-import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.TopicsController;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class a3 implements RequestDelegate {
-    public final int f952a;
-    public final long f953b;
-    public final long f954c;
-    public final Object d;
-    public final Object e;
+import android.text.style.ClickableSpan;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.y90;
+public final class a3 implements Runnable {
+    public final int f950a;
+    public final ei.x3 f951b;
 
-    public a3(Object obj, Object obj2, long j10, long j11, int i10) {
-        this.f952a = i10;
-        this.d = obj;
-        this.e = obj2;
-        this.f953b = j10;
-        this.f954c = j11;
+    public a3(ei.x3 x3Var, int i10) {
+        this.f950a = i10;
+        this.f951b = x3Var;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f952a) {
+    public final void run() {
+        switch (this.f950a) {
             case 0:
-                k7.f1(this.f953b, this.f954c, (k7) this.d, (Utilities.Callback) this.e, tLObject, tL_error);
+                AndroidUtilities.removeFromParent(this.f951b);
                 return;
             case 1:
-                ((MediaDataController) this.d).lambda$getMediaCounts$129((int[]) this.e, this.f953b, this.f954c, tLObject, tL_error);
+                AndroidUtilities.removeFromParent(this.f951b);
                 return;
             case 2:
-                ((MediaDataController) this.d).lambda$loadPinnedMessageInternal$164(this.f953b, this.f954c, (TLRPC.TL_channels_getMessages) this.e, tLObject, tL_error);
-                return;
-            case 3:
-                ((MessagesController) this.d).lambda$requestContactToken$479((Utilities.Callback) this.e, this.f953b, this.f954c, tLObject, tL_error);
+                this.f951b.getClass();
                 return;
             default:
-                ((TopicsController) this.d).lambda$getTopicRepliesCount$30((TLRPC.TL_forumTopic) this.e, this.f953b, this.f954c, tLObject, tL_error);
+                AndroidUtilities.removeFromParent(this.f951b);
                 return;
         }
     }
 
-    public a3(MediaDataController mediaDataController, long j10, long j11, TLRPC.TL_channels_getMessages tL_channels_getMessages) {
-        this.f952a = 2;
-        this.d = mediaDataController;
-        this.f953b = j10;
-        this.f954c = j11;
-        this.e = tL_channels_getMessages;
+    public a3(ei.x3 x3Var, y90 y90Var, ClickableSpan clickableSpan) {
+        this.f950a = 2;
+        this.f951b = x3Var;
     }
 }

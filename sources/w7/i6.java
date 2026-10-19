@@ -1,41 +1,30 @@
 package w7;
 
-import org.telegram.messenger.DispatchQueue;
+import android.os.Build;
+import android.util.Log;
 public abstract class i6 {
-    public static DispatchQueue f48712a;
+    public static void a(Object obj, String str, String str2) {
+        String c10 = c(str);
+        if (Log.isLoggable(c10, 3)) {
+            Log.d(c10, String.format(str2, obj));
+        }
+    }
 
-    public static void a(int i10, int i11, int[] iArr, int[] iArr2) {
-        int i12;
-        int i13;
-        for (int i14 = 0; i14 < 315; i14++) {
-            int i15 = i14 - 7;
-            if (i15 >= 0 && i15 < 288) {
-                i13 = iArr[(i15 * i11) + i10];
-            } else {
-                i13 = 0;
-            }
-            iArr2[i14] = i13;
+    public static void b(String str, String str2, Exception exc) {
+        String c10 = c(str);
+        if (Log.isLoggable(c10, 6)) {
+            Log.e(c10, str2, exc);
         }
-        int i16 = 0;
-        while (i16 < 315) {
-            iArr2[i16 + 315] = iArr2[i16];
-            int i17 = i16 + 1;
-            while (true) {
-                i12 = i16 + 15;
-                if (i17 >= i12) {
-                    break;
-                }
-                iArr2[i17 + 315] = Math.max(iArr2[i17 + 314], iArr2[i17]);
-                i17++;
+    }
+
+    public static String c(String str) {
+        if (Build.VERSION.SDK_INT < 26) {
+            String concat = "TRuntime.".concat(str);
+            if (concat.length() > 23) {
+                return concat.substring(0, 23);
             }
-            iArr2[i16 + 644] = iArr2[i16 + 14];
-            for (int i18 = i16 + 13; i18 >= i16; i18--) {
-                iArr2[i18 + 630] = Math.max(iArr2[i18 + 631], iArr2[i18]);
-            }
-            i16 = i12;
+            return concat;
         }
-        for (int i19 = 0; i19 < 288; i19++) {
-            iArr[(i19 * i11) + i10] = Math.max(iArr2[i19 + 630], iArr2[i19 + 329]);
-        }
+        return "TRuntime.".concat(str);
     }
 }

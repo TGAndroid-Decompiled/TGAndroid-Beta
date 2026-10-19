@@ -2,16 +2,16 @@ package x9;
 
 import android.util.Log;
 import java.io.IOException;
-import org.telegram.ui.kg0;
+import org.telegram.ui.ig0;
 public final class i {
     public static final ca.a d = new ca.a(2);
-    public static final kg0 e = new kg0(25);
-    public final ca.c f49678a;
-    public String f49679b = null;
-    public String f49680c = null;
+    public static final ig0 e = new ig0(25);
+    public final ca.c f49677a;
+    public String f49678b = null;
+    public String f49679c = null;
 
     public i(ca.c cVar) {
-        this.f49678a = cVar;
+        this.f49677a = cVar;
     }
 
     public static void a(ca.c cVar, String str, String str2) {

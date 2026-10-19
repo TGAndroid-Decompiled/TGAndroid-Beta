@@ -5,7 +5,7 @@ import v7.l7;
 import v7.o7;
 import v7.u6;
 public abstract class c {
-    public static final int f10943a = 0;
+    public static final int f10944a = 0;
 
     static {
         Math.log(2.0d);
@@ -44,7 +44,7 @@ public abstract class c {
         u6.f("x must be positive and finite", z10);
         int exponent = Math.getExponent(d);
         if (Math.getExponent(d) >= -1022) {
-            switch (b.f10942a[roundingMode.ordinal()]) {
+            switch (b.f10943a[roundingMode.ordinal()]) {
                 case 1:
                     o7.b(b(d));
                     break;

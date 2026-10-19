@@ -1,64 +1,26 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class a41 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f35266a;
-    public final z51 f35267b;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.tl.TL_account;
+public final class a41 implements org.telegram.ui.ActionBar.a2, org.telegram.ui.Components.kl0 {
+    public final x51 f35264a;
 
-    public a41(z51 z51Var, int i10) {
-        this.f35266a = i10;
-        this.f35267b = z51Var;
+    public a41(x51 x51Var) {
+        this.f35264a = x51Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f35266a) {
-            case 0:
-                z51 z51Var = this.f35267b;
-                z51Var.getClass();
-                z51Var.E(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                return;
-            case 1:
-                this.f35267b.m();
-                return;
-            case 2:
-                z51 z51Var2 = this.f35267b;
-                View view = z51Var2.f43611t0;
-                if (view != null) {
-                    view.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                }
-                int v = org.telegram.ui.ActionBar.h6.v(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.G8, z51Var2.Z0), i0.a.o(-16777216, (int) (((Float) valueAnimator.getAnimatedValue()).floatValue() * 255.0f)));
-                View view2 = z51Var2.m0;
-                if (view2 != null) {
-                    view2.getBackground().setColorFilter(new PorterDuffColorFilter(v, PorterDuff.Mode.MULTIPLY));
-                }
-                org.telegram.ui.Components.un unVar = z51Var2.f43597n0;
-                if (unVar != null) {
-                    unVar.getBackground().setColorFilter(new PorterDuffColorFilter(v, PorterDuff.Mode.MULTIPLY));
-                    return;
-                }
-                return;
-            default:
-                z51 z51Var3 = this.f35267b;
-                t41 t41Var = z51Var3.f43569a0;
-                float floatValue = 1.0f - ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                z51Var3.setTranslationY((1.0f - floatValue) * AndroidUtilities.dp(8.0f));
-                View view3 = z51Var3.m0;
-                if (view3 != null) {
-                    view3.setAlpha(floatValue);
-                }
-                org.telegram.ui.Components.un unVar2 = z51Var3.f43597n0;
-                if (unVar2 != null) {
-                    unVar2.setAlpha(floatValue * floatValue);
-                }
-                t41Var.setAlpha(floatValue);
-                t41Var.invalidate();
-                z51Var3.invalidate();
-                return;
-        }
+    public void b() {
+        this.f35264a.m();
+    }
+
+    @Override
+    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        x51 x51Var = this.f35264a;
+        int i11 = x51Var.V;
+        ConnectionsManager.getInstance(i11).sendRequest(new TL_account.clearRecentEmojiStatuses(), null);
+        MediaDataController.getInstance(i11).clearRecentEmojiStatuses();
+        x51Var.B(false, true, true);
     }
 }

@@ -1,48 +1,25 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.view.SurfaceView;
-import android.view.View;
-import android.widget.ImageView;
-import org.telegram.messenger.AndroidUtilities;
-public final class pr0 extends AnimatorListenerAdapter {
-    public final int f40195a;
-    public final View f40196b;
-    public final PhotoViewer f40197c;
+import android.net.Uri;
+import org.telegram.messenger.Utilities;
+public final class pr0 implements Utilities.Callback {
+    public final int f40286a;
+    public final yr0 f40287b;
 
-    public pr0(PhotoViewer photoViewer, View view, int i10) {
-        this.f40195a = i10;
-        this.f40197c = photoViewer;
-        this.f40196b = view;
+    public pr0(yr0 yr0Var, int i10) {
+        this.f40286a = i10;
+        this.f40287b = yr0Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f40195a) {
+    public final void run(Object obj) {
+        Uri uri = (Uri) obj;
+        switch (this.f40286a) {
             case 0:
-                PhotoViewer photoViewer = this.f40197c;
-                photoViewer.B3 = false;
-                this.f40196b.setOutlineProvider(null);
-                ImageView imageView = photoViewer.f33439x3;
-                if (imageView != null) {
-                    imageView.setOutlineProvider(null);
-                }
-                cu0 cu0Var = photoViewer.E2;
-                if (cu0Var != null) {
-                    cu0Var.setOutlineProvider(null);
-                }
-                SurfaceView surfaceView = photoViewer.C2;
-                if (surfaceView != null) {
-                    surfaceView.setVisibility(0);
-                    return;
-                }
+                new org.telegram.ui.Components.xc(this.f40287b.f43543b.f33272e0, null).m(org.telegram.ui.Components.wc.f32069r, 1, -115203550, -1, null).j();
                 return;
             default:
-                PhotoViewer photoViewer2 = this.f40197c;
-                photoViewer2.B3 = false;
-                photoViewer2.f33305i4.run();
-                AndroidUtilities.runOnUIThread(new yg0(23, this, this.f40196b), 100L);
+                new org.telegram.ui.Components.xc(this.f40287b.f43543b.f33272e0, null).m(org.telegram.ui.Components.wc.f32069r, 1, -115203550, -1, null).j();
                 return;
         }
     }

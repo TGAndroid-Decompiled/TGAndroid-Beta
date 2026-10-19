@@ -1,14 +1,14 @@
 package ei;
 public final class va implements zb {
-    public final ai.q f9947a;
+    public final ai.q f9948a;
 
     public va(ai.q qVar) {
-        this.f9947a = qVar;
+        this.f9948a = qVar;
     }
 
     @Override
     public final void A(float f7, boolean z10) {
-        this.f9947a.run(Boolean.FALSE, Float.valueOf(f7));
+        this.f9948a.run(Boolean.FALSE, Float.valueOf(f7));
     }
 
     @Override
@@ -16,7 +16,11 @@ public final class va implements zb {
     }
 
     @Override
-    public final void E(boolean z10) {
+    public final void D(boolean z10) {
+    }
+
+    @Override
+    public final void J(float f7) {
     }
 
     @Override
@@ -24,23 +28,19 @@ public final class va implements zb {
     }
 
     @Override
-    public final void M(float f7) {
+    public final void N(float f7) {
     }
 
     @Override
-    public final void P(float f7) {
+    public final void P() {
     }
 
     @Override
-    public final void Q() {
+    public final void Q(float f7) {
     }
 
     @Override
-    public final void S(float f7) {
-    }
-
-    @Override
-    public final void W(long j10) {
+    public final void V(long j10) {
     }
 
     @Override
@@ -64,7 +64,7 @@ public final class va implements zb {
     }
 
     @Override
-    public final void w(boolean z10) {
+    public final void u(boolean z10) {
     }
 
     @Override
@@ -72,11 +72,11 @@ public final class va implements zb {
     }
 
     @Override
-    public final void G(float f7, int i10) {
+    public final void I(float f7, int i10) {
     }
 
     @Override
-    public final void N(float f7, int i10) {
+    public final void M(float f7, int i10) {
     }
 
     @Override

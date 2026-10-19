@@ -11,9 +11,9 @@ import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
 import w7.z5;
 public final class o extends LinearLayout {
-    public final TextView f8046a;
-    public final ai.v f8047b;
-    public final n f8048c;
+    public final TextView f8047a;
+    public final ai.v f8048b;
+    public final n f8049c;
     public final ei.d d;
 
     public o(Context context, d6 d6Var) {
@@ -21,19 +21,19 @@ public final class o extends LinearLayout {
         setPadding(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(21.0f), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(21.0f));
         setOrientation(1);
         TextView textView = new TextView(context);
-        this.f8046a = textView;
-        int i10 = h6.f21374y6;
+        this.f8047a = textView;
+        int i10 = h6.f21377y6;
         lk.o(i10, d6Var, textView, 1, 14.0f);
         textView.setGravity(17);
         textView.setTextAlignment(4);
         addView(textView, z5.k(0.0f, 0.0f, 0.0f, 19.0f, -1, -2));
         ai.v vVar = new ai.v(1, context, d6Var, true);
-        this.f8047b = vVar;
+        this.f8048b = vVar;
         vVar.setMinWidth(AndroidUtilities.dp(200.0f));
         vVar.g(LocaleController.getString(R.string.ProfileBotAddPreview), false, true);
         addView(vVar, z5.q(-2, 44, 17));
         n nVar = new n(context, d6Var);
-        this.f8048c = nVar;
+        this.f8049c = nVar;
         nVar.setTextColor(h6.w0(i10, d6Var));
         nVar.setText(LocaleController.getString(R.string.ProfileBotOr));
         nVar.setTextSize(1, 14.0f);

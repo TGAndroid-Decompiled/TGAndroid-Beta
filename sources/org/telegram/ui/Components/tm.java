@@ -1,5 +1,5 @@
 package org.telegram.ui.Components;
 public final class tm {
-    public int[] f30655a;
-    public float[] f30656b;
+    public int[] f30617a;
+    public float[] f30618b;
 }

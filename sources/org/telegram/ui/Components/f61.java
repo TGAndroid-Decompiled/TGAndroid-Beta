@@ -1,386 +1,83 @@
 package org.telegram.ui.Components;
 
-import android.text.TextUtils;
+import android.content.Context;
 import android.util.LongSparseArray;
 import android.view.View;
-import j$.util.Objects;
+import java.util.ArrayList;
 import java.util.HashMap;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLObject;
-public final class f61 extends pg.a {
-    public static int J = 10000;
-    public static LongSparseArray K;
-    public static HashMap L;
-    public float A;
-    public long B;
-    public Utilities.Callback C;
-    public View.OnClickListener D;
-    public View.OnClickListener E;
-    public Utilities.Callback F;
-    public Object G;
-    public Object H;
-    public boolean I;
-    public View f26134c;
-    public int d;
-    public boolean e;
-    public boolean f26135f;
-    public boolean f26136g;
-    public boolean h;
-    public int f26137i;
-    public boolean f26138j;
-    public int f26139k;
-    public CharSequence f26140l;
-    public CharSequence f26141m;
-    public CharSequence f26142n;
-    public CharSequence f26143o;
-    public String[] f26144p;
-    public boolean f26145q;
-    public boolean f26146r;
-    public boolean f26147s;
-    public boolean f26148t;
-    public int f26149u;
-    public int v;
-    public boolean f26150w;
-    public long f26151x;
-    public int f26152y;
-    public int f26153z;
+public abstract class f61 {
+    private ArrayList<View> cache;
+    public final int viewType;
 
-    public f61(int i10) {
-        super(i10, false);
-        this.f26136g = true;
-        this.f26149u = -1;
-        this.I = true;
+    public f61() {
+        int i10 = g61.J;
+        g61.J = i10 + 1;
+        this.viewType = i10;
     }
 
-    public static f61 A(int i10, CharSequence charSequence) {
-        f61 f61Var = new f61(7);
-        f61Var.d = i10;
-        f61Var.f26140l = charSequence;
-        return f61Var;
-    }
-
-    public static f61 B(CharSequence charSequence) {
-        f61 f61Var = new f61(7);
-        f61Var.f26140l = charSequence;
-        return f61Var;
-    }
-
-    public static f61 C(int i10) {
-        f61 f61Var = new f61(28);
-        f61Var.f26153z = i10;
-        return f61Var;
-    }
-
-    public static f61 D(int i10, int i11) {
-        f61 f61Var = new f61(28);
-        f61Var.d = i10;
-        f61Var.f26153z = i11;
-        return f61Var;
-    }
-
-    public static f61 E(int i10, String str) {
-        f61 f61Var = new f61(39);
-        f61Var.d = i10;
-        f61Var.f26140l = str;
-        f61Var.f26153z = 1;
-        return f61Var;
-    }
-
-    public static e61 F(int i10) {
-        LongSparseArray longSparseArray = K;
-        if (longSparseArray == null) {
-            return null;
+    public static void setup(f61 f61Var) {
+        if (g61.L == null) {
+            g61.L = new HashMap();
         }
-        return (e61) longSparseArray.get(i10);
-    }
-
-    public static f61 J(Class cls) {
-        if (L == null) {
-            L = new HashMap();
+        if (g61.K == null) {
+            g61.K = new LongSparseArray();
         }
-        if (K == null) {
-            K = new LongSparseArray();
+        Class<?> cls = f61Var.getClass();
+        if (!g61.L.containsKey(cls)) {
+            g61.L.put(cls, f61Var);
+            g61.K.put(f61Var.viewType, f61Var);
         }
-        e61 e61Var = (e61) L.get(cls);
-        if (e61Var != null) {
-            return new f61(e61Var.viewType);
+    }
+
+    public boolean contentsEquals(g61 g61Var, g61 g61Var2) {
+        return g61Var.H(g61Var2);
+    }
+
+    public abstract View createView(Context context, im0 im0Var, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var);
+
+    public boolean equals(g61 g61Var, g61 g61Var2) {
+        return g61Var.I(g61Var2);
+    }
+
+    public View getCached() {
+        ArrayList<View> arrayList = this.cache;
+        if (arrayList != null && !arrayList.isEmpty()) {
+            return this.cache.remove(0);
         }
-        throw new RuntimeException("UItemFactory was not setuped: " + cls);
+        return null;
     }
 
-    public static f61 b(String str) {
-        f61 f61Var = new f61(1);
-        f61Var.f26140l = str;
-        return f61Var;
+    public boolean isClickable() {
+        return !(this instanceof dj);
     }
 
-    public static f61 c(int i10, int i11, String str) {
-        f61 f61Var = new f61(3);
-        f61Var.d = i10;
-        f61Var.f26139k = i11;
-        f61Var.f26140l = str;
-        return f61Var;
-    }
-
-    public static f61 d(int i10, int i11, String str, String str2) {
-        f61 f61Var = new f61(3);
-        f61Var.d = i10;
-        f61Var.f26139k = i11;
-        f61Var.f26140l = str;
-        f61Var.f26142n = str2;
-        return f61Var;
-    }
-
-    public static f61 e(int i10, String str) {
-        f61 f61Var = new f61(3);
-        f61Var.d = i10;
-        f61Var.f26140l = str;
-        return f61Var;
-    }
-
-    public static f61 f(String str, CharSequence charSequence, int i10) {
-        f61 f61Var = new f61(3);
-        f61Var.d = i10;
-        f61Var.f26140l = str;
-        f61Var.f26142n = charSequence;
-        return f61Var;
-    }
-
-    public static f61 g(CharSequence charSequence) {
-        f61 f61Var = new f61(7);
-        f61Var.f26140l = charSequence;
-        f61Var.f26145q = true;
-        return f61Var;
-    }
-
-    public static f61 h(int i10, int i11, org.telegram.ui.d91 d91Var) {
-        f61 f61Var = new f61(i10 + 18);
-        f61Var.f26153z = i11;
-        f61Var.G = d91Var;
-        return f61Var;
-    }
-
-    public static f61 i(int i10, CharSequence charSequence) {
-        f61 f61Var = new f61(4);
-        f61Var.d = i10;
-        f61Var.f26140l = charSequence;
-        return f61Var;
-    }
-
-    public static f61 j(int i10, View view) {
-        f61 f61Var = new f61(-1);
-        f61Var.d = i10;
-        f61Var.f26134c = view;
-        f61Var.f26153z = -1;
-        return f61Var;
-    }
-
-    public static f61 k(View view) {
-        f61 f61Var = new f61(-1);
-        f61Var.f26134c = view;
-        f61Var.f26153z = -1;
-        return f61Var;
-    }
-
-    public static f61 l(View view) {
-        f61 f61Var = new f61(-4);
-        f61Var.f26134c = view;
-        f61Var.f26153z = -1;
-        return f61Var;
-    }
-
-    public static f61 m(int i10, String str, String str2) {
-        f61 f61Var = new f61(40);
-        f61Var.d = i10;
-        f61Var.f26140l = str;
-        f61Var.f26143o = str2;
-        return f61Var;
-    }
-
-    public static f61 n(int i10) {
-        f61 f61Var = new f61(34);
-        f61Var.f26153z = i10;
-        return f61Var;
-    }
-
-    public static f61 o(int i10, int i11) {
-        f61 f61Var = new f61(34);
-        f61Var.d = i10;
-        f61Var.f26153z = i11;
-        return f61Var;
-    }
-
-    public static f61 p(View view, int i10, boolean z10) {
-        f61 f61Var = new f61(-3);
-        f61Var.f26134c = view;
-        f61Var.f26153z = i10;
-        f61Var.f26152y = z10 ? 1 : 0;
-        return f61Var;
-    }
-
-    public static f61 q(String str) {
-        f61 f61Var = new f61(31);
-        f61Var.f26140l = str;
-        return f61Var;
-    }
-
-    public static f61 r(String str, String str2, View.OnClickListener onClickListener) {
-        f61 f61Var = new f61(31);
-        f61Var.f26140l = str;
-        f61Var.f26141m = str2;
-        f61Var.D = onClickListener;
-        return f61Var;
-    }
-
-    public static f61 s(int i10, String str) {
-        f61 f61Var = new f61(0);
-        f61Var.d = i10;
-        f61Var.f26140l = str;
-        return f61Var;
-    }
-
-    public static f61 t(String str) {
-        f61 f61Var = new f61(0);
-        f61Var.f26140l = str;
-        return f61Var;
-    }
-
-    public static f61 u(org.telegram.ui.he heVar) {
-        f61 f61Var = new f61(24);
-        f61Var.G = heVar;
-        return f61Var;
-    }
-
-    public static f61 v(TLObject tLObject) {
-        f61 f61Var = new f61(32);
-        f61Var.G = tLObject;
-        return f61Var;
-    }
-
-    public static f61 w(int i10, String str) {
-        f61 f61Var = new f61(10);
-        f61Var.d = i10;
-        f61Var.f26140l = str;
-        return f61Var;
-    }
-
-    public static f61 x(int i10, String str, String str2) {
-        f61 f61Var = new f61(44);
-        f61Var.d = i10;
-        f61Var.f26140l = str;
-        f61Var.f26142n = str2;
-        return f61Var;
-    }
-
-    public static f61 y(int i10, CharSequence charSequence) {
-        f61 f61Var = new f61(35);
-        f61Var.d = i10;
-        f61Var.f26140l = charSequence;
-        return f61Var;
-    }
-
-    public static f61 z(String str, CharSequence charSequence, int i10) {
-        f61 f61Var = new f61(41);
-        f61Var.d = i10;
-        f61Var.f26140l = charSequence;
-        f61Var.f26143o = str;
-        return f61Var;
-    }
-
-    public final boolean G(Class cls) {
-        HashMap hashMap;
-        e61 e61Var;
-        if (this.f44291a >= 10000 && (hashMap = L) != null && (e61Var = (e61) hashMap.get(cls)) != null && e61Var.viewType == this.f44291a) {
-            return true;
-        }
+    public boolean isShadow() {
         return false;
     }
 
-    public final boolean H(org.telegram.ui.Components.f61 r4) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.f61.H(org.telegram.ui.Components.f61):boolean");
+    public void precache(org.telegram.ui.ActionBar.n2 n2Var, int i10) {
+        precache(n2Var.getContext(), n2Var.getCurrentAccount(), n2Var.getClassGuid(), n2Var.getResourceProvider(), i10);
     }
 
-    public final boolean I(f61 f61Var) {
-        if (this.d == f61Var.d && this.f26137i == f61Var.f26137i && this.f26151x == f61Var.f26151x && this.f26139k == f61Var.f26139k && this.f26138j == f61Var.f26138j && this.f26147s == f61Var.f26147s && this.f26146r == f61Var.f26146r && this.f26148t == f61Var.f26148t && this.f26145q == f61Var.f26145q && this.f26134c == f61Var.f26134c && TextUtils.equals(this.f26140l, f61Var.f26140l) && TextUtils.equals(this.f26141m, f61Var.f26141m) && TextUtils.equals(this.f26142n, f61Var.f26142n) && this.f26134c == f61Var.f26134c && this.f26153z == f61Var.f26153z && Math.abs(this.A - f61Var.A) < 0.01f && this.B == f61Var.B && Objects.equals(this.G, f61Var.G) && Objects.equals(this.H, f61Var.H)) {
-            return true;
+    public void precache(Context context, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var, int i12) {
+        if (context == null) {
+            return;
         }
-        return false;
+        if (this.cache == null) {
+            this.cache = new ArrayList<>();
+        }
+        int i13 = 0;
+        while (i13 < this.cache.size() - i12) {
+            Context context2 = context;
+            this.cache.add(createView(context2, null, i10, i11, d6Var));
+            i13++;
+            context = context2;
+        }
     }
 
-    public final void K(boolean z10) {
-        this.e = z10;
-        if (this.f44291a == 11) {
-            this.f44291a = 12;
-        }
+    public void attachedView(im0 im0Var, View view, g61 g61Var) {
     }
 
-    @Override
-    public final boolean a(pg.a aVar) {
-        e61 F;
-        if (this != aVar) {
-            if (f61.class == aVar.getClass()) {
-                f61 f61Var = (f61) aVar;
-                int i10 = this.f44291a;
-                if (i10 == f61Var.f44291a) {
-                    if (i10 == 31) {
-                        if (TextUtils.equals(this.f26140l, f61Var.f26140l) && TextUtils.equals(this.f26141m, f61Var.f26141m)) {
-                            return true;
-                        }
-                        return false;
-                    } else if (i10 == 28) {
-                        if (this.f26153z == f61Var.f26153z) {
-                            return true;
-                        }
-                        return false;
-                    } else if (i10 != 35 && i10 != 37) {
-                        if (i10 >= 10000 && (F = F(i10)) != null) {
-                            return F.contentsEquals(this, f61Var);
-                        }
-                        return H(f61Var);
-                    } else if (this.d == f61Var.d && TextUtils.equals(this.f26140l, f61Var.f26140l) && this.e == f61Var.e) {
-                        return true;
-                    } else {
-                        return false;
-                    }
-                }
-                return false;
-            }
-            return false;
-        }
-        return true;
-    }
-
-    public final boolean equals(Object obj) {
-        e61 F;
-        if (this != obj) {
-            if (obj != null && f61.class == obj.getClass()) {
-                f61 f61Var = (f61) obj;
-                int i10 = this.f44291a;
-                if (i10 == f61Var.f44291a) {
-                    if (i10 != 36 && i10 != 35) {
-                        if (i10 == 28) {
-                            if (this.d == f61Var.d) {
-                                return true;
-                            }
-                            return false;
-                        } else if (i10 == 31) {
-                            return TextUtils.equals(this.f26140l, f61Var.f26140l);
-                        } else {
-                            if (i10 >= 10000 && (F = F(i10)) != null) {
-                                return F.equals(this, f61Var);
-                            }
-                            return I(f61Var);
-                        }
-                    } else if (this.d == f61Var.d) {
-                        return true;
-                    } else {
-                        return false;
-                    }
-                }
-                return false;
-            }
-            return false;
-        }
-        return true;
+    public void bindView(View view, g61 g61Var, boolean z10, t61 t61Var, b71 b71Var) {
     }
 }

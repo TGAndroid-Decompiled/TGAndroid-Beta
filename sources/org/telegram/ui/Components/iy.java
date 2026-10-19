@@ -9,12 +9,12 @@ import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.TLRPC;
 public final class iy implements View.OnClickListener {
-    public final int f27372a;
-    public final jy f27373b;
+    public final int f27388a;
+    public final jy f27389b;
 
     public iy(jy jyVar, int i10) {
-        this.f27372a = i10;
-        this.f27373b = jyVar;
+        this.f27388a = i10;
+        this.f27389b = jyVar;
     }
 
     @Override
@@ -26,18 +26,18 @@ public final class iy implements View.OnClickListener {
         int R;
         int i10;
         TLRPC.StickerSet stickerSet3;
-        int i11 = this.f27372a;
-        jy jyVar = this.f27373b;
+        int i11 = this.f27388a;
+        jy jyVar = this.f27389b;
         switch (i11) {
             case 0:
-                fy fyVar = jyVar.f27650s;
-                if (fyVar != null && (stickerSet = fyVar.f26404b) != null) {
+                fy fyVar = jyVar.f27631s;
+                if (fyVar != null && (stickerSet = fyVar.f26396b) != null) {
                     tz tzVar = jyVar.E;
-                    if (!tzVar.f30807v2) {
-                        tzVar.f30807v2 = true;
+                    if (!tzVar.f30830v2) {
+                        tzVar.f30830v2 = true;
                         ArrayList arrayList = new ArrayList(1);
                         TLRPC.TL_inputStickerSetID tL_inputStickerSetID = new TLRPC.TL_inputStickerSetID();
-                        tL_inputStickerSetID.f20292id = stickerSet.f20299id;
+                        tL_inputStickerSetID.f20295id = stickerSet.f20302id;
                         tL_inputStickerSetID.access_hash = stickerSet.access_hash;
                         arrayList.add(tL_inputStickerSetID);
                         new kx(tzVar, tzVar.Y1, tzVar.getContext(), tzVar.Z1, arrayList, stickerSet).show();
@@ -48,7 +48,7 @@ public final class iy implements View.OnClickListener {
                 return;
             case 1:
                 sg.q0 q0Var = jyVar.h;
-                TextView textView = jyVar.f27647f;
+                TextView textView = jyVar.f27628f;
                 TextView textView2 = jyVar.e;
                 if (textView2 != null && textView2.getVisibility() == 0 && textView2.isEnabled()) {
                     textView2.performClick();
@@ -64,22 +64,22 @@ public final class iy implements View.OnClickListener {
                 }
             case 2:
                 tz tzVar2 = jyVar.E;
-                ArrayList arrayList2 = tzVar2.f30786p1;
-                fy fyVar2 = jyVar.f27650s;
-                if (fyVar2 != null && (stickerSet2 = fyVar2.f26404b) != null) {
-                    fyVar2.f26406f = true;
+                ArrayList arrayList2 = tzVar2.f30809p1;
+                fy fyVar2 = jyVar.f27631s;
+                if (fyVar2 != null && (stickerSet2 = fyVar2.f26396b) != null) {
+                    fyVar2.f26398f = true;
                     ay ayVar = tzVar2.R;
-                    int i12 = tzVar2.f30747c1;
-                    ArrayList arrayList3 = tzVar2.f30789q1;
+                    int i12 = tzVar2.f30770c1;
+                    ArrayList arrayList3 = tzVar2.f30812q1;
                     ey eyVar = tzVar2.P;
-                    if (!arrayList2.contains(Long.valueOf(stickerSet2.f20299id))) {
-                        arrayList2.add(Long.valueOf(jyVar.f27650s.f26404b.f20299id));
+                    if (!arrayList2.contains(Long.valueOf(stickerSet2.f20302id))) {
+                        arrayList2.add(Long.valueOf(jyVar.f27631s.f26396b.f20302id));
                     }
                     jyVar.a(true);
                     int i13 = 0;
                     while (true) {
                         if (i13 < eyVar.getChildCount()) {
-                            if ((eyVar.getChildAt(i13) instanceof hy) && (R = RecyclerView.R((view2 = eyVar.getChildAt(i13)))) >= 0 && (i10 = ayVar.f24736w.get(R)) >= 0 && i10 < arrayList3.size() && arrayList3.get(i10) != null && jyVar.f27650s != null && ((fy) arrayList3.get(i10)).f26404b.f20299id == jyVar.f27650s.f26404b.f20299id) {
+                            if ((eyVar.getChildAt(i13) instanceof hy) && (R = RecyclerView.R((view2 = eyVar.getChildAt(i13)))) >= 0 && (i10 = ayVar.f24734w.get(R)) >= 0 && i10 < arrayList3.size() && arrayList3.get(i10) != null && jyVar.f27631s != null && ((fy) arrayList3.get(i10)).f26396b.f20302id == jyVar.f27631s.f26396b.f20302id) {
                                 num = Integer.valueOf(R);
                             } else {
                                 i13++;
@@ -92,10 +92,10 @@ public final class iy implements View.OnClickListener {
                     if (num != null) {
                         ayVar.E(num.intValue(), view2);
                     }
-                    if (jyVar.f27648n == null) {
+                    if (jyVar.f27629n == null) {
                         TLRPC.TL_inputStickerSetID tL_inputStickerSetID2 = new TLRPC.TL_inputStickerSetID();
-                        TLRPC.StickerSet stickerSet4 = jyVar.f27650s.f26404b;
-                        tL_inputStickerSetID2.f20292id = stickerSet4.f20299id;
+                        TLRPC.StickerSet stickerSet4 = jyVar.f27631s.f26396b;
+                        tL_inputStickerSetID2.f20295id = stickerSet4.f20302id;
                         tL_inputStickerSetID2.access_hash = stickerSet4.access_hash;
                         TLRPC.TL_messages_stickerSet stickerSet5 = MediaDataController.getInstance(i12).getStickerSet((TLRPC.InputStickerSet) tL_inputStickerSetID2, true);
                         if (stickerSet5 != null && stickerSet5.set != null) {
@@ -108,7 +108,7 @@ public final class iy implements View.OnClickListener {
                         }
                         NotificationCenter.getInstance(i12).addObserver(jyVar, NotificationCenter.groupStickersDidLoad);
                         MediaDataController mediaDataController = MediaDataController.getInstance(i12);
-                        jyVar.f27648n = tL_inputStickerSetID2;
+                        jyVar.f27629n = tL_inputStickerSetID2;
                         mediaDataController.getStickerSet((TLRPC.InputStickerSet) tL_inputStickerSetID2, false);
                         return;
                     }
@@ -117,22 +117,22 @@ public final class iy implements View.OnClickListener {
                 return;
             case 3:
                 tz tzVar3 = jyVar.E;
-                fy fyVar3 = jyVar.f27650s;
-                if (fyVar3 != null && (stickerSet3 = fyVar3.f26404b) != null) {
-                    fyVar3.f26406f = false;
-                    ArrayList arrayList4 = tzVar3.f30786p1;
-                    int i14 = tzVar3.f30747c1;
-                    arrayList4.remove(Long.valueOf(stickerSet3.f20299id));
+                fy fyVar3 = jyVar.f27631s;
+                if (fyVar3 != null && (stickerSet3 = fyVar3.f26396b) != null) {
+                    fyVar3.f26398f = false;
+                    ArrayList arrayList4 = tzVar3.f30809p1;
+                    int i14 = tzVar3.f30770c1;
+                    arrayList4.remove(Long.valueOf(stickerSet3.f20302id));
                     jyVar.a(true);
                     vx vxVar = tzVar3.I;
                     if (vxVar != null) {
                         vxVar.p(tzVar3.getEmojipacks());
                     }
                     tzVar3.U(tzVar3.Q.I0());
-                    if (jyVar.f27649r == null) {
+                    if (jyVar.f27630r == null) {
                         TLRPC.TL_inputStickerSetID tL_inputStickerSetID3 = new TLRPC.TL_inputStickerSetID();
-                        TLRPC.StickerSet stickerSet6 = jyVar.f27650s.f26404b;
-                        tL_inputStickerSetID3.f20292id = stickerSet6.f20299id;
+                        TLRPC.StickerSet stickerSet6 = jyVar.f27631s.f26396b;
+                        tL_inputStickerSetID3.f20295id = stickerSet6.f20302id;
                         tL_inputStickerSetID3.access_hash = stickerSet6.access_hash;
                         TLRPC.TL_messages_stickerSet stickerSet7 = MediaDataController.getInstance(i14).getStickerSet((TLRPC.InputStickerSet) tL_inputStickerSetID3, true);
                         if (stickerSet7 != null && stickerSet7.set != null) {
@@ -151,7 +151,7 @@ public final class iy implements View.OnClickListener {
                         }
                         NotificationCenter.getInstance(i14).addObserver(jyVar, NotificationCenter.groupStickersDidLoad);
                         MediaDataController mediaDataController2 = MediaDataController.getInstance(i14);
-                        jyVar.f27649r = tL_inputStickerSetID3;
+                        jyVar.f27630r = tL_inputStickerSetID3;
                         mediaDataController2.getStickerSet((TLRPC.InputStickerSet) tL_inputStickerSetID3, false);
                         return;
                     }
@@ -159,21 +159,21 @@ public final class iy implements View.OnClickListener {
                 }
                 return;
             case 4:
-                uy uyVar = jyVar.E.f30800t1;
+                uy uyVar = jyVar.E.f30823t1;
                 if (uyVar != null) {
                     uyVar.q();
                     return;
                 }
                 return;
             case 5:
-                uy uyVar2 = jyVar.E.f30800t1;
+                uy uyVar2 = jyVar.E.f30823t1;
                 if (uyVar2 != null) {
                     uyVar2.q();
                     return;
                 }
                 return;
             default:
-                uy uyVar3 = jyVar.E.f30800t1;
+                uy uyVar3 = jyVar.E.f30823t1;
                 if (uyVar3 != null) {
                     uyVar3.q();
                     return;

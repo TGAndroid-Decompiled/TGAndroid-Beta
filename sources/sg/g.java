@@ -51,12 +51,12 @@ public final class g extends FrameLayout {
             textView.setTextColor(h6.w0(h6.G6, d6Var));
             textView.setText(LocaleController.getString(R.string.UpgradedStories));
             addView(textView, z5.d(-2, -2.0f, 1, 0.0f, 111.0f, 0.0f, 0.0f));
-            x20Var.f32292m = true;
-            x20Var.f32283a = true;
+            x20Var.f32275m = true;
+            x20Var.f32266a = true;
             x20Var.d(h6.x0(null, h6.Mj, false), h6.x0(null, h6.Lj, false), 0, 0);
-            x20Var.f32285c.setStyle(Paint.Style.STROKE);
-            x20Var.f32285c.setStrokeCap(Paint.Cap.ROUND);
-            x20Var.f32285c.setStrokeWidth(AndroidUtilities.dpf2(3.3f));
+            x20Var.f32268c.setStyle(Paint.Style.STROKE);
+            x20Var.f32268c.setStrokeCap(Paint.Cap.ROUND);
+            x20Var.f32268c.setStrokeWidth(AndroidUtilities.dpf2(3.3f));
         } else if (i10 == 1) {
             gi.f fVar = new gi.f(context, 4);
             addView(fVar, z5.e(-1, 190, 55));
@@ -65,10 +65,10 @@ public final class g extends FrameLayout {
             Bitmap createBitmap = Bitmap.createBitmap(50, 50, Bitmap.Config.ARGB_8888);
             Canvas canvas = new Canvas(createBitmap);
             int i11 = h6.Mj;
-            canvas.drawColor(i0.a.f(0.5f, h6.w0(i11, d6Var), h6.w0(h6.f21057h5, d6Var)));
+            canvas.drawColor(i0.a.f(0.5f, h6.w0(i11, d6Var), h6.w0(h6.f21060h5, d6Var)));
             zdVar.setBackgroundBitmap(createBitmap);
-            tg.g gVar = zdVar.f47099b;
-            gVar.f47083z = i11;
+            tg.g gVar = zdVar.f47101b;
+            gVar.f47085z = i11;
             gVar.A = h6.Lj;
             gVar.b();
             addView(zdVar, z5.e(160, 160, 1));
@@ -80,7 +80,7 @@ public final class g extends FrameLayout {
             addView(f7, z5.d(-2, -2.0f, 1, 33.0f, 150.0f, 33.0f, 0.0f));
             TextView textView2 = new TextView(context);
             textView2.setTextSize(1, 14.0f);
-            textView2.setTextColor(h6.w0(h6.f21391z6, d6Var));
+            textView2.setTextColor(h6.w0(h6.f21394z6, d6Var));
             lk.m(R.string.TelegramBusinessSubtitle2, textView2, 17);
             addView(textView2, z5.d(-2, -2.0f, 1, 33.0f, 183.0f, 33.0f, 20.0f));
         }
@@ -101,7 +101,7 @@ public final class g extends FrameLayout {
                 float f10 = (i10 * f7) - 90.0f;
                 float f11 = 5;
                 float f12 = f10 + f11;
-                canvas.drawArc(AndroidUtilities.rectTmp, f12, ((f10 + f7) - f11) - f12, false, x20Var.f32285c);
+                canvas.drawArc(AndroidUtilities.rectTmp, f12, ((f10 + f7) - f11) - f12, false, x20Var.f32268c);
             }
         }
         super.dispatchDraw(canvas);

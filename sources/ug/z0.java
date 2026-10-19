@@ -29,11 +29,11 @@ public final class z0 implements Runnable {
                 return;
             case 3:
                 g1 g1Var = this.f47821b.Z;
-                g1Var.f50148b.setHintText(LocaleController.getString(R.string.Search), true);
+                g1Var.f50147b.setHintText(LocaleController.getString(R.string.Search), true);
                 return;
             case 4:
                 g1 g1Var2 = this.f47821b.Z;
-                g1Var2.f50148b.setHintText(LocaleController.getString(R.string.GiftPremiumUsersSearchHint), true);
+                g1Var2.f50147b.setHintText(LocaleController.getString(R.string.GiftPremiumUsersSearchHint), true);
                 return;
             case 5:
                 m1 m1Var2 = this.f47821b;
@@ -52,10 +52,10 @@ public final class z0 implements Runnable {
                 m1Var3.j0(true, false);
                 return;
             case 9:
-                n2 n2Var = this.f47821b.f24915n;
+                n2 n2Var = this.f47821b.f24899n;
                 if (n2Var != 0) {
                     ?? obj = new Object();
-                    obj.f21552a = true;
+                    obj.f21555a = true;
                     n2Var.showAsSheet(new PrivacyControlActivity(11, false), obj);
                     return;
                 }

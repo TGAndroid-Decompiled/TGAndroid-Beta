@@ -1,6 +1,6 @@
 package ug;
 
-import ai.m3;
+import ai.p3;
 import java.io.File;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
@@ -11,7 +11,7 @@ import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Components.qc;
 import org.telegram.ui.Components.xc;
-import w7.n7;
+import w7.m7;
 public final class c implements Runnable {
     public final int f47650a = 0;
     public final boolean f47651b;
@@ -65,8 +65,8 @@ public final class c implements Runnable {
                     }
                     string2 = LocaleController.getString(i10);
                 }
-                qc M = xcVar.M(string, AndroidUtilities.replaceSingleTag(string2, h6.Gi, 0, new m3(chat), d6Var), i14);
-                M.f29638j = 5000;
+                qc M = xcVar.M(string, AndroidUtilities.replaceSingleTag(string2, h6.Gi, 0, new p3(chat), d6Var), i14);
+                M.f29596j = 5000;
                 M.j();
                 return;
             default:
@@ -76,7 +76,7 @@ public final class c implements Runnable {
                 long nanoTime = System.nanoTime();
                 try {
                     wVar.g();
-                    long e = n7.e(wVar.f46831a) / 1000;
+                    long e = m7.e(wVar.f46831a) / 1000;
                     s0Var.f46764m.b("active output finalized: size=" + file.length() + ", durationMs=" + e + ", elapsedMs=" + si.s0.f(nanoTime));
                     s0Var.g();
                     long j11 = s0Var.f46766o;
@@ -113,11 +113,11 @@ public final class c implements Runnable {
                         file2 = file3;
                         try {
                             s0Var.s(file2, 0L, min, z12, i13);
-                            n7.c(file2);
+                            m7.c(file2);
                             return;
                         } catch (Throwable th2) {
                             th = th2;
-                            n7.c(file2);
+                            m7.c(file2);
                             throw th;
                         }
                     } catch (Throwable th3) {

@@ -2,29 +2,29 @@ package ei;
 
 import android.view.ScaleGestureDetector;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.w91;
+import org.telegram.ui.Components.x91;
 public final class tb extends ScaleGestureDetector.SimpleOnScaleGestureListener {
-    public final ub f9866a;
+    public final ub f9867a;
 
     public tb(ub ubVar) {
-        this.f9866a = ubVar;
+        this.f9867a = ubVar;
     }
 
     @Override
     public final boolean onScale(ScaleGestureDetector scaleGestureDetector) {
         ya yaVar;
-        ub ubVar = this.f9866a;
+        ub ubVar = this.f9867a;
         vb vbVar = ubVar.E0;
-        if (!ubVar.A0 || (yaVar = vbVar.B0) == null || vbVar.f9966f0 != 0 || yaVar.f8814s || vbVar.A0.getFilledProgress() >= 1.0f) {
+        if (!ubVar.A0 || (yaVar = vbVar.B0) == null || vbVar.f9967f0 != 0 || yaVar.f8815s || vbVar.A0.getFilledProgress() >= 1.0f) {
             return false;
         }
         float scaleFactor = vbVar.T1 + ((scaleGestureDetector.getScaleFactor() - 1.0f) * 0.75f);
         vbVar.T1 = scaleFactor;
         vbVar.T1 = Utilities.clamp(scaleFactor, 1.0f, 0.0f);
         vbVar.B0.setZoom(vbVar.T1);
-        w91 w91Var = vbVar.V0;
-        if (w91Var != null) {
-            w91Var.b(vbVar.T1, false);
+        x91 x91Var = vbVar.V0;
+        if (x91Var != null) {
+            x91Var.b(vbVar.T1, false);
         }
         vbVar.i0(true);
         return true;
@@ -32,9 +32,9 @@ public final class tb extends ScaleGestureDetector.SimpleOnScaleGestureListener 
 
     @Override
     public final boolean onScaleBegin(ScaleGestureDetector scaleGestureDetector) {
-        ub ubVar = this.f9866a;
+        ub ubVar = this.f9867a;
         vb vbVar = ubVar.E0;
-        if (vbVar.B0 != null && vbVar.f9966f0 == 0 && !vbVar.K0) {
+        if (vbVar.B0 != null && vbVar.f9967f0 == 0 && !vbVar.K0) {
             ubVar.A0 = true;
             return super.onScaleBegin(scaleGestureDetector);
         }
@@ -43,7 +43,7 @@ public final class tb extends ScaleGestureDetector.SimpleOnScaleGestureListener 
 
     @Override
     public final void onScaleEnd(ScaleGestureDetector scaleGestureDetector) {
-        ub ubVar = this.f9866a;
+        ub ubVar = this.f9867a;
         ubVar.A0 = false;
         ubVar.E0.e(false);
         vb.b(ubVar.E0);

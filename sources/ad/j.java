@@ -73,7 +73,7 @@ public final class j implements Closeable {
         i iVar = this.f526a;
         try {
             if (iVar != null) {
-                String str3 = new b(str2).f501c;
+                String str3 = new b(str2).f500c;
                 if (str3 == null) {
                     str3 = "US-ASCII";
                 }

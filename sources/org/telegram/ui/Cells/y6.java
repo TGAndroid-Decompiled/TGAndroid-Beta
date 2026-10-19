@@ -10,16 +10,16 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.lk;
-import org.telegram.ui.Components.j61;
-import org.telegram.ui.Components.l11;
+import org.telegram.ui.Components.k61;
+import org.telegram.ui.Components.m11;
 import org.telegram.ui.Components.x90;
 public abstract class y6 extends LinearLayout {
-    public TextView f23837a;
-    public x90 f23838b;
-    public TextView f23839c;
+    public TextView f23840a;
+    public x90 f23841b;
+    public TextView f23842c;
     public TextView d;
     public int e;
-    public int f23840f;
+    public int f23843f;
 
     @Override
     public final void onMeasure(int i10, int i11) {
@@ -27,10 +27,10 @@ public abstract class y6 extends LinearLayout {
     }
 
     public void setType(int i10) {
-        int i11 = this.f23840f;
-        TextView textView = this.f23839c;
-        x90 x90Var = this.f23838b;
-        TextView textView2 = this.f23837a;
+        int i11 = this.f23843f;
+        TextView textView = this.f23842c;
+        x90 x90Var = this.f23841b;
+        TextView textView2 = this.f23840a;
         TextView textView3 = this.d;
         this.e = i10;
         if (i10 == 0) {
@@ -43,7 +43,7 @@ public abstract class y6 extends LinearLayout {
                 spannableStringBuilder.replace(lastIndexOf, lastIndexOf + 2, (CharSequence) "");
                 spannableStringBuilder.replace(indexOf, indexOf + 2, (CharSequence) "");
                 try {
-                    spannableStringBuilder.setSpan(new j61(LocaleController.getString(R.string.CheckPhoneNumberLearnMoreUrl), (l11) null), indexOf, lastIndexOf - 2, 33);
+                    spannableStringBuilder.setSpan(new k61(LocaleController.getString(R.string.CheckPhoneNumberLearnMoreUrl), (m11) null), indexOf, lastIndexOf - 2, 33);
                 } catch (Exception e) {
                     FileLog.e(e);
                 }

@@ -4,44 +4,44 @@ import android.content.Context;
 import com.google.android.gms.tasks.Task;
 import java.util.HashMap;
 public final class la {
-    public static ua f48747j;
-    public static final za f48748k;
-    public final String f48749a;
-    public final String f48750b;
-    public final ka f48751c;
+    public static ua f48746j;
+    public static final za f48747k;
+    public final String f48748a;
+    public final String f48749b;
+    public final ka f48750c;
     public final rb.k d;
     public final Task e;
-    public final Task f48752f;
-    public final String f48753g;
+    public final Task f48751f;
+    public final String f48752g;
     public final int h;
-    public final HashMap f48754i = new HashMap();
+    public final HashMap f48753i = new HashMap();
 
     static {
         Object[] objArr = {"optional-module-barcode", "com.google.android.gms.vision.barcode"};
         objArr[0].getClass();
         objArr[1].getClass();
-        f48748k = new za(objArr);
+        f48747k = new za(objArr);
     }
 
     public la(Context context, rb.k kVar, ka kaVar) {
         int i10;
         new HashMap();
-        this.f48749a = context.getPackageName();
-        this.f48750b = rb.c.a(context);
+        this.f48748a = context.getPackageName();
+        this.f48749b = rb.c.a(context);
         this.d = kVar;
-        this.f48751c = kaVar;
+        this.f48750c = kaVar;
         pa.b();
-        this.f48753g = "vision-common";
+        this.f48752g = "vision-common";
         rb.f a2 = rb.f.a();
-        c5.x xVar = new c5.x(this, 6);
+        c5.y yVar = new c5.y(this, 6);
         a2.getClass();
-        this.e = rb.f.b(xVar);
+        this.e = rb.f.b(yVar);
         rb.f a10 = rb.f.a();
         kVar.getClass();
         t7.p pVar = new t7.p(kVar, 2);
         a10.getClass();
-        this.f48752f = rb.f.b(pVar);
-        za zaVar = f48748k;
+        this.f48751f = rb.f.b(pVar);
+        za zaVar = f48747k;
         if (zaVar.containsKey("vision-common")) {
             i10 = y6.e.d(context, (String) zaVar.get("vision-common"), false);
         } else {

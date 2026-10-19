@@ -1,12 +1,12 @@
 package org.telegram.ui.Wallet;
 public final class f9 {
-    public final String f34206a;
-    public final boolean f34207b;
-    public final g9 f34208c;
+    public final String f34211a;
+    public final boolean f34212b;
+    public final g9 f34213c;
 
     public f9(h9 h9Var, String str, boolean z10, g9 g9Var) {
-        this.f34206a = str;
-        this.f34207b = z10;
-        this.f34208c = new g9(h9Var, g9Var, g9Var.f34236a, true);
+        this.f34211a = str;
+        this.f34212b = z10;
+        this.f34213c = new g9(h9Var, g9Var, g9Var.f34254a, true);
     }
 }

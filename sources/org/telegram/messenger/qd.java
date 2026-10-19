@@ -1,54 +1,54 @@
 package org.telegram.messenger;
 public final class qd implements Runnable {
-    public final int f19356a;
-    public final MessagesController f19357b;
+    public final int f19359a;
+    public final MessagesController f19360b;
 
     public qd(MessagesController messagesController, int i10) {
-        this.f19356a = i10;
-        this.f19357b = messagesController;
+        this.f19359a = i10;
+        this.f19360b = messagesController;
     }
 
     @Override
     public final void run() {
-        switch (this.f19356a) {
+        switch (this.f19359a) {
             case 0:
-                this.f19357b.lambda$hidePromoDialog$135();
+                this.f19360b.lambda$hidePromoDialog$135();
                 return;
             case 1:
-                this.f19357b.lambda$putUsers$56();
+                this.f19360b.lambda$putUsers$56();
                 return;
             case 2:
-                this.f19357b.removePromoDialog();
+                this.f19360b.removePromoDialog();
                 return;
             case 3:
-                this.f19357b.lambda$toggleChatJoinToSend$278();
+                this.f19360b.lambda$toggleChatJoinToSend$278();
                 return;
             case 4:
-                this.f19357b.lambda$toggleChannelInvitesHistory$286();
+                this.f19360b.lambda$toggleChannelInvitesHistory$286();
                 return;
             case 5:
-                this.f19357b.lambda$markAllTopicsAsRead$6();
+                this.f19360b.lambda$markAllTopicsAsRead$6();
                 return;
             case 6:
-                this.f19357b.lambda$removeWebBrowserException$517();
+                this.f19360b.lambda$removeWebBrowserException$517();
                 return;
             case 7:
-                this.f19357b.lambda$new$13();
+                this.f19360b.lambda$new$13();
                 return;
             case 8:
-                this.f19357b.loadAppConfig();
+                this.f19360b.loadAppConfig();
                 return;
             case 9:
-                this.f19357b.lambda$new$17();
+                this.f19360b.lambda$new$17();
                 return;
             case 10:
-                this.f19357b.lambda$new$0();
+                this.f19360b.lambda$new$0();
                 return;
             case 11:
-                this.f19357b.lambda$new$18();
+                this.f19360b.lambda$new$18();
                 return;
             default:
-                this.f19357b.lambda$new$38();
+                this.f19360b.lambda$new$38();
                 return;
         }
     }

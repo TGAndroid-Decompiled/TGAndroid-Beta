@@ -1,43 +1,138 @@
 package org.telegram.ui;
 
-import android.content.Context;
-public final class ai0 extends org.telegram.ui.Components.vg {
-    public final org.telegram.ui.Components.vg f35427l0;
-    public final boolean m0;
-    public final ni0 f35428n0;
+import java.util.ArrayList;
+public final class ai0 implements Runnable {
+    public final int f35367a;
+    public final org.telegram.ui.ActionBar.n2 f35368b;
 
-    public ai0(ni0 ni0Var, Context context, int i10, org.telegram.ui.ActionBar.d6 d6Var, org.telegram.ui.Components.vg vgVar, boolean z10) {
-        super(i10, context, d6Var, false);
-        this.f35428n0 = ni0Var;
-        this.f35427l0 = vgVar;
-        this.m0 = z10;
+    public ai0(int i10, org.telegram.ui.ActionBar.n2 n2Var) {
+        this.f35367a = i10;
+        this.f35368b = n2Var;
     }
 
     @Override
-    public final boolean d() {
-        return this.f35427l0.d();
-    }
-
-    @Override
-    public final boolean e() {
-        return this.f35427l0.e();
-    }
-
-    @Override
-    public final boolean f() {
-        if (this.m0 && this.f35428n0.f39468q0 && this.f31270r <= 0) {
-            return false;
+    public final void run() {
+        switch (this.f35367a) {
+            case 0:
+                ?? obj = new Object();
+                obj.f21555a = true;
+                this.f35368b.showAsSheet(new PremiumPreviewFragment(0, "effect"), obj);
+                return;
+            case 1:
+                org.telegram.ui.ActionBar.n2 n2Var = this.f35368b;
+                if (n2Var instanceof PremiumPreviewFragment) {
+                    PremiumPreviewFragment premiumPreviewFragment = (PremiumPreviewFragment) n2Var;
+                    premiumPreviewFragment.f33510p0 = true;
+                    premiumPreviewFragment.getMediaDataController().loadPremiumPromo(false);
+                    premiumPreviewFragment.f33491a.x0(0);
+                } else {
+                    PremiumPreviewFragment premiumPreviewFragment2 = new PremiumPreviewFragment(0, null);
+                    premiumPreviewFragment2.f33510p0 = true;
+                    if (n2Var != null) {
+                        n2Var.presentFragment(premiumPreviewFragment2);
+                    } else {
+                        org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
+                        if (U != null) {
+                            U.presentFragment(premiumPreviewFragment2);
+                        }
+                    }
+                }
+                if (n2Var != null && (n2Var.getParentActivity() instanceof LaunchActivity)) {
+                    try {
+                        n2Var.getFragmentView().performHapticFeedback(3, 2);
+                    } catch (Exception unused) {
+                    }
+                    ((LaunchActivity) n2Var.getParentActivity()).f33193x0.c(false);
+                    return;
+                }
+                return;
+            case 2:
+                this.f35368b.presentFragment(new DataSettingsActivity());
+                return;
+            case 3:
+                org.telegram.messenger.lk.n(0, this.f35368b);
+                return;
+            case 4:
+                org.telegram.messenger.lk.n(0, this.f35368b);
+                return;
+            case 5:
+                this.f35368b.presentFragment(new WallpapersListActivity(0));
+                return;
+            case 6:
+                this.f35368b.presentFragment(new WallpapersListActivity(1));
+                return;
+            case 7:
+                this.f35368b.presentFragment(new NotificationsCustomSettingsActivity(2, new ArrayList(), null, true));
+                return;
+            case 8:
+                this.f35368b.presentFragment(new WallpapersListActivity(0));
+                return;
+            case 9:
+                org.telegram.messenger.lk.n(0, this.f35368b);
+                return;
+            case 10:
+                org.telegram.messenger.lk.n(3, this.f35368b);
+                return;
+            case 11:
+                org.telegram.messenger.lk.n(3, this.f35368b);
+                return;
+            case 12:
+                org.telegram.ui.ActionBar.n2 n2Var2 = this.f35368b;
+                sg.y0 y0Var = new sg.y0(n2Var2, 5, false);
+                y0Var.D();
+                n2Var2.showDialog(y0Var);
+                return;
+            case 13:
+                org.telegram.messenger.lk.n(0, this.f35368b);
+                return;
+            case 14:
+                org.telegram.messenger.lk.n(0, this.f35368b);
+                return;
+            case 15:
+                org.telegram.messenger.lk.n(0, this.f35368b);
+                return;
+            case 16:
+                org.telegram.messenger.lk.n(0, this.f35368b);
+                return;
+            case 17:
+                org.telegram.messenger.lk.n(1, this.f35368b);
+                return;
+            case 18:
+                org.telegram.messenger.lk.n(0, this.f35368b);
+                return;
+            case 19:
+                this.f35368b.presentFragment(new NotificationsSettingsActivity());
+                return;
+            case 20:
+                org.telegram.messenger.lk.n(0, this.f35368b);
+                return;
+            case 21:
+                org.telegram.messenger.lk.n(0, this.f35368b);
+                return;
+            case 22:
+                org.telegram.messenger.lk.n(0, this.f35368b);
+                return;
+            case 23:
+                this.f35368b.presentFragment(new NotificationsSettingsActivity());
+                return;
+            case 24:
+                org.telegram.messenger.lk.n(0, this.f35368b);
+                return;
+            case 25:
+                org.telegram.messenger.lk.n(0, this.f35368b);
+                return;
+            case 26:
+                org.telegram.messenger.lk.n(0, this.f35368b);
+                return;
+            case 27:
+                org.telegram.messenger.lk.n(0, this.f35368b);
+                return;
+            case 28:
+                this.f35368b.presentFragment(new StickersActivity(0, null));
+                return;
+            default:
+                this.f35368b.presentFragment(new StickersActivity(0, null));
+                return;
         }
-        return true;
-    }
-
-    @Override
-    public final int getFillColor() {
-        return this.f35427l0.getFillColor();
-    }
-
-    @Override
-    public final boolean j() {
-        return this.f35427l0.j();
     }
 }

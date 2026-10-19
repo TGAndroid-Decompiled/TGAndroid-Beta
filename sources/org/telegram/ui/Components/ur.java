@@ -7,42 +7,42 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 public final class ur implements View.OnClickListener {
-    public final int f31072a;
-    public final long f31073b;
-    public final Object f31074c;
+    public final int f31047a;
+    public final long f31048b;
+    public final Object f31049c;
     public final Object d;
     public final Object e;
 
     public ur(Object obj, Object obj2, Object obj3, long j10, int i10) {
-        this.f31072a = i10;
-        this.f31074c = obj;
+        this.f31047a = i10;
+        this.f31049c = obj;
         this.d = obj2;
         this.e = obj3;
-        this.f31073b = j10;
+        this.f31048b = j10;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f31072a) {
+        switch (this.f31047a) {
             case 0:
-                xr.T((xr) this.f31074c, (Context) this.d, (ei.d) this.e, this.f31073b);
+                xr.T((xr) this.f31049c, (Context) this.d, (ei.d) this.e, this.f31048b);
                 return;
             case 1:
-                org.telegram.ui.ey eyVar = (org.telegram.ui.ey) this.f31074c;
-                eyVar.finishPreviewFragment();
-                AndroidUtilities.runOnUIThread(new ai.b3(eyVar, (MessagesController.DialogFilter) this.d, (TLRPC.Dialog) this.e, this.f31073b, 19), 100L);
+                org.telegram.ui.cy cyVar = (org.telegram.ui.cy) this.f31049c;
+                cyVar.finishPreviewFragment();
+                AndroidUtilities.runOnUIThread(new ai.b2(cyVar, (MessagesController.DialogFilter) this.d, (TLRPC.Dialog) this.e, this.f31048b, 19), 100L);
                 return;
             default:
-                ug.z.Q((ug.z) this.f31074c, (TL_stories.PrepaidGiveaway) this.d, this.f31073b, (org.telegram.ui.ActionBar.n2) this.e);
+                ug.z.Q((ug.z) this.f31049c, (TL_stories.PrepaidGiveaway) this.d, this.f31048b, (org.telegram.ui.ActionBar.n2) this.e);
                 return;
         }
     }
 
     public ur(ug.z zVar, TL_stories.PrepaidGiveaway prepaidGiveaway, long j10, org.telegram.ui.ActionBar.n2 n2Var) {
-        this.f31072a = 2;
-        this.f31074c = zVar;
+        this.f31047a = 2;
+        this.f31049c = zVar;
         this.d = prepaidGiveaway;
-        this.f31073b = j10;
+        this.f31048b = j10;
         this.e = n2Var;
     }
 }

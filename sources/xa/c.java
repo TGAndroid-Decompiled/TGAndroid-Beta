@@ -5,14 +5,14 @@ public enum c implements ma.c {
     IOS(2),
     WEB(3);
     
-    public final int f49749a;
+    public final int f49748a;
 
     c(int i10) {
-        this.f49749a = i10;
+        this.f49748a = i10;
     }
 
     @Override
     public final int a() {
-        return this.f49749a;
+        return this.f49748a;
     }
 }

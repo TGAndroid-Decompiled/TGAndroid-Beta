@@ -28,14 +28,14 @@ import org.telegram.tgnet.Vector;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
 public final class yt implements Runnable {
-    public final int f32754a;
-    public final Object f32755b;
-    public final Object f32756c;
+    public final int f32748a;
+    public final Object f32749b;
+    public final Object f32750c;
 
     public yt(int i10, Object obj, Object obj2) {
-        this.f32754a = i10;
-        this.f32755b = obj;
-        this.f32756c = obj2;
+        this.f32748a = i10;
+        this.f32749b = obj;
+        this.f32750c = obj2;
     }
 
     @Override
@@ -45,43 +45,43 @@ public final class yt implements Runnable {
         int i10;
         long j10;
         l70 l70Var;
-        org.telegram.ui.kb kbVar;
+        org.telegram.ui.ib ibVar;
         ai.x7 x7Var;
         boolean z12;
         boolean z13;
         boolean z14;
-        int i11 = this.f32754a;
+        int i11 = this.f32748a;
         boolean z15 = false;
         boolean z16 = true;
-        Object obj = this.f32756c;
-        Object obj2 = this.f32755b;
+        Object obj = this.f32750c;
+        Object obj2 = this.f32749b;
         switch (i11) {
             case 0:
                 ((EditTextBoldCursor) obj2).hintLayout.draw((Canvas) obj);
                 return;
             case 1:
-                MessagesController.getInstance(aw.V(((iv) obj2).f27355a)).updateEmojiStatus((TLRPC.EmojiStatus) obj);
+                MessagesController.getInstance(aw.V(((iv) obj2).f27362a)).updateEmojiStatus((TLRPC.EmojiStatus) obj);
                 return;
             case 2:
-                MessagesController.getInstance(((lx) obj2).f28339a.f30747c1).updateEmojiStatus((TLRPC.EmojiStatus) obj);
+                MessagesController.getInstance(((lx) obj2).f28327a.f30770c1).updateEmojiStatus((TLRPC.EmojiStatus) obj);
                 return;
             case 3:
                 TLObject tLObject = (TLObject) obj;
-                tz tzVar = ((lx) obj2).f28339a;
+                tz tzVar = ((lx) obj2).f28327a;
                 if (tLObject instanceof TLRPC.TL_messages_stickerSet) {
                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) tLObject;
-                    MediaDataController.getInstance(tzVar.f30747c1).putStickerSet(tL_messages_stickerSet);
-                    MediaDataController.getInstance(tzVar.f30747c1).replaceStickerSet(tL_messages_stickerSet);
+                    MediaDataController.getInstance(tzVar.f30770c1).putStickerSet(tL_messages_stickerSet);
+                    MediaDataController.getInstance(tzVar.f30770c1).replaceStickerSet(tL_messages_stickerSet);
                     return;
                 }
                 return;
             case 4:
                 jy jyVar = (jy) obj2;
                 TLRPC.TL_messages_stickerSet tL_messages_stickerSet2 = (TLRPC.TL_messages_stickerSet) obj;
-                jyVar.f27650s.f26406f = true;
+                jyVar.f27631s.f26398f = true;
                 tz tzVar2 = jyVar.E;
-                if (!tzVar2.f30786p1.contains(Long.valueOf(tL_messages_stickerSet2.set.f20299id))) {
-                    tzVar2.f30786p1.add(Long.valueOf(tL_messages_stickerSet2.set.f20299id));
+                if (!tzVar2.f30809p1.contains(Long.valueOf(tL_messages_stickerSet2.set.f20302id))) {
+                    tzVar2.f30809p1.add(Long.valueOf(tL_messages_stickerSet2.set.f20302id));
                 }
                 jyVar.a(true);
                 return;
@@ -89,9 +89,9 @@ public final class yt implements Runnable {
                 final sy syVar = (sy) obj2;
                 final String str = (String) obj;
                 String[] currentKeyboardLanguage = AndroidUtilities.getCurrentKeyboardLanguage();
-                tz tzVar3 = syVar.f30405a.F;
+                tz tzVar3 = syVar.f30362a.F;
                 if (!Arrays.equals(tzVar3.W0, currentKeyboardLanguage)) {
-                    MediaDataController.getInstance(tzVar3.f30747c1).fetchNewEmojiKeywords(currentKeyboardLanguage);
+                    MediaDataController.getInstance(tzVar3.f30770c1).fetchNewEmojiKeywords(currentKeyboardLanguage);
                 }
                 tzVar3.W0 = currentKeyboardLanguage;
                 ArrayList arrayList = new ArrayList();
@@ -108,24 +108,24 @@ public final class yt implements Runnable {
                         switch (r4) {
                             case 0:
                                 sy syVar2 = syVar;
-                                MediaDataController.getInstance(syVar2.f30405a.F.f30747c1).searchStickerSets(true, str, new ai.y3(syVar2, arrayList3, runnable, 8));
+                                MediaDataController.getInstance(syVar2.f30362a.F.f30770c1).searchStickerSets(true, str, new ai.v3(syVar2, arrayList3, runnable, 8));
                                 return;
                             default:
-                                tz tzVar4 = syVar.f30405a.F;
-                                if (SharedConfig.suggestAnimatedEmoji || UserConfig.getInstance(tzVar4.f30747c1).isPremium()) {
+                                tz tzVar4 = syVar.f30362a.F;
+                                if (SharedConfig.suggestAnimatedEmoji || UserConfig.getInstance(tzVar4.f30770c1).isPremium()) {
                                     String translitSafe = AndroidUtilities.translitSafe((str + "").toLowerCase());
-                                    int i12 = tzVar4.f30747c1;
+                                    int i12 = tzVar4.f30770c1;
                                     ArrayList<TLRPC.TL_messages_stickerSet> stickerSets = MediaDataController.getInstance(i12).getStickerSets(5);
                                     HashSet hashSet = new HashSet();
                                     ArrayList arrayList6 = arrayList3;
                                     if (stickerSets != null) {
                                         for (int i13 = 0; i13 < stickerSets.size(); i13++) {
                                             TLRPC.TL_messages_stickerSet tL_messages_stickerSet3 = stickerSets.get(i13);
-                                            if (tL_messages_stickerSet3 != null && (stickerSet2 = tL_messages_stickerSet3.set) != null && stickerSet2.title != null && (arrayList5 = tL_messages_stickerSet3.documents) != null && !arrayList5.isEmpty() && !hashSet.contains(Long.valueOf(tL_messages_stickerSet3.set.f20299id))) {
+                                            if (tL_messages_stickerSet3 != null && (stickerSet2 = tL_messages_stickerSet3.set) != null && stickerSet2.title != null && (arrayList5 = tL_messages_stickerSet3.documents) != null && !arrayList5.isEmpty() && !hashSet.contains(Long.valueOf(tL_messages_stickerSet3.set.f20302id))) {
                                                 String translitSafe2 = AndroidUtilities.translitSafe(tL_messages_stickerSet3.set.title.toLowerCase());
                                                 if (translitSafe2.startsWith(translitSafe) || org.telegram.messenger.g0.w(" ", translitSafe, translitSafe2)) {
                                                     arrayList6.add(new ky(tL_messages_stickerSet3, tL_messages_stickerSet3.documents));
-                                                    hashSet.add(Long.valueOf(tL_messages_stickerSet3.set.f20299id));
+                                                    hashSet.add(Long.valueOf(tL_messages_stickerSet3.set.f20302id));
                                                 }
                                             }
                                         }
@@ -134,7 +134,7 @@ public final class yt implements Runnable {
                                     if (featuredEmojiSets != null) {
                                         for (int i14 = 0; i14 < featuredEmojiSets.size(); i14++) {
                                             TLRPC.StickerSetCovered stickerSetCovered = featuredEmojiSets.get(i14);
-                                            if (stickerSetCovered != null && (stickerSet = stickerSetCovered.set) != null && stickerSet.title != null && !hashSet.contains(Long.valueOf(stickerSet.f20299id))) {
+                                            if (stickerSetCovered != null && (stickerSet = stickerSetCovered.set) != null && stickerSet.title != null && !hashSet.contains(Long.valueOf(stickerSet.f20302id))) {
                                                 String translitSafe3 = AndroidUtilities.translitSafe(stickerSetCovered.set.title.toLowerCase());
                                                 if (translitSafe3.startsWith(translitSafe) || org.telegram.messenger.g0.w(" ", translitSafe, translitSafe3)) {
                                                     if (stickerSetCovered instanceof TLRPC.TL_stickerSetFullCovered) {
@@ -151,7 +151,7 @@ public final class yt implements Runnable {
                                                     }
                                                     if (arrayList4 != null && !arrayList4.isEmpty()) {
                                                         arrayList6.add(new ky(stickerSetCovered, arrayList4));
-                                                        hashSet.add(Long.valueOf(stickerSetCovered.set.f20299id));
+                                                        hashSet.add(Long.valueOf(stickerSetCovered.set.f20302id));
                                                     }
                                                 }
                                             }
@@ -173,24 +173,24 @@ public final class yt implements Runnable {
                         switch (r4) {
                             case 0:
                                 sy syVar2 = syVar;
-                                MediaDataController.getInstance(syVar2.f30405a.F.f30747c1).searchStickerSets(true, str, new ai.y3(syVar2, arrayList2, runnable, 8));
+                                MediaDataController.getInstance(syVar2.f30362a.F.f30770c1).searchStickerSets(true, str, new ai.v3(syVar2, arrayList2, runnable, 8));
                                 return;
                             default:
-                                tz tzVar4 = syVar.f30405a.F;
-                                if (SharedConfig.suggestAnimatedEmoji || UserConfig.getInstance(tzVar4.f30747c1).isPremium()) {
+                                tz tzVar4 = syVar.f30362a.F;
+                                if (SharedConfig.suggestAnimatedEmoji || UserConfig.getInstance(tzVar4.f30770c1).isPremium()) {
                                     String translitSafe = AndroidUtilities.translitSafe((str + "").toLowerCase());
-                                    int i12 = tzVar4.f30747c1;
+                                    int i12 = tzVar4.f30770c1;
                                     ArrayList<TLRPC.TL_messages_stickerSet> stickerSets = MediaDataController.getInstance(i12).getStickerSets(5);
                                     HashSet hashSet = new HashSet();
                                     ArrayList arrayList6 = arrayList2;
                                     if (stickerSets != null) {
                                         for (int i13 = 0; i13 < stickerSets.size(); i13++) {
                                             TLRPC.TL_messages_stickerSet tL_messages_stickerSet3 = stickerSets.get(i13);
-                                            if (tL_messages_stickerSet3 != null && (stickerSet2 = tL_messages_stickerSet3.set) != null && stickerSet2.title != null && (arrayList5 = tL_messages_stickerSet3.documents) != null && !arrayList5.isEmpty() && !hashSet.contains(Long.valueOf(tL_messages_stickerSet3.set.f20299id))) {
+                                            if (tL_messages_stickerSet3 != null && (stickerSet2 = tL_messages_stickerSet3.set) != null && stickerSet2.title != null && (arrayList5 = tL_messages_stickerSet3.documents) != null && !arrayList5.isEmpty() && !hashSet.contains(Long.valueOf(tL_messages_stickerSet3.set.f20302id))) {
                                                 String translitSafe2 = AndroidUtilities.translitSafe(tL_messages_stickerSet3.set.title.toLowerCase());
                                                 if (translitSafe2.startsWith(translitSafe) || org.telegram.messenger.g0.w(" ", translitSafe, translitSafe2)) {
                                                     arrayList6.add(new ky(tL_messages_stickerSet3, tL_messages_stickerSet3.documents));
-                                                    hashSet.add(Long.valueOf(tL_messages_stickerSet3.set.f20299id));
+                                                    hashSet.add(Long.valueOf(tL_messages_stickerSet3.set.f20302id));
                                                 }
                                             }
                                         }
@@ -199,7 +199,7 @@ public final class yt implements Runnable {
                                     if (featuredEmojiSets != null) {
                                         for (int i14 = 0; i14 < featuredEmojiSets.size(); i14++) {
                                             TLRPC.StickerSetCovered stickerSetCovered = featuredEmojiSets.get(i14);
-                                            if (stickerSetCovered != null && (stickerSet = stickerSetCovered.set) != null && stickerSet.title != null && !hashSet.contains(Long.valueOf(stickerSet.f20299id))) {
+                                            if (stickerSetCovered != null && (stickerSet = stickerSetCovered.set) != null && stickerSet.title != null && !hashSet.contains(Long.valueOf(stickerSet.f20302id))) {
                                                 String translitSafe3 = AndroidUtilities.translitSafe(stickerSetCovered.set.title.toLowerCase());
                                                 if (translitSafe3.startsWith(translitSafe) || org.telegram.messenger.g0.w(" ", translitSafe, translitSafe3)) {
                                                     if (stickerSetCovered instanceof TLRPC.TL_stickerSetFullCovered) {
@@ -216,7 +216,7 @@ public final class yt implements Runnable {
                                                     }
                                                     if (arrayList4 != null && !arrayList4.isEmpty()) {
                                                         arrayList6.add(new ky(stickerSetCovered, arrayList4));
-                                                        hashSet.add(Long.valueOf(stickerSetCovered.set.f20299id));
+                                                        hashSet.add(Long.valueOf(stickerSetCovered.set.f20302id));
                                                     }
                                                 }
                                             }
@@ -227,13 +227,13 @@ public final class yt implements Runnable {
                                 return;
                         }
                     }
-                }, new qy(0, syVar, arrayList), new ai.d3(syVar, str, arrayList, arrayList2, arrayList3, 4));
+                }, new qy(0, syVar, arrayList), new ai.g3(syVar, str, arrayList, arrayList2, arrayList3, 4));
                 return;
             case 6:
                 ArrayList arrayList4 = (ArrayList) obj;
-                ty tyVar = ((sy) obj2).f30405a;
+                ty tyVar = ((sy) obj2).f30362a;
                 tyVar.F.V.e(false);
-                ArrayList arrayList5 = tyVar.f30733r;
+                ArrayList arrayList5 = tyVar.f30754r;
                 if (arrayList5.size() >= arrayList4.size()) {
                     z10 = true;
                 } else {
@@ -251,12 +251,12 @@ public final class yt implements Runnable {
                 yy yyVar = (yy) obj2;
                 TLRPC.TL_contacts_resolvedPeer tL_contacts_resolvedPeer = (TLRPC.TL_contacts_resolvedPeer) ((TLObject) obj);
                 tz tzVar4 = yyVar.L;
-                MessagesController.getInstance(tzVar4.f30747c1).putUsers(tL_contacts_resolvedPeer.users, false);
-                int i12 = tzVar4.f30747c1;
+                MessagesController.getInstance(tzVar4.f30770c1).putUsers(tL_contacts_resolvedPeer.users, false);
+                int i12 = tzVar4.f30770c1;
                 MessagesController.getInstance(i12).putChats(tL_contacts_resolvedPeer.chats, false);
                 MessagesStorage.getInstance(i12).putUsersAndChats(tL_contacts_resolvedPeer.users, tL_contacts_resolvedPeer.chats, true, true);
-                String str2 = yyVar.f32777w;
-                yyVar.f32777w = null;
+                String str2 = yyVar.f32774w;
+                yyVar.f32774w = null;
                 yyVar.F(str2, "", false, false, false);
                 return;
             case 9:
@@ -265,14 +265,14 @@ public final class yt implements Runnable {
                 e00Var.c();
                 e00Var.h(z7Var);
                 i00 i00Var = e00Var.J;
-                i00Var.f26995h1 = z7Var;
+                i00Var.f26990h1 = z7Var;
                 i00Var.j();
                 return;
             case 10:
-                ((e00) obj2).J.f26990f1 = (h00) obj;
+                ((e00) obj2).J.f26985f1 = (h00) obj;
                 return;
             case 11:
-                ((k10) obj2).f27695z0 = -1;
+                ((k10) obj2).f27679z0 = -1;
                 ((Runnable) ((Pair) obj).first).run();
                 return;
             case 12:
@@ -283,7 +283,7 @@ public final class yt implements Runnable {
                 Uri uri = (Uri) obj;
                 e50Var.getClass();
                 try {
-                    LaunchActivity launchActivity = (LaunchActivity) e50Var.f25805a.getParentActivity();
+                    LaunchActivity launchActivity = (LaunchActivity) e50Var.f25777a.getParentActivity();
                     if (launchActivity != 0) {
                         Bundle bundle = new Bundle();
                         if (uri != null) {
@@ -291,8 +291,8 @@ public final class yt implements Runnable {
                         }
                         ?? n2Var = new org.telegram.ui.ActionBar.n2(bundle);
                         n2Var.e = false;
-                        n2Var.f43215f = false;
-                        n2Var.f43214c = e50Var;
+                        n2Var.f42344f = false;
+                        n2Var.f42343c = e50Var;
                         launchActivity.t0(n2Var);
                         return;
                     }
@@ -322,26 +322,26 @@ public final class yt implements Runnable {
                 videoEditedInfo2.resultWidth = 360;
                 videoEditedInfo2.originalHeight = 360;
                 videoEditedInfo2.resultHeight = 360;
-                videoEditedInfo2.originalPath = f60Var.f26099a.getAbsolutePath();
+                videoEditedInfo2.originalPath = f60Var.f26116a.getAbsolutePath();
                 VideoEditedInfo videoEditedInfo3 = m60Var.S;
                 videoEditedInfo3.notReadyYet = true;
-                videoEditedInfo3.thumb = m60Var.f28430j1;
-                videoEditedInfo3.estimatedDuration = m60Var.f28431k0;
-                m60Var.f28430j1 = null;
-                MediaController.PhotoEntry photoEntry = new MediaController.PhotoEntry(0, 0, 0L, f60Var.f26099a.getAbsolutePath(), 0, true, 0, 0, 0L);
+                videoEditedInfo3.thumb = m60Var.f28425j1;
+                videoEditedInfo3.estimatedDuration = m60Var.f28426k0;
+                m60Var.f28425j1 = null;
+                MediaController.PhotoEntry photoEntry = new MediaController.PhotoEntry(0, 0, 0L, f60Var.f26116a.getAbsolutePath(), 0, true, 0, 0, 0L);
                 if (a60Var != null) {
-                    photoEntry.ttl = a60Var.f24501c;
+                    photoEntry.ttl = a60Var.f24503c;
                     photoEntry.effectId = a60Var.d;
                 }
-                y50 y50Var = m60Var.f28434n;
+                y50 y50Var = m60Var.f28429n;
                 VideoEditedInfo videoEditedInfo4 = m60Var.S;
-                if (a60Var != null && !a60Var.f24499a) {
+                if (a60Var != null && !a60Var.f24501a) {
                     z11 = false;
                 } else {
                     z11 = true;
                 }
                 if (a60Var != null) {
-                    i10 = a60Var.f24500b;
+                    i10 = a60Var.f24502b;
                 } else {
                     i10 = 0;
                 }
@@ -350,14 +350,14 @@ public final class yt implements Runnable {
                 } else {
                     j10 = 0;
                 }
-                y50Var.r(photoEntry, videoEditedInfo4, z11, i10, 0, false, j10);
+                y50Var.s(photoEntry, videoEditedInfo4, z11, i10, 0, false, j10);
                 return;
             case 15:
                 Bitmap bitmap = (Bitmap) obj;
-                f60 f60Var2 = (f60) ((org.telegram.ui.Cells.k7) obj2).f22508b;
+                f60 f60Var2 = (f60) ((org.telegram.ui.Cells.k7) obj2).f22511b;
                 if ((bitmap == null || bitmap.getPixel(0, 0) == 0) && f60Var2.A0.size() > 1) {
                     ArrayList arrayList6 = f60Var2.A0;
-                    arrayList6.add((Bitmap) i2.d.h(1, arrayList6));
+                    arrayList6.add((Bitmap) i2.e.h(1, arrayList6));
                     return;
                 }
                 f60Var2.A0.add(bitmap);
@@ -369,7 +369,7 @@ public final class yt implements Runnable {
                 if (tLObject2 instanceof Vector) {
                     Vector vector = (Vector) tLObject2;
                     if (!vector.objects.isEmpty()) {
-                        l70Var2.f28119c.put(Long.valueOf(l70Var2.f28117b.admin_id), (TLRPC.User) vector.objects.get(0));
+                        l70Var2.f28127c.put(Long.valueOf(l70Var2.f28125b.admin_id), (TLRPC.User) vector.objects.get(0));
                         l70Var2.T.l();
                         return;
                     }
@@ -378,28 +378,28 @@ public final class yt implements Runnable {
                 return;
             case 17:
                 f70 f70Var = (f70) obj2;
-                if (((TLRPC.TL_error) obj) == null && (kbVar = (l70Var = f70Var.f26156a.f26492c).f28128j0) != null) {
-                    TLRPC.TL_chatInviteExported tL_chatInviteExported = l70Var.f28117b;
-                    org.telegram.ui.xb xbVar = kbVar.f38452a;
-                    ArrayList arrayList7 = xbVar.f43044o0;
+                if (((TLRPC.TL_error) obj) == null && (ibVar = (l70Var = f70Var.f26153a.f26516c).f28136j0) != null) {
+                    TLRPC.TL_chatInviteExported tL_chatInviteExported = l70Var.f28125b;
+                    org.telegram.ui.vb vbVar = ibVar.f37932a;
+                    ArrayList arrayList7 = vbVar.f42173o0;
                     int size = arrayList7.size();
-                    int i13 = xbVar.E.h;
+                    int i13 = vbVar.E.h;
                     TLRPC.TL_channelAdminLogEvent tL_channelAdminLogEvent = new TLRPC.TL_channelAdminLogEvent();
                     TLRPC.TL_channelAdminLogEventActionExportedInviteDelete tL_channelAdminLogEventActionExportedInviteDelete = new TLRPC.TL_channelAdminLogEventActionExportedInviteDelete();
                     tL_channelAdminLogEventActionExportedInviteDelete.invite = tL_chatInviteExported;
                     tL_channelAdminLogEvent.action = tL_channelAdminLogEventActionExportedInviteDelete;
                     tL_channelAdminLogEvent.date = (int) (System.currentTimeMillis() / 1000);
-                    tL_channelAdminLogEvent.user_id = xbVar.getAccountInstance().getUserConfig().clientUserId;
-                    if (new MessageObject(org.telegram.ui.xb.L0(xbVar), tL_channelAdminLogEvent, (ArrayList<MessageObject>) xbVar.f43043n0, (HashMap<String, ArrayList<MessageObject>>) xbVar.m0, xbVar.f43034f, xbVar.T, true).contentType >= 0) {
-                        xbVar.R0();
+                    tL_channelAdminLogEvent.user_id = vbVar.getAccountInstance().getUserConfig().clientUserId;
+                    if (new MessageObject(org.telegram.ui.vb.L0(vbVar), tL_channelAdminLogEvent, (ArrayList<MessageObject>) vbVar.f42172n0, (HashMap<String, ArrayList<MessageObject>>) vbVar.m0, vbVar.f42163f, vbVar.T, true).contentType >= 0) {
+                        vbVar.R0();
                         int size2 = arrayList7.size() - size;
                         if (size2 > 0) {
-                            xbVar.C0.N = true;
-                            org.telegram.ui.tb tbVar = xbVar.E;
-                            tbVar.s(tbVar.h, size2);
-                            org.telegram.ui.xb.K0(xbVar);
+                            vbVar.C0.N = true;
+                            org.telegram.ui.rb rbVar = vbVar.E;
+                            rbVar.s(rbVar.h, size2);
+                            org.telegram.ui.vb.K0(vbVar);
                         }
-                        xbVar.f43059y0.remove(tL_chatInviteExported.link);
+                        vbVar.f42188y0.remove(tL_chatInviteExported.link);
                         return;
                     }
                     return;
@@ -414,7 +414,7 @@ public final class yt implements Runnable {
             case 19:
                 Bundle bundle2 = new Bundle();
                 bundle2.putLong("user_id", ((TLRPC.ChatFull) obj2).guard_bot_id);
-                ((org.telegram.ui.yo) obj).presentFragment(new ProfileActivity(bundle2, null));
+                ((org.telegram.ui.wo) obj).presentFragment(new ProfileActivity(bundle2, null));
                 return;
             case 20:
                 s90 s90Var = (s90) obj2;
@@ -446,7 +446,7 @@ public final class yt implements Runnable {
                 Runnable runnable = (Runnable) obj;
                 fVar.getClass();
                 runnable.run();
-                ((HashMap) fVar.f15842b).remove(runnable);
+                ((HashMap) fVar.f15845b).remove(runnable);
                 return;
             case 25:
                 th0 th0Var = (th0) obj2;
@@ -460,17 +460,17 @@ public final class yt implements Runnable {
                         return;
                     }
                     th0Var.d();
-                    th0Var.f30549c.W2.N(true);
+                    th0Var.f30511c.W2.N(true);
                     return;
                 }
                 return;
             case 26:
                 yh0 yh0Var = (yh0) obj2;
                 ArrayList arrayList8 = (ArrayList) obj;
-                ArrayList arrayList9 = yh0Var.f32631a;
-                int i14 = yh0Var.f32643x;
+                ArrayList arrayList9 = yh0Var.f32625a;
+                int i14 = yh0Var.f32637x;
                 int size3 = arrayList8.size();
-                yh0Var.f32643x = size3;
+                yh0Var.f32637x = size3;
                 if (i14 != size3 && yh0Var.S != null) {
                     yh0Var.g();
                 }
@@ -478,20 +478,20 @@ public final class yt implements Runnable {
                 int i15 = 0;
                 while (i15 < size4) {
                     vh0 vh0Var = (vh0) arrayList9.get(i15);
-                    if (vh0Var.f31290o && !vh0Var.f31291p) {
+                    if (vh0Var.f31301o && !vh0Var.f31302p) {
                         arrayList8.add(vh0Var);
-                    } else if (yh0.j(vh0Var.f31279a, arrayList8) == null) {
-                        yh0 yh0Var2 = vh0Var.f31299y;
+                    } else if (yh0.j(vh0Var.f31290a, arrayList8) == null) {
+                        yh0 yh0Var2 = vh0Var.f31310y;
                         float f7 = yh0Var2.N;
-                        RectF rectF = vh0Var.f31281c;
-                        RectF rectF2 = vh0Var.f31282f;
-                        ba0 ba0Var = vh0Var.f31293r;
+                        RectF rectF = vh0Var.f31292c;
+                        RectF rectF2 = vh0Var.f31293f;
+                        ba0 ba0Var = vh0Var.f31304r;
                         if (ba0Var != null) {
                             ba0Var.a();
-                            vh0Var.f31295t = z15;
-                            vh0Var.f31294s = z15;
+                            vh0Var.f31306t = z15;
+                            vh0Var.f31305s = z15;
                         }
-                        vh0Var.f31290o = z16;
+                        vh0Var.f31301o = z16;
                         if (rectF.left - 1.0f <= f7) {
                             z12 = z16;
                         } else {
@@ -506,14 +506,14 @@ public final class yt implements Runnable {
                             z13 = false;
                             z12 = false;
                         }
-                        vh0Var.f31283g.set(rectF);
+                        vh0Var.f31294g.set(rectF);
                         rectF2.set(rectF);
                         if (z12) {
                             rectF2.right = rectF2.left;
                         } else if (z13) {
                             rectF2.left = rectF2.right;
                         } else {
-                            int i16 = vh0Var.f31279a;
+                            int i16 = vh0Var.f31290a;
                             if (i16 != 3 && i16 != 2) {
                                 z14 = true;
                             } else {
@@ -545,9 +545,9 @@ public final class yt implements Runnable {
             case 27:
                 vh0 vh0Var2 = (vh0) obj;
                 xh0 xh0Var = ((yh0) obj2).F;
-                int i17 = vh0Var2.f31279a;
+                int i17 = vh0Var2.f31290a;
                 RectF rectF3 = vh0Var2.d;
-                ProfileActivity.e0(((org.telegram.ui.ox0) xh0Var).f39879b, i17, rectF3.left, rectF3.top);
+                ProfileActivity.e0(((org.telegram.ui.mx0) xh0Var).f39362b, i17, rectF3.left, rectF3.top);
                 return;
             case 28:
                 RLottieNative rLottieNative = (RLottieNative) obj2;
@@ -563,8 +563,8 @@ public final class yt implements Runnable {
             default:
                 ck0 ck0Var = (ck0) obj2;
                 ArrayList arrayList10 = (ArrayList) obj;
-                ArrayList arrayList11 = ck0Var.f25251r;
-                ck0Var.f25250n.addAll(arrayList10);
+                ArrayList arrayList11 = ck0Var.f25229r;
+                ck0Var.f25228n.addAll(arrayList10);
                 int size5 = arrayList10.size();
                 int i18 = 0;
                 while (i18 < size5) {
@@ -574,9 +574,9 @@ public final class yt implements Runnable {
                     int i19 = 0;
                     while (true) {
                         if (i19 < arrayList11.size()) {
-                            if (MessageObject.getObjectPeerId(((bk0) arrayList11.get(i19)).f24998a) == MessageObject.getObjectPeerId(bk0Var.f24998a)) {
-                                if (bk0Var.f25000c > 0) {
-                                    ((bk0) arrayList11.get(i19)).f25000c = bk0Var.f25000c;
+                            if (MessageObject.getObjectPeerId(((bk0) arrayList11.get(i19)).f24982a) == MessageObject.getObjectPeerId(bk0Var.f24982a)) {
+                                if (bk0Var.f24984c > 0) {
+                                    ((bk0) arrayList11.get(i19)).f24984c = bk0Var.f24984c;
                                 }
                             } else {
                                 i19++;
@@ -586,7 +586,7 @@ public final class yt implements Runnable {
                         }
                     }
                 }
-                q0.a aVar = ck0Var.f25253w;
+                q0.a aVar = ck0Var.f25231w;
                 if (aVar != null) {
                     aVar.accept(arrayList10);
                 }
@@ -595,9 +595,9 @@ public final class yt implements Runnable {
         }
     }
 
-    public yt(j71 j71Var, EditTextBoldCursor editTextBoldCursor, int i10) {
-        this.f32754a = i10;
-        this.f32756c = j71Var;
-        this.f32755b = editTextBoldCursor;
+    public yt(k71 k71Var, EditTextBoldCursor editTextBoldCursor, int i10) {
+        this.f32748a = i10;
+        this.f32750c = k71Var;
+        this.f32749b = editTextBoldCursor;
     }
 }

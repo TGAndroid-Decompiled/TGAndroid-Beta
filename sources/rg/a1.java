@@ -11,18 +11,18 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.ui.Components.hm0;
 import org.telegram.ui.Components.ja;
 public final class a1 extends hm0 {
-    public final Context f45275c;
+    public final Context f45273c;
     public final ja d;
     public final q6 e;
-    public final boolean f45276f;
+    public final boolean f45274f;
     public final r5 h;
 
     public a1(r5 r5Var, Context context, ja jaVar, q6 q6Var, boolean z10) {
         this.h = r5Var;
-        this.f45275c = context;
+        this.f45273c = context;
         this.d = jaVar;
         this.e = q6Var;
-        this.f45276f = z10;
+        this.f45274f = z10;
     }
 
     @Override
@@ -32,12 +32,12 @@ public final class a1 extends hm0 {
 
     @Override
     public final int h() {
-        return this.h.f45327s0.size();
+        return this.h.f45325s0.size();
     }
 
     @Override
     public final int j(int i10) {
-        ArrayList arrayList = this.h.f45327s0;
+        ArrayList arrayList = this.h.f45325s0;
         return ((MessageObject) arrayList.get((arrayList.size() - 1) - i10)).contentType;
     }
 
@@ -48,12 +48,12 @@ public final class a1 extends hm0 {
         MessageObject.GroupedMessagePosition position;
         boolean z12;
         r5 r5Var = this.h;
-        ArrayList arrayList = r5Var.f45327s0;
+        ArrayList arrayList = r5Var.f45325s0;
         MessageObject messageObject = (MessageObject) arrayList.get((arrayList.size() - 1) - i10);
         View view = b1Var.f45910a;
         if (view instanceof org.telegram.ui.Cells.u1) {
             org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) view;
-            MessageObject.GroupedMessages groupedMessages = r5Var.f45328t0;
+            MessageObject.GroupedMessages groupedMessages = r5Var.f45326t0;
             if (groupedMessages != null && (position = groupedMessages.getPosition(messageObject)) != null) {
                 if (position.minY != 0) {
                     z12 = true;
@@ -64,7 +64,7 @@ public final class a1 extends hm0 {
             } else {
                 z10 = false;
             }
-            MessageObject.GroupedMessages groupedMessages2 = r5Var.f45328t0;
+            MessageObject.GroupedMessages groupedMessages2 = r5Var.f45326t0;
             if (groupedMessages2 != null) {
                 z11 = true;
             } else {
@@ -79,7 +79,7 @@ public final class a1 extends hm0 {
     @Override
     public final s4.b1 x(ViewGroup viewGroup, int i10) {
         com.google.firebase.messaging.l lVar = this.h.D0;
-        Context context = this.f45275c;
+        Context context = this.f45273c;
         if (i10 == 1) {
             return new s4.b1(new y0(this, context, lVar));
         }

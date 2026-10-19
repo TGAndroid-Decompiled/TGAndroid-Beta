@@ -10,7 +10,7 @@ public interface i {
 
     m2.j g(long j10);
 
-    long o(long j10, long j11);
+    long p(long j10, long j11);
 
     boolean s();
 
@@ -18,5 +18,5 @@ public interface i {
 
     long w(long j10);
 
-    long x(long j10, long j11);
+    long y(long j10, long j11);
 }

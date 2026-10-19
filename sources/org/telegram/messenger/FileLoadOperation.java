@@ -235,7 +235,7 @@ public class FileLoadOperation {
             this.location = tL_inputEncryptedFileLocation;
             TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated = imageLocation.location;
             long j11 = tL_fileLocationToBeDeprecated.volume_id;
-            tL_inputEncryptedFileLocation.f20287id = j11;
+            tL_inputEncryptedFileLocation.f20290id = j11;
             tL_inputEncryptedFileLocation.volume_id = j11;
             tL_inputEncryptedFileLocation.local_id = tL_fileLocationToBeDeprecated.local_id;
             tL_inputEncryptedFileLocation.access_hash = imageLocation.access_hash;
@@ -247,7 +247,7 @@ public class FileLoadOperation {
             TLRPC.TL_inputPeerPhotoFileLocation tL_inputPeerPhotoFileLocation = new TLRPC.TL_inputPeerPhotoFileLocation();
             TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated2 = imageLocation.location;
             long j12 = tL_fileLocationToBeDeprecated2.volume_id;
-            tL_inputPeerPhotoFileLocation.f20287id = j12;
+            tL_inputPeerPhotoFileLocation.f20290id = j12;
             tL_inputPeerPhotoFileLocation.volume_id = j12;
             tL_inputPeerPhotoFileLocation.local_id = tL_fileLocationToBeDeprecated2.local_id;
             tL_inputPeerPhotoFileLocation.photo_id = imageLocation.photoId;
@@ -258,7 +258,7 @@ public class FileLoadOperation {
             TLRPC.TL_inputStickerSetThumb tL_inputStickerSetThumb = new TLRPC.TL_inputStickerSetThumb();
             TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated3 = imageLocation.location;
             long j13 = tL_fileLocationToBeDeprecated3.volume_id;
-            tL_inputStickerSetThumb.f20287id = j13;
+            tL_inputStickerSetThumb.f20290id = j13;
             tL_inputStickerSetThumb.volume_id = j13;
             tL_inputStickerSetThumb.local_id = tL_fileLocationToBeDeprecated3.local_id;
             tL_inputStickerSetThumb.thumb_version = imageLocation.thumbVersion;
@@ -268,7 +268,7 @@ public class FileLoadOperation {
             if (imageLocation.photoId != 0) {
                 TLRPC.TL_inputPhotoFileLocation tL_inputPhotoFileLocation = new TLRPC.TL_inputPhotoFileLocation();
                 this.location = tL_inputPhotoFileLocation;
-                tL_inputPhotoFileLocation.f20287id = imageLocation.photoId;
+                tL_inputPhotoFileLocation.f20290id = imageLocation.photoId;
                 TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated4 = imageLocation.location;
                 tL_inputPhotoFileLocation.volume_id = tL_fileLocationToBeDeprecated4.volume_id;
                 tL_inputPhotoFileLocation.local_id = tL_fileLocationToBeDeprecated4.local_id;
@@ -282,7 +282,7 @@ public class FileLoadOperation {
                 TLRPC.TL_inputDocumentFileLocation tL_inputDocumentFileLocation = new TLRPC.TL_inputDocumentFileLocation();
                 this.location = tL_inputDocumentFileLocation;
                 long j14 = imageLocation.documentId;
-                tL_inputDocumentFileLocation.f20287id = j14;
+                tL_inputDocumentFileLocation.f20290id = j14;
                 this.documentId = j14;
                 TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated5 = imageLocation.location;
                 tL_inputDocumentFileLocation.volume_id = tL_fileLocationToBeDeprecated5.volume_id;
@@ -1327,7 +1327,7 @@ public class FileLoadOperation {
         notifyStreamListeners();
         cleanup();
         if (!this.isPreloadVideoOperation && !z11) {
-            filesQueue.postRunnable(new ai.m4(this, this.cacheIvTemp, this.cacheFileParts, this.cacheFilePreload, this.cacheFileTemp, z10, 3));
+            filesQueue.postRunnable(new ai.o4(this, this.cacheIvTemp, this.cacheFileParts, this.cacheFilePreload, this.cacheFileTemp, z10, 3));
             this.cacheIvTemp = null;
             this.cacheFileParts = null;
             this.cacheFilePreload = null;
@@ -1914,7 +1914,7 @@ public class FileLoadOperation {
                     }
                     if (fileLoadOperation.streamPriorityStartOffset != j10) {
                         if (BuildVars.DEBUG_VERSION) {
-                            i2.d.x(new StringBuilder("frame get offset = "), fileLoadOperation.streamPriorityStartOffset);
+                            i2.e.x(new StringBuilder("frame get offset = "), fileLoadOperation.streamPriorityStartOffset);
                         }
                         j12 = j10;
                         fileLoadOperation.streamPriorityStartOffset = j12;
@@ -2029,7 +2029,7 @@ public class FileLoadOperation {
         TLRPC.TL_inputSecureFileLocation tL_inputSecureFileLocation = new TLRPC.TL_inputSecureFileLocation();
         this.location = tL_inputSecureFileLocation;
         TLRPC.TL_secureFile tL_secureFile = secureDocument.secureFile;
-        tL_inputSecureFileLocation.f20287id = tL_secureFile.f20407id;
+        tL_inputSecureFileLocation.f20290id = tL_secureFile.f20410id;
         tL_inputSecureFileLocation.access_hash = tL_secureFile.access_hash;
         this.datacenterId = tL_secureFile.dc_id;
         this.totalBytesCount = tL_secureFile.size;

@@ -1,38 +1,26 @@
 package ai;
-public final class e4 implements Runnable {
-    public final int f1208a;
-    public final yh.i0 f1209b;
 
-    public e4(yh.i0 i0Var, int i10) {
-        this.f1208a = i10;
-        this.f1209b = i0Var;
+import org.telegram.messenger.MessagesController;
+import org.telegram.tgnet.TLRPC;
+public final class e4 implements Runnable {
+    public final int f1203a;
+    public final k7 f1204b;
+    public final TLRPC.TL_payments_paymentResult f1205c;
+
+    public e4(k7 k7Var, TLRPC.TL_payments_paymentResult tL_payments_paymentResult, int i10) {
+        this.f1203a = i10;
+        this.f1204b = k7Var;
+        this.f1205c = tL_payments_paymentResult;
     }
 
     @Override
     public final void run() {
-        switch (this.f1208a) {
+        switch (this.f1203a) {
             case 0:
-                this.f1209b.dismiss();
-                return;
-            case 1:
-                yh.i0 i0Var = this.f1209b;
-                qh.i iVar = i0Var.h;
-                ih.f fVar = i0Var.f50289f;
-                if (fVar != null) {
-                    fVar.d();
-                }
-                yh.h0 h0Var = i0Var.H;
-                if (h0Var != null) {
-                    h0Var.setTranslationY(-iVar.d());
-                }
-                org.telegram.ui.Components.q6 q6Var = i0Var.f50293w;
-                if (q6Var != null) {
-                    q6Var.setTranslationY(-iVar.d());
-                }
-                i0Var.p();
+                MessagesController.getInstance(this.f1204b.currentAccount).lambda$processUpdates$377(this.f1205c.updates, false);
                 return;
             default:
-                this.f1209b.H.performClick();
+                MessagesController.getInstance(this.f1204b.currentAccount).lambda$processUpdates$377(this.f1205c.updates, false);
                 return;
         }
     }

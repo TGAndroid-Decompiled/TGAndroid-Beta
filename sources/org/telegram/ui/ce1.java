@@ -1,51 +1,27 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.app.Activity;
-import org.telegram.messenger.AndroidUtilities;
-public final class ce1 extends AnimatorListenerAdapter {
-    public final int f35894a;
-    public final boolean f35895b;
-    public final te1 f35896c;
+import android.content.Context;
+import java.util.ArrayList;
+public final class ce1 extends pe1 {
+    public final re1 f35951g3;
 
-    public ce1(te1 te1Var, boolean z10, int i10) {
-        this.f35894a = i10;
-        this.f35896c = te1Var;
-        this.f35895b = z10;
+    public ce1(re1 re1Var, Context context) {
+        super(re1Var, context);
+        this.f35951g3 = re1Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        float f7;
-        int i10;
-        switch (this.f35894a) {
-            case 0:
-                super.onAnimationEnd(animator);
-                boolean z10 = this.f35895b;
-                if (z10) {
-                    f7 = 1.0f;
-                } else {
-                    f7 = 0.0f;
-                }
-                te1 te1Var = this.f35896c;
-                te1Var.S0(f7);
-                if (z10) {
-                    te1Var.f41702q0.setVisibility(8);
-                    return;
-                }
-                Activity parentActivity = te1Var.getParentActivity();
-                i10 = ((org.telegram.ui.ActionBar.n2) te1Var).classGuid;
-                AndroidUtilities.setAdjustResizeToNothing(parentActivity, i10);
-                te1Var.f41704r0.setVisibility(8);
-                te1Var.Q0(true);
-                return;
-            default:
-                if (!this.f35895b) {
-                    this.f35896c.f41700o0.setVisibility(8);
-                    return;
-                }
-                return;
+    public final boolean S0() {
+        ArrayList arrayList = this.f35951g3.f41153b;
+        if (getAdapter() == null || this.V1 || (arrayList == null || arrayList.size() != 1 || arrayList.get(0) == null || ((ie1) arrayList.get(0)).f37981c == null || ((ie1) arrayList.get(0)).f37981c.f20327id != 1 ? getAdapter().h() > 1 : getAdapter().h() > 2)) {
+            return false;
         }
+        return true;
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        this.f35951g3.y0();
     }
 }

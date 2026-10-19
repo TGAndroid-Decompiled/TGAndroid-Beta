@@ -20,19 +20,19 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class kz extends hm0 {
-    public final Context f28028c;
+    public final Context f28029c;
     public int d;
     public final SparseArray e = new SparseArray();
-    public final HashMap f28029f = new HashMap();
+    public final HashMap f28030f = new HashMap();
     public final SparseArray h = new SparseArray();
-    public final SparseArray f28030n = new SparseArray();
-    public final SparseIntArray f28031r = new SparseIntArray();
-    public int f28032s;
+    public final SparseArray f28031n = new SparseArray();
+    public final SparseIntArray f28032r = new SparseIntArray();
+    public int f28033s;
     public final tz v;
 
     public kz(tz tzVar, Context context) {
         this.v = tzVar;
-        this.f28028c = context;
+        this.f28029c = context;
     }
 
     @Override
@@ -41,7 +41,7 @@ public final class kz extends hm0 {
     }
 
     public final int E(Object obj) {
-        Integer num = (Integer) this.f28029f.get(obj);
+        Integer num = (Integer) this.f28030f.get(obj);
         if (num == null) {
             return -1;
         }
@@ -52,7 +52,7 @@ public final class kz extends hm0 {
         int indexOf;
         int i11;
         tz tzVar = this.v;
-        ArrayList arrayList = tzVar.f30750d1;
+        ArrayList arrayList = tzVar.f30773d1;
         Object obj = this.h.get(i10);
         if (!"search".equals(obj) && !"trend1".equals(obj) && !"trend2".equals(obj)) {
             if (i10 == 0) {
@@ -65,7 +65,7 @@ public final class kz extends hm0 {
                 }
                 this.d = measuredWidth / AndroidUtilities.dp(72.0f);
             }
-            int i12 = this.f28031r.get(i10, Integer.MIN_VALUE);
+            int i12 = this.f28032r.get(i10, Integer.MIN_VALUE);
             if (i12 == Integer.MIN_VALUE) {
                 indexOf = arrayList.size() - 1;
                 i11 = tzVar.E1;
@@ -102,7 +102,7 @@ public final class kz extends hm0 {
 
     @Override
     public final int h() {
-        int i10 = this.f28032s;
+        int i10 = this.f28033s;
         if (i10 != 0) {
             return i10 + 1;
         }
@@ -154,7 +154,7 @@ public final class kz extends hm0 {
         String str;
         int i12;
         tz tzVar = this.v;
-        int i13 = tzVar.f30747c1;
+        int i13 = tzVar.f30770c1;
         int i14 = b1Var.f45913f;
         View view = b1Var.f45910a;
         SparseArray sparseArray = this.h;
@@ -179,7 +179,7 @@ public final class kz extends hm0 {
                         return;
                     }
                     org.telegram.ui.Cells.m8 m8Var = (org.telegram.ui.Cells.m8) view;
-                    if (i10 != this.f28032s - 1) {
+                    if (i10 != this.f28033s - 1) {
                         z10 = false;
                     }
                     m8Var.setIsLast(z10);
@@ -187,16 +187,16 @@ public final class kz extends hm0 {
                 }
                 org.telegram.ui.Cells.n8 n8Var2 = (org.telegram.ui.Cells.n8) view;
                 n8Var2.setHeaderOnClick(null);
-                if (i10 == tzVar.f30757f1) {
-                    if (tzVar.f30760g1 && tzVar.f30763h1 == null) {
+                if (i10 == tzVar.f30780f1) {
+                    if (tzVar.f30783g1 && tzVar.f30786h1 == null) {
                         i11 = 0;
-                    } else if (tzVar.f30763h1 != null) {
+                    } else if (tzVar.f30786h1 != null) {
                         i11 = R.drawable.msg_mini_customize;
                     } else {
                         i11 = R.drawable.msg_close;
                     }
                     if (tzVar.J1 != null) {
-                        chat = MessagesController.getInstance(i13).getChat(Long.valueOf(tzVar.J1.f20273id));
+                        chat = MessagesController.getInstance(i13).getChat(Long.valueOf(tzVar.J1.f20276id));
                     }
                     int i16 = R.string.CurrentGroupStickers;
                     if (chat != null) {
@@ -215,40 +215,40 @@ public final class kz extends hm0 {
                         n8Var2.b(0, stickerSet.title);
                         if (tL_messages_stickerSet.set.creator && !tzVar.M2) {
                             n8Var2.setEdit(new View.OnClickListener(this) {
-                                public final kz f27655b;
+                                public final kz f27636b;
 
                                 {
-                                    this.f27655b = this;
+                                    this.f27636b = this;
                                 }
 
                                 @Override
                                 public final void onClick(View view2) {
                                     switch (r3) {
                                         case 0:
-                                            this.f27655b.v.f30800t1.d(tL_messages_stickerSet.set, null, true);
+                                            this.f27636b.v.f30823t1.d(tL_messages_stickerSet.set, null, true);
                                             return;
                                         default:
-                                            this.f27655b.v.f30800t1.d(tL_messages_stickerSet.set, null, false);
+                                            this.f27636b.v.f30823t1.d(tL_messages_stickerSet.set, null, false);
                                             return;
                                     }
                                 }
                             });
                         }
                         n8Var2.setHeaderOnClick(new View.OnClickListener(this) {
-                            public final kz f27655b;
+                            public final kz f27636b;
 
                             {
-                                this.f27655b = this;
+                                this.f27636b = this;
                             }
 
                             @Override
                             public final void onClick(View view2) {
                                 switch (r3) {
                                     case 0:
-                                        this.f27655b.v.f30800t1.d(tL_messages_stickerSet.set, null, true);
+                                        this.f27636b.v.f30823t1.d(tL_messages_stickerSet.set, null, true);
                                         return;
                                     default:
-                                        this.f27655b.v.f30800t1.d(tL_messages_stickerSet.set, null, false);
+                                        this.f27636b.v.f30823t1.d(tL_messages_stickerSet.set, null, false);
                                         return;
                                 }
                             }
@@ -256,10 +256,10 @@ public final class kz extends hm0 {
                         return;
                     }
                     return;
-                } else if (obj == tzVar.f30769j1) {
+                } else if (obj == tzVar.f30792j1) {
                     n8Var2.c(LocaleController.getString(R.string.RecentStickers), R.drawable.msg_close, LocaleController.getString(R.string.ClearRecentStickersAlertTitle), 0, 0);
                     return;
-                } else if (obj == tzVar.f30772k1) {
+                } else if (obj == tzVar.f30795k1) {
                     n8Var2.b(0, LocaleController.getString(R.string.FavoriteStickers));
                     return;
                 } else if (obj == tzVar.l1) {
@@ -270,8 +270,8 @@ public final class kz extends hm0 {
                 }
             }
             org.telegram.ui.Cells.k3 k3Var = (org.telegram.ui.Cells.k3) view;
-            if (i10 == this.f28032s) {
-                int i17 = this.f28031r.get(i10 - 1, Integer.MIN_VALUE);
+            if (i10 == this.f28033s) {
+                int i17 = this.f28032r.get(i10 - 1, Integer.MIN_VALUE);
                 if (i17 == Integer.MIN_VALUE) {
                     k3Var.setHeight(1);
                     return;
@@ -281,9 +281,9 @@ public final class kz extends hm0 {
                     arrayList = ((TLRPC.TL_messages_stickerSet) obj2).documents;
                 } else if (obj2 instanceof String) {
                     if ("recent".equals(obj2)) {
-                        arrayList = tzVar.f30769j1;
+                        arrayList = tzVar.f30792j1;
                     } else {
-                        arrayList = tzVar.f30772k1;
+                        arrayList = tzVar.f30795k1;
                     }
                 }
                 if (arrayList == null) {
@@ -306,14 +306,14 @@ public final class kz extends hm0 {
         }
         TLRPC.Document document = (TLRPC.Document) sparseArray.get(i10);
         org.telegram.ui.Cells.e8 e8Var = (org.telegram.ui.Cells.e8) view;
-        e8Var.d(document, null, this.f28030n.get(i10), null, false, false);
-        e8Var.setRecent(tzVar.f30769j1.contains(document));
+        e8Var.d(document, null, this.f28031n.get(i10), null, false, false);
+        e8Var.setRecent(tzVar.f30792j1.contains(document));
     }
 
     @Override
     public final s4.b1 x(ViewGroup viewGroup, int i10) {
         tz tzVar = this.v;
-        Context context = this.f28028c;
+        Context context = this.f28029c;
         FrameLayout frameLayout = null;
         switch (i10) {
             case 0:
@@ -323,7 +323,7 @@ public final class kz extends hm0 {
                 frameLayout = new org.telegram.ui.Cells.k3(context);
                 break;
             case 2:
-                org.telegram.ui.Cells.n8 n8Var = new org.telegram.ui.Cells.n8(this.f28028c, false, false, tzVar.Z1, tzVar.f30767i2);
+                org.telegram.ui.Cells.n8 n8Var = new org.telegram.ui.Cells.n8(this.f28029c, false, false, tzVar.Z1, tzVar.f30790i2);
                 n8Var.setOnIconClickListener(new ca(12, this, n8Var));
                 frameLayout = n8Var;
                 break;
@@ -336,7 +336,7 @@ public final class kz extends hm0 {
                 textView.setText(LocaleController.getString(R.string.GroupStickersInfo));
                 linearLayout.addView(textView, w7.z5.t(-1, -2, 51, 17, 4, 17, 0));
                 TextView textView2 = new TextView(context);
-                linearLayout.f22605a = textView2;
+                linearLayout.f22608a = textView2;
                 textView2.setPadding(AndroidUtilities.dp(17.0f), 0, AndroidUtilities.dp(17.0f), 0);
                 textView2.setGravity(17);
                 org.telegram.messenger.g0.m(14.0f, org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.Sh, false), 1, textView2);
@@ -344,29 +344,29 @@ public final class kz extends hm0 {
                 textView2.setText(LocaleController.getString(R.string.ChooseStickerSet).toUpperCase());
                 linearLayout.addView(textView2, w7.z5.t(-2, 28, 51, 17, 10, 14, 8));
                 linearLayout.setAddOnClickListener(new View.OnClickListener(this) {
-                    public final kz f27375b;
+                    public final kz f27392b;
 
                     {
-                        this.f27375b = this;
+                        this.f27392b = this;
                     }
 
                     @Override
                     public final void onClick(View view) {
                         switch (r2) {
                             case 0:
-                                tz tzVar2 = this.f27375b.v;
-                                uy uyVar = tzVar2.f30800t1;
+                                tz tzVar2 = this.f27392b.v;
+                                uy uyVar = tzVar2.f30823t1;
                                 if (uyVar != null) {
-                                    uyVar.y(tzVar2.J1.f20273id);
+                                    uyVar.y(tzVar2.J1.f20276id);
                                     return;
                                 }
                                 return;
                             case 1:
-                                tz tzVar3 = this.f27375b.v;
-                                ArrayList<TLRPC.StickerSetCovered> featuredStickerSets = MediaDataController.getInstance(tzVar3.f30747c1).getFeaturedStickerSets();
+                                tz tzVar3 = this.f27392b.v;
+                                ArrayList<TLRPC.StickerSetCovered> featuredStickerSets = MediaDataController.getInstance(tzVar3.f30770c1).getFeaturedStickerSets();
                                 if (!featuredStickerSets.isEmpty()) {
-                                    MessagesController.getEmojiSettings(tzVar3.f30747c1).edit().putLong("featured_hidden", featuredStickerSets.get(0).set.f20299id).commit();
-                                    kz kzVar = tzVar3.f30817y0;
+                                    MessagesController.getEmojiSettings(tzVar3.f30770c1).edit().putLong("featured_hidden", featuredStickerSets.get(0).set.f20302id).commit();
+                                    kz kzVar = tzVar3.f30840y0;
                                     if (kzVar != null) {
                                         kzVar.t(1, 2);
                                     }
@@ -375,9 +375,9 @@ public final class kz extends hm0 {
                                 }
                                 return;
                             default:
-                                org.telegram.ui.ActionBar.n2 n2Var = this.f27375b.v.Y1;
-                                if (n2Var instanceof org.telegram.ui.sn) {
-                                    ((org.telegram.ui.sn) n2Var).da();
+                                org.telegram.ui.ActionBar.n2 n2Var = this.f27392b.v.Y1;
+                                if (n2Var instanceof org.telegram.ui.qn) {
+                                    ((org.telegram.ui.qn) n2Var).da();
                                     return;
                                 }
                                 return;
@@ -389,35 +389,35 @@ public final class kz extends hm0 {
                 break;
             case 4:
                 View view = new View(context);
-                view.setLayoutParams(new s4.o0(-1, tzVar.f30743b1));
+                view.setLayoutParams(new s4.o0(-1, tzVar.f30766b1));
                 frameLayout = view;
                 break;
             case 5:
-                org.telegram.ui.Cells.n8 n8Var2 = new org.telegram.ui.Cells.n8(this.f28028c, false, false, tzVar.Z1, tzVar.f30767i2);
+                org.telegram.ui.Cells.n8 n8Var2 = new org.telegram.ui.Cells.n8(this.f28029c, false, false, tzVar.Z1, tzVar.f30790i2);
                 n8Var2.setOnIconClickListener(new View.OnClickListener(this) {
-                    public final kz f27375b;
+                    public final kz f27392b;
 
                     {
-                        this.f27375b = this;
+                        this.f27392b = this;
                     }
 
                     @Override
                     public final void onClick(View view2) {
                         switch (r2) {
                             case 0:
-                                tz tzVar2 = this.f27375b.v;
-                                uy uyVar = tzVar2.f30800t1;
+                                tz tzVar2 = this.f27392b.v;
+                                uy uyVar = tzVar2.f30823t1;
                                 if (uyVar != null) {
-                                    uyVar.y(tzVar2.J1.f20273id);
+                                    uyVar.y(tzVar2.J1.f20276id);
                                     return;
                                 }
                                 return;
                             case 1:
-                                tz tzVar3 = this.f27375b.v;
-                                ArrayList<TLRPC.StickerSetCovered> featuredStickerSets = MediaDataController.getInstance(tzVar3.f30747c1).getFeaturedStickerSets();
+                                tz tzVar3 = this.f27392b.v;
+                                ArrayList<TLRPC.StickerSetCovered> featuredStickerSets = MediaDataController.getInstance(tzVar3.f30770c1).getFeaturedStickerSets();
                                 if (!featuredStickerSets.isEmpty()) {
-                                    MessagesController.getEmojiSettings(tzVar3.f30747c1).edit().putLong("featured_hidden", featuredStickerSets.get(0).set.f20299id).commit();
-                                    kz kzVar = tzVar3.f30817y0;
+                                    MessagesController.getEmojiSettings(tzVar3.f30770c1).edit().putLong("featured_hidden", featuredStickerSets.get(0).set.f20302id).commit();
+                                    kz kzVar = tzVar3.f30840y0;
                                     if (kzVar != null) {
                                         kzVar.t(1, 2);
                                     }
@@ -426,9 +426,9 @@ public final class kz extends hm0 {
                                 }
                                 return;
                             default:
-                                org.telegram.ui.ActionBar.n2 n2Var = this.f27375b.v.Y1;
-                                if (n2Var instanceof org.telegram.ui.sn) {
-                                    ((org.telegram.ui.sn) n2Var).da();
+                                org.telegram.ui.ActionBar.n2 n2Var = this.f27392b.v.Y1;
+                                if (n2Var instanceof org.telegram.ui.qn) {
+                                    ((org.telegram.ui.qn) n2Var).da();
                                     return;
                                 }
                                 return;
@@ -458,29 +458,29 @@ public final class kz extends hm0 {
                 linearLayout2.setBackground(org.telegram.ui.ActionBar.h6.c0(dp, org.telegram.ui.ActionBar.h6.m1(0.12f, tzVar.A(i11))));
                 w7.b6.b(linearLayout2, 0.1f, 1.5f);
                 linearLayout2.setOnClickListener(new View.OnClickListener(this) {
-                    public final kz f27375b;
+                    public final kz f27392b;
 
                     {
-                        this.f27375b = this;
+                        this.f27392b = this;
                     }
 
                     @Override
                     public final void onClick(View view2) {
                         switch (r2) {
                             case 0:
-                                tz tzVar2 = this.f27375b.v;
-                                uy uyVar = tzVar2.f30800t1;
+                                tz tzVar2 = this.f27392b.v;
+                                uy uyVar = tzVar2.f30823t1;
                                 if (uyVar != null) {
-                                    uyVar.y(tzVar2.J1.f20273id);
+                                    uyVar.y(tzVar2.J1.f20276id);
                                     return;
                                 }
                                 return;
                             case 1:
-                                tz tzVar3 = this.f27375b.v;
-                                ArrayList<TLRPC.StickerSetCovered> featuredStickerSets = MediaDataController.getInstance(tzVar3.f30747c1).getFeaturedStickerSets();
+                                tz tzVar3 = this.f27392b.v;
+                                ArrayList<TLRPC.StickerSetCovered> featuredStickerSets = MediaDataController.getInstance(tzVar3.f30770c1).getFeaturedStickerSets();
                                 if (!featuredStickerSets.isEmpty()) {
-                                    MessagesController.getEmojiSettings(tzVar3.f30747c1).edit().putLong("featured_hidden", featuredStickerSets.get(0).set.f20299id).commit();
-                                    kz kzVar = tzVar3.f30817y0;
+                                    MessagesController.getEmojiSettings(tzVar3.f30770c1).edit().putLong("featured_hidden", featuredStickerSets.get(0).set.f20302id).commit();
+                                    kz kzVar = tzVar3.f30840y0;
                                     if (kzVar != null) {
                                         kzVar.t(1, 2);
                                     }
@@ -489,9 +489,9 @@ public final class kz extends hm0 {
                                 }
                                 return;
                             default:
-                                org.telegram.ui.ActionBar.n2 n2Var = this.f27375b.v.Y1;
-                                if (n2Var instanceof org.telegram.ui.sn) {
-                                    ((org.telegram.ui.sn) n2Var).da();
+                                org.telegram.ui.ActionBar.n2 n2Var = this.f27392b.v.Y1;
+                                if (n2Var instanceof org.telegram.ui.qn) {
+                                    ((org.telegram.ui.qn) n2Var).da();
                                     return;
                                 }
                                 return;

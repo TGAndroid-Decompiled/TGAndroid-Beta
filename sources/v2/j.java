@@ -5,7 +5,7 @@ import b2.w;
 import c3.j0;
 import e2.x;
 import g2.b0;
-import u2.d1;
+import u2.c1;
 import v7.k7;
 import v7.u6;
 public final class j extends a {
@@ -32,16 +32,16 @@ public final class j extends a {
     public final void a() {
         boolean z10;
         boolean z11;
-        d1[] d1VarArr;
+        c1[] c1VarArr;
         long j10;
         n2.e eVar = this.f47866x;
         eVar.getClass();
         if (this.H == 0) {
             long j11 = this.F;
-            for (d1 d1Var : (d1[]) eVar.f17039c) {
-                if (d1Var.H != j11) {
-                    d1Var.H = j11;
-                    d1Var.B = true;
+            for (c1 c1Var : (c1[]) eVar.f17042c) {
+                if (c1Var.H != j11) {
+                    c1Var.H = j11;
+                    c1Var.B = true;
                 }
             }
             e eVar2 = this.G;
@@ -80,7 +80,7 @@ public final class j extends a {
                 }
             }
             w wVar = this.d;
-            String str = wVar.f4131r;
+            String str = wVar.f4129r;
             int i10 = wVar.R;
             int i11 = wVar.S;
             if (v0.k(str) && ((i10 > 1 || i11 > 1) && i10 != -1 && i11 != -1)) {

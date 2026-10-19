@@ -13,7 +13,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import ci.h4;
+import ci.i4;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
@@ -25,20 +25,20 @@ import w7.z5;
 public abstract class i1 extends LinearLayout {
     public boolean E;
     public boolean F;
-    public final d6 f12921a;
-    public final TextView f12922b;
-    public final TextView[] f12923c;
+    public final d6 f12923a;
+    public final TextView f12924b;
+    public final TextView[] f12925c;
     public final ImageView d;
     public final FrameLayout e;
-    public final ViewGroup[] f12924f;
+    public final ViewGroup[] f12926f;
     public final TextView[] h;
-    public final TextView[][] f12925n;
-    public final nq f12926r;
-    public final FrameLayout f12927s;
+    public final TextView[][] f12927n;
+    public final nq f12928r;
+    public final FrameLayout f12929s;
     public final LinearLayout v;
-    public int f12928w;
-    public int f12929x;
-    public boolean f12930y;
+    public int f12930w;
+    public int f12931x;
+    public boolean f12932y;
 
     public i1(Context context, d6 d6Var) {
         super(context);
@@ -51,23 +51,23 @@ public abstract class i1 extends LinearLayout {
         int i14;
         int i15;
         int i16;
-        this.f12923c = new TextView[2];
-        this.f12924f = new ViewGroup[7];
+        this.f12925c = new TextView[2];
+        this.f12926f = new ViewGroup[7];
         this.h = new TextView[7];
-        this.f12925n = new TextView[7];
-        this.f12928w = 1;
-        this.f12929x = 0;
-        this.f12930y = true;
-        this.f12921a = d6Var;
+        this.f12927n = new TextView[7];
+        this.f12930w = 1;
+        this.f12931x = 0;
+        this.f12932y = true;
+        this.f12923a = d6Var;
         setOrientation(1);
         setClipChildren(false);
         int i17 = 0;
         for (int i18 = 7; i17 < i18; i18 = 7) {
             if (i17 == 0) {
-                ViewGroup h4Var = new h4(context, 4);
-                h4Var.setMinimumHeight(AndroidUtilities.dp(60.0f));
+                ViewGroup i4Var = new i4(context, 4);
+                i4Var.setMinimumHeight(AndroidUtilities.dp(60.0f));
                 TextView textView = new TextView(context);
-                this.f12922b = textView;
+                this.f12924b = textView;
                 if (LocaleController.isRTL) {
                     i12 = 5;
                 } else {
@@ -75,7 +75,7 @@ public abstract class i1 extends LinearLayout {
                 }
                 textView.setGravity(i12);
                 textView.setTextSize(1, 16.0f);
-                h4Var.addView(textView, z5.i(-1.0f, -2.0f, 8388659, 0.0f, 9.33f, 0.0f, 0.0f));
+                i4Var.addView(textView, z5.i(-1.0f, -2.0f, 8388659, 0.0f, 9.33f, 0.0f, 0.0f));
                 this.h[i17] = new TextView(context);
                 TextView textView2 = this.h[i17];
                 if (LocaleController.isRTL) {
@@ -85,38 +85,38 @@ public abstract class i1 extends LinearLayout {
                 }
                 textView2.setGravity(i13);
                 this.h[i17].setTextSize(1, 13.0f);
-                this.h[i17].setTextColor(h6.w0(h6.f21391z6, d6Var));
-                h4Var.addView(this.h[i17], z5.i(-2.0f, -2.0f, 8388659, 0.0f, 33.0f, 0.0f, 10.0f));
+                this.h[i17].setTextColor(h6.w0(h6.f21394z6, d6Var));
+                i4Var.addView(this.h[i17], z5.i(-2.0f, -2.0f, 8388659, 0.0f, 33.0f, 0.0f, 10.0f));
                 LinearLayout linearLayout = new LinearLayout(context);
                 this.v = linearLayout;
                 linearLayout.setOrientation(1);
-                this.f12927s = new FrameLayout(context);
-                this.f12925n[i17] = new TextView[2];
+                this.f12929s = new FrameLayout(context);
+                this.f12927n[i17] = new TextView[2];
                 for (int i19 = 0; i19 < 2; i19++) {
-                    this.f12925n[i17][i19] = new TextView(context);
-                    this.f12925n[i17][i19].setTextSize(1, 14.0f);
-                    this.f12925n[i17][i19].setTextColor(h6.w0(h6.f21391z6, d6Var));
-                    TextView textView3 = this.f12925n[i17][i19];
+                    this.f12927n[i17][i19] = new TextView(context);
+                    this.f12927n[i17][i19].setTextSize(1, 14.0f);
+                    this.f12927n[i17][i19].setTextColor(h6.w0(h6.f21394z6, d6Var));
+                    TextView textView3 = this.f12927n[i17][i19];
                     if (LocaleController.isRTL) {
                         i16 = 3;
                     } else {
                         i16 = 5;
                     }
                     textView3.setGravity(i16);
-                    this.f12927s.addView(this.f12925n[i17][i19], z5.i(-1.0f, -1.0f, 119, 0.0f, 0.0f, 20.0f, 0.0f));
+                    this.f12929s.addView(this.f12927n[i17][i19], z5.i(-1.0f, -1.0f, 119, 0.0f, 0.0f, 20.0f, 0.0f));
                 }
                 for (int i20 = 0; i20 < 2; i20++) {
-                    this.f12923c[i20] = new TextView(context);
-                    this.f12923c[i20].setTextSize(1, 14.0f);
-                    this.f12923c[i20].setTextColor(h6.w0(h6.f21391z6, d6Var));
-                    TextView textView4 = this.f12923c[i20];
+                    this.f12925c[i20] = new TextView(context);
+                    this.f12925c[i20].setTextSize(1, 14.0f);
+                    this.f12925c[i20].setTextColor(h6.w0(h6.f21394z6, d6Var));
+                    TextView textView4 = this.f12925c[i20];
                     if (LocaleController.isRTL) {
                         i15 = 3;
                     } else {
                         i15 = 5;
                     }
                     textView4.setGravity(i15);
-                    this.f12927s.addView(this.f12923c[i20], z5.i(-1.0f, -1.0f, 119, 0.0f, 0.0f, 20.0f, 0.0f));
+                    this.f12929s.addView(this.f12925c[i20], z5.i(-1.0f, -1.0f, 119, 0.0f, 0.0f, 20.0f, 0.0f));
                 }
                 ImageView imageView = new ImageView(context);
                 this.d = imageView;
@@ -124,11 +124,11 @@ public abstract class i1 extends LinearLayout {
                 imageView.setScaleX(0.6f);
                 imageView.setScaleY(0.6f);
                 imageView.setImageResource(R.drawable.arrow_more);
-                imageView.setColorFilter(new PorterDuffColorFilter(h6.w0(h6.f21391z6, d6Var), PorterDuff.Mode.SRC_IN));
-                this.f12927s.addView(imageView, z5.h(20.0f, 20.0f, 8388629));
-                this.v.addView(this.f12927s, new LinearLayout.LayoutParams(z5.z(-1.0f), z5.z(-1.0f), Gravity.getAbsoluteGravity(119, LocaleController.isRTL ? 1 : 0)));
+                imageView.setColorFilter(new PorterDuffColorFilter(h6.w0(h6.f21394z6, d6Var), PorterDuff.Mode.SRC_IN));
+                this.f12929s.addView(imageView, z5.h(20.0f, 20.0f, 8388629));
+                this.v.addView(this.f12929s, new LinearLayout.LayoutParams(z5.z(-1.0f), z5.z(-1.0f), Gravity.getAbsoluteGravity(119, LocaleController.isRTL ? 1 : 0)));
                 nq nqVar = new nq(context);
-                this.f12926r = nqVar;
+                this.f12928r = nqVar;
                 nqVar.getDrawable().L = true;
                 nqVar.setTextSize(AndroidUtilities.dp(13.0f));
                 nqVar.setPadding(AndroidUtilities.dp(6.0f), 0, AndroidUtilities.dp(6.0f), 0);
@@ -139,7 +139,7 @@ public abstract class i1 extends LinearLayout {
                 }
                 nqVar.setGravity(i14);
                 int dp = AndroidUtilities.dp(8.0f);
-                int i21 = h6.f21189o6;
+                int i21 = h6.f21192o6;
                 int w02 = h6.w0(i21, d6Var);
                 a(w02);
                 int m12 = h6.m1(0.1f, w02);
@@ -156,9 +156,9 @@ public abstract class i1 extends LinearLayout {
                 FrameLayout frameLayout = new FrameLayout(context);
                 this.e = frameLayout;
                 frameLayout.addView(this.v, z5.i(-1.0f, -2.0f, 8388693, 0.0f, 0.0f, 0.0f, 0.0f));
-                h4Var.addView(frameLayout, z5.i(-1.0f, -2.0f, 8388693, 0.0f, 0.0f, 0.0f, 12.0f));
-                this.f12924f[i17] = h4Var;
-                addView(h4Var, z5.i(-1.0f, -2.0f, 51, 18.0f, 0.0f, 8.0f, 0.0f));
+                i4Var.addView(frameLayout, z5.i(-1.0f, -2.0f, 8388693, 0.0f, 0.0f, 0.0f, 12.0f));
+                this.f12926f[i17] = i4Var;
+                addView(i4Var, z5.i(-1.0f, -2.0f, 51, 18.0f, 0.0f, 8.0f, 0.0f));
             } else {
                 ViewGroup e = lk.e(context, 0);
                 this.h[i17] = new TextView(context);
@@ -172,19 +172,19 @@ public abstract class i1 extends LinearLayout {
                 }
                 textView5.setGravity(i10);
                 FrameLayout frameLayout2 = new FrameLayout(context);
-                this.f12925n[i17] = new TextView[2];
+                this.f12927n[i17] = new TextView[2];
                 for (int i22 = 0; i22 < 2; i22++) {
-                    this.f12925n[i17][i22] = new TextView(context);
-                    this.f12925n[i17][i22].setTextSize(1, 14.0f);
-                    this.f12925n[i17][i22].setTextColor(h6.w0(h6.f21391z6, d6Var));
-                    TextView textView6 = this.f12925n[i17][i22];
+                    this.f12927n[i17][i22] = new TextView(context);
+                    this.f12927n[i17][i22].setTextSize(1, 14.0f);
+                    this.f12927n[i17][i22].setTextColor(h6.w0(h6.f21394z6, d6Var));
+                    TextView textView6 = this.f12927n[i17][i22];
                     if (LocaleController.isRTL) {
                         i11 = 3;
                     } else {
                         i11 = 5;
                     }
                     textView6.setGravity(i11);
-                    frameLayout2.addView(this.f12925n[i17][i22], z5.e(-1, -1, 119));
+                    frameLayout2.addView(this.f12927n[i17][i22], z5.e(-1, -1, 119));
                 }
                 if (LocaleController.isRTL) {
                     e.addView(frameLayout2, z5.q(-2, -1, 51));
@@ -193,7 +193,7 @@ public abstract class i1 extends LinearLayout {
                     e.addView(this.h[i17], z5.q(-2, -1, 51));
                     e.addView(frameLayout2, z5.q(-1, -1, 53));
                 }
-                this.f12924f[i17] = e;
+                this.f12926f[i17] = e;
                 if (i17 == 1) {
                     f7 = 1.0f;
                 } else {
@@ -223,9 +223,9 @@ public abstract class i1 extends LinearLayout {
         float f7;
         super.onDraw(canvas);
         if (this.E) {
-            Paint U0 = h6.U0("paintDivider", this.f12921a);
+            Paint U0 = h6.U0("paintDivider", this.f12923a);
             if (U0 == null) {
-                U0 = h6.f21107k0;
+                U0 = h6.f21110k0;
             }
             Paint paint = U0;
             float f10 = 21.33f;
@@ -251,12 +251,12 @@ public abstract class i1 extends LinearLayout {
         int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824);
         if (!this.F) {
             int dp2 = AndroidUtilities.dp(60.0f);
-            int i12 = this.f12928w;
-            nq nqVar = this.f12926r;
+            int i12 = this.f12930w;
+            nq nqVar = this.f12928r;
             if (i12 <= 2 && nqVar.getVisibility() != 0) {
                 dp = 0;
             } else {
-                int dp3 = AndroidUtilities.dp(15.0f) + this.f12929x;
+                int dp3 = AndroidUtilities.dp(15.0f) + this.f12931x;
                 if (nqVar.getVisibility() == 0) {
                     f7 = 21.0f;
                 } else {
@@ -271,21 +271,21 @@ public abstract class i1 extends LinearLayout {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        nq nqVar = this.f12926r;
+        nq nqVar = this.f12928r;
         if (nqVar != null && nqVar.getVisibility() == 0) {
             float x10 = motionEvent.getX();
-            ViewGroup[] viewGroupArr = this.f12924f;
+            ViewGroup[] viewGroupArr = this.f12926f;
             float x11 = x10 - viewGroupArr[0].getX();
             FrameLayout frameLayout = this.e;
             float x12 = x11 - frameLayout.getX();
-            FrameLayout frameLayout2 = this.f12927s;
+            FrameLayout frameLayout2 = this.f12929s;
             return nqVar.getClickBounds().contains((int) ((x12 - frameLayout2.getX()) - nqVar.getX()), (int) ((((motionEvent.getY() - viewGroupArr[0].getY()) - frameLayout.getY()) - frameLayout2.getY()) - nqVar.getY()));
         }
         return super.onTouchEvent(motionEvent);
     }
 
     public void setOnTimezoneSwitchClick(View.OnClickListener onClickListener) {
-        nq nqVar = this.f12926r;
+        nq nqVar = this.f12928r;
         if (nqVar != null) {
             nqVar.setOnClickListener(onClickListener);
         }

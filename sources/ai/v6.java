@@ -10,31 +10,31 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.u10;
+import org.telegram.ui.s10;
 public final class v6 extends View {
     public float E;
     public final Camera F;
-    public final u10 G;
+    public final s10 G;
     public final RectF H;
-    public q6 f2306a;
-    public q6 f2307b;
-    public q6 f2308c;
+    public q6 f2303a;
+    public q6 f2304b;
+    public q6 f2305c;
     public float d;
     public float e;
-    public float f2309f;
+    public float f2306f;
     public boolean h;
-    public boolean f2310n;
-    public boolean f2311r;
-    public p6 f2312s;
+    public boolean f2307n;
+    public boolean f2308r;
+    public p6 f2309s;
     public p6 v;
-    public p6 f2313w;
-    public float f2314x;
-    public float f2315y;
+    public p6 f2310w;
+    public float f2311x;
+    public float f2312y;
 
     public v6(Context context) {
         super(context);
         this.F = new Camera();
-        this.G = new u10();
+        this.G = new s10();
         this.H = new RectF();
     }
 
@@ -44,7 +44,7 @@ public final class v6 extends View {
         float f14;
         if (p6Var != null) {
             Matrix matrix = p6Var.d;
-            Paint paint = p6Var.f2011c;
+            Paint paint = p6Var.f2010c;
             if (paint != null) {
                 float f15 = (f7 - 0.5f) / 1.5f;
                 float clamp01 = Utilities.clamp01(1.0f - Math.abs(f15));
@@ -63,10 +63,10 @@ public final class v6 extends View {
                 float dp = AndroidUtilities.dp(90.0f);
                 RectF rectF = this.H;
                 rectF.set(f16, 0.0f, f16 + dp, f11);
-                u10 u10Var = this.G;
-                u10Var.b(canvas, rectF, 0, 1.0f);
+                s10 s10Var = this.G;
+                s10Var.b(canvas, rectF, 0, 1.0f);
                 rectF.set(f17 - dp, 0.0f, f17, f11);
-                u10Var.b(canvas, rectF, 2, 1.0f);
+                s10Var.b(canvas, rectF, 2, 1.0f);
                 canvas.restore();
                 canvas.restore();
                 for (int i10 = 0; i10 < iArr.length; i10++) {
@@ -76,7 +76,7 @@ public final class v6 extends View {
                     } else {
                         f14 = 0.0f;
                     }
-                    iArr[i10] = org.telegram.ui.ActionBar.h6.v(iArr[i10], org.telegram.ui.ActionBar.h6.m1(clamp01 * f14, p6Var.f2013g));
+                    iArr[i10] = org.telegram.ui.ActionBar.h6.v(iArr[i10], org.telegram.ui.ActionBar.h6.m1(clamp01 * f14, p6Var.f2012g));
                 }
                 for (int i11 = 0; i11 < iArr2.length; i11++) {
                     float width2 = (getWidth() / (iArr2.length - 1)) * i11;
@@ -85,7 +85,7 @@ public final class v6 extends View {
                     } else {
                         f13 = 0.0f;
                     }
-                    iArr2[i11] = org.telegram.ui.ActionBar.h6.v(iArr2[i11], org.telegram.ui.ActionBar.h6.m1(clamp01 * f13, p6Var.f2012f));
+                    iArr2[i11] = org.telegram.ui.ActionBar.h6.v(iArr2[i11], org.telegram.ui.ActionBar.h6.m1(clamp01 * f13, p6Var.f2011f));
                 }
                 for (int i12 = 0; i12 < iArr3.length; i12++) {
                     float width3 = (getWidth() / (iArr2.length - 1)) * i12;
@@ -141,26 +141,26 @@ public final class v6 extends View {
 
     public final void c() {
         boolean z10;
-        if (this.f2306a == null && this.f2307b == null && this.f2308c == null && this.f2312s == null && this.v == null && this.f2313w == null) {
+        if (this.f2303a == null && this.f2304b == null && this.f2305c == null && this.f2309s == null && this.v == null && this.f2310w == null) {
             z10 = false;
         } else {
             z10 = true;
         }
-        this.f2308c = null;
-        this.f2307b = null;
-        this.f2306a = null;
-        this.f2309f = 0.0f;
+        this.f2305c = null;
+        this.f2304b = null;
+        this.f2303a = null;
+        this.f2306f = 0.0f;
         this.e = 0.0f;
         this.d = 0.0f;
-        this.f2311r = false;
-        this.f2310n = false;
+        this.f2308r = false;
+        this.f2307n = false;
         this.h = false;
-        this.f2313w = null;
+        this.f2310w = null;
         this.v = null;
-        this.f2312s = null;
+        this.f2309s = null;
         this.E = 0.0f;
-        this.f2315y = 0.0f;
-        this.f2314x = 0.0f;
+        this.f2312y = 0.0f;
+        this.f2311x = 0.0f;
         if (z10) {
             invalidate();
         }
@@ -168,8 +168,8 @@ public final class v6 extends View {
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        b(canvas, this.f2306a, this.d, this.h);
-        b(canvas, this.f2307b, this.e, this.f2310n);
-        b(canvas, this.f2308c, this.f2309f, this.f2311r);
+        b(canvas, this.f2303a, this.d, this.h);
+        b(canvas, this.f2304b, this.e, this.f2307n);
+        b(canvas, this.f2305c, this.f2306f, this.f2308r);
     }
 }

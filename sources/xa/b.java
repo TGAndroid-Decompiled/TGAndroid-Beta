@@ -5,14 +5,14 @@ public enum b implements ma.c {
     TOPIC(2),
     DISPLAY_NOTIFICATION(3);
     
-    public final int f49746a;
+    public final int f49745a;
 
     b(int i10) {
-        this.f49746a = i10;
+        this.f49745a = i10;
     }
 
     @Override
     public final int a() {
-        return this.f49746a;
+        return this.f49745a;
     }
 }

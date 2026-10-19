@@ -1,77 +1,175 @@
 package org.telegram.ui;
 
-import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
-public final class qy0 extends s4.r0 {
-    public final int f40521a;
-    public final ProfileActivity f40522b;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.R;
+import org.telegram.messenger.voip.VoIPService;
+public final class qy0 implements Runnable {
+    public final int f41008a;
+    public final Object f41009b;
 
-    public qy0(ProfileActivity profileActivity, int i10) {
-        this.f40521a = i10;
-        this.f40522b = profileActivity;
+    public qy0(Object obj, int i10) {
+        this.f41008a = i10;
+        this.f41009b = obj;
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, int i10) {
-        boolean z10;
-        switch (this.f40521a) {
+    public final void run() {
+        int i10 = this.f41008a;
+        int i11 = 0;
+        Object obj = this.f41009b;
+        switch (i10) {
             case 0:
-                if (i10 == 1) {
-                    AndroidUtilities.hideKeyboard(this.f40522b.getParentActivity().getCurrentFocus());
+                ProfileActivity profileActivity = (ProfileActivity) ((ah.v) obj).f895c;
+                if (profileActivity.p5 != 1.0f) {
+                    sy0 sy0Var = profileActivity.f33673o0;
+                    while (sy0Var.D0.k(i11) != sy0Var.getRealCount() - 1) {
+                        i11++;
+                    }
+                    sy0Var.x(i11, true);
                     return;
                 }
                 return;
-            default:
-                ProfileActivity profileActivity = this.f40522b;
-                boolean z11 = true;
-                if (i10 == 1) {
-                    AndroidUtilities.hideKeyboard(profileActivity.getParentActivity().getCurrentFocus());
-                }
-                if (profileActivity.G0 && i10 != 2) {
-                    profileActivity.G0 = false;
-                }
-                org.telegram.ui.ActionBar.u0 u0Var = profileActivity.V0;
-                if (u0Var != null) {
-                    if (i10 != 0) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    profileActivity.A1 = z10;
-                    if (z10 || profileActivity.f33682q2) {
-                        z11 = false;
-                    }
-                    u0Var.setEnabled(z11);
-                }
-                pz0 pz0Var = profileActivity.O;
-                boolean z12 = profileActivity.f33568a.I1;
-                pz0Var.getClass();
-                return;
-        }
-    }
-
-    @Override
-    public void b(RecyclerView recyclerView, int i10, int i11) {
-        switch (this.f40521a) {
             case 1:
-                ProfileActivity profileActivity = this.f40522b;
-                org.telegram.ui.Components.r40 r40Var = profileActivity.X;
-                boolean z10 = true;
-                if (r40Var != null) {
-                    r40Var.b(true);
+                ProfileActivity profileActivity2 = ((jz0) obj).f38372b;
+                profileActivity2.getMessagesController().toggleChatNoForwards(profileActivity2.f33613f1, 0, true, new ei.ka(2, profileActivity2, true));
+                return;
+            case 2:
+                nz0 nz0Var = (nz0) obj;
+                nz0Var.O0(nz0Var.getTabProgress());
+                return;
+            case 3:
+                ((e01) obj).c();
+                return;
+            case 4:
+                ((t01) obj).a();
+                return;
+            case 5:
+                q01 q01Var = (q01) obj;
+                q01Var.f40342f.add(q01Var.f40341c);
+                q01Var.a();
+                return;
+            case 6:
+                Runnable[] runnableArr = (Runnable[]) obj;
+                runnableArr[0].run();
+                runnableArr[0] = null;
+                return;
+            case 7:
+                ((ci.w6) obj).e();
+                return;
+            case 8:
+                org.telegram.ui.Components.xc xcVar = (org.telegram.ui.Components.xc) obj;
+                if (LaunchActivity.U() != null) {
+                    if (xcVar == null) {
+                        xcVar = org.telegram.ui.Components.xc.a0(LaunchActivity.U());
+                    }
+                    if (xcVar != null) {
+                        org.telegram.ui.Components.qc M = xcVar.M(LocaleController.getString(R.string.ReportChatSent), LocaleController.getString(R.string.Reported2), R.raw.msg_antispam);
+                        M.f29596j = 5000;
+                        M.j();
+                        return;
+                    }
+                    return;
                 }
-                profileActivity.A3();
-                if (profileActivity.D1 != null && !profileActivity.E1 && profileActivity.f33583c.N0() > profileActivity.f33728w4 - 8) {
-                    profileActivity.R3(false);
+                return;
+            case 9:
+                ((x21) obj).invalidate();
+                return;
+            case 10:
+                SaveToGallerySettingsActivity saveToGallerySettingsActivity = (SaveToGallerySettingsActivity) obj;
+                saveToGallerySettingsActivity.v.clear();
+                saveToGallerySettingsActivity.getUserConfig().updateSaveGalleryExceptions(saveToGallerySettingsActivity.f33767a, saveToGallerySettingsActivity.v);
+                saveToGallerySettingsActivity.Z();
+                return;
+            case 11:
+                h31 h31Var = (h31) obj;
+                h31Var.dismiss();
+                pf.d.r(h31Var.getContext(), LocaleController.getString(R.string.PromoteUrl));
+                return;
+            case 12:
+                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) ((org.telegram.ui.Components.ml0) obj).f28564c;
+                Runnable runnable = secretMediaViewer.f33806o0;
+                if (runnable != null) {
+                    runnable.run();
+                    secretMediaViewer.f33806o0 = null;
+                    return;
                 }
-                pz0 pz0Var = profileActivity.O;
-                if (pz0Var.getY() > 0.0f) {
-                    z10 = false;
+                return;
+            case 13:
+                x31 x31Var = ((w31) obj).f42452a;
+                x31Var.Q = true;
+                x31Var.N.invalidate();
+                return;
+            case 14:
+                ((NotificationCenter) obj).runDelayedNotifications();
+                return;
+            case 15:
+                AndroidUtilities.updateViewShow(((m51) obj).f39144c, true);
+                return;
+            case 16:
+                org.telegram.ui.Components.t61 t61Var = ((h61) obj).f37533i0;
+                if (t61Var != null) {
+                    t61Var.N(true);
+                    return;
                 }
-                pz0Var.setPinnedToTop(z10);
-                profileActivity.U4();
+                return;
+            case 17:
+                ((a61) obj).a();
+                return;
+            case 18:
+                ig.f.a(((SessionsActivity) obj).currentAccount).b();
+                return;
+            case 19:
+                ((td1) obj).J.f41183r.l();
+                return;
+            case 20:
+                ((be1) obj).f35628b.C0();
+                return;
+            case 21:
+                ((VoIPFeedbackActivity) obj).finish();
+                return;
+            case 22:
+                ((wg1) obj).f42875a.G();
+                return;
+            case 23:
+                ((xg1) obj).f43210a.G();
+                return;
+            case 24:
+                hh1 hh1Var = ((vg1) obj).f42249b;
+                hh1Var.L0.unlock();
+                org.telegram.ui.Components.voip.k2.k().getClass();
+                if (VoIPService.getSharedInstance() != null) {
+                    VoIPService.getSharedInstance().swapSinks();
+                }
+                hh1Var.Y.setCornerRadius(-1.0f);
+                hh1Var.f37659c0.d.release();
+                hh1Var.f37661d0.d.release();
+                hh1Var.f37656b0.release();
+                hh1Var.k();
+                hh1Var.f37690u0.d();
+                org.telegram.ui.Components.voip.k2.U = false;
+                hh1Var.E0 = false;
+                hh1.f37651n1 = null;
+                return;
+            case 25:
+                fh1 fh1Var = (fh1) obj;
+                fh1Var.getClass();
+                if (VoIPService.getSharedState() != null) {
+                    VoIPService.getSharedState().acceptIncomingCall();
+                    if (fh1Var.f37013a.f37681n0 && VoIPService.getSharedInstance() != null) {
+                        VoIPService.getSharedInstance().requestVideoCall(false);
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 26:
+                ((VoIPPermissionActivity) obj).finish();
                 return;
             default:
+                int[][] iArr = WallpapersListActivity.f35198k0;
+                ((WallpapersListActivity) obj).B0(false);
                 return;
         }
     }

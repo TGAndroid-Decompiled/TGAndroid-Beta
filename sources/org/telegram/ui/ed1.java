@@ -1,30 +1,19 @@
 package org.telegram.ui;
+public final class ed1 implements Runnable {
+    public final int f36639a;
+    public final fd1 f36640b;
+    public final String f36641c;
+    public final int d;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class ed1 extends AnimatorListenerAdapter {
-    public final int f36469a;
-    public final id1 f36470b;
-
-    public ed1(id1 id1Var, int i10) {
-        this.f36469a = i10;
-        this.f36470b = id1Var;
+    public ed1(fd1 fd1Var, String str, int i10, int i11) {
+        this.f36639a = i11;
+        this.f36640b = fd1Var;
+        this.f36641c = str;
+        this.d = i10;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f36469a) {
-            case 0:
-                id1 id1Var = this.f36470b;
-                id1Var.v = 0;
-                id1Var.f37832n.setVisibility(8);
-                return;
-            case 1:
-                this.f36470b.v = 0;
-                return;
-            default:
-                this.f36470b.F.setVisibility(8);
-                return;
-        }
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ed1.run():void");
     }
 }

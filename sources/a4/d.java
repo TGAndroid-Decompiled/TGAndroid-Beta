@@ -5,7 +5,7 @@ import ah.j1;
 import ai.ee;
 import android.util.Pair;
 import ci.q;
-import ci.r4;
+import ci.s4;
 import ci.w0;
 import ei.ac;
 import hg.g0;
@@ -54,7 +54,7 @@ public final class d implements Comparator {
             case 5:
                 return (int) (((ee) obj2).d - ((ee) obj).d);
             case 6:
-                int i14 = (((bi.b) obj2).f4430c > ((bi.b) obj).f4430c ? 1 : (((bi.b) obj2).f4430c == ((bi.b) obj).f4430c ? 0 : -1));
+                int i14 = (((bi.b) obj2).f4428c > ((bi.b) obj).f4428c ? 1 : (((bi.b) obj2).f4428c == ((bi.b) obj).f4428c ? 0 : -1));
                 if (i14 > 0) {
                     return 1;
                 }
@@ -66,41 +66,41 @@ public final class d implements Comparator {
                 return ((File) obj2).getName().compareTo(((File) obj).getName());
             case 8:
                 String name = ((File) obj).getName();
-                int i15 = ca.b.f5042f;
+                int i15 = ca.b.f5041f;
                 return name.substring(0, i15).compareTo(((File) obj2).getName().substring(0, i15));
             case 9:
-                i10 = ((q) obj2).f5751b;
-                i11 = ((q) obj).f5751b;
+                i10 = ((q) obj2).f5740b;
+                i11 = ((q) obj).f5740b;
                 break;
             case 10:
             case 12:
-                i10 = ((w0) obj2).f6032c;
-                i11 = ((w0) obj).f6032c;
+                i10 = ((w0) obj2).f6101c;
+                i11 = ((w0) obj).f6101c;
                 break;
             case 11:
                 return (int) (((TL_phone.groupCallDonor) obj2).stars - ((TL_phone.groupCallDonor) obj).stars);
             case 13:
                 return ((Integer) ((Pair) obj).first).intValue() - ((Integer) ((Pair) obj2).first).intValue();
             case 14:
-                int i16 = ProfileStoriesView.f33851s0;
-                return (int) (((r4) obj2).f5858i - ((r4) obj).f5858i);
+                int i16 = ProfileStoriesView.f33857s0;
+                return (int) (((s4) obj2).f5965i - ((s4) obj).f5965i);
             case 15:
                 return (int) (((Long) obj2).longValue() - ((Long) obj).longValue());
             case 16:
                 i1 i1Var = (i1) obj2;
-                String str = ((i1) obj).f785f;
+                String str = ((i1) obj).f783f;
                 if (str != null && str.equals("❤")) {
                     i12 = -1;
                 } else {
                     i12 = 0;
                 }
-                String str2 = i1Var.f785f;
+                String str2 = i1Var.f783f;
                 return i12 - ((str2 == null || !str2.equals("❤")) ? 0 : 0);
             case 17:
                 return (int) (((ac) obj2).e - ((ac) obj).e);
             case 18:
-                int i17 = ((g0) obj).f11868b;
-                int i18 = ((g0) obj2).f11868b;
+                int i17 = ((g0) obj).f11869b;
+                int i18 = ((g0) obj2).f11869b;
                 if (i17 < i18) {
                     return 1;
                 }
@@ -111,8 +111,8 @@ public final class d implements Comparator {
             case 19:
                 return Double.compare(((TLRPC.TL_topPeer) obj2).rating, ((TLRPC.TL_topPeer) obj).rating);
             case 20:
-                int i19 = ((y1) obj).f12111b;
-                int i20 = ((y1) obj2).f12111b;
+                int i19 = ((y1) obj).f12112b;
+                int i20 = ((y1) obj2).f12112b;
                 if (i19 < i20) {
                     return 1;
                 }
@@ -121,13 +121,13 @@ public final class d implements Comparator {
                 }
                 return 0;
             case 21:
-                return Integer.compare(((i4.d) obj).f12684a.f12687b, ((i4.d) obj2).f12684a.f12687b);
+                return Integer.compare(((i4.d) obj).f12686a.f12689b, ((i4.d) obj2).f12686a.f12689b);
             case 22:
-                return Long.compare(((i4.c) obj).f12681b, ((i4.c) obj2).f12681b);
+                return Long.compare(((i4.c) obj).f12683b, ((i4.c) obj2).f12683b);
             case 23:
                 return ((TL_account.TL_businessWeeklyOpen) obj).start_minute - ((TL_account.TL_businessWeeklyOpen) obj2).start_minute;
             case 24:
-                return ((z1) obj).f13100c - ((z1) obj2).f13100c;
+                return ((z1) obj).f13102c - ((z1) obj2).f13102c;
             case 25:
                 i10 = Integer.bitCount(((Integer) obj2).intValue());
                 i11 = Integer.bitCount(((Integer) obj).intValue());
@@ -135,9 +135,9 @@ public final class d implements Comparator {
             case 26:
                 m2.b bVar = (m2.b) obj;
                 m2.b bVar2 = (m2.b) obj2;
-                int compare = Integer.compare(bVar.f16413c, bVar2.f16413c);
+                int compare = Integer.compare(bVar.f16416c, bVar2.f16416c);
                 if (compare == 0) {
-                    return bVar.f16412b.compareTo(bVar2.f16412b);
+                    return bVar.f16415b.compareTo(bVar2.f16415b);
                 }
                 return compare;
             case 27:

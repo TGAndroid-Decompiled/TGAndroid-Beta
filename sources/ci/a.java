@@ -18,25 +18,25 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.lk;
 import org.telegram.ui.Components.bs;
 public final class a extends FrameLayout {
-    public final ImageView f5127a;
-    public final org.telegram.ui.Components.p6 f5128b;
-    public final Paint f5129c;
+    public final ImageView f5126a;
+    public final org.telegram.ui.Components.p6 f5127b;
+    public final Paint f5128c;
     public final Paint d;
     public boolean e;
-    public int f5130f;
+    public int f5129f;
     public float h;
-    public ValueAnimator f5131n;
+    public ValueAnimator f5130n;
 
     public a(Context context, eh.b bVar) {
         super(context);
         Paint paint = new Paint(1);
-        this.f5129c = paint;
+        this.f5128c = paint;
         Paint paint2 = new Paint(1);
         this.d = paint2;
         this.h = 1.0f;
         w7.b6.a(this);
         org.telegram.ui.Components.p6 p6Var = new org.telegram.ui.Components.p6(false, true, true);
-        this.f5128b = p6Var;
+        this.f5127b = p6Var;
         p6Var.u(-9866632);
         p6Var.w(AndroidUtilities.dp(9.0f));
         p6Var.setCallback(this);
@@ -47,9 +47,9 @@ public final class a extends FrameLayout {
         FrameLayout frameLayout = new FrameLayout(context);
         bh.j jVar = new bh.j();
         jVar.a(bVar);
-        jVar.f4419g.setColor(-14670806);
+        jVar.f4417g.setColor(-14670806);
         jVar.invalidateSelf();
-        jVar.f4418f = AndroidUtilities.dp(1.0f);
+        jVar.f4416f = AndroidUtilities.dp(1.0f);
         frameLayout.setBackground(jVar);
         addView(frameLayout, w7.z5.e(40, 40, 17));
         ImageView imageView = new ImageView(context);
@@ -58,7 +58,7 @@ public final class a extends FrameLayout {
         imageView.setColorFilter(new PorterDuffColorFilter(-2960428, mode));
         frameLayout.addView(imageView, w7.z5.e(20, 20, 17));
         ImageView imageView2 = new ImageView(context);
-        this.f5127a = imageView2;
+        this.f5126a = imageView2;
         imageView2.setImageResource(R.drawable.menu_comments_arrow);
         imageView2.setColorFilter(new PorterDuffColorFilter(-2960428, mode));
         frameLayout.addView(imageView2, w7.z5.e(20, 20, 17));
@@ -72,7 +72,7 @@ public final class a extends FrameLayout {
         }
         this.e = z10;
         float f7 = 180.0f;
-        ImageView imageView = this.f5127a;
+        ImageView imageView = this.f5126a;
         if (z11) {
             ViewPropertyAnimator animate = imageView.animate();
             if (z10) {
@@ -92,7 +92,7 @@ public final class a extends FrameLayout {
         canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
         super.dispatchDraw(canvas);
         float f7 = this.h;
-        org.telegram.ui.Components.p6 p6Var = this.f5128b;
+        org.telegram.ui.Components.p6 p6Var = this.f5127b;
         float i10 = p6Var.i() * f7;
         float max = Math.max(AndroidUtilities.dp(12.0f), p6Var.c() + AndroidUtilities.dp(6.0f));
         canvas.save();
@@ -102,7 +102,7 @@ public final class a extends FrameLayout {
         rectF.inset(-AndroidUtilities.dp(2.0f), -AndroidUtilities.dp(2.0f));
         canvas.drawRoundRect(rectF, rectF.height() / 2.0f, rectF.height() / 2.0f, this.d);
         rectF.set(getWidth() - max, 0.0f, getWidth(), AndroidUtilities.dp(13.0f));
-        canvas.drawRoundRect(rectF, rectF.height() / 2.0f, rectF.height() / 2.0f, this.f5129c);
+        canvas.drawRoundRect(rectF, rectF.height() / 2.0f, rectF.height() / 2.0f, this.f5128c);
         canvas.translate(((max - p6Var.c()) / 2.0f) + rectF.left, AndroidUtilities.dp(7.0f));
         p6Var.draw(canvas);
         canvas.restore();
@@ -116,28 +116,28 @@ public final class a extends FrameLayout {
         } else {
             formatNumber = LocaleController.formatNumber(i10, ',');
         }
-        this.f5128b.t(formatNumber, true, true);
-        if (this.f5130f != i10) {
-            ValueAnimator valueAnimator = this.f5131n;
+        this.f5127b.t(formatNumber, true, true);
+        if (this.f5129f != i10) {
+            ValueAnimator valueAnimator = this.f5130n;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
-                this.f5131n = null;
+                this.f5130n = null;
             }
             ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-            this.f5131n = ofFloat;
+            this.f5130n = ofFloat;
             ofFloat.addUpdateListener(new ah.c0(this, 8));
-            this.f5131n.addListener(new ah.b(this, 5));
-            lk.l(2.5f, this.f5131n);
-            this.f5131n.setDuration(200L);
-            this.f5131n.start();
-            this.f5130f = i10;
+            this.f5130n.addListener(new ah.b(this, 5));
+            lk.l(2.5f, this.f5130n);
+            this.f5130n.setDuration(200L);
+            this.f5130n.start();
+            this.f5129f = i10;
         }
         invalidate();
     }
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f5128b && !super.verifyDrawable(drawable)) {
+        if (drawable != this.f5127b && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

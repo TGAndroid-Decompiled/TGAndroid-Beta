@@ -1,4 +1,4 @@
 package a9;
 public abstract class y extends s implements z {
-    public static final int f360i = 0;
+    public static final int f359i = 0;
 }

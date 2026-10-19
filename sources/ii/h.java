@@ -3,22 +3,22 @@ package ii;
 import android.content.Context;
 import android.view.View;
 import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.Components.a71;
-import org.telegram.ui.Components.e61;
+import org.telegram.ui.Components.b71;
 import org.telegram.ui.Components.f61;
+import org.telegram.ui.Components.g61;
 import org.telegram.ui.Components.im0;
-import org.telegram.ui.Components.s61;
-public final class h extends e61 {
-    public static final int f13173a = 0;
+import org.telegram.ui.Components.t61;
+public final class h extends f61 {
+    public static final int f13175a = 0;
 
     static {
-        e61.setup(new e61());
+        f61.setup(new f61());
     }
 
     @Override
-    public final void bindView(View view, f61 f61Var, boolean z10, s61 s61Var, a71 a71Var) {
-        long j10 = f61Var.B;
-        ((i) view).a((int) j10, (int) (j10 >>> 32), f61Var.f26139k, f61Var.f26140l, f61Var.f26142n, f61Var.f26145q);
+    public final void bindView(View view, g61 g61Var, boolean z10, t61 t61Var, b71 b71Var) {
+        long j10 = g61Var.B;
+        ((i) view).a((int) j10, (int) (j10 >>> 32), g61Var.f26498k, g61Var.f26499l, g61Var.f26501n, g61Var.f26504q);
     }
 
     @Override

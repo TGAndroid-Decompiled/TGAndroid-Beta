@@ -4,14 +4,14 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.Map;
 public class f extends j2 {
-    public final Map f8442b;
-    public final p1 f8443c;
+    public final Map f8443b;
+    public final p1 f8444c;
 
     public f(p1 p1Var, Map map) {
         super(0);
-        this.f8443c = p1Var;
+        this.f8444c = p1Var;
         map.getClass();
-        this.f8442b = map;
+        this.f8443b = map;
     }
 
     @Override
@@ -30,17 +30,17 @@ public class f extends j2 {
 
     @Override
     public final boolean contains(Object obj) {
-        return this.f8442b.containsKey(obj);
+        return this.f8443b.containsKey(obj);
     }
 
     @Override
     public final boolean containsAll(Collection collection) {
-        return this.f8442b.keySet().containsAll(collection);
+        return this.f8443b.keySet().containsAll(collection);
     }
 
     @Override
     public final boolean equals(Object obj) {
-        if (this != obj && !this.f8442b.keySet().equals(obj)) {
+        if (this != obj && !this.f8443b.keySet().equals(obj)) {
             return false;
         }
         return true;
@@ -48,27 +48,27 @@ public class f extends j2 {
 
     @Override
     public final int hashCode() {
-        return this.f8442b.keySet().hashCode();
+        return this.f8443b.keySet().hashCode();
     }
 
     @Override
     public final boolean isEmpty() {
-        return this.f8442b.isEmpty();
+        return this.f8443b.isEmpty();
     }
 
     @Override
     public final Iterator iterator() {
-        return new d(this, this.f8442b.entrySet().iterator(), 1);
+        return new d(this, this.f8443b.entrySet().iterator(), 1);
     }
 
     @Override
     public final boolean remove(Object obj) {
         int i10;
-        Collection collection = (Collection) this.f8442b.remove(obj);
+        Collection collection = (Collection) this.f8443b.remove(obj);
         if (collection != null) {
             i10 = collection.size();
             collection.clear();
-            this.f8443c.f8486f -= i10;
+            this.f8444c.f8487f -= i10;
         } else {
             i10 = 0;
         }
@@ -80,6 +80,6 @@ public class f extends j2 {
 
     @Override
     public final int size() {
-        return this.f8442b.size();
+        return this.f8443b.size();
     }
 }

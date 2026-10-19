@@ -7,7 +7,7 @@ import java.util.WeakHashMap;
 public class b0 extends n0 {
     public int A;
     public a0 B;
-    public final i2.n0 C;
+    public final i2.o0 C;
     public final k2.k D;
     public int E;
     public final int[] F;
@@ -183,16 +183,16 @@ public class b0 extends n0 {
                 break;
             }
             k2.k kVar = this.D;
-            kVar.f14718a = 0;
-            kVar.f14719b = false;
-            kVar.f14720c = false;
+            kVar.f14720a = 0;
+            kVar.f14721b = false;
+            kVar.f14722c = false;
             kVar.d = false;
             Z0(eVar, y0Var, zVar, kVar);
-            if (!kVar.f14719b) {
+            if (!kVar.f14721b) {
                 int i13 = zVar.f46078b;
-                int i14 = kVar.f14718a;
+                int i14 = kVar.f14720a;
                 zVar.f46078b = (zVar.f46080f * i14) + i13;
-                if (!kVar.f14720c || zVar.f46084k != null || !y0Var.f46070g) {
+                if (!kVar.f14722c || zVar.f46084k != null || !y0Var.f46070g) {
                     zVar.f46079c -= i14;
                     i12 -= i14;
                 }
@@ -448,7 +448,7 @@ public class b0 extends n0 {
 
     public boolean Y0() {
         RecyclerView recyclerView = this.f46003b;
-        WeakHashMap weakHashMap = r0.i0.f44818a;
+        WeakHashMap weakHashMap = r0.i0.f44816a;
         if (recyclerView.getLayoutDirection() == 1) {
             return true;
         }
@@ -464,7 +464,7 @@ public class b0 extends n0 {
         boolean z11;
         View c10 = zVar.c(eVar);
         if (c10 == null) {
-            kVar.f14719b = true;
+            kVar.f14721b = true;
             return;
         }
         o0 o0Var = (o0) c10.getLayoutParams();
@@ -494,7 +494,7 @@ public class b0 extends n0 {
             }
         }
         P(c10);
-        kVar.f14718a = this.f45900q.b(c10);
+        kVar.f14720a = this.f45900q.b(c10);
         if (this.f45898o == 1) {
             if (Y0()) {
                 i13 = this.f46011m - E();
@@ -505,24 +505,24 @@ public class b0 extends n0 {
             }
             if (zVar.f46080f == -1) {
                 i11 = zVar.f46078b;
-                i12 = i11 - kVar.f14718a;
+                i12 = i11 - kVar.f14720a;
             } else {
                 i12 = zVar.f46078b;
-                i11 = kVar.f14718a + i12;
+                i11 = kVar.f14720a + i12;
             }
         } else {
             int F = F();
             int c11 = this.f45900q.c(c10) + F;
             if (zVar.f46080f == -1) {
                 int i14 = zVar.f46078b;
-                int i15 = i14 - kVar.f14718a;
+                int i15 = i14 - kVar.f14720a;
                 i13 = i14;
                 i11 = c11;
                 i10 = i15;
                 i12 = F;
             } else {
                 int i16 = zVar.f46078b;
-                int i17 = kVar.f14718a + i16;
+                int i17 = kVar.f14720a + i16;
                 i10 = i16;
                 i11 = c11;
                 i12 = F;
@@ -531,7 +531,7 @@ public class b0 extends n0 {
         }
         n0.O(c10, i10, i12, i13, i11);
         if (o0Var.f46014a.j() || o0Var.f46014a.m()) {
-            kVar.f14720c = true;
+            kVar.f14722c = true;
         }
         kVar.d = c10.hasFocusable();
     }
@@ -777,7 +777,7 @@ public class b0 extends n0 {
     public final void j1(int i10) {
         e0 e0Var;
         if (i10 != 0 && i10 != 1) {
-            throw new IllegalArgumentException(i2.d.j(i10, "invalid orientation:"));
+            throw new IllegalArgumentException(i2.e.j(i10, "invalid orientation:"));
         }
         b(null);
         if (i10 == this.f45898o && this.f45900q != null) {
@@ -793,7 +793,7 @@ public class b0 extends n0 {
             e0Var = new e0(this, 0);
         }
         this.f45900q = e0Var;
-        this.C.f12492f = e0Var;
+        this.C.f12497f = e0Var;
         this.f45898o = i10;
         l0();
     }
@@ -841,7 +841,7 @@ public class b0 extends n0 {
             for (int i11 = 0; i11 < r11; i11++) {
                 View q10 = q(i11);
                 b1 U = RecyclerView.U(q10);
-                if (U != null && U.c() == i10 && !U.r() && (this.f46003b.f3631u0.f46070g || !U.j())) {
+                if (U != null && U.c() == i10 && !U.r() && (this.f46003b.f3629u0.f46070g || !U.j())) {
                     return q10;
                 }
             }
@@ -1024,9 +1024,9 @@ public class b0 extends n0 {
         this.f45908z = true;
         this.A = Integer.MIN_VALUE;
         this.B = null;
-        i2.n0 n0Var = new i2.n0();
-        n0Var.g();
-        this.C = n0Var;
+        i2.o0 o0Var = new i2.o0();
+        o0Var.g();
+        this.C = o0Var;
         this.D = new Object();
         this.E = 2;
         this.F = new int[2];
@@ -1036,6 +1036,6 @@ public class b0 extends n0 {
         k1(z10);
     }
 
-    public void a1(qf.e eVar, y0 y0Var, i2.n0 n0Var, int i10) {
+    public void a1(qf.e eVar, y0 y0Var, i2.o0 o0Var, int i10) {
     }
 }

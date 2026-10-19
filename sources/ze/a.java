@@ -87,7 +87,7 @@ public final class a extends ff.a {
                 pVar3.h = (c) arrayList.get(i10);
             }
             aVar.a(str2.trim(), pVar3);
-            pVar3.f50129g = true;
+            pVar3.f50128g = true;
             pVar2.b(pVar3);
             i10++;
         }

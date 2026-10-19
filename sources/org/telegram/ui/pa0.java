@@ -1,111 +1,33 @@
 package org.telegram.ui;
 
-import android.view.View;
-import android.view.Window;
-import java.lang.ref.WeakReference;
-public final class pa0 implements zf.k0 {
-    public final int f40006a;
-    public boolean f40007b;
-    public boolean f40008c;
-    public final Object d;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class pa0 implements Runnable {
+    public final int f40175a;
+    public final ab0 f40176b;
 
-    public pa0(Object obj, int i10) {
-        this.f40006a = i10;
-        this.d = obj;
+    public pa0(ab0 ab0Var, int i10) {
+        this.f40175a = i10;
+        this.f40176b = ab0Var;
     }
 
     @Override
-    public void a(boolean z10) {
-        int i10;
-        int i11;
-        switch (this.f40006a) {
+    public final void run() {
+        switch (this.f40175a) {
             case 0:
-                if (this.f40007b != z10 && !this.f40008c) {
-                    this.f40007b = z10;
-                    LaunchActivity launchActivity = (LaunchActivity) ((WeakReference) this.d).get();
-                    if (launchActivity != null) {
-                        int i12 = launchActivity.B1;
-                        if (z10) {
-                            i10 = 1;
-                        } else {
-                            i10 = -1;
-                        }
-                        int i13 = i12 + i10;
-                        launchActivity.B1 = i13;
-                        m0 m0Var = launchActivity.f33185w0;
-                        if (m0Var != null) {
-                            if (i13 > 0) {
-                                i11 = 8;
-                            } else {
-                                i11 = 0;
-                            }
-                            m0Var.setVisibility(i11);
-                        }
-                        launchActivity.getWindow();
-                        return;
-                    }
-                    return;
-                }
+                ab0 ab0Var = this.f40176b;
+                ab0Var.f35324r.f22401b.requestFocus();
+                AndroidUtilities.showKeyboard(ab0Var.f35324r.f22401b);
+                return;
+            case 1:
+                ab0 ab0Var2 = this.f40176b;
+                ab0Var2.f35324r.f22401b.clearFocus();
+                AndroidUtilities.hideKeyboard(ab0Var2.f35324r.f22401b);
                 return;
             default:
-                zf.l0 l0Var = (zf.l0) this.d;
-                if (this.f40007b != z10 && !this.f40008c) {
-                    this.f40007b = z10;
-                    boolean z11 = true;
-                    if (z10) {
-                        l0Var.f51579a++;
-                    } else {
-                        l0Var.f51579a--;
-                    }
-                    int i14 = 0;
-                    if (l0Var.f51579a <= 0) {
-                        z11 = false;
-                    }
-                    if (l0Var.f51580b != z11) {
-                        l0Var.f51580b = z11;
-                        Window window = (Window) ((WeakReference) l0Var.f51581c.f50474b).get();
-                        if (window != null) {
-                            View decorView = window.getDecorView();
-                            if (z11) {
-                                i14 = 8;
-                            }
-                            decorView.setVisibility(i14);
-                            return;
-                        }
-                        return;
-                    }
-                    return;
-                }
+                pf.d.r(this.f40176b.getParentActivity(), LocaleController.getString(R.string.RequireMonthlyFeeInfoLink));
                 return;
         }
-    }
-
-    public void b() {
-        if (!this.f40007b) {
-            this.f40007b = true;
-            Runnable runnable = (Runnable) this.d;
-            if (runnable != null) {
-                runnable.run();
-            }
-        }
-    }
-
-    @Override
-    public void destroy() {
-        switch (this.f40006a) {
-            case 0:
-                a(false);
-                this.f40008c = true;
-                return;
-            default:
-                a(false);
-                this.f40008c = true;
-                return;
-        }
-    }
-
-    public pa0(LaunchActivity launchActivity, boolean z10) {
-        this.f40006a = 0;
-        this.d = new WeakReference(launchActivity);
     }
 }

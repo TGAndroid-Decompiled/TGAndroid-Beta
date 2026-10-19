@@ -12,7 +12,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.lk;
 import org.telegram.ui.Components.bs;
 import org.telegram.ui.Components.p6;
-import org.telegram.ui.vf1;
+import org.telegram.ui.tf1;
 public final class b extends View {
     public final p6 f47643a;
     public float f47644b;
@@ -31,7 +31,7 @@ public final class b extends View {
         p6Var.x(AndroidUtilities.bold());
         p6Var.u(-1);
         p6Var.t("", true, true);
-        p6Var.f29192b = 17;
+        p6Var.f29182b = 17;
         Paint paint = new Paint(1);
         this.e = paint;
         paint.setColor(-6915073);
@@ -58,15 +58,15 @@ public final class b extends View {
             ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
             this.f47645c = ofFloat;
             ofFloat.addUpdateListener(new i6(this, 26));
-            this.f47645c.addListener(new vf1(this, 20));
+            this.f47645c.addListener(new tf1(this, 20));
             lk.l(2.0f, this.f47645c);
             this.f47645c.setDuration(200L);
             this.f47645c.start();
         }
         this.d = i10;
-        int length = p6Var.f29198i.length();
+        int length = p6Var.f29187i.length();
         p6Var.t("x" + i10, z10, true);
-        int length2 = p6Var.f29198i.length();
+        int length2 = p6Var.f29187i.length();
         invalidate();
         if (length != length2) {
             requestLayout();

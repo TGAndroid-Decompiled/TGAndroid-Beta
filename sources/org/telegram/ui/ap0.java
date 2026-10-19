@@ -1,68 +1,58 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.view.View;
-import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-public final class ap0 extends z51 {
-    public final dp0 f35462d2;
-    public final q51[] f35463e2;
-    public final ep0 f35464f2;
+import android.widget.LinearLayout;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class ap0 extends LinearLayout {
+    public final org.telegram.ui.Components.x90 f35411a;
+    public final org.telegram.ui.Components.x90 f35412b;
+    public final cp0 f35413c;
 
-    public ap0(ep0 ep0Var, org.telegram.ui.ActionBar.n2 n2Var, Context context, Integer num, int i10, org.telegram.ui.ActionBar.d6 d6Var, int i11, int i12, dp0 dp0Var, q51[] q51VarArr) {
-        super(n2Var, context, true, num, i10, true, d6Var, i11, i12);
-        this.f35464f2 = ep0Var;
-        this.f35462d2 = dp0Var;
-        this.f35463e2 = q51VarArr;
-    }
-
-    @Override
-    public final float getScrimDrawableTranslationY() {
-        return 0.0f;
-    }
-
-    @Override
-    public final void p(View view, Long l4, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, Integer num) {
-        long longValue;
-        ep0 ep0Var = this.f35464f2;
-        if (tL_starGiftUnique != null) {
-            if (ep0Var.m0 == 0) {
-                TLRPC.PeerColor peerColor = tL_starGiftUnique.peer_color;
-                if (peerColor instanceof TLRPC.TL_peerColorCollectible) {
-                    ep0Var.f36585s = (TLRPC.TL_peerColorCollectible) peerColor;
-                    ep0Var.f36584r = null;
-                } else {
-                    return;
-                }
-            } else {
-                ep0Var.f36585s = null;
-                ep0Var.f36584r = MessagesController.emojiStatusCollectibleFromGift(tL_starGiftUnique);
-            }
-            ep0Var.I = null;
-            ep0Var.h = -1;
+    public ap0(cp0 cp0Var, Context context) {
+        super(context);
+        org.telegram.ui.ActionBar.d6 d6Var;
+        int i10;
+        org.telegram.ui.ActionBar.d6 d6Var2;
+        this.f35413c = cp0Var;
+        setOrientation(1);
+        ip0 ip0Var = cp0Var.f36059p0;
+        setBackgroundColor(ip0Var.getThemedColor(org.telegram.ui.ActionBar.h6.f20989d6));
+        org.telegram.ui.Components.w9 w9Var = new org.telegram.ui.Components.w9(getContext());
+        w9Var.setImageDrawable(new org.telegram.ui.Components.uj0(R.raw.utyan_draw, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f)));
+        addView(w9Var, w7.z5.t(120, 120, 1, 0, 6, 0, 0));
+        Context context2 = getContext();
+        int i11 = org.telegram.ui.ActionBar.h6.f21377y6;
+        d6Var = ((org.telegram.ui.ActionBar.n2) ip0Var).resourceProvider;
+        org.telegram.ui.Components.x90 a2 = w7.d6.a(context2, 14.0f, i11, false, d6Var);
+        this.f35411a = a2;
+        a2.setGravity(17);
+        if (cp0Var.m0 == 0) {
+            i10 = R.string.Gift2PeerColorProfileEmptyTitle;
         } else {
-            if (l4 == null) {
-                longValue = 0;
-            } else {
-                longValue = l4.longValue();
-            }
-            ep0Var.f36580n = longValue;
-            ep0Var.f36584r = null;
-            ep0Var.f36585s = null;
-            ep0Var.I = null;
+            i10 = R.string.Gift2PeerColorReplyEmptyTitle;
         }
-        dp0 dp0Var = this.f35462d2;
-        if (dp0Var != null) {
-            dp0Var.b(true);
-        }
-        ep0Var.j(true);
-        ep0Var.i();
-        ep0Var.f(true);
-        q51 q51Var = this.f35463e2[0];
-        if (q51Var != null) {
-            ep0Var.f36582o0 = null;
-            q51Var.dismiss();
-        }
+        a2.setText(LocaleController.getString(i10));
+        addView(a2, w7.z5.t(-1, -2, 1, 64, 8, 64, 8));
+        Context context3 = getContext();
+        int i12 = org.telegram.ui.ActionBar.h6.f21048gc;
+        d6Var2 = ((org.telegram.ui.ActionBar.n2) ip0Var).resourceProvider;
+        org.telegram.ui.Components.x90 a10 = w7.d6.a(context3, 14.0f, i12, false, d6Var2);
+        this.f35412b = a10;
+        a10.setGravity(17);
+        a10.setText(AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.Gift2PeerColorEmptyButton), new ck0(this, 11)), true, AndroidUtilities.dp(2.6666667f), AndroidUtilities.dp(1.33f), 1.0f));
+        addView(a10, w7.z5.t(-1, -2, 1, 32, 4, 32, 24));
+    }
+
+    public final void a() {
+        ip0 ip0Var = this.f35413c.f36059p0;
+        setBackgroundColor(ip0Var.getThemedColor(org.telegram.ui.ActionBar.h6.f20989d6));
+        this.f35411a.setTextColor(ip0Var.getThemedColor(org.telegram.ui.ActionBar.h6.f21377y6));
+        int i10 = org.telegram.ui.ActionBar.h6.f21048gc;
+        int themedColor = ip0Var.getThemedColor(i10);
+        org.telegram.ui.Components.x90 x90Var = this.f35412b;
+        x90Var.setTextColor(themedColor);
+        x90Var.setLinkTextColor(ip0Var.getThemedColor(i10));
     }
 }

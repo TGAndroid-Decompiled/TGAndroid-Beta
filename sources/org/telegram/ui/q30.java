@@ -1,42 +1,48 @@
 package org.telegram.ui;
 
-import android.os.Bundle;
-import org.telegram.messenger.voip.GroupCallMessage;
-public final class q30 implements mh.a {
-    public final s50 f40269a;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
+import org.telegram.messenger.BotWebViewVibrationEffect;
+public final class q30 implements TextWatcher {
+    public final q50 f40357a;
 
-    public q30(s50 s50Var) {
-        this.f40269a = s50Var;
+    public q30(q50 q50Var) {
+        this.f40357a = q50Var;
     }
 
-    public final void a(GroupCallMessage groupCallMessage) {
-        org.telegram.ui.ActionBar.n2 R = LaunchActivity.R();
-        if (R == null) {
-            return;
-        }
-        boolean z10 = R instanceof ProfileActivity;
-        s50 s50Var = this.f40269a;
-        if (z10 && ((ProfileActivity) R).a() == groupCallMessage.fromId) {
-            s50Var.dismiss();
-            return;
-        }
-        int Q0 = s50Var.Q0();
-        Bundle bundle = new Bundle();
-        long j10 = groupCallMessage.fromId;
-        if (j10 > 0) {
-            bundle.putLong("user_id", j10);
+    @Override
+    public final void afterTextChanged(Editable editable) {
+        String str;
+        int i10;
+        q50 q50Var = this.f40357a;
+        q50Var.A3.a(TextUtils.isEmpty(editable), true);
+        int codePointCount = Character.codePointCount(editable, 0, editable.length());
+        int i11 = q50Var.f40387d0;
+        if (codePointCount + 25 > i11) {
+            str = "" + (i11 - codePointCount);
         } else {
-            bundle.putLong("chat_id", -j10);
+            str = null;
         }
-        boolean z11 = true;
-        if (groupCallMessage.fromId == s50Var.d.getUserConfig().getClientUserId()) {
-            bundle.putBoolean("my_profile", true);
+        q50Var.M.a();
+        q50Var.M.setText(str);
+        org.telegram.ui.Components.q6 q6Var = q50Var.M;
+        if (codePointCount >= i11) {
+            i10 = -1280137;
+        } else {
+            i10 = -1;
         }
-        ProfileActivity profileActivity = new ProfileActivity(bundle, null);
-        if (Q0 > 0 && Q0 != Integer.MAX_VALUE) {
-            z11 = false;
+        q6Var.setTextColor(i10);
+        if (codePointCount > i11) {
+            BotWebViewVibrationEffect.APP_ERROR.vibrate();
         }
-        R.presentFragment(profileActivity, false, z11);
-        s50Var.dismiss();
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

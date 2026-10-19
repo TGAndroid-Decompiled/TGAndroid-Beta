@@ -2,7 +2,7 @@ package t;
 
 import androidx.car.app.model.CarIcon;
 import androidx.core.graphics.drawable.IconCompat;
-import i2.d;
+import i2.e;
 public final class b {
     public static final b f46855b = new b(new int[]{1, 2});
     public final int[] f46856a;
@@ -24,7 +24,7 @@ public final class b {
                         return;
                     }
                 }
-                throw new IllegalArgumentException(d.j(i10, "Custom icon type is not allowed: "));
+                throw new IllegalArgumentException(e.j(i10, "Custom icon type is not allowed: "));
             }
             throw new IllegalStateException("Custom icon does not have a backing IconCompat");
         }

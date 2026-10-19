@@ -17,7 +17,7 @@ public final class a8 extends f8 {
         int action = motionEvent.getAction();
         k8 k8Var = this.e;
         if (action == 0) {
-            if (this.f26161a[this.f26162b].getImageReceiver().hasBitmapImage()) {
+            if (this.f26155a[this.f26156b].getImageReceiver().hasBitmapImage()) {
                 k8Var.B0(true, true);
                 this.d = SystemClock.elapsedRealtime();
                 return true;

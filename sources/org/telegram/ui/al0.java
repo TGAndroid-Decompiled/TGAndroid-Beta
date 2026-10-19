@@ -1,22 +1,59 @@
 package org.telegram.ui;
-public final class al0 implements Runnable {
-    public final int f35436a;
-    public final vr f35437b;
 
-    public al0(vr vrVar, int i10) {
-        this.f35436a = i10;
-        this.f35437b = vrVar;
+import android.text.Editable;
+import android.text.TextWatcher;
+public final class al0 implements TextWatcher {
+    public final int f35394a;
+    public final PasscodeActivity f35395b;
+
+    public al0(PasscodeActivity passcodeActivity, int i10) {
+        this.f35394a = i10;
+        this.f35395b = passcodeActivity;
     }
 
     @Override
-    public final void run() {
-        switch (this.f35436a) {
+    public final void afterTextChanged(Editable editable) {
+        int i10 = this.f35394a;
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        switch (this.f35394a) {
             case 0:
-                this.f35437b.l(1.0f);
+                PasscodeActivity passcodeActivity = this.f35395b;
+                wk0 wk0Var = passcodeActivity.S;
+                if (passcodeActivity.R) {
+                    passcodeActivity.f33223n.removeCallbacks(wk0Var);
+                    wk0Var.run();
+                    return;
+                }
                 return;
             default:
-                this.f35437b.l(1.0f);
+                PasscodeActivity passcodeActivity2 = this.f35395b;
+                wk0 wk0Var2 = passcodeActivity2.S;
+                if (passcodeActivity2.R) {
+                    passcodeActivity2.f33223n.removeCallbacks(wk0Var2);
+                    wk0Var2.run();
+                    return;
+                }
                 return;
         }
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        int i13 = this.f35394a;
+    }
+
+    private final void a(Editable editable) {
+    }
+
+    private final void b(Editable editable) {
+    }
+
+    private final void c(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void d(int i10, int i11, int i12, CharSequence charSequence) {
     }
 }

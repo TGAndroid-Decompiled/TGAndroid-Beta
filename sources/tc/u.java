@@ -9,7 +9,7 @@ import java.net.URI;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Wallet.z0;
-import org.telegram.ui.web.m1;
+import org.telegram.ui.web.l1;
 public final class u {
     public final s f46966a;
     public final u0 f46967b;
@@ -17,7 +17,7 @@ public final class u {
     public final c2.b d;
     public final p e;
     public final p f46969f;
-    public m1 h;
+    public l1 h;
     public y f46971i;
     public q f46972j;
     public a0 f46973k;
@@ -37,8 +37,8 @@ public final class u {
         String str4;
         this.f46966a = sVar;
         ?? obj = new Object();
-        obj.f4058b = 1;
-        obj.f4057a = 1;
+        obj.f4056b = 1;
+        obj.f4055a = 1;
         this.f46967b = obj;
         ?? obj2 = new Object();
         obj2.f46941a = str;
@@ -52,9 +52,9 @@ public final class u {
         URI.create(str4 + "://" + str2 + str3);
         this.f46968c = obj2;
         ?? obj3 = new Object();
-        obj3.f4495c = new ArrayList();
-        obj3.f4493a = true;
-        obj3.f4494b = this;
+        obj3.f4493c = new ArrayList();
+        obj3.f4491a = true;
+        obj3.f4492b = this;
         this.d = obj3;
         this.e = new c1(this, "PingSender", new rb.b(23));
         this.f46969f = new c1(this, "PongSender", new rb.b(23));
@@ -77,7 +77,7 @@ public final class u {
                     z0 z0Var = (z0) obj;
                     try {
                         try {
-                            AndroidUtilities.runOnUIThread(new xb(z0Var, (u) bVar.f4494b, z0Var.f35158a, z0Var.f35159b, 16));
+                            AndroidUtilities.runOnUIThread(new xb(z0Var, (u) bVar.f4492b, z0Var.f35154a, z0Var.f35155b, 16));
                         } catch (Throwable unused) {
                             z0Var.getClass();
                         }
@@ -94,8 +94,8 @@ public final class u {
         s sVar;
         synchronized (this.f46967b) {
             u0 u0Var = this.f46967b;
-            if (u0Var.f4057a == 1) {
-                u0Var.f4057a = 2;
+            if (u0Var.f4055a == 1) {
+                u0Var.f4055a = 2;
             } else {
                 throw new v(1, "The current state of the WebSocket is not CREATED.");
             }
@@ -125,7 +125,7 @@ public final class u {
                     }
                 }
                 this.f46983u = oVar;
-                this.f46967b.f4057a = 3;
+                this.f46967b.f4055a = 3;
                 this.d.e();
                 i();
             } catch (v e) {
@@ -146,7 +146,7 @@ public final class u {
                 } catch (Throwable unused2) {
                 }
             }
-            this.f46967b.f4057a = 5;
+            this.f46967b.f4055a = 5;
             this.d.e();
             throw e7;
         }
@@ -155,15 +155,15 @@ public final class u {
     public final void c() {
         synchronized (this.f46967b) {
             try {
-                int c10 = m1.j.c(this.f46967b.f4057a);
+                int c10 = m1.j.c(this.f46967b.f4055a);
                 if (c10 != 0) {
                     if (c10 != 2) {
                         return;
                     }
                     u0 u0Var = this.f46967b;
-                    u0Var.f4057a = 4;
-                    if (u0Var.f4058b == 1) {
-                        u0Var.f4058b = 3;
+                    u0Var.f4055a = 4;
+                    if (u0Var.f4056b == 1) {
+                        u0Var.f4056b = 3;
                     }
                     g(x.a(1000, null));
                     this.d.e();
@@ -209,14 +209,14 @@ public final class u {
             }
         }
         synchronized (this.f46967b) {
-            this.f46967b.f4057a = 5;
+            this.f46967b.f4055a = 5;
         }
         this.d.e();
         c2.b bVar = this.d;
         x xVar = this.f46981s;
         x xVar2 = this.f46982t;
         int i10 = 0;
-        if (this.f46967b.f4058b == 2) {
+        if (this.f46967b.f4056b == 2) {
             z10 = true;
         } else {
             z10 = false;
@@ -229,7 +229,7 @@ public final class u {
             z0 z0Var = (z0) obj;
             try {
                 try {
-                    z0Var.a((u) bVar.f4494b, xVar, xVar2, z10);
+                    z0Var.a((u) bVar.f4492b, xVar, xVar2, z10);
                 } catch (Throwable unused2) {
                 }
             } catch (Throwable unused3) {
@@ -261,7 +261,7 @@ public final class u {
     public final void finalize() {
         boolean z10;
         synchronized (this.f46967b) {
-            if (this.f46967b.f4057a == 1) {
+            if (this.f46967b.f4055a == 1) {
                 z10 = true;
             } else {
                 z10 = false;
@@ -277,7 +277,7 @@ public final class u {
         if (xVar != null) {
             synchronized (this.f46967b) {
                 try {
-                    int i10 = this.f46967b.f4057a;
+                    int i10 = this.f46967b.f4055a;
                     if (i10 != 3 && i10 != 4) {
                         return;
                     }

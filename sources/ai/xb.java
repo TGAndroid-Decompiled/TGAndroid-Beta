@@ -23,7 +23,7 @@ import org.telegram.tgnet.tl.TL_wallet;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.sn;
+import org.telegram.ui.qn;
 public final class xb implements Runnable {
     public final int f2452a;
     public final long f2453b;
@@ -57,7 +57,7 @@ public final class xb implements Runnable {
                 ga.y(i11, false).S();
                 org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
                 if (U != null) {
-                    U.presentFragment(sn.W9(j10));
+                    U.presentFragment(qn.W9(j10));
                     return;
                 }
                 return;
@@ -130,22 +130,22 @@ public final class xb implements Runnable {
                 return;
             case 16:
                 tc.u uVar = (tc.u) obj;
-                org.telegram.ui.Wallet.a1 a1Var = ((org.telegram.ui.Wallet.z0) obj2).f35160c;
+                org.telegram.ui.Wallet.a1 a1Var = ((org.telegram.ui.Wallet.z0) obj2).f35156c;
                 if (!a1Var.c(uVar, i11)) {
                     a1Var.d("closing stale connected websocket; attempt=" + i11);
                     uVar.c();
                     return;
                 }
                 a1Var.d("websocket connected after " + (SystemClock.elapsedRealtime() - j10) + " ms");
-                org.telegram.ui.Wallet.x0 x0Var = a1Var.f33967o;
+                org.telegram.ui.Wallet.x0 x0Var = a1Var.f33973o;
                 try {
-                    JSONArray put = new JSONArray().put(a1Var.f33957b);
+                    JSONArray put = new JSONArray().put(a1Var.f33963b);
                     StringBuilder sb2 = new StringBuilder("wallet-");
-                    int i12 = a1Var.f33960g + 1;
-                    a1Var.f33960g = i12;
+                    int i12 = a1Var.f33966g + 1;
+                    a1Var.f33966g = i12;
                     sb2.append(i12);
-                    a1Var.f33959f = sb2.toString();
-                    JSONObject put2 = new JSONObject().put("operation", "subscribe").put("id", a1Var.f33959f).put("types", new JSONArray().put("transactions").put("account_state_change")).put("include_address_book", true).put("addresses", put).put("min_finality", "pending");
+                    a1Var.f33965f = sb2.toString();
+                    JSONObject put2 = new JSONObject().put("operation", "subscribe").put("id", a1Var.f33965f).put("types", new JSONArray().put("transactions").put("account_state_change")).put("include_address_book", true).put("addresses", put).put("min_finality", "pending");
                     AndroidUtilities.cancelRunOnUIThread(x0Var);
                     AndroidUtilities.runOnUIThread(x0Var, 30000L);
                     a1Var.g(put2.toString());
@@ -161,12 +161,12 @@ public final class xb implements Runnable {
                 TL_wallet.tonConnectGetPending tonconnectgetpending = new TL_wallet.tonConnectGetPending();
                 long j11 = this.f2453b;
                 tonconnectgetpending.session_id = Long.valueOf(j11);
-                f2Var.f34171f.sendRequestTyped(tonconnectgetpending, new Object(), new org.telegram.ui.Wallet.t1(f2Var, fhVar, j11, this.f2454c, 0));
+                f2Var.f34189f.sendRequestTyped(tonconnectgetpending, new Object(), new org.telegram.ui.Wallet.t1(f2Var, fhVar, j11, this.f2454c, 0));
                 return;
             default:
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder((Context) obj2, 0, (org.telegram.ui.ActionBar.d6) obj);
                 String string = LocaleController.getString(R.string.WalletNetworkFee);
-                org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20601a;
+                org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20604a;
                 b2Var.R = string;
                 b2Var.T = AndroidUtilities.replaceTags(LocaleController.formatSpannable(R.string.WalletNetworkFeeInfo, org.telegram.ui.Wallet.m0.w(i11).l(j10, true)));
                 org.telegram.messenger.g0.p(R.string.WalletOK, alertDialog$Builder, null);

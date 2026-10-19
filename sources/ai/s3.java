@@ -1,41 +1,126 @@
 package ai;
 
-import android.content.Context;
-import org.telegram.messenger.AndroidUtilities;
+import android.content.DialogInterface;
+import java.util.Arrays;
+import org.json.JSONObject;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_wallet;
-import org.telegram.ui.Components.l70;
 public final class s3 implements Utilities.Callback {
-    public final int f2138a;
-    public final long f2139b;
-    public final org.telegram.ui.ActionBar.f3 f2140c;
+    public final int f2135a = 0;
+    public final boolean f2136b;
+    public final Object f2137c;
     public final Object d;
     public final Object e;
-    public final TLObject f2141f;
-    public final TLObject f2142g;
+    public final Object f2138f;
 
-    public s3(org.telegram.ui.ActionBar.f3 f3Var, Object obj, Object obj2, long j10, TLObject tLObject, TLObject tLObject2, int i10) {
-        this.f2138a = i10;
-        this.f2140c = f3Var;
-        this.d = obj;
-        this.e = obj2;
-        this.f2139b = j10;
-        this.f2141f = tLObject;
-        this.f2142g = tLObject2;
+    public s3(k7 k7Var, boolean z10, pf.c cVar, Runnable runnable, DialogInterface dialogInterface) {
+        this.f2137c = k7Var;
+        this.f2136b = z10;
+        this.d = cVar;
+        this.e = runnable;
+        this.f2138f = dialogInterface;
     }
 
     @Override
     public final void run(Object obj) {
-        switch (this.f2138a) {
+        switch (this.f2135a) {
             case 0:
-                k7.Q0((k7) this.f2140c, (pf.c) this.d, (ug.m1) this.e, this.f2139b, (TL_stars.TL_starGiftUnique) this.f2141f, (TL_wallet.nftItem) this.f2142g, (TL_stars.starGiftDepositPayload) obj);
+                k7.g0((k7) this.f2137c, this.f2136b, (pf.c) this.d, (Runnable) this.e, (DialogInterface) this.f2138f, (Boolean) obj);
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new org.telegram.messenger.voip.e((l70) this.f2140c, (org.telegram.ui.ActionBar.b2) this.d, (Context) this.e, this.f2139b, (TLRPC.TL_chatInviteExported) this.f2141f, (TLRPC.TL_chatInviteImporter) this.f2142g, (TLRPC.ChannelParticipant) obj));
+                final org.telegram.ui.Wallet.f2 f2Var = (org.telegram.ui.Wallet.f2) this.f2137c;
+                final org.telegram.ui.Wallet.b2 b2Var = (org.telegram.ui.Wallet.b2) this.d;
+                final org.telegram.ui.Wallet.x xVar = (org.telegram.ui.Wallet.x) this.e;
+                final org.telegram.ui.Wallet.j0 j0Var = (org.telegram.ui.Wallet.j0) this.f2138f;
+                final byte[] bArr = (byte[]) obj;
+                if (!f2Var.i(b2Var) && f2Var.y(b2Var)) {
+                    TL_wallet.tonConnectClaimRequest tonconnectclaimrequest = new TL_wallet.tonConnectClaimRequest();
+                    tonconnectclaimrequest.session_id = b2Var.f34007a.f20533id;
+                    tonconnectclaimrequest.msg_id = b2Var.f34008b;
+                    tonconnectclaimrequest.app_request_id = b2Var.d;
+                    final boolean z10 = this.f2136b;
+                    tonconnectclaimrequest.declined = z10;
+                    tonconnectclaimrequest.challenge_answer = bArr;
+                    f2Var.f34189f.sendRequestTyped(tonconnectclaimrequest, new Object(), new Utilities.Callback2() {
+                        @Override
+                        public final void run(Object obj2, Object obj3) {
+                            int i10;
+                            String str;
+                            f2 f2Var2 = f2.this;
+                            byte[] bArr2 = bArr;
+                            b2 b2Var2 = b2Var;
+                            x xVar2 = xVar;
+                            boolean z11 = z10;
+                            j0 j0Var2 = j0Var;
+                            TLRPC.Bool bool = (TLRPC.Bool) obj2;
+                            TLRPC.TL_error tL_error = (TLRPC.TL_error) obj3;
+                            if (bArr2 != null) {
+                                Arrays.fill(bArr2, (byte) 0);
+                            }
+                            if (tL_error == null && (bool instanceof TLRPC.TL_boolTrue)) {
+                                b2Var2.f34018o = true;
+                                if (!z11 && b2Var2.f34015l < 0) {
+                                    if ("disconnect".equals(b2Var2.e)) {
+                                        f2Var2.w(b2Var2, j0Var2, new JSONObject(), -1, null, xVar2);
+                                        return;
+                                    } else if ("signData".equals(b2Var2.e)) {
+                                        if (f2Var2.y(b2Var2) && !f2Var2.i(b2Var2)) {
+                                            Utilities.globalQueue.postRunnable(new w6(f2Var2, j0Var2, b2Var2, xVar2, 9));
+                                            return;
+                                        } else {
+                                            f2Var2.w(b2Var2, j0Var2, null, 0, "Request expired or wallet changed", xVar2);
+                                            return;
+                                        }
+                                    } else if ("signMessage".equals(b2Var2.e)) {
+                                        WalletEngine2 walletEngine2 = f2Var2.f34187b.f34469b;
+                                        if (walletEngine2 != null && f2Var2.y(b2Var2) && !f2Var2.i(b2Var2)) {
+                                            e2 e2Var = b2Var2.f34010f;
+                                            walletEngine2.signMessage(j0Var2, e2Var, "ton-connect:" + b2Var2.f34007a.f20533id + ":" + b2Var2.f34008b, new q(f2Var2, b2Var2, j0Var2, xVar2, 8));
+                                            return;
+                                        }
+                                        f2Var2.w(b2Var2, j0Var2, null, 0, "Wallet unavailable or request expired", xVar2);
+                                        return;
+                                    } else {
+                                        f2Var2.z(b2Var2, j0Var2, xVar2);
+                                        return;
+                                    }
+                                }
+                                if (z11) {
+                                    i10 = 300;
+                                } else {
+                                    i10 = b2Var2.f34015l;
+                                }
+                                int i11 = i10;
+                                if (z11) {
+                                    str = "User declined the request";
+                                } else {
+                                    str = b2Var2.f34013j;
+                                }
+                                f2Var2.w(b2Var2, j0Var2, null, i11, str, xVar2);
+                                return;
+                            }
+                            if (tL_error != null && ("TONCONNECT_REQUEST_ALREADY_CLAIMED".equals(tL_error.text) || "TONCONNECT_REQUEST_EXPIRED".equals(tL_error.text) || "TONCONNECT_REQUEST_NOT_FOUND".equals(tL_error.text))) {
+                                b2Var2.f34017n = true;
+                            }
+                            xVar2.run(f2.x(tL_error, "claimRequest"));
+                        }
+                    });
+                    return;
+                }
+                if (bArr != null) {
+                    Arrays.fill(bArr, (byte) 0);
+                }
+                xVar.run("Request expired or wallet changed");
                 return;
         }
+    }
+
+    public s3(org.telegram.ui.Wallet.f2 f2Var, org.telegram.ui.Wallet.b2 b2Var, org.telegram.ui.Wallet.x xVar, boolean z10, org.telegram.ui.Wallet.j0 j0Var) {
+        this.f2137c = f2Var;
+        this.d = b2Var;
+        this.e = xVar;
+        this.f2136b = z10;
+        this.f2138f = j0Var;
     }
 }

@@ -1,7 +1,7 @@
 package org.telegram.ui.Components;
-public final class ru0 extends org.telegram.ui.pc0 {
-    @Override
-    public final boolean g0() {
-        return true;
-    }
+public final class ru0 {
+    public String f30053a;
+    public int f30054b;
+    public int f30055c;
+    public int d;
 }

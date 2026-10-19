@@ -2,7 +2,7 @@ package f5;
 
 import com.google.android.gms.internal.play_billing.k3;
 public final class g extends com.googlecode.mp4parser.c {
-    public static final le.b e;
+    public static final te.b e;
 
     static {
         te.a aVar = new te.a(g.class, "DataEntryUrlBox.java");

@@ -1,29 +1,61 @@
 package ci;
 
-import android.content.Context;
-import android.graphics.Bitmap;
-public final class m3 extends d9 {
-    public final z9 H;
-    public final p4 I;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.view.View;
+import org.telegram.ui.Components.bl0;
+public final class m3 implements bl0 {
+    public final q4 f5609a;
 
-    public m3(p4 p4Var, Context context, q3 q3Var, org.telegram.ui.ActionBar.d6 d6Var, z9 z9Var) {
-        super(context, q3Var, d6Var);
-        this.I = p4Var;
-        this.H = z9Var;
+    public m3(q4 q4Var) {
+        this.f5609a = q4Var;
     }
 
     @Override
-    public final void b(boolean z10) {
-        i4 i4Var = this.I.Q1;
-        if (i4Var != null) {
-            z9 z9Var = ((q9) i4Var).d;
-            z9Var.f6230i1 = z10;
-            z9Var.P();
+    public final boolean i() {
+        return true;
+    }
+
+    @Override
+    public final boolean m() {
+        return this.f5609a.N0();
+    }
+
+    @Override
+    public final void o(View view, ah.i1 i1Var, boolean z10, boolean z11) {
+        q4 q4Var = this.f5609a;
+        if (!z10) {
+            q4Var.n0(new ai.x9(this, view, i1Var, z10, z11));
+        } else {
+            org.telegram.ui.Components.f5.Z(q4Var.C2, 1, q4Var.B1, new l3(this, z10, i1Var, view));
         }
     }
 
     @Override
-    public final Bitmap getPlayingBitmap() {
-        return this.I.getPlayingBitmap();
+    public final void q(Canvas canvas, RectF rectF, float f7, float f10, float f11, int i10, boolean z10) {
+        q4 q4Var = this.f5609a;
+        Paint paint = q4Var.f5806n2;
+        com.google.firebase.messaging.l lVar = q4Var.P1;
+        float f12 = -f10;
+        float f13 = -f11;
+        lVar.E(f12, f13, q4Var.getMeasuredWidth() + f12, q4Var.getMeasuredHeight() + f13);
+        if (f7 > 0.0f) {
+            canvas.drawRoundRect(rectF, f7, f7, (Paint) lVar.f7647a);
+            canvas.drawRoundRect(rectF, f7, f7, paint);
+            return;
+        }
+        canvas.drawRect(rectF, (Paint) lVar.f7647a);
+        canvas.drawRect(rectF, paint);
+    }
+
+    @Override
+    public final void v() {
+        ((r9) this.f5609a.Q1).b(false);
+    }
+
+    @Override
+    public final boolean w() {
+        return false;
     }
 }

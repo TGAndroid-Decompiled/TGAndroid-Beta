@@ -1,49 +1,41 @@
 package ai;
-
-import org.telegram.messenger.AndroidUtilities;
 public final class h4 implements Runnable {
-    public final int f1407a;
-    public final k7 f1408b;
-    public final String f1409c;
+    public final int f1404a;
+    public final yh.i0 f1405b;
 
-    public h4(k7 k7Var, String str, int i10) {
-        this.f1407a = i10;
-        this.f1408b = k7Var;
-        this.f1409c = str;
+    public h4(yh.i0 i0Var, int i10) {
+        this.f1404a = i10;
+        this.f1405b = i0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f1407a) {
+        switch (this.f1404a) {
             case 0:
-                k7.l0(this.f1408b, this.f1409c);
+                this.f1405b.dismiss();
                 return;
             case 1:
-                k7.y0(this.f1408b, this.f1409c);
+                yh.i0 i0Var = this.f1405b;
+                qh.i iVar = i0Var.h;
+                ih.f fVar = i0Var.f50288f;
+                if (fVar != null) {
+                    fVar.d();
+                }
+                yh.h0 h0Var = i0Var.H;
+                if (h0Var != null) {
+                    h0Var.setTranslationY(-iVar.d());
+                }
+                org.telegram.ui.Components.q6 q6Var = i0Var.f50292w;
+                if (q6Var != null) {
+                    q6Var.setTranslationY(-iVar.d());
+                }
+                i0Var.p();
                 return;
             case 2:
-                k7.m0(this.f1408b, this.f1409c);
-                return;
-            case 3:
-                k7.K0(this.f1408b, this.f1409c);
-                return;
-            case 4:
-                k7.g1(this.f1408b, this.f1409c);
-                return;
-            case 5:
-                k7.J0(this.f1408b, this.f1409c);
-                return;
-            case 6:
-                k7.Q(this.f1408b, this.f1409c);
-                return;
-            case 7:
-                AndroidUtilities.addToClipboard(this.f1409c);
-                org.telegram.ui.Components.qc k10 = this.f1408b.getBulletinFactory().k(false);
-                k10.f29648t = true;
-                k10.j();
+                this.f1405b.H.performClick();
                 return;
             default:
-                k7.k0(this.f1408b, this.f1409c);
+                this.f1405b.f50289n.G0();
                 return;
         }
     }

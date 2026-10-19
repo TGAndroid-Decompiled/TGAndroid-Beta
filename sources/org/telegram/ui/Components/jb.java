@@ -5,29 +5,29 @@ import android.widget.FrameLayout;
 import j$.util.Objects;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
-import org.telegram.ui.qg1;
+import org.telegram.ui.og1;
 public final class jb implements View.OnLayoutChangeListener {
-    public final boolean f27489a;
-    public final qc f27490b;
+    public final boolean f27492a;
+    public final qc f27493b;
 
     public jb(qc qcVar, boolean z10) {
-        this.f27490b = qcVar;
-        this.f27489a = z10;
+        this.f27493b = qcVar;
+        this.f27492a = z10;
     }
 
     @Override
     public final void onLayoutChange(View view, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17) {
         ob obVar;
         int i18;
-        qc qcVar = this.f27490b;
+        qc qcVar = this.f27493b;
         ub ubVar = qcVar.e;
         ubVar.removeOnLayoutChangeListener(this);
-        if (qcVar.f29640l) {
+        if (qcVar.f29598l) {
             ubVar.onShow();
-            org.telegram.ui.ActionBar.n2 n2Var = qcVar.f29636g;
-            boolean z10 = this.f27489a;
-            if (z10 && (n2Var instanceof qg1)) {
-                n2Var = ((qg1) n2Var).X();
+            org.telegram.ui.ActionBar.n2 n2Var = qcVar.f29594g;
+            boolean z10 = this.f27492a;
+            if (z10 && (n2Var instanceof og1)) {
+                n2Var = ((og1) n2Var).X();
             }
             FrameLayout frameLayout = qcVar.h;
             if (n2Var == null || (obVar = n2Var.getBulletinDelegate()) == null) {
@@ -39,37 +39,37 @@ public final class jb implements View.OnLayoutChangeListener {
                 }
                 obVar = null;
             }
-            qcVar.f29644p = obVar;
+            qcVar.f29602p = obVar;
             if (obVar == null && n2Var != null) {
-                qcVar.f29644p = new ah.m0(n2Var, 6);
+                qcVar.f29602p = new ah.m0(n2Var, 6);
             }
             o1.k kVar = qcVar.d;
-            if (kVar == null || !kVar.f17551f) {
-                ob obVar2 = qcVar.f29644p;
+            if (kVar == null || !kVar.f17554f) {
+                ob obVar2 = qcVar.f29602p;
                 if (obVar2 != null) {
-                    i18 = obVar2.f(qcVar.f29632a);
+                    i18 = obVar2.f(qcVar.f29590a);
                 } else {
                     i18 = 0;
                 }
-                qcVar.f29643o = i18;
+                qcVar.f29601o = i18;
             }
-            ob obVar3 = qcVar.f29644p;
+            ob obVar3 = qcVar.f29602p;
             if (obVar3 != null) {
                 obVar3.b(qcVar);
             }
-            if (MessagesController.getGlobalMainSettings().getBoolean("view_animations", true) && !qcVar.f29647s) {
-                if (ubVar != null && qcVar.f29645q == null) {
-                    qcVar.f29645q = ubVar.createTransition();
+            if (MessagesController.getGlobalMainSettings().getBoolean("view_animations", true) && !qcVar.f29605s) {
+                if (ubVar != null && qcVar.f29603q == null) {
+                    qcVar.f29603q = ubVar.createTransition();
                 }
                 ubVar.transitionRunningEnter = true;
-                ubVar.delegate = qcVar.f29644p;
+                ubVar.delegate = qcVar.f29602p;
                 ubVar.invalidate();
-                tb tbVar = qcVar.f29645q;
+                tb tbVar = qcVar.f29603q;
                 Objects.requireNonNull(ubVar);
                 tbVar.D0(ubVar, new fb(ubVar, 1), new pg(this, 15), new xl(2, this, z10));
                 return;
             }
-            ob obVar4 = qcVar.f29644p;
+            ob obVar4 = qcVar.f29602p;
             ubVar.delegate = obVar4;
             if (obVar4 != null && !z10) {
                 obVar4.c(ubVar.getHeight());
@@ -77,7 +77,7 @@ public final class jb implements View.OnLayoutChangeListener {
             qcVar.l();
             ubVar.onEnterTransitionStart();
             ubVar.onEnterTransitionEnd();
-            if (qcVar.f29649u) {
+            if (qcVar.f29607u) {
                 qcVar.i(true);
             }
         }

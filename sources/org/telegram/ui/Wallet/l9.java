@@ -6,35 +6,35 @@ import android.text.TextUtils;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class l9 implements View.OnClickListener {
-    public final int f34446a;
-    public final r9 f34447b;
+    public final int f34463a;
+    public final r9 f34464b;
 
     public l9(r9 r9Var, int i10) {
-        this.f34446a = i10;
-        this.f34447b = r9Var;
+        this.f34463a = i10;
+        this.f34464b = r9Var;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f34446a) {
+        switch (this.f34463a) {
             case 0:
-                r9 r9Var = this.f34447b;
-                if (r9Var.f34794w != null) {
+                r9 r9Var = this.f34464b;
+                if (r9Var.f34810w != null) {
                     AndroidUtilities.hideKeyboard(r9Var.M);
-                    r9Var.f0(r9Var.f34794w, null);
+                    r9Var.h0(r9Var.f34810w, null);
                     return;
                 }
                 return;
             case 1:
-                r9 r9Var2 = this.f34447b;
-                if (r9Var2.f34794w != null) {
+                r9 r9Var2 = this.f34464b;
+                if (r9Var2.f34810w != null) {
                     AndroidUtilities.hideKeyboard(r9Var2.M);
-                    r9Var2.f0(r9Var2.f34794w, null);
+                    r9Var2.h0(r9Var2.f34810w, null);
                     return;
                 }
                 return;
             case 2:
-                r9 r9Var3 = this.f34447b;
+                r9 r9Var3 = this.f34464b;
                 ClipboardManager clipboardManager = (ClipboardManager) r9Var3.getParentActivity().getSystemService("clipboard");
                 if (clipboardManager != null && clipboardManager.hasPrimaryClip()) {
                     ClipData primaryClip = clipboardManager.getPrimaryClip();
@@ -47,18 +47,18 @@ public final class l9 implements View.OnClickListener {
                             return;
                         }
                         r9Var3.R = false;
-                        r9Var3.i0(true);
+                        r9Var3.k0(true);
                         return;
                     }
                     r9Var3.R = false;
-                    r9Var3.i0(true);
+                    r9Var3.k0(true);
                     return;
                 }
                 r9Var3.R = false;
-                r9Var3.i0(true);
+                r9Var3.k0(true);
                 return;
             default:
-                this.f34447b.c0();
+                this.f34464b.d0();
                 return;
         }
     }

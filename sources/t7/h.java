@@ -2,7 +2,7 @@ package t7;
 
 import j$.util.Objects;
 import java.util.AbstractMap;
-import w7.p7;
+import w7.o7;
 public final class h extends d {
     public final i f46884c;
 
@@ -13,7 +13,7 @@ public final class h extends d {
     @Override
     public final Object get(int i10) {
         i iVar = this.f46884c;
-        p7.a(i10, iVar.e);
+        o7.a(i10, iVar.e);
         Object[] objArr = iVar.d;
         int i11 = i10 + i10;
         Object obj = objArr[i11];

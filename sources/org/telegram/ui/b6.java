@@ -2,38 +2,38 @@ package org.telegram.ui;
 
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.CacheByChatsController;
-public final class b6 implements v70 {
-    public final int f35554a;
-    public final e6 f35555b;
-    public final CacheByChatsController.KeepMediaException f35556c;
+public final class b6 implements t70 {
+    public final int f35521a;
+    public final e6 f35522b;
+    public final CacheByChatsController.KeepMediaException f35523c;
 
     public b6(e6 e6Var, CacheByChatsController.KeepMediaException keepMediaException, int i10) {
-        this.f35554a = i10;
-        this.f35555b = e6Var;
-        this.f35556c = keepMediaException;
+        this.f35521a = i10;
+        this.f35522b = e6Var;
+        this.f35523c = keepMediaException;
     }
 
     @Override
     public final void a(int i10) {
-        switch (this.f35554a) {
+        switch (this.f35521a) {
             case 0:
                 int i11 = CacheByChatsController.KEEP_MEDIA_DELETE;
-                e6 e6Var = this.f35555b;
-                CacheByChatsController.KeepMediaException keepMediaException = this.f35556c;
+                e6 e6Var = this.f35522b;
+                CacheByChatsController.KeepMediaException keepMediaException = this.f35523c;
                 if (i10 == i11) {
                     e6Var.d.remove(keepMediaException);
                     e6Var.U();
                 } else {
                     keepMediaException.keepMedia = i10;
-                    AndroidUtilities.updateVisibleRows(e6Var.f36372b);
+                    AndroidUtilities.updateVisibleRows(e6Var.f36556b);
                 }
                 e6Var.getMessagesController().getCacheByChatsController().saveKeepMediaExceptions(e6Var.e, e6Var.d);
                 return;
             default:
-                this.f35556c.keepMedia = i10;
-                e6 e6Var2 = this.f35555b;
+                this.f35523c.keepMedia = i10;
+                e6 e6Var2 = this.f35522b;
                 e6Var2.getMessagesController().getCacheByChatsController().saveKeepMediaExceptions(e6Var2.e, e6Var2.d);
-                AndroidUtilities.updateVisibleRows(e6Var2.f36372b);
+                AndroidUtilities.updateVisibleRows(e6Var2.f36556b);
                 return;
         }
     }

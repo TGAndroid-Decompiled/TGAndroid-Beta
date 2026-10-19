@@ -10,7 +10,7 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-import w7.k6;
+import w7.j6;
 public abstract class i {
     public static int a(MessageObject messageObject) {
         long dialogId;
@@ -70,7 +70,7 @@ public abstract class i {
             int i13 = messageObject.currentAccount;
             TLRPC.TL_messageMediaPoll tL_messageMediaPoll = (TLRPC.TL_messageMediaPoll) MessageObject.getMedia(message, TLRPC.TL_messageMediaPoll.class);
             if (tL_messageMediaPoll != null) {
-                if (k6.a(i10, 4)) {
+                if (j6.a(i10, 4)) {
                     ArrayList arrayList = new ArrayList(tL_messageMediaPoll.poll.countries_iso2.size());
                     ArrayList<String> arrayList2 = tL_messageMediaPoll.poll.countries_iso2;
                     int size = arrayList2.size();
@@ -106,8 +106,8 @@ public abstract class i {
                     } else {
                         i11 = R.string.PollV2ToastOnlyUsersFromCountriesCanVoteOther;
                     }
-                    return AndroidUtilities.replaceTags(LocaleController.formatString(i11, stringBuffer, i2.d.h(1, arrayList)));
-                } else if (k6.a(i10, 1)) {
+                    return AndroidUtilities.replaceTags(LocaleController.formatString(i11, stringBuffer, i2.e.h(1, arrayList)));
+                } else if (j6.a(i10, 1)) {
                     TLRPC.MessageFwdHeader messageFwdHeader = message.fwd_from;
                     if (messageFwdHeader != null) {
                         dialogId = DialogObject.getPeerDialogId(messageFwdHeader.from_id);
@@ -115,7 +115,7 @@ public abstract class i {
                         dialogId = messageObject.getDialogId();
                     }
                     return AndroidUtilities.replaceTags(LocaleController.formatString(R.string.PollV2ToastOnlySubscribersCanVote, DialogObject.getShortName(MessagesController.getInstance(i13).getChat(Long.valueOf(-dialogId)))));
-                } else if (k6.a(i10, 2)) {
+                } else if (j6.a(i10, 2)) {
                     return AndroidUtilities.replaceTags(LocaleController.getString(R.string.PollV2ToastOnlySubscribersJoined24hCanVote));
                 } else {
                     return null;

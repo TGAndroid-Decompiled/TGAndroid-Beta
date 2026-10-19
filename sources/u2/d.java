@@ -1,46 +1,46 @@
 package u2;
-public final class d implements e1 {
-    public final e1 f47267a;
-    public boolean f47268b;
-    public final e f47269c;
+public final class d implements d1 {
+    public final d1 f47288a;
+    public boolean f47289b;
+    public final e f47290c;
 
-    public d(e eVar, e1 e1Var) {
-        this.f47269c = eVar;
-        this.f47267a = e1Var;
+    public d(e eVar, d1 d1Var) {
+        this.f47290c = eVar;
+        this.f47288a = d1Var;
     }
 
     @Override
     public final void a() {
-        this.f47267a.a();
+        this.f47288a.a();
     }
 
     @Override
-    public final boolean e() {
-        if (!this.f47269c.a() && this.f47267a.e()) {
+    public final boolean f() {
+        if (!this.f47290c.b() && this.f47288a.f()) {
             return true;
         }
         return false;
     }
 
     @Override
-    public final int f(qf.b bVar, h2.h hVar, int i10) {
-        e eVar = this.f47269c;
-        if (eVar.a()) {
+    public final int g(qf.b bVar, h2.h hVar, int i10) {
+        e eVar = this.f47290c;
+        if (eVar.b()) {
             return -3;
         }
-        if (this.f47268b) {
+        if (this.f47289b) {
             hVar.setFlags(4);
             return -4;
         }
         long s10 = eVar.s();
-        int f7 = this.f47267a.f(bVar, hVar, i10);
-        if (eVar.e != -9223372036854775807L && f7 != -3) {
+        int g10 = this.f47288a.g(bVar, hVar, i10);
+        if (eVar.e != -9223372036854775807L && g10 != -3) {
             eVar.e = -9223372036854775807L;
         }
-        if (f7 == -5) {
-            long j10 = eVar.f47295f;
+        if (g10 == -5) {
+            long j10 = eVar.f47294f;
             long j11 = eVar.h;
-            b2.w wVar = (b2.w) bVar.f44443c;
+            b2.w wVar = (b2.w) bVar.f44438c;
             wVar.getClass();
             int i11 = wVar.O;
             int i12 = wVar.N;
@@ -54,25 +54,25 @@ public final class d implements e1 {
                 b2.v a2 = wVar.a();
                 a2.M = i12;
                 a2.N = i11;
-                bVar.f44443c = new b2.w(a2);
+                bVar.f44438c = new b2.w(a2);
             }
             return -5;
         }
         long j12 = eVar.h;
-        if (j12 != Long.MIN_VALUE && ((f7 == -4 && hVar.e >= j12) || (f7 == -3 && s10 == Long.MIN_VALUE && !hVar.d))) {
+        if (j12 != Long.MIN_VALUE && ((g10 == -4 && hVar.e >= j12) || (g10 == -3 && s10 == Long.MIN_VALUE && !hVar.d))) {
             hVar.clear();
             hVar.setFlags(4);
-            this.f47268b = true;
+            this.f47289b = true;
             return -4;
         }
-        return f7;
+        return g10;
     }
 
     @Override
-    public final int h(long j10) {
-        if (this.f47269c.a()) {
+    public final int m(long j10) {
+        if (this.f47290c.b()) {
             return -3;
         }
-        return this.f47267a.h(j10);
+        return this.f47288a.m(j10);
     }
 }

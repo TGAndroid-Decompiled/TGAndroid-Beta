@@ -5,8 +5,8 @@ import android.os.Parcelable;
 import java.util.Arrays;
 public final class h0 extends o6.a {
     public static final Parcelable.Creator<h0> CREATOR = new r0(4);
-    public final f0 f4961a;
-    public final String f4962b;
+    public final f0 f4960a;
+    public final String f4961b;
 
     static {
         new h0("supported", null);
@@ -16,8 +16,8 @@ public final class h0 extends o6.a {
     public h0(String str, String str2) {
         n6.l.h(str);
         try {
-            this.f4961a = f0.a(str);
-            this.f4962b = str2;
+            this.f4960a = f0.a(str);
+            this.f4961b = str2;
         } catch (g0 e) {
             throw new IllegalArgumentException(e);
         }
@@ -28,21 +28,21 @@ public final class h0 extends o6.a {
             return false;
         }
         h0 h0Var = (h0) obj;
-        if (!n7.a.h(this.f4961a, h0Var.f4961a) || !n7.a.h(this.f4962b, h0Var.f4962b)) {
+        if (!n7.a.h(this.f4960a, h0Var.f4960a) || !n7.a.h(this.f4961b, h0Var.f4961b)) {
             return false;
         }
         return true;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f4961a, this.f4962b});
+        return Arrays.hashCode(new Object[]{this.f4960a, this.f4961b});
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         int q6 = w7.f0.q(parcel, 20293);
-        w7.f0.l(parcel, 2, this.f4961a.f4956a);
-        w7.f0.l(parcel, 3, this.f4962b);
+        w7.f0.l(parcel, 2, this.f4960a.f4955a);
+        w7.f0.l(parcel, 3, this.f4961b);
         w7.f0.r(parcel, q6);
     }
 }

@@ -3,36 +3,36 @@ package f5;
 import com.google.android.gms.internal.play_billing.k3;
 import java.nio.ByteBuffer;
 import java.util.Date;
-import w7.f7;
+import w7.c7;
 public final class m extends com.googlecode.mp4parser.c {
-    public static final le.b I;
-    public static final le.b J;
-    public static final le.b K;
-    public static final le.b L;
-    public static final le.b M;
-    public static final le.b N;
-    public static final le.b O;
-    public static final le.b P;
-    public static final le.b Q;
-    public static final le.b R;
-    public static final le.b S;
-    public static final le.b T;
-    public static final le.b U;
-    public static final le.b V;
+    public static final te.b I;
+    public static final te.b J;
+    public static final te.b K;
+    public static final te.b L;
+    public static final te.b M;
+    public static final te.b N;
+    public static final te.b O;
+    public static final te.b P;
+    public static final te.b Q;
+    public static final te.b R;
+    public static final te.b S;
+    public static final te.b T;
+    public static final te.b U;
+    public static final te.b V;
     public int E;
     public int F;
     public int G;
     public int H;
     public Date e;
-    public Date f10428f;
+    public Date f10429f;
     public long h;
-    public long f10429n;
-    public double f10430r;
-    public float f10431s;
+    public long f10430n;
+    public double f10431r;
+    public float f10432s;
     public rc.d v;
-    public long f10432w;
-    public int f10433x;
-    public int f10434y;
+    public long f10433w;
+    public int f10434x;
+    public int f10435y;
 
     static {
         te.a aVar = new te.a(m.class, "MovieHeaderBox.java");
@@ -71,59 +71,59 @@ public final class m extends com.googlecode.mp4parser.c {
     public final void _parseDetails(ByteBuffer byteBuffer) {
         f(byteBuffer);
         if (e() == 1) {
-            this.e = f7.b(e5.b.j(byteBuffer));
-            this.f10428f = f7.b(e5.b.j(byteBuffer));
+            this.e = c7.b(e5.b.j(byteBuffer));
+            this.f10429f = c7.b(e5.b.j(byteBuffer));
             this.h = e5.b.i(byteBuffer);
-            this.f10429n = e5.b.j(byteBuffer);
+            this.f10430n = e5.b.j(byteBuffer);
         } else {
-            this.e = f7.b(e5.b.i(byteBuffer));
-            this.f10428f = f7.b(e5.b.i(byteBuffer));
+            this.e = c7.b(e5.b.i(byteBuffer));
+            this.f10429f = c7.b(e5.b.i(byteBuffer));
             this.h = e5.b.i(byteBuffer);
-            this.f10429n = e5.b.i(byteBuffer);
+            this.f10430n = e5.b.i(byteBuffer);
         }
-        this.f10430r = e5.b.f(byteBuffer);
-        this.f10431s = e5.b.g(byteBuffer);
+        this.f10431r = e5.b.f(byteBuffer);
+        this.f10432s = e5.b.g(byteBuffer);
         e5.b.h(byteBuffer);
         e5.b.i(byteBuffer);
         e5.b.i(byteBuffer);
         this.v = rc.d.a(byteBuffer);
-        this.f10433x = byteBuffer.getInt();
-        this.f10434y = byteBuffer.getInt();
+        this.f10434x = byteBuffer.getInt();
+        this.f10435y = byteBuffer.getInt();
         this.E = byteBuffer.getInt();
         this.F = byteBuffer.getInt();
         this.G = byteBuffer.getInt();
         this.H = byteBuffer.getInt();
-        this.f10432w = e5.b.i(byteBuffer);
+        this.f10433w = e5.b.i(byteBuffer);
     }
 
     @Override
     public final void getContent(ByteBuffer byteBuffer) {
         i(byteBuffer);
         if (e() == 1) {
-            byteBuffer.putLong(f7.a(this.e));
-            byteBuffer.putLong(f7.a(this.f10428f));
+            byteBuffer.putLong(c7.a(this.e));
+            byteBuffer.putLong(c7.a(this.f10429f));
             byteBuffer.putInt((int) this.h);
-            byteBuffer.putLong(this.f10429n);
+            byteBuffer.putLong(this.f10430n);
         } else {
-            byteBuffer.putInt((int) f7.a(this.e));
-            byteBuffer.putInt((int) f7.a(this.f10428f));
+            byteBuffer.putInt((int) c7.a(this.e));
+            byteBuffer.putInt((int) c7.a(this.f10429f));
             byteBuffer.putInt((int) this.h);
-            byteBuffer.putInt((int) this.f10429n);
+            byteBuffer.putInt((int) this.f10430n);
         }
-        e5.b.n(byteBuffer, this.f10430r);
-        e5.b.o(byteBuffer, this.f10431s);
+        e5.b.n(byteBuffer, this.f10431r);
+        e5.b.o(byteBuffer, this.f10432s);
         e5.b.p(0, byteBuffer);
         int i10 = (int) 0;
         byteBuffer.putInt(i10);
         byteBuffer.putInt(i10);
         this.v.b(byteBuffer);
-        byteBuffer.putInt(this.f10433x);
-        byteBuffer.putInt(this.f10434y);
+        byteBuffer.putInt(this.f10434x);
+        byteBuffer.putInt(this.f10435y);
         byteBuffer.putInt(this.E);
         byteBuffer.putInt(this.F);
         byteBuffer.putInt(this.G);
         byteBuffer.putInt(this.H);
-        byteBuffer.putInt((int) this.f10432w);
+        byteBuffer.putInt((int) this.f10433w);
     }
 
     @Override
@@ -146,23 +146,23 @@ public final class m extends com.googlecode.mp4parser.c {
         sb2.append(this.e);
         sb2.append(";modificationTime=");
         k3.p(te.a.b(J, this, this));
-        sb2.append(this.f10428f);
+        sb2.append(this.f10429f);
         sb2.append(";timescale=");
         k3.p(te.a.b(K, this, this));
         sb2.append(this.h);
         sb2.append(";duration=");
         k3.p(te.a.b(L, this, this));
-        sb2.append(this.f10429n);
+        sb2.append(this.f10430n);
         sb2.append(";rate=");
         k3.p(te.a.b(M, this, this));
-        sb2.append(this.f10430r);
+        sb2.append(this.f10431r);
         sb2.append(";volume=");
         k3.p(te.a.b(N, this, this));
-        sb2.append(this.f10431s);
+        sb2.append(this.f10432s);
         sb2.append(";matrix=");
         sb2.append(this.v);
         sb2.append(";nextTrackId=");
         k3.p(te.a.b(O, this, this));
-        return a1.g.r(sb2, this.f10432w, "]");
+        return a1.g.r(sb2, this.f10433w, "]");
     }
 }

@@ -1,41 +1,30 @@
 package org.telegram.ui;
 
-import android.view.View;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class ug0 implements org.telegram.ui.Components.yl0, org.telegram.ui.ActionBar.a2 {
-    public final jh0 f41955a;
+public final class ug0 implements Runnable {
+    public final int f41971a;
+    public final hh0 f41972b;
+    public final TLRPC.TL_error f41973c;
+    public final TLObject d;
 
-    public ug0(jh0 jh0Var) {
-        this.f41955a = jh0Var;
+    public ug0(hh0 hh0Var, TLRPC.TL_error tL_error, TLObject tLObject, int i10) {
+        this.f41971a = i10;
+        this.f41972b = hh0Var;
+        this.f41973c = tL_error;
+        this.d = tLObject;
     }
 
     @Override
-    public boolean a(int i10, View view) {
-        jh0 jh0Var = this.f41955a;
-        if ((i10 < jh0Var.f38170y || i10 >= jh0Var.E) && (i10 < jh0Var.H || i10 >= jh0Var.I)) {
-            return false;
+    public final void run() {
+        switch (this.f41971a) {
+            case 0:
+                hh0 hh0Var = this.f41972b;
+                hh0Var.getNotificationCenter().doOnIdle(new ug0(hh0Var, this.f41973c, this.d, 1));
+                return;
+            default:
+                hh0.V(this.f41972b, this.f41973c, this.d);
+                return;
         }
-        ((gh0) view).f37187x.callOnClick();
-        try {
-            view.performHapticFeedback(0, 2);
-            return true;
-        } catch (Exception unused) {
-            return true;
-        }
-    }
-
-    @Override
-    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        TLRPC.TL_messages_deleteRevokedExportedChatInvites tL_messages_deleteRevokedExportedChatInvites = new TLRPC.TL_messages_deleteRevokedExportedChatInvites();
-        jh0 jh0Var = this.f41955a;
-        tL_messages_deleteRevokedExportedChatInvites.peer = jh0Var.getMessagesController().getInputPeer(-jh0Var.f38158n);
-        long j10 = jh0Var.f38150f;
-        if (j10 == jh0Var.getUserConfig().getClientUserId()) {
-            tL_messages_deleteRevokedExportedChatInvites.admin_id = jh0Var.getMessagesController().getInputUser(jh0Var.getUserConfig().getCurrentUser());
-        } else {
-            tL_messages_deleteRevokedExportedChatInvites.admin_id = jh0Var.getMessagesController().getInputUser(j10);
-        }
-        jh0Var.f38147c0 = true;
-        jh0Var.getConnectionsManager().sendRequest(tL_messages_deleteRevokedExportedChatInvites, new rg0(jh0Var, 1));
     }
 }

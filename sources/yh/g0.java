@@ -10,15 +10,15 @@ import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Components.og;
 import org.telegram.ui.Components.q6;
-import org.telegram.ui.in;
-import org.telegram.ui.vf1;
+import org.telegram.ui.gn;
+import org.telegram.ui.tf1;
 public final class g0 implements og {
-    public final TL_stars.TL_starGiftUnique f50246a;
-    public final i0 f50247b;
+    public final TL_stars.TL_starGiftUnique f50245a;
+    public final i0 f50246b;
 
     public g0(i0 i0Var, TL_stars.TL_starGiftUnique tL_starGiftUnique) {
-        this.f50247b = i0Var;
-        this.f50246a = tL_starGiftUnique;
+        this.f50246b = i0Var;
+        this.f50245a = tL_starGiftUnique;
     }
 
     @Override
@@ -40,11 +40,11 @@ public final class g0 implements og {
         int i10;
         int i11;
         boolean z10;
-        i0 i0Var = this.f50247b;
-        q6 q6Var = i0Var.f50293w;
-        y4 y4Var = i0Var.f50287b;
+        i0 i0Var = this.f50246b;
+        q6 q6Var = i0Var.f50292w;
+        y4 y4Var = i0Var.f50286b;
         i10 = ((org.telegram.ui.ActionBar.f3) i0Var).currentAccount;
-        y4Var.a(this.f50246a, UserConfig.getInstance(i10).getClientUserId(), i0Var.f50290n.getTextWithEntities(), LocaleController.getString(R.string.GiftMessageSendNow), true);
+        y4Var.a(this.f50245a, UserConfig.getInstance(i10).getClientUserId(), i0Var.f50289n.getTextWithEntities(), LocaleController.getString(R.string.GiftMessageSendNow), true);
         int codePointCount = Character.codePointCount(charSequence, 0, charSequence.length());
         i0Var.F = codePointCount;
         int i12 = i0Var.E;
@@ -68,14 +68,14 @@ public final class g0 implements og {
             q6Var.animate().setListener(null).cancel();
             q6Var.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(100L).start();
             if (i11 < 0) {
-                q6Var.setTextColor(i0Var.getThemedColor(h6.f21207p7));
+                q6Var.setTextColor(i0Var.getThemedColor(h6.f21210p7));
                 return;
             } else {
-                q6Var.setTextColor(i0Var.getThemedColor(h6.f21374y6));
+                q6Var.setTextColor(i0Var.getThemedColor(h6.f21377y6));
                 return;
             }
         }
-        q6Var.animate().alpha(0.0f).scaleX(0.5f).scaleY(0.5f).setDuration(100L).setListener(new vf1(this, 22));
+        q6Var.animate().alpha(0.0f).scaleX(0.5f).scaleY(0.5f).setDuration(100L).setListener(new tf1(this, 22));
     }
 
     @Override
@@ -109,7 +109,7 @@ public final class g0 implements og {
     }
 
     @Override
-    public final in p0() {
+    public final gn p0() {
         return null;
     }
 

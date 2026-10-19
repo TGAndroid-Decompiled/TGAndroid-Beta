@@ -15,7 +15,7 @@ public interface y50 {
 
     Activity getParentActivity();
 
-    void r(MediaController.PhotoEntry photoEntry, VideoEditedInfo videoEditedInfo, boolean z10, int i10, int i11, boolean z11, long j10);
+    void s(MediaController.PhotoEntry photoEntry, VideoEditedInfo videoEditedInfo, boolean z10, int i10, int i11, boolean z11, long j10);
 
     boolean x();
 }

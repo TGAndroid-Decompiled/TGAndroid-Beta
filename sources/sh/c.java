@@ -62,11 +62,11 @@ public final class c extends rh.e {
     public static b d(View view, String str, String str2, TLRPC.Document document, MessageObject messageObject) {
         b bVar = new b();
         bVar.f46519a.setColor(h6.x0(null, h6.G6, false));
-        bVar.f46520b.setColor(h6.x0(null, h6.f21374y6, false));
+        bVar.f46520b.setColor(h6.x0(null, h6.f21377y6, false));
         RadialProgress2 radialProgress2 = new RadialProgress2(view, null);
         bVar.f46521c = radialProgress2;
         radialProgress2.setCircleRadius(AndroidUtilities.dp(21.0f));
-        bVar.f46521c.g(h6.f21082ie, h6.f21101je, h6.f21307uc, h6.f21325vc);
+        bVar.f46521c.g(h6.f21085ie, h6.f21104je, h6.f21310uc, h6.f21328vc);
         if (MessageObject.isMusicDocument(document)) {
             if (MessageObject.isDocumentHasThumb(document)) {
                 TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, AndroidUtilities.dp(22.0f), true, null, false);

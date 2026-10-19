@@ -1,280 +1,96 @@
 package ci;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Point;
-import android.graphics.Rect;
-import android.view.ScaleGestureDetector;
+import android.graphics.Outline;
 import android.view.View;
-import android.view.ViewPropertyAnimator;
-import android.view.WindowManager;
-import android.widget.FrameLayout;
+import android.view.ViewOutlineProvider;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.cw0;
-import org.telegram.ui.Components.un;
-public final class o1 implements NotificationCenter.NotificationCenterDelegate, tf.a {
-    public static final cw0 X = new cw0(new i1(0), new i1(1));
-    public static final cw0 Y = new cw0(new i1(2), new i1(3));
-    public static final o1 Z;
-    public boolean E;
-    public boolean F;
-    public View G;
-    public boolean H;
-    public ValueAnimator I;
-    public int J;
-    public int K;
-    public rf.d L;
-    public float M;
-    public float N;
-    public float O;
-    public o1.k P;
-    public o1.k Q;
-    public Float R;
-    public boolean S;
-    public boolean T;
-    public androidx.fragment.app.d U;
-    public ei.d4 V;
-    public boolean W;
-    public float f5613a;
-    public WindowManager f5614b;
-    public WindowManager.LayoutParams f5615c;
-    public m1 d;
-    public ah.x e;
-    public ei.d4 f5616f;
-    public FrameLayout h;
-    public org.telegram.ui.Components.w9 f5617n;
-    public un f5618r;
-    public boolean f5619s;
-    public h1 v;
-    public int f5620w;
-    public ScaleGestureDetector f5621x;
-    public k0.b f5622y;
+public final class o1 extends ViewOutlineProvider {
+    public final int f5684a;
 
-    static {
-        ?? obj = new Object();
-        obj.f5613a = 1.4f;
-        obj.f5619s = true;
-        obj.M = 1.0f;
-        obj.U = new androidx.fragment.app.d((Object) obj, 9);
-        Z = obj;
-    }
-
-    public static void j() {
-        Z.k(true);
+    public o1(int i10) {
+        this.f5684a = i10;
     }
 
     @Override
-    public final void a(com.google.android.gms.internal.cast.p pVar) {
-        i();
-        this.W = true;
-        this.f5614b.removeView(this.d);
-        this.d.invalidate();
-    }
-
-    @Override
-    public final void b(com.google.android.gms.internal.cast.p pVar) {
-        rf.d dVar = this.L;
-        if (dVar != null && dVar.h.c()) {
-            WindowManager.LayoutParams layoutParams = this.f5615c;
-            int width = ((Rect) this.L.h.f14764a).width();
-            this.J = width;
-            layoutParams.width = width;
-            WindowManager.LayoutParams layoutParams2 = this.f5615c;
-            int height = ((Rect) this.L.h.f14764a).height();
-            this.K = height;
-            layoutParams2.height = height;
+    public final void getOutline(View view, Outline outline) {
+        switch (this.f5684a) {
+            case 0:
+                outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight(), AndroidUtilities.dp(10.0f));
+                return;
+            case 1:
+                outline.setRoundRect(0, 0, view.getWidth(), AndroidUtilities.dp(29.0f) + view.getHeight(), AndroidUtilities.dp(29.0f));
+                return;
+            case 2:
+                outline.setRoundRect(0, 0, view.getWidth(), view.getHeight(), AndroidUtilities.dp(18.0f));
+                return;
+            case 3:
+                outline.setRoundRect(0, 0, view.getWidth(), view.getHeight(), AndroidUtilities.dp(22.0f));
+                return;
+            case 4:
+                outline.setRoundRect(0, 0, view.getWidth(), view.getHeight(), AndroidUtilities.dp(22.0f));
+                return;
+            case 5:
+                outline.setRoundRect(0, 0, view.getWidth(), view.getHeight(), AndroidUtilities.dp(22.0f));
+                return;
+            case 6:
+                outline.setRoundRect(0, 0, view.getWidth(), view.getHeight(), AndroidUtilities.dp(22.0f));
+                return;
+            case 7:
+                outline.setRoundRect(AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f), view.getMeasuredWidth() - AndroidUtilities.dp(1.0f), view.getMeasuredHeight() - AndroidUtilities.dp(1.0f), AndroidUtilities.dp(6.0f));
+                return;
+            case 8:
+                int i10 = AndroidUtilities.roundMessageSize;
+                outline.setOval(0, 0, i10, i10);
+                return;
+            case 9:
+                outline.setRoundRect(0, 0, view.getMeasuredWidth(), AndroidUtilities.dp(6.0f) + view.getMeasuredHeight(), AndroidUtilities.dp(6.0f));
+                return;
+            case 10:
+                outline.setRoundRect(0, 0, view.getMeasuredWidth(), AndroidUtilities.dp(6.0f) + view.getMeasuredHeight(), AndroidUtilities.dpf2(6.0f));
+                return;
+            case 11:
+                outline.setRoundRect(0, 0, view.getMeasuredWidth(), AndroidUtilities.dp(6.0f) + view.getMeasuredHeight(), AndroidUtilities.dpf2(6.0f));
+                return;
+            case 12:
+                outline.setOval(0, 0, view.getWidth(), view.getHeight());
+                return;
+            case 13:
+                outline.setOval(0, 0, view.getWidth(), view.getHeight());
+                return;
+            case 14:
+                outline.setOval(0, 0, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f));
+                return;
+            case 15:
+                outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight(), AndroidUtilities.dp(12.0f));
+                return;
+            case 16:
+                outline.setRoundRect(0, AndroidUtilities.dp(50.0f), view.getWidth(), AndroidUtilities.dp(24.0f) + view.getHeight(), AndroidUtilities.dp(24.0f));
+                return;
+            case 17:
+                outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight(), AndroidUtilities.dp(10.0f));
+                return;
+            case 18:
+                outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight(), (1.0f / view.getScaleX()) * AndroidUtilities.dp(4.0f));
+                return;
+            case 19:
+                outline.setOval(0, 0, AndroidUtilities.dp(56.0f), AndroidUtilities.dp(56.0f));
+                return;
+            case 20:
+                outline.setOval(0, 0, AndroidUtilities.dp(56.0f), AndroidUtilities.dp(56.0f));
+                return;
+            case 21:
+                float dp = AndroidUtilities.dp(12.0f);
+                outline.setRoundRect(0, 0, view.getWidth(), (int) (view.getHeight() + dp), dp);
+                return;
+            case 22:
+                outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight(), AndroidUtilities.dp(6.0f));
+                return;
+            case 23:
+                outline.setOval(0, 0, view.getWidth(), view.getHeight());
+                return;
+            default:
+                outline.setRoundRect(0, 0, view.getWidth(), view.getHeight(), Math.min(view.getWidth(), view.getHeight()) / 2.0f);
+                return;
         }
-        this.W = false;
-        this.f5614b.addView(this.d, this.f5615c);
-        this.d.invalidate();
-        ei.d4 d4Var = this.V;
-        if (d4Var != null) {
-            d4Var.b();
-            this.V = null;
-        }
-        i();
-    }
-
-    @Override
-    public final Bitmap c() {
-        ei.d4 d4Var = this.V;
-        if (d4Var != null && d4Var.a()) {
-            return this.V.getBitmap();
-        }
-        return null;
-    }
-
-    @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        if (i10 == NotificationCenter.didEndCall) {
-            j();
-        } else if (i10 == NotificationCenter.groupCallUpdated) {
-            i();
-        }
-    }
-
-    @Override
-    public final Bitmap e() {
-        ei.d4 d4Var = this.f5616f;
-        if (d4Var != null && d4Var.a()) {
-            return this.f5616f.getBitmap();
-        }
-        return null;
-    }
-
-    @Override
-    public final boolean g() {
-        return true;
-    }
-
-    @Override
-    public final View h() {
-        ei.d4 d4Var = new ei.d4(this.f5616f.getContext(), this.f5620w);
-        this.V = d4Var;
-        return d4Var;
-    }
-
-    public final void i() {
-        float dp;
-        float f7;
-        h1 h1Var = this.v;
-        if (h1Var != null) {
-            h1Var.v(1.0f);
-            ei.d4 d4Var = this.V;
-            if (d4Var != null) {
-                this.v.s(d4Var.getSink());
-            } else {
-                this.v.s(this.f5616f.getSink());
-            }
-        }
-        if (this.f5619s) {
-            this.f5618r.animate().cancel();
-            ViewPropertyAnimator duration = this.f5618r.animate().alpha(0.0f).setDuration(150L);
-            bs bsVar = bs.f25030f;
-            duration.setInterpolator(bsVar).start();
-            this.f5617n.animate().cancel();
-            this.f5617n.animate().alpha(0.0f).setDuration(150L).setInterpolator(bsVar).start();
-            this.f5616f.animate().cancel();
-            this.f5616f.animate().alpha(1.0f).setDuration(150L).setInterpolator(bsVar).start();
-            this.f5619s = false;
-        }
-        if (this.J == n() * this.M && this.K == m() * this.M) {
-            return;
-        }
-        WindowManager.LayoutParams layoutParams = this.f5615c;
-        int n10 = (int) (n() * this.M);
-        this.J = n10;
-        layoutParams.width = n10;
-        WindowManager.LayoutParams layoutParams2 = this.f5615c;
-        int m10 = (int) (m() * this.M);
-        this.K = m10;
-        layoutParams2.height = m10;
-        AndroidUtilities.updateViewLayout(this.f5614b, this.d, this.f5615c);
-        o1.k kVar = this.P;
-        float f10 = this.N;
-        kVar.f17549b = f10;
-        kVar.f17550c = true;
-        o1.l lVar = kVar.f17558u;
-        float B = a1.g.B(n(), this.M, 2.0f, f10);
-        float f11 = AndroidUtilities.displaySize.x;
-        if (B >= f11 / 2.0f) {
-            dp = (f11 - (n() * this.M)) - AndroidUtilities.dp(16.0f);
-        } else {
-            dp = AndroidUtilities.dp(16.0f);
-        }
-        lVar.f17564i = dp;
-        this.P.h();
-        o1.k kVar2 = this.Q;
-        kVar2.f17549b = this.O;
-        kVar2.f17550c = true;
-        kVar2.f17558u.f17564i = w7.r.a(f7, AndroidUtilities.dp(16.0f), (AndroidUtilities.displaySize.y - (m() * this.M)) - AndroidUtilities.dp(16.0f));
-        this.Q.h();
-    }
-
-    public final void k(boolean z10) {
-        if (this.S) {
-            this.S = false;
-            AndroidUtilities.runOnUIThread(new ah.j(5), 100L);
-            NotificationCenter.getInstance(this.f5620w).removeObserver(this, NotificationCenter.liveStoryUpdated);
-            ValueAnimator valueAnimator = this.I;
-            if (valueAnimator != null) {
-                valueAnimator.cancel();
-            }
-            if (this.T) {
-                AndroidUtilities.cancelRunOnUIThread(this.U);
-                this.T = false;
-            }
-            AnimatorSet animatorSet = new AnimatorSet();
-            animatorSet.setDuration(250L);
-            animatorSet.setInterpolator(bs.f25030f);
-            animatorSet.playTogether(ObjectAnimator.ofFloat(this.d, View.ALPHA, 0.0f), ObjectAnimator.ofFloat(this.d, View.SCALE_X, 0.1f), ObjectAnimator.ofFloat(this.d, View.SCALE_Y, 0.1f));
-            animatorSet.addListener(new ah.p0(3, this, z10));
-            animatorSet.start();
-            rf.d dVar = this.L;
-            if (dVar != null) {
-                dVar.c();
-                this.L = null;
-            }
-        }
-    }
-
-    public final float l() {
-        if (this.R == null) {
-            this.R = Float.valueOf(1.7777778f);
-            Point point = AndroidUtilities.displaySize;
-            this.f5613a = (Math.min(point.x, point.y) - AndroidUtilities.dp(32.0f)) / n();
-        }
-        return this.R.floatValue();
-    }
-
-    public final int m() {
-        return (int) (l() * n());
-    }
-
-    public final int n() {
-        float min;
-        float f7;
-        if (l() >= 1.0f) {
-            Point point = AndroidUtilities.displaySize;
-            min = Math.min(point.x, point.y);
-            f7 = 0.35f;
-        } else {
-            Point point2 = AndroidUtilities.displaySize;
-            min = Math.min(point2.x, point2.y);
-            f7 = 0.6f;
-        }
-        return (int) (min * f7);
-    }
-
-    public final void o(boolean z10) {
-        float f7;
-        float f10 = 1.0f;
-        if (z10) {
-            f7 = 0.0f;
-        } else {
-            f7 = 1.0f;
-        }
-        if (!z10) {
-            f10 = 0.0f;
-        }
-        ValueAnimator duration = ValueAnimator.ofFloat(f7, f10).setDuration(200L);
-        this.I = duration;
-        duration.setInterpolator(bs.f25030f);
-        this.I.addUpdateListener(new ah.c0(this, 14));
-        this.I.addListener(new ah.b(this, 8));
-        this.I.start();
-    }
-
-    @Override
-    public final void d(Canvas canvas) {
-    }
-
-    @Override
-    public final void f(Canvas canvas) {
     }
 }

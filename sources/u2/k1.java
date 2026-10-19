@@ -1,112 +1,75 @@
 package u2;
+public final class k1 implements d1 {
+    public int f47343a;
+    public boolean f47344b;
+    public final m1 f47345c;
 
-import android.net.Uri;
-import e9.x1;
-import java.util.Collections;
-import java.util.List;
-import v7.u6;
-public final class k1 extends b2.o1 {
-    public static final Object f47333q = new Object();
-    public final long e;
-    public final long f47334f;
-    public final long f47335g;
-    public final long h;
-    public final long f47336i;
-    public final long f47337j;
-    public final boolean f47338k;
-    public final boolean f47339l;
-    public final boolean f47340m;
-    public final Object f47341n;
-    public final b2.o0 f47342o;
-    public final b2.i0 f47343p;
+    public k1(m1 m1Var) {
+        this.f47345c = m1Var;
+    }
 
-    static {
-        boolean z10;
-        b2.g0 g0Var;
-        b2.c0 c0Var = new b2.c0();
-        b2.f0 f0Var = new b2.f0();
-        List list = Collections.EMPTY_LIST;
-        x1 x1Var = x1.e;
-        b2.h0 h0Var = new b2.h0();
-        b2.k0 k0Var = b2.k0.d;
-        Uri uri = Uri.EMPTY;
-        if (f0Var.f3755b != null && f0Var.f3754a == null) {
-            z10 = false;
-        } else {
-            z10 = true;
+    @Override
+    public final void a() {
+        m1 m1Var = this.f47345c;
+        if (!m1Var.v) {
+            m1Var.f47368r.a();
         }
-        u6.p(z10);
-        if (uri != null) {
-            if (f0Var.f3754a != null) {
-                g0Var = new b2.g0(f0Var);
-            } else {
-                g0Var = null;
+    }
+
+    public final void b() {
+        if (!this.f47344b) {
+            m1 m1Var = this.f47345c;
+            m1Var.e.m(b2.v0.h(m1Var.f47369s.f4130s), m1Var.f47369s, 0, null, 0L);
+            this.f47344b = true;
+        }
+    }
+
+    @Override
+    public final boolean f() {
+        return this.f47345c.f47370w;
+    }
+
+    @Override
+    public final int g(qf.b bVar, h2.h hVar, int i10) {
+        b();
+        m1 m1Var = this.f47345c;
+        boolean z10 = m1Var.f47370w;
+        if (z10 && m1Var.f47371x == null) {
+            this.f47343a = 2;
+        }
+        int i11 = this.f47343a;
+        if (i11 == 2) {
+            hVar.addFlag(4);
+            return -4;
+        } else if ((i10 & 2) == 0 && i11 != 0) {
+            if (!z10) {
+                return -3;
             }
-            new b2.j0(uri, null, g0Var, null, list, null, x1Var, -9223372036854775807L);
-        }
-        new b2.d0(c0Var);
-        new b2.i0(h0Var);
-        b2.r0 r0Var = b2.r0.L;
-    }
-
-    public k1(long j10, long j11, long j12, long j13, long j14, long j15, boolean z10, boolean z11, boolean z12, t7.u uVar, b2.o0 o0Var, b2.i0 i0Var) {
-        this.e = j10;
-        this.f47334f = j11;
-        this.f47335g = j12;
-        this.h = j13;
-        this.f47336i = j14;
-        this.f47337j = j15;
-        this.f47338k = z10;
-        this.f47339l = z11;
-        this.f47340m = z12;
-        this.f47341n = uVar;
-        o0Var.getClass();
-        this.f47342o = o0Var;
-        this.f47343p = i0Var;
-    }
-
-    @Override
-    public final int b(Object obj) {
-        if (f47333q.equals(obj)) {
-            return 0;
-        }
-        return -1;
-    }
-
-    @Override
-    public final b2.l1 f(int i10, b2.l1 l1Var, boolean z10) {
-        Object obj;
-        u6.j(i10, 1);
-        if (z10) {
-            obj = f47333q;
+            m1Var.f47371x.getClass();
+            hVar.addFlag(1);
+            hVar.e = 0L;
+            if ((i10 & 4) == 0) {
+                hVar.b(m1Var.f47372y);
+                hVar.f11636c.put(m1Var.f47371x, 0, m1Var.f47372y);
+            }
+            if ((i10 & 1) == 0) {
+                this.f47343a = 2;
+            }
+            return -4;
         } else {
-            obj = null;
+            bVar.f44438c = m1Var.f47369s;
+            this.f47343a = 1;
+            return -5;
         }
-        Object obj2 = obj;
-        l1Var.getClass();
-        b2.c cVar = b2.c.f3705c;
-        l1Var.h(null, obj2, 0, this.f47335g, -this.f47336i, cVar, false);
-        return l1Var;
     }
 
     @Override
-    public final int h() {
-        return 1;
-    }
-
-    @Override
-    public final Object l(int i10) {
-        u6.j(i10, 1);
-        return f47333q;
-    }
-
-    @Override
-    public final b2.n1 m(int r25, b2.n1 r26, long r27) {
-        throw new UnsupportedOperationException("Method not decompiled: u2.k1.m(int, b2.n1, long):b2.n1");
-    }
-
-    @Override
-    public final int o() {
-        return 1;
+    public final int m(long j10) {
+        b();
+        if (j10 > 0 && this.f47343a != 2) {
+            this.f47343a = 2;
+            return 1;
+        }
+        return 0;
     }
 }

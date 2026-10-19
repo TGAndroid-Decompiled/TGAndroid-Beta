@@ -15,22 +15,22 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 public final class dm0 implements s4.q0 {
-    public final int f25620a = 0;
-    public final Object f25621b;
+    public final int f25593a = 0;
+    public final Object f25594b;
 
     public dm0(s4.y yVar) {
-        this.f25621b = yVar;
+        this.f25594b = yVar;
     }
 
     @Override
     public final void a(RecyclerView recyclerView, MotionEvent motionEvent) {
-        switch (this.f25620a) {
+        switch (this.f25593a) {
             case 0:
                 return;
             default:
-                s4.y yVar = (s4.y) this.f25621b;
+                s4.y yVar = (s4.y) this.f25594b;
                 p8.b bVar = yVar.I;
-                ((GestureDetector) yVar.N.f14564b).onTouchEvent(motionEvent);
+                ((GestureDetector) yVar.N.f16011b).onTouchEvent(motionEvent);
                 VelocityTracker velocityTracker = yVar.J;
                 if (velocityTracker != null) {
                     velocityTracker.addMovement(motionEvent);
@@ -92,10 +92,10 @@ public final class dm0 implements s4.q0 {
         View E;
         zl0 zl0Var;
         int findPointerIndex;
-        switch (this.f25620a) {
+        switch (this.f25593a) {
             case 0:
                 int actionMasked = motionEvent.getActionMasked();
-                im0 im0Var = (im0) this.f25621b;
+                im0 im0Var = (im0) this.f25594b;
                 Rect rect = im0Var.E1;
                 if (im0Var.getScrollState() == 0) {
                     z10 = true;
@@ -107,7 +107,7 @@ public final class dm0 implements s4.q0 {
                     float y3 = motionEvent.getY();
                     im0Var.X0 = false;
                     s4.l0 itemAnimator = im0Var.getItemAnimator();
-                    if ((im0Var.f27274i1 || itemAnimator == null || !itemAnimator.k()) && im0Var.E0(y3) && (E = im0Var.E(x10, y3)) != null && im0Var.F0(E)) {
+                    if ((im0Var.f27291i1 || itemAnimator == null || !itemAnimator.k()) && im0Var.E0(y3) && (E = im0Var.E(x10, y3)) != null && im0Var.F0(E)) {
                         im0Var.L1 = E;
                     }
                     if (im0Var.L1 instanceof ViewGroup) {
@@ -129,7 +129,7 @@ public final class dm0 implements s4.q0 {
                     im0Var.M1 = -1;
                     View view = im0Var.L1;
                     if (view != null) {
-                        if (im0Var.f27268f1) {
+                        if (im0Var.f27285f1) {
                             im0Var.M1 = RecyclerView.S(view);
                         } else {
                             im0Var.M1 = RecyclerView.R(view);
@@ -143,17 +143,17 @@ public final class dm0 implements s4.q0 {
                 }
                 if (im0Var.L1 != null && !im0Var.N1) {
                     try {
-                        im0Var.K1.j0(motionEvent);
+                        im0Var.K1.k(motionEvent);
                     } catch (Exception e) {
                         FileLog.e(e);
                     }
                 }
                 if (actionMasked != 0 && actionMasked != 5) {
                     if ((actionMasked == 1 || actionMasked == 6 || actionMasked == 3 || !z10) && im0Var.L1 != null) {
-                        am0 am0Var = im0Var.f27262c1;
+                        am0 am0Var = im0Var.f27279c1;
                         if (am0Var != null) {
                             AndroidUtilities.cancelRunOnUIThread(am0Var);
-                            im0Var.f27262c1 = null;
+                            im0Var.f27279c1 = null;
                         }
                         View view2 = im0Var.L1;
                         im0Var.h1(view2, 0.0f, 0.0f, false);
@@ -169,7 +169,7 @@ public final class dm0 implements s4.q0 {
                     float x12 = motionEvent.getX();
                     float y11 = motionEvent.getY();
                     am0 am0Var2 = new am0(this, x12, y11, 0);
-                    im0Var.f27262c1 = am0Var2;
+                    im0Var.f27279c1 = am0Var2;
                     AndroidUtilities.runOnUIThread(am0Var2, ViewConfiguration.getTapTimeout());
                     if (im0Var.L1.isEnabled()) {
                         View view3 = im0Var.L1;
@@ -196,8 +196,8 @@ public final class dm0 implements s4.q0 {
                 }
                 return false;
             default:
-                s4.y yVar = (s4.y) this.f25621b;
-                ((GestureDetector) yVar.N.f14564b).onTouchEvent(motionEvent);
+                s4.y yVar = (s4.y) this.f25594b;
+                ((GestureDetector) yVar.N.f16011b).onTouchEvent(motionEvent);
                 int actionMasked2 = motionEvent.getActionMasked();
                 s4.u uVar = null;
                 if (actionMasked2 == 0) {
@@ -259,13 +259,13 @@ public final class dm0 implements s4.q0 {
 
     @Override
     public final void c(boolean z10) {
-        switch (this.f25620a) {
+        switch (this.f25593a) {
             case 0:
-                ((im0) this.f25621b).I0(true);
+                ((im0) this.f25594b).I0(true);
                 return;
             default:
                 if (z10) {
-                    ((s4.y) this.f25621b).p(null, 0);
+                    ((s4.y) this.f25594b).p(null, 0);
                     return;
                 }
                 return;
@@ -273,10 +273,10 @@ public final class dm0 implements s4.q0 {
     }
 
     public dm0(im0 im0Var, Context context) {
-        this.f25621b = im0Var;
-        le.b bVar = new le.b(context, new cm0(this));
+        this.f25594b = im0Var;
+        le.b bVar = new le.b(context, (u20) new cm0(this));
         im0Var.K1 = bVar;
-        ((t20) bVar.f16008b).f30451t = false;
+        ((t20) bVar.f16011b).f30407t = false;
     }
 
     private final void d(RecyclerView recyclerView, MotionEvent motionEvent) {

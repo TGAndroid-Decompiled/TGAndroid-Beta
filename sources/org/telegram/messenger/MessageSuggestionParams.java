@@ -11,7 +11,7 @@ public class MessageSuggestionParams {
     }
 
     public static MessageSuggestionParams empty() {
-        return new MessageSuggestionParams(ag.a.g(0L, ag.c.f635a), 0L);
+        return new MessageSuggestionParams(ag.a.g(0L, ag.b.f633a), 0L);
     }
 
     public static MessageSuggestionParams of(TLRPC.SuggestedPost suggestedPost) {

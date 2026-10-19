@@ -1,17 +1,15 @@
 package org.telegram.ui;
+public final class zo0 extends o51 {
+    public final cp0 e;
 
-import android.graphics.Canvas;
-public final class zo0 extends org.telegram.ui.Cells.fa {
-    public static void b(zo0 zo0Var, Canvas canvas) {
-        super.draw(canvas);
+    public zo0(cp0 cp0Var, yo0 yo0Var) {
+        super(yo0Var);
+        this.e = cp0Var;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        if (canvas.isHardwareAccelerated()) {
-            super.draw(canvas);
-        } else {
-            zf.j0.a(canvas, this, new v3(this, 15));
-        }
+    public final void dismiss() {
+        super.dismiss();
+        this.e.f36058o0 = null;
     }
 }

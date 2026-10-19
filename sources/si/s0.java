@@ -11,14 +11,15 @@ import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import k2.w0;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.Components.ay0;
+import org.telegram.ui.Components.by0;
 import org.telegram.ui.Components.l60;
 import org.telegram.ui.Components.tv;
-import org.telegram.ui.Components.y01;
-import w7.n7;
+import org.telegram.ui.Components.z01;
+import w7.m7;
 public final class s0 {
     public boolean A;
     public boolean B;
@@ -37,7 +38,7 @@ public final class s0 {
     public volatile o0 P;
     public volatile w Q;
     public volatile File R;
-    public i2.h0 S;
+    public i2.i0 S;
     public final e2.z V;
     public final Context f46755a;
     public final TextureView f46756b;
@@ -73,7 +74,7 @@ public final class s0 {
 
     public s0(j0 j0Var) {
         Context context;
-        l2.f fVar = new l2.f(this, 20);
+        w0 w0Var = new w0(this, 23);
         this.V = new e2.z(this, 3);
         t();
         Context context2 = j0Var.f46684a;
@@ -110,7 +111,7 @@ public final class s0 {
         sb2.append(", output=");
         sb2.append(q0Var.f46748a);
         sb2.append("x");
-        i2.d.w(sb2, q0Var.f46748a, ", bitrate=", i10, ", cameraMode=");
+        i2.e.w(sb2, q0Var.f46748a, ", bitrate=", i10, ", cameraMode=");
         sb2.append(m0Var);
         sb2.append(", fps=");
         sb2.append(n0Var.f46733a);
@@ -120,7 +121,7 @@ public final class s0 {
         sb2.append(this.f46767p);
         sb2.append(", maxDurationMs=60000");
         nVar.b(sb2.toString());
-        this.f46763l = new j(context, textureView, q0Var, i10, m0Var, n0Var, z10, nVar, fVar);
+        this.f46763l = new j(context, textureView, q0Var, i10, m0Var, n0Var, z10, nVar, w0Var);
     }
 
     public static long f(long j10) {
@@ -182,10 +183,10 @@ public final class s0 {
             this.I = 1 + j10;
             o0 o0Var = new o0(j10, d);
             this.P = o0Var;
-            this.Q = new w(d, this.f46765n.f46748a, z10, this.f46764m, new org.telegram.ui.web.n(10, this, o0Var));
+            this.Q = new w(d, this.f46765n.f46748a, z10, this.f46764m, new org.telegram.ui.web.m(10, this, o0Var));
             n nVar = this.f46764m;
             nVar.b("output generation started: id=" + j10 + ", includeAudio=" + z10 + ", file=" + d.getName());
-            this.f46762k.execute(new ay0(this, o0Var, d, 22));
+            this.f46762k.execute(new by0(this, o0Var, d, 22));
         }
     }
 
@@ -230,19 +231,19 @@ public final class s0 {
                 }
                 v(9);
                 m("error");
-                l60 l60Var = (l60) this.d.f15842b;
+                l60 l60Var = (l60) this.d.f15845b;
                 l60Var.x();
                 FileLog.e(exc);
-                y01 y01Var = l60Var.T;
-                if (y01Var != null) {
-                    y01Var.d(true);
+                z01 z01Var = l60Var.T;
+                if (z01Var != null) {
+                    z01Var.d(true);
                 }
                 l60Var.T = null;
                 MediaController.getInstance().requestRecordAudioFocus(false);
-                if (l60Var.f28086f0) {
+                if (l60Var.f28096f0) {
                     l60Var.u(6);
                 } else {
-                    NotificationCenter.getInstance(l60Var.h).lambda$postNotificationNameOnUIThread$1(NotificationCenter.recordStartError, Integer.valueOf(l60Var.f28093n));
+                    NotificationCenter.getInstance(l60Var.h).lambda$postNotificationNameOnUIThread$1(NotificationCenter.recordStartError, Integer.valueOf(l60Var.f28103n));
                 }
                 l60Var.w(false, false);
                 if (!this.B && !this.f46763l.Y()) {
@@ -345,10 +346,10 @@ public final class s0 {
         l0 l0Var = this.f46767p;
         l0 l0Var2 = this.f46768q;
         k0 k0Var = new k0(l0Var, l0Var2, this.X, this.f46771t);
-        l60 l60Var = (l60) this.d.f15842b;
+        l60 l60Var = (l60) this.d.f15845b;
         l60Var.S = k0Var;
         if (l0Var2 != null) {
-            ti.e.f47216j.b(l0Var2);
+            ti.e.f47218j.b(l0Var2);
         }
         l60Var.y();
     }
@@ -362,7 +363,7 @@ public final class s0 {
         boolean z11 = this.f46772u;
         long j12 = this.f46766o;
         r0 r0Var = new r0(i11, j10, j11, j12, z10, z11);
-        l60 l60Var = (l60) this.d.f15842b;
+        l60 l60Var = (l60) this.d.f15845b;
         r0 r0Var2 = l60Var.R;
         int i12 = l60Var.h;
         if (r0Var2 == null) {
@@ -374,7 +375,7 @@ public final class s0 {
         if (i10 == 3 && i11 != 3) {
             l60Var.v(true);
         }
-        l60Var.f28103u0 = Math.max(l60Var.f28103u0, j10);
+        l60Var.f28113u0 = Math.max(l60Var.f28113u0, j10);
         if (i11 == 3) {
             if (!l60Var.C0) {
                 l60Var.C0 = true;
@@ -383,16 +384,16 @@ public final class s0 {
             l60.m(l60Var);
             l60.n(l60Var, true);
             l60Var.A();
-            if (!l60Var.f28086f0) {
-                l60Var.f28086f0 = true;
-                NotificationCenter.getInstance(i12).lambda$postNotificationNameOnUIThread$1(NotificationCenter.recordStarted, Integer.valueOf(l60Var.f28093n), Boolean.FALSE);
-            } else if (l60Var.f28087g0) {
-                l60Var.f28087g0 = false;
+            if (!l60Var.f28096f0) {
+                l60Var.f28096f0 = true;
+                NotificationCenter.getInstance(i12).lambda$postNotificationNameOnUIThread$1(NotificationCenter.recordStarted, Integer.valueOf(l60Var.f28103n), Boolean.FALSE);
+            } else if (l60Var.f28097g0) {
+                l60Var.f28097g0 = false;
                 NotificationCenter.getInstance(i12).lambda$postNotificationNameOnUIThread$1(NotificationCenter.recordResumed, new Object[0]);
             }
         } else {
             l60.n(l60Var, false);
-            l60Var.f28105w.setProgress(((float) j10) / ((float) j12));
+            l60Var.f28115w.setProgress(((float) j10) / ((float) j12));
         }
         if (i11 == 8 || i11 == 9 || i11 == 10) {
             l60Var.q();
@@ -423,10 +424,10 @@ public final class s0 {
     }
 
     public final void q() {
-        i2.h0 h0Var;
+        i2.i0 i0Var;
         t();
-        if (this.W == 5 && (h0Var = this.S) != null) {
-            long M0 = h0Var.M0();
+        if (this.W == 5 && (i0Var = this.S) != null) {
+            long M0 = i0Var.M0();
             long j10 = this.G;
             if (M0 < j10 || M0 >= this.H) {
                 this.S.Z0(5, j10);
@@ -439,19 +440,19 @@ public final class s0 {
     public final void r() {
         this.f46760i.removeCallbacks(this.U);
         this.f46774x = false;
-        i2.h0 h0Var = this.S;
-        if (h0Var == null) {
+        i2.i0 i0Var = this.S;
+        if (i0Var == null) {
             return;
         }
-        h0Var.C(this.V);
-        i2.h0 h0Var2 = this.S;
-        h0Var2.F1();
+        i0Var.C(this.V);
+        i2.i0 i0Var2 = this.S;
+        i0Var2.F1();
         TextureView textureView = this.f46756b;
-        if (textureView != null && textureView == h0Var2.X) {
-            h0Var2.F1();
-            h0Var2.s1();
-            h0Var2.x1(null);
-            h0Var2.q1(0, 0);
+        if (textureView != null && textureView == i0Var2.X) {
+            i0Var2.F1();
+            i0Var2.s1();
+            i0Var2.x1(null);
+            i0Var2.q1(0, 0);
         }
         this.S.X0();
         this.S = null;
@@ -471,9 +472,9 @@ public final class s0 {
         k(this.P, i10);
         c(z10);
         g();
-        a3.z a2 = n7.a(file, this.Q, j10, j11, z10);
+        a3.z a2 = m7.a(file, this.Q, j10, j11, z10);
         this.Q.g();
-        long e = n7.e(this.Q.f46831a) / 1000;
+        long e = m7.e(this.Q.f46831a) / 1000;
         n nVar2 = this.f46764m;
         StringBuilder t11 = a1.g.t(e, "final range remux completed: durationMs=", ", requestedDurationMs=");
         t11.append(a2.f207b);
@@ -493,7 +494,7 @@ public final class s0 {
             this.v = z10;
             tv tvVar = this.f46758f;
             if (tvVar != null) {
-                l60.j((l60) tvVar.f30717b, z10);
+                l60.j((l60) tvVar.f30681b, z10);
             }
         }
     }

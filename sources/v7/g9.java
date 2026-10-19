@@ -12,7 +12,7 @@ public final class g9 extends h9 {
 
     @Override
     public final Object get(int i10) {
-        w7.c8.a(i10, this.d);
+        w7.b8.a(i10, this.d);
         return this.e.get(i10 + this.f48033c);
     }
 
@@ -33,7 +33,7 @@ public final class g9 extends h9 {
 
     @Override
     public final h9 subList(int i10, int i11) {
-        w7.c8.b(i10, i11, this.d);
+        w7.b8.b(i10, i11, this.d);
         int i12 = this.f48033c;
         return this.e.subList(i10 + i12, i11 + i12);
     }

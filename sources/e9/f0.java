@@ -9,11 +9,11 @@ public abstract class f0 extends q0 {
 
     @Override
     public final i0 e() {
-        w1 w1Var = ((w1) this).f8527n;
-        y0 y0Var = w1Var.f8488b;
+        w1 w1Var = ((w1) this).f8528n;
+        y0 y0Var = w1Var.f8489b;
         if (y0Var == null) {
             a2 c10 = w1Var.c();
-            w1Var.f8488b = c10;
+            w1Var.f8489b = c10;
             return c10;
         }
         return y0Var;
@@ -21,11 +21,11 @@ public abstract class f0 extends q0 {
 
     @Override
     public final Collection values() {
-        w1 w1Var = ((w1) this).f8527n;
-        y0 y0Var = w1Var.f8488b;
+        w1 w1Var = ((w1) this).f8528n;
+        y0 y0Var = w1Var.f8489b;
         if (y0Var == null) {
             a2 c10 = w1Var.c();
-            w1Var.f8488b = c10;
+            w1Var.f8489b = c10;
             return c10;
         }
         return y0Var;

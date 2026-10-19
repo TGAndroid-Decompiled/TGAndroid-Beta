@@ -11,7 +11,7 @@ public final class q extends ff.a {
     @Override
     public final boolean b(df.a aVar) {
         if (this.f625c) {
-            df.a aVar2 = (df.a) ((df.p) this.f623a.f7985b);
+            df.a aVar2 = (df.a) ((df.p) this.f623a.f7986b);
             return true;
         }
         return true;
@@ -31,7 +31,7 @@ public final class q extends ff.a {
     public final a h(h hVar) {
         boolean z10 = false;
         if (hVar.h) {
-            if (((df.p) this.f623a.f7986c) != null) {
+            if (((df.p) this.f623a.f7987c) != null) {
                 df.a e = hVar.h().e();
                 this.f625c = ((e instanceof df.r) || (e instanceof df.o)) ? true : true;
                 return a.a(hVar.e);

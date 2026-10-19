@@ -5,18 +5,18 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.tl.TL_iv;
 public final class e3 implements z5 {
-    public final w3 f15244a;
+    public final w3 f15247a;
 
     public e3(w3 w3Var) {
-        this.f15244a = w3Var;
+        this.f15247a = w3Var;
     }
 
     public final int a(a aVar) {
         float f7;
         int i10;
-        w3 w3Var = this.f15244a;
-        int indexOf = w3Var.f15599j3.indexOf(aVar);
-        if (indexOf >= 0 && (i10 = indexOf + 1) < w3Var.f15599j3.size() && ((a) w3Var.f15599j3.get(i10)).f15095c > 0) {
+        w3 w3Var = this.f15247a;
+        int indexOf = w3Var.f15602j3.indexOf(aVar);
+        if (indexOf >= 0 && (i10 = indexOf + 1) < w3Var.f15602j3.size() && ((a) w3Var.f15602j3.get(i10)).f15098c > 0) {
             f7 = 5.0f;
         } else {
             f7 = 11.0f;
@@ -26,9 +26,9 @@ public final class e3 implements z5 {
 
     public final int b(a aVar) {
         float f7;
-        w3 w3Var = this.f15244a;
-        int indexOf = w3Var.f15599j3.indexOf(aVar);
-        if (indexOf > 0 && ((a) w3Var.f15599j3.get(indexOf - 1)).f15095c > 0) {
+        w3 w3Var = this.f15247a;
+        int indexOf = w3Var.f15602j3.indexOf(aVar);
+        if (indexOf > 0 && ((a) w3Var.f15602j3.get(indexOf - 1)).f15098c > 0) {
             f7 = 2.0f;
         } else {
             f7 = 8.0f;
@@ -37,20 +37,20 @@ public final class e3 implements z5 {
     }
 
     public final void c(a aVar, int i10) {
-        w3 w3Var = this.f15244a;
-        u3 u3Var = w3Var.f15591f3;
+        w3 w3Var = this.f15247a;
+        u3 u3Var = w3Var.f15594f3;
         if (i10 == 7) {
             w3Var.S4(aVar, new TL_iv.pageBlockButtonRow(), 0, 0, false, false);
             return;
         }
         w3Var.Z3 = null;
-        w3Var.f15584a4 = aVar;
+        w3Var.f15587a4 = aVar;
         h2 h2Var = w3Var.H3;
         if (h2Var != null) {
             h2Var.d();
         }
         if (aVar != null) {
-            c6.f(aVar.f15094b, "");
+            c6.f(aVar.f15097b, "");
             View A1 = w3Var.A1(aVar);
             if (A1 instanceof c6) {
                 ((c6) A1).getEditText().setTextSilently("");
@@ -62,17 +62,17 @@ public final class e3 implements z5 {
         }
         switch (i10) {
             case 1:
-                u3Var.l(3);
+                u3Var.m(3);
                 return;
             case 2:
-                u3Var.l(6);
+                u3Var.m(6);
                 return;
             case 3:
-                q.X(w3Var.getContext(), "", new ig.l0(w3Var, 7), w3Var.f15589e3);
+                q.X(w3Var.getContext(), "", new ig.l0(w3Var, 7), w3Var.f15592e3);
                 return;
             case 4:
             case 5:
-                u3Var.l(1);
+                u3Var.m(1);
                 return;
             case 6:
                 w3Var.u3();
@@ -85,19 +85,19 @@ public final class e3 implements z5 {
     public final void d(a aVar, TL_iv.PageBlock pageBlock, int i10, int i11, boolean z10, boolean z11) {
         boolean z12;
         boolean z13 = pageBlock instanceof TL_iv.pageBlockBlockquote;
-        w3 w3Var = this.f15244a;
+        w3 w3Var = this.f15247a;
         if (z13) {
             if (aVar == null) {
                 aVar = w3Var.Y4();
             }
             if (aVar != null) {
-                ArrayList arrayList = aVar.f15100k;
-                if (w3Var.f15599j3.indexOf(aVar) >= 0 && !w3.y3(aVar) && !aVar.f15098i) {
+                ArrayList arrayList = aVar.f15103k;
+                if (w3Var.f15602j3.indexOf(aVar) >= 0 && !w3.y3(aVar) && !aVar.f15101i) {
                     h2 h2Var = w3Var.H3;
                     if (h2Var != null) {
                         h2Var.d();
                     }
-                    if (arrayList.isEmpty() && !c6.p(aVar.f15094b)) {
+                    if (arrayList.isEmpty() && !c6.p(aVar.f15097b)) {
                         z12 = true;
                     } else {
                         z12 = false;
@@ -105,17 +105,17 @@ public final class e3 implements z5 {
                     if (z12) {
                         TL_iv.pageBlockBlockquote pageblockblockquote = new TL_iv.pageBlockBlockquote();
                         pageblockblockquote.caption = new TL_iv.textEmpty();
-                        aVar.f15094b = pageblockblockquote;
+                        aVar.f15097b = pageblockblockquote;
                     } else {
-                        if (c6.p(aVar.f15094b)) {
+                        if (c6.p(aVar.f15097b)) {
                             long a2 = p0.a();
-                            TL_iv.RichText k10 = c6.k(aVar.f15094b);
+                            TL_iv.RichText k10 = c6.k(aVar.f15097b);
                             if (k10 != null && !(k10 instanceof TL_iv.textEmpty)) {
-                                w3Var.f15601k3.put(Long.valueOf(a2), k10);
+                                w3Var.f15604k3.put(Long.valueOf(a2), k10);
                             }
                             arrayList.add(Long.valueOf(a2));
                         }
-                        aVar.f15094b = new TL_iv.pageBlockParagraph();
+                        aVar.f15097b = new TL_iv.pageBlockParagraph();
                         arrayList.add(Long.valueOf(p0.a()));
                     }
                     w3Var.t4();

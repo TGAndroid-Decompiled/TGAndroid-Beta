@@ -6,14 +6,14 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import org.telegram.messenger.AndroidUtilities;
 public final class kc extends sg.x1 {
-    public Paint[] f1727n;
-    public final int f1728r;
-    public final int f1729s;
+    public Paint[] f1717n;
+    public final int f1718r;
+    public final int f1719s;
 
     public kc(Context context, int i10, int i11) {
         super(context);
-        this.f1728r = i10;
-        this.f1729s = i11;
+        this.f1718r = i10;
+        this.f1719s = i11;
         c();
     }
 
@@ -24,7 +24,7 @@ public final class kc extends sg.x1 {
         float f10;
         int i11;
         int i12;
-        sg.w1 w1Var = new sg.w1(this.f1728r);
+        sg.w1 w1Var = new sg.w1(this.f1718r);
         this.f46497a = w1Var;
         w1Var.O = 105;
         int i13 = 0;
@@ -35,7 +35,7 @@ public final class kc extends sg.x1 {
         w1Var.J = false;
         w1Var.f46477m = true;
         w1Var.h = true;
-        int i14 = this.f1729s;
+        int i14 = this.f1719s;
         if (i14 == 1) {
             w1Var.f46475k = AndroidUtilities.dp(24.0f);
         }
@@ -44,9 +44,9 @@ public final class kc extends sg.x1 {
         } else {
             i10 = 20;
         }
-        this.f1727n = new Paint[i10];
+        this.f1717n = new Paint[i10];
         while (true) {
-            Paint[] paintArr = this.f1727n;
+            Paint[] paintArr = this.f1717n;
             if (i13 >= paintArr.length) {
                 break;
             }
@@ -65,9 +65,9 @@ public final class kc extends sg.x1 {
                 }
                 f7 = i0.a.f(f10, i11, i12);
             } else {
-                f7 = i0.a.f(i13 / (this.f1727n.length - 1), -371690, -14281);
+                f7 = i0.a.f(i13 / (this.f1717n.length - 1), -371690, -14281);
             }
-            this.f1727n[i13].setColorFilter(new PorterDuffColorFilter(f7, PorterDuff.Mode.SRC_IN));
+            this.f1717n[i13].setColorFilter(new PorterDuffColorFilter(f7, PorterDuff.Mode.SRC_IN));
             i13++;
         }
         sg.w1 w1Var2 = this.f46497a;

@@ -5,8 +5,8 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 public final class qm0 extends FrameLayout {
-    public View f29709a;
-    public TextView f29710b;
+    public View f29667a;
+    public TextView f29668b;
 
     @Override
     public final void onMeasure(int i10, int i11) {
@@ -14,6 +14,6 @@ public final class qm0 extends FrameLayout {
     }
 
     public void setText(CharSequence charSequence) {
-        this.f29710b.setText(charSequence);
+        this.f29668b.setText(charSequence);
     }
 }

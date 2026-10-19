@@ -5,23 +5,23 @@ import j$.util.Objects;
 import java.util.Map;
 import v7.i8;
 public final class v extends md.i implements td.p {
-    public final int f469a;
-    public int f470b;
-    public final Object f471c;
+    public final int f468a;
+    public int f469b;
+    public final Object f470c;
 
     public v(Object obj, kd.c cVar, int i10) {
         super(2, cVar);
-        this.f469a = i10;
-        this.f471c = obj;
+        this.f468a = i10;
+        this.f470c = obj;
     }
 
     @Override
     public final kd.c create(Object obj, kd.c cVar) {
-        switch (this.f469a) {
+        switch (this.f468a) {
             case 0:
-                return new v((c0) this.f471c, cVar, 0);
+                return new v((c0) this.f470c, cVar, 0);
             default:
-                return new v((String) this.f471c, cVar, 1);
+                return new v((String) this.f470c, cVar, 1);
         }
     }
 
@@ -29,20 +29,20 @@ public final class v extends md.i implements td.p {
     public final Object invoke(Object obj, Object obj2) {
         be.c0 c0Var = (be.c0) obj;
         kd.c cVar = (kd.c) obj2;
-        switch (this.f469a) {
+        switch (this.f468a) {
             case 0:
-                return ((v) create(c0Var, cVar)).invokeSuspend(id.i.f12775a);
+                return ((v) create(c0Var, cVar)).invokeSuspend(id.i.f12777a);
             default:
-                return ((v) create(c0Var, cVar)).invokeSuspend(id.i.f12775a);
+                return ((v) create(c0Var, cVar)).invokeSuspend(id.i.f12777a);
         }
     }
 
     @Override
     public final Object invokeSuspend(Object obj) {
-        switch (this.f469a) {
+        switch (this.f468a) {
             case 0:
-                ld.a aVar = ld.a.f15998a;
-                int i10 = this.f470b;
+                ld.a aVar = ld.a.f16001a;
+                int i10 = this.f469b;
                 if (i10 != 0) {
                     if (i10 == 1) {
                         i8.b(obj);
@@ -51,18 +51,18 @@ public final class v extends md.i implements td.p {
                     }
                 } else {
                     i8.b(obj);
-                    c0 c0Var = (c0) this.f471c;
+                    c0 c0Var = (c0) this.f470c;
                     n4.s sVar = c0Var.d;
                     u uVar = new u(c0Var, 0);
-                    this.f470b = 1;
-                    if (sVar.r(uVar, this) == aVar) {
+                    this.f469b = 1;
+                    if (sVar.l(uVar, this) == aVar) {
                         return aVar;
                     }
                 }
-                return id.i.f12775a;
+                return id.i.f12777a;
             default:
-                ld.a aVar2 = ld.a.f15998a;
-                int i11 = this.f470b;
+                ld.a aVar2 = ld.a.f16001a;
+                int i11 = this.f469b;
                 if (i11 != 0) {
                     if (i11 == 1) {
                         i8.b(obj);
@@ -71,14 +71,14 @@ public final class v extends md.i implements td.p {
                     }
                 } else {
                     i8.b(obj);
-                    bb.c cVar = bb.c.f4240a;
-                    this.f470b = 1;
+                    bb.c cVar = bb.c.f4238a;
+                    this.f469b = 1;
                     obj = cVar.b(this);
                     if (obj == aVar2) {
                         return aVar2;
                     }
                 }
-                String str = (String) this.f471c;
+                String str = (String) this.f470c;
                 for (x9.j jVar : ((Map) obj).values()) {
                     bb.e eVar = new bb.e(str);
                     jVar.getClass();
@@ -86,16 +86,16 @@ public final class v extends md.i implements td.p {
                     if (Log.isLoggable("FirebaseCrashlytics", 3)) {
                         Log.d("FirebaseCrashlytics", str2, null);
                     }
-                    x9.i iVar = jVar.f49682b;
+                    x9.i iVar = jVar.f49681b;
                     synchronized (iVar) {
-                        if (!Objects.equals(iVar.f49680c, str)) {
-                            x9.i.a(iVar.f49678a, iVar.f49679b, str);
-                            iVar.f49680c = str;
+                        if (!Objects.equals(iVar.f49679c, str)) {
+                            x9.i.a(iVar.f49677a, iVar.f49678b, str);
+                            iVar.f49679c = str;
                         }
                     }
-                    Log.d("SessionLifecycleClient", "Notified " + bb.d.f4242a + " of new session " + str);
+                    Log.d("SessionLifecycleClient", "Notified " + bb.d.f4240a + " of new session " + str);
                 }
-                return id.i.f12775a;
+                return id.i.f12777a;
         }
     }
 }

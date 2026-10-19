@@ -32,9 +32,9 @@ public final class l {
         float f7;
         ArrayList arrayList;
         org.telegram.ui.Cells.u0 u0Var = this.f46314m;
-        ArrayList arrayList2 = u0Var.f23209c;
-        HashMap hashMap = (HashMap) u0Var.f23210f;
-        RectF rectF = (RectF) u0Var.f23211g;
+        ArrayList arrayList2 = u0Var.f23212c;
+        HashMap hashMap = (HashMap) u0Var.f23213f;
+        RectF rectF = (RectF) u0Var.f23214g;
         this.f46311j = Math.abs(Utilities.fastRandom.nextLong() % 2250) + 2250;
         this.f46312k = (Math.abs(Utilities.fastRandom.nextFloat()) * 0.45f) + 0.6f;
         String str = m.f46319a[org.telegram.ui.Cells.c1.g(Utilities.fastRandom, 49)];
@@ -43,7 +43,7 @@ public final class l {
         } else if (str.length() > 5) {
             this.f46312k *= 0.75f;
         }
-        StaticLayout staticLayout = new StaticLayout(str, u0Var.f23207a, AndroidUtilities.displaySize.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+        StaticLayout staticLayout = new StaticLayout(str, u0Var.f23210a, AndroidUtilities.displaySize.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
         this.e = staticLayout;
         int i11 = 0;
         if (staticLayout.getLineCount() <= 0) {
@@ -87,7 +87,7 @@ public final class l {
                     arrayList = arrayList2;
                 } else {
                     arrayList = arrayList2;
-                    float min = Math.min(Math.abs(((((this.f46312k / u0Var.f23208b) * lVar.h) * 1.1f) + lVar.f46306b) - abs3), Math.abs(lVar.f46306b - abs3));
+                    float min = Math.min(Math.abs(((((this.f46312k / u0Var.f23211b) * lVar.h) * 1.1f) + lVar.f46306b) - abs3), Math.abs(lVar.f46306b - abs3));
                     float f16 = lVar.f46307c - abs4;
                     float f17 = (f16 * f16) + (min * min);
                     if (f17 < f15) {

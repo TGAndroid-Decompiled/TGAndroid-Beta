@@ -1,44 +1,107 @@
 package org.telegram.ui;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.view.View;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-public final class lc extends z51 {
-    public final gc f38792d2;
-    public final q51[] f38793e2;
-    public final dd f38794f2;
+public final class lc extends View {
+    public final int f38879a;
+    public final Canvas f38880b;
+    public final float f38881c;
+    public final float d;
+    public final float e;
+    public final Paint f38882f;
+    public final Bitmap h;
+    public final Paint f38883n;
+    public final float f38884r;
+    public final float f38885s;
+    public final org.telegram.ui.ActionBar.n2 v;
 
-    public lc(dd ddVar, dd ddVar2, Activity activity, Integer num, int i10, org.telegram.ui.ActionBar.d6 d6Var, int i11, int i12, gc gcVar, q51[] q51VarArr) {
-        super(ddVar2, activity, true, num, i10, true, d6Var, i11, i12);
-        this.f38794f2 = ddVar;
-        this.f38792d2 = gcVar;
-        this.f38793e2 = q51VarArr;
+    public lc(org.telegram.ui.ActionBar.n2 n2Var, Activity activity, Canvas canvas, float f7, float f10, float f11, Paint paint, Bitmap bitmap, Paint paint2, float f12, float f13, int i10) {
+        super(activity);
+        this.f38879a = i10;
+        this.v = n2Var;
+        this.f38880b = canvas;
+        this.f38881c = f7;
+        this.d = f10;
+        this.e = f11;
+        this.f38882f = paint;
+        this.h = bitmap;
+        this.f38883n = paint2;
+        this.f38884r = f12;
+        this.f38885s = f13;
     }
 
     @Override
-    public final long getDialogId() {
-        return this.f38794f2.f36129a;
-    }
-
-    @Override
-    public final float getScrimDrawableTranslationY() {
-        return 0.0f;
-    }
-
-    @Override
-    public final void p(View view, Long l4, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, Integer num) {
-        long longValue;
-        if (l4 == null) {
-            longValue = 0;
-        } else {
-            longValue = l4.longValue();
-        }
-        this.f38792d2.run(Long.valueOf(longValue), num, tL_starGiftUnique);
-        q51 q51Var = this.f38793e2[0];
-        if (q51Var != null) {
-            this.f38794f2.Q = null;
-            q51Var.dismiss();
+    public final void onDraw(Canvas canvas) {
+        switch (this.f38879a) {
+            case 0:
+                super.onDraw(canvas);
+                bd bdVar = (bd) this.v;
+                boolean z10 = bdVar.J;
+                Paint paint = this.f38883n;
+                float f7 = this.e;
+                float f10 = this.d;
+                float f11 = this.f38881c;
+                if (z10) {
+                    float f12 = bdVar.f35599n0;
+                    if (f12 > 0.0f) {
+                        this.f38880b.drawCircle(f11, f10, f7 * f12, this.f38882f);
+                    }
+                    canvas.drawBitmap(this.h, 0.0f, 0.0f, paint);
+                } else {
+                    canvas.drawCircle(f11, f10, (1.0f - bdVar.f35599n0) * f7, paint);
+                }
+                canvas.save();
+                canvas.translate(this.f38884r, this.f38885s);
+                bdVar.L.draw(canvas);
+                canvas.restore();
+                return;
+            case 1:
+                super.onDraw(canvas);
+                ip0 ip0Var = (ip0) this.v;
+                boolean z11 = ip0Var.S;
+                Paint paint2 = this.f38883n;
+                float f13 = this.e;
+                float f14 = this.d;
+                float f15 = this.f38881c;
+                if (z11) {
+                    float f16 = ip0Var.Y;
+                    if (f16 > 0.0f) {
+                        this.f38880b.drawCircle(f15, f14, f13 * f16, this.f38882f);
+                    }
+                    canvas.drawBitmap(this.h, 0.0f, 0.0f, paint2);
+                } else {
+                    canvas.drawCircle(f15, f14, (1.0f - ip0Var.Y) * f13, paint2);
+                }
+                canvas.save();
+                canvas.translate(this.f38884r, this.f38885s);
+                ip0Var.K.draw(canvas);
+                canvas.restore();
+                return;
+            default:
+                super.onDraw(canvas);
+                kc1 kc1Var = (kc1) this.v;
+                boolean a2 = kc1Var.f38509a.a();
+                Paint paint3 = this.f38883n;
+                float f17 = this.e;
+                float f18 = this.d;
+                float f19 = this.f38881c;
+                if (a2) {
+                    float f20 = kc1Var.f38538i2;
+                    if (f20 > 0.0f) {
+                        this.f38880b.drawCircle(f19, f18, f17 * f20, this.f38882f);
+                    }
+                    canvas.drawBitmap(this.h, 0.0f, 0.0f, paint3);
+                } else {
+                    canvas.drawCircle(f19, f18, (1.0f - kc1Var.f38538i2) * f17, paint3);
+                }
+                canvas.save();
+                canvas.translate(this.f38884r, this.f38885s);
+                kc1Var.O1.draw(canvas);
+                canvas.restore();
+                return;
         }
     }
 }

@@ -24,12 +24,12 @@ import org.telegram.ui.Components.ca0;
 import org.telegram.ui.Components.we0;
 import org.telegram.ui.Components.yc;
 public final class l2 extends View {
-    public final Paint f9361a;
-    public final TextPaint f9362b;
-    public final ArrayList f9363c;
+    public final Paint f9362a;
+    public final TextPaint f9363b;
+    public final ArrayList f9364c;
     public float[] d;
     public d1 e;
-    public final n2 f9364f;
+    public final n2 f9365f;
 
     public l2(n2 n2Var, Context context) {
         super(context);
@@ -37,27 +37,27 @@ public final class l2 extends View {
         String a2;
         int i10;
         int i11;
-        this.f9364f = n2Var;
+        this.f9365f = n2Var;
         Paint paint = new Paint(1);
-        this.f9361a = paint;
+        this.f9362a = paint;
         TextPaint textPaint = new TextPaint(1);
-        this.f9362b = textPaint;
+        this.f9363b = textPaint;
         paint.setColor(436207615);
         textPaint.setTypeface(AndroidUtilities.getTypeface("fonts/rcondensedbold.ttf"));
         textPaint.setTextSize(AndroidUtilities.dpf2(21.3f));
         textPaint.setColor(-1);
         ArrayList arrayList = new ArrayList();
-        this.f9363c = arrayList;
+        this.f9364c = arrayList;
         setPadding(0, 0, 0, 0);
         if (n2Var.n0(4)) {
             j2 j2Var = new j2(this, 4, R.drawable.msg_limit_links, LocaleController.getString(R.string.StoryWidgetLink));
             i11 = ((org.telegram.ui.ActionBar.f3) n2Var).currentAccount;
             if (!UserConfig.getInstance(i11).isPremium()) {
                 Drawable mutate = getContext().getResources().getDrawable(R.drawable.msg_mini_lock3).mutate();
-                j2Var.f9238j = mutate;
+                j2Var.f9239j = mutate;
                 mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.m1(0.6f, -1), PorterDuff.Mode.SRC_IN));
                 Paint paint2 = new Paint(1);
-                j2Var.f9242n = paint2;
+                j2Var.f9243n = paint2;
                 paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
             }
             arrayList.add(j2Var);
@@ -66,13 +66,13 @@ public final class l2 extends View {
             arrayList.add(new j2(this, 0, R.drawable.map_pin3, LocaleController.getString(R.string.StoryWidgetLocation)));
         }
         if (n2Var.n0(5)) {
-            tc tcVar = uc.f9921b;
+            tc tcVar = uc.f9922b;
             j2[] j2VarArr = {null};
             StringBuilder sb2 = new StringBuilder();
             if (tcVar == null) {
                 str = "🌤";
             } else {
-                str = tcVar.f9869c;
+                str = tcVar.f9870c;
             }
             sb2.append(str);
             sb2.append(" ");
@@ -116,7 +116,7 @@ public final class l2 extends View {
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        ArrayList arrayList = this.f9363c;
+        ArrayList arrayList = this.f9364c;
         int i10 = 0;
         int i11 = 0;
         while (true) {
@@ -144,7 +144,7 @@ public final class l2 extends View {
                 fArr2[i13] = f7 + AndroidUtilities.dp(10.0f);
             }
             float[] fArr3 = this.d;
-            fArr3[i13] = fArr3[i13] + i2Var.h.d(i2Var.f9187b, false);
+            fArr3[i13] = fArr3[i13] + i2Var.h.d(i2Var.f9188b, false);
         }
         int size2 = arrayList.size();
         while (i10 < size2) {
@@ -158,7 +158,7 @@ public final class l2 extends View {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        ArrayList arrayList = this.f9363c;
+        ArrayList arrayList = this.f9364c;
         int size = arrayList.size();
         int i10 = 0;
         while (i10 < size) {
@@ -171,7 +171,7 @@ public final class l2 extends View {
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        ArrayList arrayList = this.f9363c;
+        ArrayList arrayList = this.f9364c;
         int size = arrayList.size();
         int i10 = 0;
         while (i10 < size) {
@@ -185,7 +185,7 @@ public final class l2 extends View {
     public final void onMeasure(int i10, int i11) {
         int size = View.MeasureSpec.getSize(i10);
         int paddingLeft = (size - getPaddingLeft()) - getPaddingRight();
-        ArrayList arrayList = this.f9363c;
+        ArrayList arrayList = this.f9364c;
         int size2 = arrayList.size();
         int i12 = 0;
         int i13 = 1;
@@ -196,11 +196,11 @@ public final class l2 extends View {
             i14++;
             i2 i2Var = (i2) obj;
             i2Var.d = f7;
-            float dp = i2Var.f9187b + AndroidUtilities.dp(10.0f) + f7;
+            float dp = i2Var.f9188b + AndroidUtilities.dp(10.0f) + f7;
             if (dp > paddingLeft) {
                 i13++;
                 i2Var.d = 0.0f;
-                f7 = i2Var.f9187b + AndroidUtilities.dp(10.0f) + 0.0f;
+                f7 = i2Var.f9188b + AndroidUtilities.dp(10.0f) + 0.0f;
             } else {
                 f7 = dp;
             }
@@ -224,7 +224,7 @@ public final class l2 extends View {
                 fArr2[i15] = f10 + AndroidUtilities.dp(10.0f);
             }
             float[] fArr3 = this.d;
-            fArr3[i15] = fArr3[i15] + i2Var2.f9187b;
+            fArr3[i15] = fArr3[i15] + i2Var2.f9188b;
         }
         setMeasuredDimension(size, org.telegram.messenger.g0.D(12.0f, i13 - 1, org.telegram.messenger.g0.D(36.0f, i13, AndroidUtilities.dp(24.0f))));
     }
@@ -234,7 +234,7 @@ public final class l2 extends View {
         i2 i2Var;
         d1 d1Var;
         boolean z10;
-        ArrayList arrayList = this.f9363c;
+        ArrayList arrayList = this.f9364c;
         int size = arrayList.size();
         int i10 = 0;
         while (true) {
@@ -242,7 +242,7 @@ public final class l2 extends View {
                 Object obj = arrayList.get(i10);
                 i10++;
                 i2Var = (i2) obj;
-                if (i2Var.f9189f.contains(motionEvent.getX(), motionEvent.getY())) {
+                if (i2Var.f9190f.contains(motionEvent.getX(), motionEvent.getY())) {
                     break;
                 }
             } else {
@@ -257,11 +257,11 @@ public final class l2 extends View {
             i11++;
             i2 i2Var2 = (i2) obj2;
             if (i2Var2 != i2Var) {
-                i2Var2.f9190g.c(false);
+                i2Var2.f9191g.c(false);
             }
         }
         if (i2Var != null) {
-            yc ycVar = i2Var.f9190g;
+            yc ycVar = i2Var.f9191g;
             if (motionEvent.getAction() != 1 && motionEvent.getAction() != 3) {
                 z10 = true;
             } else {
@@ -270,7 +270,7 @@ public final class l2 extends View {
             ycVar.c(z10);
         }
         if (motionEvent.getAction() == 1 && i2Var != null && (d1Var = this.e) != null) {
-            d1Var.run(Integer.valueOf(i2Var.f9186a));
+            d1Var.run(Integer.valueOf(i2Var.f9187a));
         }
         if (i2Var == null) {
             return false;

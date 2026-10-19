@@ -1,244 +1,32 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
+import android.animation.ValueAnimator;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.messenger.R;
-import org.telegram.messenger.VideoEditedInfo;
-import org.telegram.tgnet.TLRPC;
-public final class kx extends bu0 {
-    public final boolean[] f38643a;
-    public final ey f38644b;
+public final class kx implements ValueAnimator.AnimatorUpdateListener {
+    public int f38673a;
+    public final float f38674b;
+    public final float f38675c;
+    public final cy d;
 
-    public kx(ey eyVar, boolean[] zArr) {
-        this.f38644b = eyVar;
-        this.f38643a = zArr;
+    public kx(cy cyVar, float f7, boolean z10, float f10) {
+        this.d = cyVar;
+        this.f38674b = f7;
+        this.f38675c = f10;
+        this.f38673a = (int) f7;
     }
 
     @Override
-    public final CharSequence C(int i10) {
-        ey eyVar = this.f38644b;
-        if (i10 >= 0 && i10 < eyVar.D2.size() && ((MediaController.PhotoEntry) eyVar.D2.get(i10)).isVideo) {
-            return null;
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        ((Float) valueAnimator.getAnimatedValue()).getClass();
+        int lerp = (int) AndroidUtilities.lerp(this.f38674b, this.f38675c, ((Float) valueAnimator.getAnimatedValue()).floatValue());
+        int i10 = lerp - this.f38673a;
+        this.f38673a = lerp;
+        cy cyVar = this.d;
+        cyVar.f36113e0[0].f35452a.scrollBy(0, i10);
+        View view = cyVar.fragmentView;
+        if (view != null) {
+            view.invalidate();
         }
-        return ey.p2(eyVar);
-    }
-
-    @Override
-    public final void D() {
-        int i10;
-        ey eyVar = this.f38644b;
-        org.telegram.ui.Components.ir0 ir0Var = eyVar.G2;
-        if (ir0Var != null) {
-            i10 = ((org.telegram.ui.ActionBar.n2) eyVar).currentAccount;
-            ir0Var.i(i10, eyVar.D2);
-        }
-    }
-
-    @Override
-    public final lu0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
-        org.telegram.ui.Components.w9 w9Var;
-        ey eyVar = this.f38644b;
-        org.telegram.ui.Components.ir0 ir0Var = eyVar.G2;
-        if (ir0Var != null) {
-            w9Var = ir0Var.f(i10);
-        } else {
-            w9Var = null;
-        }
-        if (w9Var == null) {
-            return null;
-        }
-        int[] iArr = new int[2];
-        w9Var.getLocationInWindow(iArr);
-        lu0 lu0Var = new lu0();
-        lu0Var.f38918b = iArr[0];
-        lu0Var.f38919c = iArr[1];
-        lu0Var.d = eyVar.G2;
-        ImageReceiver imageReceiver = w9Var.getImageReceiver();
-        lu0Var.f38917a = imageReceiver;
-        lu0Var.e = imageReceiver.getBitmapSafe();
-        lu0Var.f38924k = w9Var.getScaleX();
-        lu0Var.h = new int[]{AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f)};
-        return lu0Var;
-    }
-
-    @Override
-    public final int H() {
-        ArrayList arrayList = this.f38644b.D2;
-        if (arrayList != null) {
-            return arrayList.size();
-        }
-        return 0;
-    }
-
-    @Override
-    public final boolean I() {
-        return this.f38644b.l3();
-    }
-
-    @Override
-    public final long a() {
-        ey eyVar = this.f38644b;
-        if (eyVar.I2.isEmpty()) {
-            return 0L;
-        }
-        return ((Long) eyVar.I2.get(0)).longValue();
-    }
-
-    @Override
-    public final boolean b() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.kx.b():boolean");
-    }
-
-    @Override
-    public final CharSequence c0(int i10) {
-        int i11;
-        ey eyVar = this.f38644b;
-        ArrayList arrayList = eyVar.D2;
-        if (arrayList != null && !arrayList.isEmpty()) {
-            int size = eyVar.D2.size();
-            if (size == 1) {
-                if (((MediaController.PhotoEntry) eyVar.D2.get(0)).isVideo) {
-                    i11 = R.string.AttachVideo;
-                } else {
-                    i11 = R.string.AttachPhoto;
-                }
-                return LocaleController.getString(i11);
-            }
-            ArrayList arrayList2 = eyVar.D2;
-            int size2 = arrayList2.size();
-            int i12 = 0;
-            int i13 = 0;
-            int i14 = 0;
-            while (i14 < size2) {
-                Object obj = arrayList2.get(i14);
-                i14++;
-                if (((MediaController.PhotoEntry) obj).isVideo) {
-                    i12++;
-                } else {
-                    i13++;
-                }
-            }
-            if (i12 == 0) {
-                return LocaleController.formatPluralString("ShareSendPhotos", size, new Object[0]);
-            }
-            if (i13 == 0) {
-                return LocaleController.formatPluralString("ShareSendVideos", size, new Object[0]);
-            }
-            return LocaleController.formatPluralString("ShareSendItems", size, new Object[0]);
-        }
-        return null;
-    }
-
-    @Override
-    public final void e(CharSequence charSequence) {
-        ey eyVar = this.f38644b;
-        ow owVar = eyVar.B1;
-        if (owVar != null) {
-            owVar.setFieldText(charSequence);
-        }
-        ArrayList arrayList = eyVar.D2;
-        if (arrayList != null) {
-            int size = arrayList.size();
-            int i10 = 0;
-            while (i10 < size) {
-                Object obj = arrayList.get(i10);
-                i10++;
-                ((MediaController.PhotoEntry) obj).caption = charSequence;
-            }
-        }
-    }
-
-    @Override
-    public final boolean h() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.kx.h():boolean");
-    }
-
-    @Override
-    public final ImageReceiver.BitmapHolder j(int i10) {
-        org.telegram.ui.Components.w9 w9Var;
-        org.telegram.ui.Components.ir0 ir0Var = this.f38644b.G2;
-        if (ir0Var != null) {
-            w9Var = ir0Var.f(i10);
-        } else {
-            w9Var = null;
-        }
-        if (w9Var == null) {
-            return null;
-        }
-        return w9Var.getImageReceiver().getBitmapSafe();
-    }
-
-    @Override
-    public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z10, int i11, int i12, boolean z11) {
-        int i13;
-        ArrayList arrayList;
-        ey eyVar = this.f38644b;
-        ArrayList arrayList2 = eyVar.I2;
-        if (eyVar.B1 != null && (arrayList = eyVar.D2) != null && !arrayList.isEmpty()) {
-            ow owVar = eyVar.B1;
-            CharSequence charSequence = ((MediaController.PhotoEntry) eyVar.D2.get(0)).caption;
-            if (charSequence == null) {
-                charSequence = "";
-            }
-            owVar.setFieldText(charSequence);
-        }
-        org.telegram.ui.Components.ir0 ir0Var = eyVar.G2;
-        if (ir0Var != null) {
-            i13 = ((org.telegram.ui.ActionBar.n2) eyVar).currentAccount;
-            ir0Var.i(i13, eyVar.D2);
-        }
-        if ((!z10 || i11 != 0 || z11) && eyVar.C2 != null && !arrayList2.isEmpty()) {
-            eyVar.J2 = z10;
-            eyVar.K2 = i11;
-            eyVar.M2 = z11;
-            ArrayList arrayList3 = new ArrayList();
-            for (int i14 = 0; i14 < arrayList2.size(); i14++) {
-                arrayList3.add(MessagesStorage.TopicKey.of(((Long) arrayList2.get(i14)).longValue(), 0L));
-            }
-            PhotoViewer.t1().G0(true, false);
-            eyVar.C2.w(eyVar, arrayList3, eyVar.B1.getFieldText(), false, z10, i11, i12, null);
-            return;
-        }
-        PhotoViewer.t1().G0(true, false);
-    }
-
-    @Override
-    public final void s() {
-        ow owVar;
-        org.telegram.ui.Components.kd f12;
-        PhotoViewer t12 = PhotoViewer.t1();
-        CharSequence charSequence = null;
-        if (t12.R1() && (f12 = t12.f1()) != null) {
-            charSequence = f12.getText();
-        }
-        ey eyVar = this.f38644b;
-        if (charSequence != null && (owVar = eyVar.B1) != null) {
-            owVar.setFieldText(charSequence);
-        }
-        ArrayList arrayList = eyVar.D2;
-        if (arrayList != null) {
-            int size = arrayList.size();
-            int i10 = 0;
-            while (i10 < size) {
-                Object obj = arrayList.get(i10);
-                i10++;
-                ((MediaController.PhotoEntry) obj).caption = charSequence;
-            }
-        }
-    }
-
-    @Override
-    public final boolean x(int i10) {
-        return this.f38643a[i10];
-    }
-
-    @Override
-    public final int k(int i10, VideoEditedInfo videoEditedInfo) {
-        return i10;
     }
 }

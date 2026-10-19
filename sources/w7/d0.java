@@ -30,15 +30,15 @@ public abstract class d0 {
         if (z10 != z12) {
             if (z10) {
                 ?? frameLayout = new FrameLayout(launchActivity);
-                frameLayout.f17468r = new ng.c(frameLayout, 3);
+                frameLayout.f17471r = new ng.c(frameLayout, 3);
                 frameLayout.E = new ArrayList();
                 ng.f fVar = new ng.f(frameLayout);
                 frameLayout.e = launchActivity.getSharedPreferences("floating_debug", 0);
                 frameLayout.F = ViewConfiguration.get(launchActivity).getScaledTouchSlop();
-                k0.b bVar = new k0.b(launchActivity, fVar);
-                ((GestureDetector) bVar.f14564b).setIsLongpressEnabled(false);
+                le.b bVar = new le.b(launchActivity, fVar);
+                ((GestureDetector) bVar.f16011b).setIsLongpressEnabled(false);
                 ah.v vVar = new ah.v(frameLayout, launchActivity, bVar, 5);
-                frameLayout.f17463a = vVar;
+                frameLayout.f17466a = vVar;
                 ImageView imageView = new ImageView(launchActivity);
                 imageView.setImageResource(R.drawable.device_phone_android);
                 imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.O9, false), PorterDuff.Mode.SRC_IN));
@@ -46,18 +46,18 @@ public abstract class d0 {
                 vVar.setVisibility(8);
                 frameLayout.addView(vVar, z5.c(56.0f, 56));
                 LinearLayout linearLayout = new LinearLayout(launchActivity);
-                frameLayout.f17470w = linearLayout;
+                frameLayout.f17473w = linearLayout;
                 linearLayout.setOrientation(1);
                 linearLayout.setVisibility(8);
                 TextView textView = new TextView(launchActivity);
-                frameLayout.f17471x = textView;
+                frameLayout.f17474x = textView;
                 textView.setTextSize(1, 20.0f);
                 textView.setText(LocaleController.getString(R.string.DebugMenu));
                 textView.setTypeface(AndroidUtilities.bold());
                 textView.setPadding(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(19.0f), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(19.0f));
                 linearLayout.addView(textView, z5.n(-1, -2));
                 im0 im0Var = new im0(launchActivity, null);
-                frameLayout.f17472y = im0Var;
+                frameLayout.f17475y = im0Var;
                 im0Var.setLayoutManager(new s4.b0());
                 im0Var.setAdapter(new ng.g((ng.i) frameLayout, launchActivity));
                 im0Var.setOnItemClickListener(new ai.wa(frameLayout, 17));
@@ -67,16 +67,16 @@ public abstract class d0 {
                 frameLayout.setFitsSystemWindows(true);
                 frameLayout.setWillNotDraw(false);
                 f48610a = frameLayout;
-                launchActivity.f33185w0.addView((View) frameLayout, new FrameLayout.LayoutParams(-1, -1));
+                launchActivity.f33191w0.addView((View) frameLayout, new FrameLayout.LayoutParams(-1, -1));
                 ng.i iVar2 = f48610a;
-                iVar2.f17463a.setVisibility(0);
+                iVar2.f17466a.setVisibility(0);
                 o1.k kVar = new o1.k(new o1.j(0.0f));
-                kVar.f17558u = org.telegram.ui.Cells.c1.l(1000.0f, 750.0f, 0.75f);
-                kVar.b(new ci.k8(2, iVar2));
+                kVar.f17561u = org.telegram.ui.Cells.c1.l(1000.0f, 750.0f, 0.75f);
+                kVar.b(new ci.l8(2, iVar2));
                 kVar.h();
             } else {
                 iVar.getClass();
-                launchActivity.f33185w0.removeView(f48610a);
+                launchActivity.f33191w0.removeView(f48610a);
                 f48610a = null;
             }
             if (z11) {

@@ -3,22 +3,22 @@ package org.telegram.ui.Components;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 public final class hg extends AnimatorListenerAdapter {
-    public final int f26879a;
-    public final int f26880b;
-    public final ChatActivityEnterView f26881c;
+    public final int f26874a;
+    public final int f26875b;
+    public final ChatActivityEnterView f26876c;
 
     public hg(ChatActivityEnterView chatActivityEnterView, int i10, int i11) {
-        this.f26879a = i11;
-        this.f26881c = chatActivityEnterView;
-        this.f26880b = i10;
+        this.f26874a = i11;
+        this.f26876c = chatActivityEnterView;
+        this.f26875b = i10;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f26879a) {
+        switch (this.f26874a) {
             case 0:
-                int i10 = this.f26880b;
-                ChatActivityEnterView chatActivityEnterView = this.f26881c;
+                int i10 = this.f26875b;
+                ChatActivityEnterView chatActivityEnterView = this.f26876c;
                 if (i10 == 0) {
                     chatActivityEnterView.A2 = 0;
                 }
@@ -33,29 +33,29 @@ public final class hg extends AnimatorListenerAdapter {
                 chatActivityEnterView.requestLayout();
                 return;
             default:
-                ChatActivityEnterView chatActivityEnterView2 = this.f26881c;
-                jw0 jw0Var = chatActivityEnterView2.f23978m1;
+                ChatActivityEnterView chatActivityEnterView2 = this.f26876c;
+                kw0 kw0Var = chatActivityEnterView2.f23981m1;
                 chatActivityEnterView2.A3 = false;
                 chatActivityEnterView2.B3 = null;
                 dg dgVar = chatActivityEnterView2.U0;
                 if (dgVar != null) {
-                    if (chatActivityEnterView2.f23930d5 == null) {
-                        dgVar.getLayoutParams().height = this.f26880b;
+                    if (chatActivityEnterView2.f23933d5 == null) {
+                        dgVar.getLayoutParams().height = this.f26875b;
                     }
                     chatActivityEnterView2.U0.setLayerType(0, null);
                 }
-                if (jw0Var != null) {
-                    jw0Var.requestLayout();
-                    jw0Var.setForeground(null);
-                    jw0Var.setWillNotDraw(false);
+                if (kw0Var != null) {
+                    kw0Var.requestLayout();
+                    kw0Var.setForeground(null);
+                    kw0Var.setWillNotDraw(false);
                 }
-                if (chatActivityEnterView2.f24050z2 && chatActivityEnterView2.r0()) {
-                    chatActivityEnterView2.r1(0, chatActivityEnterView2.f23940f2, true, true);
+                if (chatActivityEnterView2.f24053z2 && chatActivityEnterView2.r0()) {
+                    chatActivityEnterView2.q1(0, chatActivityEnterView2.f23943f2, true, true);
                 }
-                ie ieVar = chatActivityEnterView2.f24005r0;
+                ie ieVar = chatActivityEnterView2.f24008r0;
                 if (ieVar != null) {
                     ieVar.run();
-                    chatActivityEnterView2.f24005r0 = null;
+                    chatActivityEnterView2.f24008r0 = null;
                 }
                 chatActivityEnterView2.L3.unlock();
                 return;

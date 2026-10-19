@@ -3,7 +3,7 @@ package org.telegram.ui.ActionBar;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import org.telegram.ui.Components.jw0;
+import org.telegram.ui.Components.kw0;
 public final class d extends y {
     public final k h;
 
@@ -17,9 +17,9 @@ public final class d extends y {
         Canvas canvas2;
         k kVar = this.h;
         Paint paint = kVar.L0;
-        if (kVar.K0 && this.f21888a && kVar.f21511w != 0) {
+        if (kVar.K0 && this.f21891a && kVar.f21514w != 0) {
             kVar.M0.set(0, 0, getMeasuredWidth(), getMeasuredHeight());
-            paint.setColor(kVar.f21511w);
+            paint.setColor(kVar.f21514w);
             canvas2 = canvas;
             kVar.J0.J(canvas2, 0.0f, kVar.M0, paint, true);
         } else {
@@ -31,18 +31,18 @@ public final class d extends y {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        jw0 jw0Var = this.h.J0;
-        if (jw0Var != null) {
-            jw0Var.T.add(this);
+        kw0 kw0Var = this.h.J0;
+        if (kw0Var != null) {
+            kw0Var.T.add(this);
         }
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        jw0 jw0Var = this.h.J0;
-        if (jw0Var != null) {
-            jw0Var.T.remove(this);
+        kw0 kw0Var = this.h.J0;
+        if (kw0Var != null) {
+            kw0Var.T.remove(this);
         }
     }
 
@@ -60,7 +60,7 @@ public final class d extends y {
     @Override
     public final void setBackgroundColor(int i10) {
         k kVar = this.h;
-        kVar.f21511w = i10;
+        kVar.f21514w = i10;
         if (!kVar.K0) {
             super.setBackgroundColor(i10);
         }

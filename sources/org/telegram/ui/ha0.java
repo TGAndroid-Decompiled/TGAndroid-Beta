@@ -1,38 +1,45 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import org.telegram.messenger.NotificationCenter;
-public final class ha0 extends AnimatorListenerAdapter {
-    public final org.telegram.ui.Components.xj0 f37483a;
-    public final org.telegram.ui.Components.uj0 f37484b;
-    public final boolean f37485c;
-    public final LaunchActivity d;
+import java.util.regex.Pattern;
+public final class ha0 implements sf.c {
+    public final na0 f37582a;
+    public final LaunchActivity f37583b;
 
-    public ha0(LaunchActivity launchActivity, org.telegram.ui.Components.xj0 xj0Var, org.telegram.ui.Components.uj0 uj0Var, boolean z10) {
-        this.d = launchActivity;
-        this.f37483a = xj0Var;
-        this.f37484b = uj0Var;
-        this.f37485c = z10;
+    public ha0(LaunchActivity launchActivity) {
+        this.f37583b = launchActivity;
+        Pattern pattern = LaunchActivity.C1;
+        this.f37582a = new na0(launchActivity, false);
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        LaunchActivity launchActivity = this.d;
-        launchActivity.G0 = null;
-        launchActivity.f33191z0.invalidate();
-        launchActivity.f33169o0.invalidate();
-        launchActivity.f33169o0.setImageDrawable(null);
-        launchActivity.f33169o0.setVisibility(8);
-        launchActivity.f33171p0.setVisibility(8);
-        org.telegram.ui.Components.xj0 xj0Var = this.f37483a;
-        if (xj0Var != null) {
-            xj0Var.setImageDrawable(this.f37484b);
-        }
-        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.themeAccentListUpdated, new Object[0]);
-        if (!this.f37485c && xj0Var != null) {
-            xj0Var.setVisibility(0);
-        }
-        ey.f36612x4 = false;
+    public final void b() {
+        Pattern pattern = LaunchActivity.C1;
+        this.f37583b.getWindow();
+    }
+
+    @Override
+    public final void d() {
+        this.f37582a.a(false);
+    }
+
+    @Override
+    public final void f() {
+        Pattern pattern = LaunchActivity.C1;
+        LaunchActivity launchActivity = this.f37583b;
+        launchActivity.getClass();
+        this.f37582a.a(true);
+        launchActivity.getWindow();
+    }
+
+    @Override
+    public final void a() {
+    }
+
+    @Override
+    public final void c() {
+    }
+
+    @Override
+    public final void e() {
     }
 }

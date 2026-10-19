@@ -10,7 +10,7 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.R;
 import org.telegram.messenger.XiaomiUtilities;
 public final class lu extends iu {
-    public Drawable f28326c;
+    public Drawable f28308c;
     public final int d;
     public final qu e;
 
@@ -18,7 +18,7 @@ public final class lu extends iu {
         super(context, d6Var);
         this.e = quVar;
         this.d = i10;
-        this.f28326c = null;
+        this.f28308c = null;
     }
 
     @Override
@@ -36,7 +36,7 @@ public final class lu extends iu {
             } else {
                 z10 = false;
             }
-            org.telegram.ui.sn.n8(menu, null, z10, true, true, true);
+            org.telegram.ui.qn.n8(menu, null, z10, true, true, true);
             return;
         }
         quVar.i(menu);
@@ -61,7 +61,7 @@ public final class lu extends iu {
         boolean z10;
         super.onSelectionChanged(i10, i11);
         qu quVar = this.e;
-        nm0 nm0Var = quVar.f29744c;
+        nm0 nm0Var = quVar.f29701c;
         if (nm0Var != null) {
             boolean z11 = false;
             if (i11 != i10) {
@@ -73,15 +73,15 @@ public final class lu extends iu {
                 XiaomiUtilities.isMIUI();
                 z11 = true;
             }
-            if (quVar.f29746n != z11) {
-                quVar.f29746n = z11;
+            if (quVar.f29703n != z11) {
+                quVar.f29703n = z11;
                 if (z11) {
-                    this.f28326c = nm0Var.d;
+                    this.f28308c = nm0Var.d;
                     nm0Var.a(R.drawable.msg_edit, true);
                     return;
                 }
-                nm0Var.b(this.f28326c, true);
-                this.f28326c = null;
+                nm0Var.b(this.f28308c, true);
+                this.f28308c = null;
             }
         }
     }
@@ -93,9 +93,9 @@ public final class lu extends iu {
         qu quVar = this.e;
         if (quVar.e && motionEvent.getAction() == 0) {
             quVar.u();
-            if (quVar.f29750x && (muVar = quVar.d) != null) {
-                muVar.t(false);
-                quVar.f29750x = false;
+            if (quVar.f29707x && (muVar = quVar.d) != null) {
+                muVar.u(false);
+                quVar.f29707x = false;
                 quVar.k(true);
                 AndroidUtilities.showKeyboard(this);
             } else {

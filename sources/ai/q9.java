@@ -51,9 +51,9 @@ public final class q9 implements Runnable {
                     return;
                 } else if (tL_error != null && FileRefController.isFileRefError(tL_error.text) && !z10) {
                     TLRPC.TL_messages_getScheduledMessages tL_messages_getScheduledMessages = new TLRPC.TL_messages_getScheduledMessages();
-                    tL_messages_getScheduledMessages.peer = MessagesController.getInstance(gaVar.f1352a).getInputPeer(j10);
-                    tL_messages_getScheduledMessages.f20372id.add(Integer.valueOf(i10));
-                    ConnectionsManager.getInstance(gaVar.f1352a).sendRequest(tL_messages_getScheduledMessages, new d0(gaVar, messageObject, j11, runnable, 2));
+                    tL_messages_getScheduledMessages.peer = MessagesController.getInstance(gaVar.f1348a).getInputPeer(j10);
+                    tL_messages_getScheduledMessages.f20375id.add(Integer.valueOf(i10));
+                    ConnectionsManager.getInstance(gaVar.f1348a).sendRequest(tL_messages_getScheduledMessages, new d0(gaVar, messageObject, j11, runnable, 3));
                     return;
                 } else {
                     runnable.run();

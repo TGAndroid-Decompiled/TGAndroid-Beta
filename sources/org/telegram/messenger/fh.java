@@ -31,26 +31,26 @@ import org.telegram.ui.Components.ca0;
 import org.telegram.ui.Components.yq;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.Wallet.WalletEngine2;
-import org.telegram.ui.ai1;
-import org.telegram.ui.ef0;
-import org.telegram.ui.gb0;
-import org.telegram.ui.gn0;
-import org.telegram.ui.gx;
-import org.telegram.ui.kb0;
-import org.telegram.ui.zh1;
+import org.telegram.ui.cf0;
+import org.telegram.ui.eb0;
+import org.telegram.ui.en0;
+import org.telegram.ui.ex;
+import org.telegram.ui.ib0;
+import org.telegram.ui.xh1;
+import org.telegram.ui.yh1;
 public final class fh implements Utilities.Callback2 {
-    public final int f18385a;
-    public final int f18386b;
-    public final Object f18387c;
+    public final int f18388a;
+    public final int f18389b;
+    public final Object f18390c;
     public final Object d;
     public final Object e;
-    public final Object f18388f;
+    public final Object f18391f;
 
     public fh(Context context, int i10, org.telegram.ui.Wallet.m0 m0Var, org.telegram.ui.ActionBar.d6 d6Var, Runnable runnable) {
-        this.f18385a = 3;
-        this.f18388f = context;
-        this.f18386b = i10;
-        this.f18387c = m0Var;
+        this.f18388a = 3;
+        this.f18391f = context;
+        this.f18389b = i10;
+        this.f18390c = m0Var;
         this.d = d6Var;
         this.e = runnable;
     }
@@ -70,15 +70,15 @@ public final class fh implements Utilities.Callback2 {
         String string;
         int i11;
         int i12;
-        int i13 = this.f18385a;
-        int i14 = this.f18386b;
-        Object obj3 = this.f18388f;
+        int i13 = this.f18388a;
+        int i14 = this.f18389b;
+        Object obj3 = this.f18391f;
         Object obj4 = this.e;
         Object obj5 = this.d;
-        Object obj6 = this.f18387c;
+        Object obj6 = this.f18390c;
         switch (i13) {
             case 0:
-                PasskeysController.lambda$create$9((org.telegram.ui.ActionBar.b2) obj6, (Utilities.Callback2) obj5, (q2.b) obj4, (Context) obj3, this.f18386b, (TL_account.passkeyRegistrationOptions) obj, (TLRPC.TL_error) obj2);
+                PasskeysController.lambda$create$9((org.telegram.ui.ActionBar.b2) obj6, (Utilities.Callback2) obj5, (l5.j) obj4, (Context) obj3, this.f18389b, (TL_account.passkeyRegistrationOptions) obj, (TLRPC.TL_error) obj2);
                 return;
             case 1:
                 LaunchActivity launchActivity = (LaunchActivity) obj6;
@@ -96,25 +96,25 @@ public final class fh implements Utilities.Callback2 {
                     messagesController.putUser(user2, false);
                     messagesController.loadFullUser(user2, 0, true);
                 }
-                launchActivity.m0(i14, user.f20419id, tL_error);
+                launchActivity.m0(i14, user.f20422id, tL_error);
                 return;
             case 2:
-                kb0 kb0Var = (kb0) obj6;
+                ib0 ib0Var = (ib0) obj6;
                 String str = (String) obj5;
                 String str2 = (String) obj4;
                 String str3 = (String) obj3;
                 TL_wallet.tonConnectPending tonconnectpending = (TL_wallet.tonConnectPending) obj;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
-                LaunchActivity launchActivity2 = kb0Var.f38454a;
-                kb0Var.h = -1;
-                if (kb0Var.f38460j || launchActivity2.isFinishing() || launchActivity2.isDestroyed()) {
-                    kb0Var.c();
+                LaunchActivity launchActivity2 = ib0Var.f37934a;
+                ib0Var.h = -1;
+                if (ib0Var.f37940j || launchActivity2.isFinishing() || launchActivity2.isDestroyed()) {
+                    ib0Var.c();
                     return;
                 }
                 if (tL_error2 != null) {
-                    kb0Var.c();
-                    if (kb0Var.a()) {
-                        kb0.d().f0(tL_error2, false);
+                    ib0Var.c();
+                    if (ib0Var.a()) {
+                        ib0.d().f0(tL_error2, false);
                     }
                 } else {
                     if (tonconnectpending != null && (tonconnectsession = tonconnectpending.session) != null && !tonconnectsession.closed && !tonconnectsession.closing && !tonconnectsession.pending && str.equals(tonconnectsession.dapp_client_id)) {
@@ -126,24 +126,24 @@ public final class fh implements Utilities.Callback2 {
                                 TL_wallet.tonConnectRequest tonconnectrequest = arrayList.get(i15);
                                 i15++;
                                 TL_wallet.tonConnectRequest tonconnectrequest2 = tonconnectrequest;
-                                if (str2.equals(tonconnectrequest2.trace_id) && tonconnectrequest2.session_id == tonconnectpending.session.f20530id && tonconnectrequest2.expires > ConnectionsManager.getInstance(kb0Var.f38455b).getCurrentTime()) {
-                                    if (kb0Var.a() && (U = LaunchActivity.U()) != null && U.getContext() != null) {
-                                        kb0Var.c();
-                                        org.telegram.ui.Wallet.f2.o(kb0Var.f38454a, kb0Var.f38455b, tonconnectrequest2.session_id, tonconnectrequest2.msg_id, U.getResourceProvider(), new gb0(kb0Var, str3, 0));
+                                if (str2.equals(tonconnectrequest2.trace_id) && tonconnectrequest2.session_id == tonconnectpending.session.f20533id && tonconnectrequest2.expires > ConnectionsManager.getInstance(ib0Var.f37935b).getCurrentTime()) {
+                                    if (ib0Var.a() && (U = LaunchActivity.U()) != null && U.getContext() != null) {
+                                        ib0Var.c();
+                                        org.telegram.ui.Wallet.f2.o(ib0Var.f37934a, ib0Var.f37935b, tonconnectrequest2.session_id, tonconnectrequest2.msg_id, U.getResourceProvider(), new eb0(ib0Var, str3, 0));
                                     }
                                 }
                             }
                         }
                     }
-                    int i16 = this.f18386b;
+                    int i16 = this.f18389b;
                     if (i16 < 10) {
-                        ai.ub ubVar = new ai.ub((Object) kb0Var, str, str2, str3, i16, 28);
-                        kb0Var.f38459i = ubVar;
+                        ai.ub ubVar = new ai.ub((Object) ib0Var, str, str2, str3, i16, 28);
+                        ib0Var.f37939i = ubVar;
                         AndroidUtilities.runOnUIThread(ubVar, 500L);
                         return;
                     }
-                    kb0Var.c();
-                    if (kb0Var.a()) {
+                    ib0Var.c();
+                    if (ib0Var.a()) {
                         org.telegram.ui.Components.xc.b0(LocaleController.getString(R.string.WalletTonConnectRequestUnavailable));
                         return;
                     }
@@ -164,23 +164,23 @@ public final class fh implements Utilities.Callback2 {
                     }
                     return;
                 }
-                int i17 = b2Var2.f33999c;
-                TL_wallet.tonConnectSession tonconnectsession2 = b2Var2.f33997a;
+                int i17 = b2Var2.f34009c;
+                TL_wallet.tonConnectSession tonconnectsession2 = b2Var2.f34007a;
                 String str5 = b2Var2.e;
                 if (context instanceof Activity) {
                     Activity activity = (Activity) context;
                     if (activity.isFinishing() || activity.isDestroyed() || !LaunchActivity.F1 || SharedConfig.appLocked || SharedConfig.isWaitingForPasscodeEnter || UserConfig.selectedAccount != i14) {
-                        m0Var2.f34455g.s(b2Var2);
+                        m0Var2.f34472g.s(b2Var2);
                         return;
                     }
                 }
                 if ("signData".equals(str5)) {
-                    final org.telegram.ui.Wallet.f2 f2Var2 = org.telegram.ui.Wallet.m0.w(i14).f34455g;
+                    final org.telegram.ui.Wallet.f2 f2Var2 = org.telegram.ui.Wallet.m0.w(i14).f34472g;
                     try {
-                        JSONObject jSONObject = new JSONObject(b2Var2.f34004k);
+                        JSONObject jSONObject = new JSONObject(b2Var2.f34014k);
                         boolean equals = "text".equals(jSONObject.optString("type"));
                         org.telegram.ui.Wallet.j2 j2Var = new org.telegram.ui.Wallet.j2(context, d6Var, new View[0]);
-                        j2Var.t(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20928a7, d6Var));
+                        j2Var.u(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20931a7, d6Var));
                         LinearLayout linearLayout = new LinearLayout(context);
                         linearLayout.setOrientation(1);
                         LinearLayout linearLayout2 = new LinearLayout(context);
@@ -189,9 +189,9 @@ public final class fh implements Utilities.Callback2 {
                         imageView.setImageResource(R.drawable.ic_ab_close);
                         imageView.setScaleType(ImageView.ScaleType.CENTER);
                         imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.G6, d6Var), PorterDuff.Mode.SRC_IN));
-                        imageView.setBackground(org.telegram.ui.ActionBar.h6.g0(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21075i6, d6Var), 1, -1));
+                        imageView.setBackground(org.telegram.ui.ActionBar.h6.g0(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21078i6, d6Var), 1, -1));
                         imageView.setContentDescription(LocaleController.getString(R.string.Close));
-                        imageView.setOnClickListener(new ef0(22, b2Var2, j2Var));
+                        imageView.setOnClickListener(new cf0(22, b2Var2, j2Var));
                         linearLayout2.addView(imageView, w7.z5.p(48, 48, 0.0f, 16, 4, 0, 12, 0));
                         org.telegram.ui.Components.w9 w9Var = new org.telegram.ui.Components.w9(context);
                         w9Var.setRoundRadius(AndroidUtilities.dp(22.0f));
@@ -207,7 +207,7 @@ public final class fh implements Utilities.Callback2 {
                         t10.setGravity(3);
                         linearLayout3.addView(t10, w7.z5.n(-1, -2));
                         TextView t11 = org.telegram.ui.Wallet.f2.t(14, context, AndroidUtilities.getHostAuthority(tonconnectsession2.manifest.url), d6Var);
-                        int i18 = org.telegram.ui.ActionBar.h6.f21391z6;
+                        int i18 = org.telegram.ui.ActionBar.h6.f21394z6;
                         t11.setTextColor(org.telegram.ui.ActionBar.h6.w0(i18, d6Var));
                         t11.setGravity(3);
                         t11.setSingleLine(true);
@@ -218,7 +218,7 @@ public final class fh implements Utilities.Callback2 {
                         LinearLayout linearLayout4 = new LinearLayout(context);
                         linearLayout4.setOrientation(1);
                         linearLayout4.setPadding(AndroidUtilities.dp(20.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(16.0f));
-                        linearLayout4.setBackground(org.telegram.ui.ActionBar.h6.c0(AndroidUtilities.dp(16.0f), org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20986d6, d6Var)));
+                        linearLayout4.setBackground(org.telegram.ui.ActionBar.h6.c0(AndroidUtilities.dp(16.0f), org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20989d6, d6Var)));
                         if (equals) {
                             string = jSONObject.optString("text");
                         } else {
@@ -242,7 +242,7 @@ public final class fh implements Utilities.Callback2 {
                             TextView t14 = org.telegram.ui.Wallet.f2.t(12, context, "!", d6Var);
                             t14.setTypeface(AndroidUtilities.bold());
                             t14.setTextColor(-1);
-                            t14.setBackground(org.telegram.ui.ActionBar.h6.c0(AndroidUtilities.dp(8.0f), org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21224q7, d6Var)));
+                            t14.setBackground(org.telegram.ui.ActionBar.h6.c0(AndroidUtilities.dp(8.0f), org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21227q7, d6Var)));
                             linearLayout5.addView(t14, w7.z5.p(16, 16, 0.0f, 16, 0, 0, 6, 0));
                             TextView t15 = org.telegram.ui.Wallet.f2.t(14, context, LocaleController.getString(R.string.WalletBinaryData), d6Var);
                             t15.setGravity(3);
@@ -256,12 +256,12 @@ public final class fh implements Utilities.Callback2 {
                         if (equals) {
                             t12.setOnClickListener(new org.telegram.ui.Wallet.n1(jSONObject, j2Var, d6Var, 0));
                         }
-                        gx gxVar = new gx(context, 2);
-                        gxVar.addView(linearLayout4);
-                        linearLayout.addView(gxVar, w7.z5.k(12.0f, 4.0f, 12.0f, 0.0f, -1, -2));
+                        ex exVar = new ex(context, 2);
+                        exVar.addView(linearLayout4);
+                        linearLayout.addView(exVar, w7.z5.k(12.0f, 4.0f, 12.0f, 0.0f, -1, -2));
                         org.telegram.ui.Wallet.i2 i2Var = new org.telegram.ui.Wallet.i2(context);
                         i2Var.getContent().addView(linearLayout, w7.z5.c(-2.0f, -1));
-                        j2Var.s(i2Var);
+                        j2Var.t(i2Var);
                         LinearLayout e = lk.e(context, 1);
                         if (equals) {
                             TextView t16 = org.telegram.ui.Wallet.f2.t(14, context, LocaleController.getString(R.string.WalletReviewSigningData), d6Var);
@@ -284,9 +284,9 @@ public final class fh implements Utilities.Callback2 {
                         e.addView(linearLayout6);
                         j2Var.v(e);
                         j2Var.setDelegate(new org.telegram.ui.j0(b2Var2, 2));
-                        org.telegram.ui.Wallet.h hVar = new org.telegram.ui.Wallet.h(gxVar, b2Var2, dVar2, 2);
-                        gxVar.getViewTreeObserver().addOnScrollChangedListener(new org.telegram.ui.Wallet.o1(hVar, 0));
-                        gxVar.getViewTreeObserver().addOnGlobalLayoutListener(new org.telegram.ui.Wallet.p1(hVar, 0));
+                        org.telegram.ui.Wallet.h hVar = new org.telegram.ui.Wallet.h(exVar, b2Var2, dVar2, 2);
+                        exVar.getViewTreeObserver().addOnScrollChangedListener(new org.telegram.ui.Wallet.o1(hVar, 0));
+                        exVar.getViewTreeObserver().addOnGlobalLayoutListener(new org.telegram.ui.Wallet.p1(hVar, 0));
                         final org.telegram.ui.Wallet.q1 q1Var = new org.telegram.ui.Wallet.q1(dVar2, dVar, f2Var2, b2Var2, j2Var, d6Var, hVar);
                         dVar2.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -316,7 +316,7 @@ public final class fh implements Utilities.Callback2 {
                         });
                         final boolean[] zArr = {false};
                         final org.telegram.ui.Wallet.z1 z1Var = new org.telegram.ui.Wallet.z1(zArr, b2Var2, j2Var, 0);
-                        b2Var2.f34011r = new org.telegram.ui.Wallet.n(j2Var, 5);
+                        b2Var2.f34021r = new org.telegram.ui.Wallet.n(j2Var, 5);
                         j2Var.setOnDismissListener(new DialogInterface.OnDismissListener() {
                             @Override
                             public final void onDismiss(DialogInterface dialogInterface) {
@@ -345,7 +345,7 @@ public final class fh implements Utilities.Callback2 {
                             }
                         });
                         j2Var.show();
-                        AndroidUtilities.runOnUIThread(z1Var, Math.max(0L, i17 - f2Var2.f34171f.getCurrentTime()) * 1000);
+                        AndroidUtilities.runOnUIThread(z1Var, Math.max(0L, i17 - f2Var2.f34189f.getCurrentTime()) * 1000);
                         return;
                     } catch (JSONException e7) {
                         f2Var2.s(b2Var2);
@@ -354,11 +354,11 @@ public final class fh implements Utilities.Callback2 {
                     }
                 }
                 org.telegram.ui.Wallet.m0 w9 = org.telegram.ui.Wallet.m0.w(i14);
-                org.telegram.ui.Wallet.f2 f2Var3 = w9.f34455g;
-                org.telegram.ui.Wallet.e2 e2Var = b2Var2.f34000f;
+                org.telegram.ui.Wallet.f2 f2Var3 = w9.f34472g;
+                org.telegram.ui.Wallet.e2 e2Var = b2Var2.f34010f;
                 boolean equals2 = "signMessage".equals(str5);
                 final org.telegram.ui.Wallet.j2 j2Var2 = new org.telegram.ui.Wallet.j2(context, d6Var, new View[0]);
-                j2Var2.t(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20928a7, d6Var));
+                j2Var2.u(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20931a7, d6Var));
                 LinearLayout linearLayout7 = new LinearLayout(context);
                 linearLayout7.setOrientation(1);
                 org.telegram.ui.Components.w9 w9Var2 = new org.telegram.ui.Components.w9(context);
@@ -383,12 +383,11 @@ public final class fh implements Utilities.Callback2 {
                     linearLayout7.addView(org.telegram.ui.Wallet.f2.g(context, hostAuthority, d6Var), w7.z5.t(-2, -2, 1, 36, 6, 36, 12));
                 }
                 org.telegram.ui.Wallet.x5 x5Var = new org.telegram.ui.Wallet.x5(context, R.drawable.wallet_card_info, 24);
-                x5Var.setEngravingBitmap(null);
                 x5Var.getCardHolderView().setMaxLines(2);
                 x5Var.getCardHolderView().setSingleLine(false);
-                List<org.telegram.ui.Wallet.d2> list = e2Var.f34118b;
-                long j10 = e2Var.f34119c;
-                x5Var.setCardHolder(org.telegram.ui.Wallet.w7.X(((org.telegram.ui.Wallet.d2) list.get(0)).f34079a));
+                List<org.telegram.ui.Wallet.d2> list = e2Var.f34138b;
+                long j10 = e2Var.f34139c;
+                x5Var.setCardHolder(org.telegram.ui.Wallet.w7.X(((org.telegram.ui.Wallet.d2) list.get(0)).f34087a));
                 org.telegram.ui.Components.q6 balanceView = x5Var.getBalanceView();
                 SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
                 SpannableString spannableString = new SpannableString("GRAM");
@@ -409,8 +408,8 @@ public final class fh implements Utilities.Callback2 {
                         switch (r2) {
                             case 0:
                                 j2 j2Var3 = j2Var2;
-                                ei.h1 h1Var = j2Var3.f34349b;
-                                if (1 < j2Var3.f34350c.size() && 1 != h1Var.getCurrentPosition()) {
+                                ei.h1 h1Var = j2Var3.f34368b;
+                                if (1 < j2Var3.f34369c.size() && 1 != h1Var.getCurrentPosition()) {
                                     for (View view2 : h1Var.getViewPages()) {
                                         if (view2 != null) {
                                             AndroidUtilities.hideKeyboard(view2);
@@ -422,8 +421,8 @@ public final class fh implements Utilities.Callback2 {
                                 return;
                             default:
                                 j2 j2Var4 = j2Var2;
-                                ei.h1 h1Var2 = j2Var4.f34349b;
-                                if (j2Var4.f34350c.size() > 0 && h1Var2.getCurrentPosition() != 0) {
+                                ei.h1 h1Var2 = j2Var4.f34368b;
+                                if (j2Var4.f34369c.size() > 0 && h1Var2.getCurrentPosition() != 0) {
                                     for (View view3 : h1Var2.getViewPages()) {
                                         if (view3 != null) {
                                             AndroidUtilities.hideKeyboard(view3);
@@ -438,14 +437,14 @@ public final class fh implements Utilities.Callback2 {
                 });
                 org.telegram.ui.Wallet.i2 i2Var2 = new org.telegram.ui.Wallet.i2(context);
                 i2Var2.getContent().addView(linearLayout7, w7.z5.c(-2.0f, -1));
-                j2Var2.s(i2Var2);
+                j2Var2.t(i2Var2);
                 LinearLayout e10 = lk.e(context, 1);
                 LinearLayout e11 = lk.e(context, 0);
                 e10.addView(e11, w7.z5.n(-1, 56));
                 ImageView imageView2 = new ImageView(context);
                 imageView2.setImageResource(R.drawable.ic_ab_back);
                 imageView2.setScaleType(ImageView.ScaleType.CENTER);
-                imageView2.setBackground(org.telegram.ui.ActionBar.h6.g0(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21075i6, d6Var), 1, -1));
+                imageView2.setBackground(org.telegram.ui.ActionBar.h6.g0(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21078i6, d6Var), 1, -1));
                 int i19 = org.telegram.ui.ActionBar.h6.G6;
                 imageView2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(i19, d6Var), PorterDuff.Mode.SRC_IN));
                 w7.b6.a(imageView2);
@@ -471,7 +470,7 @@ public final class fh implements Utilities.Callback2 {
                 } else {
                     TextView textView2 = new TextView(context);
                     i10 = 1;
-                    lk.o(org.telegram.ui.ActionBar.h6.f21391z6, d6Var, textView2, 1, 14.0f);
+                    lk.o(org.telegram.ui.ActionBar.h6.f21394z6, d6Var, textView2, 1, 14.0f);
                     linearLayout8.addView(textView2, w7.z5.n(-1, -2));
                     textView2.setText(hostAuthority);
                 }
@@ -483,8 +482,8 @@ public final class fh implements Utilities.Callback2 {
                         switch (i10) {
                             case 0:
                                 j2 j2Var3 = j2Var2;
-                                ei.h1 h1Var = j2Var3.f34349b;
-                                if (1 < j2Var3.f34350c.size() && 1 != h1Var.getCurrentPosition()) {
+                                ei.h1 h1Var = j2Var3.f34368b;
+                                if (1 < j2Var3.f34369c.size() && 1 != h1Var.getCurrentPosition()) {
                                     for (View view2 : h1Var.getViewPages()) {
                                         if (view2 != null) {
                                             AndroidUtilities.hideKeyboard(view2);
@@ -496,8 +495,8 @@ public final class fh implements Utilities.Callback2 {
                                 return;
                             default:
                                 j2 j2Var4 = j2Var2;
-                                ei.h1 h1Var2 = j2Var4.f34349b;
-                                if (j2Var4.f34350c.size() > 0 && h1Var2.getCurrentPosition() != 0) {
+                                ei.h1 h1Var2 = j2Var4.f34368b;
+                                if (j2Var4.f34369c.size() > 0 && h1Var2.getCurrentPosition() != 0) {
                                     for (View view3 : h1Var2.getViewPages()) {
                                         if (view3 != null) {
                                             AndroidUtilities.hideKeyboard(view3);
@@ -513,7 +512,7 @@ public final class fh implements Utilities.Callback2 {
                 LinearLayout linearLayout9 = new LinearLayout(context);
                 linearLayout9.setOrientation(i10);
                 LinearLayout D = org.telegram.ui.Wallet.f2.D(context, LocaleController.getString(R.string.WalletPreview), d6Var);
-                String A = org.telegram.ui.Wallet.f2.A(((org.telegram.ui.Wallet.d2) list.get(0)).f34079a);
+                String A = org.telegram.ui.Wallet.f2.A(((org.telegram.ui.Wallet.d2) list.get(0)).f34087a);
                 int i20 = R.drawable.mini_gram_24;
                 SpannableStringBuilder r10 = org.telegram.ui.Wallet.m0.r(j10, i10);
                 if (list.size() > i10) {
@@ -538,8 +537,8 @@ public final class fh implements Utilities.Callback2 {
                 LinearLayout D2 = org.telegram.ui.Wallet.f2.D(context, LocaleController.getString(R.string.WalletActions), d6Var2);
                 for (org.telegram.ui.Wallet.d2 d2Var : list) {
                     int i23 = R.drawable.mini_gram_24;
-                    String string2 = LocaleController.getString((d2Var.f34080b == null || d2Var.d != null) ? R.string.WalletTransfer : R.string.WalletContractCall);
-                    CharSequence formatSpannable2 = LocaleController.formatSpannable(R.string.WalletTransferTo, org.telegram.ui.Wallet.f2.A(d2Var.f34079a));
+                    String string2 = LocaleController.getString((d2Var.f34088b == null || d2Var.d != null) ? R.string.WalletTransfer : R.string.WalletContractCall);
+                    CharSequence formatSpannable2 = LocaleController.formatSpannable(R.string.WalletTransferTo, org.telegram.ui.Wallet.f2.A(d2Var.f34087a));
                     String n10 = org.telegram.ui.Wallet.m0.n(-d2Var.e, true);
                     SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(n10);
                     int indexOf = n10.indexOf(46);
@@ -566,20 +565,20 @@ public final class fh implements Utilities.Callback2 {
                 org.telegram.ui.Wallet.m0 m0Var3 = w9;
                 org.telegram.ui.ActionBar.d6 d6Var4 = d6Var2;
                 linearLayout9.addView(D2, w7.z5.k(12.0f, 6.0f, 12.0f, 12.0f, -1, -2));
-                gx gxVar2 = new gx(context, 3);
-                gxVar2.setFillViewport(false);
-                gxVar2.addView(linearLayout9);
-                e10.addView(gxVar2, w7.z5.n(-1, -2));
+                ex exVar2 = new ex(context, 3);
+                exVar2.setFillViewport(false);
+                exVar2.addView(linearLayout9);
+                e10.addView(exVar2, w7.z5.n(-1, -2));
                 org.telegram.ui.Wallet.i2 i2Var3 = new org.telegram.ui.Wallet.i2(context);
                 i2Var3.getContent().addView(e10, w7.z5.c(-2.0f, -1));
-                j2Var2.s(i2Var3);
+                j2Var2.t(i2Var3);
                 LinearLayout e12 = lk.e(context, 1);
                 TextView t18 = org.telegram.ui.Wallet.f2.t(14, context, null, d6Var4);
                 SpannableStringBuilder spannableStringBuilder3 = new SpannableStringBuilder(" ");
                 spannableStringBuilder3.setSpan(new ca0(AndroidUtilities.dp(80.0f), t18), 0, spannableStringBuilder3.length(), 33);
                 t18.setText(LocaleController.formatSpannable(R.string.WalletFeeAmount, spannableStringBuilder3));
                 t18.setVisibility(z10 ? 8 : 0);
-                t18.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21391z6, d6Var4));
+                t18.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21394z6, d6Var4));
                 e12.addView(t18, w7.z5.k(20.0f, 16.0f, 20.0f, 16.0f, -1, -2));
                 LinearLayout linearLayout10 = new LinearLayout(context);
                 linearLayout10.setPadding(AndroidUtilities.dp(16.0f), 0, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f));
@@ -627,11 +626,11 @@ public final class fh implements Utilities.Callback2 {
                 });
                 final org.telegram.ui.Wallet.z1 z1Var2 = new org.telegram.ui.Wallet.z1(zArr2, b2Var3, j2Var2, 1);
                 long j11 = i17;
-                long j12 = e2Var.f34117a;
+                long j12 = e2Var.f34137a;
                 if (j12 == 0) {
                     j12 = Long.MAX_VALUE;
                 }
-                b2Var3.f34011r = new org.telegram.ui.Wallet.n(j2Var2, 5);
+                b2Var3.f34021r = new org.telegram.ui.Wallet.n(j2Var2, 5);
                 j2Var2.setOnDismissListener(new DialogInterface.OnDismissListener() {
                     @Override
                     public final void onDismiss(DialogInterface dialogInterface) {
@@ -662,8 +661,8 @@ public final class fh implements Utilities.Callback2 {
                 j2Var2.show();
                 AndroidUtilities.runOnUIThread(z1Var2, Math.max(0L, Math.min(j11, j12) - ConnectionsManager.getInstance(i14).getCurrentTime()) * 1000);
                 ki.c cVar2 = new ki.c(zArr2, b2Var3, zArr3, f7, z10, m0Var3, t18, j2Var2, d6Var4);
-                WalletEngine2 walletEngine2 = f2Var4.f34169b.f34452b;
-                if (!b2Var3.f34007n && !f2Var4.i(b2Var3) && f2Var4.y(b2Var3) && walletEngine2 != null) {
+                WalletEngine2 walletEngine2 = f2Var4.f34187b.f34469b;
+                if (!b2Var3.f34017n && !f2Var4.i(b2Var3) && f2Var4.y(b2Var3) && walletEngine2 != null) {
                     if ("signMessage".equals(str5)) {
                         walletEngine2.previewSignMessage(e2Var, new org.telegram.ui.Wallet.p(f2Var4, b2Var3, cVar2, 1));
                         return;
@@ -699,16 +698,16 @@ public final class fh implements Utilities.Callback2 {
                 }
                 int currentDatacenterId = ConnectionsManager.getInstance(i14).getCurrentDatacenterId();
                 boolean isTestBackend = ConnectionsManager.getInstance(i14).isTestBackend();
-                StringBuilder m10 = i2.d.m("wear-auth: sending /token account=", i14, " dcId=", currentDatacenterId, " isTest=");
+                StringBuilder m10 = i2.e.m("wear-auth: sending /token account=", i14, " dcId=", currentDatacenterId, " isTest=");
                 m10.append(isTestBackend);
                 FileLog.d(m10.toString());
                 Context applicationContext = view.getContext().getApplicationContext();
                 try {
-                    byte[] c12 = ai1.c(z5Var, queryParameter, currentDatacenterId, isTestBackend);
-                    com.google.android.gms.common.api.internal.s0 s0Var = new com.google.android.gms.internal.clearcut.v0(applicationContext, com.google.android.gms.common.api.i.f6357c).h;
-                    b8.e eVar = new b8.e(s0Var, (String) z5Var.f6881a, "/tg-wear-auth/token", c12);
-                    s0Var.f6492b.d(0, eVar);
-                    n6.l.n(eVar, y8.j0.f50010a).addOnSuccessListener(new gn0(29, z5Var, dVar4)).addOnFailureListener(new zh1(dVar4, 1));
+                    byte[] c12 = yh1.c(z5Var, queryParameter, currentDatacenterId, isTestBackend);
+                    com.google.android.gms.common.api.internal.s0 s0Var = new com.google.android.gms.internal.clearcut.v0(applicationContext, com.google.android.gms.common.api.i.f6358c).h;
+                    b8.e eVar = new b8.e(s0Var, (String) z5Var.f6882a, "/tg-wear-auth/token", c12);
+                    s0Var.f6493b.d(0, eVar);
+                    n6.l.n(eVar, y8.j0.f50009a).addOnSuccessListener(new en0(29, z5Var, dVar4)).addOnFailureListener(new xh1(dVar4, 1));
                     f3Var.dismiss();
                     return;
                 } catch (Exception e13) {
@@ -720,29 +719,29 @@ public final class fh implements Utilities.Callback2 {
     }
 
     public fh(ei.d dVar, org.telegram.ui.ActionBar.f3 f3Var, int i10, View view, com.google.android.gms.internal.cast.z5 z5Var) {
-        this.f18385a = 4;
-        this.f18387c = dVar;
+        this.f18388a = 4;
+        this.f18390c = dVar;
         this.d = f3Var;
-        this.f18386b = i10;
+        this.f18389b = i10;
         this.e = view;
-        this.f18388f = z5Var;
+        this.f18391f = z5Var;
     }
 
     public fh(Object obj, Object obj2, Object obj3, Object obj4, int i10, int i11) {
-        this.f18385a = i11;
-        this.f18387c = obj;
+        this.f18388a = i11;
+        this.f18390c = obj;
         this.d = obj2;
         this.e = obj3;
-        this.f18388f = obj4;
-        this.f18386b = i10;
+        this.f18391f = obj4;
+        this.f18389b = i10;
     }
 
     public fh(LaunchActivity launchActivity, pf.c cVar, MessagesController messagesController, int i10, TLRPC.User user) {
-        this.f18385a = 1;
-        this.f18387c = launchActivity;
+        this.f18388a = 1;
+        this.f18390c = launchActivity;
         this.d = cVar;
         this.e = messagesController;
-        this.f18386b = i10;
-        this.f18388f = user;
+        this.f18389b = i10;
+        this.f18391f = user;
     }
 }

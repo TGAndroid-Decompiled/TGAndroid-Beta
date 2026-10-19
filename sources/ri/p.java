@@ -1,6 +1,6 @@
 package ri;
 
-import ai.b3;
+import ai.b2;
 import android.content.Context;
 import android.media.AudioRecord;
 import android.os.Build;
@@ -9,22 +9,22 @@ import android.os.Looper;
 import android.os.SystemClock;
 import e2.l0;
 import e2.z;
-import i2.h0;
+import i2.i0;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicLong;
-import org.telegram.ui.Components.ay0;
-import org.telegram.ui.go;
-import org.telegram.ui.lh0;
+import org.telegram.ui.Components.by0;
+import org.telegram.ui.eo;
+import org.telegram.ui.jh0;
 import ri.i;
 import ri.j;
 import ri.p;
 public final class p {
     public static final pb.a G = new pb.a(22);
     public static final AtomicLong H = new AtomicLong(1);
-    public h0 A;
+    public i0 A;
     public byte[] B;
     public m C;
     public final e D;
@@ -59,18 +59,18 @@ public final class p {
 
     public p(com.google.firebase.messaging.l lVar) {
         p();
-        Context context = (Context) lVar.f7646a;
+        Context context = (Context) lVar.f7647a;
         Context applicationContext = context.getApplicationContext();
         context = applicationContext != null ? applicationContext : context;
         this.f45825a = context;
-        File file = (File) lVar.f7647b;
+        File file = (File) lVar.f7648b;
         this.f45826b = file == null ? context.getCacheDir() : file;
         this.f45827c = 700L;
-        i iVar = (i) lVar.f7648c;
+        i iVar = (i) lVar.f7649c;
         this.d = iVar;
         this.e = (g) lVar.d;
         this.f45828f = (l) lVar.e;
-        b bVar = new b((h) lVar.f7649f);
+        b bVar = new b((h) lVar.f7650f);
         this.f45829g = bVar;
         this.D = new Runnable(this) {
             public final p f45801b;
@@ -81,7 +81,7 @@ public final class p {
 
             @Override
             public final void run() {
-                h0 h0Var;
+                i0 i0Var;
                 switch (r2) {
                     case 0:
                         p pVar = this.f45801b;
@@ -96,8 +96,8 @@ public final class p {
                         return;
                     default:
                         p pVar2 = this.f45801b;
-                        if (pVar2.f45834m == n.e && (h0Var = pVar2.A) != null && pVar2.f45842u) {
-                            long M0 = h0Var.M0();
+                        if (pVar2.f45834m == n.e && (i0Var = pVar2.A) != null && pVar2.f45842u) {
+                            long M0 = i0Var.M0();
                             long j10 = pVar2.f45839r;
                             if (M0 < j10 || M0 >= pVar2.f45840s) {
                                 pVar2.A.Z0(5, j10);
@@ -120,7 +120,7 @@ public final class p {
 
             @Override
             public final void run() {
-                h0 h0Var;
+                i0 i0Var;
                 switch (r2) {
                     case 0:
                         p pVar = this.f45801b;
@@ -135,8 +135,8 @@ public final class p {
                         return;
                     default:
                         p pVar2 = this.f45801b;
-                        if (pVar2.f45834m == n.e && (h0Var = pVar2.A) != null && pVar2.f45842u) {
-                            long M0 = h0Var.M0();
+                        if (pVar2.f45834m == n.e && (i0Var = pVar2.A) != null && pVar2.f45842u) {
+                            long M0 = i0Var.M0();
                             long j10 = pVar2.f45839r;
                             if (M0 < j10 || M0 >= pVar2.f45840s) {
                                 pVar2.A.Z0(5, j10);
@@ -239,7 +239,7 @@ public final class p {
         j jVar = new j(j10, f7);
         synchronized (this.f45832k) {
             this.f45846z = jVar;
-            this.f45831j.execute(new ay0(this, jVar, f7, 17));
+            this.f45831j.execute(new by0(this, jVar, f7, 17));
         }
         b bVar = this.f45829g;
         StringBuilder t10 = a1.g.t(j10, "output generation started: id=", ", file=");
@@ -278,7 +278,7 @@ public final class p {
             r(nVar2);
             j jVar = this.f45846z;
             if (jVar != null) {
-                this.f45831j.execute(new ay0(this, jVar, exc, 18));
+                this.f45831j.execute(new by0(this, jVar, exc, 18));
             }
             this.e.onError(exc);
             org.telegram.utils.recorder.audio.b bVar2 = this.f45835n;
@@ -345,7 +345,7 @@ public final class p {
                             ri.b bVar2 = pVar2.f45829g;
                             bVar2.b("final trim completed: source=" + jVar2.f45809b.getName() + ", output=" + file.getName() + ", trim=" + j12 + ".." + j13 + ", bytes=" + file.length() + ", elapsedMs=" + (SystemClock.elapsedRealtime() - elapsedRealtime));
                             pVar2.a(jVar3, file.length());
-                            handler.post(new go(pVar2, j13, j12, 2));
+                            handler.post(new eo(pVar2, j13, j12, 2));
                             return;
                         }
                         throw new IllegalStateException("Unable to trim final Opus output");
@@ -395,7 +395,7 @@ public final class p {
                     pVar.f45829g.a("final waveform extraction failed", th2);
                     bArr = null;
                 }
-                pVar.h.post(new b3(pVar, jVar2, j10, bArr, 27));
+                pVar.h.post(new b2(pVar, jVar2, j10, bArr, 27));
             }
         });
     }
@@ -410,7 +410,7 @@ public final class p {
             j jVar = this.f45846z;
             if (jVar != null && jVar.d && !jVar.e) {
                 jVar.d = false;
-                this.f45831j.execute(new ay0(this, jVar, kVar, 19));
+                this.f45831j.execute(new by0(this, jVar, kVar, 19));
                 b bVar = this.f45829g;
                 bVar.b("output generation invalidated: id=" + jVar.f45808a + ", reason=" + kVar);
             }
@@ -461,9 +461,9 @@ public final class p {
     public final void o() {
         this.h.removeCallbacks(this.E);
         this.f45842u = false;
-        h0 h0Var = this.A;
-        if (h0Var != null) {
-            h0Var.C(this.F);
+        i0 i0Var = this.A;
+        if (i0Var != null) {
+            i0Var.C(this.F);
             this.A.X0();
             this.A = null;
         }
@@ -495,33 +495,33 @@ public final class p {
         final org.telegram.utils.recorder.audio.b bVar = new org.telegram.utils.recorder.audio.b(jVar.f45809b, file, this.d, this.f45829g, new cc.e(this, jVar, j10));
         this.f45835n = bVar;
         this.f45838q = 0L;
-        bVar.f43841g.post(new Runnable() {
+        bVar.f43833g.post(new Runnable() {
             @Override
             public final void run() {
                 String name;
                 b bVar2 = b.this;
                 try {
-                    if (bVar2.f43843j) {
+                    if (bVar2.f43835j) {
                         bVar2.e();
                         return;
                     }
                     long elapsedRealtime = SystemClock.elapsedRealtime();
-                    AudioRecorderNative a2 = AudioRecorderNative.a(bVar2.f43837a, bVar2.f43838b);
-                    bVar2.f43845l = a2;
+                    AudioRecorderNative a2 = AudioRecorderNative.a(bVar2.f43829a, bVar2.f43830b);
+                    bVar2.f43837l = a2;
                     if (a2 != null) {
-                        if (bVar2.f43839c == i.f45806b) {
+                        if (bVar2.f43831c == i.f45806b) {
                             AudioNoiseSuppressor a10 = AudioNoiseSuppressor.a();
-                            bVar2.f43846m = a10;
+                            bVar2.f43838m = a10;
                             if (a10 == null) {
                                 bVar2.d.b("RNNoise unavailable; recording unprocessed PCM");
                             } else {
                                 bVar2.d.b("RNNoise started: sampleRate=48000, captureFrameSamples=960");
                             }
                         }
-                        long d = bVar2.f43845l.d();
+                        long d = bVar2.f43837l.d();
                         ri.b bVar3 = bVar2.d;
                         StringBuilder sb2 = new StringBuilder("Opus encoder started: prefix=");
-                        File file2 = bVar2.f43838b;
+                        File file2 = bVar2.f43830b;
                         if (file2 == null) {
                             name = "none";
                         } else {
@@ -533,7 +533,7 @@ public final class p {
                         sb2.append(", elapsedMs=");
                         sb2.append(SystemClock.elapsedRealtime() - elapsedRealtime);
                         bVar3.b(sb2.toString());
-                        if (bVar2.f43843j) {
+                        if (bVar2.f43835j) {
                             bVar2.e();
                             return;
                         }
@@ -543,20 +543,20 @@ public final class p {
                         }
                         int max = Math.max(minBufferSize * 2, 7680);
                         AudioRecord audioRecord = new AudioRecord(0, 48000, 16, 2, max);
-                        bVar2.f43844k = audioRecord;
+                        bVar2.f43836k = audioRecord;
                         if (audioRecord.getState() == 1) {
-                            bVar2.f43844k.startRecording();
-                            if (bVar2.f43844k.getRecordingState() == 3) {
-                                bVar2.d.b("AudioRecord started: minBufferBytes=" + minBufferSize + ", bufferBytes=" + max + ", sessionId=" + bVar2.f43844k.getAudioSessionId());
+                            bVar2.f43836k.startRecording();
+                            if (bVar2.f43836k.getRecordingState() == 3) {
+                                bVar2.d.b("AudioRecord started: minBufferBytes=" + minBufferSize + ", bufferBytes=" + max + ", sessionId=" + bVar2.f43836k.getAudioSessionId());
                                 long elapsedRealtime2 = SystemClock.elapsedRealtime();
-                                bVar2.f43851r = elapsedRealtime2;
-                                bVar2.f43850q = elapsedRealtime2;
+                                bVar2.f43843r = elapsedRealtime2;
+                                bVar2.f43842q = elapsedRealtime2;
                                 cc.e eVar = bVar2.e;
                                 long max2 = Math.max(0L, d);
-                                p pVar = (p) eVar.f5096c;
-                                pVar.a((j) eVar.f5095b, max2);
-                                pVar.h.post(new lh0(eVar, eVar.f5094a, 3));
-                                bVar2.f43841g.post(new ri.a(bVar2, 1));
+                                p pVar = (p) eVar.f5095c;
+                                pVar.a((j) eVar.f5094b, max2);
+                                pVar.h.post(new jh0(eVar, eVar.f5093a, 3));
+                                bVar2.f43833g.post(new ri.a(bVar2, 1));
                                 return;
                             }
                             throw new IllegalStateException("Unable to start AudioRecord");
@@ -566,12 +566,12 @@ public final class p {
                     throw new IllegalStateException("Unable to initialize native Opus recorder");
                 } catch (Throwable th2) {
                     bVar2.d.a("capture failed", th2);
-                    bVar2.f43843j = true;
-                    bVar2.f43848o = b.b(th2);
+                    bVar2.f43835j = true;
+                    bVar2.f43840o = b.b(th2);
                     try {
                         bVar2.e();
                     } catch (Throwable th3) {
-                        bVar2.f43848o.addSuppressed(th3);
+                        bVar2.f43840o.addSuppressed(th3);
                     }
                 }
             }

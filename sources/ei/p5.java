@@ -6,8 +6,8 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.sn;
-public final class p5 extends sn {
+import org.telegram.ui.qn;
+public final class p5 extends qn {
     public final Utilities.Callback2 Rc;
     public final f6 Sc;
 
@@ -50,7 +50,7 @@ public final class p5 extends sn {
                 if (tL_geoPointAddress != null) {
                     tL_mediaAreaGeoPoint3.flags |= 1;
                 }
-                Utilities.globalQueue.postRunnable(new ci.u7(27, messageMedia, tL_mediaAreaGeoPoint3));
+                Utilities.globalQueue.postRunnable(new ci.v7(27, messageMedia, tL_mediaAreaGeoPoint3));
                 tL_mediaAreaGeoPoint = tL_mediaAreaGeoPoint3;
             }
             tL_mediaAreaGeoPoint2 = tL_mediaAreaGeoPoint;

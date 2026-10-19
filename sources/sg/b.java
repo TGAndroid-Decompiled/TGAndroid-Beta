@@ -34,7 +34,7 @@ public abstract class b extends FrameLayout implements m0 {
         super.dispatchDraw(canvas);
         Paint U0 = h6.U0("paintDivider", this.f46205a);
         if (U0 == null) {
-            U0 = h6.f21107k0;
+            U0 = h6.f21110k0;
         }
         canvas.drawLine(0.0f, getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, U0);
     }

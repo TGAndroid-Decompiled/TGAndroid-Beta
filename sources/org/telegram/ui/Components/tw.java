@@ -5,18 +5,18 @@ import android.graphics.Canvas;
 import android.view.View;
 import android.widget.FrameLayout;
 public final class tw extends FrameLayout {
-    public final tz f30720a;
+    public final tz f30746a;
 
     public tw(tz tzVar, Context context) {
         super(context);
-        this.f30720a = tzVar;
+        this.f30746a = tzVar;
     }
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j10) {
-        tz tzVar = this.f30720a;
-        xw xwVar = tzVar.f30782o0;
-        if (view == tzVar.f30762h0) {
+        tz tzVar = this.f30746a;
+        xw xwVar = tzVar.f30805o0;
+        if (view == tzVar.f30785h0) {
             canvas.save();
             canvas.clipRect(0.0f, xwVar.getY() + xwVar.getMeasuredHeight(), getMeasuredWidth(), getMeasuredHeight());
             boolean drawChild = super.drawChild(canvas, view, j10);

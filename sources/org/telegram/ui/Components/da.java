@@ -15,24 +15,24 @@ import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.TLRPC;
 public final class da extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
-    public TextView f25537a;
-    public TextView f25538b;
-    public ah.x f25539c;
+    public TextView f25510a;
+    public TextView f25511b;
+    public ah.x f25512c;
     public ah.x d;
     public yj0 e;
-    public ScrollView f25540f;
+    public ScrollView f25513f;
     public AnimatorSet h;
-    public TLRPC.TL_help_appUpdate f25541n;
-    public String f25542r;
-    public int f25543s;
+    public TLRPC.TL_help_appUpdate f25514n;
+    public String f25515r;
+    public int f25516s;
     public int v;
-    public GradientDrawable f25544w;
-    public GradientDrawable f25545x;
+    public GradientDrawable f25517w;
+    public GradientDrawable f25518x;
 
     public final void a(boolean z10) {
         ah.x xVar = this.d;
-        TextView textView = this.f25538b;
-        ah.x xVar2 = this.f25539c;
+        TextView textView = this.f25511b;
+        ah.x xVar2 = this.f25512c;
         AnimatorSet animatorSet = this.h;
         if (animatorSet != null) {
             animatorSet.cancel();
@@ -50,7 +50,7 @@ public final class da extends FrameLayout implements NotificationCenter.Notifica
             xVar.setEnabled(true);
             this.h.playTogether(ObjectAnimator.ofFloat(xVar2, property3, 0.1f), ObjectAnimator.ofFloat(xVar2, property2, 0.1f), ObjectAnimator.ofFloat(xVar2, property, 0.0f), ObjectAnimator.ofFloat(textView, property3, 1.0f), ObjectAnimator.ofFloat(textView, property2, 1.0f), ObjectAnimator.ofFloat(textView, property, 1.0f));
         }
-        this.h.addListener(new org.telegram.ui.ho(1, this, z10));
+        this.h.addListener(new org.telegram.ui.fo(1, this, z10));
         this.h.setDuration(150L);
         this.h.start();
     }
@@ -59,20 +59,20 @@ public final class da extends FrameLayout implements NotificationCenter.Notifica
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         if (i10 == NotificationCenter.fileLoaded) {
             String str = (String) objArr[0];
-            String str2 = this.f25542r;
+            String str2 = this.f25515r;
             if (str2 != null && str2.equals(str)) {
                 a(false);
-                ApplicationLoader.applicationLoaderInstance.openApkInstall((Activity) getContext(), this.f25541n.document);
+                ApplicationLoader.applicationLoaderInstance.openApkInstall((Activity) getContext(), this.f25514n.document);
             }
         } else if (i10 == NotificationCenter.fileLoadFailed) {
             String str3 = (String) objArr[0];
-            String str4 = this.f25542r;
+            String str4 = this.f25515r;
             if (str4 != null && str4.equals(str3)) {
                 a(false);
             }
         } else if (i10 == NotificationCenter.fileLoadProgressChanged) {
             String str5 = (String) objArr[0];
-            String str6 = this.f25542r;
+            String str6 = this.f25515r;
             if (str6 != null && str6.equals(str5)) {
                 this.e.e(Math.min(1.0f, ((float) ((Long) objArr[1]).longValue()) / ((float) ((Long) objArr[2]).longValue())), true);
             }
@@ -82,11 +82,11 @@ public final class da extends FrameLayout implements NotificationCenter.Notifica
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        GradientDrawable gradientDrawable = this.f25544w;
-        ScrollView scrollView = this.f25540f;
+        GradientDrawable gradientDrawable = this.f25517w;
+        ScrollView scrollView = this.f25513f;
         gradientDrawable.setBounds(scrollView.getLeft(), scrollView.getTop(), scrollView.getRight(), AndroidUtilities.dp(16.0f) + scrollView.getTop());
         gradientDrawable.draw(canvas);
-        GradientDrawable gradientDrawable2 = this.f25545x;
+        GradientDrawable gradientDrawable2 = this.f25518x;
         gradientDrawable2.setBounds(scrollView.getLeft(), scrollView.getBottom() - AndroidUtilities.dp(18.0f), scrollView.getRight(), scrollView.getBottom());
         gradientDrawable2.draw(canvas);
     }
@@ -95,9 +95,9 @@ public final class da extends FrameLayout implements NotificationCenter.Notifica
     public void setVisibility(int i10) {
         super.setVisibility(i10);
         if (i10 == 8) {
-            NotificationCenter.getInstance(this.f25543s).removeObserver(this, NotificationCenter.fileLoaded);
-            NotificationCenter.getInstance(this.f25543s).removeObserver(this, NotificationCenter.fileLoadFailed);
-            NotificationCenter.getInstance(this.f25543s).removeObserver(this, NotificationCenter.fileLoadProgressChanged);
+            NotificationCenter.getInstance(this.f25516s).removeObserver(this, NotificationCenter.fileLoaded);
+            NotificationCenter.getInstance(this.f25516s).removeObserver(this, NotificationCenter.fileLoadFailed);
+            NotificationCenter.getInstance(this.f25516s).removeObserver(this, NotificationCenter.fileLoadProgressChanged);
         }
     }
 }

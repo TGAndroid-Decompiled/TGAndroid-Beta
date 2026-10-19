@@ -8,35 +8,35 @@ import android.os.Build;
 import android.util.Log;
 import java.util.concurrent.atomic.AtomicBoolean;
 public abstract class g {
-    public static boolean f14975b = false;
-    public static boolean f14976c = false;
+    public static boolean f14978b = false;
+    public static boolean f14979c = false;
     public static final int e = 0;
-    public static final AtomicBoolean f14974a = new AtomicBoolean();
+    public static final AtomicBoolean f14977a = new AtomicBoolean();
     public static final AtomicBoolean d = new AtomicBoolean();
 
     public static boolean a(Context context) {
         try {
-            if (!f14976c) {
+            if (!f14979c) {
                 try {
-                    PackageInfo b10 = w6.b.a(context).b(64, "com.google.android.gms");
-                    h.c(context);
-                    if (b10 != null && !h.f(b10, false) && h.f(b10, true)) {
-                        f14975b = true;
+                    PackageInfo c10 = w6.b.a(context).c(64, "com.google.android.gms");
+                    h.b(context);
+                    if (c10 != null && !h.d(c10, false) && h.d(c10, true)) {
+                        f14978b = true;
                     } else {
-                        f14975b = false;
+                        f14978b = false;
                     }
-                    f14976c = true;
+                    f14979c = true;
                 } catch (PackageManager.NameNotFoundException e7) {
                     Log.w("GooglePlayServicesUtil", "Cannot find Google Play services package name.", e7);
-                    f14976c = true;
+                    f14979c = true;
                 }
             }
-            if (!f14975b && "user".equals(Build.TYPE)) {
+            if (!f14978b && "user".equals(Build.TYPE)) {
                 return false;
             }
             return true;
         } catch (Throwable th2) {
-            f14976c = true;
+            f14979c = true;
             throw th2;
         }
     }

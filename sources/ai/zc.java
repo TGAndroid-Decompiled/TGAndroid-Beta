@@ -8,25 +8,25 @@ import android.graphics.drawable.Drawable;
 import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.lk;
-import org.telegram.ui.d00;
+import org.telegram.ui.b00;
 public final class zc extends org.telegram.ui.Components.q6 {
-    public final int f2559s = 0;
+    public final int f2557s = 0;
     public final Object v;
-    public final ViewGroup f2560w;
+    public final ViewGroup f2558w;
 
     public zc(ad adVar, Context context, Drawable drawable) {
         super(context, false, false, false);
-        this.f2560w = adVar;
+        this.f2558w = adVar;
         this.v = drawable;
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         float f7;
-        switch (this.f2559s) {
+        switch (this.f2557s) {
             case 0:
                 Drawable drawable = (Drawable) this.v;
-                if (!((ad) this.f2560w).d) {
+                if (!((ad) this.f2558w).d) {
                     int measuredWidth = (int) ((getMeasuredWidth() - getDrawable().c()) - AndroidUtilities.dp(20.0f));
                     drawable.setBounds(measuredWidth, lk.A(17.0f, getMeasuredHeight(), 2), AndroidUtilities.dp(17.0f) + measuredWidth, (AndroidUtilities.dp(17.0f) + getMeasuredHeight()) / 2);
                     drawable.draw(canvas);
@@ -34,8 +34,8 @@ public final class zc extends org.telegram.ui.Components.q6 {
                 super.dispatchDraw(canvas);
                 return;
             default:
-                d00 d00Var = (d00) this.f2560w;
-                int a2 = d00Var.f36014w.a(d00Var.v, false);
+                b00 b00Var = (b00) this.f2558w;
+                int a2 = b00Var.f35475w.a(b00Var.v, false);
                 setTextColor(a2);
                 Paint paint = (Paint) this.v;
                 if (org.telegram.ui.ActionBar.h6.I.q()) {
@@ -52,9 +52,9 @@ public final class zc extends org.telegram.ui.Components.q6 {
         }
     }
 
-    public zc(d00 d00Var, Context context) {
+    public zc(b00 b00Var, Context context) {
         super(context, false, true, true);
-        this.f2560w = d00Var;
+        this.f2558w = b00Var;
         this.v = new Paint(1);
     }
 }

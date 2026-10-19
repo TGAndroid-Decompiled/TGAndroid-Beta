@@ -1,40 +1,9 @@
 package org.telegram.ui;
+public final class je1 {
+    public final int f38233a;
+    public int f38234b;
 
-import android.graphics.Canvas;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-public final class je1 extends FrameLayout {
-    public TextView f38126a;
-    public float f38127b;
-    public boolean f38128c;
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        int i10 = 1;
-        if (this.f38128c) {
-            float f7 = this.f38127b + 0.013333334f;
-            this.f38127b = f7;
-            if (f7 > 1.0f) {
-                this.f38128c = false;
-                this.f38127b = 1.0f;
-            }
-        } else {
-            float f10 = this.f38127b - 0.013333334f;
-            this.f38127b = f10;
-            if (f10 < 0.0f) {
-                this.f38128c = true;
-                this.f38127b = 0.0f;
-            }
-        }
-        TextView textView = this.f38126a;
-        float interpolation = org.telegram.ui.Components.bs.f25030f.getInterpolation(this.f38127b) * AndroidUtilities.dp(8.0f);
-        if (LocaleController.isRTL) {
-            i10 = -1;
-        }
-        textView.setTranslationX(interpolation * i10);
-        invalidate();
+    public je1(int i10) {
+        this.f38233a = i10;
     }
 }

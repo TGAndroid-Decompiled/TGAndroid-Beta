@@ -2,7 +2,7 @@ package si;
 
 import android.os.Handler;
 import j$.util.Objects;
-import org.telegram.ui.web.a2;
+import org.telegram.ui.web.z1;
 public final class b implements Runnable {
     public final int f46549a;
     public final j f46550b;
@@ -30,11 +30,11 @@ public final class b implements Runnable {
                 if (jVar2.V && jVar2.G == l0Var) {
                     n nVar = jVar2.f46642j;
                     nVar.b("camera switch first preview frame: path=DUAL_ACTIVE, totalElapsedMs=" + j.z(j10));
-                    s0 s0Var = (s0) jVar2.f46645k.f15842b;
+                    s0 s0Var = (s0) jVar2.f46645k.f14832b;
                     Handler handler = s0Var.f46760i;
                     l2.f fVar = s0Var.d;
                     Objects.requireNonNull(fVar);
-                    handler.post(new a2(fVar, 27));
+                    handler.post(new z1(fVar, 27));
                     return;
                 }
                 return;

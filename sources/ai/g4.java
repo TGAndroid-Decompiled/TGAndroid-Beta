@@ -1,80 +1,238 @@
 package ai;
 
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.Utilities;
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.net.Uri;
+import android.os.Build;
+import android.view.View;
+import androidx.car.app.hardware.common.CarResultStub;
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.Task;
+import java.util.ArrayList;
+import java.util.Locale;
+import java.util.regex.Pattern;
+import org.telegram.messenger.AccountInstance;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-public final class g4 implements Utilities.Callback {
-    public final int f1338a;
-    public final k7 f1339b;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+import org.telegram.ui.Components.g61;
+import org.telegram.ui.Components.xl0;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.TwoStepVerificationActivity;
+import org.telegram.ui.e00;
+import org.telegram.ui.hf1;
+import org.telegram.ui.hl0;
+import org.telegram.ui.kl0;
+import org.telegram.ui.n00;
+import org.telegram.ui.qs;
+import org.telegram.ui.to;
+import org.telegram.ui.vm0;
+import org.telegram.ui.vo;
+public final class g4 implements hf1, Continuation, org.telegram.ui.ActionBar.a2, xl0, qs, androidx.car.app.utils.a {
+    public final int f1333a;
+    public final boolean f1334b;
+    public final Object f1335c;
+    public final Object d;
 
-    public g4(k7 k7Var, int i10) {
-        this.f1338a = i10;
-        this.f1339b = k7Var;
+    public g4(Object obj, Object obj2, boolean z10, int i10) {
+        this.f1333a = i10;
+        this.f1335c = obj;
+        this.d = obj2;
+        this.f1334b = z10;
     }
 
     @Override
-    public final void run(Object obj) {
-        TLRPC.Message message;
-        switch (this.f1338a) {
-            case 0:
-                k7 k7Var = this.f1339b;
-                k7Var.getClass();
-                if (((Boolean) obj).booleanValue()) {
-                    k7Var.skipDismissAnimation();
-                }
-                k7Var.dismiss();
-                return;
-            case 1:
-                this.f1339b.dismiss(((Boolean) obj).booleanValue());
-                return;
-            case 2:
-                TL_stars.starGiftUpgradePreview stargiftupgradepreview = (TL_stars.starGiftUpgradePreview) obj;
-                k7 k7Var2 = this.f1339b;
-                k7Var2.getClass();
-                if (stargiftupgradepreview != null) {
-                    k7Var2.f1684o1 = stargiftupgradepreview.sample_attributes;
-                    k7Var2.f1686p1 = stargiftupgradepreview.prices;
-                    k7Var2.f1688q1 = stargiftupgradepreview.next_prices;
-                    k7Var2.u2();
-                    return;
-                }
-                return;
-            default:
-                TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj;
-                k7 k7Var3 = this.f1339b;
-                k7Var3.N0 = false;
-                k7Var3.O0 = true;
-                if (savedStarGift != null) {
-                    k7Var3.f1680m1 = Boolean.valueOf(savedStarGift.unsaved);
-                    MessageObject messageObject = k7Var3.H0;
-                    if (messageObject != null && (message = messageObject.messageOwner) != null) {
-                        TLRPC.MessageAction messageAction = message.action;
-                        if (messageAction instanceof TLRPC.TL_messageActionStarGiftUnique) {
-                            TLRPC.TL_messageActionStarGiftUnique tL_messageActionStarGiftUnique = (TLRPC.TL_messageActionStarGiftUnique) messageAction;
-                            boolean z10 = tL_messageActionStarGiftUnique.saved;
-                            boolean z11 = !savedStarGift.unsaved;
-                            if (z10 != z11) {
-                                tL_messageActionStarGiftUnique.saved = z11;
-                            } else {
-                                return;
-                            }
-                        } else if (messageAction instanceof TLRPC.TL_messageActionStarGift) {
-                            TLRPC.TL_messageActionStarGift tL_messageActionStarGift = (TLRPC.TL_messageActionStarGift) messageAction;
-                            boolean z12 = tL_messageActionStarGift.saved;
-                            boolean z13 = !savedStarGift.unsaved;
-                            if (z12 != z13) {
-                                tL_messageActionStarGift.saved = z13;
-                            } else {
-                                return;
-                            }
-                        }
-                        k7Var3.E2(messageObject, null);
-                        return;
-                    }
-                    return;
-                }
-                return;
+    public boolean P0(View view) {
+        return false;
+    }
+
+    @Override
+    public Object a() {
+        Object lambda$onCarHardwareResult$0;
+        lambda$onCarHardwareResult$0 = ((CarResultStub) this.f1335c).lambda$onCarHardwareResult$0(this.f1334b, (w.b) this.d);
+        return lambda$onCarHardwareResult$0;
+    }
+
+    @Override
+    public void b(TLRPC.User user) {
+        boolean z10;
+        LaunchActivity launchActivity = (LaunchActivity) this.f1335c;
+        int[] iArr = (int[]) this.d;
+        Pattern pattern = LaunchActivity.C1;
+        TLRPC.UserFull userFull = MessagesController.getInstance(launchActivity.O).getUserFull(user.f20422id);
+        if (userFull != null && userFull.video_calls_available) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
+        org.telegram.ui.Components.voip.d2.m(user, this.f1334b, z10, launchActivity, userFull, AccountInstance.getInstance(iArr[0]));
+    }
+
+    @Override
+    public void d(float r21, float r22, int r23, android.view.View r24) {
+        throw new UnsupportedOperationException("Method not decompiled: ai.g4.d(float, float, int, android.view.View):void");
+    }
+
+    @Override
+    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        ArrayList arrayList;
+        boolean z10;
+        ArrayList arrayList2;
+        String str;
+        switch (this.f1333a) {
+            case 2:
+                ig.a0 a0Var = (ig.a0) this.f1335c;
+                boolean z11 = this.f1334b;
+                g61 g61Var = (g61) this.d;
+                if (!z11) {
+                    arrayList = a0Var.f12819k;
+                } else {
+                    arrayList = a0Var.f12818j;
+                }
+                arrayList.remove(Long.valueOf(g61Var.f26510x));
+                a0Var.e.run();
+                return;
+            case 3:
+                org.telegram.ui.m9 m9Var = (org.telegram.ui.m9) this.f1335c;
+                boolean z12 = this.f1334b;
+                boolean[] zArr = (boolean[]) this.d;
+                if (z12) {
+                    boolean z13 = zArr[0];
+                    TLRPC.TL_messages_deletePhoneCallHistory tL_messages_deletePhoneCallHistory = new TLRPC.TL_messages_deletePhoneCallHistory();
+                    tL_messages_deletePhoneCallHistory.revoke = z13;
+                    m9Var.getConnectionsManager().sendRequest(tL_messages_deletePhoneCallHistory, new ei.o3(3, m9Var, z13));
+                    m9Var.G.clear();
+                    m9Var.H = false;
+                    m9Var.J = true;
+                    m9Var.F.setVisibility(8);
+                    m9Var.d.W2.N(true);
+                } else {
+                    m9Var.getMessagesController().deleteMessages(new ArrayList<>(m9Var.L), null, null, 0L, 0, zArr[0], 0);
+                }
+                m9Var.k0(false);
+                return;
+            case 4:
+                ((org.telegram.ui.ha) this.f1335c).f37581a.j0((TLRPC.TL_username) this.d, this.f1334b, true);
+                return;
+            case 5:
+                boolean z14 = this.f1334b;
+                vo voVar = ((to) this.f1335c).f41722a;
+                voVar.x1((TLRPC.TL_username) this.d, z14, true);
+                voVar.Y2.V();
+                return;
+            case 6:
+                org.telegram.ui.ActionBar.n2 n2Var = (org.telegram.ui.ActionBar.n2) this.f1335c;
+                TLRPC.User user = (TLRPC.User) this.d;
+                boolean z15 = this.f1334b;
+                TLRPC.UserFull userFull = n2Var.getMessagesController().getUserFull(user.f20422id);
+                if (userFull != null && userFull.video_calls_available) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                org.telegram.ui.Components.voip.d2.m(user, z15, z10, n2Var.getParentActivity(), userFull, n2Var.getAccountInstance());
+                return;
+            case 7:
+            case 9:
+            default:
+                vm0 vm0Var = (vm0) this.f1335c;
+                boolean z16 = this.f1334b;
+                vm0Var.x1();
+                vm0Var.i1((TLRPC.TL_secureRequiredType) this.d, null, null, true, new hl0(vm0Var, 4), new kl0(vm0Var, 6), z16);
+                return;
+            case 8:
+                n00 n00Var = (n00) this.f1335c;
+                e00 e00Var = (e00) this.d;
+                boolean z17 = this.f1334b;
+                int i11 = e00Var.f36479j;
+                if (i11 > 0) {
+                    n00Var.f39382y &= ~i11;
+                } else {
+                    if (z17) {
+                        arrayList2 = n00Var.F;
+                    } else {
+                        arrayList2 = n00Var.G;
+                    }
+                    arrayList2.remove(Long.valueOf(e00Var.h));
+                }
+                n00Var.j0();
+                n00Var.w0();
+                n00Var.i0(true);
+                if (z17) {
+                    n00Var.n0(1, false);
+                    return;
+                }
+                return;
+            case 10:
+                boolean z18 = this.f1334b;
+                String str2 = (String) this.f1335c;
+                org.telegram.ui.ActionBar.n2 n2Var2 = (org.telegram.ui.ActionBar.n2) this.d;
+                try {
+                    PackageInfo packageInfo = ApplicationLoader.applicationContext.getPackageManager().getPackageInfo(ApplicationLoader.applicationContext.getPackageName(), 0);
+                    Locale locale = Locale.US;
+                    String str3 = packageInfo.versionName + " (" + packageInfo.versionCode + ")";
+                    Intent intent = new Intent("android.intent.action.SENDTO");
+                    intent.setData(Uri.parse("mailto:"));
+                    if (z18) {
+                        str = "recover@telegram.org";
+                    } else {
+                        str = "login@stel.com";
+                    }
+                    intent.putExtra("android.intent.extra.EMAIL", new String[]{str});
+                    if (z18) {
+                        intent.putExtra("android.intent.extra.SUBJECT", "Banned phone number: " + str2);
+                        intent.putExtra("android.intent.extra.TEXT", "I'm trying to use my mobile phone number: " + str2 + "\nBut Telegram says it's banned. Please help.\n\nApp version: " + str3 + "\nOS version: SDK " + Build.VERSION.SDK_INT + "\nDevice Name: " + Build.MANUFACTURER + Build.MODEL + "\nLocale: " + Locale.getDefault());
+                    } else {
+                        intent.putExtra("android.intent.extra.SUBJECT", "Invalid phone number: " + str2);
+                        intent.putExtra("android.intent.extra.TEXT", "I'm trying to use my mobile phone number: " + str2 + "\nBut Telegram says it's invalid. Please help.\n\nApp version: " + str3 + "\nOS version: SDK " + Build.VERSION.SDK_INT + "\nDevice Name: " + Build.MANUFACTURER + Build.MODEL + "\nLocale: " + Locale.getDefault());
+                    }
+                    n2Var2.getParentActivity().startActivity(Intent.createChooser(intent, "Send email..."));
+                    return;
+                } catch (Exception unused) {
+                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(n2Var2.getParentActivity());
+                    alertDialog$Builder.f20604a.R = LocaleController.getString(R.string.RestorePasswordNoEmailTitle);
+                    alertDialog$Builder.f20604a.T = LocaleController.getString("NoMailInstalled", R.string.NoMailInstalled);
+                    alertDialog$Builder.k(LocaleController.getString("OK", R.string.OK), null);
+                    n2Var2.showDialog(alertDialog$Builder.f20604a);
+                    return;
+                }
+        }
+    }
+
+    @Override
+    public void k(TLRPC.TL_inputCheckPasswordSRP tL_inputCheckPasswordSRP) {
+        ((k7) this.f1335c).J2(tL_inputCheckPasswordSRP, (TwoStepVerificationActivity) this.d, this.f1334b);
+    }
+
+    @Override
+    public Object then(Task task) {
+        Context context = (Context) this.f1335c;
+        Intent intent = (Intent) this.d;
+        if (u6.b.d() && ((Integer) task.getResult()).intValue() == 402) {
+            return com.google.firebase.messaging.i.a(context, intent, this.f1334b).continueWith(new a3.b(2), new ci.i1(7));
+        }
+        return task;
+    }
+
+    public g4(Object obj, boolean z10, Object obj2, int i10) {
+        this.f1333a = i10;
+        this.f1335c = obj;
+        this.f1334b = z10;
+        this.d = obj2;
+    }
+
+    public g4(String str, org.telegram.ui.ActionBar.n2 n2Var, boolean z10) {
+        this.f1333a = 10;
+        this.f1334b = z10;
+        this.f1335c = str;
+        this.d = n2Var;
+    }
+
+    @Override
+    public void a0(View view, float f7, float f10) {
     }
 }

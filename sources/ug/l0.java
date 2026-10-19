@@ -86,7 +86,7 @@ public final class l0 extends hm0 {
                     str = chat.title;
                 }
                 SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.formatPluralString("BoostingReassignBoostTextPluralWithLink", i12, str, "%3$s"));
-                SpannableStringBuilder replaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.getString("BoostingReassignBoostTextLink", R.string.BoostingReassignBoostTextLink), h6.f21045gc, 2, new tg.p(r0Var, 8));
+                SpannableStringBuilder replaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.getString("BoostingReassignBoostTextLink", R.string.BoostingReassignBoostTextLink), h6.f21048gc, 2, new tg.p(r0Var, 8));
                 int indexOf = TextUtils.indexOf(replaceTags, "%3$s");
                 replaceTags.replace(indexOf, indexOf + 4, (CharSequence) replaceSingleTag);
                 x90Var.setText(replaceTags, TextView.BufferType.EDITABLE);
@@ -116,7 +116,7 @@ public final class l0 extends hm0 {
                     view = new l4(context, 22);
                 }
             } else {
-                view = new z6(context, h6.x0(null, h6.f20928a7, false), 0);
+                view = new z6(context, h6.x0(null, h6.f20931a7, false), 0);
             }
         } else {
             q0 q0Var = new q0(context);

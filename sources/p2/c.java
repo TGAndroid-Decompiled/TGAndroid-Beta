@@ -2,104 +2,208 @@ package p2;
 
 import android.net.Uri;
 import android.os.SystemClock;
-import e9.m2;
+import b2.w0;
+import c5.c0;
+import e2.m0;
 import e9.n0;
-import e9.y0;
-import java.util.HashMap;
+import g2.b0;
+import java.io.IOException;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.Map;
 import v7.u6;
-public final class c {
-    public final w f43930a;
-    public final HashMap f43931b;
-    public final d f43932c;
+public final class c implements y2.g {
+    public final Uri f43916a;
+    public final String f43917b;
+    public final y2.l f43918c = new y2.l("DefaultHlsPlaylistTracker:MediaPlaylist");
+    public final g2.h d;
+    public n e;
+    public long f43919f;
+    public long h;
+    public long f43920n;
+    public long f43921r;
+    public boolean f43922s;
+    public IOException v;
+    public boolean f43923w;
+    public final e f43924x;
 
-    public c(d dVar, w wVar) {
-        this.f43932c = dVar;
-        this.f43930a = wVar;
-        HashMap hashMap = new HashMap();
-        m2 it = y0.u(wVar.f44072b.keySet()).iterator();
-        while (it.hasNext()) {
-            String str = (String) it.next();
-            Uri uri = (Uri) wVar.f44072b.get(str);
-            uri.getClass();
-            hashMap.put(uri, new b(this.f43932c, uri, str));
+    public c(e eVar, Uri uri, String str) {
+        this.f43924x = eVar;
+        this.f43916a = uri;
+        this.f43917b = str;
+        this.d = ((g2.g) eVar.f43928a.f15845b).createDataSource();
+    }
+
+    @Override
+    public final void J(y2.i iVar, long j10, long j11, boolean z10) {
+        y2.o oVar = (y2.o) iVar;
+        long j12 = oVar.f49927a;
+        g2.m mVar = oVar.f49928b;
+        b0 b0Var = oVar.d;
+        u2.u uVar = new u2.u(mVar, b0Var.f10766c, b0Var.d, j10, j11, b0Var.f10765b);
+        e eVar = this.f43924x;
+        eVar.f43930c.getClass();
+        eVar.f43931f.q(uVar, 4, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
+    }
+
+    public final Uri a() {
+        String str;
+        n nVar = this.e;
+        Uri uri = this.f43916a;
+        if (nVar != null) {
+            m mVar = nVar.v;
+            if (mVar.f43989a != -9223372036854775807L || mVar.e) {
+                Uri.Builder buildUpon = uri.buildUpon();
+                n nVar2 = this.e;
+                if (nVar2.v.e) {
+                    buildUpon.appendQueryParameter("_HLS_msn", String.valueOf(nVar2.f43996k + nVar2.f44003r.size()));
+                    n nVar3 = this.e;
+                    if (nVar3.f43999n != -9223372036854775807L) {
+                        n0 n0Var = nVar3.f44004s;
+                        int size = n0Var.size();
+                        if (!n0Var.isEmpty() && ((i) e9.s.m(n0Var)).f43976x) {
+                            size--;
+                        }
+                        buildUpon.appendQueryParameter("_HLS_part", String.valueOf(size));
+                    }
+                }
+                m mVar2 = this.e.v;
+                if (mVar2.f43989a != -9223372036854775807L) {
+                    if (mVar2.f43990b) {
+                        str = "v2";
+                    } else {
+                        str = "YES";
+                    }
+                    buildUpon.appendQueryParameter("_HLS_skip", str);
+                }
+                return buildUpon.build();
+            }
         }
-        this.f43931b = hashMap;
+        return uri;
     }
 
-    public static m a(c cVar, Uri uri) {
-        b bVar = (b) i2.d.i(cVar.f43931b, uri, uri);
-        bVar.getClass();
-        return bVar.e;
+    public final void b(Uri uri) {
+        e eVar = this.f43924x;
+        y2.n U = eVar.f43929b.U(eVar.f43934s, this.e);
+        Map map = Collections.EMPTY_MAP;
+        u6.l(uri, "The uri must be set.");
+        y2.o oVar = new y2.o(this.d, new g2.m(uri, 1, null, map, 0L, -1L, null, 1), 4, U);
+        this.f43918c.f(oVar, this, eVar.f43930c.y3(oVar.f49929c));
     }
 
-    public static void b(c cVar, Uri uri, boolean z10) {
-        Uri uri2;
-        b bVar = (b) i2.d.i(cVar.f43931b, uri, uri);
-        bVar.getClass();
-        if (z10) {
-            uri2 = bVar.a();
+    public final void c(Uri uri) {
+        this.f43921r = 0L;
+        if (!this.f43922s) {
+            y2.l lVar = this.f43918c;
+            if (!lVar.d() && !lVar.c()) {
+                long elapsedRealtime = SystemClock.elapsedRealtime();
+                long j10 = this.f43920n;
+                if (elapsedRealtime < j10) {
+                    this.f43922s = true;
+                    this.f43924x.f43932n.postDelayed(new b(0, this, uri), j10 - elapsedRealtime);
+                    return;
+                }
+                b(uri);
+            }
+        }
+    }
+
+    public final void d(p2.n r75, u2.u r76) {
+        throw new UnsupportedOperationException("Method not decompiled: p2.c.d(p2.n, u2.u):void");
+    }
+
+    @Override
+    public final k4.d e(y2.i iVar, long j10, long j11, IOException iOException, int i10) {
+        boolean z10;
+        int i11;
+        k4.d dVar;
+        y2.o oVar = (y2.o) iVar;
+        long j12 = oVar.f49927a;
+        int i12 = oVar.f49929c;
+        g2.m mVar = oVar.f49928b;
+        b0 b0Var = oVar.d;
+        Uri uri = b0Var.f10766c;
+        u2.u uVar = new u2.u(mVar, uri, b0Var.d, j10, j11, b0Var.f10765b);
+        if (uri.getQueryParameter("_HLS_msn") != null) {
+            z10 = true;
         } else {
-            uri2 = bVar.f43921a;
+            z10 = false;
         }
-        bVar.c(uri2);
+        boolean z11 = iOException instanceof s;
+        k4.d dVar2 = y2.l.e;
+        Uri uri2 = this.f43916a;
+        e eVar = this.f43924x;
+        if (z10 || z11) {
+            if (iOException instanceof g2.x) {
+                i11 = ((g2.x) iOException).f10824c;
+            } else {
+                i11 = Integer.MAX_VALUE;
+            }
+            if (z11 || i11 == 400 || i11 == 503) {
+                this.f43920n = SystemClock.elapsedRealtime();
+                c(uri2);
+                a5.a aVar = eVar.f43931f;
+                String str = m0.f8254a;
+                aVar.t(uVar, i12, iOException, true);
+                return dVar2;
+            }
+        }
+        c0 c0Var = new c0(iOException, i10, 17);
+        Iterator it = eVar.e.iterator();
+        boolean z12 = false;
+        while (it.hasNext()) {
+            z12 |= !((v) it.next()).b(uri2, c0Var, false);
+        }
+        oa.d dVar3 = eVar.f43930c;
+        if (z12) {
+            dVar3.getClass();
+            long z32 = oa.d.z3(c0Var);
+            if (z32 != -9223372036854775807L) {
+                dVar = new k4.d(0, z32, false);
+            } else {
+                dVar = y2.l.f49923f;
+            }
+            dVar2 = dVar;
+        }
+        boolean a2 = dVar2.a();
+        eVar.f43931f.t(uVar, i12, iOException, !a2);
+        if (!a2) {
+            dVar3.getClass();
+        }
+        return dVar2;
     }
 
-    public static boolean c(c cVar, Uri uri, long j10) {
-        HashMap hashMap = cVar.f43931b;
-        b bVar = (b) i2.d.i(hashMap, uri, uri);
-        bVar.getClass();
-        bVar.f43926r = SystemClock.elapsedRealtime() + j10;
-        d dVar = cVar.f43932c;
-        w wVar = cVar.f43930a;
-        long elapsedRealtime = SystemClock.elapsedRealtime();
-        for (b bVar2 : hashMap.values()) {
-            if (!bVar2.f43922b.equals(wVar.d) && elapsedRealtime > bVar2.f43926r) {
-                Uri c10 = wVar.c();
-                String str = bVar2.f43922b;
-                u6.p(wVar.f44072b.containsKey(str));
-                wVar.d = str;
-                if (c10.equals(dVar.F)) {
-                    dVar.g(bVar2.f43921a);
-                }
-                b bVar3 = (b) hashMap.get(c10);
-                bVar3.getClass();
-                bVar2.f43928w = bVar3.f43928w;
-                bVar3.f43928w = false;
-                return true;
-            }
+    @Override
+    public final void h(y2.i iVar, long j10, long j11, int i10) {
+        u2.u uVar;
+        y2.o oVar = (y2.o) iVar;
+        if (i10 == 0) {
+            long j12 = oVar.f49927a;
+            uVar = new u2.u(oVar.f49928b, j10);
+        } else {
+            long j13 = oVar.f49927a;
+            g2.m mVar = oVar.f49928b;
+            b0 b0Var = oVar.d;
+            uVar = new u2.u(mVar, b0Var.f10766c, b0Var.d, j10, j11, b0Var.f10765b);
         }
-        Uri uri2 = dVar.F;
-        if (uri2 == null || uri.equals(uri2)) {
-            n0 n0Var = dVar.f43940w;
-            long elapsedRealtime2 = SystemClock.elapsedRealtime();
-            boolean z10 = false;
-            int i10 = 0;
-            while (true) {
-                if (i10 >= n0Var.size()) {
-                    break;
-                }
-                Uri c11 = ((w) n0Var.get(i10)).c();
-                c cVar2 = (c) dVar.d.get(c11);
-                cVar2.getClass();
-                HashMap hashMap2 = cVar2.f43931b;
-                b bVar4 = (b) i2.d.i(hashMap2, c11, c11);
-                bVar4.getClass();
-                if (elapsedRealtime2 <= bVar4.f43926r) {
-                    i10++;
-                } else {
-                    dVar.F = c11;
-                    Uri d = dVar.d(c11);
-                    b bVar5 = (b) i2.d.i(hashMap2, c11, c11);
-                    bVar5.getClass();
-                    bVar5.c(d);
-                    z10 = true;
-                    break;
-                }
-            }
-            if (!z10) {
-                return false;
-            }
+        this.f43924x.f43931f.v(uVar, oVar.f49929c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L, i10);
+    }
+
+    @Override
+    public final void k(y2.i iVar, long j10, long j11) {
+        y2.o oVar = (y2.o) iVar;
+        r rVar = (r) oVar.f49930f;
+        g2.m mVar = oVar.f49928b;
+        b0 b0Var = oVar.d;
+        u2.u uVar = new u2.u(mVar, b0Var.f10766c, b0Var.d, j10, j11, b0Var.f10765b);
+        if (rVar instanceof n) {
+            d((n) rVar, uVar);
+            this.f43924x.f43931f.r(uVar, 4, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
+        } else {
+            w0 b10 = w0.b("Loaded playlist has unexpected type.", null);
+            this.v = b10;
+            this.f43924x.f43931f.t(uVar, 4, b10, true);
         }
-        return true;
+        this.f43924x.f43930c.getClass();
     }
 }

@@ -1,29 +1,27 @@
 package ci;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class l9 extends AnimatorListenerAdapter {
-    public final int f5525a;
-    public final n9 f5526b;
+import android.animation.ValueAnimator;
+public final class l9 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f5599a;
+    public final o9 f5600b;
 
-    public l9(n9 n9Var, int i10) {
-        this.f5525a = i10;
-        this.f5526b = n9Var;
+    public l9(o9 o9Var, int i10) {
+        this.f5599a = i10;
+        this.f5600b = o9Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f5525a) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f5599a) {
             case 0:
-                z9 z9Var = this.f5526b.I0;
-                z9Var.X = 0.0f;
-                z9.k(z9Var);
+                aa aaVar = this.f5600b.I0;
+                aaVar.X = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                aa.k(aaVar);
                 return;
             default:
-                z9 z9Var2 = this.f5526b.I0;
-                z9Var2.W = 0.0f;
-                z9Var2.Z = 0.0f;
-                z9.k(z9Var2);
+                aa aaVar2 = this.f5600b.I0;
+                aaVar2.W = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                aa.k(aaVar2);
                 return;
         }
     }

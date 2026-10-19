@@ -1,23 +1,82 @@
 package org.telegram.ui;
-public final class ez0 extends bu0 {
-    public final ProfileActivity f36752a;
 
-    public ez0(ProfileActivity profileActivity) {
-        this.f36752a = profileActivity;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+public final class ez0 extends AnimatorListenerAdapter {
+    public final int f36840a;
+    public final ProfileActivity f36841b;
+
+    public ez0(ProfileActivity profileActivity, int i10) {
+        this.f36840a = i10;
+        this.f36841b = profileActivity;
     }
 
     @Override
-    public final org.telegram.ui.lu0 E(org.telegram.messenger.MessageObject r17, org.telegram.tgnet.TLRPC.FileLocation r18, int r19, boolean r20, boolean r21) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ez0.E(org.telegram.messenger.MessageObject, org.telegram.tgnet.TLRPC$FileLocation, int, boolean, boolean):org.telegram.ui.lu0");
+    public void onAnimationCancel(Animator animator) {
+        switch (this.f36840a) {
+            case 2:
+                ProfileActivity profileActivity = this.f36841b;
+                profileActivity.P1 = false;
+                profileActivity.f33574a.O0 = true;
+                return;
+            default:
+                super.onAnimationCancel(animator);
+                return;
+        }
     }
 
     @Override
-    public final void G() {
-        this.f36752a.f33606f0.getImageReceiver().setVisible(true, true);
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f36840a) {
+            case 0:
+                super.onAnimationEnd(animator);
+                this.f36841b.k4(true);
+                return;
+            case 1:
+                ProfileActivity profileActivity = this.f36841b;
+                AnimatorSet animatorSet = profileActivity.f33729w;
+                if (animatorSet != null && animatorSet.equals(animator)) {
+                    profileActivity.f33729w = null;
+                    return;
+                }
+                return;
+            case 2:
+                ProfileActivity profileActivity2 = this.f36841b;
+                profileActivity2.P1 = false;
+                profileActivity2.f33574a.O0 = true;
+                profileActivity2.f33649k2.removeListener(this);
+                profileActivity2.f33605e1.setBackgroundColor(-16777216);
+                profileActivity2.Y.setVisibility(8);
+                profileActivity2.f33673o0.setVisibility(0);
+                profileActivity2.f33673o0.setAlpha(1.0f);
+                return;
+            case 3:
+                ProfileActivity profileActivity3 = this.f36841b;
+                profileActivity3.f33649k2.removeListener(this);
+                profileActivity3.f33673o0.setVisibility(8);
+                profileActivity3.f33673o0.setAlpha(1.0f);
+                return;
+            default:
+                ProfileActivity profileActivity4 = this.f36841b;
+                profileActivity4.f33738x0 = null;
+                profileActivity4.fragmentView.invalidate();
+                return;
+        }
     }
 
     @Override
-    public final void f(String str, String str2, boolean z10) {
-        this.f36752a.f33687r0.p(str, str2, z10);
+    public void onAnimationStart(Animator animator) {
+        switch (this.f36840a) {
+            case 2:
+                ProfileActivity profileActivity = this.f36841b;
+                ProfileActivity.s3(profileActivity, false);
+                profileActivity.f33673o0.setAnimatedFileMaybe(profileActivity.f33612f0.getImageReceiver().getAnimation());
+                profileActivity.f33673o0.L();
+                return;
+            default:
+                super.onAnimationStart(animator);
+                return;
+        }
     }
 }

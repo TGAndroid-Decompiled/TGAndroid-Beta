@@ -11,7 +11,7 @@ public final class c extends h9 {
 
     @Override
     public final Object get(int i10) {
-        w7.c8.a(i10, this.e);
+        w7.b8.a(i10, this.e);
         Object obj = this.f47978c[i10 + i10 + this.d];
         obj.getClass();
         return obj;

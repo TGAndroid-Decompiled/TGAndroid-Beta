@@ -1,25 +1,21 @@
 package org.telegram.ui;
 
+import android.app.Activity;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLRPC;
-public final class bz0 extends dq {
-    public final boolean[] f35734d1;
-    public final TLRPC.User f35735e1;
-    public final ProfileActivity f35736f1;
+public final class bz0 extends org.telegram.ui.Components.er0 {
+    public final ProfileActivity f35759c1;
 
-    public bz0(ProfileActivity profileActivity, long j10, long j11, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, TLRPC.TL_chatBannedRights tL_chatBannedRights2, String str, int i10, boolean[] zArr, TLRPC.User user) {
-        super(j10, j11, tL_chatAdminRights, tL_chatBannedRights, tL_chatBannedRights2, str, i10, true, false, null);
-        this.f35736f1 = profileActivity;
-        this.f35734d1 = zArr;
-        this.f35735e1 = user;
+    public bz0(ProfileActivity profileActivity, Activity activity, String str, String str2) {
+        super(activity, null, str, false, str2, false, null);
+        this.f35759c1 = profileActivity;
     }
 
     @Override
-    public final void onTransitionAnimationEnd(boolean z10, boolean z11) {
-        if (!z10 && z11 && this.f35734d1[0]) {
-            ProfileActivity profileActivity = this.f35736f1;
-            if (org.telegram.ui.Components.xc.a(profileActivity)) {
-                org.telegram.ui.Components.xc.C(profileActivity, this.f35735e1.first_name).j();
-            }
+    public final void T0(a0.h hVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
+        if (!z10) {
+            return;
         }
+        AndroidUtilities.runOnUIThread(new jv0(this, hVar, i10, 16), 250L);
     }
 }

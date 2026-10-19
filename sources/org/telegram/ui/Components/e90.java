@@ -9,16 +9,16 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public abstract class e90 extends LinearLayout {
-    public final org.telegram.ui.Cells.l4 f25886a;
-    public final org.telegram.ui.Cells.v8 f25887b;
-    public final org.telegram.ui.Cells.v8 f25888c;
+    public final org.telegram.ui.Cells.l4 f25867a;
+    public final org.telegram.ui.Cells.v8 f25868b;
+    public final org.telegram.ui.Cells.v8 f25869c;
     public final org.telegram.ui.Cells.d9 d;
     public final org.telegram.ui.Cells.d9 e;
-    public boolean f25889f;
+    public boolean f25870f;
     public boolean h;
-    public TLRPC.Chat f25890n;
-    public ValueAnimator f25891r;
-    public float f25892s;
+    public TLRPC.Chat f25871n;
+    public ValueAnimator f25872r;
+    public float f25873s;
     public final int v;
 
     public e90(Context context, TLRPC.Chat chat) {
@@ -27,20 +27,20 @@ public abstract class e90 extends LinearLayout {
         TLRPC.TL_chatAdminRights tL_chatAdminRights;
         TLRPC.TL_chatAdminRights tL_chatAdminRights2;
         this.v = View.MeasureSpec.makeMeasureSpec(999999, Integer.MIN_VALUE);
-        this.f25890n = chat;
-        this.f25889f = chat.join_to_send;
+        this.f25871n = chat;
+        this.f25870f = chat.join_to_send;
         this.h = chat.join_request;
         boolean z11 = true;
         setOrientation(1);
         org.telegram.ui.Cells.l4 l4Var = new org.telegram.ui.Cells.l4(context, 20);
-        this.f25886a = l4Var;
+        this.f25867a = l4Var;
         l4Var.setText(LocaleController.getString(R.string.ChannelSettingsJoinTitle));
-        l4Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20986d6, false));
+        l4Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20989d6, false));
         addView(l4Var);
         org.telegram.ui.Cells.v8 v8Var = new org.telegram.ui.Cells.v8(context, 20);
-        this.f25887b = v8Var;
+        this.f25868b = v8Var;
         String string = LocaleController.getString(R.string.ChannelSettingsJoinToSend);
-        boolean z12 = this.f25889f;
+        boolean z12 = this.f25870f;
         v8Var.f(string, z12, z12);
         if (!chat.creator && ((tL_chatAdminRights2 = chat.admin_rights) == null || !tL_chatAdminRights2.ban_users)) {
             z10 = false;
@@ -49,18 +49,18 @@ public abstract class e90 extends LinearLayout {
         }
         v8Var.setEnabled(z10);
         v8Var.setOnClickListener(new View.OnClickListener(this) {
-            public final e90 f24843b;
+            public final e90 f24855b;
 
             {
-                this.f24843b = this;
+                this.f24855b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        e90 e90Var = this.f24843b;
-                        boolean z13 = e90Var.f25889f;
+                        e90 e90Var = this.f24855b;
+                        boolean z13 = e90Var.f25870f;
                         boolean z14 = !z13;
                         if (e90Var.b(z14, new d90(e90Var, e90Var.h, z13, 0))) {
                             e90Var.setJoinRequest(false);
@@ -69,7 +69,7 @@ public abstract class e90 extends LinearLayout {
                         }
                         return;
                     default:
-                        e90 e90Var2 = this.f24843b;
+                        e90 e90Var2 = this.f24855b;
                         boolean z15 = e90Var2.h;
                         boolean z16 = !z15;
                         if (e90Var2.a(z16, new c90(e90Var2, z15, 0))) {
@@ -82,7 +82,7 @@ public abstract class e90 extends LinearLayout {
         });
         addView(v8Var);
         org.telegram.ui.Cells.v8 v8Var2 = new org.telegram.ui.Cells.v8(context, 20);
-        this.f25888c = v8Var2;
+        this.f25869c = v8Var2;
         v8Var2.f(LocaleController.getString(R.string.ChannelSettingsJoinRequest), this.h, false);
         v8Var2.setPivotY(0.0f);
         if (!chat.creator && ((tL_chatAdminRights = chat.admin_rights) == null || !tL_chatAdminRights.ban_users)) {
@@ -90,18 +90,18 @@ public abstract class e90 extends LinearLayout {
         }
         v8Var2.setEnabled(z11);
         v8Var2.setOnClickListener(new View.OnClickListener(this) {
-            public final e90 f24843b;
+            public final e90 f24855b;
 
             {
-                this.f24843b = this;
+                this.f24855b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        e90 e90Var = this.f24843b;
-                        boolean z13 = e90Var.f25889f;
+                        e90 e90Var = this.f24855b;
+                        boolean z13 = e90Var.f25870f;
                         boolean z14 = !z13;
                         if (e90Var.b(z14, new d90(e90Var, e90Var.h, z13, 0))) {
                             e90Var.setJoinRequest(false);
@@ -110,7 +110,7 @@ public abstract class e90 extends LinearLayout {
                         }
                         return;
                     default:
-                        e90 e90Var2 = this.f24843b;
+                        e90 e90Var2 = this.f24855b;
                         boolean z15 = e90Var2.h;
                         boolean z16 = !z15;
                         if (e90Var2.a(z16, new c90(e90Var2, z15, 0))) {
@@ -130,10 +130,10 @@ public abstract class e90 extends LinearLayout {
         this.e = d9Var2;
         d9Var2.setText(LocaleController.getString(R.string.ChannelSettingsJoinRequestInfo));
         addView(d9Var2);
-        boolean z13 = this.f25889f;
-        this.f25892s = z13 ? 1.0f : 0.0f;
+        boolean z13 = this.f25870f;
+        this.f25873s = z13 ? 1.0f : 0.0f;
         v8Var2.setVisibility(z13 ? 0 : 8);
-        d(this.f25892s);
+        d(this.f25873s);
     }
 
     public abstract boolean a(boolean z10, c90 c90Var);
@@ -150,14 +150,14 @@ public abstract class e90 extends LinearLayout {
         } else {
             i10 = 8;
         }
-        this.f25886a.setVisibility(i10);
+        this.f25867a.setVisibility(i10);
         if (z10) {
             i11 = 0;
         }
-        this.f25887b.setVisibility(i11);
+        this.f25868b.setVisibility(i11);
         if (!z10) {
-            this.f25889f = true;
-            this.f25888c.setVisibility(0);
+            this.f25870f = true;
+            this.f25869c.setVisibility(0);
             d(1.0f);
         }
         requestLayout();
@@ -165,8 +165,8 @@ public abstract class e90 extends LinearLayout {
 
     public final void d(float f7) {
         int measuredHeight;
-        this.f25892s = f7;
-        org.telegram.ui.Cells.v8 v8Var = this.f25888c;
+        this.f25873s = f7;
+        org.telegram.ui.Cells.v8 v8Var = this.f25869c;
         v8Var.setAlpha(f7);
         float f10 = 1.0f - f7;
         v8Var.setTranslationY((-AndroidUtilities.dp(16.0f)) * f10);
@@ -196,10 +196,10 @@ public abstract class e90 extends LinearLayout {
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         int i14;
-        org.telegram.ui.Cells.v8 v8Var = this.f25887b;
+        org.telegram.ui.Cells.v8 v8Var = this.f25868b;
         if (v8Var.getVisibility() == 0) {
             int i15 = i12 - i10;
-            org.telegram.ui.Cells.l4 l4Var = this.f25886a;
+            org.telegram.ui.Cells.l4 l4Var = this.f25867a;
             int measuredHeight = l4Var.getMeasuredHeight();
             l4Var.layout(0, 0, i15, measuredHeight);
             i14 = v8Var.getMeasuredHeight() + measuredHeight;
@@ -208,7 +208,7 @@ public abstract class e90 extends LinearLayout {
             i14 = 0;
         }
         int i16 = i12 - i10;
-        org.telegram.ui.Cells.v8 v8Var2 = this.f25888c;
+        org.telegram.ui.Cells.v8 v8Var2 = this.f25869c;
         int measuredHeight2 = v8Var2.getMeasuredHeight() + i14;
         v8Var2.layout(0, i14, i16, measuredHeight2);
         org.telegram.ui.Cells.d9 d9Var = this.d;
@@ -222,73 +222,73 @@ public abstract class e90 extends LinearLayout {
         org.telegram.ui.Cells.d9 d9Var;
         org.telegram.ui.Cells.d9 d9Var2;
         float measuredHeight;
-        org.telegram.ui.Cells.l4 l4Var = this.f25886a;
+        org.telegram.ui.Cells.l4 l4Var = this.f25867a;
         int i12 = this.v;
         l4Var.measure(i10, i12);
-        org.telegram.ui.Cells.v8 v8Var = this.f25887b;
+        org.telegram.ui.Cells.v8 v8Var = this.f25868b;
         v8Var.measure(i10, i12);
-        org.telegram.ui.Cells.v8 v8Var2 = this.f25888c;
+        org.telegram.ui.Cells.v8 v8Var2 = this.f25869c;
         v8Var2.measure(i10, i12);
         this.d.measure(i10, i12);
         this.e.measure(i10, i12);
         if (v8Var.getVisibility() == 0) {
-            measuredHeight = (v8Var2.getMeasuredHeight() * this.f25892s) + v8Var.getMeasuredHeight() + l4Var.getMeasuredHeight();
+            measuredHeight = (v8Var2.getMeasuredHeight() * this.f25873s) + v8Var.getMeasuredHeight() + l4Var.getMeasuredHeight();
         } else {
             measuredHeight = v8Var2.getMeasuredHeight();
         }
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec((int) (measuredHeight + AndroidUtilities.lerp(d9Var.getMeasuredHeight(), d9Var2.getMeasuredHeight(), this.f25892s)), 1073741824));
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec((int) (measuredHeight + AndroidUtilities.lerp(d9Var.getMeasuredHeight(), d9Var2.getMeasuredHeight(), this.f25873s)), 1073741824));
     }
 
     public void setChat(TLRPC.Chat chat) {
         boolean z10;
         TLRPC.TL_chatAdminRights tL_chatAdminRights;
         TLRPC.TL_chatAdminRights tL_chatAdminRights2;
-        this.f25890n = chat;
+        this.f25871n = chat;
         boolean z11 = true;
         if (!chat.creator && ((tL_chatAdminRights2 = chat.admin_rights) == null || !tL_chatAdminRights2.ban_users)) {
             z10 = false;
         } else {
             z10 = true;
         }
-        this.f25887b.setEnabled(z10);
-        TLRPC.Chat chat2 = this.f25890n;
+        this.f25868b.setEnabled(z10);
+        TLRPC.Chat chat2 = this.f25871n;
         if (!chat2.creator && ((tL_chatAdminRights = chat2.admin_rights) == null || !tL_chatAdminRights.ban_users)) {
             z11 = false;
         }
-        this.f25888c.setEnabled(z11);
+        this.f25869c.setEnabled(z11);
     }
 
     public void setJoinRequest(boolean z10) {
         this.h = z10;
-        this.f25888c.setChecked(z10);
+        this.f25869c.setChecked(z10);
     }
 
     public void setJoinToSend(boolean z10) {
         float f7;
-        this.f25889f = z10;
-        org.telegram.ui.Cells.v8 v8Var = this.f25887b;
+        this.f25870f = z10;
+        org.telegram.ui.Cells.v8 v8Var = this.f25868b;
         v8Var.setChecked(z10);
-        v8Var.setDivider(this.f25889f);
+        v8Var.setDivider(this.f25870f);
         boolean z11 = this.h;
-        org.telegram.ui.Cells.v8 v8Var2 = this.f25888c;
+        org.telegram.ui.Cells.v8 v8Var2 = this.f25869c;
         v8Var2.setChecked(z11);
-        ValueAnimator valueAnimator = this.f25891r;
+        ValueAnimator valueAnimator = this.f25872r;
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
-        float f10 = this.f25892s;
-        if (this.f25889f) {
+        float f10 = this.f25873s;
+        if (this.f25870f) {
             f7 = 1.0f;
         } else {
             f7 = 0.0f;
         }
         ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, f7);
-        this.f25891r = ofFloat;
+        this.f25872r = ofFloat;
         ofFloat.setDuration(200L);
-        this.f25891r.setInterpolator(bs.f25030f);
-        this.f25891r.addUpdateListener(new b80(this, 2));
-        this.f25891r.addListener(new c80(this, 2));
+        this.f25872r.setInterpolator(bs.f25014f);
+        this.f25872r.addUpdateListener(new b80(this, 2));
+        this.f25872r.addListener(new c80(this, 2));
         v8Var2.setVisibility(0);
-        this.f25891r.start();
+        this.f25872r.start();
     }
 }

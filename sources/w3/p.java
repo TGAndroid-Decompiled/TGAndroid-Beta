@@ -5,8 +5,8 @@ import b2.t0;
 import b2.v;
 import b2.v0;
 import c3.g0;
-import c5.b0;
-import ci.b7;
+import c5.c0;
+import ci.c7;
 import e2.x;
 import e9.k0;
 import e9.l0;
@@ -65,7 +65,7 @@ public abstract class p {
         while (i10 < size) {
             Object obj = arrayList.get(i10);
             i10++;
-            String str2 = ((t) obj).f48573a.f48551g.f4132s;
+            String str2 = ((t) obj).f48573a.f48551g.f4130s;
             if (v0.m(str2)) {
                 return "video/mp4";
             }
@@ -148,7 +148,7 @@ public abstract class p {
             xVar.O(10);
             int H = xVar.H();
             if (H > 0) {
-                String j10 = i2.d.j(H, "");
+                String j10 = i2.e.j(H, "");
                 int H2 = xVar.H();
                 if (H2 > 0) {
                     j10 = j10 + "/" + H2;
@@ -203,7 +203,7 @@ public abstract class p {
     public static j6.l i(byte[] bArr) {
         UUID[] uuidArr;
         x xVar = new x(bArr);
-        if (xVar.f8294c < 32) {
+        if (xVar.f8295c < 32) {
             return null;
         }
         xVar.N(0);
@@ -242,9 +242,9 @@ public abstract class p {
         byte[] bArr2 = new byte[E2];
         xVar.k(0, E2, bArr2);
         ?? obj = new Object();
-        obj.f14289b = uuid;
-        obj.f14288a = e;
-        obj.f14290c = bArr2;
+        obj.f14291b = uuid;
+        obj.f14290a = e;
+        obj.f14292c = bArr2;
         obj.d = uuidArr;
         return obj;
     }
@@ -254,12 +254,12 @@ public abstract class p {
         if (i10 == null) {
             return null;
         }
-        UUID uuid2 = (UUID) i10.f14289b;
+        UUID uuid2 = (UUID) i10.f14291b;
         if (!uuid.equals(uuid2)) {
             e2.a.l("PsshAtomUtil", "UUID mismatch. Expected: " + uuid + ", got: " + uuid2 + ".");
             return null;
         }
-        return (byte[]) i10.f14290c;
+        return (byte[]) i10.f14292c;
     }
 
     public static q3.n k(int i10, x xVar, String str) {
@@ -279,7 +279,7 @@ public abstract class p {
         }
         if (t0Var != null) {
             k0 t10 = n0.t();
-            for (s0 s0Var : t0Var.f4011a) {
+            for (s0 s0Var : t0Var.f4009a) {
                 if (f2.b.class.isAssignableFrom(s0Var.getClass())) {
                     t10.c((s0) f2.b.class.cast(s0Var));
                 }
@@ -287,7 +287,7 @@ public abstract class p {
             l0 listIterator = t10.f().listIterator(0);
             while (listIterator.hasNext()) {
                 f2.b bVar = (f2.b) listIterator.next();
-                if (!bVar.f10281a.equals("com.android.capture.fps") || i10 == 2) {
+                if (!bVar.f10282a.equals("com.android.capture.fps") || i10 == 2) {
                     t0Var2 = t0Var2.a(bVar);
                 }
             }
@@ -295,8 +295,8 @@ public abstract class p {
         for (t0 t0Var3 : t0VarArr) {
             t0Var2 = t0Var2.b(t0Var3);
         }
-        if (t0Var2.f4011a.length > 0) {
-            vVar.f4072k = t0Var2;
+        if (t0Var2.f4009a.length > 0) {
+            vVar.f4070k = t0Var2;
         }
     }
 
@@ -324,14 +324,14 @@ public abstract class p {
         boolean z12 = false;
         while (i18 < i16) {
             xVar.K(8);
-            if (!pVar.j(xVar.f8292a, i17, 8, true)) {
+            if (!pVar.j(xVar.f8293a, i17, 8, true)) {
                 break;
             }
             long C = xVar.C();
             int m10 = xVar.m();
             if (C == 1) {
                 j10 = j12;
-                pVar.b(8, 8, xVar.f8292a);
+                pVar.b(8, 8, xVar.f8293a);
                 i12 = 16;
                 xVar.M(16);
                 C = xVar.u();
@@ -356,7 +356,7 @@ public abstract class p {
                 if (m10 == 1718773093 && i12 == 8) {
                     j14 = j15;
                 } else {
-                    return new b7(m10, j14, i12);
+                    return new c7(m10, j14, i12);
                 }
             } else {
                 g0Var = null;
@@ -392,11 +392,11 @@ public abstract class p {
                         i18 = i19 + i20;
                         if (m10 == 1718909296) {
                             if (i20 < 8) {
-                                return new b7(m10, i20, 8);
+                                return new c7(m10, i20, 8);
                             }
                             xVar.K(i20);
                             i14 = 0;
-                            pVar.b(0, i20, xVar.f8292a);
+                            pVar.b(0, i20, xVar.f8293a);
                             int m11 = xVar.m();
                             if (c(m11, z11)) {
                                 z12 = true;
@@ -422,7 +422,7 @@ public abstract class p {
                                 iArr = g0Var;
                             }
                             if (!z12) {
-                                return new b0(m11, iArr);
+                                return new c0(m11, iArr);
                             }
                         } else {
                             i14 = 0;

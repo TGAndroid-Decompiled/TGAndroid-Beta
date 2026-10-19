@@ -33,7 +33,7 @@ public final class h0 extends FrameLayout {
         TextPaint textPaint = new TextPaint(1);
         view.f47676a = textPaint;
         textPaint.setTextAlign(Paint.Align.CENTER);
-        int i10 = h6.f20928a7;
+        int i10 = h6.f20931a7;
         textPaint.setColor(h6.x0(null, i10, false));
         textPaint.setTextSize(AndroidUtilities.dp(11.5f));
         textPaint.setTypeface(AndroidUtilities.bold());

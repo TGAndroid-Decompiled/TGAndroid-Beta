@@ -35,7 +35,7 @@ import org.telegram.ui.LaunchActivity;
 public class iu extends EditTextBoldCursor implements org.telegram.ui.ActionBar.w4 {
     private static final int ACCESSIBILITY_ACTION_SHARE = 268435456;
     private static final int[] STYLE_FLAGS = {1, 2, 4, 8, 16, 256, 16384, 32768};
-    public static final int f27351b = 0;
+    public static final int f27360b = 0;
     public boolean adaptiveCreateLinkDialog;
     private boolean allowTextEntitiesIntersection;
     private String caption;
@@ -47,7 +47,7 @@ public class iu extends EditTextBoldCursor implements org.telegram.ui.ActionBar.
     private boolean isInitLineCount;
     private int lineCount;
     private final org.telegram.ui.ActionBar.d6 resourcesProvider;
-    private d11 rightText;
+    private e11 rightText;
     private int selectionEnd;
     private int selectionStart;
     private int userNameLength;
@@ -72,9 +72,9 @@ public class iu extends EditTextBoldCursor implements org.telegram.ui.ActionBar.
     public static void j(iu iuVar, int i10, int i11, int i12, int i13) {
         Editable text = iuVar.getText();
         ?? obj = new Object();
-        obj.f28049a |= 128;
-        obj.f28050b = i10;
-        obj.f28051c = i11;
+        obj.f28359a |= 128;
+        obj.f28360b = i10;
+        obj.f28361c = i11;
         TLRPC.TL_messageEntityFormattedDate tL_messageEntityFormattedDate = new TLRPC.TL_messageEntityFormattedDate();
         tL_messageEntityFormattedDate.date = i12;
         tL_messageEntityFormattedDate.flags = i13;
@@ -85,7 +85,7 @@ public class iu extends EditTextBoldCursor implements org.telegram.ui.ActionBar.
         }
         gu guVar = iuVar.delegate;
         if (guVar != null) {
-            guVar.F();
+            guVar.E();
         }
     }
 
@@ -113,7 +113,7 @@ public class iu extends EditTextBoldCursor implements org.telegram.ui.ActionBar.
         }
         gu guVar = iuVar.delegate;
         if (guVar != null) {
-            guVar.F();
+            guVar.E();
         }
         if (runnable != null) {
             runnable.run();
@@ -125,14 +125,14 @@ public class iu extends EditTextBoldCursor implements org.telegram.ui.ActionBar.
         Editable text = getText();
         if (text != null && i11 >= 0 && i12 >= 0 && i11 < i12 && i11 < (min = Math.min(i12, text.length()))) {
             ?? obj = new Object();
-            obj.f28049a = i10;
-            MediaDataController.addStyleToText(new m11(obj, 0), i11, min, text, true);
+            obj.f28359a = i10;
+            MediaDataController.addStyleToText(new n11(obj, 0), i11, min, text, true);
             if ((i10 & 256) != 0) {
                 invalidateSpoilers();
             }
             gu guVar = this.delegate;
             if (guVar != null) {
-                guVar.F();
+                guVar.E();
             }
         }
     }
@@ -149,8 +149,8 @@ public class iu extends EditTextBoldCursor implements org.telegram.ui.ActionBar.
         return false;
     }
 
-    public l61 createUrlSpan(String str) {
-        return new l61(str, null);
+    public m61 createUrlSpan(String str) {
+        return new m61(str, null);
     }
 
     public boolean getAllowTextEntitiesIntersection() {
@@ -172,7 +172,7 @@ public class iu extends EditTextBoldCursor implements org.telegram.ui.ActionBar.
         if (max < 0 || min < 0 || max >= min) {
             return 0;
         }
-        m11[] m11VarArr = (m11[]) text.getSpans(max, min, m11.class);
+        n11[] n11VarArr = (n11[]) text.getSpans(max, min, n11.class);
         int[] iArr = STYLE_FLAGS;
         int length = iArr.length;
         int i13 = 0;
@@ -184,16 +184,16 @@ public class iu extends EditTextBoldCursor implements org.telegram.ui.ActionBar.
             while (i17 != 0 && i16 < min) {
                 i17 = i12;
                 int i18 = i17;
-                while (i18 < m11VarArr.length) {
-                    m11 m11Var = m11VarArr[i18];
-                    int i19 = m11Var.f28368b.f28049a;
+                while (i18 < n11VarArr.length) {
+                    n11 n11Var = n11VarArr[i18];
+                    int i19 = n11Var.f28647b.f28359a;
                     int i20 = i12;
                     if ((i19 & 512) != 0) {
                         i19 |= 256;
                     }
                     if ((i19 & i15) != 0) {
-                        int spanStart = text.getSpanStart(m11Var);
-                        int spanEnd = text.getSpanEnd(m11VarArr[i18]);
+                        int spanStart = text.getSpanStart(n11Var);
+                        int spanEnd = text.getSpanEnd(n11VarArr[i18]);
                         if (spanStart <= i16 && spanEnd > i16) {
                             i17 = 1;
                             i16 = spanEnd;
@@ -221,7 +221,7 @@ public class iu extends EditTextBoldCursor implements org.telegram.ui.ActionBar.
         return true;
     }
 
-    public final void l(m11 m11Var) {
+    public final void l(n11 n11Var) {
         int selectionEnd;
         int i10 = this.selectionStart;
         if (i10 >= 0 && (selectionEnd = this.selectionEnd) >= 0) {
@@ -231,8 +231,8 @@ public class iu extends EditTextBoldCursor implements org.telegram.ui.ActionBar.
             i10 = getSelectionStart();
             selectionEnd = getSelectionEnd();
         }
-        MediaDataController.addStyleToText(m11Var, i10, selectionEnd, getText(), this.allowTextEntitiesIntersection);
-        if (m11Var == null) {
+        MediaDataController.addStyleToText(n11Var, i10, selectionEnd, getText(), this.allowTextEntitiesIntersection);
+        if (n11Var == null) {
             Editable text = getText();
             for (mi.h hVar : (mi.h[]) text.getSpans(i10, selectionEnd, mi.h.class)) {
                 text.removeSpan(hVar);
@@ -240,7 +240,7 @@ public class iu extends EditTextBoldCursor implements org.telegram.ui.ActionBar.
             pj0[] pj0VarArr = (pj0[]) text.getSpans(i10, selectionEnd, pj0.class);
             for (int i11 = 0; i11 < pj0VarArr.length; i11++) {
                 text.removeSpan(pj0VarArr[i11]);
-                text.removeSpan(pj0VarArr[i11].f29324s);
+                text.removeSpan(pj0VarArr[i11].f29296s);
                 ki.y5 y5Var = pj0VarArr[i11].v;
                 if (y5Var != null) {
                     text.removeSpan(y5Var);
@@ -252,14 +252,14 @@ public class iu extends EditTextBoldCursor implements org.telegram.ui.ActionBar.
         }
         gu guVar = this.delegate;
         if (guVar != null) {
-            guVar.F();
+            guVar.E();
         }
     }
 
     public void makeSelectedBold() {
         ?? obj = new Object();
-        obj.f28049a |= 1;
-        l(new m11(obj, 0));
+        obj.f28359a |= 1;
+        l(new n11(obj, 0));
     }
 
     public void makeSelectedDate() {
@@ -278,18 +278,18 @@ public class iu extends EditTextBoldCursor implements org.telegram.ui.ActionBar.
         ai.p0 p0Var = new ai.p0(this, i10, selectionEnd);
         sc scVar = new sc(8);
         org.telegram.ui.ActionBar.d6 d6Var = this.resourcesProvider;
-        Pattern pattern = f5.f26080a;
+        Pattern pattern = f5.f26101a;
         if (context == null) {
             return;
         }
-        int i11 = org.telegram.ui.ActionBar.h6.f21092j5;
+        int i11 = org.telegram.ui.ActionBar.h6.f21095j5;
         if (d6Var != null) {
             x02 = d6Var.r(i11);
         } else {
             x02 = org.telegram.ui.ActionBar.h6.x0(null, i11, false);
         }
         int i12 = x02;
-        int i13 = org.telegram.ui.ActionBar.h6.f21057h5;
+        int i13 = org.telegram.ui.ActionBar.h6.f21060h5;
         if (d6Var != null) {
             x03 = d6Var.r(i13);
         } else {
@@ -320,7 +320,7 @@ public class iu extends EditTextBoldCursor implements org.telegram.ui.ActionBar.
         } else {
             org.telegram.ui.ActionBar.h6.x0(null, i18, false);
         }
-        int i19 = org.telegram.ui.ActionBar.h6.f21075i6;
+        int i19 = org.telegram.ui.ActionBar.h6.f21078i6;
         if (d6Var != null) {
             d6Var.r(i19);
         } else {
@@ -366,7 +366,7 @@ public class iu extends EditTextBoldCursor implements org.telegram.ui.ActionBar.
         od0Var2.setMaxValue(239);
         od0Var2.setValue(120);
         od0Var2.setWrapSelectorWheel(false);
-        od0Var2.setFormatter(new i2.r(calendar, i23, 5));
+        od0Var2.setFormatter(new i2.s(calendar, i23, 5));
         od0 od0Var3 = new od0(context, d6Var);
         od0Var3.setContentDescriptionCallback(new gi.c(3));
         od0Var3.setWrapSelectorWheel(true);
@@ -393,17 +393,17 @@ public class iu extends EditTextBoldCursor implements org.telegram.ui.ActionBar.
         od0Var3.setValue(calendar.get(11));
         od0Var.setValue(calendar.get(5));
         od0Var2.setValue(calendar.get(2) + 120);
-        d11 d11Var = new d11(LocaleController.formatString(R.string.formatDateAtTime, "", "").trim(), 16.0f, null);
-        d11Var.q(AndroidUtilities.dp(100.0f));
+        e11 e11Var = new e11(LocaleController.formatString(R.string.formatDateAtTime, "", "").trim(), 16.0f, null);
+        e11Var.q(AndroidUtilities.dp(100.0f));
         Layout.Alignment alignment = Layout.Alignment.ALIGN_CENTER;
-        d11Var.a();
-        d11Var.n(1);
-        d11Var.o(i12);
-        d11 d11Var2 = new d11(":", 18.0f, null);
-        d11Var2.q(AndroidUtilities.dp(100.0f));
-        d11Var2.a();
-        d11Var2.n(1);
-        d11Var2.f25435a.setColor(i12);
+        e11Var.a();
+        e11Var.n(1);
+        e11Var.o(i12);
+        e11 e11Var2 = new e11(":", 18.0f, null);
+        e11Var2.q(AndroidUtilities.dp(100.0f));
+        e11Var2.a();
+        e11Var2.n(1);
+        e11Var2.f25728a.setColor(i12);
         FrameLayout frameLayout = new FrameLayout(context);
         d4 d4Var = new d4(context, od0Var2, od0Var, od0Var3, od0Var4);
         d4Var.setOrientation(1);
@@ -417,7 +417,7 @@ public class iu extends EditTextBoldCursor implements org.telegram.ui.ActionBar.
         textView.setTypeface(AndroidUtilities.bold());
         frameLayout2.addView(textView, w7.z5.d(-2, -2.0f, 51, 0.0f, 12.0f, 0.0f, 0.0f));
         textView.setOnTouchListener(new di.d(10));
-        ei.m5 m5Var = new ei.m5(context, d11Var2, od0Var4, 4);
+        ei.m5 m5Var = new ei.m5(context, e11Var2, od0Var4, 4);
         m5Var.setOrientation(0);
         m5Var.setWeightSum(1.0f);
         d4Var.addView(m5Var, w7.z5.p(-1, -2, 1.0f, 0, 0, 12, 0, 12));
@@ -437,7 +437,7 @@ public class iu extends EditTextBoldCursor implements org.telegram.ui.ActionBar.
         d4Var.addView(dVar, w7.z5.t(-1, 48, 83, 16, 15, 16, 16));
         dVar.setOnClickListener(new a2(zArr, od0Var, od0Var2, od0Var3, od0Var4, p0Var, new int[1], a3Var));
         a3Var.b(frameLayout);
-        org.telegram.ui.ActionBar.f3 f3Var = a3Var.f20609a;
+        org.telegram.ui.ActionBar.f3 f3Var = a3Var.f20612a;
         f3Var.show();
         f3Var.setOnDismissListener(new g2(1, scVar, zArr));
         f3Var.setBackgroundColor(i14);
@@ -447,14 +447,14 @@ public class iu extends EditTextBoldCursor implements org.telegram.ui.ActionBar.
 
     public void makeSelectedItalic() {
         ?? obj = new Object();
-        obj.f28049a |= 2;
-        l(new m11(obj, 0));
+        obj.f28359a |= 2;
+        l(new n11(obj, 0));
     }
 
     public void makeSelectedMono() {
         ?? obj = new Object();
-        obj.f28049a |= 4;
-        l(new m11(obj, 0));
+        obj.f28359a |= 4;
+        l(new n11(obj, 0));
     }
 
     public void makeSelectedQuote() {
@@ -467,21 +467,21 @@ public class iu extends EditTextBoldCursor implements org.telegram.ui.ActionBar.
 
     public void makeSelectedSpoiler() {
         ?? obj = new Object();
-        obj.f28049a |= 256;
-        l(new m11(obj, 0));
+        obj.f28359a |= 256;
+        l(new n11(obj, 0));
         invalidateSpoilers();
     }
 
     public void makeSelectedStrike() {
         ?? obj = new Object();
-        obj.f28049a |= 8;
-        l(new m11(obj, 0));
+        obj.f28359a |= 8;
+        l(new n11(obj, 0));
     }
 
     public void makeSelectedUnderline() {
         ?? obj = new Object();
-        obj.f28049a |= 16;
-        l(new m11(obj, 0));
+        obj.f28359a |= 16;
+        l(new n11(obj, 0));
     }
 
     public void makeSelectedUrl() {
@@ -491,7 +491,7 @@ public class iu extends EditTextBoldCursor implements org.telegram.ui.ActionBar.
     public void notifySpansChanged() {
         gu guVar = this.delegate;
         if (guVar != null) {
-            guVar.F();
+            guVar.E();
         }
     }
 
@@ -627,7 +627,7 @@ public class iu extends EditTextBoldCursor implements org.telegram.ui.ActionBar.
                         oj0[] oj0VarArr2 = (oj0[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), oj0.class);
                         for (int i11 = 0; i11 < oj0VarArr2.length; i11++) {
                             spannableStringBuilder.removeSpan(oj0VarArr2[i11]);
-                            spannableStringBuilder.removeSpan(oj0VarArr2[i11].f28984a);
+                            spannableStringBuilder.removeSpan(oj0VarArr2[i11].f29012a);
                         }
                     } else {
                         pj0.a(spannableStringBuilder);
@@ -730,7 +730,7 @@ public class iu extends EditTextBoldCursor implements org.telegram.ui.ActionBar.
     }
 
     public void removeStyle(int i10, int i11, int i12) {
-        m11[] m11VarArr;
+        n11[] n11VarArr;
         Editable text = getText();
         if (text != null && i11 >= 0 && i12 >= 0 && i11 < i12) {
             int min = Math.min(i12, text.length());
@@ -738,26 +738,26 @@ public class iu extends EditTextBoldCursor implements org.telegram.ui.ActionBar.
             if (i13 != 0) {
                 i10 |= 512;
             }
-            for (m11 m11Var : (m11[]) text.getSpans(i11, min, m11.class)) {
-                l11 l11Var = m11Var.f28368b;
-                int i14 = l11Var.f28049a;
+            for (n11 n11Var : (n11[]) text.getSpans(i11, min, n11.class)) {
+                m11 m11Var = n11Var.f28647b;
+                int i14 = m11Var.f28359a;
                 if ((i14 & i10) != 0) {
-                    int spanStart = text.getSpanStart(m11Var);
-                    int spanEnd = text.getSpanEnd(m11Var);
-                    text.removeSpan(m11Var);
+                    int spanStart = text.getSpanStart(n11Var);
+                    int spanEnd = text.getSpanEnd(n11Var);
+                    text.removeSpan(n11Var);
                     if (spanStart < i11) {
-                        text.setSpan(new m11(new l11(l11Var), 0), spanStart, i11, 33);
+                        text.setSpan(new n11(new m11(m11Var), 0), spanStart, i11, 33);
                     }
                     if (spanEnd > min) {
-                        text.setSpan(new m11(new l11(l11Var), 0), min, spanEnd, 33);
+                        text.setSpan(new n11(new m11(m11Var), 0), min, spanEnd, 33);
                     }
                     int max = Math.max(spanStart, i11);
                     int min2 = Math.min(spanEnd, min);
                     int i15 = i14 & (~i10);
                     if (i15 != 0 && max < min2) {
-                        l11 l11Var2 = new l11(l11Var);
-                        l11Var2.f28049a = i15;
-                        text.setSpan(new m11(l11Var2, 0), max, min2, 33);
+                        m11 m11Var2 = new m11(m11Var);
+                        m11Var2.f28359a = i15;
+                        text.setSpan(new n11(m11Var2, 0), max, min2, 33);
                     }
                 }
             }
@@ -766,7 +766,7 @@ public class iu extends EditTextBoldCursor implements org.telegram.ui.ActionBar.
             }
             gu guVar = this.delegate;
             if (guVar != null) {
-                guVar.F();
+                guVar.E();
             }
         }
     }
@@ -801,7 +801,7 @@ public class iu extends EditTextBoldCursor implements org.telegram.ui.ActionBar.
     }
 
     public void setRightText(CharSequence charSequence) {
-        this.rightText = new d11(charSequence, 16.0f, getTypeface());
+        this.rightText = new e11(charSequence, 16.0f, getTypeface());
     }
 
     public void setSelectionOverride(int i10, int i11) {
@@ -866,13 +866,13 @@ public class iu extends EditTextBoldCursor implements org.telegram.ui.ActionBar.
         } else {
             d6Var = null;
         }
-        c51 c51Var = new c51(context, d6Var);
-        c51Var.f25088a0 = subSequence;
+        d51 d51Var = new d51(context, d6Var);
+        d51Var.f25415a0 = subSequence;
         if (LanguageDetector.hasSupport()) {
-            LanguageDetector.detectLanguage(subSequence.toString(), new tv(c51Var, 26), new tg0(15));
+            LanguageDetector.detectLanguage(subSequence.toString(), new tv(d51Var, 26), new tg0(15));
         }
-        c51Var.f25091d0 = new du(this, i10, selectionEnd);
-        c51Var.show();
+        d51Var.f25418d0 = new du(this, i10, selectionEnd);
+        d51Var.show();
         setSelection(i10, selectionEnd);
     }
 
@@ -917,32 +917,32 @@ public class iu extends EditTextBoldCursor implements org.telegram.ui.ActionBar.
             alertDialog$Builder = new AlertDialog$Builder(getContext(), 0, this.resourcesProvider);
         }
         AlertDialog$Builder alertDialog$Builder2 = alertDialog$Builder;
-        org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder2.f20601a;
+        org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder2.f20604a;
         b2Var.R = str;
         FrameLayout frameLayout = new FrameLayout(getContext());
         final ai.t tVar = new ai.t(getContext(), 3);
         String str4 = str3 == null ? "" : str3;
         tVar.setTextSize(1, 18.0f);
         tVar.setText(str4);
-        tVar.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21092j5, this.resourcesProvider));
+        tVar.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21095j5, this.resourcesProvider));
         tVar.setHintText(str2);
         tVar.setHeaderHintColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.L6, this.resourcesProvider));
         tVar.setSingleLine(true);
         tVar.setFocusable(true);
         tVar.setTransformHintToHeader(true);
-        tVar.setLineColors(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21113k6, this.resourcesProvider), org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21130l6, this.resourcesProvider), org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21207p7, this.resourcesProvider));
+        tVar.setLineColors(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21116k6, this.resourcesProvider), org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21133l6, this.resourcesProvider), org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21210p7, this.resourcesProvider));
         tVar.setImeOptions(6);
         tVar.setBackgroundDrawable(null);
         tVar.requestFocus();
         tVar.setPadding(0, 0, 0, 0);
-        tVar.setHighlightColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21310uf, this.resourcesProvider));
-        tVar.setHandlesColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21328vf, this.resourcesProvider));
+        tVar.setHighlightColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21313uf, this.resourcesProvider));
+        tVar.setHandlesColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21331vf, this.resourcesProvider));
         frameLayout.addView(tVar, w7.z5.e(-1, -1, 119));
         TextView textView = new TextView(getContext());
         com.google.android.gms.internal.play_billing.k3.m(12.0f, 1, textView);
         textView.setPadding(org.telegram.ui.Cells.c1.e(10.0f, R.string.Paste, textView), 0, AndroidUtilities.dp(10.0f), 0);
         textView.setGravity(17);
-        int w02 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21189o6, this.resourcesProvider);
+        int w02 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21192o6, this.resourcesProvider);
         textView.setTextColor(w02);
         int dp = AndroidUtilities.dp(6.0f);
         int m12 = org.telegram.ui.ActionBar.h6.m1(0.12f, w02);
@@ -991,7 +991,7 @@ public class iu extends EditTextBoldCursor implements org.telegram.ui.ActionBar.
                     }
                 }
             });
-            this.creationLinkDialog.q(250L);
+            this.creationLinkDialog.r(250L);
         } else {
             alertDialog$Builder2.o().setOnShowListener(new DialogInterface.OnShowListener() {
                 @Override

@@ -14,9 +14,9 @@ public final class c implements Comparator {
     public final int compare(Object obj, Object obj2) {
         switch (this.f50712a) {
             case 0:
-                return ((Scope) obj).f6341b.compareTo(((Scope) obj2).f6341b);
+                return ((Scope) obj).f6342b.compareTo(((Scope) obj2).f6342b);
             default:
-                return ((Scope) obj).f6341b.compareTo(((Scope) obj2).f6341b);
+                return ((Scope) obj).f6342b.compareTo(((Scope) obj2).f6342b);
         }
     }
 }

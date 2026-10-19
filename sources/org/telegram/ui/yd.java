@@ -1,122 +1,55 @@
 package org.telegram.ui;
 
-import android.view.KeyEvent;
-import android.view.View;
-import android.widget.TextView;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import org.telegram.messenger.AndroidUtilities;
-public final class yd implements TextView.OnEditorActionListener {
-    public final int f43373a;
-    public final Object f43374b;
-    public final Object f43375c;
+public final class yd implements TextWatcher {
+    public final ie f43453a;
 
-    public yd(int i10, Object obj, Object obj2) {
-        this.f43373a = i10;
-        this.f43374b = obj;
-        this.f43375c = obj2;
+    public yd(ie ieVar) {
+        this.f43453a = ieVar;
     }
 
     @Override
-    public final boolean onEditorAction(TextView textView, int i10, KeyEvent keyEvent) {
-        s4.b1 T;
-        int b10;
-        s4.b1 T2;
-        int b11;
-        switch (this.f43373a) {
-            case 0:
-                ke keVar = (ke) this.f43374b;
-                r91 r91Var = (r91) this.f43375c;
-                if (i10 == 5) {
-                    TwoStepVerificationActivity twoStepVerificationActivity = new TwoStepVerificationActivity();
-                    ud udVar = new ud(keVar, twoStepVerificationActivity, 1);
-                    twoStepVerificationActivity.Z = 1;
-                    twoStepVerificationActivity.f33924b0 = udVar;
-                    keVar.Q0.setLoading(true);
-                    twoStepVerificationActivity.s0(new vd(keVar, r91Var, twoStepVerificationActivity, 1));
-                    return true;
-                }
-                return false;
-            case 1:
-                org.telegram.ui.ActionBar.b2 b2Var = (org.telegram.ui.ActionBar.b2) this.f43374b;
-                gi.q1 q1Var = (gi.q1) this.f43375c;
-                if ((i10 != 6 && keyEvent.getKeyCode() != 66) || !b2Var.isShowing()) {
-                    return false;
-                }
-                q1Var.g(b2Var, 0);
-                return true;
-            case 2:
-                org.telegram.ui.Components.bo boVar = (org.telegram.ui.Components.bo) this.f43375c;
-                org.telegram.ui.Components.fo foVar = ((org.telegram.ui.Components.co) this.f43374b).d;
-                ua1 ua1Var = foVar.f26308s;
-                if (i10 == 5) {
-                    View F = ua1Var.F(boVar);
-                    if (F == null) {
-                        T = null;
-                    } else {
-                        T = ua1Var.T(F);
-                    }
-                    if (T == null || (b10 = T.b()) == -1) {
-                        return true;
-                    }
-                    int i11 = b10 - foVar.f26310t0;
-                    int i12 = foVar.M;
-                    int i13 = i12 - 1;
-                    if (i11 == i13 && i12 < foVar.J) {
-                        foVar.S();
-                        return true;
-                    } else if (i11 == i13) {
-                        AndroidUtilities.hideKeyboard(boVar.getTextView());
-                        return true;
-                    } else {
-                        s4.b1 K = ua1Var.K(b10 + 1);
-                        if (K == null) {
-                            return true;
-                        }
-                        View view = K.f45910a;
-                        if (!(view instanceof org.telegram.ui.Cells.c6)) {
-                            return true;
-                        }
-                        ((org.telegram.ui.Cells.c6) view).getTextView().requestFocus();
-                        return true;
-                    }
-                }
-                return false;
-            default:
-                ev0 ev0Var = (ev0) this.f43375c;
-                hv0 hv0Var = ((fv0) this.f43374b).d;
-                if (i10 == 5) {
-                    ua1 ua1Var2 = hv0Var.f37628c;
-                    View F2 = ua1Var2.F(ev0Var);
-                    if (F2 == null) {
-                        T2 = null;
-                    } else {
-                        T2 = ua1Var2.T(F2);
-                    }
-                    if (T2 == null || (b11 = T2.b()) == -1) {
-                        return true;
-                    }
-                    int i14 = b11 - hv0Var.f37641n0;
-                    int i15 = hv0Var.f37656y;
-                    int i16 = i15 - 1;
-                    if (i14 == i16 && i15 < hv0Var.f37640n) {
-                        hv0Var.f0();
-                        return true;
-                    } else if (i14 == i16) {
-                        AndroidUtilities.hideKeyboard(ev0Var.getTextView());
-                        return true;
-                    } else {
-                        s4.b1 K2 = hv0Var.f37628c.K(b11 + 1);
-                        if (K2 == null) {
-                            return true;
-                        }
-                        View view2 = K2.f45910a;
-                        if (!(view2 instanceof org.telegram.ui.Cells.c6)) {
-                            return true;
-                        }
-                        ((org.telegram.ui.Cells.c6) view2).getTextView().requestFocus();
-                        return true;
-                    }
-                }
-                return false;
+    public final void afterTextChanged(Editable editable) {
+        long parseLong;
+        ie ieVar = this.f43453a;
+        nd ndVar = ieVar.f37961i1;
+        ai.t tVar = ieVar.Y0;
+        if (ieVar.V0) {
+            return;
         }
+        if (TextUtils.isEmpty(editable)) {
+            parseLong = 0;
+        } else {
+            parseLong = Long.parseLong(editable.toString());
+        }
+        ieVar.X0 = parseLong;
+        long j10 = ieVar.N0.amount;
+        int i10 = (parseLong > j10 ? 1 : (parseLong == j10 ? 0 : -1));
+        boolean z10 = true;
+        if (i10 > 0) {
+            ieVar.X0 = j10;
+            ieVar.V0 = true;
+            tVar.setText(Long.toString(j10));
+            tVar.setSelection(tVar.getText().length());
+            ieVar.V0 = false;
+        }
+        if (ieVar.X0 != ieVar.N0.amount) {
+            z10 = false;
+        }
+        ieVar.W0 = z10;
+        AndroidUtilities.cancelRunOnUIThread(ndVar);
+        ndVar.run();
+        ieVar.W0 = false;
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

@@ -1,63 +1,37 @@
 package org.telegram.ui;
 
-import j$.util.Objects;
-public final class zj0 extends pg.a {
-    public int f43738c;
-    public int d;
-    public CharSequence e;
-    public CharSequence f43739f;
-    public gk0 f43740g;
-    public int h;
-    public boolean f43741i;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Utilities;
+public final class zj0 implements Runnable {
+    public final int f43759a;
+    public final ak0 f43760b;
+    public final String f43761c;
 
-    public static zj0 b(int i10, String str, boolean z10) {
-        ?? aVar = new pg.a(1, true);
-        aVar.f43738c = i10;
-        aVar.e = str;
-        aVar.f43741i = z10;
-        return aVar;
-    }
-
-    public static zj0 c(int i10, String str, String str2) {
-        ?? aVar = new pg.a(5, true);
-        aVar.f43738c = i10;
-        aVar.e = str;
-        aVar.f43739f = str2;
-        return aVar;
-    }
-
-    public static zj0 d(int i10, String str) {
-        ?? aVar = new pg.a(4, true);
-        aVar.f43738c = i10;
-        aVar.e = str;
-        return aVar;
+    public zj0(ak0 ak0Var, String str, int i10) {
+        this.f43759a = i10;
+        this.f43760b = ak0Var;
+        this.f43761c = str;
     }
 
     @Override
-    public final boolean a(pg.a aVar) {
-        if (this != aVar) {
-            if (zj0.class == aVar.getClass()) {
-                zj0 zj0Var = (zj0) aVar;
-                if (this.f43738c == zj0Var.f43738c && this.d == zj0Var.d && this.h == zj0Var.h && this.f43741i == zj0Var.f43741i && Objects.equals(this.e, zj0Var.e) && Objects.equals(this.f43739f, zj0Var.f43739f) && this.f43740g == zj0Var.f43740g) {
-                    return true;
-                }
-                return false;
-            }
-            return false;
+    public final void run() {
+        switch (this.f43759a) {
+            case 0:
+                ak0 ak0Var = this.f43760b;
+                String str = this.f43761c;
+                ak0Var.getClass();
+                AndroidUtilities.runOnUIThread(new zj0(ak0Var, str, 1));
+                return;
+            default:
+                ak0 ak0Var2 = this.f43760b;
+                String str2 = this.f43761c;
+                hg.a2 a2Var = ak0Var2.h;
+                int i10 = ak0Var2.f35393n.f33205s;
+                boolean z10 = true;
+                a2Var.g(str2, true, (i10 == 1 || i10 == 3) ? false : false, true, false, 0L, false, 0, 0);
+                Utilities.searchQueue.postRunnable(new ve0(ak0Var2, str2, new ArrayList(ak0Var2.f35393n.f33206w), 9));
+                return;
         }
-        return true;
-    }
-
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj != null && zj0.class == obj.getClass()) {
-            zj0 zj0Var = (zj0) obj;
-            if (this.f43738c == zj0Var.f43738c && this.h == zj0Var.h && ((this.f44291a == 8 || (this.d == zj0Var.d && Objects.equals(this.e, zj0Var.e) && (this.f44291a == 6 || Objects.equals(this.f43739f, zj0Var.f43739f)))) && this.f43740g == zj0Var.f43740g)) {
-                return true;
-            }
-        }
-        return false;
     }
 }

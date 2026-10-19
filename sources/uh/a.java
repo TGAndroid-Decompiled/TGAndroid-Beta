@@ -22,13 +22,13 @@ public final class a implements View.OnClickListener {
                 l2.f fVar2 = fVar.f47843k0;
                 if (fVar2 != null) {
                     ArrayList arrayList = new ArrayList(fVar.f47842j0.keySet());
-                    fo foVar = (fo) fVar2.f15842b;
+                    fo foVar = (fo) fVar2.f15845b;
                     ArrayList arrayList2 = foVar.P0;
                     arrayList2.clear();
                     arrayList2.addAll(arrayList);
                     int i11 = foVar.L0;
                     if (i11 >= 0) {
-                        foVar.f26306r.m(i11);
+                        foVar.f26293r.m(i11);
                     }
                 }
                 fVar.dismiss();
@@ -37,13 +37,13 @@ public final class a implements View.OnClickListener {
                 l2.f fVar3 = fVar.f47843k0;
                 if (fVar3 != null) {
                     ArrayList arrayList3 = new ArrayList(fVar.f47842j0.keySet());
-                    fo foVar2 = (fo) fVar3.f15842b;
+                    fo foVar2 = (fo) fVar3.f15845b;
                     ArrayList arrayList4 = foVar2.P0;
                     arrayList4.clear();
                     arrayList4.addAll(arrayList3);
                     int i12 = foVar2.L0;
                     if (i12 >= 0) {
-                        foVar2.f26306r.m(i12);
+                        foVar2.f26293r.m(i12);
                     }
                 }
                 fVar.dismiss();

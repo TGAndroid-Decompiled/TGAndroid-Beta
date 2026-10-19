@@ -1,25 +1,29 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.widget.LinearLayout;
-import org.telegram.tgnet.TLRPC;
-public final class ft extends LinearLayout {
-    public final org.telegram.ui.Components.w9 f36972a;
-    public final org.telegram.ui.ActionBar.j5 f36973b;
-    public final org.telegram.ui.ActionBar.d6 f36974c;
-    public TLRPC.StickerSetCovered d;
+import android.view.View;
+import org.telegram.messenger.NotificationCenter;
+public final class ft implements NotificationCenter.NotificationCenterDelegate {
+    public final int f37076a;
+    public final View f37077b;
 
-    public ft(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context);
-        this.f36974c = d6Var;
-        org.telegram.ui.Components.w9 w9Var = new org.telegram.ui.Components.w9(context);
-        this.f36972a = w9Var;
-        org.telegram.ui.ActionBar.j5 j5Var = new org.telegram.ui.ActionBar.j5(context);
-        this.f36973b = j5Var;
-        j5Var.setTextSize(16);
-        j5Var.setTextColor(-1);
-        setOrientation(0);
-        addView(w9Var, w7.z5.t(24, 24, 17, 17, 0, 17, 0));
-        addView(j5Var, w7.z5.t(-2, -2, 17, 0, 0, 12, 0));
+    public ft(int i10, View view) {
+        this.f37076a = i10;
+        this.f37077b = view;
+    }
+
+    @Override
+    public final void didReceivedNotification(int i10, int i11, Object[] objArr) {
+        switch (this.f37076a) {
+            case 0:
+                org.telegram.ui.Cells.ba baVar = (org.telegram.ui.Cells.ba) this.f37077b;
+                if (i10 == NotificationCenter.emojiLoaded) {
+                    baVar.getTextView().invalidate();
+                    return;
+                }
+                return;
+            default:
+                ((ij0) this.f37077b).invalidate();
+                return;
+        }
     }
 }

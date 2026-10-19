@@ -1,35 +1,10 @@
 package org.telegram.ui;
 
-import android.content.Context;
-public final class vx implements Runnable {
-    public final int f42283a;
-    public final wx f42284b;
+import java.util.ArrayList;
+public interface vx {
+    boolean D();
 
-    public vx(wx wxVar, int i10) {
-        this.f42283a = i10;
-        this.f42284b = wxVar;
-    }
+    boolean J(cy cyVar);
 
-    @Override
-    public final void run() {
-        int i10;
-        switch (this.f42283a) {
-            case 0:
-                wx wxVar = this.f42284b;
-                ey eyVar = wxVar.E0;
-                Context context = wxVar.getContext();
-                i10 = ((org.telegram.ui.ActionBar.n2) eyVar).currentAccount;
-                eyVar.showDialog(new sg.k0(3, i10, context, eyVar, null));
-                return;
-            default:
-                ey eyVar2 = this.f42284b.E0;
-                ax axVar = eyVar2.M0;
-                if (axVar != null) {
-                    axVar.dismiss();
-                    eyVar2.M0 = null;
-                    return;
-                }
-                return;
-        }
-    }
+    boolean w(cy cyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, re1 re1Var);
 }

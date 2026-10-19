@@ -2,18 +2,18 @@ package ai;
 
 import android.content.Context;
 import android.view.View;
-import org.telegram.ui.Components.e61;
+import org.telegram.ui.Components.f61;
 import org.telegram.ui.Components.im0;
-public final class gd extends e61 {
-    public static final int f1380a = 0;
+public final class gd extends f61 {
+    public static final int f1376a = 0;
 
     static {
-        e61.setup(new e61());
+        f61.setup(new f61());
     }
 
     @Override
-    public final void bindView(android.view.View r32, org.telegram.ui.Components.f61 r33, boolean r34, org.telegram.ui.Components.s61 r35, org.telegram.ui.Components.a71 r36) {
-        throw new UnsupportedOperationException("Method not decompiled: ai.gd.bindView(android.view.View, org.telegram.ui.Components.f61, boolean, org.telegram.ui.Components.s61, org.telegram.ui.Components.a71):void");
+    public final void bindView(android.view.View r32, org.telegram.ui.Components.g61 r33, boolean r34, org.telegram.ui.Components.t61 r35, org.telegram.ui.Components.b71 r36) {
+        throw new UnsupportedOperationException("Method not decompiled: ai.gd.bindView(android.view.View, org.telegram.ui.Components.g61, boolean, org.telegram.ui.Components.t61, org.telegram.ui.Components.b71):void");
     }
 
     @Override

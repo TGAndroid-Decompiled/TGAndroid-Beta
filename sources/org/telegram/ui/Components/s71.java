@@ -1,58 +1,152 @@
 package org.telegram.ui.Components;
 
-import android.view.TextureView;
-import java.util.ArrayList;
-public final class s71 implements Runnable {
-    public final int f30214a;
-    public final Object f30215b;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.drawable.Drawable;
+import android.text.TextPaint;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+public final class s71 extends Drawable {
+    public static final int[] f30195r = {10, 7, 26, 16, 10, 25};
+    public final Paint f30196a;
+    public final TextPaint f30197b;
+    public final Path f30198c;
+    public boolean d;
+    public final boolean e;
+    public Path f30199f;
+    public int f30200g;
+    public float h;
+    public float f30201i;
+    public boolean f30202j;
+    public boolean f30203k;
+    public boolean f30204l;
+    public long f30205m;
+    public r71 f30206n;
+    public long f30207o;
+    public String f30208p;
+    public float f30209q;
 
-    public s71(Object obj, int i10) {
-        this.f30214a = i10;
-        this.f30215b = obj;
+    public s71(boolean z10) {
+        Paint paint = new Paint(1);
+        this.f30196a = paint;
+        TextPaint textPaint = new TextPaint(1);
+        this.f30197b = textPaint;
+        Path path = new Path();
+        this.f30198c = path;
+        this.f30209q = 1.0f;
+        this.e = z10;
+        paint.setColor(-1);
+        textPaint.setColor(-1);
+        textPaint.setTextSize(AndroidUtilities.dp(12.0f));
+        textPaint.setTextAlign(Paint.Align.CENTER);
+        path.reset();
+        for (int i10 = 0; i10 < 3; i10++) {
+            int[] iArr = f30195r;
+            if (i10 == 0) {
+                int i11 = i10 * 2;
+                this.f30198c.moveTo(AndroidUtilities.dp(iArr[i11]), AndroidUtilities.dp(iArr[i11 + 1]));
+            } else {
+                int i12 = i10 * 2;
+                this.f30198c.lineTo(AndroidUtilities.dp(iArr[i12]), AndroidUtilities.dp(iArr[i12 + 1]));
+            }
+        }
+        this.f30198c.close();
+    }
+
+    public final void a() {
+        r71 r71Var = this.f30206n;
+        if (r71Var != null) {
+            r71Var.invalidate();
+        } else {
+            invalidateSelf();
+        }
+    }
+
+    public final boolean b() {
+        return this.f30202j;
+    }
+
+    public final void c(org.telegram.ui.zr0 zr0Var) {
+        this.f30206n = zr0Var;
+    }
+
+    public final void d(boolean z10) {
+        boolean z11 = this.d;
+        if (z11 == z10 && this.h >= 1.0f && this.f30203k) {
+            return;
+        }
+        if (z11 != z10) {
+            this.f30207o = 0L;
+            this.f30208p = null;
+        }
+        this.d = z10;
+        this.f30202j = true;
+        this.h = 0.0f;
+        invalidateSelf();
     }
 
     @Override
-    public final void run() {
-        switch (this.f30214a) {
-            case 0:
-                a81 a81Var = (a81) this.f30215b;
-                i2.h0 h0Var = a81Var.d;
-                if (h0Var != null) {
-                    TextureView textureView = a81Var.f24535n;
-                    h0Var.F1();
-                    if (textureView != null && textureView == h0Var.X) {
-                        h0Var.F1();
-                        h0Var.s1();
-                        h0Var.x1(null);
-                        h0Var.q1(0, 0);
-                    }
-                    a81Var.d.z1(a81Var.f24535n);
-                    ArrayList arrayList = a81Var.N;
-                    if (arrayList != null) {
-                        a81Var.F(arrayList, a81Var.O);
-                    } else if (a81Var.U) {
-                        a81Var.G(a81Var.Q, a81Var.S, a81Var.R, a81Var.T);
-                    } else {
-                        a81Var.D(a81Var.Q, a81Var.S);
-                    }
-                    a81Var.C();
-                    return;
-                }
-                return;
-            case 1:
-                a81 a81Var2 = ((z71) this.f30215b).f32857f;
-                a81Var2.f24523a0.removeCallbacksAndMessages(null);
-                a81Var2.K.onVisualizerUpdate(false, true, null);
-                return;
-            case 2:
-                ((c81) this.f30215b).f25137g = false;
-                return;
-            case 3:
-                ((u91) ((t50) ((org.telegram.ui.Cells.ca) this.f30215b).f22108b).f30469b).v.b();
-                return;
-            default:
-                ((q91) this.f30215b).d(false, true);
-                return;
+    public final void draw(android.graphics.Canvas r15) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.s71.draw(android.graphics.Canvas):void");
+    }
+
+    public final void e(boolean z10) {
+        if (this.f30203k != z10) {
+            this.f30203k = z10;
+            this.f30208p = null;
+            this.f30207o = 0L;
+            this.h = 0.0f;
         }
+    }
+
+    public final void f(boolean z10) {
+        this.f30204l = z10;
+        a();
+    }
+
+    public final void g(long j10) {
+        this.f30207o = j10;
+        if (j10 >= 1000) {
+            this.f30208p = LocaleController.formatPluralString("Seconds", (int) (j10 / 1000), new Object[0]);
+        } else {
+            this.f30208p = null;
+        }
+    }
+
+    @Override
+    public final int getIntrinsicHeight() {
+        return AndroidUtilities.dp(32.0f);
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return AndroidUtilities.dp(32.0f);
+    }
+
+    @Override
+    public final int getMinimumHeight() {
+        return AndroidUtilities.dp(32.0f);
+    }
+
+    @Override
+    public final int getMinimumWidth() {
+        return AndroidUtilities.dp(32.0f);
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+        this.f30196a.setAlpha(i10);
+        this.f30197b.setAlpha(i10);
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        this.f30196a.setColorFilter(colorFilter);
     }
 }

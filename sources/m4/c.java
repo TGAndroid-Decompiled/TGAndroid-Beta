@@ -6,19 +6,19 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import v7.u6;
 public final class c {
-    public int f16488a;
-    public final int f16489b;
-    public final boolean f16490c;
+    public int f16491a;
+    public final int f16492b;
+    public final boolean f16493c;
     public Object d;
     public final Cloneable e;
-    public Serializable f16491f;
-    public Object f16492g;
+    public Serializable f16494f;
+    public Object f16495g;
 
     public c() {
-        this.f16489b = 0;
+        this.f16492b = 0;
         this.e = Bundle.EMPTY;
-        this.f16488a = -1;
-        this.f16490c = true;
+        this.f16491a = -1;
+        this.f16493c = true;
     }
 
     public static s4.l e(int i10, ArrayList arrayList, boolean z10) {
@@ -56,7 +56,7 @@ public final class c {
         } else {
             z10 = false;
         }
-        if (this.f16488a == -1) {
+        if (this.f16491a == -1) {
             z11 = true;
         } else {
             z11 = false;
@@ -65,8 +65,8 @@ public final class c {
             z12 = true;
         }
         u6.o("Exactly one of sessionCommand and playerCommand should be set", z12);
-        if (((i9.a) this.f16491f) == null) {
-            int i11 = this.f16488a;
+        if (((i9.a) this.f16494f) == null) {
+            int i11 = this.f16491a;
             if (i11 != 1) {
                 if (i11 != 11 && i11 != 7) {
                     i10 = 6;
@@ -78,9 +78,9 @@ public final class c {
                 }
                 i10 = 2;
             }
-            this.f16491f = new i9.a(new int[]{i10});
+            this.f16494f = new i9.a(new int[]{i10});
         }
-        return new d((o1) this.d, this.f16488a, this.f16489b, (Bundle) this.e, this.f16490c, (i9.a) this.f16491f, this.f16492g);
+        return new d((o1) this.d, this.f16491a, this.f16492b, (Bundle) this.e, this.f16493c, (i9.a) this.f16494f, this.f16495g);
     }
 
     public void b(s4.d0 d0Var) {
@@ -89,22 +89,22 @@ public final class c {
         int i10;
         int[] iArr = (int[]) this.e;
         ArrayList arrayList = (ArrayList) this.d;
-        s4.o oVar2 = (s4.o) this.f16492g;
+        s4.o oVar2 = (s4.o) this.f16495g;
         if (d0Var instanceof s4.c) {
             cVar = (s4.c) d0Var;
         } else {
             cVar = new s4.c(d0Var);
         }
         ArrayList arrayList2 = new ArrayList();
-        int i11 = this.f16488a;
+        int i11 = this.f16491a;
         int size = arrayList.size() - 1;
-        int i12 = this.f16489b;
+        int i12 = this.f16492b;
         while (size >= 0) {
             s4.n nVar = (s4.n) arrayList.get(size);
             int i13 = nVar.f46001c;
             int i14 = nVar.f45999a + i13;
             int i15 = nVar.f46000b + i13;
-            boolean z10 = this.f16490c;
+            boolean z10 = this.f16493c;
             int[] iArr2 = iArr;
             if (i14 < i11) {
                 int i16 = i11 - i14;
@@ -124,7 +124,7 @@ public final class c {
                                     arrayList2.add(new s4.l(i18, i18, true));
                                     i10 = i17;
                                 } else {
-                                    StringBuilder l4 = i2.d.l(i18, "unknown flag for pos ", " ");
+                                    StringBuilder l4 = i2.e.l(i18, "unknown flag for pos ", " ");
                                     l4.append(Long.toBinaryString(i20));
                                     throw new IllegalStateException(l4.toString());
                                 }
@@ -168,14 +168,14 @@ public final class c {
                 } else {
                     for (int i24 = i23 - 1; i24 >= 0; i24--) {
                         int i25 = i15 + i24;
-                        int i26 = ((int[]) this.f16491f)[i25];
+                        int i26 = ((int[]) this.f16494f)[i25];
                         int i27 = i26 & 31;
                         if (i27 != 0) {
                             if (i27 != 4 && i27 != 8) {
                                 if (i27 == 16) {
                                     arrayList2.add(new s4.l(i25, i14, false));
                                 } else {
-                                    StringBuilder l10 = i2.d.l(i25, "unknown flag for pos ", " ");
+                                    StringBuilder l10 = i2.e.l(i25, "unknown flag for pos ", " ");
                                     l10.append(Long.toBinaryString(i27));
                                     throw new IllegalStateException(l10.toString());
                                 }
@@ -218,15 +218,15 @@ public final class c {
     }
 
     public void c(s4.g0 g0Var) {
-        b(new k0.b(g0Var, 25));
+        b(new le.b(g0Var, 20));
     }
 
     public void d(int i10, int i11, int i12, boolean z10) {
         int i13;
         int i14;
         int[] iArr = (int[]) this.e;
-        int[] iArr2 = (int[]) this.f16491f;
-        s4.o oVar = (s4.o) this.f16492g;
+        int[] iArr2 = (int[]) this.f16494f;
+        s4.o oVar = (s4.o) this.f16495g;
         if (z10) {
             i11--;
             i14 = i10;
@@ -277,15 +277,15 @@ public final class c {
     public c(s4.o oVar, ArrayList arrayList, int[] iArr, int[] iArr2, boolean z10) {
         this.d = arrayList;
         this.e = iArr;
-        this.f16491f = iArr2;
+        this.f16494f = iArr2;
         Arrays.fill(iArr, 0);
         Arrays.fill(iArr2, 0);
-        this.f16492g = oVar;
+        this.f16495g = oVar;
         int e = oVar.e();
-        this.f16488a = e;
+        this.f16491a = e;
         int d = oVar.d();
-        this.f16489b = d;
-        this.f16490c = z10;
+        this.f16492b = d;
+        this.f16493c = z10;
         s4.n nVar = arrayList.isEmpty() ? null : (s4.n) arrayList.get(0);
         if (nVar == null || nVar.f45999a != 0 || nVar.f46000b != 0) {
             ?? obj = new Object();
@@ -302,7 +302,7 @@ public final class c {
             int i11 = nVar2.f46001c;
             int i12 = i10 + i11;
             int i13 = nVar2.f46000b + i11;
-            if (this.f16490c) {
+            if (this.f16493c) {
                 while (e > i12) {
                     if (iArr[e - 1] == 0) {
                         d(e, d, size, false);
@@ -319,7 +319,7 @@ public final class c {
             for (int i14 = 0; i14 < nVar2.f46001c; i14++) {
                 int i15 = nVar2.f45999a + i14;
                 int i16 = nVar2.f46000b + i14;
-                int i17 = ((s4.o) this.f16492g).a(i15, i16) ? 1 : 2;
+                int i17 = ((s4.o) this.f16495g).a(i15, i16) ? 1 : 2;
                 iArr[i15] = (i16 << 5) | i17;
                 iArr2[i16] = (i15 << 5) | i17;
             }

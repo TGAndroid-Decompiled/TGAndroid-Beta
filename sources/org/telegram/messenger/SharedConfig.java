@@ -231,8 +231,8 @@ public class SharedConfig {
             if (readString == null) {
                 readString = "";
             }
-            a2.f14782c = readString;
-            a2.f14781b = inputSerializedData.readInt32(false);
+            a2.f14784c = readString;
+            a2.f14783b = inputSerializedData.readInt32(false);
             String readString2 = inputSerializedData.readString(false);
             if (readString2 == null) {
                 readString2 = "";
@@ -247,7 +247,7 @@ public class SharedConfig {
             if (readString4 != null) {
                 str = readString4;
             }
-            a2.f14783f = str;
+            a2.f14785f = str;
             int i11 = 2;
             if (i10 >= 2) {
                 j10 = inputSerializedData.readInt64(false);
@@ -261,12 +261,12 @@ public class SharedConfig {
                 if (e == 0) {
                     e = 1;
                 }
-                a2.f14780a = e;
+                a2.f14782a = e;
             } else {
                 if (TextUtils.isEmpty(readString4)) {
                     i11 = 1;
                 }
-                a2.f14780a = i11;
+                a2.f14782a = i11;
             }
             ProxyInfo proxyInfo = new ProxyInfo(a2.b());
             proxyInfo.availableCheckTime = j11;
@@ -279,14 +279,14 @@ public class SharedConfig {
         }
 
         public void toSerializedData(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeString(this.settings.f44741b);
-            outputSerializedData.writeInt32(this.settings.f44742c);
+            outputSerializedData.writeString(this.settings.f44739b);
+            outputSerializedData.writeInt32(this.settings.f44740c);
             outputSerializedData.writeString(this.settings.d);
             outputSerializedData.writeString(this.settings.e);
-            outputSerializedData.writeString(this.settings.f44743f);
+            outputSerializedData.writeString(this.settings.f44741f);
             outputSerializedData.writeInt64(this.ping);
             outputSerializedData.writeInt64(this.availableCheckTime);
-            int c10 = m1.j.c(this.settings.f44740a);
+            int c10 = m1.j.c(this.settings.f44738a);
             int i10 = 1;
             if (c10 != 1) {
                 i10 = 2;
@@ -911,10 +911,10 @@ public class SharedConfig {
             ImageLoader.getInstance().checkMediaPaths(new y1(20));
             readOnlyStorageDirAlertShowed = true;
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(R.getParentActivity());
-            alertDialog$Builder.f20601a.R = LocaleController.getString(R.string.SdCardError);
-            alertDialog$Builder.f20601a.S = LocaleController.getString(R.string.SdCardErrorDescription);
+            alertDialog$Builder.f20604a.R = LocaleController.getString(R.string.SdCardError);
+            alertDialog$Builder.f20604a.S = LocaleController.getString(R.string.SdCardErrorDescription);
             alertDialog$Builder.k(LocaleController.getString(R.string.DoNotUseSDCard), new tg(3));
-            org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20601a;
+            org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20604a;
             b2Var.setCanceledOnTouchOutside(false);
             b2Var.show();
         }
@@ -1050,8 +1050,8 @@ public class SharedConfig {
             i12 = (i11 < 8 || memoryClass <= 160 || (ceil != -1 && ceil <= 2055) || (ceil == -1 && i11 == 8 && i10 <= 23)) ? 1 : 2;
         }
         if (BuildVars.LOGS_ENABLED) {
-            StringBuilder m10 = i2.d.m("device performance info selected_class = ", i12, " (cpu_count = ", i11, ", freq = ");
-            i2.d.w(m10, ceil, ", memoryClass = ", memoryClass, ", android version ");
+            StringBuilder m10 = i2.e.m("device performance info selected_class = ", i12, " (cpu_count = ", i11, ", freq = ");
+            i2.e.w(m10, ceil, ", memoryClass = ", memoryClass, ", android version ");
             m10.append(i10);
             m10.append(", manufacture ");
             m10.append(Build.MANUFACTURER);

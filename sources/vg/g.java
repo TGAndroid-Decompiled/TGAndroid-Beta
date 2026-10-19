@@ -5,6 +5,7 @@ import android.text.TextUtils;
 import android.view.View;
 import org.telegram.messenger.DialogObject;
 import org.telegram.tgnet.TLRPC;
+import qg.n;
 import ug.b1;
 public final class g extends pg.a {
     public TLRPC.User f48361c;
@@ -17,8 +18,8 @@ public final class g extends pg.a {
     public int f48365j;
     public boolean f48366k;
     public int f48367l;
-    public org.telegram.ui.web.c f48368m;
-    public org.telegram.ui.web.c f48369n;
+    public n f48368m;
+    public n f48369n;
     public b1 f48370o;
     public b1 f48371p;
     public View f48372q;
@@ -52,7 +53,7 @@ public final class g extends pg.a {
             if (g.class == aVar.getClass()) {
                 g gVar = (g) aVar;
                 if (this.f48366k == gVar.f48366k) {
-                    if (this.f44291a == 8) {
+                    if (this.f44286a == 8) {
                         if (TextUtils.equals(this.h, gVar.h)) {
                             if (this.f48368m == null) {
                                 z10 = true;
@@ -80,18 +81,18 @@ public final class g extends pg.a {
         if (this != obj) {
             if (obj != null && g.class == obj.getClass()) {
                 g gVar = (g) obj;
-                int i10 = this.f44291a;
-                if (i10 == gVar.f44291a) {
+                int i10 = this.f44286a;
+                if (i10 == gVar.f44286a) {
                     if (i10 != -1 || this.f48367l == gVar.f48367l) {
                         if (i10 == 3) {
                             TLRPC.User user = this.f48361c;
                             long j11 = 0;
                             if (user != null) {
-                                j10 = user.f20419id;
+                                j10 = user.f20422id;
                             } else {
                                 TLRPC.Chat chat = this.e;
                                 if (chat != null) {
-                                    j10 = -chat.f20272id;
+                                    j10 = -chat.f20275id;
                                 } else {
                                     TLRPC.InputPeer inputPeer = this.d;
                                     if (inputPeer != null) {
@@ -103,11 +104,11 @@ public final class g extends pg.a {
                             }
                             TLRPC.User user2 = gVar.f48361c;
                             if (user2 != null) {
-                                j11 = user2.f20419id;
+                                j11 = user2.f20422id;
                             } else {
                                 TLRPC.Chat chat2 = gVar.e;
                                 if (chat2 != null) {
-                                    j11 = -chat2.f20272id;
+                                    j11 = -chat2.f20275id;
                                 } else {
                                     TLRPC.InputPeer inputPeer2 = gVar.d;
                                     if (inputPeer2 != null) {
@@ -119,12 +120,12 @@ public final class g extends pg.a {
                                 return false;
                             }
                         }
-                        int i11 = this.f44291a;
+                        int i11 = this.f44286a;
                         if (i11 != 6 || this.f48362f == gVar.f48362f) {
                             if (i11 != 7 || TextUtils.equals(this.f48363g, gVar.f48363g)) {
-                                if (this.f44291a != 8 || TextUtils.equals(this.f48363g, gVar.f48363g)) {
-                                    if (this.f44291a != 9 || (TextUtils.equals(this.f48363g, gVar.f48363g) && this.f48364i == gVar.f48364i && this.f48365j == gVar.f48365j)) {
-                                        if (this.f44291a != 10 || this.f48372q == gVar.f48372q) {
+                                if (this.f44286a != 8 || TextUtils.equals(this.f48363g, gVar.f48363g)) {
+                                    if (this.f44286a != 9 || (TextUtils.equals(this.f48363g, gVar.f48363g) && this.f48364i == gVar.f48364i && this.f48365j == gVar.f48365j)) {
+                                        if (this.f44286a != 10 || this.f48372q == gVar.f48372q) {
                                             return true;
                                         }
                                         return false;

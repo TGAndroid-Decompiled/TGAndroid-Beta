@@ -1,64 +1,17 @@
 package org.telegram.ui;
+public final class vd1 extends s4.y {
+    public final re1 S;
 
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.FileLog;
-public final class vd1 extends s4.b0 {
-    public boolean I;
-    public final te1 J;
-
-    public vd1(te1 te1Var) {
-        this.J = te1Var;
+    public vd1(re1 re1Var, qe1 qe1Var) {
+        super(qe1Var);
+        this.S = re1Var;
     }
 
     @Override
-    public final void b0(qf.e eVar, s4.y0 y0Var) {
-        if (BuildVars.DEBUG_PRIVATE_VERSION) {
-            try {
-                super.b0(eVar, y0Var);
-                return;
-            } catch (IndexOutOfBoundsException unused) {
-                throw new RuntimeException("Inconsistency detected. ");
-            }
+    public final boolean q() {
+        if (this.S.f41192x > 0) {
+            return true;
         }
-        try {
-            super.b0(eVar, y0Var);
-        } catch (IndexOutOfBoundsException e) {
-            FileLog.e(e);
-            AndroidUtilities.runOnUIThread(new sy0(this, 19));
-        }
-    }
-
-    @Override
-    public final void b1(View view, View view2, int i10, int i11) {
-        this.I = true;
-        super.b1(view, view2, i10, i11);
-        this.I = false;
-    }
-
-    @Override
-    public final void h1(int i10, int i11) {
-        if (this.I) {
-            i11 -= this.J.N.getPaddingTop();
-        }
-        super.h1(i10, i11);
-    }
-
-    @Override
-    public final int o0(int r19, qf.e r20, s4.y0 r21) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.vd1.o0(int, qf.e, s4.y0):int");
-    }
-
-    @Override
-    public final void v0(RecyclerView recyclerView, s4.y0 y0Var, int i10) {
-        if (this.J.f41712x > 0 && i10 == 1) {
-            super.v0(recyclerView, y0Var, i10);
-            return;
-        }
-        li.n nVar = new li.n(recyclerView.getContext(), 0);
-        nVar.f46051a = i10;
-        w0(nVar);
+        return false;
     }
 }

@@ -5,24 +5,24 @@ import e9.n0;
 import e9.x1;
 import java.util.List;
 public final class d implements c3.o {
-    public final int f14005a;
+    public final int f14007a;
     public final e2.x d;
     public final a4.g e;
-    public c3.q f14008f;
-    public long f14009g;
-    public boolean f14011j;
-    public boolean f14012k;
-    public boolean f14013l;
-    public final e f14006b = new e(0, null, "audio/mp4a-latm", true);
-    public final e2.x f14007c = new e2.x(2048);
-    public int f14010i = -1;
+    public c3.q f14010f;
+    public long f14011g;
+    public boolean f14013j;
+    public boolean f14014k;
+    public boolean f14015l;
+    public final e f14008b = new e(0, null, "audio/mp4a-latm", true);
+    public final e2.x f14009c = new e2.x(2048);
+    public int f14012i = -1;
     public long h = -1;
 
     public d(int i10) {
-        this.f14005a = i10;
+        this.f14007a = i10;
         e2.x xVar = new e2.x(10);
         this.d = xVar;
-        byte[] bArr = xVar.f8292a;
+        byte[] bArr = xVar.f8293a;
         this.e = new a4.g(bArr, bArr.length);
     }
 
@@ -35,20 +35,20 @@ public final class d implements c3.o {
         do {
             e2.x xVar = this.d;
             c3.l lVar = (c3.l) pVar;
-            lVar.j(xVar.f8292a, 0, 2, false);
+            lVar.j(xVar.f8293a, 0, 2, false);
             xVar.N(0);
             if ((xVar.H() & 65526) == 65520) {
                 i11++;
                 if (i11 >= 4 && i12 > 188) {
                     return true;
                 }
-                lVar.j(xVar.f8292a, 0, 4, false);
+                lVar.j(xVar.f8293a, 0, 4, false);
                 a4.g gVar = this.e;
                 gVar.m(14);
                 int g11 = gVar.g(13);
                 if (g11 <= 6) {
                     i10++;
-                    lVar.f4649f = 0;
+                    lVar.f4647f = 0;
                     lVar.v(i10, false);
                 } else {
                     lVar.v(g11 - 6, false);
@@ -56,7 +56,7 @@ public final class d implements c3.o {
                 }
             } else {
                 i10++;
-                lVar.f4649f = 0;
+                lVar.f4647f = 0;
                 lVar.v(i10, false);
             }
             i11 = 0;
@@ -67,21 +67,21 @@ public final class d implements c3.o {
 
     @Override
     public final void c(c3.q qVar) {
-        this.f14008f = qVar;
-        this.f14006b.d(qVar, new f0(0, 1));
+        this.f14010f = qVar;
+        this.f14008b.d(qVar, new f0(0, 1));
         qVar.H();
     }
 
     @Override
     public final void d(long j10, long j11) {
-        this.f14012k = false;
-        this.f14006b.c();
-        this.f14009g = j11;
+        this.f14014k = false;
+        this.f14008b.c();
+        this.f14011g = j11;
     }
 
     @Override
     public final List e() {
-        l0 l0Var = n0.f8475b;
+        l0 l0Var = n0.f8476b;
         return x1.e;
     }
 
@@ -94,7 +94,7 @@ public final class d implements c3.o {
         int i10 = 0;
         while (true) {
             e2.x xVar = this.d;
-            pVar.b(0, 10, xVar.f8292a);
+            pVar.b(0, 10, xVar.f8293a);
             xVar.N(0);
             if (xVar.D() != 4801587) {
                 break;

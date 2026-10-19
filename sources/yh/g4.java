@@ -32,17 +32,17 @@ import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.ActionBar.d5;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.a71;
 import org.telegram.ui.Components.ao;
 import org.telegram.ui.Components.b10;
+import org.telegram.ui.Components.b71;
 import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.f61;
+import org.telegram.ui.Components.g61;
 import org.telegram.ui.Components.h20;
 import org.telegram.ui.Components.i80;
 import org.telegram.ui.Components.iu;
 import org.telegram.ui.Components.kv;
 import org.telegram.ui.Components.qc;
-import org.telegram.ui.Components.s61;
+import org.telegram.ui.Components.t61;
 import org.telegram.ui.Components.uj0;
 import org.telegram.ui.Components.w9;
 import org.telegram.ui.Components.x90;
@@ -51,7 +51,7 @@ import org.telegram.ui.Components.xp;
 import org.telegram.ui.Components.yq;
 import org.telegram.ui.Components.z00;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.a31;
+import org.telegram.ui.y21;
 import org.telegram.ui.y8;
 import w7.b6;
 import w7.z5;
@@ -65,27 +65,27 @@ public class g4 extends org.telegram.ui.ActionBar.n2 implements ne.d {
     public boolean K;
     public gh.c L;
     public bh.b M;
-    public final ne.b f50272a;
-    public final long f50273b;
-    public final String f50274c;
+    public final ne.b f50271a;
+    public final long f50272b;
+    public final String f50273c;
     public final s3 d;
     public Utilities.Callback e;
-    public org.telegram.ui.ActionBar.g2 f50275f;
+    public org.telegram.ui.ActionBar.g2 f50274f;
     public View h;
-    public b3 f50276n;
-    public FrameLayout f50277r;
-    public FrameLayout f50278s;
+    public b3 f50275n;
+    public FrameLayout f50276r;
+    public FrameLayout f50277s;
     public TextView v;
-    public k3 f50279w;
-    public boolean f50280x;
-    public HorizontalScrollView f50281y;
+    public k3 f50278w;
+    public boolean f50279x;
+    public HorizontalScrollView f50280y;
 
     public g4(long j10, String str, long j11, d6 d6Var) {
         super(null);
-        this.f50272a = new ne.b(0, this, bs.h, 380L, false);
+        this.f50271a = new ne.b(0, this, bs.h, 380L, false);
         this.K = true;
-        this.f50273b = j10;
-        this.f50274c = str;
+        this.f50272b = j10;
+        this.f50273c = str;
         this.resourceProvider = d6Var;
         s3 s3Var = new s3(j11, this.currentAccount, new ig.l0(this, 27));
         this.d = s3Var;
@@ -105,11 +105,11 @@ public class g4 extends org.telegram.ui.ActionBar.n2 implements ne.d {
                 sb2.append(tL_starGiftUnique.title);
                 sb2.append(" #");
                 qc O = a02.O(document, string, LocaleController.formatString(i10, org.telegram.messenger.g0.h(tL_starGiftUnique.num, ',', sb2)));
-                O.f29646r = false;
+                O.f29604r = false;
                 O.j();
             } else {
                 qc O2 = xc.a0(g4Var).O(tL_starGiftUnique.getDocument(), LocaleController.getString(R.string.BoughtResoldGiftToTitle), LocaleController.formatString(R.string.BoughtResoldGiftToText, DialogObject.getShortName(g4Var.currentAccount, j10)));
-                O2.f29646r = false;
+                O2.f29604r = false;
                 O2.j();
             }
             g4Var.J.c(true);
@@ -123,7 +123,7 @@ public class g4 extends org.telegram.ui.ActionBar.n2 implements ne.d {
         }
         a3 a3Var = new a3(bundle, tL_starGiftUnique, j10);
         d5 d5Var = g4Var.parentLayout;
-        if (d5Var != null && ((ActionBarLayout) d5Var).f20545b) {
+        if (d5Var != null && ((ActionBarLayout) d5Var).f20548b) {
             Dialog dialog = g4Var.parentDialog;
             if ((dialog instanceof org.telegram.ui.ActionBar.f3) && z10) {
                 ((org.telegram.ui.ActionBar.f3) dialog).skipDismissAnimation();
@@ -148,16 +148,16 @@ public class g4 extends org.telegram.ui.ActionBar.n2 implements ne.d {
             return;
         }
         i80 i80Var = new i80(g4Var, g4Var.I, false, false);
-        i80Var.f27135t = false;
+        i80Var.f27137t = false;
         i80Var.Y = true;
         i80Var.a0(0.0f, AndroidUtilities.dp(-8.0f));
         i80Var.R = true;
-        i80Var.f27129p = new ki.h(i80Var, 3);
+        i80Var.f27131p = new ki.h(i80Var, 3);
         String[] strArr = {""};
         ArrayList arrayList = new ArrayList(s3Var.h);
         Collections.sort(arrayList, new r2(g4Var, 0));
-        a71 a71Var = new a71(g4Var, new s2(g4Var, strArr, arrayList, 0), new t2(g4Var, i80Var, 0), null);
-        a71Var.W2.f30201r = false;
+        b71 b71Var = new b71(g4Var, new s2(g4Var, strArr, arrayList, 0), new t2(g4Var, i80Var, 0), null);
+        b71Var.W2.f30438r = false;
         FrameLayout frameLayout = new FrameLayout(context);
         ImageView imageView = new ImageView(context);
         imageView.setScaleType(ImageView.ScaleType.CENTER);
@@ -176,34 +176,34 @@ public class g4 extends org.telegram.ui.ActionBar.n2 implements ne.d {
         iuVar.setTextColor(h6.w0(h6.E8, g4Var.resourceProvider));
         iuVar.setBackground(null);
         frameLayout.addView(iuVar, z5.d(-1, -2.0f, 19, 43.0f, 0.0f, 8.0f, 0.0f));
-        iuVar.addTextChangedListener(new ao(strArr, a71Var, false, 8));
+        iuVar.addTextChangedListener(new ao(strArr, b71Var, false, 8));
         if (arrayList.size() > 8) {
             i80Var.r(frameLayout, z5.n(-1, 44));
             i80Var.k();
         }
-        if (!s3Var.f50506l.isEmpty()) {
+        if (!s3Var.f50505l.isEmpty()) {
             i80Var.c(R.drawable.msg_select, LocaleController.getString(R.string.SelectAll), new u2(g4Var, 0), false);
         }
-        i80Var.q(a71Var);
+        i80Var.q(b71Var);
         i80Var.Z();
     }
 
     public static void W(g4 g4Var, Context context) {
         s3 s3Var = g4Var.d;
-        if (!g4Var.K || s3Var.f50501f.isEmpty()) {
+        if (!g4Var.K || s3Var.f50500f.isEmpty()) {
             return;
         }
         i80 i80Var = new i80(g4Var, g4Var.G, false, false);
-        i80Var.f27135t = false;
+        i80Var.f27137t = false;
         i80Var.Y = true;
         i80Var.a0(0.0f, AndroidUtilities.dp(-8.0f));
         i80Var.R = true;
-        i80Var.f27129p = new ki.h(i80Var, 5);
+        i80Var.f27131p = new ki.h(i80Var, 5);
         String[] strArr = {""};
-        ArrayList arrayList = new ArrayList(s3Var.f50501f);
+        ArrayList arrayList = new ArrayList(s3Var.f50500f);
         Collections.sort(arrayList, new r2(g4Var, 2));
-        a71 a71Var = new a71(g4Var, new s2(g4Var, strArr, arrayList, 2), new t2(g4Var, i80Var, 2), null);
-        a71Var.W2.f30201r = false;
+        b71 b71Var = new b71(g4Var, new s2(g4Var, strArr, arrayList, 2), new t2(g4Var, i80Var, 2), null);
+        b71Var.W2.f30438r = false;
         FrameLayout frameLayout = new FrameLayout(context);
         ImageView imageView = new ImageView(context);
         imageView.setScaleType(ImageView.ScaleType.CENTER);
@@ -222,34 +222,34 @@ public class g4 extends org.telegram.ui.ActionBar.n2 implements ne.d {
         iuVar.setTextColor(h6.w0(h6.E8, g4Var.resourceProvider));
         iuVar.setBackground(null);
         frameLayout.addView(iuVar, z5.d(-1, -2.0f, 19, 43.0f, 0.0f, 8.0f, 0.0f));
-        iuVar.addTextChangedListener(new ao(strArr, a71Var, false, 9));
+        iuVar.addTextChangedListener(new ao(strArr, b71Var, false, 9));
         if (arrayList.size() > 8) {
             i80Var.r(frameLayout, z5.n(-1, 44));
             i80Var.k();
         }
-        if (!s3Var.f50504j.isEmpty()) {
+        if (!s3Var.f50503j.isEmpty()) {
             i80Var.c(R.drawable.msg_select, LocaleController.getString(R.string.SelectAll), new u2(g4Var, 2), false);
         }
-        i80Var.q(a71Var);
+        i80Var.q(b71Var);
         i80Var.Z();
     }
 
     public static void X(g4 g4Var, Context context) {
         s3 s3Var = g4Var.d;
-        if (!g4Var.K || s3Var.f50502g.isEmpty()) {
+        if (!g4Var.K || s3Var.f50501g.isEmpty()) {
             return;
         }
         i80 i80Var = new i80(g4Var, g4Var.H, false, false);
-        i80Var.f27135t = false;
+        i80Var.f27137t = false;
         i80Var.Y = true;
         i80Var.a0(0.0f, AndroidUtilities.dp(-8.0f));
         i80Var.R = true;
-        i80Var.f27129p = new ki.h(i80Var, 4);
+        i80Var.f27131p = new ki.h(i80Var, 4);
         String[] strArr = {""};
-        ArrayList arrayList = new ArrayList(s3Var.f50502g);
+        ArrayList arrayList = new ArrayList(s3Var.f50501g);
         Collections.sort(arrayList, new r2(g4Var, 1));
-        a71 a71Var = new a71(g4Var, new s2(g4Var, strArr, arrayList, 1), new t2(g4Var, i80Var, 1), null);
-        a71Var.W2.f30201r = false;
+        b71 b71Var = new b71(g4Var, new s2(g4Var, strArr, arrayList, 1), new t2(g4Var, i80Var, 1), null);
+        b71Var.W2.f30438r = false;
         FrameLayout frameLayout = new FrameLayout(context);
         ImageView imageView = new ImageView(context);
         imageView.setScaleType(ImageView.ScaleType.CENTER);
@@ -268,24 +268,24 @@ public class g4 extends org.telegram.ui.ActionBar.n2 implements ne.d {
         iuVar.setTextColor(h6.w0(h6.E8, g4Var.resourceProvider));
         iuVar.setBackground(null);
         frameLayout.addView(iuVar, z5.d(-1, -2.0f, 19, 43.0f, 0.0f, 8.0f, 0.0f));
-        iuVar.addTextChangedListener(new ao(strArr, a71Var, false, 10));
+        iuVar.addTextChangedListener(new ao(strArr, b71Var, false, 10));
         if (arrayList.size() > 8) {
             i80Var.r(frameLayout, z5.n(-1, 44));
             i80Var.k();
         }
-        if (!s3Var.f50505k.isEmpty()) {
+        if (!s3Var.f50504k.isEmpty()) {
             i80Var.c(R.drawable.msg_select, LocaleController.getString(R.string.SelectAll), new u2(g4Var, 1), false);
         }
-        i80Var.q(a71Var);
+        i80Var.q(b71Var);
         i80Var.Z();
     }
 
-    public static void Y(g4 g4Var, f61 f61Var) {
-        Object obj = f61Var.G;
+    public static void Y(g4 g4Var, g61 g61Var) {
+        Object obj = g61Var.G;
         if (obj instanceof TL_stars.TL_starGiftUnique) {
             TL_stars.TL_starGiftUnique tL_starGiftUnique = (TL_stars.TL_starGiftUnique) obj;
-            k7 k7Var = new k7(g4Var.getParentActivity(), g4Var.currentAccount, g4Var.f50273b, g4Var.resourceProvider, null);
-            k7Var.D2(tL_starGiftUnique.slug, tL_starGiftUnique, g4Var.d);
+            k7 k7Var = new k7(g4Var.getParentActivity(), g4Var.currentAccount, g4Var.f50272b, g4Var.resourceProvider, null);
+            k7Var.K2(tL_starGiftUnique.slug, tL_starGiftUnique, g4Var.d);
             k7Var.R0 = new w2(g4Var);
             g4Var.showDialog(k7Var);
         }
@@ -311,26 +311,26 @@ public class g4 extends org.telegram.ui.ActionBar.n2 implements ne.d {
     public final View createView(final Context context) {
         gh.c cVar = new gh.c();
         this.L = cVar;
-        int i10 = h6.f20986d6;
+        int i10 = h6.f20989d6;
         cVar.a(getThemedColor(i10));
         this.M = new bh.b(this.L);
         org.telegram.ui.ActionBar.k kVar = this.actionBar;
         org.telegram.ui.ActionBar.g2 g2Var = new org.telegram.ui.ActionBar.g2(false);
-        this.f50275f = g2Var;
+        this.f50274f = g2Var;
         kVar.setBackButtonDrawable(g2Var);
-        this.f50275f.f20864k = 240.0f;
+        this.f50274f.f20867k = 240.0f;
         this.actionBar.setCastShadows(false);
         this.actionBar.setAddToContainer(false);
-        this.actionBar.setActionBarMenuOnItemClick(new a31(this, 15));
-        this.actionBar.setTitle(this.f50274c);
+        this.actionBar.setActionBarMenuOnItemClick(new y21(this, 15));
+        this.actionBar.setTitle(this.f50273c);
         this.actionBar.setBackgroundColor(getThemedColor(i10));
         org.telegram.ui.ActionBar.k kVar2 = this.actionBar;
         int i11 = h6.G6;
         kVar2.C(getThemedColor(i11), false);
         this.actionBar.C(getThemedColor(i11), true);
-        this.actionBar.B(getThemedColor(h6.f21393z8), false);
+        this.actionBar.B(getThemedColor(h6.f21396z8), false);
         this.actionBar.setTitleColor(getThemedColor(i11));
-        this.actionBar.setSubtitleColor(getThemedColor(h6.f21391z6));
+        this.actionBar.setSubtitleColor(getThemedColor(h6.f21394z6));
         y8 y8Var = new y8(this, context, 9);
         int v = h6.v(h6.w0(i10, this.resourceProvider), h6.m1(0.04f, h6.w0(i11, this.resourceProvider)));
         y8Var.setBackgroundColor(v);
@@ -338,39 +338,39 @@ public class g4 extends org.telegram.ui.ActionBar.n2 implements ne.d {
         ad adVar = new ad(context, this.currentAccount, this.resourceProvider);
         adVar.d = true;
         b6.a(adVar);
-        adVar.setOnClickListener(new org.telegram.ui.web.c(13, this, adVar));
+        adVar.setOnClickListener(new qg.n(12, this, adVar));
         this.actionBar.addView(adVar, z5.d(-2, -2.0f, 85, 0.0f, 0.0f, 4.0f, 0.0f));
-        ?? a71Var = new a71(this, new hg.o(this, 29), new w2(this), new w2(this));
-        this.f50276n = a71Var;
-        a71Var.W2.f30201r = false;
-        a71Var.setSpanCount(3);
-        this.f50276n.j(new kv(this, 23));
-        this.f50276n.setPadding(0, AndroidUtilities.dp(45.0f), 0, AndroidUtilities.dp(101.0f));
-        this.f50276n.setClipToPadding(false);
-        y8Var.addView(this.f50276n, z5.d(-1, -1.0f, 119, 7.33f, 0.0f, 7.33f, -45.0f));
+        ?? b71Var = new b71(this, new hg.o(this, 29), new w2(this), new w2(this));
+        this.f50275n = b71Var;
+        b71Var.W2.f30438r = false;
+        b71Var.setSpanCount(3);
+        this.f50275n.j(new kv(this, 23));
+        this.f50275n.setPadding(0, AndroidUtilities.dp(45.0f), 0, AndroidUtilities.dp(101.0f));
+        this.f50275n.setClipToPadding(false);
+        y8Var.addView(this.f50275n, z5.d(-1, -1.0f, 119, 7.33f, 0.0f, 7.33f, -45.0f));
         y8Var.addView(this.actionBar);
         View.OnClickListener onClickListener = new View.OnClickListener(this) {
-            public final g4 f50575b;
+            public final g4 f50574b;
 
             {
-                this.f50575b = this;
+                this.f50574b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        s3 s3Var = this.f50575b.d;
-                        s3Var.f50505k.clear();
-                        s3Var.f50504j.clear();
-                        s3Var.f50506l.clear();
+                        s3 s3Var = this.f50574b.d;
+                        s3Var.f50504k.clear();
+                        s3Var.f50503j.clear();
+                        s3Var.f50505l.clear();
                         s3Var.h();
                         return;
                     default:
-                        s3 s3Var2 = this.f50575b.d;
-                        s3Var2.f50505k.clear();
-                        s3Var2.f50504j.clear();
-                        s3Var2.f50506l.clear();
+                        s3 s3Var2 = this.f50574b.d;
+                        s3Var2.f50504k.clear();
+                        s3Var2.f50503j.clear();
+                        s3Var2.f50505l.clear();
                         s3Var2.h();
                         return;
                 }
@@ -405,34 +405,34 @@ public class g4 extends org.telegram.ui.ActionBar.n2 implements ne.d {
         b6.a(textView2);
         e.addView(textView2, z5.t(-2, 27, 17, 32, 0, 32, 12));
         textView2.setOnClickListener(onClickListener);
-        this.f50279w = frameLayout;
-        this.f50280x = false;
+        this.f50278w = frameLayout;
+        this.f50279x = false;
         frameLayout.setAlpha(0.0f);
-        this.f50279w.setScaleX(0.95f);
-        this.f50279w.setScaleY(0.95f);
-        this.f50279w.setVisibility(8);
-        y8Var.addView(this.f50279w, z5.d(-1, -1.0f, 119, 0.0f, 0.0f, 0.0f, -45.0f));
+        this.f50278w.setScaleX(0.95f);
+        this.f50278w.setScaleY(0.95f);
+        this.f50278w.setVisibility(8);
+        y8Var.addView(this.f50278w, z5.d(-1, -1.0f, 119, 0.0f, 0.0f, 0.0f, -45.0f));
         LinearLayout linearLayout = new LinearLayout(context);
         this.E = linearLayout;
         linearLayout.setPadding(AndroidUtilities.dp(11.0f), 0, AndroidUtilities.dp(11.0f), 0);
         this.E.setOrientation(0);
         HorizontalScrollView horizontalScrollView = new HorizontalScrollView(context);
-        this.f50281y = horizontalScrollView;
+        this.f50280y = horizontalScrollView;
         horizontalScrollView.setHorizontalScrollBarEnabled(false);
-        this.f50281y.addView(this.E);
-        this.f50281y.setBackgroundColor(v);
-        this.f50281y.setClipChildren(false);
-        y8Var.addView(this.f50281y, z5.e(-1, 47, 55));
+        this.f50280y.addView(this.E);
+        this.f50280y.setBackgroundColor(v);
+        this.f50280y.setClipChildren(false);
+        y8Var.addView(this.f50280y, z5.e(-1, 47, 55));
         View view = new View(context);
         this.h = view;
-        view.setBackgroundColor(getThemedColor(h6.f20987d7));
+        view.setBackgroundColor(getThemedColor(h6.f20990d7));
         this.h.setAlpha(0.0f);
         y8Var.addView(this.h, z5.a(-1.0f, 2.0f / AndroidUtilities.density, 55));
         LinearLayout linearLayout2 = new LinearLayout(context);
         linearLayout2.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(15.0f), 0);
         linearLayout2.setOrientation(0);
         final xp xpVar = new xp(context, 24, this.resourceProvider);
-        xpVar.b(h6.f21059h7, h6.f21094j7, h6.f21114k7);
+        xpVar.b(h6.f21062h7, h6.f21097j7, h6.f21117k7);
         xpVar.setDrawUnchecked(true);
         xpVar.a(false, false);
         xpVar.setDrawBackgroundAsArc(10);
@@ -441,7 +441,7 @@ public class g4 extends org.telegram.ui.ActionBar.n2 implements ne.d {
         xpVar.setScaleY(0.8f);
         linearLayout2.addView(xpVar, z5.q(26, 26, 16));
         TextView textView3 = new TextView(context);
-        lk.o(h6.f21092j5, this.resourceProvider, textView3, 1, 14.0f);
+        lk.o(h6.f21095j5, this.resourceProvider, textView3, 1, 14.0f);
         textView3.setText(LocaleController.getString(R.string.GiftResaleStarsOnly));
         linearLayout2.addView(textView3, z5.t(-2, -2, 16, 9, 0, 0, 0));
         int dp = AndroidUtilities.dp(18.0f);
@@ -450,42 +450,42 @@ public class g4 extends org.telegram.ui.ActionBar.n2 implements ne.d {
         int v10 = h6.v(themedColor, h6.m1(0.1f, getThemedColor(i13)));
         linearLayout2.setBackground(h6.j0(dp, dp, dp, dp, 0, v10, v10));
         FrameLayout frameLayout2 = new FrameLayout(context);
-        this.f50278s = frameLayout2;
+        this.f50277s = frameLayout2;
         frameLayout2.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
-        FrameLayout frameLayout3 = this.f50278s;
+        FrameLayout frameLayout3 = this.f50277s;
         dh.d c10 = this.M.c(frameLayout3, null, false);
         c10.o(fh.c.l(this.resourceProvider));
         c10.p(AndroidUtilities.dp(8.0f));
         c10.q(AndroidUtilities.dp(18.0f));
         frameLayout3.setBackground(c10);
-        this.f50278s.setOnClickListener(new View.OnClickListener(this) {
-            public final g4 f50604b;
+        this.f50277s.setOnClickListener(new View.OnClickListener(this) {
+            public final g4 f50603b;
 
             {
-                this.f50604b = this;
+                this.f50603b = this;
             }
 
             @Override
             public final void onClick(View view2) {
                 switch (r3) {
                     case 0:
-                        s3 s3Var = this.f50604b.d;
+                        s3 s3Var = this.f50603b.d;
                         if (s3Var != null) {
-                            boolean z10 = !s3Var.f50512r;
-                            s3Var.f50512r = z10;
+                            boolean z10 = !s3Var.f50511r;
+                            s3Var.f50511r = z10;
                             xpVar.a(z10, true);
                             s3Var.h();
                             return;
                         }
                         return;
                     default:
-                        final g4 g4Var = this.f50604b;
+                        final g4 g4Var = this.f50603b;
                         s3 s3Var2 = g4Var.d;
                         if (g4Var.K) {
                             i80 H = i80.H(g4Var, g4Var.F);
-                            H.c(R.drawable.menu_sort_value, LocaleController.getString(r3.BY_PRICE.f50488a), new u2(g4Var, 3), false);
-                            H.c(R.drawable.menu_sort_date, LocaleController.getString(r3.BY_DATE.f50488a), new u2(g4Var, 4), false);
-                            H.c(R.drawable.menu_sort_number, LocaleController.getString(r3.BY_NUMBER.f50488a), new u2(g4Var, 5), false);
+                            H.c(R.drawable.menu_sort_value, LocaleController.getString(r3.BY_PRICE.f50487a), new u2(g4Var, 3), false);
+                            H.c(R.drawable.menu_sort_date, LocaleController.getString(r3.BY_DATE.f50487a), new u2(g4Var, 4), false);
+                            H.c(R.drawable.menu_sort_number, LocaleController.getString(r3.BY_NUMBER.f50487a), new u2(g4Var, 5), false);
                             H.k();
                             String string = LocaleController.getString(R.string.GiftResaleFilterAllListings);
                             final xp xpVar2 = xpVar;
@@ -495,8 +495,8 @@ public class g4 extends org.telegram.ui.ActionBar.n2 implements ne.d {
                                     switch (r3) {
                                         case 0:
                                             s3 s3Var3 = g4Var.d;
-                                            if (s3Var3.f50512r) {
-                                                s3Var3.f50512r = false;
+                                            if (s3Var3.f50511r) {
+                                                s3Var3.f50511r = false;
                                                 xpVar2.a(false, true);
                                                 s3Var3.h();
                                                 return;
@@ -504,8 +504,8 @@ public class g4 extends org.telegram.ui.ActionBar.n2 implements ne.d {
                                             return;
                                         default:
                                             s3 s3Var4 = g4Var.d;
-                                            if (!s3Var4.f50512r) {
-                                                s3Var4.f50512r = true;
+                                            if (!s3Var4.f50511r) {
+                                                s3Var4.f50511r = true;
                                                 xpVar2.a(true, true);
                                                 s3Var4.h();
                                                 return;
@@ -513,15 +513,15 @@ public class g4 extends org.telegram.ui.ActionBar.n2 implements ne.d {
                                             return;
                                     }
                                 }
-                            }, string, !s3Var2.f50512r);
+                            }, string, !s3Var2.f50511r);
                             H.i(new Runnable() {
                                 @Override
                                 public final void run() {
                                     switch (r3) {
                                         case 0:
                                             s3 s3Var3 = g4Var.d;
-                                            if (s3Var3.f50512r) {
-                                                s3Var3.f50512r = false;
+                                            if (s3Var3.f50511r) {
+                                                s3Var3.f50511r = false;
                                                 xpVar2.a(false, true);
                                                 s3Var3.h();
                                                 return;
@@ -529,8 +529,8 @@ public class g4 extends org.telegram.ui.ActionBar.n2 implements ne.d {
                                             return;
                                         default:
                                             s3 s3Var4 = g4Var.d;
-                                            if (!s3Var4.f50512r) {
-                                                s3Var4.f50512r = true;
+                                            if (!s3Var4.f50511r) {
+                                                s3Var4.f50511r = true;
                                                 xpVar2.a(true, true);
                                                 s3Var4.h();
                                                 return;
@@ -538,8 +538,8 @@ public class g4 extends org.telegram.ui.ActionBar.n2 implements ne.d {
                                             return;
                                     }
                                 }
-                            }, LocaleController.getString(R.string.GiftResaleFilterForStarsOnly), s3Var2.f50512r);
-                            H.f27135t = false;
+                            }, LocaleController.getString(R.string.GiftResaleFilterForStarsOnly), s3Var2.f50511r);
+                            H.f27137t = false;
                             H.Y = true;
                             H.a0(0.0f, AndroidUtilities.dp(-8.0f));
                             H.Z();
@@ -549,23 +549,23 @@ public class g4 extends org.telegram.ui.ActionBar.n2 implements ne.d {
                 }
             }
         });
-        this.f50278s.addView(linearLayout2, z5.c(-1.0f, -2));
-        b6.b(this.f50278s, 0.04f, 1.5f);
-        y8Var.addView(this.f50278s, z5.d(-2, 52.0f, 81, 0.0f, 0.0f, 0.0f, AndroidUtilities.navigationBarHeight / AndroidUtilities.density));
+        this.f50277s.addView(linearLayout2, z5.c(-1.0f, -2));
+        b6.b(this.f50277s, 0.04f, 1.5f);
+        y8Var.addView(this.f50277s, z5.d(-2, 52.0f, 81, 0.0f, 0.0f, 0.0f, AndroidUtilities.navigationBarHeight / AndroidUtilities.density));
         ga y3 = ga.y(this.currentAccount, true);
         if (y3.e && !y3.s().k()) {
-            this.f50278s.setVisibility(8);
+            this.f50277s.setVisibility(8);
         }
         FrameLayout frameLayout4 = new FrameLayout(context);
-        this.f50277r = frameLayout4;
+        this.f50276r = frameLayout4;
         frameLayout4.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
-        FrameLayout frameLayout5 = this.f50277r;
+        FrameLayout frameLayout5 = this.f50276r;
         dh.d c11 = this.M.c(frameLayout5, null, false);
         c11.o(fh.c.l(this.resourceProvider));
         c11.p(AndroidUtilities.dp(8.0f));
         c11.q(AndroidUtilities.dp(22.0f));
         frameLayout5.setBackground(c11);
-        y8Var.addView(this.f50277r, z5.d(-2, 60.0f, 81, 0.0f, 0.0f, 0.0f, AndroidUtilities.navigationBarHeight / AndroidUtilities.density));
+        y8Var.addView(this.f50276r, z5.d(-2, 60.0f, 81, 0.0f, 0.0f, 0.0f, AndroidUtilities.navigationBarHeight / AndroidUtilities.density));
         this.v = new TextView(context);
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("x");
         spannableStringBuilder.setSpan(new yq(R.drawable.msg_clearcache, 0), 0, 1, 33);
@@ -579,68 +579,68 @@ public class g4 extends org.telegram.ui.ActionBar.n2 implements ne.d {
         int v11 = h6.v(getThemedColor(i10), h6.m1(0.1f, getThemedColor(i13)));
         textView4.setBackground(h6.j0(dp2, dp2, dp2, dp2, 0, v11, v11));
         this.v.setGravity(17);
-        this.f50277r.setOnClickListener(new View.OnClickListener(this) {
-            public final g4 f50575b;
+        this.f50276r.setOnClickListener(new View.OnClickListener(this) {
+            public final g4 f50574b;
 
             {
-                this.f50575b = this;
+                this.f50574b = this;
             }
 
             @Override
             public final void onClick(View view2) {
                 switch (r2) {
                     case 0:
-                        s3 s3Var = this.f50575b.d;
-                        s3Var.f50505k.clear();
-                        s3Var.f50504j.clear();
-                        s3Var.f50506l.clear();
+                        s3 s3Var = this.f50574b.d;
+                        s3Var.f50504k.clear();
+                        s3Var.f50503j.clear();
+                        s3Var.f50505l.clear();
                         s3Var.h();
                         return;
                     default:
-                        s3 s3Var2 = this.f50575b.d;
-                        s3Var2.f50505k.clear();
-                        s3Var2.f50504j.clear();
-                        s3Var2.f50506l.clear();
+                        s3 s3Var2 = this.f50574b.d;
+                        s3Var2.f50504k.clear();
+                        s3Var2.f50503j.clear();
+                        s3Var2.f50505l.clear();
                         s3Var2.h();
                         return;
                 }
             }
         });
-        this.f50277r.addView(this.v, z5.c(-1.0f, -2));
-        this.f50277r.setVisibility(8);
-        b6.b(this.f50277r, 0.05f, 1.5f);
+        this.f50276r.addView(this.v, z5.c(-1.0f, -2));
+        this.f50276r.setVisibility(8);
+        b6.b(this.f50276r, 0.05f, 1.5f);
         j3 j3Var = new j3(context, this.resourceProvider);
         this.F = j3Var;
-        j3Var.setSorting(this.d.f50510p);
+        j3Var.setSorting(this.d.f50509p);
         this.E.addView(this.F, z5.t(-2, -2, 16, 0, 0, 6, 0));
         this.F.setOnClickListener(new View.OnClickListener(this) {
-            public final g4 f50604b;
+            public final g4 f50603b;
 
             {
-                this.f50604b = this;
+                this.f50603b = this;
             }
 
             @Override
             public final void onClick(View view2) {
                 switch (r3) {
                     case 0:
-                        s3 s3Var = this.f50604b.d;
+                        s3 s3Var = this.f50603b.d;
                         if (s3Var != null) {
-                            boolean z10 = !s3Var.f50512r;
-                            s3Var.f50512r = z10;
+                            boolean z10 = !s3Var.f50511r;
+                            s3Var.f50511r = z10;
                             xpVar.a(z10, true);
                             s3Var.h();
                             return;
                         }
                         return;
                     default:
-                        final g4 g4Var = this.f50604b;
+                        final g4 g4Var = this.f50603b;
                         s3 s3Var2 = g4Var.d;
                         if (g4Var.K) {
                             i80 H = i80.H(g4Var, g4Var.F);
-                            H.c(R.drawable.menu_sort_value, LocaleController.getString(r3.BY_PRICE.f50488a), new u2(g4Var, 3), false);
-                            H.c(R.drawable.menu_sort_date, LocaleController.getString(r3.BY_DATE.f50488a), new u2(g4Var, 4), false);
-                            H.c(R.drawable.menu_sort_number, LocaleController.getString(r3.BY_NUMBER.f50488a), new u2(g4Var, 5), false);
+                            H.c(R.drawable.menu_sort_value, LocaleController.getString(r3.BY_PRICE.f50487a), new u2(g4Var, 3), false);
+                            H.c(R.drawable.menu_sort_date, LocaleController.getString(r3.BY_DATE.f50487a), new u2(g4Var, 4), false);
+                            H.c(R.drawable.menu_sort_number, LocaleController.getString(r3.BY_NUMBER.f50487a), new u2(g4Var, 5), false);
                             H.k();
                             String string = LocaleController.getString(R.string.GiftResaleFilterAllListings);
                             final xp xpVar2 = xpVar;
@@ -650,8 +650,8 @@ public class g4 extends org.telegram.ui.ActionBar.n2 implements ne.d {
                                     switch (r3) {
                                         case 0:
                                             s3 s3Var3 = g4Var.d;
-                                            if (s3Var3.f50512r) {
-                                                s3Var3.f50512r = false;
+                                            if (s3Var3.f50511r) {
+                                                s3Var3.f50511r = false;
                                                 xpVar2.a(false, true);
                                                 s3Var3.h();
                                                 return;
@@ -659,8 +659,8 @@ public class g4 extends org.telegram.ui.ActionBar.n2 implements ne.d {
                                             return;
                                         default:
                                             s3 s3Var4 = g4Var.d;
-                                            if (!s3Var4.f50512r) {
-                                                s3Var4.f50512r = true;
+                                            if (!s3Var4.f50511r) {
+                                                s3Var4.f50511r = true;
                                                 xpVar2.a(true, true);
                                                 s3Var4.h();
                                                 return;
@@ -668,15 +668,15 @@ public class g4 extends org.telegram.ui.ActionBar.n2 implements ne.d {
                                             return;
                                     }
                                 }
-                            }, string, !s3Var2.f50512r);
+                            }, string, !s3Var2.f50511r);
                             H.i(new Runnable() {
                                 @Override
                                 public final void run() {
                                     switch (r3) {
                                         case 0:
                                             s3 s3Var3 = g4Var.d;
-                                            if (s3Var3.f50512r) {
-                                                s3Var3.f50512r = false;
+                                            if (s3Var3.f50511r) {
+                                                s3Var3.f50511r = false;
                                                 xpVar2.a(false, true);
                                                 s3Var3.h();
                                                 return;
@@ -684,8 +684,8 @@ public class g4 extends org.telegram.ui.ActionBar.n2 implements ne.d {
                                             return;
                                         default:
                                             s3 s3Var4 = g4Var.d;
-                                            if (!s3Var4.f50512r) {
-                                                s3Var4.f50512r = true;
+                                            if (!s3Var4.f50511r) {
+                                                s3Var4.f50511r = true;
                                                 xpVar2.a(true, true);
                                                 s3Var4.h();
                                                 return;
@@ -693,8 +693,8 @@ public class g4 extends org.telegram.ui.ActionBar.n2 implements ne.d {
                                             return;
                                     }
                                 }
-                            }, LocaleController.getString(R.string.GiftResaleFilterForStarsOnly), s3Var2.f50512r);
-                            H.f27135t = false;
+                            }, LocaleController.getString(R.string.GiftResaleFilterForStarsOnly), s3Var2.f50511r);
+                            H.f27137t = false;
                             H.Y = true;
                             H.a0(0.0f, AndroidUtilities.dp(-8.0f));
                             H.Z();
@@ -709,23 +709,23 @@ public class g4 extends org.telegram.ui.ActionBar.n2 implements ne.d {
         j3Var2.setValue(LocaleController.getString(R.string.Gift2AttributeModel));
         this.E.addView(this.G, z5.t(-2, -2, 16, 0, 0, 6, 0));
         this.G.setOnClickListener(new View.OnClickListener(this) {
-            public final g4 f50478b;
+            public final g4 f50477b;
 
             {
-                this.f50478b = this;
+                this.f50477b = this;
             }
 
             @Override
             public final void onClick(View view2) {
                 switch (r3) {
                     case 0:
-                        g4.W(this.f50478b, context);
+                        g4.W(this.f50477b, context);
                         return;
                     case 1:
-                        g4.X(this.f50478b, context);
+                        g4.X(this.f50477b, context);
                         return;
                     default:
-                        g4.V(this.f50478b, context);
+                        g4.V(this.f50477b, context);
                         return;
                 }
             }
@@ -735,23 +735,23 @@ public class g4 extends org.telegram.ui.ActionBar.n2 implements ne.d {
         j3Var3.setValue(LocaleController.getString(R.string.Gift2AttributeBackdrop));
         this.E.addView(this.H, z5.t(-2, -2, 16, 0, 0, 6, 0));
         this.H.setOnClickListener(new View.OnClickListener(this) {
-            public final g4 f50478b;
+            public final g4 f50477b;
 
             {
-                this.f50478b = this;
+                this.f50477b = this;
             }
 
             @Override
             public final void onClick(View view2) {
                 switch (r3) {
                     case 0:
-                        g4.W(this.f50478b, context);
+                        g4.W(this.f50477b, context);
                         return;
                     case 1:
-                        g4.X(this.f50478b, context);
+                        g4.X(this.f50477b, context);
                         return;
                     default:
-                        g4.V(this.f50478b, context);
+                        g4.V(this.f50477b, context);
                         return;
                 }
             }
@@ -761,23 +761,23 @@ public class g4 extends org.telegram.ui.ActionBar.n2 implements ne.d {
         j3Var4.setValue(LocaleController.getString(R.string.Gift2AttributeSymbol));
         this.E.addView(this.I, z5.t(-2, -2, 16, 0, 0, 0, 0));
         this.I.setOnClickListener(new View.OnClickListener(this) {
-            public final g4 f50478b;
+            public final g4 f50477b;
 
             {
-                this.f50478b = this;
+                this.f50477b = this;
             }
 
             @Override
             public final void onClick(View view2) {
                 switch (r3) {
                     case 0:
-                        g4.W(this.f50478b, context);
+                        g4.W(this.f50477b, context);
                         return;
                     case 1:
-                        g4.X(this.f50478b, context);
+                        g4.X(this.f50477b, context);
                         return;
                     default:
-                        g4.V(this.f50478b, context);
+                        g4.V(this.f50477b, context);
                         return;
                 }
             }
@@ -802,8 +802,8 @@ public class g4 extends org.telegram.ui.ActionBar.n2 implements ne.d {
         int i10 = 0;
         float f14 = 0.0f;
         if (z11) {
-            this.f50281y.setVisibility(0);
-            ViewPropertyAnimator animate = this.f50281y.animate();
+            this.f50280y.setVisibility(0);
+            ViewPropertyAnimator animate = this.f50280y.animate();
             if (z10) {
                 f11 = 0.0f;
             } else {
@@ -823,26 +823,26 @@ public class g4 extends org.telegram.ui.ActionBar.n2 implements ne.d {
                 f12 = -AndroidUtilities.dp(45.0f);
             }
             animate2.translationY(f12).setInterpolator(bsVar).setDuration(420L).start();
-            ViewPropertyAnimator animate3 = this.f50276n.animate();
+            ViewPropertyAnimator animate3 = this.f50275n.animate();
             if (!z10) {
                 f14 = -AndroidUtilities.dp(39.0f);
             }
             animate3.translationY(f14).setInterpolator(bsVar).setDuration(420L).start();
             return;
         }
-        HorizontalScrollView horizontalScrollView = this.f50281y;
+        HorizontalScrollView horizontalScrollView = this.f50280y;
         if (!z10) {
             i10 = 8;
         }
         horizontalScrollView.setVisibility(i10);
-        HorizontalScrollView horizontalScrollView2 = this.f50281y;
+        HorizontalScrollView horizontalScrollView2 = this.f50280y;
         if (z10) {
             f7 = 0.0f;
         } else {
             f7 = -AndroidUtilities.dp(45.0f);
         }
         horizontalScrollView2.setTranslationY(f7);
-        HorizontalScrollView horizontalScrollView3 = this.f50281y;
+        HorizontalScrollView horizontalScrollView3 = this.f50280y;
         if (!z10) {
             f13 = 0.0f;
         }
@@ -854,7 +854,7 @@ public class g4 extends org.telegram.ui.ActionBar.n2 implements ne.d {
             f10 = -AndroidUtilities.dp(45.0f);
         }
         view.setTranslationY(f10);
-        b3 b3Var = this.f50276n;
+        b3 b3Var = this.f50275n;
         if (!z10) {
             f14 = -AndroidUtilities.dp(39.0f);
         }
@@ -866,29 +866,29 @@ public class g4 extends org.telegram.ui.ActionBar.n2 implements ne.d {
         String string2;
         String string3;
         String formatPluralStringComma;
-        s61 s61Var;
+        t61 t61Var;
         s3 s3Var = this.d;
         int i10 = s3Var.e;
-        HashSet hashSet = s3Var.f50506l;
+        HashSet hashSet = s3Var.f50505l;
         ArrayList arrayList = s3Var.h;
-        HashSet hashSet2 = s3Var.f50505k;
-        ArrayList arrayList2 = s3Var.f50502g;
-        HashSet hashSet3 = s3Var.f50504j;
-        ArrayList arrayList3 = s3Var.f50501f;
+        HashSet hashSet2 = s3Var.f50504k;
+        ArrayList arrayList2 = s3Var.f50501g;
+        HashSet hashSet3 = s3Var.f50503j;
+        ArrayList arrayList3 = s3Var.f50500f;
         if (i10 > 12) {
             d0(true, true);
         }
-        b3 b3Var = this.f50276n;
+        b3 b3Var = this.f50275n;
         boolean z11 = false;
-        if (b3Var != null && (s61Var = b3Var.W2) != null) {
-            s61Var.N(true);
+        if (b3Var != null && (t61Var = b3Var.W2) != null) {
+            t61Var.N(true);
             if (z10) {
-                this.f50276n.u0(0);
+                this.f50275n.u0(0);
             }
         }
         org.telegram.ui.ActionBar.k kVar = this.actionBar;
         if (kVar != null) {
-            kVar.setTitle(this.f50274c);
+            kVar.setTitle(this.f50273c);
             org.telegram.ui.ActionBar.k kVar2 = this.actionBar;
             int i11 = s3Var.e;
             if (i11 <= 0) {
@@ -900,7 +900,7 @@ public class g4 extends org.telegram.ui.ActionBar.n2 implements ne.d {
         }
         j3 j3Var = this.F;
         if (j3Var != null) {
-            j3Var.setSorting(s3Var.f50510p);
+            j3Var.setSorting(s3Var.f50509p);
         }
         if (this.G != null) {
             int size = arrayList3.size() - hashSet3.size();
@@ -934,27 +934,27 @@ public class g4 extends org.telegram.ui.ActionBar.n2 implements ne.d {
         }
         int i12 = 0;
         while (true) {
-            if (i12 >= this.f50276n.getChildCount()) {
+            if (i12 >= this.f50275n.getChildCount()) {
                 break;
-            } else if (this.f50276n.getChildAt(i12) instanceof b10) {
+            } else if (this.f50275n.getChildAt(i12) instanceof b10) {
                 s3Var.g(false);
                 break;
             } else {
                 i12++;
             }
         }
-        if ((s3Var.f50514t || s3Var.e > 0) && (!hashSet3.isEmpty() || !hashSet2.isEmpty() || !hashSet.isEmpty())) {
+        if ((s3Var.f50513t || s3Var.e > 0) && (!hashSet3.isEmpty() || !hashSet2.isEmpty() || !hashSet.isEmpty())) {
             z11 = true;
         }
-        this.f50272a.a(z11, true);
+        this.f50271a.a(z11, true);
     }
 
     @Override
     public final boolean isLightStatusBar() {
         if (getLastStoryViewer() == null || getLastStoryViewer().H0) {
-            int x02 = h6.x0(null, h6.f20986d6, false);
-            if (this.actionBar.s()) {
-                x02 = h6.x0(null, h6.f21340w8, false);
+            int x02 = h6.x0(null, h6.f20989d6, false);
+            if (this.actionBar.t()) {
+                x02 = h6.x0(null, h6.f21343w8, false);
             }
             if (i0.a.h(x02) > 0.699999988079071d) {
                 return true;
@@ -969,14 +969,14 @@ public class g4 extends org.telegram.ui.ActionBar.n2 implements ne.d {
     }
 
     @Override
-    public final void u(int i10, float f7, float f10, ne.e eVar) {
+    public final void r(int i10, float f7, float f10, ne.e eVar) {
         if (i10 == 0) {
-            this.f50278s.setTranslationY((-AndroidUtilities.dp(52.0f)) * f7);
-            h20.d(this.f50277r, f7);
+            this.f50277s.setTranslationY((-AndroidUtilities.dp(52.0f)) * f7);
+            h20.d(this.f50276r, f7);
         }
     }
 
     @Override
-    public final void E(float f7, int i10) {
+    public final void H(float f7, int i10) {
     }
 }

@@ -9,20 +9,20 @@ import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.bs;
-import org.telegram.ui.fg;
+import org.telegram.ui.dg;
 public final class i8 extends FrameLayout {
-    public final ImageView f34309a;
-    public final l3 f34310b;
-    public float f34311c;
+    public final ImageView f34328a;
+    public final m3 f34329b;
+    public float f34330c;
     public float d;
     public float e;
-    public float f34312f;
+    public float f34331f;
     public int h;
-    public float f34313n;
-    public float f34314r;
-    public boolean f34315s;
+    public float f34332n;
+    public float f34333r;
+    public boolean f34334s;
     public ValueAnimator v;
-    public o1.k f34316w;
+    public o1.k f34335w;
 
     public i8(Context context) {
         super(context);
@@ -30,28 +30,28 @@ public final class i8 extends FrameLayout {
         this.h = -1;
         setClipChildren(false);
         ImageView imageView = new ImageView(context);
-        this.f34309a = imageView;
+        this.f34328a = imageView;
         imageView.setImageResource(R.drawable.mini_gram_72);
         imageView.setScaleX(0.7407407f);
         imageView.setScaleY(0.7407407f);
         addView(imageView, w7.z5.c(-1.0f, -1));
-        l3 l3Var = new l3(this, context, new n(this, 10));
-        this.f34310b = l3Var;
-        addView(l3Var, w7.z5.c(-1.0f, -1));
+        m3 m3Var = new m3(this, context, new n(this, 10));
+        this.f34329b = m3Var;
+        addView(m3Var, w7.z5.c(-1.0f, -1));
     }
 
     public final void a(float f7) {
-        if (this.f34316w == null) {
+        if (this.f34335w == null) {
             o1.k kVar = new o1.k(new o1.j(this.e));
-            this.f34316w = kVar;
+            this.f34335w = kVar;
             o1.l lVar = new o1.l(f7);
             lVar.a(0.55f);
             lVar.b(280.0f);
-            kVar.f17558u = lVar;
-            this.f34316w.e(0.001f);
-            this.f34316w.b(new a3(this, 1));
+            kVar.f17561u = lVar;
+            this.f34335w.e(0.001f);
+            this.f34335w.b(new a3(this, 1));
         }
-        this.f34316w.g(f7);
+        this.f34335w.g(f7);
     }
 
     public final void b() {
@@ -59,35 +59,35 @@ public final class i8 extends FrameLayout {
         if (getParent() != null) {
             getParent().requestDisallowInterceptTouchEvent(false);
         }
-        this.f34312f = (float) Math.IEEEremainder((this.f34312f + this.f34311c) - c(), 6.283185307179586d);
-        this.f34315s = true;
+        this.f34331f = (float) Math.IEEEremainder((this.f34331f + this.f34330c) - c(), 6.283185307179586d);
+        this.f34334s = true;
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
         this.v = ofFloat;
         ofFloat.setDuration(350L);
         this.v.setInterpolator(bs.h);
-        this.v.addUpdateListener(new fg(this, (float) Math.IEEEremainder(this.d, 6.283185307179586d), 6));
+        this.v.addUpdateListener(new dg(this, (float) Math.IEEEremainder(this.d, 6.283185307179586d), 6));
         this.v.start();
         a(1.0f);
     }
 
     public final float c() {
-        return ((float) (((SystemClock.uptimeMillis() / 1000.0d) * 0.5961171984672546d) % 6.283185307179586d)) + this.f34312f;
+        return ((float) (((SystemClock.uptimeMillis() / 1000.0d) * 0.5961171984672546d) % 6.283185307179586d)) + this.f34331f;
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f34310b.setPaused(false);
+        this.f34329b.setPaused(false);
     }
 
     @Override
     public final void onDetachedFromWindow() {
-        this.f34310b.setPaused(true);
+        this.f34329b.setPaused(true);
         ValueAnimator valueAnimator = this.v;
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
-        o1.k kVar = this.f34316w;
+        o1.k kVar = this.f34335w;
         if (kVar != null) {
             kVar.c();
         }
@@ -96,9 +96,9 @@ public final class i8 extends FrameLayout {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        l3 l3Var = this.f34310b;
+        m3 m3Var = this.f34329b;
         int i10 = 0;
-        if (l3Var.f47179n && l3Var.getVisibility() == 0) {
+        if (m3Var.f47181n && m3Var.getVisibility() == 0) {
             int actionMasked = motionEvent.getActionMasked();
             if (actionMasked != 0) {
                 if (actionMasked != 1) {
@@ -112,8 +112,8 @@ public final class i8 extends FrameLayout {
                                     i10 = 1;
                                 }
                                 this.h = motionEvent.getPointerId(i10);
-                                this.f34313n = motionEvent.getX(i10);
-                                this.f34314r = motionEvent.getY(i10);
+                                this.f34332n = motionEvent.getX(i10);
+                                this.f34333r = motionEvent.getY(i10);
                                 return true;
                             }
                             return true;
@@ -127,10 +127,10 @@ public final class i8 extends FrameLayout {
                                 return true;
                             }
                             float radians = ((float) Math.toRadians(0.800000011920929d)) / AndroidUtilities.density;
-                            this.f34311c = com.google.android.gms.internal.play_billing.k3.y(motionEvent.getX(findPointerIndex), this.f34313n, radians, this.f34311c);
-                            this.d = com.google.android.gms.internal.play_billing.k3.y(motionEvent.getY(findPointerIndex), this.f34314r, radians, this.d);
-                            this.f34313n = motionEvent.getX(findPointerIndex);
-                            this.f34314r = motionEvent.getY(findPointerIndex);
+                            this.f34330c = com.google.android.gms.internal.play_billing.k3.y(motionEvent.getX(findPointerIndex), this.f34332n, radians, this.f34330c);
+                            this.d = com.google.android.gms.internal.play_billing.k3.y(motionEvent.getY(findPointerIndex), this.f34333r, radians, this.d);
+                            this.f34332n = motionEvent.getX(findPointerIndex);
+                            this.f34333r = motionEvent.getY(findPointerIndex);
                             return true;
                         }
                     }
@@ -140,8 +140,8 @@ public final class i8 extends FrameLayout {
                 }
                 return true;
             }
-            if (!this.f34315s && this.e <= 1.001f) {
-                this.f34311c = c();
+            if (!this.f34334s && this.e <= 1.001f) {
+                this.f34330c = c();
                 this.d = 0.0f;
             }
             ValueAnimator valueAnimator = this.v;
@@ -149,10 +149,10 @@ public final class i8 extends FrameLayout {
                 valueAnimator.cancel();
                 this.v = null;
             }
-            this.f34315s = false;
+            this.f34334s = false;
             this.h = motionEvent.getPointerId(0);
-            this.f34313n = motionEvent.getX();
-            this.f34314r = motionEvent.getY();
+            this.f34332n = motionEvent.getX();
+            this.f34333r = motionEvent.getY();
             if (getParent() != null) {
                 getParent().requestDisallowInterceptTouchEvent(true);
             }

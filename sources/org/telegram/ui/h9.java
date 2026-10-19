@@ -9,9 +9,9 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.CheckBoxBase;
 public final class h9 extends FrameLayout {
-    public final int f37445a;
-    public final org.telegram.ui.Components.k9 f37446b;
-    public final ImageView f37447c;
+    public final int f37566a;
+    public final org.telegram.ui.Components.k9 f37567b;
+    public final ImageView f37568c;
     public final org.telegram.ui.Cells.h6 d;
     public final org.telegram.ui.Components.xp e;
 
@@ -22,7 +22,7 @@ public final class h9 extends FrameLayout {
         float f7;
         int i12;
         int i13;
-        this.f37445a = i10;
+        this.f37566a = i10;
         org.telegram.ui.Cells.h6 h6Var = new org.telegram.ui.Cells.h6(context, null);
         this.d = h6Var;
         h6Var.M0 = true;
@@ -43,11 +43,11 @@ public final class h9 extends FrameLayout {
         } else {
             f7 = -2.0f;
         }
-        h6Var.f22334b0 = AndroidUtilities.dp(f7);
-        h6Var.f22335c0 = -AndroidUtilities.dp(7.0f);
+        h6Var.f22337b0 = AndroidUtilities.dp(f7);
+        h6Var.f22338c0 = -AndroidUtilities.dp(7.0f);
         addView(h6Var, w7.z5.c(-1.0f, -1));
         org.telegram.ui.Components.k9 k9Var = new org.telegram.ui.Components.k9(context, false);
-        this.f37446b = k9Var;
+        this.f37567b = k9Var;
         k9Var.setAvatarsTextSize(AndroidUtilities.dp(18.0f));
         k9Var.setStepFactor(0.4f);
         k9Var.setSize(AndroidUtilities.dp(29.0f));
@@ -60,9 +60,9 @@ public final class h9 extends FrameLayout {
         }
         addView(k9Var, w7.z5.d(72, -1.0f, i12, -2.0f, 0.0f, 0.0f, 0.0f));
         ImageView imageView = new ImageView(context);
-        this.f37447c = imageView;
+        this.f37568c = imageView;
         imageView.setColorFilter(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.il, false), PorterDuff.Mode.SRC_IN);
-        imageView.setBackground(org.telegram.ui.ActionBar.h6.g0(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21075i6, false), 1, -1));
+        imageView.setBackground(org.telegram.ui.ActionBar.h6.g0(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21078i6, false), 1, -1));
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         imageView.setContentDescription(LocaleController.getString(R.string.Call));
         if (LocaleController.isRTL) {
@@ -75,11 +75,11 @@ public final class h9 extends FrameLayout {
         this.e = xpVar;
         CheckBoxBase checkBoxBase = xpVar.getCheckBoxBase();
         int x02 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.hl, false);
-        if (checkBoxBase.f24153x != x02) {
-            checkBoxBase.f24153x = x02;
+        if (checkBoxBase.f24156x != x02) {
+            checkBoxBase.f24156x = x02;
             checkBoxBase.b();
         }
-        xpVar.b(-1, org.telegram.ui.ActionBar.h6.f20986d6, org.telegram.ui.ActionBar.h6.f21114k7);
+        xpVar.b(-1, org.telegram.ui.ActionBar.h6.f20989d6, org.telegram.ui.ActionBar.h6.f21117k7);
         xpVar.setDrawUnchecked(false);
         xpVar.setDrawBackgroundAsArc(3);
         addView(xpVar, w7.z5.d(24, 24.0f, (LocaleController.isRTL ? 5 : 3) | 48, 42.0f, 32.0f, 42.0f, 0.0f));

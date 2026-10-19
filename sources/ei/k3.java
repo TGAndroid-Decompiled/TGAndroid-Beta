@@ -26,7 +26,7 @@ public final class k3 extends xp {
                 return;
             default:
                 super.invalidate();
-                ((org.telegram.ui.web.i) this.e).invalidate();
+                ((org.telegram.ui.web.h) this.e).invalidate();
                 return;
         }
     }

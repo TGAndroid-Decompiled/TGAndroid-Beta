@@ -9,6 +9,7 @@ import android.os.Looper;
 import android.util.Log;
 import com.google.android.gms.tasks.Task;
 import java.util.List;
+import k2.w0;
 public abstract class k extends Service implements c {
     public static final String BIND_LISTENER_INTENT_ACTION = "com.google.android.gms.wearable.BIND_LISTENER";
     private ComponentName zza;
@@ -18,7 +19,7 @@ public abstract class k extends Service implements c {
     private Looper zze;
     private boolean zzg;
     private final Object zzf = new Object();
-    private y8.d zzh = new y8.d(new l2.f(this, 26));
+    private y8.d zzh = new y8.d(new w0(this, 29));
 
     public Looper getLooper() {
         if (this.zze == null) {

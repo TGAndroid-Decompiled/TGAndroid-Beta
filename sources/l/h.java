@@ -7,50 +7,50 @@ import android.widget.BaseAdapter;
 import androidx.appcompat.view.menu.ListMenuItemView;
 import java.util.ArrayList;
 public final class h extends BaseAdapter {
-    public final k f15747a;
-    public int f15748b = -1;
-    public boolean f15749c;
+    public final k f15750a;
+    public int f15751b = -1;
+    public boolean f15752c;
     public final boolean d;
     public final LayoutInflater e;
-    public final int f15750f;
+    public final int f15753f;
 
     public h(k kVar, LayoutInflater layoutInflater, boolean z10, int i10) {
         this.d = z10;
         this.e = layoutInflater;
-        this.f15747a = kVar;
-        this.f15750f = i10;
+        this.f15750a = kVar;
+        this.f15753f = i10;
         a();
     }
 
     public final void a() {
-        k kVar = this.f15747a;
+        k kVar = this.f15750a;
         m mVar = kVar.v;
         if (mVar != null) {
             kVar.i();
-            ArrayList arrayList = kVar.f15758j;
+            ArrayList arrayList = kVar.f15761j;
             int size = arrayList.size();
             for (int i10 = 0; i10 < size; i10++) {
                 if (((m) arrayList.get(i10)) == mVar) {
-                    this.f15748b = i10;
+                    this.f15751b = i10;
                     return;
                 }
             }
         }
-        this.f15748b = -1;
+        this.f15751b = -1;
     }
 
     @Override
     public final m getItem(int i10) {
         ArrayList l4;
         boolean z10 = this.d;
-        k kVar = this.f15747a;
+        k kVar = this.f15750a;
         if (z10) {
             kVar.i();
-            l4 = kVar.f15758j;
+            l4 = kVar.f15761j;
         } else {
             l4 = kVar.l();
         }
-        int i11 = this.f15748b;
+        int i11 = this.f15751b;
         if (i11 >= 0 && i10 >= i11) {
             i10++;
         }
@@ -61,14 +61,14 @@ public final class h extends BaseAdapter {
     public final int getCount() {
         ArrayList l4;
         boolean z10 = this.d;
-        k kVar = this.f15747a;
+        k kVar = this.f15750a;
         if (z10) {
             kVar.i();
-            l4 = kVar.f15758j;
+            l4 = kVar.f15761j;
         } else {
             l4 = kVar.l();
         }
-        if (this.f15748b < 0) {
+        if (this.f15751b < 0) {
             return l4.size();
         }
         return l4.size() - 1;
@@ -84,22 +84,22 @@ public final class h extends BaseAdapter {
         int i11;
         boolean z10 = false;
         if (view == null) {
-            view = this.e.inflate(this.f15750f, viewGroup, false);
+            view = this.e.inflate(this.f15753f, viewGroup, false);
         }
-        int i12 = getItem(i10).f15776b;
+        int i12 = getItem(i10).f15779b;
         int i13 = i10 - 1;
         if (i13 >= 0) {
-            i11 = getItem(i13).f15776b;
+            i11 = getItem(i13).f15779b;
         } else {
             i11 = i12;
         }
         ListMenuItemView listMenuItemView = (ListMenuItemView) view;
-        if (this.f15747a.m() && i12 != i11) {
+        if (this.f15750a.m() && i12 != i11) {
             z10 = true;
         }
         listMenuItemView.setGroupDividerEnabled(z10);
         y yVar = (y) view;
-        if (this.f15749c) {
+        if (this.f15752c) {
             listMenuItemView.setForceShowIcon(true);
         }
         yVar.b(getItem(i10));

@@ -5,20 +5,20 @@ import android.view.KeyEvent;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 public final class n implements TextView.OnEditorActionListener {
-    public final int f1872a;
-    public final Object f1873b;
+    public final int f1868a;
+    public final Object f1869b;
 
     public n(Object obj, int i10) {
-        this.f1872a = i10;
-        this.f1873b = obj;
+        this.f1868a = i10;
+        this.f1869b = obj;
     }
 
     @Override
     public final boolean onEditorAction(TextView textView, int i10, KeyEvent keyEvent) {
         ki.g1 g1Var;
-        switch (this.f1872a) {
+        switch (this.f1868a) {
             case 0:
-                x xVar = (x) this.f1873b;
+                x xVar = (x) this.f1869b;
                 if (i10 == 5) {
                     xVar.k0();
                     return true;
@@ -26,17 +26,17 @@ public final class n implements TextView.OnEditorActionListener {
                 xVar.getClass();
                 return false;
             case 1:
-                ig.t0 t0Var = (ig.t0) this.f1873b;
+                ig.t0 t0Var = (ig.t0) this.f1869b;
                 ig.n0 n0Var = t0Var.F;
                 boolean z10 = false;
                 if (i10 == 6) {
-                    t0Var.f13038x = false;
+                    t0Var.f13040x = false;
                     AndroidUtilities.cancelRunOnUIThread(n0Var);
                     z10 = true;
-                    if (TextUtils.isEmpty(t0Var.f13033f.getText())) {
-                        t0Var.f13039y = null;
+                    if (TextUtils.isEmpty(t0Var.f13035f.getText())) {
+                        t0Var.f13041y = null;
                         t0Var.d.b();
-                        t0Var.f13032c.W2.N(true);
+                        t0Var.f13034c.W2.N(true);
                     } else {
                         AndroidUtilities.runOnUIThread(n0Var);
                     }
@@ -44,12 +44,12 @@ public final class n implements TextView.OnEditorActionListener {
                 }
                 return z10;
             default:
-                ki.h1 h1Var = (ki.h1) this.f1873b;
-                if (i10 == 5 && (g1Var = h1Var.f15298c) != null && !h1Var.f15303w) {
-                    if (h1Var.f15301r) {
+                ki.h1 h1Var = (ki.h1) this.f1869b;
+                if (i10 == 5 && (g1Var = h1Var.f15301c) != null && !h1Var.f15306w) {
+                    if (h1Var.f15304r) {
                         h1Var.p();
                     } else {
-                        g1Var.l(h1Var);
+                        g1Var.k(h1Var);
                     }
                     return true;
                 }

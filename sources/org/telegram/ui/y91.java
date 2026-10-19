@@ -1,52 +1,72 @@
 package org.telegram.ui;
 
-import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Path;
+import android.graphics.drawable.Drawable;
 import android.view.View;
-import org.telegram.messenger.MessageObject;
-public final class y91 extends org.telegram.ui.Components.e61 {
-    public static final int f43356b = 0;
-    public org.telegram.ui.Cells.r7 f43357a;
-
-    static {
-        org.telegram.ui.Components.e61.setup(new org.telegram.ui.Components.e61());
-    }
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.ui.Components.Crop.CropAreaView;
+public final class y91 extends View {
+    public ImageReceiver f43418a;
+    public ImageReceiver f43419b;
+    public View f43420c;
+    public org.telegram.ui.Components.nf0 d;
+    public Path e;
+    public Drawable f43421f;
 
     @Override
-    public final void attachedView(org.telegram.ui.Components.im0 im0Var, View view, org.telegram.ui.Components.f61 f61Var) {
-        boolean z10;
-        org.telegram.ui.Cells.s7 s7Var = (org.telegram.ui.Cells.s7) view;
-        if (f61Var != null && f61Var.h) {
-            z10 = true;
-        } else {
-            z10 = false;
+    public final void draw(Canvas canvas) {
+        int measuredWidth = getMeasuredWidth() >> 1;
+        int measuredHeight = getMeasuredHeight() - AndroidUtilities.dp(30.0f);
+        int dp = AndroidUtilities.dp(46.0f) + measuredWidth;
+        ImageReceiver imageReceiver = this.f43418a;
+        imageReceiver.setImageCoords((measuredWidth - AndroidUtilities.dp(46.0f)) - AndroidUtilities.dp(30.0f), measuredHeight - AndroidUtilities.dp(30.0f), AndroidUtilities.dp(60.0f), AndroidUtilities.dp(60.0f));
+        this.f43419b.setImageCoords(dp - AndroidUtilities.dp(30.0f), measuredHeight - AndroidUtilities.dp(30.0f), AndroidUtilities.dp(60.0f), AndroidUtilities.dp(60.0f));
+        Drawable drawable = this.f43421f;
+        drawable.setBounds(org.telegram.ui.Cells.c1.w(2, measuredWidth, drawable), org.telegram.ui.Cells.c1.f(2, measuredHeight, drawable), org.telegram.ui.Cells.c1.B(2, measuredWidth, drawable), org.telegram.ui.Cells.c1.A(2, measuredHeight, drawable));
+        drawable.draw(canvas);
+        Path path = this.e;
+        path.reset();
+        path.addCircle(dp, measuredHeight, AndroidUtilities.dp(30.0f), Path.Direction.CW);
+        imageReceiver.draw(canvas);
+        if (this.f43420c != null) {
+            CropAreaView cropAreaView = this.d.f28765b.f16919a;
+            float dp2 = AndroidUtilities.dp(60.0f) / cropAreaView.f24181a;
+            float left = (0.0f - this.d.getLeft()) - cropAreaView.f24183b;
+            canvas.save();
+            canvas.clipPath(path);
+            canvas.scale(dp2, dp2, 0.0f, 0.0f);
+            canvas.translate(left, (0.0f - this.d.getTop()) - cropAreaView.f24185c);
+            canvas.translate((dp - AndroidUtilities.dp(30.0f)) / dp2, (measuredHeight - AndroidUtilities.dp(30.0f)) / dp2);
+            PhotoViewer.t1().f33293g4 = true;
+            this.f43420c.draw(canvas);
+            PhotoViewer.t1().f33293g4 = false;
+            canvas.restore();
         }
-        s7Var.l(z10, false);
+        super.draw(canvas);
+        this.f43420c.invalidate();
+        invalidate();
     }
 
     @Override
-    public final void bindView(View view, org.telegram.ui.Components.f61 f61Var, boolean z10, org.telegram.ui.Components.s61 s61Var, org.telegram.ui.Components.a71 a71Var) {
-        org.telegram.ui.Cells.s7 s7Var = (org.telegram.ui.Cells.s7) view;
-        s7Var.k((MessageObject) f61Var.G, f61Var.v, false);
-        s7Var.i(f61Var.e, false);
-        s7Var.l(f61Var.h, false);
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.f43418a.onAttachedToWindow();
+        this.f43419b.onAttachedToWindow();
     }
 
     @Override
-    public final View createView(Context context, org.telegram.ui.Components.im0 im0Var, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
-        if (this.f43357a == null) {
-            this.f43357a = new org.telegram.ui.Cells.r7(context, d6Var);
-        }
-        org.telegram.ui.Cells.s7 s7Var = new org.telegram.ui.Cells.s7(context, this.f43357a, i10);
-        s7Var.f23048w0 = true;
-        s7Var.f23025d0 = true;
-        return s7Var;
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.f43418a.onDetachedFromWindow();
+        this.f43419b.onDetachedFromWindow();
     }
 
     @Override
-    public final boolean equals(org.telegram.ui.Components.f61 f61Var, org.telegram.ui.Components.f61 f61Var2) {
-        if (f61Var.f26145q == f61Var2.f26145q && f61Var.e == f61Var2.e && f61Var.B == f61Var2.B) {
-            return true;
-        }
-        return false;
+    public final void onMeasure(int i10, int i11) {
+        this.f43418a.setRoundRadius(AndroidUtilities.dp(30.0f));
+        this.f43419b.setRoundRadius(AndroidUtilities.dp(30.0f));
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(86.0f), 1073741824));
     }
 }

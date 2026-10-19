@@ -4,16 +4,16 @@ import android.content.Context;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.h6;
 public final class f extends sg.x1 {
-    public final int f11193n;
+    public final int f11194n;
 
     public f(Context context, int i10) {
         super(context);
-        this.f11193n = i10;
+        this.f11194n = i10;
     }
 
     @Override
     public final void a() {
-        switch (this.f11193n) {
+        switch (this.f11194n) {
             case 0:
                 super.a();
                 sg.w1 w1Var = this.f46497a;
@@ -93,7 +93,7 @@ public final class f extends sg.x1 {
 
     @Override
     public int getStarsRectWidth() {
-        switch (this.f11193n) {
+        switch (this.f11194n) {
             case 0:
                 return getMeasuredWidth();
             case 1:
@@ -107,7 +107,7 @@ public final class f extends sg.x1 {
 
     @Override
     public void onMeasure(int i10, int i11) {
-        switch (this.f11193n) {
+        switch (this.f11194n) {
             case 3:
                 super.onMeasure(i10, i11);
                 this.f46497a.f46469b.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight() - AndroidUtilities.dp(52.0f));

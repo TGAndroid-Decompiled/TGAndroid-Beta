@@ -1,9 +1,32 @@
 package w7;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 public abstract class n9 {
-    public static String a(String str) {
-        if (!"null".equals(str) && !"".equals(str)) {
-            return str;
+    public static HashMap a(wc.a aVar) {
+        HashMap hashMap = new HashMap();
+        HashMap hashMap2 = new HashMap();
+        hashMap2.put("number", o9.e(aVar.f48905a));
+        hashMap2.put("cvc", o9.e(aVar.f48906b));
+        hashMap2.put("exp_month", aVar.f48907c);
+        hashMap2.put("exp_year", aVar.d);
+        hashMap2.put("name", o9.e(aVar.e));
+        hashMap2.put("currency", o9.e(aVar.f48915n));
+        hashMap2.put("address_line1", o9.e(aVar.f48908f));
+        hashMap2.put("address_line2", o9.e(aVar.f48909g));
+        hashMap2.put("address_city", o9.e(aVar.h));
+        hashMap2.put("address_zip", o9.e(aVar.f48911j));
+        hashMap2.put("address_state", o9.e(aVar.f48910i));
+        hashMap2.put("address_country", o9.e(aVar.f48912k));
+        Iterator it = new HashSet(hashMap2.keySet()).iterator();
+        while (it.hasNext()) {
+            String str = (String) it.next();
+            if (hashMap2.get(str) == null) {
+                hashMap2.remove(str);
+            }
         }
-        return null;
+        hashMap.put("card", hashMap2);
+        return hashMap;
     }
 }

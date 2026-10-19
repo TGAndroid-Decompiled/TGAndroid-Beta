@@ -6,10 +6,10 @@ import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.hm0;
 public final class s8 extends hm0 {
-    public final t8 f9817c;
+    public final t8 f9818c;
 
     public s8(t8 t8Var) {
-        this.f9817c = t8Var;
+        this.f9818c = t8Var;
     }
 
     @Override
@@ -22,7 +22,7 @@ public final class s8 extends hm0 {
 
     @Override
     public final int h() {
-        return this.f9817c.f9859c.size() + 2;
+        return this.f9818c.f9860c.size() + 2;
     }
 
     @Override
@@ -46,7 +46,7 @@ public final class s8 extends hm0 {
         int dp;
         View view;
         org.telegram.ui.ActionBar.d6 d6Var;
-        t8 t8Var = this.f9817c;
+        t8 t8Var = this.f9818c;
         if (i10 != 0 && i10 != 1) {
             Context context = t8Var.getContext();
             d6Var = ((org.telegram.ui.ActionBar.f3) t8Var).resourcesProvider;

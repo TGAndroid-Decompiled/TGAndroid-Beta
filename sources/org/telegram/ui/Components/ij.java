@@ -5,12 +5,12 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class ij extends li {
-    public ai.u1 f27239n;
-    public int f27240r;
-    public di.k f27241s;
+    public ai.u1 f27256n;
+    public int f27257r;
+    public di.k f27258s;
     public za v;
-    public int f27242w;
-    public q0.a f27243x;
+    public int f27259w;
+    public q0.a f27260x;
 
     @Override
     public final void B(int r9, int r10) {
@@ -18,24 +18,24 @@ public final class ij extends li {
     }
 
     @Override
-    public final void G(li liVar) {
-        ti tiVar = this.f28238b;
+    public final void F(li liVar) {
+        ti tiVar = this.f28225b;
         try {
-            tiVar.f30558a1.getTitleTextView().setBuildFullLayout(true);
+            tiVar.f30520a1.getTitleTextView().setBuildFullLayout(true);
         } catch (Exception unused) {
         }
-        tiVar.f30558a1.setTitle(LocaleController.getString(R.string.SelectColor));
-        this.f27241s.h1(0, 0);
+        tiVar.f30520a1.setTitle(LocaleController.getString(R.string.SelectColor));
+        this.f27258s.h1(0, 0);
     }
 
     @Override
     public final void J() {
-        this.f27239n.x0(0);
+        this.f27256n.x0(0);
     }
 
     @Override
     public int getCurrentItemTop() {
-        ai.u1 u1Var = this.f27239n;
+        ai.u1 u1Var = this.f27256n;
         if (u1Var.getChildCount() <= 0) {
             u1Var.setTopGlowOffset(u1Var.getPaddingTop());
             return Integer.MAX_VALUE;
@@ -58,7 +58,7 @@ public final class ij extends li {
 
     @Override
     public int getListTopPadding() {
-        return this.f27239n.getPaddingTop();
+        return this.f27256n.getPaddingTop();
     }
 
     @Override
@@ -67,13 +67,13 @@ public final class ij extends li {
     }
 
     public void setDelegate(q0.a aVar) {
-        this.f27243x = aVar;
+        this.f27260x = aVar;
     }
 
     @Override
     public void setTranslationY(float f7) {
         super.setTranslationY(f7);
-        this.f28238b.getSheetContainer().invalidate();
+        this.f28225b.getSheetContainer().invalidate();
         invalidate();
     }
 }

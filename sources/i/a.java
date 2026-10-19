@@ -3,34 +3,34 @@ package i;
 import android.graphics.drawable.Animatable;
 import v7.w7;
 public final class a extends w7 {
-    public final int f12244a;
-    public final Animatable f12245b;
+    public final int f12245a;
+    public final Animatable f12246b;
 
     public a(Animatable animatable, int i10) {
-        this.f12244a = i10;
-        this.f12245b = animatable;
+        this.f12245a = i10;
+        this.f12246b = animatable;
     }
 
     @Override
     public final void c() {
-        switch (this.f12244a) {
+        switch (this.f12245a) {
             case 0:
-                this.f12245b.start();
+                this.f12246b.start();
                 return;
             default:
-                ((x4.d) this.f12245b).start();
+                ((x4.d) this.f12246b).start();
                 return;
         }
     }
 
     @Override
     public final void d() {
-        switch (this.f12244a) {
+        switch (this.f12245a) {
             case 0:
-                this.f12245b.stop();
+                this.f12246b.stop();
                 return;
             default:
-                ((x4.d) this.f12245b).stop();
+                ((x4.d) this.f12246b).stop();
                 return;
         }
     }

@@ -2,40 +2,40 @@ package org.telegram.ui.Wallet;
 
 import org.telegram.messenger.Utilities;
 public final class q6 implements Runnable {
-    public final int f34751a;
-    public final Utilities.Callback2 f34752b;
+    public final int f34768a;
+    public final Utilities.Callback2 f34769b;
 
     public q6(int i10, Utilities.Callback2 callback2) {
-        this.f34751a = i10;
-        this.f34752b = callback2;
+        this.f34768a = i10;
+        this.f34769b = callback2;
     }
 
     @Override
     public final void run() {
-        switch (this.f34751a) {
+        switch (this.f34768a) {
             case 0:
-                this.f34752b.run(null, "Wallet engine is closed");
+                this.f34769b.run(null, "Wallet engine is closed");
                 return;
             case 1:
-                this.f34752b.run(null, "NO_WALLET_ENGINE");
+                this.f34769b.run(null, "NO_WALLET_ENGINE");
                 return;
             case 2:
-                this.f34752b.run(null, "NO_WALLET_ENGINE");
+                this.f34769b.run(null, "NO_WALLET_ENGINE");
                 return;
             case 3:
-                this.f34752b.run(null, "Recovery phrase is required");
+                this.f34769b.run(null, "Recovery phrase is required");
                 return;
             case 4:
-                this.f34752b.run(null, "Transaction hash is required");
+                this.f34769b.run(null, "Transaction hash is required");
                 return;
             case 5:
-                this.f34752b.run(null, "NO_WALLET_ENGINE");
+                this.f34769b.run(null, "NO_WALLET_ENGINE");
                 return;
             case 6:
-                this.f34752b.run(null, "NO_WALLET_ENGINE");
+                this.f34769b.run(null, "NO_WALLET_ENGINE");
                 return;
             default:
-                this.f34752b.run(null, "NO_WALLET_ENGINE");
+                this.f34769b.run(null, "NO_WALLET_ENGINE");
                 return;
         }
     }

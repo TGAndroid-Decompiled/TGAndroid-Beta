@@ -45,7 +45,7 @@ public final class c extends va {
             } else {
                 i10 = 0;
             }
-            canvas.drawLine(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, h6.f21107k0);
+            canvas.drawLine(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, h6.f21110k0);
         }
     }
 
@@ -76,6 +76,6 @@ public final class c extends va {
             aVar2.e = aVar2.f51616a.measureText(valueOf2);
             aVar2.invalidateSelf();
         }
-        this.f23659b.i(this.f51626a0);
+        this.f23662b.i(this.f51626a0);
     }
 }

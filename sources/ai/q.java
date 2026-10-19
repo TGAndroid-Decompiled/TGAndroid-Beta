@@ -2,12 +2,12 @@ package ai;
 
 import org.telegram.messenger.Utilities;
 public final class q implements Utilities.Callback2 {
-    public final int f2044a;
-    public final Object f2045b;
+    public final int f2043a;
+    public final Object f2044b;
 
     public q(Object obj, int i10) {
-        this.f2044a = i10;
-        this.f2045b = obj;
+        this.f2043a = i10;
+        this.f2044b = obj;
     }
 
     @Override

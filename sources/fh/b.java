@@ -21,7 +21,7 @@ import eh.d;
 import gi.d3;
 import gi.e4;
 import gi.z3;
-import i2.m;
+import i2.n;
 import j$.util.Objects;
 import j2.f;
 import java.util.Collection;
@@ -32,15 +32,15 @@ import org.telegram.ui.ActionBar.a2;
 import org.telegram.ui.ActionBar.b2;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.aw0;
 import org.telegram.ui.Components.bw0;
 import org.telegram.ui.Components.cw0;
+import org.telegram.ui.Components.dw0;
 import v7.u6;
-public final class b implements d, aw0, bw0, GenericProvider, k, r9.d, o, a2, hh.b {
-    public final int f10597a;
+public final class b implements d, bw0, cw0, GenericProvider, k, r9.d, o, a2, hh.b {
+    public final int f10598a;
 
     public b(int i10) {
-        this.f10597a = i10;
+        this.f10598a = i10;
     }
 
     public static ShortcutManager d(Object obj) {
@@ -57,7 +57,7 @@ public final class b implements d, aw0, bw0, GenericProvider, k, r9.d, o, a2, hh
 
     @Override
     public Object a(Bitmap bitmap) {
-        switch (this.f10597a) {
+        switch (this.f10598a) {
             case 26:
                 if (bitmap != null && !bitmap.isRecycled()) {
                     Bitmap stackBlurBitmapWithScaleFactor = Utilities.stackBlurBitmapWithScaleFactor(bitmap, Math.max(bitmap.getWidth() / 90.0f, bitmap.getHeight() / 120.0f));
@@ -87,10 +87,10 @@ public final class b implements d, aw0, bw0, GenericProvider, k, r9.d, o, a2, hh
         u1 u1Var;
         int i11 = 0;
         boolean z10 = true;
-        switch (this.f10597a) {
+        switch (this.f10598a) {
             case 14:
                 String str = (String) obj;
-                d9.a aVar = h9.a.f11699g;
+                d9.a aVar = h9.a.f11700g;
                 aVar.getClass();
                 int length = str.length() - 1;
                 while (true) {
@@ -130,10 +130,10 @@ public final class b implements d, aw0, bw0, GenericProvider, k, r9.d, o, a2, hh
                     i10 = 11;
                 }
                 ?? obj2 = new Object();
-                obj2.f8511b = false;
+                obj2.f8512b = false;
                 ?? obj3 = new Object();
                 obj3.d(i10);
-                obj2.f8510a = obj3;
+                obj2.f8511a = obj3;
                 if (z11) {
                     r1 r1Var = (r1) collection;
                     if (r1Var instanceof d2) {
@@ -142,27 +142,27 @@ public final class b implements d, aw0, bw0, GenericProvider, k, r9.d, o, a2, hh
                         u1Var = null;
                     }
                     if (u1Var != null) {
-                        obj3.a(Math.max(obj3.f8514c, u1Var.f8514c));
-                        if (u1Var.f8514c == 0) {
+                        obj3.a(Math.max(obj3.f8515c, u1Var.f8515c));
+                        if (u1Var.f8515c == 0) {
                             i11 = -1;
                         }
                         while (i11 >= 0) {
-                            u6.j(i11, u1Var.f8514c);
-                            Object obj4 = u1Var.f8512a[i11];
-                            u6.j(i11, u1Var.f8514c);
-                            obj2.c(u1Var.f8513b[i11], obj4);
+                            u6.j(i11, u1Var.f8515c);
+                            Object obj4 = u1Var.f8513a[i11];
+                            u6.j(i11, u1Var.f8515c);
+                            obj2.c(u1Var.f8514b[i11], obj4);
                             i11++;
-                            if (i11 >= u1Var.f8514c) {
+                            if (i11 >= u1Var.f8515c) {
                                 i11 = -1;
                             }
                         }
                     } else {
                         w0 w0Var = (w0) r1Var;
                         y0 t10 = w0Var.t();
-                        u1 u1Var2 = obj2.f8510a;
-                        u1Var2.a(Math.max(u1Var2.f8514c, t10.size()));
+                        u1 u1Var2 = obj2.f8511a;
+                        u1Var2.a(Math.max(u1Var2.f8515c, t10.size()));
                         for (t1 t1Var : w0Var.t()) {
-                            obj2.c(t1Var.a(), t1Var.f8505a);
+                            obj2.c(t1Var.a(), t1Var.f8506a);
                         }
                     }
                 } else {
@@ -170,12 +170,12 @@ public final class b implements d, aw0, bw0, GenericProvider, k, r9.d, o, a2, hh
                         obj2.a(obj5);
                     }
                 }
-                Objects.requireNonNull(obj2.f8510a);
-                if (obj2.f8510a.f8514c == 0) {
-                    return d2.f8431n;
+                Objects.requireNonNull(obj2.f8511a);
+                if (obj2.f8511a.f8515c == 0) {
+                    return d2.f8432n;
                 }
-                obj2.f8511b = true;
-                return new d2(obj2.f8510a);
+                obj2.f8512b = true;
+                return new d2(obj2.f8511a);
             default:
                 return new f((g0) obj);
         }
@@ -183,10 +183,10 @@ public final class b implements d, aw0, bw0, GenericProvider, k, r9.d, o, a2, hh
 
     @Override
     public void b(Object obj, float f7) {
-        switch (this.f10597a) {
+        switch (this.f10598a) {
             case 8:
                 d3 d3Var = (d3) obj;
-                d3Var.f11137b = f7;
+                d3Var.f11138b = f7;
                 d3Var.e.invalidate();
                 d3Var.W.setAlpha(f7);
                 d3Var.F();
@@ -205,7 +205,7 @@ public final class b implements d, aw0, bw0, GenericProvider, k, r9.d, o, a2, hh
     @Override
     public int f(d6 d6Var, boolean z10) {
         float f7;
-        switch (this.f10597a) {
+        switch (this.f10598a) {
             case 0:
                 LiteMode.isEnabled(262144);
                 return 0;
@@ -215,13 +215,13 @@ public final class b implements d, aw0, bw0, GenericProvider, k, r9.d, o, a2, hh
                 } else {
                     f7 = 0.76f;
                 }
-                return h6.m1(f7, h6.w0(h6.f20986d6, d6Var));
+                return h6.m1(f7, h6.w0(h6.f20989d6, d6Var));
         }
     }
 
     @Override
     public void g(b2 b2Var, int i10) {
-        switch (this.f10597a) {
+        switch (this.f10598a) {
             case 24:
                 b2Var.dismiss();
                 return;
@@ -233,22 +233,22 @@ public final class b implements d, aw0, bw0, GenericProvider, k, r9.d, o, a2, hh
 
     @Override
     public float get(Object obj) {
-        switch (this.f10597a) {
+        switch (this.f10598a) {
             case 7:
-                return ((d3) obj).f11137b;
+                return ((d3) obj).f11138b;
             case 8:
             default:
                 return ((e4) obj).getSwipeOffsetY();
             case 9:
-                return ((z3) obj).f11584c;
+                return ((z3) obj).f11585c;
         }
     }
 
     @Override
     public void invoke(Object obj) {
-        switch (this.f10597a) {
+        switch (this.f10598a) {
             case 22:
-                ((d1) obj).onPlayerError(new m(2, new RuntimeException("Player release timed out."), 1003));
+                ((d1) obj).onPlayerError(new n(2, new RuntimeException("Player release timed out."), 1003));
                 return;
             case 23:
                 ((d1) obj).onRenderedFirstFrame();
@@ -269,11 +269,11 @@ public final class b implements d, aw0, bw0, GenericProvider, k, r9.d, o, a2, hh
     @Override
     public Object provide(Object obj) {
         Void r12 = (Void) obj;
-        cw0 cw0Var = e4.f11181b0;
+        dw0 dw0Var = e4.f11182b0;
         return Boolean.FALSE;
     }
 
     public b(j2.a aVar, z0 z0Var) {
-        this.f10597a = 29;
+        this.f10598a = 29;
     }
 }

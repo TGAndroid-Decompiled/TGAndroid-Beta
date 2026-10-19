@@ -26,9 +26,9 @@ public interface r {
 
     q o();
 
+    h2.b r(byte[] bArr);
+
     void release();
 
     void t0(l2.f fVar);
-
-    h2.b u(byte[] bArr);
 }

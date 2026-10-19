@@ -20,13 +20,13 @@ import org.telegram.ui.Components.bb;
 import org.telegram.ui.Components.h9;
 import org.telegram.ui.Components.hm0;
 import org.telegram.ui.Components.im0;
-import org.telegram.ui.Components.s61;
+import org.telegram.ui.Components.t61;
 import org.telegram.ui.Components.w9;
 import org.telegram.ui.Components.yq;
 import w7.z5;
 public final class b extends bb {
     public final uc X;
-    public s61 Y;
+    public t61 Y;
 
     public b(Context context, TLRPC.Chat chat, Runnable runnable) {
         super(context, (d6) null, false);
@@ -54,10 +54,10 @@ public final class b extends bb {
         dVar2.setOnClickListener(new p(22, this, runnable));
         uc ucVar = new uc(context, 3);
         TextView textView = (TextView) ucVar.d;
-        TextView textView2 = (TextView) ucVar.f2279c;
+        TextView textView2 = (TextView) ucVar.f2276c;
         this.X = ucVar;
         ucVar.setPadding(AndroidUtilities.dp(20.0f), 0, AndroidUtilities.dp(20.0f), AndroidUtilities.dp(17.0f));
-        ((w9) ucVar.f2278b).e(chat, new h9(chat));
+        ((w9) ucVar.f2275b).e(chat, new h9(chat));
         textView2.setText(DialogObject.getName(chat));
         int i13 = h6.G6;
         textView2.setTextColor(getThemedColor(i13));
@@ -84,9 +84,9 @@ public final class b extends bb {
 
     @Override
     public final hm0 x(im0 im0Var) {
-        s61 s61Var = new s61(this.d, getContext(), this.currentAccount, 0, true, new o(this, 12), this.resourcesProvider);
-        this.Y = s61Var;
-        s61Var.f30201r = false;
-        return s61Var;
+        t61 t61Var = new t61(this.d, getContext(), this.currentAccount, 0, true, new o(this, 12), this.resourcesProvider);
+        this.Y = t61Var;
+        t61Var.f30438r = false;
+        return t61Var;
     }
 }

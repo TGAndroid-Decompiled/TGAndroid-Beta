@@ -29,8 +29,8 @@ public final class g implements d, t5.c, c {
     public static Long b(SQLiteDatabase sQLiteDatabase, l5.i iVar) {
         Long valueOf;
         StringBuilder sb2 = new StringBuilder("backend_name = ? and priority = ?");
-        ArrayList arrayList = new ArrayList(Arrays.asList(iVar.f15919a, String.valueOf(v5.a.a(iVar.f15921c))));
-        byte[] bArr = iVar.f15920b;
+        ArrayList arrayList = new ArrayList(Arrays.asList(iVar.f15922a, String.valueOf(v5.a.a(iVar.f15924c))));
+        byte[] bArr = iVar.f15923b;
         if (bArr != null) {
             sb2.append(" and extras = ?");
             arrayList.add(Base64.encodeToString(bArr, 0));

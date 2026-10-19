@@ -26,7 +26,7 @@ public final class f extends LinearLayout {
         addView(textView, z5.p(-1, -2, 0.0f, 0, 16, 0, 16, 0));
         TextView textView2 = new TextView(context);
         this.f46241b = textView2;
-        lk.o(h6.f21374y6, d6Var, textView2, 1, 14.0f);
+        lk.o(h6.f21377y6, d6Var, textView2, 1, 14.0f);
         addView(textView2, z5.p(-1, -2, 0.0f, 0, 16, 1, 16, 0));
         LimitPreviewView limitPreviewView = new LimitPreviewView(context, 0, 10, d6Var, 20);
         this.f46242c = limitPreviewView;
@@ -38,6 +38,6 @@ public final class f extends LinearLayout {
         this.f46241b.setText(eVar.f46235b);
         LimitPreviewView limitPreviewView = this.f46242c;
         limitPreviewView.v.setText(String.format("%d", Integer.valueOf(eVar.d)));
-        limitPreviewView.f24294w.setText(String.format("%d", Integer.valueOf(eVar.f46236c)));
+        limitPreviewView.f24297w.setText(String.format("%d", Integer.valueOf(eVar.f46236c)));
     }
 }

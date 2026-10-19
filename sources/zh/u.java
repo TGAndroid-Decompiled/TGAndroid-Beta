@@ -1,5 +1,6 @@
 package zh;
 
+import android.content.res.Resources;
 import android.graphics.BlendMode;
 import android.graphics.BlendModeColorFilter;
 import android.graphics.Canvas;
@@ -16,6 +17,8 @@ import android.view.RoundedCorner;
 import android.view.View;
 import android.view.WindowInsets;
 public abstract class u {
+    public static float f52119a = -1.0f;
+
     public static Canvas a(int i10, int i11, Object obj) {
         RenderNode c10 = org.telegram.messenger.b.c(obj);
         c10.setPosition(0, 0, i10, i11);
@@ -52,21 +55,49 @@ public abstract class u {
         return false;
     }
 
-    public static float g(View view, float f7) {
+    public static float g(View view) {
+        float f7;
+        int identifier;
         WindowInsets windowInsets;
-        RoundedCorner roundedCorner = null;
-        if (view != null) {
-            windowInsets = view.getRootWindowInsets();
-        } else {
-            windowInsets = null;
+        float f10;
+        if (Build.VERSION.SDK_INT >= 31) {
+            if (view != null) {
+                windowInsets = view.getRootWindowInsets();
+            } else {
+                windowInsets = null;
+            }
+            if (windowInsets == null) {
+                f10 = -1.0f;
+            } else {
+                RoundedCorner roundedCorner = windowInsets.getRoundedCorner(0);
+                if (roundedCorner != null) {
+                    f10 = roundedCorner.getRadius();
+                } else {
+                    f10 = 0.0f;
+                }
+            }
+            if (f10 >= 0.0f) {
+                return f10;
+            }
         }
-        if (windowInsets != null) {
-            roundedCorner = windowInsets.getRoundedCorner(0);
+        if (f52119a < 0.0f) {
+            try {
+                Resources system = Resources.getSystem();
+                int identifier2 = system.getIdentifier("rounded_corner_radius_top", "dimen", "android");
+                if (identifier2 != 0) {
+                    f7 = system.getDimensionPixelSize(identifier2);
+                } else {
+                    f7 = 0.0f;
+                }
+                if (f7 <= 0.0f && (identifier = system.getIdentifier("rounded_corner_radius", "dimen", "android")) != 0) {
+                    f7 = system.getDimensionPixelSize(identifier);
+                }
+            } catch (Exception unused) {
+                f7 = 0.0f;
+            }
+            f52119a = Math.max(0.0f, f7);
         }
-        if (roundedCorner != null) {
-            return roundedCorner.getRadius();
-        }
-        return f7;
+        return f52119a;
     }
 
     public static void h(Object obj, float f7) {

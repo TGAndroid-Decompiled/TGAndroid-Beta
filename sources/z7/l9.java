@@ -20,7 +20,7 @@ public final class l9 extends e9.j2 {
 
     @Override
     public final boolean contains(Object obj) {
-        Set entrySet = this.f51090b.f8434b.entrySet();
+        Set entrySet = this.f51090b.f8435b.entrySet();
         entrySet.getClass();
         try {
             return entrySet.contains(obj);
@@ -68,7 +68,7 @@ public final class l9 extends e9.j2 {
     public final boolean removeAll(Collection collection) {
         try {
             if (collection != null) {
-                return w7.g9.a(this, collection);
+                return w7.f9.a(this, collection);
             }
             throw null;
         } catch (UnsupportedOperationException unused) {
@@ -94,7 +94,7 @@ public final class l9 extends e9.j2 {
                 if (size >= 0) {
                     i10 = size + 1;
                 } else {
-                    throw new IllegalArgumentException(i2.d.j(size, "expectedSize cannot be negative but was: "));
+                    throw new IllegalArgumentException(i2.e.j(size, "expectedSize cannot be negative but was: "));
                 }
             } else if (size < 1073741824) {
                 i10 = (int) Math.ceil(size / 0.75d);
@@ -119,6 +119,6 @@ public final class l9 extends e9.j2 {
 
     @Override
     public final int size() {
-        return this.f51090b.f8434b.size();
+        return this.f51090b.f8435b.size();
     }
 }

@@ -55,11 +55,11 @@ public final class a {
         }
     }
 
-    public static r b(le.b bVar, Object obj, Object obj2) {
+    public static r b(b bVar, Object obj, Object obj2) {
         return new r(bVar, obj, obj2, f46994c);
     }
 
-    public static r c(le.b bVar, Object obj, Object obj2, Object obj3) {
+    public static r c(b bVar, Object obj, Object obj2, Object obj3) {
         return new r(bVar, obj, obj2, new Object[]{obj3});
     }
 
@@ -95,9 +95,9 @@ public final class a {
         return bVar;
     }
 
-    public final le.b e(s4.b bVar) {
-        le.b bVar2 = new le.b(22, false);
-        bVar2.f16008b = bVar;
+    public final b e(s4.b bVar) {
+        b bVar2 = new b(0, false);
+        bVar2.f46997b = bVar;
         return bVar2;
     }
 }

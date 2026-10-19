@@ -1,54 +1,50 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.drawable.Drawable;
-import android.text.TextUtils;
-import android.view.View;
-import android.widget.TextView;
-import android.widget.ViewSwitcher;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-public final class zf0 implements ViewSwitcher.ViewFactory {
-    public final int f43727a;
-    public final Object f43728b;
+import org.telegram.ui.Components.RadialProgressView;
+public final class zf0 implements Runnable {
+    public final int f43738a;
+    public final ag0 f43739b;
+    public final qf0 f43740c;
 
-    public zf0(Object obj, int i10) {
-        this.f43727a = i10;
-        this.f43728b = obj;
+    public zf0(int i10, qf0 qf0Var, ag0 ag0Var) {
+        this.f43738a = i10;
+        this.f43739b = ag0Var;
+        this.f43740c = qf0Var;
     }
 
     @Override
-    public final View makeView() {
-        int i10;
-        int i11 = this.f43727a;
-        Object obj = this.f43728b;
-        switch (i11) {
+    public final void run() {
+        int i10 = this.f43738a;
+        qf0 qf0Var = this.f43740c;
+        ag0 ag0Var = this.f43739b;
+        switch (i10) {
             case 0:
-                TextView textView = new TextView((Context) obj);
-                textView.setPadding(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(12.0f));
-                textView.setTextSize(1, 16.0f);
-                textView.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.G6, false));
-                textView.setHintTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.H6, false));
-                textView.setMaxLines(1);
-                textView.setSingleLine(true);
-                textView.setEllipsize(TextUtils.TruncateAt.END);
-                if (LocaleController.isRTL) {
-                    i10 = 5;
-                } else {
-                    i10 = 3;
-                }
-                textView.setGravity(i10 | 1);
-                return textView;
-            case 1:
-                TextView textView2 = new TextView((Context) obj);
-                com.google.android.gms.internal.play_billing.k3.o(org.telegram.ui.ActionBar.h6.D6, null, false, textView2, 1);
-                textView2.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
-                textView2.setTextSize(1, 15.0f);
-                return textView2;
+                int i11 = qf0.E;
+                qf0Var.a();
+                AndroidUtilities.runOnUIThread(new zf0(1, qf0Var, ag0Var), 150L);
+                return;
             default:
-                PhotoViewer photoViewer = (PhotoViewer) obj;
-                Drawable[] drawableArr = PhotoViewer.U8;
-                return new yt0(photoViewer.E, photoViewer.T1, photoViewer.Q, new zq0(photoViewer, 0), new wf0(photoViewer, 1));
+                bg0 bg0Var = ag0Var.f35362a;
+                bg0Var.h(null);
+                RadialProgressView radialProgressView = bg0Var.V.N.d;
+                RadialProgressView radialProgressView2 = qf0Var.h.d;
+                radialProgressView.getClass();
+                radialProgressView.f24325a = radialProgressView2.f24325a;
+                radialProgressView.f24326b = radialProgressView2.f24326b;
+                radialProgressView.H = radialProgressView2.H;
+                radialProgressView.I = radialProgressView2.I;
+                radialProgressView.J = radialProgressView2.J;
+                radialProgressView.f24327c = radialProgressView2.f24327c;
+                radialProgressView.f24329n = radialProgressView2.f24329n;
+                radialProgressView.e = radialProgressView2.e;
+                radialProgressView.f24334y = radialProgressView2.f24334y;
+                radialProgressView.F = radialProgressView2.F;
+                radialProgressView.G = radialProgressView2.G;
+                radialProgressView.d = radialProgressView2.d;
+                radialProgressView.E = radialProgressView2.E;
+                radialProgressView.b(85L);
+                return;
         }
     }
 }

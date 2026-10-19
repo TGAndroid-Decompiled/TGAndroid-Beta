@@ -2,12 +2,12 @@ package org.telegram.ui;
 
 import org.telegram.tgnet.RequestDelegate;
 public final class m implements RequestDelegate {
-    public final int f38947a;
-    public final Object f38948b;
+    public final int f39097a;
+    public final Object f39098b;
 
     public m(Object obj, int i10) {
-        this.f38947a = i10;
-        this.f38948b = obj;
+        this.f39097a = i10;
+        this.f39098b = obj;
     }
 
     @Override

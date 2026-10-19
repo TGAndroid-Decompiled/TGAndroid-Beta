@@ -1,24 +1,27 @@
 package qg;
 public final class q0 implements Runnable {
-    public final int f44594a;
-    public final s0 f44595b;
-    public final a5.a f44596c;
+    public final int f44590a;
+    public final t0 f44591b;
 
-    public q0(s0 s0Var, a5.a aVar, int i10) {
-        this.f44594a = i10;
-        this.f44595b = s0Var;
-        this.f44596c = aVar;
+    public q0(t0 t0Var, int i10) {
+        this.f44590a = i10;
+        this.f44591b = t0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f44594a) {
+        switch (this.f44590a) {
             case 0:
-                this.f44595b.p(this.f44596c, true);
+                t0 t0Var = this.f44591b;
+                t0Var.f44627c = null;
+                ki.t1 t1Var = t0Var.f44625a;
+                if (t1Var != null) {
+                    t1Var.s();
+                    return;
+                }
                 return;
             default:
-                s0 s0Var = this.f44595b;
-                s0Var.f44626f.f(new q0(s0Var, this.f44596c, 0));
+                this.f44591b.b();
                 return;
         }
     }

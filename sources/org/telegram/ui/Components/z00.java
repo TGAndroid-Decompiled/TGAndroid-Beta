@@ -162,111 +162,111 @@ public class z00 extends View {
         int i11 = 0;
         while (i11 < size) {
             y00 y00Var = (y00) arrayList.get(i11);
-            z00 z00Var = y00Var.f32503l;
-            byte b10 = y00Var.f32495a;
+            z00 z00Var = y00Var.f32523l;
+            byte b10 = y00Var.f32515a;
             Paint[] paintArr = f32791s;
             if (b10 == 0) {
                 f7 = 2.0f;
-                canvas.drawCircle(y00Var.f32499g, y00Var.h, AndroidUtilities.dp(y00Var.d), paintArr[y00Var.f32496b]);
+                canvas.drawCircle(y00Var.f32519g, y00Var.h, AndroidUtilities.dp(y00Var.d), paintArr[y00Var.f32516b]);
                 f10 = 16.0f;
             } else {
                 f7 = 2.0f;
                 if (b10 == 1) {
                     RectF rectF = z00Var.f32795a;
                     f10 = 16.0f;
-                    rectF.set(y00Var.f32499g - AndroidUtilities.dp(y00Var.d), y00Var.h - AndroidUtilities.dp(2.0f), y00Var.f32499g + AndroidUtilities.dp(y00Var.d), y00Var.h + AndroidUtilities.dp(2.0f));
+                    rectF.set(y00Var.f32519g - AndroidUtilities.dp(y00Var.d), y00Var.h - AndroidUtilities.dp(2.0f), y00Var.f32519g + AndroidUtilities.dp(y00Var.d), y00Var.h + AndroidUtilities.dp(2.0f));
                     canvas.save();
-                    canvas.rotate(y00Var.f32500i, rectF.centerX(), rectF.centerY());
-                    canvas.drawRoundRect(rectF, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), paintArr[y00Var.f32496b]);
+                    canvas.rotate(y00Var.f32520i, rectF.centerX(), rectF.centerY());
+                    canvas.drawRoundRect(rectF, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), paintArr[y00Var.f32516b]);
                     canvas.restore();
                 } else {
                     f10 = 16.0f;
                     if (b10 == 2) {
                         Drawable[] drawableArr = f32792w;
                         if (drawableArr != null) {
-                            drawable = drawableArr[y00Var.f32496b];
+                            drawable = drawableArr[y00Var.f32516b];
                         } else {
                             drawable = null;
                         }
                         Drawable[] drawableArr2 = v;
                         if (drawableArr2 != null) {
-                            drawable = drawableArr2[y00Var.f32496b];
+                            drawable = drawableArr2[y00Var.f32516b];
                         }
                         if (drawable != null) {
                             int intrinsicWidth = drawable.getIntrinsicWidth() / 2;
                             int intrinsicHeight = drawable.getIntrinsicHeight() / 2;
-                            int i12 = (int) y00Var.f32499g;
+                            int i12 = (int) y00Var.f32519g;
                             int i13 = (int) y00Var.h;
                             drawable.setBounds(i12 - intrinsicWidth, i13 - intrinsicHeight, i12 + intrinsicWidth, i13 + intrinsicHeight);
                             canvas.save();
-                            canvas.rotate(y00Var.f32500i, y00Var.f32499g, y00Var.h);
+                            canvas.rotate(y00Var.f32520i, y00Var.f32519g, y00Var.h);
                             float f11 = y00Var.d / 6.0f;
-                            canvas.scale(f11, f11, y00Var.f32499g, y00Var.h);
+                            canvas.scale(f11, f11, y00Var.f32519g, y00Var.h);
                             drawable.draw(canvas);
                             canvas.restore();
                         }
                     }
                 }
             }
-            z00 z00Var2 = y00Var.f32503l;
+            z00 z00Var2 = y00Var.f32523l;
             float f12 = i10 / f10;
-            float f13 = y00Var.f32499g;
-            float f14 = y00Var.f32501j;
-            y00Var.f32499g = (f14 * f12) + f13;
-            y00Var.h = (y00Var.f32502k * f12) + y00Var.h;
+            float f13 = y00Var.f32519g;
+            float f14 = y00Var.f32521j;
+            y00Var.f32519g = (f14 * f12) + f13;
+            y00Var.h = (y00Var.f32522k * f12) + y00Var.h;
             if (y00Var.e != 0) {
                 float dp = AndroidUtilities.dp(1.0f) * 0.5f;
                 if (y00Var.e == 1) {
-                    float t10 = com.google.android.gms.internal.play_billing.k3.t(dp, f12, 0.05f, y00Var.f32501j);
-                    y00Var.f32501j = t10;
+                    float t10 = com.google.android.gms.internal.play_billing.k3.t(dp, f12, 0.05f, y00Var.f32521j);
+                    y00Var.f32521j = t10;
                     if (t10 >= dp) {
                         y00Var.e = (byte) 2;
                     }
                 } else {
-                    float z11 = org.telegram.ui.Cells.c1.z(dp, f12, 0.05f, y00Var.f32501j);
-                    y00Var.f32501j = z11;
+                    float z11 = org.telegram.ui.Cells.c1.z(dp, f12, 0.05f, y00Var.f32521j);
+                    y00Var.f32521j = z11;
                     if (z11 <= (-dp)) {
                         y00Var.e = (byte) 1;
                     }
                 }
-            } else if (y00Var.f32497c == 0) {
+            } else if (y00Var.f32517c == 0) {
                 if (f14 > 0.0f) {
                     float f15 = f14 - (0.05f * f12);
-                    y00Var.f32501j = f15;
+                    y00Var.f32521j = f15;
                     if (f15 <= 0.0f) {
-                        y00Var.f32501j = 0.0f;
-                        y00Var.e = y00Var.f32498f;
+                        y00Var.f32521j = 0.0f;
+                        y00Var.e = y00Var.f32518f;
                     }
                 }
             } else if (f14 < 0.0f) {
                 float f16 = (0.05f * f12) + f14;
-                y00Var.f32501j = f16;
+                y00Var.f32521j = f16;
                 if (f16 >= 0.0f) {
-                    y00Var.f32501j = 0.0f;
-                    y00Var.e = y00Var.f32498f;
+                    y00Var.f32521j = 0.0f;
+                    y00Var.e = y00Var.f32518f;
                 }
             }
             float f17 = (-AndroidUtilities.dp(1.0f)) / f7;
-            float f18 = y00Var.f32502k;
+            float f18 = y00Var.f32522k;
             if (f18 < f17) {
                 z10 = true;
             } else {
                 z10 = false;
             }
             if (f18 > f17) {
-                y00Var.f32502k = ((AndroidUtilities.dp(1.0f) / 3.0f) * f12 * z00Var2.e) + f18;
+                y00Var.f32522k = ((AndroidUtilities.dp(1.0f) / 3.0f) * f12 * z00Var2.e) + f18;
             } else {
-                y00Var.f32502k = a1.g.d(AndroidUtilities.dp(1.0f), 3.0f, f12, f18);
+                y00Var.f32522k = a1.g.d(AndroidUtilities.dp(1.0f), 3.0f, f12, f18);
             }
-            if (z10 && y00Var.f32502k > f17) {
+            if (z10 && y00Var.f32522k > f17) {
                 z00Var2.f32798f++;
             }
-            byte b11 = y00Var.f32495a;
+            byte b11 = y00Var.f32515a;
             if (b11 == 1 || b11 == 2) {
-                short s10 = (short) ((f12 * 10.0f) + y00Var.f32500i);
-                y00Var.f32500i = s10;
+                short s10 = (short) ((f12 * 10.0f) + y00Var.f32520i);
+                y00Var.f32520i = s10;
                 if (s10 > 360) {
-                    y00Var.f32500i = (short) (s10 - 360);
+                    y00Var.f32520i = (short) (s10 - 360);
                 }
             }
             if (y00Var.h >= z00Var2.getHeightForAnimation()) {

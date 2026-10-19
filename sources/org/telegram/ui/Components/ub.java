@@ -105,7 +105,7 @@ public abstract class ub extends FrameLayout {
         this.inOutOffset = f7;
         updatePosition();
         qc qcVar = this.bulletin;
-        if (qcVar != null && qcVar.f29639k) {
+        if (qcVar != null && qcVar.f29597k) {
             invalidate();
         }
     }
@@ -141,7 +141,7 @@ public abstract class ub extends FrameLayout {
     @Override
     public void dispatchDraw(Canvas canvas) {
         qc qcVar = this.bulletin;
-        if (qcVar != null && qcVar.f29639k) {
+        if (qcVar != null && qcVar.f29597k) {
             if (this.blurVisibilityDrawable == null) {
                 this.blurVisibilityDrawable = new vh.b(new s(this, 16));
             }
@@ -166,9 +166,9 @@ public abstract class ub extends FrameLayout {
         if (this.bulletin != null && i10 != 0) {
             this.background.setBounds(getPaddingLeft(), getPaddingTop(), getMeasuredWidth() - getPaddingRight(), getMeasuredBackgroundHeight() - getPaddingBottom());
             if (isTransitionRunning() && (obVar = this.delegate) != null) {
-                float h = obVar.h(this.bulletin.f29632a) - getY();
+                float h = obVar.h(this.bulletin.f29590a) - getY();
                 float measuredHeight = (((View) getParent()).getMeasuredHeight() - getBottomOffset()) - getY();
-                if (!z10 && this.delegate.g(this.bulletin.f29632a)) {
+                if (!z10 && this.delegate.g(this.bulletin.f29590a)) {
                     z11 = true;
                 } else {
                     z11 = false;
@@ -243,14 +243,14 @@ public abstract class ub extends FrameLayout {
         ob obVar;
         qc qcVar;
         o1.k kVar;
-        if (this.bulletin != null && (((obVar = this.delegate) == null || obVar.e()) && (kVar = (qcVar = this.bulletin).d) != null && kVar.f17551f)) {
-            f7 = qcVar.f29643o;
+        if (this.bulletin != null && (((obVar = this.delegate) == null || obVar.e()) && (kVar = (qcVar = this.bulletin).d) != null && kVar.f17554f)) {
+            f7 = qcVar.f29601o;
         } else {
             ob obVar2 = this.delegate;
             if (obVar2 != null) {
                 qc qcVar2 = this.bulletin;
                 if (qcVar2 != null) {
-                    i10 = qcVar2.f29632a;
+                    i10 = qcVar2.f29590a;
                 } else {
                     i10 = 0;
                 }
@@ -280,7 +280,7 @@ public abstract class ub extends FrameLayout {
         if (obVar != null) {
             qc qcVar = this.bulletin;
             if (qcVar != null) {
-                i10 = qcVar.f29632a;
+                i10 = qcVar.f29590a;
             } else {
                 i10 = 0;
             }
@@ -407,7 +407,7 @@ public abstract class ub extends FrameLayout {
             if (this.top) {
                 qc qcVar = this.bulletin;
                 if (qcVar != null) {
-                    i11 = qcVar.f29632a;
+                    i11 = qcVar.f29590a;
                 } else {
                     i11 = 0;
                 }

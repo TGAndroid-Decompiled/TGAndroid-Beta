@@ -1,89 +1,76 @@
 package org.telegram.ui;
-public final class s10 implements org.telegram.ui.Components.bp0 {
-    public final int f40842a;
-    public final tg.g f40843b;
 
-    public s10(tg.g gVar, int i10) {
-        this.f40842a = i10;
-        this.f40843b = gVar;
-    }
+import android.graphics.Canvas;
+import android.graphics.LinearGradient;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.RectF;
+import android.graphics.Shader;
+public final class s10 {
+    public LinearGradient f41309b;
+    public final Paint[] f41308a = new Paint[4];
+    public final Matrix f41310c = new Matrix();
 
-    @Override
-    public final void L(float f7, boolean z10) {
-        switch (this.f40842a) {
-            case 0:
-                tg.o oVar = this.f40843b.f47064c;
-                if (oVar != null) {
-                    oVar.B = f7 * 2.0f;
-                    return;
-                }
-                return;
-            case 1:
-                tg.o oVar2 = this.f40843b.f47064c;
-                if (oVar2 != null) {
-                    oVar2.C = f7 * 2.0f;
-                    return;
-                }
-                return;
-            case 2:
-                tg.o oVar3 = this.f40843b.f47064c;
-                if (oVar3 != null) {
-                    oVar3.D = f7;
-                    return;
-                }
-                return;
-            default:
-                tg.o oVar4 = this.f40843b.f47064c;
-                if (oVar4 != null) {
-                    oVar4.G = f7 * 2.0f;
-                    return;
-                }
-                return;
+    public final void a(Canvas canvas, RectF rectF, float f7) {
+        Paint[] paintArr = this.f41308a;
+        if (paintArr[0] == null) {
+            Paint paint = new Paint(1);
+            paintArr[0] = paint;
+            paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
         }
+        paintArr[0].setShader(this.f41309b);
+        paintArr[0].setAlpha((int) (f7 * 255.0f));
+        canvas.drawRect(rectF, paintArr[0]);
     }
 
-    @Override
-    public final int Y() {
-        switch (this.f40842a) {
-            case 0:
-                return 0;
-            case 1:
-                return 0;
-            case 2:
-                return 0;
-            default:
-                return 0;
+    public final void b(Canvas canvas, RectF rectF, int i10, float f7) {
+        if (f7 <= 0.0f) {
+            return;
         }
-    }
-
-    @Override
-    public final CharSequence getContentDescription() {
-        switch (this.f40842a) {
-            case 0:
-                return null;
-            case 1:
-                return null;
-            case 2:
-                return null;
-            default:
-                return null;
+        if (this.f41309b == null) {
+            this.f41309b = new LinearGradient(0.0f, 0.0f, 0.0f, 16.0f, new int[]{-65536, 16711680}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
         }
+        Paint[] paintArr = this.f41308a;
+        if (paintArr[i10] == null) {
+            paintArr[i10] = new Paint(1);
+            paintArr[i10].setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
+        }
+        paintArr[i10].setShader(this.f41309b);
+        Matrix matrix = this.f41310c;
+        matrix.reset();
+        if (i10 == 0) {
+            matrix.postScale(1.0f, rectF.width() / 16.0f);
+            matrix.postRotate(-90.0f);
+            matrix.postTranslate(rectF.left, rectF.top);
+        } else if (i10 == 1) {
+            matrix.postScale(1.0f, rectF.height() / 16.0f);
+            matrix.postTranslate(rectF.left, rectF.top);
+        } else if (i10 == 2) {
+            matrix.postScale(1.0f, rectF.width() / 16.0f);
+            matrix.postRotate(90.0f);
+            matrix.postTranslate(rectF.right, rectF.top);
+        } else if (i10 == 3) {
+            matrix.postScale(1.0f, rectF.height() / 16.0f);
+            matrix.postScale(1.0f, -1.0f);
+            matrix.postTranslate(rectF.left, rectF.bottom);
+        }
+        this.f41309b.setLocalMatrix(matrix);
+        paintArr[i10].setAlpha((int) (f7 * 255.0f));
+        canvas.drawRect(rectF, paintArr[i10]);
     }
 
-    @Override
-    public final void v() {
-        int i10 = this.f40842a;
-    }
-
-    private final void a() {
-    }
-
-    private final void b() {
-    }
-
-    private final void c() {
-    }
-
-    private final void d() {
+    public final Paint c(float f7, int i10) {
+        Paint[] paintArr = this.f41308a;
+        if (paintArr[i10] == null) {
+            Paint paint = new Paint(1);
+            paintArr[i10] = paint;
+            paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
+        }
+        paintArr[i10].setShader(null);
+        paintArr[i10].setColor(-65536);
+        paintArr[i10].setAlpha((int) (f7 * 255.0f));
+        return paintArr[i10];
     }
 }

@@ -5,8 +5,8 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.sn;
-public final class w extends sn {
+import org.telegram.ui.qn;
+public final class w extends qn {
     public final m0 Rc;
 
     public w(m0 m0Var) {

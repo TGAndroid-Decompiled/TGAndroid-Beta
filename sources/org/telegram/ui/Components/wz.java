@@ -18,30 +18,30 @@ public class wz extends s4.s {
         this.Q = z10;
     }
 
-    public static dw0 C1(dw0 dw0Var) {
-        if (dw0Var == null) {
+    public static ew0 C1(ew0 ew0Var) {
+        if (ew0Var == null) {
             return null;
         }
-        if (dw0Var.f25720a == 0.0f) {
-            dw0Var.f25720a = 100.0f;
+        if (ew0Var.f26040a == 0.0f) {
+            ew0Var.f26040a = 100.0f;
         }
-        if (dw0Var.f25721b == 0.0f) {
-            dw0Var.f25721b = 100.0f;
+        if (ew0Var.f26041b == 0.0f) {
+            ew0Var.f26041b = 100.0f;
         }
-        float f7 = dw0Var.f25720a;
-        float f10 = dw0Var.f25721b;
+        float f7 = ew0Var.f26040a;
+        float f10 = ew0Var.f26041b;
         float f11 = f7 / f10;
         if (f11 <= 4.0f && f11 >= 0.2f) {
-            return dw0Var;
+            return ew0Var;
         }
         float max = Math.max(f7, f10);
-        dw0Var.f25720a = max;
-        dw0Var.f25721b = max;
-        return dw0Var;
+        ew0Var.f26040a = max;
+        ew0Var.f26041b = max;
+        return ew0Var;
     }
 
     public final void B1() {
-        dw0 dw0Var;
+        ew0 ew0Var;
         int i10;
         int min;
         boolean z10;
@@ -75,11 +75,11 @@ public class wz extends s4.s {
             int i16 = i12;
             while (i14 < i13) {
                 if (i14 < A) {
-                    dw0Var = C1(D1(i14));
+                    ew0Var = C1(D1(i14));
                 } else {
-                    dw0Var = null;
+                    ew0Var = null;
                 }
-                if (dw0Var == null) {
+                if (ew0Var == null) {
                     if (i15 != 0) {
                         z11 = true;
                     } else {
@@ -89,13 +89,13 @@ public class wz extends s4.s {
                     min = i12;
                 } else {
                     i10 = dp;
-                    min = Math.min(i12, (int) Math.floor((((dw0Var.f25720a / dw0Var.f25721b) * dp) / f10) * i12));
+                    min = Math.min(i12, (int) Math.floor((((ew0Var.f26040a / ew0Var.f26041b) * dp) / f10) * i12));
                     if (i16 >= min && (min <= 33 || i16 >= min - 15)) {
                         z10 = false;
                     } else {
                         z10 = true;
                     }
-                    if (dw0Var.f25722c) {
+                    if (ew0Var.f26042c) {
                         sparseIntArray.put(i14, i16);
                         this.V++;
                         f7 = f10;
@@ -162,8 +162,8 @@ public class wz extends s4.s {
         }
     }
 
-    public dw0 D1(int i10) {
-        return new dw0(100.0f, 100.0f);
+    public ew0 D1(int i10) {
+        return new ew0(100.0f, 100.0f);
     }
 
     public final boolean E1(int i10) {

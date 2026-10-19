@@ -1,13 +1,14 @@
 package ai;
 
 import android.content.Context;
+import android.graphics.Canvas;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.c91;
-public final class h5 extends c91 {
+import org.telegram.ui.Components.d91;
+public final class h5 extends d91 {
     public final k7 T;
 
     public h5(k7 k7Var, Context context) {
@@ -44,15 +45,15 @@ public final class h5 extends c91 {
             FrameLayout frameLayout = (FrameLayout) view;
             if (frameLayout.getChildCount() > 0) {
                 view2 = frameLayout.getChildAt(0);
-                k2Var = k7Var.f1661c0;
-                if (k2Var != null && view2 == k2Var.Y && (k5Var3 = k2Var.f1665e0) != null) {
+                k2Var = k7Var.f1651c0;
+                if (k2Var != null && view2 == k2Var.Y && (k5Var3 = k2Var.f1655e0) != null) {
                     k5Var3.invalidate();
                 }
-                if (view2 == k7Var.Y && (k5Var2 = k7Var.f1665e0) != null) {
+                if (view2 == k7Var.Y && (k5Var2 = k7Var.f1655e0) != null) {
                     k5Var2.invalidate();
                 }
-                k2Var2 = k7Var.f1663d0;
-                if (k2Var2 == null && view2 == k2Var2.Y && (k5Var = k2Var2.f1665e0) != null) {
+                k2Var2 = k7Var.f1653d0;
+                if (k2Var2 == null && view2 == k2Var2.Y && (k5Var = k2Var2.f1655e0) != null) {
                     k5Var.invalidate();
                     return;
                 }
@@ -60,14 +61,14 @@ public final class h5 extends c91 {
             }
         }
         view2 = null;
-        k2Var = k7Var.f1661c0;
+        k2Var = k7Var.f1651c0;
         if (k2Var != null) {
             k5Var3.invalidate();
         }
         if (view2 == k7Var.Y) {
             k5Var2.invalidate();
         }
-        k2Var2 = k7Var.f1663d0;
+        k2Var2 = k7Var.f1653d0;
         if (k2Var2 == null) {
         }
     }
@@ -75,11 +76,11 @@ public final class h5 extends c91 {
     @Override
     public final void F() {
         super.F();
-        int i10 = this.f25167b;
+        int i10 = this.f25501b;
         k7 k7Var = this.T;
         boolean z10 = false;
-        if (i10 != k7Var.Z1(false)) {
-            if (this.f25167b > k7Var.Z1(false)) {
+        if (i10 != k7Var.g2(false)) {
+            if (this.f25501b > k7Var.g2(false)) {
                 z10 = true;
             }
             AndroidUtilities.runOnUIThread(new ah.t(3, this, z10));
@@ -87,8 +88,30 @@ public final class h5 extends c91 {
     }
 
     @Override
+    public final void dispatchDraw(Canvas canvas) {
+        int i10;
+        int i11;
+        canvas.save();
+        k7 k7Var = this.T;
+        i10 = ((org.telegram.ui.ActionBar.f3) k7Var).backgroundPaddingLeft;
+        int width = getWidth();
+        i11 = ((org.telegram.ui.ActionBar.f3) k7Var).backgroundPaddingLeft;
+        canvas.clipRect(i10, -getHeight(), width - i11, getHeight() * 2);
+        super.dispatchDraw(canvas);
+        canvas.restore();
+    }
+
+    @Override
+    public final float getAvailableTranslationX() {
+        int i10;
+        int measuredWidth = getMeasuredWidth();
+        i10 = ((org.telegram.ui.ActionBar.f3) this.T).backgroundPaddingLeft;
+        return Math.max(1, measuredWidth - (i10 * 2));
+    }
+
+    @Override
     public final boolean i(MotionEvent motionEvent) {
-        g6 g6Var = this.T.f1660b1;
+        g6 g6Var = this.T.f1650b1;
         if (g6Var != null && !g6Var.c(0)) {
             return false;
         }

@@ -4,33 +4,33 @@ import android.view.View;
 import android.widget.AdapterView;
 import androidx.appcompat.widget.SearchView;
 public final class y1 implements AdapterView.OnItemSelectedListener {
-    public final int f16388a;
-    public final Object f16389b;
+    public final int f16391a;
+    public final Object f16392b;
 
     public y1(Object obj, int i10) {
-        this.f16388a = i10;
-        this.f16389b = obj;
+        this.f16391a = i10;
+        this.f16392b = obj;
     }
 
     @Override
     public final void onItemSelected(AdapterView adapterView, View view, int i10, long j10) {
         s1 s1Var;
-        switch (this.f16388a) {
+        switch (this.f16391a) {
             case 0:
-                if (i10 != -1 && (s1Var = ((e2) this.f16389b).f16185c) != null) {
+                if (i10 != -1 && (s1Var = ((e2) this.f16392b).f16188c) != null) {
                     s1Var.setListSelectionHidden(false);
                     return;
                 }
                 return;
             default:
-                ((SearchView) this.f16389b).n(i10);
+                ((SearchView) this.f16392b).n(i10);
                 return;
         }
     }
 
     @Override
     public final void onNothingSelected(AdapterView adapterView) {
-        int i10 = this.f16388a;
+        int i10 = this.f16391a;
     }
 
     private final void a(AdapterView adapterView) {

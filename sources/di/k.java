@@ -6,7 +6,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.ui.Components.gj;
 import org.telegram.ui.Components.km;
 import org.telegram.ui.Components.li;
-import org.telegram.ui.Components.oy0;
+import org.telegram.ui.Components.py0;
 import s4.y0;
 public final class k extends s4.s {
     public final int Q;
@@ -22,7 +22,7 @@ public final class k extends s4.s {
     public boolean Y0() {
         switch (this.Q) {
             case 3:
-                if (((oy0) this.R).W != null && LocaleController.isRTL) {
+                if (((py0) this.R).W != null && LocaleController.isRTL) {
                     return true;
                 }
                 return false;
@@ -35,7 +35,7 @@ public final class k extends s4.s {
     public int o0(int i10, qf.e eVar, y0 y0Var) {
         switch (this.Q) {
             case 0:
-                if (((r) this.R).f8056b) {
+                if (((r) this.R).f8057b) {
                     i10 = 0;
                 }
                 return super.o0(i10, eVar, y0Var);
@@ -77,10 +77,10 @@ public final class k extends s4.s {
         }
     }
 
-    public k(oy0 oy0Var) {
+    public k(py0 py0Var) {
         super(5);
         this.Q = 3;
-        this.R = oy0Var;
+        this.R = py0Var;
     }
 
     public k(r rVar) {

@@ -5,8 +5,8 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.n2;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.le;
-import org.telegram.ui.sn;
+import org.telegram.ui.je;
+import org.telegram.ui.qn;
 public final class x implements Utilities.Callback {
     public final z f47772a;
     public final TL_stories.TL_prepaidStarsGiveaway f47773b;
@@ -30,13 +30,13 @@ public final class x implements Utilities.Callback {
         if (this.f47773b != null) {
             n2 U = LaunchActivity.U();
             if (U != null) {
-                sn W9 = sn.W9(this.f47774c);
-                W9.whenFullyVisible(new le(W9, this.d, 6));
+                qn W9 = qn.W9(this.f47774c);
+                W9.whenFullyVisible(new je(W9, this.d, 6));
                 U.presentFragment(W9);
                 return;
             }
             return;
         }
-        AndroidUtilities.runOnUIThread(new u2.q0(7, zVar, this.e), 220L);
+        AndroidUtilities.runOnUIThread(new uf.c(6, zVar, this.e), 220L);
     }
 }

@@ -14,8 +14,8 @@ public final class a3 {
         ?? obj = new Object();
         obj.f35252a = videoPlayerHolderBase.getCurrentPosition();
         if (videoPlayerHolderBase.firstFrameRendered) {
-            TextureView textureView = z2Var.f43511n;
-            TextureView textureView2 = z2Var.f43511n;
+            TextureView textureView = z2Var.f43611n;
+            TextureView textureView2 = z2Var.f43611n;
             if (textureView != null && textureView.getSurfaceTexture() != null) {
                 if (Build.VERSION.SDK_INT >= 24) {
                     Surface surface = new Surface(textureView2.getSurfaceTexture());

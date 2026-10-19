@@ -14,31 +14,31 @@ import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Components.CheckBoxBase;
 import org.telegram.ui.Components.i80;
 public final class t5 implements View.OnClickListener {
-    public final int f15530a;
-    public final c6 f15531b;
+    public final int f15533a;
+    public final c6 f15534b;
 
     public t5(c6 c6Var, int i10) {
-        this.f15530a = i10;
-        this.f15531b = c6Var;
+        this.f15533a = i10;
+        this.f15534b = c6Var;
     }
 
     @Override
     public final void onClick(View view) {
         Set set;
-        switch (this.f15530a) {
+        switch (this.f15533a) {
             case 0:
-                c6 c6Var = this.f15531b;
-                a aVar = c6Var.f15186x;
+                c6 c6Var = this.f15534b;
+                a aVar = c6Var.f15189x;
                 if (aVar != null && aVar.e) {
-                    boolean z10 = !aVar.f15096f;
-                    aVar.f15096f = z10;
-                    ((CheckBoxBase) c6Var.e.f1506b).f(-1, z10, true);
-                    z5 z5Var = c6Var.f15187y;
+                    boolean z10 = !aVar.f15099f;
+                    aVar.f15099f = z10;
+                    ((CheckBoxBase) c6Var.e.f1503b).f(-1, z10, true);
+                    z5 z5Var = c6Var.f15190y;
                     if (z5Var != null) {
-                        a aVar2 = c6Var.f15186x;
-                        boolean z11 = aVar2.f15096f;
-                        w3 w3Var = ((e3) z5Var).f15244a;
-                        aVar2.f15096f = z11;
+                        a aVar2 = c6Var.f15189x;
+                        boolean z11 = aVar2.f15099f;
+                        w3 w3Var = ((e3) z5Var).f15247a;
+                        aVar2.f15099f = z11;
                         h2 h2Var = w3Var.H3;
                         if (h2Var != null) {
                             h2Var.d();
@@ -51,33 +51,33 @@ public final class t5 implements View.OnClickListener {
                 }
                 return;
             default:
-                c6 c6Var2 = this.f15531b;
-                z5 z5Var2 = c6Var2.f15187y;
+                c6 c6Var2 = this.f15534b;
+                z5 z5Var2 = c6Var2.f15190y;
                 if (z5Var2 != null) {
-                    a aVar3 = c6Var2.f15186x;
-                    w3 w3Var2 = ((e3) z5Var2).f15244a;
-                    if (aVar3 != null && (aVar3.f15094b instanceof TL_iv.pageBlockPreformatted) && (set = mi.k.f16960a.f16982x) != null) {
+                    a aVar3 = c6Var2.f15189x;
+                    w3 w3Var2 = ((e3) z5Var2).f15247a;
+                    if (aVar3 != null && (aVar3.f15097b instanceof TL_iv.pageBlockPreformatted) && (set = mi.k.f16963a.f16985x) != null) {
                         ArrayList arrayList = new ArrayList(set);
                         Collections.sort(arrayList);
-                        TL_iv.pageBlockPreformatted pageblockpreformatted = (TL_iv.pageBlockPreformatted) aVar3.f15094b;
-                        i80 C = w3Var2.f15591f3.C(view);
-                        C.W(h6.c0(AndroidUtilities.dp(3.0f), h6.w0(h6.f20986d6, w3Var2.f15589e3)));
-                        C.Z = true;
-                        C.X = AndroidUtilities.dp(350.0f);
-                        C.i(new o2(w3Var2, aVar3, 25), LocaleController.getString(R.string.ArticleNone), TextUtils.isEmpty(pageblockpreformatted.language));
+                        TL_iv.pageBlockPreformatted pageblockpreformatted = (TL_iv.pageBlockPreformatted) aVar3.f15097b;
+                        i80 M = w3Var2.f15594f3.M(view);
+                        M.W(h6.c0(AndroidUtilities.dp(3.0f), h6.w0(h6.f20989d6, w3Var2.f15592e3)));
+                        M.Z = true;
+                        M.X = AndroidUtilities.dp(350.0f);
+                        M.i(new o2(w3Var2, aVar3, 25), LocaleController.getString(R.string.ArticleNone), TextUtils.isEmpty(pageblockpreformatted.language));
                         if (!TextUtils.isEmpty(pageblockpreformatted.language)) {
-                            C.i(null, MessageObject.TextLayoutBlock.capitalizeLanguage(pageblockpreformatted.language), true);
+                            M.i(null, MessageObject.TextLayoutBlock.capitalizeLanguage(pageblockpreformatted.language), true);
                         }
-                        C.k();
+                        M.k();
                         int size = arrayList.size();
                         int i10 = 0;
                         while (i10 < size) {
                             Object obj = arrayList.get(i10);
                             i10++;
                             String str = (String) obj;
-                            C.i(new ig.e2(w3Var2, aVar3, str, 5), MessageObject.TextLayoutBlock.capitalizeLanguage(str), TextUtils.equals(str, pageblockpreformatted.language));
+                            M.i(new ig.e2(w3Var2, aVar3, str, 5), MessageObject.TextLayoutBlock.capitalizeLanguage(str), TextUtils.equals(str, pageblockpreformatted.language));
                         }
-                        C.Z();
+                        M.Z();
                         return;
                     }
                     return;

@@ -2,13 +2,13 @@ package c3;
 
 import java.io.Serializable;
 public final class a0 {
-    public int f4565a;
-    public int f4566b;
-    public int f4567c;
+    public int f4563a;
+    public int f4564b;
+    public int f4565c;
     public int d;
     public int e;
-    public int f4568f;
-    public Serializable f4569g;
+    public int f4566f;
+    public Serializable f4567g;
 
     public boolean a(int i10) {
         int i11;
@@ -20,15 +20,15 @@ public final class a0 {
         if ((i10 & (-2097152)) != -2097152 || (i11 = (i10 >>> 19) & 3) == 1 || (i12 = (i10 >>> 17) & 3) == 0 || (i13 = (i10 >>> 12) & 15) == 0 || i13 == 15 || (i14 = (i10 >>> 10) & 3) == 3) {
             return false;
         }
-        this.f4565a = i11;
-        this.f4569g = b.f4585s[3 - i12];
-        int i17 = b.f4586t[i14];
-        this.f4567c = i17;
+        this.f4563a = i11;
+        this.f4567g = b.f4583s[3 - i12];
+        int i17 = b.f4584t[i14];
+        this.f4565c = i17;
         int i18 = 2;
         if (i11 == 2) {
-            this.f4567c = i17 / 2;
+            this.f4565c = i17 / 2;
         } else if (i11 == 0) {
-            this.f4567c = i17 / 4;
+            this.f4565c = i17 / 4;
         }
         int i19 = (i10 >>> 9) & 1;
         int i20 = 1152;
@@ -43,32 +43,32 @@ public final class a0 {
         } else if (i11 != 3) {
             i20 = 576;
         }
-        this.f4568f = i20;
+        this.f4566f = i20;
         if (i12 == 3) {
             if (i11 == 3) {
-                i16 = b.f4587u[i13 - 1];
+                i16 = b.f4585u[i13 - 1];
             } else {
                 i16 = b.v[i13 - 1];
             }
             this.e = i16;
-            this.f4566b = (((i16 * 12) / this.f4567c) + i19) * 4;
+            this.f4564b = (((i16 * 12) / this.f4565c) + i19) * 4;
         } else {
             int i21 = 144;
             if (i11 == 3) {
                 if (i12 == 2) {
-                    i15 = b.f4588w[i13 - 1];
+                    i15 = b.f4586w[i13 - 1];
                 } else {
-                    i15 = b.f4589x[i13 - 1];
+                    i15 = b.f4587x[i13 - 1];
                 }
                 this.e = i15;
-                this.f4566b = ((i15 * 144) / this.f4567c) + i19;
+                this.f4564b = ((i15 * 144) / this.f4565c) + i19;
             } else {
-                int i22 = b.f4590y[i13 - 1];
+                int i22 = b.f4588y[i13 - 1];
                 this.e = i22;
                 if (i12 == 1) {
                     i21 = 72;
                 }
-                this.f4566b = ((i21 * i22) / this.f4567c) + i19;
+                this.f4564b = ((i21 * i22) / this.f4565c) + i19;
             }
         }
         if (((i10 >> 6) & 3) == 3) {

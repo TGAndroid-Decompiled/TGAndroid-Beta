@@ -17,8 +17,8 @@ public abstract class b {
         }
         try {
             InputStream open = ApplicationLoader.applicationContext.getAssets().open("currencies.json");
-            String str = m0.f8253a;
-            JSONObject jSONObject = new JSONObject(new String(f9.f.b(open), d9.j.f7892a));
+            String str = m0.f8254a;
+            JSONObject jSONObject = new JSONObject(new String(f9.f.b(open), d9.j.f7893a));
             Iterator<String> keys = jSONObject.keys();
             while (keys.hasNext()) {
                 String next = keys.next();

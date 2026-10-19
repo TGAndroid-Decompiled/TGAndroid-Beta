@@ -1,117 +1,219 @@
 package org.telegram.ui;
 
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.graphics.SurfaceTexture;
-import android.view.TextureView;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.opengl.GLES20;
+import android.opengl.GLUtils;
+import javax.microedition.khronos.egl.EGL10;
+import javax.microedition.khronos.egl.EGLConfig;
+import javax.microedition.khronos.egl.EGLContext;
+import javax.microedition.khronos.egl.EGLDisplay;
+import javax.microedition.khronos.egl.EGLSurface;
+import org.telegram.messenger.BuildVars;
+import org.telegram.messenger.DispatchQueue;
+import org.telegram.messenger.EmuDetector;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.GenericProvider;
 import org.telegram.messenger.Intro;
-import org.telegram.messenger.NotificationCenter;
-public final class h70 implements TextureView.SurfaceTextureListener {
-    public final int f37425a;
-    public final NotificationCenter.NotificationCenterDelegate f37426b;
+import org.telegram.messenger.R;
+public final class h70 extends DispatchQueue {
+    public static final int f37538y = 0;
+    public final SurfaceTexture f37539a;
+    public EGL10 f37540b;
+    public EGLDisplay f37541c;
+    public EGLConfig d;
+    public EGLContext e;
+    public EGLSurface f37542f;
+    public boolean h;
+    public final int[] f37543n;
+    public float f37544r;
+    public long f37545s;
+    public final org.telegram.ui.Components.tg0 v;
+    public final a6 f37546w;
+    public final j70 f37547x;
 
-    public h70(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, int i10) {
-        this.f37425a = i10;
-        this.f37426b = notificationCenterDelegate;
+    public h70(j70 j70Var, SurfaceTexture surfaceTexture) {
+        super("EGLThread");
+        this.f37547x = j70Var;
+        this.f37543n = new int[24];
+        this.v = new org.telegram.ui.Components.tg0(26);
+        this.f37546w = new a6(this, 7);
+        this.f37539a = surfaceTexture;
     }
 
-    @Override
-    public final void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i10, int i11) {
-        switch (this.f37425a) {
-            case 0:
-                l70 l70Var = (l70) this.f37426b;
-                if (l70Var.I == null && surfaceTexture != null) {
-                    l70Var.I = new j70(l70Var, surfaceTexture);
-                    Intro.onSurfaceChanged(i10, i11, Math.min(i10 / 150.0f, i11 / 150.0f), 0);
-                    l70Var.I.postRunnable(new fz(this, 12));
-                    j70 j70Var = l70Var.I;
-                    j70Var.postRunnable(j70Var.f38072w);
-                    return;
-                }
+    public final void b(int i10, int i11, int i12, boolean z10) {
+        Drawable drawable = this.f37547x.getParentActivity().getResources().getDrawable(i10);
+        if (drawable instanceof BitmapDrawable) {
+            int[] iArr = this.f37543n;
+            if (z10) {
+                GLES20.glDeleteTextures(1, iArr, i11);
+                GLES20.glGenTextures(1, iArr, i11);
+            }
+            Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
+            GLES20.glBindTexture(3553, iArr[i11]);
+            GLES20.glTexParameteri(3553, 10241, 9729);
+            GLES20.glTexParameteri(3553, 10240, 9729);
+            GLES20.glTexParameteri(3553, 10242, 33071);
+            GLES20.glTexParameteri(3553, 10243, 33071);
+            if (i12 != 0) {
+                Bitmap createBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
+                Canvas canvas = new Canvas(createBitmap);
+                Paint paint = new Paint(5);
+                paint.setColorFilter(new PorterDuffColorFilter(i12, PorterDuff.Mode.SRC_IN));
+                canvas.drawBitmap(bitmap, 0.0f, 0.0f, paint);
+                GLUtils.texImage2D(3553, 0, createBitmap, 0);
+                createBitmap.recycle();
                 return;
-            default:
-                return;
+            }
+            GLUtils.texImage2D(3553, 0, bitmap, 0);
+        }
+    }
+
+    public final void c(GenericProvider genericProvider, int i10, boolean z10) {
+        int[] iArr = this.f37543n;
+        if (z10) {
+            GLES20.glDeleteTextures(1, iArr, i10);
+            GLES20.glGenTextures(1, iArr, i10);
+        }
+        Bitmap bitmap = (Bitmap) genericProvider.provide(null);
+        GLES20.glBindTexture(3553, iArr[i10]);
+        GLES20.glTexParameteri(3553, 10241, 9729);
+        GLES20.glTexParameteri(3553, 10240, 9729);
+        GLES20.glTexParameteri(3553, 10242, 33071);
+        GLES20.glTexParameteri(3553, 10243, 33071);
+        GLUtils.texImage2D(3553, 0, bitmap, 0);
+        bitmap.recycle();
+    }
+
+    public final void finish() {
+        if (this.f37542f != null) {
+            EGL10 egl10 = this.f37540b;
+            EGLDisplay eGLDisplay = this.f37541c;
+            EGLSurface eGLSurface = EGL10.EGL_NO_SURFACE;
+            egl10.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, EGL10.EGL_NO_CONTEXT);
+            this.f37540b.eglDestroySurface(this.f37541c, this.f37542f);
+            this.f37542f = null;
+        }
+        EGLContext eGLContext = this.e;
+        if (eGLContext != null) {
+            this.f37540b.eglDestroyContext(this.f37541c, eGLContext);
+            this.e = null;
+        }
+        EGLDisplay eGLDisplay2 = this.f37541c;
+        if (eGLDisplay2 != null) {
+            this.f37540b.eglTerminate(eGLDisplay2);
+            this.f37541c = null;
         }
     }
 
     @Override
-    public final boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
-        TextureView textureView;
-        switch (this.f37425a) {
-            case 0:
-                l70 l70Var = (l70) this.f37426b;
-                j70 j70Var = l70Var.I;
-                if (j70Var != null) {
-                    j70Var.postRunnable(new fz(j70Var, 14));
-                    l70Var.I = null;
-                    return true;
+    public final void run() {
+        EGL10 egl10 = (EGL10) EGLContext.getEGL();
+        this.f37540b = egl10;
+        EGLDisplay eglGetDisplay = egl10.eglGetDisplay(EGL10.EGL_DEFAULT_DISPLAY);
+        this.f37541c = eglGetDisplay;
+        boolean z10 = false;
+        if (eglGetDisplay == EGL10.EGL_NO_DISPLAY) {
+            if (BuildVars.LOGS_ENABLED) {
+                org.telegram.messenger.lk.v(this.f37540b, new StringBuilder("eglGetDisplay failed "));
+            }
+            finish();
+        } else if (!this.f37540b.eglInitialize(eglGetDisplay, new int[2])) {
+            if (BuildVars.LOGS_ENABLED) {
+                org.telegram.messenger.lk.v(this.f37540b, new StringBuilder("eglInitialize failed "));
+            }
+            finish();
+        } else {
+            int[] iArr = new int[1];
+            EGLConfig[] eGLConfigArr = new EGLConfig[1];
+            j70 j70Var = this.f37547x;
+            if (!this.f37540b.eglChooseConfig(this.f37541c, EmuDetector.with(j70Var.getParentActivity()).detect() ? new int[]{12324, 8, 12323, 8, 12322, 8, 12321, 8, 12325, 24, 12344} : new int[]{12352, 4, 12324, 8, 12323, 8, 12322, 8, 12321, 8, 12325, 24, 12326, 0, 12338, 1, 12337, 2, 12344}, eGLConfigArr, 1, iArr)) {
+                if (BuildVars.LOGS_ENABLED) {
+                    org.telegram.messenger.lk.v(this.f37540b, new StringBuilder("eglChooseConfig failed "));
                 }
-                return true;
-            default:
-                PhotoViewer photoViewer = (PhotoViewer) this.f37426b;
-                if (photoViewer.B2 != null) {
-                    org.telegram.ui.Components.zg0 zg0Var = org.telegram.ui.Components.zg0.f32905p0;
-                    if (zg0Var.P && org.telegram.ui.Components.zg0.p() != null && org.telegram.ui.Components.zg0.p().f45264b.f47005a != 0) {
-                        TextureView textureView2 = null;
-                        if (zg0Var != null) {
-                            textureView = zg0Var.f32921l0;
+                finish();
+            } else if (iArr[0] > 0) {
+                EGLConfig eGLConfig = eGLConfigArr[0];
+                this.d = eGLConfig;
+                EGLContext eglCreateContext = this.f37540b.eglCreateContext(this.f37541c, eGLConfig, EGL10.EGL_NO_CONTEXT, new int[]{12440, 2, 12344});
+                this.e = eglCreateContext;
+                if (eglCreateContext == null) {
+                    if (BuildVars.LOGS_ENABLED) {
+                        org.telegram.messenger.lk.v(this.f37540b, new StringBuilder("eglCreateContext failed "));
+                    }
+                    finish();
+                } else {
+                    SurfaceTexture surfaceTexture = this.f37539a;
+                    if (surfaceTexture != null) {
+                        EGLSurface eglCreateWindowSurface = this.f37540b.eglCreateWindowSurface(this.f37541c, this.d, surfaceTexture, null);
+                        this.f37542f = eglCreateWindowSurface;
+                        if (eglCreateWindowSurface != null && eglCreateWindowSurface != EGL10.EGL_NO_SURFACE) {
+                            if (!this.f37540b.eglMakeCurrent(this.f37541c, eglCreateWindowSurface, eglCreateWindowSurface, this.e)) {
+                                if (BuildVars.LOGS_ENABLED) {
+                                    org.telegram.messenger.lk.v(this.f37540b, new StringBuilder("eglMakeCurrent failed "));
+                                }
+                                finish();
+                            } else {
+                                int[] iArr2 = this.f37543n;
+                                GLES20.glGenTextures(23, iArr2, 0);
+                                b(R.drawable.intro_fast_arrow_shadow, 0, 0, false);
+                                b(R.drawable.intro_fast_arrow, 1, 0, false);
+                                b(R.drawable.intro_fast_body, 2, 0, false);
+                                b(R.drawable.intro_fast_spiral, 3, 0, false);
+                                b(R.drawable.intro_ic_bubble_dot, 4, 0, false);
+                                b(R.drawable.intro_ic_bubble, 5, 0, false);
+                                b(R.drawable.intro_ic_cam_lens, 6, 0, false);
+                                b(R.drawable.intro_ic_cam, 7, 0, false);
+                                b(R.drawable.intro_ic_pencil, 8, 0, false);
+                                b(R.drawable.intro_ic_pin, 9, 0, false);
+                                b(R.drawable.intro_ic_smile_eye, 10, 0, false);
+                                b(R.drawable.intro_ic_smile, 11, 0, false);
+                                b(R.drawable.intro_ic_videocam, 12, 0, false);
+                                b(R.drawable.intro_knot_down, 13, 0, false);
+                                b(R.drawable.intro_knot_up, 14, 0, false);
+                                b(R.drawable.intro_powerful_infinity_white, 15, 0, false);
+                                b(R.drawable.intro_powerful_infinity, 16, 0, false);
+                                b(R.drawable.intro_powerful_mask, 17, org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20989d6, false), false);
+                                b(R.drawable.intro_powerful_star, 18, 0, false);
+                                b(R.drawable.intro_private_door, 19, 0, false);
+                                b(R.drawable.intro_private_screw, 20, 0, false);
+                                b(R.drawable.intro_tg_plane, 21, 0, false);
+                                c(new org.telegram.ui.Components.tg0(27), 22, false);
+                                c(this.v, 23, false);
+                                Intro.setTelegramTextures(iArr2[22], iArr2[21], iArr2[23]);
+                                Intro.setPowerfulTextures(iArr2[17], iArr2[18], iArr2[16], iArr2[15]);
+                                Intro.setPrivateTextures(iArr2[19], iArr2[20]);
+                                Intro.setFreeTextures(iArr2[14], iArr2[13]);
+                                Intro.setFastTextures(iArr2[2], iArr2[3], iArr2[1], iArr2[0]);
+                                Intro.setIcTextures(iArr2[4], iArr2[5], iArr2[6], iArr2[7], iArr2[8], iArr2[9], iArr2[10], iArr2[11], iArr2[12]);
+                                Intro.onSurfaceCreated();
+                                j70Var.J = System.currentTimeMillis() - 1000;
+                                z10 = true;
+                            }
                         } else {
-                            textureView = null;
+                            if (BuildVars.LOGS_ENABLED) {
+                                org.telegram.messenger.lk.v(this.f37540b, new StringBuilder("createWindowSurface failed "));
+                            }
+                            finish();
                         }
-                        textureView.setSurfaceTexture(surfaceTexture);
-                        if (zg0Var != null) {
-                            textureView2 = zg0Var.f32921l0;
-                        }
-                        textureView2.setVisibility(0);
-                        return false;
-                    } else if (photoViewer.F3) {
-                        if (photoViewer.L3) {
-                            photoViewer.G3 = 2;
-                        }
-                        photoViewer.B2.setSurfaceTexture(surfaceTexture);
-                        photoViewer.B2.setVisibility(0);
-                        photoViewer.F3 = false;
-                        photoViewer.f33266e0.invalidate();
-                        return false;
+                    } else {
+                        finish();
                     }
                 }
-                return true;
-        }
-    }
-
-    @Override
-    public final void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i10, int i11) {
-        switch (this.f37425a) {
-            case 0:
-                if (((l70) this.f37426b).I != null) {
-                    Intro.onSurfaceChanged(i10, i11, Math.min(i10 / 150.0f, i11 / 150.0f), 0);
-                    return;
+            } else {
+                if (BuildVars.LOGS_ENABLED) {
+                    FileLog.e("eglConfig not initialized");
                 }
-                return;
-            default:
-                return;
+                finish();
+            }
         }
-    }
-
-    @Override
-    public final void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
-        switch (this.f37425a) {
-            case 0:
-                return;
-            default:
-                PhotoViewer photoViewer = (PhotoViewer) this.f37426b;
-                if (photoViewer.G3 == 1) {
-                    photoViewer.x0(true);
-                    return;
-                }
-                return;
-        }
-    }
-
-    private final void c(SurfaceTexture surfaceTexture) {
-    }
-
-    private final void a(SurfaceTexture surfaceTexture, int i10, int i11) {
-    }
-
-    private final void b(SurfaceTexture surfaceTexture, int i10, int i11) {
+        this.h = z10;
+        super.run();
     }
 }

@@ -1,121 +1,124 @@
 package ci;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagePreviewParams;
-import org.telegram.messenger.MessagesController;
-import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-import org.telegram.ui.Components.ac0;
-import org.telegram.ui.Components.ic0;
-import org.telegram.ui.Components.oc0;
-import org.telegram.ui.in;
-import org.telegram.ui.kl;
-import org.telegram.ui.sn;
-public final class n2 extends w7.j0 {
-    public final int f5586a;
-    public final Object f5587b;
+import android.animation.ValueAnimator;
+import android.content.Context;
+import android.view.View;
+import android.widget.FrameLayout;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.bs;
+public final class n2 extends x0 {
+    public final aa f5630h0;
+    public final q4 f5631i0;
 
-    public n2(Object obj, int i10) {
-        this.f5586a = i10;
-        this.f5587b = obj;
+    public n2(q4 q4Var, Context context, aa aaVar, p9 p9Var, View view, FrameLayout frameLayout, aa aaVar2) {
+        super(context, aaVar, p9Var, view, frameLayout);
+        this.f5631i0 = q4Var;
+        this.f5630h0 = aaVar2;
     }
 
     @Override
-    public final void a(boolean z10) {
-        MessageObject messageObject;
-        switch (this.f5586a) {
-            case 0:
-                p4 p4Var = (p4) this.f5587b;
-                i4 i4Var = p4Var.Q1;
-                boolean x10 = p4Var.K0.W.x();
-                z9 z9Var = ((q9) i4Var).d;
-                z9Var.f6232j1 = x10;
-                z9Var.P();
-                return;
-            case 1:
-                org.telegram.ui.ActionBar.f3 f3Var = ((org.telegram.ui.l4) this.f5587b).I;
-                if (f3Var != null) {
-                    f3Var.setDisableScroll(z10);
-                    return;
+    public final TLRPC.Peer getDefaultSendAs() {
+        h1 h1Var = this.f5630h0.A0;
+        if (h1Var != null) {
+            return h1Var.i();
+        }
+        return null;
+    }
+
+    @Override
+    public final void h(long j10) {
+        x1 x1Var = this.f5631i0.Y1;
+        if (x1Var != null) {
+            ArrayList arrayList = x1Var.h;
+            for (int i10 = 0; i10 < arrayList.size(); i10++) {
+                if (((w1) arrayList.get(i10)).f6103a == j10) {
+                    ((w1) arrayList.get(i10)).h = true;
                 }
-                return;
-            case 2:
-                sn snVar = (sn) this.f5587b;
-                snVar.f41301n9 = !z10;
+            }
+        }
+    }
+
+    @Override
+    public final void i(int i10, int i11, long j10) {
+        boolean z10;
+        x1 x1Var = this.f5631i0.Y1;
+        if (x1Var == null) {
+            return;
+        }
+        int i12 = x1Var.f6148a;
+        ArrayList arrayList = x1Var.h;
+        if (arrayList.size() < 5) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        arrayList.add(new w1(x1Var, x1Var, i12, j10, i11, z10));
+        x1Var.invalidate();
+    }
+
+    @Override
+    public final void j() {
+        boolean z10;
+        q4 q4Var = this.f5631i0;
+        q4Var.Z1.setCount((int) getStarsCount());
+        y1 y1Var = q4Var.Z1;
+        if (this.W != null) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        y1Var.setFilled(z10);
+    }
+
+    @Override
+    public final void q(boolean z10, boolean z11) {
+        float f7;
+        if (!z11 || this.f6140f0 != z10) {
+            this.f6140f0 = z10;
+            ValueAnimator valueAnimator = this.f6138e0;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
+                this.f6138e0 = null;
+            }
+            ai.u1 u1Var = this.f6135c;
+            u1Var.invalidate();
+            float f10 = 1.0f;
+            if (z11) {
+                float alpha = u1Var.getAlpha();
                 if (z10) {
-                    if (snVar.f41179d9 != null) {
-                        sn.W1(snVar, 0.0f);
-                        snVar.f41179d9 = null;
-                    }
-                    snVar.f41190e9 = false;
-                    snVar.f41203f9 = false;
-                    kl klVar = snVar.f41228h9;
-                    if (klVar != null) {
-                        AndroidUtilities.cancelRunOnUIThread(klVar.H);
-                        klVar.a();
-                    }
+                    f10 = 0.0f;
                 }
-                snVar.zc();
-                return;
-            default:
-                ic0 ic0Var = (ic0) this.f5587b;
-                ac0 ac0Var = ic0Var.e;
-                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = ic0Var.f27189s;
-                oc0 oc0Var = ic0Var.f27185c0;
-                if (oc0Var.f28927s) {
-                    if (!z10 && actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().f29303b > 0.0f) {
-                        actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().b(true);
-                        return;
-                    } else if (z10) {
-                        if (ac0Var.v - ac0Var.f22009u > MessagesController.getInstance(oc0Var.f28928w).quoteLengthMax) {
-                            ic0Var.g();
-                            return;
-                        }
-                        org.telegram.ui.Cells.v9 v9Var = ac0Var.W;
-                        if (v9Var != null) {
-                            messageObject = ((org.telegram.ui.Cells.u1) v9Var).getMessageObject();
-                        } else {
-                            messageObject = null;
-                        }
-                        MessageObject c10 = ic0Var.c(messageObject);
-                        MessagePreviewParams messagePreviewParams = oc0Var.d;
-                        if (messagePreviewParams.quote == null) {
-                            int i10 = ac0Var.f22009u;
-                            messagePreviewParams.quoteStart = i10;
-                            int i11 = ac0Var.v;
-                            messagePreviewParams.quoteEnd = i11;
-                            messagePreviewParams.quote = in.c(c10, i10, i11);
-                            actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().e(ic0Var.I);
-                            return;
-                        }
-                        return;
-                    } else {
-                        return;
-                    }
+                ValueAnimator ofFloat = ValueAnimator.ofFloat(alpha, f10);
+                this.f6138e0 = ofFloat;
+                ofFloat.addUpdateListener(new ah.c0(this, 11));
+                this.f6138e0.addListener(new ah.p0(2, this, z10));
+                this.f6138e0.setDuration(420L);
+                this.f6138e0.setInterpolator(bs.h);
+                this.f6138e0.start();
+            } else {
+                if (z10) {
+                    f7 = 0.0f;
+                } else {
+                    f7 = 0.5f;
                 }
-                return;
+                this.f6131a.setAlpha(f7);
+                if (z10) {
+                    f10 = 0.0f;
+                }
+                u1Var.setAlpha(f10);
+            }
+            invalidate();
+        }
+        a aVar = this.f5631i0.X1;
+        if (aVar != null) {
+            aVar.a(z10, z11);
         }
     }
 
     @Override
-    public void b() {
-        org.telegram.ui.ActionBar.k kVar;
-        org.telegram.ui.ActionBar.k kVar2;
-        switch (this.f5586a) {
-            case 2:
-                sn snVar = (sn) this.f5587b;
-                kVar = ((org.telegram.ui.ActionBar.n2) snVar).actionBar;
-                if (kVar != null) {
-                    kVar2 = ((org.telegram.ui.ActionBar.n2) snVar).actionBar;
-                    if (kVar2.s()) {
-                        snVar.C7(false);
-                    }
-                }
-                snVar.T7();
-                snVar.y3.j(58, 0L, null);
-                return;
-            default:
-                return;
-        }
+    public final void setVisibility(int i10) {
+        super.setVisibility(i10);
+        this.f5631i0.M0.setVisibility(i10);
     }
 }

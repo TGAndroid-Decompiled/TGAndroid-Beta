@@ -1,23 +1,57 @@
 package org.telegram.ui;
-public final class eq implements Runnable {
-    public final int f36589a;
-    public final jr f36590b;
 
-    public eq(jr jrVar, int i10) {
-        this.f36589a = i10;
-        this.f36590b = jrVar;
+import android.view.View;
+import org.telegram.messenger.MessagesStorage;
+public final class eq implements MessagesStorage.LongCallback, org.telegram.ui.ActionBar.a2, org.telegram.ui.Components.xl0, org.telegram.ui.Components.yl0 {
+    public final int f36756a;
+    public final hr f36757b;
+
+    public eq(hr hrVar, int i10) {
+        this.f36756a = i10;
+        this.f36757b = hrVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f36589a) {
-            case 0:
-                this.f36590b.r0();
+    public boolean P0(View view) {
+        return false;
+    }
+
+    @Override
+    public boolean a(int i10, View view) {
+        hr hrVar = this.f36757b;
+        if (hrVar.getParentActivity() != null) {
+            s4.g0 adapter = hrVar.f37744c.getAdapter();
+            dr drVar = hrVar.f37738a;
+            if (adapter == drVar) {
+                return hrVar.h0(drVar.E(i10), false, view);
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public void d(float f7, float f10, int i10, View view) {
+        hr.V(this.f36757b, view, i10);
+    }
+
+    @Override
+    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        switch (this.f36756a) {
+            case 1:
+                this.f36757b.u0();
                 return;
             default:
-                jr jrVar = this.f36590b;
-                jrVar.getMessagesController().loadFullChat(jrVar.N, 0, true);
+                this.f36757b.finishFragment();
                 return;
         }
+    }
+
+    @Override
+    public void run(long j10) {
+        hr.U(this.f36757b, j10);
+    }
+
+    @Override
+    public void a0(View view, float f7, float f10) {
     }
 }

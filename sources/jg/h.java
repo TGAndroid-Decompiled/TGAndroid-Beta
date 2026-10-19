@@ -3,17 +3,17 @@ package jg;
 import android.animation.ValueAnimator;
 import ei.i6;
 public final class h {
-    public final int f14490a;
-    public int f14491b;
-    public float f14492c;
+    public final int f14492a;
+    public int f14493b;
+    public float f14494c;
     public float d;
     public ValueAnimator e;
-    public float f14493f = 0.0f;
-    public final j f14494g;
+    public float f14495f = 0.0f;
+    public final j f14496g;
 
     public h(j jVar, int i10) {
-        this.f14494g = jVar;
-        this.f14490a = i10;
+        this.f14496g = jVar;
+        this.f14492a = i10;
     }
 
     public final void a() {

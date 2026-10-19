@@ -2,18 +2,18 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 public final class ag extends gi.n0 {
-    public final ChatActivityEnterView f24578y;
+    public final ChatActivityEnterView f24560y;
 
     public ag(ChatActivityEnterView chatActivityEnterView, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context, d6Var);
-        this.f24578y = chatActivityEnterView;
+        this.f24560y = chatActivityEnterView;
     }
 
     @Override
     public final void setTranslationY(float f7) {
         super.setTranslationY(f7);
-        ChatActivityEnterView chatActivityEnterView = this.f24578y;
-        if (chatActivityEnterView.V0 != null && chatActivityEnterView.f23992o3 == 1) {
+        ChatActivityEnterView chatActivityEnterView = this.f24560y;
+        if (chatActivityEnterView.V0 != null && chatActivityEnterView.f23995o3 == 1) {
             chatActivityEnterView.Z2.z(f7);
         }
     }

@@ -1,17 +1,17 @@
 package org.telegram.ui.Components;
 
 import org.telegram.messenger.AndroidUtilities;
-public final class x61 extends wz {
-    public final a71 X;
+public final class x61 extends s4.b0 {
+    public final b71 I;
 
-    public x61(a71 a71Var, int i10) {
+    public x61(b71 b71Var, int i10) {
         super(i10, false);
-        this.X = a71Var;
+        this.I = b71Var;
     }
 
     @Override
     public final int W0(s4.y0 y0Var) {
-        if (this.X.Y2) {
+        if (this.I.Y2) {
             return AndroidUtilities.displaySize.y;
         }
         return super.W0(y0Var);

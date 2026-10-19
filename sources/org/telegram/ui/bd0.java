@@ -1,45 +1,28 @@
 package org.telegram.ui;
 
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class bd0 implements Runnable {
-    public final int f35639a;
-    public final pe0 f35640b;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class bd0 implements RequestDelegate {
+    public final int f35616a;
+    public final md0 f35617b;
+    public final String f35618c;
 
-    public bd0(pe0 pe0Var, int i10) {
-        this.f35639a = i10;
-        this.f35640b = pe0Var;
+    public bd0(md0 md0Var, String str, int i10) {
+        this.f35616a = i10;
+        this.f35617b = md0Var;
+        this.f35618c = str;
     }
 
     @Override
-    public final void run() {
-        switch (this.f35639a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f35616a) {
             case 0:
-                this.f35640b.L.m();
-                return;
-            case 1:
-                pe0 pe0Var = this.f35640b;
-                pe0Var.M = null;
-                pe0Var.N = null;
-                pe0Var.p(true);
-                pe0Var.e.h(null, null, pe0Var.f40075f, null);
-                ld ldVar = pe0Var.f40076n;
-                org.telegram.ui.Components.uj0 uj0Var = pe0Var.I;
-                ldVar.setAnimation(uj0Var);
-                uj0Var.M(0);
-                pe0Var.K = true;
-                return;
-            case 2:
-                this.f35640b.K = true;
+                AndroidUtilities.runOnUIThread(new dd0(this.f35617b, tL_error, this.f35618c, tLObject));
                 return;
             default:
-                EditTextBoldCursor editTextBoldCursor = this.f35640b.f40074c;
-                if (editTextBoldCursor != null) {
-                    editTextBoldCursor.requestFocus();
-                    editTextBoldCursor.setSelection(editTextBoldCursor.length());
-                    AndroidUtilities.showKeyboard(editTextBoldCursor);
-                    return;
-                }
+                AndroidUtilities.runOnUIThread(new dd0(this.f35617b, tL_error, tLObject, this.f35618c));
                 return;
         }
     }

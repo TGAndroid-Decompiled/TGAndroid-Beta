@@ -1,42 +1,35 @@
 package org.telegram.ui;
 
-import android.widget.LinearLayout;
+import android.view.TextureView;
+import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
-public final class a40 extends LinearLayout {
-    public boolean f35263a;
-    public final org.telegram.ui.Components.od0 f35264b;
-    public final w30 f35265c;
-    public final x30 d;
+import org.telegram.messenger.MessageObject;
+public final class a40 implements ru0 {
+    public final q50 f35263a;
 
-    public a40(LaunchActivity launchActivity, org.telegram.ui.Components.od0 od0Var, w30 w30Var, x30 x30Var) {
-        super(launchActivity);
-        this.f35264b = od0Var;
-        this.f35265c = w30Var;
-        this.d = x30Var;
-        this.f35263a = false;
+    public a40(q50 q50Var) {
+        this.f35263a = q50Var;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        this.f35263a = true;
-        org.telegram.ui.Components.od0 od0Var = this.f35264b;
-        od0Var.setItemCount(5);
-        w30 w30Var = this.f35265c;
-        w30Var.setItemCount(5);
-        x30 x30Var = this.d;
-        x30Var.setItemCount(5);
-        od0Var.getLayoutParams().height = AndroidUtilities.dp(54.0f) * 5;
-        w30Var.getLayoutParams().height = AndroidUtilities.dp(54.0f) * 5;
-        x30Var.getLayoutParams().height = AndroidUtilities.dp(54.0f) * 5;
-        this.f35263a = false;
-        super.onMeasure(i10, i11);
+    public final TextureView U() {
+        return null;
     }
 
     @Override
-    public final void requestLayout() {
-        if (this.f35263a) {
-            return;
-        }
-        super.requestLayout();
+    public final void m0(MessageObject messageObject) {
+        ViewGroup viewGroup;
+        q50 q50Var = this.f35263a;
+        q50Var.Q.I0(true);
+        q50Var.f40385c2.f42374f.setRoundRadius(AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.0f), 0, 0);
+        viewGroup = ((org.telegram.ui.ActionBar.f3) q50Var).containerView;
+        viewGroup.invalidate();
+    }
+
+    @Override
+    public final void z(MessageObject messageObject) {
+        ViewGroup viewGroup;
+        viewGroup = ((org.telegram.ui.ActionBar.f3) this.f35263a).containerView;
+        viewGroup.invalidate();
     }
 }

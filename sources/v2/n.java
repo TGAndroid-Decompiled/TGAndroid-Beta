@@ -3,7 +3,7 @@ package v2;
 import b2.w;
 import c3.j0;
 import g2.b0;
-import u2.d1;
+import u2.c1;
 import v7.k7;
 public final class n extends a {
     public final int E;
@@ -19,14 +19,14 @@ public final class n extends a {
 
     @Override
     public final void a() {
-        d1[] d1VarArr;
+        c1[] c1VarArr;
         b0 b0Var = this.f47889r;
         n2.e eVar = this.f47866x;
         eVar.getClass();
-        for (d1 d1Var : (d1[]) eVar.f17039c) {
-            if (d1Var.H != 0) {
-                d1Var.H = 0L;
-                d1Var.B = true;
+        for (c1 c1Var : (c1[]) eVar.f17042c) {
+            if (c1Var.H != 0) {
+                c1Var.H = 0L;
+                c1Var.B = true;
             }
         }
         j0 r02 = eVar.r0(this.E);

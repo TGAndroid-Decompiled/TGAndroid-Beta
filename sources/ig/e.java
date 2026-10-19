@@ -18,34 +18,34 @@ import org.telegram.ui.Components.h9;
 import org.telegram.ui.Components.nq;
 import org.telegram.ui.Components.q6;
 import org.telegram.ui.Components.w9;
-import org.telegram.ui.sn;
+import org.telegram.ui.qn;
 import w7.z5;
 public final class e extends FrameLayout {
-    public final int f12867a;
-    public final h9 f12868b;
-    public final w9 f12869c;
+    public final int f12869a;
+    public final h9 f12870b;
+    public final w9 f12871c;
     public final LinearLayout d;
     public final q6 e;
-    public final q6 f12870f;
+    public final q6 f12872f;
     public final nq h;
-    public final ImageView f12871n;
-    public boolean f12872r;
-    public long f12873s;
+    public final ImageView f12873n;
+    public boolean f12874r;
+    public long f12875s;
     public long v;
-    public int f12874w;
-    public String f12875x;
-    public float f12876y;
+    public int f12876w;
+    public String f12877x;
+    public float f12878y;
 
-    public e(Activity activity, d6 d6Var, sn snVar) {
+    public e(Activity activity, d6 d6Var, qn qnVar) {
         super(activity);
         int i10;
-        this.f12867a = snVar.getCurrentAccount();
-        this.f12872r = false;
+        this.f12869a = qnVar.getCurrentAccount();
+        this.f12874r = false;
         w9 w9Var = new w9(activity);
-        this.f12869c = w9Var;
-        TLRPC.User user = snVar.getMessagesController().getUser(Long.valueOf(this.v));
+        this.f12871c = w9Var;
+        TLRPC.User user = qnVar.getMessagesController().getUser(Long.valueOf(this.v));
         h9 h9Var = new h9((d6) null);
-        this.f12868b = h9Var;
+        this.f12870b = h9Var;
         h9Var.r(user);
         w9Var.setRoundRadius(AndroidUtilities.dp(16.0f));
         w9Var.e(user, h9Var);
@@ -55,7 +55,7 @@ public final class e extends FrameLayout {
         linearLayout.setOrientation(1);
         q6 q6Var = new q6(activity, false, false, false);
         this.e = q6Var;
-        q6Var.f29579n = false;
+        q6Var.f29530n = false;
         q6Var.getDrawable().r(true, false);
         q6Var.setTypeface(AndroidUtilities.bold());
         q6Var.setTextSize(AndroidUtilities.dp(14.0f));
@@ -64,12 +64,12 @@ public final class e extends FrameLayout {
         q6Var.setEllipsizeByGradient(true);
         linearLayout.addView(q6Var, z5.k(0.0f, 0.0f, 0.0f, 1.0f, -1, 17));
         q6 q6Var2 = new q6(activity, false, false, false);
-        this.f12870f = q6Var2;
-        q6Var2.f29579n = false;
+        this.f12872f = q6Var2;
+        q6Var2.f29530n = false;
         q6Var2.getDrawable().r(true, false);
         q6Var2.setTextSize(AndroidUtilities.dp(13.0f));
         q6Var2.setText(LocaleController.getString(R.string.BizBotStatusManages));
-        q6Var2.setTextColor(h6.w0(h6.f21047ge, d6Var));
+        q6Var2.setTextColor(h6.w0(h6.f21050ge, d6Var));
         q6Var2.setEllipsizeByGradient(true);
         linearLayout.addView(q6Var2, z5.n(-1, 17));
         addView(linearLayout, z5.d(-2, -2.0f, 16, 52.0f, 0.0f, 49.0f, 0.0f));
@@ -90,7 +90,7 @@ public final class e extends FrameLayout {
         nqVar.setPadding(AndroidUtilities.dp(13.0f), 0, AndroidUtilities.dp(13.0f), 0);
         nqVar.setOnClickListener(new hg.r0(this, 5));
         nqVar.setOnWidthUpdatedListener(new d(this, 0));
-        if (this.f12872r) {
+        if (this.f12874r) {
             i10 = R.string.BizBotStart;
         } else {
             i10 = R.string.BizBotStop;
@@ -98,26 +98,26 @@ public final class e extends FrameLayout {
         nqVar.setText(LocaleController.getString(i10));
         addView(nqVar, z5.d(64, 28.0f, 21, 0.0f, 0.0f, 46.0f, 0.0f));
         ImageView imageView = new ImageView(activity);
-        this.f12871n = imageView;
+        this.f12873n = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         imageView.setImageResource(R.drawable.msg_mini_customize);
-        imageView.setBackground(h6.N(h6.w0(h6.f21075i6, d6Var), 0, 0));
-        imageView.setColorFilter(new PorterDuffColorFilter(h6.w0(h6.f20992de, d6Var), PorterDuff.Mode.MULTIPLY));
-        imageView.setOnClickListener(new ai.v0(this, snVar, d6Var, 10));
+        imageView.setBackground(h6.N(h6.w0(h6.f21078i6, d6Var), 0, 0));
+        imageView.setColorFilter(new PorterDuffColorFilter(h6.w0(h6.f20995de, d6Var), PorterDuff.Mode.MULTIPLY));
+        imageView.setOnClickListener(new ai.v0(this, qnVar, d6Var, 10));
         addView(imageView, z5.d(32, 32.0f, 21, 8.0f, 0.0f, 6.0f, 0.0f));
     }
 
     public final void a() {
-        float f7 = this.f12876y;
+        float f7 = this.f12878y;
         nq nqVar = this.h;
         float c10 = nqVar.getDrawable().c() + f7 + nqVar.getPaddingLeft() + nqVar.getPaddingRight() + AndroidUtilities.dp(12.0f);
         this.e.setRightPadding(c10);
-        this.f12870f.setRightPadding(c10);
+        this.f12872f.setRightPadding(c10);
     }
 
     public void setLeftMargin(float f7) {
-        this.f12876y = f7;
-        this.f12869c.setTranslationX(f7);
+        this.f12878y = f7;
+        this.f12871c.setTranslationX(f7);
         this.d.setTranslationX(f7);
         a();
     }

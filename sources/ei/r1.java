@@ -6,8 +6,8 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.i80;
 import org.telegram.ui.Components.qy;
-import org.telegram.ui.et;
-public final class r1 implements et {
+import org.telegram.ui.ct;
+public final class r1 implements ct {
     @Override
     public final MessageObject A() {
         return null;

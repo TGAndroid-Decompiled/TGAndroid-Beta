@@ -11,7 +11,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.xc;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PremiumPreviewFragment;
-import org.telegram.ui.x10;
+import org.telegram.ui.v10;
 public final class w implements Runnable {
     public final int f46464a;
     public final k0 f46465b;
@@ -29,7 +29,7 @@ public final class w implements Runnable {
             case 0:
                 if (LaunchActivity.R() != null) {
                     ?? obj = new Object();
-                    obj.f21552a = true;
+                    obj.f21555a = true;
                     k0Var.K0.showAsSheet(new PremiumPreviewFragment(0, "noncontacts"), obj);
                     return;
                 }
@@ -61,8 +61,8 @@ public final class w implements Runnable {
                     if (k0Var.E0.getParent() != null) {
                         ((ViewGroup) k0Var.E0.getParent()).removeView(k0Var.E0);
                     }
-                    x10 x10Var = k0Var.L0;
-                    if (x10Var != null && x10Var.getParent() != null) {
+                    v10 v10Var = k0Var.L0;
+                    if (v10Var != null && v10Var.getParent() != null) {
                         ((ViewGroup) k0Var.L0.getParent()).removeView(k0Var.L0);
                     }
                     k0Var.d.setPadding(0, 0, 0, 0);

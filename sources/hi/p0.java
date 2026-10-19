@@ -11,22 +11,22 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.Cells.n2;
 import org.telegram.ui.Cells.r2;
-import org.telegram.ui.Components.a71;
-import org.telegram.ui.Components.e61;
+import org.telegram.ui.Components.b71;
 import org.telegram.ui.Components.f61;
+import org.telegram.ui.Components.g61;
 import org.telegram.ui.Components.im0;
-import org.telegram.ui.Components.s61;
-public final class p0 extends e61 {
+import org.telegram.ui.Components.t61;
+public final class p0 extends f61 {
     static {
-        e61.setup(new e61());
+        f61.setup(new f61());
     }
 
-    public static f61 a(MessagesController.CommunityPeerDialog communityPeerDialog, k0 k0Var) {
+    public static g61 a(MessagesController.CommunityPeerDialog communityPeerDialog, k0 k0Var) {
         long j10;
         TLRPC.User user = communityPeerDialog.user;
         if (user != null) {
-            f61 J = f61.J(p0.class);
-            long j11 = user.f20419id;
+            g61 J = g61.J(p0.class);
+            long j11 = user.f20422id;
             J.B = j11;
             J.d = (int) (j11 ^ (j11 >>> 32));
             J.G = user;
@@ -34,9 +34,9 @@ public final class p0 extends e61 {
             return J;
         }
         TLRPC.Chat chat = communityPeerDialog.chat;
-        f61 J2 = f61.J(p0.class);
+        g61 J2 = g61.J(p0.class);
         if (chat != null) {
-            j10 = -chat.f20272id;
+            j10 = -chat.f20275id;
         } else {
             j10 = 0;
         }
@@ -48,15 +48,15 @@ public final class p0 extends e61 {
     }
 
     @Override
-    public final void bindView(View view, f61 f61Var, boolean z10, s61 s61Var, a71 a71Var) {
+    public final void bindView(View view, g61 g61Var, boolean z10, t61 t61Var, b71 b71Var) {
         r2 r2Var = (r2) view;
-        r2Var.setDialogCellDelegate((n2) f61Var.H);
-        Object obj = f61Var.G;
+        r2Var.setDialogCellDelegate((n2) g61Var.H);
+        Object obj = g61Var.G;
         boolean z11 = true;
         if (obj instanceof TLRPC.Chat) {
             TLRPC.Chat chat = (TLRPC.Chat) obj;
             r2Var.Q0 = ChatObject.isHiddenInCommunity(UserConfig.selectedAccount, chat);
-            TLRPC.Dialog dialog = MessagesController.getInstance(UserConfig.selectedAccount).getDialog(-chat.f20272id);
+            TLRPC.Dialog dialog = MessagesController.getInstance(UserConfig.selectedAccount).getDialog(-chat.f20275id);
             if (dialog != null) {
                 z11 = false;
             }
@@ -67,11 +67,11 @@ public final class p0 extends e61 {
                 return;
             }
             r2Var.setCustomMessageWithoutRebuild(LocaleController.formatPluralString("Members", chat.participants_count, new Object[0]));
-            r2Var.W(-chat.f20272id, null, 0, false, false);
+            r2Var.W(-chat.f20275id, null, 0, false, false);
         } else if (obj instanceof TLRPC.User) {
             TLRPC.User user = (TLRPC.User) obj;
             r2Var.Q0 = ChatObject.isHiddenInCommunity(UserConfig.selectedAccount, user);
-            TLRPC.Dialog dialog2 = MessagesController.getInstance(UserConfig.selectedAccount).getDialog(user.f20419id);
+            TLRPC.Dialog dialog2 = MessagesController.getInstance(UserConfig.selectedAccount).getDialog(user.f20422id);
             if (dialog2 != null) {
                 z11 = false;
             }
@@ -82,13 +82,13 @@ public final class p0 extends e61 {
                 return;
             }
             r2Var.setCustomMessageWithoutRebuild(LocaleController.getString(R.string.Bot));
-            r2Var.W(user.f20419id, null, 0, false, false);
+            r2Var.W(user.f20422id, null, 0, false, false);
         }
     }
 
     @Override
-    public final boolean contentsEquals(f61 f61Var, f61 f61Var2) {
-        if (f61Var.d == f61Var2.d) {
+    public final boolean contentsEquals(g61 g61Var, g61 g61Var2) {
+        if (g61Var.d == g61Var2.d) {
             return true;
         }
         return false;
@@ -102,8 +102,8 @@ public final class p0 extends e61 {
     }
 
     @Override
-    public final boolean equals(f61 f61Var, f61 f61Var2) {
-        if (f61Var.d == f61Var2.d) {
+    public final boolean equals(g61 g61Var, g61 g61Var2) {
+        if (g61Var.d == g61Var2.d) {
             return true;
         }
         return false;

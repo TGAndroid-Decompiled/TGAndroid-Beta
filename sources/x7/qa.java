@@ -6,21 +6,21 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 public final class qa extends e9.j2 {
-    public final e9.e f49521b;
+    public final e9.e f49520b;
 
     public qa(e9.e eVar) {
         super(1);
-        this.f49521b = eVar;
+        this.f49520b = eVar;
     }
 
     @Override
     public final void clear() {
-        this.f49521b.clear();
+        this.f49520b.clear();
     }
 
     @Override
     public final boolean contains(Object obj) {
-        Set entrySet = this.f49521b.f8434b.entrySet();
+        Set entrySet = this.f49520b.f8435b.entrySet();
         entrySet.getClass();
         try {
             return entrySet.contains(obj);
@@ -31,12 +31,12 @@ public final class qa extends e9.j2 {
 
     @Override
     public final boolean isEmpty() {
-        return this.f49521b.isEmpty();
+        return this.f49520b.isEmpty();
     }
 
     @Override
     public final Iterator iterator() {
-        return new e9.d(this.f49521b, (byte) 0);
+        return new e9.d(this.f49520b, (byte) 0);
     }
 
     @Override
@@ -47,9 +47,9 @@ public final class qa extends e9.j2 {
         }
         Map.Entry entry = (Map.Entry) obj;
         entry.getClass();
-        f fVar = (f) this.f49521b.e;
+        f fVar = (f) this.f49520b.e;
         Object key = entry.getKey();
-        j jVar = fVar.f49364c;
+        j jVar = fVar.f49363c;
         jVar.getClass();
         try {
             obj2 = jVar.remove(key);
@@ -70,7 +70,7 @@ public final class qa extends e9.j2 {
     public final boolean removeAll(Collection collection) {
         try {
             if (collection != null) {
-                return w7.m8.a(this, collection);
+                return w7.l8.a(this, collection);
             }
             throw null;
         } catch (UnsupportedOperationException unused) {
@@ -96,7 +96,7 @@ public final class qa extends e9.j2 {
                 if (size >= 0) {
                     i10 = size + 1;
                 } else {
-                    throw new IllegalArgumentException(i2.d.j(size, "expectedSize cannot be negative but was: "));
+                    throw new IllegalArgumentException(i2.e.j(size, "expectedSize cannot be negative but was: "));
                 }
             } else if (size < 1073741824) {
                 i10 = (int) Math.ceil(size / 0.75d);
@@ -109,11 +109,11 @@ public final class qa extends e9.j2 {
                     hashSet.add(((Map.Entry) obj).getKey());
                 }
             }
-            f fVar = (f) this.f49521b.e;
-            a aVar = fVar.f49350a;
+            f fVar = (f) this.f49520b.e;
+            a aVar = fVar.f49349a;
             if (aVar == null) {
-                aVar = new a(fVar, fVar.f49364c);
-                fVar.f49350a = aVar;
+                aVar = new a(fVar, fVar.f49363c);
+                fVar.f49349a = aVar;
             }
             return aVar.retainAll(hashSet);
         }
@@ -121,6 +121,6 @@ public final class qa extends e9.j2 {
 
     @Override
     public final int size() {
-        return this.f49521b.f8434b.size();
+        return this.f49520b.f8435b.size();
     }
 }

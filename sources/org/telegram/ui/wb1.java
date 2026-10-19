@@ -1,28 +1,26 @@
 package org.telegram.ui;
-public final class wb1 implements dc1 {
-    public boolean f42478a;
-    public final sn f42479b;
 
-    public wb1(sn snVar, boolean z10) {
-        this.f42479b = snVar;
-        this.f42478a = z10;
+import android.app.Activity;
+import org.telegram.tgnet.TLRPC;
+public final class wb1 extends org.telegram.ui.Components.er0 {
+    public final yb1 f42527c1;
+
+    public wb1(yb1 yb1Var, Activity activity, String str, String str2) {
+        super(activity, null, str, false, str2, false, null);
+        this.f42527c1 = yb1Var;
     }
 
     @Override
-    public final boolean I0() {
-        return true;
-    }
-
-    @Override
-    public final boolean a() {
-        return this.f42478a;
-    }
-
-    @Override
-    public final void c1(boolean z10) {
-        boolean z11 = !this.f42478a;
-        this.f42478a = z11;
-        qn qnVar = this.f42479b.f41191ea;
-        qnVar.k(qnVar.f40443f, qnVar.h, z10, Boolean.valueOf(z11), false);
+    public final void T0(a0.h hVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
+        if (!z10) {
+            return;
+        }
+        int m10 = hVar.m();
+        yb1 yb1Var = this.f42527c1;
+        if (m10 == 1) {
+            yb1Var.f43433a.f38544l0.m(((TLRPC.Dialog) hVar.n(0)).f20279id, Integer.valueOf(i10), 61);
+        } else {
+            yb1Var.f43433a.f38544l0.k(0L, 61, Integer.valueOf(i10), Integer.valueOf(hVar.m()), null, null);
+        }
     }
 }

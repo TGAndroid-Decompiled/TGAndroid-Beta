@@ -5,33 +5,33 @@ import android.util.LruCache;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.tl.TL_stars;
 public abstract class h7 {
-    public static final LruCache f34274a = new LruCache(128);
-    public static final float[] f34275b = {0.017513232f, 0.2844959f, 1.2347647f, 0.012535676f, 0.21663007f, 0.8356014f, 0.02682078f, 0.40080056f, 2.4040875f, 0.0032399998f, 0.171f, 0.47039998f};
-    public static final float[] f34276c = {0.0f, 0.47809f, 1.0f};
+    public static final LruCache f34281a = new LruCache(128);
+    public static final float[] f34282b = {0.017513232f, 0.2844959f, 1.2347647f, 0.012535676f, 0.21663007f, 0.8356014f, 0.02682078f, 0.40080056f, 2.4040875f, 0.0032399998f, 0.171f, 0.47039998f};
+    public static final float[] f34283c = {0.0f, 0.47809f, 1.0f};
     public static final LruCache d = new LruCache(64);
     public static final int e;
 
     static {
-        float[] k10 = k(-16748084);
-        float f7 = k10[0] * 0.876903f;
-        float f10 = k10[2];
-        float f11 = f(f7, f10);
-        float f12 = f10;
+        float[] j10 = j(-16748084);
+        float f7 = j10[0] * 0.876903f;
+        float f10 = j10[2];
+        float e7 = e(f7, f10);
+        float f11 = f10;
         for (int i10 = -15; i10 <= 15; i10++) {
             float radians = ((float) Math.toRadians(i10)) + f10;
-            float f13 = f(f7, radians);
-            if (f13 > 0.002f + f11) {
-                f12 = radians;
-                f11 = f13;
+            float e10 = e(f7, radians);
+            if (e10 > 0.002f + e7) {
+                f11 = radians;
+                e7 = e10;
             }
         }
-        float y3 = com.google.android.gms.internal.play_billing.k3.y(f12, f10, 0.723f, f10);
-        e = m(f7, f(f7, y3), y3);
+        float y3 = com.google.android.gms.internal.play_billing.k3.y(f11, f10, 0.723f, f10);
+        e = l(f7, e(f7, y3), y3);
     }
 
     public static int a(float[] fArr, int i10) {
         int i11;
-        int p5;
+        int o10;
         if (i10 == -16216082) {
             i11 = -14456619;
         } else {
@@ -40,32 +40,20 @@ public abstract class h7 {
         if (fArr != null && fArr.length >= 18) {
             float f7 = fArr[10];
             if (f7 < 0.0f) {
-                p5 = i11;
+                o10 = i11;
             } else {
-                p5 = p(i10, (int) f7, (int) fArr[11]);
+                o10 = o(i10, (int) f7, (int) fArr[11]);
             }
             float f10 = fArr[14];
             if (f10 >= 0.0f) {
-                i11 = p(i10, (int) f10, (int) fArr[15]);
+                i11 = o(i10, (int) f10, (int) fArr[15]);
             }
-            return i0.a.f(fArr[8], p5, i11);
+            return i0.a.f(fArr[8], o10, i11);
         }
         return i11;
     }
 
-    public static int b(float[] fArr) {
-        float f7;
-        int c10 = c(fArr, 0);
-        int c11 = c(fArr, 1);
-        if (fArr != null && fArr.length >= 18) {
-            f7 = fArr[8];
-        } else {
-            f7 = 0.0f;
-        }
-        return i0.a.f(f7, c10, c11);
-    }
-
-    public static int c(float[] fArr, int i10) {
+    public static int b(float[] fArr, int i10) {
         int i11 = i10 * 4;
         int i12 = i11 + 10;
         int i13 = e;
@@ -73,40 +61,40 @@ public abstract class h7 {
             float f7 = fArr[i12];
             float f10 = 0.0f;
             if (f7 >= 0.0f) {
-                int o10 = o(-16216082, (int) f7, (int) fArr[i11 + 11]);
-                Integer valueOf = Integer.valueOf(o10);
+                int n10 = n(-16216082, (int) f7, (int) fArr[i11 + 11]);
+                Integer valueOf = Integer.valueOf(n10);
                 LruCache lruCache = d;
                 Integer num = (Integer) lruCache.get(valueOf);
                 if (num != null) {
                     return num.intValue();
                 }
-                float[] k10 = k(o10);
-                float e7 = (e(-16216082) + 0.05f) / (e(i13) + 0.05f);
-                float e10 = e(o10);
-                float f11 = ((e10 + 0.05f) / e7) - 0.05f;
+                float[] j10 = j(n10);
+                float d10 = (d(-16216082) + 0.05f) / (d(i13) + 0.05f);
+                float d11 = d(n10);
+                float f11 = ((d11 + 0.05f) / d10) - 0.05f;
                 if (f11 < 0.004f) {
-                    f11 = e10 * 0.3f;
+                    f11 = d11 * 0.3f;
                 }
                 float f12 = 1.0f;
-                float max = Math.max(0.0f, Math.min(1.0f, k10[1] / 0.1f));
+                float max = Math.max(0.0f, Math.min(1.0f, j10[1] / 0.1f));
                 for (int i14 = 0; i14 < 18; i14++) {
                     float f13 = (f10 + f12) / 2.0f;
-                    if (e(m(f13, f(f13, k10[2]) * max, k10[2])) < f11) {
+                    if (d(l(f13, e(f13, j10[2]) * max, j10[2])) < f11) {
                         f10 = f13;
                     } else {
                         f12 = f13;
                     }
                 }
                 float f14 = (f10 + f12) / 2.0f;
-                int m10 = m(f14, f(f14, k10[2]) * max, k10[2]);
-                lruCache.put(Integer.valueOf(o10), Integer.valueOf(m10));
-                return m10;
+                int l4 = l(f14, e(f14, j10[2]) * max, j10[2]);
+                lruCache.put(Integer.valueOf(n10), Integer.valueOf(l4));
+                return l4;
             }
         }
         return i13;
     }
 
-    public static int d(float f7) {
+    public static int c(float f7) {
         float pow;
         float max = Math.max(0.0f, Math.min(1.0f, f7));
         if (max <= 0.0031308f) {
@@ -117,22 +105,22 @@ public abstract class h7 {
         return Math.max(0, Math.min(255, (int) ((pow * 255.0f) + 0.5f)));
     }
 
-    public static float e(int i10) {
-        float i11 = i(i10, 8) * 0.7152f;
-        return (i(i10, 0) * 0.0722f) + i11 + (i(i10, 16) * 0.2126f);
+    public static float d(int i10) {
+        float h = h(i10, 8) * 0.7152f;
+        return (h(i10, 0) * 0.0722f) + h + (h(i10, 16) * 0.2126f);
     }
 
-    public static float f(float f7, float f10) {
+    public static float e(float f7, float f10) {
         float f11 = 0.5f;
         float f12 = 0.0f;
         for (int i10 = 0; i10 < 18; i10++) {
             float f13 = (f12 + f11) / 2.0f;
-            float[] l4 = l(f7, f13, f10);
-            float f14 = l4[0];
+            float[] k10 = k(f7, f13, f10);
+            float f14 = k10[0];
             if (f14 >= 0.0f) {
-                float f15 = l4[1];
+                float f15 = k10[1];
                 if (f15 >= 0.0f) {
-                    float f16 = l4[2];
+                    float f16 = k10[2];
                     if (f16 >= 0.0f && f14 <= 1.0f && f15 <= 1.0f && f16 <= 1.0f) {
                         f12 = f13;
                     }
@@ -143,7 +131,7 @@ public abstract class h7 {
         return f12;
     }
 
-    public static float[] g(int i10) {
+    public static float[] f(int i10) {
         float radians;
         double[] s10 = org.telegram.ui.ActionBar.g5.s(org.telegram.ui.ActionBar.g5.t(org.telegram.ui.ActionBar.g5.r(i10)));
         float f7 = (float) s10[0];
@@ -156,14 +144,14 @@ public abstract class h7 {
         return new float[]{f7, f10, radians};
     }
 
-    public static float h(float f7) {
+    public static float g(float f7) {
         if (f7 <= 0.04045f) {
             return f7 / 12.92f;
         }
         return (float) Math.pow((f7 + 0.055f) / 1.055f, 2.4d);
     }
 
-    public static float i(int i10, int i11) {
+    public static float h(int i10, int i11) {
         float f7 = ((i10 >> i11) & 255) / 255.0f;
         if (f7 <= 0.04045f) {
             return f7 / 12.92f;
@@ -171,29 +159,29 @@ public abstract class h7 {
         return (float) Math.pow((f7 + 0.055f) / 1.055f, 2.4d);
     }
 
-    public static float[] j(TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop) {
+    public static float[] i(TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop) {
         if (stargiftattributebackdrop == null) {
             return new float[]{0.0f, 1.0f, 1.0f};
         }
-        float[] g10 = g(i0.a.f(0.5f, stargiftattributebackdrop.center_color | (-16777216), (-16777216) | stargiftattributebackdrop.edge_color));
-        float[] g11 = g(-16216082);
-        float exp = (float) Math.exp(-Math.pow((((float) ((Math.toDegrees(g10[2]) + 360.0d) % 360.0d)) - 300.0f) / 38.0f, 2.0d));
-        return new float[]{g10[2] - g11[2], Math.min(com.google.android.gms.internal.play_billing.k3.A(exp, 0.18f, 1.0f, Math.max(0.15f, Math.min(1.0f, (g10[1] * 1.5f) / 0.155f))), (g(stargiftattributebackdrop.center_color)[1] * 1.2f) / 0.173f), ((((Math.max(0.1f, g10[0] - 0.02f) / g11[0]) - 1.0f) * Math.max(0.0f, Math.min(1.0f, (0.6f - g10[0]) / 0.15f))) + 1.0f) - (exp * 0.025f)};
+        float[] f7 = f(i0.a.f(0.5f, stargiftattributebackdrop.center_color | (-16777216), (-16777216) | stargiftattributebackdrop.edge_color));
+        float[] f10 = f(-16216082);
+        float exp = (float) Math.exp(-Math.pow((((float) ((Math.toDegrees(f7[2]) + 360.0d) % 360.0d)) - 300.0f) / 38.0f, 2.0d));
+        return new float[]{f7[2] - f10[2], Math.min(com.google.android.gms.internal.play_billing.k3.A(exp, 0.18f, 1.0f, Math.max(0.15f, Math.min(1.0f, (f7[1] * 1.5f) / 0.155f))), (f(stargiftattributebackdrop.center_color)[1] * 1.2f) / 0.173f), ((((Math.max(0.1f, f7[0] - 0.02f) / f10[0]) - 1.0f) * Math.max(0.0f, Math.min(1.0f, (0.6f - f7[0]) / 0.15f))) + 1.0f) - (exp * 0.025f)};
     }
 
-    public static float[] k(int i10) {
-        float h = h(Color.red(i10) / 255.0f);
-        float h10 = h(Color.green(i10) / 255.0f);
-        float h11 = h(Color.blue(i10) / 255.0f);
-        float cbrt = (float) Math.cbrt((0.051445995f * h11) + (0.53633255f * h10) + (0.41222146f * h));
-        float cbrt2 = (float) Math.cbrt((0.10739696f * h11) + (0.6806995f * h10) + (0.2119035f * h));
-        float cbrt3 = (float) Math.cbrt((h11 * 0.6299787f) + (h10 * 0.28171885f) + (h * 0.08830246f));
+    public static float[] j(int i10) {
+        float g10 = g(Color.red(i10) / 255.0f);
+        float g11 = g(Color.green(i10) / 255.0f);
+        float g12 = g(Color.blue(i10) / 255.0f);
+        float cbrt = (float) Math.cbrt((0.051445995f * g12) + (0.53633255f * g11) + (0.41222146f * g10));
+        float cbrt2 = (float) Math.cbrt((0.10739696f * g12) + (0.6806995f * g11) + (0.2119035f * g10));
+        float cbrt3 = (float) Math.cbrt((g12 * 0.6299787f) + (g11 * 0.28171885f) + (g10 * 0.08830246f));
         double d10 = (0.4505937f * cbrt3) + ((1.9779985f * cbrt) - (2.4285922f * cbrt2));
         double d11 = ((cbrt2 * 0.78277177f) + (cbrt * 0.025904037f)) - (cbrt3 * 0.80867577f);
         return new float[]{((0.7936178f * cbrt2) + (0.21045426f * cbrt)) - (0.004072047f * cbrt3), (float) Math.hypot(d10, d11), (float) Math.atan2(d11, d10)};
     }
 
-    public static float[] l(float f7, float f10, float f11) {
+    public static float[] k(float f7, float f10, float f11) {
         double d10 = f11;
         float cos = ((float) Math.cos(d10)) * f10;
         float sin = f10 * ((float) Math.sin(d10));
@@ -206,20 +194,20 @@ public abstract class h7 {
         return new float[]{(0.23096994f * f17) + ((4.0767417f * f15) - (3.3077116f * f16)), ((2.6097574f * f16) + ((-1.268438f) * f15)) - (0.34131938f * f17), (f17 * 1.7076147f) + ((f15 * (-0.0041960864f)) - (f16 * 0.7034186f))};
     }
 
-    public static int m(float f7, float f10, float f11) {
-        float[] l4 = l(f7, f10, f11);
+    public static int l(float f7, float f10, float f11) {
+        float[] k10 = k(f7, f10, f11);
         loop0: for (int i10 = 0; i10 < 40; i10++) {
-            for (float f12 : l4) {
+            for (float f12 : k10) {
                 if (f12 < -0.001f || f12 > 1.001f) {
                     f10 *= 0.95f;
-                    l4 = l(f7, f10, f11);
+                    k10 = k(f7, f10, f11);
                 }
             }
         }
-        return Color.rgb(d(l4[0]), d(l4[1]), d(l4[2]));
+        return Color.rgb(c(k10[0]), c(k10[1]), c(k10[2]));
     }
 
-    public static void n(float[] fArr, int i10, TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop) {
+    public static void m(float[] fArr, int i10, TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop) {
         float f7;
         float f10;
         float f11;
@@ -253,76 +241,76 @@ public abstract class h7 {
         fArr[i15] = f12;
     }
 
-    public static int o(int i10, int i11, int i12) {
+    public static int n(int i10, int i11, int i12) {
         int i13 = i11 | (-16777216);
         int i14 = i12 | (-16777216);
-        float[] k10 = k(i0.a.f(0.5f, i13, i14));
-        float exp = (float) Math.exp(-Math.pow((((float) ((Math.toDegrees(k10[2]) + 360.0d) % 360.0d)) - 300.0f) / 38.0f, 2.0d));
-        float A = com.google.android.gms.internal.play_billing.k3.A(exp, 0.18f, 1.0f, Math.max(0.15f, Math.min(1.0f, (k10[1] * 1.5f) / 0.155f)));
-        float[] k11 = k(i13);
-        float[] k12 = k(i14);
-        float max = Math.max(0.0f, Math.min(1.0f, (0.6f - ((k11[0] + k12[0]) / 2.0f)) / 0.15f));
-        float f7 = k(-16216082)[0];
-        float f10 = k(-15291399)[0];
-        float[] k13 = k(i10);
-        float max2 = Math.max(-2.0f, Math.min(3.0f, (k13[0] - f7) / (f10 - f7)));
-        float f11 = k12[0];
-        float y3 = com.google.android.gms.internal.play_billing.k3.y(k11[0], f11, max2, f11 - 0.02f);
-        float f12 = k13[0];
+        float[] j10 = j(i0.a.f(0.5f, i13, i14));
+        float exp = (float) Math.exp(-Math.pow((((float) ((Math.toDegrees(j10[2]) + 360.0d) % 360.0d)) - 300.0f) / 38.0f, 2.0d));
+        float A = com.google.android.gms.internal.play_billing.k3.A(exp, 0.18f, 1.0f, Math.max(0.15f, Math.min(1.0f, (j10[1] * 1.5f) / 0.155f)));
+        float[] j11 = j(i13);
+        float[] j12 = j(i14);
+        float max = Math.max(0.0f, Math.min(1.0f, (0.6f - ((j11[0] + j12[0]) / 2.0f)) / 0.15f));
+        float f7 = j(-16216082)[0];
+        float f10 = j(-15291399)[0];
+        float[] j13 = j(i10);
+        float max2 = Math.max(-2.0f, Math.min(3.0f, (j13[0] - f7) / (f10 - f7)));
+        float f11 = j12[0];
+        float y3 = com.google.android.gms.internal.play_billing.k3.y(j11[0], f11, max2, f11 - 0.02f);
+        float f12 = j13[0];
         float f13 = ((y3 - f12) * max) + f12 + (exp * (-0.025f));
-        float f14 = k13[1];
+        float f14 = j13[1];
         float f15 = f14 / 0.173f;
         float f16 = 1.0f - max;
-        return m(Math.max(0.05f, Math.min(0.97f, f13)), com.google.android.gms.internal.play_billing.k3.t(k11[1], 1.1f, max, f16 * Math.min(f14 * A, f15 * k11[1] * 1.2f)), k10[2]);
+        return l(Math.max(0.05f, Math.min(0.97f, f13)), com.google.android.gms.internal.play_billing.k3.t(j11[1], 1.1f, max, f16 * Math.min(f14 * A, f15 * j11[1] * 1.2f)), j10[2]);
     }
 
-    public static int p(int i10, int i11, int i12) {
+    public static int o(int i10, int i11, int i12) {
         float[] fArr;
         float f7;
         String str = i10 + ":" + i11 + ":" + i12;
-        LruCache lruCache = f34274a;
+        LruCache lruCache = f34281a;
         Integer num = (Integer) lruCache.get(str);
         if (num != null) {
             return num.intValue();
         }
         int i13 = i11 | (-16777216);
         int i14 = i12 | (-16777216);
-        float[] k10 = k(i0.a.f(0.7f, i13, i14));
-        float[] k11 = k(i13);
-        float[] k12 = k(i14);
-        float[] k13 = k(i10);
-        float exp = (float) Math.exp(-Math.pow((((float) ((Math.toDegrees(k10[2]) + 360.0d) % 360.0d)) - 300.0f) / 38.0f, 2.0d));
-        float A = com.google.android.gms.internal.play_billing.k3.A(exp, 0.18f, 1.0f, Math.max(0.15f, Math.min(1.0f, (k10[1] * 1.5f) / 0.155f)));
-        float max = Math.max(0.0f, Math.min(1.0f, (0.6f - ((k11[0] + k12[0]) / 2.0f)) / 0.15f));
-        float f10 = k(-16216082)[0];
-        float max2 = Math.max(-2.0f, Math.min(3.0f, (k13[0] - f10) / (k(-15291399)[0] - f10)));
-        float f11 = k12[0];
-        float y3 = com.google.android.gms.internal.play_billing.k3.y(k11[0], f11, max2, f11 - 0.02f);
-        float f12 = k13[0];
+        float[] j10 = j(i0.a.f(0.7f, i13, i14));
+        float[] j11 = j(i13);
+        float[] j12 = j(i14);
+        float[] j13 = j(i10);
+        float exp = (float) Math.exp(-Math.pow((((float) ((Math.toDegrees(j10[2]) + 360.0d) % 360.0d)) - 300.0f) / 38.0f, 2.0d));
+        float A = com.google.android.gms.internal.play_billing.k3.A(exp, 0.18f, 1.0f, Math.max(0.15f, Math.min(1.0f, (j10[1] * 1.5f) / 0.155f)));
+        float max = Math.max(0.0f, Math.min(1.0f, (0.6f - ((j11[0] + j12[0]) / 2.0f)) / 0.15f));
+        float f10 = j(-16216082)[0];
+        float max2 = Math.max(-2.0f, Math.min(3.0f, (j13[0] - f10) / (j(-15291399)[0] - f10)));
+        float f11 = j12[0];
+        float y3 = com.google.android.gms.internal.play_billing.k3.y(j11[0], f11, max2, f11 - 0.02f);
+        float f12 = j13[0];
         float y10 = com.google.android.gms.internal.play_billing.k3.y(y3, f12, max, f12) - (exp * 0.025f);
-        float f13 = k13[1];
-        float t10 = com.google.android.gms.internal.play_billing.k3.t(k11[1], 1.1f, max, (1.0f - max) * Math.min(A * f13, (f13 / 0.173f) * k11[1] * 1.2f));
+        float f13 = j13[1];
+        float t10 = com.google.android.gms.internal.play_billing.k3.t(j11[1], 1.1f, max, (1.0f - max) * Math.min(A * f13, (f13 / 0.173f) * j11[1] * 1.2f));
         if (i10 == -15291399) {
-            fArr = k(i0.a.f(0.5f, i13, i14));
+            fArr = j(i0.a.f(0.5f, i13, i14));
         } else {
-            fArr = k12;
+            fArr = j12;
         }
         float y11 = com.google.android.gms.internal.play_billing.k3.y(fArr[0], y10, 0.399f, y10);
         float y12 = com.google.android.gms.internal.play_billing.k3.y(fArr[1], t10, 0.399f, t10);
-        float atan2 = (((float) Math.atan2(Math.sin(fArr[2] - f7), Math.cos(fArr[2] - k10[2]))) * 0.399f) + k10[2];
-        float max3 = (1.0f - Math.max(0.0f, Math.min(1.0f, (k10[1] - 0.125f) / 0.015f))) * Math.max(0.0f, Math.min(1.0f, (k10[1] - 0.06f) / 0.055f));
+        float atan2 = (((float) Math.atan2(Math.sin(fArr[2] - f7), Math.cos(fArr[2] - j10[2]))) * 0.399f) + j10[2];
+        float max3 = (1.0f - Math.max(0.0f, Math.min(1.0f, (j10[1] - 0.125f) / 0.015f))) * Math.max(0.0f, Math.min(1.0f, (j10[1] - 0.06f) / 0.055f));
         float exp2 = (float) Math.exp(-Math.pow(((((Math.toDegrees(atan2) % 360.0d) + 360.0d) % 360.0d) - 70.0d) / 35.0d, 2.0d));
         float f14 = (((1.0f - (0.75f * exp2)) * max3 * 0.35f) + 1.0f) * y12;
-        float B = com.google.android.gms.internal.play_billing.k3.B(exp2, 0.15f, 1.0f, Math.max(k11[1], k12[1]) * 1.3f);
+        float B = com.google.android.gms.internal.play_billing.k3.B(exp2, 0.15f, 1.0f, Math.max(j11[1], j12[1]) * 1.3f);
         if (f14 > B && B > 0.0f) {
             f14 = com.google.android.gms.internal.play_billing.k3.y(B, f14, 0.8f, f14);
         }
-        int m10 = m(Math.max(0.05f, Math.min(0.97f, y11 - (exp2 * 0.025f))), f14, atan2);
-        lruCache.put(str, Integer.valueOf(m10));
-        return m10;
+        int l4 = l(Math.max(0.05f, Math.min(0.97f, y11 - (exp2 * 0.025f))), f14, atan2);
+        lruCache.put(str, Integer.valueOf(l4));
+        return l4;
     }
 
-    public static int q(float[] fArr, int i10, int i11) {
+    public static int p(float[] fArr, int i10, int i11) {
         double d10;
         double d11;
         double d12;
@@ -379,7 +367,7 @@ public abstract class h7 {
                 for (int i17 = 0; i17 < 3; i17++) {
                     j10[i17] = Math.pow(j10[i17], 3.0d);
                 }
-                dArr = org.telegram.ui.ActionBar.g5.j(org.telegram.ui.ActionBar.g5.f20875f, org.telegram.ui.ActionBar.g5.j(org.telegram.ui.ActionBar.g5.f20873b, j10));
+                dArr = org.telegram.ui.ActionBar.g5.j(org.telegram.ui.ActionBar.g5.f20878f, org.telegram.ui.ActionBar.g5.j(org.telegram.ui.ActionBar.g5.f20876b, j10));
                 double d18 = dArr[0];
                 if (d18 >= 0.0d) {
                     double d19 = dArr[1];

@@ -7,20 +7,20 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.cw0;
+import org.telegram.ui.Components.dw0;
 public class z3 extends View {
-    public final cw0 f11582a;
-    public final Paint f11583b;
-    public float f11584c;
+    public final dw0 f11583a;
+    public final Paint f11584b;
+    public float f11585c;
     public o1.k d;
 
     public z3(Context context, d6 d6Var) {
         super(context);
-        cw0 cw0Var = new cw0(new fh.b(9), new fh.b(10));
-        cw0Var.f25395c = 100.0f;
-        this.f11582a = cw0Var;
+        dw0 dw0Var = new dw0(new fh.b(9), new fh.b(10));
+        dw0Var.f25661c = 100.0f;
+        this.f11583a = dw0Var;
         Paint paint = new Paint(1);
-        this.f11583b = paint;
+        this.f11584b = paint;
         paint.setColor(h6.w0(h6.Oh, d6Var));
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
@@ -30,21 +30,21 @@ public class z3 extends View {
     @Override
     public final void draw(Canvas canvas) {
         super.draw(canvas);
-        if (this.f11584c > 0.0f) {
-            Paint paint = this.f11583b;
+        if (this.f11585c > 0.0f) {
+            Paint paint = this.f11584b;
             float height = getHeight() - (paint.getStrokeWidth() / 2.0f);
-            canvas.drawLine(0.0f, height, getWidth() * this.f11584c, height, paint);
+            canvas.drawLine(0.0f, height, getWidth() * this.f11585c, height, paint);
         }
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        o1.k kVar = new o1.k(this, this.f11582a);
+        o1.k kVar = new o1.k(this, this.f11583a);
         o1.l lVar = new o1.l();
         lVar.b(400.0f);
         lVar.a(1.0f);
-        kVar.f17558u = lVar;
+        kVar.f17561u = lVar;
         this.d = kVar;
     }
 
@@ -56,7 +56,7 @@ public class z3 extends View {
     }
 
     public void setLoadProgress(float f7) {
-        this.f11584c = f7;
+        this.f11585c = f7;
         invalidate();
     }
 
@@ -66,7 +66,7 @@ public class z3 extends View {
             setLoadProgress(f7);
             return;
         }
-        kVar.f17558u.f17564i = f7 * 100.0f;
+        kVar.f17561u.f17567i = f7 * 100.0f;
         kVar.h();
     }
 }

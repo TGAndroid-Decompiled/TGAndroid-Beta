@@ -1,22 +1,15 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.NotificationCenter;
-public final class yk implements NotificationCenter.PostponeNotificationCallback {
-    public final sn f43406a;
+import org.telegram.messenger.MessagesStorage;
+public final class yk implements MessagesStorage.IntCallback {
+    public final qn f43505a;
 
-    public yk(sn snVar) {
-        this.f43406a = snVar;
+    public yk(qn qnVar) {
+        this.f43505a = qnVar;
     }
 
     @Override
-    public final boolean needPostpone(int i10, int i11, Object[] objArr) {
-        if (i10 == NotificationCenter.didReceiveNewMessages) {
-            long longValue = ((Long) objArr[0]).longValue();
-            sn snVar = this.f43406a;
-            if (snVar.H6 && longValue == snVar.T5) {
-                return true;
-            }
-        }
-        return false;
+    public final void run(int i10) {
+        this.f43505a.L9(i10);
     }
 }

@@ -17,7 +17,7 @@ import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Cells.s3;
 import org.telegram.ui.Components.Premium.LimitPreviewView;
 import org.telegram.ui.Components.hm0;
-import org.telegram.ui.l41;
+import org.telegram.ui.j41;
 import w7.z5;
 public final class d extends hm0 {
     public final d6 f46228c;
@@ -86,7 +86,7 @@ public final class d extends hm0 {
             fVar.a((e) arrayList.get(i11));
             LimitPreviewView limitPreviewView = fVar.f46242c;
             limitPreviewView.F = ((e) arrayList.get(i11)).e;
-            limitPreviewView.f24280c = this.f46230n;
+            limitPreviewView.f24283c = this.f46230n;
         }
     }
 
@@ -105,7 +105,7 @@ public final class d extends hm0 {
                 s3Var = new s3(context, 16);
             }
         } else if (this.f46232s) {
-            ?? l41Var = new l41(context, 10);
+            ?? j41Var = new j41(context, 10);
             LinearLayout e = lk.e(context, 0);
             ImageView imageView = new ImageView(context);
             imageView.setImageDrawable(b1.c(context.getDrawable(R.drawable.other_2x_large), b1.d().f46211a));
@@ -117,8 +117,8 @@ public final class d extends hm0 {
             textView.setTextColor(h6.w0(h6.G6, d6Var));
             textView.setTypeface(AndroidUtilities.bold());
             e.addView(textView, z5.e(-2, -2, 16));
-            l41Var.addView(e, z5.e(-2, -2, 17));
-            s3Var = l41Var;
+            j41Var.addView(e, z5.e(-2, -2, 17));
+            s3Var = j41Var;
         } else {
             s3Var = new s3(context, 64);
         }

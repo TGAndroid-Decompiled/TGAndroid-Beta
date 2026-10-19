@@ -7,19 +7,19 @@ import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import nc.c;
 public final class a extends com.googlecode.mp4parser.a {
-    public static final le.b f46156b;
-    public static final le.b f46157c;
-    public static final le.b d;
-    public static final le.b e;
-    public static final le.b f46158f;
-    public static final le.b h;
-    public static final le.b f46159n;
-    public static final le.b f46160r;
-    public static final le.b f46161s;
-    public static final le.b v;
-    public static final le.b f46162w;
-    public static final le.b f46163x;
-    public static final le.b f46164y;
+    public static final te.b f46156b;
+    public static final te.b f46157c;
+    public static final te.b d;
+    public static final te.b e;
+    public static final te.b f46158f;
+    public static final te.b h;
+    public static final te.b f46159n;
+    public static final te.b f46160r;
+    public static final te.b f46161s;
+    public static final te.b v;
+    public static final te.b f46162w;
+    public static final te.b f46163x;
+    public static final te.b f46164y;
     public b f46165a;
 
     static {

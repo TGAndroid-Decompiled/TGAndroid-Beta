@@ -1,6 +1,6 @@
 package ne;
 public interface f {
-    void D();
+    void F();
 
     void c();
 

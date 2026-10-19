@@ -17,15 +17,15 @@ import org.telegram.ui.Components.bb;
 import org.telegram.ui.Components.hm0;
 import org.telegram.ui.Components.im0;
 import org.telegram.ui.Components.n7;
-import org.telegram.ui.Components.s61;
+import org.telegram.ui.Components.t61;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
 import w7.z5;
 public final class c extends bb {
-    public static final int f50175a0 = 0;
+    public static final int f50174a0 = 0;
     public final List X;
     public final GiftAuctionController.Auction Y;
-    public s61 Z;
+    public t61 Z;
 
     public c(Context context, d6 d6Var, GiftAuctionController.Auction auction, List list) {
         super(context, null, false, false, 2, d6Var);
@@ -81,9 +81,9 @@ public final class c extends bb {
 
     @Override
     public final hm0 x(im0 im0Var) {
-        s61 s61Var = new s61(this.d, getContext(), this.currentAccount, 0, true, new hg.o(this, 22), this.resourcesProvider);
-        this.Z = s61Var;
-        s61Var.f30201r = false;
-        return s61Var;
+        t61 t61Var = new t61(this.d, getContext(), this.currentAccount, 0, true, new hg.o(this, 22), this.resourcesProvider);
+        this.Z = t61Var;
+        t61Var.f30438r = false;
+        return t61Var;
     }
 }

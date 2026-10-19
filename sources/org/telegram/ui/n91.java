@@ -1,19 +1,31 @@
 package org.telegram.ui;
-public final class n91 {
-    public String f39373a;
-    public String f39374b;
-    public String f39375c;
-    public boolean d;
-    public String e;
-    public String f39376f;
-    public String f39377g;
-    public boolean h;
-    public String f39378i;
-    public String f39379j;
-    public String f39380k;
-    public boolean f39381l;
-    public String f39382m;
-    public String f39383n;
-    public String f39384o;
-    public boolean f39385p;
+
+import android.content.Context;
+public final class n91 extends z81 {
+    public final int v;
+    public final int f39482w;
+    public int f39483x;
+    public oh f39484y;
+
+    public n91(Context context, int i10, int i11, jg.f fVar, int i12) {
+        super(context, i11, fVar, null);
+        this.v = i10;
+        this.f39482w = i12;
+    }
+
+    @Override
+    public final void b(b91 b91Var) {
+        int i10;
+        if (b91Var != null && (i10 = this.f39483x) >= 0) {
+            b91Var.a(this.v, this.f39482w, i10, this.f39484y);
+        }
+    }
+
+    @Override
+    public final void c() {
+    }
+
+    @Override
+    public final void f() {
+    }
 }

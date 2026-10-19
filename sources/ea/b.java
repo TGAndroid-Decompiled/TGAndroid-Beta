@@ -1,7 +1,7 @@
 package ea;
 
 import a1.g;
-import a6.m;
+import a4.l;
 import android.util.Log;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
@@ -11,15 +11,15 @@ import t7.u;
 import z9.b0;
 import z9.k0;
 public final class b {
-    public Object f8546a;
-    public Object f8547b;
-    public Object f8548c;
+    public Object f8547a;
+    public Object f8548b;
+    public Object f8549c;
     public Object d;
     public Object e;
-    public Object f8549f;
-    public Object f8550g;
+    public Object f8550f;
+    public Object f8551g;
     public Object h;
-    public Object f8551i;
+    public Object f8552i;
 
     public static void f(String str, JSONObject jSONObject) {
         StringBuilder u10 = g.u(str);
@@ -32,15 +32,15 @@ public final class b {
 
     public b0 a() {
         String str;
-        if (((Integer) this.f8546a) == null) {
+        if (((Integer) this.f8547a) == null) {
             str = " pid";
         } else {
             str = "";
         }
-        if (((String) this.f8547b) == null) {
+        if (((String) this.f8548b) == null) {
             str = str.concat(" processName");
         }
-        if (((Integer) this.f8548c) == null) {
+        if (((Integer) this.f8549c) == null) {
             str = r4.c.u(str, " reasonCode");
         }
         if (((Integer) this.d) == null) {
@@ -49,29 +49,29 @@ public final class b {
         if (((Long) this.e) == null) {
             str = r4.c.u(str, " pss");
         }
-        if (((Long) this.f8549f) == null) {
+        if (((Long) this.f8550f) == null) {
             str = r4.c.u(str, " rss");
         }
-        if (((Long) this.f8550g) == null) {
+        if (((Long) this.f8551g) == null) {
             str = r4.c.u(str, " timestamp");
         }
         if (str.isEmpty()) {
-            return new b0(((Integer) this.f8546a).intValue(), (String) this.f8547b, ((Integer) this.f8548c).intValue(), ((Integer) this.d).intValue(), ((Long) this.e).longValue(), ((Long) this.f8549f).longValue(), ((Long) this.f8550g).longValue(), (String) this.h, (List) this.f8551i);
+            return new b0(((Integer) this.f8547a).intValue(), (String) this.f8548b, ((Integer) this.f8549c).intValue(), ((Integer) this.d).intValue(), ((Long) this.e).longValue(), ((Long) this.f8550f).longValue(), ((Long) this.f8551g).longValue(), (String) this.h, (List) this.f8552i);
         }
         throw new IllegalStateException("Missing required properties:".concat(str));
     }
 
     public k0 b() {
         String str;
-        if (((Integer) this.f8546a) == null) {
+        if (((Integer) this.f8547a) == null) {
             str = " arch";
         } else {
             str = "";
         }
-        if (((String) this.f8547b) == null) {
+        if (((String) this.f8548b) == null) {
             str = str.concat(" model");
         }
-        if (((Integer) this.f8548c) == null) {
+        if (((Integer) this.f8549c) == null) {
             str = r4.c.u(str, " cores");
         }
         if (((Long) this.d) == null) {
@@ -80,20 +80,20 @@ public final class b {
         if (((Long) this.e) == null) {
             str = r4.c.u(str, " diskSpace");
         }
-        if (((Boolean) this.f8549f) == null) {
+        if (((Boolean) this.f8550f) == null) {
             str = r4.c.u(str, " simulator");
         }
-        if (((Integer) this.f8550g) == null) {
+        if (((Integer) this.f8551g) == null) {
             str = r4.c.u(str, " state");
         }
         if (((String) this.h) == null) {
             str = r4.c.u(str, " manufacturer");
         }
-        if (((String) this.f8551i) == null) {
+        if (((String) this.f8552i) == null) {
             str = r4.c.u(str, " modelClass");
         }
         if (str.isEmpty()) {
-            return new k0(((Integer) this.f8546a).intValue(), (String) this.f8547b, ((Integer) this.f8548c).intValue(), ((Long) this.d).longValue(), ((Long) this.e).longValue(), ((Boolean) this.f8549f).booleanValue(), ((Integer) this.f8550g).intValue(), (String) this.h, (String) this.f8551i);
+            return new k0(((Integer) this.f8547a).intValue(), (String) this.f8548b, ((Integer) this.f8549c).intValue(), ((Long) this.d).longValue(), ((Long) this.e).longValue(), ((Boolean) this.f8550f).booleanValue(), ((Integer) this.f8551g).intValue(), (String) this.h, (String) this.f8552i);
         }
         throw new IllegalStateException("Missing required properties:".concat(str));
     }
@@ -102,13 +102,13 @@ public final class b {
         a aVar = null;
         try {
             if (!j.b(2, i10)) {
-                JSONObject w9 = ((m) this.e).w();
-                if (w9 != null) {
-                    a M = ((ag.b) this.f8548c).M(w9);
-                    f("Loaded cached settings: ", w9);
+                JSONObject u10 = ((qb.c) this.e).u();
+                if (u10 != null) {
+                    a Z = ((l) this.f8549c).Z(u10);
+                    f("Loaded cached settings: ", u10);
                     ((u) this.d).getClass();
                     long currentTimeMillis = System.currentTimeMillis();
-                    if (!j.b(3, i10) && M.f8544c < currentTimeMillis) {
+                    if (!j.b(3, i10) && Z.f8545c < currentTimeMillis) {
                         if (Log.isLoggable("FirebaseCrashlytics", 2)) {
                             Log.v("FirebaseCrashlytics", "Cached settings have expired.", null);
                             return null;
@@ -118,10 +118,10 @@ public final class b {
                             if (Log.isLoggable("FirebaseCrashlytics", 2)) {
                                 Log.v("FirebaseCrashlytics", "Returning cached settings.", null);
                             }
-                            return M;
+                            return Z;
                         } catch (Exception e) {
                             e = e;
-                            aVar = M;
+                            aVar = Z;
                             Log.e("FirebaseCrashlytics", "Failed to get cached settings", e);
                             return aVar;
                         }

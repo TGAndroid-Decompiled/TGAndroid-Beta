@@ -6,10 +6,10 @@ import java.util.ArrayList;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.ui.Components.l60;
-import org.telegram.ui.Components.p81;
 import org.telegram.ui.Components.q60;
-import org.telegram.ui.hk;
-import org.telegram.ui.re;
+import org.telegram.ui.Components.q81;
+import org.telegram.ui.fk;
+import org.telegram.ui.pe;
 public final class f0 implements Runnable {
     public final int f46592a;
     public final s0 f46593b;
@@ -26,8 +26,8 @@ public final class f0 implements Runnable {
         File file;
         long j10;
         long j11;
-        hk hkVar;
-        p81 p81Var;
+        fk fkVar;
+        q81 q81Var;
         switch (this.f46592a) {
             case 0:
                 s0 s0Var = this.f46593b;
@@ -53,7 +53,7 @@ public final class f0 implements Runnable {
                     s0Var2.H = min;
                     s0Var2.f46756b.setSurfaceTextureListener(null);
                     s0Var2.f46756b.setTransform(s0Var2.h);
-                    i2.h0 a2 = new i2.o(s0Var2.f46755a).a();
+                    i2.i0 a2 = new i2.p(s0Var2.f46755a).a();
                     s0Var2.S = a2;
                     a2.z1(s0Var2.f46756b);
                     s0Var2.S.r0(b2.o0.b(Uri.fromFile(s0Var2.R)));
@@ -68,11 +68,11 @@ public final class f0 implements Runnable {
                     long j14 = s0Var2.E;
                     long j15 = s0Var2.G;
                     long j16 = s0Var2.H;
-                    ((l60) fVar.f15842b).f28105w.setProgress(((float) j14) / 60000.0f);
-                    l60 l60Var = (l60) fVar.f15842b;
-                    l60Var.f28089i0 = false;
+                    ((l60) fVar.f15845b).f28115w.setProgress(((float) j14) / 60000.0f);
+                    l60 l60Var = (l60) fVar.f15845b;
+                    l60Var.f28099i0 = false;
                     l60Var.I.setAlpha(0.0f);
-                    s0 s0Var3 = ((l60) fVar.f15842b).P;
+                    s0 s0Var3 = ((l60) fVar.f15845b).P;
                     if (s0Var3 == null) {
                         file = null;
                     } else {
@@ -80,9 +80,9 @@ public final class f0 implements Runnable {
                         file = s0Var3.R;
                     }
                     if (file != null) {
-                        l60 l60Var2 = (l60) fVar.f15842b;
+                        l60 l60Var2 = (l60) fVar.f15845b;
                         l60Var2.U = l60Var2.r(file, j14, null);
-                        l60 l60Var3 = (l60) fVar.f15842b;
+                        l60 l60Var3 = (l60) fVar.f15845b;
                         VideoEditedInfo videoEditedInfo = l60Var3.U;
                         if (j15 > 0) {
                             j10 = j15;
@@ -96,16 +96,16 @@ public final class f0 implements Runnable {
                             j11 = -1;
                         }
                         videoEditedInfo.endTime = j11;
-                        NotificationCenter.getInstance(l60Var3.h).lambda$postNotificationNameOnUIThread$1(NotificationCenter.audioDidSent, Integer.valueOf(((l60) fVar.f15842b).f28093n), ((l60) fVar.f15842b).U, file.getAbsolutePath(), new ArrayList());
+                        NotificationCenter.getInstance(l60Var3.h).lambda$postNotificationNameOnUIThread$1(NotificationCenter.audioDidSent, Integer.valueOf(((l60) fVar.f15845b).f28103n), ((l60) fVar.f15845b).U, file.getAbsolutePath(), new ArrayList());
                         float max = (float) Math.max(1L, j14);
                         float f7 = ((float) j15) / max;
                         float f10 = ((float) j16) / max;
-                        q60 q60Var = ((l60) fVar.f15842b).f29853b;
-                        if (q60Var != null && (hkVar = ((re) q60Var).f40700b.Y) != null && (p81Var = hkVar.f23939f1) != null) {
+                        q60 q60Var = ((l60) fVar.f15845b).f29864b;
+                        if (q60Var != null && (fkVar = ((pe) q60Var).f40202b.Y) != null && (q81Var = fkVar.f23942f1) != null) {
                             float max2 = Math.max(0.0f, Math.min(1.0f, f7));
-                            p81Var.f29230b = max2;
-                            p81Var.f29231c = Math.max(max2, Math.min(1.0f, f10));
-                            p81Var.invalidate();
+                            q81Var.f29550b = max2;
+                            q81Var.f29551c = Math.max(max2, Math.min(1.0f, f10));
+                            q81Var.invalidate();
                         }
                     }
                     s0Var2.q();

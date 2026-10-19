@@ -1,82 +1,99 @@
 package org.telegram.ui;
 
+import android.text.Editable;
+import android.text.TextWatcher;
+import java.util.ArrayList;
+import java.util.HashMap;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.Vector;
-import org.telegram.tgnet.tl.TL_account;
-public final class jm0 implements Runnable {
-    public final int f38231a;
-    public final km0 f38232b;
-    public final TLRPC.TL_error f38233c;
-    public final TLObject d;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class jm0 implements TextWatcher {
+    public final vm0 f38275a;
 
-    public jm0(km0 km0Var, TLObject tLObject, TLRPC.TL_error tL_error) {
-        this.f38231a = 0;
-        this.f38232b = km0Var;
-        this.d = tLObject;
-        this.f38233c = tL_error;
+    public jm0(vm0 vm0Var) {
+        this.f38275a = vm0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f38231a) {
-            case 0:
-                km0 km0Var = this.f38232b;
-                TLObject tLObject = this.d;
-                TLRPC.TL_error tL_error = this.f38233c;
-                xm0 xm0Var = km0Var.e;
-                if (tLObject instanceof Vector) {
-                    xm0Var.f43200y = new TL_account.authorizationForm();
-                    Vector vector = (Vector) tLObject;
-                    int size = vector.objects.size();
-                    for (int i10 = 0; i10 < size; i10++) {
-                        xm0Var.f43200y.values.add((TLRPC.TL_secureValue) vector.objects.get(i10));
-                    }
-                    km0Var.a();
-                    return;
-                }
-                if ("APP_VERSION_OUTDATED".equals(tL_error.text)) {
-                    org.telegram.ui.Components.f5.w0(xm0Var.getParentActivity(), LocaleController.getString(R.string.UpdateAppAlert), true);
-                } else {
-                    xm0Var.L1(LocaleController.getString(R.string.AppName), tL_error.text);
-                }
-                xm0Var.M1(true, false);
-                return;
-            case 1:
-                km0 km0Var2 = this.f38232b;
-                TLRPC.TL_error tL_error2 = this.f38233c;
-                TLObject tLObject2 = this.d;
-                if (tL_error2 == null) {
-                    TL_account.Password password = (TL_account.Password) tLObject2;
-                    km0Var2.e.J = password;
-                    TwoStepVerificationActivity.m0(password);
-                    km0Var2.b();
-                    return;
-                }
-                km0Var2.getClass();
-                return;
-            default:
-                km0 km0Var3 = this.f38232b;
-                TLRPC.TL_error tL_error3 = this.f38233c;
-                TLObject tLObject3 = this.d;
-                if (tL_error3 == null) {
-                    TL_account.Password password2 = (TL_account.Password) tLObject3;
-                    km0Var3.e.J = password2;
-                    TwoStepVerificationActivity.m0(password2);
-                    Utilities.globalQueue.postRunnable(new xe0(km0Var3, km0Var3.f38542b, km0Var3.d, 13));
-                    return;
-                }
-                return;
+    public final void afterTextChanged(Editable editable) {
+        boolean z10;
+        String str;
+        int indexOf;
+        vm0 vm0Var = this.f38275a;
+        ArrayList arrayList = vm0Var.U0;
+        HashMap hashMap = vm0Var.W0;
+        if (vm0Var.Z0) {
+            return;
         }
+        vm0Var.Z0 = true;
+        String d = jf.b.d(vm0Var.Y[1].getText().toString(), false);
+        vm0Var.Y[1].setText(d);
+        org.telegram.ui.Components.o40 o40Var = (org.telegram.ui.Components.o40) vm0Var.Y[2];
+        if (d.length() == 0) {
+            o40Var.setHintText((String) null);
+            o40Var.setHint(LocaleController.getString(R.string.PaymentShippingPhoneNumber));
+            vm0Var.Y[0].setText(LocaleController.getString(R.string.ChooseCountry));
+        } else {
+            int i10 = 4;
+            if (d.length() > 4) {
+                while (true) {
+                    if (i10 >= 1) {
+                        String substring = d.substring(0, i10);
+                        if (((String) hashMap.get(substring)) != null) {
+                            vm0Var.Y[1].setText(substring);
+                            str = d.substring(i10) + vm0Var.Y[2].getText().toString();
+                            d = substring;
+                            z10 = true;
+                            break;
+                        }
+                        i10--;
+                    } else {
+                        z10 = false;
+                        str = null;
+                        break;
+                    }
+                }
+                if (!z10) {
+                    str = d.substring(1) + vm0Var.Y[2].getText().toString();
+                    EditTextBoldCursor editTextBoldCursor = vm0Var.Y[1];
+                    d = d.substring(0, 1);
+                    editTextBoldCursor.setText(d);
+                }
+            } else {
+                z10 = false;
+                str = null;
+            }
+            String str2 = (String) hashMap.get(d);
+            if (str2 != null && (indexOf = arrayList.indexOf(str2)) != -1) {
+                vm0Var.Y[0].setText((CharSequence) arrayList.get(indexOf));
+                String str3 = (String) vm0Var.X0.get(d);
+                if (str3 != null) {
+                    o40Var.setHintText(str3.replace('X', (char) 8211));
+                    o40Var.setHint((CharSequence) null);
+                }
+            } else {
+                o40Var.setHintText((String) null);
+                o40Var.setHint(LocaleController.getString(R.string.PaymentShippingPhoneNumber));
+                vm0Var.Y[0].setText(LocaleController.getString(R.string.WrongCountry));
+            }
+            if (!z10) {
+                EditTextBoldCursor editTextBoldCursor2 = vm0Var.Y[1];
+                editTextBoldCursor2.setSelection(editTextBoldCursor2.getText().length());
+            }
+            if (str != null) {
+                o40Var.requestFocus();
+                o40Var.setText(str);
+                o40Var.setSelection(o40Var.length());
+            }
+        }
+        vm0Var.Z0 = false;
     }
 
-    public jm0(km0 km0Var, TLRPC.TL_error tL_error, TLObject tLObject, int i10) {
-        this.f38231a = i10;
-        this.f38232b = km0Var;
-        this.f38233c = tL_error;
-        this.d = tLObject;
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

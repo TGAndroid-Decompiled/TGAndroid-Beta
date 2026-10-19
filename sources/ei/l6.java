@@ -18,30 +18,30 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 public final class l6 extends FrameLayout {
-    public final int f9377a;
-    public int f9378b;
-    public final ai.w1 f9379c;
+    public final int f9378a;
+    public int f9379b;
+    public final ai.w1 f9380c;
     public final FrameLayout d;
-    public final ci.r8 e;
-    public boolean f9380f;
+    public final ci.s8 e;
+    public boolean f9381f;
     public boolean h;
 
     public l6(Activity activity, int i10, ci.b bVar) {
         super(activity);
-        this.f9378b = 1;
-        this.f9380f = false;
+        this.f9379b = 1;
+        this.f9381f = false;
         this.h = false;
-        this.f9377a = i10;
+        this.f9378a = i10;
         TLRPC.User currentUser = UserConfig.getInstance(i10).getCurrentUser();
         ai.w1 w1Var = new ai.w1(this, getContext());
-        this.f9379c = w1Var;
-        ci.l4 l4Var = new ci.l4(getContext(), null);
-        l4Var.f5510a.getAvatarDrawable().m(i10, currentUser);
-        ci.j4 j4Var = l4Var.f5510a;
-        j4Var.e(currentUser, j4Var.getAvatarDrawable());
-        l4Var.f5511b.l(Emoji.replaceEmoji(UserObject.getUserName(currentUser), l4Var.f5511b.getPaint().getFontMetricsInt(), false), false);
-        l4Var.c(LocaleController.getString(R.string.RightNow), false);
-        w1Var.addView(l4Var, w7.z5.d(-1, -2.0f, 55, 0.0f, 17.0f, 0.0f, 0.0f));
+        this.f9380c = w1Var;
+        ci.m4 m4Var = new ci.m4(getContext(), null);
+        m4Var.f5610a.getAvatarDrawable().m(i10, currentUser);
+        ci.k4 k4Var = m4Var.f5610a;
+        k4Var.e(currentUser, k4Var.getAvatarDrawable());
+        m4Var.f5611b.l(Emoji.replaceEmoji(UserObject.getUserName(currentUser), m4Var.f5611b.getPaint().getFontMetricsInt(), false), false);
+        m4Var.c(LocaleController.getString(R.string.RightNow), false);
+        w1Var.addView(m4Var, w7.z5.d(-1, -2.0f, 55, 0.0f, 17.0f, 0.0f, 0.0f));
         ImageView imageView = new ImageView(activity);
         imageView.setImageDrawable(getContext().getResources().getDrawable(R.drawable.ic_close_white).mutate());
         imageView.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
@@ -49,11 +49,11 @@ public final class l6 extends FrameLayout {
         addView(w1Var, w7.z5.c(-2.0f, -1));
         FrameLayout frameLayout = new FrameLayout(getContext());
         this.d = frameLayout;
-        ci.r8 r8Var = new ci.r8(getContext(), bVar);
-        this.e = r8Var;
-        r8Var.f5888s0 = true;
-        r8Var.setTranslationY(AndroidUtilities.dp(8.0f));
-        frameLayout.addView(r8Var, w7.z5.d(-1, -1.0f, 87, 0.0f, 0.0f, 0.0f, 64.0f));
+        ci.s8 s8Var = new ci.s8(getContext(), bVar);
+        this.e = s8Var;
+        s8Var.f5995s0 = true;
+        s8Var.setTranslationY(AndroidUtilities.dp(8.0f));
+        frameLayout.addView(s8Var, w7.z5.d(-1, -1.0f, 87, 0.0f, 0.0f, 0.0f, 64.0f));
         ImageView imageView2 = new ImageView(activity);
         imageView2.setImageResource(R.drawable.msg_share);
         PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
@@ -81,8 +81,8 @@ public final class l6 extends FrameLayout {
         View view;
         float f7;
         if (z10) {
-            if (this.f9380f != z11) {
-                this.f9380f = z11;
+            if (this.f9381f != z11) {
+                this.f9381f = z11;
             } else {
                 return;
             }
@@ -92,7 +92,7 @@ public final class l6 extends FrameLayout {
             return;
         }
         if (z10) {
-            view = this.f9379c;
+            view = this.f9380c;
         } else {
             view = this.d;
         }
@@ -120,7 +120,7 @@ public final class l6 extends FrameLayout {
     }
 
     public final void b(CharSequence charSequence) {
-        this.e.f5872b0.b(org.telegram.ui.Components.a6.cloneSpans(new SpannableString(charSequence)), null, null, false, false);
+        this.e.f5979b0.b(org.telegram.ui.Components.a6.cloneSpans(new SpannableString(charSequence)), null, null, false, false);
     }
 
     @Override

@@ -3,25 +3,25 @@ package d2;
 import android.graphics.Bitmap;
 import android.text.Layout;
 public final class a {
-    public CharSequence f7733a = null;
-    public Bitmap f7734b = null;
-    public Layout.Alignment f7735c = null;
+    public CharSequence f7734a = null;
+    public Bitmap f7735b = null;
+    public Layout.Alignment f7736c = null;
     public Layout.Alignment d = null;
     public float e = -3.4028235E38f;
-    public int f7736f = Integer.MIN_VALUE;
-    public int f7737g = Integer.MIN_VALUE;
+    public int f7737f = Integer.MIN_VALUE;
+    public int f7738g = Integer.MIN_VALUE;
     public float h = -3.4028235E38f;
-    public int f7738i = Integer.MIN_VALUE;
-    public int f7739j = Integer.MIN_VALUE;
-    public float f7740k = -3.4028235E38f;
-    public float f7741l = -3.4028235E38f;
-    public final float f7742m = -3.4028235E38f;
-    public final boolean f7743n = false;
-    public final int f7744o = -16777216;
-    public int f7745p = Integer.MIN_VALUE;
-    public float f7746q;
+    public int f7739i = Integer.MIN_VALUE;
+    public int f7740j = Integer.MIN_VALUE;
+    public float f7741k = -3.4028235E38f;
+    public float f7742l = -3.4028235E38f;
+    public final float f7743m = -3.4028235E38f;
+    public final boolean f7744n = false;
+    public final int f7745o = -16777216;
+    public int f7746p = Integer.MIN_VALUE;
+    public float f7747q;
 
     public final b a() {
-        return new b(this.f7733a, this.f7735c, this.d, this.f7734b, this.e, this.f7736f, this.f7737g, this.h, this.f7738i, this.f7739j, this.f7740k, this.f7741l, this.f7742m, this.f7743n, this.f7744o, this.f7745p, this.f7746q, 0);
+        return new b(this.f7734a, this.f7736c, this.d, this.f7735b, this.e, this.f7737f, this.f7738g, this.h, this.f7739i, this.f7740j, this.f7741k, this.f7742l, this.f7743m, this.f7744n, this.f7745o, this.f7746p, this.f7747q, 0);
     }
 }

@@ -1,32 +1,47 @@
 package org.telegram.ui;
 
-import android.window.OnBackInvokedCallback;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.ActionBarLayout;
-public final class oa0 implements OnBackInvokedCallback {
-    public final LaunchActivity f39712a;
+import android.content.ComponentName;
+import android.content.Context;
+import org.telegram.messenger.R;
+public final class oa0 {
+    public static final oa0 h;
+    public static final oa0[] f39802n;
+    public final String f39803a;
+    public final int f39804b;
+    public final int f39805c;
+    public final int d;
+    public final boolean e;
+    public ComponentName f39806f;
 
-    public oa0(LaunchActivity launchActivity) {
-        this.f39712a = launchActivity;
+    static {
+        int i10 = R.drawable.icon_background_sa;
+        int i11 = R.mipmap.icon_foreground_sa;
+        oa0 oa0Var = new oa0("DEFAULT", 0, "DefaultIcon", i10, i11, R.string.AppIconDefault, false);
+        h = oa0Var;
+        f39802n = new oa0[]{oa0Var, new oa0("VINTAGE", 1, "VintageIcon", R.drawable.icon_6_background_sa, R.mipmap.icon_6_foreground_sa, R.string.AppIconVintage, false), new oa0("AQUA", 2, "AquaIcon", R.drawable.icon_4_background_sa, i11, R.string.AppIconAqua, false), new oa0("PREMIUM", 3, "PremiumIcon", R.drawable.icon_3_background_sa, R.mipmap.icon_3_foreground_sa, R.string.AppIconPremium, true), new oa0("TURBO", 4, "TurboIcon", R.drawable.icon_5_background_sa, R.mipmap.icon_5_foreground_sa, R.string.AppIconTurbo, true), new oa0("NOX", 5, "NoxIcon", R.mipmap.icon_2_background_sa, i11, R.string.AppIconNox, true)};
     }
 
-    public final void onBackInvoked() {
-        if (AndroidUtilities.isTablet()) {
-            this.f39712a.onBackPressed();
-        } else if (!this.f39712a.d0(true)) {
-        } else {
-            LaunchActivity launchActivity = this.f39712a;
-            ActionBarLayout actionBarLayout = launchActivity.f33173q0;
-            if (actionBarLayout != null) {
-                if (!actionBarLayout.f20550c1) {
-                    actionBarLayout.G();
-                    return;
-                }
-                actionBarLayout.f20550c1 = false;
-                actionBarLayout.e(false);
-                return;
-            }
-            launchActivity.onBackPressed();
+    public oa0(String str, int i10, String str2, int i11, int i12, int i13, boolean z10) {
+        this.f39803a = str2;
+        this.f39804b = i11;
+        this.f39805c = i12;
+        this.d = i13;
+        this.e = z10;
+    }
+
+    public static oa0 valueOf(String str) {
+        return (oa0) Enum.valueOf(oa0.class, str);
+    }
+
+    public static oa0[] values() {
+        return (oa0[]) f39802n.clone();
+    }
+
+    public final ComponentName a(Context context) {
+        if (this.f39806f == null) {
+            String packageName = context.getPackageName();
+            this.f39806f = new ComponentName(packageName, "org.telegram.messenger." + this.f39803a);
         }
+        return this.f39806f;
     }
 }

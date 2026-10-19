@@ -1,46 +1,34 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import org.telegram.messenger.ChatObject;
-import org.telegram.tgnet.TLRPC;
-public final class gp extends org.telegram.ui.Components.e90 {
-    public final TLRPC.Chat f37256w;
-    public final hp f37257x;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Utilities;
+public final class gp implements Runnable {
+    public final int f37397a;
+    public final hp f37398b;
+    public final String f37399c;
 
-    public gp(hp hpVar, Context context, TLRPC.Chat chat, TLRPC.Chat chat2) {
-        super(context, chat);
-        this.f37257x = hpVar;
-        this.f37256w = chat2;
+    public gp(hp hpVar, String str, int i10) {
+        this.f37397a = i10;
+        this.f37398b = hpVar;
+        this.f37399c = str;
     }
 
     @Override
-    public final boolean a(boolean z10, org.telegram.ui.Components.c90 c90Var) {
-        kp kpVar = this.f37257x.d;
-        if (kpVar.P) {
-            return false;
-        }
-        kpVar.P = true;
-        e(new gh(18, this, c90Var), new ai.x9(this, this.f37256w, z10, c90Var, 15));
-        return true;
-    }
-
-    @Override
-    public final boolean b(boolean z10, org.telegram.ui.Components.d90 d90Var) {
-        kp kpVar = this.f37257x.d;
-        if (kpVar.O) {
-            return false;
-        }
-        kpVar.O = true;
-        e(new gh(18, this, d90Var), new ai.x9(this, this.f37256w, z10, d90Var, 14));
-        return true;
-    }
-
-    public final void e(gh ghVar, Runnable runnable) {
-        kp kpVar = this.f37257x.d;
-        if (!ChatObject.isChannel(kpVar.f38586f)) {
-            kpVar.getMessagesController().convertToMegaGroup(kpVar.getParentActivity(), this.f37256w.f20272id, kpVar, new m4.w0(22, this, runnable), ghVar);
-        } else {
-            runnable.run();
+    public final void run() {
+        switch (this.f37397a) {
+            case 0:
+                hp hpVar = this.f37398b;
+                String str = this.f37399c;
+                hpVar.getClass();
+                AndroidUtilities.runOnUIThread(new gp(hpVar, str, 1));
+                return;
+            default:
+                hp hpVar2 = this.f37398b;
+                String str2 = this.f37399c;
+                hpVar2.f37722f = null;
+                Utilities.searchQueue.postRunnable(new t1(hpVar2, str2, new ArrayList(hpVar2.h.v), 28));
+                return;
         }
     }
 }

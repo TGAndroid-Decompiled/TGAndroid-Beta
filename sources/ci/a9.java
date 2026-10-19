@@ -1,26 +1,21 @@
 package ci;
 
-import android.graphics.Paint;
-import android.text.style.LineHeightSpan;
-import org.telegram.messenger.AndroidUtilities;
-public final class a9 implements LineHeightSpan {
-    public final int f5157a;
+import org.telegram.ui.nc0;
+public final class a9 extends nc0 {
+    public final int R0;
 
-    public a9(int i10) {
-        this.f5157a = i10;
+    public a9(int i10, int i11) {
+        super(i10);
+        this.R0 = i11;
     }
 
     @Override
-    public final void chooseHeight(CharSequence charSequence, int i10, int i11, int i12, int i13, Paint.FontMetricsInt fontMetricsInt) {
-        switch (this.f5157a) {
+    public final boolean g0() {
+        switch (this.R0) {
             case 0:
-                fontMetricsInt.ascent -= AndroidUtilities.dp(2.0f);
-                fontMetricsInt.top -= AndroidUtilities.dp(2.0f);
-                return;
+                return true;
             default:
-                fontMetricsInt.descent = AndroidUtilities.dp(4.0f) + fontMetricsInt.descent;
-                fontMetricsInt.ascent = fontMetricsInt.ascent;
-                return;
+                return true;
         }
     }
 }

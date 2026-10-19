@@ -10,10 +10,10 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class p70 extends hm0 {
-    public final v70 f29218c;
+    public final v70 f29206c;
 
     public p70(v70 v70Var) {
-        this.f29218c = v70Var;
+        this.f29206c = v70Var;
     }
 
     @Override
@@ -28,27 +28,27 @@ public final class p70 extends hm0 {
     public final TLObject E(int i10) {
         int i11;
         int i12;
-        v70 v70Var = this.f29218c;
+        v70 v70Var = this.f29206c;
         if (v70Var.m0 != null) {
-            TLRPC.Dialog dialog = (TLRPC.Dialog) v70Var.f31205n0.get(i10 - v70Var.Y);
-            if (DialogObject.isUserDialog(dialog.f20276id)) {
+            TLRPC.Dialog dialog = (TLRPC.Dialog) v70Var.f31184n0.get(i10 - v70Var.Y);
+            if (DialogObject.isUserDialog(dialog.f20279id)) {
                 i12 = ((org.telegram.ui.ActionBar.f3) v70Var).currentAccount;
-                return MessagesController.getInstance(i12).getUser(Long.valueOf(dialog.f20276id));
+                return MessagesController.getInstance(i12).getUser(Long.valueOf(dialog.f20279id));
             }
             i11 = ((org.telegram.ui.ActionBar.f3) v70Var).currentAccount;
-            return MessagesController.getInstance(i11).getChat(Long.valueOf(-dialog.f20276id));
+            return MessagesController.getInstance(i11).getChat(Long.valueOf(-dialog.f20279id));
         }
-        return (TLObject) v70Var.f31197e0.get(i10 - v70Var.Y);
+        return (TLObject) v70Var.f31176e0.get(i10 - v70Var.Y);
     }
 
     @Override
     public final int h() {
-        return this.f29218c.f31195c0;
+        return this.f29206c.f31174c0;
     }
 
     @Override
     public final int j(int i10) {
-        v70 v70Var = this.f29218c;
+        v70 v70Var = this.f29206c;
         if (i10 == v70Var.X) {
             return 1;
         }
@@ -59,10 +59,10 @@ public final class p70 extends hm0 {
         if (i10 >= v70Var.Y && i10 < v70Var.Z) {
             return 3;
         }
-        if (i10 == v70Var.f31194b0) {
+        if (i10 == v70Var.f31173b0) {
             return 4;
         }
-        if (i10 == v70Var.f31193a0) {
+        if (i10 == v70Var.f31172a0) {
             return 5;
         }
         return 0;
@@ -82,13 +82,13 @@ public final class p70 extends hm0 {
                 TLObject E = E(i10);
                 Object object = f4Var.getObject();
                 if (object instanceof TLRPC.User) {
-                    j10 = ((TLRPC.User) object).f20419id;
+                    j10 = ((TLRPC.User) object).f20422id;
                 } else if (object instanceof TLRPC.Chat) {
-                    j10 = -((TLRPC.Chat) object).f20272id;
+                    j10 = -((TLRPC.Chat) object).f20275id;
                 } else {
                     j10 = 0;
                 }
-                v70 v70Var = this.f29218c;
+                v70 v70Var = this.f29206c;
                 boolean z12 = false;
                 if (i10 != v70Var.Z) {
                     z10 = true;
@@ -97,9 +97,9 @@ public final class p70 extends hm0 {
                 }
                 f4Var.e(E, null, null, z10);
                 if (E instanceof TLRPC.User) {
-                    j11 = ((TLRPC.User) E).f20419id;
+                    j11 = ((TLRPC.User) E).f20422id;
                 } else if (E instanceof TLRPC.Chat) {
-                    j11 = -((TLRPC.Chat) E).f20272id;
+                    j11 = -((TLRPC.Chat) E).f20275id;
                 } else {
                     j11 = 0;
                 }
@@ -110,7 +110,7 @@ public final class p70 extends hm0 {
                         f4Var.setCheckBoxEnabled(false);
                         return;
                     }
-                    if (v70Var.f31198f0.h(j11) >= 0) {
+                    if (v70Var.f31177f0.h(j11) >= 0) {
                         z11 = true;
                     } else {
                         z11 = false;
@@ -135,22 +135,22 @@ public final class p70 extends hm0 {
         boolean z10;
         Context context = viewGroup.getContext();
         if (i10 != 2) {
-            v70 v70Var = this.f29218c;
+            v70 v70Var = this.f29206c;
             if (i10 != 3) {
                 if (i10 != 4) {
                     if (i10 != 5) {
                         org.telegram.ui.Cells.x4 x4Var2 = new org.telegram.ui.Cells.x4(context);
                         x4Var2.b(LocaleController.getString(R.string.VoipGroupCopyInviteLink), R.drawable.msg_link, 7, true);
-                        int i11 = org.telegram.ui.ActionBar.h6.f21168n5;
+                        int i11 = org.telegram.ui.ActionBar.h6.f21171n5;
                         x4Var2.a(i11, i11);
                         x4Var = x4Var2;
                     } else {
                         o70 o70Var = new o70(context, null, 0, null, 0);
                         o70Var.setLayoutParams(new s4.o0(-1, -1));
                         o70Var.e.setVisibility(8);
-                        org.telegram.ui.wt wtVar = v70Var.m0;
+                        org.telegram.ui.ut utVar = v70Var.m0;
                         wh.n nVar = o70Var.d;
-                        if (wtVar != null) {
+                        if (utVar != null) {
                             nVar.setText(LocaleController.getString(R.string.FilterNoChats));
                         } else {
                             nVar.setText(LocaleController.getString(R.string.NoContacts));

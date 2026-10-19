@@ -13,18 +13,18 @@ import org.telegram.ui.Components.bb;
 import org.telegram.ui.Components.hm0;
 import org.telegram.ui.Components.i80;
 import org.telegram.ui.Components.im0;
-import org.telegram.ui.Components.s61;
+import org.telegram.ui.Components.t61;
 import org.telegram.ui.Components.wz;
 public final class k4 extends bb implements NotificationCenter.NotificationCenterDelegate {
     public final int X;
     public final y9 Y;
     public final HashSet Z;
-    public final wz f50341a0;
-    public final FrameLayout f50342b0;
-    public final ei.d f50343c0;
-    public i80 f50344d0;
-    public s61 f50345e0;
-    public i0.b f50346f0;
+    public final wz f50340a0;
+    public final FrameLayout f50341b0;
+    public final ei.d f50342c0;
+    public i80 f50343d0;
+    public t61 f50344e0;
+    public i0.b f50345f0;
 
     public k4(org.telegram.ui.ActionBar.n2 r20, long r21, int r23, gi.g4 r24) {
         throw new UnsupportedOperationException("Method not decompiled: yh.k4.<init>(org.telegram.ui.ActionBar.n2, long, int, gi.g4):void");
@@ -36,11 +36,11 @@ public final class k4 extends bb implements NotificationCenter.NotificationCente
     }
 
     public final void T() {
-        this.d.setPadding(AndroidUtilities.dp(9.0f) + this.f50346f0.f12284a + this.backgroundPaddingLeft, 0, AndroidUtilities.dp(9.0f) + this.f50346f0.f12286c + this.backgroundPaddingLeft, this.f50346f0.d);
-        i0.b bVar = this.f50346f0;
-        int i10 = bVar.f12284a;
+        this.d.setPadding(AndroidUtilities.dp(9.0f) + this.f50345f0.f12285a + this.backgroundPaddingLeft, 0, AndroidUtilities.dp(9.0f) + this.f50345f0.f12287c + this.backgroundPaddingLeft, this.f50345f0.d);
+        i0.b bVar = this.f50345f0;
+        int i10 = bVar.f12285a;
         int i11 = this.backgroundPaddingLeft;
-        this.f50342b0.setPadding(i10 + i11, 0, bVar.f12286c + i11, bVar.d);
+        this.f50341b0.setPadding(i10 + i11, 0, bVar.f12287c + i11, bVar.d);
     }
 
     public final boolean U() {
@@ -57,9 +57,9 @@ public final class k4 extends bb implements NotificationCenter.NotificationCente
 
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        s61 s61Var;
-        if (i10 == NotificationCenter.starUserGiftsLoaded && (s61Var = this.f50345e0) != null) {
-            s61Var.N(true);
+        t61 t61Var;
+        if (i10 == NotificationCenter.starUserGiftsLoaded && (t61Var = this.f50344e0) != null) {
+            t61Var.N(true);
             if (U()) {
                 this.Y.a();
             }
@@ -74,16 +74,16 @@ public final class k4 extends bb implements NotificationCenter.NotificationCente
 
     @Override
     public final r0.k1 onApplyWindowInsetsToRoot(View view, r0.k1 k1Var) {
-        this.f50346f0 = AndroidUtilities.getDefaultWindowInsets(k1Var, false);
+        this.f50345f0 = AndroidUtilities.getDefaultWindowInsets(k1Var, false);
         T();
-        return r0.k1.f44826b;
+        return r0.k1.f44824b;
     }
 
     @Override
     public final hm0 x(im0 im0Var) {
-        s61 s61Var = new s61(im0Var, getContext(), this.currentAccount, 0, false, new t3(this, 1), this.resourcesProvider);
-        this.f50345e0 = s61Var;
-        s61Var.f30201r = false;
-        return s61Var;
+        t61 t61Var = new t61(im0Var, getContext(), this.currentAccount, 0, false, new t3(this, 1), this.resourcesProvider);
+        this.f50344e0 = t61Var;
+        t61Var.f30438r = false;
+        return t61Var;
     }
 }

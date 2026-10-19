@@ -1,23 +1,62 @@
 package org.telegram.ui;
 
+import android.animation.Animator;
+import android.animation.ObjectAnimator;
+import android.transition.Fade;
+import android.transition.TransitionValues;
 import android.view.View;
-import android.view.WindowInsets;
-public final class m31 implements View.OnApplyWindowInsetsListener {
-    public final int f38979a;
-    public final Object f38980b;
+import android.view.ViewGroup;
+public final class m31 extends Fade {
+    public final int f39134a;
+    public final boolean f39135b;
+    public final boolean f39136c;
+    public final SecretMediaViewer d;
 
-    public m31(Object obj, int i10) {
-        this.f38979a = i10;
-        this.f38980b = obj;
+    public m31(SecretMediaViewer secretMediaViewer, boolean z10, boolean z11, int i10) {
+        super(1);
+        this.f39134a = i10;
+        switch (i10) {
+            case 1:
+                this.d = secretMediaViewer;
+                this.f39135b = z10;
+                this.f39136c = z11;
+                super(2);
+                return;
+            default:
+                this.d = secretMediaViewer;
+                this.f39135b = z10;
+                this.f39136c = z11;
+                return;
+        }
     }
 
     @Override
-    public final WindowInsets onApplyWindowInsets(View view, WindowInsets windowInsets) {
-        switch (this.f38979a) {
+    public Animator onAppear(ViewGroup viewGroup, View view, TransitionValues transitionValues, TransitionValues transitionValues2) {
+        switch (this.f39134a) {
             case 0:
-                return SecretMediaViewer.a((SecretMediaViewer) this.f38980b, windowInsets);
+                Animator onAppear = super.onAppear(viewGroup, view, transitionValues, transitionValues2);
+                if (this.f39135b && !this.f39136c && view == this.d.Z) {
+                    onAppear.addListener(new zb0(this, 22));
+                    ((ObjectAnimator) onAppear).addUpdateListener(new c11(this, 2));
+                }
+                return onAppear;
             default:
-                return v51.b((o41) this.f38980b, view, windowInsets);
+                return super.onAppear(viewGroup, view, transitionValues, transitionValues2);
+        }
+    }
+
+    @Override
+    public Animator onDisappear(ViewGroup viewGroup, View view, TransitionValues transitionValues, TransitionValues transitionValues2) {
+        switch (this.f39134a) {
+            case 1:
+                Animator onDisappear = super.onDisappear(viewGroup, view, transitionValues, transitionValues2);
+                if (!this.f39135b && this.f39136c && view == this.d.Z) {
+                    onDisappear.addListener(new zb0(this, 23));
+                    ((ObjectAnimator) onDisappear).addUpdateListener(new c11(this, 3));
+                }
+                return onDisappear;
+            default:
+                return super.onDisappear(viewGroup, view, transitionValues, transitionValues2);
         }
     }
 }

@@ -54,7 +54,7 @@ public final class l implements c3.o {
             z10 = false;
         }
         this.f48520c = z10;
-        l0 l0Var = n0.f8475b;
+        l0 l0Var = n0.f8476b;
         this.f48525k = x1.e;
         if ((i10 & 4) != 0) {
             i11 = 3;
@@ -66,11 +66,11 @@ public final class l implements c3.o {
         this.f48524j = new ArrayList();
         this.f48522g = new x(16);
         this.h = new ArrayDeque();
-        this.d = new x(f2.q.f10336a);
+        this.d = new x(f2.q.f10337a);
         this.e = new x(6);
         this.f48521f = new x();
         this.f48531q = -1;
-        this.B = c3.q.f4658i;
+        this.B = c3.q.f4656i;
         this.C = new k[0];
     }
 
@@ -87,7 +87,7 @@ public final class l implements c3.o {
         if (m10 != null) {
             x1Var = n0.y(m10);
         } else {
-            l0 l0Var = n0.f8475b;
+            l0 l0Var = n0.f8476b;
             x1Var = x1.e;
         }
         this.f48525k = x1Var;
@@ -137,8 +137,8 @@ public final class l implements c3.o {
             kVar.e = a2;
             k0 k0Var = kVar.d;
             if (k0Var != null) {
-                k0Var.f4642b = false;
-                k0Var.f4643c = 0;
+                k0Var.f4640b = false;
+                k0Var.f4641c = 0;
             }
         }
     }

@@ -1,139 +1,283 @@
 package org.telegram.ui;
 
-import android.graphics.Typeface;
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
-import android.media.AudioRecordingConfiguration;
-import android.media.MediaRoute2Info;
+import android.text.TextUtils;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.SharedConfig;
-import org.telegram.messenger.Utilities;
-public final class hk0 implements org.telegram.ui.ActionBar.a2, org.telegram.ui.Components.kd0, Utilities.Callback2Return, org.telegram.ui.Components.mw0, q3.g, g2.g, qg.j0 {
-    public final int f37552a;
+import org.telegram.ui.Components.RadioButton;
+public final class hk0 extends org.telegram.ui.Components.hm0 {
+    public final kk0 f37704c;
 
-    public hk0(int i10) {
-        this.f37552a = i10;
-    }
-
-    public static AudioRecordingConfiguration c(Object obj) {
-        return (AudioRecordingConfiguration) obj;
-    }
-
-    public static MediaRoute2Info d(Object obj) {
-        return (MediaRoute2Info) obj;
+    public hk0(kk0 kk0Var) {
+        this.f37704c = kk0Var;
     }
 
     @Override
-    public Typeface a() {
-        switch (this.f37552a) {
-            case 25:
-                return AndroidUtilities.getTypeface("fonts/rmedium.ttf");
-            case 26:
-                return AndroidUtilities.getTypeface("fonts/rmediumitalic.ttf");
-            case 27:
-                return Typeface.create("serif", 1);
-            case 28:
-                return AndroidUtilities.getTypeface("fonts/rcondensedbold.ttf");
-            default:
-                return AndroidUtilities.getTypeface("fonts/rmono.ttf");
+    public final boolean D(s4.b1 b1Var) {
+        int i10 = b1Var.f45913f;
+        if (i10 != 0 && i10 != 2) {
+            return false;
         }
+        return true;
     }
 
     @Override
-    public boolean b(int i10, int i11, int i12, int i13, int i14) {
-        return false;
+    public final int h() {
+        return this.f37704c.f38625n;
     }
 
     @Override
-    public g2.h createDataSource() {
-        return new g2.b(ApplicationLoader.applicationContext);
-    }
-
-    @Override
-    public String e(int i10) {
+    public final long i(int i10) {
+        ik0 ik0Var;
+        kk0 kk0Var = this.f37704c;
+        int i11 = kk0Var.E;
+        if (i10 >= i11 && i10 < kk0Var.F) {
+            ik0Var = (ik0) kk0Var.f38622b.get(i10 - i11);
+        } else {
+            int i12 = kk0Var.f38626r;
+            if (i10 >= i12 && i10 < kk0Var.f38627s) {
+                ik0Var = (ik0) kk0Var.f38621a.get(i10 - i12);
+            } else {
+                ik0Var = null;
+            }
+        }
+        if (ik0Var != null) {
+            return ik0Var.f38013c;
+        }
+        kk0Var.getClass();
         if (i10 == 0) {
-            return LocaleController.getString(R.string.AutoLockDisabled);
+            return 1L;
         }
-        if (i10 == 1) {
-            return LocaleController.formatString("AutoLockInTime", R.string.AutoLockInTime, LocaleController.formatPluralString("Minutes", 1, new Object[0]));
+        if (i10 == kk0Var.f38630y) {
+            return 2L;
         }
-        if (i10 == 2) {
-            return LocaleController.formatString("AutoLockInTime", R.string.AutoLockInTime, LocaleController.formatPluralString("Minutes", 5, new Object[0]));
+        if (i10 == kk0Var.v) {
+            return 3L;
         }
-        if (i10 == 3) {
-            return LocaleController.formatString("AutoLockInTime", R.string.AutoLockInTime, LocaleController.formatPluralString("Hours", 1, new Object[0]));
+        if (i10 == kk0Var.f38628w) {
+            return 4L;
         }
-        if (i10 == 4) {
-            return LocaleController.formatString("AutoLockInTime", R.string.AutoLockInTime, LocaleController.formatPluralString("Hours", 5, new Object[0]));
+        if (i10 == kk0Var.f38629x) {
+            return 5L;
         }
-        return "";
+        throw new RuntimeException();
     }
 
     @Override
-    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f37552a) {
-            case 0:
-                b2Var.dismiss();
+    public final int j(int i10) {
+        kk0 kk0Var = this.f37704c;
+        if (i10 >= kk0Var.E && i10 < kk0Var.F) {
+            return 0;
+        }
+        kk0Var.getClass();
+        if (i10 != 0 && i10 != kk0Var.f38630y) {
+            if (i10 == kk0Var.v) {
+                return 2;
+            }
+            if (i10 != kk0Var.f38628w && i10 != kk0Var.f38629x) {
+                return 0;
+            }
+            return 3;
+        }
+        return 1;
+    }
+
+    @Override
+    public final void v(s4.b1 b1Var, int i10) {
+        ik0 ik0Var;
+        boolean z10;
+        boolean z11;
+        boolean z12;
+        kk0 kk0Var = this.f37704c;
+        org.telegram.ui.ActionBar.d6 d6Var = kk0Var.h;
+        int i11 = b1Var.f45913f;
+        View view = b1Var.f45910a;
+        boolean z13 = false;
+        if (i11 != 0) {
+            if (i11 != 1) {
+                if (i11 == 2) {
+                    org.telegram.ui.Cells.g2 g2Var = (org.telegram.ui.Cells.g2) view;
+                    Drawable drawable = g2Var.getContext().getResources().getDrawable(R.drawable.poll_add_circle);
+                    Drawable drawable2 = g2Var.getContext().getResources().getDrawable(R.drawable.poll_add_plus);
+                    int w02 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.N6, d6Var);
+                    PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
+                    drawable.setColorFilter(new PorterDuffColorFilter(w02, mode));
+                    drawable2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21117k7, d6Var), mode));
+                    org.telegram.ui.Components.zq zqVar = new org.telegram.ui.Components.zq(drawable, drawable2);
+                    g2Var.f22283a.l(LocaleController.getString(R.string.UploadSound), false);
+                    g2Var.f22284b.setImageDrawable(zqVar);
+                    g2Var.f22285c = false;
+                    return;
+                }
                 return;
-            case 1:
-            case 5:
-            case 8:
-            case 9:
-            case 10:
-            case 11:
-            case 12:
-            case 14:
-            default:
-                b2Var.dismiss();
+            }
+            org.telegram.ui.Cells.l4 l4Var = (org.telegram.ui.Cells.l4) view;
+            if (i10 == 0) {
+                l4Var.setText(LocaleController.getString(R.string.TelegramTones));
                 return;
-            case 2:
-                Drawable[] drawableArr = PhotoViewer.U8;
+            } else if (i10 == kk0Var.f38630y) {
+                l4Var.setText(LocaleController.getString(R.string.SystemTones));
                 return;
-            case 3:
-                b2Var.dismiss();
+            } else {
                 return;
-            case 4:
-                b2Var.dismiss();
-                return;
-            case 6:
-                b2Var.dismiss();
-                return;
-            case 7:
-                b2Var.dismiss();
-                return;
-            case 13:
-                b2Var.dismiss();
-                return;
-            case 15:
-                b2Var.dismiss();
-                return;
-            case 16:
-                b2Var.dismiss();
-                return;
-            case 17:
-                b2Var.dismiss();
-                return;
+            }
+        }
+        jk0 jk0Var = (jk0) view;
+        int i12 = kk0Var.E;
+        if (i10 >= i12 && i10 < kk0Var.F) {
+            ik0Var = (ik0) kk0Var.f38622b.get(i10 - i12);
+        } else {
+            ik0Var = null;
+        }
+        int i13 = kk0Var.f38626r;
+        if (i10 >= i13 && i10 < kk0Var.f38627s) {
+            ik0Var = (ik0) kk0Var.f38621a.get(i10 - i13);
+        }
+        if (ik0Var != null) {
+            if (jk0Var.e == ik0Var) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            if (ik0Var == kk0Var.H) {
+                z11 = true;
+            } else {
+                z11 = false;
+            }
+            if (kk0Var.J.get(ik0Var.f38013c) != null) {
+                z12 = true;
+            } else {
+                z12 = false;
+            }
+            jk0Var.e = ik0Var;
+            jk0Var.f38265a.setText(ik0Var.f38014f);
+            if (i10 != kk0Var.F - 1) {
+                z13 = true;
+            }
+            jk0Var.d = z13;
+            jk0Var.f38266b.a(z11, z10);
+            jk0Var.f38267c.a(z12, z10);
         }
     }
 
     @Override
-    public void h(int i10) {
-        SharedConfig.proxyRotationTimeout = i10;
-        SharedConfig.saveConfig();
-    }
-
-    @Override
-    public Object run(Object obj, Object obj2) {
-        Integer num = (Integer) obj2;
-        if (((Integer) obj).intValue() == 0) {
-            return ai.md.Y0(false, LocaleController.formatPluralStringComma("Stars", num.intValue()), 0.66f, null);
+    public final s4.b1 x(ViewGroup viewGroup, int i10) {
+        int i11;
+        int i12;
+        int i13;
+        int i14;
+        int i15;
+        int i16;
+        int i17;
+        org.telegram.ui.Cells.l4 l4Var;
+        org.telegram.ui.ActionBar.d6 d6Var = this.f37704c.h;
+        Context context = viewGroup.getContext();
+        int i18 = 61;
+        int i19 = 3;
+        if (i10 != 0) {
+            if (i10 != 2) {
+                if (i10 != 3) {
+                    org.telegram.ui.Cells.l4 l4Var2 = new org.telegram.ui.Cells.l4(context, d6Var);
+                    l4Var2.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20989d6, d6Var));
+                    l4Var = l4Var2;
+                } else {
+                    l4Var = new org.telegram.ui.Cells.z6(context, (org.telegram.ui.Cells.c1) null);
+                }
+            } else {
+                org.telegram.ui.Cells.g2 g2Var = new org.telegram.ui.Cells.g2(context, 70, d6Var);
+                g2Var.d = 61;
+                g2Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20989d6, d6Var));
+                l4Var = g2Var;
+            }
+        } else {
+            ?? frameLayout = new FrameLayout(context);
+            RadioButton radioButton = new RadioButton(context);
+            frameLayout.f38266b = radioButton;
+            radioButton.setSize(AndroidUtilities.dp(20.0f));
+            radioButton.b(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21043g7, d6Var), org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21062h7, d6Var));
+            boolean z10 = LocaleController.isRTL;
+            if (z10) {
+                i11 = 5;
+            } else {
+                i11 = 3;
+            }
+            int i20 = i11 | 16;
+            int i21 = 20;
+            if (z10) {
+                i12 = 0;
+            } else {
+                i12 = 20;
+            }
+            float f7 = i12;
+            if (!z10) {
+                i21 = 0;
+            }
+            frameLayout.addView(radioButton, w7.z5.d(22, 22.0f, i20, f7, 0.0f, i21, 0.0f));
+            org.telegram.ui.Components.xp xpVar = new org.telegram.ui.Components.xp(context, 24, d6Var);
+            frameLayout.f38267c = xpVar;
+            int i22 = org.telegram.ui.ActionBar.h6.f20989d6;
+            xpVar.b(-1, i22, org.telegram.ui.ActionBar.h6.f21117k7);
+            xpVar.setDrawUnchecked(false);
+            xpVar.setDrawBackgroundAsArc(3);
+            boolean z11 = LocaleController.isRTL;
+            if (z11) {
+                i13 = 5;
+            } else {
+                i13 = 3;
+            }
+            int i23 = i13 | 16;
+            if (z11) {
+                i14 = 0;
+            } else {
+                i14 = 18;
+            }
+            float f10 = i14;
+            if (z11) {
+                i15 = 18;
+            } else {
+                i15 = 0;
+            }
+            frameLayout.addView(xpVar, w7.z5.d(26, 26.0f, i23, f10, 0.0f, i15, 0.0f));
+            xpVar.a(true, false);
+            TextView textView = new TextView(context);
+            frameLayout.f38265a = textView;
+            org.telegram.messenger.lk.o(org.telegram.ui.ActionBar.h6.G6, d6Var, textView, 1, 16.0f);
+            textView.setLines(1);
+            textView.setMaxLines(1);
+            textView.setSingleLine(true);
+            textView.setEllipsize(TextUtils.TruncateAt.END);
+            if (LocaleController.isRTL) {
+                i16 = 5;
+            } else {
+                i16 = 3;
+            }
+            textView.setGravity(i16 | 16);
+            boolean z12 = LocaleController.isRTL;
+            if (z12) {
+                i19 = 5;
+            }
+            int i24 = i19 | 16;
+            if (z12) {
+                i17 = 23;
+            } else {
+                i17 = 61;
+            }
+            float f11 = i17;
+            if (!z12) {
+                i18 = 23;
+            }
+            frameLayout.addView(textView, w7.z5.d(-2, -2.0f, i24, f11, 0.0f, i18, 0.0f));
+            frameLayout.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(i22, d6Var));
+            l4Var = frameLayout;
         }
-        return LocaleController.formatNumber(num.intValue(), ',');
-    }
-
-    @Override
-    public void m() {
+        return com.google.android.gms.internal.play_billing.k3.l(l4Var, l4Var, -1, -2);
     }
 }

@@ -1,16 +1,9 @@
 package w7;
 public abstract class k6 {
-    public static boolean a(int i10, int i11) {
-        if ((i10 & i11) != 0) {
-            return true;
+    public static void a(Object obj, String str) {
+        if (obj != null) {
+            return;
         }
-        return false;
-    }
-
-    public static int b(int i10, int i11, boolean z10) {
-        if (z10) {
-            return i10 | i11;
-        }
-        return i10 & (~i11);
+        throw new NullPointerException(str);
     }
 }

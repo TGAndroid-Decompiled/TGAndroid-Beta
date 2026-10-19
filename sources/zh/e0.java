@@ -1,32 +1,93 @@
 package zh;
 
-import android.graphics.Outline;
+import android.content.res.ColorStateList;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.InsetDrawable;
+import android.graphics.drawable.RippleDrawable;
 import android.view.View;
-import android.view.ViewOutlineProvider;
-public final class e0 extends ViewOutlineProvider {
-    public final int f51677a;
-    public final f0 f51678b;
+import j$.util.function.Consumer$CC;
+import java.util.WeakHashMap;
+import java.util.function.Consumer;
+import org.telegram.messenger.AndroidUtilities;
+public final class e0 implements Consumer {
+    public final m0 f51980a;
+    public final m f51981b;
 
-    public e0(f0 f0Var, int i10) {
-        this.f51677a = i10;
-        this.f51678b = f0Var;
+    public e0(m0 m0Var, m mVar) {
+        this.f51980a = m0Var;
+        this.f51981b = mVar;
     }
 
     @Override
-    public final void getOutline(View view, Outline outline) {
-        switch (this.f51677a) {
-            case 0:
-                float translationY = view.getTranslationY() + view.getTop();
-                float translationX = view.getTranslationX() + view.getLeft();
-                f0 f0Var = this.f51678b;
-                outline.setRoundRect(Math.round(f0Var.f51717n - translationX), Math.round(f0Var.f51722r - translationY), Math.round(f0Var.f51724s - translationX), Math.round(f0Var.v - translationY), f0Var.f51725w);
-                return;
-            default:
-                int height = view.getHeight();
-                f0 f0Var2 = this.f51678b;
-                int i10 = f0Var2.f51704b0;
-                outline.setRoundRect(f0Var2.f51702a0, i10, view.getWidth() - f0Var2.f51702a0, view.getHeight() - f0Var2.f51706c0, ((height - i10) - f0Var2.f51706c0) / 2.0f);
-                return;
+    public final void accept(Object obj) {
+        c cVar;
+        float f7;
+        float f10;
+        float[] fArr;
+        e0 e0Var = this;
+        Canvas canvas = (Canvas) obj;
+        m0 m0Var = e0Var.f51980a;
+        c cVar2 = m0Var.f52049x;
+        RectF rectF = cVar2.M;
+        WeakHashMap weakHashMap = cVar2.N;
+        Paint paint = cVar2.f51685c;
+        long b10 = c.b();
+        int i10 = 0;
+        while (true) {
+            m mVar = e0Var.f51981b;
+            if (i10 >= mVar.getChildCount()) {
+                break;
+            }
+            View childAt = mVar.getChildAt(i10);
+            if ((childAt instanceof l) && childAt.getVisibility() == 0) {
+                if (!weakHashMap.containsKey(childAt)) {
+                    weakHashMap.put(childAt, Boolean.TRUE);
+                    GradientDrawable gradientDrawable = new GradientDrawable();
+                    gradientDrawable.setColor(-1);
+                    gradientDrawable.setCornerRadius(AndroidUtilities.dp(10.0f));
+                    f10 = 2.5f;
+                    f7 = 10.0f;
+                    childAt.setBackground(new RippleDrawable(ColorStateList.valueOf(788529151), null, new InsetDrawable((Drawable) gradientDrawable, (int) AndroidUtilities.dpf2(2.5f))));
+                } else {
+                    f7 = 10.0f;
+                    f10 = 2.5f;
+                }
+                String key = ((l) childAt).getKey();
+                if (key != null && (fArr = (float[]) cVar2.f51690n.get(key)) != null) {
+                    float c10 = c.c(fArr, b10);
+                    if (c10 > 0.004f) {
+                        float translationX = childAt.getTranslationX() + childAt.getLeft();
+                        float translationY = childAt.getTranslationY() + childAt.getTop();
+                        float dpf2 = (int) AndroidUtilities.dpf2(f10);
+                        cVar = cVar2;
+                        rectF.set(translationX + dpf2, translationY + dpf2, (translationX + childAt.getWidth()) - dpf2, (translationY + childAt.getHeight()) - dpf2);
+                        if (!childAt.isPressed()) {
+                            paint.setColor(788529151);
+                            paint.setAlpha((int) (Color.alpha(788529151) * c10));
+                            canvas.drawRoundRect(rectF, AndroidUtilities.dp(f7), AndroidUtilities.dp(f7), paint);
+                        }
+                        i10++;
+                        e0Var = this;
+                        cVar2 = cVar;
+                    }
+                }
+            }
+            cVar = cVar2;
+            i10++;
+            e0Var = this;
+            cVar2 = cVar;
         }
+        if (!m0Var.d.I.isEmpty()) {
+            m0Var.f52049x.invalidate();
+        }
+    }
+
+    public Consumer andThen(Consumer consumer) {
+        return Consumer$CC.$default$andThen(this, consumer);
     }
 }

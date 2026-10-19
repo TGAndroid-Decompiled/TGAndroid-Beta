@@ -1,26 +1,22 @@
 package org.telegram.ui;
+public final class n51 implements Runnable {
+    public final int f39422a;
+    public final o51 f39423b;
 
-import android.content.Context;
-import org.telegram.messenger.LiteMode;
-public final class n51 extends org.telegram.ui.Components.px0 {
-    public final o51 f39302x3;
-
-    public n51(o51 o51Var, Context context, int i10, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context, i10, d6Var);
-        this.f39302x3 = o51Var;
+    public n51(o51 o51Var, int i10) {
+        this.f39422a = i10;
+        this.f39423b = o51Var;
     }
 
     @Override
-    public final boolean B1() {
-        if (!LiteMode.isEnabled(16388) && this.f39302x3.f39680y.W != 4) {
-            return false;
+    public final void run() {
+        switch (this.f39422a) {
+            case 0:
+                o51.a(this.f39423b);
+                return;
+            default:
+                this.f39423b.dismiss();
+                return;
         }
-        return true;
-    }
-
-    @Override
-    public final void F1(int i10) {
-        super.F1(i10);
-        this.f39302x3.e(false);
     }
 }

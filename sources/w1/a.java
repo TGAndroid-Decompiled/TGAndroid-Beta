@@ -11,8 +11,8 @@ public final class a extends z {
 
     public a(d dVar) {
         this.f48453l = dVar;
-        if (dVar.f293a == null) {
-            dVar.f293a = this;
+        if (dVar.f294a == null) {
+            dVar.f294a = this;
             return;
         }
         throw new IllegalStateException("There is already a listener registered");
@@ -21,16 +21,16 @@ public final class a extends z {
     @Override
     public final void f() {
         d dVar = this.f48453l;
-        dVar.f294b = true;
+        dVar.f295b = true;
         dVar.d = false;
-        dVar.f295c = false;
-        dVar.f298i.drainPermits();
+        dVar.f296c = false;
+        dVar.f299i.drainPermits();
         dVar.c();
     }
 
     @Override
     public final void g() {
-        this.f48453l.f294b = false;
+        this.f48453l.f295b = false;
     }
 
     @Override

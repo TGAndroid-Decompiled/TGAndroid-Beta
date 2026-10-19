@@ -1,19 +1,10 @@
 package org.telegram.ui;
+public final class u70 {
+    public final org.telegram.ui.ActionBar.e1 f41833a;
+    public final int f41834b;
 
-import android.os.Bundle;
-public final class u70 extends e6 {
-    public final ey f41880f;
-
-    public u70(Bundle bundle, ey eyVar) {
-        super(bundle);
-        this.f41880f = eyVar;
-    }
-
-    @Override
-    public final void onTransitionAnimationEnd(boolean z10, boolean z11) {
-        super.onTransitionAnimationEnd(z10, z11);
-        if (z10 && !z11) {
-            this.f41880f.removeSelfFromStack();
-        }
+    public u70(org.telegram.ui.ActionBar.e1 e1Var, int i10) {
+        this.f41833a = e1Var;
+        this.f41834b = i10;
     }
 }

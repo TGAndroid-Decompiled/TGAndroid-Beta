@@ -1,73 +1,197 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.tl.TL_stats;
-public abstract class c91 extends b91 {
-    public final int v;
-    public final r91 f35856w;
+import android.util.SparseIntArray;
+import android.view.View;
+public final class c91 extends s4.o {
+    public int f35891b;
+    public final u81 f35892c;
+    public final s4.b0 d;
+    public final SparseIntArray e = new SparseIntArray();
+    public int f35893f = -1;
+    public int f35894g = -1;
+    public int h = -1;
+    public int f35895i = -1;
+    public int f35896j = -1;
+    public int f35897k = -1;
+    public int f35898l = -1;
+    public int f35899m = -1;
+    public int f35900n = -1;
+    public int f35901o = -1;
+    public int f35902p = -1;
+    public int f35903q = -1;
+    public int f35904r = -1;
+    public int f35905s = -1;
+    public int f35906t = -1;
+    public int f35907u = -1;
+    public int v = -1;
+    public int f35908w = -1;
+    public int f35909x = -1;
+    public int f35910y = -1;
 
-    public c91(r91 r91Var, Context context, int i10, int i11, jg.f fVar) {
-        super(context, i11, fVar, null);
-        this.f35856w = r91Var;
-        this.v = i10;
+    public c91(u81 u81Var, s4.b0 b0Var) {
+        this.f35892c = u81Var;
+        this.d = b0Var;
     }
 
     @Override
-    public final void b(d91 d91Var) {
-        int i10;
-        r91 r91Var = this.f35856w;
-        i10 = ((org.telegram.ui.ActionBar.n2) r91Var).classGuid;
-        d91Var.a(this.v, i10, r91Var.f40628a.stats_dc, new qh(2, r91Var, this.f35593r));
+    public final boolean a(int i10, int i11) {
+        if (this.e.get(i10) == this.f35892c.j(i11)) {
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public final void c() {
-        int i10;
-        if (this.f35593r.f36100c <= 0) {
-            performClick();
-            jg.g gVar = this.f35589b;
-            if (gVar.f14480t0.G) {
-                long selectedDate = gVar.getSelectedDate();
-                if (this.f35594s == 4) {
-                    d91 d91Var = this.f35593r;
-                    d91Var.e = new kg.e(d91Var.d, selectedDate);
-                    g(false);
-                } else if (this.f35593r.f36102g == null) {
-                } else {
-                    r91 r91Var = this.f35856w;
-                    r91.Z(r91Var);
-                    String str = this.f35593r.f36102g + "_" + selectedDate;
-                    kg.b bVar = (kg.b) r91Var.V.get(str);
-                    if (bVar != null) {
-                        this.f35593r.e = bVar;
-                        g(false);
-                        return;
-                    }
-                    TL_stats.TL_loadAsyncGraph tL_loadAsyncGraph = new TL_stats.TL_loadAsyncGraph();
-                    tL_loadAsyncGraph.token = this.f35593r.f36102g;
-                    if (selectedDate != 0) {
-                        tL_loadAsyncGraph.f20500x = selectedDate;
-                        tL_loadAsyncGraph.flags |= 1;
-                    }
-                    ?? obj = new Object();
-                    r91Var.Z = obj;
-                    r91Var.S.getClass();
-                    obj.f40306a = RecyclerView.R(this);
-                    gVar.f14480t0.d(true, false);
-                    int i11 = this.v;
-                    int sendRequest = ConnectionsManager.getInstance(i11).sendRequest(tL_loadAsyncGraph, new vr0(this, str, obj, 10), null, null, 0, r91Var.f40628a.stats_dc, 1, true);
-                    ConnectionsManager connectionsManager = ConnectionsManager.getInstance(i11);
-                    i10 = ((org.telegram.ui.ActionBar.n2) r91Var).classGuid;
-                    connectionsManager.bindRequestToGuid(sendRequest, i10);
-                }
+    public final boolean b(int i10, int i11) {
+        SparseIntArray sparseIntArray = this.e;
+        int i12 = sparseIntArray.get(i10);
+        u81 u81Var = this.f35892c;
+        if (i12 == 13 && u81Var.j(i11) == 13) {
+            return true;
+        }
+        if (sparseIntArray.get(i10) == 10 && u81Var.j(i11) == 10) {
+            return true;
+        }
+        int i13 = this.f35909x;
+        if (i10 >= i13 && i10 <= this.f35910y) {
+            if (i10 - i13 == i11 - u81Var.I) {
+                return true;
             }
+            return false;
+        } else if (i10 == this.f35893f && i11 == u81Var.e) {
+            return true;
+        } else {
+            if (i10 == this.f35894g && i11 == u81Var.h) {
+                return true;
+            }
+            if (i10 == this.h && i11 == u81Var.f41886r) {
+                return true;
+            }
+            if (i10 == this.f35895i && i11 == u81Var.f41887s) {
+                return true;
+            }
+            if (i10 == this.f35896j && i11 == u81Var.v) {
+                return true;
+            }
+            if (i10 == this.f35897k && i11 == u81Var.f41888w) {
+                return true;
+            }
+            if (i10 == this.f35898l && i11 == u81Var.f41889x) {
+                return true;
+            }
+            if (i10 == this.f35899m && i11 == u81Var.f41885n) {
+                return true;
+            }
+            if (i10 == this.f35900n && i11 == u81Var.f41890y) {
+                return true;
+            }
+            if (i10 == this.f35904r && i11 == u81Var.K) {
+                return true;
+            }
+            if (i10 == this.f35905s && i11 == u81Var.L) {
+                return true;
+            }
+            if (i10 == this.f35906t && i11 == u81Var.M) {
+                return true;
+            }
+            if (i10 == this.f35907u && i11 == u81Var.N) {
+                return true;
+            }
+            if (i10 == this.v && i11 == u81Var.O) {
+                return true;
+            }
+            if (i10 == this.f35908w && i11 == u81Var.P) {
+                return true;
+            }
+            if (i10 == this.f35901o && i11 == u81Var.E) {
+                return true;
+            }
+            if (i10 == this.f35902p && i11 == u81Var.F) {
+                return true;
+            }
+            if (i10 == this.f35903q && i11 == u81Var.G) {
+                return true;
+            }
+            return false;
         }
     }
 
     @Override
+    public final int d() {
+        return this.f35892c.f41882c0;
+    }
+
+    @Override
+    public final int e() {
+        return this.f35891b;
+    }
+
     public final void f() {
-        r91.Z(this.f35856w);
+        int i10;
+        long j10;
+        View m10;
+        SparseIntArray sparseIntArray = this.e;
+        sparseIntArray.clear();
+        u81 u81Var = this.f35892c;
+        this.f35891b = u81Var.f41882c0;
+        int i11 = 0;
+        for (int i12 = 0; i12 < this.f35891b; i12++) {
+            sparseIntArray.put(i12, u81Var.j(i12));
+        }
+        this.f35893f = u81Var.e;
+        this.f35894g = u81Var.h;
+        this.h = u81Var.f41886r;
+        this.f35895i = u81Var.f41887s;
+        this.f35896j = u81Var.v;
+        this.f35897k = u81Var.f41888w;
+        this.f35898l = u81Var.f41889x;
+        this.f35899m = u81Var.f41885n;
+        this.f35900n = u81Var.f41890y;
+        this.f35909x = u81Var.I;
+        this.f35910y = u81Var.J;
+        this.f35901o = u81Var.E;
+        this.f35902p = u81Var.F;
+        this.f35903q = u81Var.G;
+        this.f35904r = u81Var.K;
+        this.f35905s = u81Var.L;
+        this.f35906t = u81Var.M;
+        this.f35907u = u81Var.N;
+        this.v = u81Var.O;
+        this.f35908w = u81Var.P;
+        u81Var.E();
+        s4.b0 b0Var = this.d;
+        int L0 = b0Var.L0();
+        int N0 = b0Var.N0();
+        while (true) {
+            if (L0 <= N0) {
+                if (u81Var.i(L0) != -1 && (m10 = b0Var.m(L0)) != null) {
+                    j10 = u81Var.i(L0);
+                    i10 = m10.getTop();
+                    break;
+                }
+                L0++;
+            } else {
+                i10 = 0;
+                j10 = -1;
+                break;
+            }
+        }
+        s4.o.c(this, true).c(u81Var);
+        if (j10 != -1) {
+            while (true) {
+                if (i11 < u81Var.f41882c0) {
+                    if (u81Var.i(i11) == j10) {
+                        break;
+                    }
+                    i11++;
+                } else {
+                    i11 = -1;
+                    break;
+                }
+            }
+            if (i11 > 0) {
+                b0Var.h1(i11, i10);
+            }
+        }
     }
 }

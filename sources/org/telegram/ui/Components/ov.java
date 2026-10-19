@@ -12,10 +12,10 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 public final class ov extends hm0 {
-    public final aw f29074c;
+    public final aw f29097c;
 
     public ov(aw awVar) {
-        this.f29074c = awVar;
+        this.f29097c = awVar;
     }
 
     @Override
@@ -28,7 +28,7 @@ public final class ov extends hm0 {
 
     public final int E(int i10) {
         int i11;
-        aw awVar = this.f29074c;
+        aw awVar = this.f29097c;
         jv jvVar = awVar.e;
         if (awVar.I) {
             i11 = 2;
@@ -37,13 +37,13 @@ public final class ov extends hm0 {
         }
         int i12 = 0;
         while (true) {
-            ArrayList[] arrayListArr = jvVar.f32458c;
+            ArrayList[] arrayListArr = jvVar.f32462c;
             if (i12 >= arrayListArr.length || i12 == i10) {
                 break;
             }
             int size = arrayListArr[i12].size();
-            if (jvVar.f32458c.length > 1) {
-                size = Math.min(awVar.f24727y.J * 2, size);
+            if (jvVar.f32462c.length > 1) {
+                size = Math.min(awVar.f24722y.J * 2, size);
             }
             i11 += size + 2;
             i12++;
@@ -58,23 +58,23 @@ public final class ov extends hm0 {
         int i11;
         int min;
         ArrayList arrayList;
-        aw awVar = this.f29074c;
+        aw awVar = this.f29097c;
         jv jvVar = awVar.e;
         i10 = ((org.telegram.ui.ActionBar.f3) awVar).currentAccount;
-        if (!UserConfig.getInstance(i10).isPremium() && (arrayList = jvVar.f32457b) != null && arrayList.size() == 1 && MessageObject.isPremiumEmojiPack((TLRPC.TL_messages_stickerSet) jvVar.f32457b.get(0))) {
+        if (!UserConfig.getInstance(i10).isPremium() && (arrayList = jvVar.f32461b) != null && arrayList.size() == 1 && MessageObject.isPremiumEmojiPack((TLRPC.TL_messages_stickerSet) jvVar.f32461b.get(0))) {
             r22 = 1;
         } else {
             r22 = 0;
         }
         awVar.I = r22;
         int i12 = r22 + 1;
-        if (jvVar.f32458c == null) {
+        if (jvVar.f32462c == null) {
             i11 = 0;
         } else {
             int i13 = 0;
             i11 = 0;
             while (true) {
-                ArrayList[] arrayListArr = jvVar.f32458c;
+                ArrayList[] arrayListArr = jvVar.f32462c;
                 if (i13 >= arrayListArr.length) {
                     break;
                 }
@@ -83,19 +83,19 @@ public final class ov extends hm0 {
                     if (arrayListArr.length == 1) {
                         min = arrayList2.size();
                     } else {
-                        min = Math.min(jvVar.f32459f.f24727y.J * 2, arrayList2.size());
+                        min = Math.min(jvVar.f32463f.f24722y.J * 2, arrayList2.size());
                     }
                     i11 = min + i11 + 1;
                 }
                 i13++;
             }
         }
-        return Math.max(0, jvVar.f32458c.length - 1) + i12 + i11;
+        return Math.max(0, jvVar.f32462c.length - 1) + i12 + i11;
     }
 
     @Override
     public final int j(int i10) {
-        aw awVar = this.f29074c;
+        aw awVar = this.f29097c;
         jv jvVar = awVar.e;
         int i11 = 0;
         if (i10 == 0) {
@@ -112,7 +112,7 @@ public final class ov extends hm0 {
         }
         int i13 = 0;
         while (true) {
-            ArrayList[] arrayListArr = jvVar.f32458c;
+            ArrayList[] arrayListArr = jvVar.f32462c;
             if (i11 >= arrayListArr.length) {
                 return 1;
             }
@@ -120,8 +120,8 @@ public final class ov extends hm0 {
                 return 2;
             }
             int size = arrayListArr[i11].size();
-            if (jvVar.f32458c.length > 1) {
-                size = Math.min(awVar.f24727y.J * 2, size);
+            if (jvVar.f32462c.length > 1) {
+                size = Math.min(awVar.f24722y.J * 2, size);
             }
             int i14 = size + 1 + i13;
             if (i12 == i14) {
@@ -141,7 +141,7 @@ public final class ov extends hm0 {
     public final s4.b1 x(ViewGroup viewGroup, int i10) {
         View view;
         View view2;
-        aw awVar = this.f29074c;
+        aw awVar = this.f29097c;
         if (i10 == 0) {
             view = awVar.d;
         } else {
@@ -152,7 +152,7 @@ public final class ov extends hm0 {
                 view2 = view3;
             } else if (i10 == 2) {
                 Context context = awVar.getContext();
-                if (awVar.e.f32458c.length > 1) {
+                if (awVar.e.f32462c.length > 1) {
                     z10 = false;
                 }
                 view2 = new vv(awVar, context, z10);

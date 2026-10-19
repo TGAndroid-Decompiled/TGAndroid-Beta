@@ -13,26 +13,26 @@ import v7.u6;
 import z3.m;
 public final class a implements m {
     public static final Pattern h = Pattern.compile("(?:(\\d+):)?(\\d+):(\\d+)[:.](\\d+)");
-    public final boolean f7803a;
-    public final b4.b f7804b;
+    public final boolean f7804a;
+    public final b4.b f7805b;
     public LinkedHashMap d;
     public float e = -3.4028235E38f;
-    public float f7806f = -3.4028235E38f;
-    public final x f7805c = new x();
+    public float f7807f = -3.4028235E38f;
+    public final x f7806c = new x();
 
     public a(List list) {
         if (list != null && !list.isEmpty()) {
-            this.f7803a = true;
+            this.f7804a = true;
             String r10 = m0.r((byte[]) list.get(0));
             u6.g(r10.startsWith("Format:"));
             b4.b a2 = b4.b.a(r10);
             a2.getClass();
-            this.f7804b = a2;
+            this.f7805b = a2;
             d(new x((byte[]) list.get(1)), StandardCharsets.UTF_8);
             return;
         }
-        this.f7803a = false;
-        this.f7804b = null;
+        this.f7804a = false;
+        this.f7805b = null;
     }
 
     public static int b(long j10, ArrayList arrayList, ArrayList arrayList2) {
@@ -70,7 +70,7 @@ public final class a implements m {
             return -9223372036854775807L;
         }
         String group = matcher.group(1);
-        String str2 = m0.f8253a;
+        String str2 = m0.f8254a;
         return (Long.parseLong(matcher.group(4)) * 10000) + (Long.parseLong(matcher.group(3)) * 1000000) + (Long.parseLong(matcher.group(2)) * 60000000) + (Long.parseLong(group) * 3600000000L);
     }
 
@@ -89,8 +89,8 @@ public final class a implements m {
     }
 
     @Override
-    public final void g(byte[] r44, int r45, int r46, z3.l r47, e2.j r48) {
-        throw new UnsupportedOperationException("Method not decompiled: d4.a.g(byte[], int, int, z3.l, e2.j):void");
+    public final void f(byte[] r44, int r45, int r46, z3.l r47, e2.j r48) {
+        throw new UnsupportedOperationException("Method not decompiled: d4.a.f(byte[], int, int, z3.l, e2.j):void");
     }
 
     @Override

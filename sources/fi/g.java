@@ -34,21 +34,21 @@ import org.telegram.ui.ActionBar.d5;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.ActionBar.k;
 import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.f61;
+import org.telegram.ui.Components.g61;
 import org.telegram.ui.Components.q6;
-import org.telegram.ui.Components.s61;
+import org.telegram.ui.Components.t61;
 import org.telegram.ui.Components.yq;
 import org.telegram.ui.Components.z00;
 import org.telegram.ui.Wallet.m6;
-import org.telegram.ui.a20;
-import org.telegram.ui.sa1;
+import org.telegram.ui.qa1;
+import org.telegram.ui.v10;
 import org.telegram.ui.x10;
-import org.telegram.ui.z10;
+import org.telegram.ui.y10;
 import s4.g0;
 import sg.x1;
 import ug.m1;
 import w7.z5;
-public final class g extends a20 implements NotificationCenter.NotificationCenterDelegate {
+public final class g extends y10 implements NotificationCenter.NotificationCenterDelegate {
     public FrameLayout P;
     public m6 Q;
     public ld R;
@@ -60,12 +60,12 @@ public final class g extends a20 implements NotificationCenter.NotificationCente
     public q6 X;
     public x Y;
     public ei.d Z;
-    public sa1 f10610a0;
-    public ei.d f10611b0;
-    public ei.d f10612c0;
-    public boolean f10613d0;
-    public boolean f10614e0;
-    public d f10615f0;
+    public qa1 f10611a0;
+    public ei.d f10612b0;
+    public ei.d f10613c0;
+    public boolean f10614d0;
+    public boolean f10615e0;
+    public d f10616f0;
 
     public g() {
         this.M = true;
@@ -79,18 +79,18 @@ public final class g extends a20 implements NotificationCenter.NotificationCente
     }
 
     public static void y0(g gVar, int i10) {
-        f61 G;
-        d dVar = gVar.f10615f0;
+        g61 G;
+        d dVar = gVar.f10616f0;
         if (dVar != null && (G = dVar.G(i10)) != null) {
             int i11 = G.d;
             if (i11 == -1) {
-                gVar.f10615f0.N(true);
+                gVar.f10616f0.N(true);
             } else if (i11 == -2) {
                 ga.y(gVar.currentAccount, true).u();
                 m1.f0(1, BirthdayController.getInstance(gVar.currentAccount).getState());
             } else if (i11 == -3) {
                 ga.y(gVar.currentAccount, true).W();
-                gVar.f10615f0.N(true);
+                gVar.f10616f0.N(true);
             } else if (i11 == -4) {
                 if (MessagesController.getInstance(gVar.currentAccount).isFrozen()) {
                     org.telegram.ui.b.b(gVar.currentAccount);
@@ -101,29 +101,29 @@ public final class g extends a20 implements NotificationCenter.NotificationCente
         }
     }
 
-    public final void D0(ArrayList arrayList, s61 s61Var) {
+    public final void D0(ArrayList arrayList, t61 t61Var) {
         if (getParentActivity() == null) {
             return;
         }
         ga y3 = ga.y(this.currentAccount, true);
-        f61 f61Var = new f61(-2);
-        f61Var.f26134c = (x10) super.r0(getParentActivity());
-        arrayList.add(f61Var);
-        arrayList.add(f61.k(this.U));
+        g61 g61Var = new g61(-2);
+        g61Var.f26493c = (v10) super.r0(getParentActivity());
+        arrayList.add(g61Var);
+        arrayList.add(g61.k(this.U));
         boolean z10 = this.T;
         if (z10) {
-            i2.d.B(R.string.GramEarningsHint, arrayList);
+            i2.e.B(R.string.GramEarningsHint, arrayList);
         }
         boolean O = y3.O(0);
-        this.f10613d0 = O;
+        this.f10614d0 = O;
         if (O) {
             if (!z10) {
-                arrayList.add(f61.B(null));
+                arrayList.add(g61.B(null));
             }
-            arrayList.add(f61.p(this.R, AndroidUtilities.dp(24.0f) + k.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight + AndroidUtilities.navigationBarHeight, false));
+            arrayList.add(g61.p(this.R, AndroidUtilities.dp(24.0f) + k.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight + AndroidUtilities.navigationBarHeight, false));
             return;
         }
-        arrayList.add(f61.l(this.S));
+        arrayList.add(g61.l(this.S));
     }
 
     public final void E0() {
@@ -147,12 +147,12 @@ public final class g extends a20 implements NotificationCenter.NotificationCente
         if (j10 == null || (tL_starsRevenueStatus = j10.status) == null || !tL_starsRevenueStatus.overall_revenue.positive()) {
             z10 = false;
         }
-        if (this.f10614e0 == z10) {
+        if (this.f10615e0 == z10) {
             return;
         }
-        this.f10614e0 = z10;
+        this.f10615e0 = z10;
         this.Y.setVisibility(0);
-        this.f10610a0.setVisibility(0);
+        this.f10611a0.setVisibility(0);
         ViewPropertyAnimator animate = this.Y.animate();
         float f10 = 1.0f;
         if (z10) {
@@ -161,10 +161,10 @@ public final class g extends a20 implements NotificationCenter.NotificationCente
             f7 = 1.0f;
         }
         animate.alpha(f7).withEndAction(new Runnable(this) {
-            public final g f10601b;
+            public final g f10602b;
 
             {
-                this.f10601b = this;
+                this.f10602b = this;
             }
 
             @Override
@@ -172,28 +172,28 @@ public final class g extends a20 implements NotificationCenter.NotificationCente
                 switch (r3) {
                     case 0:
                         if (z10) {
-                            this.f10601b.Y.setVisibility(8);
+                            this.f10602b.Y.setVisibility(8);
                             return;
                         }
                         return;
                     default:
                         if (!z10) {
-                            this.f10601b.f10610a0.setVisibility(8);
+                            this.f10602b.f10611a0.setVisibility(8);
                             return;
                         }
                         return;
                 }
             }
         }).start();
-        ViewPropertyAnimator animate2 = this.f10610a0.animate();
+        ViewPropertyAnimator animate2 = this.f10611a0.animate();
         if (!z10) {
             f10 = 0.0f;
         }
         animate2.alpha(f10).withEndAction(new Runnable(this) {
-            public final g f10601b;
+            public final g f10602b;
 
             {
-                this.f10601b = this;
+                this.f10602b = this;
             }
 
             @Override
@@ -201,13 +201,13 @@ public final class g extends a20 implements NotificationCenter.NotificationCente
                 switch (r3) {
                     case 0:
                         if (z10) {
-                            this.f10601b.Y.setVisibility(8);
+                            this.f10602b.Y.setVisibility(8);
                             return;
                         }
                         return;
                     default:
                         if (!z10) {
-                            this.f10601b.f10610a0.setVisibility(8);
+                            this.f10602b.f10611a0.setVisibility(8);
                             return;
                         }
                         return;
@@ -237,15 +237,15 @@ public final class g extends a20 implements NotificationCenter.NotificationCente
         m6Var.setStarParticlesView(this.e);
         this.P.addView(this.Q, z5.d(170, 170.0f, 17, 0.0f, 32.0f, 0.0f, 12.0f));
         m0(LocaleController.getString(R.string.GramEarningsTitle), AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.GramEarningsText), new ra(context, 7)), true), this.P, null);
-        this.f35242c.setOverScrollMode(2);
+        this.f43315c.setOverScrollMode(2);
         s4.k kVar = new s4.k();
         kVar.f45944m = false;
         kVar.C = false;
         kVar.o(bs.h);
         kVar.n(350L);
-        this.f35242c.setItemAnimator(kVar);
-        this.f35242c.setOnItemClickListener(new wa(this, 10));
-        this.f35246s.addView(new z00(getParentActivity()), z5.c(-1.0f, -1));
+        this.f43315c.setItemAnimator(kVar);
+        this.f43315c.setOnItemClickListener(new wa(this, 10));
+        this.f43319s.addView(new z00(getParentActivity()), z5.c(-1.0f, -1));
         ga.y(this.currentAccount, true);
         LinearLayout linearLayout = new LinearLayout(getParentActivity());
         this.U = linearLayout;
@@ -270,10 +270,10 @@ public final class g extends a20 implements NotificationCenter.NotificationCente
         q6Var2.setTextSize(AndroidUtilities.dp(14.0f));
         this.X.setGravity(17);
         this.X.setText(LocaleController.getString(R.string.YourTonBalance));
-        this.X.setTextColor(h6.w0(h6.f21391z6, this.resourceProvider));
+        this.X.setTextColor(h6.w0(h6.f21394z6, this.resourceProvider));
         this.U.addView(this.X, z5.d(-1, 20.0f, 17, 24.0f, 0.0f, 24.0f, 8.0f));
         FrameLayout frameLayout2 = new FrameLayout(getParentActivity());
-        x xVar = new x(this, getParentActivity(), 6);
+        x xVar = new x(this, getParentActivity(), 5);
         this.Y = xVar;
         frameLayout2.addView(xVar);
         boolean z10 = this.T;
@@ -284,23 +284,23 @@ public final class g extends a20 implements NotificationCenter.NotificationCente
             dVar.e();
             this.Z.g(LocaleController.getString(R.string.TopUpViaFragment), false, true);
             this.Z.setOnClickListener(new View.OnClickListener(this) {
-                public final g f10599b;
+                public final g f10600b;
 
                 {
-                    this.f10599b = this;
+                    this.f10600b = this;
                 }
 
                 @Override
                 public final void onClick(View view) {
                     switch (r2) {
                         case 0:
-                            pf.d.t(this.f10599b.getParentActivity(), LocaleController.getString(R.string.TopUpViaFragmentLink));
+                            pf.d.t(this.f10600b.getParentActivity(), LocaleController.getString(R.string.TopUpViaFragmentLink));
                             return;
                         case 1:
-                            pf.d.t(this.f10599b.getParentActivity(), LocaleController.getString(R.string.TopUpViaFragmentLink));
+                            pf.d.t(this.f10600b.getParentActivity(), LocaleController.getString(R.string.TopUpViaFragmentLink));
                             return;
                         default:
-                            g gVar = this.f10599b;
+                            g gVar = this.f10600b;
                             gVar.presentFragment(new ai.x(1, gVar.getUserConfig().getClientUserId()));
                             return;
                     }
@@ -308,103 +308,103 @@ public final class g extends a20 implements NotificationCenter.NotificationCente
             });
             this.Y.addView(this.Z, z5.e(-1, 48, 119));
         }
-        sa1 sa1Var = new sa1(this, getParentActivity(), 3);
-        this.f10610a0 = sa1Var;
-        frameLayout2.addView(sa1Var);
+        qa1 qa1Var = new qa1(this, getParentActivity(), 3);
+        this.f10611a0 = qa1Var;
+        frameLayout2.addView(qa1Var);
         ei.d dVar2 = new ei.d(getParentActivity(), this.resourceProvider, true);
         dVar2.setRoundRadius(24);
-        this.f10611b0 = dVar2;
+        this.f10612b0 = dVar2;
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("x  ");
         spannableStringBuilder.setSpan(new yq(R.drawable.mini_topup, 2), 0, 1, 33);
         spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.TonTopUp));
-        this.f10611b0.g(spannableStringBuilder, false, true);
-        this.f10611b0.setOnClickListener(new View.OnClickListener(this) {
-            public final g f10599b;
+        this.f10612b0.g(spannableStringBuilder, false, true);
+        this.f10612b0.setOnClickListener(new View.OnClickListener(this) {
+            public final g f10600b;
 
             {
-                this.f10599b = this;
+                this.f10600b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        pf.d.t(this.f10599b.getParentActivity(), LocaleController.getString(R.string.TopUpViaFragmentLink));
+                        pf.d.t(this.f10600b.getParentActivity(), LocaleController.getString(R.string.TopUpViaFragmentLink));
                         return;
                     case 1:
-                        pf.d.t(this.f10599b.getParentActivity(), LocaleController.getString(R.string.TopUpViaFragmentLink));
+                        pf.d.t(this.f10600b.getParentActivity(), LocaleController.getString(R.string.TopUpViaFragmentLink));
                         return;
                     default:
-                        g gVar = this.f10599b;
+                        g gVar = this.f10600b;
                         gVar.presentFragment(new ai.x(1, gVar.getUserConfig().getClientUserId()));
                         return;
                 }
             }
         });
         if (z10) {
-            this.f10610a0.addView(this.f10611b0, z5.p(-1, 48, 17.0f, 1, 0, 0, 8, 0));
+            this.f10611a0.addView(this.f10612b0, z5.p(-1, 48, 17.0f, 1, 0, 0, 8, 0));
         }
         ei.d dVar3 = new ei.d(getParentActivity(), this.resourceProvider, true);
         dVar3.setRoundRadius(24);
-        this.f10612c0 = dVar3;
+        this.f10613c0 = dVar3;
         SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("x  ");
         spannableStringBuilder2.setSpan(new yq(R.drawable.mini_stats, 2), 0, 1, 33);
         spannableStringBuilder2.append((CharSequence) LocaleController.getString(R.string.TonStats));
-        this.f10612c0.g(spannableStringBuilder2, false, true);
-        this.f10612c0.setOnClickListener(new View.OnClickListener(this) {
-            public final g f10599b;
+        this.f10613c0.g(spannableStringBuilder2, false, true);
+        this.f10613c0.setOnClickListener(new View.OnClickListener(this) {
+            public final g f10600b;
 
             {
-                this.f10599b = this;
+                this.f10600b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        pf.d.t(this.f10599b.getParentActivity(), LocaleController.getString(R.string.TopUpViaFragmentLink));
+                        pf.d.t(this.f10600b.getParentActivity(), LocaleController.getString(R.string.TopUpViaFragmentLink));
                         return;
                     case 1:
-                        pf.d.t(this.f10599b.getParentActivity(), LocaleController.getString(R.string.TopUpViaFragmentLink));
+                        pf.d.t(this.f10600b.getParentActivity(), LocaleController.getString(R.string.TopUpViaFragmentLink));
                         return;
                     default:
-                        g gVar = this.f10599b;
+                        g gVar = this.f10600b;
                         gVar.presentFragment(new ai.x(1, gVar.getUserConfig().getClientUserId()));
                         return;
                 }
             }
         });
-        this.f10610a0.addView(this.f10612c0, z5.p(-1, 48, 17.0f, 1, 0, 0, 0, 0));
+        this.f10611a0.addView(this.f10613c0, z5.p(-1, 48, 17.0f, 1, 0, 0, 0, 0));
         this.U.addView(frameLayout2, z5.d(-1, 48.0f, 17, 20.0f, 6.0f, 20.0f, 4.0f));
         this.Y.animate().cancel();
-        this.f10610a0.animate().cancel();
-        sa1 sa1Var2 = this.f10610a0;
-        if (this.f10614e0) {
+        this.f10611a0.animate().cancel();
+        qa1 qa1Var2 = this.f10611a0;
+        if (this.f10615e0) {
             f7 = 1.0f;
         } else {
             f7 = 0.0f;
         }
-        sa1Var2.setAlpha(f7);
+        qa1Var2.setAlpha(f7);
         x xVar2 = this.Y;
-        if (!this.f10614e0) {
+        if (!this.f10615e0) {
             f10 = 1.0f;
         }
         xVar2.setAlpha(f10);
-        sa1 sa1Var3 = this.f10610a0;
+        qa1 qa1Var3 = this.f10611a0;
         int i11 = 8;
-        if (this.f10614e0) {
+        if (this.f10615e0) {
             i10 = 0;
         } else {
             i10 = 8;
         }
-        sa1Var3.setVisibility(i10);
+        qa1Var3.setVisibility(i10);
         x xVar3 = this.Y;
-        if (!this.f10614e0) {
+        if (!this.f10615e0) {
             i11 = 0;
         }
         xVar3.setVisibility(i11);
         E0();
-        d dVar4 = this.f10615f0;
+        d dVar4 = this.f10616f0;
         if (dVar4 != null) {
             dVar4.N(false);
         }
@@ -415,7 +415,7 @@ public final class g extends a20 implements NotificationCenter.NotificationCente
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         if (i10 == NotificationCenter.starOptionsLoaded) {
             t0();
-            d dVar = this.f10615f0;
+            d dVar = this.f10616f0;
             if (dVar != null) {
                 dVar.N(true);
             }
@@ -425,10 +425,10 @@ public final class g extends a20 implements NotificationCenter.NotificationCente
             l0();
         } else if (i10 == NotificationCenter.starTransactionsLoaded) {
             ga y3 = ga.y(this.currentAccount, true);
-            if (this.f10613d0 != y3.O(0)) {
-                this.f10613d0 = y3.O(0);
+            if (this.f10614d0 != y3.O(0)) {
+                this.f10614d0 = y3.O(0);
                 t0();
-                d dVar2 = this.f10615f0;
+                d dVar2 = this.f10616f0;
                 if (dVar2 != null) {
                     dVar2.N(true);
                 }
@@ -438,7 +438,7 @@ public final class g extends a20 implements NotificationCenter.NotificationCente
                 l0();
             }
         } else if (i10 == NotificationCenter.starSubscriptionsLoaded) {
-            d dVar3 = this.f10615f0;
+            d dVar3 = this.f10616f0;
             if (dVar3 != null) {
                 dVar3.N(true);
             }
@@ -451,19 +451,19 @@ public final class g extends a20 implements NotificationCenter.NotificationCente
 
     @Override
     public final int getNavigationBarColor() {
-        return h6.x0(null, h6.f21074i5, false);
+        return h6.x0(null, h6.f21077i5, false);
     }
 
     @Override
     public final g0 n0() {
-        d dVar = new d(this, this.f35242c, getParentActivity(), this.currentAccount, this.classGuid, new q(this, 21), getResourceProvider());
-        this.f10615f0 = dVar;
-        dVar.f30201r = false;
+        d dVar = new d(this, this.f43315c, getParentActivity(), this.currentAccount, this.classGuid, new q(this, 21), getResourceProvider());
+        this.f10616f0 = dVar;
+        dVar.f30438r = false;
         return dVar;
     }
 
     @Override
-    public final z10 o0() {
+    public final x10 o0() {
         return new wc(this, getParentActivity());
     }
 
@@ -518,7 +518,7 @@ public final class g extends a20 implements NotificationCenter.NotificationCente
         ld ldVar = this.R;
         boolean z10 = false;
         if (ldVar != null && (ldVar.getParent() instanceof View)) {
-            if (this.f35242c.getHeight() - ((View) this.R.getParent()).getBottom() >= 0) {
+            if (this.f43315c.getHeight() - ((View) this.R.getParent()).getBottom() >= 0) {
                 z10 = true;
             }
         }

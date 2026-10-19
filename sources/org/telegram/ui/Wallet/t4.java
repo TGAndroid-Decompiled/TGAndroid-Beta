@@ -1,53 +1,50 @@
 package org.telegram.ui.Wallet;
 
-import android.view.View;
-import java.io.Serializable;
+import java.util.ArrayList;
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.tl.TL_wallet;
-public final class t4 implements View.OnAttachStateChangeListener {
-    public final x3 f34882a;
-    public final TL_wallet.walletTransaction[] f34883b;
-    public final NotificationCenter.NotificationCenterDelegate f34884c;
-    public final int d;
-    public final Utilities.Callback2 e;
-    public final k2[] f34885f;
-    public final String[] h;
-    public final boolean[] f34886n;
+public final class t4 implements NotificationCenter.NotificationCenterDelegate {
+    public final int f34898a;
+    public final TL_wallet.walletTransaction[] f34899b;
+    public final b4 f34900c;
 
-    public t4(x3 x3Var, TL_wallet.walletTransaction[] wallettransactionArr, s4 s4Var, int i10, Utilities.Callback2 callback2, k2[] k2VarArr, String[] strArr, boolean[] zArr) {
-        this.f34882a = x3Var;
-        this.f34883b = wallettransactionArr;
-        this.f34884c = s4Var;
-        this.d = i10;
-        this.e = callback2;
-        this.f34885f = k2VarArr;
-        this.h = strArr;
-        this.f34886n = zArr;
+    public t4(int i10, TL_wallet.walletTransaction[] wallettransactionArr, b4 b4Var) {
+        this.f34898a = i10;
+        this.f34899b = wallettransactionArr;
+        this.f34900c = b4Var;
     }
 
     @Override
-    public final void onViewAttachedToWindow(View view) {
-        this.f34882a.run(this.f34883b[0]);
-        NotificationCenter.NotificationCenterDelegate notificationCenterDelegate = this.f34884c;
-        if (notificationCenterDelegate != null) {
-            int i10 = this.d;
-            NotificationCenter.getInstance(i10).addObserver(notificationCenterDelegate, NotificationCenter.walletUpdate);
-            NotificationCenter.getInstance(i10).addObserver(notificationCenterDelegate, NotificationCenter.walletTransactionsUpdate);
-        }
-        Utilities.Callback2 callback2 = this.e;
-        if (callback2 != null) {
-            this.f34885f[0].setOnDismissListener(new h(callback2, (Serializable) this.h, (Serializable) this.f34886n, 13));
-        }
-    }
-
-    @Override
-    public final void onViewDetachedFromWindow(View view) {
-        NotificationCenter.NotificationCenterDelegate notificationCenterDelegate = this.f34884c;
-        if (notificationCenterDelegate != null) {
-            int i10 = this.d;
-            NotificationCenter.getInstance(i10).removeObserver(notificationCenterDelegate, NotificationCenter.walletUpdate);
-            NotificationCenter.getInstance(i10).removeObserver(notificationCenterDelegate, NotificationCenter.walletTransactionsUpdate);
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        TL_wallet.walletTransaction[] wallettransactionArr;
+        TL_wallet.walletTransaction wallettransaction;
+        if (i10 == NotificationCenter.walletUpdate || i10 == NotificationCenter.walletTransactionsUpdate) {
+            ArrayList arrayList = m0.w(this.f34898a).A().f34440c;
+            int size = arrayList.size();
+            int i12 = 0;
+            while (true) {
+                wallettransactionArr = this.f34899b;
+                if (i12 < size) {
+                    Object obj = arrayList.get(i12);
+                    i12++;
+                    wallettransaction = (TL_wallet.walletTransaction) obj;
+                    TL_wallet.walletTransaction wallettransaction2 = wallettransactionArr[0];
+                    if (wallettransaction != wallettransaction2) {
+                        if (m0.f0(wallettransaction2, wallettransaction)) {
+                            break;
+                        }
+                    } else {
+                        break;
+                    }
+                } else {
+                    wallettransaction = null;
+                    break;
+                }
+            }
+            if (wallettransaction != null) {
+                wallettransactionArr[0] = wallettransaction;
+                this.f34900c.run(wallettransaction);
+            }
         }
     }
 }

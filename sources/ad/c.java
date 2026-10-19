@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 public final class c implements Iterable {
-    public final HashMap f502a = new HashMap();
-    public final ArrayList f503b = new ArrayList();
+    public final HashMap f501a = new HashMap();
+    public final ArrayList f502b = new ArrayList();
 
     public c(HashMap hashMap) {
         String str = (String) hashMap.get("cookie");
@@ -13,14 +13,14 @@ public final class c implements Iterable {
             for (String str2 : str.split(";")) {
                 String[] split = str2.trim().split("=");
                 if (split.length == 2) {
-                    this.f502a.put(split[0], split[1]);
+                    this.f501a.put(split[0], split[1]);
                 }
             }
         }
     }
 
     public final void h() {
-        Iterator it = this.f503b.iterator();
+        Iterator it = this.f502b.iterator();
         if (!it.hasNext()) {
             return;
         }
@@ -29,6 +29,6 @@ public final class c implements Iterable {
 
     @Override
     public final Iterator iterator() {
-        return this.f502a.keySet().iterator();
+        return this.f501a.keySet().iterator();
     }
 }

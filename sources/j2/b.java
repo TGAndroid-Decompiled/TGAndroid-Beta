@@ -5,7 +5,7 @@ import b2.f1;
 import b2.y0;
 import u2.c0;
 public interface b {
-    void a(i2.e eVar);
+    void a(i2.f fVar);
 
     void b(c0 c0Var);
 

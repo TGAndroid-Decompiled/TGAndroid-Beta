@@ -8,30 +8,30 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.a71;
+import org.telegram.ui.Components.b71;
 import org.telegram.ui.Components.ca0;
-import org.telegram.ui.Components.e61;
 import org.telegram.ui.Components.f61;
+import org.telegram.ui.Components.g61;
 import org.telegram.ui.Components.im0;
-import org.telegram.ui.Components.s61;
-public final class f8 extends e61 {
-    public static final int f34205a = 0;
+import org.telegram.ui.Components.t61;
+public final class f8 extends f61 {
+    public static final int f34210a = 0;
 
     static {
-        e61.setup(new e61());
+        f61.setup(new f61());
     }
 
     @Override
-    public final void bindView(View view, f61 f61Var, boolean z10, s61 s61Var, a71 a71Var) {
+    public final void bindView(View view, g61 g61Var, boolean z10, t61 t61Var, b71 b71Var) {
         float f7;
         float f10;
         g8 g8Var = (g8) view;
-        String charSequence = f61Var.f26140l.toString();
-        long j10 = f61Var.B;
-        int i10 = f61Var.f26153z;
-        boolean z11 = f61Var.f26145q;
-        TextView textView = g8Var.f34235c;
-        TextView textView2 = g8Var.f34234b;
+        String charSequence = g61Var.f26499l.toString();
+        long j10 = g61Var.B;
+        int i10 = g61Var.f26512z;
+        boolean z11 = g61Var.f26504q;
+        TextView textView = g8Var.f34253c;
+        TextView textView2 = g8Var.f34252b;
         textView2.setText(w7.X(charSequence));
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         if (j10 < 0) {

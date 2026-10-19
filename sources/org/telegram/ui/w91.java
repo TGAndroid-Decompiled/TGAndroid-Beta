@@ -1,38 +1,52 @@
 package org.telegram.ui;
 
+import android.content.Context;
 import android.view.View;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-public final class w91 implements Utilities.Callback5, Utilities.Callback5Return {
-    public final StickersActivity f42464a;
+import org.telegram.messenger.MessageObject;
+public final class w91 extends org.telegram.ui.Components.f61 {
+    public static final int f42513b = 0;
+    public org.telegram.ui.Cells.r7 f42514a;
 
-    public w91(StickersActivity stickersActivity) {
-        this.f42464a = stickersActivity;
+    static {
+        org.telegram.ui.Components.f61.setup(new org.telegram.ui.Components.f61());
     }
 
     @Override
-    public void mo0run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        ((Integer) obj3).getClass();
-        ((Float) obj4).getClass();
-        ((Float) obj5).getClass();
-        StickersActivity.U(this.f42464a, (org.telegram.ui.Components.f61) obj, (View) obj2);
-    }
-
-    @Override
-    public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+    public final void attachedView(org.telegram.ui.Components.im0 im0Var, View view, org.telegram.ui.Components.g61 g61Var) {
         boolean z10;
-        org.telegram.ui.Components.f61 f61Var = (org.telegram.ui.Components.f61) obj;
-        View view = (View) obj2;
-        ((Integer) obj3).intValue();
-        ((Float) obj4).floatValue();
-        ((Float) obj5).floatValue();
-        StickersActivity stickersActivity = this.f42464a;
-        if (stickersActivity.f33849x.isEmpty() && (f61Var.G instanceof TLRPC.TL_messages_stickerSet)) {
-            stickersActivity.n0((org.telegram.ui.Cells.l8) view);
+        org.telegram.ui.Cells.s7 s7Var = (org.telegram.ui.Cells.s7) view;
+        if (g61Var != null && g61Var.h) {
             z10 = true;
         } else {
             z10 = false;
         }
-        return Boolean.valueOf(z10);
+        s7Var.l(z10, false);
+    }
+
+    @Override
+    public final void bindView(View view, org.telegram.ui.Components.g61 g61Var, boolean z10, org.telegram.ui.Components.t61 t61Var, org.telegram.ui.Components.b71 b71Var) {
+        org.telegram.ui.Cells.s7 s7Var = (org.telegram.ui.Cells.s7) view;
+        s7Var.k((MessageObject) g61Var.G, g61Var.v, false);
+        s7Var.i(g61Var.e, false);
+        s7Var.l(g61Var.h, false);
+    }
+
+    @Override
+    public final View createView(Context context, org.telegram.ui.Components.im0 im0Var, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
+        if (this.f42514a == null) {
+            this.f42514a = new org.telegram.ui.Cells.r7(context, d6Var);
+        }
+        org.telegram.ui.Cells.s7 s7Var = new org.telegram.ui.Cells.s7(context, this.f42514a, i10);
+        s7Var.f23051w0 = true;
+        s7Var.f23028d0 = true;
+        return s7Var;
+    }
+
+    @Override
+    public final boolean equals(org.telegram.ui.Components.g61 g61Var, org.telegram.ui.Components.g61 g61Var2) {
+        if (g61Var.f26504q == g61Var2.f26504q && g61Var.e == g61Var2.e && g61Var.B == g61Var2.B) {
+            return true;
+        }
+        return false;
     }
 }

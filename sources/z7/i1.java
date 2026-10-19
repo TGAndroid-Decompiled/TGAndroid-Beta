@@ -7,8 +7,8 @@ public final class i1 {
     public final we f50903c;
 
     public i1(u2.c cVar) {
-        this.f50901a = (hb) cVar.f47260b;
-        this.f50902b = (Boolean) cVar.f47261c;
+        this.f50901a = (hb) cVar.f47259b;
+        this.f50902b = (Boolean) cVar.f47260c;
         this.f50903c = (we) cVar.d;
     }
 

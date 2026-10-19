@@ -1,49 +1,23 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.FileLog;
-public final class ii0 extends li.m {
-    public Runnable W;
+import java.util.ArrayList;
+import org.telegram.messenger.MessageObject;
+public final class ii0 extends g.o {
+    public final li0 f38007c;
 
-    @Override
-    public final void N() {
-        super.N();
-        Runnable runnable = this.W;
-        if (runnable != null) {
-            AndroidUtilities.cancelRunOnUIThread(runnable);
-            this.W = null;
-        }
-        hi0 hi0Var = new hi0(this, 0);
-        this.W = hi0Var;
-        AndroidUtilities.runOnUIThread(hi0Var);
+    public ii0(li0 li0Var) {
+        this.f38007c = li0Var;
     }
 
     @Override
-    public final void W() {
-        Runnable runnable = this.W;
-        if (runnable != null) {
-            AndroidUtilities.cancelRunOnUIThread(runnable);
-            this.W = null;
+    public final int i(int i10) {
+        li0 li0Var = this.f38007c;
+        ArrayList arrayList = li0Var.N;
+        MessageObject messageObject = (MessageObject) arrayList.get((arrayList.size() - 1) - i10);
+        MessageObject.GroupedMessages l4 = li0Var.l(messageObject);
+        if (l4 != null) {
+            return l4.getPosition(messageObject).spanSize;
         }
-        if (BuildVars.LOGS_ENABLED) {
-            FileLog.d("chatItemAnimator disable notifications");
-        }
-    }
-
-    @Override
-    public final void g() {
-        super.g();
-        Runnable runnable = this.W;
-        if (runnable != null) {
-            AndroidUtilities.cancelRunOnUIThread(runnable);
-        }
-        hi0 hi0Var = new hi0(this, 1);
-        this.W = hi0Var;
-        AndroidUtilities.runOnUIThread(hi0Var);
-    }
-
-    @Override
-    public final void F() {
+        return 1000;
     }
 }

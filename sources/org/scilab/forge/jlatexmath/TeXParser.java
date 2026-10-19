@@ -1,7 +1,7 @@
 package org.scilab.forge.jlatexmath;
 
 import a1.g;
-import i2.d;
+import i2.e;
 import java.lang.Character;
 import java.util.HashSet;
 import java.util.Set;
@@ -350,7 +350,7 @@ public class TeXParser {
                 }
                 return new JavaFontRenderingAtom(this.parseString.substring(i13, i14 + 1), fontInfos);
             } else if (this.isPartial) {
-                return new ColorAtom(new RomanAtom(new TeXFormula(d.k(convertToRomanNumber, "\\text{(Unknown char ", ")}")).root), (Color) null, Color.RED);
+                return new ColorAtom(new RomanAtom(new TeXFormula(e.k(convertToRomanNumber, "\\text{(Unknown char ", ")}")).root), (Color) null, Color.RED);
             } else {
                 throw new ParseException("Unknown character : '" + Character.toString(convertToRomanNumber) + "' (or " + ((int) convertToRomanNumber) + ")");
             }

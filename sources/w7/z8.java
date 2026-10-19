@@ -1,86 +1,110 @@
 package w7;
-
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.pm.ApplicationInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
-import android.net.Uri;
-import android.text.TextUtils;
-import android.util.Log;
-import java.util.ArrayList;
-import java.util.List;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.ui.LaunchActivity;
 public abstract class z8 {
-    public static String f48872a;
+    public static final w0.d a(CharSequence charSequence, String str) {
+        String str2;
+        switch (str.hashCode()) {
+            case -2055374133:
+                if (str.equals("android.credentials.CreateCredentialException.TYPE_USER_CANCELED")) {
+                    return new w0.b(charSequence);
+                }
+                break;
+            case -1166690414:
+                if (str.equals("androidx.credentials.TYPE_CREATE_CREDENTIAL_UNSUPPORTED_EXCEPTION")) {
+                    return new w0.c(charSequence, 3);
+                }
+                break;
+            case -580283253:
+                if (str.equals("androidx.credentials.TYPE_CREATE_CREDENTIAL_PROVIDER_CONFIGURATION_EXCEPTION")) {
+                    return new w0.c(charSequence, 1);
+                }
+                break;
+            case 1316905704:
+                if (str.equals("android.credentials.CreateCredentialException.TYPE_UNKNOWN")) {
+                    return new w0.c(charSequence, 2);
+                }
+                break;
+            case 2092588512:
+                if (str.equals("android.credentials.CreateCredentialException.TYPE_INTERRUPTED")) {
+                    return new w0.e(charSequence);
+                }
+                break;
+            case 2131915191:
+                if (str.equals("android.credentials.CreateCredentialException.TYPE_NO_CREATE_OPTIONS")) {
+                    return new w0.f(charSequence);
+                }
+                break;
+        }
+        if (zd.j.h(str, "androidx.credentials.TYPE_CREATE_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION")) {
+            int i10 = y0.a.f49879c;
+            if (charSequence != null) {
+                str2 = charSequence.toString();
+            } else {
+                str2 = null;
+            }
+            try {
+                if (zd.j.b(str, "androidx.credentials.TYPE_CREATE_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION")) {
+                    int i11 = y0.a.f49879c;
+                    return r8.a(str, str2);
+                }
+                throw new Exception();
+            } catch (z0.a unused) {
+                return new w0.c(str2, str);
+            }
+        }
+        return new w0.c(charSequence, str);
+    }
 
-    public static String a(LaunchActivity launchActivity) {
-        String str;
-        PackageManager packageManager;
-        ApplicationInfo applicationInfo;
-        String str2 = f48872a;
-        if (str2 != null) {
-            return str2;
-        }
-        PackageManager packageManager2 = launchActivity.getPackageManager();
-        Intent intent = new Intent("android.intent.action.VIEW", Uri.parse("http://www.example.com"));
-        ResolveInfo resolveActivity = packageManager2.resolveActivity(intent, 0);
-        if (resolveActivity != null) {
-            str = resolveActivity.activityInfo.packageName;
-        } else {
-            str = null;
-        }
-        List<ResolveInfo> queryIntentActivities = packageManager2.queryIntentActivities(intent, 0);
-        ArrayList arrayList = new ArrayList();
-        for (ResolveInfo resolveInfo : queryIntentActivities) {
-            Intent intent2 = new Intent();
-            intent2.setAction("android.support.customtabs.action.CustomTabsService");
-            intent2.setPackage(resolveInfo.activityInfo.packageName);
-            if (packageManager2.resolveService(intent2, 0) != null) {
-                arrayList.add(resolveInfo.activityInfo.packageName);
-            }
-        }
-        if (arrayList.isEmpty()) {
-            f48872a = null;
-        } else if (arrayList.size() == 1) {
-            f48872a = (String) arrayList.get(0);
-        } else {
-            if (!TextUtils.isEmpty(str)) {
-                try {
-                    List<ResolveInfo> queryIntentActivities2 = launchActivity.getPackageManager().queryIntentActivities(intent, 64);
-                    if (queryIntentActivities2 != null && queryIntentActivities2.size() != 0) {
-                        for (ResolveInfo resolveInfo2 : queryIntentActivities2) {
-                            IntentFilter intentFilter = resolveInfo2.filter;
-                            if (intentFilter != null && intentFilter.countDataAuthorities() != 0 && intentFilter.countDataPaths() != 0 && resolveInfo2.activityInfo != null) {
-                                break;
-                            }
-                        }
-                    }
-                } catch (RuntimeException unused) {
-                    Log.e("CustomTabsHelper", "Runtime exception while getting specialized handlers");
+    public static final w0.i b(CharSequence charSequence, String str) {
+        String str2;
+        switch (str.hashCode()) {
+            case -781118336:
+                if (str.equals("android.credentials.GetCredentialException.TYPE_UNKNOWN")) {
+                    return new w0.h(charSequence, 2);
                 }
-                if (arrayList.contains(str)) {
-                    f48872a = str;
+                break;
+            case -408155724:
+                if (str.equals("androidx.credentials.TYPE_GET_CREDENTIAL_UNSUPPORTED_EXCEPTION")) {
+                    return new w0.h(charSequence, 3);
                 }
+                break;
+            case -45448328:
+                if (str.equals("android.credentials.GetCredentialException.TYPE_INTERRUPTED")) {
+                    return new w0.j(charSequence);
+                }
+                break;
+            case 580557411:
+                if (str.equals("android.credentials.GetCredentialException.TYPE_USER_CANCELED")) {
+                    return new w0.g(charSequence);
+                }
+                break;
+            case 627896683:
+                if (str.equals("android.credentials.GetCredentialException.TYPE_NO_CREDENTIAL")) {
+                    return new w0.k(charSequence);
+                }
+                break;
+            case 1594095913:
+                if (str.equals("androidx.credentials.TYPE_GET_CREDENTIAL_PROVIDER_CONFIGURATION_EXCEPTION")) {
+                    return new w0.h(charSequence, 1);
+                }
+                break;
+        }
+        if (zd.j.h(str, "androidx.credentials.TYPE_GET_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION")) {
+            int i10 = y0.b.f49881c;
+            if (charSequence != null) {
+                str2 = charSequence.toString();
+            } else {
+                str2 = null;
             }
-            if (arrayList.contains("com.android.chrome")) {
-                f48872a = "com.android.chrome";
-            } else if (arrayList.contains("com.chrome.beta")) {
-                f48872a = "com.chrome.beta";
-            } else if (arrayList.contains("com.chrome.dev")) {
-                f48872a = "com.chrome.dev";
-            } else if (arrayList.contains("com.google.android.apps.chrome")) {
-                f48872a = "com.google.android.apps.chrome";
+            try {
+                if (zd.j.h(str, "androidx.credentials.TYPE_GET_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION")) {
+                    int i11 = y0.b.f49881c;
+                    return t8.a(str, str2);
+                }
+                throw new Exception();
+            } catch (z0.a unused) {
+                return new w0.h(str2, str);
             }
         }
-        try {
-            if ("com.sec.android.app.sbrowser".equalsIgnoreCase(f48872a) && (applicationInfo = (packageManager = ApplicationLoader.applicationContext.getPackageManager()).getApplicationInfo("com.android.chrome", 0)) != null && applicationInfo.enabled) {
-                packageManager.getPackageInfo("com.android.chrome", 1);
-                f48872a = "com.android.chrome";
-            }
-        } catch (Throwable unused2) {
-        }
-        return f48872a;
+        return new w0.h(charSequence, str);
     }
 }

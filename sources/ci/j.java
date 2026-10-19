@@ -9,15 +9,15 @@ import java.util.ArrayList;
 import java.util.Collections;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.im0;
-import org.telegram.ui.vw;
+import org.telegram.ui.tw;
 public final class j extends im0 {
     public final int V2;
-    public final vw W2;
+    public final tw W2;
 
-    public j(vw vwVar, Context context, int i10) {
+    public j(tw twVar, Context context, int i10) {
         super(context, null);
         this.V2 = i10;
-        this.W2 = vwVar;
+        this.W2 = twVar;
     }
 
     @Override
@@ -26,29 +26,29 @@ public final class j extends im0 {
         boolean z10;
         switch (this.V2) {
             case 1:
-                vw vwVar = this.W2;
-                ArrayList arrayList = vwVar.P;
+                tw twVar = this.W2;
+                ArrayList arrayList = twVar.P;
                 arrayList.clear();
                 int i10 = 0;
                 for (int i11 = 0; i11 < getChildCount(); i11++) {
                     q qVar = (q) getChildAt(i11);
                     int R = RecyclerView.R(qVar);
-                    qVar.f5751b = R;
+                    qVar.f5740b = R;
                     boolean z11 = true;
-                    qVar.f5749a = true;
+                    qVar.f5738a = true;
                     if (R == 0) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
                     qVar.d = z10;
-                    if (R != vwVar.f5839y.size() - 1) {
+                    if (R != twVar.f5900y.size() - 1) {
                         z11 = false;
                     }
-                    qVar.f5753c = z11;
+                    qVar.f5742c = z11;
                     arrayList.add(qVar);
                 }
-                Collections.sort(arrayList, vwVar.f5836w0);
+                Collections.sort(arrayList, twVar.f5897w0);
                 while (i10 < arrayList.size()) {
                     q qVar2 = (q) arrayList.get(i10);
                     int save = canvas.save();
@@ -77,8 +77,8 @@ public final class j extends im0 {
         switch (this.V2) {
             case 0:
                 if (motionEvent.getAction() == 0) {
-                    vw vwVar = this.W2;
-                    if (vwVar.f5812c0 > 0.2f || vwVar.getAlpha() == 0.0f) {
+                    tw twVar = this.W2;
+                    if (twVar.f5873c0 > 0.2f || twVar.getAlpha() == 0.0f) {
                         return false;
                     }
                 }
@@ -130,7 +130,7 @@ public final class j extends im0 {
     public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         switch (this.V2) {
             case 0:
-                ArrayList arrayList = this.W2.f5810b0;
+                ArrayList arrayList = this.W2.f5871b0;
                 super.onLayout(z10, i10, i11, i12, i13);
                 for (int i14 = 0; i14 < arrayList.size(); i14++) {
                     ((Runnable) arrayList.get(i14)).run();

@@ -1,100 +1,26 @@
 package org.telegram.ui;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.graphics.RectF;
-import android.util.Property;
 import android.view.View;
-import android.view.ViewTreeObserver;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.ui.Components.PipRoundVideoView;
-public final class zl implements ViewTreeObserver.OnPreDrawListener {
-    public final int f43746a;
-    public final Object f43747b;
-    public final Object f43748c;
+import org.telegram.messenger.MessageObject;
+public final class zl extends org.telegram.ui.Components.s6 {
+    public final cm f43766b;
 
-    public zl(int i10, Object obj, Object obj2) {
-        this.f43746a = i10;
-        this.f43748c = obj;
-        this.f43747b = obj2;
+    public zl(cm cmVar) {
+        super("p2", 0);
+        this.f43766b = cmVar;
     }
 
     @Override
-    public final boolean onPreDraw() {
-        int[] iArr;
-        float f7;
-        int i10 = this.f43746a;
-        Object obj = this.f43748c;
-        Object obj2 = this.f43747b;
-        switch (i10) {
-            case 0:
-                sn snVar = ((fm) obj).Q;
-                org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) obj2;
-                PipRoundVideoView pipRoundVideoView = PipRoundVideoView.F;
-                if (pipRoundVideoView != null) {
-                    pipRoundVideoView.e(true);
-                }
-                u1Var.getViewTreeObserver().removeOnPreDrawListener(this);
-                ImageReceiver photoImage = u1Var.getPhotoImage();
-                float imageWidth = photoImage.getImageWidth();
-                RectF cameraRect = snVar.f41146b3.getCameraRect();
-                float width = imageWidth / cameraRect.width();
-                u1Var.getTransitionParams().f23159x0 = true;
-                u1Var.setAlpha(0.0f);
-                u1Var.setTimeAlpha(0.0f);
-                u1Var.getLocationOnScreen(r9);
-                int[] iArr2 = {(int) ((photoImage.getImageX() - u1Var.getAnimationOffsetX()) + iArr2[0]), (int) (((photoImage.getImageY() + u1Var.getPaddingTop()) - u1Var.getTranslationY()) + iArr2[1])};
-                org.telegram.ui.Components.o60 cameraContainer = snVar.f41146b3.getCameraContainer();
-                cameraContainer.getLocationOnScreen(new int[2]);
-                cameraContainer.setPivotX(cameraRect.left - iArr[0]);
-                cameraContainer.setPivotY(cameraRect.top - iArr[1]);
-                AnimatorSet animatorSet = new AnimatorSet();
-                cameraContainer.setImageReceiver(photoImage);
-                AnimatorSet animatorSet2 = new AnimatorSet();
-                ObjectAnimator ofFloat = ObjectAnimator.ofFloat(cameraContainer, View.SCALE_X, width);
-                ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(cameraContainer, View.SCALE_Y, width);
-                ObjectAnimator ofFloat3 = ObjectAnimator.ofFloat(cameraContainer, View.TRANSLATION_Y, iArr2[1] - cameraRect.top);
-                View buttonsLayout = snVar.f41146b3.getButtonsLayout();
-                Property property = View.ALPHA;
-                animatorSet.playTogether(ofFloat, ofFloat2, ofFloat3, ObjectAnimator.ofFloat(buttonsLayout, property, 0.0f), ObjectAnimator.ofInt(snVar.f41146b3.getPaint(), org.telegram.ui.Components.t6.f30472b, 0), ObjectAnimator.ofFloat(snVar.f41146b3.getMuteImageView(), property, 0.0f));
-                animatorSet.setInterpolator(org.telegram.ui.Components.bs.h);
-                ObjectAnimator ofFloat4 = ObjectAnimator.ofFloat(cameraContainer, View.TRANSLATION_X, iArr2[0] - cameraRect.left);
-                ofFloat4.setInterpolator(org.telegram.ui.Components.bs.f25030f);
-                animatorSet2.playTogether(ofFloat4, animatorSet);
-                animatorSet2.setDuration(300L);
-                org.telegram.ui.Components.r60 r60Var = snVar.f41146b3;
-                if (r60Var != null) {
-                    r60Var.setIsMessageTransition(true);
-                }
-                animatorSet2.addListener(new ai.me(15, this, cameraContainer));
-                animatorSet2.start();
-                return true;
-            case 1:
-                ((jx) obj).f38354b.f36637e0[0].f36300a.getViewTreeObserver().removeOnPreDrawListener(this);
-                AndroidUtilities.runOnUIThread((ai.t3) obj2, 100L);
-                return false;
-            default:
-                ((ViewTreeObserver) obj2).removeOnPreDrawListener(this);
-                vh.h hVar = (vh.h) obj;
-                org.telegram.ui.Components.yb ybVar = hVar.W;
-                if (ybVar != null) {
-                    int[] iArr3 = vh.h.f48426d0;
-                    ybVar.getLocationInWindow(iArr3);
-                    float f10 = iArr3[0];
-                    float translationY = iArr3[1] - hVar.W.getTranslationY();
-                    org.telegram.ui.Components.yb ybVar2 = hVar.W;
-                    if (ybVar2.top) {
-                        f7 = ybVar2.getTopOffset();
-                    } else {
-                        f7 = -ybVar2.getBottomOffset();
-                    }
-                    hVar.f48429a.getLocationInWindow(iArr3);
-                    hVar.X = (hVar.W.f32598a.getMeasuredWidth() / 2.0f) + (f10 - iArr3[0]) + hVar.W.f32598a.getLeft();
-                    hVar.Y = (hVar.W.f32598a.getMeasuredHeight() / 2.0f) + ((translationY + f7) - iArr3[1]) + hVar.W.f32598a.getTop();
-                }
-                hVar.c();
-                return true;
+    public final void c(Object obj, float f7) {
+        ((MessageObject.SendAnimationData) obj).currentX = f7;
+        View view = this.f43766b.f36030b.Q.fragmentView;
+        if (view != null) {
+            view.invalidate();
         }
+    }
+
+    @Override
+    public final Object get(Object obj) {
+        return Float.valueOf(((MessageObject.SendAnimationData) obj).currentX);
     }
 }

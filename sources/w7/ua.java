@@ -11,7 +11,7 @@ public final class ua extends sa {
 
     @Override
     public final Object get(int i10) {
-        f8.a(i10, this.d);
+        e8.a(i10, this.d);
         Object obj = this.f48836c[i10];
         obj.getClass();
         return obj;

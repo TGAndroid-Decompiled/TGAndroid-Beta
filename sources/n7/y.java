@@ -1,35 +1,76 @@
 package n7;
 
-import j$.util.Objects;
-public final class y extends n {
-    public static final y e = new y(0, new Object[0]);
-    public final transient Object[] f17324c;
-    public final transient int d;
+import java.util.Iterator;
+public final class y extends o {
+    public static final Object[] f17325r;
+    public static final y f17326s;
+    public final transient Object[] d;
+    public final transient int e;
+    public final transient Object[] f17327f;
+    public final transient int h;
+    public final transient int f17328n;
 
-    public y(int i10, Object[] objArr) {
-        this.f17324c = objArr;
-        this.d = i10;
+    static {
+        Object[] objArr = new Object[0];
+        f17325r = objArr;
+        f17326s = new y(0, 0, 0, objArr, objArr);
+    }
+
+    public y(int i10, int i11, int i12, Object[] objArr, Object[] objArr2) {
+        this.d = objArr;
+        this.e = i10;
+        this.f17327f = objArr2;
+        this.h = i11;
+        this.f17328n = i12;
     }
 
     @Override
-    public final Object get(int i10) {
-        a.e(i10, this.d);
-        Object obj = this.f17324c[i10];
-        Objects.requireNonNull(obj);
-        return obj;
+    public final boolean contains(Object obj) {
+        if (obj != null) {
+            Object[] objArr = this.f17327f;
+            if (objArr.length != 0) {
+                int rotateLeft = (int) (Integer.rotateLeft((int) (obj.hashCode() * (-862048943)), 15) * 461845907);
+                while (true) {
+                    int i10 = rotateLeft & this.h;
+                    Object obj2 = objArr[i10];
+                    if (obj2 != null) {
+                        if (obj2.equals(obj)) {
+                            return true;
+                        }
+                        rotateLeft = i10 + 1;
+                    } else {
+                        return false;
+                    }
+                }
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
     }
 
     @Override
     public final int h(Object[] objArr) {
-        Object[] objArr2 = this.f17324c;
-        int i10 = this.d;
+        Object[] objArr2 = this.d;
+        int i10 = this.f17328n;
         System.arraycopy(objArr2, 0, objArr, 0, i10);
         return i10;
     }
 
     @Override
+    public final int hashCode() {
+        return this.e;
+    }
+
+    @Override
+    public final Iterator iterator() {
+        return s().listIterator(0);
+    }
+
+    @Override
     public final int m() {
-        return this.d;
+        return this.f17328n;
     }
 
     @Override
@@ -38,12 +79,22 @@ public final class y extends n {
     }
 
     @Override
+    public final d0 o() {
+        return s().listIterator(0);
+    }
+
+    @Override
     public final Object[] p() {
-        return this.f17324c;
+        return this.d;
     }
 
     @Override
     public final int size() {
-        return this.d;
+        return this.f17328n;
+    }
+
+    @Override
+    public final m t() {
+        return m.s(this.f17328n, this.d);
     }
 }

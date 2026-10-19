@@ -1,58 +1,42 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.RectF;
-import android.os.Bundle;
+import java.util.ArrayList;
 import org.telegram.messenger.DialogObject;
-import org.telegram.messenger.Emoji;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
-public final class wu extends org.telegram.ui.Components.vy0 {
-    public final n2.e I;
+import org.telegram.messenger.MessagesStorage;
+import org.telegram.tgnet.TLRPC;
+public final class wu implements vx, qs {
+    public final av f42955a;
 
-    public wu(Context context, long j10, n2.e eVar) {
-        super(context);
-        this.I = eVar;
-        this.f31927a = new RectF();
-        this.f31930f = 0.0f;
-        org.telegram.ui.Components.p6 p6Var = new org.telegram.ui.Components.p6(false, true, true);
-        this.f31932r = p6Var;
-        org.telegram.ui.Components.p6 p6Var2 = new org.telegram.ui.Components.p6(false, true, false);
-        this.f31933s = p6Var2;
-        p6Var.setCallback(this);
-        p6Var2.setCallback(this);
-        this.f31931n = Long.valueOf(j10);
-        org.telegram.ui.Components.h9 h9Var = new org.telegram.ui.Components.h9((org.telegram.ui.ActionBar.d6) null);
-        h9Var.f26822p = 1.5f;
-        ImageReceiver imageReceiver = new ImageReceiver();
-        this.h = imageReceiver;
-        imageReceiver.setParentView(this);
-        if (j10 == Long.MAX_VALUE) {
-            this.v = LocaleController.getString(R.string.CacheOtherChats);
-            h9Var.g(14);
-            imageReceiver.setForUserOrChat(null, h9Var);
-            return;
-        }
-        String dialogPhotoTitle = DialogObject.setDialogPhotoTitle(imageReceiver, h9Var, MessagesController.getInstance(UserConfig.selectedAccount).getUserOrChat(j10));
-        this.v = dialogPhotoTitle;
-        this.v = Emoji.replaceEmoji(dialogPhotoTitle, null, false);
+    public wu(av avVar) {
+        this.f42955a = avVar;
     }
 
     @Override
-    public final void b() {
-        n2.e eVar = this.I;
-        c7 c7Var = (c7) eVar.f17039c;
-        c7Var.T.dismiss();
-        Bundle bundle = new Bundle();
-        long j10 = ((v6) eVar.f17038b).f42108a;
-        if (j10 > 0) {
-            bundle.putLong("user_id", j10);
-        } else {
-            bundle.putLong("chat_id", -j10);
+    public boolean D() {
+        return false;
+    }
+
+    @Override
+    public boolean J(cy cyVar) {
+        return false;
+    }
+
+    @Override
+    public void b(TLRPC.User user) {
+        this.f42955a.l0(user);
+    }
+
+    @Override
+    public boolean w(cy cyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, re1 re1Var) {
+        if (!arrayList.isEmpty()) {
+            long j10 = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
+            if (DialogObject.isUserDialog(j10)) {
+                av avVar = this.f42955a;
+                avVar.l0(avVar.getMessagesController().getUser(Long.valueOf(j10)));
+                return true;
+            }
+            return true;
         }
-        c7Var.presentFragment(new ProfileActivity(bundle, null));
+        return true;
     }
 }

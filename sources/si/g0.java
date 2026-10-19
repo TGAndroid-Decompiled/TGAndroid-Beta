@@ -5,9 +5,9 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.ui.Components.k60;
 import org.telegram.ui.Components.l60;
-import org.telegram.ui.Components.w01;
 import org.telegram.ui.Components.x01;
 import org.telegram.ui.Components.y01;
+import org.telegram.ui.Components.z01;
 public final class g0 implements Runnable {
     public final int f46596a = 1;
     public final s0 f46597b;
@@ -33,7 +33,7 @@ public final class g0 implements Runnable {
         synchronized (s0Var.f46759g) {
             if (!s0Var.D && !o0Var.d && !o0Var.e) {
                 o0Var.e = true;
-                ((y01) s0Var.e).b(o0Var.f46737a, file.length(), file);
+                ((z01) s0Var.e).b(o0Var.f46737a, file.length(), file);
                 s0Var.f46760i.post(new g0(s0Var, o0Var, j10, file, z10));
             }
         }
@@ -41,8 +41,8 @@ public final class g0 implements Runnable {
 
     @Override
     public final void run() {
-        x01 x01Var;
-        x01 x01Var2;
+        y01 y01Var;
+        y01 y01Var2;
         switch (this.f46596a) {
             case 0:
                 a();
@@ -60,33 +60,33 @@ public final class g0 implements Runnable {
                     s0Var.m("completed");
                     l2.f fVar = s0Var.d;
                     long j11 = o0Var.f46737a;
-                    l60 l60Var = (l60) fVar.f15842b;
+                    l60 l60Var = (l60) fVar.f15845b;
                     k60 k60Var = l60Var.V;
                     if (k60Var != null) {
                         l60Var.V = null;
-                        l60Var.f28090j0 = true;
-                        y01 y01Var = l60Var.T;
-                        if (y01Var == null) {
-                            x01Var2 = null;
+                        l60Var.f28100j0 = true;
+                        z01 z01Var = l60Var.T;
+                        if (z01Var == null) {
+                            y01Var2 = null;
                         } else {
-                            synchronized (y01Var) {
-                                w01 w01Var = (w01) y01Var.f32506c.get(Long.valueOf(j11));
-                                if (w01Var != null && !w01Var.e) {
-                                    x01Var = new x01(Math.max(w01Var.f31960c, file.length()), w01Var.f31961f, w01Var.f31962g, w01Var.h, w01Var.f31963i);
+                            synchronized (z01Var) {
+                                x01 x01Var = (x01) z01Var.f32803c.get(Long.valueOf(j11));
+                                if (x01Var != null && !x01Var.e) {
+                                    y01Var = new y01(Math.max(x01Var.f32248c, file.length()), x01Var.f32249f, x01Var.f32250g, x01Var.h, x01Var.f32251i);
                                 }
-                                x01Var = new x01(file.length(), null, null, null, null);
+                                y01Var = new y01(file.length(), null, null, null, null);
                             }
-                            x01Var2 = x01Var;
+                            y01Var2 = y01Var;
                         }
-                        VideoEditedInfo r10 = l60Var.r(file, j10, x01Var2);
+                        VideoEditedInfo r10 = l60Var.r(file, j10, y01Var2);
                         r10.muted = !z10;
                         MediaController.PhotoEntry photoEntry = new MediaController.PhotoEntry(0, 0, 0L, file.getAbsolutePath(), 0, true, 0, 0, 0L);
-                        photoEntry.ttl = k60Var.f27757c;
+                        photoEntry.ttl = k60Var.f27725c;
                         photoEntry.effectId = k60Var.d;
-                        l60Var.f28085f.r(photoEntry, r10, k60Var.f27755a, k60Var.f27756b, 0, false, k60Var.e);
-                        y01 y01Var2 = l60Var.T;
-                        if (y01Var2 != null) {
-                            y01Var2.d(false);
+                        l60Var.f28095f.s(photoEntry, r10, k60Var.f27723a, k60Var.f27724b, 0, false, k60Var.e);
+                        z01 z01Var2 = l60Var.T;
+                        if (z01Var2 != null) {
+                            z01Var2.d(false);
                         }
                         l60Var.T = null;
                         MediaController.getInstance().requestRecordAudioFocus(false);

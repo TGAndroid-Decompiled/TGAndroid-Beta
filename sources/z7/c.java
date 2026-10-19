@@ -23,7 +23,7 @@ public final class c extends x7.d {
             int i11 = this.f50744c;
             Object[] objArr = dVar.f50759c;
             objArr.getClass();
-            if (w7.h9.a(obj, objArr[i11])) {
+            if (w7.g9.a(obj, objArr[i11])) {
                 return;
             }
         }

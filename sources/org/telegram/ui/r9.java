@@ -1,0 +1,20 @@
+package org.telegram.ui;
+public final class r9 extends w9 {
+    public final s9 f41096g0;
+
+    public r9(s9 s9Var, int i10) {
+        super(i10);
+        this.f41096g0 = s9Var;
+    }
+
+    @Override
+    public final void finishFragment() {
+        setFinishing(true);
+        this.f41096g0.dismiss();
+    }
+
+    @Override
+    public final void removeSelfFromStack() {
+        this.f41096g0.dismiss();
+    }
+}

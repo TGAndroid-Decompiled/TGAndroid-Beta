@@ -7,19 +7,19 @@ import android.graphics.RectF;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class um0 extends FrameLayout {
-    public final Paint f31049a;
-    public final p50 f31050b;
-    public final RectF f31051c;
+    public final Paint f31024a;
+    public final p50 f31025b;
+    public final RectF f31026c;
     public final float d;
     public float e;
 
     public um0(Context context) {
         super(context);
         Paint paint = new Paint(1);
-        this.f31049a = paint;
+        this.f31024a = paint;
         p50 p50Var = new p50(this, 1);
-        this.f31050b = p50Var;
-        this.f31051c = new RectF();
+        this.f31025b = p50Var;
+        this.f31026c = new RectF();
         this.d = (AndroidUtilities.dp(3.0f) * 0.5f) + AndroidUtilities.dp(5.0f);
         a(paint, 0.2f);
         a(p50Var, 1.0f);
@@ -38,14 +38,14 @@ public final class um0 extends FrameLayout {
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
         float f7 = this.d;
-        RectF rectF = this.f31051c;
+        RectF rectF = this.f31026c;
         rectF.set(f7, f7, getWidth() - f7, getHeight() - f7);
-        canvas.drawOval(rectF, this.f31049a);
-        canvas.drawArc(rectF, -90.0f, this.e * 360.0f, false, this.f31050b);
+        canvas.drawOval(rectF, this.f31024a);
+        canvas.drawArc(rectF, -90.0f, this.e * 360.0f, false, this.f31025b);
     }
 
     public Paint getPaint() {
-        return this.f31050b;
+        return this.f31025b;
     }
 
     public void setProgress(float f7) {

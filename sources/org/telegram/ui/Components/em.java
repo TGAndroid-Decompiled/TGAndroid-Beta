@@ -18,7 +18,7 @@ public final class em extends im0 {
     public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         switch (this.V2) {
             case 1:
-                if (motionEvent.getAction() == 0 && motionEvent.getY() < this.W2.f28238b.f30572e2[0] - AndroidUtilities.dp(80.0f)) {
+                if (motionEvent.getAction() == 0 && motionEvent.getY() < this.W2.f28225b.f30534e2[0] - AndroidUtilities.dp(80.0f)) {
                     return false;
                 }
                 return super.onInterceptTouchEvent(motionEvent);
@@ -44,7 +44,7 @@ public final class em extends im0 {
     public boolean onTouchEvent(MotionEvent motionEvent) {
         switch (this.V2) {
             case 1:
-                if (motionEvent.getAction() == 0 && motionEvent.getY() < this.W2.f28238b.f30572e2[0] - AndroidUtilities.dp(80.0f)) {
+                if (motionEvent.getAction() == 0 && motionEvent.getY() < this.W2.f28225b.f30534e2[0] - AndroidUtilities.dp(80.0f)) {
                     return false;
                 }
                 return super.onTouchEvent(motionEvent);

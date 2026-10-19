@@ -13,43 +13,43 @@ import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Components.a6;
-import org.telegram.ui.Components.a71;
-import org.telegram.ui.Components.c61;
-import org.telegram.ui.Components.e61;
+import org.telegram.ui.Components.b71;
+import org.telegram.ui.Components.d61;
 import org.telegram.ui.Components.f61;
+import org.telegram.ui.Components.g61;
 import org.telegram.ui.Components.im0;
-import org.telegram.ui.Components.j01;
-import org.telegram.ui.Components.s61;
+import org.telegram.ui.Components.k01;
+import org.telegram.ui.Components.t61;
 import w7.z5;
-public final class a extends e61 {
-    public static final int f50164a = 0;
+public final class a extends f61 {
+    public static final int f50163a = 0;
 
     static {
-        e61.setup(new e61());
+        f61.setup(new f61());
     }
 
     @Override
-    public final void bindView(View view, f61 f61Var, boolean z10, s61 s61Var, a71 a71Var) {
+    public final void bindView(View view, g61 g61Var, boolean z10, t61 t61Var, b71 b71Var) {
         b bVar = (b) view;
-        GiftAuctionController.Auction auction = (GiftAuctionController.Auction) f61Var.H;
-        TL_stars.TL_StarGiftAuctionAcquiredGift tL_StarGiftAuctionAcquiredGift = (TL_stars.TL_StarGiftAuctionAcquiredGift) f61Var.G;
-        View.OnClickListener onClickListener = f61Var.D;
-        int i10 = b.f50168c;
+        GiftAuctionController.Auction auction = (GiftAuctionController.Auction) g61Var.H;
+        TL_stars.TL_StarGiftAuctionAcquiredGift tL_StarGiftAuctionAcquiredGift = (TL_stars.TL_StarGiftAuctionAcquiredGift) g61Var.G;
+        View.OnClickListener onClickListener = g61Var.D;
+        int i10 = b.f50167c;
         bVar.removeAllViews();
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("*");
-        spannableStringBuilder.setSpan(new a6(auction.giftDocumentId, h6.f21259s2.getFontMetricsInt()), 0, spannableStringBuilder.length(), 33);
+        spannableStringBuilder.setSpan(new a6(auction.giftDocumentId, h6.f21262s2.getFontMetricsInt()), 0, spannableStringBuilder.length(), 33);
         spannableStringBuilder.append(' ');
         spannableStringBuilder.append((CharSequence) LocaleController.formatString(R.string.Gift2AuctionsAcquiredRound2, auction.gift.title, Integer.valueOf(tL_StarGiftAuctionAcquiredGift.gift_num), Integer.valueOf(tL_StarGiftAuctionAcquiredGift.round)));
-        spannableStringBuilder.setSpan(new c61(AndroidUtilities.bold()), 0, spannableStringBuilder.length(), 33);
+        spannableStringBuilder.setSpan(new d61(AndroidUtilities.bold()), 0, spannableStringBuilder.length(), 33);
         SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder();
         spannableStringBuilder2.append((CharSequence) md.Y0(false, org.telegram.messenger.g0.h(tL_StarGiftAuctionAcquiredGift.bid_amount, ',', new StringBuilder("⭐️")), 0.75f, null));
         String formatString = LocaleController.formatString(R.string.Gift2AuctionsAcquiredTop, Integer.valueOf(tL_StarGiftAuctionAcquiredGift.pos));
-        j01 j01Var = new j01(bVar.getContext(), bVar.f50169a);
-        j01Var.a(spannableStringBuilder).setFilled(true);
-        j01Var.n(LocaleController.getString(R.string.Gift2AuctionsAcquiredRecipient), bVar.f50170b, DialogObject.getPeerDialogId(tL_StarGiftAuctionAcquiredGift.peer), new u2.q0(16, bVar, onClickListener));
-        j01Var.g(tL_StarGiftAuctionAcquiredGift.date, LocaleController.getString(R.string.Gift2AuctionsAcquiredDate));
-        j01Var.e(LocaleController.getString(R.string.Gift2AuctionsAcquiredAcceptedBid), spannableStringBuilder2, formatString, null, null);
-        bVar.addView(j01Var, z5.c(-2.0f, -1));
+        k01 k01Var = new k01(bVar.getContext(), bVar.f50168a);
+        k01Var.a(spannableStringBuilder).setFilled(true);
+        k01Var.n(LocaleController.getString(R.string.Gift2AuctionsAcquiredRecipient), bVar.f50169b, DialogObject.getPeerDialogId(tL_StarGiftAuctionAcquiredGift.peer), new uf.c(15, bVar, onClickListener));
+        k01Var.g(tL_StarGiftAuctionAcquiredGift.date, LocaleController.getString(R.string.Gift2AuctionsAcquiredDate));
+        k01Var.e(LocaleController.getString(R.string.Gift2AuctionsAcquiredAcceptedBid), spannableStringBuilder2, formatString, null, null);
+        bVar.addView(k01Var, z5.c(-2.0f, -1));
     }
 
     @Override

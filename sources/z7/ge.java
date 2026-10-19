@@ -5,8 +5,8 @@ public final class ge {
     public final we f50885c;
 
     public ge(u2.c cVar) {
-        this.f50883a = (hb) cVar.f47260b;
-        this.f50884b = (Long) cVar.f47261c;
+        this.f50883a = (hb) cVar.f47259b;
+        this.f50884b = (Long) cVar.f47260c;
         this.f50885c = (we) cVar.d;
     }
 }

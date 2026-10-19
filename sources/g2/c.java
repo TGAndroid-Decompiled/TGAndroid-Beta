@@ -25,7 +25,7 @@ public abstract class c implements h {
 
     public final void bytesTransferred(int i10) {
         m mVar = this.dataSpec;
-        String str = m0.f8253a;
+        String str = m0.f8254a;
         for (int i11 = 0; i11 < this.listenerCount; i11++) {
             boolean z10 = this.isNetwork;
             y2.f fVar = (y2.f) this.listeners.get(i11);
@@ -38,7 +38,7 @@ public abstract class c implements h {
                         } finally {
                         }
                     }
-                    fVar.f49910i += i10;
+                    fVar.f49909i += i10;
                 }
             }
         }
@@ -51,7 +51,7 @@ public abstract class c implements h {
 
     public final void transferEnded() {
         m mVar = this.dataSpec;
-        String str = m0.f8253a;
+        String str = m0.f8254a;
         for (int i10 = 0; i10 < this.listenerCount; i10++) {
             ((y2.f) this.listeners.get(i10)).e(mVar, this.isNetwork);
         }

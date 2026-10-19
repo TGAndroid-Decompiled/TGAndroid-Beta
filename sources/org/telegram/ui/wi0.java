@@ -1,25 +1,12 @@
 package org.telegram.ui;
-public final class wi0 implements Runnable {
-    public final int f42864a;
-    public final cj0 f42865b;
 
-    public wi0(cj0 cj0Var, int i10) {
-        this.f42864a = i10;
-        this.f42865b = cj0Var;
-    }
-
+import org.telegram.messenger.AndroidUtilities;
+public final class wi0 extends yg.c {
     @Override
-    public final void run() {
-        switch (this.f42864a) {
-            case 0:
-                this.f42865b.dismiss();
-                return;
-            case 1:
-                this.f42865b.V(true, false);
-                return;
-            default:
-                this.f42865b.V(true, false);
-                return;
+    public final int getHeaderHeight() {
+        if (getResources().getConfiguration().orientation == 2) {
+            return AndroidUtilities.dp(48.0f);
         }
+        return AndroidUtilities.dp(54.0f);
     }
 }

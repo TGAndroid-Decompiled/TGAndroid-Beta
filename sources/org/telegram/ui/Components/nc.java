@@ -7,9 +7,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class nc extends nb {
-    public final xj0 f28729a;
-    public final x90 f28730b;
-    public final x90 f28731c;
+    public final xj0 f28747a;
+    public final x90 f28748b;
+    public final x90 f28749c;
     public final LinearLayout d;
     public final int e;
 
@@ -19,7 +19,7 @@ public final class nc extends nb {
         this.e = getThemedColor(i10);
         setBackground(getThemedColor(org.telegram.ui.ActionBar.h6.Fi));
         ?? imageView = new ImageView(context);
-        this.f28729a = imageView;
+        this.f28747a = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         addView((View) imageView, w7.z5.h(56.0f, 48.0f, 8388627));
         int themedColor = getThemedColor(i10);
@@ -29,14 +29,14 @@ public final class nc extends nb {
         linearLayout.setOrientation(1);
         addView(linearLayout, w7.z5.i(-2.0f, -2.0f, 8388627, 52.0f, 8.0f, 8.0f, 8.0f));
         x90 x90Var = new x90(context, null);
-        this.f28730b = x90Var;
+        this.f28748b = x90Var;
         x90Var.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
         x90Var.setTextColor(themedColor);
         x90Var.setTextSize(1, 14.0f);
         x90Var.setTypeface(AndroidUtilities.bold());
         linearLayout.addView(x90Var);
         x90 x90Var2 = new x90(context, null);
-        this.f28731c = x90Var2;
+        this.f28749c = x90Var2;
         x90Var2.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
         x90Var2.setTextColor(themedColor);
         x90Var2.setLinkTextColor(themedColor2);
@@ -46,7 +46,7 @@ public final class nc extends nb {
     }
 
     public final void c(int i10, int i11, int i12, String... strArr) {
-        xj0 xj0Var = this.f28729a;
+        xj0 xj0Var = this.f28747a;
         xj0Var.f(i10, i11, i12, null);
         for (String str : strArr) {
             xj0Var.h(this.e, str);
@@ -55,12 +55,12 @@ public final class nc extends nb {
 
     @Override
     public CharSequence getAccessibilityText() {
-        return ((Object) this.f28730b.getText()) + ".\n" + ((Object) this.f28731c.getText());
+        return ((Object) this.f28748b.getText()) + ".\n" + ((Object) this.f28749c.getText());
     }
 
     @Override
     public final void onShow() {
         super.onShow();
-        this.f28729a.d();
+        this.f28747a.d();
     }
 }

@@ -130,7 +130,7 @@ public abstract class t0 {
                 TL_communities.CommunityPeer communityPeer2 = communityPeer;
                 if (DialogObject.getPeerDialogId(communityPeer2.peer) == j10) {
                     if (user != null) {
-                        dialog = MessagesController.getInstance(i10).getDialog(user.f20419id);
+                        dialog = MessagesController.getInstance(i10).getDialog(user.f20422id);
                     }
                     return c(communityPeer2, chat, user, dialog);
                 }
@@ -176,7 +176,7 @@ public abstract class t0 {
         ConnectionsManager.getInstance(i10).bindRequestToGuid(fetchChatsToAddToCommunity, n2Var.getClassGuid());
         b2 b2Var = new b2(n2Var.getContext(), 3, null);
         b2VarArr[0] = b2Var;
-        b2Var.q(500L);
+        b2Var.r(500L);
         b2VarArr[0].setOnCancelListener(new DialogInterface.OnCancelListener() {
             @Override
             public final void onCancel(DialogInterface dialogInterface) {

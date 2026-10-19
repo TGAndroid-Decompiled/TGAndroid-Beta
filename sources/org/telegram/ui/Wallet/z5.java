@@ -1,13 +1,13 @@
 package org.telegram.ui.Wallet;
 public final class z5 {
-    public boolean f35178a;
-    public float f35179b;
-    public float f35180c;
+    public boolean f35173a;
+    public float f35174b;
+    public float f35175c;
     public float d;
     public float e;
-    public float f35181f;
-    public float f35182g;
+    public float f35176f;
+    public float f35177g;
     public long h;
-    public long f35183i;
-    public long f35184j;
+    public long f35178i;
+    public long f35179j;
 }

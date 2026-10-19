@@ -4,33 +4,33 @@ import android.content.Context;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class s3 extends View {
-    public final int f22993a;
-    public final int f22994b;
+    public final int f22996a;
+    public final int f22997b;
 
     public s3(Context context, int i10, int i11) {
         super(context);
-        this.f22993a = i11;
-        this.f22994b = i10;
+        this.f22996a = i11;
+        this.f22997b = i10;
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        switch (this.f22993a) {
+        switch (this.f22996a) {
             case 0:
-                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(this.f22994b), 1073741824));
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(this.f22997b), 1073741824));
                 return;
             case 1:
-                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(this.f22994b), 1073741824));
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(this.f22997b), 1073741824));
                 return;
             default:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(this.f22994b, 1073741824));
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(this.f22997b, 1073741824));
                 return;
         }
     }
 
     public s3(Context context, int i10) {
         super(context);
-        this.f22993a = 0;
-        this.f22994b = i10;
+        this.f22996a = 0;
+        this.f22997b = i10;
     }
 }

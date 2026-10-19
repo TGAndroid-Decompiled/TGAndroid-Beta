@@ -14,33 +14,33 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.UndoView;
 import org.telegram.ui.Components.a90;
 import org.telegram.ui.Components.w80;
-import org.telegram.ui.hk;
-import org.telegram.ui.kg1;
-import org.telegram.ui.p00;
-import org.telegram.ui.s50;
-import org.telegram.ui.sn;
-import org.telegram.ui.v40;
-public final class f implements p7, kg1, m4.g1, e2.j, org.telegram.ui.ActionBar.a2, zf.m, MessagesController.ErrorDelegate, wh.k {
-    public final int f5308a;
-    public final boolean f5309b;
-    public final Object f5310c;
+import org.telegram.ui.fk;
+import org.telegram.ui.ig1;
+import org.telegram.ui.n00;
+import org.telegram.ui.q50;
+import org.telegram.ui.qn;
+import org.telegram.ui.t40;
+public final class f implements q7, ig1, m4.g1, e2.j, org.telegram.ui.ActionBar.a2, zf.m, MessagesController.ErrorDelegate, wh.k {
+    public final int f5375a;
+    public final boolean f5376b;
+    public final Object f5377c;
 
     public f(int i10, Object obj, boolean z10) {
-        this.f5308a = i10;
-        this.f5310c = obj;
-        this.f5309b = z10;
+        this.f5375a = i10;
+        this.f5377c = obj;
+        this.f5376b = z10;
     }
 
     @Override
     public void a(int i10, ArrayList arrayList) {
-        switch (this.f5308a) {
+        switch (this.f5375a) {
             case 1:
-                ig.a0 a0Var = (ig.a0) this.f5310c;
-                ArrayList arrayList2 = a0Var.f12817k;
-                ArrayList arrayList3 = a0Var.f12816j;
+                ig.a0 a0Var = (ig.a0) this.f5377c;
+                ArrayList arrayList2 = a0Var.f12819k;
+                ArrayList arrayList3 = a0Var.f12818j;
                 int i11 = 0;
-                if (this.f5309b) {
-                    a0Var.f12813f = i10;
+                if (this.f5376b) {
+                    a0Var.f12815f = i10;
                     arrayList3.clear();
                     arrayList3.addAll(arrayList);
                     while (i11 < arrayList3.size()) {
@@ -48,7 +48,7 @@ public final class f implements p7, kg1, m4.g1, e2.j, org.telegram.ui.ActionBar.
                         i11++;
                     }
                 } else {
-                    a0Var.f12814g = i10;
+                    a0Var.f12816g = i10;
                     arrayList2.clear();
                     arrayList2.addAll(arrayList);
                     while (i11 < arrayList2.size()) {
@@ -59,21 +59,21 @@ public final class f implements p7, kg1, m4.g1, e2.j, org.telegram.ui.ActionBar.
                 a0Var.e.run();
                 return;
             default:
-                p00 p00Var = (p00) this.f5310c;
-                LongSparseIntArray longSparseIntArray = p00Var.H;
-                p00Var.f39909y = i10;
-                if (this.f5309b) {
-                    p00Var.o0(p00Var.F, arrayList, true);
-                    p00Var.F = arrayList;
-                    for (int i12 = 0; i12 < p00Var.F.size(); i12++) {
-                        p00Var.G.remove(p00Var.F.get(i12));
+                n00 n00Var = (n00) this.f5377c;
+                LongSparseIntArray longSparseIntArray = n00Var.H;
+                n00Var.f39382y = i10;
+                if (this.f5376b) {
+                    n00Var.o0(n00Var.F, arrayList, true);
+                    n00Var.F = arrayList;
+                    for (int i12 = 0; i12 < n00Var.F.size(); i12++) {
+                        n00Var.G.remove(n00Var.F.get(i12));
                     }
                     ArrayList arrayList4 = new ArrayList();
                     int size = longSparseIntArray.size();
                     for (int i13 = 0; i13 < size; i13++) {
                         long keyAt = longSparseIntArray.keyAt(i13);
                         Long valueOf = Long.valueOf(keyAt);
-                        if (!DialogObject.isEncryptedDialog(keyAt) && !p00Var.F.contains(valueOf)) {
+                        if (!DialogObject.isEncryptedDialog(keyAt) && !n00Var.F.contains(valueOf)) {
                             arrayList4.add(valueOf);
                         }
                     }
@@ -82,43 +82,43 @@ public final class f implements p7, kg1, m4.g1, e2.j, org.telegram.ui.ActionBar.
                         longSparseIntArray.delete(((Long) arrayList4.get(i14)).longValue());
                     }
                 } else {
-                    p00Var.o0(p00Var.G, arrayList, false);
-                    p00Var.G = arrayList;
-                    for (int i15 = 0; i15 < p00Var.G.size(); i15++) {
-                        Long l4 = (Long) p00Var.G.get(i15);
-                        p00Var.F.remove(l4);
+                    n00Var.o0(n00Var.G, arrayList, false);
+                    n00Var.G = arrayList;
+                    for (int i15 = 0; i15 < n00Var.G.size(); i15++) {
+                        Long l4 = (Long) n00Var.G.get(i15);
+                        n00Var.F.remove(l4);
                         longSparseIntArray.delete(l4.longValue());
                     }
                 }
-                p00Var.j0();
-                p00Var.i0(false);
-                p00Var.w0();
+                n00Var.j0();
+                n00Var.i0(false);
+                n00Var.w0();
                 return;
         }
     }
 
     @Override
     public void accept(Object obj) {
-        ((m4.m1) obj).N0((b2.f) this.f5310c, this.f5309b);
+        ((m4.m1) obj).N0((b2.f) this.f5377c, this.f5376b);
     }
 
     @Override
     public void b(boolean z10) {
-        r rVar = (r) this.f5310c;
-        if (!this.f5309b && z10) {
+        r rVar = (r) this.f5377c;
+        if (!this.f5376b && z10) {
             boolean z11 = true;
-            if (rVar.f5809b != 1) {
+            if (rVar.f5870b != 1) {
                 z11 = false;
             }
-            h7 h7Var = rVar.f5830s;
+            i7 i7Var = rVar.f5891s;
             if (z11) {
-                if (!h7Var.f5418z) {
+                if (!i7Var.f5514z) {
                     return;
                 }
-            } else if (!h7Var.f5409p) {
+            } else if (!i7Var.f5505p) {
                 return;
             }
-            h7Var.Q(z11);
+            i7Var.Q(z11);
         }
     }
 
@@ -128,35 +128,35 @@ public final class f implements p7, kg1, m4.g1, e2.j, org.telegram.ui.ActionBar.
         long M0;
         int n03;
         long M02;
-        switch (this.f5308a) {
+        switch (this.f5375a) {
             case 2:
-                e9.x1 y3 = e9.n0.y((b2.o0) this.f5310c);
-                boolean z10 = this.f5309b;
+                e9.x1 y3 = e9.n0.y((b2.o0) this.f5377c);
+                boolean z10 = this.f5376b;
                 if (z10) {
                     n02 = -1;
                 } else {
-                    n02 = f0Var.f16533t.n0();
+                    n02 = f0Var.f16536t.n0();
                 }
                 int i11 = n02;
                 if (z10) {
                     M0 = -9223372036854775807L;
                 } else {
-                    M0 = f0Var.f16533t.M0();
+                    M0 = f0Var.f16536t.M0();
                 }
                 return f0Var.q(vVar, y3, i11, M0);
             default:
-                List list = (List) this.f5310c;
-                boolean z11 = this.f5309b;
+                List list = (List) this.f5377c;
+                boolean z11 = this.f5376b;
                 if (z11) {
                     n03 = -1;
                 } else {
-                    n03 = f0Var.f16533t.n0();
+                    n03 = f0Var.f16536t.n0();
                 }
                 int i12 = n03;
                 if (z11) {
                     M02 = -9223372036854775807L;
                 } else {
-                    M02 = f0Var.f16533t.M0();
+                    M02 = f0Var.f16536t.M0();
                 }
                 return f0Var.q(vVar, list, i12, M02);
         }
@@ -165,16 +165,16 @@ public final class f implements p7, kg1, m4.g1, e2.j, org.telegram.ui.ActionBar.
     @Override
     public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
         int i11;
-        switch (this.f5308a) {
+        switch (this.f5375a) {
             case 5:
-                org.telegram.ui.c7.V((org.telegram.ui.c7) this.f5310c, this.f5309b);
+                org.telegram.ui.c7.V((org.telegram.ui.c7) this.f5377c, this.f5376b);
                 return;
             case 6:
             default:
-                s50 s50Var = ((v40) this.f5310c).f42093b;
-                s50Var.f40896a1.toggleRecord(null, 0);
-                UndoView l1 = s50Var.l1();
-                if (this.f5309b) {
+                q50 q50Var = ((t40) this.f5377c).f41587b;
+                q50Var.f40375a1.toggleRecord(null, 0);
+                UndoView l1 = q50Var.l1();
+                if (this.f5376b) {
                     i11 = 101;
                 } else {
                     i11 = 40;
@@ -182,22 +182,22 @@ public final class f implements p7, kg1, m4.g1, e2.j, org.telegram.ui.ActionBar.
                 l1.j(i11, 0L, null);
                 return;
             case 7:
-                sn snVar = (sn) this.f5310c;
-                hk hkVar = snVar.Y;
-                if (hkVar != null) {
-                    if (this.f5309b) {
-                        snVar.finishFragment();
+                qn qnVar = (qn) this.f5377c;
+                fk fkVar = qnVar.Y;
+                if (fkVar != null) {
+                    if (this.f5376b) {
+                        qnVar.finishFragment();
                         return;
                     } else {
-                        hkVar.z();
+                        fkVar.z();
                         return;
                     }
                 }
                 return;
             case 8:
-                Activity activity = (Activity) this.f5310c;
+                Activity activity = (Activity) this.f5377c;
                 if (activity != null) {
-                    if (this.f5309b && uf.b.a(activity) == -2) {
+                    if (this.f5376b && uf.b.a(activity) == -2) {
                         try {
                             activity.startActivity(new Intent("android.settings.PICTURE_IN_PICTURE_SETTINGS", Uri.parse("package:" + activity.getPackageName())));
                             return;
@@ -219,25 +219,25 @@ public final class f implements p7, kg1, m4.g1, e2.j, org.telegram.ui.ActionBar.
 
     @Override
     public void i(long j10) {
-        org.telegram.ui.Components.p6 p6Var = ((org.telegram.ui.Cells.u1) this.f5310c).f23531w4;
+        org.telegram.ui.Components.p6 p6Var = ((org.telegram.ui.Cells.u1) this.f5377c).f23534w4;
         if (p6Var != null) {
-            p6Var.t(LocaleController.formatPollEndTime((int) j10, this.f5309b), true, true);
+            p6Var.t(LocaleController.formatPollEndTime((int) j10, this.f5376b), true, true);
         }
     }
 
     @Override
     public void o(wh.g gVar, float f7, float f10) {
-        wh.n nVar = (wh.n) this.f5310c;
-        if (!nVar.d && !nVar.e && !nVar.f49097f && this.f5309b) {
+        wh.n nVar = (wh.n) this.f5377c;
+        if (!nVar.d && !nVar.e && !nVar.f49096f && this.f5376b) {
             nVar.c(f7, f10);
         }
     }
 
     @Override
     public boolean run(TLRPC.TL_error tL_error) {
-        a90 a90Var = (a90) this.f5310c;
+        a90 a90Var = (a90) this.f5377c;
         if (tL_error != null && "INVITE_REQUEST_SENT".equals(tL_error.text)) {
-            a90Var.setOnDismissListener(new w80(0, a90Var, this.f5309b));
+            a90Var.setOnDismissListener(new w80(0, a90Var, this.f5376b));
         }
         a90Var.dismiss();
         return false;

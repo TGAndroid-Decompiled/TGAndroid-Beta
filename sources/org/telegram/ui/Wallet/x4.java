@@ -1,32 +1,28 @@
 package org.telegram.ui.Wallet;
 
 import android.content.Context;
-import android.view.View;
+import android.graphics.Canvas;
+import android.graphics.drawable.ShapeDrawable;
 import org.telegram.messenger.AndroidUtilities;
-public final class x4 extends View {
-    public final int f35078a;
-    public final n5 f35079b;
+import org.telegram.ui.Components.us;
+public final class x4 extends us {
+    public final ShapeDrawable G;
 
-    public x4(n5 n5Var, Context context, int i10) {
+    public x4(o5 o5Var, Context context) {
         super(context);
-        this.f35078a = i10;
-        this.f35079b = n5Var;
+        this.G = org.telegram.ui.ActionBar.h6.c0(AndroidUtilities.dp(22.0f), o5Var.getThemedColor(org.telegram.ui.ActionBar.h6.f20989d6));
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        switch (this.f35078a) {
-            case 0:
-                int size = View.MeasureSpec.getSize(i10);
-                n5 n5Var = this.f35079b;
-                n5Var.Y.measure(View.MeasureSpec.makeMeasureSpec(Math.max(0, size - AndroidUtilities.dp(24.0f)), 1073741824), View.MeasureSpec.makeMeasureSpec(0, 0));
-                setMeasuredDimension(size, AndroidUtilities.dp(36.0f) + n5Var.Y.getMeasuredHeight());
-                return;
-            default:
-                n5 n5Var2 = this.f35079b;
-                n5Var2.d.measure(i10, View.MeasureSpec.makeMeasureSpec(0, 0));
-                setMeasuredDimension(View.MeasureSpec.getSize(i10), n5Var2.d.getMeasuredHeight());
-                return;
+    public final void dispatchDraw(Canvas canvas) {
+        int ceil = (int) Math.ceil(getMetadata().f17403g.f17409a);
+        if (ceil > 0) {
+            int width = getWidth();
+            ShapeDrawable shapeDrawable = this.G;
+            shapeDrawable.setBounds(0, 0, width, ceil);
+            shapeDrawable.setAlpha((int) (getMetadata().f17401c.f17409a * 255.0f));
+            shapeDrawable.draw(canvas);
         }
+        super.dispatchDraw(canvas);
     }
 }

@@ -1,3 +1,9 @@
 package n7;
-public interface d0 extends Iterable {
+
+import java.util.Iterator;
+public abstract class d0 implements Iterator {
+    @Override
+    public final void remove() {
+        throw new UnsupportedOperationException();
+    }
 }

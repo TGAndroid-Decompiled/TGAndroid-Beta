@@ -8,7 +8,7 @@ import java.util.Date;
 public class c implements v {
     @Override
     public final u create(g gVar, lb.a aVar) {
-        if (aVar.f15993a == Timestamp.class) {
+        if (aVar.f15996a == Timestamp.class) {
             gVar.getClass();
             return new d(gVar.b(new lb.a(Date.class)));
         }

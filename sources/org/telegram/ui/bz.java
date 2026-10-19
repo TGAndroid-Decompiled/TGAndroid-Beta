@@ -1,64 +1,16 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class bz implements RequestDelegate {
-    public final int f35732a;
-    public final nz f35733b;
+import android.view.View;
+import android.widget.FrameLayout;
+public final class bz extends FrameLayout {
+    public wh.n f35758a;
 
-    public bz(nz nzVar, int i10) {
-        this.f35732a = i10;
-        this.f35733b = nzVar;
+    public wh.n getSubtitleTextView() {
+        return this.f35758a;
     }
 
     @Override
-    public final void run(TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f35732a) {
-            case 0:
-                final nz nzVar = this.f35733b;
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r3) {
-                            case 0:
-                                nz nzVar2 = nzVar;
-                                nzVar2.F = 0;
-                                if (tL_error == null) {
-                                    org.telegram.messenger.g0.q(R.string.FilterInviteNameEdited, org.telegram.ui.Components.xc.a0(nzVar2), R.raw.contact_check, 36);
-                                    return;
-                                }
-                                return;
-                            default:
-                                nz.U(nzVar, tL_error);
-                                return;
-                        }
-                    }
-                });
-                return;
-            default:
-                final nz nzVar2 = this.f35733b;
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r3) {
-                            case 0:
-                                nz nzVar22 = nzVar2;
-                                nzVar22.F = 0;
-                                if (tL_error == null) {
-                                    org.telegram.messenger.g0.q(R.string.FilterInviteNameEdited, org.telegram.ui.Components.xc.a0(nzVar22), R.raw.contact_check, 36);
-                                    return;
-                                }
-                                return;
-                            default:
-                                nz.U(nzVar2, tL_error);
-                                return;
-                        }
-                    }
-                });
-                return;
-        }
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
     }
 }

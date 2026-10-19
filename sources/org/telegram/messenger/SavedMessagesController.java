@@ -13,7 +13,7 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_update;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.sn;
+import org.telegram.ui.qn;
 public class SavedMessagesController {
     private final int currentAccount;
     private int dialogsCount;
@@ -50,7 +50,7 @@ public class SavedMessagesController {
             SavedDialog savedDialog = new SavedDialog();
             savedDialog.dialogId = MessageObject.getSavedDialogId(UserConfig.getInstance(i10).getClientUserId(), message);
             savedDialog.pinned = false;
-            savedDialog.top_message_id = message.f20293id;
+            savedDialog.top_message_id = message.f20296id;
             savedDialog.message = new MessageObject(i10, message, null, null, null, null, null, false, false, 0L, false, false, z10);
             return savedDialog;
         }
@@ -68,7 +68,7 @@ public class SavedMessagesController {
             while (true) {
                 if (i11 < arrayList.size()) {
                     message = arrayList.get(i11);
-                    if (savedDialog.top_message_id == message.f20293id) {
+                    if (savedDialog.top_message_id == message.f20296id) {
                         break;
                     }
                     i11++;
@@ -449,7 +449,7 @@ public class SavedMessagesController {
         }
         Bundle bundle = new Bundle();
         bundle.putLong("user_id", UserConfig.getInstance(R.getCurrentAccount()).getClientUserId());
-        R.presentFragment(new sn(bundle));
+        R.presentFragment(new qn(bundle));
     }
 
     public static void openSavedMessagesReminders() {
@@ -460,7 +460,7 @@ public class SavedMessagesController {
         Bundle bundle = new Bundle();
         bundle.putLong("user_id", UserConfig.getInstance(R.getCurrentAccount()).getClientUserId());
         bundle.putInt("chatMode", 1);
-        R.presentFragment(new sn(bundle));
+        R.presentFragment(new qn(bundle));
     }
 
     private boolean processUpdateInternal(TLRPC.Update update) {
@@ -751,7 +751,7 @@ public class SavedMessagesController {
         tL_messages_getSavedHistory.offset_id = Integer.MAX_VALUE;
         tL_messages_getSavedHistory.offset_date = Integer.MAX_VALUE;
         tL_messages_getSavedHistory.add_offset = -1;
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getSavedHistory, new ci.j6(this, j10, 3));
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getSavedHistory, new ci.k6(this, j10, 3));
     }
 
     public boolean isLoading() {
@@ -771,7 +771,7 @@ public class SavedMessagesController {
                 if (this.loadedDialogs.isEmpty()) {
                     savedDialog = null;
                 } else {
-                    savedDialog = (SavedDialog) i2.d.h(1, this.loadedDialogs);
+                    savedDialog = (SavedDialog) i2.e.h(1, this.loadedDialogs);
                 }
                 if (savedDialog != null) {
                     tL_messages_getSavedDialogs.offset_id = savedDialog.top_message_id;
@@ -998,9 +998,9 @@ public class SavedMessagesController {
         for (int i12 = 0; i12 < arrayList.size(); i12++) {
             TLRPC.Message message = arrayList.get(i12);
             long savedDialogId = MessageObject.getSavedDialogId(clientUserId, message);
-            if (savedDialogId == clientUserId || (message.f20293id >= 0 && (message.send_state == 0 || message.fwd_from == null))) {
+            if (savedDialogId == clientUserId || (message.f20296id >= 0 && (message.send_state == 0 || message.fwd_from == null))) {
                 TLRPC.Message message2 = (TLRPC.Message) hVar.f(savedDialogId);
-                if (message2 == null || message2.f20293id < message.f20293id) {
+                if (message2 == null || message2.f20296id < message.f20296id) {
                     hVar.k(message, savedDialogId);
                 }
                 Integer num = (Integer) hVar2.f(savedDialogId);
@@ -1023,12 +1023,12 @@ public class SavedMessagesController {
                     SavedDialog savedDialog = this.cachedDialogs.get(i14);
                     if (savedDialog.dialogId == j10) {
                         int i15 = savedDialog.top_message_id;
-                        int i16 = message3.f20293id;
+                        int i16 = message3.f20296id;
                         if (i15 < i16 || (i16 < 0 && message3.date > savedDialog.getDate())) {
-                            if (savedDialog.top_message_id < message3.f20293id) {
+                            if (savedDialog.top_message_id < message3.f20296id) {
                                 int i17 = 0;
                                 for (int i18 = 0; i18 < arrayList.size(); i18++) {
-                                    if (arrayList.get(i18).f20293id > savedDialog.top_message_id) {
+                                    if (arrayList.get(i18).f20296id > savedDialog.top_message_id) {
                                         i17++;
                                     }
                                 }
@@ -1068,12 +1068,12 @@ public class SavedMessagesController {
                     SavedDialog savedDialog2 = this.loadedDialogs.get(i19);
                     if (savedDialog2.dialogId == j10) {
                         int i20 = savedDialog2.top_message_id;
-                        int i21 = message3.f20293id;
+                        int i21 = message3.f20296id;
                         if (i20 < i21 || (i21 < 0 && message3.date > savedDialog2.getDate())) {
-                            if (savedDialog2.top_message_id < message3.f20293id) {
+                            if (savedDialog2.top_message_id < message3.f20296id) {
                                 int i22 = 0;
                                 for (int i23 = 0; i23 < arrayList.size(); i23++) {
-                                    if (arrayList.get(i23).f20293id > savedDialog2.top_message_id) {
+                                    if (arrayList.get(i23).f20296id > savedDialog2.top_message_id) {
                                         i22++;
                                     }
                                 }

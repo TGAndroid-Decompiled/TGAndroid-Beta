@@ -4,15 +4,15 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class kd implements RequestDelegate {
-    public final int f18790a;
+    public final int f18793a;
 
     public kd(int i10) {
-        this.f18790a = i10;
+        this.f18793a = i10;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f18790a) {
+        switch (this.f18793a) {
             case 0:
                 MessagesController.lambda$reportSpam$77(tLObject, tL_error);
                 return;

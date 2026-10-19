@@ -1,113 +1,67 @@
 package org.telegram.ui;
 
-import android.os.Bundle;
-import android.view.View;
-import java.util.HashSet;
+import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.ActionBarLayout;
-public final class rx0 implements View.OnClickListener {
-    public final int f40811a;
-    public final ProfileActivity f40812b;
+public final class rx0 implements Runnable {
+    public final int f41296a;
+    public final ProfileActivity f41297b;
+    public final TLRPC.TL_error f41298c;
+    public final TLObject d;
+    public final TLRPC.TL_channels_getParticipants e;
 
-    public rx0(ProfileActivity profileActivity, int i10) {
-        this.f40811a = i10;
-        this.f40812b = profileActivity;
+    public rx0(ProfileActivity profileActivity, TLRPC.TL_error tL_error, TLObject tLObject, TLRPC.TL_channels_getParticipants tL_channels_getParticipants, int i10) {
+        this.f41296a = i10;
+        this.f41297b = profileActivity;
+        this.f41298c = tL_error;
+        this.d = tLObject;
+        this.e = tL_channels_getParticipants;
     }
 
     @Override
-    public final void onClick(View view) {
-        int i10 = this.f40811a;
-        ProfileActivity profileActivity = this.f40812b;
-        switch (i10) {
+    public final void run() {
+        switch (this.f41296a) {
             case 0:
-                ProfileActivity.c0(profileActivity);
-                return;
-            case 1:
-                if (profileActivity.v.getTag() == null) {
-                    profileActivity.u4();
-                    return;
-                }
-                return;
-            case 2:
-                profileActivity.finishPreviewFragment();
-                return;
-            case 3:
-                profileActivity.R4();
-                return;
-            case 4:
-                TLRPC.UserFull userFull = profileActivity.f33726w2;
-                if (userFull != null && userFull.wallet_card != null && profileActivity.getParentActivity() != null) {
-                    profileActivity.showDialog(new org.telegram.ui.Wallet.z2(profileActivity, profileActivity.f33591d0, profileActivity.getMessagesController().getUser(Long.valueOf(profileActivity.f33607f1)), profileActivity.f33726w2.wallet_card));
-                    return;
-                }
-                return;
-            case 5:
-                ProfileActivity.f0(profileActivity);
-                return;
-            case 6:
-                profileActivity.getClass();
-                Bundle bundle = new Bundle();
-                bundle.putLong("chat_id", profileActivity.f33614g1);
-                bundle.putLong("user_id", profileActivity.f33607f1);
-                profileActivity.presentFragment(new zh.f0(bundle));
-                return;
-            case 7:
-                ProfileActivity.g0(profileActivity);
-                return;
-            case 8:
-                profileActivity.Q4();
-                return;
-            case 9:
-                profileActivity.Q4();
-                return;
-            case 10:
-                if (profileActivity.getParentLayout() != null && profileActivity.getParentLayout().getFragmentStack() != null) {
-                    int i11 = 0;
-                    while (i11 < profileActivity.getParentLayout().getFragmentStack().size()) {
-                        org.telegram.ui.ActionBar.n2 n2Var = (org.telegram.ui.ActionBar.n2) profileActivity.getParentLayout().getFragmentStack().get(i11);
-                        if (n2Var instanceof ey) {
-                            ey eyVar = (ey) n2Var;
-                            yw ywVar = eyVar.G3;
-                            if (ywVar != null) {
-                                org.telegram.ui.ActionBar.n2 fragment = ywVar.getFragment();
-                                if ((fragment instanceof te1) && (-((te1) fragment).f41670a) == profileActivity.a()) {
-                                    eyVar.G3.a();
-                                }
-                            }
-                        } else if (n2Var instanceof sn) {
-                            if (((sn) n2Var).a() == profileActivity.a()) {
-                                ((ActionBarLayout) profileActivity.getParentLayout()).a0(n2Var, false);
-                                i11--;
-                            }
-                        } else if (n2Var instanceof te1) {
-                            if ((-((te1) n2Var).f41670a) == profileActivity.a()) {
-                                ((ActionBarLayout) profileActivity.getParentLayout()).a0(n2Var, false);
-                                i11--;
-                            }
-                        } else if ((n2Var instanceof ProfileActivity) && n2Var != profileActivity) {
-                            ProfileActivity profileActivity2 = (ProfileActivity) n2Var;
-                            if (profileActivity2.a() == profileActivity.a() && profileActivity2.f33688r1) {
-                                ((ActionBarLayout) profileActivity.getParentLayout()).a0(n2Var, false);
-                                i11--;
-                            }
-                        }
-                        i11++;
-                    }
-                }
-                profileActivity.K1 = 0;
-                Bundle bundle2 = new Bundle();
-                bundle2.putLong("chat_id", profileActivity.f33614g1);
-                HashSet hashSet = te1.f41669n1;
-                profileActivity.presentFragment(te1.E0(profileActivity.getMessagesController(), profileActivity.getMessagesStorage(), bundle2));
-                return;
-            case 11:
-                ProfileActivity.U(profileActivity);
-                return;
-            case 12:
-                profileActivity.t4(view);
+                ProfileActivity profileActivity = this.f41297b;
+                profileActivity.getNotificationCenter().doOnIdle(new rx0(profileActivity, this.f41298c, this.d, this.e, 1));
                 return;
             default:
-                profileActivity.t4(view);
+                ProfileActivity profileActivity2 = this.f41297b;
+                if (this.f41298c == null) {
+                    profileActivity2.getClass();
+                    TLRPC.TL_channels_channelParticipants tL_channels_channelParticipants = (TLRPC.TL_channels_channelParticipants) this.d;
+                    profileActivity2.getMessagesController().putUsers(tL_channels_channelParticipants.users, false);
+                    profileActivity2.getMessagesController().putChats(tL_channels_channelParticipants.chats, false);
+                    if (tL_channels_channelParticipants.users.size() < 200) {
+                        profileActivity2.E1 = true;
+                    }
+                    if (this.e.offset == 0) {
+                        profileActivity2.D1.b();
+                        profileActivity2.f33724v2.participants = new TLRPC.TL_chatParticipants();
+                        profileActivity2.getMessagesStorage().putUsersAndChats(tL_channels_channelParticipants.users, tL_channels_channelParticipants.chats, true, true);
+                        profileActivity2.getMessagesStorage().updateChannelUsers(profileActivity2.f33620g1, tL_channels_channelParticipants.participants);
+                    }
+                    for (int i10 = 0; i10 < tL_channels_channelParticipants.participants.size(); i10++) {
+                        TLRPC.TL_chatChannelParticipant tL_chatChannelParticipant = new TLRPC.TL_chatChannelParticipant();
+                        TLRPC.ChannelParticipant channelParticipant = tL_channels_channelParticipants.participants.get(i10);
+                        tL_chatChannelParticipant.channelParticipant = channelParticipant;
+                        tL_chatChannelParticipant.inviter_id = channelParticipant.inviter_id;
+                        long peerId = MessageObject.getPeerId(channelParticipant.peer);
+                        tL_chatChannelParticipant.user_id = peerId;
+                        tL_chatChannelParticipant.date = tL_chatChannelParticipant.channelParticipant.date;
+                        if (profileActivity2.D1.h(peerId) < 0) {
+                            TLRPC.ChatFull chatFull = profileActivity2.f33724v2;
+                            if (chatFull.participants == null) {
+                                chatFull.participants = new TLRPC.TL_chatParticipants();
+                            }
+                            profileActivity2.f33724v2.participants.participants.add(tL_chatChannelParticipant);
+                            profileActivity2.D1.k(tL_chatChannelParticipant, tL_chatChannelParticipant.user_id);
+                        }
+                    }
+                }
+                profileActivity2.C1 = false;
+                profileActivity2.F4();
+                profileActivity2.e5(true, false);
                 return;
         }
     }

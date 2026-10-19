@@ -15,59 +15,58 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.a71;
-import org.telegram.ui.Components.c61;
-import org.telegram.ui.Components.e61;
+import org.telegram.ui.Components.b71;
+import org.telegram.ui.Components.d61;
 import org.telegram.ui.Components.f61;
+import org.telegram.ui.Components.g61;
 import org.telegram.ui.Components.im0;
-import org.telegram.ui.Components.s61;
+import org.telegram.ui.Components.t61;
 import org.telegram.ui.Components.w9;
 import org.telegram.ui.Components.yq;
-import org.telegram.ui.Wallet.p9;
-public final class f1 extends e61 {
-    public static final int f50230a = 0;
+public final class f1 extends f61 {
+    public static final int f50229a = 0;
 
     static {
-        e61.setup(new e61());
+        f61.setup(new f61());
     }
 
-    public static f61 a(int i10, TL_stars.StarGift starGift, boolean z10, boolean z11, boolean z12, boolean z13, boolean z14) {
-        f61 J = f61.J(f1.class);
-        J.f26149u = 1;
-        J.f26153z = i10;
+    public static g61 a(int i10, TL_stars.StarGift starGift, boolean z10, boolean z11, boolean z12, boolean z13, boolean z14) {
+        g61 J = g61.J(f1.class);
+        J.f26508u = 1;
+        J.f26512z = i10;
         J.G = starGift;
         J.e = z10;
         J.H = Boolean.valueOf(z11);
-        J.f26146r = z13;
-        J.f26145q = z12;
-        J.f26148t = z14;
+        J.f26505r = z13;
+        J.f26504q = z12;
+        J.f26507t = z14;
         return J;
     }
 
     @Override
-    public final void attachedView(im0 im0Var, View view, f61 f61Var) {
-        ((g1) view).d(f61Var.h, false);
+    public final void attachedView(im0 im0Var, View view, g61 g61Var) {
+        ((g1) view).d(g61Var.h, false);
     }
 
     @Override
-    public final void bindView(View view, f61 f61Var, boolean z10, s61 s61Var, a71 a71Var) {
+    public final void bindView(View view, g61 g61Var, boolean z10, t61 t61Var, b71 b71Var) {
         boolean z11;
         float f7;
         int i10;
         g1 g1Var = (g1) view;
-        Object obj = f61Var.G;
+        Object obj = g61Var.G;
         boolean z12 = false;
         if (obj instanceof sg.k) {
             sg.k kVar = (sg.k) obj;
-            p9 p9Var = g1Var.J;
+            rg.x1 x1Var = g1Var.J;
             TextView textView = g1Var.I;
             TextView textView2 = g1Var.H;
             d1 d1Var = g1Var.e;
-            w9 w9Var = g1Var.f50270y;
+            w9 w9Var = g1Var.f50269y;
             TextView textView3 = g1Var.L;
             TextView textView4 = g1Var.M;
             int d = kVar.d();
-            if (g1Var.f50262j0 != kVar) {
+            if (g1Var.f50261j0 != kVar) {
                 fb d12 = md.d1(w9Var, w9Var.getImageReceiver(), d);
                 g1Var.N = d12;
                 d12.run();
@@ -81,7 +80,7 @@ public final class f1 extends e61 {
             textView2.setVisibility(0);
             textView.setVisibility(0);
             w9Var.setTranslationY(-AndroidUtilities.dp(8.0f));
-            g1Var.f50265n.setVisibility(8);
+            g1Var.f50264n.setVisibility(8);
             g1Var.F.setVisibility(8);
             if (kVar.f46276c == null && kVar.d == null) {
                 textView4.setVisibility(8);
@@ -94,7 +93,7 @@ public final class f1 extends e61 {
                 textView4.setTextColor(i10);
                 textView4.setVisibility(0);
                 SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("" + LocaleController.formatNumber(kVar.g(), ','));
-                spannableStringBuilder.setSpan(new c61(AndroidUtilities.bold()), 0, spannableStringBuilder.length(), 33);
+                spannableStringBuilder.setSpan(new d61(AndroidUtilities.bold()), 0, spannableStringBuilder.length(), 33);
                 yq[] yqVarArr = new yq[1];
                 textView4.setText(md.Y0(false, LocaleController.formatSpannable(R.string.PremiumOrStarsPrice, spannableStringBuilder), 0.48f, yqVarArr));
                 yqVarArr[0].spaceScaleX = 0.8f;
@@ -107,48 +106,48 @@ public final class f1 extends e61 {
             textView3.setText(kVar.c());
             g1Var.K.setBackground(h6.c0(AndroidUtilities.dp(13.0f), 422810068));
             textView3.setTextColor(-13397548);
-            ((ViewGroup.MarginLayoutParams) p9Var.getLayoutParams()).topMargin = AndroidUtilities.dp(130.0f);
-            ((FrameLayout.LayoutParams) p9Var.getLayoutParams()).gravity = 49;
-            g1Var.f50262j0 = kVar;
-            g1Var.f50263k0 = null;
-            g1Var.f50250a0 = kVar;
-            g1Var.f50252b0 = null;
-            g1Var.f50255d0 = false;
-            g1Var.f50256e0 = null;
-            g1Var.f50258f0 = false;
-            g1Var.f50259g0 = false;
-            g1Var.f50260h0 = false;
+            ((ViewGroup.MarginLayoutParams) x1Var.getLayoutParams()).topMargin = AndroidUtilities.dp(130.0f);
+            ((FrameLayout.LayoutParams) x1Var.getLayoutParams()).gravity = 49;
+            g1Var.f50261j0 = kVar;
+            g1Var.f50262k0 = null;
+            g1Var.f50249a0 = kVar;
+            g1Var.f50251b0 = null;
+            g1Var.f50254d0 = false;
+            g1Var.f50255e0 = null;
+            g1Var.f50257f0 = false;
+            g1Var.f50258g0 = false;
+            g1Var.f50259h0 = false;
             g1Var.Q = null;
             g1Var.R = null;
             g1Var.c(false, false);
             g1Var.k();
         } else if (obj instanceof TL_stars.StarGift) {
             TL_stars.StarGift starGift = (TL_stars.StarGift) obj;
-            boolean z13 = f61Var.e;
-            Object obj2 = f61Var.H;
+            boolean z13 = g61Var.e;
+            Object obj2 = g61Var.H;
             if (obj2 instanceof Boolean) {
                 z11 = ((Boolean) obj2).booleanValue();
             } else {
                 z11 = false;
             }
-            g1Var.g(starGift, z13, z11, f61Var.f26145q, f61Var.f26146r, f61Var.f26148t);
+            g1Var.g(starGift, z13, z11, g61Var.f26504q, g61Var.f26505r, g61Var.f26507t);
         } else if (obj instanceof TL_stars.SavedStarGift) {
-            z12 = g1Var.h((TL_stars.SavedStarGift) obj, f61Var.f26145q, f61Var.f26146r);
+            z12 = g1Var.h((TL_stars.SavedStarGift) obj, g61Var.f26504q, g61Var.f26505r);
         }
-        if (f61Var.f26135f) {
-            g1Var.b(f61Var.e, z12);
+        if (g61Var.f26494f) {
+            g1Var.b(g61Var.e, z12);
         }
-        g1Var.d(f61Var.h, z12);
+        g1Var.d(g61Var.h, z12);
         FrameLayout frameLayout = g1Var.d;
         float f10 = 1.0f;
-        if (f61Var.f26136g) {
+        if (g61Var.f26495g) {
             f7 = 1.0f;
         } else {
             f7 = 0.65f;
         }
         frameLayout.setAlpha(f7);
-        h1 h1Var = g1Var.f50257f;
-        if (!f61Var.f26136g) {
+        h1 h1Var = g1Var.f50256f;
+        if (!g61Var.f26495g) {
             f10 = 0.5f;
         }
         h1Var.setAlpha(f10);
@@ -160,38 +159,38 @@ public final class f1 extends e61 {
     }
 
     @Override
-    public final boolean equals(f61 f61Var, f61 f61Var2) {
-        if (f61Var.f26145q == f61Var2.f26145q) {
-            Object obj = f61Var.G;
-            if (obj != null || f61Var2.G != null) {
+    public final boolean equals(g61 g61Var, g61 g61Var2) {
+        if (g61Var.f26504q == g61Var2.f26504q) {
+            Object obj = g61Var.G;
+            if (obj != null || g61Var2.G != null) {
                 if (obj instanceof sg.k) {
-                    if (obj == f61Var2.G) {
+                    if (obj == g61Var2.G) {
                         return true;
                     }
                     return false;
                 }
                 if (obj instanceof TL_stars.StarGift) {
-                    Object obj2 = f61Var2.G;
+                    Object obj2 = g61Var2.G;
                     if (obj2 instanceof TL_stars.StarGift) {
-                        if (((TL_stars.StarGift) obj).f20496id == ((TL_stars.StarGift) obj2).f20496id) {
+                        if (((TL_stars.StarGift) obj).f20499id == ((TL_stars.StarGift) obj2).f20499id) {
                             return true;
                         }
                         return false;
                     }
                 }
                 if (obj instanceof TL_stars.SavedStarGift) {
-                    Object obj3 = f61Var2.G;
+                    Object obj3 = g61Var2.G;
                     if (obj3 instanceof TL_stars.SavedStarGift) {
                         TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj;
                         TL_stars.SavedStarGift savedStarGift2 = (TL_stars.SavedStarGift) obj3;
-                        if (savedStarGift.gift.f20496id == savedStarGift2.gift.f20496id && savedStarGift.date == savedStarGift2.date && savedStarGift.saved_id == savedStarGift2.saved_id) {
+                        if (savedStarGift.gift.f20499id == savedStarGift2.gift.f20499id && savedStarGift.date == savedStarGift2.date && savedStarGift.saved_id == savedStarGift2.saved_id) {
                             return true;
                         }
                         return false;
                     }
                 }
             }
-            if (f61Var.f26153z == f61Var2.f26153z && f61Var.e == f61Var2.e && f61Var.B == f61Var2.B && TextUtils.equals(f61Var.f26140l, f61Var2.f26140l)) {
+            if (g61Var.f26512z == g61Var2.f26512z && g61Var.e == g61Var2.e && g61Var.B == g61Var2.B && TextUtils.equals(g61Var.f26499l, g61Var2.f26499l)) {
                 return true;
             }
             return false;

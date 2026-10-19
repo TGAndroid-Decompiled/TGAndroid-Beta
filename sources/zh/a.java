@@ -39,11 +39,11 @@ public abstract class a {
                 }
                 f51632g = null;
                 int b10 = b("Neon Blue");
-                u0.H9 = i10;
-                u0.I9 = b10;
-                u0.G9 = null;
-                u0.F9 = null;
-                u0.E9 = null;
+                c1.H9 = i10;
+                c1.I9 = b10;
+                c1.G9 = null;
+                c1.F9 = null;
+                c1.E9 = null;
                 return true;
             }
         }

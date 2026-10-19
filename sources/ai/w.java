@@ -6,15 +6,15 @@ import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.ui.Components.im0;
-import org.telegram.ui.Components.jw0;
-public final class w extends jw0 implements r0.m {
-    public final b2.u0 f2348w0;
-    public final x f2349x0;
+import org.telegram.ui.Components.kw0;
+public final class w extends kw0 implements r0.m {
+    public final b2.u0 f2345w0;
+    public final x f2346x0;
 
     public w(x xVar, Context context) {
         super(context, null);
-        this.f2349x0 = xVar;
-        this.f2348w0 = new Object();
+        this.f2346x0 = xVar;
+        this.f2345w0 = new Object();
     }
 
     @Override
@@ -24,10 +24,10 @@ public final class w extends jw0 implements r0.m {
         org.telegram.ui.ActionBar.k kVar2;
         boolean z10;
         int max;
-        x xVar = this.f2349x0;
+        x xVar = this.f2346x0;
         if (viewGroup == xVar.e && xVar.F.isAttachedToWindow()) {
             kVar = ((org.telegram.ui.ActionBar.n2) xVar).actionBar;
-            boolean z11 = kVar.f21493n0;
+            boolean z11 = kVar.f21496n0;
             int top = (((View) xVar.F.getParent()).getTop() - AndroidUtilities.statusBarHeight) - org.telegram.ui.ActionBar.k.getCurrentActionBarHeight();
             int bottom = ((View) xVar.F.getParent()).getBottom();
             boolean z12 = false;
@@ -91,7 +91,7 @@ public final class w extends jw0 implements r0.m {
     public final void i(ViewGroup viewGroup, int i10, int i11, int i12, int i13, int i14, int[] iArr) {
         org.telegram.ui.ActionBar.k kVar;
         boolean z10;
-        x xVar = this.f2349x0;
+        x xVar = this.f2346x0;
         try {
             if (viewGroup == xVar.e && xVar.F.isAttachedToWindow()) {
                 im0 currentListView = xVar.F.getCurrentListView();
@@ -116,7 +116,7 @@ public final class w extends jw0 implements r0.m {
 
     @Override
     public final void n(int i10, View view) {
-        this.f2348w0.f4057a = 0;
+        this.f2345w0.f4055a = 0;
     }
 
     @Override
@@ -134,7 +134,7 @@ public final class w extends jw0 implements r0.m {
 
     @Override
     public final void s(View view, View view2, int i10, int i11) {
-        this.f2348w0.f4057a = i10;
+        this.f2345w0.f4055a = i10;
     }
 
     @Override

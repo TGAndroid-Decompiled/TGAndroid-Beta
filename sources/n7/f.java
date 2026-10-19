@@ -1,33 +1,26 @@
 package n7;
-public final class f extends e {
-    public final c7.x f17263a;
 
-    public f(c7.x xVar) {
-        this.f17263a = xVar;
-    }
+import java.io.Serializable;
+import java.util.Arrays;
+public final class f implements Serializable {
+    public final Object f17268a;
 
-    @Override
-    public final Object a() {
-        return this.f17263a;
-    }
-
-    @Override
-    public final boolean b() {
-        return true;
+    public f(Object obj) {
+        this.f17268a = obj;
     }
 
     public final boolean equals(Object obj) {
         if (obj instanceof f) {
-            return this.f17263a.equals(((f) obj).f17263a);
+            return a.h(this.f17268a, ((f) obj).f17268a);
         }
         return false;
     }
 
     public final int hashCode() {
-        return this.f17263a.hashCode() + 1502476572;
+        return Arrays.hashCode(new Object[]{this.f17268a});
     }
 
     public final String toString() {
-        return a1.g.p("Optional.of(", this.f17263a.toString(), ")");
+        return a1.g.p("Suppliers.ofInstance(", this.f17268a.toString(), ")");
     }
 }

@@ -25,17 +25,17 @@ import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.d11;
+import org.telegram.ui.Components.e11;
 import org.telegram.ui.Components.f6;
 public class o0 extends View {
     public final Paint E;
     public boolean F;
-    public d11 G;
+    public e11 G;
     public final Paint H;
     public boolean I;
-    public d11 J;
+    public e11 J;
     public boolean K;
-    public d11 L;
+    public e11 L;
     public boolean M;
     public final TextPaint N;
     public StaticLayout O;
@@ -47,72 +47,72 @@ public class o0 extends View {
     public boolean U;
     public int V;
     public n0 W;
-    public int f45551a;
-    public float f45552a0;
-    public int f45553b;
-    public float f45554b0;
-    public boolean f45555c;
-    public float f45556c0;
+    public int f45543a;
+    public float f45544a0;
+    public int f45545b;
+    public float f45546b0;
+    public boolean f45547c;
+    public float f45548c0;
     public boolean d;
-    public float f45557d0;
+    public float f45549d0;
     public final float e;
-    public int f45558e0;
-    public final int f45559f;
-    public final RectF f45560f0;
-    public final RectF f45561g0;
+    public int f45550e0;
+    public final int f45551f;
+    public final RectF f45552f0;
+    public final RectF f45553g0;
     public final int h;
-    public final Path f45562h0;
-    public final Path f45563i0;
-    public final RectF f45564j0;
-    public final RectF f45565k0;
-    public final f6 f45566l0;
+    public final Path f45554h0;
+    public final Path f45555i0;
+    public final RectF f45556j0;
+    public final RectF f45557k0;
+    public final f6 f45558l0;
     public final f6 m0;
-    public float f45567n;
-    public final f6 f45568n0;
-    public final f6 f45569o0;
-    public final f6 f45570p0;
-    public final f6 f45571q0;
-    public final TextPaint f45572r;
-    public final f6 f45573r0;
-    public StaticLayout f45574s;
-    public final f6 f45575s0;
+    public float f45559n;
+    public final f6 f45560n0;
+    public final f6 f45561o0;
+    public final f6 f45562p0;
+    public final f6 f45563q0;
+    public final TextPaint f45564r;
+    public final f6 f45565r0;
+    public StaticLayout f45566s;
+    public final f6 f45567s0;
     public float v;
-    public float f45576w;
-    public final RectF f45577x;
-    public final Drawable f45578y;
+    public float f45568w;
+    public final RectF f45569x;
+    public final Drawable f45570y;
 
     public o0(Context context, float f7) {
         super(context);
-        this.f45555c = true;
-        this.f45567n = 1.0f;
+        this.f45547c = true;
+        this.f45559n = 1.0f;
         TextPaint textPaint = new TextPaint(1);
-        this.f45572r = textPaint;
-        this.f45577x = new RectF(4.0f, 4.33f, 7.66f, 3.0f);
+        this.f45564r = textPaint;
+        this.f45569x = new RectF(4.0f, 4.33f, 7.66f, 3.0f);
         this.E = new Paint(1);
         this.H = new Paint(1);
         this.N = new TextPaint(1);
         ImageReceiver imageReceiver = new ImageReceiver(this);
         this.T = imageReceiver;
-        this.f45560f0 = new RectF();
-        this.f45561g0 = new RectF();
-        this.f45562h0 = new Path();
-        this.f45563i0 = new Path();
-        this.f45564j0 = new RectF();
-        this.f45565k0 = new RectF();
+        this.f45552f0 = new RectF();
+        this.f45553g0 = new RectF();
+        this.f45554h0 = new Path();
+        this.f45555i0 = new Path();
+        this.f45556j0 = new RectF();
+        this.f45557k0 = new RectF();
         bs bsVar = bs.h;
-        this.f45566l0 = new f6(this, 0L, 350L, bsVar);
+        this.f45558l0 = new f6(this, 0L, 350L, bsVar);
         this.m0 = new f6(this, 0L, 350L, bsVar);
-        this.f45568n0 = new f6(this, 0L, 350L, bsVar);
-        this.f45569o0 = new f6(this, 0L, 350L, bsVar);
-        this.f45570p0 = new f6(this, 0L, 350L, bsVar);
-        this.f45571q0 = new f6(this, 0L, 350L, bsVar);
-        this.f45573r0 = new f6(this, 0L, 350L, bsVar);
-        this.f45575s0 = new f6(this, 0L, 350L, bsVar);
+        this.f45560n0 = new f6(this, 0L, 350L, bsVar);
+        this.f45561o0 = new f6(this, 0L, 350L, bsVar);
+        this.f45562p0 = new f6(this, 0L, 350L, bsVar);
+        this.f45563q0 = new f6(this, 0L, 350L, bsVar);
+        this.f45565r0 = new f6(this, 0L, 350L, bsVar);
+        this.f45567s0 = new f6(this, 0L, 350L, bsVar);
         this.e = f7;
         imageReceiver.setInvalidateAll(true);
-        this.f45559f = (int) (f7 * 3.0f);
+        this.f45551f = (int) (f7 * 3.0f);
         this.h = (int) (f7 * 1.0f);
-        this.f45578y = context.getResources().getDrawable(R.drawable.story_link).mutate();
+        this.f45570y = context.getResources().getDrawable(R.drawable.story_link).mutate();
         textPaint.setTextSize(24.0f * f7);
         textPaint.setTypeface(AndroidUtilities.getTypeface("fonts/rcondensedbold.ttf"));
     }
@@ -122,37 +122,37 @@ public class o0 extends View {
     }
 
     public final void b(int i10, n0 n0Var, boolean z10) {
-        this.f45551a = i10;
+        this.f45543a = i10;
         if (this.W == n0Var && !z10) {
             return;
         }
         this.W = n0Var;
-        this.f45555c = true;
+        this.f45547c = true;
         this.d = z10;
         requestLayout();
     }
 
     public final void c(int i10, int i11) {
         int i12 = -16777216;
-        Drawable drawable = this.f45578y;
-        TextPaint textPaint = this.f45572r;
+        Drawable drawable = this.f45570y;
+        TextPaint textPaint = this.f45564r;
         if (i10 == 0) {
-            this.f45558e0 = i11;
+            this.f45550e0 = i11;
             if (AndroidUtilities.computePerceivedBrightness(i11) < 0.721f) {
                 i12 = -1;
             }
             textPaint.setColor(i12);
             drawable.setColorFilter(new PorterDuffColorFilter(i12, PorterDuff.Mode.SRC_IN));
         } else if (i10 == 1) {
-            this.f45558e0 = -16777216;
+            this.f45550e0 = -16777216;
             textPaint.setColor(-1);
             drawable.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
         } else if (i10 == 2) {
-            this.f45558e0 = 1275068416;
+            this.f45550e0 = 1275068416;
             textPaint.setColor(-1);
             drawable.setColorFilter(null);
         } else {
-            this.f45558e0 = -1;
+            this.f45550e0 = -1;
             textPaint.setColor(-13397548);
             drawable.setColorFilter(new PorterDuffColorFilter(-13397548, PorterDuff.Mode.SRC_IN));
         }
@@ -183,23 +183,23 @@ public class o0 extends View {
         float f16;
         float f17;
         ImageLocation forPhoto;
-        if (this.f45555c && this.W != null) {
+        if (this.f45547c && this.W != null) {
             boolean e = e();
-            int i15 = this.f45559f;
+            int i15 = this.f45551f;
             float f18 = this.e;
             if (e) {
-                if (TextUtils.isEmpty(this.W.f45535b)) {
-                    str2 = this.W.f45536c;
+                if (TextUtils.isEmpty(this.W.f45508b)) {
+                    str2 = this.W.f45509c;
                 } else {
-                    str2 = this.W.f45535b;
+                    str2 = this.W.f45508b;
                 }
                 TLRPC.WebPage webPage = this.W.d;
-                float f19 = (this.f45553b - i15) - i15;
-                this.f45554b0 = 0.0f;
-                this.f45552a0 = 0.0f;
-                this.f45556c0 = 0.0f;
-                int colorId = UserObject.getColorId(UserConfig.getInstance(this.f45551a).getCurrentUser());
-                MessagesController.PeerColors peerColors = MessagesController.getInstance(this.f45551a).peerColors;
+                float f19 = (this.f45545b - i15) - i15;
+                this.f45546b0 = 0.0f;
+                this.f45544a0 = 0.0f;
+                this.f45548c0 = 0.0f;
+                int colorId = UserObject.getColorId(UserConfig.getInstance(this.f45543a).getCurrentUser());
+                MessagesController.PeerColors peerColors = MessagesController.getInstance(this.f45543a).peerColors;
                 String str3 = null;
                 if (peerColors != null && colorId >= 7) {
                     peerColor = peerColors.getColor(colorId);
@@ -207,22 +207,22 @@ public class o0 extends View {
                     peerColor = null;
                 }
                 if (peerColor == null) {
-                    int[] iArr = h6.f21245r8;
+                    int[] iArr = h6.f21248r8;
                     color1 = h6.x0(null, iArr[colorId % iArr.length], false);
                 } else {
                     color1 = peerColor.getColor1();
                 }
                 this.H.setColor(color1);
-                this.f45554b0 = (7.33f * f18) + this.f45554b0;
-                this.F = this.W.f45537f;
-                d11 d11Var = new d11(str2, 16.0f, null);
-                d11Var.f25435a.setTextSize(16.0f * f18);
+                this.f45546b0 = (7.33f * f18) + this.f45546b0;
+                this.F = this.W.f45510f;
+                e11 e11Var = new e11(str2, 16.0f, null);
+                e11Var.f25728a.setTextSize(16.0f * f18);
                 float f20 = 20.0f * f18;
-                d11Var.q(f19 - f20);
-                this.G = d11Var;
-                this.f45552a0 = Math.max(this.f45552a0, Math.min(f20 + d11Var.f25437c, f19));
+                e11Var.q(f19 - f20);
+                this.G = e11Var;
+                this.f45544a0 = Math.max(this.f45544a0, Math.min(f20 + e11Var.f25730c, f19));
                 float f21 = 7.0f * f18;
-                this.f45554b0 = this.G.j() + this.f45554b0 + f21;
+                this.f45546b0 = this.G.j() + this.f45546b0 + f21;
                 if (webPage.photo == null && !MessageObject.isVideoDocument(webPage.document)) {
                     z10 = false;
                 } else {
@@ -232,8 +232,8 @@ public class o0 extends View {
                 n0 n0Var = this.W;
                 boolean z12 = n0Var.e;
                 this.S = !z12;
-                if (this.U && (n0Var.f45534a & 4) != 0) {
-                    i10 = n0Var.f45538i;
+                if (this.U && (n0Var.f45507a & 4) != 0) {
+                    i10 = n0Var.f45511i;
                 } else {
                     if (!z12) {
                         f7 = 48.0f;
@@ -250,7 +250,7 @@ public class o0 extends View {
                     f10 = 48.0f;
                     TLRPC.PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(webPage.photo.sizes, (int) (i10 * f18), false, closestPhotoSizeWithSize, false);
                     if (closestPhotoSizeWithSize2 != null) {
-                        i12 = closestPhotoSizeWithSize2.f20297w;
+                        i12 = closestPhotoSizeWithSize2.f20300w;
                         i11 = closestPhotoSizeWithSize2.h;
                     } else {
                         i11 = 0;
@@ -274,7 +274,7 @@ public class o0 extends View {
                         TLRPC.PhotoSize closestPhotoSizeWithSize3 = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 1, false, null, false);
                         TLRPC.PhotoSize closestPhotoSizeWithSize4 = FileLoader.getClosestPhotoSizeWithSize(webPage.document.thumbs, (int) (i10 * f18), false, closestPhotoSizeWithSize3, false);
                         if (closestPhotoSizeWithSize4 != null) {
-                            i12 = closestPhotoSizeWithSize4.f20297w;
+                            i12 = closestPhotoSizeWithSize4.f20300w;
                             i11 = closestPhotoSizeWithSize4.h;
                         } else {
                             i11 = 0;
@@ -296,12 +296,12 @@ public class o0 extends View {
                         i12 = 0;
                     }
                 }
-                this.f45556c0 = (5.66f * f18) + this.f45556c0;
+                this.f45548c0 = (5.66f * f18) + this.f45548c0;
                 boolean isEmpty = TextUtils.isEmpty(webPage.site_name);
                 this.K = !isEmpty;
                 if (!isEmpty) {
-                    d11 d11Var2 = new d11(webPage.site_name, 14.0f, AndroidUtilities.bold());
-                    d11Var2.f25435a.setTextSize(f18 * 14.0f);
+                    e11 e11Var2 = new e11(webPage.site_name, 14.0f, AndroidUtilities.bold());
+                    e11Var2.f25728a.setTextSize(f18 * 14.0f);
                     float f22 = f18 * 40.0f;
                     float f23 = f19 - f22;
                     if (this.R && this.S) {
@@ -309,26 +309,26 @@ public class o0 extends View {
                     } else {
                         f16 = 0.0f;
                     }
-                    d11Var2.q((int) Math.ceil(f23 - f16));
-                    this.L = d11Var2;
-                    float f24 = this.f45552a0;
-                    float f25 = f22 + d11Var2.f25437c;
+                    e11Var2.q((int) Math.ceil(f23 - f16));
+                    this.L = e11Var2;
+                    float f24 = this.f45544a0;
+                    float f25 = f22 + e11Var2.f25730c;
                     if (this.R && this.S) {
                         f17 = f18 * 60.0f;
                     } else {
                         f17 = 0.0f;
                     }
-                    this.f45552a0 = Math.max(f24, Math.min(f25 + f17, f19));
-                    this.f45556c0 = (f18 * 2.66f) + this.L.j() + this.f45556c0;
-                    i13 = this.L.f25436b.getLineCount();
+                    this.f45544a0 = Math.max(f24, Math.min(f25 + f17, f19));
+                    this.f45548c0 = (f18 * 2.66f) + this.L.j() + this.f45548c0;
+                    i13 = this.L.f25729b.getLineCount();
                 } else {
                     i13 = 0;
                 }
                 boolean isEmpty2 = TextUtils.isEmpty(webPage.title);
                 this.I = !isEmpty2;
                 if (!isEmpty2) {
-                    d11 d11Var3 = new d11(webPage.title, 14.0f, AndroidUtilities.bold());
-                    d11Var3.f25435a.setTextSize(f18 * 14.0f);
+                    e11 e11Var3 = new e11(webPage.title, 14.0f, AndroidUtilities.bold());
+                    e11Var3.f25728a.setTextSize(f18 * 14.0f);
                     float f26 = f18 * 40.0f;
                     float f27 = f19 - f26;
                     f11 = 2.66f;
@@ -338,18 +338,18 @@ public class o0 extends View {
                         f14 = 0.0f;
                     }
                     f12 = f18;
-                    d11Var3.q((int) Math.ceil(f27 - f14));
-                    this.J = d11Var3;
-                    float f28 = this.f45552a0;
-                    float f29 = f26 + d11Var3.f25437c;
+                    e11Var3.q((int) Math.ceil(f27 - f14));
+                    this.J = e11Var3;
+                    float f28 = this.f45544a0;
+                    float f29 = f26 + e11Var3.f25730c;
                     if (this.R && this.S) {
                         f15 = 60.0f * f12;
                     } else {
                         f15 = 0.0f;
                     }
-                    this.f45552a0 = Math.max(f28, Math.min(f29 + f15, f19));
-                    this.f45556c0 = (f12 * 2.66f) + this.J.j() + this.f45556c0;
-                    i13 += this.J.f25436b.getLineCount();
+                    this.f45544a0 = Math.max(f28, Math.min(f29 + f15, f19));
+                    this.f45548c0 = (f12 * 2.66f) + this.J.j() + this.f45548c0;
+                    i13 += this.J.f25729b.getLineCount();
                 } else {
                     f11 = 2.66f;
                     f12 = f18;
@@ -387,59 +387,59 @@ public class o0 extends View {
                         this.P = Math.max(f31, lineWidth + f13);
                         this.Q = Math.min(this.Q, this.O.getLineLeft(i17));
                     }
-                    this.f45552a0 = Math.max(this.f45552a0, Math.min(f30 + this.P, f19));
-                    this.f45556c0 = (f12 * f11) + this.f45556c0 + this.O.getHeight();
+                    this.f45544a0 = Math.max(this.f45544a0, Math.min(f30 + this.P, f19));
+                    this.f45548c0 = (f12 * f11) + this.f45548c0 + this.O.getHeight();
                 }
                 if (this.R && !this.S) {
                     if (i12 > 0 && i11 > 0) {
-                        this.f45557d0 = Math.min((Math.max(0.0f, this.f45552a0 - (f12 * 40.0f)) / i12) * i11, f12 * 200.0f);
+                        this.f45549d0 = Math.min((Math.max(0.0f, this.f45544a0 - (f12 * 40.0f)) / i12) * i11, f12 * 200.0f);
                     } else {
-                        this.f45557d0 = f12 * 120.0f;
+                        this.f45549d0 = f12 * 120.0f;
                     }
-                    this.f45556c0 = (f12 * f11) + this.f45556c0 + this.f45557d0;
+                    this.f45548c0 = (f12 * f11) + this.f45548c0 + this.f45549d0;
                 }
-                float f32 = f21 + this.f45556c0;
-                this.f45556c0 = f32;
-                this.f45554b0 = (f12 * 11.0f) + this.f45554b0 + f32;
+                float f32 = f21 + this.f45548c0;
+                this.f45548c0 = f32;
+                this.f45546b0 = (f12 * 11.0f) + this.f45546b0 + f32;
             } else {
-                if (TextUtils.isEmpty(this.W.f45535b)) {
-                    String str5 = this.W.f45536c;
+                if (TextUtils.isEmpty(this.W.f45508b)) {
+                    String str5 = this.W.f45509c;
                     if (str5.startsWith("https://")) {
                         str5 = str5.substring(8);
                     }
                     str = str5.toUpperCase();
                 } else {
-                    str = this.W.f45535b;
+                    str = this.W.f45508b;
                 }
-                RectF rectF = this.f45577x;
-                float f33 = ((this.f45553b - i15) - i15) - ((((rectF.left + 30.0f) + 3.25f) + rectF.right) * f18);
-                this.f45567n = 1.0f;
+                RectF rectF = this.f45569x;
+                float f33 = ((this.f45545b - i15) - i15) - ((((rectF.left + 30.0f) + 3.25f) + rectF.right) * f18);
+                this.f45559n = 1.0f;
                 TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
-                TextPaint textPaint2 = this.f45572r;
-                this.f45574s = new StaticLayout(TextUtils.ellipsize(str, textPaint2, (int) Math.ceil(d), truncateAt), textPaint2, (int) Math.ceil(f33), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+                TextPaint textPaint2 = this.f45564r;
+                this.f45566s = new StaticLayout(TextUtils.ellipsize(str, textPaint2, (int) Math.ceil(d), truncateAt), textPaint2, (int) Math.ceil(f33), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
                 this.v = 0.0f;
-                this.f45576w = Float.MAX_VALUE;
-                for (int i18 = 0; i18 < this.f45574s.getLineCount(); i18++) {
-                    this.v = Math.max(this.v, this.f45574s.getLineWidth(i18));
-                    this.f45576w = Math.min(this.f45576w, this.f45574s.getLineLeft(i18));
+                this.f45568w = Float.MAX_VALUE;
+                for (int i18 = 0; i18 < this.f45566s.getLineCount(); i18++) {
+                    this.v = Math.max(this.v, this.f45566s.getLineWidth(i18));
+                    this.f45568w = Math.min(this.f45568w, this.f45566s.getLineLeft(i18));
                 }
-                if (this.f45574s.getLineCount() > 2) {
-                    this.f45567n = 0.3f;
+                if (this.f45566s.getLineCount() > 2) {
+                    this.f45559n = 0.3f;
                 } else {
-                    this.f45567n = Math.min(1.0f, f33 / this.v);
+                    this.f45559n = Math.min(1.0f, f33 / this.v);
                 }
-                this.f45552a0 = (this.v * this.f45567n) + ((rectF.left + 30.0f + 3.25f + rectF.right) * f18);
-                this.f45554b0 = Math.max(f18 * 30.0f, this.f45574s.getHeight() * this.f45567n) + ((rectF.top + rectF.bottom) * f18);
+                this.f45544a0 = (this.v * this.f45559n) + ((rectF.left + 30.0f + 3.25f + rectF.right) * f18);
+                this.f45546b0 = Math.max(f18 * 30.0f, this.f45566s.getHeight() * this.f45559n) + ((rectF.top + rectF.bottom) * f18);
             }
             if (!this.d) {
-                this.f45566l0.f(this.F, true);
-                this.f45568n0.f(this.S, true);
+                this.f45558l0.f(this.F, true);
+                this.f45560n0.f(this.S, true);
                 this.m0.f(this.R, true);
-                this.f45571q0.d(this.f45556c0, true);
+                this.f45563q0.d(this.f45548c0, true);
             } else {
                 invalidate();
             }
-            this.f45555c = false;
+            this.f45547c = false;
         }
     }
 
@@ -461,8 +461,8 @@ public class o0 extends View {
         if (this.S) {
             f7 = 48.0f;
         } else {
-            int i10 = this.f45553b;
-            int i11 = this.f45559f;
+            int i10 = this.f45545b;
+            int i11 = this.f45551f;
             f7 = (((i10 - i11) - i11) / this.e) - 40.0f;
         }
         return ((int) f7) * 2;
@@ -480,7 +480,7 @@ public class o0 extends View {
             f10 = this.e;
         } else {
             f7 = 0.2f;
-            f10 = this.f45554b0;
+            f10 = this.f45546b0;
         }
         return f10 * f7;
     }
@@ -500,16 +500,16 @@ public class o0 extends View {
     @Override
     public final void onMeasure(int i10, int i11) {
         d();
-        int i12 = this.f45559f;
-        int ceil = ((int) Math.ceil(this.f45552a0)) + i12 + i12;
-        int ceil2 = (int) Math.ceil(this.f45554b0);
+        int i12 = this.f45551f;
+        int ceil = ((int) Math.ceil(this.f45544a0)) + i12 + i12;
+        int ceil2 = (int) Math.ceil(this.f45546b0);
         int i13 = this.h;
         setMeasuredDimension(ceil, ceil2 + i13 + i13);
     }
 
     public void setMaxWidth(int i10) {
-        this.f45553b = i10;
-        this.f45555c = true;
+        this.f45545b = i10;
+        this.f45547c = true;
     }
 
     public void setPreviewType(int i10) {

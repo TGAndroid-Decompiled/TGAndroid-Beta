@@ -34,7 +34,7 @@ public final class yc extends FrameLayout {
         this.f2509a = d6Var;
         Drawable mutate = context.getResources().getDrawable(R.drawable.star_small_outline).mutate();
         this.f2510b = mutate;
-        mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21057h5, d6Var), PorterDuff.Mode.SRC_IN));
+        mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21060h5, d6Var), PorterDuff.Mode.SRC_IN));
         this.f2511c = context.getResources().getDrawable(R.drawable.star_small_inner).mutate();
         setWillNotDraw(false);
         TextView textView = new TextView(context);
@@ -45,7 +45,7 @@ public final class yc extends FrameLayout {
         org.telegram.ui.Components.q6 q6Var = new org.telegram.ui.Components.q6(context, false, false, false);
         this.e = q6Var;
         q6Var.setTextSize(AndroidUtilities.dp(15.0f));
-        q6Var.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21391z6, d6Var));
+        q6Var.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21394z6, d6Var));
         if (LocaleController.isRTL) {
             i10 = 3;
         } else {
@@ -109,7 +109,7 @@ public final class yc extends FrameLayout {
                 paint = null;
             }
             if (paint == null) {
-                paint = org.telegram.ui.ActionBar.h6.f21107k0;
+                paint = org.telegram.ui.ActionBar.h6.f21110k0;
             }
             Paint paint2 = paint;
             if (!LocaleController.isRTL) {

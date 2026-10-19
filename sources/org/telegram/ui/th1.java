@@ -1,30 +1,16 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class th1 extends View {
-    public int f41739a;
-    public final WallpapersListActivity f41740b;
+import java.io.File;
+public final class th1 {
+    public String f41679a;
+    public int f41680b;
+    public int f41681c;
+    public File d;
+    public final File e;
 
-    public th1(WallpapersListActivity wallpapersListActivity, Context context) {
-        super(context);
-        this.f41740b = wallpapersListActivity;
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        WallpapersListActivity wallpapersListActivity = this.f41740b;
-        wallpapersListActivity.f35216w.setColor(this.f41739a);
-        canvas.drawCircle(AndroidUtilities.dp(25.0f), AndroidUtilities.dp(31.0f), AndroidUtilities.dp(18.0f), wallpapersListActivity.f35216w);
-        if (this.f41739a == org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20986d6, false)) {
-            canvas.drawCircle(AndroidUtilities.dp(25.0f), AndroidUtilities.dp(31.0f), AndroidUtilities.dp(18.0f), wallpapersListActivity.f35217x);
-        }
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        setMeasuredDimension(AndroidUtilities.dp(50.0f), AndroidUtilities.dp(62.0f));
+    public th1(File file, File file2, String str) {
+        this.f41679a = str;
+        this.d = file;
+        this.e = file2;
     }
 }

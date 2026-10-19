@@ -58,7 +58,7 @@ public final class q0 extends LinearLayout {
         this.e = x90Var;
         x90Var.setTextSize(1, 14.0f);
         x90Var.setGravity(1);
-        x90Var.setTextColor(h6.x0(null, h6.f21092j5, false));
+        x90Var.setTextColor(h6.x0(null, h6.f21095j5, false));
         x90Var.setLineSpacing(x90Var.getLineSpacingExtra(), x90Var.getLineSpacingMultiplier() * 1.1f);
         addView(x90Var, z5.t(-2, -2, 1, 28, 0, 28, 18));
     }
@@ -82,7 +82,7 @@ public final class q0 extends LinearLayout {
         }
         ArrayList arrayList4 = new ArrayList();
         ArrayList arrayList5 = new ArrayList();
-        bs bsVar = bs.f25030f;
+        bs bsVar = bs.f25014f;
         int size2 = arrayList3.size();
         int i14 = 0;
         while (true) {
@@ -197,9 +197,9 @@ public final class q0 extends LinearLayout {
                     size6 = i11;
                 }
                 i10 = size6;
-                if (i2.d.h(1, arrayList6) == n0Var && arrayList6.size() > 1) {
+                if (i2.e.h(1, arrayList6) == n0Var && arrayList6.size() > 1) {
                     c11 = 2;
-                    ((n0) i2.d.h(2, arrayList6)).f47732b.setScaleY(0.1f);
+                    ((n0) i2.e.h(2, arrayList6)).f47732b.setScaleY(0.1f);
                     ((n0) arrayList6.get(arrayList6.size() - 2)).f47732b.setScaleX(0.1f);
                     ((n0) arrayList6.get(arrayList6.size() - 2)).f47732b.animate().alpha(1.0f).scaleY(1.0f).scaleX(1.0f).setDuration(j10).setInterpolator(bsVar).start();
                     c10 = c11;

@@ -1,82 +1,80 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
 import android.view.View;
-import java.util.HashSet;
-import org.telegram.messenger.support.LongSparseIntArray;
-public final class y40 extends org.telegram.ui.Components.im0 {
-    public final LongSparseIntArray V2;
-    public final s50 W2;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ImageLocation;
+import org.telegram.tgnet.TLRPC;
+public final class y40 implements org.telegram.ui.Components.d50 {
+    public float f43338a;
+    public TLRPC.FileLocation f43339b;
+    public TLRPC.FileLocation f43340c;
+    public ImageLocation d;
+    public final long e;
+    public final q50 f43341f;
 
-    public y40(s50 s50Var, LaunchActivity launchActivity) {
-        super(launchActivity, null);
-        this.W2 = s50Var;
-        this.V2 = new LongSparseIntArray();
+    public y40(q50 q50Var, long j10) {
+        this.f43341f = q50Var;
+        this.e = j10;
     }
 
     @Override
-    public final void dispatchDraw(android.graphics.Canvas r20) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.y40.dispatchDraw(android.graphics.Canvas):void");
+    public final void E(float f7) {
+        this.f43341f.f40377b.O(this.d, f7);
+        a(f7);
     }
 
     @Override
-    public final boolean drawChild(Canvas canvas, View view, long j10) {
-        if (view == this.W2.X2) {
-            return false;
-        }
-        return super.drawChild(canvas, view, j10);
+    public final void Q(TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, double d, String str, TLRPC.PhotoSize photoSize, TLRPC.PhotoSize photoSize2, boolean z10, TLRPC.VideoSize videoSize) {
+        AndroidUtilities.runOnUIThread(new hi.k(this, inputFile, inputFile2, videoSize, d, str, photoSize2, photoSize, 3));
     }
 
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        int i14;
-        super.onLayout(z10, i10, i11, i12, i13);
-        g50 g50Var = this.W2.X;
-        HashSet hashSet = g50Var.I;
-        s50 s50Var = g50Var.L;
-        HashSet hashSet2 = g50Var.H;
-        if (g50Var.G == null) {
-            hashSet2.clear();
-            hashSet2.addAll(g50Var.f45975q);
-            hashSet.clear();
-            hashSet.addAll(g50Var.f45974p);
-            g50Var.J = 0.0f;
-            g50Var.K = Float.MAX_VALUE;
-            if (hashSet2.isEmpty() && hashSet.isEmpty()) {
-                return;
-            }
-            y40 y40Var = s50Var.Q;
-            int childCount = y40Var.getChildCount();
-            for (int i15 = 0; i15 < childCount; i15++) {
-                View childAt = y40Var.getChildAt(i15);
-                s4.b1 G = y40Var.G(childAt);
-                if (G != null && (i14 = G.f45913f) != 3 && i14 != 4 && i14 != 5 && i14 != 7 && !hashSet2.contains(G)) {
-                    g50Var.J = Math.max(g50Var.J, childAt.getY() + childAt.getMeasuredHeight());
-                    g50Var.K = Math.min(g50Var.K, Math.max(0.0f, childAt.getY()));
-                }
-            }
-            g50Var.F = 0.0f;
-            y40Var.invalidate();
-        }
-    }
-
-    @Override
-    public final void setVisibility(int i10) {
-        boolean z10;
-        if (getVisibility() != i10) {
-            for (int i11 = 0; i11 < getChildCount(); i11++) {
-                View childAt = getChildAt(i11);
-                if (childAt instanceof org.telegram.ui.Components.voip.l) {
-                    org.telegram.ui.Components.voip.l lVar = (org.telegram.ui.Components.voip.l) childAt;
-                    if (childAt.isAttachedToWindow() && i10 == 0) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
+    public final void a(float f7) {
+        this.f43338a = f7;
+        w40 w40Var = this.f43341f.Q;
+        if (w40Var != null) {
+            for (int i10 = 0; i10 < w40Var.getChildCount(); i10++) {
+                View childAt = w40Var.getChildAt(i10);
+                if (childAt instanceof org.telegram.ui.Cells.d4) {
+                    org.telegram.ui.Cells.d4 d4Var = (org.telegram.ui.Cells.d4) childAt;
+                    if (d4Var.c()) {
+                        org.telegram.ui.Cells.y3 y3Var = d4Var.f22133x;
+                        y3Var.setProgress(f7);
+                        if (f7 < 1.0f) {
+                            AndroidUtilities.updateViewVisibilityAnimated(y3Var, true, 1.0f, true);
+                        } else {
+                            AndroidUtilities.updateViewVisibilityAnimated(y3Var, false, 1.0f, true);
+                        }
                     }
-                    s50.O(this.W2, lVar, z10);
                 }
             }
         }
-        super.setVisibility(i10);
+    }
+
+    @Override
+    public final boolean e() {
+        return true;
+    }
+
+    @Override
+    public final ju0 getCloseIntoObject() {
+        return null;
+    }
+
+    @Override
+    public final String getInitialSearchString() {
+        return null;
+    }
+
+    @Override
+    public final boolean v() {
+        return false;
+    }
+
+    @Override
+    public final void P() {
+    }
+
+    @Override
+    public final void K(boolean z10, boolean z11) {
     }
 }

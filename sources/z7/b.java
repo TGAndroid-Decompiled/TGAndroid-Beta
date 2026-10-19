@@ -39,7 +39,7 @@ public final class b extends AbstractSet {
                     if (e != -1) {
                         Object[] objArr = dVar.d;
                         objArr.getClass();
-                        if (w7.h9.a(objArr[e], entry.getValue())) {
+                        if (w7.g9.a(objArr[e], entry.getValue())) {
                             return true;
                         }
                     }
@@ -93,7 +93,7 @@ public final class b extends AbstractSet {
                         objArr.getClass();
                         Object[] objArr2 = dVar.d;
                         objArr2.getClass();
-                        int a10 = w7.d9.a(key, value, d, obj2, iArr, objArr, objArr2);
+                        int a10 = w7.c9.a(key, value, d, obj2, iArr, objArr, objArr2);
                         if (a10 != -1) {
                             dVar.b(a10, d);
                             dVar.f50760f--;

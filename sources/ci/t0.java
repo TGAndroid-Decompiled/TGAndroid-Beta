@@ -2,21 +2,21 @@ package ci;
 
 import android.content.Context;
 import android.view.View;
-import org.telegram.ui.Components.a71;
-import org.telegram.ui.Components.e61;
+import org.telegram.ui.Components.b71;
 import org.telegram.ui.Components.f61;
+import org.telegram.ui.Components.g61;
 import org.telegram.ui.Components.im0;
-import org.telegram.ui.Components.s61;
-public final class t0 extends e61 {
-    public static final int f5934a = 0;
+import org.telegram.ui.Components.t61;
+public final class t0 extends f61 {
+    public static final int f6001a = 0;
 
     static {
-        e61.setup(new e61());
+        f61.setup(new f61());
     }
 
     @Override
-    public final void bindView(View view, f61 f61Var, boolean z10, s61 s61Var, a71 a71Var) {
-        ((u0) view).set((w0) f61Var.G);
+    public final void bindView(View view, g61 g61Var, boolean z10, t61 t61Var, b71 b71Var) {
+        ((u0) view).set((w0) g61Var.G);
     }
 
     @Override
@@ -25,8 +25,8 @@ public final class t0 extends e61 {
     }
 
     @Override
-    public final boolean equals(f61 f61Var, f61 f61Var2) {
-        if (f61Var.G == f61Var2.G) {
+    public final boolean equals(g61 g61Var, g61 g61Var2) {
+        if (g61Var.G == g61Var2.G) {
             return true;
         }
         return false;

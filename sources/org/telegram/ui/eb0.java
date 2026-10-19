@@ -1,168 +1,60 @@
 package org.telegram.ui;
-
-import android.os.Bundle;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.R;
-import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.tgnet.TLRPC;
 public final class eb0 implements Runnable {
-    public final int f36447a;
-    public final ProfileActivity f36448b;
+    public final int f36625a;
+    public final ib0 f36626b;
+    public final String f36627c;
 
-    public eb0(ProfileActivity profileActivity, int i10) {
-        this.f36447a = i10;
-        this.f36448b = profileActivity;
+    public eb0(ib0 ib0Var, String str, int i10) {
+        this.f36625a = i10;
+        this.f36626b = ib0Var;
+        this.f36627c = str;
     }
 
     @Override
     public final void run() {
-        d01 d01Var;
-        switch (this.f36447a) {
+        switch (this.f36625a) {
             case 0:
-                ProfileActivity profileActivity = this.f36448b;
-                pz0 pz0Var = profileActivity.O;
-                if (pz0Var != null) {
-                    pz0Var.a1(14);
-                    profileActivity.G4(false);
+                ib0 ib0Var = this.f36626b;
+                if (ib0Var.a()) {
+                    ib0Var.w(this.f36627c);
                     return;
                 }
                 return;
             case 1:
-                ProfileActivity profileActivity2 = this.f36448b;
-                pz0 pz0Var2 = profileActivity2.O;
-                if (pz0Var2 != null) {
-                    pz0Var2.a1(14);
-                    profileActivity2.G4(false);
-                    return;
-                }
+                this.f36626b.w(this.f36627c);
                 return;
             case 2:
-                AndroidUtilities.runOnUIThread(new eb0(this.f36448b, 0), 200L);
-                return;
-            case 3:
-                AndroidUtilities.runOnUIThread(new eb0(this.f36448b, 1), 200L);
-                return;
-            case 4:
-                ProfileActivity profileActivity3 = this.f36448b;
-                profileActivity3.getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of("/start", profileActivity3.f33607f1, null, null, null, false, null, null, null, true, 0, 0, null, false));
-                return;
-            case 5:
-                this.f36448b.z4(false);
-                return;
-            case 6:
-                ProfileActivity profileActivity4 = this.f36448b;
-                profileActivity4.getClass();
-                profileActivity4.presentFragment(new UserInfoActivity());
-                return;
-            case 7:
-                this.f36448b.z4(true);
-                return;
-            case 8:
-                ProfileActivity profileActivity5 = this.f36448b;
-                profileActivity5.getClass();
-                profileActivity5.presentFragment(new ig.f1());
-                return;
-            case 9:
-                ProfileActivity profileActivity6 = this.f36448b;
-                profileActivity6.getClass();
-                profileActivity6.presentFragment(new ig.d1());
-                return;
-            case 10:
-                ProfileActivity profileActivity7 = this.f36448b;
-                profileActivity7.getClass();
-                profileActivity7.presentFragment(new ua(null));
-                return;
-            case 11:
-                ProfileActivity profileActivity8 = this.f36448b;
-                profileActivity8.getClass();
-                profileActivity8.presentFragment(new UserInfoActivity());
-                return;
-            case 12:
-                ProfileActivity profileActivity9 = this.f36448b;
-                profileActivity9.getClass();
-                profileActivity9.presentFragment(new h(3));
-                return;
-            case 13:
-                ?? obj = new Object();
-                obj.f21552a = true;
-                this.f36448b.showAsSheet(new PrivacyControlActivity(11, false), obj);
-                return;
-            case 14:
-                ProfileActivity profileActivity10 = this.f36448b;
-                profileActivity10.k4(true);
-                if (profileActivity10.f33643k2.isRunning()) {
-                    profileActivity10.f33643k2.cancel();
+                ib0 ib0Var2 = this.f36626b;
+                ib0Var2.getClass();
+                String str = this.f36627c;
+                if ("disable".equalsIgnoreCase(str)) {
+                    ib0Var2.x("turnPasswordOffRow");
                 }
-                profileActivity10.J4(1.0f);
-                return;
-            case 15:
-                this.f36448b.e5(false, false);
-                return;
-            case 16:
-                this.f36448b.F3();
-                return;
-            case 17:
-                ProfileActivity profileActivity11 = this.f36448b;
-                pz0 pz0Var3 = profileActivity11.O;
-                if (pz0Var3 != null) {
-                    pz0Var3.y1(true);
-                    profileActivity11.O.p1();
+                if ("change".equalsIgnoreCase(str)) {
+                    ib0Var2.x("changePasswordRow");
+                }
+                if ("change-email".equalsIgnoreCase(str)) {
+                    ib0Var2.x("emailRow");
                     return;
                 }
-                return;
-            case 18:
-                ProfileActivity profileActivity12 = this.f36448b;
-                profileActivity12.getMessagesController().reloadUser(profileActivity12.a());
-                return;
-            case 19:
-                ProfileActivity profileActivity13 = this.f36448b;
-                if (!profileActivity13.f33568a.b0() && (d01Var = profileActivity13.d) != null) {
-                    d01Var.l();
-                    return;
-                }
-                return;
-            case 20:
-                this.f36448b.e5(false, false);
-                return;
-            case 21:
-                this.f36448b.A5.setVisibility(8);
-                return;
-            case 22:
-                ProfileActivity profileActivity14 = this.f36448b;
-                profileActivity14.getClass();
-                Bundle bundle = new Bundle();
-                bundle.putLong("chat_id", profileActivity14.f33614g1);
-                bundle.putLong("user_id", profileActivity14.f33607f1);
-                profileActivity14.presentFragment(new zh.f0(bundle));
-                return;
-            case 23:
-                ProfileActivity profileActivity15 = this.f36448b;
-                profileActivity15.getClass();
-                profileActivity15.presentFragment(new ua(null));
-                return;
-            case 24:
-                ProfileActivity.V(this.f36448b);
-                return;
-            case 25:
-                ProfileActivity profileActivity16 = this.f36448b;
-                TLRPC.UserFull userFull = profileActivity16.f33726w2;
-                if (userFull != null) {
-                    AndroidUtilities.addToClipboard(MessageObject.formatTextWithEntities(userFull.note, false));
-                    org.telegram.messenger.lk.p(R.string.TextCopied, org.telegram.ui.Components.xc.a0(profileActivity16));
-                    return;
-                }
-                return;
-            case 26:
-                ProfileActivity profileActivity17 = this.f36448b;
-                profileActivity17.getClass();
-                Bundle bundle2 = new Bundle();
-                bundle2.putLong("user_id", profileActivity17.f33607f1);
-                bundle2.putBoolean("focus_notes", true);
-                profileActivity17.presentFragment(new hs(bundle2, profileActivity17.A0));
                 return;
             default:
-                this.f36448b.G4(true);
+                ib0 ib0Var3 = this.f36626b;
+                ib0Var3.getClass();
+                String str2 = this.f36627c;
+                if ("disable".equalsIgnoreCase(str2)) {
+                    ib0Var3.x("disablePasscodeRow");
+                }
+                if ("change".equalsIgnoreCase(str2)) {
+                    ib0Var3.x("changePasscodeRow");
+                }
+                if ("auto-lock".equalsIgnoreCase(str2)) {
+                    ib0Var3.x("autoLockRow");
+                }
+                if ("fingerprint".equalsIgnoreCase(str2)) {
+                    ib0Var3.x("fingerprintRow");
+                    return;
+                }
                 return;
         }
     }

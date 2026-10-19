@@ -1,154 +1,232 @@
 package ai;
 
-import android.util.LongSparseArray;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Bundle;
+import android.provider.MediaStore;
 import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileRefController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.TimeUnit;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.g30;
-import org.telegram.ui.Components.oy0;
-import org.telegram.ui.PrivacyControlActivity;
-import org.telegram.ui.TwoStepVerificationActivity;
-import org.telegram.ui.dq;
-import org.telegram.ui.eg0;
-import org.telegram.ui.ek0;
-import org.telegram.ui.gm0;
-import org.telegram.ui.kp;
-import org.telegram.ui.om0;
-import org.telegram.ui.q21;
-import org.telegram.ui.vi;
-import org.telegram.ui.xm0;
-import org.telegram.ui.yh1;
-import org.telegram.ui.zr0;
-public final class w2 implements RequestDelegate {
-    public final int f2355a;
-    public final Object f2356b;
-    public final Object f2357c;
+import org.telegram.ui.Components.d50;
+import org.telegram.ui.Components.ym0;
+import org.telegram.ui.ProfileActivity;
+import org.telegram.ui.cy;
+import org.telegram.ui.ju0;
+import org.telegram.ui.jz0;
+import org.telegram.ui.q50;
+import org.telegram.ui.qn;
+public final class w2 implements org.telegram.ui.ActionBar.a2, ei.y7, org.telegram.ui.Components.e5, t5.b, s9.g, d50 {
+    public final int f2352a;
+    public final Object f2353b;
+    public final long f2354c;
     public final Object d;
     public final Object e;
 
-    public w2(Object obj, Object obj2, Object obj3, Object obj4, int i10) {
-        this.f2355a = i10;
-        this.f2356b = obj;
-        this.f2357c = obj2;
-        this.d = obj3;
-        this.e = obj4;
+    public w2(Object obj, long j10, Object obj2, Object obj3, int i10) {
+        this.f2352a = i10;
+        this.f2353b = obj;
+        this.f2354c = j10;
+        this.d = obj2;
+        this.e = obj3;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        TLRPC.TL_messages_exportedChatInvite tL_messages_exportedChatInvite;
-        int i10 = this.f2355a;
-        Object obj = this.f2357c;
-        Object obj2 = this.e;
-        Object obj3 = this.d;
-        Object obj4 = this.f2356b;
-        switch (i10) {
+    public void C(int i10, int i11, boolean z10) {
+        qn.h0((qn) this.f2353b, (ArrayList) this.d, this.f2354c, (ym0) this.e, z10, i10);
+    }
+
+    @Override
+    public void Q(TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, double d, String str, TLRPC.PhotoSize photoSize, TLRPC.PhotoSize photoSize2, boolean z10, TLRPC.VideoSize videoSize) {
+        qn qnVar = (qn) this.f2353b;
+        TLRPC.FileLocation[] fileLocationArr = (TLRPC.FileLocation[]) this.d;
+        TLRPC.FileLocation[] fileLocationArr2 = (TLRPC.FileLocation[]) this.e;
+        if (inputFile == null && inputFile2 == null && videoSize == null) {
+            fileLocationArr[0] = photoSize2.location;
+            fileLocationArr2[0] = photoSize.location;
+            return;
+        }
+        TLRPC.TL_photos_uploadProfilePhoto tL_photos_uploadProfilePhoto = new TLRPC.TL_photos_uploadProfilePhoto();
+        if (inputFile != null) {
+            tL_photos_uploadProfilePhoto.file = inputFile;
+            tL_photos_uploadProfilePhoto.flags |= 1;
+        }
+        if (inputFile2 != null) {
+            tL_photos_uploadProfilePhoto.video = inputFile2;
+            int i10 = tL_photos_uploadProfilePhoto.flags;
+            tL_photos_uploadProfilePhoto.video_start_ts = d;
+            tL_photos_uploadProfilePhoto.flags = i10 | 6;
+        }
+        if (videoSize != null) {
+            tL_photos_uploadProfilePhoto.video_emoji_markup = videoSize;
+            tL_photos_uploadProfilePhoto.flags |= 16;
+        }
+        qnVar.getConnectionsManager().sendRequest(tL_photos_uploadProfilePhoto, new ci.b8(qnVar, fileLocationArr, str, fileLocationArr2, this.f2354c));
+    }
+
+    @Override
+    public ScheduledFuture a(final le.b bVar) {
+        switch (this.f2352a) {
+            case 7:
+                s9.f fVar = (s9.f) this.f2353b;
+                return fVar.f46134b.schedule(new s9.d(fVar, (Runnable) this.d, bVar, 1), this.f2354c, (TimeUnit) this.e);
+            default:
+                final s9.f fVar2 = (s9.f) this.f2353b;
+                final Callable callable = (Callable) this.d;
+                return fVar2.f46134b.schedule(new Callable() {
+                    @Override
+                    public final Object call() {
+                        return f.this.f46133a.submit(new p2.b(16, callable, bVar));
+                    }
+                }, this.f2354c, (TimeUnit) this.e);
+        }
+    }
+
+    @Override
+    public boolean e() {
+        return true;
+    }
+
+    @Override
+    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        switch (this.f2352a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new j3((k7) obj4, tLObject, (CharSequence) obj, (TL_stars.TL_starGiftUnique) obj3, (TLRPC.TL_inputInvoiceStarGiftDropOriginalDetails) obj2, tL_error, 1));
+                k7.h1((k7) this.f2353b, (TL_stars.InputSavedStarGift) this.d, this.f2354c, (TLRPC.Document) this.e, b2Var);
                 return;
             case 1:
-                AndroidUtilities.runOnUIThread(new j3((k7) obj4, tLObject, (ug.m1[]) obj, (Long) obj3, (a3.l0) obj2, tL_error, 0));
+                k7 k7Var = (k7) this.f2353b;
+                ug.m1 m1Var = (ug.m1) this.e;
+                k7Var.getClass();
+                k7Var.P1(this.f2354c, ((TL_stars.starGiftDepositPayload[]) this.d)[0], b2Var.h(i10, true, true), m1Var);
                 return;
             case 2:
-                AndroidUtilities.runOnUIThread(new t0((Object) ((ga) obj4), (org.telegram.ui.ActionBar.b2) obj, tLObject, (TLObject) ((TL_stars.InputSavedStarGift) obj3), (Object) ((Utilities.Callback) obj2), 5));
-                return;
             case 3:
-                AndroidUtilities.runOnUIThread(new j3((ga) obj4, tLObject, (MessageObject) obj, (TLRPC.TL_inputInvoiceMessage) obj3, (vi) obj2, tL_error, 4));
+            default:
+                TLRPC.User user = (TLRPC.User) this.e;
+                ProfileActivity profileActivity = ((jz0) this.f2353b).f38372b;
+                profileActivity.O1 = true;
+                Bundle h = a1.g.h("scrollToTopOnResume", true);
+                long j10 = -this.f2354c;
+                h.putLong("chat_id", j10);
+                if (profileActivity.getMessagesController().checkCanOpenChat(h, (cy) this.d)) {
+                    qn qnVar = new qn(h);
+                    NotificationCenter notificationCenter = profileActivity.getNotificationCenter();
+                    int i11 = NotificationCenter.closeChats;
+                    notificationCenter.removeObserver(profileActivity, i11);
+                    profileActivity.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(i11, new Object[0]);
+                    profileActivity.getMessagesController().addUserToChat(j10, user, 0, null, qnVar, true, null, null);
+                    profileActivity.presentFragment(qnVar, true);
+                    return;
+                }
                 return;
             case 4:
-                v9 v9Var = (v9) obj4;
-                v9Var.getClass();
-                AndroidUtilities.runOnUIThread(new j3(v9Var, tLObject, (TL_stars.TL_starGiftCollection) obj, (y9) obj3, (Utilities.Callback) obj2, tL_error, 6));
-                return;
-            case 5:
-                AndroidUtilities.runOnUIThread(new t0((Object) ((ci.p4) obj4), (Object) ((Runnable) obj), tL_error, (TLObject) ((TL_stories.StoryItem) obj3), (Object) ((ei.p9) obj2), 9));
-                return;
-            case 6:
-                ei.a8 a8Var = (ei.a8) obj4;
-                TL_stories.StoryItem storyItem = (TL_stories.StoryItem) obj;
-                TLRPC.TL_messages_getAttachedStickers tL_messages_getAttachedStickers = (TLRPC.TL_messages_getAttachedStickers) obj3;
-                h hVar = (h) obj2;
-                if (tL_error != null && FileRefController.isFileRefError(tL_error.text) && storyItem != null) {
-                    FileRefController.getInstance(a8Var.f8695a).requestReference(storyItem, tL_messages_getAttachedStickers, hVar);
-                    return;
-                } else {
-                    hVar.run(tLObject, tL_error);
-                    return;
+                ChatObject.Call call = (ChatObject.Call) this.f2353b;
+                Runnable runnable = (Runnable) this.e;
+                boolean z10 = false;
+                org.telegram.ui.Cells.a2 a2Var = ((org.telegram.ui.Cells.a2[]) this.d)[0];
+                if (a2Var != null && a2Var.b()) {
+                    z10 = true;
                 }
-            case 7:
-                AndroidUtilities.runOnUIThread(new j3((hg.a1) obj4, (String) obj, tL_error, tLObject, (MessagesController) obj3, (MessagesStorage) obj2));
-                return;
-            case 8:
-                AndroidUtilities.runOnUIThread(new t0((hg.c2) obj4, (TLRPC.TL_messages_getStickers) obj, tLObject, (ArrayList) obj3, (LongSparseArray) obj2, 14));
-                return;
-            case 9:
-                org.telegram.ui.rb rbVar = (org.telegram.ui.rb) obj4;
-                TLRPC.TL_chatInviteExported tL_chatInviteExported = (TLRPC.TL_chatInviteExported) obj;
-                boolean[] zArr = (boolean[]) obj3;
-                org.telegram.ui.ActionBar.b2 b2Var = (org.telegram.ui.ActionBar.b2) obj2;
-                org.telegram.ui.xb xbVar = rbVar.f40675a.f41633n;
-                if (tL_error == null) {
-                    tL_messages_exportedChatInvite = (TLRPC.TL_messages_exportedChatInvite) tLObject;
-                    for (int i11 = 0; i11 < tL_messages_exportedChatInvite.users.size(); i11++) {
-                        TLRPC.User user = tL_messages_exportedChatInvite.users.get(i11);
-                        if (xbVar.f43060z0 == null) {
-                            xbVar.f43060z0 = new HashMap();
-                        }
-                        xbVar.f43060z0.put(Long.valueOf(user.f20419id), user);
-                    }
-                } else {
-                    tL_messages_exportedChatInvite = null;
-                }
-                AndroidUtilities.runOnUIThread(new t0(rbVar, tL_chatInviteExported, tL_messages_exportedChatInvite, zArr, b2Var));
-                return;
-            case 10:
-                AndroidUtilities.runOnUIThread(new org.telegram.messenger.camera.i((kp) obj4, (org.telegram.ui.ActionBar.b2[]) obj, (TLRPC.Chat) obj3, (org.telegram.ui.ActionBar.n2) obj2, 15));
-                return;
-            case 11:
-                AndroidUtilities.runOnUIThread(new t0((Object) ((dq) obj4), tL_error, (Object) ((TLRPC.InputCheckPasswordSRP) obj), (Object) ((TwoStepVerificationActivity) obj3), (TLObject) ((TLRPC.TL_channels_editCreator) obj2), 28));
-                return;
-            case 12:
-                oy0.q((zr0) obj4, this.f2357c, (TLRPC.TL_messages_getAttachedStickers) obj3, (org.telegram.ui.xc) obj2, tLObject, tL_error);
-                return;
-            case 13:
-                AndroidUtilities.runOnUIThread(new g30((eg0) obj4, tL_error, (String) obj, (String) obj3, (String) obj2, 13));
-                return;
-            case 14:
-                AndroidUtilities.runOnUIThread(new j3((xm0) obj4, tL_error, (String) obj, (om0) obj3, tLObject, (TL_account.sendVerifyPhoneCode) obj2));
-                return;
-            case 15:
-                AndroidUtilities.runOnUIThread(new g30((gm0) obj4, tL_error, (ek0) obj, (mi.q) obj3, (TL_account.verifyEmail) obj2, 20));
-                return;
-            case 16:
-                AndroidUtilities.runOnUIThread(new g30((PrivacyControlActivity) obj4, tL_error, (boolean[]) obj, (TLRPC.GlobalPrivacySettings) obj3, (TL_account.setGlobalPrivacySettings) obj2, 24));
-                return;
-            case 17:
-                q21 q21Var = (q21) obj4;
-                q21Var.getClass();
-                AndroidUtilities.runOnUIThread(new j3(q21Var, tLObject, (CharSequence) obj, tL_error, (byte[]) obj3, (String) obj2));
-                return;
-            case 18:
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.web.c0((org.telegram.ui.web.b1) obj4, tLObject, (ci.y7) obj, (String) obj3, (String) obj2));
-                return;
-            case 19:
-                org.telegram.ui.web.b1 b1Var = (org.telegram.ui.web.b1) obj4;
-                b1Var.getClass();
-                AndroidUtilities.runOnUIThread(new j3(b1Var, tLObject, (TLRPC.TL_messages_requestUrlAuth) obj, (String) obj3, tL_error, (String) obj2));
-                return;
-            default:
-                AndroidUtilities.runOnUIThread(new j3((yh.o1) obj4, (org.telegram.ui.ActionBar.b2) obj, tLObject, (yh1) obj3, (Utilities.Callback) obj2, tL_error));
+                q50.x1(call, z10, this.f2354c, runnable);
                 return;
         }
+    }
+
+    @Override
+    public ju0 getCloseIntoObject() {
+        return null;
+    }
+
+    @Override
+    public String getInitialSearchString() {
+        return null;
+    }
+
+    @Override
+    public Object j() {
+        ea.b bVar = (ea.b) this.f2353b;
+        Iterable iterable = (Iterable) this.d;
+        l5.i iVar = (l5.i) this.e;
+        s5.g gVar = (s5.g) ((s5.d) bVar.f8549c);
+        gVar.getClass();
+        if (iterable.iterator().hasNext()) {
+            String str = "UPDATE events SET num_attempts = num_attempts + 1 WHERE _id in " + s5.g.g(iterable);
+            SQLiteDatabase a2 = gVar.a();
+            a2.beginTransaction();
+            try {
+                a2.compileStatement(str).execute();
+                Cursor rawQuery = a2.rawQuery("SELECT COUNT(*), transport_name FROM events WHERE num_attempts >= 16 GROUP BY transport_name", null);
+                while (rawQuery.moveToNext()) {
+                    gVar.e(rawQuery.getInt(0), o5.c.MAX_RETRIES_REACHED, rawQuery.getString(1));
+                }
+                rawQuery.close();
+                a2.compileStatement("DELETE FROM events WHERE num_attempts >= 16").execute();
+                a2.setTransactionSuccessful();
+            } finally {
+                a2.endTransaction();
+            }
+        }
+        gVar.c(new ci.d1(((u5.a) bVar.f8551g).d() + this.f2354c, iVar));
+        return null;
+    }
+
+    @Override
+    public Bitmap k(BitmapFactory.Options options) {
+        ei.r6 r6Var = (ei.r6) this.f2353b;
+        ei.a8 a8Var = (ei.a8) this.d;
+        long j10 = this.f2354c;
+        String str = (String) this.e;
+        if (a8Var.K) {
+            String str2 = a8Var.N;
+            if (str2 != null) {
+                return BitmapFactory.decodeFile(str2, options);
+            }
+            try {
+                return MediaStore.Video.Thumbnails.getThumbnail(r6Var.getContext().getContentResolver(), j10, 1, options);
+            } catch (Throwable unused) {
+                r6Var.invalidate();
+                return null;
+            }
+        }
+        return BitmapFactory.decodeFile(str, options);
+    }
+
+    @Override
+    public boolean v() {
+        return false;
+    }
+
+    public w2(Object obj, Object obj2, long j10, Object obj3, int i10) {
+        this.f2352a = i10;
+        this.f2353b = obj;
+        this.d = obj2;
+        this.f2354c = j10;
+        this.e = obj3;
+    }
+
+    public w2(Object obj, Object obj2, Object obj3, long j10, int i10) {
+        this.f2352a = i10;
+        this.f2353b = obj;
+        this.d = obj2;
+        this.e = obj3;
+        this.f2354c = j10;
+    }
+
+    @Override
+    public void E(float f7) {
+    }
+
+    @Override
+    public void P() {
+    }
+
+    @Override
+    public void K(boolean z10, boolean z11) {
     }
 }

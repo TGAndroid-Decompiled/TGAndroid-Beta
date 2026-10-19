@@ -1,81 +1,157 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.view.KeyEvent;
-public final class qr extends vr {
-    public final int M;
-    public final int N;
-    public final sr O;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.view.View;
+import android.widget.LinearLayout;
+import org.telegram.messenger.AndroidUtilities;
+public abstract class qr extends LinearLayout {
+    public final Paint f40958a;
+    public final Paint f40959b;
+    public float f40960c;
+    public boolean d;
+    public boolean e;
+    public tr[] f40961f;
 
-    public qr(sr srVar, Context context, int i10, int i11) {
+    public qr(Context context) {
         super(context);
-        this.O = srVar;
-        this.M = i10;
-        this.N = i11;
-        this.e = 1.0f;
-        this.f42255f = new o1.k(this, vr.I);
-        this.h = new o1.k(this, vr.J);
-        this.f42256n = new o1.k(this, vr.K);
-        this.f42257r = new o1.k(this, vr.L);
-        this.f42258s = true;
-        this.v = 1.0f;
-        this.f42259w = 1.0f;
-        this.H = false;
-        setBackground(null);
-        setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.G6, false));
-        setMovementMethod(null);
-        addTextChangedListener(new o0(this, 5));
+        Paint paint = new Paint(1);
+        this.f40958a = paint;
+        this.f40959b = new Paint(1);
+        paint.setStyle(Paint.Style.STROKE);
+        setOrientation(0);
+    }
+
+    public abstract void a();
+
+    public final void b(int r13, int r14) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.qr.b(int, int):void");
+    }
+
+    public final void c(String str, boolean z10) {
+        if (this.f40961f != null) {
+            int i10 = 0;
+            if (z10) {
+                int i11 = 0;
+                while (true) {
+                    tr[] trVarArr = this.f40961f;
+                    if (i11 >= trVarArr.length) {
+                        break;
+                    } else if (trVarArr[i11].isFocused()) {
+                        i10 = i11;
+                        break;
+                    } else {
+                        i11++;
+                    }
+                }
+            }
+            for (int i12 = i10; i12 < Math.min(this.f40961f.length, str.length() + i10); i12++) {
+                this.f40961f[i12].setText(Character.toString(str.charAt(i12 - i10)));
+            }
+        }
     }
 
     @Override
-    public final boolean dispatchKeyEvent(KeyEvent keyEvent) {
-        if (keyEvent.getKeyCode() == 4) {
-            return false;
-        }
-        int keyCode = keyEvent.getKeyCode();
-        sr srVar = this.O;
-        int length = srVar.f41477f.length;
-        int i10 = this.M;
-        if (i10 >= length) {
-            return false;
-        }
-        if (keyEvent.getAction() == 1) {
-            if (keyCode == 67 && srVar.f41477f[i10].length() == 1) {
-                srVar.f41477f[i10].m();
-                srVar.f41477f[i10].setText("");
-                return true;
-            } else if (keyCode == 67 && srVar.f41477f[i10].length() == 0 && i10 > 0) {
-                vr[] vrVarArr = srVar.f41477f;
-                vrVarArr[i10 - 1].setSelection(vrVarArr[i10 - 1].length());
-                for (int i11 = 0; i11 < i10; i11++) {
-                    if (i11 == i10 - 1) {
-                        srVar.f41477f[i10 - 1].requestFocus();
-                    } else {
-                        srVar.f41477f[i11].clearFocus();
+    public final void dispatchDraw(Canvas canvas) {
+        for (int i10 = 0; i10 < getChildCount(); i10++) {
+            View childAt = getChildAt(i10);
+            if (childAt instanceof tr) {
+                tr trVar = (tr) childAt;
+                if (!this.e) {
+                    if (childAt.isFocused()) {
+                        trVar.j(1.0f);
+                    } else if (!childAt.isFocused()) {
+                        trVar.j(0.0f);
                     }
                 }
-                srVar.f41477f[i10 - 1].m();
-                srVar.f41477f[i10 - 1].setText("");
-                return true;
-            } else {
-                if (keyCode >= 7 && keyCode <= 16) {
-                    String num = Integer.toString(keyCode - 7);
-                    if (srVar.f41477f[i10].getText() != null && num.equals(srVar.f41477f[i10].getText().toString())) {
-                        if (i10 >= this.N - 1) {
-                            srVar.a();
-                        } else {
-                            srVar.f41477f[i10 + 1].requestFocus();
-                        }
-                        return true;
-                    }
-                    if (srVar.f41477f[i10].length() > 0) {
-                        srVar.f41477f[i10].m();
-                    }
-                    srVar.f41477f[i10].setText(num);
+                float successProgress = trVar.getSuccessProgress();
+                int f7 = i0.a.f(successProgress, i0.a.f(trVar.getErrorProgress(), i0.a.f(trVar.getFocusedProgress(), org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21116k6, false), org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21133l6, false)), org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21227q7, false)), org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21079i7, false));
+                Paint paint = this.f40958a;
+                paint.setColor(f7);
+                RectF rectF = AndroidUtilities.rectTmp;
+                rectF.set(childAt.getLeft(), childAt.getTop(), childAt.getRight(), childAt.getBottom());
+                float f10 = this.f40960c;
+                rectF.inset(f10, f10);
+                if (successProgress != 0.0f) {
+                    float f11 = -Math.max(0.0f, (trVar.getSuccessScaleProgress() - 1.0f) * this.f40960c);
+                    rectF.inset(f11, f11);
                 }
-                return true;
+                canvas.drawRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), paint);
             }
         }
-        return isFocused();
+        super.dispatchDraw(canvas);
+    }
+
+    @Override
+    public final boolean drawChild(Canvas canvas, View view, long j10) {
+        if (view instanceof tr) {
+            tr trVar = (tr) view;
+            canvas.save();
+            float f7 = trVar.v;
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set(view.getX(), view.getY(), view.getX() + view.getMeasuredWidth(), view.getY() + view.getMeasuredHeight());
+            float f10 = this.f40960c;
+            rectF.inset(f10, f10);
+            canvas.clipRect(rectF);
+            if (trVar.f41747x) {
+                float f11 = (f7 * 0.5f) + 0.5f;
+                view.setAlpha(f7);
+                canvas.scale(f11, f11, (trVar.getMeasuredWidth() / 2.0f) + trVar.getX(), (trVar.getMeasuredHeight() / 2.0f) + trVar.getY());
+            } else {
+                view.setAlpha(1.0f);
+                canvas.translate(0.0f, (1.0f - f7) * view.getMeasuredHeight());
+            }
+            super.drawChild(canvas, view, j10);
+            canvas.restore();
+            float f12 = trVar.f41746w;
+            if (f12 < 1.0f) {
+                canvas.save();
+                float f13 = 1.0f - f12;
+                float f14 = (f13 * 0.5f) + 0.5f;
+                canvas.scale(f14, f14, (trVar.getMeasuredWidth() / 2.0f) + trVar.getX(), (trVar.getMeasuredHeight() / 2.0f) + trVar.getY());
+                Paint paint = this.f40959b;
+                paint.setAlpha((int) (f13 * 255.0f));
+                canvas.drawBitmap(trVar.f41748y, trVar.getX(), trVar.getY(), paint);
+                canvas.restore();
+                return true;
+            }
+            return true;
+        }
+        return super.drawChild(canvas, view, j10);
+    }
+
+    public String getCode() {
+        if (this.f40961f == null) {
+            return "";
+        }
+        StringBuilder sb2 = new StringBuilder();
+        int i10 = 0;
+        while (true) {
+            tr[] trVarArr = this.f40961f;
+            if (i10 < trVarArr.length) {
+                sb2.append(jf.b.d(trVarArr[i10].getText().toString(), false));
+                i10++;
+            } else {
+                return sb2.toString();
+            }
+        }
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
+        float dp = AndroidUtilities.dp(1.5f);
+        this.f40960c = dp;
+        this.f40958a.setStrokeWidth(dp);
+    }
+
+    public void setCode(String str) {
+        this.f40961f[0].setText(str);
+    }
+
+    public void setText(String str) {
+        c(str, false);
     }
 }

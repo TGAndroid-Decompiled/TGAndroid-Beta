@@ -2,19 +2,19 @@ package df;
 
 import v7.x6;
 public final class k extends p {
-    public final int f7979g;
+    public final int f7980g;
     public final String h;
-    public final String f7980i;
+    public final String f7981i;
 
     public k(int i10, String str, String str2) {
-        this.f7979g = i10;
+        this.f7980g = i10;
         this.h = str;
-        this.f7980i = str2;
+        this.f7981i = str2;
     }
 
     @Override
     public final void a(x6 x6Var) {
-        switch (this.f7979g) {
+        switch (this.f7980g) {
             case 0:
                 x6Var.i(this);
                 return;
@@ -26,11 +26,11 @@ public final class k extends p {
 
     @Override
     public final String f() {
-        switch (this.f7979g) {
+        switch (this.f7980g) {
             case 0:
-                return "destination=" + this.h + ", title=" + this.f7980i;
+                return "destination=" + this.h + ", title=" + this.f7981i;
             default:
-                return "destination=" + this.h + ", title=" + this.f7980i;
+                return "destination=" + this.h + ", title=" + this.f7981i;
         }
     }
 }

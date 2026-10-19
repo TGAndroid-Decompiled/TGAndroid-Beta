@@ -13,7 +13,7 @@ public abstract class p extends Binder implements l {
             return (l) queryLocalInterface;
         }
         ?? obj = new Object();
-        obj.f16593a = iBinder;
+        obj.f16596a = iBinder;
         return obj;
     }
 }

@@ -49,7 +49,7 @@ public class JavaI420Buffer implements VideoFrame.I420Buffer {
         if (byteBuffer.capacity() >= v) {
             return;
         }
-        StringBuilder l4 = i2.d.l(v, "Buffer must be at least ", " bytes, but was ");
+        StringBuilder l4 = i2.e.l(v, "Buffer must be at least ", " bytes, but was ");
         l4.append(byteBuffer.capacity());
         throw new IllegalArgumentException(l4.toString());
     }

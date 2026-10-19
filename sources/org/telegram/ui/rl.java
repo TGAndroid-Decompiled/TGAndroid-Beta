@@ -1,18 +1,21 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import org.telegram.messenger.AndroidUtilities;
-public final class rl extends ei.x3 {
-    public final sn L0;
+import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.TLRPC;
+public final class rl extends zt0 {
+    public final qn f41237a;
 
-    public rl(sn snVar, Activity activity) {
-        super(activity, 3);
-        this.L0 = snVar;
+    public rl(qn qnVar) {
+        this.f41237a = qnVar;
     }
 
     @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        setTranslationY(((-getTop()) - AndroidUtilities.dp(120.0f)) + this.L0.C1);
+    public final ju0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
+        return qn.E1(this.f41237a, messageObject, fileLocation, i10, z10, false);
+    }
+
+    @Override
+    public final boolean L() {
+        return true;
     }
 }

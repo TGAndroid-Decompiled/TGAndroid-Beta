@@ -2,44 +2,44 @@ package di;
 
 import android.content.Context;
 import android.view.View;
-import ci.s6;
+import ci.t6;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.hs0;
-import org.telegram.ui.Components.r41;
-import org.telegram.ui.Components.u81;
-public final class b extends u81 {
-    public final Context f8031a;
-    public final hs0 f8032b;
+import org.telegram.ui.Components.is0;
+import org.telegram.ui.Components.s41;
+import org.telegram.ui.Components.v81;
+public final class b extends v81 {
+    public final Context f8032a;
+    public final is0 f8033b;
 
-    public b(hs0 hs0Var, Context context) {
-        this.f8032b = hs0Var;
-        this.f8031a = context;
+    public b(is0 is0Var, Context context) {
+        this.f8033b = is0Var;
+        this.f8032a = context;
     }
 
     @Override
     public final void b(View view, int i10, int i11) {
-        s6 s6Var;
+        t6 t6Var;
         r rVar = (r) view;
-        hs0 hs0Var = this.f8032b;
+        is0 is0Var = this.f8033b;
         if (i10 == 0) {
-            s6Var = hs0Var.e;
+            t6Var = is0Var.e;
         } else {
-            s6Var = (s6) hs0Var.f8072f.get(i10 - 1);
+            t6Var = (t6) is0Var.f8073f.get(i10 - 1);
         }
-        s6Var.H(null);
-        rVar.setList(s6Var);
-        rVar.setVisibleHeight(hs0Var.v);
+        t6Var.H(null);
+        rVar.setList(t6Var);
+        rVar.setVisibleHeight(is0Var.v);
     }
 
     @Override
     public final View d(int i10) {
-        return new r(this.f8032b, this.f8031a);
+        return new r(this.f8033b, this.f8032a);
     }
 
     @Override
     public final int e() {
-        return this.f8032b.f8072f.size() + 1;
+        return this.f8033b.f8073f.size() + 1;
     }
 
     @Override
@@ -47,7 +47,7 @@ public final class b extends u81 {
         if (i10 == 0) {
             return 0;
         }
-        return ((s6) this.f8032b.f8072f.get(i10 - 1)).E.hashCode();
+        return ((t6) this.f8033b.f8073f.get(i10 - 1)).E.hashCode();
     }
 
     @Override
@@ -55,10 +55,10 @@ public final class b extends u81 {
         if (i10 == 0) {
             return LocaleController.getString(R.string.ProfileBotLanguageGeneral);
         }
-        String F = r41.F(((s6) this.f8032b.f8072f.get(i10 - 1)).E, null, null);
-        if (F == null) {
+        String E = s41.E(((t6) this.f8033b.f8073f.get(i10 - 1)).E, null, null);
+        if (E == null) {
             return null;
         }
-        return F.substring(0, 1).toUpperCase() + F.substring(1);
+        return E.substring(0, 1).toUpperCase() + E.substring(1);
     }
 }

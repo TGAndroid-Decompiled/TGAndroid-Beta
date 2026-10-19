@@ -1,144 +1,31 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RectF;
+import android.graphics.Outline;
+import android.view.View;
+import android.view.ViewOutlineProvider;
 import org.telegram.messenger.AndroidUtilities;
-public final class gl extends org.telegram.ui.Components.w9 {
-    public final int G = 0;
-    public Object H;
-    public Object I;
-    public Object J;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.R;
+public final class gl extends ViewOutlineProvider {
+    public final qn f37369a;
 
-    public gl(Context context) {
-        super(context);
+    public gl(qn qnVar) {
+        this.f37369a = qnVar;
     }
 
     @Override
-    public void draw(Canvas canvas) {
-        switch (this.G) {
-            case 1:
-                wh.g gVar = (wh.g) this.I;
-                Path path = (Path) this.H;
-                super.draw(canvas);
-                if (((org.telegram.ui.Components.ap) this.J).h) {
-                    path.rewind();
-                    RectF rectF = AndroidUtilities.rectTmp;
-                    rectF.set(this.f32033a.getImageX(), this.f32033a.getImageY(), this.f32033a.getImageX2(), this.f32033a.getImageY2());
-                    path.addRoundRect(rectF, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), Path.Direction.CW);
-                    canvas.save();
-                    canvas.clipPath(path);
-                    gVar.h(i0.a.o(-1, (int) (Color.alpha(-1) * 0.325f)));
-                    gVar.setBounds((int) this.f32033a.getImageX(), (int) this.f32033a.getImageY(), (int) this.f32033a.getImageX2(), (int) this.f32033a.getImageY2());
-                    gVar.draw(canvas);
-                    invalidate();
-                    canvas.restore();
-                    return;
-                }
-                return;
-            default:
-                super.draw(canvas);
-                return;
+    public final void getOutline(View view, Outline outline) {
+        ImageReceiver imageReceiver = (ImageReceiver) view.getTag(R.id.parent_tag);
+        if (imageReceiver != null) {
+            int[] roundRadius = imageReceiver.getRoundRadius();
+            int i10 = 0;
+            for (int i11 = 0; i11 < 4; i11++) {
+                i10 = Math.max(i10, roundRadius[i11]);
+            }
+            outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight(), i10);
+            return;
         }
-    }
-
-    @Override
-    public void onDraw(Canvas canvas) {
-        switch (this.G) {
-            case 0:
-                float[] fArr = (float[]) this.J;
-                wh.g gVar = (wh.g) this.I;
-                Path path = (Path) this.H;
-                super.onDraw(canvas);
-                if (this.f32038r) {
-                    canvas.save();
-                    RectF rectF = AndroidUtilities.rectTmp;
-                    rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-                    int[] roundRadius = this.f32033a.getRoundRadius();
-                    float f7 = roundRadius[0];
-                    fArr[1] = f7;
-                    fArr[0] = f7;
-                    float f10 = roundRadius[1];
-                    fArr[3] = f10;
-                    fArr[2] = f10;
-                    float f11 = roundRadius[2];
-                    fArr[5] = f11;
-                    fArr[4] = f11;
-                    float f12 = roundRadius[3];
-                    fArr[7] = f12;
-                    fArr[6] = f12;
-                    path.rewind();
-                    path.addRoundRect(rectF, fArr, Path.Direction.CW);
-                    canvas.clipPath(path);
-                    gVar.h(i0.a.o(-1, (int) (Color.alpha(-1) * 0.325f)));
-                    gVar.setBounds(0, 0, getWidth(), getHeight());
-                    gVar.draw(canvas);
-                    canvas.restore();
-                    invalidate();
-                    return;
-                }
-                return;
-            case 1:
-            default:
-                super.onDraw(canvas);
-                return;
-            case 2:
-                org.telegram.ui.Components.voip.h hVar = (org.telegram.ui.Components.voip.h) this.I;
-                super.onDraw(canvas);
-                org.telegram.ui.Components.m60 m60Var = (org.telegram.ui.Components.m60) this.J;
-                if (m60Var.f28449x0) {
-                    int i10 = m60Var.X0;
-                    hVar.f31467f = i10;
-                    RectF rectF2 = AndroidUtilities.rectTmp;
-                    float f13 = i10;
-                    rectF2.set(0.0f, 0.0f, f13, f13);
-                    float width = rectF2.width() / 2.0f;
-                    canvas.drawRoundRect(rectF2, width, width, (Paint) this.H);
-                    rectF2.inset(AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f));
-                    hVar.a(width, canvas, rectF2, null);
-                    invalidate();
-                    return;
-                }
-                return;
-            case 3:
-                org.telegram.ui.Components.voip.h hVar2 = (org.telegram.ui.Components.voip.h) this.I;
-                super.onDraw(canvas);
-                if (((org.telegram.ui.Components.l60) this.J).f28092l0) {
-                    float min = Math.min(getWidth(), getHeight()) * 0.5f;
-                    RectF rectF3 = AndroidUtilities.rectTmp;
-                    rectF3.set(0.0f, 0.0f, getWidth(), getHeight());
-                    canvas.drawRoundRect(rectF3, min, min, (Paint) this.H);
-                    rectF3.inset(AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f));
-                    hVar2.f31467f = getWidth();
-                    hVar2.a(min, canvas, rectF3, null);
-                    invalidate();
-                    return;
-                }
-                return;
-        }
-    }
-
-    public gl(org.telegram.ui.Components.ap apVar, Context context, wh.g gVar) {
-        super(context);
-        this.J = apVar;
-        this.I = gVar;
-        this.H = new Path();
-    }
-
-    public gl(org.telegram.ui.Components.l60 l60Var, Context context, Paint paint) {
-        super(context);
-        this.J = l60Var;
-        this.H = paint;
-        this.I = new org.telegram.ui.Components.voip.h();
-    }
-
-    public gl(org.telegram.ui.Components.m60 m60Var, Context context, Paint paint) {
-        super(context);
-        this.J = m60Var;
-        this.H = paint;
-        this.I = new org.telegram.ui.Components.voip.h();
+        qn qnVar = this.f37369a;
+        outline.setOval(0, 0, AndroidUtilities.roundPlayingMessageSize(qnVar.H9()), AndroidUtilities.roundPlayingMessageSize(qnVar.H9()));
     }
 }

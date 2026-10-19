@@ -9,12 +9,12 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.bb;
 import org.telegram.ui.Components.hm0;
 import org.telegram.ui.Components.im0;
-import org.telegram.ui.Components.s61;
+import org.telegram.ui.Components.t61;
 public class k2 extends bb implements org.telegram.ui.ActionBar.y5 {
-    public s61 X;
+    public t61 X;
     public final ViewGroup Y;
     public final Paint Z;
-    public float f34396a0;
+    public float f34411a0;
 
     public k2(Context context, ViewGroup viewGroup, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context, null, true, false, d6Var);
@@ -34,15 +34,15 @@ public class k2 extends bb implements org.telegram.ui.ActionBar.y5 {
     }
 
     @Override
-    public void G(float f7) {
-        this.f34396a0 = f7;
+    public void F(float f7) {
+        this.f34411a0 = f7;
         if (this.topBulletinContainer != null) {
             this.topBulletinContainer.setTranslationY(Math.max((this.containerView.getY() + f7) + this.backgroundPaddingTop, this.topBulletinContainer.getHeight() + (AndroidUtilities.dp(56.0f) + AndroidUtilities.statusBarHeight)) - this.topBulletinContainer.getBottom());
         }
     }
 
     public int Q() {
-        return getThemedColor(org.telegram.ui.ActionBar.h6.f20928a7);
+        return getThemedColor(org.telegram.ui.ActionBar.h6.f20931a7);
     }
 
     @Override
@@ -59,12 +59,31 @@ public class k2 extends bb implements org.telegram.ui.ActionBar.y5 {
 
     @Override
     public final void mainContainerDispatchDraw(Canvas canvas) {
+        boolean z10;
+        float f7;
+        float width;
         float height = getContainer().getHeight();
-        float max = Math.max(height - AndroidUtilities.navigationBarHeight, this.containerView.getY() + this.f34396a0 + this.backgroundPaddingTop);
+        float max = Math.max(height - AndroidUtilities.navigationBarHeight, this.containerView.getY() + this.f34411a0 + this.backgroundPaddingTop);
         if (max >= height) {
             return;
         }
-        canvas.drawRect(0.0f, max, getContainer().getWidth(), height, this.Z);
+        if (this.containerView.getWidth() < getContainer().getWidth()) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        if (z10) {
+            f7 = this.containerView.getX() + this.backgroundPaddingLeft;
+        } else {
+            f7 = 0.0f;
+        }
+        float f10 = f7;
+        if (z10) {
+            width = (this.containerView.getX() + this.containerView.getWidth()) - this.backgroundPaddingLeft;
+        } else {
+            width = getContainer().getWidth();
+        }
+        canvas.drawRect(f10, max, width, height, this.Z);
     }
 
     @Override
@@ -95,8 +114,8 @@ public class k2 extends bb implements org.telegram.ui.ActionBar.y5 {
 
     @Override
     public final hm0 x(im0 im0Var) {
-        s61 s61Var = new s61(im0Var, getContext(), this.currentAccount, 0, true, new d(this, 5), this.resourcesProvider);
-        this.X = s61Var;
-        return s61Var;
+        t61 t61Var = new t61(im0Var, getContext(), this.currentAccount, 0, true, new d(this, 5), this.resourcesProvider);
+        this.X = t61Var;
+        return t61Var;
     }
 }

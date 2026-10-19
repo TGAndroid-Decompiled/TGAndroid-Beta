@@ -10,24 +10,24 @@ import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.h6;
 import w7.z5;
 public final class s implements Runnable {
-    public final int f45620a;
-    public final m0 f45621b;
-    public final j f45622c;
+    public final int f45619a;
+    public final m0 f45620b;
+    public final j f45621c;
 
     public s(m0 m0Var, j jVar, int i10) {
-        this.f45620a = i10;
-        this.f45621b = m0Var;
-        this.f45622c = jVar;
+        this.f45619a = i10;
+        this.f45620b = m0Var;
+        this.f45621c = jVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f45620a) {
+        switch (this.f45619a) {
             case 0:
-                this.f45621b.r0(this.f45622c);
+                this.f45620b.r0(this.f45621c);
                 return;
             default:
-                final m0 m0Var = this.f45621b;
+                final m0 m0Var = this.f45620b;
                 LinearLayout linearLayout = new LinearLayout(m0Var.getContext());
                 linearLayout.setOrientation(0);
                 TextView textView = new TextView(m0Var.getContext());
@@ -42,7 +42,7 @@ public final class s implements Runnable {
                 textView.setText(LocaleController.getString(R.string.PaintDelete));
                 TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
                 textView.setEllipsize(truncateAt);
-                final j jVar = this.f45622c;
+                final j jVar = this.f45621c;
                 textView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
@@ -60,7 +60,7 @@ public final class s implements Runnable {
                             default:
                                 m0 m0Var3 = m0Var;
                                 m0Var3.getClass();
-                                ((n2) jVar).r(true);
+                                ((o2) jVar).r(true);
                                 org.telegram.ui.ActionBar.m1 m1Var2 = m0Var3.R1;
                                 if (m1Var2 != null && m1Var2.isShowing()) {
                                     m0Var3.R1.d(true);
@@ -71,7 +71,7 @@ public final class s implements Runnable {
                     }
                 });
                 linearLayout.addView(textView, z5.n(-2, 48));
-                if (jVar instanceof u2) {
+                if (jVar instanceof v2) {
                     TextView textView2 = new TextView(m0Var.getContext());
                     textView2.setTextColor(h6.w0(i10, aVar));
                     textView2.setBackground(h6.L0(false));
@@ -84,7 +84,7 @@ public final class s implements Runnable {
                     textView2.setOnClickListener(new k(m0Var, 2));
                     linearLayout.addView(textView2, z5.n(-2, 48));
                 }
-                if (jVar instanceof n2) {
+                if (jVar instanceof o2) {
                     TextView textView3 = new TextView(m0Var.getContext());
                     textView3.setTextColor(h6.w0(i10, aVar));
                     textView3.setBackgroundDrawable(h6.L0(false));
@@ -111,7 +111,7 @@ public final class s implements Runnable {
                                 default:
                                     m0 m0Var3 = m0Var;
                                     m0Var3.getClass();
-                                    ((n2) jVar).r(true);
+                                    ((o2) jVar).r(true);
                                     org.telegram.ui.ActionBar.m1 m1Var2 = m0Var3.R1;
                                     if (m1Var2 != null && m1Var2.isShowing()) {
                                         m0Var3.R1.d(true);
@@ -123,7 +123,7 @@ public final class s implements Runnable {
                     });
                     linearLayout.addView(textView3, z5.n(-2, 48));
                 }
-                if (!(jVar instanceof x1)) {
+                if (!(jVar instanceof y1)) {
                     TextView textView4 = new TextView(m0Var.getContext());
                     textView4.setTextColor(h6.w0(i10, aVar));
                     textView4.setBackgroundDrawable(h6.L0(false));

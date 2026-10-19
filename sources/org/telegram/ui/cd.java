@@ -1,101 +1,36 @@
 package org.telegram.ui;
 
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
-public final class cd implements org.telegram.ui.ActionBar.d6 {
-    public final dd f35884a;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class cd implements RequestDelegate {
+    public final int f35939a;
+    public final md f35940b;
 
-    public cd(dd ddVar) {
-        this.f35884a = ddVar;
+    public cd(md mdVar, int i10) {
+        this.f35939a = i10;
+        this.f35940b = mdVar;
     }
 
     @Override
-    public final int I(int i10) {
-        return u(i10);
-    }
-
-    @Override
-    public final boolean a() {
-        return this.f35884a.J;
-    }
-
-    @Override
-    public final void d(float f7, float f10, int i10, int i11) {
-        org.telegram.ui.ActionBar.h6.q(f7, f10, i10, i11);
-    }
-
-    @Override
-    public final Drawable getDrawable(String str) {
-        dd ddVar = this.f35884a;
-        Drawable drawable = ddVar.f36160x0;
-        Drawable drawable2 = ddVar.f36158w0;
-        if (str.equals("drawableMsgIn")) {
-            return ddVar.f36153s0;
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f35939a) {
+            case 0:
+                AndroidUtilities.runOnUIThread(new i0(19, this.f35940b, tLObject));
+                return;
+            case 1:
+                if (tLObject instanceof TLRPC.TL_boolTrue) {
+                    AndroidUtilities.runOnUIThread(new dd(this.f35940b, 3));
+                    return;
+                }
+                return;
+            case 2:
+                AndroidUtilities.runOnUIThread(new i0(17, this.f35940b, tL_error));
+                return;
+            default:
+                AndroidUtilities.runOnUIThread(new t1(this.f35940b, tL_error, tLObject, 11));
+                return;
         }
-        if (str.equals("drawableMsgInSelected")) {
-            return ddVar.f36154t0;
-        }
-        if (str.equals("drawableMsgOut")) {
-            return ddVar.f36155u0;
-        }
-        if (str.equals("drawableMsgOutSelected")) {
-            return ddVar.f36156v0;
-        }
-        if (str.equals("drawableMsgOutCheckRead")) {
-            drawable2.setColorFilter(u(org.telegram.ui.ActionBar.h6.La), PorterDuff.Mode.MULTIPLY);
-            return drawable2;
-        } else if (str.equals("drawableMsgOutHalfCheck")) {
-            drawable.setColorFilter(u(org.telegram.ui.ActionBar.h6.La), PorterDuff.Mode.MULTIPLY);
-            return drawable;
-        } else {
-            org.telegram.ui.ActionBar.d6 d6Var = ddVar.f36149q0;
-            if (d6Var != null) {
-                return d6Var.getDrawable(str);
-            }
-            return org.telegram.ui.ActionBar.h6.P0(str);
-        }
-    }
-
-    @Override
-    public final ColorFilter j() {
-        return org.telegram.ui.ActionBar.h6.f21316v3;
-    }
-
-    @Override
-    public final Paint n(String str) {
-        if (str.equals("paintDivider")) {
-            return this.f35884a.f36162y0;
-        }
-        return org.telegram.ui.ActionBar.h6.T0(str);
-    }
-
-    @Override
-    public final int r(int i10) {
-        return u(i10);
-    }
-
-    @Override
-    public final boolean s() {
-        return false;
-    }
-
-    @Override
-    public final int u(int i10) {
-        dd ddVar = this.f35884a;
-        int indexOfKey = ddVar.f36151r0.indexOfKey(i10);
-        if (indexOfKey >= 0) {
-            return ddVar.f36151r0.valueAt(indexOfKey);
-        }
-        org.telegram.ui.ActionBar.d6 d6Var = ddVar.f36149q0;
-        if (d6Var != null) {
-            return d6Var.u(i10);
-        }
-        return org.telegram.ui.ActionBar.h6.x0(null, i10, false);
-    }
-
-    @Override
-    public final void B(int i10, int i11) {
     }
 }

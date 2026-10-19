@@ -4,39 +4,39 @@ import android.widget.LinearLayout;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.bu0;
-import org.telegram.ui.lu0;
-public final class pc extends bu0 {
-    public final org.telegram.ui.Components.w9 f2038a;
-    public final LinearLayout f2039b;
-    public final long f2040c;
+import org.telegram.ui.ju0;
+import org.telegram.ui.zt0;
+public final class pc extends zt0 {
+    public final org.telegram.ui.Components.w9 f2037a;
+    public final LinearLayout f2038b;
+    public final long f2039c;
 
     public pc(org.telegram.ui.Components.w9 w9Var, LinearLayout linearLayout, long j10) {
-        this.f2038a = w9Var;
-        this.f2039b = linearLayout;
-        this.f2040c = j10;
+        this.f2037a = w9Var;
+        this.f2038b = linearLayout;
+        this.f2039c = j10;
     }
 
     @Override
-    public final lu0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
-        org.telegram.ui.Components.w9 w9Var = this.f2038a;
+    public final ju0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
+        org.telegram.ui.Components.w9 w9Var = this.f2037a;
         ImageReceiver imageReceiver = w9Var.getImageReceiver();
         int[] iArr = new int[2];
         w9Var.getLocationInWindow(iArr);
-        lu0 lu0Var = new lu0();
-        lu0Var.f38918b = iArr[0];
-        lu0Var.f38919c = iArr[1];
-        lu0Var.d = this.f2039b;
-        lu0Var.f38926m = null;
-        lu0Var.f38917a = imageReceiver;
+        ju0 ju0Var = new ju0();
+        ju0Var.f38344b = iArr[0];
+        ju0Var.f38345c = iArr[1];
+        ju0Var.d = this.f2038b;
+        ju0Var.f38352m = null;
+        ju0Var.f38343a = imageReceiver;
         if (z10) {
-            lu0Var.e = imageReceiver.getBitmapSafe();
+            ju0Var.e = imageReceiver.getBitmapSafe();
         }
-        lu0Var.h = imageReceiver.getRoundRadius(true);
-        lu0Var.f38920f = this.f2040c;
-        lu0Var.f38923j = 0;
-        lu0Var.f38922i = 0;
-        return lu0Var;
+        ju0Var.h = imageReceiver.getRoundRadius(true);
+        ju0Var.f38346f = this.f2039c;
+        ju0Var.f38349j = 0;
+        ju0Var.f38348i = 0;
+        return ju0Var;
     }
 
     @Override

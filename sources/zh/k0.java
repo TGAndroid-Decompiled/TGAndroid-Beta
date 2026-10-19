@@ -1,66 +1,31 @@
 package zh;
 
-import android.text.TextUtils;
-import org.telegram.messenger.Utilities;
-public final class k0 implements Utilities.Callback {
-    public final int f51752a;
-    public final u0 f51753b;
-    public final String f51754c;
+import android.graphics.Outline;
+import android.view.View;
+import android.view.ViewOutlineProvider;
+public final class k0 extends ViewOutlineProvider {
+    public final int f52015a;
+    public final m0 f52016b;
 
-    public k0(u0 u0Var, String str, int i10) {
-        this.f51752a = i10;
-        this.f51753b = u0Var;
-        this.f51754c = str;
+    public k0(m0 m0Var, int i10) {
+        this.f52015a = i10;
+        this.f52016b = m0Var;
     }
 
     @Override
-    public final void run(Object obj) {
-        boolean z10;
-        e eVar = (e) obj;
-        switch (this.f51752a) {
+    public final void getOutline(View view, Outline outline) {
+        switch (this.f52015a) {
             case 0:
-                u0 u0Var = this.f51753b;
-                if (TextUtils.equals(u0Var.d, this.f51754c)) {
-                    if (u0Var.f52040t0 == null) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    u0Var.f52040t0 = eVar;
-                    if (!u0Var.f52060v0) {
-                        if (z10) {
-                            f fVar = u0Var.f52030s0;
-                            fVar.f51688m = eVar;
-                            fVar.f51689n = null;
-                            fVar.f51692q = 2;
-                            fVar.f51690o = 0.0f;
-                            fVar.f51691p = 0L;
-                            fVar.E = 0L;
-                            fVar.F = false;
-                            u0Var.invalidate();
-                            return;
-                        }
-                        u0Var.j1(eVar);
-                        return;
-                    }
-                    return;
-                }
+                float translationY = view.getTranslationY() + view.getTop();
+                float translationX = view.getTranslationX() + view.getLeft();
+                m0 m0Var = this.f52016b;
+                outline.setRoundRect(Math.round(m0Var.f52040n - translationX), Math.round(m0Var.f52045r - translationY), Math.round(m0Var.f52047s - translationX), Math.round(m0Var.v - translationY), m0Var.f52048w);
                 return;
             default:
-                u0 u0Var2 = this.f51753b;
-                if (TextUtils.equals(u0Var2.e, this.f51754c)) {
-                    u0Var2.f52050u0 = eVar;
-                    if (u0Var2.f52060v0 && u0Var2.f52071w0 && u0Var2.A0) {
-                        u0Var2.A0 = false;
-                        u0Var2.f52101z0 = System.currentTimeMillis() + 60000;
-                        u0Var2.A2 = -1;
-                    }
-                    if (u0Var2.f52060v0) {
-                        u0Var2.j1(eVar);
-                        return;
-                    }
-                    return;
-                }
+                int height = view.getHeight();
+                m0 m0Var2 = this.f52016b;
+                int i10 = m0Var2.f52027b0;
+                outline.setRoundRect(m0Var2.f52025a0, i10, view.getWidth() - m0Var2.f52025a0, view.getHeight() - m0Var2.f52029c0, ((height - i10) - m0Var2.f52029c0) / 2.0f);
                 return;
         }
     }

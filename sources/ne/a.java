@@ -3,14 +3,14 @@ package ne;
 import android.view.View;
 import org.telegram.ui.Components.z9;
 public final class a implements d, z9 {
-    public final View f17379a;
+    public final View f17382a;
 
     @Override
-    public void u(int i10, float f7, float f10, e eVar) {
-        this.f17379a.invalidate();
+    public void r(int i10, float f7, float f10, e eVar) {
+        this.f17382a.invalidate();
     }
 
     @Override
-    public void E(float f7, int i10) {
+    public void H(float f7, int i10) {
     }
 }

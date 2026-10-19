@@ -1,6 +1,6 @@
 package ae;
 
-import i2.d;
+import i2.e;
 import kotlin.jvm.internal.i;
 public final class a implements Comparable {
     public static final long f540b;
@@ -63,7 +63,7 @@ public final class a implements Comparable {
                     sb2.append((CharSequence) obj, 0, ((i14 + 3) / 3) * 3);
                 }
             } else {
-                throw new IllegalArgumentException(d.k(i12, "Desired length ", " is less than zero."));
+                throw new IllegalArgumentException(e.k(i12, "Desired length ", " is less than zero."));
             }
         }
         sb2.append(str);

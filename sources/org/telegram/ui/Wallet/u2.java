@@ -1,41 +1,31 @@
 package org.telegram.ui.Wallet;
-public final class u2 implements Runnable {
-    public final int f34963a;
-    public final z2 f34964b;
 
-    public u2(z2 z2Var, int i10) {
-        this.f34963a = i10;
-        this.f34964b = z2Var;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.Components.xc;
+public final class u2 implements Runnable {
+    public final int f34977a;
+    public final org.telegram.ui.ActionBar.n2 f34978b;
+
+    public u2(int i10, org.telegram.ui.ActionBar.n2 n2Var) {
+        this.f34977a = i10;
+        this.f34978b = n2Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f34963a) {
+        switch (this.f34977a) {
             case 0:
-                z2 z2Var = this.f34964b;
-                if (!z2Var.Q && !z2Var.P) {
-                    z2Var.a(1.0f);
-                    return;
-                }
+                org.telegram.ui.ActionBar.n2 n2Var = this.f34978b;
+                o5.D0(n2Var.getContext(), n2Var.getResourceProvider());
+                return;
+            case 1:
+                this.f34978b.presentFragment(new o5());
                 return;
             default:
-                z2 z2Var2 = this.f34964b;
-                if (!z2Var2.Q && !z2Var2.P) {
-                    hh.d.c(z2Var2.E, z2Var2.h);
-                    z2Var2.F.d();
-                    x5 x5Var = z2Var2.f35169r;
-                    u2 u2Var = new u2(z2Var2, 0);
-                    s5 s5Var = x5Var.f35103y;
-                    if (s5Var != null) {
-                        if (s5Var.f34818b != null) {
-                            u2Var.run();
-                            return;
-                        } else {
-                            s5Var.d = u2Var;
-                            return;
-                        }
-                    }
-                    u2Var.run();
+                org.telegram.ui.ActionBar.n2 n2Var2 = this.f34978b;
+                if (xc.a(n2Var2)) {
+                    xc.a0(n2Var2).M(LocaleController.getString(R.string.WalletCreated), LocaleController.getString(R.string.WalletCreatedInfo), R.raw.contact_check).j();
                     return;
                 }
                 return;

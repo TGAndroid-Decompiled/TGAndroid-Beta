@@ -3,18 +3,18 @@ package org.telegram.ui.Cells;
 import android.util.Property;
 import android.view.View;
 import org.telegram.ui.Components.cl0;
-import org.telegram.ui.su0;
+import org.telegram.ui.qu0;
 public final class d1 extends Property {
-    public final int f22113a;
+    public final int f22116a;
 
     public d1(Class cls, String str, int i10) {
         super(cls, str);
-        this.f22113a = i10;
+        this.f22116a = i10;
     }
 
     @Override
     public final Object get(Object obj) {
-        switch (this.f22113a) {
+        switch (this.f22116a) {
             case 0:
                 return Float.valueOf(((u1) obj).Ae);
             case 1:
@@ -22,13 +22,13 @@ public final class d1 extends Property {
             case 2:
                 return Float.valueOf(((cl0) obj).v);
             default:
-                return Float.valueOf(((su0) obj).f41488a);
+                return Float.valueOf(((qu0) obj).f40972a);
         }
     }
 
     @Override
     public final void set(Object obj, Object obj2) {
-        switch (this.f22113a) {
+        switch (this.f22116a) {
             case 0:
                 ((u1) obj).setAnimationOffsetX(((Float) obj2).floatValue());
                 return;
@@ -39,7 +39,7 @@ public final class d1 extends Property {
                 ((cl0) obj).setTransitionProgress(((Float) obj2).floatValue());
                 return;
             default:
-                ((su0) obj).b(((Float) obj2).floatValue());
+                ((qu0) obj).b(((Float) obj2).floatValue());
                 return;
         }
     }

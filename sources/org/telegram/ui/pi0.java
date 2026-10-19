@@ -1,78 +1,45 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class pi0 implements RequestDelegate {
-    public final int f40122a;
-    public final vi0 f40123b;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
+public final class pi0 extends org.telegram.ui.Components.oo {
+    public final ti0 f40243v0;
 
-    public pi0(vi0 vi0Var, int i10) {
-        this.f40122a = i10;
-        this.f40123b = vi0Var;
+    public pi0(ti0 ti0Var, Context context) {
+        super(context, null, false, null);
+        this.f40243v0 = ti0Var;
     }
 
     @Override
-    public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f40122a) {
-            case 0:
-                final vi0 vi0Var = this.f40123b;
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r4) {
-                            case 0:
-                                vi0.U(vi0Var, tL_error, tLObject);
-                                return;
-                            case 1:
-                                vi0.W(vi0Var, tL_error, tLObject);
-                                return;
-                            default:
-                                vi0.V(vi0Var, tL_error, tLObject);
-                                return;
-                        }
-                    }
-                });
-                return;
-            case 1:
-                final vi0 vi0Var2 = this.f40123b;
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r4) {
-                            case 0:
-                                vi0.U(vi0Var2, tL_error, tLObject);
-                                return;
-                            case 1:
-                                vi0.W(vi0Var2, tL_error, tLObject);
-                                return;
-                            default:
-                                vi0.V(vi0Var2, tL_error, tLObject);
-                                return;
-                        }
-                    }
-                });
-                return;
-            default:
-                final vi0 vi0Var3 = this.f40123b;
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r4) {
-                            case 0:
-                                vi0.U(vi0Var3, tL_error, tLObject);
-                                return;
-                            case 1:
-                                vi0.W(vi0Var3, tL_error, tLObject);
-                                return;
-                            default:
-                                vi0.V(vi0Var3, tL_error, tLObject);
-                                return;
-                        }
-                    }
-                });
-                return;
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        ti0 ti0Var = this.f40243v0;
+        ti0Var.W.setImageCoords(ti0Var.f41687b0.getAvatarImageView().getX(), ti0Var.f41687b0.getAvatarImageView().getY(), ti0Var.f41687b0.getAvatarImageView().getWidth(), ti0Var.f41687b0.getAvatarImageView().getHeight());
+        if (ti0Var.Y) {
+            canvas.save();
+            canvas.scale(0.9f, 0.9f, ti0Var.W.getCenterX(), ti0Var.W.getCenterY());
+            ti0Var.W.draw(canvas);
+            canvas.restore();
         }
+        if (ti0Var.X) {
+            int centerX = (int) (ti0Var.W.getCenterX() - (org.telegram.ui.ActionBar.h6.U0.getIntrinsicWidth() / 2));
+            int centerY = (int) (ti0Var.W.getCenterY() - (org.telegram.ui.ActionBar.h6.U0.getIntrinsicHeight() / 2));
+            Drawable drawable = org.telegram.ui.ActionBar.h6.U0;
+            drawable.setBounds(centerX, centerY, drawable.getIntrinsicWidth() + centerX, org.telegram.ui.ActionBar.h6.U0.getIntrinsicHeight() + centerY);
+            org.telegram.ui.ActionBar.h6.U0.draw(canvas);
+        }
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.f40243v0.W.onAttachedToWindow();
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.f40243v0.W.onDetachedFromWindow();
     }
 }

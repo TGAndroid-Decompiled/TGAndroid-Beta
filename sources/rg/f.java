@@ -4,23 +4,23 @@ import android.animation.ValueAnimator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 public final class f implements ValueAnimator.AnimatorUpdateListener {
-    public final int f45338a;
-    public final j f45339b;
+    public final int f45335a;
+    public final j f45336b;
 
     public f(j jVar, int i10) {
-        this.f45338a = i10;
-        this.f45339b = jVar;
+        this.f45335a = i10;
+        this.f45336b = jVar;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f45338a) {
+        switch (this.f45335a) {
             case 0:
-                j jVar = this.f45339b;
+                j jVar = this.f45336b;
                 jVar.g(AndroidUtilities.lerpAngle(jVar.L, jVar.f45391i0, jVar.Q.getAnimatedFraction()));
                 return;
             case 1:
-                j jVar2 = this.f45339b;
+                j jVar2 = this.f45336b;
                 jVar2.getClass();
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 jVar2.f45396n0 = floatValue;
@@ -34,7 +34,7 @@ public final class f implements ValueAnimator.AnimatorUpdateListener {
                 jVar2.invalidate();
                 return;
             case 2:
-                j jVar3 = this.f45339b;
+                j jVar3 = this.f45336b;
                 jVar3.getClass();
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 jVar3.f45392j0 = floatValue2;
@@ -47,13 +47,13 @@ public final class f implements ValueAnimator.AnimatorUpdateListener {
                 }
                 return;
             case 3:
-                this.f45339b.k();
+                this.f45336b.k();
                 return;
             case 4:
-                this.f45339b.k();
+                this.f45336b.k();
                 return;
             default:
-                j jVar4 = this.f45339b;
+                j jVar4 = this.f45336b;
                 float lerpAngle = AndroidUtilities.lerpAngle(jVar4.f45391i0, jVar4.L, valueAnimator.getAnimatedFraction());
                 jVar4.O = lerpAngle;
                 jVar4.g(lerpAngle);

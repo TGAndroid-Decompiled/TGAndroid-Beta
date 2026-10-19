@@ -1,8 +1,8 @@
 package ai;
 
 import android.os.Bundle;
-import org.telegram.ui.sn;
-public final class yd extends sn {
+import org.telegram.ui.qn;
+public final class yd extends qn {
     public final boolean Rc;
     public final le Sc;
 

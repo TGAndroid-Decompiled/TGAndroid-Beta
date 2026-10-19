@@ -6,12 +6,12 @@ import android.os.Message;
 import android.util.Pair;
 import java.util.HashSet;
 public final class o0 extends Handler {
-    public final int f449a;
-    public final Object f450b;
+    public final int f448a;
+    public final Object f449b;
 
     public o0(Object obj, int i10) {
-        this.f449a = i10;
-        this.f450b = obj;
+        this.f448a = i10;
+        this.f449b = obj;
     }
 
     private final void a(Message message) {
@@ -22,23 +22,23 @@ public final class o0 extends Handler {
         int i10 = message.what;
         if (i10 != 1) {
             if (i10 == 2) {
-                n2.b bVar = (n2.b) this.f450b;
-                if (obj == bVar.f17031x && bVar.k()) {
-                    bVar.f17031x = null;
-                    synchronized (bVar.f17023o) {
-                        le.b bVar2 = bVar.f17032y;
+                n2.b bVar = (n2.b) this.f449b;
+                if (obj == bVar.f17034x && bVar.k()) {
+                    bVar.f17034x = null;
+                    synchronized (bVar.f17026o) {
+                        le.b bVar2 = bVar.f17035y;
                         bVar2.getClass();
                         dVar = new oa.d(14);
-                        ((e9.k0) bVar2.f16008b).f();
-                        bVar.f17032y = null;
+                        ((e9.k0) bVar2.f16011b).f();
+                        bVar.f17035y = null;
                     }
                     if (!(obj2 instanceof Exception) && !(obj2 instanceof NoSuchMethodError)) {
                         try {
-                            byte[] g02 = bVar.f17013b.g0(bVar.v, ((n2.w) obj2).f17074a);
-                            if (bVar.f17030w != null && g02 != null && g02.length != 0) {
-                                bVar.f17030w = g02;
+                            byte[] g02 = bVar.f17016b.g0(bVar.v, ((n2.w) obj2).f17077a);
+                            if (bVar.f17033w != null && g02 != null && g02.length != 0) {
+                                bVar.f17033w = g02;
                             }
-                            bVar.f17024p = 4;
+                            bVar.f17027p = 4;
                             bVar.i(new j5.b(dVar, 19));
                             return;
                         } catch (Exception e) {
@@ -58,19 +58,19 @@ public final class o0 extends Handler {
             }
             return;
         }
-        n2.b bVar3 = (n2.b) this.f450b;
-        n2.e eVar = bVar3.f17014c;
-        if (obj == bVar3.f17033z) {
-            if (bVar3.f17024p == 2 || bVar3.k()) {
-                bVar3.f17033z = null;
+        n2.b bVar3 = (n2.b) this.f449b;
+        n2.e eVar = bVar3.f17017c;
+        if (obj == bVar3.f17036z) {
+            if (bVar3.f17027p == 2 || bVar3.k()) {
+                bVar3.f17036z = null;
                 if (obj2 instanceof Exception) {
                     eVar.X((Exception) obj2, false);
                     return;
                 }
                 try {
-                    bVar3.f17013b.j0(((n2.w) obj2).f17074a);
-                    eVar.f17039c = null;
-                    HashSet hashSet = (HashSet) eVar.f17038b;
+                    bVar3.f17016b.j0(((n2.w) obj2).f17077a);
+                    eVar.f17042c = null;
+                    HashSet hashSet = (HashSet) eVar.f17041b;
                     e9.n0 u10 = e9.n0.u(hashSet);
                     hashSet.clear();
                     e9.l0 listIterator = u10.listIterator(0);
@@ -92,14 +92,14 @@ public final class o0 extends Handler {
         n4.l lVar;
         o0 o0Var;
         if (message.what == 1) {
-            synchronized (((n4.l) this.f450b).f17102a) {
-                nVar = (n4.n) ((n4.l) this.f450b).d.get();
-                lVar = (n4.l) this.f450b;
+            synchronized (((n4.l) this.f449b).f17105a) {
+                nVar = (n4.n) ((n4.l) this.f449b).d.get();
+                lVar = (n4.l) this.f449b;
                 o0Var = lVar.e;
             }
             if (nVar != null && lVar == nVar.b() && o0Var != null) {
                 nVar.d((n4.t) message.obj);
-                ((n4.l) this.f450b).a(nVar, o0Var);
+                ((n4.l) this.f449b).a(nVar, o0Var);
                 nVar.d(null);
             }
         }
@@ -112,25 +112,25 @@ public final class o0 extends Handler {
 
     public o0(Object obj, Looper looper, int i10) {
         super(looper);
-        this.f449a = i10;
-        this.f450b = obj;
+        this.f448a = i10;
+        this.f449b = obj;
     }
 
     public o0(kd.h hVar) {
         super(Looper.getMainLooper());
-        this.f449a = 0;
-        this.f450b = hVar;
+        this.f448a = 0;
+        this.f449b = hVar;
     }
 
     public o0(p4.g gVar) {
         super(Looper.getMainLooper());
-        this.f449a = 10;
-        this.f450b = gVar;
+        this.f448a = 10;
+        this.f449b = gVar;
     }
 
     public o0(Looper looper, qi.e eVar) {
         super(looper);
-        this.f449a = 4;
-        this.f450b = eVar;
+        this.f448a = 4;
+        this.f449b = eVar;
     }
 }

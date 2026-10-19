@@ -29,7 +29,7 @@ public final class y6 implements View.OnClickListener {
                 return;
             default:
                 e7 e7Var = this.f2483b;
-                if (e7Var.O.getVisibility() == 0 && (onClickListener = e7Var.U) != null) {
+                if (e7Var.O.getVisibility() == 0 && (onClickListener = e7Var.W) != null) {
                     onClickListener.onClick(view);
                     return;
                 }

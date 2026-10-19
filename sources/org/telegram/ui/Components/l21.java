@@ -1,60 +1,101 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import org.telegram.messenger.AndroidUtilities;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.ViewPropertyAnimator;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
+import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.ThemeEditorView;
-public final class l21 extends FrameLayout {
-    public final ImageView f28054a;
-    public final j21 f28055b;
-    public final ThemeEditorView.EditorAlert f28056c;
+public final class l21 implements TextWatcher {
+    public final m21 f28062a;
 
-    public l21(ThemeEditorView.EditorAlert editorAlert, Context context) {
-        super(context);
-        this.f28056c = editorAlert;
-        View view = new View(context);
-        view.setBackgroundDrawable(org.telegram.ui.ActionBar.h6.c0(AndroidUtilities.dp(18.0f), -854795));
-        addView(view, w7.z5.d(-1, 36.0f, 51, 14.0f, 11.0f, 14.0f, 0.0f));
-        ImageView imageView = new ImageView(context);
-        ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
-        imageView.setScaleType(scaleType);
-        imageView.setImageResource(R.drawable.smiles_inputsearch);
-        imageView.setColorFilter(new PorterDuffColorFilter(-6182737, PorterDuff.Mode.MULTIPLY));
-        addView(imageView, w7.z5.d(36, 36.0f, 51, 16.0f, 11.0f, 0.0f, 0.0f));
-        ImageView imageView2 = new ImageView(context);
-        this.f28054a = imageView2;
-        imageView2.setScaleType(scaleType);
-        pq pqVar = new pq();
-        imageView2.setImageDrawable(pqVar);
-        pqVar.f29396f = AndroidUtilities.dp(7.0f);
-        imageView2.setScaleX(0.1f);
-        imageView2.setScaleY(0.1f);
-        imageView2.setAlpha(0.0f);
-        addView(imageView2, w7.z5.d(36, 36.0f, 53, 14.0f, 11.0f, 14.0f, 0.0f));
-        imageView2.setOnClickListener(new u80(this, 20));
-        j21 j21Var = new j21(this, context);
-        this.f28055b = j21Var;
-        j21Var.setTextSize(1, 16.0f);
-        j21Var.setHintTextColor(-6774617);
-        j21Var.setTextColor(-14540254);
-        j21Var.setBackgroundDrawable(null);
-        j21Var.setPadding(0, 0, 0, 0);
-        j21Var.setMaxLines(1);
-        j21Var.setLines(1);
-        j21Var.setSingleLine(true);
-        j21Var.setImeOptions(268435459);
-        j21Var.setHint(LocaleController.getString(R.string.Search));
-        j21Var.setCursorColor(-11491093);
-        j21Var.setCursorSize(AndroidUtilities.dp(20.0f));
-        j21Var.setCursorWidth(1.5f);
-        addView(j21Var, w7.z5.d(-1, 40.0f, 51, 54.0f, 9.0f, 46.0f, 0.0f));
-        j21Var.addTextChangedListener(new k21(this));
-        j21Var.setOnEditorActionListener(new e1(this, 10));
+    public l21(m21 m21Var) {
+        this.f28062a = m21Var;
+    }
+
+    @Override
+    public final void afterTextChanged(Editable editable) {
+        boolean z10;
+        boolean z11;
+        float f7;
+        if (this.f28062a.f28369b.length() > 0) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        float f10 = 0.0f;
+        if (this.f28062a.f28368a.getAlpha() != 0.0f) {
+            z11 = true;
+        } else {
+            z11 = false;
+        }
+        if (z10 != z11) {
+            ViewPropertyAnimator animate = this.f28062a.f28368a.animate();
+            float f11 = 1.0f;
+            if (z10) {
+                f10 = 1.0f;
+            }
+            ViewPropertyAnimator duration = animate.alpha(f10).setDuration(150L);
+            if (z10) {
+                f7 = 1.0f;
+            } else {
+                f7 = 0.1f;
+            }
+            ViewPropertyAnimator scaleX = duration.scaleX(f7);
+            if (!z10) {
+                f11 = 0.1f;
+            }
+            scaleX.scaleY(f11).start();
+        }
+        String obj = this.f28062a.f28369b.getText().toString();
+        if (obj.length() != 0) {
+            vz vzVar = this.f28062a.f28370c.e;
+            if (vzVar != null) {
+                vzVar.setText(LocaleController.getString(R.string.NoResult));
+            }
+        } else {
+            s4.g0 adapter = this.f28062a.f28370c.f24397c.getAdapter();
+            ThemeEditorView.EditorAlert editorAlert = this.f28062a.f28370c;
+            if (adapter != editorAlert.f24399n) {
+                int K = ThemeEditorView.EditorAlert.K(editorAlert);
+                this.f28062a.f28370c.e.setText(LocaleController.getString(R.string.NoChats));
+                this.f28062a.f28370c.e.c();
+                ThemeEditorView.EditorAlert editorAlert2 = this.f28062a.f28370c;
+                editorAlert2.f24397c.setAdapter(editorAlert2.f24399n);
+                this.f28062a.f28370c.f24399n.l();
+                if (K > 0) {
+                    this.f28062a.f28370c.h.h1(0, -K);
+                }
+            }
+        }
+        i21 i21Var = this.f28062a.f28370c.f24400r;
+        if (i21Var != null && !obj.equals(i21Var.f27048n)) {
+            i21Var.f27048n = obj;
+            if (i21Var.h != null) {
+                Utilities.searchQueue.cancelRunnable(i21Var.h);
+                i21Var.h = null;
+            }
+            if (obj.length() == 0) {
+                i21Var.e.clear();
+                ThemeEditorView.EditorAlert editorAlert3 = i21Var.f27049r;
+                editorAlert3.F = ThemeEditorView.EditorAlert.K(editorAlert3);
+                i21Var.d = -1;
+                i21Var.l();
+                return;
+            }
+            int i10 = i21Var.d + 1;
+            i21Var.d = i10;
+            i21Var.h = new org.telegram.ui.i4(i21Var, obj, i10, 28);
+            Utilities.searchQueue.postRunnable(i21Var.h, 300L);
+        }
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

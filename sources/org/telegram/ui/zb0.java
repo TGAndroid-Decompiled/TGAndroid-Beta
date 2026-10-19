@@ -1,177 +1,358 @@
 package org.telegram.ui;
 
-import android.graphics.Bitmap;
-import android.location.Location;
-import android.location.LocationManager;
-import android.widget.ImageView;
-import java.util.List;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.view.View;
+import android.view.ViewGroup;
+import j$.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.DialogObject;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.IMapsProvider;
-import org.telegram.messenger.LocationController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserObject;
-import org.telegram.tgnet.TLRPC;
-public final class zb0 implements q0.a {
-    public final int f43703a;
-    public final pc0 f43704b;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.ui.Components.Crop.CropAreaView;
+public final class zb0 extends AnimatorListenerAdapter {
+    public final int f43709a;
+    public final Object f43710b;
 
-    public zb0(pc0 pc0Var, int i10) {
-        this.f43703a = i10;
-        this.f43704b = pc0Var;
+    public zb0(Object obj, int i10) {
+        this.f43709a = i10;
+        this.f43710b = obj;
     }
 
     @Override
-    public final void accept(Object obj) {
-        int i10;
-        float maxZoomLevel;
-        ImageView imageView;
-        LocationController.SharingLocationInfo sharingLocationInfo;
-        int i11;
-        switch (this.f43703a) {
+    public void onAnimationCancel(Animator animator) {
+        switch (this.f43709a) {
+            case 1:
+                ((ne0) this.f43710b).f39557s = null;
+                return;
+            case 7:
+                ((PhotoViewer) ((org.telegram.ui.Components.ml0) this.f43710b).f28564c).A2 = null;
+                return;
+            default:
+                super.onAnimationCancel(animator);
+                return;
+        }
+    }
+
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        boolean z10;
+        org.telegram.ui.ActionBar.k kVar;
+        boolean z11;
+        boolean z12;
+        int i10 = this.f43709a;
+        boolean z13 = false;
+        boolean z14 = false;
+        Object obj = this.f43710b;
+        switch (i10) {
             case 0:
-                pc0 pc0Var = this.f43704b;
-                pc0Var.I = (IMapsProvider.IMap) obj;
-                if (AndroidUtilities.computePerceivedBrightness(pc0Var.getThemedColor(org.telegram.ui.ActionBar.h6.f20986d6)) < 0.721f) {
-                    i10 = R.raw.mapstyle_night;
-                } else {
-                    i10 = 0;
-                }
-                if (i10 != 0) {
-                    pc0Var.f40018a0 = true;
-                    pc0Var.I.setMapStyle(ApplicationLoader.getMapsProvider().loadRawResourceStyle(ApplicationLoader.applicationContext, i10));
-                }
-                pc0Var.I.setPadding(AndroidUtilities.dp(70.0f), 0, AndroidUtilities.dp(70.0f), AndroidUtilities.dp(10.0f));
-                if (pc0Var.I != null) {
-                    pc0Var.K.getView().animate().alpha(1.0f).setStartDelay(200L).setDuration(100L).start();
-                    if (pc0Var.N0) {
-                        maxZoomLevel = pc0Var.I.getMinZoomLevel() + 4.0f;
-                    } else {
-                        maxZoomLevel = pc0Var.I.getMaxZoomLevel() - 4.0f;
-                    }
-                    TLRPC.TL_channelLocation tL_channelLocation = pc0Var.f40051z0;
-                    if (tL_channelLocation != null) {
-                        TLRPC.GeoPoint geoPoint = tL_channelLocation.geo_point;
-                        IMapsProvider.LatLng latLng = new IMapsProvider.LatLng(geoPoint.lat, geoPoint._long);
-                        ?? obj2 = new Object();
-                        if (DialogObject.isUserDialog(pc0Var.f40024e0)) {
-                            obj2.f38111c = pc0Var.getMessagesController().getUser(Long.valueOf(pc0Var.f40024e0));
-                        } else {
-                            obj2.d = pc0Var.getMessagesController().getChat(Long.valueOf(-pc0Var.f40024e0));
-                        }
-                        obj2.f38109a = pc0Var.f40024e0;
-                        pc0Var.u0(obj2);
-                        try {
-                            IMapsProvider.IMarkerOptions position = ApplicationLoader.getMapsProvider().onCreateMarkerOptions().position(latLng);
-                            Bitmap f02 = pc0Var.f0(obj2);
-                            if (f02 != null) {
-                                position.icon(f02);
-                                position.anchor(0.5f, 0.907f);
-                                obj2.e = pc0Var.I.addMarker(position);
-                                if (!UserObject.isUserSelf(obj2.f38111c)) {
-                                    IMapsProvider.IMarkerOptions flat = ApplicationLoader.getMapsProvider().onCreateMarkerOptions().position(latLng).flat(true);
-                                    flat.icon(R.drawable.map_pin_circle);
-                                    flat.anchor(0.5f, 0.5f);
-                                    obj2.f38112f = pc0Var.I.addMarker(flat);
-                                }
-                                pc0Var.f40027g0.add(obj2);
-                                pc0Var.f40028h0.k(obj2, obj2.f38109a);
-                            }
-                        } catch (Exception e) {
-                            FileLog.e(e);
-                        }
-                        pc0Var.I.moveCamera(ApplicationLoader.getMapsProvider().newCameraUpdateLatLngZoom(obj2.e.getPosition(), maxZoomLevel));
-                    } else {
-                        MessageObject messageObject = pc0Var.B0;
-                        if (messageObject != null) {
-                            if (messageObject.isLiveLocation()) {
-                                jc0 b02 = pc0Var.b0(pc0Var.B0.messageOwner);
-                                if (!pc0Var.k0()) {
-                                    pc0Var.I.moveCamera(ApplicationLoader.getMapsProvider().newCameraUpdateLatLngZoom(b02.e.getPosition(), maxZoomLevel));
-                                }
-                            } else {
-                                IMapsProvider.LatLng latLng2 = new IMapsProvider.LatLng(pc0Var.f40048x0.getLatitude(), pc0Var.f40048x0.getLongitude());
-                                try {
-                                    pc0Var.I.addMarker(ApplicationLoader.getMapsProvider().onCreateMarkerOptions().position(latLng2).icon(R.drawable.map_pin2));
-                                } catch (Exception e7) {
-                                    FileLog.e(e7);
-                                }
-                                pc0Var.I.moveCamera(ApplicationLoader.getMapsProvider().newCameraUpdateLatLngZoom(latLng2, maxZoomLevel));
-                                pc0Var.f40026f0 = false;
-                                pc0Var.k0();
-                            }
-                        } else {
-                            Location location = new Location("network");
-                            pc0Var.f40048x0 = location;
-                            TLRPC.TL_channelLocation tL_channelLocation2 = pc0Var.A0;
-                            if (tL_channelLocation2 != null) {
-                                TLRPC.GeoPoint geoPoint2 = tL_channelLocation2.geo_point;
-                                pc0Var.I.moveCamera(ApplicationLoader.getMapsProvider().newCameraUpdateLatLngZoom(new IMapsProvider.LatLng(geoPoint2.lat, geoPoint2._long), maxZoomLevel));
-                                pc0Var.f40048x0.setLatitude(pc0Var.A0.geo_point.lat);
-                                pc0Var.f40048x0.setLongitude(pc0Var.A0.geo_point._long);
-                                pc0Var.f40048x0.setAccuracy(pc0Var.A0.geo_point.accuracy_radius);
-                                pc0Var.T.L(pc0Var.f40048x0);
-                            } else {
-                                location.setLatitude(20.659322d);
-                                pc0Var.f40048x0.setLongitude(-11.40625d);
-                            }
-                        }
-                    }
-                    try {
-                        pc0Var.I.setMyLocationEnabled(true);
-                    } catch (Exception e10) {
-                        FileLog.e((Throwable) e10, false);
-                    }
-                    pc0Var.I.getUiSettings().setMyLocationButtonEnabled(false);
-                    pc0Var.I.getUiSettings().setZoomControlsEnabled(false);
-                    pc0Var.I.getUiSettings().setCompassEnabled(false);
-                    pc0Var.I.setOnCameraMoveStartedListener(new vb0(pc0Var, 4));
-                    pc0Var.I.setOnMyLocationChangeListener(new zb0(pc0Var, 1));
-                    pc0Var.I.setOnMarkerClickListener(new m4.l0(pc0Var, maxZoomLevel));
-                    pc0Var.I.setOnCameraMoveListener(new xb0(pc0Var, 3));
-                    LocationManager locationManager = (LocationManager) ApplicationLoader.applicationContext.getSystemService("location");
-                    List<String> providers = locationManager.getProviders(true);
-                    Location location2 = null;
-                    for (int size = providers.size() - 1; size >= 0; size--) {
-                        location2 = locationManager.getLastKnownLocation(providers.get(size));
-                        if (location2 != null) {
-                            pc0Var.f40046w0 = location2;
-                            pc0Var.s0(location2);
-                            if (pc0Var.f40020b0 && pc0Var.getParentActivity() != null) {
-                                pc0Var.f40020b0 = false;
-                                pc0Var.c0();
-                            }
-                            imageView = pc0Var.f40021c;
-                            if (imageView == null && imageView.getVisibility() == 0 && (sharingLocationInfo = pc0Var.getLocationController().getSharingLocationInfo(pc0Var.f40024e0)) != null && (i11 = sharingLocationInfo.proximityMeters) > 0) {
-                                pc0Var.d0(i11);
-                                return;
-                            }
-                            return;
-                        }
-                    }
-                    pc0Var.f40046w0 = location2;
-                    pc0Var.s0(location2);
-                    if (pc0Var.f40020b0) {
-                        pc0Var.f40020b0 = false;
-                        pc0Var.c0();
-                    }
-                    imageView = pc0Var.f40021c;
-                    if (imageView == null) {
-                        return;
-                    }
+                nc0 nc0Var = (nc0) obj;
+                nc0Var.H = false;
+                nc0Var.n0();
+                return;
+            case 1:
+                ne0 ne0Var = (ne0) obj;
+                if (ne0Var.f39557s != null && ne0Var.f39555n != null) {
+                    ne0Var.f39556r.setVisibility(4);
+                    ne0Var.f39557s = null;
                     return;
                 }
                 return;
+            case 2:
+                ((ti0) obj).T.setVisibility(8);
+                return;
+            case 3:
+                oj0 oj0Var = (oj0) obj;
+                oj0Var.f39913f = 1.0f;
+                oj0Var.invalidate();
+                return;
+            case 4:
+                NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = (NotificationsCustomSettingsActivity) obj;
+                if (animator.equals(notificationsCustomSettingsActivity.e)) {
+                    notificationsCustomSettingsActivity.e = null;
+                    return;
+                }
+                return;
+            case 5:
+                ip0 ip0Var = (ip0) obj;
+                lc lcVar = ip0Var.X;
+                if (lcVar != null) {
+                    if (lcVar.getParent() != null) {
+                        ((ViewGroup) ip0Var.X.getParent()).removeView(ip0Var.X);
+                    }
+                    ip0Var.X = null;
+                }
+                ip0Var.Z = null;
+                super.onAnimationEnd(animator);
+                return;
+            case 6:
+                lq0 lq0Var = (lq0) obj;
+                oq0 oq0Var = lq0Var.D0;
+                mq0[] mq0VarArr = oq0Var.f39967n;
+                oq0Var.f39968r = null;
+                if (oq0Var.f39970w) {
+                    mq0VarArr[1].setVisibility(8);
+                } else {
+                    mq0 mq0Var = mq0VarArr[0];
+                    mq0VarArr[0] = mq0VarArr[1];
+                    mq0VarArr[1] = mq0Var;
+                    mq0Var.setVisibility(8);
+                    if (oq0Var.f39967n[0].e == oq0Var.h.getFirstTabId()) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    oq0Var.e = z10;
+                    oq0Var.h.j(1.0f, oq0Var.f39967n[0].e);
+                }
+                oq0Var.f39969s = false;
+                lq0Var.f39017y0 = false;
+                lq0Var.f39016x0 = false;
+                kVar = ((org.telegram.ui.ActionBar.n2) oq0Var).actionBar;
+                kVar.setEnabled(true);
+                oq0Var.h.setEnabled(true);
+                return;
+            case 7:
+                PhotoViewer photoViewer = (PhotoViewer) ((org.telegram.ui.Components.ml0) obj).f28564c;
+                if (photoViewer.A2 != null) {
+                    ck0 ck0Var = new ck0(this, 18);
+                    photoViewer.I2 = ck0Var;
+                    AndroidUtilities.runOnUIThread(ck0Var, 860L);
+                    return;
+                }
+                return;
+            case 8:
+                ct0 ct0Var = (ct0) obj;
+                PhotoViewer photoViewer2 = ct0Var.f36073b;
+                mg.p pVar = photoViewer2.C1.f28765b;
+                pVar.q();
+                CropAreaView cropAreaView = pVar.f16919a;
+                cropAreaView.setDimVisibility(true);
+                cropAreaView.f(true, true);
+                cropAreaView.invalidate();
+                photoViewer2.C1.f28765b.J = true;
+                photoViewer2.f33373p6 = null;
+                photoViewer2.f33417u4 = ct0Var.f36072a;
+                ei.b4 b4Var = photoViewer2.f1().L;
+                if (photoViewer2.f33417u4 != 0) {
+                    z11 = true;
+                } else {
+                    z11 = false;
+                }
+                b4Var.b(z11);
+                ei.b4 b4Var2 = photoViewer2.K1;
+                if (b4Var2 != null) {
+                    if (photoViewer2.f33417u4 != 3) {
+                        z13 = true;
+                    }
+                    b4Var2.b(z13);
+                }
+                if (photoViewer2.f33417u4 != 3) {
+                    photoViewer2.Z5 = 0.0f;
+                }
+                photoViewer2.f33365o6 = -1;
+                photoViewer2.f33278e6 = 1.0f;
+                photoViewer2.f33240a6 = 1.0f;
+                photoViewer2.f33260c6 = 0.0f;
+                photoViewer2.f33269d6 = 0.0f;
+                photoViewer2.w3(1.0f);
+                photoViewer2.f33406t2 = true;
+                photoViewer2.f33272e0.invalidate();
+                return;
+            case 9:
+                dt0 dt0Var = (dt0) obj;
+                PhotoViewer photoViewer3 = dt0Var.f36451b;
+                photoViewer3.I1.f25194i0.setVisibility(0);
+                photoViewer3.f33373p6 = null;
+                photoViewer3.f33417u4 = dt0Var.f36450a;
+                ei.b4 b4Var3 = photoViewer3.f1().L;
+                if (photoViewer3.f33417u4 != 0) {
+                    z12 = true;
+                } else {
+                    z12 = false;
+                }
+                b4Var3.b(z12);
+                ei.b4 b4Var4 = photoViewer3.K1;
+                if (b4Var4 != null) {
+                    if (photoViewer3.f33417u4 != 3) {
+                        z14 = true;
+                    }
+                    b4Var4.b(z14);
+                }
+                if (photoViewer3.f33417u4 != 3) {
+                    photoViewer3.Z5 = 0.0f;
+                }
+                photoViewer3.f33365o6 = -1;
+                photoViewer3.f33278e6 = 1.0f;
+                photoViewer3.f33240a6 = 1.0f;
+                photoViewer3.f33260c6 = 0.0f;
+                photoViewer3.f33269d6 = 0.0f;
+                photoViewer3.w3(1.0f);
+                photoViewer3.f33406t2 = true;
+                photoViewer3.f33272e0.invalidate();
+                return;
+            case 10:
+                ((PhotoViewer) ((ht0) obj).f37810q0).y3[0].setTag(null);
+                return;
+            case 11:
+                ((it0) obj).d.T1.f42045k0 = 1.0f;
+                return;
+            case 12:
+                PhotoViewer photoViewer4 = ((it0) obj).d;
+                photoViewer4.T1.setVisibility(4);
+                photoViewer4.T1.f42045k0 = 1.0f;
+                return;
+            case 13:
+                AndroidUtilities.runOnUIThread(new ck0(this, 20));
+                return;
+            case 14:
+                zs0 zs0Var = (zs0) obj;
+                if (animator.equals(zs0Var.f43794c.U7)) {
+                    zs0Var.f43794c.U7 = null;
+                    return;
+                }
+                return;
+            case 15:
+                gu0 gu0Var = (gu0) obj;
+                if (gu0Var.e == animator) {
+                    gu0Var.f37438c[1].setVisibility(8);
+                    gu0Var.e = null;
+                    return;
+                }
+                return;
+            case 16:
+                vu0 vu0Var = (vu0) obj;
+                if (vu0Var.C != null) {
+                    vu0Var.C = null;
+                    vu0Var.b();
+                    return;
+                }
+                return;
+            case 17:
+                PopupNotificationActivity popupNotificationActivity = (PopupNotificationActivity) obj;
+                Runnable runnable = popupNotificationActivity.Y;
+                if (runnable != null) {
+                    runnable.run();
+                    popupNotificationActivity.Y = null;
+                    return;
+                }
+                return;
+            case 18:
+                PremiumPreviewFragment premiumPreviewFragment = (PremiumPreviewFragment) obj;
+                premiumPreviewFragment.f33497d0.removeView(premiumPreviewFragment.f33513r0);
+                premiumPreviewFragment.f33513r0 = null;
+                super.onAnimationEnd(animator);
+                return;
+            case 19:
+                ((ProfileActivity) ((org.telegram.ui.Components.ml0) obj).f28564c).F5 = null;
+                return;
+            case 20:
+                c01 c01Var = (c01) obj;
+                if (!c01Var.E) {
+                    c01Var.setVisibility(8);
+                    return;
+                }
+                return;
+            case 21:
+                z01 z01Var = (z01) obj;
+                if (animator.equals(z01Var.f43588c)) {
+                    z01Var.f43588c = null;
+                    return;
+                }
+                return;
+            case 22:
+                ((m31) obj).d.f33776a0.f42045k0 = 1.0f;
+                return;
+            case 23:
+                SecretMediaViewer secretMediaViewer = ((m31) obj).d;
+                secretMediaViewer.f33776a0.setVisibility(4);
+                secretMediaViewer.f33776a0.f42045k0 = 1.0f;
+                return;
+            case 24:
+                x51 x51Var = ((n41) obj).e;
+                x51Var.S0.G = 0.0f;
+                x51Var.S0 = null;
+                x51Var.f43056h0.invalidate();
+                return;
+            case 25:
+                ah.x0.a();
+                x51 x51Var2 = (x51) obj;
+                u41 u41Var = x51Var2.f43056h0;
+                u41 u41Var2 = x51Var2.f43056h0;
+                u41Var.setLayerType(0, null);
+                o41 o41Var = x51Var2.f43052f0;
+                o41Var.setLayerType(0, null);
+                x51Var2.f43049e0.setLayerType(0, null);
+                x51Var2.f43042b0.setLayerType(0, null);
+                org.telegram.ui.Components.un unVar = x51Var2.f43067n0;
+                if (unVar != null) {
+                    unVar.setLayerType(0, null);
+                }
+                View view = x51Var2.m0;
+                if (view != null) {
+                    view.setLayerType(0, null);
+                }
+                o41Var.b();
+                x51Var2.f43047d0.m(false);
+                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);
+                x51Var2.W1.unlock();
+                NotificationCenter globalInstance = NotificationCenter.getGlobalInstance();
+                Objects.requireNonNull(globalInstance);
+                AndroidUtilities.runOnUIThread(new qy0(globalInstance, 14));
+                x51Var2.h();
+                x51Var2.E(1.0f);
+                for (int i11 = 0; i11 < u41Var2.getChildCount(); i11++) {
+                    View childAt = u41Var2.getChildAt(i11);
+                    childAt.setScaleX(1.0f);
+                    childAt.setScaleY(1.0f);
+                }
+                for (int i12 = 0; i12 < x51Var2.f43047d0.f27924b.getChildCount(); i12++) {
+                    View childAt2 = x51Var2.f43047d0.f27924b.getChildAt(i12);
+                    childAt2.setScaleX(1.0f);
+                    childAt2.setScaleY(1.0f);
+                }
+                x51Var2.f43047d0.f27924b.invalidate();
+                x51Var2.f43062k0.invalidate();
+                u41Var2.invalidate();
+                return;
+            case 26:
+                ((p91) obj).f40133b0.setVisibility(8);
+                return;
+            case 27:
+                kc1 kc1Var = ((yb1) obj).f43433a;
+                if (!kc1Var.f38552p1.a()) {
+                    kc1Var.R1.setVisibility(8);
+                    return;
+                }
+                return;
+            case 28:
+                super.onAnimationEnd(animator);
+                ((ld1) obj).f38894a = null;
+                return;
             default:
-                pc0 pc0Var2 = this.f43704b;
-                Location location3 = (Location) obj;
-                pc0Var2.s0(location3);
-                pc0Var2.getLocationController().setMapLocation(location3, pc0Var2.f40023d0);
-                pc0Var2.f40023d0 = false;
+                super.onAnimationEnd(animator);
+                ((pe1) obj).setScrollEnabled(true);
                 return;
         }
+    }
+
+    @Override
+    public void onAnimationStart(Animator animator) {
+        switch (this.f43709a) {
+            case 8:
+                ct0 ct0Var = (ct0) this.f43710b;
+                ct0Var.f36073b.U0.setVisibility(0);
+                ct0Var.f36073b.C1.setVisibility(0);
+                return;
+            case 9:
+                return;
+            case 20:
+                ((c01) this.f43710b).setVisibility(0);
+                return;
+            default:
+                super.onAnimationStart(animator);
+                return;
+        }
+    }
+
+    private final void a(Animator animator) {
     }
 }

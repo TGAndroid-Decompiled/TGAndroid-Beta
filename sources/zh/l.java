@@ -4,39 +4,39 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.view.View;
-import ci.f3;
+import ci.g3;
 import com.google.android.gms.internal.play_billing.k3;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.r5;
 public final class l extends View {
-    public final int f51755a;
-    public r5 f51756b;
-    public final Paint f51757c;
+    public final int f52017a;
+    public r5 f52018b;
+    public final Paint f52019c;
     public long d;
     public TLRPC.Document e;
-    public String f51758f;
+    public String f52020f;
     public float h;
-    public float f51759n;
-    public float f51760r;
+    public float f52021n;
+    public float f52022r;
 
     public l(Context context, int i10) {
         super(context);
         Paint paint = new Paint(1);
-        this.f51757c = paint;
-        this.f51759n = 1.0f;
-        this.f51760r = 1.0f;
-        this.f51755a = i10;
+        this.f52019c = paint;
+        this.f52021n = 1.0f;
+        this.f52022r = 1.0f;
+        this.f52017a = i10;
         paint.setColor(738197503);
     }
 
     public String getKey() {
-        return this.f51758f;
+        return this.f52020f;
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        r5 r5Var = this.f51756b;
+        r5 r5Var = this.f52018b;
         if (r5Var != null) {
             r5Var.a(this);
         }
@@ -45,7 +45,7 @@ public final class l extends View {
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        r5 r5Var = this.f51756b;
+        r5 r5Var = this.f52018b;
         if (r5Var != null) {
             r5Var.o(this);
         }
@@ -54,7 +54,7 @@ public final class l extends View {
     @Override
     public final void onDraw(Canvas canvas) {
         float f7;
-        f3 f3Var;
+        g3 g3Var;
         if (isPressed()) {
             f7 = 1.0f;
         } else {
@@ -69,20 +69,20 @@ public final class l extends View {
             this.h = f7;
             invalidate();
         }
-        float f12 = (1.0f - (this.h * 0.2f)) * this.f51759n * this.f51760r;
+        float f12 = (1.0f - (this.h * 0.2f)) * this.f52021n * this.f52022r;
         if (f12 > 0.01f) {
             float width = getWidth() * 0.78f * f12;
             float width2 = getWidth() / 2.0f;
             float height = getHeight() / 2.0f;
-            r5 r5Var = this.f51756b;
-            if (r5Var == null || (f3Var = r5Var.f29842k) == null || !f3Var.hasBitmapImage()) {
-                canvas.drawCircle(width2, height, 0.42f * width, this.f51757c);
+            r5 r5Var = this.f52018b;
+            if (r5Var == null || (g3Var = r5Var.f29853k) == null || !g3Var.hasBitmapImage()) {
+                canvas.drawCircle(width2, height, 0.42f * width, this.f52019c);
             }
-            r5 r5Var2 = this.f51756b;
+            r5 r5Var2 = this.f52018b;
             if (r5Var2 != null) {
                 float f13 = width / 2.0f;
                 r5Var2.setBounds((int) (width2 - f13), (int) (height - f13), (int) (width2 + f13), (int) (height + f13));
-                r.b(canvas, this.f51756b);
+                r.b(canvas, this.f52018b);
             }
         }
     }
@@ -94,29 +94,29 @@ public final class l extends View {
     }
 
     public void set(TLRPC.Document document) {
-        long j10 = document.f20278id;
+        long j10 = document.f20281id;
         if (j10 == 0) {
-            if (this.f51756b != null && isAttachedToWindow()) {
-                this.f51756b.o(this);
+            if (this.f52018b != null && isAttachedToWindow()) {
+                this.f52018b.o(this);
             }
-            this.f51756b = null;
+            this.f52018b = null;
             this.d = 0L;
             this.e = document;
-            this.f51758f = null;
+            this.f52020f = null;
             invalidate();
-        } else if (j10 == this.d && this.f51756b != null) {
+        } else if (j10 == this.d && this.f52018b != null) {
         } else {
-            if (this.f51756b != null && isAttachedToWindow()) {
-                this.f51756b.o(this);
+            if (this.f52018b != null && isAttachedToWindow()) {
+                this.f52018b.o(this);
             }
-            this.d = document.f20278id;
+            this.d = document.f20281id;
             this.e = document;
-            this.f51758f = "c:" + document.f20278id;
-            this.f51756b = r5.m(this.f51755a, 2, document);
+            this.f52020f = "c:" + document.f20281id;
+            this.f52018b = r5.m(this.f52017a, 2, document);
             if (isAttachedToWindow()) {
-                this.f51756b.a(this);
+                this.f52018b.a(this);
             }
-            setContentDescription(document.f20278id + "");
+            setContentDescription(document.f20281id + "");
             invalidate();
         }
     }

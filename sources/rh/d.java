@@ -22,7 +22,7 @@ public final class d extends View {
         this.f45744c = i10;
         Drawable mutate = context.getResources().getDrawable(R.drawable.outline_poll_attach_24).mutate();
         this.f45742a = mutate;
-        mutate.setColorFilter(new PorterDuffColorFilter(h6.x0(null, h6.f21190o7, false), PorterDuff.Mode.SRC_IN));
+        mutate.setColorFilter(new PorterDuffColorFilter(h6.x0(null, h6.f21193o7, false), PorterDuff.Mode.SRC_IN));
     }
 
     public final void a(e eVar, boolean z10) {

@@ -1,28 +1,21 @@
 package org.telegram.ui;
 
 import org.telegram.messenger.AndroidUtilities;
-public final class kd1 implements Runnable {
-    public final int f38469a;
-    public final pd1 f38470b;
-
-    public kd1(pd1 pd1Var, int i10) {
-        this.f38469a = i10;
-        this.f38470b = pd1Var;
-    }
+import org.telegram.messenger.MessagesController;
+public final class kd1 extends org.telegram.ui.Components.kw0 {
+    public boolean f38579w0;
 
     @Override
-    public final void run() {
-        switch (this.f38469a) {
-            case 0:
-                pd1 pd1Var = this.f38470b;
-                pd1Var.getClass();
-                new sg.y0((org.telegram.ui.ActionBar.n2) pd1Var, 11, false).show();
-                return;
-            default:
-                pd1 pd1Var2 = this.f38470b;
-                pd1Var2.e.requestFocus();
-                AndroidUtilities.showKeyboard(pd1Var2.e);
-                return;
+    public final void onMeasure(int i10, int i11) {
+        R();
+        if (getKeyboardHeight() == 0 && !this.f38579w0) {
+            int i12 = MessagesController.getGlobalEmojiSettings().getInt("kbd_height", AndroidUtilities.dp(200.0f));
+            this.f28003f = i12;
+            setPadding(0, 0, 0, i12);
+        } else {
+            this.f38579w0 = true;
+            setPadding(0, 0, 0, 0);
         }
+        super.onMeasure(i10, i11);
     }
 }

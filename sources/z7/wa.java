@@ -5,8 +5,8 @@ public final class wa {
     public final Boolean f51218c;
 
     public wa(u2.c cVar) {
-        this.f51216a = (Long) cVar.f47260b;
-        this.f51217b = (hb) cVar.f47261c;
+        this.f51216a = (Long) cVar.f47259b;
+        this.f51217b = (hb) cVar.f47260c;
         this.f51218c = (Boolean) cVar.d;
     }
 }

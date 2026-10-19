@@ -11,43 +11,43 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.f6;
 public final class w1 extends View {
-    public qg.e1 E;
+    public qg.f1 E;
     public float F;
     public float G;
-    public qg.s1 H;
+    public qg.t1 H;
     public Runnable I;
     public boolean J;
     public v1 K;
-    public final Paint f45684a;
-    public final Paint f45685b;
-    public final Path f45686c;
-    public final k0.b d;
+    public final Paint f45679a;
+    public final Paint f45680b;
+    public final Path f45681c;
+    public final le.b d;
     public final RectF e;
-    public boolean f45687f;
+    public boolean f45682f;
     public boolean h;
-    public float f45688n;
-    public float f45689r;
-    public long f45690s;
+    public float f45683n;
+    public float f45684r;
+    public long f45685s;
     public boolean v;
-    public final f6 f45691w;
-    public final f6 f45692x;
-    public final f6 f45693y;
+    public final f6 f45686w;
+    public final f6 f45687x;
+    public final f6 f45688y;
 
     public w1(Context context) {
         super(context);
         Paint paint = new Paint(1);
-        this.f45684a = paint;
+        this.f45679a = paint;
         Paint paint2 = new Paint(1);
-        this.f45685b = paint2;
-        this.f45686c = new Path();
+        this.f45680b = paint2;
+        this.f45681c = new Path();
         this.e = new RectF();
         this.v = true;
-        this.f45691w = new f6(this);
-        this.f45692x = new f6(this);
-        this.f45693y = new f6(this);
-        this.H = new qg.s1(1.0f, 0.016773745f, -1);
+        this.f45686w = new f6(this);
+        this.f45687x = new f6(this);
+        this.f45688y = new f6(this);
+        this.H = new qg.t1(1.0f, 0.016773745f, -1);
         this.J = true;
-        this.d = new k0.b(context, new u1(this));
+        this.d = new le.b(context, new u1(this));
         paint2.setColor(-1);
         paint2.setShadowLayer(AndroidUtilities.dp(4.0f), 0.0f, AndroidUtilities.dp(2.0f), 1342177280);
         paint.setColor(1090519039);
@@ -58,9 +58,9 @@ public final class w1 extends View {
         if (z10) {
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set((f7 - f11) - AndroidUtilities.dp(6.0f), (f10 - f11) - AndroidUtilities.dp(6.0f), f7 + f11 + AndroidUtilities.dp(6.0f), f10 + f11 + AndroidUtilities.dp(6.0f));
-            canvas.saveLayerAlpha(rectF, (int) (this.f45689r * 255.0f), 31);
+            canvas.saveLayerAlpha(rectF, (int) (this.f45684r * 255.0f), 31);
         }
-        canvas.drawCircle(f7, f10, f11, this.f45685b);
+        canvas.drawCircle(f7, f10, f11, this.f45680b);
         if (z10) {
             canvas.restore();
         }
@@ -86,22 +86,22 @@ public final class w1 extends View {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        boolean onTouchEvent = ((GestureDetector) this.d.f14564b).onTouchEvent(motionEvent);
+        boolean onTouchEvent = ((GestureDetector) this.d.f16011b).onTouchEvent(motionEvent);
         if (motionEvent.getActionMasked() != 1 && motionEvent.getActionMasked() != 3) {
             return onTouchEvent;
         }
-        this.f45687f = false;
+        this.f45682f = false;
         invalidate();
         return onTouchEvent;
     }
 
     public void setBrushWeight(float f7) {
-        this.H.f44647c = f7;
+        this.H.f44649c = f7;
         invalidate();
     }
 
-    public void setColorSwatch(qg.s1 s1Var) {
-        this.H = s1Var;
+    public void setColorSwatch(qg.t1 t1Var) {
+        this.H = t1Var;
         invalidate();
     }
 
@@ -114,8 +114,8 @@ public final class w1 extends View {
         this.I = runnable;
     }
 
-    public void setRenderView(qg.e1 e1Var) {
-        this.E = e1Var;
+    public void setRenderView(qg.f1 f1Var) {
+        this.E = f1Var;
     }
 
     public void setShowPreview(boolean z10) {

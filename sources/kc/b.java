@@ -2,30 +2,30 @@ package kc;
 
 import java.lang.reflect.Array;
 public final class b {
-    public final byte[][] f15009a;
-    public final int f15010b;
-    public final int f15011c;
+    public final byte[][] f15012a;
+    public final int f15013b;
+    public final int f15014c;
 
     public b(int i10, int i11) {
-        this.f15009a = (byte[][]) Array.newInstance(Byte.TYPE, i11, i10);
-        this.f15010b = i10;
-        this.f15011c = i11;
+        this.f15012a = (byte[][]) Array.newInstance(Byte.TYPE, i11, i10);
+        this.f15013b = i10;
+        this.f15014c = i11;
     }
 
     public final byte a(int i10, int i11) {
-        return this.f15009a[i11][i10];
+        return this.f15012a[i11][i10];
     }
 
     public final void b(int i10, int i11, int i12) {
-        this.f15009a[i11][i10] = (byte) i12;
+        this.f15012a[i11][i10] = (byte) i12;
     }
 
     public final String toString() {
-        int i10 = this.f15010b;
-        int i11 = this.f15011c;
+        int i10 = this.f15013b;
+        int i11 = this.f15014c;
         StringBuilder sb2 = new StringBuilder((i10 * 2 * i11) + 2);
         for (int i12 = 0; i12 < i11; i12++) {
-            byte[] bArr = this.f15009a[i12];
+            byte[] bArr = this.f15012a[i12];
             for (int i13 = 0; i13 < i10; i13++) {
                 byte b10 = bArr[i13];
                 if (b10 != 0) {

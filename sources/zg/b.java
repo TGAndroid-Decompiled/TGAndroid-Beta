@@ -7,7 +7,7 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import ci.j4;
+import ci.k4;
 import java.util.Date;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
@@ -34,7 +34,7 @@ public final class b extends va {
         this.f51621b0 = new FrameLayout(getContext());
         TextView textView = new TextView(getContext());
         this.f51620a0 = textView;
-        textView.setTextColor(h6.w0(h6.G6, this.f23667y));
+        textView.setTextColor(h6.w0(h6.G6, this.f23670y));
         this.f51620a0.setTypeface(AndroidUtilities.bold());
         this.f51620a0.setTextSize(12.0f);
         this.f51620a0.setGravity(17);
@@ -94,7 +94,7 @@ public final class b extends va {
             } else {
                 i10 = 0;
             }
-            canvas.drawLine(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, h6.f21107k0);
+            canvas.drawLine(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, h6.f21110k0);
         }
     }
 
@@ -105,7 +105,7 @@ public final class b extends va {
         FrameLayout frameLayout = this.f51621b0;
         TextView textView = this.f51620a0;
         int i11 = 0;
-        j5 j5Var = this.f23659b;
+        j5 j5Var = this.f23662b;
         if (!z10 && !boost.giveaway) {
             frameLayout.setVisibility(8);
         } else {
@@ -113,29 +113,29 @@ public final class b extends va {
             int i12 = ((boost.expires - boost.date) / 30) / 86400;
             long j10 = boost.stars;
             int i13 = (j10 > 0L ? 1 : (j10 == 0L ? 0 : -1));
-            j4 j4Var = this.f23658a;
+            k4 k4Var = this.f23661a;
             h9 h9Var = this.E;
             if (i13 > 0) {
                 j5Var.l(LocaleController.formatPluralString("BoostingBoostStars", (int) j10, new Object[0]), false);
                 h9Var.g(26);
-                j4Var.e(null, h9Var);
+                k4Var.e(null, h9Var);
                 j5Var.i(null);
             } else if (boost.unclaimed) {
                 j5Var.l(LocaleController.getString(R.string.BoostingUnclaimed), false);
                 h9Var.g(18);
                 setAvatarColorByMonths(i12);
-                j4Var.e(null, h9Var);
+                k4Var.e(null, h9Var);
                 j5Var.i(null);
             } else if (boost.user_id == -1) {
                 j5Var.l(LocaleController.getString(R.string.BoostingToBeDistributed), false);
                 h9Var.g(19);
                 setAvatarColorByMonths(i12);
-                j4Var.e(null, h9Var);
+                k4Var.e(null, h9Var);
                 j5Var.i(null);
             }
             String format = LocaleController.getInstance().getFormatterBoostExpired().format(new Date(boost.expires * 1000));
             int i14 = (boost.stars > 0L ? 1 : (boost.stars == 0L ? 0 : -1));
-            j5 j5Var2 = this.f23660c;
+            j5 j5Var2 = this.f23663c;
             if (i14 > 0) {
                 j5Var2.l(LocaleController.formatString(R.string.BoostingStarsExpires, format), false);
             } else {

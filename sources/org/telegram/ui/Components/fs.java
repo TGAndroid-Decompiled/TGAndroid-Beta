@@ -8,24 +8,24 @@ import android.widget.EditText;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 public final class fs extends ViewGroup {
-    public static final int f26378s = 0;
-    public final ds f26379a;
-    public EditText f26380b;
-    public final View[] f26381c;
+    public static final int f26369s = 0;
+    public final ds f26370a;
+    public EditText f26371b;
+    public final View[] f26372c;
     public View d;
     public boolean e;
-    public boolean f26382f;
+    public boolean f26373f;
     public final cs h;
-    public boolean f26383n;
-    public final cs f26384r;
+    public boolean f26374n;
+    public final cs f26375r;
 
     public fs(Context context) {
         super(context);
         String str;
         int i10;
-        this.f26381c = new View[12];
+        this.f26372c = new View[12];
         this.h = new cs(this, 0);
-        this.f26384r = new cs(this, 1);
+        this.f26375r = new cs(this, 1);
         int i11 = 0;
         for (int i12 = 0; i12 < 11; i12++) {
             if (i12 != 9) {
@@ -68,22 +68,22 @@ public final class fs extends ViewGroup {
                     i10 = 0;
                 }
                 String valueOf = String.valueOf(i10);
-                this.f26381c[i12] = new es(context, valueOf, str);
-                this.f26381c[i12].setOnClickListener(new ca(7, this, valueOf));
-                addView(this.f26381c[i12]);
+                this.f26372c[i12] = new es(context, valueOf, str);
+                this.f26372c[i12].setOnClickListener(new ca(7, this, valueOf));
+                addView(this.f26372c[i12]);
             }
         }
-        ds dsVar = new ds(this, context, new k0.b(context, new gi.c4(this, ViewConfiguration.get(context).getScaledTouchSlop(), 1)));
-        this.f26379a = dsVar;
+        ds dsVar = new ds(this, context, new le.b(context, new gi.c4(this, ViewConfiguration.get(context).getScaledTouchSlop(), 1)));
+        this.f26370a = dsVar;
         dsVar.setImageResource(R.drawable.msg_clear_input);
         dsVar.setColorFilter(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.G6, false));
         int dp = AndroidUtilities.dp(11.0f);
         dsVar.setPadding(dp, dp, dp, dp);
         dsVar.setOnClickListener(new ah.f(12));
-        this.f26381c[11] = dsVar;
+        this.f26372c[11] = dsVar;
         addView(dsVar);
         while (true) {
-            View[] viewArr = this.f26381c;
+            View[] viewArr = this.f26372c;
             if (i11 < viewArr.length) {
                 View view = viewArr[i11];
                 if (view != null) {
@@ -124,7 +124,7 @@ public final class fs extends ViewGroup {
         if (i10 <= 8) {
             z13 = false;
         }
-        int i12 = org.telegram.ui.ActionBar.h6.f21075i6;
+        int i12 = org.telegram.ui.ActionBar.h6.f21078i6;
         int x02 = org.telegram.ui.ActionBar.h6.x0(null, i12, false);
         int o10 = i0.a.o(org.telegram.ui.ActionBar.h6.x0(null, i12, false), 30);
         float f12 = 12.0f;
@@ -163,7 +163,7 @@ public final class fs extends ViewGroup {
         int A2 = org.telegram.messenger.lk.A(42.0f, getHeight(), 4);
         int i14 = 0;
         while (true) {
-            View[] viewArr = this.f26381c;
+            View[] viewArr = this.f26372c;
             if (i14 < viewArr.length) {
                 int dp = AndroidUtilities.dp(6.0f) + A;
                 int dp2 = AndroidUtilities.dp(10.0f) + (dp * (i14 % 3));
@@ -186,7 +186,7 @@ public final class fs extends ViewGroup {
         setMeasuredDimension(View.MeasureSpec.getSize(i10), View.MeasureSpec.getSize(i11));
         int A = org.telegram.messenger.lk.A(32.0f, getWidth(), 3);
         int A2 = org.telegram.messenger.lk.A(42.0f, getHeight(), 4);
-        for (View view : this.f26381c) {
+        for (View view : this.f26372c) {
             if (view != null) {
                 view.measure(View.MeasureSpec.makeMeasureSpec(A, 1073741824), View.MeasureSpec.makeMeasureSpec(A2, 1073741824));
             }
@@ -198,7 +198,7 @@ public final class fs extends ViewGroup {
     }
 
     public void setEditText(EditText editText) {
-        this.f26380b = editText;
+        this.f26371b = editText;
         this.e = false;
     }
 

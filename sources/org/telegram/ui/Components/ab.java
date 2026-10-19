@@ -1,25 +1,25 @@
 package org.telegram.ui.Components;
 public final class ab {
-    public boolean f24554a;
-    public int f24555b;
-    public boolean f24556c;
+    public boolean f24536a;
+    public int f24537b;
+    public boolean f24538c;
     public boolean d;
     public boolean e;
-    public int f24557f;
-    public org.telegram.ui.ActionBar.d6 f24558g;
+    public int f24539f;
+    public org.telegram.ui.ActionBar.d6 f24540g;
 
     public ab(ab abVar) {
-        this.f24554a = abVar.f24554a;
-        this.f24555b = abVar.f24555b;
-        this.f24556c = abVar.f24556c;
+        this.f24536a = abVar.f24536a;
+        this.f24537b = abVar.f24537b;
+        this.f24538c = abVar.f24538c;
         this.d = abVar.d;
         this.e = abVar.e;
-        this.f24557f = abVar.f24557f;
-        this.f24558g = abVar.f24558g;
+        this.f24539f = abVar.f24539f;
+        this.f24540g = abVar.f24540g;
     }
 
     public ab() {
-        this.f24555b = 1;
-        this.f24557f = 1;
+        this.f24537b = 1;
+        this.f24539f = 1;
     }
 }

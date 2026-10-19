@@ -7,15 +7,15 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.ui.Components.ClippingImageView;
 import org.telegram.ui.Components.PollVotesAlert$UserCell;
-import org.telegram.ui.Components.j71;
+import org.telegram.ui.Components.k71;
 import org.telegram.ui.Components.ub;
 import org.telegram.ui.PhotoViewer;
 public final class s8 extends org.telegram.ui.Components.s6 {
-    public final int f23054b;
+    public final int f23057b;
 
     public s8(String str, int i10) {
         super(str, 0);
-        this.f23054b = i10;
+        this.f23057b = i10;
     }
 
     @Override
@@ -23,7 +23,7 @@ public final class s8 extends org.telegram.ui.Components.s6 {
         double sqrt;
         boolean z10;
         float f10;
-        switch (this.f23054b) {
+        switch (this.f23057b) {
             case 0:
                 v8 v8Var = (v8) obj;
                 v8Var.setAnimationProgress(f7);
@@ -43,7 +43,7 @@ public final class s8 extends org.telegram.ui.Components.s6 {
                 org.telegram.ui.Components.i6 i6Var = (org.telegram.ui.Components.i6) obj;
                 if (i6Var.e != f7) {
                     i6Var.e = f7;
-                    i6Var.f27086g.invalidate();
+                    i6Var.f27087g.invalidate();
                     return;
                 }
                 return;
@@ -66,7 +66,7 @@ public final class s8 extends org.telegram.ui.Components.s6 {
                 ((PollVotesAlert$UserCell) obj).setPlaceholderAlpha(f7);
                 return;
             case 10:
-                ((j71) obj).I(f7);
+                ((k71) obj).I(f7);
                 return;
             case 11:
                 vh.h hVar = (vh.h) obj;
@@ -186,13 +186,13 @@ public final class s8 extends org.telegram.ui.Components.s6 {
 
     @Override
     public final Object get(Object obj) {
-        switch (this.f23054b) {
+        switch (this.f23057b) {
             case 0:
-                return Float.valueOf(((v8) obj).f23654s);
+                return Float.valueOf(((v8) obj).f23657s);
             case 1:
                 return Float.valueOf(((w8) obj).h);
             case 2:
-                return Float.valueOf(((f9) obj).f22260f);
+                return Float.valueOf(((f9) obj).f22263f);
             case 3:
                 return Float.valueOf(((org.telegram.ui.Components.i6) obj).e);
             case 4:
@@ -208,7 +208,7 @@ public final class s8 extends org.telegram.ui.Components.s6 {
             case 9:
                 return Float.valueOf(((PollVotesAlert$UserCell) obj).getPlaceholderAlpha());
             case 10:
-                return Float.valueOf(((j71) obj).E);
+                return Float.valueOf(((k71) obj).E);
             case 11:
                 return Float.valueOf(((vh.h) obj).G);
             default:

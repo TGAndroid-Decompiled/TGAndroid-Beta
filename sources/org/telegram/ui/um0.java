@@ -1,17 +1,70 @@
 package org.telegram.ui;
 
 import android.graphics.Canvas;
-import android.graphics.Paint;
 import android.view.View;
-public final class um0 extends View {
-    public Paint f41986a;
-    public Paint f41987b;
-    public float f41988c;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+public final class um0 extends FrameLayout {
+    public TextView f42010a;
+    public TextView f42011b;
+    public ImageView f42012c;
+    public boolean d;
+
+    public final void a(String str, boolean z10) {
+        this.f42010a.setText(str);
+        this.f42011b.setText("");
+        this.d = z10;
+        setWillNotDraw(!z10);
+    }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        float measuredWidth = (int) (getMeasuredWidth() * this.f41988c);
-        canvas.drawRect(0.0f, 0.0f, measuredWidth, getMeasuredHeight(), this.f41987b);
-        canvas.drawRect(measuredWidth, 0.0f, getMeasuredWidth(), getMeasuredHeight(), this.f41986a);
+        float dp;
+        int i10;
+        if (this.d) {
+            if (LocaleController.isRTL) {
+                dp = 0.0f;
+            } else {
+                dp = AndroidUtilities.dp(20.0f);
+            }
+            float f7 = dp;
+            float measuredHeight = getMeasuredHeight() - 1;
+            int measuredWidth = getMeasuredWidth();
+            if (LocaleController.isRTL) {
+                i10 = AndroidUtilities.dp(20.0f);
+            } else {
+                i10 = 0;
+            }
+            canvas.drawLine(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.h6.f21110k0);
+        }
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(64.0f) + (this.d ? 1 : 0), 1073741824));
+    }
+
+    public void setChecked(boolean z10) {
+        int i10;
+        ImageView imageView = this.f42012c;
+        if (z10) {
+            i10 = 0;
+        } else {
+            i10 = 4;
+        }
+        imageView.setVisibility(i10);
+    }
+
+    public void setNeedDivider(boolean z10) {
+        this.d = z10;
+        setWillNotDraw(!z10);
+        invalidate();
+    }
+
+    public void setValue(CharSequence charSequence) {
+        this.f42011b.setText(charSequence);
     }
 }

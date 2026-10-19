@@ -1,10 +1,90 @@
 package org.telegram.ui.Wallet;
 
-import android.app.Activity;
 import android.content.Context;
-public final class k4 extends org.telegram.ui.ActionBar.f3 {
-    public k4(Activity activity, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(1, (Context) activity, d6Var, false);
-        this.behindKeyboardColorKey = org.telegram.ui.ActionBar.h6.f20928a7;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.Components.b71;
+import org.telegram.ui.Components.k51;
+import org.telegram.ui.Components.v81;
+public final class k4 extends v81 {
+    public final Context f34413a;
+    public final o5 f34414b;
+
+    public k4(o5 o5Var, Context context) {
+        this.f34414b = o5Var;
+        this.f34413a = context;
+    }
+
+    @Override
+    public final void b(View view, int i10, int i11) {
+        o5.S0((b71) view, false);
+    }
+
+    @Override
+    public final View d(int i10) {
+        int i11;
+        int i12;
+        org.telegram.ui.ActionBar.d6 d6Var;
+        int i13;
+        o5 o5Var = this.f34414b;
+        b71[] b71VarArr = o5Var.f34650q0;
+        b71 b71Var = b71VarArr[i10];
+        if (b71Var == null) {
+            i11 = ((org.telegram.ui.ActionBar.n2) o5Var).currentAccount;
+            i12 = ((org.telegram.ui.ActionBar.n2) o5Var).classGuid;
+            org.telegram.ui.Components.o oVar = new org.telegram.ui.Components.o(this, i10, 2);
+            s3 s3Var = new s3(o5Var);
+            s3 s3Var2 = new s3(o5Var);
+            d6Var = ((org.telegram.ui.ActionBar.n2) o5Var).resourceProvider;
+            if (i10 == 1) {
+                i13 = 3;
+            } else {
+                i13 = -1;
+            }
+            b71 b71Var2 = new b71(this.f34413a, i11, i12, false, oVar, s3Var, s3Var2, d6Var, i13, 1);
+            if (i10 == 1) {
+                b71Var2.setPadding(AndroidUtilities.dp(9.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(9.0f), AndroidUtilities.dp(12.0f));
+            }
+            b71Var2.setFocusableInTouchMode(false);
+            b71Var2.setClipChildren(false);
+            b71Var2.setClipToPadding(false);
+            if (i10 == 0) {
+                b71Var2.p1();
+            } else {
+                b71Var2.setSelectorType(9);
+                b71Var2.setSelectorDrawableColor(0);
+            }
+            b71Var2.W2.f30438r = false;
+            b71Var2.j(new k51(this, i10));
+            b71VarArr[i10] = b71Var2;
+            return b71Var2;
+        }
+        return b71Var;
+    }
+
+    @Override
+    public final int e() {
+        if (this.f34414b.f34637e0) {
+            return 2;
+        }
+        return 1;
+    }
+
+    @Override
+    public final CharSequence g(int i10) {
+        int i11;
+        if (i10 == 0) {
+            i11 = R.string.WalletTransactions;
+        } else {
+            i11 = R.string.WalletCollectibles;
+        }
+        return LocaleController.getString(i11);
+    }
+
+    @Override
+    public final int h(int i10) {
+        return i10;
     }
 }

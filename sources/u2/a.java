@@ -7,26 +7,26 @@ import java.util.Iterator;
 import java.util.concurrent.CopyOnWriteArrayList;
 import v7.u6;
 public abstract class a {
-    public final ArrayList f47241a = new ArrayList(1);
-    public final HashSet f47242b = new HashSet(1);
-    public final a5.a f47243c = new a5.a(new CopyOnWriteArrayList(), 0, null, 21);
+    public final ArrayList f47243a = new ArrayList(1);
+    public final HashSet f47244b = new HashSet(1);
+    public final a5.a f47245c = new a5.a(new CopyOnWriteArrayList(), 0, null, 21);
     public final n2.k d = new n2.k(new CopyOnWriteArrayList(), 0, null);
     public Looper e;
-    public b2.o1 f47244f;
-    public j2.k f47245g;
+    public b2.o1 f47246f;
+    public j2.k f47247g;
 
     public boolean a(b2.o0 o0Var) {
         return false;
     }
 
     public final a5.a b(g0 g0Var) {
-        return new a5.a((CopyOnWriteArrayList) this.f47243c.d, 0, g0Var, 21);
+        return new a5.a((CopyOnWriteArrayList) this.f47245c.d, 0, g0Var, 21);
     }
 
     public abstract e0 c(g0 g0Var, androidx.biometric.e eVar, long j10);
 
     public final void d(h0 h0Var) {
-        HashSet hashSet = this.f47242b;
+        HashSet hashSet = this.f47244b;
         boolean isEmpty = hashSet.isEmpty();
         hashSet.remove(h0Var);
         if (!isEmpty && hashSet.isEmpty()) {
@@ -36,7 +36,7 @@ public abstract class a {
 
     public final void f(h0 h0Var) {
         this.e.getClass();
-        HashSet hashSet = this.f47242b;
+        HashSet hashSet = this.f47244b;
         boolean isEmpty = hashSet.isEmpty();
         hashSet.add(h0Var);
         if (isEmpty) {
@@ -66,12 +66,12 @@ public abstract class a {
             z10 = true;
         }
         u6.g(z10);
-        this.f47245g = kVar;
-        b2.o1 o1Var = this.f47244f;
-        this.f47241a.add(h0Var);
+        this.f47247g = kVar;
+        b2.o1 o1Var = this.f47246f;
+        this.f47243a.add(h0Var);
         if (this.e == null) {
             this.e = myLooper;
-            this.f47242b.add(h0Var);
+            this.f47244b.add(h0Var);
             m(c0Var);
         } else if (o1Var != null) {
             f(h0Var);
@@ -82,8 +82,8 @@ public abstract class a {
     public abstract void m(g2.c0 c0Var);
 
     public final void n(b2.o1 o1Var) {
-        this.f47244f = o1Var;
-        ArrayList arrayList = this.f47241a;
+        this.f47246f = o1Var;
+        ArrayList arrayList = this.f47243a;
         int size = arrayList.size();
         int i10 = 0;
         while (i10 < size) {
@@ -96,13 +96,13 @@ public abstract class a {
     public abstract void o(e0 e0Var);
 
     public final void p(h0 h0Var) {
-        ArrayList arrayList = this.f47241a;
+        ArrayList arrayList = this.f47243a;
         arrayList.remove(h0Var);
         if (arrayList.isEmpty()) {
             this.e = null;
-            this.f47244f = null;
-            this.f47245g = null;
-            this.f47242b.clear();
+            this.f47246f = null;
+            this.f47247g = null;
+            this.f47244b.clear();
             q();
             return;
         }
@@ -112,22 +112,22 @@ public abstract class a {
     public abstract void q();
 
     public final void r(n2.l lVar) {
-        CopyOnWriteArrayList copyOnWriteArrayList = this.d.f17058c;
+        CopyOnWriteArrayList copyOnWriteArrayList = this.d.f17061c;
         Iterator it = copyOnWriteArrayList.iterator();
         while (it.hasNext()) {
             n2.j jVar = (n2.j) it.next();
-            if (jVar.f17055b == lVar) {
+            if (jVar.f17058b == lVar) {
                 copyOnWriteArrayList.remove(jVar);
             }
         }
     }
 
     public final void s(k0 k0Var) {
-        CopyOnWriteArrayList copyOnWriteArrayList = (CopyOnWriteArrayList) this.f47243c.d;
+        CopyOnWriteArrayList copyOnWriteArrayList = (CopyOnWriteArrayList) this.f47245c.d;
         Iterator it = copyOnWriteArrayList.iterator();
         while (it.hasNext()) {
             j0 j0Var = (j0) it.next();
-            if (j0Var.f47329b == k0Var) {
+            if (j0Var.f47328b == k0Var) {
                 copyOnWriteArrayList.remove(j0Var);
             }
         }

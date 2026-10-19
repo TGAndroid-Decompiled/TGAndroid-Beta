@@ -17,21 +17,21 @@ public class b extends p0 {
             a aVar = (a) mVar.f29b[i11];
             d dVar = aVar.f48453l;
             dVar.a();
-            dVar.f295c = true;
+            dVar.f296c = true;
             t tVar = aVar.f48455n;
             if (tVar != null) {
                 aVar.i(tVar);
             }
-            a aVar2 = dVar.f293a;
+            a aVar2 = dVar.f294a;
             if (aVar2 != null) {
                 if (aVar2 == aVar) {
-                    dVar.f293a = null;
+                    dVar.f294a = null;
                     if (tVar != null) {
-                        boolean z10 = tVar.f4009b;
+                        boolean z10 = tVar.f4007b;
                     }
                     dVar.d = true;
-                    dVar.f294b = false;
-                    dVar.f295c = false;
+                    dVar.f295b = false;
+                    dVar.f296c = false;
                     dVar.e = false;
                 } else {
                     throw new IllegalArgumentException("Attempting to unregister the wrong listener");

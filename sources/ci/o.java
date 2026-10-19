@@ -2,24 +2,24 @@ package ci;
 
 import j$.util.Objects;
 public final class o extends pg.a {
-    public final long f5611c;
+    public final long f5682c;
 
     public o(long j10) {
         super(0, false);
-        this.f5611c = j10;
+        this.f5682c = j10;
     }
 
     public final boolean equals(Object obj) {
         if (this == obj) {
             return true;
         }
-        if ((obj instanceof o) && this.f5611c == ((o) obj).f5611c) {
+        if ((obj instanceof o) && this.f5682c == ((o) obj).f5682c) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return Objects.hash(Long.valueOf(this.f5611c));
+        return Objects.hash(Long.valueOf(this.f5682c));
     }
 }

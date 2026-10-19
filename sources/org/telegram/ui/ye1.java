@@ -1,30 +1,35 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.TLRPC;
-public final class ye1 extends pg.a {
-    public final TLRPC.TL_forumTopic f43385c;
+import org.telegram.tgnet.tl.TL_account;
+public final class ye1 implements org.telegram.ui.ActionBar.a2 {
+    public final int f43466a;
+    public final TwoStepVerificationActivity f43467b;
 
-    public ye1(int i10, TLRPC.TL_forumTopic tL_forumTopic) {
-        super(i10, false);
-        this.f43385c = tL_forumTopic;
+    public ye1(TwoStepVerificationActivity twoStepVerificationActivity, int i10) {
+        this.f43466a = i10;
+        this.f43467b = twoStepVerificationActivity;
     }
 
-    public final boolean equals(Object obj) {
-        TLRPC.TL_forumTopic tL_forumTopic;
-        if (this == obj) {
-            return true;
+    @Override
+    public final void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        switch (this.f43466a) {
+            case 0:
+                this.f43467b.finishFragment();
+                return;
+            case 1:
+                TL_account.declinePasswordReset declinepasswordreset = new TL_account.declinePasswordReset();
+                TwoStepVerificationActivity twoStepVerificationActivity = this.f43467b;
+                twoStepVerificationActivity.getConnectionsManager().sendRequest(declinepasswordreset, new ze1(twoStepVerificationActivity, 2));
+                return;
+            case 2:
+                this.f43467b.k0();
+                return;
+            case 3:
+                this.f43467b.u0();
+                return;
+            default:
+                this.f43467b.u0();
+                return;
         }
-        if (obj == null || ye1.class != obj.getClass()) {
-            return false;
-        }
-        ye1 ye1Var = (ye1) obj;
-        if (this.f44291a != ye1Var.f44291a) {
-            return false;
-        }
-        TLRPC.TL_forumTopic tL_forumTopic2 = this.f43385c;
-        if (tL_forumTopic2 == null || (tL_forumTopic = ye1Var.f43385c) == null || tL_forumTopic2.f20324id == tL_forumTopic.f20324id) {
-            return true;
-        }
-        return false;
     }
 }

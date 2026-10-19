@@ -1,0 +1,151 @@
+package org.telegram.ui;
+
+import android.content.Context;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+public final class ay extends FrameLayout {
+    public static final int L = 0;
+    public boolean E;
+    public uw F;
+    public hg.m G;
+    public boolean H;
+    public final ew I;
+    public final ew J;
+    public final cy K;
+    public xx f35452a;
+    public a5.a f35453b;
+    public fw f35454c;
+    public jw d;
+    public s4.y e;
+    public zx f35455f;
+    public int h;
+    public iw f35456n;
+    public org.telegram.ui.Components.ll0 f35457r;
+    public int f35458s;
+    public int v;
+    public org.telegram.ui.Components.b10 f35459w;
+    public dw f35460x;
+    public org.telegram.ui.Components.nl0 f35461y;
+
+    public ay(Context context, cy cyVar) {
+        super(context);
+        this.K = cyVar;
+        this.I = new ew(this, 1);
+        this.J = new ew(this, 2);
+    }
+
+    public static void a(ay ayVar, fw fwVar) {
+        ayVar.f35454c = fwVar;
+    }
+
+    public static s4.y b(ay ayVar) {
+        return ayVar.e;
+    }
+
+    public static void c(ay ayVar, s4.y yVar) {
+        ayVar.e = yVar;
+    }
+
+    public static int d(ay ayVar) {
+        return ayVar.v;
+    }
+
+    public static void e(ay ayVar, int i10) {
+        ayVar.v = i10;
+    }
+
+    public static void f(ay ayVar, org.telegram.ui.Components.b10 b10Var) {
+        ayVar.f35459w = b10Var;
+    }
+
+    public static zx g(ay ayVar) {
+        return ayVar.f35455f;
+    }
+
+    public static void h(ay ayVar, zx zxVar) {
+        ayVar.f35455f = zxVar;
+    }
+
+    public static void i(ay ayVar, dw dwVar) {
+        ayVar.f35460x = dwVar;
+    }
+
+    public static void j(ay ayVar, org.telegram.ui.Components.nl0 nl0Var) {
+        ayVar.f35461y = nl0Var;
+    }
+
+    public static void k(ay ayVar, org.telegram.ui.Components.ll0 ll0Var) {
+        ayVar.f35457r = ll0Var;
+    }
+
+    public static void l(ay ayVar, int i10) {
+        ayVar.f35458s = i10;
+    }
+
+    public static hg.m m(ay ayVar) {
+        return ayVar.d;
+    }
+
+    public static void n(ay ayVar, jw jwVar) {
+        ayVar.d = jwVar;
+    }
+
+    public static void o(ay ayVar, iw iwVar) {
+        ayVar.f35456n = iwVar;
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        ((FrameLayout.LayoutParams) this.f35452a.getLayoutParams()).bottomMargin = 0;
+        super.onMeasure(i10, i11);
+    }
+
+    public final boolean p() {
+        int i10 = this.f35458s;
+        if (i10 != 0 && i10 != 7 && i10 != 8) {
+            return false;
+        }
+        return true;
+    }
+
+    public final void q(boolean z10) {
+        boolean z11;
+        z11 = ((org.telegram.ui.ActionBar.n2) this.K).isPaused;
+        if (!z11) {
+            ew ewVar = this.J;
+            if (z10) {
+                AndroidUtilities.cancelRunOnUIThread(ewVar);
+                this.f35452a.setItemAnimator(this.f35460x);
+                ewVar.run();
+            } else if (this.H) {
+            } else {
+                this.H = true;
+                if (!this.f35460x.k()) {
+                    this.f35452a.setItemAnimator(null);
+                }
+                AndroidUtilities.runOnUIThread(ewVar, 36L);
+            }
+        }
+    }
+
+    @Override
+    public void setTranslationX(float f7) {
+        ay ayVar;
+        if (getTranslationX() != f7) {
+            super.setTranslationX(f7);
+            cy cyVar = this.K;
+            if (cyVar.f36132h3 && (ayVar = cyVar.f36113e0[0]) == this) {
+                cyVar.f36219z0.g(Math.abs(ayVar.getTranslationX()) / cyVar.f36113e0[0].getMeasuredWidth(), cyVar.f36113e0[1].h);
+            }
+            cyVar.j3();
+        }
+    }
+
+    @Override
+    public void setTranslationY(float f7) {
+        if (getTranslationY() != f7) {
+            this.K.j3();
+        }
+        super.setTranslationY(f7);
+    }
+}

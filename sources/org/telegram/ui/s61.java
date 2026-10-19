@@ -1,25 +1,37 @@
 package org.telegram.ui;
 
 import android.view.View;
+import android.widget.TextView;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.Switch;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class s61 implements View.OnClickListener {
-    public final v61 f41008a;
-    public final TLRPC.TL_authorization f41009b;
-    public final w61 f41010c;
+    public final d71 f41380a;
+    public final TLRPC.TL_authorization f41381b;
+    public final SessionsActivity f41382c;
+    public final u61 d;
 
-    public s61(w61 w61Var, v61 v61Var, TLRPC.TL_authorization tL_authorization) {
-        this.f41010c = w61Var;
-        this.f41008a = v61Var;
-        this.f41009b = tL_authorization;
+    public s61(u61 u61Var, d71 d71Var, TLRPC.TL_authorization tL_authorization, SessionsActivity sessionsActivity) {
+        this.d = u61Var;
+        this.f41380a = d71Var;
+        this.f41381b = tL_authorization;
+        this.f41382c = sessionsActivity;
     }
 
     @Override
     public final void onClick(View view) {
-        v61 v61Var = this.f41008a;
-        Switch r02 = v61Var.d;
-        r02.c(!r02.h, true);
-        this.f41009b.encrypted_requests_disabled = !v61Var.d.h;
-        w61.o(this.f41010c);
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(this.d.f41829c.getParentActivity());
+        alertDialog$Builder.f20604a.T = LocaleController.getString(R.string.TerminateSessionText);
+        alertDialog$Builder.f20604a.R = LocaleController.getString(R.string.AreYouSureSessionTitle);
+        alertDialog$Builder.k(LocaleController.getString(R.string.Terminate), new e7(this, this.f41380a, this.f41381b, 21));
+        alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
+        SessionsActivity sessionsActivity = this.f41382c;
+        org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20604a;
+        sessionsActivity.showDialog(b2Var);
+        TextView textView = (TextView) b2Var.d(-1);
+        if (textView != null) {
+            textView.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21227q7, false));
+        }
     }
 }

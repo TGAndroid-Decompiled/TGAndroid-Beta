@@ -29,9 +29,9 @@ public final class a9 extends FragmentContextView {
                 usVar.i(frameLayout, z10, true);
                 return;
             default:
-                te1 te1Var = (te1) this.S0;
-                org.telegram.ui.Components.us usVar2 = te1Var.U0;
-                FrameLayout frameLayout2 = te1Var.F0;
+                re1 re1Var = (re1) this.S0;
+                org.telegram.ui.Components.us usVar2 = re1Var.U0;
+                FrameLayout frameLayout2 = re1Var.F0;
                 if (i10 == 0) {
                     z11 = true;
                 } else {
@@ -42,8 +42,8 @@ public final class a9 extends FragmentContextView {
         }
     }
 
-    public a9(te1 te1Var, Context context, te1 te1Var2) {
-        super(context, te1Var2, null, false, null);
-        this.S0 = te1Var;
+    public a9(re1 re1Var, Context context, re1 re1Var2) {
+        super(context, re1Var2, null, false, null);
+        this.S0 = re1Var;
     }
 }

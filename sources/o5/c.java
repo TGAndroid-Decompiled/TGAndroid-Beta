@@ -8,14 +8,14 @@ public enum c implements ma.c {
     INVALID_PAYLOD(5),
     SERVER_ERROR(6);
     
-    public final int f17690a;
+    public final int f17693a;
 
     c(int i10) {
-        this.f17690a = i10;
+        this.f17693a = i10;
     }
 
     @Override
     public final int a() {
-        return this.f17690a;
+        return this.f17693a;
     }
 }

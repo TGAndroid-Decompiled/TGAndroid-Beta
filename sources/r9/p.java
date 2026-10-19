@@ -1,32 +1,32 @@
 package r9;
 
-import qg.e0;
+import qg.f0;
 public final class p implements qa.b {
-    public static final e0 f45147c = new e0(7);
+    public static final f0 f45145c = new f0(7);
     public static final f d = new f(1);
-    public qa.a f45148a;
-    public volatile qa.b f45149b;
+    public qa.a f45146a;
+    public volatile qa.b f45147b;
 
-    public p(e0 e0Var, qa.b bVar) {
-        this.f45148a = e0Var;
-        this.f45149b = bVar;
+    public p(f0 f0Var, qa.b bVar) {
+        this.f45146a = f0Var;
+        this.f45147b = bVar;
     }
 
     public final void a(qa.a aVar) {
         qa.b bVar;
         qa.b bVar2;
-        qa.b bVar3 = this.f45149b;
+        qa.b bVar3 = this.f45147b;
         f fVar = d;
         if (bVar3 != fVar) {
             aVar.h(bVar3);
             return;
         }
         synchronized (this) {
-            bVar = this.f45149b;
+            bVar = this.f45147b;
             if (bVar != fVar) {
                 bVar2 = bVar;
             } else {
-                this.f45148a = new org.telegram.ui.web.n(6, this.f45148a, aVar);
+                this.f45146a = new org.telegram.ui.web.m(6, this.f45146a, aVar);
                 bVar2 = null;
             }
         }
@@ -37,6 +37,6 @@ public final class p implements qa.b {
 
     @Override
     public final Object get() {
-        return this.f45149b.get();
+        return this.f45147b.get();
     }
 }

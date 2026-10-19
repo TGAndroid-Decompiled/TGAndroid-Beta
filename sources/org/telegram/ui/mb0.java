@@ -1,53 +1,61 @@
 package org.telegram.ui;
 
-import android.text.TextUtils;
-public final class mb0 extends pg.a {
-    public final CharSequence f39065c;
-    public final int d;
-    public final int e;
-    public final int f39066f;
+import android.view.View;
+import android.view.accessibility.AccessibilityEvent;
+import android.view.accessibility.AccessibilityNodeInfo;
+import org.telegram.messenger.LiteMode;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class mb0 extends org.telegram.ui.Components.s60 {
+    public final ob0 d;
 
-    public mb0(int i10, int i11, CharSequence charSequence, int i12, int i13) {
-        super(i10, false);
-        this.f39065c = charSequence;
-        this.d = i11;
-        this.e = i12;
-        this.f39066f = i13;
+    public mb0(ob0 ob0Var) {
+        this.d = ob0Var;
     }
 
-    public static mb0 b(int i10, String str) {
-        return new mb0(4, 0, str, i10, 0);
+    @Override
+    public final void e(View view, AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.e(view, accessibilityNodeInfo);
+        accessibilityNodeInfo.setEnabled(true);
     }
 
-    public static mb0 c(int i10, int i11, String str) {
-        return new mb0(3, i10, str, i11, 0);
+    @Override
+    public final int h() {
+        return 5;
     }
 
-    public final boolean equals(Object obj) {
-        if (this != obj) {
-            if (obj instanceof mb0) {
-                mb0 mb0Var = (mb0) obj;
-                int i10 = mb0Var.f44291a;
-                int i11 = this.f44291a;
-                if (i10 == i11) {
-                    if (i11 != 3 || mb0Var.d == this.d) {
-                        if (i11 != 5 || mb0Var.f39066f == this.f39066f) {
-                            if ((i11 != 3 && i11 != 4) || mb0Var.e == this.e) {
-                                if ((i11 == 0 || i11 == 2 || i11 == 3 || i11 == 4 || i11 == 5) && !TextUtils.equals(mb0Var.f39065c, this.f39065c)) {
-                                    return false;
-                                }
-                                return true;
-                            }
-                            return false;
-                        }
-                        return false;
-                    }
-                    return false;
-                }
-                return false;
-            }
-            return false;
+    @Override
+    public final int i() {
+        return 100;
+    }
+
+    @Override
+    public final int j() {
+        return LiteMode.getPowerSaverLevel();
+    }
+
+    @Override
+    public final void k(int i10) {
+        ob0 ob0Var = this.d;
+        float f7 = i10 / 100.0f;
+        ob0Var.h.f25318w.L(f7, true);
+        ob0Var.h.setProgress(f7);
+    }
+
+    @Override
+    public final void onPopulateAccessibilityEvent(View view, AccessibilityEvent accessibilityEvent) {
+        super.onPopulateAccessibilityEvent(view, accessibilityEvent);
+        StringBuilder sb2 = new StringBuilder(LocaleController.getString(R.string.LiteBatteryTitle));
+        sb2.append(", ");
+        int powerSaverLevel = LiteMode.getPowerSaverLevel();
+        if (powerSaverLevel <= 0) {
+            sb2.append(LocaleController.getString(R.string.LiteBatteryAlwaysDisabled));
+        } else if (powerSaverLevel >= 100) {
+            sb2.append(LocaleController.getString(R.string.LiteBatteryAlwaysEnabled));
+        } else {
+            sb2.append(LocaleController.formatString(R.string.AccDescrLiteBatteryWhenBelow, Integer.valueOf(Math.round(powerSaverLevel))));
         }
-        return true;
+        accessibilityEvent.setContentDescription(sb2);
+        this.d.setContentDescription(sb2);
     }
 }

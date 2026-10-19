@@ -1,27 +1,32 @@
 package org.telegram.ui.Wallet;
 
-import android.view.View;
-public final class i3 implements Runnable {
-    public final int f34299a;
-    public final m3 f34300b;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.ui.Components.v61;
+public final class i3 implements NotificationCenter.NotificationCenterDelegate {
+    public final int f34316a;
+    public final Object f34317b;
 
-    public i3(m3 m3Var, int i10) {
-        this.f34299a = i10;
-        this.f34300b = m3Var;
+    public i3(Object obj, int i10) {
+        this.f34316a = i10;
+        this.f34317b = obj;
     }
 
     @Override
-    public final void run() {
-        switch (this.f34299a) {
+    public final void didReceivedNotification(int i10, int i11, Object[] objArr) {
+        v61 v61Var;
+        int i12 = this.f34316a;
+        Object obj = this.f34317b;
+        switch (i12) {
             case 0:
-                org.telegram.ui.Cells.w0 w0Var = this.f34300b.f34482a;
-                if (w0Var.getParent() instanceof View) {
-                    ((View) w0Var.getParent()).invalidate();
-                    return;
-                }
+                ((n3) obj).getClass();
+                int i13 = NotificationCenter.didReceiveNewMessages;
                 return;
             default:
-                this.f34300b.s();
+                r9 r9Var = (r9) obj;
+                if (!r9Var.f34807n && (v61Var = r9Var.f32027a) != null) {
+                    v61Var.W2.N(true);
+                    return;
+                }
                 return;
         }
     }

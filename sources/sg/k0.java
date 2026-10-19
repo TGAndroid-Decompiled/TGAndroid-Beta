@@ -1,7 +1,7 @@
 package sg;
 
+import ai.v3;
 import ai.wa;
-import ai.y3;
 import android.content.Context;
 import android.graphics.Paint;
 import android.text.SpannableStringBuilder;
@@ -47,15 +47,15 @@ import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.ActionBar.n2;
 import org.telegram.ui.Cells.f4;
 import org.telegram.ui.Components.aa0;
-import org.telegram.ui.Components.az0;
 import org.telegram.ui.Components.bb;
+import org.telegram.ui.Components.bz0;
 import org.telegram.ui.Components.f5;
 import org.telegram.ui.Components.fr;
 import org.telegram.ui.Components.gr;
 import org.telegram.ui.Components.h9;
 import org.telegram.ui.Components.hm0;
 import org.telegram.ui.Components.im0;
-import org.telegram.ui.Components.jw0;
+import org.telegram.ui.Components.kw0;
 import org.telegram.ui.Components.nl0;
 import org.telegram.ui.Components.qc;
 import org.telegram.ui.Components.ry;
@@ -66,12 +66,11 @@ import org.telegram.ui.Components.z00;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PremiumPreviewFragment;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.dd;
-import org.telegram.ui.ey;
-import org.telegram.ui.ko;
-import org.telegram.ui.sn;
-import org.telegram.ui.web.g2;
-import org.telegram.ui.x10;
+import org.telegram.ui.bd;
+import org.telegram.ui.cy;
+import org.telegram.ui.io;
+import org.telegram.ui.qn;
+import org.telegram.ui.v10;
 import w7.b6;
 import w7.z5;
 public class k0 extends bb implements NotificationCenter.NotificationCenterDelegate {
@@ -87,7 +86,7 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
     public boolean I0;
     public nl0 J0;
     public final n2 K0;
-    public x10 L0;
+    public v10 L0;
     public androidx.emoji2.text.p M0;
     public boolean N0;
     public TLRPC.Chat O0;
@@ -151,7 +150,7 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
         this.I0 = false;
         this.R0 = 0;
         this.T0 = -4;
-        fixNavigationBar(h6.w0(h6.f21057h5, this.resourcesProvider));
+        fixNavigationBar(h6.w0(h6.f21060h5, this.resourcesProvider));
         this.K0 = n2Var;
         this.currentAccount = i11;
         this.f46286h0 = i10;
@@ -174,9 +173,9 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
         }
         if (i10 == 18 || i10 == 20 || i10 == 24 || i10 == 25 || i10 == 26 || i10 == 29 || i10 == 22 || i10 == 23 || i10 == 21 || i10 == 27 || i10 == 28 || i10 == 30 || i10 == 35 || i10 == 31) {
             ((ViewGroup) this.E0.getParent()).removeView(this.E0);
-            x10 x10Var = this.L0;
-            if (x10Var != null) {
-                ((ViewGroup) x10Var.getParent()).removeView(this.L0);
+            v10 v10Var = this.L0;
+            if (v10Var != null) {
+                ((ViewGroup) v10Var.getParent()).removeView(this.L0);
             }
             this.d.setPadding(0, 0, 0, 0);
             TextView textView = new TextView(context);
@@ -191,7 +190,7 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
             textView.setOnClickListener(new u(this, 0));
             int dp = AndroidUtilities.dp(8.0f);
             int w02 = h6.w0(h6.Oh, d6Var);
-            int o10 = i0.a.o(h6.w0(h6.f20986d6, d6Var), 120);
+            int o10 = i0.a.o(h6.w0(h6.f20989d6, d6Var), 120);
             textView.setBackground(h6.j0(dp, dp, dp, dp, w02, o10, o10));
         }
         if (i10 == 32) {
@@ -261,7 +260,7 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
         for (int i10 = 0; i10 < arrayList.size(); i10++) {
             TLRPC.Chat chat = (TLRPC.Chat) arrayList.get(i10);
             MessagesController.getInstance(k0Var.currentAccount).putChat(chat, false);
-            MessagesController.getInstance(k0Var.currentAccount).deleteParticipantFromChat(chat.f20272id, user);
+            MessagesController.getInstance(k0Var.currentAccount).deleteParticipantFromChat(chat.f20275id, user);
         }
     }
 
@@ -308,11 +307,11 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
         if (k0Var.M0 == null) {
             k0Var.M0 = v1(k0Var.f46286h0, k0Var.currentAccount);
         }
-        int max = Math.max(arrayList3.size(), k0Var.M0.f3119b);
+        int max = Math.max(arrayList3.size(), k0Var.M0.f3117b);
         i0 i0Var = k0Var.f46301x0;
         if (i0Var != null) {
             i0Var.g(max, false);
-            k0Var.f46301x0.setBagePosition(max / k0Var.M0.f3120c);
+            k0Var.f46301x0.setBagePosition(max / k0Var.M0.f3118c);
             i0 i0Var2 = k0Var.f46301x0;
             i0Var2.H = true;
             i0Var2.requestLayout();
@@ -331,7 +330,7 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
             n2 n2Var = k0Var.K0;
             if (n2Var != 0) {
                 ?? obj = new Object();
-                obj.f21552a = true;
+                obj.f21555a = true;
                 n2Var.showAsSheet(new PremiumPreviewFragment(0, "invite_privacy"), obj);
             } else {
                 return;
@@ -378,7 +377,7 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
                     }
                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(k0Var.getContext(), 0, k0Var.resourcesProvider);
                     String formatPluralString = LocaleController.formatPluralString("LeaveCommunities", arrayList2.size(), new Object[0]);
-                    b2 b2Var = alertDialog$Builder.f20601a;
+                    b2 b2Var = alertDialog$Builder.f20604a;
                     b2Var.R = formatPluralString;
                     if (arrayList2.size() == 1) {
                         b2Var.T = AndroidUtilities.replaceTags(LocaleController.formatString("ChannelLeaveAlertWithName", R.string.ChannelLeaveAlertWithName, ((TLRPC.Chat) arrayList2.get(0)).title));
@@ -390,7 +389,7 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
                     b2Var.show();
                     TextView textView = (TextView) b2Var.d(-1);
                     if (textView != null) {
-                        textView.setTextColor(h6.w0(h6.f21224q7, k0Var.resourcesProvider));
+                        textView.setTextColor(h6.w0(h6.f21227q7, k0Var.resourcesProvider));
                     }
                 }
             }
@@ -425,7 +424,7 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
                     arrayList.add(LocaleController.formatString("InactiveChatSignature", R.string.InactiveChatSignature, LocaleController.formatPluralString("Members", chat.participants_count, new Object[0]), formatPluralString));
                 }
             }
-            AndroidUtilities.runOnUIThread(new az0(k0Var, arrayList, min, tL_messages_inactiveChats, 21, false));
+            AndroidUtilities.runOnUIThread(new bz0(k0Var, arrayList, min, tL_messages_inactiveChats, 21, false));
         }
     }
 
@@ -466,7 +465,7 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
                 }
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, k0Var.resourcesProvider);
                 String string = LocaleController.getString(R.string.PremiumNeeded);
-                b2 b2Var = alertDialog$Builder.f20601a;
+                b2 b2Var = alertDialog$Builder.f20604a;
                 b2Var.R = string;
                 if (k0Var.y1()) {
                     i10 = R.string.PremiumNeededForBoostingGroup;
@@ -475,7 +474,7 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
                 }
                 b2Var.T = AndroidUtilities.replaceTags(LocaleController.getString(i10));
                 alertDialog$Builder.k(LocaleController.getString(R.string.CheckPhoneNumberYes), new x(k0Var, 0));
-                alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), new qg.e0(29));
+                alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), new qg.f0(29));
                 alertDialog$Builder.o();
                 return;
             }
@@ -483,8 +482,8 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
             if (z10 && canApplyBoost.replaceDialogId == 0) {
                 if (canApplyBoost.needSelector && ug.r.i()) {
                     k0Var.f46284f0 = true;
-                    k0Var.f46301x0.f24282d0 = false;
-                    n2 n2Var2 = k0Var.f24915n;
+                    k0Var.f46301x0.f24285d0 = false;
+                    n2 n2Var2 = k0Var.f24899n;
                     ChannelBoostsController.CanApplyBoost canApplyBoost2 = k0Var.f46281c0;
                     ug.r0 r0Var = new ug.r0(n2Var2, canApplyBoost2.myBoosts, canApplyBoost2.currentChat);
                     r0Var.show();
@@ -499,11 +498,11 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
                 frameLayout.addView(w9Var, z5.c(60.0f, 60));
                 frameLayout.setClipChildren(false);
                 Paint paint = new Paint(1);
-                paint.setColor(h6.x0(null, h6.f21057h5, false));
+                paint.setColor(h6.x0(null, h6.f21060h5, false));
                 frameLayout.addView(new g6(k0Var.getContext(), paint, k0Var.getContext().getDrawable(R.drawable.filled_limit_boost)), z5.d(28, 28.0f, 0, 34.0f, 34.0f, 0.0f, 0.0f));
                 ImageView imageView = new ImageView(k0Var.getContext());
                 imageView.setImageResource(R.drawable.msg_arrow_avatar);
-                imageView.setColorFilter(h6.x0(null, h6.f21149m6, false));
+                imageView.setColorFilter(h6.x0(null, h6.f21152m6, false));
                 frameLayout.addView(imageView, z5.e(24, 24, 17));
                 w9 w9Var2 = new w9(k0Var.getContext());
                 w9Var2.setRoundRadius(AndroidUtilities.dp(30.0f));
@@ -513,7 +512,7 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
                 frameLayout2.setClipChildren(false);
                 TextView textView = new TextView(context);
                 textView.setLetterSpacing(0.025f);
-                textView.setTextColor(h6.x0(null, h6.f21092j5, false));
+                textView.setTextColor(h6.x0(null, h6.f21095j5, false));
                 textView.setTextSize(1, 16.0f);
                 frameLayout2.addView(textView, z5.t(-1, -2, 0, 24, 80, 24, 0));
                 h9 h9Var = new h9((d6) null);
@@ -552,7 +551,7 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
             } else {
                 hashSet.add(currentChannel);
             }
-            nVar.f22619r.a(hashSet.contains(currentChannel), true);
+            nVar.f22622r.a(hashSet.contains(currentChannel), true);
             k0Var.L1();
         } else if (view instanceof f4) {
             if (k0Var.Y || ((i10 = k0Var.f46286h0) != 11 && i10 != 34)) {
@@ -560,7 +559,7 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
                 Object object = f4Var.getObject();
                 if (f4Var.O) {
                     if (object instanceof TLRPC.User) {
-                        long j10 = ((TLRPC.User) object).f20419id;
+                        long j10 = ((TLRPC.User) object).f20422id;
                         int i11 = -k0Var.T0;
                         k0Var.T0 = i11;
                         AndroidUtilities.shakeViewSpring(f4Var, i11);
@@ -601,133 +600,133 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
 
     public static androidx.emoji2.text.p v1(int i10, int i11) {
         ?? obj = new Object();
-        obj.f3118a = 0;
+        obj.f3116a = 0;
         obj.d = null;
         obj.e = null;
-        obj.f3121f = null;
-        obj.f3119b = 0;
-        obj.f3120c = 0;
+        obj.f3119f = null;
+        obj.f3117b = 0;
+        obj.f3118c = 0;
         if (i10 == 0) {
-            obj.f3119b = MessagesController.getInstance(i11).dialogFiltersPinnedLimitDefault;
-            obj.f3120c = MessagesController.getInstance(i11).dialogFiltersPinnedLimitPremium;
-            obj.f3118a = R.drawable.msg_limit_pin;
-            obj.d = LocaleController.formatString("LimitReachedPinDialogs", R.string.LimitReachedPinDialogs, Integer.valueOf(obj.f3119b), Integer.valueOf(obj.f3120c));
-            obj.e = LocaleController.formatString("LimitReachedPinDialogsPremium", R.string.LimitReachedPinDialogsPremium, Integer.valueOf(obj.f3120c));
-            obj.f3121f = LocaleController.formatString("LimitReachedPinDialogsLocked", R.string.LimitReachedPinDialogsLocked, Integer.valueOf(obj.f3119b));
+            obj.f3117b = MessagesController.getInstance(i11).dialogFiltersPinnedLimitDefault;
+            obj.f3118c = MessagesController.getInstance(i11).dialogFiltersPinnedLimitPremium;
+            obj.f3116a = R.drawable.msg_limit_pin;
+            obj.d = LocaleController.formatString("LimitReachedPinDialogs", R.string.LimitReachedPinDialogs, Integer.valueOf(obj.f3117b), Integer.valueOf(obj.f3118c));
+            obj.e = LocaleController.formatString("LimitReachedPinDialogsPremium", R.string.LimitReachedPinDialogsPremium, Integer.valueOf(obj.f3118c));
+            obj.f3119f = LocaleController.formatString("LimitReachedPinDialogsLocked", R.string.LimitReachedPinDialogsLocked, Integer.valueOf(obj.f3117b));
             return obj;
         } else if (i10 == 33) {
-            obj.f3119b = MessagesController.getInstance(i11).savedDialogsPinnedLimitDefault;
-            obj.f3120c = MessagesController.getInstance(i11).savedDialogsPinnedLimitPremium;
-            obj.f3118a = R.drawable.msg_limit_pin;
-            obj.d = LocaleController.formatString(R.string.LimitReachedPinSavedDialogs, Integer.valueOf(obj.f3119b), Integer.valueOf(obj.f3120c));
-            obj.e = LocaleController.formatString(R.string.LimitReachedPinSavedDialogsPremium, Integer.valueOf(obj.f3120c));
-            obj.f3121f = LocaleController.formatString(R.string.LimitReachedPinSavedDialogsLocked, Integer.valueOf(obj.f3119b));
+            obj.f3117b = MessagesController.getInstance(i11).savedDialogsPinnedLimitDefault;
+            obj.f3118c = MessagesController.getInstance(i11).savedDialogsPinnedLimitPremium;
+            obj.f3116a = R.drawable.msg_limit_pin;
+            obj.d = LocaleController.formatString(R.string.LimitReachedPinSavedDialogs, Integer.valueOf(obj.f3117b), Integer.valueOf(obj.f3118c));
+            obj.e = LocaleController.formatString(R.string.LimitReachedPinSavedDialogsPremium, Integer.valueOf(obj.f3118c));
+            obj.f3119f = LocaleController.formatString(R.string.LimitReachedPinSavedDialogsLocked, Integer.valueOf(obj.f3117b));
             return obj;
         } else if (i10 == 2) {
-            obj.f3119b = MessagesController.getInstance(i11).publicLinksLimitDefault;
-            obj.f3120c = MessagesController.getInstance(i11).publicLinksLimitPremium;
-            obj.f3118a = R.drawable.msg_limit_links;
-            obj.d = LocaleController.formatString("LimitReachedPublicLinks", R.string.LimitReachedPublicLinks, Integer.valueOf(obj.f3119b), Integer.valueOf(obj.f3120c));
-            obj.e = LocaleController.formatString("LimitReachedPublicLinksPremium", R.string.LimitReachedPublicLinksPremium, Integer.valueOf(obj.f3120c));
-            obj.f3121f = LocaleController.formatString("LimitReachedPublicLinksLocked", R.string.LimitReachedPublicLinksLocked, Integer.valueOf(obj.f3119b));
+            obj.f3117b = MessagesController.getInstance(i11).publicLinksLimitDefault;
+            obj.f3118c = MessagesController.getInstance(i11).publicLinksLimitPremium;
+            obj.f3116a = R.drawable.msg_limit_links;
+            obj.d = LocaleController.formatString("LimitReachedPublicLinks", R.string.LimitReachedPublicLinks, Integer.valueOf(obj.f3117b), Integer.valueOf(obj.f3118c));
+            obj.e = LocaleController.formatString("LimitReachedPublicLinksPremium", R.string.LimitReachedPublicLinksPremium, Integer.valueOf(obj.f3118c));
+            obj.f3119f = LocaleController.formatString("LimitReachedPublicLinksLocked", R.string.LimitReachedPublicLinksLocked, Integer.valueOf(obj.f3117b));
             return obj;
         } else if (i10 == 12) {
-            obj.f3119b = MessagesController.getInstance(i11).chatlistInvitesLimitDefault;
-            obj.f3120c = MessagesController.getInstance(i11).chatlistInvitesLimitPremium;
-            obj.f3118a = R.drawable.msg_limit_links;
-            obj.d = LocaleController.formatString("LimitReachedFolderLinks", R.string.LimitReachedFolderLinks, Integer.valueOf(obj.f3119b), Integer.valueOf(obj.f3120c));
-            obj.e = LocaleController.formatString("LimitReachedFolderLinksPremium", R.string.LimitReachedFolderLinksPremium, Integer.valueOf(obj.f3120c));
-            obj.f3121f = LocaleController.formatString("LimitReachedFolderLinksLocked", R.string.LimitReachedFolderLinksLocked, Integer.valueOf(obj.f3119b));
+            obj.f3117b = MessagesController.getInstance(i11).chatlistInvitesLimitDefault;
+            obj.f3118c = MessagesController.getInstance(i11).chatlistInvitesLimitPremium;
+            obj.f3116a = R.drawable.msg_limit_links;
+            obj.d = LocaleController.formatString("LimitReachedFolderLinks", R.string.LimitReachedFolderLinks, Integer.valueOf(obj.f3117b), Integer.valueOf(obj.f3118c));
+            obj.e = LocaleController.formatString("LimitReachedFolderLinksPremium", R.string.LimitReachedFolderLinksPremium, Integer.valueOf(obj.f3118c));
+            obj.f3119f = LocaleController.formatString("LimitReachedFolderLinksLocked", R.string.LimitReachedFolderLinksLocked, Integer.valueOf(obj.f3117b));
             return obj;
         } else if (i10 == 13) {
-            obj.f3119b = MessagesController.getInstance(i11).chatlistJoinedLimitDefault;
-            obj.f3120c = MessagesController.getInstance(i11).chatlistJoinedLimitPremium;
-            obj.f3118a = R.drawable.msg_limit_folder;
-            obj.d = LocaleController.formatString("LimitReachedSharedFolders", R.string.LimitReachedSharedFolders, Integer.valueOf(obj.f3119b), Integer.valueOf(obj.f3120c));
-            obj.e = LocaleController.formatString("LimitReachedSharedFoldersPremium", R.string.LimitReachedSharedFoldersPremium, Integer.valueOf(obj.f3120c));
-            obj.f3121f = LocaleController.formatString("LimitReachedSharedFoldersLocked", R.string.LimitReachedSharedFoldersLocked, Integer.valueOf(obj.f3119b));
+            obj.f3117b = MessagesController.getInstance(i11).chatlistJoinedLimitDefault;
+            obj.f3118c = MessagesController.getInstance(i11).chatlistJoinedLimitPremium;
+            obj.f3116a = R.drawable.msg_limit_folder;
+            obj.d = LocaleController.formatString("LimitReachedSharedFolders", R.string.LimitReachedSharedFolders, Integer.valueOf(obj.f3117b), Integer.valueOf(obj.f3118c));
+            obj.e = LocaleController.formatString("LimitReachedSharedFoldersPremium", R.string.LimitReachedSharedFoldersPremium, Integer.valueOf(obj.f3118c));
+            obj.f3119f = LocaleController.formatString("LimitReachedSharedFoldersLocked", R.string.LimitReachedSharedFoldersLocked, Integer.valueOf(obj.f3117b));
             return obj;
         } else if (i10 == 3) {
-            obj.f3119b = MessagesController.getInstance(i11).dialogFiltersLimitDefault;
-            obj.f3120c = MessagesController.getInstance(i11).dialogFiltersLimitPremium;
-            obj.f3118a = R.drawable.msg_limit_folder;
-            obj.d = LocaleController.formatString("LimitReachedFolders", R.string.LimitReachedFolders, Integer.valueOf(obj.f3119b), Integer.valueOf(obj.f3120c));
-            obj.e = LocaleController.formatString("LimitReachedFoldersPremium", R.string.LimitReachedFoldersPremium, Integer.valueOf(obj.f3120c));
-            obj.f3121f = LocaleController.formatString("LimitReachedFoldersLocked", R.string.LimitReachedFoldersLocked, Integer.valueOf(obj.f3119b));
+            obj.f3117b = MessagesController.getInstance(i11).dialogFiltersLimitDefault;
+            obj.f3118c = MessagesController.getInstance(i11).dialogFiltersLimitPremium;
+            obj.f3116a = R.drawable.msg_limit_folder;
+            obj.d = LocaleController.formatString("LimitReachedFolders", R.string.LimitReachedFolders, Integer.valueOf(obj.f3117b), Integer.valueOf(obj.f3118c));
+            obj.e = LocaleController.formatString("LimitReachedFoldersPremium", R.string.LimitReachedFoldersPremium, Integer.valueOf(obj.f3118c));
+            obj.f3119f = LocaleController.formatString("LimitReachedFoldersLocked", R.string.LimitReachedFoldersLocked, Integer.valueOf(obj.f3117b));
             return obj;
         } else if (i10 == 4) {
-            obj.f3119b = MessagesController.getInstance(i11).dialogFiltersChatsLimitDefault;
-            obj.f3120c = MessagesController.getInstance(i11).dialogFiltersChatsLimitPremium;
-            obj.f3118a = R.drawable.msg_limit_chats;
-            obj.d = LocaleController.formatString("LimitReachedChatInFolders", R.string.LimitReachedChatInFolders, Integer.valueOf(obj.f3119b), Integer.valueOf(obj.f3120c));
-            obj.e = LocaleController.formatString("LimitReachedChatInFoldersPremium", R.string.LimitReachedChatInFoldersPremium, Integer.valueOf(obj.f3120c));
-            obj.f3121f = LocaleController.formatString("LimitReachedChatInFoldersLocked", R.string.LimitReachedChatInFoldersLocked, Integer.valueOf(obj.f3119b));
+            obj.f3117b = MessagesController.getInstance(i11).dialogFiltersChatsLimitDefault;
+            obj.f3118c = MessagesController.getInstance(i11).dialogFiltersChatsLimitPremium;
+            obj.f3116a = R.drawable.msg_limit_chats;
+            obj.d = LocaleController.formatString("LimitReachedChatInFolders", R.string.LimitReachedChatInFolders, Integer.valueOf(obj.f3117b), Integer.valueOf(obj.f3118c));
+            obj.e = LocaleController.formatString("LimitReachedChatInFoldersPremium", R.string.LimitReachedChatInFoldersPremium, Integer.valueOf(obj.f3118c));
+            obj.f3119f = LocaleController.formatString("LimitReachedChatInFoldersLocked", R.string.LimitReachedChatInFoldersLocked, Integer.valueOf(obj.f3117b));
             return obj;
         } else if (i10 == 5) {
-            obj.f3119b = MessagesController.getInstance(i11).channelsLimitDefault;
-            obj.f3120c = MessagesController.getInstance(i11).channelsLimitPremium;
-            obj.f3118a = R.drawable.msg_limit_groups;
-            obj.d = LocaleController.formatString("LimitReachedCommunities", R.string.LimitReachedCommunities, Integer.valueOf(obj.f3119b), Integer.valueOf(obj.f3120c));
-            obj.e = LocaleController.formatString("LimitReachedCommunitiesPremium", R.string.LimitReachedCommunitiesPremium, Integer.valueOf(obj.f3120c));
-            obj.f3121f = LocaleController.formatString("LimitReachedCommunitiesLocked", R.string.LimitReachedCommunitiesLocked, Integer.valueOf(obj.f3119b));
+            obj.f3117b = MessagesController.getInstance(i11).channelsLimitDefault;
+            obj.f3118c = MessagesController.getInstance(i11).channelsLimitPremium;
+            obj.f3116a = R.drawable.msg_limit_groups;
+            obj.d = LocaleController.formatString("LimitReachedCommunities", R.string.LimitReachedCommunities, Integer.valueOf(obj.f3117b), Integer.valueOf(obj.f3118c));
+            obj.e = LocaleController.formatString("LimitReachedCommunitiesPremium", R.string.LimitReachedCommunitiesPremium, Integer.valueOf(obj.f3118c));
+            obj.f3119f = LocaleController.formatString("LimitReachedCommunitiesLocked", R.string.LimitReachedCommunitiesLocked, Integer.valueOf(obj.f3117b));
             return obj;
         } else if (i10 == 6) {
-            obj.f3119b = 100;
-            obj.f3120c = 200;
-            obj.f3118a = R.drawable.msg_limit_folder;
+            obj.f3117b = 100;
+            obj.f3118c = 200;
+            obj.f3116a = R.drawable.msg_limit_folder;
             obj.d = LocaleController.formatString("LimitReachedFileSize", R.string.LimitReachedFileSize, "2 GB", "4 GB");
             obj.e = LocaleController.formatString("LimitReachedFileSizePremium", R.string.LimitReachedFileSizePremium, "4 GB");
-            obj.f3121f = LocaleController.formatString("LimitReachedFileSizeLocked", R.string.LimitReachedFileSizeLocked, "2 GB");
+            obj.f3119f = LocaleController.formatString("LimitReachedFileSizeLocked", R.string.LimitReachedFileSizeLocked, "2 GB");
             return obj;
         } else if (i10 == 7) {
-            obj.f3119b = 3;
-            obj.f3120c = 4;
-            obj.f3118a = R.drawable.msg_limit_accounts;
-            obj.d = LocaleController.formatString("LimitReachedAccounts", R.string.LimitReachedAccounts, 3, Integer.valueOf(obj.f3120c));
-            obj.e = LocaleController.formatString("LimitReachedAccountsPremium", R.string.LimitReachedAccountsPremium, Integer.valueOf(obj.f3120c));
-            obj.f3121f = LocaleController.formatString("LimitReachedAccountsPremium", R.string.LimitReachedAccountsPremium, Integer.valueOf(obj.f3119b));
+            obj.f3117b = 3;
+            obj.f3118c = 4;
+            obj.f3116a = R.drawable.msg_limit_accounts;
+            obj.d = LocaleController.formatString("LimitReachedAccounts", R.string.LimitReachedAccounts, 3, Integer.valueOf(obj.f3118c));
+            obj.e = LocaleController.formatString("LimitReachedAccountsPremium", R.string.LimitReachedAccountsPremium, Integer.valueOf(obj.f3118c));
+            obj.f3119f = LocaleController.formatString("LimitReachedAccountsPremium", R.string.LimitReachedAccountsPremium, Integer.valueOf(obj.f3117b));
             return obj;
         } else if (i10 == 11) {
-            obj.f3119b = 0;
-            obj.f3120c = 0;
-            obj.f3118a = R.drawable.msg_limit_links;
-            obj.d = LocaleController.formatString("LimitReachedAccounts", R.string.LimitReachedAccounts, 0, Integer.valueOf(obj.f3120c));
+            obj.f3117b = 0;
+            obj.f3118c = 0;
+            obj.f3116a = R.drawable.msg_limit_links;
+            obj.d = LocaleController.formatString("LimitReachedAccounts", R.string.LimitReachedAccounts, 0, Integer.valueOf(obj.f3118c));
             obj.e = "";
-            obj.f3121f = "";
+            obj.f3119f = "";
             return obj;
         } else if (i10 == 14) {
-            obj.f3119b = MessagesController.getInstance(i11).storyExpiringLimitDefault;
-            obj.f3120c = MessagesController.getInstance(i11).storyExpiringLimitPremium;
-            obj.f3118a = R.drawable.msg_limit_stories;
-            obj.d = LocaleController.formatPluralStringComma("LimitReachedStoriesCount2First", obj.f3119b) + "\n" + LocaleController.formatPluralStringComma("LimitReachedStoriesCount2Second", obj.f3120c);
-            obj.e = LocaleController.formatPluralStringComma("LimitReachedStoriesCount2Premium", obj.f3120c);
-            obj.f3121f = LocaleController.formatPluralStringComma("LimitReachedStoriesCount2Premium", obj.f3119b);
+            obj.f3117b = MessagesController.getInstance(i11).storyExpiringLimitDefault;
+            obj.f3118c = MessagesController.getInstance(i11).storyExpiringLimitPremium;
+            obj.f3116a = R.drawable.msg_limit_stories;
+            obj.d = LocaleController.formatPluralStringComma("LimitReachedStoriesCount2First", obj.f3117b) + "\n" + LocaleController.formatPluralStringComma("LimitReachedStoriesCount2Second", obj.f3118c);
+            obj.e = LocaleController.formatPluralStringComma("LimitReachedStoriesCount2Premium", obj.f3118c);
+            obj.f3119f = LocaleController.formatPluralStringComma("LimitReachedStoriesCount2Premium", obj.f3117b);
             return obj;
         } else if (i10 == 15) {
-            obj.f3119b = MessagesController.getInstance(i11).storiesSentWeeklyLimitDefault;
-            obj.f3120c = MessagesController.getInstance(i11).storiesSentWeeklyLimitPremium;
-            obj.f3118a = R.drawable.msg_limit_stories;
-            obj.d = LocaleController.formatString("LimitReachedStoriesWeekly", R.string.LimitReachedStoriesWeekly, Integer.valueOf(obj.f3119b), Integer.valueOf(obj.f3120c));
-            obj.e = LocaleController.formatString("LimitReachedStoriesWeeklyPremium", R.string.LimitReachedStoriesWeeklyPremium, Integer.valueOf(obj.f3120c));
-            obj.f3121f = LocaleController.formatString("LimitReachedStoriesWeeklyPremium", R.string.LimitReachedStoriesWeeklyPremium, Integer.valueOf(obj.f3119b));
+            obj.f3117b = MessagesController.getInstance(i11).storiesSentWeeklyLimitDefault;
+            obj.f3118c = MessagesController.getInstance(i11).storiesSentWeeklyLimitPremium;
+            obj.f3116a = R.drawable.msg_limit_stories;
+            obj.d = LocaleController.formatString("LimitReachedStoriesWeekly", R.string.LimitReachedStoriesWeekly, Integer.valueOf(obj.f3117b), Integer.valueOf(obj.f3118c));
+            obj.e = LocaleController.formatString("LimitReachedStoriesWeeklyPremium", R.string.LimitReachedStoriesWeeklyPremium, Integer.valueOf(obj.f3118c));
+            obj.f3119f = LocaleController.formatString("LimitReachedStoriesWeeklyPremium", R.string.LimitReachedStoriesWeeklyPremium, Integer.valueOf(obj.f3117b));
             return obj;
         } else if (i10 == 16) {
-            obj.f3119b = MessagesController.getInstance(i11).storiesSentMonthlyLimitDefault;
-            obj.f3120c = MessagesController.getInstance(i11).storiesSentMonthlyLimitPremium;
-            obj.f3118a = R.drawable.msg_limit_stories;
-            obj.d = LocaleController.formatString("LimitReachedStoriesMonthly", R.string.LimitReachedStoriesMonthly, Integer.valueOf(obj.f3119b), Integer.valueOf(obj.f3120c));
-            obj.e = LocaleController.formatString("LimitReachedStoriesMonthlyPremium", R.string.LimitReachedStoriesMonthlyPremium, Integer.valueOf(obj.f3120c));
-            obj.f3121f = LocaleController.formatString("LimitReachedStoriesMonthlyPremium", R.string.LimitReachedStoriesMonthlyPremium, Integer.valueOf(obj.f3119b));
+            obj.f3117b = MessagesController.getInstance(i11).storiesSentMonthlyLimitDefault;
+            obj.f3118c = MessagesController.getInstance(i11).storiesSentMonthlyLimitPremium;
+            obj.f3116a = R.drawable.msg_limit_stories;
+            obj.d = LocaleController.formatString("LimitReachedStoriesMonthly", R.string.LimitReachedStoriesMonthly, Integer.valueOf(obj.f3117b), Integer.valueOf(obj.f3118c));
+            obj.e = LocaleController.formatString("LimitReachedStoriesMonthlyPremium", R.string.LimitReachedStoriesMonthlyPremium, Integer.valueOf(obj.f3118c));
+            obj.f3119f = LocaleController.formatString("LimitReachedStoriesMonthlyPremium", R.string.LimitReachedStoriesMonthlyPremium, Integer.valueOf(obj.f3117b));
             return obj;
         } else if (i10 != 18 && i10 != 32 && i10 != 20 && i10 != 24 && i10 != 27 && i10 != 28 && i10 != 25 && i10 != 30 && i10 != 35 && i10 != 29 && i10 != 22 && i10 != 23 && i10 != 19 && i10 != 21 && i10 != 26) {
             return obj;
         } else {
-            obj.f3119b = MessagesController.getInstance(i11).storiesSentMonthlyLimitDefault;
-            obj.f3120c = MessagesController.getInstance(i11).storiesSentMonthlyLimitPremium;
-            obj.f3118a = R.drawable.filled_limit_boost;
-            obj.d = LocaleController.formatString("LimitReachedStoriesMonthly", R.string.LimitReachedStoriesMonthly, Integer.valueOf(obj.f3119b), Integer.valueOf(obj.f3120c));
-            obj.e = LocaleController.formatString("LimitReachedStoriesMonthlyPremium", R.string.LimitReachedStoriesMonthlyPremium, Integer.valueOf(obj.f3120c));
-            obj.f3121f = LocaleController.formatString("LimitReachedStoriesMonthlyPremium", R.string.LimitReachedStoriesMonthlyPremium, Integer.valueOf(obj.f3119b));
+            obj.f3117b = MessagesController.getInstance(i11).storiesSentMonthlyLimitDefault;
+            obj.f3118c = MessagesController.getInstance(i11).storiesSentMonthlyLimitPremium;
+            obj.f3116a = R.drawable.filled_limit_boost;
+            obj.d = LocaleController.formatString("LimitReachedStoriesMonthly", R.string.LimitReachedStoriesMonthly, Integer.valueOf(obj.f3117b), Integer.valueOf(obj.f3118c));
+            obj.e = LocaleController.formatString("LimitReachedStoriesMonthlyPremium", R.string.LimitReachedStoriesMonthlyPremium, Integer.valueOf(obj.f3118c));
+            obj.f3119f = LocaleController.formatString("LimitReachedStoriesMonthlyPremium", R.string.LimitReachedStoriesMonthlyPremium, Integer.valueOf(obj.f3117b));
             return obj;
         }
     }
@@ -788,10 +787,10 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
         TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = this.f46280b0;
         int i11 = tL_premium_boostsStatus.boosts;
         int i12 = tL_premium_boostsStatus.next_level_boosts - tL_premium_boostsStatus.current_level_boosts;
-        i0Var.f24278b++;
-        i0Var.f24276a = w7.r.a((i11 - i10) / i12, 0.0f, 1.0f);
+        i0Var.f24281b++;
+        i0Var.f24279a = w7.r.a((i11 - i10) / i12, 0.0f, 1.0f);
         i0Var.W = true;
-        i0Var.f24277a0 = i0Var.f24291n;
+        i0Var.f24280a0 = i0Var.f24294n;
         i0Var.g(i11, true);
         i0Var.I.requestLayout();
         i0Var.requestLayout();
@@ -981,7 +980,7 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
     public final void E1(ArrayList arrayList) {
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getContext(), 0, this.resourcesProvider);
         String formatPluralString = LocaleController.formatPluralString("RevokeLinks", arrayList.size(), new Object[0]);
-        b2 b2Var = alertDialog$Builder.f20601a;
+        b2 b2Var = alertDialog$Builder.f20604a;
         b2Var.R = formatPluralString;
         if (arrayList.size() == 1) {
             TLRPC.Chat chat = (TLRPC.Chat) arrayList.get(0);
@@ -998,11 +997,11 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
             b2Var.T = AndroidUtilities.replaceTags(LocaleController.formatString("RevokeLinksAlert", R.string.RevokeLinksAlert, new Object[0]));
         }
         alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-        alertDialog$Builder.k(LocaleController.getString(R.string.RevokeButton), new org.telegram.ui.web.n(9, this, arrayList));
+        alertDialog$Builder.k(LocaleController.getString(R.string.RevokeButton), new org.telegram.ui.web.m(9, this, arrayList));
         b2Var.show();
         TextView textView = (TextView) b2Var.d(-1);
         if (textView != null) {
-            textView.setTextColor(h6.w0(h6.f21224q7, this.resourcesProvider));
+            textView.setTextColor(h6.w0(h6.f21227q7, this.resourcesProvider));
         }
     }
 
@@ -1014,7 +1013,7 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
         if (!TextUtils.isEmpty(this.U0)) {
             str = this.U0;
         } else {
-            TLRPC.ChatFull chatFull = MessagesController.getInstance(this.currentAccount).getChatFull(this.O0.f20272id);
+            TLRPC.ChatFull chatFull = MessagesController.getInstance(this.currentAccount).getChatFull(this.O0.f20275id);
             if (chatFull == null) {
                 dismiss();
                 return;
@@ -1037,9 +1036,9 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
         Iterator it = hashSet.iterator();
         while (it.hasNext()) {
             TLRPC.User user = (TLRPC.User) it.next();
-            long sendPaidMessagesStars = MessagesController.getInstance(this.currentAccount).getSendPaidMessagesStars(user.f20419id);
+            long sendPaidMessagesStars = MessagesController.getInstance(this.currentAccount).getSendPaidMessagesStars(user.f20422id);
             if (sendPaidMessagesStars <= 0) {
-                sendPaidMessagesStars = DialogObject.getMessagesStarsPrice(MessagesController.getInstance(this.currentAccount).isUserContactBlocked(user.f20419id));
+                sendPaidMessagesStars = DialogObject.getMessagesStarsPrice(MessagesController.getInstance(this.currentAccount).isUserContactBlocked(user.f20422id));
             }
             if (sendPaidMessagesStars >= 0) {
                 arrayList = arrayList2;
@@ -1056,7 +1055,7 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
             while (i10 < size) {
                 Object obj = arrayList2.get(i10);
                 i10++;
-                arrayList4.add(Long.valueOf(((TLRPC.User) obj).f20419id));
+                arrayList4.add(Long.valueOf(((TLRPC.User) obj).f20422id));
             }
             f5.b0(this.currentAccount, arrayList4, 1, new ig.l0(this, 17));
             return;
@@ -1068,11 +1067,11 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
             if (hashMap2 == null) {
                 longValue = 0;
             } else {
-                longValue = ((Long) hashMap2.get(Long.valueOf(user2.f20419id))).longValue();
+                longValue = ((Long) hashMap2.get(Long.valueOf(user2.f20422id))).longValue();
             }
             boolean z12 = z10;
             Iterator it3 = it2;
-            SendMessagesHelper.SendMessageParams of2 = SendMessagesHelper.SendMessageParams.of(str2, user2.f20419id, null, null, null, true, null, null, null, false, 0, 0, null, false);
+            SendMessagesHelper.SendMessageParams of2 = SendMessagesHelper.SendMessageParams.of(str2, user2.f20422id, null, null, null, true, null, null, null, false, 0, 0, null, false);
             of2.payStars = longValue;
             SendMessagesHelper.getInstance(this.currentAccount).sendMessage(of2);
             if (of2.payStars > 0) {
@@ -1088,16 +1087,10 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
         dismiss();
     }
 
-    public final void G1(TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus, boolean z10) {
-        this.f46280b0 = tL_premium_boostsStatus;
-        this.f46283e0 = z10;
-        N1();
-    }
-
     @Override
-    public final void H(jw0 jw0Var) {
+    public final void G(kw0 kw0Var) {
         int i10;
-        Context context = jw0Var.getContext();
+        Context context = kw0Var.getContext();
         ei.d dVar = new ei.d(context, this.resourcesProvider, true);
         this.G0 = dVar;
         dVar.setFlickeringLoading(true);
@@ -1106,15 +1099,15 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
         a0 a0Var = new a0(this, context, this.resourcesProvider);
         this.E0 = a0Var;
         b6.b(a0Var, 0.02f, 1.2f);
-        if (!this.f24916r && (i10 = this.f46286h0) != 18 && i10 != 20 && i10 != 24 && i10 != 25 && i10 != 26 && i10 != 29 && i10 != 22 && i10 != 23 && i10 != 21 && i10 != 27 && i10 != 28 && i10 != 30 && i10 != 35) {
-            x10 x10Var = new x10(this, context, 12);
-            this.L0 = x10Var;
-            x10Var.setBackgroundColor(h6.w0(h6.f21057h5, this.resourcesProvider));
-            jw0Var.addView(this.L0, z5.d(-1, 72.0f, 80, 0.0f, 0.0f, 0.0f, 0.0f));
+        if (!this.f24900r && (i10 = this.f46286h0) != 18 && i10 != 20 && i10 != 24 && i10 != 25 && i10 != 26 && i10 != 29 && i10 != 22 && i10 != 23 && i10 != 21 && i10 != 27 && i10 != 28 && i10 != 30 && i10 != 35) {
+            v10 v10Var = new v10(this, context, 12);
+            this.L0 = v10Var;
+            v10Var.setBackgroundColor(h6.w0(h6.f21060h5, this.resourcesProvider));
+            kw0Var.addView(this.L0, z5.d(-1, 72.0f, 80, 0.0f, 0.0f, 0.0f, 0.0f));
         }
         a0 a0Var2 = this.E0;
         float f7 = (this.backgroundPaddingLeft / AndroidUtilities.density) + 16.0f;
-        jw0Var.addView(a0Var2, z5.d(-1, 48.0f, 80, f7, 0.0f, f7, 12.0f));
+        kw0Var.addView(a0Var2, z5.d(-1, 48.0f, 80, f7, 0.0f, f7, 12.0f));
         int dp = AndroidUtilities.dp(72.0f);
         im0 im0Var = this.d;
         im0Var.setPadding(0, 0, 0, dp);
@@ -1122,9 +1115,15 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
         im0Var.setClipChildren(false);
         im0Var.setOnItemClickListener(new wa(this, 20));
         im0Var.setOnItemLongClickListener(new x(this, 2));
-        this.E0.f46381r.setOnClickListener(new org.telegram.ui.web.c(4, this, context));
+        this.E0.f46381r.setOnClickListener(new qg.n(3, this, context));
         this.E0.e.setOnClickListener(new u(this, 3));
         this.J0 = new nl0(im0Var, true);
+    }
+
+    public final void G1(TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus, boolean z10) {
+        this.f46280b0 = tL_premium_boostsStatus;
+        this.f46283e0 = z10;
+        N1();
     }
 
     public final void H1(ChannelBoostsController.CanApplyBoost canApplyBoost) {
@@ -1161,7 +1160,7 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
                 Object obj = arrayList4.get(i10);
                 i10++;
                 TLRPC.User user = (TLRPC.User) obj;
-                if (arrayList2 == null || !arrayList2.contains(Long.valueOf(user.f20419id))) {
+                if (arrayList2 == null || !arrayList2.contains(Long.valueOf(user.f20422id))) {
                     hashSet.add(user);
                 }
             }
@@ -1176,8 +1175,8 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
                     if (a0Var != null && a0Var.getParent() != null) {
                         ((ViewGroup) this.E0.getParent()).removeView(this.E0);
                     }
-                    x10 x10Var = this.L0;
-                    if (x10Var != null && x10Var.getParent() != null) {
+                    v10 v10Var = this.L0;
+                    if (v10Var != null && v10Var.getParent() != null) {
                         ((ViewGroup) this.L0.getParent()).removeView(this.L0);
                     }
                     im0 im0Var = this.d;
@@ -1371,10 +1370,10 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
                 gr grVar2 = a0Var2.G;
                 int i12 = h6.Oh;
                 int i13 = h6.Sh;
-                fr frVar = grVar2.f26654a;
+                fr frVar = grVar2.f26682a;
                 frVar.v = i12;
-                frVar.f26372w = i13;
-                frVar.f26355b = 0.8f;
+                frVar.f26361w = i13;
+                frVar.f26344b = 0.8f;
                 a0Var2.setClipChildren(false);
                 a0Var2.addView(a0Var2.G, z5.e(-1, 24, 16));
             }
@@ -1386,7 +1385,7 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
                 this.E0.b(LocaleController.getString(R.string.ActionSkip), true, true);
             }
             gr grVar3 = this.E0.G;
-            grVar3.f26654a.c(hashSet.size(), true);
+            grVar3.f26682a.c(hashSet.size(), true);
             this.E0.invalidate();
             return;
         }
@@ -1455,9 +1454,9 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
                     this.E0.d.setText(LocaleController.getString(R.string.IncreaseLimit));
                     androidx.emoji2.text.p pVar = this.M0;
                     if (pVar != null) {
-                        int i13 = pVar.f3119b;
+                        int i13 = pVar.f3117b;
                         int i14 = i13 + 1;
-                        int i15 = pVar.f3120c;
+                        int i15 = pVar.f3118c;
                         if (i14 == i15) {
                             this.E0.setIcon(R.raw.addone_icon);
                             return;
@@ -1470,18 +1469,18 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
                             }
                         }
                         a0 a0Var = this.E0;
-                        a0Var.f46383w.f31476p = null;
+                        a0Var.f46383w.f31487p = null;
                         a0Var.f46385y.setVisibility(8);
                         return;
                     }
                     a0 a0Var2 = this.E0;
-                    a0Var2.f46383w.f31476p = null;
+                    a0Var2.f46383w.f31487p = null;
                     a0Var2.f46385y.setVisibility(8);
                     return;
                 }
                 this.E0.d.setText(LocaleController.getString(R.string.OK));
                 a0 a0Var3 = this.E0;
-                a0Var3.f46383w.f31476p = null;
+                a0Var3.f46383w.f31487p = null;
                 a0Var3.f46385y.setVisibility(8);
                 return;
             }
@@ -1613,7 +1612,7 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
         if (i10 == NotificationCenter.boostByChannelCreated) {
             TLRPC.Chat chat = (TLRPC.Chat) objArr[0];
             boolean booleanValue = ((Boolean) objArr[1]).booleanValue();
-            n2 n2Var3 = this.f24915n;
+            n2 n2Var3 = this.f24899n;
             n2 lastFragment = n2Var3.getParentLayout().getLastFragment();
             n2 n2Var4 = null;
             if (lastFragment instanceof ah.a0) {
@@ -1631,7 +1630,7 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
                 if (fragmentStack.size() >= 4) {
                     n2Var4 = (n2) r4.c.f(4, fragmentStack);
                 }
-                if (n2Var instanceof ko) {
+                if (n2Var instanceof io) {
                     ((ActionBarLayout) n2Var3.getParentLayout()).a0(n2Var, false);
                 }
                 dismiss();
@@ -1645,14 +1644,14 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
                 }
                 lastFragment.finishFragment();
                 ug.i.f(n2Var2, chat, false);
-            } else if ((lastFragment instanceof sn) && booleanValue) {
+            } else if ((lastFragment instanceof qn) && booleanValue) {
                 ug.i.f(lastFragment, chat, true);
-            } else if ((lastFragment instanceof dd) && booleanValue) {
+            } else if ((lastFragment instanceof bd) && booleanValue) {
                 List fragmentStack2 = n2Var3.getParentLayout().getFragmentStack();
                 ArrayList arrayList = new ArrayList();
                 for (int size = fragmentStack2.size() - 2; size >= 0; size--) {
                     n2 n2Var5 = (n2) fragmentStack2.get(size);
-                    if (!(n2Var5 instanceof sn) && !(n2Var5 instanceof ey)) {
+                    if (!(n2Var5 instanceof qn) && !(n2Var5 instanceof cy)) {
                         arrayList.add(n2Var5);
                     } else {
                         n2Var4 = n2Var5;
@@ -1674,7 +1673,7 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
             } else if (booleanValue) {
                 vb vbVar = vb.F2;
                 if (vbVar != null && vbVar.d) {
-                    sn W9 = sn.W9(-chat.f20272id);
+                    qn W9 = qn.W9(-chat.f20275id);
                     LaunchActivity.R().presentFragment(W9, false, false);
                     vb.w();
                     dismiss();
@@ -1687,13 +1686,13 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
                 }
                 n2Var3.finishFragment();
                 dismiss();
-                if (n2Var4 instanceof sn) {
+                if (n2Var4 instanceof qn) {
                     ug.i.f(n2Var4, chat, true);
                 }
             } else {
                 vb vbVar2 = vb.F2;
                 if (vbVar2 != null && vbVar2.d) {
-                    sn W92 = sn.W9(-chat.f20272id);
+                    qn W92 = qn.W9(-chat.f20275id);
                     LaunchActivity.R().presentFragment(W92, false, false);
                     vb.w();
                     dismiss();
@@ -1726,7 +1725,7 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
                 canApplyBoost.setMyBoosts(tL_premium_myBoosts);
                 if (C1()) {
                     qc Q = new xc(this.container, this.resourcesProvider).Q(R.raw.ic_boosts_replace, 30, LocaleController.formatPluralString("BoostingReassignedFromPlural", intValue, LocaleController.formatPluralString("BoostingFromOtherChannel", intValue2, new Object[0])));
-                    Q.f29638j = 4000;
+                    Q.f29596j = 4000;
                     Q.k(true);
                 }
             }
@@ -1751,7 +1750,7 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
             public final void run(Object obj) {
                 switch (r3) {
                     case 0:
-                        MessagesController.getInstance(r1.currentAccount).getBoostsController().getBoostsStats(r1.f46279a0, new y3(this.f46513b, aa0Var, (TL_stories.TL_premium_myBoosts) obj, 11));
+                        MessagesController.getInstance(r1.currentAccount).getBoostsController().getBoostsStats(r1.f46279a0, new v3(this.f46513b, aa0Var, (TL_stories.TL_premium_myBoosts) obj, 11));
                         return;
                     default:
                         TLRPC.TL_error tL_error = (TLRPC.TL_error) obj;
@@ -1760,7 +1759,7 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
                         if (startsWith) {
                             int intValue = Utilities.parseInt((CharSequence) tL_error.text).intValue();
                             if (intValue <= 5) {
-                                AndroidUtilities.runOnUIThread(new g2(19, this.f46513b, aa0Var2), intValue * 1000);
+                                AndroidUtilities.runOnUIThread(new p2.b(18, this.f46513b, aa0Var2), intValue * 1000);
                                 return;
                             }
                             ug.i.g(intValue);
@@ -1780,7 +1779,7 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
             public final void run(Object obj) {
                 switch (r3) {
                     case 0:
-                        MessagesController.getInstance(r1.currentAccount).getBoostsController().getBoostsStats(r1.f46279a0, new y3(this.f46513b, aa0Var, (TL_stories.TL_premium_myBoosts) obj, 11));
+                        MessagesController.getInstance(r1.currentAccount).getBoostsController().getBoostsStats(r1.f46279a0, new v3(this.f46513b, aa0Var, (TL_stories.TL_premium_myBoosts) obj, 11));
                         return;
                     default:
                         TLRPC.TL_error tL_error = (TLRPC.TL_error) obj;
@@ -1789,7 +1788,7 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
                         if (startsWith) {
                             int intValue = Utilities.parseInt((CharSequence) tL_error.text).intValue();
                             if (intValue <= 5) {
-                                AndroidUtilities.runOnUIThread(new g2(19, this.f46513b, aa0Var2), intValue * 1000);
+                                AndroidUtilities.runOnUIThread(new p2.b(18, this.f46513b, aa0Var2), intValue * 1000);
                                 return;
                             }
                             ug.i.g(intValue);

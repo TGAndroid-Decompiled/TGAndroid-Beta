@@ -17,21 +17,21 @@ import org.telegram.messenger.WebFile;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.a71;
-import org.telegram.ui.Components.e61;
+import org.telegram.ui.Components.b71;
 import org.telegram.ui.Components.f61;
+import org.telegram.ui.Components.g61;
 import org.telegram.ui.Components.im0;
-import org.telegram.ui.Components.s61;
-import org.telegram.ui.f70;
-public final class ed extends e61 {
-    public static final int f1265a = 0;
+import org.telegram.ui.Components.t61;
+import org.telegram.ui.d70;
+public final class ed extends f61 {
+    public static final int f1261a = 0;
 
     static {
-        e61.setup(new e61());
+        f61.setup(new f61());
     }
 
     @Override
-    public final void bindView(View view, f61 f61Var, boolean z10, s61 s61Var, a71 a71Var) {
+    public final void bindView(View view, g61 g61Var, boolean z10, t61 t61Var, b71 b71Var) {
         String userName;
         boolean z11;
         boolean z12;
@@ -40,17 +40,17 @@ public final class ed extends e61 {
         int i11;
         org.telegram.ui.ActionBar.j5 j5Var;
         fd fdVar = (fd) view;
-        TL_stars.StarsSubscription starsSubscription = (TL_stars.StarsSubscription) f61Var.G;
+        TL_stars.StarsSubscription starsSubscription = (TL_stars.StarsSubscription) g61Var.G;
         org.telegram.ui.ActionBar.j5 j5Var2 = fdVar.d;
-        org.telegram.ui.Components.w9 w9Var = fdVar.f1315c;
-        org.telegram.ui.ActionBar.d6 d6Var = fdVar.f1314b;
+        org.telegram.ui.Components.w9 w9Var = fdVar.f1309c;
+        org.telegram.ui.ActionBar.d6 d6Var = fdVar.f1308b;
         TextView textView = fdVar.h;
-        TextView textView2 = fdVar.f1316f;
+        TextView textView2 = fdVar.f1310f;
         TextView textView3 = fdVar.e;
-        int i12 = fdVar.f1313a;
-        TextView textView4 = fdVar.f1317n;
+        int i12 = fdVar.f1307a;
+        TextView textView4 = fdVar.f1311n;
         long peerDialogId = DialogObject.getPeerDialogId(starsSubscription.peer);
-        fdVar.f1318r = !TextUtils.isEmpty(starsSubscription.title);
+        fdVar.f1312r = !TextUtils.isEmpty(starsSubscription.title);
         if (peerDialogId < 0) {
             TLRPC.Chat chat = MessagesController.getInstance(i12).getChat(Long.valueOf(-peerDialogId));
             org.telegram.ui.Components.h9 h9Var = new org.telegram.ui.Components.h9((org.telegram.ui.ActionBar.d6) null);
@@ -76,14 +76,14 @@ public final class ed extends e61 {
             textView3.setVisibility(0);
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
             if (starsSubscription.photo != null) {
-                f70 f70Var = new f70(textView3, 14.0f, i12);
-                f70Var.a(4.0f);
-                f70Var.f36827f = false;
+                d70 d70Var = new d70(textView3, 14.0f, i12);
+                d70Var.a(4.0f);
+                d70Var.f36304f = false;
                 SpannableString spannableString = new SpannableString("x");
                 j5Var = j5Var2;
                 z12 = z11;
-                spannableString.setSpan(f70Var, 0, 1, 33);
-                f70Var.f36825b.setImage(ImageLocation.getForWebFile(WebFile.createWithWebDocument(starsSubscription.photo)), "14_14", null, null, 0, 0);
+                spannableString.setSpan(d70Var, 0, 1, 33);
+                d70Var.f36302b.setImage(ImageLocation.getForWebFile(WebFile.createWithWebDocument(starsSubscription.photo)), "14_14", null, null, 0, 0);
                 spannableStringBuilder.append((CharSequence) spannableString).append((CharSequence) " ");
             } else {
                 j5Var = j5Var2;
@@ -95,7 +95,7 @@ public final class ed extends e61 {
             z12 = z11;
             textView3.setVisibility(8);
         }
-        if (fdVar.f1318r) {
+        if (fdVar.f1312r) {
             f7 = 13.0f;
         } else {
             f7 = 14.0f;
@@ -112,7 +112,7 @@ public final class ed extends e61 {
                 textView2.setText(LocaleController.formatString(R.string.StarsSubscriptionRenews, LocaleController.formatDateChat(j10)));
                 textView.setVisibility(0);
                 textView.setText(md.Y0(false, "⭐️ " + Long.toString(starsSubscription.pricing.amount), 0.8f, null));
-                textView4.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21391z6, d6Var));
+                textView4.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21394z6, d6Var));
                 int i13 = starsSubscription.pricing.period;
                 if (i13 == 2592000) {
                     textView4.setText(LocaleController.getString(R.string.StarsParticipantSubscriptionPerMonth));
@@ -143,7 +143,7 @@ public final class ed extends e61 {
             }
             textView4.setText(LocaleController.getString(i11));
         }
-        fdVar.f1319s = z10;
+        fdVar.f1313s = z10;
         fdVar.setWillNotDraw(!z10);
     }
 
@@ -157,13 +157,13 @@ public final class ed extends e61 {
     }
 
     @Override
-    public final boolean equals(f61 f61Var, f61 f61Var2) {
-        if (f61Var2 != null) {
-            Object obj = f61Var.G;
+    public final boolean equals(g61 g61Var, g61 g61Var2) {
+        if (g61Var2 != null) {
+            Object obj = g61Var.G;
             if (obj instanceof TL_stars.StarsSubscription) {
-                Object obj2 = f61Var2.G;
+                Object obj2 = g61Var2.G;
                 if (obj2 instanceof TL_stars.StarsSubscription) {
-                    return TextUtils.equals(((TL_stars.StarsSubscription) obj).f20497id, ((TL_stars.StarsSubscription) obj2).f20497id);
+                    return TextUtils.equals(((TL_stars.StarsSubscription) obj).f20500id, ((TL_stars.StarsSubscription) obj2).f20500id);
                 }
                 return false;
             }

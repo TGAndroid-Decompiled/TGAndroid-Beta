@@ -1,47 +1,44 @@
 package i2;
 
-import android.text.TextUtils;
-import v7.u6;
+import java.util.Locale;
 public final class f {
-    public final String f12351a;
-    public final b2.w f12352b;
-    public final b2.w f12353c;
-    public final int d;
-    public final int e;
+    public int f12344a;
+    public int f12345b;
+    public int f12346c;
+    public int d;
+    public int e;
+    public int f12347f;
+    public int f12348g;
+    public int h;
+    public int f12349i;
+    public int f12350j;
+    public long f12351k;
+    public int f12352l;
 
-    public f(String str, b2.w wVar, b2.w wVar2, int i10, int i11) {
-        boolean z10;
-        if (i10 != 0 && i11 != 0) {
-            z10 = false;
-        } else {
-            z10 = true;
-        }
-        u6.g(z10);
-        u6.g(true ^ TextUtils.isEmpty(str));
-        this.f12351a = str;
-        wVar.getClass();
-        this.f12352b = wVar;
-        wVar2.getClass();
-        this.f12353c = wVar2;
-        this.d = i10;
-        this.e = i11;
-    }
-
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj != null && f.class == obj.getClass()) {
-            f fVar = (f) obj;
-            if (this.d == fVar.d && this.e == fVar.e && this.f12351a.equals(fVar.f12351a) && this.f12352b.equals(fVar.f12352b) && this.f12353c.equals(fVar.f12353c)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        int g10 = a1.g.g((((527 + this.d) * 31) + this.e) * 31, 31, this.f12351a);
-        return this.f12353c.hashCode() + ((this.f12352b.hashCode() + g10) * 31);
+    public final String toString() {
+        int i10 = this.f12344a;
+        int i11 = this.f12345b;
+        int i12 = this.f12346c;
+        int i13 = this.d;
+        int i14 = this.e;
+        int i15 = this.f12347f;
+        int i16 = this.f12348g;
+        int i17 = this.h;
+        int i18 = this.f12349i;
+        int i19 = this.f12350j;
+        long j10 = this.f12351k;
+        int i20 = this.f12352l;
+        String str = e2.m0.f8254a;
+        Locale locale = Locale.US;
+        StringBuilder m10 = e.m("DecoderCounters {\n decoderInits=", i10, ",\n decoderReleases=", i11, "\n queuedInputBuffers=");
+        e.w(m10, i12, "\n skippedInputBuffers=", i13, "\n renderedOutputBuffers=");
+        e.w(m10, i14, "\n skippedOutputBuffers=", i15, "\n droppedBuffers=");
+        e.w(m10, i16, "\n droppedInputBuffers=", i17, "\n maxConsecutiveDroppedBuffers=");
+        e.w(m10, i18, "\n droppedToKeyframeEvents=", i19, "\n totalVideoFrameProcessingOffsetUs=");
+        m10.append(j10);
+        m10.append("\n videoFrameProcessingOffsetCount=");
+        m10.append(i20);
+        m10.append("\n}");
+        return m10.toString();
     }
 }

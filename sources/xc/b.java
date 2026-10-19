@@ -1,6 +1,6 @@
 package xc;
 
-import com.google.android.gms.internal.clearcut.e;
+import d9.l;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -14,11 +14,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.telegram.ui.Cells.c1;
 import vc.g;
-import w7.n9;
+import w7.m9;
 public abstract class b {
-    public static final c f49766a = new c();
+    public static final c f49765a = new c();
 
-    public static HttpURLConnection a(String str, e eVar) {
+    public static HttpURLConnection a(String str, l lVar) {
         Throwable th2;
         OutputStream outputStream;
         HttpURLConnection httpURLConnection = (HttpURLConnection) new URL("https://api.stripe.com/v1/tokens").openConnection();
@@ -29,7 +29,7 @@ public abstract class b {
         hashMap.put("Accept-Charset", "UTF-8");
         hashMap.put("Accept", "application/json");
         hashMap.put("User-Agent", "Stripe/v1 JavaBindings/3.5.0");
-        String str2 = eVar.f6921b;
+        String str2 = lVar.f7894a;
         hashMap.put("Authorization", "Bearer " + str2);
         String[] strArr = {"os.name", "os.version", "os.arch", "java.version", "java.vendor", "java.vm.version", "java.vm.vendor"};
         HashMap hashMap2 = new HashMap();
@@ -45,7 +45,7 @@ public abstract class b {
             httpURLConnection.setRequestProperty((String) entry.getKey(), (String) entry.getValue());
         }
         if (httpURLConnection instanceof HttpsURLConnection) {
-            ((HttpsURLConnection) httpURLConnection).setSSLSocketFactory(f49766a);
+            ((HttpsURLConnection) httpURLConnection).setSSLSocketFactory(f49765a);
         }
         httpURLConnection.setDoOutput(true);
         httpURLConnection.setRequestMethod("POST");
@@ -77,8 +77,8 @@ public abstract class b {
             if (sb2.length() > 0) {
                 sb2.append("&");
             }
-            String str = aVar.f49764a;
-            String str2 = aVar.f49765b;
+            String str = aVar.f49763a;
+            String str2 = aVar.f49764b;
             if (str == null) {
                 encode = null;
             } else {
@@ -94,8 +94,8 @@ public abstract class b {
         return sb2.toString();
     }
 
-    public static u2.c c(java.util.HashMap r7, com.google.android.gms.internal.clearcut.e r8) {
-        throw new UnsupportedOperationException("Method not decompiled: xc.b.c(java.util.HashMap, com.google.android.gms.internal.clearcut.e):u2.c");
+    public static u2.c c(java.util.HashMap r7, d9.l r8) {
+        throw new UnsupportedOperationException("Method not decompiled: xc.b.c(java.util.HashMap, d9.l):u2.c");
     }
 
     public static LinkedList d(String str, Map map) {
@@ -143,20 +143,20 @@ public abstract class b {
         }
     }
 
-    public static a5.a f(java.util.HashMap r7, com.google.android.gms.internal.clearcut.e r8) {
-        throw new UnsupportedOperationException("Method not decompiled: xc.b.f(java.util.HashMap, com.google.android.gms.internal.clearcut.e):a5.a");
+    public static a5.a f(java.util.HashMap r7, d9.l r8) {
+        throw new UnsupportedOperationException("Method not decompiled: xc.b.f(java.util.HashMap, d9.l):a5.a");
     }
 
     public static void g(int i10, String str, String str2) {
         String str3;
         try {
             JSONObject jSONObject = new JSONObject(str).getJSONObject("error");
-            n9.a(jSONObject.optString("charge"));
-            n9.a(jSONObject.optString("code"));
-            n9.a(jSONObject.optString("decline_code"));
-            str3 = n9.a(jSONObject.optString("message"));
-            n9.a(jSONObject.optString("param"));
-            n9.a(jSONObject.optString("type"));
+            m9.a(jSONObject.optString("charge"));
+            m9.a(jSONObject.optString("code"));
+            m9.a(jSONObject.optString("decline_code"));
+            str3 = m9.a(jSONObject.optString("message"));
+            m9.a(jSONObject.optString("param"));
+            m9.a(jSONObject.optString("type"));
         } catch (JSONException unused) {
             str3 = "An improperly formatted error response was found.";
         }

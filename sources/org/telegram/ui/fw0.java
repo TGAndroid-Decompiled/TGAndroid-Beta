@@ -1,33 +1,70 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.view.View;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-public final class fw0 extends z51 {
-    public final ai.q5 f36981d2;
-    public final q51[] f36982e2;
-    public final PremiumPreviewFragment f36983f2;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+import android.widget.ImageView;
+import org.telegram.messenger.AndroidUtilities;
+public final class fw0 extends yv0 {
+    public final int f37132r = 0;
+    public final org.telegram.ui.Components.hm0 f37133s;
 
-    public fw0(PremiumPreviewFragment premiumPreviewFragment, PremiumPreviewFragment premiumPreviewFragment2, Activity activity, Integer num, int i10, org.telegram.ui.ActionBar.d6 d6Var, int i11, ai.q5 q5Var, q51[] q51VarArr) {
-        super(premiumPreviewFragment2, activity, true, num, i10, true, d6Var, i11);
-        this.f36983f2 = premiumPreviewFragment;
-        this.f36981d2 = q5Var;
-        this.f36982e2 = q51VarArr;
+    public fw0(sg.l1 l1Var, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context, d6Var);
+        this.f37133s = l1Var;
     }
 
     @Override
-    public final float getScrimDrawableTranslationY() {
-        return 0.0f;
-    }
-
-    @Override
-    public final void p(View view, Long l4, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, Integer num) {
-        this.f36981d2.run(l4, num);
-        q51 q51Var = this.f36982e2[0];
-        if (q51Var != null) {
-            this.f36983f2.f33509s0 = null;
-            q51Var.dismiss();
+    public final void dispatchDraw(Canvas canvas) {
+        org.telegram.ui.ActionBar.d6 d6Var;
+        boolean q6;
+        org.telegram.ui.ActionBar.d6 d6Var2;
+        switch (this.f37132r) {
+            case 0:
+                float dp = AndroidUtilities.dp(10.0f);
+                RectF rectF = AndroidUtilities.rectTmp;
+                ImageView imageView = this.f43564c;
+                rectF.set(imageView.getLeft(), imageView.getTop(), imageView.getRight(), imageView.getBottom());
+                PremiumPreviewFragment premiumPreviewFragment = ((gw0) this.f37133s).f37448c;
+                premiumPreviewFragment.S.reset();
+                premiumPreviewFragment.S.postScale(1.0f, premiumPreviewFragment.N / 100.0f, 0.0f, 0.0f);
+                premiumPreviewFragment.S.postTranslate(0.0f, -this.f43565f.e);
+                premiumPreviewFragment.R.setLocalMatrix(premiumPreviewFragment.S);
+                canvas.drawRoundRect(rectF, dp, dp, premiumPreviewFragment.T);
+                d6Var = ((org.telegram.ui.ActionBar.n2) premiumPreviewFragment).resourceProvider;
+                if (d6Var != null) {
+                    d6Var2 = ((org.telegram.ui.ActionBar.n2) premiumPreviewFragment).resourceProvider;
+                    q6 = d6Var2.a();
+                } else {
+                    q6 = org.telegram.ui.ActionBar.h6.I.q();
+                }
+                if (q6) {
+                    float dp2 = AndroidUtilities.dp(1.0f);
+                    premiumPreviewFragment.Q.setStrokeWidth(dp2);
+                    canvas.save();
+                    canvas.translate(rectF.left, rectF.top);
+                    rectF.offset(-rectF.left, -rectF.top);
+                    float f7 = dp2 / 2.0f;
+                    rectF.inset(f7, f7);
+                    canvas.drawRoundRect(rectF, dp, dp, premiumPreviewFragment.Q);
+                    canvas.restore();
+                }
+                super.dispatchDraw(canvas);
+                return;
+            default:
+                RectF rectF2 = AndroidUtilities.rectTmp;
+                ImageView imageView2 = this.f43564c;
+                rectF2.set(imageView2.getLeft(), imageView2.getTop(), imageView2.getRight(), imageView2.getBottom());
+                sg.l1 l1Var = (sg.l1) this.f37133s;
+                l1Var.f46318c.f46334p0.d(0, 0.0f, 0, getMeasuredWidth(), -this.f43565f.e, l1Var.f46318c.f46324e0);
+                canvas.drawRoundRect(rectF2, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), l1Var.f46318c.f46334p0.f46184f);
+                super.dispatchDraw(canvas);
+                return;
         }
+    }
+
+    public fw0(gw0 gw0Var, Context context) {
+        super(context, null);
+        this.f37133s = gw0Var;
     }
 }

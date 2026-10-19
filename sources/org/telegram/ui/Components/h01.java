@@ -7,14 +7,17 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class h01 extends FrameLayout {
-    public final j01 f26722a;
-    public boolean f26723b;
-    public boolean f26724c;
+    public final k01 f26735a;
+    public boolean f26736b;
+    public boolean f26737c;
     public boolean d;
+    public boolean e;
 
-    public h01(j01 j01Var, View view, boolean z10) {
-        super(j01Var.getContext());
-        this.f26722a = j01Var;
+    public h01(k01 k01Var, View view, boolean z10) {
+        super(k01Var.getContext());
+        this.d = false;
+        this.e = true;
+        this.f26735a = k01Var;
         setWillNotDraw(false);
         if (!z10) {
             setPadding(AndroidUtilities.dp(12.66f), AndroidUtilities.dp(9.33f), AndroidUtilities.dp(12.66f), AndroidUtilities.dp(9.33f));
@@ -29,72 +32,62 @@ public final class h01 extends FrameLayout {
         float f10;
         float f11;
         float f12;
-        boolean z10 = this.f26724c;
-        j01 j01Var = this.f26722a;
-        if (z10 || this.d) {
+        boolean z10 = this.f26736b;
+        k01 k01Var = this.f26735a;
+        if (z10 || this.f26737c) {
             canvas2 = canvas;
             float dp = AndroidUtilities.dp(10.0f);
-            float[] fArr = j01Var.f27388c;
-            boolean z11 = this.f26724c;
-            if (z11) {
+            float[] fArr = k01Var.f27651c;
+            boolean z11 = this.f26736b;
+            if (z11 && this.d) {
                 f7 = dp;
             } else {
                 f7 = 0.0f;
             }
             fArr[1] = f7;
             fArr[0] = f7;
-            if (z11) {
+            if (z11 && this.e) {
                 f10 = dp;
             } else {
                 f10 = 0.0f;
             }
             fArr[3] = f10;
             fArr[2] = f10;
-            boolean z12 = this.d;
-            if (z12) {
+            boolean z12 = this.f26737c;
+            if (z12 && this.e) {
                 f11 = dp;
             } else {
                 f11 = 0.0f;
             }
             fArr[5] = f11;
             fArr[4] = f11;
-            if (!z12) {
+            if (!z12 || !this.d) {
                 dp = 0.0f;
             }
             fArr[7] = dp;
             fArr[6] = dp;
-            j01Var.f27387b.rewind();
+            k01Var.f27650b.rewind();
             RectF rectF = AndroidUtilities.rectTmp;
-            float f13 = j01Var.h;
-            float width = getWidth() - j01Var.h;
+            float f13 = k01Var.h;
+            float width = getWidth() - k01Var.h;
             float height = getHeight();
-            float f14 = j01Var.h;
-            if (this.d) {
+            float f14 = k01Var.h;
+            if (this.f26737c) {
                 f12 = -1.0f;
             } else {
                 f12 = 1.0f;
             }
             rectF.set(f13, f13, width, (f14 * f12) + height);
-            j01Var.f27387b.addRoundRect(rectF, j01Var.f27388c, Path.Direction.CW);
-            if (this.f26723b) {
-                canvas2.drawPath(j01Var.f27387b, j01Var.d);
+            if (!this.e) {
+                rectF.right += k01Var.f27652f;
             }
-            canvas2.drawPath(j01Var.f27387b, j01Var.e);
+            k01Var.f27650b.addRoundRect(rectF, k01Var.f27651c, Path.Direction.CW);
+            canvas2.drawPath(k01Var.f27650b, k01Var.e);
         } else {
-            if (this.f26723b) {
-                float f15 = j01Var.h;
-                canvas2 = canvas;
-                canvas2.drawRect(f15, f15, getWidth() + j01Var.h, getHeight() + j01Var.h, j01Var.d);
-            } else {
-                canvas2 = canvas;
-            }
-            float f16 = j01Var.h;
-            canvas2.drawRect(f16, f16, getWidth() - j01Var.h, getHeight() + j01Var.h, j01Var.e);
+            float f15 = k01Var.h;
+            canvas2 = canvas;
+            canvas2.drawRect(f15, f15, getWidth() - k01Var.h, getHeight() + k01Var.h, k01Var.e);
         }
         super.onDraw(canvas2);
-    }
-
-    public void setFilled(boolean z10) {
-        this.f26723b = z10;
     }
 }

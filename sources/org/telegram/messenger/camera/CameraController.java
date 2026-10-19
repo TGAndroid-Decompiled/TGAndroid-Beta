@@ -1,6 +1,6 @@
 package org.telegram.messenger.camera;
 
-import ai.m4;
+import ai.o4;
 import ai.t0;
 import ai.x7;
 import ai.x9;
@@ -846,7 +846,7 @@ public class CameraController implements MediaRecorder.OnInfoListener {
             this.recordingCurrentCameraView = iCameraView;
             this.onVideoTakeCallback = videoTakeCallback;
             this.recordedFile = file.getAbsolutePath();
-            this.threadPool.execute(new m4(this, obj, iCameraView, file, z11, runnable, 6));
+            this.threadPool.execute(new o4(this, obj, iCameraView, file, z11, runnable, 6));
         } else if (obj instanceof CameraSession) {
             CameraSession cameraSession = (CameraSession) obj;
             CameraInfo cameraInfo = cameraSession.cameraInfo;

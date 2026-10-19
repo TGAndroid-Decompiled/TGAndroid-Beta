@@ -1,28 +1,28 @@
 package og;
 
-import org.telegram.ui.sn;
-import org.telegram.ui.te1;
+import org.telegram.ui.qn;
+import org.telegram.ui.re1;
 public final class b implements Runnable {
-    public final int f17737a;
-    public final sn f17738b;
+    public final int f17740a;
+    public final qn f17741b;
 
-    public b(sn snVar, int i10) {
-        this.f17737a = i10;
-        this.f17738b = snVar;
+    public b(qn qnVar, int i10) {
+        this.f17740a = i10;
+        this.f17741b = qnVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f17737a) {
+        switch (this.f17740a) {
             case 0:
-                sn snVar = this.f17738b;
-                if (snVar.getParentLayout() != null) {
-                    te1.I0(snVar);
+                qn qnVar = this.f17741b;
+                if (qnVar.getParentLayout() != null) {
+                    re1.I0(qnVar);
                     return;
                 }
                 return;
             default:
-                this.f17738b.cc();
+                this.f17741b.cc();
                 return;
         }
     }

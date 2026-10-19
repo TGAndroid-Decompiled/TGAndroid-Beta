@@ -1,34 +1,34 @@
 package org.telegram.ui;
 public final class p9 implements o1.f {
-    public final int f39999a;
-    public final Object f40000b;
+    public final int f40125a;
+    public final Object f40126b;
 
     public p9(Object obj, int i10) {
-        this.f39999a = i10;
-        this.f40000b = obj;
+        this.f40125a = i10;
+        this.f40126b = obj;
     }
 
     @Override
     public final void a(o1.h hVar, boolean z10, float f7, float f10) {
-        switch (this.f39999a) {
+        switch (this.f40125a) {
             case 0:
-                y9 y9Var = (y9) this.f40000b;
-                o1.k kVar = y9Var.E;
+                w9 w9Var = (w9) this.f40126b;
+                o1.k kVar = w9Var.f42509y;
                 if (kVar != null) {
                     kVar.c();
-                    y9Var.E = null;
+                    w9Var.f42509y = null;
                     return;
                 }
                 return;
             case 1:
-                co0 co0Var = (co0) this.f40000b;
-                if (hVar == co0Var.f35954c) {
-                    co0Var.f35954c = null;
+                ao0 ao0Var = (ao0) this.f40126b;
+                if (hVar == ao0Var.f35409c) {
+                    ao0Var.f35409c = null;
                     return;
                 }
                 return;
             default:
-                ((wt0) this.f40000b).D();
+                ((ut0) this.f40126b).D();
                 return;
         }
     }

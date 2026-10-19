@@ -5,7 +5,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.sa;
-import org.telegram.ui.qw0;
+import org.telegram.ui.ow0;
 public final class w0 implements z4.e {
     public final sa f46466a;
     public final y0 f46467b;
@@ -19,8 +19,8 @@ public final class w0 implements z4.e {
     public final void a(float f7, int i10, int i11) {
         int i12;
         sa saVar = this.f46466a;
-        saVar.f30224b = f7;
-        saVar.f30225c = i10;
+        saVar.f30218b = f7;
+        saVar.f30219c = i10;
         saVar.invalidate();
         y0 y0Var = this.f46467b;
         y0Var.G = i10;
@@ -38,16 +38,16 @@ public final class w0 implements z4.e {
     public final void b(int i10) {
         y0 y0Var = this.f46467b;
         ArrayList arrayList = y0Var.d;
-        if (((qw0) arrayList.get(i10)).f40499a == 0) {
+        if (((ow0) arrayList.get(i10)).f39991a == 0) {
             y0Var.N.setTitle(LocaleController.getString(R.string.DoubledLimits));
             y0Var.N.requestLayout();
-        } else if (((qw0) arrayList.get(i10)).f40499a == 14) {
+        } else if (((ow0) arrayList.get(i10)).f39991a == 14) {
             y0Var.N.setTitle(LocaleController.getString(R.string.UpgradedStories));
             y0Var.N.requestLayout();
-        } else if (((qw0) arrayList.get(i10)).f40499a == 40) {
+        } else if (((ow0) arrayList.get(i10)).f39991a == 40) {
             y0Var.N.setTitle(LocaleController.getString(R.string.FeaturePreviewGifts));
             y0Var.N.requestLayout();
-        } else if (((qw0) arrayList.get(i10)).f40499a == 28) {
+        } else if (((ow0) arrayList.get(i10)).f39991a == 28) {
             y0Var.N.setTitle(LocaleController.getString(R.string.TelegramBusiness));
             y0Var.N.requestLayout();
         }
@@ -90,13 +90,13 @@ public final class w0 implements z4.e {
             i12++;
         }
         int i14 = y0Var.G;
-        if (i14 >= 0 && i14 < arrayList.size() && ((i11 = ((qw0) arrayList.get(y0Var.G)).f40499a) == 0 || i11 == 14 || i11 == 28)) {
+        if (i14 >= 0 && i14 < arrayList.size() && ((i11 = ((ow0) arrayList.get(y0Var.G)).f39991a) == 0 || i11 == 14 || i11 == 28)) {
             z10 = true;
         } else {
             z10 = false;
         }
         int i15 = y0Var.H;
-        if (i15 >= 0 && i15 < arrayList.size() && ((i10 = ((qw0) arrayList.get(y0Var.H)).f40499a) == 0 || i10 == 14 || i10 == 28)) {
+        if (i15 >= 0 && i15 < arrayList.size() && ((i10 = ((ow0) arrayList.get(y0Var.H)).f39991a) == 0 || i10 == 14 || i10 == 28)) {
             z11 = true;
         } else {
             z11 = false;
@@ -128,7 +128,7 @@ public final class w0 implements z4.e {
         if (i16 != y0Var.K) {
             y0Var.K = i16;
             y0Var.f46506r.invalidate();
-            AndroidUtilities.runOnUIThread(new org.telegram.ui.web.a2(this, 23));
+            AndroidUtilities.runOnUIThread(new org.telegram.ui.web.z1(this, 23));
         }
     }
 

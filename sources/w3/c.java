@@ -5,17 +5,17 @@ import b2.v0;
 import e2.m0;
 import e2.x;
 import java.nio.charset.StandardCharsets;
-import u2.a1;
+import u2.z0;
 public abstract class c {
     public static final byte[] f48468a;
 
     static {
-        String str = m0.f8253a;
+        String str = m0.f8254a;
         f48468a = "OpusHead".getBytes(StandardCharsets.UTF_8);
     }
 
     public static void a(x xVar) {
-        int i10 = xVar.f8293b;
+        int i10 = xVar.f8294b;
         xVar.O(4);
         if (xVar.m() != 1751411826) {
             i10 += 4;
@@ -27,7 +27,7 @@ public abstract class c {
         throw new UnsupportedOperationException("Method not decompiled: w3.c.b(e2.x, int, int, int, int, java.lang.String, boolean, b2.s, e2.j0, int):void");
     }
 
-    public static a1 c(int i10, x xVar) {
+    public static z0 c(int i10, x xVar) {
         long j10;
         xVar.N(i10 + 12);
         xVar.O(1);
@@ -63,9 +63,9 @@ public abstract class c {
             } else {
                 j10 = -1;
             }
-            return new a1(e, bArr, j11, j10);
+            return new z0(e, bArr, j11, j10);
         }
-        return new a1(e, null, -1L, -1L);
+        return new z0(e, null, -1L, -1L);
     }
 
     public static int d(x xVar) {
@@ -111,7 +111,7 @@ public abstract class c {
         int i13;
         Integer num2;
         boolean z13;
-        int i14 = xVar.f8293b;
+        int i14 = xVar.f8294b;
         while (i14 - i10 < i11) {
             xVar.N(i14);
             int m10 = xVar.m();
@@ -207,7 +207,7 @@ public abstract class c {
                         z14 = true;
                     }
                     c3.b.b("tenc atom is mandatory", z14);
-                    String str2 = m0.f8253a;
+                    String str2 = m0.f8254a;
                     create = Pair.create(num, rVar);
                 }
                 if (create != null) {

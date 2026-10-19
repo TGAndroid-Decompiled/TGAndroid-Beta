@@ -26,23 +26,23 @@ public abstract class rp0 extends org.telegram.ui.ActionBar.m1 {
     public int E;
     public int F;
     public ArrayList G;
-    public lp0 f30005o;
-    public TextView f30006p;
-    public boolean f30007q;
-    public TLRPC.Peer f30008r;
-    public TLRPC.TL_channels_sendAsPeers f30009s;
-    public ah.x f30010t;
-    public View f30011u;
+    public lp0 f30012o;
+    public TextView f30013p;
+    public boolean f30014q;
+    public TLRPC.Peer f30015r;
+    public TLRPC.TL_channels_sendAsPeers f30016s;
+    public ah.x f30017t;
+    public View f30018u;
     public im0 v;
-    public s4.b0 f30012w;
-    public Boolean f30013x;
-    public boolean f30014y;
-    public ArrayList f30015z;
+    public s4.b0 f30019w;
+    public Boolean f30020x;
+    public boolean f30021y;
+    public ArrayList f30022z;
 
-    public static void k(ef efVar, List list, Context context, org.telegram.ui.sn snVar, boolean z10, ai.r2 r2Var, View view, int i10) {
+    public static void k(ef efVar, List list, Context context, org.telegram.ui.qn qnVar, boolean z10, ai.v2 v2Var, View view, int i10) {
         TLRPC.User user;
         TLRPC.TL_sendAsPeer tL_sendAsPeer = (TLRPC.TL_sendAsPeer) list.get(i10);
-        if (!efVar.f30014y) {
+        if (!efVar.f30021y) {
             if (tL_sendAsPeer.premium_required && !UserConfig.getInstance(UserConfig.selectedAccount).isPremium()) {
                 try {
                     view.performHapticFeedback(3, 2);
@@ -70,19 +70,19 @@ public abstract class rp0 extends org.telegram.ui.ActionBar.m1 {
                     AndroidUtilities.setPreferredMaxRefreshRate(windowManager, efVar.B, layoutParams);
                     windowManager.addView(efVar.B, layoutParams);
                 }
-                if (snVar != null) {
+                if (qnVar != null) {
                     op0 op0Var = efVar.B;
-                    org.telegram.ui.qn qnVar = snVar.f41191ea;
-                    go0 go0Var2 = new go0(3, efVar, snVar);
-                    cc ccVar = new cc(context, qnVar);
+                    org.telegram.ui.on onVar = qnVar.f40675ea;
+                    go0 go0Var2 = new go0(3, efVar, qnVar);
+                    cc ccVar = new cc(context, onVar);
                     Drawable drawable = context.getDrawable(R.drawable.msg_premium_prolfilestar);
-                    w9 w9Var = ccVar.f25188a;
+                    w9 w9Var = ccVar.f25166a;
                     w9Var.setImageDrawable(drawable);
                     w9Var.setColorFilter(new PorterDuffColorFilter(ccVar.getThemedColor(org.telegram.ui.ActionBar.h6.Hi), PorterDuff.Mode.SRC_IN));
-                    ccVar.f25189b.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.SelectSendAsPeerPremiumHint)));
-                    oc ocVar = new oc(context, qnVar, true);
+                    ccVar.f25167b.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.SelectSendAsPeerPremiumHint)));
+                    oc ocVar = new oc(context, onVar, true);
                     ocVar.e(LocaleController.getString(R.string.SelectSendAsPeerPremiumOpen));
-                    ocVar.f28918a = go0Var2;
+                    ocVar.f28946a = go0Var2;
                     ccVar.setButton(ocVar);
                     qc f7 = qc.f(op0Var, ccVar, 1500);
                     f7.e.addCallback(new pp0(efVar, f7));
@@ -93,50 +93,50 @@ public abstract class rp0 extends org.telegram.ui.ActionBar.m1 {
                 AndroidUtilities.runOnUIThread(go0Var3, 2500L);
                 return;
             }
-            efVar.f30014y = true;
+            efVar.f30021y = true;
             im0 im0Var = efVar.v;
             qp0 qp0Var = (qp0) view;
             TLRPC.Peer peer = tL_sendAsPeer.peer;
-            ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) r2Var.f2095b;
-            TLRPC.ChatFull chatFull = (TLRPC.ChatFull) r2Var.f2096c;
-            MessagesController messagesController = (MessagesController) r2Var.d;
-            if (chatActivityEnterView.f23999q0 == null) {
+            ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) v2Var.f2287b;
+            TLRPC.ChatFull chatFull = (TLRPC.ChatFull) v2Var.f2288c;
+            MessagesController messagesController = (MessagesController) v2Var.d;
+            if (chatActivityEnterView.f24002q0 == null) {
                 return;
             }
             if (chatFull != null) {
                 chatFull.default_send_as = peer;
             }
-            chatActivityEnterView.O1(true);
+            chatActivityEnterView.M1(true);
             og ogVar = chatActivityEnterView.Z2;
             if (ogVar == null || !ogVar.b1(DialogObject.getPeerDialogId(peer))) {
                 messagesController.setDefaultSendAs(chatActivityEnterView.Q2, DialogObject.getPeerDialogId(peer));
             }
             int[] iArr = new int[2];
-            zv0 zv0Var = qp0Var.f29719a;
-            boolean isSelected = zv0Var.isSelected();
-            zv0Var.getLocationInWindow(iArr);
-            zv0Var.a(true, true);
-            zv0 zv0Var2 = new zv0(chatActivityEnterView.getContext());
+            aw0 aw0Var = qp0Var.f29677a;
+            boolean isSelected = aw0Var.isSelected();
+            aw0Var.getLocationInWindow(iArr);
+            aw0Var.a(true, true);
+            aw0 aw0Var2 = new aw0(chatActivityEnterView.getContext());
             long j10 = peer.channel_id;
             long j11 = 0;
             if (j10 != 0) {
                 TLRPC.Chat chat = messagesController.getChat(Long.valueOf(j10));
                 if (chat != null) {
-                    zv0Var2.setAvatar(chat);
+                    aw0Var2.setAvatar(chat);
                 }
             } else {
                 long j12 = peer.user_id;
                 if (j12 != 0 && (user = messagesController.getUser(Long.valueOf(j12))) != null) {
-                    zv0Var2.setAvatar(user);
+                    aw0Var2.setAvatar(user);
                 }
             }
             for (int i12 = 0; i12 < im0Var.getChildCount(); i12++) {
                 View childAt = im0Var.getChildAt(i12);
                 if ((childAt instanceof qp0) && childAt != qp0Var) {
-                    ((qp0) childAt).f29719a.a(false, true);
+                    ((qp0) childAt).f29677a.a(false, true);
                 }
             }
-            org.telegram.messenger.camera.i iVar = new org.telegram.messenger.camera.i(chatActivityEnterView, zv0Var2, iArr, qp0Var, 22);
+            org.telegram.messenger.camera.i iVar = new org.telegram.messenger.camera.i(chatActivityEnterView, aw0Var2, iArr, qp0Var, 22);
             if (!isSelected) {
                 j11 = 200;
             }
@@ -158,9 +158,9 @@ public abstract class rp0 extends org.telegram.ui.ActionBar.m1 {
     }
 
     public final void l(o1.k... kVarArr) {
-        lp0 lp0Var = this.f30005o;
-        ah.x xVar = this.f30010t;
-        ArrayList arrayList = this.f30015z;
+        lp0 lp0Var = this.f30012o;
+        ah.x xVar = this.f30017t;
+        ArrayList arrayList = this.f30022z;
         ArrayList arrayList2 = new ArrayList(arrayList);
         int size = arrayList2.size();
         int i10 = 0;
@@ -178,18 +178,18 @@ public abstract class rp0 extends org.telegram.ui.ActionBar.m1 {
         xVar.setScaleY(1.0f);
         lp0Var.setAlpha(1.0f);
         ArrayList arrayList3 = new ArrayList();
-        o1.k kVar = new o1.k(xVar, o1.h.f17542o);
-        kVar.f17558u = org.telegram.ui.Cells.c1.l(0.25f, 750.0f, 1.0f);
+        o1.k kVar = new o1.k(xVar, o1.h.f17545o);
+        kVar.f17561u = org.telegram.ui.Cells.c1.l(0.25f, 750.0f, 1.0f);
         kVar.b(new ip0(this, 0));
-        o1.k kVar2 = new o1.k(xVar, o1.h.f17543p);
-        kVar2.f17558u = org.telegram.ui.Cells.c1.l(0.25f, 750.0f, 1.0f);
+        o1.k kVar2 = new o1.k(xVar, o1.h.f17546p);
+        kVar2.f17561u = org.telegram.ui.Cells.c1.l(0.25f, 750.0f, 1.0f);
         boolean z10 = true;
         kVar2.b(new ip0(this, 1));
-        o1.c cVar = o1.h.f17547t;
+        o1.c cVar = o1.h.f17550t;
         o1.k kVar3 = new o1.k(xVar, cVar);
-        kVar3.f17558u = org.telegram.ui.Cells.c1.l(0.0f, 750.0f, 1.0f);
+        kVar3.f17561u = org.telegram.ui.Cells.c1.l(0.0f, 750.0f, 1.0f);
         o1.k kVar4 = new o1.k(lp0Var, cVar);
-        kVar4.f17558u = org.telegram.ui.Cells.c1.l(0.25f, 750.0f, 1.0f);
+        kVar4.f17561u = org.telegram.ui.Cells.c1.l(0.25f, 750.0f, 1.0f);
         arrayList3.addAll(Arrays.asList(kVar, kVar2, kVar3, kVar4));
         for (o1.k kVar5 : kVarArr) {
             if (kVar5 != null) {
@@ -199,7 +199,7 @@ public abstract class rp0 extends org.telegram.ui.ActionBar.m1 {
         if (kVarArr.length <= 0) {
             z10 = false;
         }
-        this.f30007q = z10;
+        this.f30014q = z10;
         ((o1.k) arrayList3.get(0)).a(new hb(this, 3));
         int size2 = arrayList3.size();
         int i11 = 0;

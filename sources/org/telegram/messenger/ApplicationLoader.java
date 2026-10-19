@@ -29,7 +29,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.i80;
 import org.telegram.ui.Components.o10;
 import org.telegram.ui.IUpdateLayout;
-import org.telegram.ui.qa0;
+import org.telegram.ui.oa0;
 public class ApplicationLoader extends Application {
     public static volatile Context applicationContext = null;
     public static volatile Handler applicationHandler = null;
@@ -64,7 +64,7 @@ public class ApplicationLoader extends Application {
 
     private boolean checkPlayServices() {
         try {
-            AtomicBoolean atomicBoolean = k6.g.f14974a;
+            AtomicBoolean atomicBoolean = k6.g.f14977a;
             if (k6.g.b(this, 12451000) == 0) {
                 return true;
             }
@@ -503,7 +503,7 @@ public class ApplicationLoader extends Application {
             StringBuilder sb2 = new StringBuilder("app start time = ");
             long elapsedRealtime = SystemClock.elapsedRealtime();
             startTime = elapsedRealtime;
-            i2.d.x(sb2, elapsedRealtime);
+            i2.e.x(sb2, elapsedRealtime);
             try {
                 PackageInfo packageInfo = applicationContext.getPackageManager().getPackageInfo(applicationContext.getPackageName(), 0);
                 int i11 = packageInfo.versionCode % 10;
@@ -528,7 +528,7 @@ public class ApplicationLoader extends Application {
             sb3.append(", model=");
             sb3.append(Build.MODEL);
             sb3.append(", product=");
-            i2.d.v(Build.PRODUCT, sb3);
+            i2.e.v(Build.PRODUCT, sb3);
         }
         if (applicationContext == null) {
             applicationContext = getApplicationContext();
@@ -552,7 +552,7 @@ public class ApplicationLoader extends Application {
             }
             applicationHandler = new Handler(applicationContext.getMainLooper());
             AndroidUtilities.runOnUIThread(new y1(6));
-            qa0[] values = qa0.values();
+            oa0[] values = oa0.values();
             int length = values.length;
             while (true) {
                 if (i10 < length) {
@@ -561,7 +561,7 @@ public class ApplicationLoader extends Application {
                     }
                     i10++;
                 } else {
-                    w7.g6.b(qa0.h);
+                    w7.g6.b(oa0.h);
                     break;
                 }
             }

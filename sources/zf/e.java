@@ -19,7 +19,7 @@ import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.uj0;
-import org.telegram.ui.mj0;
+import org.telegram.ui.kj0;
 public final class e {
     public static int A;
     public static a5.a B;
@@ -87,7 +87,7 @@ public final class e {
         }
         sb2.append(str);
         if (i12 != 0) {
-            str2 = i2.d.j(i12, "_fitz");
+            str2 = i2.e.j(i12, "_fitz");
         } else {
             str2 = "";
         }
@@ -159,7 +159,7 @@ public final class e {
         A = i10;
         if (i10 <= 0) {
             A = 0;
-            uj0.T0.postRunnable(new mj0(23));
+            uj0.T0.postRunnable(new kj0(23));
         }
     }
 

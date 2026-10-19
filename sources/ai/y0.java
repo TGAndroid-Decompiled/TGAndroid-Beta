@@ -28,13 +28,13 @@ public final class y0 implements Runnable {
         TLObject tLObject = (TLObject) this.f2463c;
         TL_account.TL_businessChatLink tL_businessChatLink = (TL_account.TL_businessChatLink) this.d;
         Runnable runnable = (Runnable) this.e;
-        ArrayList arrayList = yVar.f13089b;
+        ArrayList arrayList = yVar.f13091b;
         if (tLObject instanceof TL_account.TL_businessChatLink) {
             TL_account.TL_businessChatLink tL_businessChatLink2 = (TL_account.TL_businessChatLink) tLObject;
             int indexOf = arrayList.indexOf(tL_businessChatLink);
             if (indexOf != -1) {
                 arrayList.set(indexOf, tL_businessChatLink2);
-                NotificationCenter.getInstance(yVar.f13088a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.businessLinksUpdated, new Object[0]);
+                NotificationCenter.getInstance(yVar.f13090a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.businessLinksUpdated, new Object[0]);
                 if (runnable != null) {
                     runnable.run();
                 }
@@ -52,9 +52,9 @@ public final class y0 implements Runnable {
         ArrayList<Integer> arrayList = (ArrayList) this.f2463c;
         ig.z1 z1Var = (ig.z1) this.d;
         TLRPC.TL_messages_sendQuickReplyMessages tL_messages_sendQuickReplyMessages = (TLRPC.TL_messages_sendQuickReplyMessages) this.e;
-        int i10 = a2Var.f12825a;
+        int i10 = a2Var.f12827a;
         if (!arrayList.isEmpty() && arrayList.size() >= z1Var.a()) {
-            tL_messages_sendQuickReplyMessages.f20387id = arrayList;
+            tL_messages_sendQuickReplyMessages.f20390id = arrayList;
             for (int i11 = 0; i11 < arrayList.size(); i11++) {
                 tL_messages_sendQuickReplyMessages.random_id.add(Long.valueOf(Utilities.random.nextLong()));
             }
@@ -62,8 +62,8 @@ public final class y0 implements Runnable {
             return;
         }
         TLRPC.TL_messages_getQuickReplyMessages tL_messages_getQuickReplyMessages = new TLRPC.TL_messages_getQuickReplyMessages();
-        tL_messages_getQuickReplyMessages.shortcut_id = z1Var.f13098a;
-        ConnectionsManager.getInstance(i10).sendRequest(tL_messages_getQuickReplyMessages, new k2(a2Var, arrayList, tL_messages_sendQuickReplyMessages, 11));
+        tL_messages_getQuickReplyMessages.shortcut_id = z1Var.f13100a;
+        ConnectionsManager.getInstance(i10).sendRequest(tL_messages_getQuickReplyMessages, new g2(a2Var, arrayList, tL_messages_sendQuickReplyMessages, 11));
     }
 
     private final void d() {
@@ -71,7 +71,7 @@ public final class y0 implements Runnable {
         AtomicBoolean atomicBoolean = (AtomicBoolean) this.f2463c;
         m4.h hVar = (m4.h) this.d;
         AtomicBoolean atomicBoolean2 = (AtomicBoolean) this.e;
-        synchronized (eVar.f44752a) {
+        synchronized (eVar.f44750a) {
             try {
                 if (!atomicBoolean.get()) {
                     eVar.l(hVar);

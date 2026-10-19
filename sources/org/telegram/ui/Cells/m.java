@@ -14,26 +14,26 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_stars;
 public final class m extends FrameLayout implements GiftAuctionController.OnActiveAuctionsUpdateListeners {
-    public final int f22549a;
-    public final org.telegram.ui.Components.q6 f22550b;
-    public final org.telegram.ui.Components.q6 f22551c;
+    public final int f22552a;
+    public final org.telegram.ui.Components.q6 f22553b;
+    public final org.telegram.ui.Components.q6 f22554c;
     public final l d;
     public ArrayList e;
-    public boolean f22552f;
+    public boolean f22555f;
 
     public m(Activity activity, int i10) {
         super(activity);
         this.e = new ArrayList();
-        this.f22549a = i10;
+        this.f22552a = i10;
         LinearLayout e = org.telegram.messenger.g0.e(activity, 1);
         org.telegram.ui.Components.q6 q6Var = new org.telegram.ui.Components.q6(activity, false, false, false);
-        this.f22550b = q6Var;
+        this.f22553b = q6Var;
         q6Var.setTextSize(AndroidUtilities.dp(14.0f));
         q6Var.setTypeface(AndroidUtilities.bold());
         q6Var.setTranslationY(-AndroidUtilities.dp(1.0f));
         e.addView(q6Var, w7.z5.n(-1, 18));
         org.telegram.ui.Components.q6 q6Var2 = new org.telegram.ui.Components.q6(activity, false, false, false);
-        this.f22551c = q6Var2;
+        this.f22554c = q6Var2;
         q6Var2.setTextSize(AndroidUtilities.dp(13.0f));
         e.addView(q6Var2, w7.z5.k(2.0f, 0.0f, 2.0f, 0.0f, -1, 17));
         l lVar = new l(activity, i10);
@@ -48,13 +48,13 @@ public final class m extends FrameLayout implements GiftAuctionController.OnActi
     public final void a() {
         int i10;
         setBackground(org.telegram.ui.ActionBar.h6.L0(false));
-        this.f22550b.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.G6, false));
-        if (this.f22552f) {
-            i10 = org.telegram.ui.ActionBar.h6.f21224q7;
+        this.f22553b.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.G6, false));
+        if (this.f22555f) {
+            i10 = org.telegram.ui.ActionBar.h6.f21227q7;
         } else {
-            i10 = org.telegram.ui.ActionBar.h6.f21374y6;
+            i10 = org.telegram.ui.ActionBar.h6.f21377y6;
         }
-        this.f22551c.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, i10, false));
+        this.f22554c.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, i10, false));
         invalidate();
     }
 
@@ -84,21 +84,21 @@ public final class m extends FrameLayout implements GiftAuctionController.OnActi
                 lVar.a(i10);
             }
         } else {
-            lVar.f22518f = 0;
-            lVar.f22517c.b();
-            lVar.f22515a.t(LocaleController.getString(R.string.Gift2AuctionPriceView), true, true);
+            lVar.f22521f = 0;
+            lVar.f22520c.b();
+            lVar.f22518a.t(LocaleController.getString(R.string.Gift2AuctionPriceView), true, true);
         }
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         int size2 = this.e.size();
         if (size2 == 0) {
             return;
         }
-        int currentTime = ConnectionsManager.getInstance(this.f22549a).getCurrentTime();
+        int currentTime = ConnectionsManager.getInstance(this.f22552a).getCurrentTime();
         int i11 = 0;
         boolean z11 = false;
         boolean z12 = false;
         while (true) {
-            q6Var = this.f22550b;
+            q6Var = this.f22553b;
             if (i11 >= size2) {
                 break;
             }
@@ -134,13 +134,13 @@ public final class m extends FrameLayout implements GiftAuctionController.OnActi
             spannableStringBuilder.append((CharSequence) formatString);
         }
         q6Var.c(spannableStringBuilder, true, true);
-        this.f22552f = false;
-        org.telegram.ui.Components.q6 q6Var2 = this.f22551c;
+        this.f22555f = false;
+        org.telegram.ui.Components.q6 q6Var2 = this.f22554c;
         if (z11) {
             q6Var2.setText(LocaleController.getString(R.string.Gift2ActiveAuctionsActiveStatusEarly));
         } else if (z12) {
             q6Var2.setText(LocaleController.getString(R.string.Gift2ActiveAuctionsActiveStatusOutbid));
-            this.f22552f = true;
+            this.f22555f = true;
         } else if (size2 > 1) {
             q6Var2.setText(LocaleController.getString(R.string.Gift2ActiveAuctionsActiveStatusWinningAll));
         } else {
@@ -180,7 +180,7 @@ public final class m extends FrameLayout implements GiftAuctionController.OnActi
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        int i10 = this.f22549a;
+        int i10 = this.f22552a;
         GiftAuctionController.getInstance(i10).subscribeToActiveAuctionsUpdates(this);
         onActiveAuctionsUpdate(GiftAuctionController.getInstance(i10).getActiveAuctions());
     }
@@ -188,7 +188,7 @@ public final class m extends FrameLayout implements GiftAuctionController.OnActi
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        GiftAuctionController.getInstance(this.f22549a).unsubscribeFromActiveAuctionsUpdates(this);
+        GiftAuctionController.getInstance(this.f22552a).unsubscribeFromActiveAuctionsUpdates(this);
     }
 
     @Override

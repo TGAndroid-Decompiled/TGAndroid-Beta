@@ -1,13 +1,16 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.LocaleController;
-public final class x30 extends org.telegram.ui.Components.od0 {
-    public x30(LaunchActivity launchActivity) {
-        super(launchActivity, null);
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class x30 extends AnimatorListenerAdapter {
+    public final q50 f43014a;
+
+    public x30(q50 q50Var) {
+        this.f43014a = q50Var;
     }
 
     @Override
-    public final CharSequence d(int i10) {
-        return LocaleController.formatPluralString("Minutes", i10, new Object[0]);
+    public final void onAnimationEnd(Animator animator) {
+        this.f43014a.X0 = null;
     }
 }

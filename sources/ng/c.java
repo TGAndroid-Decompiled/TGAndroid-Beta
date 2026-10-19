@@ -17,18 +17,18 @@ import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.ActionBar.k4;
 import org.telegram.ui.ActionBar.n2;
 import org.telegram.ui.Components.cp0;
-import org.telegram.ui.Components.jw0;
+import org.telegram.ui.Components.kw0;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.n5;
 import w7.z5;
 public final class c implements Runnable {
-    public final int f17446a;
-    public final i f17447b;
+    public final int f17449a;
+    public final i f17450b;
 
     public c(i iVar, int i10) {
-        this.f17446a = i10;
-        this.f17447b = iVar;
+        this.f17449a = i10;
+        this.f17450b = iVar;
     }
 
     @Override
@@ -40,18 +40,18 @@ public final class c implements Runnable {
         int i14;
         int i15;
         int i16;
-        switch (this.f17446a) {
+        switch (this.f17449a) {
             case 0:
                 n2 R = LaunchActivity.R();
                 ?? f3Var = new f3(R.getParentActivity(), false);
-                if (R.getFragmentView() instanceof jw0) {
-                    f3Var.f39296b = (jw0) R.getFragmentView();
+                if (R.getFragmentView() instanceof kw0) {
+                    f3Var.f39411b = (kw0) R.getFragmentView();
                 }
                 Activity parentActivity = R.getParentActivity();
                 LinearLayout e = g0.e(parentActivity, 1);
                 TextView textView = new TextView(parentActivity);
-                textView.setText("Saturation " + (n5.f39295c * 5.0f));
-                int i17 = h6.f21168n5;
+                textView.setText("Saturation " + (n5.f39410c * 5.0f));
+                int i17 = h6.f21171n5;
                 lk.u(textView, h6.x0(null, i17, false), 1, 16.0f, 1);
                 textView.setMaxLines(1);
                 textView.setSingleLine(true);
@@ -118,10 +118,10 @@ public final class c implements Runnable {
                 scrollView.addView(e);
                 f3Var.setCustomView(scrollView);
                 f3Var.show();
-                this.f17447b.c(false);
+                this.f17450b.c(false);
                 return;
             case 1:
-                i iVar = this.f17447b;
+                i iVar = this.f17450b;
                 iVar.getClass();
                 SharedConfig.toggleDebugWebView();
                 Context context = iVar.getContext();
@@ -133,11 +133,11 @@ public final class c implements Runnable {
                 Toast.makeText(context, LocaleController.getString(i16), 0).show();
                 return;
             case 2:
-                ProfileActivity.H4((Activity) this.f17447b.getContext(), false);
+                ProfileActivity.H4((Activity) this.f17450b.getContext(), false);
                 return;
             default:
-                i iVar2 = this.f17447b;
-                iVar2.f17467n = true;
+                i iVar2 = this.f17450b;
+                iVar2.f17470n = true;
                 try {
                     iVar2.performHapticFeedback(0);
                     return;

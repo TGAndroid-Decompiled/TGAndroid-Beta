@@ -15,19 +15,19 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.LaunchActivity;
 public final class w0 {
-    public final CountDownLatch f35025a = new CountDownLatch(1);
-    public volatile boolean f35026b;
-    public String f35027c;
+    public final CountDownLatch f35042a = new CountDownLatch(1);
+    public volatile boolean f35043b;
+    public String f35044c;
     public String d;
     public LaunchActivity e;
-    public boolean f35028f;
-    public int f35029g;
+    public boolean f35045f;
+    public int f35046g;
     public CancellationSignal h;
-    public AlertDialog f35030i;
+    public AlertDialog f35047i;
 
     public final void a() {
-        if (!this.f35028f && f()) {
-            this.f35028f = true;
+        if (!this.f35045f && f()) {
+            this.f35045f = true;
             e();
             try {
                 KeyguardManager keyguardManager = (KeyguardManager) this.e.getSystemService("keyguard");
@@ -42,7 +42,7 @@ public final class w0 {
                 int i10 = w7.h6.f48701a;
                 int i11 = i10 + 1;
                 w7.h6.f48701a = i11;
-                this.f35029g = i10;
+                this.f35046g = i10;
                 if (i11 > 22399) {
                     w7.h6.f48701a = 22336;
                 }
@@ -58,39 +58,39 @@ public final class w0 {
         FingerprintManager fingerprintManager = (FingerprintManager) this.e.getSystemService("fingerprint");
         if (fingerprintManager != null && fingerprintManager.isHardwareDetected() && fingerprintManager.hasEnrolledFingerprints()) {
             this.h = new CancellationSignal();
-            this.f35030i = new AlertDialog.Builder(this.e).setTitle(LocaleController.getString(R.string.WalletUnlock)).setMessage(LocaleController.getString(R.string.WalletTouchFingerprint)).setNegativeButton(LocaleController.getString(R.string.Cancel), new DialogInterface.OnClickListener(this) {
-                public final w0 f34807b;
+            this.f35047i = new AlertDialog.Builder(this.e).setTitle(LocaleController.getString(R.string.WalletUnlock)).setMessage(LocaleController.getString(R.string.WalletTouchFingerprint)).setNegativeButton(LocaleController.getString(R.string.Cancel), new DialogInterface.OnClickListener(this) {
+                public final w0 f34823b;
 
                 {
-                    this.f34807b = this;
+                    this.f34823b = this;
                 }
 
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i10) {
                     switch (r2) {
                         case 0:
-                            this.f34807b.c("AUTH_CANCELED");
+                            this.f34823b.c("AUTH_CANCELED");
                             return;
                         default:
-                            this.f34807b.a();
+                            this.f34823b.a();
                             return;
                     }
                 }
             }).setPositiveButton(LocaleController.getString(R.string.WalletUseDevicePasscode), new DialogInterface.OnClickListener(this) {
-                public final w0 f34807b;
+                public final w0 f34823b;
 
                 {
-                    this.f34807b = this;
+                    this.f34823b = this;
                 }
 
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i10) {
                     switch (r2) {
                         case 0:
-                            this.f34807b.c("AUTH_CANCELED");
+                            this.f34823b.c("AUTH_CANCELED");
                             return;
                         default:
-                            this.f34807b.a();
+                            this.f34823b.a();
                             return;
                     }
                 }
@@ -107,11 +107,11 @@ public final class w0 {
     }
 
     public final void c(String str) {
-        CountDownLatch countDownLatch = this.f35025a;
+        CountDownLatch countDownLatch = this.f35042a;
         if (countDownLatch.getCount() == 0) {
             return;
         }
-        this.f35027c = str;
+        this.f35044c = str;
         countDownLatch.countDown();
     }
 
@@ -130,18 +130,18 @@ public final class w0 {
             FileLog.e(e);
         }
         try {
-            AlertDialog alertDialog = this.f35030i;
+            AlertDialog alertDialog = this.f35047i;
             if (alertDialog != null) {
                 alertDialog.dismiss();
             }
         } catch (Exception e7) {
             FileLog.e(e7);
         }
-        this.f35030i = null;
+        this.f35047i = null;
     }
 
     public final boolean f() {
-        if (!this.f35026b && this.f35025a.getCount() != 0) {
+        if (!this.f35043b && this.f35042a.getCount() != 0) {
             return true;
         }
         return false;

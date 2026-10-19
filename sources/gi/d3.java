@@ -58,17 +58,17 @@ import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.cw0;
+import org.telegram.ui.Components.dw0;
 import org.telegram.ui.Components.i80;
 import org.telegram.ui.Components.le0;
 import org.telegram.ui.Components.qc;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.ia1;
-import org.telegram.ui.sn;
-import org.telegram.ui.ut0;
+import org.telegram.ui.ga1;
+import org.telegram.ui.qn;
+import org.telegram.ui.st0;
 public final class d3 extends Dialog implements NotificationCenter.NotificationCenterDelegate, org.telegram.ui.ActionBar.t3 {
     public static final HashSet W0 = new HashSet();
-    public static final cw0 X0;
+    public static final dw0 X0;
     public static int Y0;
     public boolean A0;
     public y0 B0;
@@ -81,7 +81,7 @@ public final class d3 extends Dialog implements NotificationCenter.NotificationC
     public int G;
     public float G0;
     public long H;
-    public ia1 H0;
+    public ga1 H0;
     public long I;
     public Drawable I0;
     public long J;
@@ -114,61 +114,61 @@ public final class d3 extends Dialog implements NotificationCenter.NotificationC
     public final FrameLayout.LayoutParams X;
     public final Drawable Y;
     public org.telegram.ui.ActionBar.u0 Z;
-    public int f11135a;
-    public BotFullscreenButtons.OptionsIcon f11136a0;
-    public float f11137b;
-    public boolean f11138b0;
-    public o1.k f11139c;
-    public boolean f11140c0;
+    public int f11136a;
+    public BotFullscreenButtons.OptionsIcon f11137a0;
+    public float f11138b;
+    public boolean f11139b0;
+    public o1.k f11140c;
+    public boolean f11141c0;
     public Boolean d;
-    public boolean f11141d0;
+    public boolean f11142d0;
     public final c3 e;
-    public boolean f11142e0;
-    public final Rect f11143f;
-    public float f11144f0;
-    public float f11145g0;
+    public boolean f11143e0;
+    public final Rect f11144f;
+    public float f11145f0;
+    public float f11146g0;
     public final Rect h;
-    public boolean f11146h0;
-    public int f11147i0;
-    public int f11148j0;
-    public Activity f11149k0;
-    public final z2 f11150l0;
+    public boolean f11147h0;
+    public int f11148i0;
+    public int f11149j0;
+    public Activity f11150k0;
+    public final z2 f11151l0;
     public final BotFullscreenButtons m0;
-    public int f11151n;
-    public qc f11152n0;
-    public h0 f11153o0;
-    public final FrameLayout f11154p0;
-    public final FrameLayout.LayoutParams f11155q0;
-    public final org.telegram.ui.ActionBar.n3 f11156r;
-    public boolean f11157r0;
-    public final z5 f11158s;
-    public final le0 f11159s0;
-    public final y1 f11160t0;
-    public int f11161u0;
+    public int f11152n;
+    public qc f11153n0;
+    public h0 f11154o0;
+    public final FrameLayout f11155p0;
+    public final FrameLayout.LayoutParams f11156q0;
+    public final org.telegram.ui.ActionBar.n3 f11157r;
+    public boolean f11158r0;
+    public final z5 f11159s;
+    public final le0 f11160s0;
+    public final y1 f11161t0;
+    public int f11162u0;
     public final u2 v;
-    public t4 f11162v0;
-    public final FrameLayout.LayoutParams f11163w;
-    public boolean f11164w0;
-    public final v2 f11165x;
-    public boolean f11166x0;
-    public final b3 f11167y;
-    public boolean f11168y0;
-    public Boolean f11169z0;
+    public t4 f11163v0;
+    public final FrameLayout.LayoutParams f11164w;
+    public boolean f11165w0;
+    public final v2 f11166x;
+    public boolean f11167x0;
+    public final b3 f11168y;
+    public boolean f11169y0;
+    public Boolean f11170z0;
 
     static {
-        cw0 cw0Var = new cw0(new fh.b(7), new fh.b(8));
-        cw0Var.f25395c = 100.0f;
-        X0 = cw0Var;
+        dw0 dw0Var = new dw0(new fh.b(7), new fh.b(8));
+        dw0Var.f25661c = 100.0f;
+        X0 = dw0Var;
         Y0 = 0;
     }
 
     public d3(Context context, d6 d6Var) {
         super(context, R.style.TransparentDialog);
         Object obj;
-        this.f11137b = 0.0f;
-        this.f11143f = new Rect();
+        this.f11138b = 0.0f;
+        this.f11144f = new Rect();
         this.h = new Rect();
-        this.f11151n = 0;
+        this.f11152n = 0;
         boolean z10 = true;
         Paint paint = new Paint(1);
         this.N = paint;
@@ -176,23 +176,23 @@ public final class d3 extends Dialog implements NotificationCenter.NotificationC
         this.O = paint2;
         this.P = new Paint(1);
         this.T = new Paint(1);
-        this.f11160t0 = new y1(this, 1);
-        this.f11161u0 = -1;
-        this.f11168y0 = false;
-        this.f11169z0 = null;
+        this.f11161t0 = new y1(this, 1);
+        this.f11162u0 = -1;
+        this.f11169y0 = false;
+        this.f11170z0 = null;
         this.J0 = new HashMap();
         this.M0 = false;
         this.Q0 = true;
         this.V0 = false;
         this.E = d6Var;
-        this.f11135a = h6.x0(null, h6.Ii, false);
+        this.f11136a = h6.x0(null, h6.Ii, false);
         u2 u2Var = new u2(this, context, 0);
         this.v = u2Var;
         u2Var.setAllowFullSizeSwipe(true);
         u2Var.setShouldWaitWebViewScroll(true);
-        int i10 = h6.f20986d6;
+        int i10 = h6.f20989d6;
         v2 v2Var = new v2(h6.w0(i10, d6Var), 0, context, this, d6Var);
-        this.f11165x = v2Var;
+        this.f11166x = v2Var;
         v2Var.setOnVerifiedAge(this.H0);
         v2Var.setDelegate(new y2(this, context, d6Var));
         paint.setStyle(Paint.Style.FILL_AND_STROKE);
@@ -200,17 +200,17 @@ public final class d3 extends Dialog implements NotificationCenter.NotificationC
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint2.setColor(1073741824);
         this.Q = h6.w0(i10, d6Var);
-        int w02 = h6.w0(h6.f20928a7, d6Var);
+        int w02 = h6.w0(h6.f20931a7, d6Var);
         this.R = w02;
         AndroidUtilities.setNavigationBarColor((Dialog) this, w02, false);
         c3 c3Var = new c3(this, context);
         this.e = c3Var;
         c3Var.setDelegate(new a2(this, 0));
         FrameLayout.LayoutParams e = w7.z5.e(-1, -1, 49);
-        this.f11163w = e;
+        this.f11164w = e;
         c3Var.addView(u2Var, e);
         z2 z2Var = new z2(this, getContext(), d6Var);
-        this.f11150l0 = z2Var;
+        this.f11151l0 = z2Var;
         z2Var.setOnButtonClickListener(new b2(this, 0));
         z2Var.setOnResizeListener(new y1(this, 3));
         c3Var.addView(z2Var, w7.z5.e(-1, -2, 81));
@@ -219,7 +219,7 @@ public final class d3 extends Dialog implements NotificationCenter.NotificationC
         botFullscreenButtons.setAlpha(0.0f);
         botFullscreenButtons.setVisibility(8);
         z10 = (MessagesController.getInstance(this.G).disableBotFullscreenBlur || SharedConfig.getDevicePerformanceClass() < 2) ? false : z10;
-        this.f11142e0 = z10;
+        this.f11143e0 = z10;
         if (z10) {
             obj = u2Var.getRenderNode();
         } else {
@@ -231,9 +231,9 @@ public final class d3 extends Dialog implements NotificationCenter.NotificationC
         botFullscreenButtons.setOnCollapseClickListener(new y1(this, 5));
         botFullscreenButtons.setOnMenuClickListener(new y1(this, 6));
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f11154p0 = frameLayout;
+        this.f11155p0 = frameLayout;
         FrameLayout.LayoutParams e7 = w7.z5.e(-1, 200, 55);
-        this.f11155q0 = e7;
+        this.f11156q0 = e7;
         c3Var.addView(frameLayout, e7);
         this.Y = getContext().getDrawable(R.drawable.header_shadow).mutate();
         ?? kVar = new org.telegram.ui.ActionBar.k(context, d6Var);
@@ -247,7 +247,7 @@ public final class d3 extends Dialog implements NotificationCenter.NotificationC
         this.X = e10;
         c3Var.addView((View) kVar, e10);
         ?? z3Var = new z3(context, d6Var);
-        this.f11167y = z3Var;
+        this.f11168y = z3Var;
         c3Var.addView((View) z3Var, w7.z5.d(-1, -2.0f, 81, 0.0f, 0.0f, 0.0f, 0.0f));
         v2Var.setWebViewProgressListener(new q7(this, 2));
         u2Var.addView(v2Var, w7.z5.c(-1.0f, -1));
@@ -256,19 +256,19 @@ public final class d3 extends Dialog implements NotificationCenter.NotificationC
         u2Var.setDelegate(new z1(this));
         u2Var.setIsKeyboardVisible(new z1(this));
         le0 le0Var = new le0(context);
-        this.f11159s0 = le0Var;
+        this.f11160s0 = le0Var;
         c3Var.addView(le0Var, w7.z5.c(-1.0f, -1));
         setContentView(c3Var, new ViewGroup.LayoutParams(-1, -1));
         E();
         LaunchActivity launchActivity = LaunchActivity.H1;
         org.telegram.ui.ActionBar.n3 P = launchActivity != null ? launchActivity.P() : null;
-        this.f11156r = P;
+        this.f11157r = P;
         if (P != null) {
             bc bcVar = new bc(c3Var, 9);
             y1 y1Var = new y1(this, 2);
             P.I.add(bcVar);
             P.J.add(y1Var);
-            this.f11158s = new z5(P);
+            this.f11159s = new z5(P);
         }
     }
 
@@ -280,21 +280,21 @@ public final class d3 extends Dialog implements NotificationCenter.NotificationC
     }
 
     public static WindowInsets e(d3 d3Var, View view, WindowInsets windowInsets) {
-        r0.h1 h1Var = r0.k1.h(view, windowInsets).f44827a;
+        r0.h1 h1Var = r0.k1.h(view, windowInsets).f44825a;
         i0.b f7 = h1Var.f(2);
-        d3Var.f11143f.set(f7.f12284a, f7.f12285b, f7.f12286c, f7.d);
+        d3Var.f11144f.set(f7.f12285a, f7.f12286b, f7.f12287c, f7.d);
         i0.b f10 = h1Var.f(647);
         Rect rect = d3Var.h;
-        rect.set(Math.max(f10.f12284a, windowInsets.getStableInsetLeft()), Math.max(f10.f12285b, windowInsets.getStableInsetTop()), Math.max(f10.f12286c, windowInsets.getStableInsetRight()), Math.max(f10.d, windowInsets.getStableInsetBottom()));
+        rect.set(Math.max(f10.f12285a, windowInsets.getStableInsetLeft()), Math.max(f10.f12286b, windowInsets.getStableInsetTop()), Math.max(f10.f12287c, windowInsets.getStableInsetRight()), Math.max(f10.d, windowInsets.getStableInsetBottom()));
         int i10 = Build.VERSION.SDK_INT;
         if (i10 <= 28) {
             rect.top = Math.max(rect.top, AndroidUtilities.getStatusBarHeight(d3Var.getContext()));
         }
         int i11 = h1Var.f(8).d;
         if (i11 > rect.bottom && i11 > AndroidUtilities.dp(20.0f)) {
-            d3Var.f11151n = i11;
+            d3Var.f11152n = i11;
         } else {
-            d3Var.f11151n = 0;
+            d3Var.f11152n = 0;
         }
         d3Var.E();
         if (i10 >= 30) {
@@ -328,17 +328,17 @@ public final class d3 extends Dialog implements NotificationCenter.NotificationC
         String formatString = LocaleController.formatString(R.string.BotRemoveFromMenu, tL_attachMenuBot.short_name);
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(LaunchActivity.R().getContext());
         String string = LocaleController.getString(R.string.BotRemoveFromMenuTitle);
-        org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20601a;
+        org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20604a;
         b2Var.R = string;
         b2Var.T = AndroidUtilities.replaceTags(formatString);
         alertDialog$Builder.k(LocaleController.getString(R.string.OK), new q1(i10, j10, tL_attachMenuBot, runnable));
-        i2.d.r(R.string.Cancel, alertDialog$Builder, null);
+        i2.e.r(R.string.Cancel, alertDialog$Builder, null);
     }
 
     public static JSONObject q(d6 d6Var, final boolean z10) {
         try {
             JSONObject jSONObject = new JSONObject();
-            final int v = h6.v(-16777216, h6.w0(h6.f21057h5, d6Var));
+            final int v = h6.v(-16777216, h6.w0(h6.f21060h5, d6Var));
             Utilities.CallbackReturn callbackReturn = new Utilities.CallbackReturn() {
                 @Override
                 public final Object run(Object obj) {
@@ -351,20 +351,20 @@ public final class d3 extends Dialog implements NotificationCenter.NotificationC
                 }
             };
             jSONObject.put("bg_color", callbackReturn.run(Integer.valueOf(v)));
-            jSONObject.put("section_bg_color", callbackReturn.run(Integer.valueOf(h6.w0(h6.f20986d6, d6Var))));
-            int i10 = h6.f20928a7;
+            jSONObject.put("section_bg_color", callbackReturn.run(Integer.valueOf(h6.w0(h6.f20989d6, d6Var))));
+            int i10 = h6.f20931a7;
             jSONObject.put("secondary_bg_color", callbackReturn.run(Integer.valueOf(h6.w0(i10, d6Var))));
             jSONObject.put("text_color", callbackReturn.run(Integer.valueOf(h6.w0(h6.G6, d6Var))));
             jSONObject.put("hint_color", callbackReturn.run(Integer.valueOf(h6.w0(h6.H6, d6Var))));
             jSONObject.put("link_color", callbackReturn.run(Integer.valueOf(h6.w0(h6.J6, d6Var))));
             jSONObject.put("button_color", callbackReturn.run(Integer.valueOf(h6.w0(h6.Oh, d6Var))));
             jSONObject.put("button_text_color", callbackReturn.run(Integer.valueOf(h6.w0(h6.Sh, d6Var))));
-            jSONObject.put("header_bg_color", callbackReturn.run(Integer.valueOf(h6.w0(h6.f21265s8, d6Var))));
+            jSONObject.put("header_bg_color", callbackReturn.run(Integer.valueOf(h6.w0(h6.f21268s8, d6Var))));
             jSONObject.put("accent_text_color", callbackReturn.run(Integer.valueOf(h6.w0(h6.q6, d6Var))));
             jSONObject.put("section_header_text_color", callbackReturn.run(Integer.valueOf(h6.w0(h6.L6, d6Var))));
-            jSONObject.put("subtitle_text_color", callbackReturn.run(Integer.valueOf(h6.w0(h6.f21391z6, d6Var))));
-            jSONObject.put("destructive_text_color", callbackReturn.run(Integer.valueOf(h6.w0(h6.f21207p7, d6Var))));
-            jSONObject.put("section_separator_color", callbackReturn.run(Integer.valueOf(h6.w0(h6.f20987d7, d6Var))));
+            jSONObject.put("subtitle_text_color", callbackReturn.run(Integer.valueOf(h6.w0(h6.f21394z6, d6Var))));
+            jSONObject.put("destructive_text_color", callbackReturn.run(Integer.valueOf(h6.w0(h6.f21210p7, d6Var))));
+            jSONObject.put("section_separator_color", callbackReturn.run(Integer.valueOf(h6.w0(h6.f20990d7, d6Var))));
             jSONObject.put("bottom_bar_bg_color", callbackReturn.run(Integer.valueOf(h6.w0(i10, d6Var))));
             return jSONObject;
         } catch (Exception e) {
@@ -410,13 +410,13 @@ public final class d3 extends Dialog implements NotificationCenter.NotificationC
             a3 a3Var = this.W;
             a3Var.setTitleColor(w02);
             a3Var.C(h6.w0(i10, d6Var), false);
-            a3Var.B(h6.w0(h6.f21304u8, d6Var), false);
+            a3Var.B(h6.w0(h6.f21307u8, d6Var), false);
             a3Var.D(h6.w0(h6.G8, d6Var), false);
-            a3Var.F(h6.w0(h6.E8, d6Var), false, false);
-            a3Var.F(h6.w0(h6.F8, d6Var), true, false);
-            a3Var.G(h6.w0(h6.I5, d6Var), false);
+            a3Var.E(h6.w0(h6.E8, d6Var), false, false);
+            a3Var.E(h6.w0(h6.F8, d6Var), true, false);
+            a3Var.F(h6.w0(h6.I5, d6Var), false);
         }
-        this.f11165x.setFlickerViewColor(this.P.getColor());
+        this.f11166x.setFlickerViewColor(this.P.getColor());
     }
 
     public final void C() {
@@ -424,39 +424,39 @@ public final class d3 extends Dialog implements NotificationCenter.NotificationC
         boolean z10;
         j0 c10 = j0.c(getContext(), this.G, this.H);
         ArrayList arrayList = c10.e;
-        i0 i0Var = c10.f11277f;
+        i0 i0Var = c10.f11278f;
         boolean z11 = true;
         if (i0Var == null) {
-            qc qcVar2 = this.f11152n0;
+            qc qcVar2 = this.f11153n0;
             if (qcVar2 != null) {
                 qcVar2.b();
-                this.f11152n0 = null;
+                this.f11153n0 = null;
             }
-        } else if ((i0Var.c() && !i0Var.f11259l) || i0Var.f11258k) {
-            if (this.L0 != i0Var && (qcVar = this.f11152n0) != null) {
+        } else if ((i0Var.c() && !i0Var.f11260l) || i0Var.f11259k) {
+            if (this.L0 != i0Var && (qcVar = this.f11153n0) != null) {
                 qcVar.b();
-                this.f11152n0 = null;
+                this.f11153n0 = null;
             }
-            qc qcVar3 = this.f11152n0;
-            if (qcVar3 == null || !qcVar3.f29640l) {
+            qc qcVar3 = this.f11153n0;
+            if (qcVar3 == null || !qcVar3.f29598l) {
                 this.L0 = i0Var;
                 h0 h0Var = new h0(getContext(), this.E);
-                this.f11153o0 = h0Var;
-                qc f7 = qc.f(this.f11154p0, h0Var, 5000);
-                this.f11152n0 = f7;
+                this.f11154o0 = h0Var;
+                qc f7 = qc.f(this.f11155p0, h0Var, 5000);
+                this.f11153n0 = f7;
                 f7.k(true);
             }
-            if (this.f11153o0.c(i0Var)) {
-                this.f11152n0 = null;
+            if (this.f11154o0.c(i0Var)) {
+                this.f11153n0 = null;
             }
-            i0Var.f11258k = false;
-            i0Var.f11259l = true;
+            i0Var.f11259k = false;
+            i0Var.f11260l = true;
         } else {
-            h0 h0Var2 = this.f11153o0;
+            h0 h0Var2 = this.f11154o0;
             if (h0Var2 != null) {
                 this.L0 = i0Var;
                 if (h0Var2.c(i0Var)) {
-                    this.f11152n0 = null;
+                    this.f11153n0 = null;
                 }
             }
         }
@@ -464,9 +464,9 @@ public final class d3 extends Dialog implements NotificationCenter.NotificationC
         for (Map.Entry entry : this.J0.entrySet()) {
             org.telegram.ui.ActionBar.e1 e1Var = (org.telegram.ui.ActionBar.e1) entry.getValue();
             i0 i0Var2 = (i0) entry.getKey();
-            e1Var.setText(i0Var2.f11253c);
+            e1Var.setText(i0Var2.f11254c);
             if (!i0Var2.c()) {
-                e1Var.setSubtext(AndroidUtilities.formatFileSize(i0Var2.f11255g));
+                e1Var.setSubtext(AndroidUtilities.formatFileSize(i0Var2.f11256g));
             } else {
                 Pair b10 = i0Var2.b();
                 if (((Long) b10.second).longValue() > 0) {
@@ -477,16 +477,16 @@ public final class d3 extends Dialog implements NotificationCenter.NotificationC
             }
             if (i0Var2.c()) {
                 e1Var.setRightIcon(R.drawable.msg_close);
-                e1Var.f20758b.setPadding(0, 0, AndroidUtilities.dp(32.0f), 0);
-            } else if (i0Var2.f11256i) {
+                e1Var.f20761b.setPadding(0, 0, AndroidUtilities.dp(32.0f), 0);
+            } else if (i0Var2.f11257i) {
                 e1Var.setVisibility(8);
             } else {
                 e1Var.setRightIcon(0);
-                e1Var.f20758b.setPadding(0, 0, 0, 0);
+                e1Var.f20761b.setPadding(0, 0, 0, 0);
             }
             e1Var.setOnClickListener(new ai.p(18, this, i0Var2));
         }
-        BotFullscreenButtons.OptionsIcon optionsIcon = this.f11136a0;
+        BotFullscreenButtons.OptionsIcon optionsIcon = this.f11137a0;
         int size = arrayList.size();
         int i10 = 0;
         while (true) {
@@ -521,13 +521,13 @@ public final class d3 extends Dialog implements NotificationCenter.NotificationC
     }
 
     public final void D() {
-        h0 h0Var = this.f11153o0;
+        h0 h0Var = this.f11154o0;
         if (h0Var == null) {
             return;
         }
-        if (this.f11141d0) {
-            h0Var.setArrow(AndroidUtilities.lerp(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(26.0f), this.f11144f0));
-        } else if (this.f11137b > 0.5f) {
+        if (this.f11142d0) {
+            h0Var.setArrow(AndroidUtilities.lerp(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(26.0f), this.f11145f0));
+        } else if (this.f11138b > 0.5f) {
             h0Var.setArrow(AndroidUtilities.dp(24.0f));
         } else {
             h0Var.setArrow(-1);
@@ -544,10 +544,10 @@ public final class d3 extends Dialog implements NotificationCenter.NotificationC
         BotFullscreenButtons botFullscreenButtons = this.m0;
         Rect rect = this.h;
         botFullscreenButtons.setInsets(rect);
-        boolean z10 = this.f11141d0;
-        v2 v2Var = this.f11165x;
+        boolean z10 = this.f11142d0;
+        v2 v2Var = this.f11166x;
         c3 c3Var = this.e;
-        z2 z2Var = this.f11150l0;
+        z2 z2Var = this.f11151l0;
         int i16 = 0;
         if (z10) {
             if (z2Var != null && z2Var.getTotalHeight() > 0) {
@@ -558,7 +558,7 @@ public final class d3 extends Dialog implements NotificationCenter.NotificationC
             int i17 = rect.left;
             int i18 = rect.top;
             int i19 = rect.right;
-            if (this.f11151n > i14 || (z2Var != null && z2Var.getTotalHeight() > 0)) {
+            if (this.f11152n > i14 || (z2Var != null && z2Var.getTotalHeight() > 0)) {
                 i15 = 0;
             } else {
                 i15 = rect.bottom;
@@ -567,14 +567,14 @@ public final class d3 extends Dialog implements NotificationCenter.NotificationC
             int dp = AndroidUtilities.dp(46.0f);
             v2Var.P(rect2, false);
             v2Var.O(dp, false);
-            c3Var.setPadding(0, 0, 0, Math.max(this.f11151n, i14));
+            c3Var.setPadding(0, 0, 0, Math.max(this.f11152n, i14));
         } else {
             v2Var.P(new Rect(0, 0, 0, 0), false);
             v2Var.O(0, false);
             int i20 = rect.left;
             int i21 = rect.right;
-            int i22 = this.f11151n;
-            org.telegram.ui.ActionBar.n3 n3Var = this.f11156r;
+            int i22 = this.f11152n;
+            org.telegram.ui.ActionBar.n3 n3Var = this.f11157r;
             if (n3Var != null) {
                 i10 = n3Var.H;
             } else {
@@ -582,8 +582,8 @@ public final class d3 extends Dialog implements NotificationCenter.NotificationC
             }
             c3Var.setPadding(i20, 0, i21, Math.max(i22, i10 + rect.bottom));
         }
-        this.f11163w.topMargin = AndroidUtilities.dp(24.0f);
-        boolean z11 = this.f11141d0;
+        this.f11164w.topMargin = AndroidUtilities.dp(24.0f);
+        boolean z11 = this.f11142d0;
         if (!z11) {
             i11 = 0;
         } else {
@@ -597,7 +597,7 @@ public final class d3 extends Dialog implements NotificationCenter.NotificationC
         } else {
             i12 = rect.left;
         }
-        FrameLayout.LayoutParams layoutParams2 = this.f11155q0;
+        FrameLayout.LayoutParams layoutParams2 = this.f11156q0;
         layoutParams2.leftMargin = i12;
         if (!z11) {
             i13 = 0;
@@ -605,11 +605,11 @@ public final class d3 extends Dialog implements NotificationCenter.NotificationC
             i13 = rect.right;
         }
         layoutParams2.rightMargin = i13;
-        boolean z12 = this.f11146h0;
+        boolean z12 = this.f11147h0;
         u2 u2Var = this.v;
         if (!z12) {
             u2Var.setSwipeOffsetAnimationDisallowed(true);
-            if (this.f11141d0) {
+            if (this.f11142d0) {
                 u2Var.setTopActionBarOffsetY(-AndroidUtilities.dp(24.0f));
             } else {
                 u2Var.setTopActionBarOffsetY((org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight) - AndroidUtilities.dp(24.0f));
@@ -624,7 +624,7 @@ public final class d3 extends Dialog implements NotificationCenter.NotificationC
         }
         z2Var.requestLayout();
         c3Var.requestLayout();
-        if (!this.f11141d0) {
+        if (!this.f11142d0) {
             i16 = 8;
         }
         botFullscreenButtons.setVisibility(i16);
@@ -637,7 +637,7 @@ public final class d3 extends Dialog implements NotificationCenter.NotificationC
         if (this.U) {
             z10 = !this.S;
         } else {
-            z10 = (AndroidUtilities.isTablet() || i0.a.h(h6.x0(null, h6.f20986d6, true)) < 0.7210000157356262d || this.f11137b < 0.85f) ? false : false;
+            z10 = (AndroidUtilities.isTablet() || i0.a.h(h6.x0(null, h6.f20989d6, true)) < 0.7210000157356262d || this.f11138b < 0.85f) ? false : false;
         }
         Boolean bool = this.d;
         if (bool != null && bool.booleanValue() == z10) {
@@ -655,8 +655,8 @@ public final class d3 extends Dialog implements NotificationCenter.NotificationC
     }
 
     public final void G() {
-        org.telegram.ui.web.y0 webView;
-        v2 v2Var = this.f11165x;
+        org.telegram.ui.web.x0 webView;
+        v2 v2Var = this.f11166x;
         if (v2Var == null || (webView = v2Var.getWebView()) == null) {
             return;
         }
@@ -677,14 +677,14 @@ public final class d3 extends Dialog implements NotificationCenter.NotificationC
             } else {
                 i10 = 512;
             }
-            boolean z10 = this.f11141d0;
+            boolean z10 = this.f11142d0;
             if (z10) {
                 attributes.flags = i10 | attributes.flags;
             } else {
                 attributes.flags = (~i10) & attributes.flags;
             }
             c3 c3Var = this.e;
-            if (z10 && (((z2Var = this.f11150l0) == null || z2Var.getTotalHeight() <= 0) && !c3Var.f11114x0)) {
+            if (z10 && (((z2Var = this.f11151l0) == null || z2Var.getTotalHeight() <= 0) && !c3Var.f11115x0)) {
                 c3Var.setSystemUiVisibility(c3Var.getSystemUiVisibility() | 2);
             } else {
                 c3Var.setSystemUiVisibility(c3Var.getSystemUiVisibility() & (-3));
@@ -705,29 +705,29 @@ public final class d3 extends Dialog implements NotificationCenter.NotificationC
         boolean booleanValue;
         float f7;
         org.telegram.ui.ActionBar.m3 m3Var = new org.telegram.ui.ActionBar.m3();
-        m3Var.f21591q = this.Q;
-        m3Var.f21590p = this.f11161u0;
-        m3Var.f21588n = this.U;
-        m3Var.f21589o = this.V;
-        m3Var.f21592r = this.P.getColor();
-        m3Var.f21578a = this.f11162v0;
+        m3Var.f21594q = this.Q;
+        m3Var.f21593p = this.f11162u0;
+        m3Var.f21591n = this.U;
+        m3Var.f21592o = this.V;
+        m3Var.f21595r = this.P.getColor();
+        m3Var.f21581a = this.f11163v0;
         boolean z13 = false;
-        v2 v2Var = this.f11165x;
+        v2 v2Var = this.f11166x;
         if (v2Var != null && v2Var.N) {
             z10 = true;
         } else {
             z10 = false;
         }
-        m3Var.f21594t = z10;
+        m3Var.f21597t = z10;
         m3Var.D = h6.I.q();
-        org.telegram.ui.web.y0 y0Var = null;
+        org.telegram.ui.web.x0 x0Var = null;
         if (v2Var != null) {
             str = v2Var.getUrlLoaded();
         } else {
             str = null;
         }
-        m3Var.f21597x = str;
-        if (v2Var != null && v2Var.f42544t0) {
+        m3Var.f21600x = str;
+        if (v2Var != null && v2Var.f42579t0) {
             z11 = true;
         } else {
             z11 = false;
@@ -738,19 +738,19 @@ public final class d3 extends Dialog implements NotificationCenter.NotificationC
         } else {
             str2 = null;
         }
-        m3Var.f21581f = str2;
+        m3Var.f21584f = str2;
         u2 u2Var = this.v;
-        if ((u2Var == null || u2Var.getSwipeOffsetY() >= 0.0f) && !this.f11166x0 && !n() && !this.f11141d0) {
+        if ((u2Var == null || u2Var.getSwipeOffsetY() >= 0.0f) && !this.f11167x0 && !n() && !this.f11142d0) {
             z12 = false;
         } else {
             z12 = true;
         }
-        m3Var.f21584j = z12;
-        m3Var.f21599z = this.f11141d0;
-        m3Var.A = this.f11142e0;
-        Boolean bool = this.f11169z0;
+        m3Var.f21587j = z12;
+        m3Var.f21602z = this.f11142d0;
+        m3Var.A = this.f11143e0;
+        Boolean bool = this.f11170z0;
         if (bool == null) {
-            booleanValue = this.f11168y0;
+            booleanValue = this.f11169y0;
         } else {
             booleanValue = bool.booleanValue();
         }
@@ -760,32 +760,32 @@ public final class d3 extends Dialog implements NotificationCenter.NotificationC
         } else {
             f7 = Float.MAX_VALUE;
         }
-        m3Var.f21585k = f7;
+        m3Var.f21588k = f7;
         m3Var.C = this.A0;
-        m3Var.f21595u = this.f11164w0;
-        m3Var.f21598y = this.f11157r0;
-        m3Var.v = this.f11138b0;
+        m3Var.f21598u = this.f11165w0;
+        m3Var.f21601y = this.f11158r0;
+        m3Var.v = this.f11139b0;
         if (u2Var == null || u2Var.M) {
             z13 = true;
         }
-        m3Var.f21586l = z13;
-        m3Var.f21596w = this.f11150l0.e;
-        m3Var.f21593s = this.R;
-        y0 y0Var2 = this.B0;
-        if (y0Var2 != null) {
-            y0Var2.b();
+        m3Var.f21589l = z13;
+        m3Var.f21599w = this.f11151l0.e;
+        m3Var.f21596s = this.R;
+        y0 y0Var = this.B0;
+        if (y0Var != null) {
+            y0Var.b();
         }
         m3Var.K = this.B0;
         if (v2Var != null) {
-            y0Var = v2Var.getWebView();
+            x0Var = v2Var.getWebView();
         }
-        if (y0Var != null) {
+        if (x0Var != null) {
             v2Var.L();
-            m3Var.f21579b = y0Var;
+            m3Var.f21582b = x0Var;
             m3Var.d = v2Var.getBotProxy();
-            m3Var.f21582g = y0Var.getWidth();
-            m3Var.h = y0Var.getHeight();
-            y0Var.onPause();
+            m3Var.f21585g = x0Var.getWidth();
+            m3Var.h = x0Var.getHeight();
+            x0Var.onPause();
         }
         boolean z14 = this.S0;
         m3Var.G = z14;
@@ -815,7 +815,7 @@ public final class d3 extends Dialog implements NotificationCenter.NotificationC
             }
         } else if (i10 == NotificationCenter.didSetNewTheme) {
             this.e.invalidate();
-            this.f11165x.f42535n.b(h6.w0(h6.f20986d6, this.E), 153);
+            this.f11166x.f42570n.b(h6.w0(h6.f20989d6, this.E), 153);
             B();
             F();
         } else if (i10 == NotificationCenter.botDownloadsUpdate) {
@@ -914,35 +914,35 @@ public final class d3 extends Dialog implements NotificationCenter.NotificationC
     public final void k(boolean z10) {
         int i10;
         LaunchActivity launchActivity;
-        if (this.f11140c0) {
+        if (this.f11141c0) {
             return;
         }
         int i11 = 0;
         if (this.H0 != null) {
             z10 = false;
         }
-        this.f11140c0 = true;
+        this.f11141c0 = true;
         A(false);
-        AndroidUtilities.cancelRunOnUIThread(this.f11160t0);
+        AndroidUtilities.cancelRunOnUIThread(this.f11161t0);
         NotificationCenter.getInstance(this.G).removeObserver(this, NotificationCenter.webViewResultSent);
         NotificationCenter.getInstance(this.G).removeObserver(this, NotificationCenter.botDownloadsUpdate);
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.didSetNewTheme);
-        if (z10 && ((launchActivity = LaunchActivity.H1) == null || launchActivity.f33189y0 == null)) {
+        if (z10 && ((launchActivity = LaunchActivity.H1) == null || launchActivity.f33195y0 == null)) {
             z10 = false;
         }
         if (z10) {
-            o1.k kVar = this.f11139c;
+            o1.k kVar = this.f11140c;
             if (kVar != null) {
-                kVar.f17558u.f17564i = 0.0f;
+                kVar.f17561u.f17567i = 0.0f;
                 kVar.h();
             }
-            LaunchActivity.H1.f33189y0.b(this);
+            LaunchActivity.H1.f33195y0.b(this);
         } else {
-            z2 z2Var = this.f11150l0;
+            z2 z2Var = this.f11151l0;
             if (z2Var != null) {
                 z2Var.animate().translationY(z2Var.getTotalHeight()).alpha(0.0f).setDuration(160L).setInterpolator(bs.h).start();
             }
-            this.f11165x.h();
+            this.f11166x.h();
             u2 u2Var = this.v;
             int height = u2Var.getHeight();
             if (z2Var != null) {
@@ -973,18 +973,18 @@ public final class d3 extends Dialog implements NotificationCenter.NotificationC
     }
 
     public final boolean m() {
-        t4 t4Var = this.f11162v0;
-        if (t4Var != null && t4Var.f11470g == 6) {
+        t4 t4Var = this.f11163v0;
+        if (t4Var != null && t4Var.f11471g == 6) {
             return true;
         }
         return false;
     }
 
     public final boolean n() {
-        if (!this.f11141d0) {
-            Boolean bool = this.f11169z0;
+        if (!this.f11142d0) {
+            Boolean bool = this.f11170z0;
             if (bool == null) {
-                if (!this.f11168y0) {
+                if (!this.f11169y0) {
                     return false;
                 }
                 return true;
@@ -999,20 +999,20 @@ public final class d3 extends Dialog implements NotificationCenter.NotificationC
 
     public final void o() {
         boolean z10;
-        if (this.f11162v0 != null) {
-            long max = Math.max(0L, 60000 - (System.currentTimeMillis() - this.f11162v0.f11480r));
+        if (this.f11163v0 != null) {
+            long max = Math.max(0L, 60000 - (System.currentTimeMillis() - this.f11163v0.f11481r));
             String str = null;
-            this.f11169z0 = null;
-            TLObject tLObject = this.f11162v0.f11479q;
+            this.f11170z0 = null;
+            TLObject tLObject = this.f11163v0.f11480q;
             if (tLObject instanceof TLRPC.TL_webViewResultUrl) {
                 TLRPC.TL_webViewResultUrl tL_webViewResultUrl = (TLRPC.TL_webViewResultUrl) tLObject;
                 this.J = tL_webViewResultUrl.query_id;
                 str = tL_webViewResultUrl.url;
                 z10 = tL_webViewResultUrl.same_origin;
-                this.f11169z0 = Boolean.valueOf(tL_webViewResultUrl.fullsize);
+                this.f11170z0 = Boolean.valueOf(tL_webViewResultUrl.fullsize);
                 boolean z11 = this.E0;
                 if (!z11) {
-                    y(tL_webViewResultUrl.fullscreen, !z11, this.f11142e0);
+                    y(tL_webViewResultUrl.fullscreen, !z11, this.f11143e0);
                 }
             } else {
                 if (tLObject instanceof TLRPC.TL_appWebViewResultUrl) {
@@ -1025,10 +1025,10 @@ public final class d3 extends Dialog implements NotificationCenter.NotificationC
                 z10 = false;
             }
             if (str != null && !this.E0) {
-                MediaDataController.getInstance(this.G).increaseWebappRating(this.f11162v0.f11468c);
-                this.f11165x.t(this.G, str, z10);
+                MediaDataController.getInstance(this.G).increaseWebappRating(this.f11163v0.f11469c);
+                this.f11166x.t(this.G, str, z10);
             }
-            AndroidUtilities.runOnUIThread(this.f11160t0, max);
+            AndroidUtilities.runOnUIThread(this.f11161t0, max);
             u2 u2Var = this.v;
             if (u2Var != null) {
                 u2Var.setFullSize(n());
@@ -1040,23 +1040,23 @@ public final class d3 extends Dialog implements NotificationCenter.NotificationC
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
         v(true);
-        if (this.f11139c == null) {
+        if (this.f11140c == null) {
             o1.k kVar = new o1.k(this, X0);
             o1.l lVar = new o1.l();
             lVar.b(1200.0f);
             lVar.a(1.0f);
-            kVar.f17558u = lVar;
-            this.f11139c = kVar;
+            kVar.f17561u = lVar;
+            this.f11140c = kVar;
         }
     }
 
     @Override
     public final void onBackPressed() {
-        if (this.f11159s0.getVisibility() == 0) {
+        if (this.f11160s0.getVisibility() == 0) {
             if (getOwnerActivity() != null) {
                 getOwnerActivity().finish();
             }
-        } else if (this.f11165x.C()) {
+        } else if (this.f11166x.C()) {
         } else {
             k(true);
         }
@@ -1087,7 +1087,7 @@ public final class d3 extends Dialog implements NotificationCenter.NotificationC
         if (i10 >= 28) {
             attributes.layoutInDisplayCutoutMode = 1;
         }
-        if (this.f11141d0) {
+        if (this.f11142d0) {
             attributes.flags = i12 | 512;
         } else {
             attributes.flags = i11 & (-515);
@@ -1103,7 +1103,7 @@ public final class d3 extends Dialog implements NotificationCenter.NotificationC
                 return d3.e(d3.this, view, windowInsets);
             }
         });
-        if (this.f11141d0 && ((z2Var = this.f11150l0) == null || z2Var.getTotalHeight() <= 0)) {
+        if (this.f11142d0 && ((z2Var = this.f11151l0) == null || z2Var.getTotalHeight() <= 0)) {
             c3Var.setSystemUiVisibility(c3Var.getSystemUiVisibility() | 2);
         } else {
             c3Var.setSystemUiVisibility(c3Var.getSystemUiVisibility() & (-3));
@@ -1122,10 +1122,10 @@ public final class d3 extends Dialog implements NotificationCenter.NotificationC
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         v(false);
-        o1.k kVar = this.f11139c;
+        o1.k kVar = this.f11140c;
         if (kVar != null) {
             kVar.c();
-            this.f11139c = null;
+            this.f11140c = null;
         }
     }
 
@@ -1137,7 +1137,7 @@ public final class d3 extends Dialog implements NotificationCenter.NotificationC
             context = ((ContextWrapper) context).getBaseContext();
         }
         if (context instanceof LaunchActivity) {
-            ((LaunchActivity) context).B0.add(this.f11159s0);
+            ((LaunchActivity) context).B0.add(this.f11160s0);
         }
     }
 
@@ -1149,7 +1149,7 @@ public final class d3 extends Dialog implements NotificationCenter.NotificationC
             context = ((ContextWrapper) context).getBaseContext();
         }
         if (context instanceof LaunchActivity) {
-            ((LaunchActivity) context).B0.remove(this.f11159s0);
+            ((LaunchActivity) context).B0.remove(this.f11160s0);
         }
     }
 
@@ -1174,7 +1174,7 @@ public final class d3 extends Dialog implements NotificationCenter.NotificationC
 
     public final boolean r() {
         String str;
-        if (this.f11157r0) {
+        if (this.f11158r0) {
             TLRPC.User user = MessagesController.getInstance(this.G).getUser(Long.valueOf(this.H));
             if (user != null) {
                 str = ContactsController.formatName(user.first_name, user.last_name);
@@ -1182,13 +1182,13 @@ public final class d3 extends Dialog implements NotificationCenter.NotificationC
                 str = null;
             }
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getContext());
-            alertDialog$Builder.f20601a.R = str;
-            alertDialog$Builder.f20601a.T = LocaleController.getString(R.string.BotWebViewChangesMayNotBeSaved);
+            alertDialog$Builder.f20604a.R = str;
+            alertDialog$Builder.f20604a.T = LocaleController.getString(R.string.BotWebViewChangesMayNotBeSaved);
             alertDialog$Builder.k(LocaleController.getString(R.string.BotWebViewCloseAnyway), new z1(this));
             alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-            org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20601a;
+            org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20604a;
             b2Var.show();
-            ((TextView) b2Var.d(-1)).setTextColor(h6.w0(h6.f21224q7, this.E));
+            ((TextView) b2Var.d(-1)).setTextColor(h6.w0(h6.f21227q7, this.E));
             return false;
         }
         k(false);
@@ -1247,7 +1247,7 @@ public final class d3 extends Dialog implements NotificationCenter.NotificationC
         if (i80Var != null) {
             i80Var.u();
         }
-        if (this.f11141d0) {
+        if (this.f11142d0) {
             view = this.m0;
         } else {
             view = this.Z;
@@ -1259,7 +1259,7 @@ public final class d3 extends Dialog implements NotificationCenter.NotificationC
         hashMap.clear();
         if (!arrayList3.isEmpty()) {
             i80 J = G.J();
-            J.c(R.drawable.msg_arrow_back, LocaleController.getString(R.string.Back), new ut0(G, 26), false);
+            J.c(R.drawable.msg_arrow_back, LocaleController.getString(R.string.Back), new st0(G, 26), false);
             J.k();
             int size2 = arrayList3.size();
             int i15 = 0;
@@ -1267,7 +1267,7 @@ public final class d3 extends Dialog implements NotificationCenter.NotificationC
                 Object obj = arrayList3.get(i15);
                 i15++;
                 i0 i0Var = (i0) obj;
-                String str = i0Var.f11253c;
+                String str = i0Var.f11254c;
                 ah.j jVar = new ah.j(14);
                 d6 d6Var = J.d;
                 if (J.e == null) {
@@ -1280,20 +1280,20 @@ public final class d3 extends Dialog implements NotificationCenter.NotificationC
                     e1Var.setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
                     e1Var.setText(str);
                     e1Var.setSubtext("");
-                    Integer num = J.f27119j0;
+                    Integer num = J.f27121j0;
                     if (num != null) {
                         w02 = num.intValue();
                     } else {
                         w02 = h6.w0(h6.E8, d6Var);
                     }
-                    Integer num2 = J.f27121k0;
+                    Integer num2 = J.f27123k0;
                     if (num2 != null) {
                         w03 = num2.intValue();
                     } else {
                         w03 = h6.w0(h6.F8, d6Var);
                     }
                     e1Var.c(w02, w03);
-                    Integer num3 = J.f27123l0;
+                    Integer num3 = J.f27125l0;
                     if (num3 != null) {
                         m12 = num3.intValue();
                     } else {
@@ -1330,7 +1330,7 @@ public final class d3 extends Dialog implements NotificationCenter.NotificationC
             z10 = false;
         }
         G.l(R.drawable.msg_bot, LocaleController.getString(R.string.BotWebViewOpenBot), new y1(this, 9), z10);
-        if (this.H0 == null && this.f11138b0) {
+        if (this.H0 == null && this.f11139b0) {
             z11 = true;
         } else {
             z11 = false;
@@ -1361,7 +1361,7 @@ public final class d3 extends Dialog implements NotificationCenter.NotificationC
             z15 = false;
         }
         G.l(R.drawable.msg_delete, LocaleController.getString(R.string.BotWebViewDeleteBot), new y1(this, 14), z15);
-        if (this.Q != h6.x0(null, h6.f20986d6, false)) {
+        if (this.Q != h6.x0(null, h6.f20989d6, false)) {
             if (AndroidUtilities.computePerceivedBrightness(this.Q) >= 0.721f) {
                 i11 = i10;
             } else {
@@ -1387,8 +1387,8 @@ public final class d3 extends Dialog implements NotificationCenter.NotificationC
         G.V(5);
         G.a0(-this.h.right, 0.0f);
         G.U = true;
-        G.f27135t = false;
-        G.f27134s = 0;
+        G.f27137t = false;
+        G.f27136s = 0;
         G.Z();
     }
 
@@ -1422,15 +1422,15 @@ public final class d3 extends Dialog implements NotificationCenter.NotificationC
         TL_bots.botAppSettings botappsettings;
         String userName2;
         boolean z14;
-        this.f11162v0 = t4Var;
-        int i10 = t4Var.f11466a;
+        this.f11163v0 = t4Var;
+        int i10 = t4Var.f11467a;
         this.G = i10;
-        this.I = t4Var.f11467b;
-        this.H = t4Var.f11468c;
+        this.I = t4Var.f11468b;
+        this.H = t4Var.f11469c;
         this.K = t4Var.h;
-        this.L = t4Var.f11471i;
+        this.L = t4Var.f11472i;
         this.M = t4Var.e;
-        if (t4Var.f11470g == 6) {
+        if (t4Var.f11471g == 6) {
             z10 = true;
         } else {
             z10 = false;
@@ -1518,25 +1518,25 @@ public final class d3 extends Dialog implements NotificationCenter.NotificationC
                 z13 = true;
                 MessagesController.getInstance(this.G).loadFullUser(user, 0, true, new b2(this, 1));
             }
-            if (t4Var.f11478p) {
-                y(z13, z12, this.f11142e0);
+            if (t4Var.f11479p) {
+                y(z13, z12, this.f11143e0);
             }
         }
         if (this.H0 == null) {
             n10.a(R.id.menu_collapse_bot, R.drawable.arrow_more);
         }
         BotFullscreenButtons.OptionsIcon optionsIcon = new BotFullscreenButtons.OptionsIcon(getContext());
-        this.f11136a0 = optionsIcon;
+        this.f11137a0 = optionsIcon;
         org.telegram.ui.ActionBar.u0 d = n10.d(0, optionsIcon);
         this.Z = d;
         d.setOnClickListener(new h2(this, 1));
         a3Var.setActionBarMenuOnItemClick(new m2(this));
         JSONObject q6 = q(d6Var, false);
-        v2 v2Var = this.f11165x;
+        v2 v2Var = this.f11166x;
         v2Var.setBotUser(user);
         if (!z10) {
             v2Var.s(this.G, this.H);
-            TLRPC.User user3 = t4Var.f11475m;
+            TLRPC.User user3 = t4Var.f11476m;
             if (tL_attachMenuBot != null && tL_attachMenuBot.show_in_side_menu && !MediaDataController.getInstance(this.G).isShortcutAdded(this.H, MediaDataController.SHORTCUT_TYPE_ATTACHED_BOT)) {
                 if (user3 == null) {
                     user3 = MessagesController.getInstance(this.G).getUser(Long.valueOf(this.H));
@@ -1546,19 +1546,19 @@ public final class d3 extends Dialog implements NotificationCenter.NotificationC
                 }
             }
         }
-        if (t4Var.f11479q != null) {
+        if (t4Var.f11480q != null) {
             o();
             return;
         }
-        switch (t4Var.f11470g) {
+        switch (t4Var.f11471g) {
             case 0:
                 TLRPC.TL_messages_requestWebView tL_messages_requestWebView = new TLRPC.TL_messages_requestWebView();
                 tL_messages_requestWebView.peer = MessagesController.getInstance(this.G).getInputPeer(this.I);
                 tL_messages_requestWebView.bot = MessagesController.getInstance(this.G).getInputUser(this.H);
                 tL_messages_requestWebView.platform = "android";
-                tL_messages_requestWebView.compact = t4Var.f11477o;
-                tL_messages_requestWebView.fullscreen = t4Var.f11478p;
-                String str = t4Var.f11469f;
+                tL_messages_requestWebView.compact = t4Var.f11478o;
+                tL_messages_requestWebView.fullscreen = t4Var.f11479p;
+                String str = t4Var.f11470f;
                 if (str != null) {
                     tL_messages_requestWebView.url = str;
                     tL_messages_requestWebView.flags |= 2;
@@ -1589,7 +1589,7 @@ public final class d3 extends Dialog implements NotificationCenter.NotificationC
             case 1:
                 boolean z15 = false;
                 TLRPC.TL_messages_requestSimpleWebView tL_messages_requestSimpleWebView = new TLRPC.TL_messages_requestSimpleWebView();
-                if ((t4Var.f11476n & 1) != 0) {
+                if ((t4Var.f11477n & 1) != 0) {
                     z11 = true;
                 } else {
                     z11 = false;
@@ -1597,24 +1597,24 @@ public final class d3 extends Dialog implements NotificationCenter.NotificationC
                 tL_messages_requestSimpleWebView.from_switch_webview = z11;
                 tL_messages_requestSimpleWebView.bot = MessagesController.getInstance(this.G).getInputUser(this.H);
                 tL_messages_requestSimpleWebView.platform = "android";
-                if ((t4Var.f11476n & 2) != 0) {
+                if ((t4Var.f11477n & 2) != 0) {
                     z15 = true;
                 }
                 tL_messages_requestSimpleWebView.from_side_menu = z15;
-                tL_messages_requestSimpleWebView.compact = t4Var.f11477o;
-                tL_messages_requestSimpleWebView.fullscreen = t4Var.f11478p;
+                tL_messages_requestSimpleWebView.compact = t4Var.f11478o;
+                tL_messages_requestSimpleWebView.fullscreen = t4Var.f11479p;
                 if (q6 != null) {
                     TLRPC.TL_dataJSON tL_dataJSON2 = new TLRPC.TL_dataJSON();
                     tL_messages_requestSimpleWebView.theme_params = tL_dataJSON2;
                     tL_dataJSON2.data = q6.toString();
                     tL_messages_requestSimpleWebView.flags |= 1;
                 }
-                if (!TextUtils.isEmpty(t4Var.f11469f)) {
+                if (!TextUtils.isEmpty(t4Var.f11470f)) {
                     tL_messages_requestSimpleWebView.flags |= 8;
-                    tL_messages_requestSimpleWebView.url = t4Var.f11469f;
+                    tL_messages_requestSimpleWebView.url = t4Var.f11470f;
                 }
-                if (!TextUtils.isEmpty(t4Var.f11474l)) {
-                    tL_messages_requestSimpleWebView.start_param = t4Var.f11474l;
+                if (!TextUtils.isEmpty(t4Var.f11475l)) {
+                    tL_messages_requestSimpleWebView.start_param = t4Var.f11475l;
                     tL_messages_requestSimpleWebView.flags |= 16;
                 }
                 ConnectionsManager.getInstance(this.G).sendRequest(tL_messages_requestSimpleWebView, new j2(this, 2));
@@ -1624,9 +1624,9 @@ public final class d3 extends Dialog implements NotificationCenter.NotificationC
                 tL_messages_requestWebView2.bot = MessagesController.getInstance(this.G).getInputUser(this.H);
                 tL_messages_requestWebView2.peer = MessagesController.getInstance(this.G).getInputPeer(this.H);
                 tL_messages_requestWebView2.platform = "android";
-                tL_messages_requestWebView2.compact = t4Var.f11477o;
-                tL_messages_requestWebView2.fullscreen = t4Var.f11478p;
-                tL_messages_requestWebView2.url = t4Var.f11469f;
+                tL_messages_requestWebView2.compact = t4Var.f11478o;
+                tL_messages_requestWebView2.fullscreen = t4Var.f11479p;
+                tL_messages_requestWebView2.url = t4Var.f11470f;
                 tL_messages_requestWebView2.flags |= 2;
                 if (q6 != null) {
                     TLRPC.TL_dataJSON tL_dataJSON3 = new TLRPC.TL_dataJSON();
@@ -1640,27 +1640,27 @@ public final class d3 extends Dialog implements NotificationCenter.NotificationC
             case 3:
                 TLRPC.TL_messages_requestAppWebView tL_messages_requestAppWebView = new TLRPC.TL_messages_requestAppWebView();
                 TLRPC.TL_inputBotAppID tL_inputBotAppID = new TLRPC.TL_inputBotAppID();
-                TLRPC.BotApp botApp = t4Var.f11472j;
-                tL_inputBotAppID.f20330id = botApp.f20269id;
+                TLRPC.BotApp botApp = t4Var.f11473j;
+                tL_inputBotAppID.f20333id = botApp.f20272id;
                 tL_inputBotAppID.access_hash = botApp.access_hash;
                 tL_messages_requestAppWebView.app = tL_inputBotAppID;
-                tL_messages_requestAppWebView.write_allowed = t4Var.f11473k;
+                tL_messages_requestAppWebView.write_allowed = t4Var.f11474k;
                 tL_messages_requestAppWebView.platform = "android";
-                if (n2Var instanceof sn) {
-                    sn snVar = (sn) n2Var;
-                    if (snVar.i() != null) {
-                        inputPeer = MessagesController.getInputPeer(snVar.i());
+                if (n2Var instanceof qn) {
+                    qn qnVar = (qn) n2Var;
+                    if (qnVar.i() != null) {
+                        inputPeer = MessagesController.getInputPeer(qnVar.i());
                     } else {
-                        inputPeer = MessagesController.getInputPeer(snVar.e);
+                        inputPeer = MessagesController.getInputPeer(qnVar.e);
                     }
                 } else {
-                    inputPeer = MessagesController.getInputPeer(t4Var.f11475m);
+                    inputPeer = MessagesController.getInputPeer(t4Var.f11476m);
                 }
                 tL_messages_requestAppWebView.peer = inputPeer;
-                tL_messages_requestAppWebView.compact = t4Var.f11477o;
-                tL_messages_requestAppWebView.fullscreen = t4Var.f11478p;
-                if (!TextUtils.isEmpty(t4Var.f11474l)) {
-                    tL_messages_requestAppWebView.start_param = t4Var.f11474l;
+                tL_messages_requestAppWebView.compact = t4Var.f11478o;
+                tL_messages_requestAppWebView.fullscreen = t4Var.f11479p;
+                if (!TextUtils.isEmpty(t4Var.f11475l)) {
+                    tL_messages_requestAppWebView.start_param = t4Var.f11475l;
                     tL_messages_requestAppWebView.flags |= 2;
                 }
                 if (q6 != null) {
@@ -1673,23 +1673,23 @@ public final class d3 extends Dialog implements NotificationCenter.NotificationC
                 return;
             case 4:
                 TLRPC.TL_messages_requestMainWebView tL_messages_requestMainWebView = new TLRPC.TL_messages_requestMainWebView();
-                tL_messages_requestMainWebView.bot = MessagesController.getInstance(this.G).getInputUser(t4Var.f11468c);
+                tL_messages_requestMainWebView.bot = MessagesController.getInstance(this.G).getInputUser(t4Var.f11469c);
                 tL_messages_requestMainWebView.platform = "android";
-                if (n2Var instanceof sn) {
-                    sn snVar2 = (sn) n2Var;
-                    if (snVar2.i() != null) {
-                        inputPeer2 = MessagesController.getInputPeer(snVar2.i());
+                if (n2Var instanceof qn) {
+                    qn qnVar2 = (qn) n2Var;
+                    if (qnVar2.i() != null) {
+                        inputPeer2 = MessagesController.getInputPeer(qnVar2.i());
                     } else {
-                        inputPeer2 = MessagesController.getInputPeer(snVar2.e);
+                        inputPeer2 = MessagesController.getInputPeer(qnVar2.e);
                     }
                 } else {
-                    inputPeer2 = MessagesController.getInstance(this.G).getInputPeer(t4Var.f11467b);
+                    inputPeer2 = MessagesController.getInstance(this.G).getInputPeer(t4Var.f11468b);
                 }
                 tL_messages_requestMainWebView.peer = inputPeer2;
-                tL_messages_requestMainWebView.compact = t4Var.f11477o;
-                tL_messages_requestMainWebView.fullscreen = t4Var.f11478p;
-                if (!TextUtils.isEmpty(t4Var.f11474l)) {
-                    tL_messages_requestMainWebView.start_param = t4Var.f11474l;
+                tL_messages_requestMainWebView.compact = t4Var.f11478o;
+                tL_messages_requestMainWebView.fullscreen = t4Var.f11479p;
+                if (!TextUtils.isEmpty(t4Var.f11475l)) {
+                    tL_messages_requestMainWebView.start_param = t4Var.f11475l;
                     tL_messages_requestMainWebView.flags |= 2;
                 }
                 if (q6 != null) {
@@ -1713,7 +1713,7 @@ public final class d3 extends Dialog implements NotificationCenter.NotificationC
                 return;
             case 6:
                 if (!this.E0) {
-                    v2Var.t(this.G, t4Var.f11469f, false);
+                    v2Var.t(this.G, t4Var.f11470f, false);
                     return;
                 }
                 return;
@@ -1734,7 +1734,7 @@ public final class d3 extends Dialog implements NotificationCenter.NotificationC
         } else {
             i11 = 0;
         }
-        SparseIntArray sparseIntArray = w1Var.f11526a;
+        SparseIntArray sparseIntArray = w1Var.f11527a;
         d6 d6Var = this.E;
         w1Var.c(sparseIntArray, i11, d6Var);
         this.U = z10;
@@ -1747,10 +1747,10 @@ public final class d3 extends Dialog implements NotificationCenter.NotificationC
         if (this.U) {
             i13 = i10;
         }
-        w1Var.c(w1Var.f11527b, i13, d6Var);
+        w1Var.c(w1Var.f11528b, i13, d6Var);
         if (z11) {
             ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(200L);
-            duration.setInterpolator(bs.f25030f);
+            duration.setInterpolator(bs.f25014f);
             duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
@@ -1765,7 +1765,7 @@ public final class d3 extends Dialog implements NotificationCenter.NotificationC
                     a3Var.setBackgroundColor(d3Var.Q);
                     w1 w1Var2 = w1Var;
                     w1Var2.b(a3Var, floatValue);
-                    d3Var.f11135a = w1Var2.a(h6.Ii);
+                    d3Var.f11136a = w1Var2.a(h6.Ii);
                     c3Var.invalidate();
                 }
             });
@@ -1780,7 +1780,7 @@ public final class d3 extends Dialog implements NotificationCenter.NotificationC
             a3 a3Var = this.W;
             a3Var.setBackgroundColor(i14);
             w1Var.b(a3Var, 1.0f);
-            this.f11135a = w1Var.a(h6.Ii);
+            this.f11136a = w1Var.a(h6.Ii);
             c3Var.invalidate();
         }
         F();
@@ -1817,7 +1817,7 @@ public final class d3 extends Dialog implements NotificationCenter.NotificationC
         if (z10) {
             ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(200L);
             this.P0 = duration;
-            duration.setInterpolator(bs.f25030f);
+            duration.setInterpolator(bs.f25014f);
             this.P0.addUpdateListener(new f2(this, color, i10, 0));
             this.P0.addListener(new p2(this, i10, 0));
             this.P0.start();
@@ -1838,8 +1838,8 @@ public final class d3 extends Dialog implements NotificationCenter.NotificationC
     }
 
     public final void x(boolean z10) {
-        if (this.f11168y0 != z10) {
-            this.f11168y0 = z10;
+        if (this.f11169y0 != z10) {
+            this.f11169y0 = z10;
             u2 u2Var = this.v;
             if (u2Var != null) {
                 u2Var.setFullSize(n());
@@ -1857,17 +1857,17 @@ public final class d3 extends Dialog implements NotificationCenter.NotificationC
         float f13;
         Point point;
         Object obj;
-        if (this.f11141d0 == z10) {
+        if (this.f11142d0 == z10) {
             return;
         }
-        this.f11141d0 = z10;
+        this.f11142d0 = z10;
         int i10 = 0;
         if (z12 && !MessagesController.getInstance(this.G).disableBotFullscreenBlur && SharedConfig.getDevicePerformanceClass() >= 2) {
             z13 = true;
         } else {
             z13 = false;
         }
-        this.f11142e0 = z13;
+        this.f11143e0 = z13;
         ValueAnimator valueAnimator = this.R0;
         if (valueAnimator != null) {
             valueAnimator.cancel();
@@ -1876,18 +1876,18 @@ public final class d3 extends Dialog implements NotificationCenter.NotificationC
         u2 u2Var = this.v;
         if (botFullscreenButtons != null) {
             botFullscreenButtons.setPreview(z10, z11);
-            if (this.f11142e0) {
+            if (this.f11143e0) {
                 obj = u2Var.getRenderNode();
             } else {
                 obj = null;
             }
             botFullscreenButtons.setParentRenderNode(obj);
         }
-        this.f11147i0 = u2Var.getWidth();
-        this.f11148j0 = u2Var.getHeight();
+        this.f11148i0 = u2Var.getWidth();
+        this.f11149j0 = u2Var.getHeight();
         this.Q0 = false;
-        z2 z2Var = this.f11150l0;
-        v2 v2Var = this.f11165x;
+        z2 z2Var = this.f11151l0;
+        v2 v2Var = this.f11166x;
         a3 a3Var = this.W;
         if (z11) {
             E();
@@ -1937,23 +1937,23 @@ public final class d3 extends Dialog implements NotificationCenter.NotificationC
             }
             u2Var.c();
             u2Var.invalidate();
-            this.f11145g0 = 0.0f;
+            this.f11146g0 = 0.0f;
             if (z10) {
                 f13 = 0.0f;
             } else {
                 f13 = 1.0f;
             }
-            this.f11144f0 = f13;
+            this.f11145f0 = f13;
             a3Var.setAlpha(1.0f - f13);
-            a3Var.setTranslationY((-org.telegram.ui.ActionBar.k.getCurrentActionBarHeight()) * this.f11144f0);
-            u2Var.setTranslationY(AndroidUtilities.lerp(f12, f14, this.f11145g0));
-            u2Var.setTranslationX(AndroidUtilities.lerp(f11, 0.0f, this.f11145g0));
-            z2Var.setTranslationX(AndroidUtilities.lerp(f10, 0.0f, this.f11145g0));
-            botFullscreenButtons.setAlpha(this.f11144f0);
+            a3Var.setTranslationY((-org.telegram.ui.ActionBar.k.getCurrentActionBarHeight()) * this.f11145f0);
+            u2Var.setTranslationY(AndroidUtilities.lerp(f12, f14, this.f11146g0));
+            u2Var.setTranslationX(AndroidUtilities.lerp(f11, 0.0f, this.f11146g0));
+            z2Var.setTranslationX(AndroidUtilities.lerp(f10, 0.0f, this.f11146g0));
+            botFullscreenButtons.setAlpha(this.f11145f0);
             this.e.invalidate();
             v2Var.setViewPortHeightOffset(u2Var.getTranslationY() - f14);
             v2Var.n(false, false);
-            this.f11146h0 = true;
+            this.f11147h0 = true;
             ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
             this.R0 = ofFloat;
             float f15 = f11;
@@ -1964,24 +1964,24 @@ public final class d3 extends Dialog implements NotificationCenter.NotificationC
             this.R0.start();
             return;
         }
-        this.f11146h0 = false;
+        this.f11147h0 = false;
         if (z10) {
             f7 = 1.0f;
         } else {
             f7 = 0.0f;
         }
-        this.f11144f0 = f7;
-        this.f11145g0 = 0.0f;
+        this.f11145f0 = f7;
+        this.f11146g0 = 0.0f;
         E();
         H();
         if (z10) {
             i10 = 8;
         }
         a3Var.setVisibility(i10);
-        a3Var.setAlpha(1.0f - this.f11144f0);
-        a3Var.setTranslationY((-org.telegram.ui.ActionBar.k.getCurrentActionBarHeight()) * this.f11144f0);
+        a3Var.setAlpha(1.0f - this.f11145f0);
+        a3Var.setTranslationY((-org.telegram.ui.ActionBar.k.getCurrentActionBarHeight()) * this.f11145f0);
         z2Var.setTranslationX(0.0f);
-        botFullscreenButtons.setAlpha(this.f11144f0);
+        botFullscreenButtons.setAlpha(this.f11145f0);
         v2Var.setViewPortHeightOffset(0.0f);
         v2Var.n(true, true);
         D();
@@ -1989,16 +1989,16 @@ public final class d3 extends Dialog implements NotificationCenter.NotificationC
 
     public final void z(int i10, boolean z10) {
         int i11 = this.R;
-        z2 z2Var = this.f11150l0;
-        Paint paint = z2Var.f11517a;
-        z2Var.e.f280b = i10;
+        z2 z2Var = this.f11151l0;
+        Paint paint = z2Var.f11518a;
+        z2Var.e.f281b = i10;
         paint.setColor(i10);
         if (!z10) {
             z2Var.d.a(i10, true);
         }
         if (z10) {
             ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(200L);
-            duration.setInterpolator(bs.f25030f);
+            duration.setInterpolator(bs.f25014f);
             duration.addUpdateListener(new f2(this, i11, i10, 1));
             duration.addListener(new s2(this, i11, i10, 0));
             duration.start();

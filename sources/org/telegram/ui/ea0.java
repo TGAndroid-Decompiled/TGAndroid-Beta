@@ -1,42 +1,55 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AccountInstance;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
+import android.os.Bundle;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-public final class ea0 implements Runnable {
-    public final int f36439a;
-    public final fa0 f36440b;
-    public final AccountInstance f36441c;
-    public final long d;
-    public final org.telegram.ui.ActionBar.n2 e;
+import org.telegram.ui.ActionBar.ActionBarLayout;
+public final class ea0 implements MessagesController.MessagesLoadedCallback {
+    public final z70 f36615a;
+    public final boolean[] f36616b;
+    public final Bundle f36617c;
+    public final TLRPC.ChatInvite d;
+    public final LaunchActivity e;
 
-    public ea0(fa0 fa0Var, AccountInstance accountInstance, long j10, org.telegram.ui.ActionBar.n2 n2Var, int i10) {
-        this.f36439a = i10;
-        this.f36440b = fa0Var;
-        this.f36441c = accountInstance;
-        this.d = j10;
-        this.e = n2Var;
+    public ea0(LaunchActivity launchActivity, z70 z70Var, boolean[] zArr, Bundle bundle, TLRPC.ChatInvite chatInvite) {
+        this.e = launchActivity;
+        this.f36615a = z70Var;
+        this.f36616b = zArr;
+        this.f36617c = bundle;
+        this.d = chatInvite;
     }
 
     @Override
-    public final void run() {
-        switch (this.f36439a) {
-            case 0:
-                AndroidUtilities.runOnUIThread(new ea0(this.f36440b, this.f36441c, this.d, this.e, 1));
-                return;
-            default:
-                AccountInstance accountInstance = this.f36441c;
-                MessagesController messagesController = accountInstance.getMessagesController();
-                long j10 = this.d;
-                long j11 = -j10;
-                boolean z10 = false;
-                ChatObject.Call groupCall = messagesController.getGroupCall(j11, false);
-                TLRPC.Chat chat = accountInstance.getMessagesController().getChat(Long.valueOf(j11));
-                accountInstance.getMessagesController().getInputPeer(j10);
-                org.telegram.ui.Components.voip.d2.l(chat, null, false, Boolean.valueOf((groupCall == null || !groupCall.call.rtmp_stream) ? true : true), this.f36440b.f36862g, this.e, accountInstance);
-                return;
+    public final void onError() {
+        LaunchActivity launchActivity = this.e;
+        if (!launchActivity.isFinishing()) {
+            org.telegram.ui.Components.f5.t0((org.telegram.ui.ActionBar.n2) i2.e.h(1, launchActivity.f33155d0), null, LocaleController.getString(R.string.JoinToGroupErrorNotExist), null);
         }
+        try {
+            this.f36615a.run();
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
+    }
+
+    @Override
+    public final void onMessagesLoaded(boolean z10) {
+        try {
+            this.f36615a.run();
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
+        if (this.f36616b[0]) {
+            return;
+        }
+        qn qnVar = new qn(this.f36617c);
+        TLRPC.ChatInvite chatInvite = this.d;
+        if (chatInvite instanceof TLRPC.TL_chatInvitePeek) {
+            qnVar.K5 = chatInvite;
+        }
+        ((ActionBarLayout) this.e.O()).P(qnVar);
     }
 }

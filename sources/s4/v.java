@@ -6,7 +6,7 @@ import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.WeakHashMap;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ly;
+import org.telegram.ui.jy;
 public abstract class v {
     public static final be f46040b = new be(2);
     public static final be f46041c = new be(3);
@@ -39,7 +39,7 @@ public abstract class v {
         Object tag = view.getTag();
         if (tag instanceof Float) {
             float floatValue = ((Float) tag).floatValue();
-            WeakHashMap weakHashMap = r0.i0.f44818a;
+            WeakHashMap weakHashMap = r0.i0.f44816a;
             r0.a0.h(view, floatValue);
         }
         view.setTag(null);
@@ -109,20 +109,20 @@ public abstract class v {
     }
 
     public boolean k() {
-        return !(this instanceof ly);
+        return !(this instanceof jy);
     }
 
     public void m(Canvas canvas, RecyclerView recyclerView, b1 b1Var, float f7, float f10, int i10, boolean z10) {
         View view = b1Var.f45910a;
         if (z10 && view.getTag() == null) {
-            WeakHashMap weakHashMap = r0.i0.f44818a;
+            WeakHashMap weakHashMap = r0.i0.f44816a;
             Float valueOf = Float.valueOf(r0.a0.e(view));
             int childCount = recyclerView.getChildCount();
             float f11 = 0.0f;
             for (int i11 = 0; i11 < childCount; i11++) {
                 View childAt = recyclerView.getChildAt(i11);
                 if (childAt != view) {
-                    WeakHashMap weakHashMap2 = r0.i0.f44818a;
+                    WeakHashMap weakHashMap2 = r0.i0.f44816a;
                     float e = r0.a0.e(childAt);
                     if (e > f11) {
                         f11 = e;

@@ -5,31 +5,31 @@ import java.util.HashMap;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class e70 implements org.telegram.ui.bb0 {
-    public final f70 f25858a;
+public final class e70 implements org.telegram.ui.za0 {
+    public final f70 f25837a;
 
     public e70(f70 f70Var) {
-        this.f25858a = f70Var;
+        this.f25837a = f70Var;
     }
 
     @Override
     public final void b(TLRPC.TL_chatInviteExported tL_chatInviteExported, TLObject tLObject) {
         int i10;
-        org.telegram.ui.kb kbVar = this.f25858a.f26156a.f26492c.f28128j0;
-        if (kbVar != null) {
+        org.telegram.ui.ib ibVar = this.f25837a.f26153a.f26516c.f28136j0;
+        if (ibVar != null) {
             TLRPC.TL_channelAdminLogEvent tL_channelAdminLogEvent = new TLRPC.TL_channelAdminLogEvent();
             TLRPC.TL_channelAdminLogEventActionExportedInviteEdit tL_channelAdminLogEventActionExportedInviteEdit = new TLRPC.TL_channelAdminLogEventActionExportedInviteEdit();
             tL_channelAdminLogEventActionExportedInviteEdit.new_invite = tL_chatInviteExported;
             tL_channelAdminLogEventActionExportedInviteEdit.prev_invite = tL_chatInviteExported;
             tL_channelAdminLogEvent.action = tL_channelAdminLogEventActionExportedInviteEdit;
             tL_channelAdminLogEvent.date = (int) (System.currentTimeMillis() / 1000);
-            org.telegram.ui.xb xbVar = kbVar.f38452a;
-            tL_channelAdminLogEvent.user_id = xbVar.getAccountInstance().getUserConfig().clientUserId;
-            i10 = ((org.telegram.ui.ActionBar.n2) xbVar).currentAccount;
-            if (new MessageObject(i10, tL_channelAdminLogEvent, (ArrayList<MessageObject>) xbVar.f43043n0, (HashMap<String, ArrayList<MessageObject>>) xbVar.m0, xbVar.f43034f, xbVar.T, true).contentType >= 0) {
-                xbVar.R0();
-                xbVar.E.l();
-                org.telegram.ui.xb.K0(xbVar);
+            org.telegram.ui.vb vbVar = ibVar.f37932a;
+            tL_channelAdminLogEvent.user_id = vbVar.getAccountInstance().getUserConfig().clientUserId;
+            i10 = ((org.telegram.ui.ActionBar.n2) vbVar).currentAccount;
+            if (new MessageObject(i10, tL_channelAdminLogEvent, (ArrayList<MessageObject>) vbVar.f42172n0, (HashMap<String, ArrayList<MessageObject>>) vbVar.m0, vbVar.f42163f, vbVar.T, true).contentType >= 0) {
+                vbVar.R0();
+                vbVar.E.l();
+                org.telegram.ui.vb.K0(vbVar);
             }
         }
     }

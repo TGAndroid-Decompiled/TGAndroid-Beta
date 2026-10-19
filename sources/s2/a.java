@@ -8,7 +8,7 @@ public final class a {
     public static final a f45871a = new Object();
 
     public final m a(w wVar) {
-        String str = wVar.f4132s;
+        String str = wVar.f4130s;
         if (str != null) {
             char c10 = 65535;
             switch (str.hashCode()) {
@@ -60,7 +60,7 @@ public final class a {
     }
 
     public final boolean b(w wVar) {
-        String str = wVar.f4132s;
+        String str = wVar.f4130s;
         if (!"application/id3".equals(str) && !"application/x-emsg".equals(str) && !"application/x-scte35".equals(str) && !"application/x-icy".equals(str) && !"application/vnd.dvb.ait".equals(str)) {
             return false;
         }

@@ -1,33 +1,123 @@
 package ci;
 
-import android.animation.ValueAnimator;
-public final class d2 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f5249a;
-    public final p4 f5250b;
+import ai.pa;
+import android.app.Activity;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.SharedConfig;
+import org.telegram.ui.PremiumPreviewFragment;
+public final class d2 implements Runnable {
+    public final int f5314a;
+    public final q4 f5315b;
 
-    public d2(p4 p4Var, int i10) {
-        this.f5249a = i10;
-        this.f5250b = p4Var;
+    public d2(q4 q4Var, int i10) {
+        this.f5314a = i10;
+        this.f5315b = q4Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f5249a) {
+    public final void run() {
+        float f7;
+        boolean z10;
+        switch (this.f5314a) {
             case 0:
-                p4 p4Var = this.f5250b;
-                p4Var.getClass();
-                p4Var.H2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                p4Var.invalidate();
+                this.f5315b.f5795j2.setVisibility(8);
                 return;
             case 1:
-                p4 p4Var2 = this.f5250b;
-                p4Var2.getClass();
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                p4Var2.f5706t3 = floatValue;
-                p4Var2.f5700r3.setTransitionProgress(floatValue);
+                q4 q4Var = this.f5315b;
+                if (!q4Var.J0.H0) {
+                    q4Var.f5846z3 = null;
+                    if (q4Var.H0 == null) {
+                        ei.x3 x3Var = new ei.x3(q4Var.getContext(), 3);
+                        x3Var.l(1.0f, -22.0f);
+                        q4Var.H0 = x3Var;
+                        x3Var.h(i0.a.o(i0.a.f(0.13f, -16777216, -1), 240));
+                        ei.x3 x3Var2 = q4Var.H0;
+                        x3Var2.U = false;
+                        x3Var2.s(LocaleController.getString(R.string.ReactionLongTapHint));
+                        q4Var.H0.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(1.0f));
+                        r3 r3Var = q4Var.f5771c1;
+                        ei.x3 x3Var3 = q4Var.H0;
+                        if (q4Var.f5838x2) {
+                            f7 = 0.0f;
+                        } else {
+                            f7 = 56.0f;
+                        }
+                        r3Var.addView(x3Var3, w7.z5.d(-1, -2.0f, 85, 0.0f, 0.0f, 0.0f, f7));
+                    }
+                    q4Var.H0.u();
+                    SharedConfig.setStoriesReactionsLongPressHintUsed(true);
+                    return;
+                }
+                return;
+            case 2:
+                this.f5315b.Q0();
+                return;
+            case 3:
+                ((r9) this.f5315b.Q1).b(true);
+                return;
+            case 4:
+                this.f5315b.r0(true);
+                return;
+            case 5:
+                aa aaVar = this.f5315b.J0;
+                if (aaVar != null) {
+                    aaVar.H(new PremiumPreviewFragment(0, "noncontacts"));
+                    return;
+                }
+                return;
+            case 6:
+                this.f5315b.O0();
+                return;
+            case 7:
+                q4 q4Var2 = this.f5315b;
+                q4Var2.L3 = 0L;
+                v2 v2Var = q4Var2.f5768b2;
+                if (v2Var != null) {
+                    v2Var.I(true);
+                    q4Var2.f5768b2.O1();
+                    q4Var2.r0(true);
+                    return;
+                }
+                return;
+            case 8:
+                q4 q4Var3 = this.f5315b;
+                Activity findActivity = AndroidUtilities.findActivity(q4Var3.getContext());
+                if (findActivity != null) {
+                    pa paVar = new pa(15, q4Var3, findActivity);
+                    aa aaVar2 = ((r9) q4Var3.Q1).d;
+                    z9 z9Var = aaVar2.f5232z0;
+                    if (z9Var != null) {
+                        z10 = z9Var.release(paVar);
+                        aaVar2.f5232z0 = null;
+                    } else {
+                        z10 = false;
+                    }
+                    if (!z10) {
+                        AndroidUtilities.runOnUIThread(paVar, 80L);
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 9:
+                aa aaVar3 = ((r9) this.f5315b.Q1).d;
+                aaVar3.f5197i1 = false;
+                aaVar3.P();
+                return;
+            case 10:
+                this.f5315b.L0(null);
+                return;
+            case 11:
+                this.f5315b.c1(false);
+                MessagesController.getGlobalMainSettings().edit().putInt("taptostorysoundhint", MessagesController.getGlobalMainSettings().getInt("taptostorysoundhint", 0) + 1).apply();
                 return;
             default:
-                p4.Z(this.f5250b, valueAnimator);
+                q4 q4Var4 = this.f5315b;
+                q4Var4.U3 = true;
+                q4Var4.setActive(false);
                 return;
         }
     }

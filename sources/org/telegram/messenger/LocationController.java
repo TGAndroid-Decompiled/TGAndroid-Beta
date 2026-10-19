@@ -145,7 +145,7 @@ public class LocationController extends BaseController implements NotificationCe
                     }
                     TLRPC.TL_messages_editMessage tL_messages_editMessage = new TLRPC.TL_messages_editMessage();
                     tL_messages_editMessage.peer = getMessagesController().getInputPeer(sharingLocationInfo.did);
-                    tL_messages_editMessage.f20355id = sharingLocationInfo.mid;
+                    tL_messages_editMessage.f20358id = sharingLocationInfo.mid;
                     tL_messages_editMessage.flags |= 16384;
                     TLRPC.TL_inputMediaGeoLive tL_inputMediaGeoLive = new TLRPC.TL_inputMediaGeoLive();
                     tL_messages_editMessage.media = tL_inputMediaGeoLive;
@@ -501,7 +501,7 @@ public class LocationController extends BaseController implements NotificationCe
             SharingLocationInfo sharingLocationInfo = this.sharingLocations.get(i10);
             TLRPC.TL_messages_editMessage tL_messages_editMessage = new TLRPC.TL_messages_editMessage();
             tL_messages_editMessage.peer = getMessagesController().getInputPeer(sharingLocationInfo.did);
-            tL_messages_editMessage.f20355id = sharingLocationInfo.mid;
+            tL_messages_editMessage.f20358id = sharingLocationInfo.mid;
             tL_messages_editMessage.flags |= 16384;
             TLRPC.TL_inputMediaGeoLive tL_inputMediaGeoLive = new TLRPC.TL_inputMediaGeoLive();
             tL_messages_editMessage.media = tL_inputMediaGeoLive;
@@ -538,7 +538,7 @@ public class LocationController extends BaseController implements NotificationCe
         if (sharingLocationInfo != null) {
             TLRPC.TL_messages_editMessage tL_messages_editMessage = new TLRPC.TL_messages_editMessage();
             tL_messages_editMessage.peer = getMessagesController().getInputPeer(sharingLocationInfo.did);
-            tL_messages_editMessage.f20355id = sharingLocationInfo.mid;
+            tL_messages_editMessage.f20358id = sharingLocationInfo.mid;
             tL_messages_editMessage.flags |= 16384;
             TLRPC.TL_inputMediaGeoLive tL_inputMediaGeoLive = new TLRPC.TL_inputMediaGeoLive();
             tL_messages_editMessage.media = tL_inputMediaGeoLive;
@@ -739,7 +739,7 @@ public class LocationController extends BaseController implements NotificationCe
     public void addSharingLocation(TLRPC.Message message) {
         SharingLocationInfo sharingLocationInfo = new SharingLocationInfo();
         sharingLocationInfo.did = message.dialog_id;
-        sharingLocationInfo.mid = message.f20293id;
+        sharingLocationInfo.mid = message.f20296id;
         TLRPC.MessageMedia messageMedia = message.media;
         sharingLocationInfo.period = messageMedia.period;
         int i10 = messageMedia.proximity_notification_radius;
@@ -895,7 +895,7 @@ public class LocationController extends BaseController implements NotificationCe
         TLRPC.TL_messages_getRecentLocations tL_messages_getRecentLocations = new TLRPC.TL_messages_getRecentLocations();
         tL_messages_getRecentLocations.peer = getMessagesController().getInputPeer(j10);
         tL_messages_getRecentLocations.limit = 100;
-        getConnectionsManager().sendRequest(tL_messages_getRecentLocations, new ci.j6(this, j10, 2));
+        getConnectionsManager().sendRequest(tL_messages_getRecentLocations, new ci.k6(this, j10, 2));
     }
 
     public void markLiveLoactionsAsRead(long j10) {
@@ -913,7 +913,7 @@ public class LocationController extends BaseController implements NotificationCe
                         tL_messages_readMessageContents = new TLRPC.TL_channels_readMessageContents();
                         int size = arrayList.size();
                         while (i10 < size) {
-                            i10 = com.google.android.gms.internal.play_billing.k3.f(((TLRPC.Message) arrayList.get(i10)).f20293id, i10, 1, tL_messages_readMessageContents.f20311id);
+                            i10 = com.google.android.gms.internal.play_billing.k3.f(((TLRPC.Message) arrayList.get(i10)).f20296id, i10, 1, tL_messages_readMessageContents.f20314id);
                         }
                         tL_messages_readMessageContents.channel = getMessagesController().getInputChannel(j11);
                         getConnectionsManager().sendRequest(tL_messages_readMessageContents, new v5(this, 2));
@@ -922,7 +922,7 @@ public class LocationController extends BaseController implements NotificationCe
                 tL_messages_readMessageContents = new TLRPC.TL_messages_readMessageContents();
                 int size2 = arrayList.size();
                 while (i10 < size2) {
-                    i10 = com.google.android.gms.internal.play_billing.k3.f(((TLRPC.Message) arrayList.get(i10)).f20293id, i10, 1, tL_messages_readMessageContents.f20375id);
+                    i10 = com.google.android.gms.internal.play_billing.k3.f(((TLRPC.Message) arrayList.get(i10)).f20296id, i10, 1, tL_messages_readMessageContents.f20378id);
                 }
                 getConnectionsManager().sendRequest(tL_messages_readMessageContents, new v5(this, 2));
             }
@@ -955,7 +955,7 @@ public class LocationController extends BaseController implements NotificationCe
     }
 
     public void removeSharingLocation(long j10) {
-        Utilities.stageQueue.postRunnable(new ai.t3(this, j10, 16));
+        Utilities.stageQueue.postRunnable(new ai.u3(this, j10, 16));
     }
 
     public void setMapLocation(Location location, boolean z10) {

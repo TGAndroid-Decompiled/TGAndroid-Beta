@@ -1,15 +1,15 @@
 package ud;
 public abstract class d {
-    public static final a f47630a;
+    public static final a f47627a;
 
     static {
         b bVar;
-        Integer num = qd.a.f44435a;
+        Integer num = qd.a.f44430a;
         if (num != null && num.intValue() < 34) {
             bVar = new b();
         } else {
             bVar = new Object();
         }
-        f47630a = bVar;
+        f47627a = bVar;
     }
 }

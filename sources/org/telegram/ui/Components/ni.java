@@ -4,36 +4,36 @@ import android.content.Context;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 public final class ni extends oi {
-    public int f28762b;
-    public final ti f28763c;
+    public int f28780b;
+    public final ti f28781c;
 
     public ni(ti tiVar, Context context) {
         super(context);
         org.telegram.ui.ActionBar.d6 d6Var;
-        this.f28763c = tiVar;
+        this.f28781c = tiVar;
         setWillNotDraw(false);
         setFocusable(true);
         d6Var = ((org.telegram.ui.ActionBar.f3) tiVar).resourcesProvider;
         ph.b bVar = new ph.b(context);
         bVar.d = d6Var;
         bVar.Q = true;
-        TextView textView = bVar.f44304a;
+        TextView textView = bVar.f44299a;
         textView.setTextSize(1, 11.0f);
         textView.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), 0);
         bVar.a(false);
-        bVar.f44305b.setLayoutParams(w7.z5.d(24, 24.0f, 49, 0.0f, 4.0f, 0.0f, 0.0f));
-        bVar.f44311w = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.cl, d6Var);
-        bVar.f44310s = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.al, d6Var);
+        bVar.f44300b.setLayoutParams(w7.z5.d(24, 24.0f, 49, 0.0f, 4.0f, 0.0f, 0.0f));
+        bVar.f44306w = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.cl, d6Var);
+        bVar.f44305s = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.al, d6Var);
         bVar.v = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.bl, d6Var);
         bVar.f();
-        this.f28978a = bVar;
+        this.f29006a = bVar;
         addView(bVar, w7.z5.c(-1.0f, -1));
     }
 
     public final void a(int i10, String str, ph.a aVar) {
-        this.f28978a.setText(str);
-        this.f28978a.setTabAnimation(aVar);
-        this.f28762b = i10;
+        this.f29006a.setText(str);
+        this.f29006a.setTabAnimation(aVar);
+        this.f28780b = i10;
     }
 
     @Override
@@ -45,11 +45,11 @@ public final class ni extends oi {
     public final void onAttachedToWindow() {
         boolean z10;
         super.onAttachedToWindow();
-        if (this.f28762b == this.f28763c.Z0) {
+        if (this.f28780b == this.f28781c.Z0) {
             z10 = true;
         } else {
             z10 = false;
         }
-        this.f28978a.e(z10, false);
+        this.f29006a.e(z10, false);
     }
 }

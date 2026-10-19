@@ -1,40 +1,31 @@
 package i2;
 
-import android.content.Context;
-import j$.util.function.IntConsumer$CC;
-import java.lang.ref.WeakReference;
-import java.util.function.IntConsumer;
-public final class g0 {
-    public final WeakReference f12370a;
-    public final e0 f12371b;
-    public final h0 f12372c;
+import android.os.Handler;
+import java.util.concurrent.Executor;
+public final class g0 implements Executor {
+    public final int f12359a;
+    public final Object f12360b;
 
-    public g0(h0 h0Var, Context context) {
-        this.f12372c = h0Var;
-        this.f12370a = new WeakReference(context);
-        ?? r02 = new IntConsumer() {
-            @Override
-            public final void accept(int i10) {
-                h0 h0Var2 = g0.this.f12372c;
-                if (h0Var2.f12392i0) {
-                    return;
-                }
-                h0Var2.t1(1, 19, Integer.valueOf(i10));
-            }
-
-            public IntConsumer andThen(IntConsumer intConsumer) {
-                return IntConsumer$CC.$default$andThen(this, intConsumer);
-            }
-        };
-        this.f12371b = r02;
-        context.registerDeviceIdChangeListener(new f0(h0Var.v.a(h0Var.f12412t, null), 0), r02);
+    public g0(Object obj, int i10) {
+        this.f12359a = i10;
+        this.f12360b = obj;
     }
 
-    public static void a(g0 g0Var) {
-        Context context = (Context) g0Var.f12370a.get();
-        if (context == null) {
-            return;
+    @Override
+    public final void execute(Runnable runnable) {
+        switch (this.f12359a) {
+            case 0:
+                ((e2.i0) this.f12360b).d(runnable);
+                return;
+            case 1:
+                ((Handler) this.f12360b).post(runnable);
+                return;
+            case 2:
+                e2.m0.W(((m4.f0) this.f12360b).f16528l, runnable);
+                return;
+            default:
+                ((p4.b) this.f12360b).post(runnable);
+                return;
         }
-        context.unregisterDeviceIdChangeListener(g0Var.f12371b);
     }
 }

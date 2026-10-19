@@ -13,51 +13,51 @@ import android.text.TextPaint;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 public final class f90 extends Drawable {
-    public static final Paint f26168j = new Paint();
-    public static TextPaint f26169k;
-    public static TextPaint f26170l;
-    public static TextPaint f26171m;
-    public StaticLayout f26173b;
-    public float f26174c;
+    public static final Paint f26160j = new Paint();
+    public static TextPaint f26161k;
+    public static TextPaint f26162l;
+    public static TextPaint f26163m;
+    public StaticLayout f26165b;
+    public float f26166c;
     public float d;
     public float e;
-    public final int f26176g;
+    public final int f26168g;
     public final TextPaint h;
-    public final RectF f26172a = new RectF();
-    public final StringBuilder f26175f = new StringBuilder(5);
-    public float f26177i = 1.0f;
+    public final RectF f26164a = new RectF();
+    public final StringBuilder f26167f = new StringBuilder(5);
+    public float f26169i = 1.0f;
 
     public f90(int i10, org.telegram.ui.ActionBar.d6 d6Var) {
-        this.f26176g = i10;
+        this.f26168g = i10;
         if (i10 == 0) {
-            if (f26169k == null) {
-                f26169k = new TextPaint(1);
+            if (f26161k == null) {
+                f26161k = new TextPaint(1);
             }
-            f26169k.setTextSize(AndroidUtilities.dp(28.0f));
-            f26168j.setColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Jh, d6Var));
-            f26169k.setColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Kh, d6Var));
-            this.h = f26169k;
+            f26161k.setTextSize(AndroidUtilities.dp(28.0f));
+            f26160j.setColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Jh, d6Var));
+            f26161k.setColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Kh, d6Var));
+            this.h = f26161k;
         } else if (i10 == 1) {
-            if (f26170l == null) {
-                f26170l = new TextPaint(1);
+            if (f26162l == null) {
+                f26162l = new TextPaint(1);
             }
-            f26170l.setColor(-1);
-            f26170l.setTextSize(AndroidUtilities.dp(13.0f));
-            f26170l.setTypeface(Typeface.create(Typeface.DEFAULT, 1));
-            this.h = f26170l;
+            f26162l.setColor(-1);
+            f26162l.setTextSize(AndroidUtilities.dp(13.0f));
+            f26162l.setTypeface(Typeface.create(Typeface.DEFAULT, 1));
+            this.h = f26162l;
         } else {
-            if (f26171m == null) {
-                f26171m = new TextPaint(1);
+            if (f26163m == null) {
+                f26163m = new TextPaint(1);
             }
-            f26171m.setColor(-1);
-            f26171m.setTextSize(org.telegram.ui.ActionBar.h6.f20983d3.getTextSize() * 0.75f);
-            f26171m.setTypeface(Typeface.create(Typeface.DEFAULT, 1));
-            this.h = f26171m;
+            f26163m.setColor(-1);
+            f26163m.setTextSize(org.telegram.ui.ActionBar.h6.f20986d3.getTextSize() * 0.75f);
+            f26163m.setTypeface(Typeface.create(Typeface.DEFAULT, 1));
+            this.h = f26163m;
         }
     }
 
     public final void a(String str) {
-        StringBuilder sb2 = this.f26175f;
+        StringBuilder sb2 = this.f26167f;
         sb2.setLength(0);
         if (str != null && str.length() > 0) {
             sb2.append(str.substring(0, 1));
@@ -65,11 +65,11 @@ public final class f90 extends Drawable {
         if (sb2.length() > 0) {
             try {
                 StaticLayout staticLayout = new StaticLayout(sb2.toString().toUpperCase(), this.h, AndroidUtilities.dp(100.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-                this.f26173b = staticLayout;
+                this.f26165b = staticLayout;
                 if (staticLayout.getLineCount() > 0) {
-                    this.e = this.f26173b.getLineLeft(0);
-                    this.f26174c = this.f26173b.getLineWidth(0);
-                    this.d = this.f26173b.getLineBottom(0);
+                    this.e = this.f26165b.getLineLeft(0);
+                    this.f26166c = this.f26165b.getLineWidth(0);
+                    this.d = this.f26165b.getLineBottom(0);
                     return;
                 }
                 return;
@@ -78,7 +78,7 @@ public final class f90 extends Drawable {
                 return;
             }
         }
-        this.f26173b = null;
+        this.f26165b = null;
     }
 
     @Override
@@ -87,20 +87,20 @@ public final class f90 extends Drawable {
         if (bounds == null) {
             return;
         }
-        if (this.f26176g == 0) {
-            RectF rectF = this.f26172a;
+        if (this.f26168g == 0) {
+            RectF rectF = this.f26164a;
             rectF.set(bounds.left, bounds.top, bounds.right, bounds.bottom);
-            canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), f26168j);
+            canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), f26160j);
         }
         canvas.save();
-        float f7 = this.f26177i;
+        float f7 = this.f26169i;
         if (f7 != 1.0f) {
             canvas.scale(f7, f7, bounds.centerX(), bounds.centerY());
         }
-        if (this.f26173b != null) {
+        if (this.f26165b != null) {
             float width = bounds.width();
-            canvas.translate(com.google.android.gms.internal.play_billing.k3.z(width, this.f26174c, 2.0f, bounds.left) - this.e, com.google.android.gms.internal.play_billing.k3.z(width, this.d, 2.0f, bounds.top));
-            this.f26173b.draw(canvas);
+            canvas.translate(com.google.android.gms.internal.play_billing.k3.z(width, this.f26166c, 2.0f, bounds.left) - this.e, com.google.android.gms.internal.play_billing.k3.z(width, this.d, 2.0f, bounds.top));
+            this.f26165b.draw(canvas);
         }
         canvas.restore();
     }
@@ -123,7 +123,7 @@ public final class f90 extends Drawable {
     @Override
     public final void setAlpha(int i10) {
         this.h.setAlpha(i10);
-        f26168j.setAlpha(i10);
+        f26160j.setAlpha(i10);
     }
 
     @Override

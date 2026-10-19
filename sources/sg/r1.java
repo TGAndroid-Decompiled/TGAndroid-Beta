@@ -19,7 +19,7 @@ import org.telegram.messenger.lk;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Components.xp;
 import org.telegram.ui.Components.yp;
-import org.telegram.ui.rw0;
+import org.telegram.ui.pw0;
 import w7.z5;
 public class r1 extends ViewGroup {
     public r1 E;
@@ -38,7 +38,7 @@ public class r1 extends ViewGroup {
     public final TextView e;
     public final int f46407f;
     public final int h;
-    public rw0 f46408n;
+    public pw0 f46408n;
     public final TextView f46409r;
     public final int f46410s;
     public final int v;
@@ -53,15 +53,15 @@ public class r1 extends ViewGroup {
         int i12;
         this.f46407f = 12;
         this.h = 8;
-        this.f46410s = h6.f20986d6;
-        this.v = h6.f20928a7;
+        this.f46410s = h6.f20989d6;
+        this.v = h6.f20931a7;
         this.f46413y = new Paint();
         this.H = new Matrix();
         xp xpVar = new xp(context, 24, null);
         this.f46404a = xpVar;
         xpVar.setDrawBackgroundAsArc(10);
-        int i13 = h6.f21040g7;
-        xpVar.b(i13, i13, h6.f21114k7);
+        int i13 = h6.f21043g7;
+        xpVar.b(i13, i13, h6.f21117k7);
         addView(xpVar);
         TextView textView = new TextView(context);
         this.f46405b = textView;
@@ -90,7 +90,7 @@ public class r1 extends ViewGroup {
         TextView textView3 = new TextView(context);
         this.d = textView3;
         textView3.setTextSize(1, 14.0f);
-        int i14 = h6.f21374y6;
+        int i14 = h6.f21377y6;
         textView3.setTextColor(h6.x0(null, i14, false));
         textView3.getPaint().setStrikeThruText(true);
         textView3.setSingleLine();
@@ -117,8 +117,8 @@ public class r1 extends ViewGroup {
         setWillNotDraw(false);
     }
 
-    public final void a(org.telegram.ui.rw0 r11, boolean r12) {
-        throw new UnsupportedOperationException("Method not decompiled: sg.r1.a(org.telegram.ui.rw0, boolean):void");
+    public final void a(org.telegram.ui.pw0 r11, boolean r12) {
+        throw new UnsupportedOperationException("Method not decompiled: sg.r1.a(org.telegram.ui.pw0, boolean):void");
     }
 
     public final void b(View view) {
@@ -215,7 +215,7 @@ public class r1 extends ViewGroup {
         }
     }
 
-    public rw0 getTier() {
+    public pw0 getTier() {
         return this.f46408n;
     }
 
@@ -226,9 +226,9 @@ public class r1 extends ViewGroup {
             boolean z10 = LocaleController.isRTL;
             TextView textView = this.f46405b;
             if (z10) {
-                canvas.drawLine(0.0f, getHeight() - 1, textView.getRight(), getHeight() - 1, h6.f21107k0);
+                canvas.drawLine(0.0f, getHeight() - 1, textView.getRight(), getHeight() - 1, h6.f21110k0);
             } else {
-                canvas.drawLine(textView.getLeft(), getHeight() - 1, getWidth(), getHeight() - 1, h6.f21107k0);
+                canvas.drawLine(textView.getLeft(), getHeight() - 1, getWidth(), getHeight() - 1, h6.f21110k0);
             }
         }
     }

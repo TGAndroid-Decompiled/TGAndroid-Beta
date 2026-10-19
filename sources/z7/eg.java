@@ -6,7 +6,7 @@ public final class eg extends a9.a {
     public final jg V0(x6.b bVar, bg bgVar) {
         jg createFromParcel;
         Parcel obtain = Parcel.obtain();
-        obtain.writeInterfaceToken(this.f319c);
+        obtain.writeInterfaceToken(this.f318c);
         int i10 = t.f51168a;
         obtain.writeStrongBinder(bVar);
         obtain.writeInt(1);

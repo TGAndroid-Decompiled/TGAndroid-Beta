@@ -1,55 +1,129 @@
 package n7;
 
 import java.util.Arrays;
-public final class w0 extends d1 {
-    public final boolean f17322a;
+public final class w0 extends c1 {
+    public final s0 f17323a;
 
-    public w0(boolean z10) {
-        this.f17322a = z10;
+    public w0(s0 s0Var) {
+        this.f17323a = s0Var;
     }
 
     @Override
     public final int compareTo(Object obj) {
-        int i10;
-        d1 d1Var = (d1) obj;
-        int zza = d1Var.zza();
-        int c10 = d1.c((byte) -32);
+        c1 c1Var = (c1) obj;
+        int zza = c1Var.zza();
+        int c10 = c1.c((byte) 64);
         if (c10 != zza) {
-            return c10 - d1Var.zza();
+            return c10 - c1Var.zza();
         }
-        w0 w0Var = (w0) d1Var;
-        int i11 = 21;
-        if (true != this.f17322a) {
-            i10 = 20;
-        } else {
-            i10 = 21;
+        s0 s0Var = ((w0) c1Var).f17323a;
+        s0 s0Var2 = this.f17323a;
+        byte[] bArr = s0Var2.f17313b;
+        int length = bArr.length;
+        byte[] bArr2 = s0Var.f17313b;
+        if (length != bArr2.length) {
+            return bArr.length - bArr2.length;
         }
-        if (true != w0Var.f17322a) {
-            i11 = 20;
-        }
-        return i10 - i11;
+        return p0.f17307a.compare(s0Var2.t(), s0Var.t());
     }
 
     public final boolean equals(Object obj) {
         if (this == obj) {
             return true;
         }
-        if (obj != null && w0.class == obj.getClass() && this.f17322a == ((w0) obj).f17322a) {
-            return true;
+        if (obj == null || w0.class != obj.getClass()) {
+            return false;
         }
-        return false;
+        return this.f17323a.equals(((w0) obj).f17323a);
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Integer.valueOf(d1.c((byte) -32)), Boolean.valueOf(this.f17322a)});
+        return Arrays.hashCode(new Object[]{Integer.valueOf(c1.c((byte) 64)), this.f17323a});
     }
 
     public final String toString() {
-        return Boolean.toString(this.f17322a);
+        j0 j0Var;
+        int i10;
+        boolean z10;
+        k0 k0Var = m0.d;
+        m0 m0Var = k0Var.f17296c;
+        if (m0Var == null) {
+            j0 j0Var2 = k0Var.f17294a;
+            char[] cArr = j0Var2.f17286b;
+            int i11 = 0;
+            while (true) {
+                if (i11 < cArr.length) {
+                    char c10 = cArr[i11];
+                    if (c10 >= 'a' && c10 <= 'z') {
+                        int i12 = 0;
+                        while (true) {
+                            if (i12 < cArr.length) {
+                                char c11 = cArr[i12];
+                                if (c11 >= 'A' && c11 <= 'Z') {
+                                    z10 = true;
+                                    break;
+                                }
+                                i12++;
+                            } else {
+                                z10 = false;
+                                break;
+                            }
+                        }
+                        if (!z10) {
+                            char[] cArr2 = new char[cArr.length];
+                            for (int i13 = 0; i13 < cArr.length; i13++) {
+                                char c12 = cArr[i13];
+                                if (c12 >= 97 && c12 <= 122) {
+                                    c12 ^= 32;
+                                }
+                                cArr2[i13] = (char) c12;
+                            }
+                            j0Var = new j0(j0Var2.f17285a.concat(".upperCase()"), cArr2);
+                            byte[] bArr = j0Var.f17289g;
+                            if (j0Var2.h && !j0Var.h) {
+                                byte[] copyOf = Arrays.copyOf(bArr, bArr.length);
+                                for (i10 = 65; i10 <= 90; i10++) {
+                                    int i14 = i10 | 32;
+                                    byte b10 = bArr[i10];
+                                    byte b11 = bArr[i14];
+                                    if (b10 == -1) {
+                                        copyOf[i10] = b11;
+                                    } else {
+                                        char c13 = (char) i10;
+                                        char c14 = (char) i14;
+                                        if (b11 == -1) {
+                                            copyOf[i14] = b10;
+                                        } else {
+                                            throw new IllegalStateException(a.c("Can't ignoreCase() since '%s' and '%s' encode different values", Character.valueOf(c13), Character.valueOf(c14)));
+                                        }
+                                    }
+                                }
+                                j0Var = new j0(j0Var.f17285a.concat(".ignoreCase()"), j0Var.f17286b, copyOf, true);
+                            }
+                        } else {
+                            throw new IllegalStateException("Cannot call upperCase() on a mixed-case alphabet");
+                        }
+                    } else {
+                        i11++;
+                    }
+                } else {
+                    j0Var = j0Var2;
+                    break;
+                }
+            }
+            if (j0Var == j0Var2) {
+                m0Var = k0Var;
+            } else {
+                m0Var = new k0(j0Var);
+            }
+            k0Var.f17296c = m0Var;
+        }
+        byte[] t10 = this.f17323a.t();
+        return a1.g.p("h'", m0Var.c(t10.length, t10), "'");
     }
 
     @Override
     public final int zza() {
-        return d1.c((byte) -32);
+        return c1.c((byte) 64);
     }
 }

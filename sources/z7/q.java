@@ -11,7 +11,7 @@ public final class q extends i {
 
     @Override
     public final Object get(int i10) {
-        w7.i9.a(i10, this.e);
+        w7.h9.a(i10, this.e);
         Object obj = this.f51131c[i10 + i10 + this.d];
         obj.getClass();
         return obj;

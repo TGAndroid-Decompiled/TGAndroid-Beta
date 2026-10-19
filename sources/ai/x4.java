@@ -27,7 +27,7 @@ public final class x4 implements Utilities.Callback {
         int i11;
         switch (this.f2429a) {
             case 0:
-                k7.S((k7) this.e, this.f2430b, this.f2431c, this.d, (ug.m1[]) this.f2432f, (TL_stars.TL_starGiftUnique) this.f2433g, (Long) obj);
+                k7.w0((k7) this.e, this.f2430b, this.f2431c, this.d, (ug.m1[]) this.f2432f, (TL_stars.TL_starGiftUnique) this.f2433g, (Long) obj);
                 return;
             default:
                 org.telegram.ui.Components.r3 r3Var = (org.telegram.ui.Components.r3) this.e;

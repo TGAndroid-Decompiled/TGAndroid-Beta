@@ -1,102 +1,184 @@
 package c5;
+public abstract class h0 {
+    public static final i f4741a;
+    public static final i f4742b;
+    public static final i f4743c;
+    public static final i d;
+    public static final i e;
+    public static final i f4744f;
+    public static final i f4745g;
+    public static final i h;
+    public static final i f4746i;
+    public static final i f4747j;
+    public static final i f4748k;
+    public static final i f4749l;
+    public static final i f4750m;
+    public static final i f4751n;
+    public static final i f4752o;
+    public static final i f4753p;
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.IntentFilter;
-import android.os.Build;
-import android.os.Bundle;
-import com.google.android.gms.internal.play_billing.g3;
-import com.google.android.gms.internal.play_billing.n3;
-import com.google.android.gms.internal.play_billing.o1;
-import com.google.android.gms.internal.play_billing.q2;
-import com.google.android.gms.internal.play_billing.s1;
-public final class h0 extends BroadcastReceiver {
-    public boolean f4754a;
-    public final boolean f4755b;
-    public final h f4756c;
-
-    public h0(h hVar, boolean z10) {
-        this.f4756c = hVar;
-        this.f4755b = z10;
+    static {
+        c3.a a2 = i.a();
+        a2.f4561b = 3;
+        a2.f4560a = "Google Play In-app Billing API version is less than 3";
+        a2.a();
+        c3.a a10 = i.a();
+        a10.f4561b = 3;
+        a10.f4560a = "Google Play In-app Billing API version is less than 9";
+        a10.a();
+        c3.a a11 = i.a();
+        a11.f4561b = 3;
+        a11.f4560a = "Billing service unavailable on device.";
+        f4741a = a11.a();
+        c3.a a12 = i.a();
+        a12.f4561b = 2;
+        a12.f4560a = "Billing service unavailable on device.";
+        f4742b = a12.a();
+        c3.a a13 = i.a();
+        a13.f4561b = 5;
+        a13.f4560a = "Client is already in the process of connecting to billing service.";
+        f4743c = a13.a();
+        c3.a a14 = i.a();
+        a14.f4561b = 5;
+        a14.f4560a = "The list of SKUs can't be empty.";
+        a14.a();
+        c3.a a15 = i.a();
+        a15.f4561b = 5;
+        a15.f4560a = "SKU type can't be empty.";
+        a15.a();
+        c3.a a16 = i.a();
+        a16.f4561b = 5;
+        a16.f4560a = "Product type can't be empty.";
+        d = a16.a();
+        c3.a a17 = i.a();
+        a17.f4561b = -2;
+        a17.f4560a = "Client does not support extra params.";
+        e = a17.a();
+        c3.a a18 = i.a();
+        a18.f4561b = 5;
+        a18.f4560a = "Invalid purchase token.";
+        a18.a();
+        c3.a a19 = i.a();
+        a19.f4561b = 6;
+        a19.f4560a = "An internal error occurred.";
+        f4744f = a19.a();
+        c3.a a20 = i.a();
+        a20.f4561b = 5;
+        a20.f4560a = "SKU can't be null.";
+        a20.a();
+        c3.a a21 = i.a();
+        a21.f4561b = 0;
+        f4745g = a21.a();
+        c3.a a22 = i.a();
+        a22.f4561b = -1;
+        a22.f4560a = "Service connection is disconnected.";
+        h = a22.a();
+        c3.a a23 = i.a();
+        a23.f4561b = 2;
+        a23.f4560a = "Timeout communicating with service.";
+        f4746i = a23.a();
+        c3.a a24 = i.a();
+        a24.f4561b = -2;
+        a24.f4560a = "Client does not support subscriptions.";
+        f4747j = a24.a();
+        c3.a a25 = i.a();
+        a25.f4561b = -2;
+        a25.f4560a = "Client does not support subscriptions update.";
+        a25.a();
+        c3.a a26 = i.a();
+        a26.f4561b = -2;
+        a26.f4560a = "Client does not support get purchase history.";
+        a26.a();
+        c3.a a27 = i.a();
+        a27.f4561b = -2;
+        a27.f4560a = "Client does not support price change confirmation.";
+        a27.a();
+        c3.a a28 = i.a();
+        a28.f4561b = -2;
+        a28.f4560a = "Play Store version installed does not support cross selling products.";
+        a28.a();
+        c3.a a29 = i.a();
+        a29.f4561b = -2;
+        a29.f4560a = "Client does not support multi-item purchases.";
+        f4748k = a29.a();
+        c3.a a30 = i.a();
+        a30.f4561b = -2;
+        a30.f4560a = "Client does not support offer_id_token.";
+        f4749l = a30.a();
+        c3.a a31 = i.a();
+        a31.f4561b = -2;
+        a31.f4560a = "Client does not support ProductDetails.";
+        f4750m = a31.a();
+        c3.a a32 = i.a();
+        a32.f4561b = -2;
+        a32.f4560a = "Client does not support in-app messages.";
+        a32.a();
+        c3.a a33 = i.a();
+        a33.f4561b = -2;
+        a33.f4560a = "Client does not support user choice billing.";
+        a33.a();
+        c3.a a34 = i.a();
+        a34.f4561b = -2;
+        a34.f4560a = "Play Store version installed does not support external offer.";
+        a34.a();
+        c3.a a35 = i.a();
+        a35.f4561b = -2;
+        a35.f4560a = "Play Store version installed does not support multi-item purchases with season pass in one cart.";
+        a35.a();
+        c3.a a36 = i.a();
+        a36.f4561b = -2;
+        a36.f4560a = "Play Store version installed does not support querying AutoPay plan purchase.";
+        a36.a();
+        c3.a a37 = i.a();
+        a37.f4561b = -2;
+        a37.f4560a = "Play Store version installed does not support including suspended subscriptions.";
+        a37.a();
+        c3.a a38 = i.a();
+        a38.f4561b = 5;
+        a38.f4560a = "Unknown feature";
+        a38.a();
+        c3.a a39 = i.a();
+        a39.f4561b = -2;
+        a39.f4560a = "Play Store version installed does not support get billing config.";
+        a39.a();
+        c3.a a40 = i.a();
+        a40.f4561b = -2;
+        a40.f4560a = "Query product details with serialized docid is not supported.";
+        a40.a();
+        c3.a a41 = i.a();
+        a41.f4561b = -2;
+        a41.f4560a = "Play Store version installed does not support launching external offer flow.";
+        a41.a();
+        c3.a a42 = i.a();
+        a42.f4561b = 4;
+        a42.f4560a = "Item is unavailable for purchase.";
+        f4751n = a42.a();
+        c3.a a43 = i.a();
+        a43.f4561b = -2;
+        a43.f4560a = "Query product details with developer specified account is not supported.";
+        a43.a();
+        c3.a a44 = i.a();
+        a44.f4561b = -2;
+        a44.f4560a = "Play Store version installed does not support alternative billing only.";
+        a44.a();
+        c3.a a45 = i.a();
+        a45.f4561b = 5;
+        a45.f4560a = "To use this API you must specify a PurchasesUpdateListener when initializing a BillingClient.";
+        f4752o = a45.a();
+        c3.a a46 = i.a();
+        a46.f4561b = 6;
+        a46.f4560a = "An error occurred while retrieving billing override.";
+        f4753p = a46.a();
+        c3.a a47 = i.a();
+        a47.f4561b = -2;
+        a47.f4560a = "Play Store version installed does not support the provided billing program.";
+        a47.a();
     }
 
-    public final synchronized void a(Context context, IntentFilter intentFilter) {
-        int i10;
-        try {
-            if (this.f4754a) {
-                return;
-            }
-            if (Build.VERSION.SDK_INT >= 33) {
-                if (true != this.f4755b) {
-                    i10 = 4;
-                } else {
-                    i10 = 2;
-                }
-                context.registerReceiver(this, intentFilter, i10);
-            } else {
-                context.registerReceiver(this, intentFilter);
-            }
-            this.f4754a = true;
-        } catch (Throwable th2) {
-            throw th2;
-        }
-    }
-
-    public final synchronized void b(Context context, IntentFilter intentFilter) {
-        h0 h0Var;
-        int i10;
-        try {
-            try {
-                if (this.f4754a) {
-                    return;
-                }
-                if (Build.VERSION.SDK_INT >= 33) {
-                    if (true != this.f4755b) {
-                        i10 = 4;
-                    } else {
-                        i10 = 2;
-                    }
-                    h0Var = this;
-                    context.registerReceiver(h0Var, intentFilter, "com.google.android.finsky.permission.PLAY_BILLING_LIBRARY_BROADCAST", null, i10);
-                } else {
-                    h0Var = this;
-                    context.registerReceiver(this, intentFilter, "com.google.android.finsky.permission.PLAY_BILLING_LIBRARY_BROADCAST", null);
-                }
-                h0Var.f4754a = true;
-            } catch (Throwable th2) {
-                th = th2;
-                throw th;
-            }
-        } catch (Throwable th3) {
-            th = th3;
-            throw th;
-        }
-    }
-
-    public final void c(Bundle bundle, i iVar, int i10, n3 n3Var, long j10, boolean z10) {
-        o1 d;
-        try {
-            if (bundle.getByteArray("FAILURE_LOGGING_PAYLOAD") != null) {
-                f0 f0Var = (f0) this.f4756c.d;
-                byte[] byteArray = bundle.getByteArray("FAILURE_LOGGING_PAYLOAD");
-                int i11 = o1.f7181a;
-                synchronized (o1.class) {
-                    int i12 = o1.f7181a;
-                    q2 q2Var = q2.f7196c;
-                    d = s1.d();
-                    int i13 = o1.f7181a;
-                }
-                ((n4.s) f0Var).P(g3.n(byteArray, d), j10, z10);
-                return;
-            }
-            ((n4.s) ((f0) this.f4756c.d)).P(e0.b(23, i10, iVar, null, n3Var), j10, z10);
-        } catch (Throwable unused) {
-            com.google.android.gms.internal.play_billing.u.h("BillingBroadcastManager", "Failed parsing Api failure.");
-        }
-    }
-
-    @Override
-    public final void onReceive(android.content.Context r19, android.content.Intent r20) {
-        throw new UnsupportedOperationException("Method not decompiled: c5.h0.onReceive(android.content.Context, android.content.Intent):void");
+    public static i a(int i10, String str) {
+        c3.a a2 = i.a();
+        a2.f4561b = i10;
+        a2.f4560a = str;
+        return a2.a();
     }
 }

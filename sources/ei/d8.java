@@ -3,31 +3,31 @@ package ei;
 import android.text.Editable;
 import android.text.TextWatcher;
 public final class d8 implements TextWatcher {
-    public final p6 f8899a;
-    public final j8 f8900b;
+    public final p6 f8900a;
+    public final j8 f8901b;
 
     public d8(j8 j8Var, p6 p6Var) {
-        this.f8900b = j8Var;
-        this.f8899a = p6Var;
+        this.f8901b = j8Var;
+        this.f8900a = p6Var;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
         String obj;
-        this.f8899a.run();
-        j8 j8Var = this.f8900b;
+        this.f8900a.run();
+        j8 j8Var = this.f8901b;
         org.telegram.ui.Cells.i3 i3Var = j8Var.Y;
-        if (j8Var.f9270c0) {
+        if (j8Var.f9271c0) {
             return;
         }
-        if (j8Var.f9271d0 && editable != null) {
+        if (j8Var.f9272d0 && editable != null) {
             String substring = editable.toString().substring(8);
-            j8Var.f9270c0 = true;
-            i3Var.f22398b.setText(substring);
-            org.telegram.ui.Cells.g3 g3Var = i3Var.f22398b;
+            j8Var.f9271c0 = true;
+            i3Var.f22401b.setText(substring);
+            org.telegram.ui.Cells.g3 g3Var = i3Var.f22401b;
             g3Var.setSelection(0, g3Var.getText().length());
-            j8Var.f9270c0 = false;
-            j8Var.f9271d0 = false;
+            j8Var.f9271c0 = false;
+            j8Var.f9272d0 = false;
             j8.T(j8Var, substring);
             return;
         }
@@ -42,15 +42,15 @@ public final class d8 implements TextWatcher {
     @Override
     public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
         int i13;
-        j8 j8Var = this.f8900b;
-        if (j8Var.f9270c0) {
+        j8 j8Var = this.f8901b;
+        if (j8Var.f9271c0) {
             return;
         }
         boolean z10 = false;
         if (charSequence != null && i10 == 8 && charSequence.subSequence(0, i10).toString().equals("https://") && charSequence.length() >= (i13 = i12 + i10) && charSequence.subSequence(i10, i13).toString().startsWith("https://")) {
             z10 = true;
         }
-        j8Var.f9271d0 = z10;
+        j8Var.f9272d0 = z10;
     }
 
     @Override

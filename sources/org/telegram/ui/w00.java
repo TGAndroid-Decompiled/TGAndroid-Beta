@@ -1,33 +1,27 @@
 package org.telegram.ui;
+public final class w00 {
+    public long f42418a;
+    public int f42419b;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.view.View;
-public final class w00 extends AnimatorListenerAdapter {
-    public final int f42305a = 0;
-    public final qq f42306b;
-
-    public w00(qq qqVar) {
-        this.f42306b = qqVar;
+    public w00(int i10, long j10) {
+        this.f42418a = j10;
+        this.f42419b = i10;
     }
 
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f42305a) {
-            case 0:
-                ((g10) this.f42306b.d).f37031l0.unlock();
-                return;
-            default:
-                qq qqVar = this.f42306b;
-                View view = qqVar.f40468b;
-                view.setAlpha(1.0f);
-                s4.n0.x0(view);
-                ((g10) qqVar.d).f37018b.removeView(view);
-                return;
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
+        if (obj != null && w00.class == obj.getClass()) {
+            w00 w00Var = (w00) obj;
+            if (this.f42418a == w00Var.f42418a && this.f42419b == w00Var.f42419b) {
+                return true;
+            }
+        }
+        return false;
     }
 
-    public w00(qq qqVar, s4.n0 n0Var) {
-        this.f42306b = qqVar;
+    public final int hashCode() {
+        return this.f42419b;
     }
 }

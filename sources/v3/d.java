@@ -74,7 +74,7 @@ public final class d implements o {
 
     @Override
     public final List e() {
-        l0 l0Var = n0.f8475b;
+        l0 l0Var = n0.f8476b;
         return x1.e;
     }
 
@@ -85,12 +85,12 @@ public final class d implements o {
 
     public final a g(p pVar, boolean z10) {
         x xVar = this.f47917c;
-        pVar.b(0, 4, xVar.f8292a);
+        pVar.b(0, 4, xVar.f8293a);
         xVar.N(0);
         int m10 = xVar.m();
         a0 a0Var = this.d;
         a0Var.a(m10);
-        return new a(pVar.getLength(), pVar.getPosition(), a0Var.e, a0Var.f4566b, z10, true);
+        return new a(pVar.getLength(), pVar.getPosition(), a0Var.e, a0Var.f4564b, z10, true);
     }
 
     public final void h() {

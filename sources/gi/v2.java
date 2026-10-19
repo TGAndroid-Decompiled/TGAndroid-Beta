@@ -7,7 +7,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.UserObject;
 import org.telegram.ui.ActionBar.d6;
-public final class v2 extends org.telegram.ui.web.b1 {
+public final class v2 extends org.telegram.ui.web.a1 {
     public final int S0;
     public final Object T0;
 
@@ -29,7 +29,7 @@ public final class v2 extends org.telegram.ui.web.b1 {
                     d3Var.i();
                     org.telegram.ui.f3 f3Var = d3Var.U0;
                     if (d3Var.m()) {
-                        userName = d3Var.f11162v0.e;
+                        userName = d3Var.f11163v0.e;
                     } else {
                         userName = UserObject.getUserName(MessagesController.getInstance(d3Var.G).getUser(Long.valueOf(d3Var.H)));
                     }
@@ -55,33 +55,33 @@ public final class v2 extends org.telegram.ui.web.b1 {
     }
 
     @Override
-    public final void J(org.telegram.ui.web.y0 y0Var) {
+    public final void J(org.telegram.ui.web.x0 x0Var) {
         switch (this.S0) {
             case 0:
                 d3 d3Var = (d3) this.T0;
-                d3Var.v.setWebView(y0Var);
-                y0 y0Var2 = d3Var.B0;
-                if (y0Var2 != null) {
-                    y0Var2.f11556k = y0Var;
+                d3Var.v.setWebView(x0Var);
+                y0 y0Var = d3Var.B0;
+                if (y0Var != null) {
+                    y0Var.f11557k = x0Var;
                 }
-                d3Var.m0.setWebView(y0Var);
+                d3Var.m0.setWebView(x0Var);
                 d3Var.G();
                 return;
             default:
-                ((f4) this.T0).J.setWebView(y0Var);
+                ((f4) this.T0).J.setWebView(x0Var);
                 return;
         }
     }
 
     @Override
-    public void K(org.telegram.ui.web.y0 y0Var) {
+    public void K(org.telegram.ui.web.x0 x0Var) {
         switch (this.S0) {
             case 0:
                 d3 d3Var = (d3) this.T0;
-                y0 y0Var2 = d3Var.B0;
-                if (y0Var2 != null && y0Var2.f11556k == y0Var) {
-                    y0Var2.f11556k = null;
-                    y0Var2.b();
+                y0 y0Var = d3Var.B0;
+                if (y0Var != null && y0Var.f11557k == x0Var) {
+                    y0Var.f11557k = null;
+                    y0Var.b();
                 }
                 d3Var.m0.setWebView(null);
                 return;
@@ -98,7 +98,7 @@ public final class v2 extends org.telegram.ui.web.b1 {
                     f4 f4Var = (f4) this.T0;
                     if (!f4Var.P) {
                         f4Var.P = true;
-                        f4Var.f11209n.Q();
+                        f4Var.f11210n.Q();
                     }
                 }
                 return super.dispatchTouchEvent(motionEvent);

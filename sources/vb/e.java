@@ -22,7 +22,7 @@ public final class e extends i {
 
     @Override
     public final void b() {
-        l.k(Thread.currentThread().equals(((AtomicReference) this.f45189a.d).get()));
+        l.k(Thread.currentThread().equals(((AtomicReference) this.f45187a.d).get()));
         if (this.d == null) {
             this.f48330f.getClass();
             ThickLanguageIdentifier thickLanguageIdentifier = new ThickLanguageIdentifier(this.e);
@@ -33,7 +33,7 @@ public final class e extends i {
 
     @Override
     public final void c() {
-        l.k(Thread.currentThread().equals(((AtomicReference) this.f45189a.d).get()));
+        l.k(Thread.currentThread().equals(((AtomicReference) this.f45187a.d).get()));
         ThickLanguageIdentifier thickLanguageIdentifier = this.d;
         if (thickLanguageIdentifier != null) {
             thickLanguageIdentifier.c();
@@ -57,8 +57,8 @@ public final class e extends i {
                     Object obj = a2.get(i10);
                     i10++;
                     IdentifiedLanguage identifiedLanguage = (IdentifiedLanguage) obj;
-                    if (!"unknown".equals(identifiedLanguage.f7694a)) {
-                        str2 = identifiedLanguage.f7694a;
+                    if (!"unknown".equals(identifiedLanguage.f7695a)) {
+                        str2 = identifiedLanguage.f7695a;
                         break;
                     }
                 } else {

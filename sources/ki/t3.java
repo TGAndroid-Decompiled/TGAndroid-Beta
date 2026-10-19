@@ -4,14 +4,14 @@ import android.text.TextUtils;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
 public final class t3 {
-    public final a f15526a;
-    public final int f15527b;
-    public final w3 f15528c;
+    public final a f15529a;
+    public final int f15530b;
+    public final w3 f15531c;
 
     public t3(w3 w3Var, a aVar, int i10) {
-        this.f15528c = w3Var;
-        this.f15526a = aVar;
-        this.f15527b = i10;
+        this.f15531c = w3Var;
+        this.f15529a = aVar;
+        this.f15530b = i10;
     }
 
     public final void a(String str, TL_keyboard.InlineButtonType inlineButtonType) {
@@ -19,14 +19,14 @@ public final class t3 {
         boolean z10;
         TL_keyboard.PageButton pageButton;
         if (!TextUtils.isEmpty(str) && k4.c(inlineButtonType) && (d = d()) != null) {
-            int i10 = this.f15527b;
+            int i10 = this.f15530b;
             if (i10 >= 0 && i10 < d.buttons.size()) {
                 z10 = true;
             } else {
                 z10 = false;
             }
             if (z10 || d.buttons.size() < 8) {
-                w3 w3Var = this.f15528c;
+                w3 w3Var = this.f15531c;
                 h2 h2Var = w3Var.H3;
                 if (h2Var != null) {
                     h2Var.d();
@@ -49,7 +49,7 @@ public final class t3 {
                 if (h2Var2 != null) {
                     h2Var2.h();
                 }
-                w3Var.f15591f3.onContentChanged();
+                w3Var.f15594f3.onContentChanged();
             }
         }
     }
@@ -57,8 +57,8 @@ public final class t3 {
     public final void b() {
         int i10;
         TL_iv.pageBlockButtonRow d = d();
-        if (d != null && (i10 = this.f15527b) >= 0 && i10 < d.buttons.size()) {
-            w3 w3Var = this.f15528c;
+        if (d != null && (i10 = this.f15530b) >= 0 && i10 < d.buttons.size()) {
+            w3 w3Var = this.f15531c;
             h2 h2Var = w3Var.H3;
             if (h2Var != null) {
                 h2Var.d();
@@ -69,23 +69,23 @@ public final class t3 {
             if (h2Var2 != null) {
                 h2Var2.h();
             }
-            w3Var.f15591f3.onContentChanged();
+            w3Var.f15594f3.onContentChanged();
         }
     }
 
     public final boolean c() {
         int i10;
         TL_iv.pageBlockButtonRow d = d();
-        if (d != null && (i10 = this.f15527b) >= 0 && i10 < d.buttons.size()) {
+        if (d != null && (i10 = this.f15530b) >= 0 && i10 < d.buttons.size()) {
             return true;
         }
         return false;
     }
 
     public final TL_iv.pageBlockButtonRow d() {
-        a aVar = this.f15526a;
+        a aVar = this.f15529a;
         if (aVar != null) {
-            TL_iv.PageBlock pageBlock = aVar.f15094b;
+            TL_iv.PageBlock pageBlock = aVar.f15097b;
             if (pageBlock instanceof TL_iv.pageBlockButtonRow) {
                 return (TL_iv.pageBlockButtonRow) pageBlock;
             }

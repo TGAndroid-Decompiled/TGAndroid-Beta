@@ -5,7 +5,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 public class d implements Parcelable {
     public static final Parcelable.Creator<d> CREATOR = new w.a(15);
-    public b f4454a;
+    public b f4452a;
 
     @Override
     public final int describeContents() {
@@ -16,10 +16,10 @@ public class d implements Parcelable {
     public final void writeToParcel(Parcel parcel, int i10) {
         synchronized (this) {
             try {
-                if (this.f4454a == null) {
-                    this.f4454a = new c(this);
+                if (this.f4452a == null) {
+                    this.f4452a = new c(this);
                 }
-                parcel.writeStrongBinder(this.f4454a.asBinder());
+                parcel.writeStrongBinder(this.f4452a.asBinder());
             } catch (Throwable th2) {
                 throw th2;
             }

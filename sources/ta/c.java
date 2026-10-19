@@ -111,16 +111,16 @@ public final class c {
                 while (jsonReader.hasNext()) {
                     String nextName2 = jsonReader.nextName();
                     if (nextName2.equals("token")) {
-                        a2.f281c = jsonReader.nextString();
+                        a2.f282c = jsonReader.nextString();
                     } else if (nextName2.equals("expiresIn")) {
                         a2.d = Long.valueOf(d(jsonReader.nextString()));
                     } else {
                         jsonReader.skipValue();
                     }
                 }
-                b e7 = a2.e();
+                b f7 = a2.f();
                 jsonReader.endObject();
-                bVar = e7;
+                bVar = f7;
             } else {
                 jsonReader.skipValue();
             }
@@ -139,7 +139,7 @@ public final class c {
         while (jsonReader.hasNext()) {
             String nextName = jsonReader.nextName();
             if (nextName.equals("token")) {
-                a2.f281c = jsonReader.nextString();
+                a2.f282c = jsonReader.nextString();
             } else if (nextName.equals("expiresIn")) {
                 a2.d = Long.valueOf(d(jsonReader.nextString()));
             } else {
@@ -149,8 +149,8 @@ public final class c {
         jsonReader.endObject();
         jsonReader.close();
         inputStream.close();
-        a2.f280b = 1;
-        return a2.e();
+        a2.f281b = 1;
+        return a2.f();
     }
 
     public static void g(HttpURLConnection httpURLConnection, String str, String str2) {

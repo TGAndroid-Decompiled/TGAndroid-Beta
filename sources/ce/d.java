@@ -16,14 +16,14 @@ import kotlin.jvm.internal.j;
 import kotlin.jvm.internal.s;
 import td.l;
 public final class d extends j implements l {
-    public final int f5115b;
-    public final Object f5116c;
+    public final int f5114b;
+    public final Object f5115c;
     public final Object d;
 
     public d(int i10, Object obj, Object obj2) {
         super(1);
-        this.f5115b = i10;
-        this.f5116c = obj;
+        this.f5114b = i10;
+        this.f5115c = obj;
         this.d = obj2;
     }
 
@@ -38,19 +38,19 @@ public final class d extends j implements l {
         i iVar;
         Throwable th2;
         com.google.android.gms.internal.clearcut.e eVar2;
-        switch (this.f5115b) {
+        switch (this.f5114b) {
             case 0:
                 Throwable th3 = (Throwable) obj;
-                ((e) this.f5116c).f5117c.removeCallbacks((u) this.d);
-                return i.f12775a;
+                ((e) this.f5115c).f5116c.removeCallbacks((u) this.d);
+                return i.f12777a;
             default:
                 Throwable th4 = (Throwable) obj;
-                ((m) this.f5116c).invoke(th4);
+                ((m) this.f5115c).invoke(th4);
                 de.b bVar = (de.b) ((r) this.d).d;
                 bVar.getClass();
-                AtomicLongFieldUpdater atomicLongFieldUpdater = de.b.f7943b;
-                AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = de.b.f7947i;
-                com.google.android.gms.internal.clearcut.e eVar3 = de.d.f7965r;
+                AtomicLongFieldUpdater atomicLongFieldUpdater = de.b.f7944b;
+                AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = de.b.f7948i;
+                com.google.android.gms.internal.clearcut.e eVar3 = de.d.f7966r;
                 while (true) {
                     z10 = true;
                     if (atomicReferenceFieldUpdater.compareAndSet(bVar, eVar3, th4)) {
@@ -81,13 +81,13 @@ public final class d extends j implements l {
                 }
                 bVar.c();
                 if (z11) {
-                    AtomicReferenceFieldUpdater atomicReferenceFieldUpdater2 = de.b.f7948j;
+                    AtomicReferenceFieldUpdater atomicReferenceFieldUpdater2 = de.b.f7949j;
                     while (true) {
                         Object obj2 = atomicReferenceFieldUpdater2.get(bVar);
                         if (obj2 == null) {
-                            eVar2 = de.d.f7963p;
+                            eVar2 = de.d.f7964p;
                         } else {
-                            eVar2 = de.d.f7964q;
+                            eVar2 = de.d.f7965q;
                         }
                         while (!atomicReferenceFieldUpdater2.compareAndSet(bVar, obj2, eVar2)) {
                             if (atomicReferenceFieldUpdater2.get(bVar) != obj2) {
@@ -96,32 +96,32 @@ public final class d extends j implements l {
                         }
                         if (obj2 != null) {
                             s.a(1, obj2);
-                            ((l) obj2).invoke((Throwable) de.b.f7947i.get(bVar));
+                            ((l) obj2).invoke((Throwable) de.b.f7948i.get(bVar));
                         }
                     }
                 }
                 while (true) {
                     bVar.getClass();
-                    AtomicLongFieldUpdater atomicLongFieldUpdater3 = de.b.f7944c;
+                    AtomicLongFieldUpdater atomicLongFieldUpdater3 = de.b.f7945c;
                     long j12 = atomicLongFieldUpdater3.get(bVar);
-                    long j13 = de.b.f7943b.get(bVar);
+                    long j13 = de.b.f7944b.get(bVar);
                     if (bVar.i(j13, z10)) {
-                        eVar = new de.e((Throwable) de.b.f7947i.get(bVar));
+                        eVar = new de.e((Throwable) de.b.f7948i.get(bVar));
                     } else {
                         int i12 = (j12 > (j13 & 1152921504606846975L) ? 1 : (j12 == (j13 & 1152921504606846975L) ? 0 : -1));
-                        de.f fVar = g.f7967a;
+                        de.f fVar = g.f7968a;
                         if (i12 < 0) {
-                            com.google.android.gms.internal.clearcut.e eVar4 = de.d.f7958k;
-                            h hVar = (h) de.b.f7946g.get(bVar);
+                            com.google.android.gms.internal.clearcut.e eVar4 = de.d.f7959k;
+                            h hVar = (h) de.b.f7947g.get(bVar);
                             while (true) {
-                                if (bVar.i(de.b.f7943b.get(bVar), z10)) {
-                                    eVar = new de.e((Throwable) de.b.f7947i.get(bVar));
+                                if (bVar.i(de.b.f7944b.get(bVar), z10)) {
+                                    eVar = new de.e((Throwable) de.b.f7948i.get(bVar));
                                 } else {
                                     long andIncrement = atomicLongFieldUpdater3.getAndIncrement(bVar);
-                                    long j14 = de.d.f7952b;
+                                    long j14 = de.d.f7953b;
                                     long j15 = andIncrement / j14;
                                     int i13 = (int) (andIncrement % j14);
-                                    if (hVar.f11040c != j15) {
+                                    if (hVar.f11041c != j15) {
                                         h e = bVar.e(j15, hVar);
                                         if (e == null) {
                                             continue;
@@ -131,7 +131,7 @@ public final class d extends j implements l {
                                         }
                                     }
                                     Object o10 = bVar.o(hVar, i13, andIncrement, eVar4);
-                                    if (o10 == de.d.f7960m) {
+                                    if (o10 == de.d.f7961m) {
                                         if (eVar4 instanceof j2) {
                                             j2Var = (j2) eVar4;
                                         } else {
@@ -142,12 +142,12 @@ public final class d extends j implements l {
                                         }
                                         bVar.q(andIncrement);
                                         hVar.i();
-                                    } else if (o10 == de.d.f7962o) {
+                                    } else if (o10 == de.d.f7963o) {
                                         if (andIncrement < bVar.g()) {
                                             hVar.b();
                                         }
                                         z10 = true;
-                                    } else if (o10 != de.d.f7961n) {
+                                    } else if (o10 != de.d.f7962n) {
                                         hVar.b();
                                         eVar = o10;
                                     } else {
@@ -161,13 +161,13 @@ public final class d extends j implements l {
                     if (eVar instanceof de.f) {
                         eVar = null;
                     }
-                    i iVar2 = i.f12775a;
+                    i iVar2 = i.f12777a;
                     if (eVar == null) {
                         iVar = null;
                     } else {
                         k kVar = (k) eVar;
                         if (kVar instanceof k1.j) {
-                            t tVar = ((k1.j) kVar).f14580b;
+                            t tVar = ((k1.j) kVar).f14581b;
                             if (th4 == null) {
                                 th2 = new CancellationException("DataStore scope was cancelled before updateData could complete");
                             } else {

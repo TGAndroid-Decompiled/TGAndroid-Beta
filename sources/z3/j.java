@@ -6,36 +6,36 @@ public abstract class j extends h2.j implements d {
     public long f50652b;
 
     @Override
-    public final int c(long j10) {
-        d dVar = this.f50651a;
-        dVar.getClass();
-        return dVar.c(j10 - this.f50652b);
-    }
-
-    @Override
     public final void clear() {
         super.clear();
         this.f50651a = null;
     }
 
     @Override
-    public final long d(int i10) {
+    public final int d(long j10) {
         d dVar = this.f50651a;
         dVar.getClass();
-        return dVar.d(i10) + this.f50652b;
+        return dVar.d(j10 - this.f50652b);
     }
 
     @Override
-    public final List e(long j10) {
+    public final long k(int i10) {
         d dVar = this.f50651a;
         dVar.getClass();
-        return dVar.e(j10 - this.f50652b);
+        return dVar.k(i10) + this.f50652b;
     }
 
     @Override
-    public final int h() {
+    public final List s(long j10) {
         d dVar = this.f50651a;
         dVar.getClass();
-        return dVar.h();
+        return dVar.s(j10 - this.f50652b);
+    }
+
+    @Override
+    public final int u() {
+        d dVar = this.f50651a;
+        dVar.getClass();
+        return dVar.u();
     }
 }

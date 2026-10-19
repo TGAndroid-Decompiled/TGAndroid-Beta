@@ -4,38 +4,38 @@ import android.text.TextUtils;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_wallet;
-import org.telegram.ui.m71;
+import org.telegram.ui.k71;
 public final class i implements Utilities.Callback2 {
-    public final int f34287a;
-    public final m0 f34288b;
+    public final int f34304a;
+    public final m0 f34305b;
 
     public i(m0 m0Var, int i10) {
-        this.f34287a = i10;
-        this.f34288b = m0Var;
+        this.f34304a = i10;
+        this.f34305b = m0Var;
     }
 
     @Override
     public final void run(Object obj, Object obj2) {
         String str;
         String str2;
-        switch (this.f34287a) {
+        switch (this.f34304a) {
             case 0:
-                m0 m0Var = this.f34288b;
+                m0 m0Var = this.f34305b;
                 TL_wallet.existingBalance existingbalance = (TL_wallet.existingBalance) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
                 m0Var.C = -1;
                 if (existingbalance != null) {
-                    m0Var.f34456i = Boolean.valueOf(existingbalance.has_balance);
-                    m0Var.f34457j = existingbalance.url;
+                    m0Var.f34473i = Boolean.valueOf(existingbalance.has_balance);
+                    m0Var.f34474j = existingbalance.url;
                 }
-                Boolean bool = m0Var.f34456i;
-                if (bool != null && bool.booleanValue() && !TextUtils.isEmpty(m0Var.f34457j)) {
+                Boolean bool = m0Var.f34473i;
+                if (bool != null && bool.booleanValue() && !TextUtils.isEmpty(m0Var.f34474j)) {
                     m0Var.J();
                     return;
                 }
                 return;
             case 1:
-                m0 m0Var2 = this.f34288b;
+                m0 m0Var2 = this.f34305b;
                 TL_wallet.WalletState walletState = (TL_wallet.WalletState) obj;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
                 m0Var2.A = -1;
@@ -53,13 +53,13 @@ public final class i implements Utilities.Callback2 {
                 long currentTimeMillis = System.currentTimeMillis();
                 if (walletState instanceof TL_wallet.TL_walletState) {
                     TL_wallet.WalletState walletState2 = m0Var2.e;
-                    if ((walletState2 instanceof TL_wallet.TL_walletState) && m0Var2.f34459l) {
+                    if ((walletState2 instanceof TL_wallet.TL_walletState) && m0Var2.f34476l) {
                         TL_wallet.TL_walletState tL_walletState = (TL_wallet.TL_walletState) walletState2;
                         TL_wallet.TL_walletState tL_walletState2 = (TL_wallet.TL_walletState) walletState;
-                        if (currentTimeMillis - m0Var2.f34458k < 30000) {
+                        if (currentTimeMillis - m0Var2.f34475k < 30000) {
                             tL_walletState2.balance = tL_walletState.balance;
                         } else {
-                            m0Var2.f34459l = false;
+                            m0Var2.f34476l = false;
                         }
                         m0Var2.e = walletState;
                         m0Var2.L();
@@ -67,13 +67,13 @@ public final class i implements Utilities.Callback2 {
                         return;
                     }
                 }
-                m0Var2.f34459l = false;
+                m0Var2.f34476l = false;
                 m0Var2.e = walletState;
                 m0Var2.L();
                 m0Var2.J();
                 return;
             default:
-                m0 m0Var3 = this.f34288b;
+                m0 m0Var3 = this.f34305b;
                 TLRPC.Updates updates = (TLRPC.Updates) obj;
                 TLRPC.TL_error tL_error3 = (TLRPC.TL_error) obj2;
                 m0Var3.B = -1;
@@ -88,7 +88,7 @@ public final class i implements Utilities.Callback2 {
                     m0.i(sb3.toString());
                     return;
                 }
-                Utilities.stageQueue.postRunnable(new m71(23, m0Var3, updates));
+                Utilities.stageQueue.postRunnable(new k71(23, m0Var3, updates));
                 return;
         }
     }

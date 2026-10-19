@@ -8,19 +8,19 @@ import android.graphics.Paint;
 import android.graphics.Shader;
 import dh.f;
 public final class b implements a {
-    public final Paint f11051a;
-    public final Matrix f11052b;
-    public BitmapShader f11053c;
+    public final Paint f11052a;
+    public final Matrix f11053b;
+    public BitmapShader f11054c;
     public Bitmap d;
     public final Matrix e;
-    public Bitmap f11054f;
+    public Bitmap f11055f;
     public int h;
-    public int f11055n;
+    public int f11056n;
 
     public b() {
         Paint paint = new Paint(3);
-        this.f11051a = paint;
-        this.f11052b = new Matrix();
+        this.f11052a = paint;
+        this.f11053b = new Matrix();
         this.e = new Matrix();
         paint.setFilterBitmap(true);
     }
@@ -28,13 +28,13 @@ public final class b implements a {
     public final void a(Bitmap bitmap) {
         if (this.d != bitmap) {
             this.d = bitmap;
-            Paint paint = this.f11051a;
+            Paint paint = this.f11052a;
             paint.setShader(null);
-            this.f11053c = null;
+            this.f11054c = null;
             if (bitmap != null) {
                 Shader.TileMode tileMode = Shader.TileMode.CLAMP;
                 BitmapShader bitmapShader = new BitmapShader(bitmap, tileMode, tileMode);
-                this.f11053c = bitmapShader;
+                this.f11054c = bitmapShader;
                 paint.setShader(bitmapShader);
                 d();
             }
@@ -42,17 +42,17 @@ public final class b implements a {
     }
 
     public final void c(int i10, int i11) {
-        if (this.h == i10 && this.f11055n == i11) {
+        if (this.h == i10 && this.f11056n == i11) {
             return;
         }
         this.h = i10;
-        this.f11055n = i11;
+        this.f11056n = i11;
         d();
     }
 
     public final void d() {
         Bitmap bitmap = this.d;
-        Matrix matrix = this.f11052b;
+        Matrix matrix = this.f11053b;
         if (bitmap == null) {
             matrix.reset();
             return;
@@ -60,7 +60,7 @@ public final class b implements a {
         int width = bitmap.getWidth();
         int height = this.d.getHeight();
         int i10 = this.h;
-        int i11 = this.f11055n;
+        int i11 = this.f11056n;
         matrix.reset();
         if (width > 0 && height > 0 && i10 > 0 && i11 > 0) {
             float f7 = i10;
@@ -81,13 +81,13 @@ public final class b implements a {
     @Override
     public final void y(Canvas canvas, float f7, float f10, float f11, float f12) {
         Bitmap bitmap = this.d;
-        if (bitmap != null && !bitmap.isRecycled() && this.f11053c != null) {
+        if (bitmap != null && !bitmap.isRecycled() && this.f11054c != null) {
             Matrix matrix = this.e;
-            Matrix matrix2 = this.f11052b;
+            Matrix matrix2 = this.f11053b;
             matrix.set(matrix2);
             matrix.postTranslate(f7, f10);
-            this.f11053c.setLocalMatrix(matrix2);
-            canvas.drawRect(f7, f10, f11, f12, this.f11051a);
+            this.f11054c.setLocalMatrix(matrix2);
+            canvas.drawRect(f7, f10, f11, f12, this.f11052a);
         }
     }
 

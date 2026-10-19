@@ -1,6 +1,6 @@
 package tc;
 
-import c5.b0;
+import c5.c0;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.Socket;
@@ -12,23 +12,23 @@ public final class t extends Thread {
     public final SocketFactory f46963b;
     public final InetSocketAddress f46964c;
     public final int d;
-    public final b0 e;
-    public final b0 f46965f;
+    public final c0 e;
+    public final c0 f46965f;
 
-    public t(h hVar, SocketFactory socketFactory, InetSocketAddress inetSocketAddress, int i10, b0 b0Var, b0 b0Var2) {
+    public t(h hVar, SocketFactory socketFactory, InetSocketAddress inetSocketAddress, int i10, c0 c0Var, c0 c0Var2) {
         this.f46962a = hVar;
         this.f46963b = socketFactory;
         this.f46964c = inetSocketAddress;
         this.d = i10;
-        this.e = b0Var;
-        this.f46965f = b0Var2;
+        this.e = c0Var;
+        this.f46965f = c0Var2;
     }
 
     public final void a(Exception exc) {
         boolean z10;
         synchronized (this.f46962a) {
             try {
-                if (((CountDownLatch) this.f46965f.f4704c).getCount() == 0) {
+                if (((CountDownLatch) this.f46965f.f4726c).getCount() == 0) {
                     z10 = true;
                 } else {
                     z10 = false;
@@ -37,7 +37,7 @@ public final class t extends Thread {
                     return;
                 }
                 this.f46962a.a(exc);
-                ((CountDownLatch) this.f46965f.f4704c).countDown();
+                ((CountDownLatch) this.f46965f.f4726c).countDown();
             } finally {
             }
         }
@@ -47,7 +47,7 @@ public final class t extends Thread {
         boolean z10;
         synchronized (this.f46962a) {
             try {
-                if (((CountDownLatch) this.f46965f.f4704c).getCount() == 0) {
+                if (((CountDownLatch) this.f46965f.f4726c).getCount() == 0) {
                     z10 = true;
                 } else {
                     z10 = false;
@@ -56,7 +56,7 @@ public final class t extends Thread {
                     return;
                 }
                 this.f46962a.b(this, socket);
-                ((CountDownLatch) this.f46965f.f4704c).countDown();
+                ((CountDownLatch) this.f46965f.f4726c).countDown();
             } finally {
             }
         }
@@ -67,9 +67,9 @@ public final class t extends Thread {
         boolean z10;
         Socket socket = null;
         try {
-            b0 b0Var = this.e;
-            if (b0Var != null) {
-                ((CountDownLatch) b0Var.f4704c).await(b0Var.f4703b, TimeUnit.MILLISECONDS);
+            c0 c0Var = this.e;
+            if (c0Var != null) {
+                ((CountDownLatch) c0Var.f4726c).await(c0Var.f4725b, TimeUnit.MILLISECONDS);
             }
             h hVar = this.f46962a;
             synchronized (hVar) {

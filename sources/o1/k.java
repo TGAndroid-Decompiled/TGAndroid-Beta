@@ -6,57 +6,57 @@ import android.view.Choreographer;
 import java.util.ArrayList;
 import m.g3;
 public final class k extends h {
-    public l f17558u;
+    public l f17561u;
     public float v;
 
     public k(j jVar) {
         super(jVar);
-        this.f17558u = null;
+        this.f17561u = null;
         this.v = Float.MAX_VALUE;
     }
 
     public final void g(float f7) {
-        if (this.f17551f) {
+        if (this.f17554f) {
             this.v = f7;
             return;
         }
-        if (this.f17558u == null) {
-            this.f17558u = new l(f7);
+        if (this.f17561u == null) {
+            this.f17561u = new l(f7);
         }
-        this.f17558u.f17564i = f7;
+        this.f17561u.f17567i = f7;
         h();
     }
 
     public final void h() {
-        l lVar = this.f17558u;
+        l lVar = this.f17561u;
         if (lVar != null) {
-            double d = (float) lVar.f17564i;
-            if (d <= this.f17552g) {
+            double d = (float) lVar.f17567i;
+            if (d <= this.f17555g) {
                 if (d >= this.h) {
-                    double abs = Math.abs(this.f17554j * 0.75f);
+                    double abs = Math.abs(this.f17557j * 0.75f);
                     lVar.d = abs;
                     lVar.e = abs * 62.5d;
                     if (Looper.myLooper() == Looper.getMainLooper()) {
-                        boolean z10 = this.f17551f;
+                        boolean z10 = this.f17554f;
                         if (!z10 && !z10) {
-                            this.f17551f = true;
-                            if (!this.f17550c) {
-                                this.f17549b = this.e.a(this.d);
+                            this.f17554f = true;
+                            if (!this.f17553c) {
+                                this.f17552b = this.e.a(this.d);
                             }
-                            float f7 = this.f17549b;
-                            if (f7 <= this.f17552g && f7 >= this.h) {
-                                ThreadLocal threadLocal = b.f17531f;
+                            float f7 = this.f17552b;
+                            if (f7 <= this.f17555g && f7 >= this.h) {
+                                ThreadLocal threadLocal = b.f17534f;
                                 if (threadLocal.get() == null) {
                                     threadLocal.set(new b());
                                 }
                                 b bVar = (b) threadLocal.get();
-                                ArrayList arrayList = bVar.f17533b;
+                                ArrayList arrayList = bVar.f17536b;
                                 if (arrayList.size() == 0) {
                                     if (bVar.d == null) {
-                                        bVar.d = new g3(bVar.f17534c);
+                                        bVar.d = new g3(bVar.f17537c);
                                     }
                                     g3 g3Var = bVar.d;
-                                    ((Choreographer) g3Var.f16202c).postFrameCallback((a) g3Var.d);
+                                    ((Choreographer) g3Var.f16205c).postFrameCallback((a) g3Var.d);
                                 }
                                 if (!arrayList.contains(this)) {
                                     arrayList.add(this);
@@ -79,14 +79,14 @@ public final class k extends h {
 
     public k(Object obj, i iVar) {
         super(obj, iVar);
-        this.f17558u = null;
+        this.f17561u = null;
         this.v = Float.MAX_VALUE;
     }
 
     public k(Object obj, i iVar, float f7) {
         super(obj, iVar);
-        this.f17558u = null;
+        this.f17561u = null;
         this.v = Float.MAX_VALUE;
-        this.f17558u = new l(f7);
+        this.f17561u = new l(f7);
     }
 }

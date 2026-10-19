@@ -2,7 +2,7 @@ package ug;
 
 import ai.bd;
 import ai.p9;
-import ai.x3;
+import ai.y3;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.Canvas;
@@ -50,8 +50,8 @@ import org.telegram.ui.Components.hm0;
 import org.telegram.ui.Components.im0;
 import org.telegram.ui.Components.kv;
 import org.telegram.ui.Components.xc;
-import org.telegram.ui.lh0;
-import org.telegram.ui.o71;
+import org.telegram.ui.jh0;
+import org.telegram.ui.m71;
 import w7.z5;
 public final class y0 extends bb {
     public final ei.d X;
@@ -110,7 +110,7 @@ public final class y0 extends bb {
         cVar.e.c(0.0f, false);
         x0 x0Var = new x0(this, getContext(), this.resourcesProvider);
         this.Y = x0Var;
-        int i10 = h6.f21057h5;
+        int i10 = h6.f21060h5;
         x0Var.setBackgroundColor(getThemedColor(i10));
         x0Var.setOnSearchTextChange(new v0(this, 0));
         this.Z = new u3(getContext(), this.resourcesProvider);
@@ -140,7 +140,7 @@ public final class y0 extends bb {
         int i14 = this.backgroundPaddingLeft;
         im0Var.setPadding(i14, 0, i14, AndroidUtilities.dp(60.0f));
         this.d.j(new kv(this, 20));
-        this.d.setOnItemClickListener(new qg.g0(this, 23));
+        this.d.setOnItemClickListener(new qg.h0(this, 23));
         s4.k kVar = new s4.k();
         kVar.n(350L);
         kVar.o(bsVar);
@@ -181,9 +181,9 @@ public final class y0 extends bb {
             TLRPC.User user = kVar.getUser();
             TLRPC.Chat chat = kVar.getChat();
             if (user != null) {
-                j10 = user.f20419id;
+                j10 = user.f20422id;
             } else {
-                j10 = -chat.f20272id;
+                j10 = -chat.f20275id;
             }
             if (hashSet.contains(Long.valueOf(j10))) {
                 hashSet.remove(Long.valueOf(j10));
@@ -203,9 +203,9 @@ public final class y0 extends bb {
             x0Var.b(true, hashSet, new s0(y0Var, 1), null);
             y0Var.c0(true, false);
             if (chat != null && !ChatObject.isPublic(chat) && hashSet.contains(Long.valueOf(j10))) {
-                Context context = y0Var.f24915n.getContext();
+                Context context = y0Var.f24899n.getContext();
                 d6 d6Var = y0Var.resourcesProvider;
-                lh0 lh0Var = new lh0(y0Var, j10, 4);
+                jh0 jh0Var = new jh0(y0Var, j10, 4);
                 s0 s0Var = new s0(y0Var, 2);
                 AtomicBoolean atomicBoolean = new AtomicBoolean(false);
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, d6Var);
@@ -215,16 +215,16 @@ public final class y0 extends bb {
                 } else {
                     i10 = R.string.BoostingGiveawayPrivateGroup;
                 }
-                alertDialog$Builder.f20601a.R = LocaleController.getString(i10);
+                alertDialog$Builder.f20604a.R = LocaleController.getString(i10);
                 if (isChannelAndNotMegaGroup) {
                     i11 = R.string.BoostingGiveawayPrivateChannelWarning;
                 } else {
                     i11 = R.string.BoostingGiveawayPrivateGroupWarning;
                 }
-                alertDialog$Builder.f20601a.T = LocaleController.getString(i11);
-                alertDialog$Builder.k(LocaleController.getString("Add", R.string.Add), new org.telegram.ui.web.n(13, atomicBoolean, s0Var));
+                alertDialog$Builder.f20604a.T = LocaleController.getString(i11);
+                alertDialog$Builder.k(LocaleController.getString("Add", R.string.Add), new org.telegram.ui.web.m(13, atomicBoolean, s0Var));
                 alertDialog$Builder.h(LocaleController.getString("Cancel", R.string.Cancel), new sg.y(12));
-                alertDialog$Builder.j(new x3(18, atomicBoolean, lh0Var));
+                alertDialog$Builder.j(new y3(18, atomicBoolean, jh0Var));
                 alertDialog$Builder.o();
             } else if (chat != null) {
                 y0Var.S();
@@ -297,7 +297,7 @@ public final class y0 extends bb {
         float translationY = cVar.getTranslationY() + cVar.getMeasuredHeight();
         this.Y.setTranslationY(translationY);
         this.d.setTranslationY((x0Var.getMeasuredHeight() + cVar.getMeasuredHeight()) - AndroidUtilities.dp(16.0f));
-        int w02 = h6.w0(h6.f21057h5, this.resourcesProvider);
+        int w02 = h6.w0(h6.f21060h5, this.resourcesProvider);
         Paint paint = this.f47776b0;
         paint.setColor(w02);
         int max = Math.max(0, i10);
@@ -310,7 +310,7 @@ public final class y0 extends bb {
         int lerp = AndroidUtilities.lerp(max, 0, f6Var.e(z10));
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set(this.backgroundPaddingLeft, lerp, this.containerView.getWidth() - this.backgroundPaddingLeft, AndroidUtilities.dp(14.0f) + this.containerView.getHeight());
-        float dp = (1.0f - f6Var.f26093c) * AndroidUtilities.dp(14.0f);
+        float dp = (1.0f - f6Var.f26110c) * AndroidUtilities.dp(14.0f);
         canvas.drawRoundRect(rectF, dp, dp, paint);
     }
 
@@ -321,7 +321,7 @@ public final class y0 extends bb {
             AndroidUtilities.cancelRunOnUIThread(this.f47795v0);
             ArrayList arrayList = this.f47781g0;
             arrayList.clear();
-            arrayList.addAll(r.e(this.f47790q0.f20272id));
+            arrayList.addAll(r.e(this.f47790q0.f20275id));
             c0(false, false);
             c0(true, true);
         }
@@ -341,7 +341,7 @@ public final class y0 extends bb {
         s0 s0Var = new s0(this, 0);
         s0 s0Var2 = new s0(this, 6);
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, d6Var);
-        alertDialog$Builder.f20601a.R = LocaleController.getString("UnsavedChanges", R.string.UnsavedChanges);
+        alertDialog$Builder.f20604a.R = LocaleController.getString("UnsavedChanges", R.string.UnsavedChanges);
         if (i10 != 1) {
             if (i10 != 2) {
                 if (i10 != 3) {
@@ -355,9 +355,9 @@ public final class y0 extends bb {
         } else {
             string = LocaleController.getString("BoostingApplyChangesUsers", R.string.BoostingApplyChangesUsers);
         }
-        alertDialog$Builder.f20601a.T = string;
-        alertDialog$Builder.k(LocaleController.getString("ApplyTheme", R.string.ApplyTheme), new qg.g0(s0Var, 22));
-        alertDialog$Builder.h(LocaleController.getString("Discard", R.string.Discard), new qg.g0(s0Var2, 19));
+        alertDialog$Builder.f20604a.T = string;
+        alertDialog$Builder.k(LocaleController.getString("ApplyTheme", R.string.ApplyTheme), new qg.h0(s0Var, 22));
+        alertDialog$Builder.h(LocaleController.getString("Discard", R.string.Discard), new qg.h0(s0Var2, 19));
         alertDialog$Builder.o();
         return true;
     }
@@ -383,17 +383,17 @@ public final class y0 extends bb {
                 connectionsManager.sendRequest(tL_help_getCountriesList, new ai.h(w0Var, 25));
                 return;
             }
-            long j10 = chat.f20272id;
+            long j10 = chat.f20275id;
             v0 v0Var = new v0(this, 1);
             MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
             ConnectionsManager connectionsManager2 = ConnectionsManager.getInstance(UserConfig.selectedAccount);
             TLRPC.TL_contacts_search tL_contacts_search = new TLRPC.TL_contacts_search();
-            tL_contacts_search.f20318q = str;
+            tL_contacts_search.f20321q = str;
             tL_contacts_search.limit = 50;
             connectionsManager2.sendRequest(tL_contacts_search, new p9(messagesController, j10, v0Var, 6));
             return;
         }
-        long j11 = chat.f20272id;
+        long j11 = chat.f20275id;
         w0 w0Var2 = new w0(this, z10, 0);
         MessagesController messagesController2 = MessagesController.getInstance(UserConfig.selectedAccount);
         ConnectionsManager connectionsManager3 = ConnectionsManager.getInstance(UserConfig.selectedAccount);
@@ -408,10 +408,10 @@ public final class y0 extends bb {
         if (str == null) {
             str = "";
         }
-        tL_channelParticipantsSearch.f20271q = str;
+        tL_channelParticipantsSearch.f20274q = str;
         tL_channels_getParticipants.offset = 0;
         tL_channels_getParticipants.limit = 50;
-        connectionsManager3.sendRequest(tL_channels_getParticipants, new o71(9, messagesController2, w0Var2));
+        connectionsManager3.sendRequest(tL_channels_getParticipants, new m71(9, messagesController2, w0Var2));
     }
 
     public final void W(int i10, List list) {
@@ -428,7 +428,7 @@ public final class y0 extends bb {
         linkedHashMap.clear();
         if (i10 != 1) {
             if (i10 == 2) {
-                arrayList.addAll(r.e(this.f47790q0.f20272id));
+                arrayList.addAll(r.e(this.f47790q0.f20275id));
             }
         } else {
             arrayList.addAll(this.f47782h0);
@@ -446,10 +446,10 @@ public final class y0 extends bb {
                     j10 = -((TLRPC.TL_inputPeerChannel) tLObject).channel_id;
                 }
                 if (tLObject instanceof TLRPC.Chat) {
-                    j10 = -((TLRPC.Chat) tLObject).f20272id;
+                    j10 = -((TLRPC.Chat) tLObject).f20275id;
                 }
                 if (tLObject instanceof TLRPC.User) {
-                    j10 = ((TLRPC.User) tLObject).f20419id;
+                    j10 = ((TLRPC.User) tLObject).f20422id;
                 }
                 if (tLObject instanceof TLRPC.TL_help_country) {
                     j10 = ((TLRPC.TL_help_country) tLObject).default_name.hashCode();
@@ -509,7 +509,7 @@ public final class y0 extends bb {
                 for (TLObject tLObject : linkedHashMap.values()) {
                     if (tLObject instanceof TLRPC.Chat) {
                         TLRPC.Chat chat = (TLRPC.Chat) tLObject;
-                        if (hashSet.contains(Long.valueOf(-chat.f20272id))) {
+                        if (hashSet.contains(Long.valueOf(-chat.f20275id))) {
                             arrayList4.add(chat);
                         }
                     }
@@ -530,7 +530,7 @@ public final class y0 extends bb {
             for (TLObject tLObject2 : linkedHashMap.values()) {
                 if (tLObject2 instanceof TLRPC.User) {
                     TLRPC.User user = (TLRPC.User) tLObject2;
-                    if (hashSet.contains(Long.valueOf(user.f20419id))) {
+                    if (hashSet.contains(Long.valueOf(user.f20422id))) {
                         arrayList6.add(user);
                     }
                 }
@@ -562,7 +562,7 @@ public final class y0 extends bb {
         if (z10) {
             li.n nVar = new li.n(getContext(), 2, 0.6f);
             nVar.f46051a = 1;
-            nVar.f16143p = AndroidUtilities.dp(38.0f);
+            nVar.f16146p = AndroidUtilities.dp(38.0f);
             im0Var.getLayoutManager().w0(nVar);
             return;
         }
@@ -702,7 +702,7 @@ public final class y0 extends bb {
         } else if (z10) {
             u3Var.setRightText(null);
         } else {
-            t3 t3Var = u3Var.f23587b;
+            t3 t3Var = u3Var.f23590b;
             t3Var.c(null, false, true);
             t3Var.setOnClickListener(null);
             t3Var.setVisibility(0);

@@ -1,32 +1,17 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import org.telegram.tgnet.tl.TL_stories;
-public final class fc0 extends org.telegram.ui.Components.sv0 {
-    public final pc0 f36873f2;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+public final class fc0 extends org.telegram.ui.ActionBar.m1 {
+    public final nc0 f36967o;
 
-    public fc0(pc0 pc0Var, Context context, org.telegram.ui.Components.kv0 kv0Var, pc0 pc0Var2, ec0 ec0Var, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context, 0L, kv0Var, 0, null, null, null, 8, 0, pc0Var2, ec0Var, 0, d6Var, null);
-        this.f36873f2 = pc0Var;
+    public fc0(nc0 nc0Var, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout) {
+        super(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
+        this.f36967o = nc0Var;
     }
 
     @Override
-    public final int D0() {
-        return 32;
-    }
-
-    @Override
-    public final boolean N() {
-        return true;
-    }
-
-    @Override
-    public final int U0() {
-        return 3;
-    }
-
-    @Override
-    public final TL_stories.MediaArea getStoriesArea() {
-        return this.f36873f2.M0;
+    public final void dismiss() {
+        d(true);
+        this.f36967o.I0 = null;
     }
 }

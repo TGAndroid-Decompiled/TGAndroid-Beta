@@ -1,34 +1,61 @@
 package org.telegram.ui;
-public final class nf1 implements org.telegram.ui.ActionBar.a2 {
-    public final int f39431a;
-    public final xf1 f39432b;
 
-    public nf1(xf1 xf1Var, int i10) {
-        this.f39431a = i10;
-        this.f39432b = xf1Var;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class nf1 implements RequestDelegate {
+    public final int f39584a;
+    public final vf1 f39585b;
+
+    public nf1(vf1 vf1Var, int i10) {
+        this.f39584a = i10;
+        this.f39585b = vf1Var;
     }
 
     @Override
-    public final void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f39431a) {
+    public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        switch (this.f39584a) {
             case 0:
-                this.f39432b.finishFragment();
+                final vf1 vf1Var = this.f39585b;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r4) {
+                            case 0:
+                                vf1.b0(vf1Var, tL_error, tLObject);
+                                return;
+                            default:
+                                vf1.h0(vf1Var, tL_error, tLObject);
+                                return;
+                        }
+                    }
+                });
                 return;
             case 1:
-                xf1 xf1Var = this.f39432b;
-                xf1Var.B0();
-                xf1Var.finishFragment();
+                AndroidUtilities.runOnUIThread(new qf1(this.f39585b, tL_error, 0));
                 return;
             case 2:
-                xf1 xf1Var2 = this.f39432b;
-                xf1Var2.R = "";
-                xf1Var2.E0(false);
+                AndroidUtilities.runOnUIThread(new qf1(this.f39585b, tL_error, 1));
                 return;
             case 3:
-                xf1.a0(this.f39432b);
+                AndroidUtilities.runOnUIThread(new qf1(this.f39585b, tL_error, 2));
                 return;
             default:
-                xf1.X(this.f39432b);
+                final vf1 vf1Var2 = this.f39585b;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r4) {
+                            case 0:
+                                vf1.b0(vf1Var2, tL_error, tLObject);
+                                return;
+                            default:
+                                vf1.h0(vf1Var2, tL_error, tLObject);
+                                return;
+                        }
+                    }
+                });
                 return;
         }
     }

@@ -7,22 +7,22 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
 public final class sr implements RequestDelegate {
-    public final int f30313a;
-    public final xr f30314b;
-    public final ei.d f30315c;
+    public final int f30310a;
+    public final xr f30311b;
+    public final ei.d f30312c;
 
     public sr(xr xrVar, ei.d dVar, int i10) {
-        this.f30313a = i10;
-        this.f30314b = xrVar;
-        this.f30315c = dVar;
+        this.f30310a = i10;
+        this.f30311b = xrVar;
+        this.f30312c = dVar;
     }
 
     @Override
     public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f30313a) {
+        switch (this.f30310a) {
             case 0:
-                final xr xrVar = this.f30314b;
-                final ei.d dVar = this.f30315c;
+                final xr xrVar = this.f30311b;
+                final ei.d dVar = this.f30312c;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -34,10 +34,10 @@ public final class sr implements RequestDelegate {
                                 TLObject tLObject2 = tLObject;
                                 if (tLObject2 != null && (tLObject2 instanceof TL_phone.groupCallStreamRtmpUrl)) {
                                     TL_phone.groupCallStreamRtmpUrl groupcallstreamrtmpurl = (TL_phone.groupCallStreamRtmpUrl) tLObject2;
-                                    xrVar2.f32434b0 = groupcallstreamrtmpurl.url;
-                                    xrVar2.f32435c0 = groupcallstreamrtmpurl.key;
-                                    xrVar2.f32436d0 = new SpannableStringBuilder(xrVar2.f32435c0);
-                                    xrVar2.f32437e0.N(true);
+                                    xrVar2.f32441b0 = groupcallstreamrtmpurl.url;
+                                    xrVar2.f32442c0 = groupcallstreamrtmpurl.key;
+                                    xrVar2.f32443d0 = new SpannableStringBuilder(xrVar2.f32442c0);
+                                    xrVar2.f32444e0.N(true);
                                     return;
                                 }
                                 return;
@@ -48,10 +48,10 @@ public final class sr implements RequestDelegate {
                                 TLObject tLObject3 = tLObject;
                                 if (tLObject3 instanceof TL_phone.groupCallStreamRtmpUrl) {
                                     TL_phone.groupCallStreamRtmpUrl groupcallstreamrtmpurl2 = (TL_phone.groupCallStreamRtmpUrl) tLObject3;
-                                    xrVar3.f32434b0 = groupcallstreamrtmpurl2.url;
-                                    xrVar3.f32435c0 = groupcallstreamrtmpurl2.key;
-                                    xrVar3.f32436d0 = new SpannableStringBuilder(xrVar3.f32435c0);
-                                    xrVar3.f32437e0.N(true);
+                                    xrVar3.f32441b0 = groupcallstreamrtmpurl2.url;
+                                    xrVar3.f32442c0 = groupcallstreamrtmpurl2.key;
+                                    xrVar3.f32443d0 = new SpannableStringBuilder(xrVar3.f32442c0);
+                                    xrVar3.f32444e0.N(true);
                                     return;
                                 }
                                 return;
@@ -60,8 +60,8 @@ public final class sr implements RequestDelegate {
                 });
                 return;
             default:
-                final xr xrVar2 = this.f30314b;
-                final ei.d dVar2 = this.f30315c;
+                final xr xrVar2 = this.f30311b;
+                final ei.d dVar2 = this.f30312c;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -73,10 +73,10 @@ public final class sr implements RequestDelegate {
                                 TLObject tLObject2 = tLObject;
                                 if (tLObject2 != null && (tLObject2 instanceof TL_phone.groupCallStreamRtmpUrl)) {
                                     TL_phone.groupCallStreamRtmpUrl groupcallstreamrtmpurl = (TL_phone.groupCallStreamRtmpUrl) tLObject2;
-                                    xrVar22.f32434b0 = groupcallstreamrtmpurl.url;
-                                    xrVar22.f32435c0 = groupcallstreamrtmpurl.key;
-                                    xrVar22.f32436d0 = new SpannableStringBuilder(xrVar22.f32435c0);
-                                    xrVar22.f32437e0.N(true);
+                                    xrVar22.f32441b0 = groupcallstreamrtmpurl.url;
+                                    xrVar22.f32442c0 = groupcallstreamrtmpurl.key;
+                                    xrVar22.f32443d0 = new SpannableStringBuilder(xrVar22.f32442c0);
+                                    xrVar22.f32444e0.N(true);
                                     return;
                                 }
                                 return;
@@ -87,10 +87,10 @@ public final class sr implements RequestDelegate {
                                 TLObject tLObject3 = tLObject;
                                 if (tLObject3 instanceof TL_phone.groupCallStreamRtmpUrl) {
                                     TL_phone.groupCallStreamRtmpUrl groupcallstreamrtmpurl2 = (TL_phone.groupCallStreamRtmpUrl) tLObject3;
-                                    xrVar3.f32434b0 = groupcallstreamrtmpurl2.url;
-                                    xrVar3.f32435c0 = groupcallstreamrtmpurl2.key;
-                                    xrVar3.f32436d0 = new SpannableStringBuilder(xrVar3.f32435c0);
-                                    xrVar3.f32437e0.N(true);
+                                    xrVar3.f32441b0 = groupcallstreamrtmpurl2.url;
+                                    xrVar3.f32442c0 = groupcallstreamrtmpurl2.key;
+                                    xrVar3.f32443d0 = new SpannableStringBuilder(xrVar3.f32442c0);
+                                    xrVar3.f32444e0.N(true);
                                     return;
                                 }
                                 return;

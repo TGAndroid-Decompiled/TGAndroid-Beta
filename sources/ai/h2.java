@@ -1,184 +1,79 @@
 package ai;
 
-import android.graphics.Bitmap;
-import android.view.View;
-import java.util.ArrayList;
+import android.content.Context;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MediaController;
+import org.telegram.messenger.ChannelBoostsController;
 import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.Utilities;
-public final class h2 implements Utilities.Callback3 {
-    public final int f1401a;
-    public final NotificationCenter.NotificationCenterDelegate f1402b;
+import org.telegram.tgnet.tl.TL_payments;
+import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.ui.DataSettingsActivity;
+import org.telegram.ui.ProfileActivity;
+import org.telegram.ui.bx;
+import org.telegram.ui.cy;
+import org.telegram.ui.gf;
+import org.telegram.ui.wt;
+public final class h2 implements Utilities.Callback {
+    public final int f1397a;
+    public final long f1398b;
+    public final Object f1399c;
+    public final Object d;
 
-    public h2(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, int i10) {
-        this.f1401a = i10;
-        this.f1402b = notificationCenterDelegate;
+    public h2(Object obj, Object obj2, long j10, int i10) {
+        this.f1397a = i10;
+        this.f1399c = obj;
+        this.d = obj2;
+        this.f1398b = j10;
     }
 
     @Override
-    public final void run(Object obj, Object obj2, Object obj3) {
+    public final void run(Object obj) {
         boolean z10;
         int i10;
-        ei.t tVar;
-        float f7;
-        switch (this.f1401a) {
+        switch (this.f1397a) {
             case 0:
-                ((k7) this.f1402b).L2((View) obj2, (CharSequence) obj, ((Boolean) obj3).booleanValue());
-                return;
-            case 1:
-                k7.i0((k7) this.f1402b, (ArrayList) obj, (Utilities.Callback2) obj2, (Runnable) obj3);
-                return;
-            default:
-                ei.vb vbVar = (ei.vb) this.f1402b;
-                Boolean bool = (Boolean) obj;
-                ArrayList arrayList = (ArrayList) obj2;
-                ArrayList arrayList2 = (ArrayList) obj3;
-                if (vbVar.f9966f0 == 0 && arrayList != null && !arrayList.isEmpty() && vbVar.f9997p2 == null && !vbVar.W && vbVar.I()) {
-                    vbVar.H1 = null;
-                    vbVar.I1 = null;
-                    vbVar.J1 = null;
-                    if (bool.booleanValue()) {
-                        if (arrayList.size() + vbVar.A0.getFilledCount() > vbVar.A0.getTotalCount()) {
-                            int size = arrayList.size() + vbVar.A0.getFilledCount();
-                            ArrayList a2 = ei.t.a();
-                            int size2 = a2.size();
-                            int i11 = 0;
-                            while (true) {
-                                if (i11 < size2) {
-                                    Object obj4 = a2.get(i11);
-                                    i11++;
-                                    tVar = (ei.t) obj4;
-                                    if (tVar.e.size() >= size) {
-                                    }
-                                } else {
-                                    tVar = null;
-                                }
-                            }
-                            if (tVar == null) {
-                                vbVar.A0.o(null);
-                                vbVar.A0.e();
-                                vbVar.I0.setSelected((ei.t) null);
-                                ei.ya yaVar = vbVar.B0;
-                                if (yaVar != null) {
-                                    yaVar.recordHevc = !vbVar.A0.j();
-                                }
-                                vbVar.I0.a(false, true);
-                                vbVar.l0(true);
-                                return;
-                            }
-                            ei.ib ibVar = vbVar.A0;
-                            vbVar.f10030z0 = tVar;
-                            ibVar.o(tVar);
-                            vbVar.I0.setSelected(tVar);
-                            int indexOf = ei.t.a().indexOf(tVar);
-                            if (indexOf >= 0) {
-                                vbVar.I0.f10120a.u0(indexOf);
-                            }
-                            ei.ya yaVar2 = vbVar.B0;
-                            if (yaVar2 != null) {
-                                yaVar2.recordHevc = !vbVar.A0.j();
-                            }
-                            vbVar.G0.setDrawable(new ei.u(tVar, false));
-                            vbVar.b0(vbVar.H0, vbVar.I0.e, true);
-                            ei.z6 z6Var = vbVar.O0;
-                            if (vbVar.A0.j()) {
-                                f7 = vbVar.A0.getFilledProgress();
-                            } else {
-                                f7 = 0.0f;
-                            }
-                            z6Var.e(f7, true);
-                        }
-                    }
-                    vbVar.L1 = true;
-                    int i12 = 0;
-                    while (true) {
-                        if (i12 < arrayList.size()) {
-                            ei.a8 l4 = ei.a8.l((MediaController.PhotoEntry) arrayList.get(i12));
-                            l4.M0 = (Bitmap) arrayList2.get(i12);
-                            l4.J0 = vbVar.f10015v0;
-                            l4.K0 = vbVar.f10019w0;
-                            l4.A();
-                            if (bool.booleanValue()) {
-                                if (vbVar.A0.l(l4)) {
-                                    vbVar.K1 = ei.a8.a(vbVar.A0.getLayout(), vbVar.A0.getContent());
-                                } else {
-                                    i12++;
-                                }
-                            } else {
-                                if (vbVar.K1 == null) {
-                                    vbVar.K1 = l4;
-                                } else {
-                                    if (vbVar.H1 == null) {
-                                        ArrayList arrayList3 = new ArrayList();
-                                        vbVar.H1 = arrayList3;
-                                        arrayList3.add(vbVar.K1);
-                                    }
-                                    if (vbVar.H1.size() < 10) {
-                                        vbVar.H1.add(l4);
-                                    }
-                                }
-                                i12++;
-                            }
-                        }
-                    }
-                    if (vbVar.H1 != null) {
-                        vbVar.h0(false, true);
-                        vbVar.Q0.a(vbVar.O1);
-                        ei.z6 z6Var2 = vbVar.O0;
-                        if (vbVar.O1 == 1) {
-                            z10 = true;
-                        } else {
-                            z10 = false;
-                        }
-                        z6Var2.f10223n0 = -1.0f;
-                        z6Var2.f10224o0 = z10;
-                        z6Var2.invalidate();
-                        vbVar.I1 = new ArrayList();
-                        vbVar.J1 = new ArrayList();
-                        for (int i13 = 0; i13 < vbVar.H1.size(); i13 = com.google.android.gms.internal.play_billing.k3.f(i13, i13, 1, vbVar.J1)) {
-                            vbVar.I1.add(Integer.valueOf(i13));
-                        }
-                        vbVar.A0.n(null);
-                        vbVar.I0.a(false, true);
-                        vbVar.l0(true);
-                        vbVar.e(false);
-                        vbVar.J(1, true);
-                        ei.ma maVar = vbVar.f9960d1;
-                        if (maVar != null) {
-                            com.google.firebase.messaging.s sVar = maVar.h;
-                            if (!maVar.I && !maVar.M && (i10 = MessagesController.getGlobalMainSettings().getInt("multistorieshint", 0)) < 3) {
-                                MessagesController.getGlobalMainSettings().edit().putInt("multistorieshint", i10 + 1).apply();
-                                AndroidUtilities.cancelRunOnUIThread(sVar);
-                                maVar.I = true;
-                                maVar.invalidate();
-                                AndroidUtilities.runOnUIThread(sVar, 5500L);
-                            }
-                        }
-                        ei.ua uaVar = vbVar.M0;
-                        if (uaVar != null) {
-                            vbVar.f9985l2 = uaVar.e.e0();
-                            vbVar.f9987m2 = vbVar.M0.getSelectedAlbum();
-                            return;
-                        }
-                        return;
-                    }
-                    ei.a8 a8Var = vbVar.K1;
-                    if (a8Var != null) {
-                        a8Var.B();
-                    }
-                    vbVar.I0.a(false, true);
-                    vbVar.l0(true);
-                    vbVar.e(false);
-                    ei.ua uaVar2 = vbVar.M0;
-                    if (uaVar2 != null) {
-                        vbVar.f9985l2 = uaVar2.e.e0();
-                        vbVar.f9987m2 = vbVar.M0.getSelectedAlbum();
-                        return;
-                    }
+                k7 k7Var = (k7) this.f1399c;
+                MessagesController messagesController = (MessagesController) this.d;
+                TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = (TL_stories.TL_premium_boostsStatus) obj;
+                if (tL_premium_boostsStatus != null && tL_premium_boostsStatus.level < messagesController.channelEmojiStatusLevelMin) {
+                    ChannelBoostsController boostsController = messagesController.getBoostsController();
+                    long j10 = this.f1398b;
+                    boostsController.userCanBoostChannel(j10, tL_premium_boostsStatus, new z2(k7Var, tL_premium_boostsStatus, j10, messagesController, 0));
                     return;
                 }
+                k7Var.f1667k0.setLoading(false);
+                k7Var.W2(true);
+                return;
+            case 1:
+                DataSettingsActivity dataSettingsActivity = (DataSettingsActivity) this.f1399c;
+                Long l4 = (Long) obj;
+                AndroidUtilities.cancelRunOnUIThread((wt) this.d);
+                if (!dataSettingsActivity.W && System.currentTimeMillis() - this.f1398b <= 120) {
+                    z10 = false;
+                } else {
+                    z10 = true;
+                }
+                dataSettingsActivity.W = z10;
+                dataSettingsActivity.Y = l4.longValue();
+                dataSettingsActivity.X = false;
+                if (dataSettingsActivity.f33114a != null && (i10 = dataSettingsActivity.f33120s) >= 0) {
+                    dataSettingsActivity.n0(i10);
+                    return;
+                }
+                return;
+            case 2:
+                Runnable runnable = (Runnable) obj;
+                ((org.telegram.ui.ActionBar.b2) this.d).r(150L);
+                cy cyVar = ((bx) this.f1399c).f35752b;
+                Boolean bool = cyVar.G.bot_participant;
+                if (bool != null && bool.booleanValue()) {
+                    cyVar.getMessagesController().addUserToChat(this.f1398b, cyVar.getMessagesController().getUser(Long.valueOf(cyVar.H)), 0, null, cyVar, false, runnable, new gf(8, runnable));
+                    return;
+                }
+                runnable.run();
+                return;
+            default:
+                ProfileActivity.Z((ProfileActivity) this.f1399c, (Context) this.d, this.f1398b, (TL_payments.connectedBotStarRef) obj);
                 return;
         }
     }

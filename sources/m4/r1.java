@@ -4,43 +4,43 @@ import android.os.Bundle;
 import j$.util.Objects;
 import v7.u6;
 public final class r1 {
-    public static final b2.e1 f16702k;
-    public static final r1 f16703l;
-    public static final String f16704m;
-    public static final String f16705n;
-    public static final String f16706o;
-    public static final String f16707p;
-    public static final String f16708q;
-    public static final String f16709r;
-    public static final String f16710s;
-    public static final String f16711t;
-    public static final String f16712u;
+    public static final b2.e1 f16705k;
+    public static final r1 f16706l;
+    public static final String f16707m;
+    public static final String f16708n;
+    public static final String f16709o;
+    public static final String f16710p;
+    public static final String f16711q;
+    public static final String f16712r;
+    public static final String f16713s;
+    public static final String f16714t;
+    public static final String f16715u;
     public static final String v;
-    public final b2.e1 f16713a;
-    public final boolean f16714b;
-    public final long f16715c;
+    public final b2.e1 f16716a;
+    public final boolean f16717b;
+    public final long f16718c;
     public final long d;
     public final long e;
-    public final int f16716f;
-    public final long f16717g;
+    public final int f16719f;
+    public final long f16720g;
     public final long h;
-    public final long f16718i;
-    public final long f16719j;
+    public final long f16721i;
+    public final long f16722j;
 
     static {
         b2.e1 e1Var = new b2.e1(null, 0, null, null, 0, 0L, 0L, -1, -1);
-        f16702k = e1Var;
-        f16703l = new r1(e1Var, false, -9223372036854775807L, -9223372036854775807L, 0L, 0, 0L, -9223372036854775807L, -9223372036854775807L, 0L);
-        String str = e2.m0.f8253a;
-        f16704m = Integer.toString(0, 36);
-        f16705n = Integer.toString(1, 36);
-        f16706o = Integer.toString(2, 36);
-        f16707p = Integer.toString(3, 36);
-        f16708q = Integer.toString(4, 36);
-        f16709r = Integer.toString(5, 36);
-        f16710s = Integer.toString(6, 36);
-        f16711t = Integer.toString(7, 36);
-        f16712u = Integer.toString(8, 36);
+        f16705k = e1Var;
+        f16706l = new r1(e1Var, false, -9223372036854775807L, -9223372036854775807L, 0L, 0, 0L, -9223372036854775807L, -9223372036854775807L, 0L);
+        String str = e2.m0.f8254a;
+        f16707m = Integer.toString(0, 36);
+        f16708n = Integer.toString(1, 36);
+        f16709o = Integer.toString(2, 36);
+        f16710p = Integer.toString(3, 36);
+        f16711q = Integer.toString(4, 36);
+        f16712r = Integer.toString(5, 36);
+        f16713s = Integer.toString(6, 36);
+        f16714t = Integer.toString(7, 36);
+        f16715u = Integer.toString(8, 36);
         v = Integer.toString(9, 36);
     }
 
@@ -52,16 +52,16 @@ public final class r1 {
             z11 = false;
         }
         u6.g(z10 == z11);
-        this.f16713a = e1Var;
-        this.f16714b = z10;
-        this.f16715c = j10;
+        this.f16716a = e1Var;
+        this.f16717b = z10;
+        this.f16718c = j10;
         this.d = j11;
         this.e = j12;
-        this.f16716f = i10;
-        this.f16717g = j13;
+        this.f16719f = i10;
+        this.f16720g = j13;
         this.h = j14;
-        this.f16718i = j15;
-        this.f16719j = j16;
+        this.f16721i = j15;
+        this.f16722j = j16;
     }
 
     public final r1 a(boolean z10, boolean z11) {
@@ -75,9 +75,9 @@ public final class r1 {
         if (z10 && z11) {
             return this;
         }
-        b2.e1 b10 = this.f16713a.b(z10, z11);
+        b2.e1 b10 = this.f16716a.b(z10, z11);
         int i10 = 0;
-        if (z10 && this.f16714b) {
+        if (z10 && this.f16717b) {
             z12 = true;
         } else {
             z12 = false;
@@ -93,10 +93,10 @@ public final class r1 {
             j11 = 0;
         }
         if (z10) {
-            i10 = this.f16716f;
+            i10 = this.f16719f;
         }
         if (z10) {
-            j12 = this.f16717g;
+            j12 = this.f16720g;
         } else {
             j12 = 0;
         }
@@ -106,57 +106,57 @@ public final class r1 {
             j13 = -9223372036854775807L;
         }
         if (z10) {
-            j14 = this.f16718i;
+            j14 = this.f16721i;
         } else {
             j14 = -9223372036854775807L;
         }
         if (z10) {
-            j15 = this.f16719j;
+            j15 = this.f16722j;
         } else {
             j15 = 0;
         }
-        return new r1(b10, z12, this.f16715c, j10, j11, i10, j12, j13, j14, j15);
+        return new r1(b10, z12, this.f16718c, j10, j11, i10, j12, j13, j14, j15);
     }
 
     public final Bundle b(int i10) {
         Bundle bundle = new Bundle();
-        b2.e1 e1Var = this.f16713a;
-        if (i10 < 3 || !f16702k.a(e1Var)) {
-            bundle.putBundle(f16704m, e1Var.c(i10));
+        b2.e1 e1Var = this.f16716a;
+        if (i10 < 3 || !f16705k.a(e1Var)) {
+            bundle.putBundle(f16707m, e1Var.c(i10));
         }
-        boolean z10 = this.f16714b;
+        boolean z10 = this.f16717b;
         if (z10) {
-            bundle.putBoolean(f16705n, z10);
+            bundle.putBoolean(f16708n, z10);
         }
-        long j10 = this.f16715c;
+        long j10 = this.f16718c;
         if (j10 != -9223372036854775807L) {
-            bundle.putLong(f16706o, j10);
+            bundle.putLong(f16709o, j10);
         }
         long j11 = this.d;
         if (j11 != -9223372036854775807L) {
-            bundle.putLong(f16707p, j11);
+            bundle.putLong(f16710p, j11);
         }
         long j12 = this.e;
         if (i10 < 3 || j12 != 0) {
-            bundle.putLong(f16708q, j12);
+            bundle.putLong(f16711q, j12);
         }
-        int i11 = this.f16716f;
+        int i11 = this.f16719f;
         if (i11 != 0) {
-            bundle.putInt(f16709r, i11);
+            bundle.putInt(f16712r, i11);
         }
-        long j13 = this.f16717g;
+        long j13 = this.f16720g;
         if (j13 != 0) {
-            bundle.putLong(f16710s, j13);
+            bundle.putLong(f16713s, j13);
         }
         long j14 = this.h;
         if (j14 != -9223372036854775807L) {
-            bundle.putLong(f16711t, j14);
+            bundle.putLong(f16714t, j14);
         }
-        long j15 = this.f16718i;
+        long j15 = this.f16721i;
         if (j15 != -9223372036854775807L) {
-            bundle.putLong(f16712u, j15);
+            bundle.putLong(f16715u, j15);
         }
-        long j16 = this.f16719j;
+        long j16 = this.f16722j;
         if (i10 >= 3 && j16 == 0) {
             return bundle;
         }
@@ -170,7 +170,7 @@ public final class r1 {
         }
         if (obj != null && r1.class == obj.getClass()) {
             r1 r1Var = (r1) obj;
-            if (this.f16715c == r1Var.f16715c && this.f16713a.equals(r1Var.f16713a) && this.f16714b == r1Var.f16714b && this.d == r1Var.d && this.e == r1Var.e && this.f16716f == r1Var.f16716f && this.f16717g == r1Var.f16717g && this.h == r1Var.h && this.f16718i == r1Var.f16718i && this.f16719j == r1Var.f16719j) {
+            if (this.f16718c == r1Var.f16718c && this.f16716a.equals(r1Var.f16716a) && this.f16717b == r1Var.f16717b && this.d == r1Var.d && this.e == r1Var.e && this.f16719f == r1Var.f16719f && this.f16720g == r1Var.f16720g && this.h == r1Var.h && this.f16721i == r1Var.f16721i && this.f16722j == r1Var.f16722j) {
                 return true;
             }
         }
@@ -178,40 +178,40 @@ public final class r1 {
     }
 
     public final int hashCode() {
-        return Objects.hash(this.f16713a, Boolean.valueOf(this.f16714b));
+        return Objects.hash(this.f16716a, Boolean.valueOf(this.f16717b));
     }
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("SessionPositionInfo {PositionInfo {mediaItemIndex=");
-        b2.e1 e1Var = this.f16713a;
-        sb2.append(e1Var.f3736b);
+        b2.e1 e1Var = this.f16716a;
+        sb2.append(e1Var.f3734b);
         sb2.append(", periodIndex=");
         sb2.append(e1Var.e);
         sb2.append(", positionMs=");
-        sb2.append(e1Var.f3738f);
+        sb2.append(e1Var.f3736f);
         sb2.append(", contentPositionMs=");
-        sb2.append(e1Var.f3739g);
+        sb2.append(e1Var.f3737g);
         sb2.append(", adGroupIndex=");
         sb2.append(e1Var.h);
         sb2.append(", adIndexInAdGroup=");
-        sb2.append(e1Var.f3740i);
+        sb2.append(e1Var.f3738i);
         sb2.append("}, isPlayingAd=");
-        sb2.append(this.f16714b);
+        sb2.append(this.f16717b);
         sb2.append(", eventTimeMs=");
-        sb2.append(this.f16715c);
+        sb2.append(this.f16718c);
         sb2.append(", durationMs=");
         sb2.append(this.d);
         sb2.append(", bufferedPositionMs=");
         sb2.append(this.e);
         sb2.append(", bufferedPercentage=");
-        sb2.append(this.f16716f);
+        sb2.append(this.f16719f);
         sb2.append(", totalBufferedDurationMs=");
-        sb2.append(this.f16717g);
+        sb2.append(this.f16720g);
         sb2.append(", currentLiveOffsetMs=");
         sb2.append(this.h);
         sb2.append(", contentDurationMs=");
-        sb2.append(this.f16718i);
+        sb2.append(this.f16721i);
         sb2.append(", contentBufferedPositionMs=");
-        return a1.g.r(sb2, this.f16719j, "}");
+        return a1.g.r(sb2, this.f16722j, "}");
     }
 }

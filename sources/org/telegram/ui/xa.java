@@ -1,64 +1,84 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.messenger.NotificationCenter;
-public final class xa implements MessagesStorage.IntCallback {
-    public final int f43019a;
-    public final Object f43020b;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.Vector;
+public final class xa implements RequestDelegate {
+    public final int f43171a;
+    public final vb f43172b;
 
-    public xa(Object obj, int i10) {
-        this.f43019a = i10;
-        this.f43020b = obj;
+    public xa(vb vbVar, int i10) {
+        this.f43171a = i10;
+        this.f43172b = vbVar;
     }
 
     @Override
-    public final void run(int i10) {
-        du0 du0Var;
-        int i11 = this.f43019a;
-        Object obj = this.f43020b;
-        switch (i11) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f43171a) {
             case 0:
-                ((xb) obj).U0(true);
+                if (tLObject != null) {
+                    final TLRPC.TL_channels_adminLogResults tL_channels_adminLogResults = (TLRPC.TL_channels_adminLogResults) tLObject;
+                    final vb vbVar = this.f43172b;
+                    AndroidUtilities.runOnUIThread(new Runnable() {
+                        @Override
+                        public final void run() {
+                            switch (r3) {
+                                case 0:
+                                    vb.U(vbVar, tL_channels_adminLogResults);
+                                    return;
+                                default:
+                                    vb.Y(vbVar, tL_channels_adminLogResults);
+                                    return;
+                            }
+                        }
+                    });
+                    return;
+                }
                 return;
             case 1:
-                sn snVar = ((en) obj).f36557a;
-                if (i10 > 0 && snVar.getParentActivity() != null && snVar.fragmentView != null) {
-                    org.telegram.ui.Components.xc.a0(snVar).m(org.telegram.ui.Components.wc.I, i10, 0, 0, snVar.f41191ea).j();
+                vb vbVar2 = this.f43172b;
+                vbVar2.getClass();
+                if (tLObject instanceof Vector) {
+                    ArrayList<T> arrayList = ((Vector) tLObject).objects;
+                    ArrayList<TLRPC.User> arrayList2 = new ArrayList<>();
+                    for (int i10 = 0; i10 < arrayList.size(); i10++) {
+                        if (arrayList.get(i10) instanceof TLRPC.User) {
+                            arrayList2.add((TLRPC.User) arrayList.get(i10));
+                        }
+                    }
+                    vbVar2.getMessagesController().putUsers(arrayList2, false);
                     return;
                 }
                 return;
             case 2:
-                ((NotificationsCustomSettingsActivity) obj).l0(true);
+                AndroidUtilities.runOnUIThread(new i0(13, this.f43172b, tLObject));
                 return;
             case 3:
-                PhotoViewer photoViewer = (PhotoViewer) obj;
-                if (photoViewer.f33445y != null && (du0Var = photoViewer.f33266e0) != null && i10 > 0) {
-                    org.telegram.ui.Components.xc.F(du0Var, true).j();
+                if (tLObject != null) {
+                    final TLRPC.TL_channels_adminLogResults tL_channels_adminLogResults2 = (TLRPC.TL_channels_adminLogResults) tLObject;
+                    final vb vbVar3 = this.f43172b;
+                    AndroidUtilities.runOnUIThread(new Runnable() {
+                        @Override
+                        public final void run() {
+                            switch (r3) {
+                                case 0:
+                                    vb.U(vbVar3, tL_channels_adminLogResults2);
+                                    return;
+                                default:
+                                    vb.Y(vbVar3, tL_channels_adminLogResults2);
+                                    return;
+                            }
+                        }
+                    });
                     return;
                 }
-                return;
-            case 4:
-                ProfileActivity profileActivity = (ProfileActivity) obj;
-                if (i10 == 1) {
-                    NotificationCenter notificationCenter = profileActivity.getNotificationCenter();
-                    int i12 = NotificationCenter.closeChats;
-                    notificationCenter.removeObserver(profileActivity, i12);
-                    profileActivity.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(i12, new Object[0]);
-                    profileActivity.K1 = 0;
-                    profileActivity.finishFragment();
-                    return;
-                }
-                profileActivity.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.peerSettingsDidLoad, Long.valueOf(profileActivity.f33607f1));
                 return;
             default:
-                te1 te1Var = ((yd1) obj).f43379a;
-                if (i10 == 0) {
-                    te1Var.O0(false);
-                    return;
-                } else {
-                    te1Var.finishFragment();
-                    return;
-                }
+                AndroidUtilities.runOnUIThread(new t1(this.f43172b, tL_error, tLObject, 9));
+                return;
         }
     }
 }

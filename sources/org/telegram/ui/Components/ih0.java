@@ -15,9 +15,9 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 public abstract class ih0 extends FrameLayout {
-    public final z5 f27234a;
-    public final TextView f27235b;
-    public final org.telegram.ui.Cells.x1 f27236c;
+    public final z5 f27251a;
+    public final TextView f27252b;
+    public final org.telegram.ui.Cells.x1 f27253c;
     public final kh0 d;
 
     public ih0(kh0 kh0Var, Context context) {
@@ -29,9 +29,9 @@ public abstract class ih0 extends FrameLayout {
         int i14;
         int i15;
         this.d = kh0Var;
-        setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21074i5, false));
+        setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21077i5, false));
         z5 z5Var = new z5(getContext());
-        this.f27234a = z5Var;
+        this.f27251a = z5Var;
         z5Var.setTextSize(1, 14.0f);
         z5Var.setTypeface(AndroidUtilities.bold());
         int i16 = org.telegram.ui.ActionBar.h6.f7;
@@ -45,7 +45,7 @@ public abstract class ih0 extends FrameLayout {
         }
         z5Var.setGravity(i10 | 16);
         TextView textView = new TextView(getContext());
-        this.f27235b = textView;
+        this.f27252b = textView;
         textView.setTextSize(1, 14.0f);
         textView.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, i16, false));
         if (LocaleController.isRTL) {
@@ -55,7 +55,7 @@ public abstract class ih0 extends FrameLayout {
         }
         textView.setGravity(i11 | 16);
         org.telegram.ui.Cells.x1 x1Var = new org.telegram.ui.Cells.x1(this, getContext(), 1);
-        this.f27236c = x1Var;
+        this.f27253c = x1Var;
         x1Var.setTextSize(AndroidUtilities.dp(14.0f));
         x1Var.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, i16, false));
         if (LocaleController.isRTL) {
@@ -89,7 +89,7 @@ public abstract class ih0 extends FrameLayout {
 
     public final void a(String str, ArrayList arrayList, int i10, int i11, int i12, boolean z10) {
         SpannableStringBuilder spannableStringBuilder;
-        z5 z5Var = this.f27234a;
+        z5 z5Var = this.f27251a;
         if (arrayList != null) {
             NotificationCenter.listenEmojiLoading(z5Var);
             SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(str);
@@ -104,13 +104,13 @@ public abstract class ih0 extends FrameLayout {
         if (LocaleController.isRTL) {
             spannableStringBuilder = new SpannableStringBuilder(a1.g.m(i10, "% – "));
         } else {
-            spannableStringBuilder = new SpannableStringBuilder(i2.d.k(i10, " – ", "%"));
+            spannableStringBuilder = new SpannableStringBuilder(i2.e.k(i10, " – ", "%"));
         }
-        spannableStringBuilder.setSpan(new c61(AndroidUtilities.bold()), 3, format.length() + 3, 33);
-        this.f27235b.setText(spannableStringBuilder);
-        org.telegram.ui.Cells.x1 x1Var = this.f27236c;
+        spannableStringBuilder.setSpan(new d61(AndroidUtilities.bold()), 3, format.length() + 3, 33);
+        this.f27252b.setText(spannableStringBuilder);
+        org.telegram.ui.Cells.x1 x1Var = this.f27253c;
         if (i12 == 0) {
-            if (this.d.f27879r.quiz) {
+            if (this.d.f27859r.quiz) {
                 x1Var.c(LocaleController.formatPluralString("Answer", i11, new Object[0]), z10, true);
             } else {
                 x1Var.c(LocaleController.formatPluralString("Vote", i11, new Object[0]), z10, true);
@@ -126,8 +126,8 @@ public abstract class ih0 extends FrameLayout {
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
         boolean z11 = LocaleController.isRTL;
-        z5 z5Var = this.f27234a;
-        TextView textView = this.f27235b;
+        z5 z5Var = this.f27251a;
+        TextView textView = this.f27252b;
         if (z11) {
             int left = z5Var.getLeft() - textView.getMeasuredWidth();
             textView.layout(left, textView.getTop(), textView.getMeasuredWidth() + left, textView.getBottom());
@@ -140,12 +140,12 @@ public abstract class ih0 extends FrameLayout {
     @Override
     public final void onMeasure(int i10, int i11) {
         int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(32.0f), 1073741824);
-        TextView textView = this.f27235b;
+        TextView textView = this.f27252b;
         measureChildWithMargins(textView, i10, 0, makeMeasureSpec, 0);
-        org.telegram.ui.Cells.x1 x1Var = this.f27236c;
+        org.telegram.ui.Cells.x1 x1Var = this.f27253c;
         measureChildWithMargins(x1Var, i10, 0, makeMeasureSpec, 0);
         int measuredWidth = x1Var.getMeasuredWidth() + textView.getMeasuredWidth();
-        measureChildWithMargins(this.f27234a, i10, AndroidUtilities.dp(32.0f) + measuredWidth, makeMeasureSpec, 0);
+        measureChildWithMargins(this.f27251a, i10, AndroidUtilities.dp(32.0f) + measuredWidth, makeMeasureSpec, 0);
         setMeasuredDimension(View.MeasureSpec.getSize(i10), AndroidUtilities.dp(32.0f));
     }
 }

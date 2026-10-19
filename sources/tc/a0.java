@@ -203,11 +203,11 @@ public final class a0 extends z {
         if (i13 == 8) {
             u0 u0Var = this.f46992a.f46967b;
             synchronized (u0Var) {
-                int i14 = u0Var.f4057a;
+                int i14 = u0Var.f4055a;
                 if (i14 != 4 && i14 != 5) {
-                    u0Var.f4057a = 4;
-                    if (u0Var.f4058b == 1) {
-                        u0Var.f4058b = 3;
+                    u0Var.f4055a = 4;
+                    if (u0Var.f4056b == 1) {
+                        u0Var.f4056b = 3;
                     }
                 } else {
                     z10 = false;

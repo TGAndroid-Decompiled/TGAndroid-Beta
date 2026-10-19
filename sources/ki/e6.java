@@ -11,12 +11,12 @@ import org.telegram.messenger.SharedConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.l61;
-import org.telegram.ui.Components.m11;
+import org.telegram.ui.Components.m61;
+import org.telegram.ui.Components.n11;
 import org.telegram.ui.Components.p10;
-import org.telegram.ui.Components.vw0;
+import org.telegram.ui.Components.ww0;
 public abstract class e6 {
-    public static final int[] f15247a = {1, 2, 16, 8, 4, 256, 16384, 32768, 65536};
+    public static final int[] f15250a = {1, 2, 16, 8, 4, 256, 16384, 32768, 65536};
 
     public static void a(SpannableStringBuilder spannableStringBuilder, TL_iv.RichText richText, int i10, TL_iv.PageBlock pageBlock, boolean z10) {
         String str;
@@ -42,8 +42,8 @@ public abstract class e6 {
                 a(spannableStringBuilder, textdiff.old_text, i10, pageBlock, z10);
                 if (spannableStringBuilder.length() > length) {
                     ?? obj = new Object();
-                    obj.f28049a = 8192;
-                    spannableStringBuilder.setSpan(new m11(obj, 0), length, spannableStringBuilder.length(), 33);
+                    obj.f28359a = 8192;
+                    spannableStringBuilder.setSpan(new n11(obj, 0), length, spannableStringBuilder.length(), 33);
                     return;
                 }
                 return;
@@ -52,11 +52,11 @@ public abstract class e6 {
             if (j11) {
                 if (spannableStringBuilder.length() > length) {
                     ?? obj2 = new Object();
-                    obj2.f28049a = 4096;
-                    spannableStringBuilder.setSpan(new m11(obj2, 0), length, spannableStringBuilder.length(), 33);
+                    obj2.f28359a = 4096;
+                    spannableStringBuilder.setSpan(new n11(obj2, 0), length, spannableStringBuilder.length(), 33);
                 }
             } else if (spannableStringBuilder.length() > length) {
-                spannableStringBuilder.setSpan(new vw0(), length, spannableStringBuilder.length(), 33);
+                spannableStringBuilder.setSpan(new ww0(), length, spannableStringBuilder.length(), 33);
             }
         } else if (richText instanceof TL_iv.textPlain) {
             b(spannableStringBuilder, ((TL_iv.textPlain) richText).text, i10, pageBlock);
@@ -94,7 +94,7 @@ public abstract class e6 {
                 tL_messageEntityFormattedDate.date = textdate.date;
                 tL_messageEntityFormattedDate.applyFlags();
                 ?? obj3 = new Object();
-                obj3.f28049a |= 128;
+                obj3.f28359a |= 128;
                 spannableStringBuilder.setSpan(new p10(charSequence2, obj3, tL_messageEntityFormattedDate), length4, spannableStringBuilder.length(), 33);
             }
         } else if (richText instanceof TL_iv.textMath) {
@@ -171,10 +171,10 @@ public abstract class e6 {
     }
 
     public static int e(Spanned spanned, int i10, int i11) {
-        m11[] m11VarArr = (m11[]) spanned.getSpans(i10, i11, m11.class);
+        n11[] n11VarArr = (n11[]) spanned.getSpans(i10, i11, n11.class);
         int i12 = 0;
-        for (m11 m11Var : m11VarArr) {
-            int i13 = m11Var.f28368b.f28049a;
+        for (n11 n11Var : n11VarArr) {
+            int i13 = n11Var.f28647b.f28359a;
             if ((i13 & 512) != 0) {
                 i13 |= 256;
             }
@@ -219,8 +219,8 @@ public abstract class e6 {
         int max2 = Math.max(0, Math.min(i11, length));
         if (max < max2 && com.google.android.gms.internal.play_billing.k3.s(editable)) {
             while (max < max2) {
-                int nextSpanTransition = editable.nextSpanTransition(max, max2, l61.class);
-                if (((l61[]) editable.getSpans(max, nextSpanTransition, l61.class)).length != 0) {
+                int nextSpanTransition = editable.nextSpanTransition(max, max2, m61.class);
+                if (((m61[]) editable.getSpans(max, nextSpanTransition, m61.class)).length != 0) {
                     max = nextSpanTransition;
                 }
             }
@@ -243,7 +243,7 @@ public abstract class e6 {
         }
         Spanned spanned = (Spanned) charSequence;
         while (max < max2) {
-            int nextSpanTransition = spanned.nextSpanTransition(max, max2, m11.class);
+            int nextSpanTransition = spanned.nextSpanTransition(max, max2, n11.class);
             if ((e(spanned, max, nextSpanTransition) & i12) == 0) {
                 return false;
             }
@@ -295,10 +295,10 @@ public abstract class e6 {
         }
     }
 
-    public static l61 k(String str) {
+    public static m61 k(String str) {
         ?? obj = new Object();
-        obj.f28049a = 1024;
-        return new l61(str, obj);
+        obj.f28359a = 1024;
+        return new m61(str, obj);
     }
 
     public static String l(TL_iv.RichText richText) {
@@ -356,37 +356,37 @@ public abstract class e6 {
     }
 
     public static void n(Editable editable, int i10, int i11) {
-        l61[] l61VarArr;
+        m61[] m61VarArr;
         int length = editable.length();
         int max = Math.max(0, Math.min(i10, length));
         int max2 = Math.max(0, Math.min(i11, length));
         if (max < max2) {
-            for (l61 l61Var : (l61[]) editable.getSpans(max, max2, l61.class)) {
-                int spanStart = editable.getSpanStart(l61Var);
-                int spanEnd = editable.getSpanEnd(l61Var);
-                editable.removeSpan(l61Var);
+            for (m61 m61Var : (m61[]) editable.getSpans(max, max2, m61.class)) {
+                int spanStart = editable.getSpanStart(m61Var);
+                int spanEnd = editable.getSpanEnd(m61Var);
+                editable.removeSpan(m61Var);
                 if (spanStart < max) {
-                    editable.setSpan(k(l61Var.getURL()), spanStart, max, 33);
+                    editable.setSpan(k(m61Var.getURL()), spanStart, max, 33);
                 }
                 if (spanEnd > max2) {
-                    editable.setSpan(k(l61Var.getURL()), max2, spanEnd, 33);
+                    editable.setSpan(k(m61Var.getURL()), max2, spanEnd, 33);
                 }
             }
         }
     }
 
     public static void o(Spannable spannable, int i10, int i11, int i12, boolean z10, TL_iv.PageBlock pageBlock) {
-        m11[] m11VarArr;
+        n11[] n11VarArr;
         int i13;
         int length = spannable.length();
         int max = Math.max(0, Math.min(i10, length));
         int max2 = Math.max(0, Math.min(i11, length));
         if (max < max2) {
-            for (m11 m11Var : (m11[]) spannable.getSpans(max, max2, m11.class)) {
-                int spanStart = spannable.getSpanStart(m11Var);
-                int spanEnd = spannable.getSpanEnd(m11Var);
-                int i14 = m11Var.f28368b.f28049a;
-                spannable.removeSpan(m11Var);
+            for (n11 n11Var : (n11[]) spannable.getSpans(max, max2, n11.class)) {
+                int spanStart = spannable.getSpanStart(n11Var);
+                int spanEnd = spannable.getSpanEnd(n11Var);
+                int i14 = n11Var.f28647b.f28359a;
+                spannable.removeSpan(n11Var);
                 c(spannable, spanStart, max, i14, pageBlock);
                 c(spannable, max2, spanEnd, i14, pageBlock);
                 int max3 = Math.max(spanStart, max);
@@ -400,7 +400,7 @@ public abstract class e6 {
             }
             if (z10) {
                 while (max < max2) {
-                    int nextSpanTransition = spannable.nextSpanTransition(max, max2, m11.class);
+                    int nextSpanTransition = spannable.nextSpanTransition(max, max2, n11.class);
                     if (e(spannable, max, nextSpanTransition) == 0) {
                         c(spannable, max, nextSpanTransition, i12, pageBlock);
                     }
@@ -410,23 +410,23 @@ public abstract class e6 {
         }
     }
 
-    public static m11 p(int i10, TL_iv.PageBlock pageBlock) {
+    public static n11 p(int i10, TL_iv.PageBlock pageBlock) {
         boolean z10;
         ?? obj = new Object();
-        obj.f28049a = i10;
+        obj.f28359a = i10;
         if (!(pageBlock instanceof TL_iv.pageBlockTitle) && !(pageBlock instanceof TL_iv.pageBlockSubheader) && !(pageBlock instanceof TL_iv.pageBlockHeader) && !(pageBlock instanceof TL_iv.pageBlockHeading1) && !(pageBlock instanceof TL_iv.pageBlockHeading2) && !(pageBlock instanceof TL_iv.pageBlockHeading3) && !(pageBlock instanceof TL_iv.pageBlockHeading4) && !(pageBlock instanceof TL_iv.pageBlockHeading5) && !(pageBlock instanceof TL_iv.pageBlockHeading6)) {
             z10 = false;
         } else {
             z10 = true;
         }
         obj.e = z10;
-        return new m11(obj, 0);
+        return new n11(obj, 0);
     }
 
     public static int q(int i10, int i11, CharSequence charSequence) {
         int i12 = 0;
         for (int i13 = 0; i13 < 9; i13++) {
-            int i14 = f15247a[i13];
+            int i14 = f15250a[i13];
             if (i(i10, i11, i14, charSequence)) {
                 i12 |= i14;
             }
@@ -442,9 +442,9 @@ public abstract class e6 {
 
     public static TL_iv.RichText s(String str, d6 d6Var) {
         TL_iv.textCustomEmoji textcustomemoji;
-        k4 k4Var = d6Var.f15237f;
+        k4 k4Var = d6Var.f15240f;
         if (k4Var != null) {
-            return k4Var.f15361a;
+            return k4Var.f15364a;
         }
         if (d6Var.e != null) {
             TL_iv.textMath textmath = new TL_iv.textMath();
@@ -465,7 +465,7 @@ public abstract class e6 {
             textplain.text = str;
             textcustomemoji = textplain;
         }
-        int i10 = d6Var.f15234a;
+        int i10 = d6Var.f15237a;
         TL_iv.RichText richText = textcustomemoji;
         if ((i10 & 1) != 0) {
             TL_iv.RichText textbold = new TL_iv.textBold();
@@ -521,15 +521,15 @@ public abstract class e6 {
             richText9 = textmarked;
         }
         TL_iv.RichText richText10 = richText9;
-        if (d6Var.f15235b != null) {
+        if (d6Var.f15238b != null) {
             TL_iv.RichText texturl = new TL_iv.textUrl();
             texturl.text = richText9;
-            texturl.url = d6Var.f15235b;
+            texturl.url = d6Var.f15238b;
             richText10 = texturl;
         }
-        p10 p10Var = d6Var.f15236c;
+        p10 p10Var = d6Var.f15239c;
         if (p10Var != null) {
-            TLRPC.TL_messageEntityFormattedDate tL_messageEntityFormattedDate = p10Var.f29131b;
+            TLRPC.TL_messageEntityFormattedDate tL_messageEntityFormattedDate = p10Var.f29141b;
             TL_iv.textDate textdate = new TL_iv.textDate();
             textdate.text = richText10;
             textdate.flags = tL_messageEntityFormattedDate.flags;

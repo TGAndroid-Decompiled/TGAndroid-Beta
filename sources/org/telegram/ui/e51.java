@@ -1,88 +1,35 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.text.TextUtils;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-public final class e51 extends FrameLayout {
-    public final TextView f36367a;
-    public final org.telegram.ui.Components.xj0 f36368b;
-    public final ImageView f36369c;
-    public float d;
-    public ValueAnimator e;
-    public final z51 f36370f;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class e51 extends AnimatorListenerAdapter {
+    public final int f36553a;
+    public final g51 f36554b;
 
-    public e51(z51 z51Var, Context context, boolean z10) {
-        super(context);
-        int i10;
-        this.f36370f = z51Var;
-        LinearLayout e = org.telegram.messenger.lk.e(context, 0);
-        if (z10) {
-            i10 = 3;
-        } else {
-            i10 = 17;
-        }
-        addView(e, w7.z5.e(-2, -2, i10));
-        ?? imageView = new ImageView(context);
-        this.f36368b = imageView;
-        imageView.f(R.raw.unlock_icon, 20, 20, null);
-        int i11 = org.telegram.ui.ActionBar.h6.Te;
-        org.telegram.ui.ActionBar.d6 d6Var = z51Var.Z0;
-        imageView.setColorFilter(org.telegram.ui.ActionBar.h6.w0(i11, d6Var));
-        e.addView((View) imageView, w7.z5.n(20, 20));
-        TextView textView = new TextView(context);
-        this.f36367a = textView;
-        textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(i11, d6Var));
-        textView.setTypeface(AndroidUtilities.bold());
-        textView.setTextSize(1, 14.0f);
-        textView.setEllipsize(TextUtils.TruncateAt.END);
-        textView.setLines(1);
-        textView.setMaxLines(1);
-        textView.setSingleLine(true);
-        e.addView(textView, w7.z5.q(-2, -2, 17));
-        ImageView imageView2 = new ImageView(context);
-        this.f36369c = imageView2;
-        imageView2.setImageResource(R.drawable.msg_close);
-        imageView2.setScaleType(ImageView.ScaleType.CENTER);
-        imageView2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Ve, d6Var), PorterDuff.Mode.MULTIPLY));
-        addView(imageView2, w7.z5.e(24, 24, 21));
-    }
-
-    public final void a(String str, boolean z10) {
-        this.f36367a.setText(str);
-        b(z10);
-    }
-
-    public final void b(boolean z10) {
-        float f7;
-        ValueAnimator valueAnimator = this.e;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-            this.e = null;
-        }
-        if (z10) {
-            f7 = 1.0f;
-        } else {
-            f7 = 0.0f;
-        }
-        this.d = f7;
-        float dp = (1.0f - this.d) * AndroidUtilities.dp(-8.0f);
-        org.telegram.ui.Components.xj0 xj0Var = this.f36368b;
-        xj0Var.setTranslationX(dp);
-        this.f36367a.setTranslationX((1.0f - this.d) * AndroidUtilities.dp(-8.0f));
-        xj0Var.setAlpha(this.d);
+    public e51(g51 g51Var, int i10) {
+        this.f36553a = i10;
+        this.f36554b = g51Var;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(30.0f), 1073741824));
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f36553a) {
+            case 0:
+                super.onAnimationEnd(animator);
+                this.f36554b.I = null;
+                return;
+            case 1:
+                super.onAnimationEnd(animator);
+                this.f36554b.I = null;
+                return;
+            default:
+                super.onAnimationEnd(animator);
+                g51 g51Var = this.f36554b;
+                g51Var.N = 0.0f;
+                g51Var.I = null;
+                g51Var.M = false;
+                g51Var.d(true, false);
+                return;
+        }
     }
 }

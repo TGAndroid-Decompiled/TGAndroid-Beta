@@ -19,9 +19,9 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 public final class j10 extends FrameLayout {
-    public final boolean f27393a;
-    public final CharSequence f27394b;
-    public final i10 f27395c;
+    public final boolean f27406a;
+    public final CharSequence f27407b;
+    public final i10 f27408c;
     public final z5 d;
     public final k10 e;
 
@@ -32,7 +32,7 @@ public final class j10 extends FrameLayout {
         int i10;
         org.telegram.ui.ActionBar.d6 d6Var;
         this.e = k10Var;
-        this.f27393a = z10;
+        this.f27406a = z10;
         String string = LocaleController.getString(R.string.FolderLinkPreviewLeft);
         String string2 = LocaleController.getString(R.string.FolderLinkPreviewRight);
         if (charSequence == null) {
@@ -42,65 +42,65 @@ public final class j10 extends FrameLayout {
         }
         ?? view = new View(context);
         TextPaint textPaint = new TextPaint(1);
-        view.f27036a = textPaint;
+        view.f27031a = textPaint;
         TextPaint textPaint2 = new TextPaint(1);
         Paint paint = new Paint(1);
-        view.f27037b = paint;
-        view.f27038c = new Path();
+        view.f27032b = paint;
+        view.f27033c = new Path();
         float[] fArr = new float[8];
         view.d = fArr;
         Paint paint2 = new Paint(1);
-        view.f27042s = paint2;
+        view.f27037s = paint2;
         Paint paint3 = new Paint(1);
         view.v = paint3;
-        view.f27043w = new Matrix();
-        view.f27044x = new Matrix();
+        view.f27038w = new Matrix();
+        view.f27039x = new Matrix();
         int i11 = org.telegram.ui.ActionBar.h6.Eh;
         textPaint.setColor(org.telegram.ui.ActionBar.h6.m1(0.8f, org.telegram.ui.ActionBar.h6.x0(null, i11, false)));
         textPaint.setTextSize(AndroidUtilities.dp(15.33f));
         textPaint.setTypeface(AndroidUtilities.bold());
-        int i12 = org.telegram.ui.ActionBar.h6.f21189o6;
+        int i12 = org.telegram.ui.ActionBar.h6.f21192o6;
         textPaint2.setColor(org.telegram.ui.ActionBar.h6.x0(null, i12, false));
         textPaint2.setTextSize(AndroidUtilities.dp(17.0f));
         textPaint2.setTypeface(AndroidUtilities.bold());
         paint.setColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.Th, false));
         p6 p6Var = new p6(false, true, true);
-        view.f27045y = p6Var;
+        view.f27040y = p6Var;
         p6Var.n(0.3f, 250L, bs.h);
         p6Var.setCallback(view);
         p6Var.w(AndroidUtilities.dp(11.66f));
-        p6Var.u(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20986d6, false));
+        p6Var.u(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20989d6, false));
         p6Var.x(AndroidUtilities.bold());
-        p6Var.f29192b = 1;
+        p6Var.f29182b = 1;
         int m12 = org.telegram.ui.ActionBar.h6.m1(0.8f, org.telegram.ui.ActionBar.h6.x0(null, i11, false));
         int x02 = org.telegram.ui.ActionBar.h6.x0(null, i12, false);
         if (string != null) {
             f7 = 15.33f;
-            d11 d11Var = new d11(i10.a(string), 15.33f, AndroidUtilities.bold());
-            d11Var.s(view);
-            d11Var.f25435a.setColor(m12);
-            view.e = d11Var;
+            e11 e11Var = new e11(i10.a(string), 15.33f, AndroidUtilities.bold());
+            e11Var.s(view);
+            e11Var.f25728a.setColor(m12);
+            view.e = e11Var;
         } else {
             f7 = 15.33f;
         }
         CharSequence a2 = i10.a(spannableStringBuilder);
-        d11 d11Var2 = new d11(a2, f7, AndroidUtilities.bold());
-        d11Var2.s(view);
-        TextPaint textPaint3 = d11Var2.f25435a;
+        e11 e11Var2 = new e11(a2, f7, AndroidUtilities.bold());
+        e11Var2.s(view);
+        TextPaint textPaint3 = e11Var2.f25728a;
         textPaint3.setColor(x02);
-        view.f27039f = d11Var2;
-        d11Var2.r(MessageObject.replaceAnimatedEmoji(Emoji.replaceEmoji(a2, textPaint3.getFontMetricsInt(), false), arrayList, textPaint3.getFontMetricsInt()));
+        view.f27034f = e11Var2;
+        e11Var2.r(MessageObject.replaceAnimatedEmoji(Emoji.replaceEmoji(a2, textPaint3.getFontMetricsInt(), false), arrayList, textPaint3.getFontMetricsInt()));
         if (z11) {
             i10 = 26;
         } else {
             i10 = 0;
         }
-        d11Var2.p(i10);
+        e11Var2.p(i10);
         if (string2 != null) {
-            d11 d11Var3 = new d11(i10.a(string2), 15.33f, AndroidUtilities.bold());
-            d11Var3.s(view);
-            d11Var3.f25435a.setColor(m12);
-            view.h = d11Var3;
+            e11 e11Var3 = new e11(i10.a(string2), 15.33f, AndroidUtilities.bold());
+            e11Var3.s(view);
+            e11Var3.f25728a.setColor(m12);
+            view.h = e11Var3;
         }
         float dp = AndroidUtilities.dp(3.0f);
         fArr[3] = dp;
@@ -114,15 +114,15 @@ public final class j10 extends FrameLayout {
         fArr[4] = dp2;
         Shader.TileMode tileMode = Shader.TileMode.CLAMP;
         LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, AndroidUtilities.dp(80.0f), 0.0f, new int[]{-1, 16777215}, new float[]{0.0f, 1.0f}, tileMode);
-        view.f27040n = linearGradient;
+        view.f27035n = linearGradient;
         paint2.setShader(linearGradient);
         PorterDuff.Mode mode = PorterDuff.Mode.DST_OUT;
         paint2.setXfermode(new PorterDuffXfermode(mode));
         LinearGradient linearGradient2 = new LinearGradient(0.0f, 0.0f, AndroidUtilities.dp(80.0f), 0.0f, new int[]{16777215, -1}, new float[]{0.0f, 1.0f}, tileMode);
-        view.f27041r = linearGradient2;
+        view.f27036r = linearGradient2;
         paint3.setShader(linearGradient2);
         paint3.setXfermode(new PorterDuffXfermode(mode));
-        this.f27395c = view;
+        this.f27408c = view;
         addView((View) view, w7.z5.d(-1, 44.0f, 55, 0.0f, 17.33f, 0.0f, 0.0f));
         z5 z5Var = new z5(context);
         int i13 = org.telegram.ui.ActionBar.h6.G6;
@@ -132,8 +132,8 @@ public final class j10 extends FrameLayout {
         z5Var.setGravity(17);
         z5Var.setLineSpacing(AndroidUtilities.dp(-1.0f), 1.0f);
         CharSequence replaceEmoji = Emoji.replaceEmoji((CharSequence) new SpannableStringBuilder(charSequence), z5Var.getPaint().getFontMetricsInt(), false, 0.8f);
-        this.f27394b = replaceEmoji;
-        this.f27394b = MessageObject.replaceAnimatedEmoji(replaceEmoji, arrayList, z5Var.getPaint().getFontMetricsInt(), false, 0.8f, 0);
+        this.f27407b = replaceEmoji;
+        this.f27407b = MessageObject.replaceAnimatedEmoji(replaceEmoji, arrayList, z5Var.getPaint().getFontMetricsInt(), false, 0.8f, 0);
         z5Var.setText(k10Var.A());
         z5Var.setCacheType(z11 ? 26 : 0);
         int i14 = org.telegram.ui.ActionBar.h6.Oh;
@@ -156,22 +156,22 @@ public final class j10 extends FrameLayout {
         String str;
         int i11;
         k10 k10Var = this.e;
-        ArrayList arrayList = k10Var.f27677g0;
-        boolean z10 = k10Var.f27672b0;
-        CharSequence charSequence = this.f27394b;
+        ArrayList arrayList = k10Var.f27661g0;
+        boolean z10 = k10Var.f27656b0;
+        CharSequence charSequence = this.f27407b;
         z5 z5Var = this.d;
         if (z10) {
             z5Var.setText(AndroidUtilities.replaceTags(LocaleController.formatSpannable(R.string.FolderLinkSubtitleRemove, charSequence)));
-        } else if (this.f27393a) {
+        } else if (this.f27406a) {
             if (arrayList != null) {
                 i10 = arrayList.size();
             } else {
                 i10 = 0;
             }
-            i10 i10Var = this.f27395c;
-            p6 p6Var = i10Var.f27045y;
+            i10 i10Var = this.f27408c;
+            p6 p6Var = i10Var.f27040y;
             if (i10 > 0) {
-                str = i2.d.j(i10, "+");
+                str = i2.e.j(i10, "+");
             } else {
                 str = "";
             }

@@ -16,7 +16,7 @@ public final class f9 extends a9.o implements ListIterator {
             this.d = h9Var;
             return;
         }
-        throw new IndexOutOfBoundsException(w7.c8.c(i10, size, "index"));
+        throw new IndexOutOfBoundsException(w7.b8.c(i10, size, "index"));
     }
 
     public final Object a(int i10) {

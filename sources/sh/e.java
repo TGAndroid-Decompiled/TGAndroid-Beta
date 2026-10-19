@@ -36,8 +36,8 @@ public final class e extends rh.e implements Drawable.Callback, ne.d {
         this.f45745a.setRoundRadius(AndroidUtilities.dp(7.0f));
         this.d = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.media_link_24).mutate();
         dqVar.setCallback(this);
-        dqVar.b(h6.x0(null, h6.f21190o7, false));
-        dqVar.f25637a = AndroidUtilities.dp(15.0f);
+        dqVar.b(h6.x0(null, h6.f21193o7, false));
+        dqVar.f25610a = AndroidUtilities.dp(15.0f);
     }
 
     @Override
@@ -61,23 +61,23 @@ public final class e extends rh.e implements Drawable.Callback, ne.d {
         imageReceiver.draw(canvas);
         dq dqVar = this.f46536f;
         dqVar.setBounds(0, 0, i10, i11);
-        int x02 = h6.x0(null, h6.f20928a7, false);
+        int x02 = h6.x0(null, h6.f20931a7, false);
         ne.b bVar = this.f46539s;
         int f11 = i0.a.f(bVar.e, x02, 1073741824);
         Paint paint = this.e;
         paint.setColor(f11);
         canvas.drawRoundRect(0.0f, 0.0f, f7, f10, AndroidUtilities.dp(7.0f), AndroidUtilities.dp(7.0f), paint);
-        int f12 = i0.a.f(bVar.e, h6.x0(null, h6.f21190o7, false), -1);
+        int f12 = i0.a.f(bVar.e, h6.x0(null, h6.f21193o7, false), -1);
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
         a5.a aVar = this.f46535c;
         aVar.getClass();
-        if (((PorterDuffColorFilter) aVar.f281c) == null || aVar.f280b != f12 || ((PorterDuff.Mode) aVar.d) != mode) {
-            aVar.f281c = new PorterDuffColorFilter(f12, mode);
-            aVar.f280b = f12;
+        if (((PorterDuffColorFilter) aVar.f282c) == null || aVar.f281b != f12 || ((PorterDuff.Mode) aVar.d) != mode) {
+            aVar.f282c = new PorterDuffColorFilter(f12, mode);
+            aVar.f281b = f12;
             aVar.d = mode;
         }
         Drawable drawable = this.d;
-        drawable.setColorFilter((PorterDuffColorFilter) aVar.f281c);
+        drawable.setColorFilter((PorterDuffColorFilter) aVar.f282c);
         p.e(this.d, f7 / 2.0f, f10 / 2.0f, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f), 17);
         ne.b bVar2 = this.f46538r;
         p.b(canvas, drawable, 1.0f - bVar2.e);
@@ -93,7 +93,7 @@ public final class e extends rh.e implements Drawable.Callback, ne.d {
     }
 
     @Override
-    public final void u(int i10, float f7, float f10, ne.e eVar) {
+    public final void r(int i10, float f7, float f10, ne.e eVar) {
         rh.d dVar = this.h;
         if (dVar != null) {
             dVar.invalidate();
@@ -101,7 +101,7 @@ public final class e extends rh.e implements Drawable.Callback, ne.d {
     }
 
     @Override
-    public final void E(float f7, int i10) {
+    public final void H(float f7, int i10) {
     }
 
     @Override

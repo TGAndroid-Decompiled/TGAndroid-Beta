@@ -10,16 +10,16 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.lk;
 public final class vd extends TextView {
-    public final int f2347a;
+    public final int f2344a;
 
     public vd(Context context, int i10) {
         super(context);
-        this.f2347a = i10;
+        this.f2344a = i10;
     }
 
     @Override
     public void dispatchDraw(Canvas canvas) {
-        switch (this.f2347a) {
+        switch (this.f2344a) {
             case 2:
                 super.dispatchDraw(canvas);
                 canvas.drawCircle(AndroidUtilities.dp(3.5f), AndroidUtilities.dp(11.5f), AndroidUtilities.dp(2.5f), getPaint());
@@ -39,7 +39,7 @@ public final class vd extends TextView {
 
     @Override
     public CharSequence getAccessibilityClassName() {
-        switch (this.f2347a) {
+        switch (this.f2344a) {
             case 15:
                 return Button.class.getName();
             case 16:
@@ -63,9 +63,9 @@ public final class vd extends TextView {
 
     @Override
     public void onDraw(Canvas canvas) {
-        switch (this.f2347a) {
+        switch (this.f2344a) {
             case 5:
-                canvas.drawLine(0.0f, getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, org.telegram.ui.l4.f38696r1);
+                canvas.drawLine(0.0f, getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, org.telegram.ui.l4.f38745r1);
                 super.onDraw(canvas);
                 return;
             default:
@@ -76,7 +76,7 @@ public final class vd extends TextView {
 
     @Override
     public void onMeasure(int i10, int i11) {
-        switch (this.f2347a) {
+        switch (this.f2344a) {
             case 0:
                 super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(org.telegram.ui.ActionBar.k.getCurrentActionBarHeight(), 1073741824));
                 return;
@@ -161,7 +161,7 @@ public final class vd extends TextView {
 
     @Override
     public void setText(CharSequence charSequence, TextView.BufferType bufferType) {
-        switch (this.f2347a) {
+        switch (this.f2344a) {
             case 3:
                 super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false), bufferType);
                 return;

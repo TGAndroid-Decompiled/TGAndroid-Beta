@@ -7,7 +7,7 @@ public final class h extends c0.h implements ScheduledFuture {
     public final ScheduledFuture f46135n;
 
     public h(g gVar) {
-        this.f46135n = gVar.a(new k0.b(this, 28));
+        this.f46135n = gVar.a(new le.b(this, 22));
     }
 
     @Override
@@ -19,8 +19,8 @@ public final class h extends c0.h implements ScheduledFuture {
     public final void d() {
         boolean z10;
         ScheduledFuture scheduledFuture = this.f46135n;
-        Object obj = this.f4470a;
-        if ((obj instanceof c0.a) && ((c0.a) obj).f4456a) {
+        Object obj = this.f4468a;
+        if ((obj instanceof c0.a) && ((c0.a) obj).f4454a) {
             z10 = true;
         } else {
             z10 = false;

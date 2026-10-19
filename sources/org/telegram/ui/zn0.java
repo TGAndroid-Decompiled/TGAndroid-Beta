@@ -1,90 +1,45 @@
 package org.telegram.ui;
 
-import android.content.ActivityNotFoundException;
-import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
-import android.webkit.RenderProcessGoneDetail;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class zn0 extends WebViewClient {
-    public final Context f43767a;
-    public final go0 f43768b;
+import android.text.TextUtils;
+import android.text.TextWatcher;
+public final class zn0 implements TextWatcher {
+    public int f43774a = -1;
+    public boolean f43775b;
+    public int f43776c;
+    public final eo0 d;
 
-    public zn0(go0 go0Var, Context context) {
-        this.f43768b = go0Var;
-        this.f43767a = context;
+    public zn0(eo0 eo0Var) {
+        this.d = eo0Var;
     }
 
     @Override
-    public final void onPageFinished(WebView webView, String str) {
-        super.onPageFinished(webView, str);
-        go0 go0Var = this.f43768b;
-        go0Var.f37255z0 = false;
-        go0Var.H0(true, false);
-        go0Var.K0();
+    public final void afterTextChanged(android.text.Editable r14) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.zn0.afterTextChanged(android.text.Editable):void");
     }
 
     @Override
-    public final boolean onRenderProcessGone(WebView webView, RenderProcessGoneDetail renderProcessGoneDetail) {
-        go0 go0Var = this.f43768b;
-        try {
-            if (!AndroidUtilities.isSafeToShow(go0Var.getParentActivity())) {
-                return true;
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        boolean z10 = false;
+        if (i11 == 0 && i12 == 1) {
+            if (TextUtils.indexOf((CharSequence) this.d.f36711f[1].getText(), '/') != -1) {
+                z10 = true;
             }
-            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(go0Var.getParentActivity(), 0, go0Var.Y0);
-            alertDialog$Builder.f20601a.R = LocaleController.getString(R.string.ChromeCrashTitle);
-            alertDialog$Builder.f20601a.T = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ChromeCrashMessage), new ek0(this, 10));
-            alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
-            alertDialog$Builder.o();
-            return true;
-        } catch (Exception e) {
-            FileLog.e(e);
-            return false;
+            this.f43775b = z10;
+            this.f43774a = 1;
+        } else if (i11 == 1 && i12 == 0) {
+            if (charSequence.charAt(i10) == '/' && i10 > 0) {
+                this.f43775b = false;
+                this.f43774a = 3;
+                this.f43776c = i10 - 1;
+                return;
+            }
+            this.f43774a = 2;
+        } else {
+            this.f43774a = -1;
         }
     }
 
     @Override
-    public final boolean shouldOverrideUrlLoading(WebView webView, String str) {
-        Uri parse;
-        boolean z10;
-        go0 go0Var = this.f43768b;
-        go0Var.f37253y = !str.equals(go0Var.f37251x);
-        try {
-            parse = Uri.parse(str);
-        } catch (Exception unused) {
-        }
-        if ("t.me".equals(parse.getHost())) {
-            go0Var.t0();
-            return true;
-        }
-        if (!go0.f37214h1.contains(parse.getScheme())) {
-            if (!go0.f37213g1.contains(parse.getScheme())) {
-                try {
-                    if (go0Var.getParentActivity() != null) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    if (z10) {
-                        go0Var.getParentActivity().startActivityForResult(new Intent("android.intent.action.VIEW", parse), 210);
-                        return true;
-                    }
-                } catch (ActivityNotFoundException unused2) {
-                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(this.f43767a);
-                    alertDialog$Builder.f20601a.R = go0Var.f37240p0;
-                    alertDialog$Builder.f20601a.T = LocaleController.getString(R.string.PaymentAppNotFoundForDeeplink);
-                    alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
-                    alertDialog$Builder.o();
-                }
-            }
-            return super.shouldOverrideUrlLoading(webView, str);
-        }
-        return true;
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

@@ -1,17 +1,14 @@
 package u2;
-public final class q0 implements Runnable {
-    public final int f47410a;
-    public final Object f47411b;
-    public final Object f47412c;
+public final class q0 extends c3.v {
+    public final w0 f47412b;
 
-    public q0(int i10, Object obj, Object obj2) {
-        this.f47410a = i10;
-        this.f47411b = obj;
-        this.f47412c = obj2;
+    public q0(w0 w0Var, c3.c0 c0Var) {
+        super(c0Var);
+        this.f47412b = w0Var;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: u2.q0.run():void");
+    public final long h() {
+        return this.f47412b.T;
     }
 }

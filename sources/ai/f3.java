@@ -1,77 +1,33 @@
 package ai;
 
-import java.util.ArrayList;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.tl.TL_stars;
-public final class f3 implements Runnable {
-    public final int f1278a;
-    public final k7 f1279b;
-    public final TL_stars.TL_starGiftUnique f1280c;
-    public final ag.a d;
-    public final Runnable e;
+import org.telegram.messenger.Utilities;
+public final class f3 implements Utilities.Callback {
+    public final int f1273a;
+    public final k7 f1274b;
+    public final Long f1275c;
+    public final ug.m1[] d;
 
-    public f3(k7 k7Var, TL_stars.TL_starGiftUnique tL_starGiftUnique, ag.a aVar, Runnable runnable, int i10) {
-        this.f1278a = i10;
-        this.f1279b = k7Var;
-        this.f1280c = tL_starGiftUnique;
-        this.d = aVar;
-        this.e = runnable;
+    public f3(k7 k7Var, Long l4, ug.m1[] m1VarArr, int i10) {
+        this.f1273a = i10;
+        this.f1274b = k7Var;
+        this.f1275c = l4;
+        this.d = m1VarArr;
     }
 
     @Override
-    public final void run() {
-        boolean z10;
-        int i10 = this.f1278a;
-        ag.c cVar = ag.c.f635a;
-        ag.c cVar2 = ag.c.f636b;
-        Runnable runnable = this.e;
-        ag.a aVar = this.d;
-        TL_stars.TL_starGiftUnique tL_starGiftUnique = this.f1280c;
-        k7 k7Var = this.f1279b;
-        boolean z11 = false;
-        switch (i10) {
+    public final void run(Object obj) {
+        switch (this.f1273a) {
             case 0:
-                tL_starGiftUnique.flags |= 16;
-                if (aVar.f631a == cVar2) {
-                    z11 = true;
-                }
-                tL_starGiftUnique.resale_ton_only = z11;
-                ArrayList<TL_stars.StarsAmount> arrayList = new ArrayList<>();
-                tL_starGiftUnique.resell_amount = arrayList;
-                arrayList.add(aVar.e(cVar).o());
-                tL_starGiftUnique.resell_amount.add(aVar.e(cVar2).o());
-                k7Var.f1667f0.setResellPrice(aVar);
-                yh.a2 a2Var = k7Var.f1678k1;
-                if (a2Var != null) {
-                    a2Var.run();
-                }
-                if (runnable != null) {
-                    runnable.run();
-                    return;
-                }
+                k7 k7Var = this.f1274b;
+                k7Var.getClass();
+                k7Var.P1(this.f1275c.longValue(), null, (pf.c) obj, this.d[0]);
                 return;
             default:
-                k7Var.getClass();
-                tL_starGiftUnique.flags |= 16;
-                if (aVar.f631a == cVar2) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                tL_starGiftUnique.resale_ton_only = z10;
-                ArrayList<TL_stars.StarsAmount> arrayList2 = new ArrayList<>();
-                tL_starGiftUnique.resell_amount = arrayList2;
-                arrayList2.add(aVar.e(cVar).o());
-                tL_starGiftUnique.resell_amount.add(aVar.e(cVar2).o());
-                k7Var.f1667f0.setResellPrice(aVar);
-                yh.a2 a2Var2 = k7Var.f1678k1;
-                if (a2Var2 != null) {
-                    a2Var2.run();
-                }
-                if (runnable != null) {
-                    runnable.run();
-                }
-                i2.d.s(R.string.Gift2ResaleEnable, new Object[]{k7Var.Q1()}, k7Var.getBulletinFactory(), R.raw.contact_check, 36);
+                pf.c cVar = (pf.c) obj;
+                cVar.d();
+                long longValue = this.f1275c.longValue();
+                k7 k7Var2 = this.f1274b;
+                k7Var2.Q1(longValue, new v3(k7Var2, cVar, this.d, 0));
                 return;
         }
     }

@@ -5,136 +5,136 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.xp;
 public final class c2 implements View.OnClickListener {
-    public final int f1059a;
-    public final k7 f1060b;
+    public final int f1058a;
+    public final k7 f1059b;
 
     public c2(k7 k7Var, int i10) {
-        this.f1059a = i10;
-        this.f1060b = k7Var;
+        this.f1058a = i10;
+        this.f1059b = k7Var;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f1059a) {
+        switch (this.f1058a) {
             case 0:
-                this.f1060b.v2();
+                this.f1059b.C2();
                 return;
             case 1:
-                this.f1060b.k2();
+                this.f1059b.r2();
                 return;
             case 2:
-                k7 k7Var = this.f1060b;
-                if (k7Var.Y1() != null && k7Var.Y1().host_id != null) {
-                    k7Var.l2();
+                k7 k7Var = this.f1059b;
+                if (k7Var.f2() != null && k7Var.f2().host_id != null) {
+                    k7Var.s2();
                     return;
                 }
                 org.telegram.messenger.g0.q(R.string.Gift2WearWalletHidden, k7Var.getBulletinFactory(), R.raw.info, 36);
                 return;
             case 3:
-                k7 k7Var2 = this.f1060b;
+                k7 k7Var2 = this.f1059b;
                 k7Var2.Y0 = true;
-                k7Var2.P2(false);
+                k7Var2.W2(false);
                 return;
             case 4:
-                this.f1060b.onBackPressed();
+                this.f1059b.onBackPressed();
                 return;
             case 5:
-                this.f1060b.K1();
+                this.f1059b.R1();
                 return;
             case 6:
-                this.f1060b.onBackPressed();
+                this.f1059b.onBackPressed();
                 return;
             case 7:
-                this.f1060b.t2();
+                this.f1059b.A2();
                 return;
             case 8:
-                this.f1060b.dismiss();
+                this.f1059b.dismiss();
                 return;
             case 9:
-                this.f1060b.t2();
+                this.f1059b.A2();
                 return;
             case 10:
-                this.f1060b.onBackPressed();
+                this.f1059b.onBackPressed();
                 return;
             case 11:
-                this.f1060b.e2();
+                this.f1059b.l2();
                 return;
             case 12:
-                this.f1060b.t2();
+                this.f1059b.A2();
                 return;
             case 13:
-                this.f1060b.onBackPressed();
+                this.f1059b.onBackPressed();
                 return;
             case 14:
-                this.f1060b.n2(true);
+                this.f1059b.u2(true);
                 return;
             case 15:
-                this.f1060b.t2();
+                this.f1059b.A2();
                 return;
             case 16:
                 if (view.getAlpha() >= 1.0f) {
-                    k7 k7Var3 = this.f1060b;
-                    ei.d dVar = k7Var3.f1677k0;
+                    k7 k7Var3 = this.f1059b;
+                    ei.d dVar = k7Var3.f1667k0;
                     dVar.g(LocaleController.getString(R.string.GiftCraftInfoButton), true, true);
                     dVar.f(null, true);
                     dVar.setOnClickListener(new c2(k7Var3, 27));
-                    k7Var3.f1667f0.i(3, LocaleController.getString(R.string.GiftCraftInfoTitle), LocaleController.getString(R.string.GiftCraftInfoText), null);
-                    k7Var3.O2(3, true, null);
+                    k7Var3.f1657f0.i(3, LocaleController.getString(R.string.GiftCraftInfoTitle), LocaleController.getString(R.string.GiftCraftInfoText), null);
+                    k7Var3.V2(3, true, null);
                     return;
                 }
                 return;
             case 17:
-                k7 k7Var4 = this.f1060b;
-                if (!k7Var4.f1677k0.N) {
-                    xp xpVar = k7Var4.f1699w0;
-                    xpVar.a(!xpVar.f32428a.f24147q, true);
+                k7 k7Var4 = this.f1059b;
+                if (!k7Var4.f1667k0.N) {
+                    xp xpVar = k7Var4.f1689w0;
+                    xpVar.a(!xpVar.f32432a.f24150q, true);
                     return;
                 }
                 return;
             case 18:
-                k7.i1(this.f1060b);
+                k7.l1(this.f1059b);
                 return;
             case 19:
-                k7.W0(this.f1060b, view);
+                k7.W0(this.f1059b, view);
                 return;
             case 20:
-                this.f1060b.n2(true);
+                this.f1059b.u2(true);
                 return;
             case 21:
                 int i10 = (view.getAlpha() > 0.99f ? 1 : (view.getAlpha() == 0.99f ? 0 : -1));
-                k7 k7Var5 = this.f1060b;
+                k7 k7Var5 = this.f1059b;
                 if (i10 < 0) {
-                    k7Var5.H1();
+                    k7Var5.O1();
                     return;
                 } else {
-                    k7Var5.q2();
+                    k7Var5.x2();
                     return;
                 }
             case 22:
-                this.f1060b.l2();
+                this.f1059b.s2();
                 return;
             case 23:
-                this.f1060b.g2();
+                this.f1059b.n2();
                 return;
             case 24:
-                this.f1060b.f2(view);
+                this.f1059b.m2(view);
                 return;
             case 25:
-                this.f1060b.j2();
+                this.f1059b.q2();
                 return;
             case 26:
-                k7 k7Var6 = this.f1060b;
+                k7 k7Var6 = this.f1059b;
                 k7Var6.Y0 = true;
-                k7Var6.P2(false);
+                k7Var6.W2(false);
                 return;
             case 27:
-                this.f1060b.n2(false);
+                this.f1059b.u2(false);
                 return;
             case 28:
-                this.f1060b.v2();
+                this.f1059b.C2();
                 return;
             default:
-                this.f1060b.onBackPressed();
+                this.f1059b.onBackPressed();
                 return;
         }
     }

@@ -92,7 +92,7 @@ public final class a implements s0 {
             case 0:
                 Integer g10 = b8.g(str2);
                 if (g10 != null) {
-                    q0Var.f3920p = g10;
+                    q0Var.f3918p = g10;
                     return;
                 }
                 return;
@@ -106,21 +106,21 @@ public final class a implements s0 {
             case 2:
                 Integer g12 = b8.g(str2);
                 if (g12 != null) {
-                    q0Var.f3919o = g12;
+                    q0Var.f3917o = g12;
                     return;
                 }
                 return;
             case 3:
-                q0Var.f3910c = str2;
+                q0Var.f3908c = str2;
                 return;
             case 4:
                 q0Var.E = str2;
                 return;
             case 5:
-                q0Var.f3908a = str2;
+                q0Var.f3906a = str2;
                 return;
             case 6:
-                q0Var.f3912g = str2;
+                q0Var.f3910g = str2;
                 return;
             case 7:
                 Integer g13 = b8.g(str2);
@@ -133,7 +133,7 @@ public final class a implements s0 {
                 q0Var.d = str2;
                 return;
             case '\t':
-                q0Var.f3909b = str2;
+                q0Var.f3907b = str2;
                 return;
             default:
                 return;

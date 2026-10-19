@@ -8,19 +8,19 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.LaunchActivity;
-public abstract class ya0 extends j71 {
+public abstract class ya0 extends k71 {
     public final int T;
     public final xa0 U;
     public final b10 V;
-    public final rx0 W;
-    public final rx0 X;
+    public final sx0 W;
+    public final sx0 X;
     public float Y;
     public boolean Z;
 
     public ya0(org.telegram.ui.ActionBar.n2 n2Var, long j10) {
         super(n2Var.getParentActivity(), n2Var.getCurrentAccount(), n2Var.getResourceProvider());
         this.T = ViewConfiguration.get(getContext()).getScaledTouchSlop();
-        int i10 = org.telegram.ui.ActionBar.h6.f20928a7;
+        int i10 = org.telegram.ui.ActionBar.h6.f20931a7;
         setBackgroundColor(getThemedColor(i10));
         this.L = i10;
         this.K = i10;
@@ -32,14 +32,14 @@ public abstract class ya0 extends j71 {
         this.U = xa0Var;
         xa0Var.B = false;
         setDimBehindAlpha(75);
-        this.f27435w.J.setHint(LocaleController.getString(R.string.SearchMemberRequests));
-        xh.f fVar = xa0Var.f49860f;
-        this.f27431f = fVar;
+        this.f27740w.J.setHint(LocaleController.getString(R.string.SearchMemberRequests));
+        xh.f fVar = xa0Var.f49859f;
+        this.f27736f = fVar;
         this.e = fVar;
         this.d.setAdapter(fVar);
         this.d.p1();
         ai.u1 u1Var = this.d;
-        xa0Var.f49869p = u1Var;
+        xa0Var.f49868p = u1Var;
         u1Var.setOnItemClickListener(new ai.wa(xa0Var, 22));
         s4.r0 onScrollListener = u1Var.getOnScrollListener();
         if (onScrollListener == null) {
@@ -51,25 +51,25 @@ public abstract class ya0 extends j71 {
         b10 b10 = xa0Var.b();
         this.V = b10;
         this.containerView.addView(b10, indexOfChild, w7.z5.c(-1.0f, -1));
-        rx0 a2 = xa0Var.a();
+        sx0 a2 = xa0Var.a();
         this.W = a2;
         this.containerView.addView(a2, indexOfChild, w7.z5.c(-1.0f, -1));
-        rx0 c10 = xa0Var.c();
+        sx0 c10 = xa0Var.c();
         this.X = c10;
         this.containerView.addView(c10, indexOfChild, w7.z5.c(-1.0f, -1));
         xa0Var.e();
     }
 
     @Override
-    public final void F(MotionEvent motionEvent, ei.e2 e2Var) {
+    public final void E(MotionEvent motionEvent, ei.e2 e2Var) {
         org.telegram.ui.ActionBar.n2 n2Var;
         long j10;
         int action = motionEvent.getAction();
         xa0 xa0Var = this.U;
         if (action == 0) {
-            this.Y = this.f27437y;
+            this.Y = this.f27742y;
             xa0Var.i(false);
-        } else if (motionEvent.getAction() == 1 && Math.abs(this.f27437y - this.Y) < this.T && !this.Z) {
+        } else if (motionEvent.getAction() == 1 && Math.abs(this.f27742y - this.Y) < this.T && !this.Z) {
             Activity findActivity = AndroidUtilities.findActivity(getContext());
             if (findActivity instanceof LaunchActivity) {
                 LaunchActivity launchActivity = (LaunchActivity) findActivity;
@@ -77,8 +77,8 @@ public abstract class ya0 extends j71 {
             } else {
                 n2Var = null;
             }
-            if (n2Var instanceof org.telegram.ui.sn) {
-                boolean U9 = ((org.telegram.ui.sn) n2Var).U9();
+            if (n2Var instanceof org.telegram.ui.qn) {
+                boolean U9 = ((org.telegram.ui.qn) n2Var).U9();
                 this.Z = true;
                 yt ytVar = new yt(this, e2Var, 23);
                 if (U9) {
@@ -101,14 +101,14 @@ public abstract class ya0 extends j71 {
     }
 
     @Override
-    public final void H(String str) {
+    public final void G(String str) {
         this.U.j(str);
     }
 
     @Override
     public final void J(int i10) {
         super.J(i10);
-        this.V.setTranslationY(this.f27430c.getMeasuredHeight() + i10);
+        this.V.setTranslationY(this.f27735c.getMeasuredHeight() + i10);
         float f7 = i10;
         this.W.setTranslationY(f7);
         this.X.setTranslationY(f7);
@@ -124,8 +124,8 @@ public abstract class ya0 extends j71 {
             } else {
                 i10 = 0;
             }
-            if (this.f27437y != i10) {
-                this.f27437y = i10;
+            if (this.f27742y != i10) {
+                this.f27742y = i10;
                 J(i10);
                 return;
             }
@@ -136,7 +136,7 @@ public abstract class ya0 extends j71 {
 
     @Override
     public final void onBackPressed() {
-        xh.j jVar = this.U.f49872s;
+        xh.j jVar = this.U.f49871s;
         if (jVar != null) {
             jVar.e(false);
         } else {
@@ -147,10 +147,10 @@ public abstract class ya0 extends j71 {
     @Override
     public final void show() {
         xa0 xa0Var = this.U;
-        if (xa0Var.f49858b && this.f27437y == 0) {
-            this.f27437y = AndroidUtilities.dp(8.0f);
+        if (xa0Var.f49857b && this.f27742y == 0) {
+            this.f27742y = AndroidUtilities.dp(8.0f);
         }
         super.show();
-        xa0Var.f49858b = false;
+        xa0Var.f49857b = false;
     }
 }

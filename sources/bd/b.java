@@ -4,29 +4,29 @@ import af.h;
 import df.p;
 import v7.f5;
 public final class b extends ff.a {
-    public final a f4257a = new p();
-    public final StringBuilder f4258b = new StringBuilder();
-    public final int f4259c;
+    public final a f4255a = new p();
+    public final StringBuilder f4256b = new StringBuilder();
+    public final int f4257c;
 
     public b(int i10) {
-        this.f4259c = i10;
+        this.f4257c = i10;
     }
 
     @Override
     public final void a(CharSequence charSequence) {
-        StringBuilder sb2 = this.f4258b;
+        StringBuilder sb2 = this.f4256b;
         sb2.append(charSequence);
         sb2.append('\n');
     }
 
     @Override
     public final void d() {
-        this.f4257a.f4256g = this.f4258b.toString();
+        this.f4255a.f4254g = this.f4256b.toString();
     }
 
     @Override
     public final df.a e() {
-        return this.f4257a;
+        return this.f4255a;
     }
 
     @Override
@@ -49,7 +49,7 @@ public final class b extends ff.a {
                     break;
                 }
             }
-            int i13 = this.f4259c;
+            int i13 = this.f4257c;
             if (i10 == i13 && f5.b(' ', charSequence, i11 + i13, length) == length) {
                 return new af.a(-1, -1, true);
             }

@@ -1,171 +1,139 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
-public final class fk0 extends org.telegram.ui.Components.hm0 {
-    public final Context f36935c;
-    public final NotificationsSettingsActivity d;
+import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
+import android.media.AudioRecordingConfiguration;
+import android.media.MediaRoute2Info;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.SharedConfig;
+import org.telegram.messenger.Utilities;
+public final class fk0 implements org.telegram.ui.ActionBar.a2, org.telegram.ui.Components.kd0, Utilities.Callback2Return, org.telegram.ui.Components.nw0, q3.g, g2.g, qg.k0 {
+    public final int f37025a;
 
-    public fk0(NotificationsSettingsActivity notificationsSettingsActivity, Context context) {
-        this.d = notificationsSettingsActivity;
-        this.f36935c = context;
+    public fk0(int i10) {
+        this.f37025a = i10;
+    }
+
+    public static AudioRecordingConfiguration c(Object obj) {
+        return (AudioRecordingConfiguration) obj;
+    }
+
+    public static MediaRoute2Info d(Object obj) {
+        return (MediaRoute2Info) obj;
     }
 
     @Override
-    public final boolean D(s4.b1 b1Var) {
-        int b10 = b1Var.b();
-        NotificationsSettingsActivity notificationsSettingsActivity = this.d;
-        if (b10 != notificationsSettingsActivity.f33211x && b10 != notificationsSettingsActivity.f33212y && b10 != notificationsSettingsActivity.E && b10 != notificationsSettingsActivity.K && b10 != notificationsSettingsActivity.M && b10 != notificationsSettingsActivity.S && b10 != notificationsSettingsActivity.N && b10 != notificationsSettingsActivity.L && b10 != notificationsSettingsActivity.R && b10 != notificationsSettingsActivity.F && b10 != notificationsSettingsActivity.G && b10 != notificationsSettingsActivity.O && b10 != notificationsSettingsActivity.f33208r && b10 != notificationsSettingsActivity.f33209s && b10 != notificationsSettingsActivity.T && b10 != notificationsSettingsActivity.J) {
-            return true;
+    public Typeface a() {
+        switch (this.f37025a) {
+            case 25:
+                return AndroidUtilities.getTypeface("fonts/rmedium.ttf");
+            case 26:
+                return AndroidUtilities.getTypeface("fonts/rmediumitalic.ttf");
+            case 27:
+                return Typeface.create("serif", 1);
+            case 28:
+                return AndroidUtilities.getTypeface("fonts/rcondensedbold.ttf");
+            default:
+                return AndroidUtilities.getTypeface("fonts/rmono.ttf");
         }
+    }
+
+    @Override
+    public boolean b(int i10, int i11, int i12, int i13, int i14) {
         return false;
     }
 
     @Override
-    public final int h() {
-        return this.d.U;
+    public g2.h createDataSource() {
+        return new g2.b(ApplicationLoader.applicationContext);
     }
 
     @Override
-    public final int j(int i10) {
-        int i11;
-        int i12;
-        int i13;
-        int i14;
-        int i15;
-        int i16;
-        int i17;
-        int i18;
-        int i19;
-        int i20;
-        int i21;
-        int i22;
-        int i23;
-        int i24;
-        int i25;
-        int i26;
-        int i27;
-        NotificationsSettingsActivity notificationsSettingsActivity = this.d;
-        if (i10 != notificationsSettingsActivity.K && i10 != notificationsSettingsActivity.M && i10 != notificationsSettingsActivity.S && i10 != notificationsSettingsActivity.G && i10 != notificationsSettingsActivity.N && i10 != notificationsSettingsActivity.E && i10 != notificationsSettingsActivity.f33211x && i10 != notificationsSettingsActivity.f33208r) {
-            i11 = notificationsSettingsActivity.inappSoundRow;
-            if (i10 != i11) {
-                i12 = notificationsSettingsActivity.inappVibrateRow;
-                if (i10 != i12 && i10 != notificationsSettingsActivity.f33210w) {
-                    i13 = notificationsSettingsActivity.inappPreviewRow;
-                    if (i10 != i13) {
-                        i14 = notificationsSettingsActivity.contactJoinedRow;
-                        if (i10 != i14) {
-                            i15 = notificationsSettingsActivity.pinnedMessageRow;
-                            if (i10 != i15 && i10 != notificationsSettingsActivity.v) {
-                                i16 = notificationsSettingsActivity.badgeNumberMutedRow;
-                                if (i10 != i16) {
-                                    i17 = notificationsSettingsActivity.badgeNumberMessagesRow;
-                                    if (i10 != i17) {
-                                        i18 = notificationsSettingsActivity.badgeNumberShowRow;
-                                        if (i10 != i18) {
-                                            i19 = notificationsSettingsActivity.inappPriorityRow;
-                                            if (i10 != i19) {
-                                                i20 = notificationsSettingsActivity.inchatSoundRow;
-                                                if (i10 != i20 && i10 != notificationsSettingsActivity.P) {
-                                                    i21 = notificationsSettingsActivity.accountsAllRow;
-                                                    if (i10 != i21) {
-                                                        i22 = notificationsSettingsActivity.resetNotificationsRow;
-                                                        if (i10 != i22) {
-                                                            i23 = notificationsSettingsActivity.privateRow;
-                                                            if (i10 != i23) {
-                                                                i24 = notificationsSettingsActivity.groupRow;
-                                                                if (i10 != i24) {
-                                                                    i25 = notificationsSettingsActivity.channelsRow;
-                                                                    if (i10 != i25) {
-                                                                        i26 = notificationsSettingsActivity.storiesRow;
-                                                                        if (i10 != i26) {
-                                                                            i27 = notificationsSettingsActivity.reactionsRow;
-                                                                            if (i10 != i27) {
-                                                                                if (i10 != notificationsSettingsActivity.J && i10 != notificationsSettingsActivity.f33212y && i10 != notificationsSettingsActivity.L && i10 != notificationsSettingsActivity.R && i10 != notificationsSettingsActivity.F && i10 != notificationsSettingsActivity.O && i10 != notificationsSettingsActivity.T) {
-                                                                                    if (i10 == notificationsSettingsActivity.f33209s) {
-                                                                                        return 6;
-                                                                                    }
-                                                                                    return 5;
-                                                                                }
-                                                                                return 4;
-                                                                            }
-                                                                            return 3;
-                                                                        }
-                                                                        return 3;
-                                                                    }
-                                                                    return 3;
-                                                                }
-                                                                return 3;
-                                                            }
-                                                            return 3;
-                                                        }
-                                                        return 2;
-                                                    }
-                                                    return 1;
-                                                }
-                                                return 1;
-                                            }
-                                            return 1;
-                                        }
-                                        return 1;
-                                    }
-                                    return 1;
-                                }
-                                return 1;
-                            }
-                            return 1;
-                        }
-                        return 1;
-                    }
-                    return 1;
-                }
-                return 1;
-            }
-            return 1;
-        }
-        return 0;
-    }
-
-    @Override
-    public final void v(s4.b1 r23, int r24) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.fk0.v(s4.b1, int):void");
-    }
-
-    @Override
-    public final s4.b1 x(ViewGroup viewGroup, int i10) {
-        View l4Var;
-        org.telegram.ui.ActionBar.d6 d6Var;
-        org.telegram.ui.ActionBar.d6 d6Var2;
-        org.telegram.ui.ActionBar.d6 d6Var3;
-        org.telegram.ui.ActionBar.d6 d6Var4;
-        org.telegram.ui.ActionBar.d6 d6Var5;
-        NotificationsSettingsActivity notificationsSettingsActivity = this.d;
-        Context context = this.f36935c;
+    public String e(int i10) {
         if (i10 == 0) {
-            d6Var = ((org.telegram.ui.ActionBar.n2) notificationsSettingsActivity).resourceProvider;
-            l4Var = new org.telegram.ui.Cells.l4(context, d6Var);
-        } else if (i10 == 1) {
-            d6Var2 = ((org.telegram.ui.ActionBar.n2) notificationsSettingsActivity).resourceProvider;
-            l4Var = new org.telegram.ui.Cells.v8(context, d6Var2);
-        } else if (i10 != 2) {
-            if (i10 == 3) {
-                d6Var3 = ((org.telegram.ui.ActionBar.n2) notificationsSettingsActivity).resourceProvider;
-                l4Var = new org.telegram.ui.Cells.i5(21, 64, this.f36935c, d6Var3, true);
-            } else if (i10 != 4) {
-                if (i10 != 5) {
-                    d6Var5 = ((org.telegram.ui.ActionBar.n2) notificationsSettingsActivity).resourceProvider;
-                    l4Var = new org.telegram.ui.Cells.d9(context, d6Var5);
-                } else {
-                    d6Var4 = ((org.telegram.ui.ActionBar.n2) notificationsSettingsActivity).resourceProvider;
-                    l4Var = new org.telegram.ui.Cells.ba(context, 0, d6Var4);
-                }
-            } else {
-                l4Var = new org.telegram.ui.Cells.z6(context, (org.telegram.ui.Cells.c1) null);
-            }
-        } else {
-            l4Var = new org.telegram.ui.Cells.c9(context);
+            return LocaleController.getString(R.string.AutoLockDisabled);
         }
-        return new s4.b1(l4Var);
+        if (i10 == 1) {
+            return LocaleController.formatString("AutoLockInTime", R.string.AutoLockInTime, LocaleController.formatPluralString("Minutes", 1, new Object[0]));
+        }
+        if (i10 == 2) {
+            return LocaleController.formatString("AutoLockInTime", R.string.AutoLockInTime, LocaleController.formatPluralString("Minutes", 5, new Object[0]));
+        }
+        if (i10 == 3) {
+            return LocaleController.formatString("AutoLockInTime", R.string.AutoLockInTime, LocaleController.formatPluralString("Hours", 1, new Object[0]));
+        }
+        if (i10 == 4) {
+            return LocaleController.formatString("AutoLockInTime", R.string.AutoLockInTime, LocaleController.formatPluralString("Hours", 5, new Object[0]));
+        }
+        return "";
+    }
+
+    @Override
+    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        switch (this.f37025a) {
+            case 0:
+                b2Var.dismiss();
+                return;
+            case 1:
+            case 5:
+            case 8:
+            case 9:
+            case 10:
+            case 11:
+            case 12:
+            case 14:
+            default:
+                b2Var.dismiss();
+                return;
+            case 2:
+                Drawable[] drawableArr = PhotoViewer.U8;
+                return;
+            case 3:
+                b2Var.dismiss();
+                return;
+            case 4:
+                b2Var.dismiss();
+                return;
+            case 6:
+                b2Var.dismiss();
+                return;
+            case 7:
+                b2Var.dismiss();
+                return;
+            case 13:
+                b2Var.dismiss();
+                return;
+            case 15:
+                b2Var.dismiss();
+                return;
+            case 16:
+                b2Var.dismiss();
+                return;
+            case 17:
+                b2Var.dismiss();
+                return;
+        }
+    }
+
+    @Override
+    public void h(int i10) {
+        SharedConfig.proxyRotationTimeout = i10;
+        SharedConfig.saveConfig();
+    }
+
+    @Override
+    public Object run(Object obj, Object obj2) {
+        Integer num = (Integer) obj2;
+        if (((Integer) obj).intValue() == 0) {
+            return ai.md.Y0(false, LocaleController.formatPluralStringComma("Stars", num.intValue()), 0.66f, null);
+        }
+        return LocaleController.formatNumber(num.intValue(), ',');
+    }
+
+    @Override
+    public void m() {
     }
 }

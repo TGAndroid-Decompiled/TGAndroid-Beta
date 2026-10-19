@@ -161,13 +161,13 @@ public class xz extends s4.s {
         super.w1(view, i10, z10);
     }
 
-    public xz(int i10, org.telegram.ui.y40 y40Var) {
+    public xz(int i10, org.telegram.ui.w40 w40Var) {
         super(i10, false);
         this.Q = new SparseArray();
         this.R = -1;
         this.W = true;
         this.X = true;
-        this.V = y40Var;
+        this.V = w40Var;
         this.U = 0;
     }
 }

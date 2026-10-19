@@ -2,28 +2,28 @@ package ai;
 
 import android.content.Context;
 import android.view.View;
-import org.telegram.ui.Components.a71;
-import org.telegram.ui.Components.e61;
+import org.telegram.ui.Components.b71;
 import org.telegram.ui.Components.f61;
+import org.telegram.ui.Components.g61;
 import org.telegram.ui.Components.im0;
-import org.telegram.ui.Components.s61;
-public final class m0 extends e61 {
+import org.telegram.ui.Components.t61;
+public final class m0 extends f61 {
     static {
-        e61.setup(new e61());
+        f61.setup(new f61());
     }
 
-    public static f61 a(String str, CharSequence charSequence, int i10) {
-        f61 J = f61.J(m0.class);
-        J.f44292b = false;
-        J.f26153z = i10;
-        J.f26140l = str;
-        J.f26141m = charSequence;
+    public static g61 a(String str, CharSequence charSequence, int i10) {
+        g61 J = g61.J(m0.class);
+        J.f44287b = false;
+        J.f26512z = i10;
+        J.f26499l = str;
+        J.f26500m = charSequence;
         return J;
     }
 
     @Override
-    public final void bindView(View view, f61 f61Var, boolean z10, s61 s61Var, a71 a71Var) {
-        ((n0) view).a(f61Var.f26140l, f61Var.f26141m, f61Var.f26153z);
+    public final void bindView(View view, g61 g61Var, boolean z10, t61 t61Var, b71 b71Var) {
+        ((n0) view).a(g61Var.f26499l, g61Var.f26500m, g61Var.f26512z);
     }
 
     @Override

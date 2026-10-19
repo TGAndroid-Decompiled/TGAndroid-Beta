@@ -19,7 +19,7 @@ import org.telegram.ui.Components.ac0;
 import org.telegram.ui.Components.ic0;
 import org.telegram.ui.Components.nc0;
 import org.telegram.ui.Components.oc0;
-import org.telegram.ui.in;
+import org.telegram.ui.gn;
 public class MessagePreviewParams {
     public CharacterStyle currentLink;
     public Messages forwardMessages;
@@ -37,7 +37,7 @@ public class MessagePreviewParams {
     public boolean multipleUsers;
     public boolean noforwards;
     private oc0 previewView;
-    public in quote;
+    public gn quote;
     public int quoteEnd;
     public int quoteStart;
     public Messages replyMessage;
@@ -303,24 +303,24 @@ public class MessagePreviewParams {
             MessagePreviewParams messagePreviewParams = oc0Var.d;
             int i10 = 0;
             while (true) {
-                View[] viewArr = oc0Var.f28924f.e;
+                View[] viewArr = oc0Var.f28952f.e;
                 if (i10 < viewArr.length) {
                     View view = viewArr[i10];
                     if (view instanceof ic0) {
                         ic0 ic0Var = (ic0) view;
-                        int i11 = ic0Var.f27180a;
+                        int i11 = ic0Var.f27197a;
                         ac0 ac0Var = ic0Var.e;
                         if (i11 == 1) {
-                            ic0Var.f27188r = messagePreviewParams.forwardMessages;
+                            ic0Var.f27205r = messagePreviewParams.forwardMessages;
                         } else if (i11 == 0) {
-                            ic0Var.f27188r = messagePreviewParams.replyMessage;
+                            ic0Var.f27205r = messagePreviewParams.replyMessage;
                         } else if (i11 == 2) {
-                            ic0Var.f27188r = messagePreviewParams.linkMessage;
+                            ic0Var.f27205r = messagePreviewParams.linkMessage;
                         }
                         ic0Var.i();
                         if (i11 == 0) {
                             MessageObject messageObject = null;
-                            if (oc0Var.f28922b && !messagePreviewParams.isSecret) {
+                            if (oc0Var.f28950b && !messagePreviewParams.isSecret) {
                                 org.telegram.ui.Cells.v9 v9Var = ac0Var.W;
                                 if (v9Var != null) {
                                     messageObject = ((org.telegram.ui.Cells.u1) v9Var).getMessageObject();
@@ -328,9 +328,9 @@ public class MessagePreviewParams {
                                 MessageObject c10 = ic0Var.c(messageObject);
                                 if (c10 != null) {
                                     messagePreviewParams.quoteStart = 0;
-                                    int min = Math.min(MessagesController.getInstance(oc0Var.f28928w).quoteLengthMax, in.d(c10));
+                                    int min = Math.min(MessagesController.getInstance(oc0Var.f28956w).quoteLengthMax, gn.d(c10));
                                     messagePreviewParams.quoteEnd = min;
-                                    messagePreviewParams.quote = in.c(c10, messagePreviewParams.quoteStart, min);
+                                    messagePreviewParams.quote = gn.c(c10, messagePreviewParams.quoteStart, min);
                                     View d = ic0Var.d();
                                     if (d instanceof org.telegram.ui.Cells.u1) {
                                         ac0Var.Z((org.telegram.ui.Cells.u1) d, messagePreviewParams.quoteStart, messagePreviewParams.quoteEnd);
@@ -469,7 +469,7 @@ public class MessagePreviewParams {
         this.forwardMessages = null;
     }
 
-    public void updateLink(int i10, TLRPC.WebPage webPage, CharSequence charSequence, MessageObject messageObject, in inVar, MessageObject messageObject2) {
+    public void updateLink(int i10, TLRPC.WebPage webPage, CharSequence charSequence, MessageObject messageObject, gn gnVar, MessageObject messageObject2) {
         boolean z10;
         boolean z11;
         boolean z12;
@@ -546,11 +546,11 @@ public class MessagePreviewParams {
                 tL_message.replyMessage = messageObject.messageOwner;
                 TLRPC.TL_messageReplyHeader tL_messageReplyHeader = new TLRPC.TL_messageReplyHeader();
                 tL_message.reply_to = tL_messageReplyHeader;
-                if (inVar != null) {
-                    tL_messageReplyHeader.quote_text = inVar.f37924i;
+                if (gnVar != null) {
+                    tL_messageReplyHeader.quote_text = gnVar.f37382i;
                     int i13 = tL_messageReplyHeader.flags;
                     tL_messageReplyHeader.flags = i13 | 64;
-                    ArrayList<TLRPC.MessageEntity> arrayList = inVar.f37925j;
+                    ArrayList<TLRPC.MessageEntity> arrayList = gnVar.f37383j;
                     tL_messageReplyHeader.quote_entities = arrayList;
                     if (arrayList != null) {
                         tL_messageReplyHeader.flags = i13 | 192;
@@ -609,13 +609,13 @@ public class MessagePreviewParams {
             MessagePreviewParams messagePreviewParams = oc0Var.d;
             int i14 = 0;
             while (true) {
-                View[] viewArr = oc0Var.f28924f.e;
+                View[] viewArr = oc0Var.f28952f.e;
                 if (i14 < viewArr.length) {
                     View view = viewArr[i14];
                     if (view != null) {
                         ic0 ic0Var = (ic0) view;
                         FrameLayout frameLayout = ic0Var.F;
-                        if (ic0Var.f27180a == 2) {
+                        if (ic0Var.f27197a == 2) {
                             nc0 nc0Var = ic0Var.H;
                             nc0 nc0Var2 = ic0Var.G;
                             if (messagePreviewParams.singleLink && !messagePreviewParams.hasMedia) {
@@ -660,17 +660,17 @@ public class MessagePreviewParams {
         this.webpageTop = z10;
     }
 
-    public void updateReply(MessageObject messageObject, MessageObject.GroupedMessages groupedMessages, long j10, in inVar) {
+    public void updateReply(MessageObject messageObject, MessageObject.GroupedMessages groupedMessages, long j10, gn gnVar) {
         MessageObject messageObject2;
-        in inVar2;
+        gn gnVar2;
         boolean z10;
         int i10;
         if (!this.isSecret && messageObject != null && (i10 = messageObject.type) != 10 && i10 != 11 && i10 != 22 && i10 != 21 && i10 != 18 && i10 != 25 && i10 != 16) {
             messageObject2 = messageObject;
-            inVar2 = inVar;
+            gnVar2 = gnVar;
         } else {
             messageObject2 = null;
-            inVar2 = null;
+            gnVar2 = null;
         }
         if (messageObject2 != null && (messageObject2.isVoiceOnce() || messageObject2.isRoundOnce() || messageObject2.type == 30)) {
             z10 = true;
@@ -678,7 +678,7 @@ public class MessagePreviewParams {
             z10 = false;
         }
         this.hasSecretMessages = z10;
-        if (messageObject2 == null && inVar2 == null) {
+        if (messageObject2 == null && gnVar2 == null) {
             this.replyMessage = null;
             this.quote = null;
             return;
@@ -688,15 +688,15 @@ public class MessagePreviewParams {
         } else {
             MessageObject messageObject3 = messageObject2;
             if (messageObject3 == null) {
-                messageObject3 = inVar2.f37919a;
+                messageObject3 = gnVar2.f37377a;
             }
             this.replyMessage = new Messages(this, null, 1, messageObject3, j10);
         }
         if (!this.replyMessage.messages.isEmpty()) {
-            this.quote = inVar2;
-            if (inVar2 != null) {
-                this.quoteStart = inVar2.f37920b;
-                this.quoteEnd = inVar2.f37921c;
+            this.quote = gnVar2;
+            if (gnVar2 != null) {
+                this.quoteStart = gnVar2.f37378b;
+                this.quoteEnd = gnVar2.f37379c;
                 return;
             }
             return;

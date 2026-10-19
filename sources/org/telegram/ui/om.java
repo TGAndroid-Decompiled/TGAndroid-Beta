@@ -1,65 +1,54 @@
 package org.telegram.ui;
 
-import android.view.View;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.RichMessageLayout;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_iv;
-public final class om extends bu0 {
-    public final ArrayList f39829a;
-    public final int[] f39830b = new int[2];
-    public final sn f39831c;
+import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.ui.Components.UndoView;
+public final class om implements Runnable {
+    public final int f39927a;
+    public final cn f39928b;
+    public final MessageObject f39929c;
 
-    public om(sn snVar, ArrayList arrayList) {
-        this.f39831c = snVar;
-        this.f39829a = arrayList;
+    public om(cn cnVar, MessageObject messageObject, int i10) {
+        this.f39927a = i10;
+        this.f39928b = cnVar;
+        this.f39929c = messageObject;
     }
 
     @Override
-    public final lu0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
-        ImageReceiver imageReceiver;
-        org.telegram.ui.Cells.u1 u1Var;
-        MessageObject messageObject2;
-        RichMessageLayout richMessageLayout;
-        sn snVar = this.f39831c;
-        if (snVar.f41419x0 != null && i10 >= 0) {
-            ArrayList arrayList = this.f39829a;
-            if (i10 < arrayList.size()) {
-                TL_iv.PageBlock pageBlock = (TL_iv.PageBlock) arrayList.get(i10);
-                int childCount = snVar.f41419x0.getChildCount();
-                for (int i11 = 0; i11 < childCount; i11++) {
-                    View childAt = snVar.f41419x0.getChildAt(i11);
-                    boolean z12 = childAt instanceof org.telegram.ui.Cells.u1;
-                    int[] iArr = this.f39830b;
-                    if (z12 && (messageObject2 = (u1Var = (org.telegram.ui.Cells.u1) childAt).getMessageObject()) != null && (richMessageLayout = messageObject2.richLayout) != null) {
-                        int[] iArr2 = new int[2];
-                        imageReceiver = richMessageLayout.findMediaImageReceiver(pageBlock, iArr2);
-                        if (imageReceiver != null) {
-                            childAt.getLocationInWindow(iArr);
-                            iArr[0] = u1Var.getTextX() + iArr2[0] + iArr[0];
-                            iArr[1] = u1Var.getTextY() + iArr2[1] + iArr[1];
-                        }
+    public final void run() {
+        int i10;
+        switch (this.f39927a) {
+            case 0:
+                cn cnVar = this.f39928b;
+                qn qnVar = cnVar.f36032a;
+                qnVar.T7();
+                UndoView undoView = qnVar.y3;
+                if (undoView != null) {
+                    if (qnVar.Y.getVisibility() == 0 && qnVar.R.getVisibility() != 0) {
+                        i10 = 16;
                     } else {
-                        imageReceiver = null;
+                        i10 = 17;
                     }
-                    if (imageReceiver != null) {
-                        lu0 lu0Var = new lu0();
-                        lu0Var.f38918b = iArr[0];
-                        lu0Var.f38919c = iArr[1];
-                        lu0Var.d = snVar.f41419x0;
-                        lu0Var.f38917a = imageReceiver;
-                        lu0Var.e = imageReceiver.getBitmapSafe();
-                        lu0Var.h = imageReceiver.getRoundRadius(true);
-                        lu0Var.f38923j = (int) ((snVar.f41363s9 - snVar.f41389u9) - AndroidUtilities.dp(4.0f));
-                        lu0Var.f38922i = (int) (snVar.b9(org.telegram.ui.Components.l31.f28060c) + snVar.v.d() + AndroidUtilities.dp(9.0f) + snVar.Ba + snVar.f41379tc);
-                        return lu0Var;
-                    }
+                    int i11 = i10;
+                    MessageObject messageObject = this.f39929c;
+                    undoView.k(0L, i11, messageObject.getDiceEmoji(), null, null, new om(cnVar, messageObject, 2));
+                    return;
                 }
-            }
+                return;
+            case 1:
+                qn qnVar2 = this.f39928b.f36032a;
+                qnVar2.f40900wb = this.f39929c.getId();
+                qnVar2.f40914xb = 0;
+                return;
+            default:
+                qn qnVar3 = this.f39928b.f36032a;
+                if (qnVar3.i7()) {
+                    SendMessagesHelper.SendMessageParams of2 = SendMessagesHelper.SendMessageParams.of(this.f39929c.getDiceEmoji(), qnVar3.T5, qnVar3.f40781n5, qnVar3.X3, null, false, null, null, null, true, 0, 0, null, false);
+                    of2.sendMessageChatArguments = qnVar3.H8();
+                    qnVar3.getSendMessagesHelper().sendMessage(of2);
+                    return;
+                }
+                return;
         }
-        return null;
     }
 }

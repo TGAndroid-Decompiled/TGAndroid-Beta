@@ -3,9 +3,9 @@ package org.telegram.ui.Components;
 import org.telegram.messenger.ChatObject;
 import org.telegram.tgnet.TLRPC;
 public interface bh {
-    jw0 A();
+    kw0 A();
 
-    boolean G();
+    boolean F();
 
     long I();
 

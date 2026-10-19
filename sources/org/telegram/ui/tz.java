@@ -1,27 +1,29 @@
 package org.telegram.ui;
 
+import android.graphics.Canvas;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class tz implements RequestDelegate {
-    public final int f41819a;
-    public final p00 f41820b;
+public final class tz extends FrameLayout {
+    public ImageView f41781a;
+    public TextView f41782b;
+    public int f41783c;
+    public boolean d;
+    public Boolean e;
 
-    public tz(p00 p00Var, int i10) {
-        this.f41819a = i10;
-        this.f41820b = p00Var;
+    @Override
+    public final void onDraw(Canvas canvas) {
+        TextView textView = this.f41782b;
+        super.onDraw(canvas);
+        if (this.d) {
+            canvas.drawRect(textView.getLeft(), getMeasuredHeight() - 1, textView.getRight(), getMeasuredHeight(), org.telegram.ui.ActionBar.h6.f21110k0);
+        }
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f41819a) {
-            case 0:
-                AndroidUtilities.runOnUIThread(new nt(15, this.f41820b, tLObject));
-                return;
-            default:
-                AndroidUtilities.runOnUIThread(new lq(this.f41820b, tL_error, tLObject, 6));
-                return;
-        }
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
     }
 }

@@ -1,8 +1,6 @@
 package qg;
 
-import android.graphics.fonts.Font;
+import java.util.ArrayList;
 public final class i0 {
-    public Font f44538a;
-    public String f44539b;
-    public String f44540c;
+    public ArrayList f44527a;
 }

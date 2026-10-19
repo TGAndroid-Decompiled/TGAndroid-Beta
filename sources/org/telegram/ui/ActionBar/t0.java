@@ -19,26 +19,26 @@ import org.telegram.ui.Components.bs;
 import org.telegram.ui.Components.w9;
 import org.telegram.ui.Components.zq;
 public class t0 extends FrameLayout implements ne.d {
-    public final ne.b f21711a;
-    public zq f21712b;
-    public final w9 f21713c;
+    public final ne.b f21714a;
+    public zq f21715b;
+    public final w9 f21716c;
     public final ImageView d;
     public final TextView e;
-    public hg.o0 f21714f;
+    public hg.o0 f21717f;
     public final p h;
-    public final d6 f21715n;
-    public boolean f21716r;
-    public boolean f21717s;
+    public final d6 f21718n;
+    public boolean f21719r;
+    public boolean f21720s;
     public int v;
-    public int f21718w;
+    public int f21721w;
 
     public t0(Context context, d6 d6Var) {
         super(context);
-        this.f21711a = new ne.b(0, this, bs.h, 380L, false);
+        this.f21714a = new ne.b(0, this, bs.h, 380L, false);
         this.h = new p(this, 2);
-        this.f21715n = d6Var;
+        this.f21718n = d6Var;
         w9 w9Var = new w9(context);
-        this.f21713c = w9Var;
+        this.f21716c = w9Var;
         addView(w9Var, w7.z5.c(32.0f, 32));
         ImageView imageView = new ImageView(context);
         this.d = imageView;
@@ -50,19 +50,19 @@ public class t0 extends FrameLayout implements ne.d {
         textView.setEllipsize(TextUtils.TruncateAt.END);
         textView.setTextSize(1, 14.0f);
         addView(textView, w7.z5.d(-2, -2.0f, 16, 38.0f, 0.0f, 12.0f, 0.0f));
-        this.f21718w = AndroidUtilities.dp(28.0f);
+        this.f21721w = AndroidUtilities.dp(28.0f);
         a();
     }
 
     public final void a() {
         int w02;
-        float f7 = this.f21711a.e;
-        boolean z10 = this.f21716r;
-        d6 d6Var = this.f21715n;
+        float f7 = this.f21714a.e;
+        boolean z10 = this.f21719r;
+        d6 d6Var = this.f21718n;
         if (z10) {
             w02 = h6.m1(0.075f, h6.w0(h6.G6, d6Var));
         } else {
-            w02 = h6.w0(h6.f20979ci, d6Var);
+            w02 = h6.w0(h6.f20982ci, d6Var);
         }
         int i10 = h6.Oh;
         int w03 = h6.w0(i10, d6Var);
@@ -77,13 +77,13 @@ public class t0 extends FrameLayout implements ne.d {
         float f10 = 0.82f * f7;
         imageView.setScaleX(f10);
         imageView.setScaleY(f10);
-        zq zqVar = this.f21712b;
+        zq zqVar = this.f21715b;
         if (zqVar != null) {
             h6.w1(zqVar, h6.w0(i10, d6Var), false);
-            h6.w1(this.f21712b, h6.w0(i11, d6Var), true);
+            h6.w1(this.f21715b, h6.w0(i11, d6Var), true);
         }
-        this.f21713c.setAlpha(1.0f - f7);
-        hg.o0 o0Var = this.f21714f;
+        this.f21716c.setAlpha(1.0f - f7);
+        hg.o0 o0Var = this.f21717f;
         if (o0Var != null && o0Var.d == 7) {
             setData(o0Var);
         }
@@ -94,83 +94,91 @@ public class t0 extends FrameLayout implements ne.d {
     public final void dispatchDraw(Canvas canvas) {
         float width = getWidth();
         float height = getHeight();
-        int i10 = this.f21718w;
+        int i10 = this.f21721w;
         canvas.drawRoundRect(0.0f, 0.0f, width, height, i10, i10, h6.m0(this.v));
         super.dispatchDraw(canvas);
     }
 
     public hg.o0 getFilter() {
-        return this.f21714f;
+        return this.f21717f;
     }
 
     @Override
     public void onMeasure(int i10, int i11) {
-        if (this.f21717s) {
+        if (this.f21720s) {
             super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(135.0f), Integer.MIN_VALUE), i11);
         } else {
             super.onMeasure(i10, i11);
         }
     }
 
+    @Override
+    public final void r(int i10, float f7, float f10, ne.e eVar) {
+        if (i10 == 0) {
+            a();
+            invalidate();
+        }
+    }
+
     public void setData(hg.o0 o0Var) {
-        this.f21714f = o0Var;
-        this.f21717s = false;
-        String str = o0Var.f12004c;
+        this.f21717f = o0Var;
+        this.f21720s = false;
+        String str = o0Var.f12005c;
         if (str == null) {
-            str = LocaleController.getString(o0Var.f12003b);
+            str = LocaleController.getString(o0Var.f12004b);
         }
         this.e.setText(str);
-        zq M = h6.M(AndroidUtilities.dp(32.0f), o0Var.f12002a);
-        this.f21712b = M;
+        zq M = h6.M(AndroidUtilities.dp(32.0f), o0Var.f12003a);
+        this.f21715b = M;
         int i10 = h6.Oh;
-        d6 d6Var = this.f21715n;
+        d6 d6Var = this.f21718n;
         h6.w1(M, h6.w0(i10, d6Var), false);
-        zq zqVar = this.f21712b;
+        zq zqVar = this.f21715b;
         int i11 = h6.Sh;
         h6.w1(zqVar, h6.w0(i11, d6Var), true);
         int i12 = o0Var.d;
         float f7 = 16.0f;
-        w9 w9Var = this.f21713c;
+        w9 w9Var = this.f21716c;
         if (i12 == 4) {
-            TLObject tLObject = o0Var.f12005f;
+            TLObject tLObject = o0Var.f12006f;
             if (tLObject instanceof TLRPC.User) {
                 TLRPC.User user = (TLRPC.User) tLObject;
-                if (UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser().f20419id == user.f20419id) {
+                if (UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser().f20422id == user.f20422id) {
                     zq M2 = h6.M(AndroidUtilities.dp(32.0f), R.drawable.chats_saved);
                     int dp = AndroidUtilities.dp(16.0f);
                     int dp2 = AndroidUtilities.dp(16.0f);
                     M2.e = dp;
-                    M2.f32995f = dp2;
+                    M2.f33019f = dp2;
                     h6.w1(M2, h6.w0(i10, d6Var), false);
                     h6.w1(M2, h6.w0(i11, d6Var), true);
                     w9Var.setImageDrawable(M2);
                     return;
                 }
                 w9Var.getImageReceiver().setRoundRadius(AndroidUtilities.dp(16.0f));
-                w9Var.getImageReceiver().setForUserOrChat(user, this.f21712b);
+                w9Var.getImageReceiver().setForUserOrChat(user, this.f21715b);
             } else if (tLObject instanceof TLRPC.Chat) {
                 TLRPC.Chat chat = (TLRPC.Chat) tLObject;
-                this.f21717s = ChatObject.isCommunity(chat);
+                this.f21720s = ChatObject.isCommunity(chat);
                 ImageReceiver imageReceiver = w9Var.getImageReceiver();
-                if (this.f21717s) {
+                if (this.f21720s) {
                     f7 = 10.0f;
                 }
                 int dp3 = AndroidUtilities.dp(f7);
-                this.f21718w = dp3;
+                this.f21721w = dp3;
                 imageReceiver.setRoundRadius(dp3);
-                w9Var.getImageReceiver().setForUserOrChat(chat, this.f21712b);
+                w9Var.getImageReceiver().setForUserOrChat(chat, this.f21715b);
             }
         } else if (i12 == 7) {
             zq M3 = h6.M(AndroidUtilities.dp(32.0f), R.drawable.chats_archive);
             int dp4 = AndroidUtilities.dp(16.0f);
             int dp5 = AndroidUtilities.dp(16.0f);
             M3.e = dp4;
-            M3.f32995f = dp5;
+            M3.f33019f = dp5;
             h6.w1(M3, h6.w0(i10, d6Var), false);
             h6.w1(M3, h6.w0(i11, d6Var), true);
             w9Var.setImageDrawable(M3);
         } else {
-            w9Var.setImageDrawable(this.f21712b);
+            w9Var.setImageDrawable(this.f21715b);
         }
     }
 
@@ -185,8 +193,8 @@ public class t0 extends FrameLayout implements ne.d {
     }
 
     public void setSelectedForDelete(boolean z10) {
-        ne.b bVar = this.f21711a;
-        if (bVar.f17383f != z10) {
+        ne.b bVar = this.f21714a;
+        if (bVar.f17386f != z10) {
             p pVar = this.h;
             AndroidUtilities.cancelRunOnUIThread(pVar);
             bVar.a(z10, true);
@@ -197,14 +205,6 @@ public class t0 extends FrameLayout implements ne.d {
     }
 
     @Override
-    public final void u(int i10, float f7, float f10, ne.e eVar) {
-        if (i10 == 0) {
-            a();
-            invalidate();
-        }
-    }
-
-    @Override
-    public final void E(float f7, int i10) {
+    public final void H(float f7, int i10) {
     }
 }

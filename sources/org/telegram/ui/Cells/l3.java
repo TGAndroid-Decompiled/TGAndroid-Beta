@@ -11,24 +11,24 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.c61;
+import org.telegram.ui.Components.d61;
 public final class l3 {
-    public boolean f22523a;
-    public StaticLayout f22524b;
-    public StaticLayout f22525c;
+    public boolean f22526a;
+    public StaticLayout f22527b;
+    public StaticLayout f22528c;
     public int d;
     public int e;
-    public float f22526f;
-    public float f22527g;
+    public float f22529f;
+    public float f22530g;
     public float h;
-    public float f22528i;
+    public float f22531i;
 
     public final void a(u1 u1Var) {
         TLRPC.Message message;
         String str;
         int parentWidth;
         String str2;
-        SpannableStringBuilder e = ci.c8.e(R.string.ExpiredStory, false, new Object[0]);
+        SpannableStringBuilder e = ci.d8.e(R.string.ExpiredStory, false, new Object[0]);
         MessageObject messageObject = u1Var.getMessageObject();
         if (messageObject != null && (message = messageObject.messageOwner) != null) {
             TLRPC.MessageMedia messageMedia = message.media;
@@ -57,7 +57,7 @@ public final class l3 {
                 String format = String.format(string2, str3);
                 if (indexOf >= 0) {
                     SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(format);
-                    spannableStringBuilder.setSpan(new c61(AndroidUtilities.bold()), indexOf, str3.length() + indexOf, 33);
+                    spannableStringBuilder.setSpan(new d61(AndroidUtilities.bold()), indexOf, str3.length() + indexOf, 33);
                     str2 = spannableStringBuilder;
                 } else {
                     str2 = format;
@@ -65,18 +65,18 @@ public final class l3 {
                 TextPaint textPaint2 = org.telegram.ui.ActionBar.h6.Z2;
                 int dp = AndroidUtilities.dp(10.0f);
                 Layout.Alignment alignment = Layout.Alignment.ALIGN_NORMAL;
-                this.f22524b = new StaticLayout(e, textPaint2, dp + ((int) (textPaint2.measureText(e, 0, e.length()) + 1.0f)), alignment, 1.0f, 0.0f, false);
-                this.f22525c = new StaticLayout(str2, textPaint2, AndroidUtilities.dp(10.0f) + ((int) (textPaint2.measureText((CharSequence) str2, 0, str2.length()) + 1.0f)), alignment, 1.0f, 0.0f, false);
+                this.f22527b = new StaticLayout(e, textPaint2, dp + ((int) (textPaint2.measureText(e, 0, e.length()) + 1.0f)), alignment, 1.0f, 0.0f, false);
+                this.f22528c = new StaticLayout(str2, textPaint2, AndroidUtilities.dp(10.0f) + ((int) (textPaint2.measureText((CharSequence) str2, 0, str2.length()) + 1.0f)), alignment, 1.0f, 0.0f, false);
                 this.e = 0;
                 this.h = AndroidUtilities.dp(4.0f);
-                this.f22528i = AndroidUtilities.dp(12.0f);
-                this.e = (int) r4.c.c(this.h, 2.0f, AndroidUtilities.dp(4.0f) + this.f22525c.getHeight() + AndroidUtilities.dp(2.0f) + this.f22524b.getHeight() + AndroidUtilities.dp(4.0f), this.e);
-                this.d = u1Var.getExtraTextX() + AndroidUtilities.dp(20.0f) + AndroidUtilities.dp(12.0f) + Math.max(this.f22524b.getWidth(), this.f22525c.getWidth());
+                this.f22531i = AndroidUtilities.dp(12.0f);
+                this.e = (int) r4.c.c(this.h, 2.0f, AndroidUtilities.dp(4.0f) + this.f22528c.getHeight() + AndroidUtilities.dp(2.0f) + this.f22527b.getHeight() + AndroidUtilities.dp(4.0f), this.e);
+                this.d = u1Var.getExtraTextX() + AndroidUtilities.dp(20.0f) + AndroidUtilities.dp(12.0f) + Math.max(this.f22527b.getWidth(), this.f22528c.getWidth());
                 return;
             }
         }
         this.h = AndroidUtilities.dp(4.0f);
-        this.f22528i = AndroidUtilities.dp(12.0f);
+        this.f22531i = AndroidUtilities.dp(12.0f);
         this.e = 0;
         this.d = 0;
     }

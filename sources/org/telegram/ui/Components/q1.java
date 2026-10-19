@@ -4,22 +4,22 @@ import android.content.DialogInterface;
 import android.widget.EditText;
 import org.telegram.messenger.AndroidUtilities;
 public final class q1 implements DialogInterface.OnDismissListener {
-    public final int f29509a;
-    public final EditText f29510b;
+    public final int f29480a;
+    public final EditText f29481b;
 
     public q1(EditText editText, int i10) {
-        this.f29509a = i10;
-        this.f29510b = editText;
+        this.f29480a = i10;
+        this.f29481b = editText;
     }
 
     @Override
     public final void onDismiss(DialogInterface dialogInterface) {
-        switch (this.f29509a) {
+        switch (this.f29480a) {
             case 0:
-                AndroidUtilities.hideKeyboard(this.f29510b);
+                AndroidUtilities.hideKeyboard(this.f29481b);
                 return;
             default:
-                AndroidUtilities.hideKeyboard(this.f29510b);
+                AndroidUtilities.hideKeyboard(this.f29481b);
                 return;
         }
     }

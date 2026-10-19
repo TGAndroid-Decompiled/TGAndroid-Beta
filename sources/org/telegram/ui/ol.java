@@ -1,47 +1,30 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.VideoEditedInfo;
-public final class ol extends bu0 {
-    public final ArrayList f39823a;
-    public final boolean[] f39824b;
-    public final sn f39825c;
+import android.app.Activity;
+import org.telegram.ui.Components.UndoView;
+public final class ol extends org.telegram.ui.Components.w20 {
+    public final qn f39923b;
 
-    public ol(sn snVar, ArrayList arrayList, boolean[] zArr) {
-        this.f39825c = snVar;
-        this.f39823a = arrayList;
-        this.f39824b = zArr;
+    public ol(qn qnVar, Activity activity, org.telegram.ui.ActionBar.n2 n2Var) {
+        super(activity, n2Var);
+        this.f39923b = qnVar;
     }
 
     @Override
-    public final boolean T() {
-        return false;
-    }
-
-    @Override
-    public final ImageReceiver.BitmapHolder j(int i10) {
-        return null;
-    }
-
-    @Override
-    public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z10, int i11, int i12, boolean z11) {
-        ArrayList arrayList = this.f39823a;
-        for (int size = arrayList.size() - 1; size >= 0; size--) {
-            if (!this.f39824b[size]) {
-                arrayList.remove(size);
-            }
+    public final void n() {
+        qn qnVar = this.f39923b;
+        qnVar.T7();
+        UndoView undoView = qnVar.y3;
+        if (undoView == null) {
+            return;
         }
-        this.f39825c.ib(arrayList, i11, z10, z11);
+        undoView.j(75, 0L, null);
+        qnVar.getMessagesController().removeSuggestion(qnVar.T5, "CONVERT_GIGAGROUP");
     }
 
     @Override
-    public final boolean x(int i10) {
-        return this.f39824b[i10];
-    }
-
-    @Override
-    public final int k(int i10, VideoEditedInfo videoEditedInfo) {
-        return i10;
+    public final void o() {
+        qn qnVar = this.f39923b;
+        qnVar.getMessagesController().convertToGigaGroup(qnVar.getParentActivity(), qnVar.e, qnVar, new b1(this, 19));
     }
 }

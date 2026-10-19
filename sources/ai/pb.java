@@ -12,35 +12,35 @@ import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_wallet;
 import org.telegram.ui.DataAutoDownloadActivity;
 public final class pb implements View.OnClickListener {
-    public final int f2033a = 2;
-    public final int f2034b;
-    public final Object f2035c;
+    public final int f2032a = 2;
+    public final int f2033b;
+    public final Object f2034c;
     public final Object d;
     public final Object e;
-    public final Object f2036f;
+    public final Object f2035f;
     public final Object h;
-    public final Object f2037n;
+    public final Object f2036n;
 
-    public pb(ei.d dVar, TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth, boolean[] zArr, org.telegram.ui.ActionBar.f3 f3Var, ei.d dVar2, org.telegram.ui.web.b1 b1Var, int i10) {
-        this.f2035c = dVar;
+    public pb(ei.d dVar, TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth, boolean[] zArr, org.telegram.ui.ActionBar.f3 f3Var, ei.d dVar2, org.telegram.ui.web.a1 a1Var, int i10) {
+        this.f2034c = dVar;
         this.d = tL_messages_requestUrlAuth;
         this.h = zArr;
         this.e = f3Var;
-        this.f2036f = dVar2;
-        this.f2037n = b1Var;
-        this.f2034b = i10;
+        this.f2035f = dVar2;
+        this.f2036n = a1Var;
+        this.f2033b = i10;
     }
 
     @Override
     public final void onClick(View view) {
-        int i10 = this.f2033a;
+        int i10 = this.f2032a;
         JSONObject jSONObject = null;
-        int i11 = this.f2034b;
-        Object obj = this.f2037n;
+        int i11 = this.f2033b;
+        Object obj = this.f2036n;
         Object obj2 = this.e;
         Object obj3 = this.d;
-        Object obj4 = this.f2036f;
-        Object obj5 = this.f2035c;
+        Object obj4 = this.f2035f;
+        Object obj5 = this.f2034c;
         Object obj6 = this.h;
         switch (i10) {
             case 0:
@@ -55,7 +55,7 @@ public final class pb implements View.OnClickListener {
                     if (starsSubscription.chat_invite_hash != null) {
                         TLRPC.TL_messages_checkChatInvite tL_messages_checkChatInvite = new TLRPC.TL_messages_checkChatInvite();
                         tL_messages_checkChatInvite.hash = starsSubscription.chat_invite_hash;
-                        int i12 = this.f2034b;
+                        int i12 = this.f2033b;
                         ConnectionsManager.getInstance(i12).sendRequest(tL_messages_checkChatInvite, new sb(dVar, f3VarArr, d6Var, i12, tL_messages_checkChatInvite, 1));
                         return;
                     } else if (starsSubscription.invoice_slug != null) {
@@ -68,25 +68,25 @@ public final class pb implements View.OnClickListener {
                 }
                 return;
             case 1:
-                DataAutoDownloadActivity.U((DataAutoDownloadActivity) obj5, (org.telegram.ui.Cells.r8) obj3, (org.telegram.ui.Cells.r8[]) obj2, this.f2034b, (org.telegram.ui.Cells.c5[]) obj4, (org.telegram.ui.Cells.v8[]) obj6, (AnimatorSet[]) obj, view);
+                DataAutoDownloadActivity.U((DataAutoDownloadActivity) obj5, (org.telegram.ui.Cells.r8) obj3, (org.telegram.ui.Cells.r8[]) obj2, this.f2033b, (org.telegram.ui.Cells.c5[]) obj4, (org.telegram.ui.Cells.v8[]) obj6, (AnimatorSet[]) obj, view);
                 return;
             case 2:
                 TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth = (TLRPC.TL_messages_requestUrlAuth) obj3;
                 boolean[] zArr2 = (boolean[]) obj6;
                 org.telegram.ui.ActionBar.f3 f3Var = (org.telegram.ui.ActionBar.f3) obj2;
                 ei.d dVar2 = (ei.d) obj4;
-                org.telegram.ui.web.b1 b1Var = (org.telegram.ui.web.b1) obj;
+                org.telegram.ui.web.a1 a1Var = (org.telegram.ui.web.a1) obj;
                 if (!((ei.d) obj5).N) {
                     if (tL_messages_requestUrlAuth != null && !TextUtils.isEmpty(tL_messages_requestUrlAuth.url)) {
                         if (!dVar2.N) {
                             dVar2.setLoading(true);
-                            if (b1Var != null) {
-                                boolean z10 = org.telegram.ui.web.b1.P0;
+                            if (a1Var != null) {
+                                boolean z10 = org.telegram.ui.web.a1.P0;
                                 try {
                                     jSONObject = new JSONObject();
                                 } catch (Exception unused) {
                                 }
-                                b1Var.y("oauth_result_failed", jSONObject);
+                                a1Var.y("oauth_result_failed", jSONObject);
                             }
                             TLRPC.TL_messages_declineUrlAuth tL_messages_declineUrlAuth = new TLRPC.TL_messages_declineUrlAuth();
                             tL_messages_declineUrlAuth.url = tL_messages_requestUrlAuth.url;
@@ -125,32 +125,32 @@ public final class pb implements View.OnClickListener {
     }
 
     public pb(ei.d dVar, TL_stars.StarsSubscription starsSubscription, int i10, org.telegram.ui.ActionBar.f3[] f3VarArr, org.telegram.ui.ActionBar.d6 d6Var, boolean[] zArr, Activity activity) {
-        this.f2035c = dVar;
+        this.f2034c = dVar;
         this.d = starsSubscription;
-        this.f2034b = i10;
+        this.f2033b = i10;
         this.e = f3VarArr;
-        this.f2036f = d6Var;
+        this.f2035f = d6Var;
         this.h = zArr;
-        this.f2037n = activity;
+        this.f2036n = activity;
     }
 
     public pb(DataAutoDownloadActivity dataAutoDownloadActivity, org.telegram.ui.Cells.r8 r8Var, org.telegram.ui.Cells.r8[] r8VarArr, int i10, org.telegram.ui.Cells.c5[] c5VarArr, org.telegram.ui.Cells.v8[] v8VarArr, AnimatorSet[] animatorSetArr) {
-        this.f2035c = dataAutoDownloadActivity;
+        this.f2034c = dataAutoDownloadActivity;
         this.d = r8Var;
         this.e = r8VarArr;
-        this.f2034b = i10;
-        this.f2036f = c5VarArr;
+        this.f2033b = i10;
+        this.f2035f = c5VarArr;
         this.h = v8VarArr;
-        this.f2037n = animatorSetArr;
+        this.f2036n = animatorSetArr;
     }
 
     public pb(boolean[] zArr, org.telegram.ui.Wallet.k2[] k2VarArr, org.telegram.ui.ActionBar.d6 d6Var, wh.n nVar, TL_wallet.walletTransaction wallettransaction, int i10, String str) {
         this.h = zArr;
-        this.f2035c = k2VarArr;
-        this.f2036f = d6Var;
+        this.f2034c = k2VarArr;
+        this.f2035f = d6Var;
         this.d = nVar;
         this.e = wallettransaction;
-        this.f2034b = i10;
-        this.f2037n = str;
+        this.f2033b = i10;
+        this.f2036n = str;
     }
 }

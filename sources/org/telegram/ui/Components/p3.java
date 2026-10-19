@@ -5,24 +5,24 @@ import android.os.Vibrator;
 import android.text.Spanned;
 import org.telegram.messenger.AndroidUtilities;
 public final class p3 extends qq {
-    public final Context f29152b;
-    public final NumberTextView f29153c;
+    public final Context f29155b;
+    public final NumberTextView f29156c;
 
     public p3(int i10, Context context, NumberTextView numberTextView) {
         super(i10);
-        this.f29152b = context;
-        this.f29153c = numberTextView;
+        this.f29155b = context;
+        this.f29156c = numberTextView;
     }
 
     @Override
     public final CharSequence filter(CharSequence charSequence, int i10, int i11, Spanned spanned, int i12, int i13) {
         CharSequence filter = super.filter(charSequence, i10, i11, spanned, i12, i13);
         if (filter != null && charSequence != null && filter.length() != charSequence.length()) {
-            Vibrator vibrator = (Vibrator) this.f29152b.getSystemService("vibrator");
+            Vibrator vibrator = (Vibrator) this.f29155b.getSystemService("vibrator");
             if (vibrator != null) {
                 vibrator.vibrate(200L);
             }
-            AndroidUtilities.shakeView(this.f29153c);
+            AndroidUtilities.shakeView(this.f29156c);
         }
         return filter;
     }

@@ -11,16 +11,16 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SvgHelper;
 import org.telegram.tgnet.TLRPC;
 public abstract class b3 extends LinearLayout implements NotificationCenter.NotificationCenterDelegate {
-    public int f22033a;
-    public org.telegram.ui.Components.w9 f22034b;
-    public TextView f22035c;
+    public int f22036a;
+    public org.telegram.ui.Components.w9 f22037b;
+    public TextView f22038c;
     public TextView d;
     public TextView e;
 
     public final void a() {
         TLRPC.Document document;
-        org.telegram.ui.Components.w9 w9Var = this.f22034b;
-        int i10 = this.f22033a;
+        org.telegram.ui.Components.w9 w9Var = this.f22037b;
+        int i10 = this.f22036a;
         TLRPC.TL_messages_stickerSet stickerSetByName = MediaDataController.getInstance(i10).getStickerSetByName("tg_placeholders_android");
         if (stickerSetByName == null) {
             stickerSetByName = MediaDataController.getInstance(i10).getStickerSetByEmojiOrName("tg_placeholders_android");
@@ -33,11 +33,11 @@ public abstract class b3 extends LinearLayout implements NotificationCenter.Noti
             document = null;
         }
         if (document != null) {
-            SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(document.thumbs, org.telegram.ui.ActionBar.h6.f20928a7, 0.2f);
+            SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(document.thumbs, org.telegram.ui.ActionBar.h6.f20931a7, 0.2f);
             if (svgThumb != null) {
                 svgThumb.overrideWidthAndHeight(512, 512);
             }
-            this.f22034b.i(ImageLocation.getForDocument(document), "130_130", "tgs", svgThumb, tL_messages_stickerSet);
+            this.f22037b.i(ImageLocation.getForDocument(document), "130_130", "tgs", svgThumb, tL_messages_stickerSet);
             w9Var.getImageReceiver().setAutoRepeat(2);
             return;
         }
@@ -59,18 +59,18 @@ public abstract class b3 extends LinearLayout implements NotificationCenter.Noti
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        NotificationCenter.getInstance(this.f22033a).addObserver(this, NotificationCenter.diceStickersDidLoad);
+        NotificationCenter.getInstance(this.f22036a).addObserver(this, NotificationCenter.diceStickersDidLoad);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        NotificationCenter.getInstance(this.f22033a).addObserver(this, NotificationCenter.diceStickersDidLoad);
+        NotificationCenter.getInstance(this.f22036a).addObserver(this, NotificationCenter.diceStickersDidLoad);
     }
 
     public void set(TLRPC.RequestPeerType requestPeerType) {
         TextView textView = this.d;
-        TextView textView2 = this.f22035c;
+        TextView textView2 = this.f22038c;
         TextView textView3 = this.e;
         if (requestPeerType instanceof TLRPC.TL_requestPeerTypeBroadcast) {
             textView2.setText(LocaleController.getString(R.string.NoSuchChannels));

@@ -8,8 +8,8 @@ public final class q6 extends n6 {
     public final ImageReceiver d;
 
     public q6(View view, TL_stars.starGiftAttributeModel stargiftattributemodel) {
-        this.f1894a = stargiftattributemodel.name;
-        this.f1895b = stargiftattributemodel.getRarityPermille();
+        this.f1889a = stargiftattributemodel.name;
+        this.f1890b = stargiftattributemodel.getRarityPermille();
         this.f2063c = true;
         ImageReceiver imageReceiver = new ImageReceiver(view);
         this.d = imageReceiver;
@@ -32,8 +32,8 @@ public final class q6 extends n6 {
     }
 
     public q6(org.telegram.ui.Components.w9 w9Var, TL_stars.starGiftAttributeModel stargiftattributemodel) {
-        this.f1894a = stargiftattributemodel.name;
-        this.f1895b = stargiftattributemodel.getRarityPermille();
+        this.f1889a = stargiftattributemodel.name;
+        this.f1890b = stargiftattributemodel.getRarityPermille();
         this.f2063c = false;
         this.d = w9Var.getImageReceiver();
     }

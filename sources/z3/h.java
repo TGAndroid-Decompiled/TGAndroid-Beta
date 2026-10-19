@@ -25,7 +25,7 @@ public final class h implements o {
     public int h;
     public long[] f50648i;
     public long f50649j;
-    public byte[] e = m0.f8254b;
+    public byte[] e = m0.f8255b;
     public final x d = new x();
 
     public h(m mVar, w wVar) {
@@ -33,8 +33,8 @@ public final class h implements o {
         this.f50643a = mVar;
         if (wVar != null) {
             v a2 = wVar.a();
-            a2.f4079r = v0.n("application/x-media3-cues");
-            a2.f4071j = wVar.f4132s;
+            a2.f4077r = v0.n("application/x-media3-cues");
+            a2.f4069j = wVar.f4130s;
             a2.P = mVar.c();
             wVar2 = new w(a2);
         } else {
@@ -43,7 +43,7 @@ public final class h implements o {
         this.f50644b = wVar2;
         this.f50645c = new ArrayList();
         this.h = 0;
-        this.f50648i = m0.f8255c;
+        this.f50648i = m0.f8256c;
         this.f50649j = -9223372036854775807L;
     }
 
@@ -93,7 +93,7 @@ public final class h implements o {
 
     @Override
     public final List e() {
-        l0 l0Var = n0.f8475b;
+        l0 l0Var = n0.f8476b;
         return x1.e;
     }
 

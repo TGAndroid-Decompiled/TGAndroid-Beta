@@ -21,7 +21,7 @@ public final class d extends m0 {
     public final void c(Canvas canvas, RecyclerView recyclerView) {
         f fVar = this.f47830c;
         int max = Math.max(0, AndroidUtilities.dp(80.0f) + ((int) fVar.f47839g0.getTranslationY()) + ((int) fVar.X.e));
-        int w02 = h6.w0(h6.f21057h5, this.f47829b);
+        int w02 = h6.w0(h6.f21060h5, this.f47829b);
         y yVar = this.f47828a;
         yVar.b(w02);
         yVar.setBounds(0, max, recyclerView.getWidth(), AndroidUtilities.dp(8.0f) + max);

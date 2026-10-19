@@ -1,80 +1,50 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.view.View;
-import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-public final class fg1 extends org.telegram.ui.Components.v61 {
-    public dg1 d;
-    public long e;
-    public bg1 f36910f;
-    public String h;
-    public org.telegram.ui.ActionBar.u0 f36911n;
-    public boolean f36912r;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+public final class fg1 extends LinearLayout {
+    public final org.telegram.ui.ActionBar.d6 f37004a;
+    public final ImageView f37005b;
+    public final LinearLayout f37006c;
+    public final TextView d;
+    public final TextView e;
+    public final ImageView f37007f;
+    public boolean h;
+    public boolean f37008n;
 
-    @Override
-    public final void U(java.util.ArrayList r18, org.telegram.ui.Components.s61 r19) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.fg1.U(java.util.ArrayList, org.telegram.ui.Components.s61):void");
+    public fg1(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context);
+        setOrientation(0);
+        this.f37004a = d6Var;
+        ImageView imageView = new ImageView(context);
+        this.f37005b = imageView;
+        ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
+        imageView.setScaleType(scaleType);
+        addView(imageView, w7.z5.t(40, 40, 19, 12, 0, 12, 0));
+        LinearLayout linearLayout = new LinearLayout(context);
+        this.f37006c = linearLayout;
+        linearLayout.setOrientation(1);
+        linearLayout.setPadding(0, AndroidUtilities.dp(10.0f), 0, AndroidUtilities.dp(10.0f));
+        addView(linearLayout, w7.z5.p(0, -2, 1.0f, 23, 0, 0, 32, 0));
+        TextView textView = new TextView(context);
+        this.d = textView;
+        textView.setTextSize(1, 16.0f);
+        TextView i10 = com.google.android.gms.internal.play_billing.k3.i(linearLayout, textView, w7.z5.t(-1, -2, 7, 0, 0, 0, 0), context);
+        this.e = i10;
+        i10.setTextSize(1, 13.0f);
+        linearLayout.addView(i10, w7.z5.r(-1, -2, 7, 0.0f, 4.33f, 0.0f, 0.0f));
+        ImageView imageView2 = new ImageView(context);
+        this.f37007f = imageView2;
+        imageView2.setScaleType(scaleType);
+        addView(imageView2, w7.z5.t(40, 40, 21, 12, 0, 12, 0));
     }
 
     @Override
-    public final CharSequence V() {
-        return LocaleController.getString(R.string.EditProfileChannelTitle);
-    }
-
-    @Override
-    public final void W(org.telegram.ui.Components.f61 f61Var, View view) {
-        bg1 bg1Var = this.f36910f;
-        int i10 = f61Var.d;
-        if (i10 == 1) {
-            bg1Var.run(null);
-            finishFragment();
-        } else if (i10 == 2) {
-            this.f36912r = true;
-            SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
-            if (!BuildVars.DEBUG_VERSION && globalMainSettings.getBoolean("channel_intro", false)) {
-                presentFragment(new od(org.telegram.ui.Cells.c1.i(0, "step")));
-                return;
-            }
-            presentFragment(new h(0));
-            globalMainSettings.edit().putBoolean("channel_intro", true).apply();
-        } else if (f61Var.f44291a == 12) {
-            finishFragment();
-            bg1Var.run(getMessagesController().getChat(Long.valueOf(-f61Var.f26151x)));
-        }
-    }
-
-    @Override
-    public final boolean X(org.telegram.ui.Components.f61 f61Var, View view) {
-        return false;
-    }
-
-    @Override
-    public final View createView(Context context) {
-        org.telegram.ui.ActionBar.u0 c10 = this.actionBar.n().c(0, R.drawable.outline_header_search, getResourceProvider());
-        c10.F();
-        c10.H = new ig.c2(this, 19);
-        this.f36911n = c10;
-        c10.setSearchFieldHint(LocaleController.getString(R.string.Search));
-        this.f36911n.setContentDescription(LocaleController.getString(R.string.Search));
-        this.f36911n.setVisibility(8);
-        super.createView(context);
-        this.f31190a.p1();
-        this.actionBar.setAdaptiveBackground(this.f31190a);
-        return this.fragmentView;
-    }
-
-    @Override
-    public final void onResume() {
-        super.onResume();
-        if (this.f36912r) {
-            dg1 dg1Var = this.d;
-            dg1Var.f36199c = false;
-            dg1Var.f36200f.add(new eg1(this, 0));
-            this.f36912r = false;
-        }
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
     }
 }

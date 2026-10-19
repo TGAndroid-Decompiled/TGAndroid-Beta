@@ -1,47 +1,99 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.Utilities;
-public final class dg implements Utilities.Callback2 {
-    public final int f36184a;
-    public final sn f36185b;
-    public final String f36186c;
+import android.animation.ValueAnimator;
+import android.view.View;
+import android.widget.ImageView;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+public final class dg implements ValueAnimator.AnimatorUpdateListener {
+    public final int f36384a;
+    public final float f36385b;
+    public final Object f36386c;
 
-    public dg(sn snVar, String str, int i10) {
-        this.f36184a = i10;
-        this.f36185b = snVar;
-        this.f36186c = str;
+    public dg(Object obj, float f7, int i10) {
+        this.f36384a = i10;
+        this.f36386c = obj;
+        this.f36385b = f7;
     }
 
     @Override
-    public final void run(Object obj, Object obj2) {
-        Boolean bool = (Boolean) obj;
-        Boolean bool2 = (Boolean) obj2;
-        switch (this.f36184a) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        int i10;
+        boolean z10;
+        switch (this.f36384a) {
             case 0:
-                if (bool.booleanValue()) {
-                    boolean booleanValue = bool2.booleanValue();
-                    sn snVar = this.f36185b;
-                    String str = this.f36186c;
-                    if (booleanValue) {
-                        snVar.getMessagesController().addWebBrowserException(str, false);
-                    }
-                    snVar.getParentActivity();
-                    pf.d.m(str);
+                qn qnVar = (qn) this.f36386c;
+                qnVar.getClass();
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                qnVar.H8 = floatValue;
+                qnVar.L8 = floatValue / this.f36385b;
+                View view = qnVar.fragmentView;
+                if (view != null) {
+                    view.invalidate();
                     return;
                 }
                 return;
-            default:
-                sn snVar2 = this.f36185b;
-                snVar2.getClass();
-                if (bool.booleanValue()) {
-                    boolean booleanValue2 = bool2.booleanValue();
-                    String str2 = this.f36186c;
-                    if (booleanValue2) {
-                        snVar2.getMessagesController().addWebBrowserException(str2, true);
+            case 1:
+                ArrayList arrayList = (ArrayList) this.f36386c;
+                float floatValue2 = 1.0f - ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                for (int i11 = 0; i11 < arrayList.size(); i11++) {
+                    View view2 = (View) arrayList.get(i11);
+                    if (view2 != null) {
+                        view2.setTranslationY(this.f36385b * floatValue2);
                     }
-                    pf.d.l(snVar2.getParentActivity(), str2, false, null);
-                    return;
                 }
+                return;
+            case 2:
+                ((org.telegram.ui.Components.fo) this.f36386c).E.setTranslationY(AndroidUtilities.lerp(this.f36385b, 0.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue()));
+                return;
+            case 3:
+                ((fv0) this.f36386c).R.setTranslationY(AndroidUtilities.lerp(this.f36385b, 0.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue()));
+                return;
+            case 4:
+                k11 k11Var = (k11) this.f36386c;
+                k11Var.getClass();
+                float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                float lerp = AndroidUtilities.lerp(0.0f, this.f36385b, floatValue3);
+                k11Var.f38380a.setTranslationX(lerp);
+                k11Var.f38381b.setTranslationX(lerp);
+                ImageView imageView = k11Var.f38382c;
+                imageView.setTranslationX(lerp);
+                org.telegram.ui.Components.xp xpVar = k11Var.f38383f;
+                if (LocaleController.isRTL) {
+                    i10 = AndroidUtilities.dp(32.0f);
+                } else {
+                    i10 = -AndroidUtilities.dp(32.0f);
+                }
+                xpVar.setTranslationX(i10 + lerp);
+                float f7 = (floatValue3 * 0.5f) + 0.5f;
+                xpVar.setScaleX(f7);
+                xpVar.setScaleY(f7);
+                xpVar.setAlpha(floatValue3);
+                float f10 = 1.0f - floatValue3;
+                float f11 = (f10 * 0.5f) + 0.5f;
+                imageView.setScaleX(f11);
+                imageView.setScaleY(f11);
+                imageView.setAlpha(f10);
+                return;
+            case 5:
+                org.telegram.ui.Wallet.n3 n3Var = (org.telegram.ui.Wallet.n3) this.f36386c;
+                n3Var.getClass();
+                n3Var.R = ((((Float) valueAnimator.getAnimatedValue()).floatValue() * 240.0f) + this.f36385b) % 360.0f;
+                n3Var.f34546a.invalidate();
+                return;
+            default:
+                org.telegram.ui.Wallet.i8 i8Var = (org.telegram.ui.Wallet.i8) this.f36386c;
+                i8Var.getClass();
+                float floatValue4 = 1.0f - ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                i8Var.f34330c = i8Var.c();
+                i8Var.d = this.f36385b * floatValue4;
+                if (floatValue4 > 0.0f) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                i8Var.f34334s = z10;
                 return;
         }
     }

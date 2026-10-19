@@ -6,12 +6,12 @@ import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.ui.Components.im0;
-import org.telegram.ui.a20;
-import org.telegram.ui.z10;
-public final class wc extends z10 {
+import org.telegram.ui.x10;
+import org.telegram.ui.y10;
+public final class wc extends x10 {
     public final int K0 = 0;
     public final b2.u0 L0;
-    public final a20 M0;
+    public final y10 M0;
 
     public wc(fi.g gVar, Activity activity) {
         super(gVar, activity);
@@ -30,14 +30,14 @@ public final class wc extends z10 {
         switch (this.K0) {
             case 0:
                 md mdVar = (md) this.M0;
-                if (viewGroup == mdVar.f35242c && mdVar.R.isAttachedToWindow()) {
+                if (viewGroup == mdVar.f43315c && mdVar.R.isAttachedToWindow()) {
                     kVar = ((org.telegram.ui.ActionBar.n2) mdVar).actionBar;
-                    boolean z10 = kVar.f21493n0;
+                    boolean z10 = kVar.f21496n0;
                     int top = (((View) mdVar.R.getParent()).getTop() - AndroidUtilities.statusBarHeight) - org.telegram.ui.ActionBar.k.getCurrentActionBarHeight();
                     int bottom = ((View) mdVar.R.getParent()).getBottom();
                     boolean z11 = false;
                     if (i11 < 0) {
-                        if ((mdVar.f35242c.getHeight() - mdVar.f35242c.getPaddingBottom()) - bottom >= 0) {
+                        if ((mdVar.f43315c.getHeight() - mdVar.f43315c.getPaddingBottom()) - bottom >= 0) {
                             im0 currentListView = mdVar.R.getCurrentListView();
                             int L0 = ((s4.b0) currentListView.getLayoutManager()).L0();
                             int i15 = -1;
@@ -82,9 +82,9 @@ public final class wc extends z10 {
                         return;
                     } else if (i11 > 0) {
                         im0 currentListView3 = mdVar.R.getCurrentListView();
-                        if ((mdVar.f35242c.getHeight() - mdVar.f35242c.getPaddingBottom()) - bottom >= 0 && currentListView3 != null && !currentListView3.canScrollVertically(1)) {
+                        if ((mdVar.f43315c.getHeight() - mdVar.f43315c.getPaddingBottom()) - bottom >= 0 && currentListView3 != null && !currentListView3.canScrollVertically(1)) {
                             iArr[1] = i11;
-                            mdVar.f35242c.B0();
+                            mdVar.f43315c.B0();
                             return;
                         }
                         return;
@@ -95,14 +95,14 @@ public final class wc extends z10 {
                 return;
             default:
                 fi.g gVar = (fi.g) this.M0;
-                if (viewGroup == gVar.f35242c && gVar.R.isAttachedToWindow()) {
+                if (viewGroup == gVar.f43315c && gVar.R.isAttachedToWindow()) {
                     kVar2 = ((org.telegram.ui.ActionBar.n2) gVar).actionBar;
-                    boolean z12 = kVar2.f21493n0;
+                    boolean z12 = kVar2.f21496n0;
                     int top2 = (((View) gVar.R.getParent()).getTop() - AndroidUtilities.statusBarHeight) - org.telegram.ui.ActionBar.k.getCurrentActionBarHeight();
                     int bottom2 = ((View) gVar.R.getParent()).getBottom();
                     boolean z13 = false;
                     if (i11 < 0) {
-                        if (gVar.f35242c.getHeight() - bottom2 >= 0) {
+                        if (gVar.f43315c.getHeight() - bottom2 >= 0) {
                             im0 currentListView4 = gVar.R.getCurrentListView();
                             int L02 = ((s4.b0) currentListView4.getLayoutManager()).L0();
                             int i16 = -1;
@@ -147,9 +147,9 @@ public final class wc extends z10 {
                         return;
                     } else if (i11 > 0) {
                         im0 currentListView6 = gVar.R.getCurrentListView();
-                        if (gVar.f35242c.getHeight() - bottom2 >= 0 && currentListView6 != null && !currentListView6.canScrollVertically(1)) {
+                        if (gVar.f43315c.getHeight() - bottom2 >= 0 && currentListView6 != null && !currentListView6.canScrollVertically(1)) {
                             iArr[1] = i11;
-                            gVar.f35242c.B0();
+                            gVar.f43315c.B0();
                             return;
                         }
                         return;
@@ -172,9 +172,9 @@ public final class wc extends z10 {
             case 0:
                 md mdVar = (md) this.M0;
                 try {
-                    if (viewGroup == mdVar.f35242c && mdVar.R.isAttachedToWindow()) {
+                    if (viewGroup == mdVar.f43315c && mdVar.R.isAttachedToWindow()) {
                         im0 currentListView = mdVar.R.getCurrentListView();
-                        if ((mdVar.f35242c.getHeight() - mdVar.f35242c.getPaddingBottom()) - ((View) mdVar.R.getParent()).getBottom() >= 0) {
+                        if ((mdVar.f43315c.getHeight() - mdVar.f43315c.getPaddingBottom()) - ((View) mdVar.R.getParent()).getBottom() >= 0) {
                             iArr[1] = i13;
                             currentListView.scrollBy(0, i13);
                             return;
@@ -190,9 +190,9 @@ public final class wc extends z10 {
             default:
                 fi.g gVar = (fi.g) this.M0;
                 try {
-                    if (viewGroup == gVar.f35242c && gVar.R.isAttachedToWindow()) {
+                    if (viewGroup == gVar.f43315c && gVar.R.isAttachedToWindow()) {
                         im0 currentListView2 = gVar.R.getCurrentListView();
-                        if (gVar.f35242c.getHeight() - ((View) gVar.R.getParent()).getBottom() >= 0) {
+                        if (gVar.f43315c.getHeight() - ((View) gVar.R.getParent()).getBottom() >= 0) {
                             iArr[1] = i13;
                             currentListView2.scrollBy(0, i13);
                             return;
@@ -212,10 +212,10 @@ public final class wc extends z10 {
     public final void n(int i10, View view) {
         switch (this.K0) {
             case 0:
-                this.L0.f4057a = 0;
+                this.L0.f4055a = 0;
                 return;
             default:
-                this.L0.f4057a = 0;
+                this.L0.f4055a = 0;
                 return;
         }
     }
@@ -245,10 +245,10 @@ public final class wc extends z10 {
     public final void s(View view, View view2, int i10, int i11) {
         switch (this.K0) {
             case 0:
-                this.L0.f4057a = i10;
+                this.L0.f4055a = i10;
                 return;
             default:
-                this.L0.f4057a = i10;
+                this.L0.f4055a = i10;
                 return;
         }
     }

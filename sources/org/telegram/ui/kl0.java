@@ -1,110 +1,85 @@
 package org.telegram.ui;
 
-import android.view.View;
-import android.widget.TextView;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class kl0 implements View.OnClickListener {
-    public final int f38538a;
-    public final xm0 f38539b;
+import android.content.Intent;
+import android.net.Uri;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.FileLog;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class kl0 implements org.telegram.ui.ActionBar.a2, nt, km0 {
+    public final int f38632a;
+    public final vm0 f38633b;
 
-    public kl0(xm0 xm0Var, int i10) {
-        this.f38538a = i10;
-        this.f38539b = xm0Var;
+    public kl0(vm0 vm0Var, int i10) {
+        this.f38632a = i10;
+        this.f38633b = vm0Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f38538a) {
-            case 0:
-                xm0 xm0Var = this.f38539b;
-                xm0Var.S0 = 2;
-                xm0Var.C1();
-                return;
-            case 1:
-                this.f38539b.c1();
-                return;
+    public void L0(ht htVar) {
+        String str;
+        switch (this.f38632a) {
             case 2:
-                xm0 xm0Var2 = this.f38539b;
-                xm0Var2.S0 = 3;
-                xm0Var2.C1();
-                return;
-            case 3:
-                xm0 xm0Var3 = this.f38539b;
-                xm0Var3.S0 = 1;
-                xm0Var3.C1();
-                return;
-            case 4:
-                xm0 xm0Var4 = this.f38539b;
-                xm0Var4.S0 = 4;
-                xm0Var4.C1();
-                return;
-            case 5:
-                xm0 xm0Var5 = this.f38539b;
-                if (xm0Var5.getParentActivity().checkSelfPermission("android.permission.CAMERA") != 0) {
-                    xm0Var5.getParentActivity().requestPermissions(new String[]{"android.permission.CAMERA"}, 22);
-                    return;
-                }
-                y9 y9Var = new y9(0);
-                y9Var.N = new vl0(xm0Var5);
-                xm0Var5.presentFragment(y9Var);
-                return;
-            case 6:
-                xm0 xm0Var6 = this.f38539b;
-                xm0Var6.f43158f = true;
-                xm0Var6.L.callOnClick();
-                xm0Var6.f43158f = false;
-                return;
-            case 7:
-                xm0 xm0Var7 = this.f38539b;
-                xm0Var7.S0 = 0;
-                xm0Var7.C1();
-                return;
-            case 8:
-                xm0 xm0Var8 = this.f38539b;
-                xm0Var8.S0 = 4;
-                xm0Var8.C1();
-                return;
-            case 9:
-                this.f38539b.c1();
-                return;
-            case 10:
-                xm0.b0(this.f38539b);
-                return;
-            case 11:
-                xm0.c0(this.f38539b);
-                return;
-            case 12:
-                this.f38539b.B1();
-                return;
-            case 13:
-                xm0 xm0Var9 = this.f38539b;
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(xm0Var9.getParentActivity());
-                alertDialog$Builder.f20601a.R = LocaleController.getString(R.string.TelegramPassportDeleteTitle);
-                alertDialog$Builder.f20601a.T = LocaleController.getString(R.string.TelegramPassportDeleteAlert);
-                alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new ml0(xm0Var9, 5));
-                alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-                org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20601a;
-                xm0Var9.showDialog(b2Var);
-                TextView textView = (TextView) b2Var.d(-1);
-                if (textView != null) {
-                    textView.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21224q7, false));
-                    return;
-                }
-                return;
-            case 14:
-                this.f38539b.B1();
-                return;
-            case 15:
-                xm0.V(this.f38539b);
+                vm0 vm0Var = this.f38633b;
+                vm0Var.Y[5].setText(htVar.f37806a);
+                vm0Var.f42314s = htVar.d;
                 return;
             default:
-                xm0 xm0Var10 = this.f38539b;
-                xm0Var10.f43158f = true;
-                xm0Var10.L.callOnClick();
-                xm0Var10.f43158f = false;
+                vm0 vm0Var2 = this.f38633b;
+                vm0Var2.Y[0].setText(htVar.f37806a);
+                if (vm0Var2.U0.indexOf(htVar.f37806a) != -1) {
+                    vm0Var2.Z0 = true;
+                    String str2 = (String) vm0Var2.V0.get(htVar.f37806a);
+                    vm0Var2.Y[1].setText(str2);
+                    String str3 = (String) vm0Var2.X0.get(str2);
+                    EditTextBoldCursor editTextBoldCursor = vm0Var2.Y[2];
+                    if (str3 != null) {
+                        str = str3.replace('X', (char) 8211);
+                    } else {
+                        str = null;
+                    }
+                    editTextBoldCursor.setHintText(str);
+                    vm0Var2.Z0 = false;
+                }
+                AndroidUtilities.runOnUIThread(new hl0(vm0Var2, 3), 300L);
+                vm0Var2.Y[2].requestFocus();
+                EditTextBoldCursor editTextBoldCursor2 = vm0Var2.Y[2];
+                editTextBoldCursor2.setSelection(editTextBoldCursor2.length());
                 return;
         }
+    }
+
+    @Override
+    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        switch (this.f38632a) {
+            case 0:
+                vm0 vm0Var = this.f38633b;
+                vm0Var.getClass();
+                try {
+                    Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
+                    intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
+                    vm0Var.getParentActivity().startActivity(intent);
+                    return;
+                } catch (Exception e) {
+                    FileLog.e(e);
+                    return;
+                }
+            case 1:
+                this.f38633b.finishFragment();
+                return;
+            case 2:
+            case 3:
+            default:
+                vm0.a0(this.f38633b);
+                return;
+            case 4:
+                vm0.d0(this.f38633b);
+                return;
+        }
+    }
+
+    @Override
+    public void p(String str, String str2) {
+        this.f38633b.w1();
     }
 }

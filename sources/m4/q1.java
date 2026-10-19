@@ -6,16 +6,16 @@ import v7.u6;
 public final class q1 {
     public static final String d;
     public static final String e;
-    public static final String f16684f;
-    public final int f16685a;
-    public final String f16686b;
-    public final Bundle f16687c;
+    public static final String f16687f;
+    public final int f16688a;
+    public final String f16689b;
+    public final Bundle f16690c;
 
     static {
-        String str = e2.m0.f8253a;
+        String str = e2.m0.f8254a;
         d = Integer.toString(0, 36);
         e = Integer.toString(1, 36);
-        f16684f = Integer.toString(2, 36);
+        f16687f = Integer.toString(2, 36);
     }
 
     public q1(int i10) {
@@ -24,11 +24,11 @@ public final class q1 {
 
     public final Bundle a() {
         Bundle bundle = new Bundle();
-        bundle.putInt(d, this.f16685a);
-        bundle.putString(e, this.f16686b);
-        Bundle bundle2 = this.f16687c;
+        bundle.putInt(d, this.f16688a);
+        bundle.putString(e, this.f16689b);
+        Bundle bundle2 = this.f16690c;
         if (!bundle2.isEmpty()) {
-            bundle.putBundle(f16684f, bundle2);
+            bundle.putBundle(f16687f, bundle2);
         }
         return bundle;
     }
@@ -41,14 +41,14 @@ public final class q1 {
             return false;
         }
         q1 q1Var = (q1) obj;
-        if (this.f16685a == q1Var.f16685a && Objects.equals(this.f16686b, q1Var.f16686b)) {
+        if (this.f16688a == q1Var.f16688a && Objects.equals(this.f16689b, q1Var.f16689b)) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return Objects.hash(Integer.valueOf(this.f16685a), this.f16686b);
+        return Objects.hash(Integer.valueOf(this.f16688a), this.f16689b);
     }
 
     public q1(String str, int i10, Bundle bundle) {
@@ -57,8 +57,8 @@ public final class q1 {
             z10 = false;
         }
         u6.g(z10);
-        this.f16685a = i10;
-        this.f16686b = str;
-        this.f16687c = bundle;
+        this.f16688a = i10;
+        this.f16689b = str;
+        this.f16690c = bundle;
     }
 }

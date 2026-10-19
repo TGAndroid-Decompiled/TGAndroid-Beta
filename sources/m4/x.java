@@ -6,20 +6,20 @@ import android.os.Looper;
 import java.util.HashMap;
 import v7.u6;
 public class x {
-    public static final Object f16767b = new Object();
-    public static final HashMap f16768c = new HashMap();
-    public final f0 f16769a;
+    public static final Object f16770b = new Object();
+    public static final HashMap f16771c = new HashMap();
+    public final f0 f16772a;
 
     public x(Context context, String str, b2.f1 f1Var, e9.n0 n0Var, e9.n0 n0Var2, e9.n0 n0Var3, pb.a aVar, Bundle bundle, Bundle bundle2, e2.d dVar, boolean z10, boolean z11) {
-        synchronized (f16767b) {
-            HashMap hashMap = f16768c;
+        synchronized (f16770b) {
+            HashMap hashMap = f16771c;
             if (!hashMap.containsKey(str)) {
                 hashMap.put(str, this);
             } else {
                 throw new IllegalStateException("Session ID must be unique. ID=" + str);
             }
         }
-        this.f16769a = new f0(this, context, str, f1Var, n0Var, n0Var2, n0Var3, aVar, bundle, bundle2, dVar, z10, z11);
+        this.f16772a = new f0(this, context, str, f1Var, n0Var, n0Var2, n0Var3, aVar, bundle, bundle2, dVar, z10, z11);
     }
 
     public final void a(b2.f1 f1Var) {
@@ -27,9 +27,9 @@ public class x {
         f1Var.getClass();
         u6.g(f1Var.P());
         Looper A0 = f1Var.A0();
-        f0 f0Var = this.f16769a;
+        f0 f0Var = this.f16772a;
         boolean z11 = false;
-        if (A0 == f0Var.f16533t.f16640a.A0()) {
+        if (A0 == f0Var.f16536t.f16643a.A0()) {
             z10 = true;
         } else {
             z10 = false;
@@ -39,8 +39,8 @@ public class x {
             z11 = true;
         }
         u6.p(z11);
-        m1 m1Var = f0Var.f16533t;
-        if (f1Var == m1Var.f16640a) {
+        m1 m1Var = f0Var.f16536t;
+        if (f1Var == m1Var.f16643a) {
             return;
         }
         f0Var.u(m1Var, new m1(f1Var));

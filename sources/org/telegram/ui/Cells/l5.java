@@ -3,14 +3,14 @@ package org.telegram.ui.Cells;
 import android.view.View;
 import org.telegram.messenger.lk;
 public final class l5 extends View {
-    public int f22534a;
+    public int f22537a;
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        super.onMeasure(lk.C(2.0f, this.f22534a, 1073741824), lk.C(2.0f, this.f22534a, 1073741824));
+        super.onMeasure(lk.C(2.0f, this.f22537a, 1073741824), lk.C(2.0f, this.f22537a, 1073741824));
     }
 
     public void setItemSize(int i10) {
-        this.f22534a = i10;
+        this.f22537a = i10;
     }
 }

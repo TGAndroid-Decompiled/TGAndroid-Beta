@@ -1,8 +1,13 @@
 package si;
 
+import android.graphics.Bitmap;
+import android.graphics.Point;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
@@ -10,8 +15,11 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.is0;
+import org.telegram.ui.ActionBar.n2;
+import org.telegram.ui.Components.js0;
+import org.telegram.ui.Components.w61;
 import org.telegram.ui.Components.xc;
+import org.telegram.ui.sp0;
 import yh.g1;
 import yh.l2;
 import yh.o2;
@@ -35,6 +43,7 @@ public final class o implements Runnable {
         int a2;
         int max;
         int max2;
+        String str = null;
         int i10 = 1;
         switch (this.f46734a) {
             case 0:
@@ -89,41 +98,74 @@ public final class o implements Runnable {
                 } else {
                     return;
                 }
-            default:
+            case 2:
                 final l2 l2Var = (l2) this.f46735b;
                 TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) this.f46736c;
                 g1 g1Var = (g1) this.d;
                 final View view = (View) this.e;
-                is0 is0Var = l2Var.f50359a;
+                js0 js0Var = l2Var.f50358a;
                 if (savedStarGift.unsaved) {
                     savedStarGift.unsaved = false;
                     g1Var.h(savedStarGift, true, false);
                     TL_stars.saveStarGift savestargift = new TL_stars.saveStarGift();
                     savestargift.stargift = l2Var.e.h(savedStarGift);
                     savestargift.unsave = savedStarGift.unsaved;
-                    ConnectionsManager.getInstance(l2Var.f50360b).sendRequest(savestargift, null, 64);
+                    ConnectionsManager.getInstance(l2Var.f50359b).sendRequest(savestargift, null, 64);
                 }
                 boolean z10 = savedStarGift.pinned_to_top;
                 final boolean z11 = !z10;
                 if (l2Var.e.n(savedStarGift, z11, false)) {
-                    new o2(l2Var.getContext(), is0Var.f50459c, savedStarGift, l2Var.f50361c, new Utilities.Callback0Return() {
+                    new o2(l2Var.getContext(), js0Var.f50458c, savedStarGift, l2Var.f50360c, new Utilities.Callback0Return() {
                         @Override
                         public final Object run() {
                             ((g1) view).c(z11, true);
                             l2 l2Var2 = l2.this;
-                            l2Var2.f50362f.u0(0);
-                            return xc.a0(l2Var2.f50359a.f50457a);
+                            l2Var2.f50361f.u0(0);
+                            return xc.a0(l2Var2.f50358a.f50456a);
                         }
                     }).show();
                     return;
                 }
                 if (!z10) {
-                    xc.a0(is0Var.f50457a).M(LocaleController.getString(R.string.Gift2PinnedTitle), LocaleController.getString(R.string.Gift2PinnedSubtitle), R.raw.ic_pin).j();
+                    xc.a0(js0Var.f50456a).M(LocaleController.getString(R.string.Gift2PinnedTitle), LocaleController.getString(R.string.Gift2PinnedSubtitle), R.raw.ic_pin).j();
                 } else {
-                    org.telegram.messenger.g0.q(R.string.Gift2Unpinned, xc.a0(is0Var.f50457a), R.raw.ic_unpin, 36);
+                    org.telegram.messenger.g0.q(R.string.Gift2Unpinned, xc.a0(js0Var.f50456a), R.raw.ic_unpin, 36);
                 }
                 ((g1) view).c(z11, true);
-                l2Var.f50362f.u0(0);
+                l2Var.f50361f.u0(0);
+                return;
+            case 3:
+                w61 w61Var = (w61) this.f46735b;
+                zh.b0 b0Var = (zh.b0) this.f46736c;
+                Utilities.CallbackReturn callbackReturn = (Utilities.CallbackReturn) this.d;
+                Utilities.Callback callback3 = (Utilities.Callback) this.e;
+                if (zh.b0.d(w61Var.getParentActivity())) {
+                    b0Var.e();
+                    sp0 sp0Var = new sp0(10, false, false, null);
+                    sp0Var.G = 1;
+                    sp0Var.H = false;
+                    sp0Var.f41509x = false;
+                    sp0Var.V = new zh.y(callbackReturn, w61Var, callback3);
+                    w61Var.presentFragment(sp0Var);
+                    return;
+                }
+                return;
+            default:
+                String str2 = (String) this.f46735b;
+                Utilities.CallbackReturn callbackReturn2 = (Utilities.CallbackReturn) this.f46736c;
+                n2 n2Var = (n2) this.d;
+                Utilities.Callback callback4 = (Utilities.Callback) this.e;
+                try {
+                    Point realScreenSize = AndroidUtilities.getRealScreenSize();
+                    Bitmap loadBitmap = ImageLoader.loadBitmap(str2, null, realScreenSize.x, realScreenSize.y, true);
+                    if (loadBitmap != null) {
+                        str = zh.b0.l(loadBitmap, callbackReturn2);
+                        loadBitmap.recycle();
+                    }
+                } catch (Throwable th2) {
+                    FileLog.e(th2);
+                }
+                AndroidUtilities.runOnUIThread(new zh.x(n2Var, str, callback4));
                 return;
         }
     }

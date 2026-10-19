@@ -13,7 +13,7 @@ import zf.p;
 public final class d extends c {
     public final p6 d;
     public final yj0 e;
-    public final ne.b f47200f;
+    public final ne.b f47202f;
     public float h;
 
     public d(u1 u1Var, d6 d6Var) {
@@ -23,33 +23,33 @@ public final class d extends c {
         yj0Var.d(null, true, false);
         yj0Var.v = 650.0f;
         yj0Var.e(0.69f, false);
-        yj0Var.f32664p.setStrokeWidth(AndroidUtilities.dp(1.5f));
-        this.f47200f = new ne.b(u1Var, bs.h, 260L);
+        yj0Var.f32658p.setStrokeWidth(AndroidUtilities.dp(1.5f));
+        this.f47202f = new ne.b(u1Var, bs.h, 260L);
         p6 p6Var = new p6(true, false, false);
         this.d = p6Var;
         p6Var.x(AndroidUtilities.bold());
         p6Var.w(AndroidUtilities.dp(13.0f));
-        p6Var.f29192b = 17;
-        int w02 = h6.w0(h6.f21075i6, d6Var);
-        if (this.f47198b != w02) {
-            h6.C1(this.f47197a, w02, false);
-            this.f47198b = w02;
+        p6Var.f29182b = 17;
+        int w02 = h6.w0(h6.f21078i6, d6Var);
+        if (this.f47200b != w02) {
+            h6.C1(this.f47199a, w02, false);
+            this.f47200b = w02;
         }
     }
 
     @Override
     public final void a(int i10) {
-        this.f47197a.setAlpha(i10);
+        this.f47199a.setAlpha(i10);
         this.d.B = i10;
     }
 
     public final float b() {
-        return this.f47200f.e;
+        return this.f47202f.e;
     }
 
     public final void c(int i10) {
         this.d.u(i10);
-        this.e.f32663o = i10;
+        this.e.f32657o = i10;
     }
 
     public final void d(float f7) {
@@ -63,7 +63,7 @@ public final class d extends c {
 
     @Override
     public final void draw(Canvas canvas) {
-        float f7 = this.f47200f.e;
+        float f7 = this.f47202f.e;
         if (f7 < 1.0f) {
             p.b(canvas, this.d, 1.0f - f7);
         }

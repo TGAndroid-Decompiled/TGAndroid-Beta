@@ -2,7 +2,7 @@ package t7;
 
 import java.util.ListIterator;
 import java.util.NoSuchElementException;
-import w7.p7;
+import w7.o7;
 public final class b extends a9.o implements ListIterator {
     public final int f46875b;
     public int f46876c;
@@ -11,7 +11,7 @@ public final class b extends a9.o implements ListIterator {
     public b(d dVar, int i10) {
         super(4);
         int size = dVar.size();
-        p7.b(i10, size);
+        o7.b(i10, size);
         this.f46875b = size;
         this.f46876c = i10;
         this.d = dVar;

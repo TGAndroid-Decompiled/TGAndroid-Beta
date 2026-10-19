@@ -52,7 +52,7 @@ public final class va extends gd0 {
         int size = View.MeasureSpec.getSize(i11);
         bb bbVar = this.F0;
         bbVar.h = size;
-        bbVar.F(i10, i11);
+        bbVar.E(i10, i11);
         if (this.D0) {
             i11 = View.MeasureSpec.makeMeasureSpec(bbVar.h, 1073741824);
         }

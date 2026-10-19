@@ -1,38 +1,35 @@
 package ai;
 
-import org.telegram.messenger.BillingController;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.p91;
 public final class p3 implements Runnable {
-    public final int f2001a;
-    public final s0 f2002b;
-    public final org.telegram.ui.Components.zc[] f2003c;
-    public final TL_stars.UniqueStarGiftValueInfo d;
-    public final String e;
+    public final int f1999a = 0;
+    public final TLRPC.Chat f2000b;
 
-    public p3(s0 s0Var, org.telegram.ui.Components.zc[] zcVarArr, TL_stars.UniqueStarGiftValueInfo uniqueStarGiftValueInfo, String str, int i10) {
-        this.f2001a = i10;
-        this.f2002b = s0Var;
-        this.f2003c = zcVarArr;
-        this.d = uniqueStarGiftValueInfo;
-        this.e = str;
+    public p3(k7 k7Var, TLRPC.Chat chat) {
+        this.f2000b = chat;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f2001a;
-        String str = this.e;
-        TL_stars.UniqueStarGiftValueInfo uniqueStarGiftValueInfo = this.d;
-        org.telegram.ui.Components.zc[] zcVarArr = this.f2003c;
-        s0 s0Var = this.f2002b;
-        switch (i10) {
+        switch (this.f1999a) {
             case 0:
-                s0Var.run(zcVarArr[0], LocaleController.formatString(R.string.GiftValueMinPriceInfo, BillingController.getInstance().formatCurrency(uniqueStarGiftValueInfo.floor_price, uniqueStarGiftValueInfo.currency), str));
+                k7.E2(p91.d0(this.f2000b, true));
                 return;
             default:
-                s0Var.run(zcVarArr[0], LocaleController.formatString(R.string.GiftValueAveragePriceInfo, BillingController.getInstance().formatCurrency(uniqueStarGiftValueInfo.average_price, uniqueStarGiftValueInfo.currency), str));
+                TLRPC.Chat chat = this.f2000b;
+                if (chat != null) {
+                    ?? obj = new Object();
+                    obj.f21555a = true;
+                    LaunchActivity.R().showAsSheet(new org.telegram.ui.z5(-chat.f20275id), obj);
+                    return;
+                }
                 return;
         }
+    }
+
+    public p3(TLRPC.Chat chat) {
+        this.f2000b = chat;
     }
 }

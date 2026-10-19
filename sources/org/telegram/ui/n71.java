@@ -1,44 +1,29 @@
 package org.telegram.ui;
 
-import android.view.View;
-public final class n71 implements View.OnClickListener {
-    public final int f39351a;
-    public final z71 f39352b;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class n71 implements RequestDelegate {
+    public final int f39444a;
+    public final x71 f39445b;
 
-    public n71(z71 z71Var, int i10) {
-        this.f39351a = i10;
-        this.f39352b = z71Var;
+    public n71(x71 x71Var, int i10) {
+        this.f39444a = i10;
+        this.f39445b = x71Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f39351a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f39444a) {
             case 0:
-                z71 z71Var = this.f39352b;
-                pf.d.r(z71Var.getParentActivity(), z71Var.getMessagesController().premiumManageSubscriptionUrl);
-                z71Var.getMessagesController().removeSuggestion(0L, "PREMIUM_GRACE");
-                return;
-            case 1:
-                z71 z71Var2 = this.f39352b;
-                z71Var2.getClass();
-                z71Var2.presentFragment(new h(3));
-                return;
-            case 2:
-                this.f39352b.getMessagesController().removeSuggestion(0L, "VALIDATE_PHONE_NUMBER");
-                return;
-            case 3:
-                z71 z71Var3 = this.f39352b;
-                z71Var3.getClass();
-                z71Var3.presentFragment(new xf1(8, null));
-                return;
-            case 4:
-                this.f39352b.getMessagesController().removeSuggestion(0L, "VALIDATE_PASSWORD");
-                return;
-            case 5:
-                z71.V(this.f39352b);
+                TLRPC.TL_help_dismissSuggestion tL_help_dismissSuggestion = new TLRPC.TL_help_dismissSuggestion();
+                tL_help_dismissSuggestion.suggestion = "VALIDATE_PASSWORD";
+                tL_help_dismissSuggestion.peer = new TLRPC.TL_inputPeerEmpty();
+                x71 x71Var = this.f39445b;
+                x71Var.getConnectionsManager().sendRequest(tL_help_dismissSuggestion, new n71(x71Var, 1));
                 return;
             default:
-                z71.Z(this.f39352b);
+                this.f39445b.getMessagesController().loadAppConfig();
                 return;
         }
     }

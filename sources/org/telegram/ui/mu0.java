@@ -1,55 +1,16 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class mu0 extends org.telegram.ui.Components.s60 {
-    public final nu0 d;
+import java.util.ArrayList;
+public final class mu0 {
+    public final int f39348a;
+    public final ArrayList f39349b;
+    public final hu0 f39350c;
+    public final PhotoViewer d;
 
-    public mu0(nu0 nu0Var) {
-        this.d = nu0Var;
-    }
-
-    @Override
-    public final CharSequence d() {
-        StringBuilder sb2 = new StringBuilder();
-        sb2.append(LocaleController.getString("AccDescrVideoQuality", R.string.AccDescrVideoQuality));
-        if (this.d.f39577s.Z7 > 0) {
-            sb2.append(", ");
-            sb2.append(this.d.f39577s.Y7 + 1);
-            sb2.append(" / ");
-            sb2.append(this.d.f39577s.Z7);
-        }
-        sb2.append(", ");
-        sb2.append(this.d.h);
-        sb2.append(" – ");
-        sb2.append(this.d.f39575n);
-        return sb2.toString();
-    }
-
-    @Override
-    public final int i() {
-        return Math.max(0, this.d.f39577s.Z7 - 1);
-    }
-
-    @Override
-    public final int j() {
-        return this.d.f39577s.Y7;
-    }
-
-    @Override
-    public final void k(int i10) {
-        int max;
-        if (this.d.f39577s.Z7 > 0 && (max = Math.max(0, Math.min(this.d.f39577s.Z7 - 1, i10))) != this.d.f39577s.Y7) {
-            nu0 nu0Var = this.d;
-            nu0Var.f39576r = nu0Var.f39577s.Y7;
-            this.d.f39577s.Y7 = max;
-            this.d.f39577s.S0();
-            this.d.invalidate();
-            int i11 = this.d.f39577s.Y7;
-            nu0 nu0Var2 = this.d;
-            if (i11 != nu0Var2.f39576r) {
-                nu0Var2.f39577s.p2(1);
-            }
-        }
+    public mu0(PhotoViewer photoViewer, int i10, ArrayList arrayList, hu0 hu0Var) {
+        this.d = photoViewer;
+        this.f39349b = arrayList;
+        this.f39348a = i10;
+        this.f39350c = hu0Var;
     }
 }

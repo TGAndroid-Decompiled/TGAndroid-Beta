@@ -1,20 +1,20 @@
 package z7;
 public final class y8 implements ja.d {
     public static final y8 f51268a = new Object();
-    public static final ja.c f51269b = new ja.c("appId", i2.d.o(r4.c.n(w.class, new s(1))));
-    public static final ja.c f51270c = new ja.c("appVersion", i2.d.o(r4.c.n(w.class, new s(2))));
-    public static final ja.c d = new ja.c("firebaseProjectId", i2.d.o(r4.c.n(w.class, new s(3))));
-    public static final ja.c e = new ja.c("mlSdkVersion", i2.d.o(r4.c.n(w.class, new s(4))));
-    public static final ja.c f51271f = new ja.c("tfliteSchemaVersion", i2.d.o(r4.c.n(w.class, new s(5))));
-    public static final ja.c f51272g = new ja.c("gcmSenderId", i2.d.o(r4.c.n(w.class, new s(6))));
-    public static final ja.c h = new ja.c("apiKey", i2.d.o(r4.c.n(w.class, new s(7))));
-    public static final ja.c f51273i = new ja.c("languages", i2.d.o(r4.c.n(w.class, new s(8))));
-    public static final ja.c f51274j = new ja.c("mlSdkInstanceId", i2.d.o(r4.c.n(w.class, new s(9))));
-    public static final ja.c f51275k = new ja.c("isClearcutClient", i2.d.o(r4.c.n(w.class, new s(10))));
-    public static final ja.c f51276l = new ja.c("isStandaloneMlkit", i2.d.o(r4.c.n(w.class, new s(11))));
-    public static final ja.c f51277m = new ja.c("isJsonLogging", i2.d.o(r4.c.n(w.class, new s(12))));
-    public static final ja.c f51278n = new ja.c("buildLevel", i2.d.o(r4.c.n(w.class, new s(13))));
-    public static final ja.c f51279o = new ja.c("optionalModuleVersion", i2.d.o(r4.c.n(w.class, new s(14))));
+    public static final ja.c f51269b = new ja.c("appId", i2.e.o(r4.c.n(w.class, new s(1))));
+    public static final ja.c f51270c = new ja.c("appVersion", i2.e.o(r4.c.n(w.class, new s(2))));
+    public static final ja.c d = new ja.c("firebaseProjectId", i2.e.o(r4.c.n(w.class, new s(3))));
+    public static final ja.c e = new ja.c("mlSdkVersion", i2.e.o(r4.c.n(w.class, new s(4))));
+    public static final ja.c f51271f = new ja.c("tfliteSchemaVersion", i2.e.o(r4.c.n(w.class, new s(5))));
+    public static final ja.c f51272g = new ja.c("gcmSenderId", i2.e.o(r4.c.n(w.class, new s(6))));
+    public static final ja.c h = new ja.c("apiKey", i2.e.o(r4.c.n(w.class, new s(7))));
+    public static final ja.c f51273i = new ja.c("languages", i2.e.o(r4.c.n(w.class, new s(8))));
+    public static final ja.c f51274j = new ja.c("mlSdkInstanceId", i2.e.o(r4.c.n(w.class, new s(9))));
+    public static final ja.c f51275k = new ja.c("isClearcutClient", i2.e.o(r4.c.n(w.class, new s(10))));
+    public static final ja.c f51276l = new ja.c("isStandaloneMlkit", i2.e.o(r4.c.n(w.class, new s(11))));
+    public static final ja.c f51277m = new ja.c("isJsonLogging", i2.e.o(r4.c.n(w.class, new s(12))));
+    public static final ja.c f51278n = new ja.c("buildLevel", i2.e.o(r4.c.n(w.class, new s(13))));
+    public static final ja.c f51279o = new ja.c("optionalModuleVersion", i2.e.o(r4.c.n(w.class, new s(14))));
 
     @Override
     public final void a(Object obj, Object obj2) {

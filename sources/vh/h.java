@@ -26,12 +26,12 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
+import org.telegram.messenger.g0;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Cells.s8;
 import org.telegram.ui.Cells.u1;
 import org.telegram.ui.Components.yb;
-import qg.g0;
-import u2.q0;
+import qg.h0;
 public final class h extends Drawable implements Animator.AnimatorListener {
     public static final RectF f48424b0 = new RectF();
     public static final Rect f48425c0 = new Rect();
@@ -52,7 +52,7 @@ public final class h extends Drawable implements Animator.AnimatorListener {
     public float X;
     public float Y;
     public final i f48429a;
-    public final q0 f48431b;
+    public final uf.c f48431b;
     public final LinearGradient f48433f;
     public final d[] f48437w;
     public final Drawable f48438x;
@@ -76,8 +76,8 @@ public final class h extends Drawable implements Animator.AnimatorListener {
     public final ObjectAnimator Z = ObjectAnimator.ofFloat(this, f48427e0, 1.0f).setDuration(560L);
     public final ObjectAnimator f48430a0 = ObjectAnimator.ofFloat(this, f48428f0, 1.0f).setDuration(240L);
 
-    public h(i iVar, u1 u1Var, ArrayList arrayList, q0 q0Var) {
-        this.f48431b = q0Var;
+    public h(i iVar, u1 u1Var, ArrayList arrayList, uf.c cVar) {
+        this.f48431b = cVar;
         this.f48429a = iVar;
         this.f48439y = u1Var;
         this.E = u1Var.getMessageObject();
@@ -180,7 +180,7 @@ public final class h extends Drawable implements Animator.AnimatorListener {
         this.f48430a0.start();
         this.O = true;
         if (this.M && !this.T) {
-            b bVar = new b(new g0(this, 24));
+            b bVar = new b(new h0(this, 24));
             this.P = bVar;
             RectF rectF = this.f48435r;
             int i10 = g.f48422a;
@@ -371,10 +371,10 @@ public final class h extends Drawable implements Animator.AnimatorListener {
                                         M2.setAlpha(alpha2);
                                     }
                                     if (R2 || paint != null) {
-                                        int alpha3 = h6.f21054h2.getAlpha();
-                                        h6.f21054h2.setAlpha((int) (alpha3 * f27));
-                                        canvas3.drawRoundRect(rectF3, dp4, dp4, h6.f21054h2);
-                                        h6.f21054h2.setAlpha(alpha3);
+                                        int alpha3 = h6.f21057h2.getAlpha();
+                                        h6.f21057h2.setAlpha((int) (alpha3 * f27));
+                                        canvas3.drawRoundRect(rectF3, dp4, dp4, h6.f21057h2);
+                                        h6.f21057h2.setAlpha(alpha3);
                                     }
                                     canvas3.save();
                                     canvas3.translate(f25 + AndroidUtilities.dp(f28), ((AndroidUtilities.dp(f23) - dVar2.h.getHeight()) / 2.0f) + f26);
@@ -512,7 +512,7 @@ public final class h extends Drawable implements Animator.AnimatorListener {
                         float f31 = dVar2.f48400o * f24;
                         i13 = i12;
                         i14 = 2;
-                        float D = org.telegram.messenger.g0.D(8, 2, dVar2.h.getWidth());
+                        float D = g0.D(8, 2, dVar2.h.getWidth());
                         dVar2.f48394i = d.b(d.b(f12, D, f27, f28), D, dp5, measuredWidth) - (D / 2.0f);
                         dVar2.f48395j = centerY2 - AndroidUtilities.dp(58.0f);
                         if (dVar2.f48392f == null) {
@@ -563,10 +563,10 @@ public final class h extends Drawable implements Animator.AnimatorListener {
                                                     M2.setAlpha(alpha2);
                                                 }
                                                 if (R2 || paint2 != null) {
-                                                    int alpha3 = h6.f21054h2.getAlpha();
-                                                    h6.f21054h2.setAlpha((int) (alpha3 * f272));
-                                                    canvas3.drawRoundRect(rectF32, dp42, dp42, h6.f21054h2);
-                                                    h6.f21054h2.setAlpha(alpha3);
+                                                    int alpha3 = h6.f21057h2.getAlpha();
+                                                    h6.f21057h2.setAlpha((int) (alpha3 * f272));
+                                                    canvas3.drawRoundRect(rectF32, dp42, dp42, h6.f21057h2);
+                                                    h6.f21057h2.setAlpha(alpha3);
                                                 }
                                                 canvas3.save();
                                                 canvas3.translate(f252 + AndroidUtilities.dp(f282), ((AndroidUtilities.dp(f232) - dVar22.h.getHeight()) / 2.0f) + f262);
@@ -633,23 +633,23 @@ public final class h extends Drawable implements Animator.AnimatorListener {
     @Override
     public final void onAnimationEnd(Animator animator) {
         ObjectAnimator objectAnimator = this.Z;
-        q0 q0Var = this.f48431b;
+        uf.c cVar = this.f48431b;
         if (animator == objectAnimator) {
             this.f48439y.setHideSideButtonByQuickShare(false);
             this.M = true;
             invalidateSelf();
             if (this.N) {
-                q0Var.run();
+                cVar.run();
             }
         } else if (animator == this.f48430a0) {
             this.N = true;
             invalidateSelf();
             yb ybVar = this.W;
             if (ybVar != null) {
-                ybVar.f32598a.setVisibility(0);
+                ybVar.f32592a.setVisibility(0);
             }
             if (this.M) {
-                q0Var.run();
+                cVar.run();
             }
         }
     }

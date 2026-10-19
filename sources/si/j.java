@@ -26,11 +26,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.concurrent.CountDownLatch;
+import k2.w0;
 import m.g3;
 import org.telegram.ui.Components.b60;
 import org.telegram.ui.Components.t50;
-import org.telegram.ui.web.g2;
-import org.telegram.ui.z70;
+import org.telegram.ui.x70;
 public final class j {
     public CameraCaptureSession A;
     public long A0;
@@ -113,7 +113,7 @@ public final class j {
     public final n f46642j;
     public i f46643j0;
     public long f46644j1;
-    public final l2.f f46645k;
+    public final w0 f46645k;
     public boolean f46646k0;
     public long f46647k1;
     public boolean f46649l0;
@@ -157,7 +157,7 @@ public final class j {
     public final Rect f46648l = new Rect();
     public float O = 1.0f;
 
-    public j(Context context, TextureView textureView, q0 q0Var, int i10, m0 m0Var, n0 n0Var, boolean z10, n nVar, l2.f fVar) {
+    public j(Context context, TextureView textureView, q0 q0Var, int i10, m0 m0Var, n0 n0Var, boolean z10, n nVar, w0 w0Var) {
         y3 y3Var = new y3(this, 2);
         this.l1 = y3Var;
         this.f46651m1 = new a(this, 4);
@@ -178,7 +178,7 @@ public final class j {
         this.h = n0Var;
         this.f46639i = z10;
         this.f46642j = nVar;
-        this.f46645k = fVar;
+        this.f46645k = w0Var;
         textureView.addOnLayoutChangeListener(y3Var);
     }
 
@@ -479,9 +479,9 @@ public final class j {
                 Size n10 = n(sizeArr, size);
                 j6.l lVar2 = new j6.l(n10, size, m0Var, i10);
                 if (lVar != null) {
-                    Size size2 = (Size) lVar.f14289b;
+                    Size size2 = (Size) lVar.f14291b;
                     int abs = Math.abs(Math.min(n10.getWidth(), n10.getHeight()) - 720);
-                    Size size3 = (Size) lVar.f14290c;
+                    Size size3 = (Size) lVar.f14292c;
                     int abs2 = Math.abs(V(size2) - 720);
                     if (abs != abs2) {
                         compare = Integer.compare(abs, abs2);
@@ -595,9 +595,9 @@ public final class j {
             rangeArr = (Range[]) cameraCharacteristics.get(CameraCharacteristics.CONTROL_AE_AVAILABLE_TARGET_FPS_RANGES);
         }
         this.K = C(rangeArr, 30);
-        this.f46661q = (Size) lVar.f14289b;
-        this.f46664r = (Size) lVar.f14290c;
-        this.f46667s = lVar.f14288a;
+        this.f46661q = (Size) lVar.f14291b;
+        this.f46664r = (Size) lVar.f14292c;
+        this.f46667s = lVar.f14290a;
         this.I = (m0) lVar.d;
         this.f46640i0 = null;
         this.f46643j0 = null;
@@ -726,7 +726,7 @@ public final class j {
                                     t tVar2 = this.f46676w;
                                     Handler handler = tVar2.f46813u;
                                     if (tVar2.f46808r0 && handler != null) {
-                                        handler.post(new z70((Object) tVar2, false, (Object) null, 17));
+                                        handler.post(new x70((Object) tVar2, false, (Object) null, 17));
                                     }
                                 }
                                 t tVar3 = this.f46676w;
@@ -942,14 +942,14 @@ public final class j {
         this.f46652n = null;
         this.f46650m = null;
         if (handler != null && handlerThread != null) {
-            handler.post(new g2(23, this, handlerThread));
+            handler.post(new p2.b(22, this, handlerThread));
         }
     }
 
     public final void N(Exception exc) {
         this.f46642j.a("camera error", exc);
-        l2.f fVar = this.f46645k;
-        ((s0) fVar.f15842b).f46760i.post(new g2(26, fVar, exc));
+        w0 w0Var = this.f46645k;
+        ((s0) w0Var.f14832b).f46760i.post(new p2.b(25, w0Var, exc));
     }
 
     public final void O() {
@@ -1154,7 +1154,7 @@ public final class j {
             Integer num = (Integer) cameraCharacteristics.get(CameraCharacteristics.LENS_FACING);
             if (num != null && num.intValue() == i10 && (streamConfigurationMap = (StreamConfigurationMap) cameraCharacteristics.get(CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP)) != null && (outputSizes = streamConfigurationMap.getOutputSizes(SurfaceTexture.class)) != null && outputSizes.length != 0) {
                 try {
-                    if (((n0) Q(str, cameraCharacteristics, streamConfigurationMap, outputSizes, m(outputSizes, this.d, this.f46634g)).f16201b) == n0.FPS_60) {
+                    if (((n0) Q(str, cameraCharacteristics, streamConfigurationMap, outputSizes, m(outputSizes, this.d, this.f46634g)).f16204b) == n0.FPS_60) {
                         return true;
                     }
                 } catch (RuntimeException unused) {
@@ -1223,7 +1223,7 @@ public final class j {
             b bVar = new b(this, l0Var, j10, 0);
             Handler handler = tVar.f46813u;
             if (tVar.f46808r0 && handler != null) {
-                handler.post(new z70(tVar, z10, bVar, 17));
+                handler.post(new x70(tVar, z10, bVar, 17));
             }
             this.f46656o0 = true;
             this.f46659p0 = true;
@@ -1234,8 +1234,8 @@ public final class j {
             O();
             this.f46642j.b("camera switch path: DUAL_ACTIVE, activeId=" + this.f46682z.getId() + ", standbyId=" + this.f46668s0.getId() + ", input=" + (this.f46662q0 ? 1 : 0) + ", elapsedMs=" + z(this.H0));
             this.f46624c.post(new a(this, 1));
-            l2.f fVar = this.f46645k;
-            ((s0) fVar.f15842b).f46760i.post(new z70((Object) fVar, (Object) new h(this.G, this.I, this.J, this.f46661q, this.f46664r, this.O, F()), true, 18));
+            w0 w0Var = this.f46645k;
+            ((s0) w0Var.f14832b).f46760i.post(new x70((Object) w0Var, (Object) new h(this.G, this.I, this.J, this.f46661q, this.f46664r, this.O, F()), true, 18));
             return true;
         } catch (CameraAccessException e10) {
             e = e10;
@@ -1496,9 +1496,9 @@ public final class j {
         int i11 = this.f46631f;
         int i12 = this.J.f46733a;
         n nVar = this.f46642j;
-        l2.f fVar = this.f46645k;
-        Objects.requireNonNull(fVar);
-        m mVar = new m(wVar, j10, i10, i11, i12, nVar, new c(fVar));
+        w0 w0Var = this.f46645k;
+        Objects.requireNonNull(w0Var);
+        m mVar = new m(wVar, j10, i10, i11, i12, nVar, new c(w0Var));
         this.f46678x = mVar;
         synchronized (mVar) {
             if (mVar.f46723y) {
@@ -1533,9 +1533,9 @@ public final class j {
         boolean z12 = this.f46639i;
         n nVar2 = this.f46642j;
         m mVar2 = this.f46678x;
-        l2.f fVar2 = this.f46645k;
-        Objects.requireNonNull(fVar2);
-        t tVar = new t(size, surface5, surface2, z11, i13, i14, D, z12, nVar2, mVar2, new c(fVar2));
+        w0 w0Var2 = this.f46645k;
+        Objects.requireNonNull(w0Var2);
+        t tVar = new t(size, surface5, surface2, z11, i13, i14, D, z12, nVar2, mVar2, new c(w0Var2));
         this.f46676w = tVar;
         tVar.f46812t0 = new a(this, 2);
         t tVar2 = this.f46676w;
@@ -1577,7 +1577,7 @@ public final class j {
             nVar3.b(sb2.toString());
             Handler handler = new Handler(tVar2.f46811t.getLooper());
             tVar2.f46813u = handler;
-            handler.post(new g2(24, tVar2, countDownLatch));
+            handler.post(new p2.b(23, tVar2, countDownLatch));
             try {
                 countDownLatch.await();
                 if (tVar2.f46817w0 == null) {

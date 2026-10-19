@@ -6,20 +6,16 @@ import android.view.View;
 import org.telegram.ui.Components.ed;
 import org.telegram.ui.Components.gp0;
 import org.telegram.ui.Components.oq;
-import org.telegram.ui.Components.x31;
+import org.telegram.ui.Components.y31;
 public final class f1 implements Drawable.Callback {
-    public final int f735a;
-    public Object f736b;
-
-    public f1() {
-        this.f735a = 2;
-    }
+    public final int f733a;
+    public Object f734b;
 
     @Override
     public final void invalidateDrawable(Drawable drawable) {
-        switch (this.f735a) {
+        switch (this.f733a) {
             case 0:
-                g1 g1Var = (g1) this.f736b;
+                g1 g1Var = (g1) this.f734b;
                 View view = g1Var.W;
                 if (view != null) {
                     view.invalidate();
@@ -31,42 +27,42 @@ public final class f1 implements Drawable.Callback {
                 }
                 return;
             case 1:
-                ((u6) this.f736b).h.invalidate();
+                ((u6) this.f734b).h.invalidate();
                 return;
             case 2:
                 return;
             case 3:
-                ((ki.t0) this.f736b).f15519b.invalidate();
+                ((ki.t0) this.f734b).f15522b.invalidate();
                 return;
             case 4:
-                ((oq) this.f736b).invalidateSelf();
+                ((oq) this.f734b).invalidateSelf();
                 return;
             case 5:
-                ((gp0) this.f736b).f26633b.run();
+                ((gp0) this.f734b).f26662b.run();
                 return;
             case 6:
-                ((ed) this.f736b).invalidateSelf();
+                ((ed) this.f734b).invalidateSelf();
                 return;
             case 7:
-                ((x31) this.f736b).invalidateSelf();
+                ((y31) this.f734b).invalidateSelf();
                 return;
             case 8:
-                ((x4.d) this.f736b).invalidateSelf();
+                ((x4.d) this.f734b).invalidateSelf();
                 return;
             case 9:
-                ((xg.a) this.f736b).f49781c.invalidate();
+                ((xg.a) this.f734b).f49780c.invalidate();
                 return;
             default:
-                ((xg.c) this.f736b).f49806c.invalidate();
+                ((xg.c) this.f734b).f49805c.invalidate();
                 return;
         }
     }
 
     @Override
     public final void scheduleDrawable(Drawable drawable, Runnable runnable, long j10) {
-        switch (this.f735a) {
+        switch (this.f733a) {
             case 0:
-                View view = ((g1) this.f736b).W;
+                View view = ((g1) this.f734b).W;
                 if (view != null) {
                     view.scheduleDrawable(drawable, runnable, j10);
                     return;
@@ -75,7 +71,7 @@ public final class f1 implements Drawable.Callback {
             case 1:
                 return;
             case 2:
-                Drawable.Callback callback = (Drawable.Callback) this.f736b;
+                Drawable.Callback callback = (Drawable.Callback) this.f734b;
                 if (callback != null) {
                     callback.scheduleDrawable(drawable, runnable, j10);
                     return;
@@ -84,32 +80,32 @@ public final class f1 implements Drawable.Callback {
             case 3:
                 return;
             case 4:
-                ((oq) this.f736b).scheduleSelf(runnable, j10);
+                ((oq) this.f734b).scheduleSelf(runnable, j10);
                 return;
             case 5:
                 return;
             case 6:
-                ((ed) this.f736b).scheduleSelf(runnable, j10);
+                ((ed) this.f734b).scheduleSelf(runnable, j10);
                 return;
             case 7:
                 return;
             case 8:
-                ((x4.d) this.f736b).scheduleSelf(runnable, j10);
+                ((x4.d) this.f734b).scheduleSelf(runnable, j10);
                 return;
             case 9:
-                ((xg.a) this.f736b).f49781c.invalidate();
+                ((xg.a) this.f734b).f49780c.invalidate();
                 return;
             default:
-                ((xg.c) this.f736b).f49806c.invalidate();
+                ((xg.c) this.f734b).f49805c.invalidate();
                 return;
         }
     }
 
     @Override
     public final void unscheduleDrawable(Drawable drawable, Runnable runnable) {
-        switch (this.f735a) {
+        switch (this.f733a) {
             case 0:
-                View view = ((g1) this.f736b).W;
+                View view = ((g1) this.f734b).W;
                 if (view != null) {
                     view.unscheduleDrawable(drawable, runnable);
                     return;
@@ -118,7 +114,7 @@ public final class f1 implements Drawable.Callback {
             case 1:
                 return;
             case 2:
-                Drawable.Callback callback = (Drawable.Callback) this.f736b;
+                Drawable.Callback callback = (Drawable.Callback) this.f734b;
                 if (callback != null) {
                     callback.unscheduleDrawable(drawable, runnable);
                     return;
@@ -127,30 +123,30 @@ public final class f1 implements Drawable.Callback {
             case 3:
                 return;
             case 4:
-                ((oq) this.f736b).unscheduleSelf(runnable);
+                ((oq) this.f734b).unscheduleSelf(runnable);
                 return;
             case 5:
                 return;
             case 6:
-                ((ed) this.f736b).unscheduleSelf(runnable);
+                ((ed) this.f734b).unscheduleSelf(runnable);
                 return;
             case 7:
                 return;
             case 8:
-                ((x4.d) this.f736b).unscheduleSelf(runnable);
+                ((x4.d) this.f734b).unscheduleSelf(runnable);
                 return;
             case 9:
-                ((xg.a) this.f736b).f49781c.invalidate();
+                ((xg.a) this.f734b).f49780c.invalidate();
                 return;
             default:
-                ((xg.c) this.f736b).f49806c.invalidate();
+                ((xg.c) this.f734b).f49805c.invalidate();
                 return;
         }
     }
 
     public f1(Object obj, int i10) {
-        this.f735a = i10;
-        this.f736b = obj;
+        this.f733a = i10;
+        this.f734b = obj;
     }
 
     private final void a(Drawable drawable) {

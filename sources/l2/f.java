@@ -1,96 +1,488 @@
 package l2;
 
-import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Canvas;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcel;
-import android.os.RemoteException;
 import android.util.Log;
+import android.util.SparseArray;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
+import android.view.ViewGroup;
 import androidx.appcompat.widget.ActionMenuView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.b0;
-import com.google.android.gms.common.api.Status;
+import androidx.recyclerview.widget.RecyclerView;
+import b2.u0;
+import b2.w0;
+import c3.i0;
+import c3.t;
 import com.google.android.gms.common.api.internal.r;
 import com.google.android.gms.internal.play_billing.k3;
+import com.google.android.gms.location.LocationResult;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.TaskCompletionSource;
-import java.io.IOException;
-import java.util.Collection;
-import java.util.ConcurrentModificationException;
+import e2.x;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 import java.util.concurrent.CopyOnWriteArrayList;
+import ki.t1;
+import m.g3;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Cells.d9;
 import org.telegram.ui.Cells.k0;
-import org.telegram.ui.Components.a91;
+import org.telegram.ui.Components.b91;
 import org.telegram.ui.Components.bp0;
-import org.telegram.ui.Components.c91;
-import org.telegram.ui.Components.dr0;
+import org.telegram.ui.Components.d91;
+import org.telegram.ui.Components.er0;
 import org.telegram.ui.Components.m9;
 import org.telegram.ui.Components.s6;
 import org.telegram.ui.Components.sl0;
-import org.telegram.ui.Components.u81;
+import org.telegram.ui.Components.uh0;
+import org.telegram.ui.Components.v81;
 import org.telegram.ui.ThemeActivity;
-import org.telegram.ui.ra1;
-import p4.u;
-import p4.v;
-import r7.z;
-import v7.i8;
-public final class f implements l.i, i, bp0, ne.f, bh.h, a91, r, n5.b, v0.i, y2.g {
-    public final int f15841a;
-    public Object f15842b;
+import org.telegram.ui.gt0;
+import org.telegram.ui.pa1;
+import qg.v0;
+import rg.v1;
+import s4.b1;
+import s4.e1;
+import s4.h1;
+import s4.n0;
+import s4.o0;
+import tc.u;
+import y8.e0;
+import zh.m0;
+import zh.q0;
+public class f implements l.i, i, bp0, ne.f, bh.h, b91, com.google.android.gms.common.api.internal.o, v1, h1, r, OnCompleteListener {
+    public final int f15844a;
+    public final Object f15845b;
 
     public f(Object obj, int i10) {
-        this.f15841a = i10;
-        this.f15842b = obj;
+        this.f15844a = i10;
+        this.f15845b = obj;
     }
 
-    public void A(p4.p pVar, p4.m mVar, Collection collection) {
-        p4.e eVar = (p4.e) this.f15842b;
-        if (pVar == eVar.f44112y && mVar != null) {
-            u uVar = eVar.f44111x.f44203a;
-            String d = mVar.d();
-            v vVar = new v(uVar, d, eVar.b(uVar, d), false);
-            vVar.i(mVar);
-            if (eVar.d != vVar) {
-                eVar.h(eVar, vVar, eVar.f44112y, 3, eVar.f44111x, collection);
-                eVar.f44111x = null;
-                eVar.f44112y = null;
-            }
-        } else if (pVar == eVar.e) {
-            if (mVar != null) {
-                eVar.n(eVar.d, mVar);
-            }
-            eVar.d.n(collection);
+    public static void N(String str, TreeMap treeMap) {
+        String[] split = str.split(":", 2);
+        if (split.length < 2) {
+            return;
+        }
+        String trim = split[0].trim();
+        String trim2 = split[1].trim();
+        List list = (List) treeMap.get(trim);
+        if (list == null) {
+            list = new ArrayList();
+            treeMap.put(trim, list);
+        }
+        list.add(trim2);
+    }
+
+    public void A(Runnable runnable) {
+        Runnable runnable2 = (Runnable) ((HashMap) this.f15845b).remove(runnable);
+        if (runnable2 != null) {
+            AndroidUtilities.cancelRunOnUIThread(runnable2);
         }
     }
 
     @Override
-    public void D() {
-        ((m9) this.f15842b).f28468a.invalidate();
+    public int B(View view) {
+        return n0.y(view) + ((ViewGroup.MarginLayoutParams) ((o0) view.getLayoutParams())).rightMargin;
+    }
+
+    public void C() {
+        HashMap hashMap = (HashMap) this.f15845b;
+        for (Map.Entry entry : hashMap.entrySet()) {
+            AndroidUtilities.cancelRunOnUIThread((Runnable) entry.getValue());
+        }
+        hashMap.clear();
+    }
+
+    public s0.c D(int i10) {
+        return null;
+    }
+
+    public s0.c E(int i10) {
+        return null;
     }
 
     @Override
-    public void H(bh.a aVar) {
-        aVar.a(((dr0) this.f15842b).getThemedColor(h6.f20986d6));
+    public void F() {
+        ((m9) this.f15845b).f28483a.invalidate();
+    }
+
+    public void G(int i10, long j10) {
+        u3.f fVar = (u3.f) this.f15845b;
+        if (i10 != 240) {
+            if (i10 != 241) {
+                if (i10 != 20529) {
+                    if (i10 != 20530) {
+                        boolean z10 = false;
+                        switch (i10) {
+                            case 131:
+                                int i11 = (int) j10;
+                                if (i11 != 1) {
+                                    if (i11 != 2) {
+                                        if (i11 != 17) {
+                                            if (i11 != 33) {
+                                                fVar.h(i10);
+                                                fVar.f47570y.e = -1;
+                                                return;
+                                            }
+                                            fVar.h(i10);
+                                            fVar.f47570y.e = 5;
+                                            return;
+                                        }
+                                        fVar.h(i10);
+                                        fVar.f47570y.e = 3;
+                                        return;
+                                    }
+                                    fVar.h(i10);
+                                    fVar.f47570y.e = 1;
+                                    return;
+                                }
+                                fVar.h(i10);
+                                fVar.f47570y.e = 2;
+                                return;
+                            case 136:
+                                fVar.h(i10);
+                                u3.e eVar = fVar.f47570y;
+                                if (j10 == 1) {
+                                    z10 = true;
+                                }
+                                eVar.Y = z10;
+                                return;
+                            case 155:
+                                fVar.Q = fVar.n(j10);
+                                return;
+                            case 159:
+                                fVar.h(i10);
+                                fVar.f47570y.Q = (int) j10;
+                                return;
+                            case 176:
+                                fVar.h(i10);
+                                fVar.f47570y.f47523n = (int) j10;
+                                return;
+                            case 179:
+                                if (!fVar.f47571z) {
+                                    fVar.g(i10);
+                                    fVar.E = fVar.n(j10);
+                                    return;
+                                }
+                                return;
+                            case 186:
+                                fVar.h(i10);
+                                fVar.f47570y.f47524o = (int) j10;
+                                return;
+                            case 215:
+                                fVar.h(i10);
+                                fVar.f47570y.d = (int) j10;
+                                return;
+                            case 231:
+                                fVar.M = fVar.n(j10);
+                                return;
+                            case 238:
+                                fVar.X = (int) j10;
+                                return;
+                            case 247:
+                                if (!fVar.f47571z) {
+                                    fVar.g(i10);
+                                    fVar.F = (int) j10;
+                                    return;
+                                }
+                                return;
+                            case 251:
+                                fVar.Y = true;
+                                return;
+                            case 16871:
+                                fVar.h(i10);
+                                fVar.f47570y.h = (int) j10;
+                                return;
+                            case 16980:
+                                if (j10 != 3) {
+                                    throw w0.a(null, "ContentCompAlgo " + j10 + " not supported");
+                                }
+                                return;
+                            case 17029:
+                                if (j10 < 1 || j10 > 2) {
+                                    throw w0.a(null, "DocTypeReadVersion " + j10 + " not supported");
+                                }
+                                return;
+                            case 17143:
+                                if (j10 != 1) {
+                                    throw w0.a(null, "EBMLReadVersion " + j10 + " not supported");
+                                }
+                                return;
+                            case 18401:
+                                if (j10 != 5) {
+                                    throw w0.a(null, "ContentEncAlgo " + j10 + " not supported");
+                                }
+                                return;
+                            case 18408:
+                                if (j10 != 1) {
+                                    throw w0.a(null, "AESSettingsCipherMode " + j10 + " not supported");
+                                }
+                                return;
+                            case 21420:
+                                fVar.B = j10 + fVar.f47565s;
+                                return;
+                            case 21432:
+                                int i12 = (int) j10;
+                                fVar.h(i10);
+                                if (i12 != 0) {
+                                    if (i12 != 1) {
+                                        if (i12 != 3) {
+                                            if (i12 == 15) {
+                                                fVar.f47570y.f47533y = 3;
+                                                return;
+                                            }
+                                            return;
+                                        }
+                                        fVar.f47570y.f47533y = 1;
+                                        return;
+                                    }
+                                    fVar.f47570y.f47533y = 2;
+                                    return;
+                                }
+                                fVar.f47570y.f47533y = 0;
+                                return;
+                            case 21680:
+                                fVar.h(i10);
+                                fVar.f47570y.f47526q = (int) j10;
+                                return;
+                            case 21682:
+                                fVar.h(i10);
+                                fVar.f47570y.f47528s = (int) j10;
+                                return;
+                            case 21690:
+                                fVar.h(i10);
+                                fVar.f47570y.f47527r = (int) j10;
+                                return;
+                            case 21930:
+                                fVar.h(i10);
+                                u3.e eVar2 = fVar.f47570y;
+                                if (j10 == 1) {
+                                    z10 = true;
+                                }
+                                eVar2.X = z10;
+                                return;
+                            case 21938:
+                                fVar.h(i10);
+                                u3.e eVar3 = fVar.f47570y;
+                                eVar3.f47534z = true;
+                                eVar3.f47525p = (int) j10;
+                                return;
+                            case 21998:
+                                fVar.h(i10);
+                                fVar.f47570y.f47517g = (int) j10;
+                                return;
+                            case 22186:
+                                fVar.h(i10);
+                                fVar.f47570y.T = j10;
+                                return;
+                            case 22203:
+                                fVar.h(i10);
+                                fVar.f47570y.U = j10;
+                                return;
+                            case 25188:
+                                fVar.h(i10);
+                                fVar.f47570y.R = (int) j10;
+                                return;
+                            case 30114:
+                                fVar.Z = j10;
+                                return;
+                            case 30321:
+                                fVar.h(i10);
+                                int i13 = (int) j10;
+                                if (i13 != 0) {
+                                    if (i13 != 1) {
+                                        if (i13 != 2) {
+                                            if (i13 == 3) {
+                                                fVar.f47570y.f47529t = 3;
+                                                return;
+                                            }
+                                            return;
+                                        }
+                                        fVar.f47570y.f47529t = 2;
+                                        return;
+                                    }
+                                    fVar.f47570y.f47529t = 1;
+                                    return;
+                                }
+                                fVar.f47570y.f47529t = 0;
+                                return;
+                            case 2352003:
+                                fVar.h(i10);
+                                fVar.f47570y.f47516f = (int) j10;
+                                return;
+                            case 2807729:
+                                fVar.f47566t = j10;
+                                return;
+                            default:
+                                switch (i10) {
+                                    case 21945:
+                                        fVar.h(i10);
+                                        int i14 = (int) j10;
+                                        if (i14 != 1) {
+                                            if (i14 == 2) {
+                                                fVar.f47570y.C = 1;
+                                                return;
+                                            }
+                                            return;
+                                        }
+                                        fVar.f47570y.C = 2;
+                                        return;
+                                    case 21946:
+                                        fVar.h(i10);
+                                        int g10 = b2.n.g((int) j10);
+                                        if (g10 != -1) {
+                                            fVar.f47570y.B = g10;
+                                            return;
+                                        }
+                                        return;
+                                    case 21947:
+                                        fVar.h(i10);
+                                        fVar.f47570y.f47534z = true;
+                                        int f7 = b2.n.f((int) j10);
+                                        if (f7 != -1) {
+                                            fVar.f47570y.A = f7;
+                                            return;
+                                        }
+                                        return;
+                                    case 21948:
+                                        fVar.h(i10);
+                                        fVar.f47570y.D = (int) j10;
+                                        return;
+                                    case 21949:
+                                        fVar.h(i10);
+                                        fVar.f47570y.E = (int) j10;
+                                        return;
+                                    default:
+                                        return;
+                                }
+                        }
+                    } else if (j10 != 1) {
+                        throw w0.a(null, "ContentEncodingScope " + j10 + " not supported");
+                    }
+                } else if (j10 != 0) {
+                    throw w0.a(null, "ContentEncodingOrder " + j10 + " not supported");
+                }
+            } else if (!fVar.f47571z) {
+                fVar.g(i10);
+                if (fVar.G == -1) {
+                    fVar.G = j10;
+                }
+            }
+        } else if (!fVar.f47571z) {
+            fVar.g(i10);
+            if (fVar.H == -1) {
+                fVar.H = j10;
+            }
+        }
+    }
+
+    public void H(int i10) {
+        boolean z10;
+        TLRPC.TL_exportedNoPaidMessagesToken c10;
+        q0 q0Var = ((m0) this.f15845b).e;
+        if (q0Var != null) {
+            int i11 = q0Var.f52073a;
+            if (q0Var.d != i10) {
+                boolean z11 = true;
+                if (q0Var.f52075c.d && i10 == 2) {
+                    i10 = 1;
+                }
+                q0Var.d = i10;
+                SharedPreferences.Editor edit = MessagesController.getMainSettings(i11).edit();
+                if (q0Var.d == 2) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                edit.putBoolean("qrNoPaidPermanent", z10).apply();
+                int i12 = q0Var.d;
+                if (i12 == 0) {
+                    if (q0Var.f52077n != 0) {
+                        ConnectionsManager.getInstance(i11).cancelRequest(q0Var.f52077n, true);
+                        q0Var.f52077n = 0;
+                        return;
+                    }
+                    return;
+                }
+                if (i12 == 2 && (c10 = q0Var.c()) != null) {
+                    q0Var.f52076f = c10;
+                    q0Var.f52074b.setFreeLink(q0Var.d(c10));
+                }
+                if (q0Var.d != 1) {
+                    z11 = false;
+                }
+                q0Var.l(false, z11);
+            }
+        }
+    }
+
+    public void I(float f7) {
+        d91 d91Var = (d91) this.f15845b;
+        if (f7 == 1.0f) {
+            View[] viewArr = d91Var.e;
+            View[] viewArr2 = d91Var.e;
+            if (viewArr[1] != null) {
+                d91Var.F();
+                d91Var.h.put(d91Var.f25503f[1], viewArr2[1]);
+                d91Var.removeView(viewArr2[1]);
+                d91Var.E(viewArr2[0], 0.0f);
+                viewArr2[1] = null;
+            }
+            d91Var.z(d91Var.f25501b);
+            return;
+        }
+        View[] viewArr3 = d91Var.e;
+        View[] viewArr4 = d91Var.e;
+        View view = viewArr3[1];
+        if (view == null) {
+            return;
+        }
+        if (d91Var.f25509y) {
+            d91Var.E(view, (1.0f - f7) * viewArr3[0].getMeasuredWidth());
+            View view2 = viewArr4[0];
+            d91Var.E(view2, (-view2.getMeasuredWidth()) * f7);
+        } else {
+            d91Var.E(view, (1.0f - f7) * (-viewArr3[0].getMeasuredWidth()));
+            View view3 = viewArr4[0];
+            d91Var.E(view3, view3.getMeasuredWidth() * f7);
+        }
+        d91Var.w(false);
+    }
+
+    @Override
+    public void J(bh.a aVar) {
+        aVar.a(((er0) this.f15845b).getThemedColor(h6.f20989d6));
         aVar.b(SharedConfig.chatBlurEnabled());
     }
 
     @Override
     public void L(float f7, boolean z10) {
-        switch (this.f15841a) {
-            case 4:
-                ng.h hVar = (ng.h) this.f15842b;
-                float f10 = hVar.f17459b;
-                float y3 = k3.y(hVar.f17460c, f10, f7, f10);
+        int i10 = this.f15844a;
+        Object obj = this.f15845b;
+        switch (i10) {
+            case 5:
+                ng.h hVar = (ng.h) obj;
+                float f10 = hVar.f17462b;
+                float y3 = k3.y(hVar.f17463c, f10, f7, f10);
                 hVar.d = y3;
                 if (z10) {
                     s6 s6Var = hVar.e;
@@ -100,15 +492,15 @@ public final class f implements l.i, i, bp0, ne.f, bh.h, a91, r, n5.b, v0.i, y2.
                 hVar.invalidate();
                 return;
             default:
-                ra1 ra1Var = (ra1) ((k0) this.f15842b);
-                int i10 = (int) (h6.f21217q * 100.0f);
-                int i11 = (int) (f7 * 100.0f);
-                h6.f21217q = f7;
-                if (i10 != i11) {
-                    ThemeActivity themeActivity = ra1Var.e.e;
-                    sl0 sl0Var = (sl0) themeActivity.f33884b.K(themeActivity.f33891f0);
+                pa1 pa1Var = (pa1) ((k0) obj);
+                int i11 = (int) (h6.f21220q * 100.0f);
+                int i12 = (int) (f7 * 100.0f);
+                h6.f21220q = f7;
+                if (i11 != i12) {
+                    ThemeActivity themeActivity = pa1Var.e.e;
+                    sl0 sl0Var = (sl0) themeActivity.f33890b.K(themeActivity.f33897f0);
                     if (sl0Var != null) {
-                        ((d9) sl0Var.f45910a).setText(LocaleController.formatString("AutoNightBrightnessInfo", R.string.AutoNightBrightnessInfo, Integer.valueOf((int) (h6.f21217q * 100.0f))));
+                        ((d9) sl0Var.f45910a).setText(LocaleController.formatString("AutoNightBrightnessInfo", R.string.AutoNightBrightnessInfo, Integer.valueOf((int) (h6.f21220q * 100.0f))));
                     }
                     h6.E(true);
                     return;
@@ -117,10 +509,245 @@ public final class f implements l.i, i, bp0, ne.f, bh.h, a91, r, n5.b, v0.i, y2.
         }
     }
 
+    public boolean O(int i10, int i11, Bundle bundle) {
+        return false;
+    }
+
+    public void P(b1 b1Var, u0 u0Var, u0 u0Var2) {
+        int i10;
+        int i11;
+        boolean z10;
+        b1 T;
+        int i12;
+        RecyclerView recyclerView = (RecyclerView) this.f15845b;
+        recyclerView.f3605b.k(b1Var);
+        recyclerView.h(b1Var);
+        b1Var.q(false);
+        e1 e1Var = (e1) recyclerView.f3608c0;
+        e1Var.getClass();
+        int i13 = u0Var.f4055a;
+        int i14 = u0Var.f4056b;
+        View view = b1Var.f45910a;
+        if (u0Var2 == null) {
+            i10 = view.getLeft();
+        } else {
+            i10 = u0Var2.f4055a;
+        }
+        int i15 = i10;
+        if (u0Var2 == null) {
+            i11 = view.getTop();
+        } else {
+            i11 = u0Var2.f4056b;
+        }
+        int i16 = i11;
+        if (!b1Var.j() && (i13 != i15 || i14 != i16)) {
+            view.layout(i15, i16, view.getWidth() + i15, view.getHeight() + i16);
+            z10 = e1Var.r(b1Var, u0Var, i13, i14, i15, i16);
+        } else {
+            int i17 = b1Var.h;
+            int i18 = -1;
+            if (i17 != -1) {
+                for (int i19 = 0; i19 < recyclerView.getChildCount(); i19++) {
+                    View childAt = recyclerView.getChildAt(i19);
+                    if (childAt != null && (T = recyclerView.T(childAt)) != null && !T.j() && (i12 = T.h) >= 0 && i12 < i17 && i12 > i18) {
+                        i18 = i12;
+                    }
+                }
+            }
+            b1Var.f45915i = (b1Var.h - i18) + (i18 * 1000);
+            e1Var.s(b1Var, u0Var);
+            z10 = true;
+        }
+        if (z10) {
+            recyclerView.l0();
+        }
+    }
+
+    public void Q(int i10, long j10, long j11) {
+        u3.f fVar = (u3.f) this.f15845b;
+        fVar.f47556j0.getClass();
+        if (i10 != 160) {
+            if (i10 != 174) {
+                if (i10 != 183) {
+                    if (i10 != 187) {
+                        if (i10 != 19899) {
+                            if (i10 != 20533) {
+                                if (i10 != 21968) {
+                                    if (i10 != 408125543) {
+                                        if (i10 != 475249515) {
+                                            if (i10 == 524531317 && !fVar.f47571z) {
+                                                if (fVar.d && fVar.K != -1) {
+                                                    fVar.J = true;
+                                                    return;
+                                                }
+                                                fVar.f47556j0.g0(new t(fVar.v));
+                                                fVar.f47571z = true;
+                                                return;
+                                            }
+                                            return;
+                                        } else if (!fVar.f47571z) {
+                                            fVar.D = true;
+                                            return;
+                                        } else {
+                                            return;
+                                        }
+                                    }
+                                    long j12 = fVar.f47565s;
+                                    if (j12 != -1 && j12 != j10) {
+                                        throw w0.a(null, "Multiple Segment elements not supported");
+                                    }
+                                    fVar.f47565s = j10;
+                                    fVar.f47564r = j11;
+                                    return;
+                                }
+                                fVar.h(i10);
+                                fVar.f47570y.f47534z = true;
+                                return;
+                            }
+                            fVar.h(i10);
+                            fVar.f47570y.f47518i = true;
+                            return;
+                        }
+                        fVar.A = -1;
+                        fVar.B = -1L;
+                        return;
+                    } else if (!fVar.f47571z) {
+                        fVar.g(i10);
+                        fVar.E = -9223372036854775807L;
+                        return;
+                    } else {
+                        return;
+                    }
+                } else if (!fVar.f47571z) {
+                    fVar.g(i10);
+                    fVar.F = -1;
+                    fVar.G = -1L;
+                    fVar.H = -1L;
+                    return;
+                } else {
+                    return;
+                }
+            }
+            ?? obj = new Object();
+            obj.f47523n = -1;
+            obj.f47524o = -1;
+            obj.f47525p = -1;
+            obj.f47526q = -1;
+            obj.f47527r = -1;
+            obj.f47528s = 0;
+            obj.f47529t = -1;
+            obj.f47530u = 0.0f;
+            obj.v = 0.0f;
+            obj.f47531w = 0.0f;
+            obj.f47532x = null;
+            obj.f47533y = -1;
+            obj.f47534z = false;
+            obj.A = -1;
+            obj.B = -1;
+            obj.C = -1;
+            obj.D = 1000;
+            obj.E = 200;
+            obj.F = -1.0f;
+            obj.G = -1.0f;
+            obj.H = -1.0f;
+            obj.I = -1.0f;
+            obj.J = -1.0f;
+            obj.K = -1.0f;
+            obj.L = -1.0f;
+            obj.M = -1.0f;
+            obj.N = -1.0f;
+            obj.O = -1.0f;
+            obj.Q = 1;
+            obj.R = -1;
+            obj.S = 8000;
+            obj.T = 0L;
+            obj.U = 0L;
+            obj.W = false;
+            obj.Y = true;
+            obj.Z = "eng";
+            fVar.f47570y = obj;
+            obj.f47510a = fVar.f47568w;
+            return;
+        }
+        fVar.Y = false;
+        fVar.Z = 0L;
+    }
+
+    public void R(int i10, String str) {
+        u3.f fVar = (u3.f) this.f15845b;
+        if (i10 != 134) {
+            if (i10 != 17026) {
+                if (i10 != 21358) {
+                    if (i10 != 2274716) {
+                        return;
+                    }
+                    fVar.h(i10);
+                    fVar.f47570y.Z = str;
+                    return;
+                }
+                fVar.h(i10);
+                fVar.f47570y.f47512b = str;
+                return;
+            } else if (!"webm".equals(str) && !"matroska".equals(str)) {
+                throw w0.a(null, "DocType " + str + " not supported");
+            } else {
+                fVar.f47568w = str.equals("webm");
+                return;
+            }
+        }
+        fVar.h(i10);
+        fVar.f47570y.f47514c = str;
+    }
+
+    public void S(b1 b1Var) {
+        RecyclerView recyclerView = (RecyclerView) this.f15845b;
+        n0 n0Var = recyclerView.f3633x;
+        View view = b1Var.f45910a;
+        qf.e eVar = recyclerView.f3605b;
+        g3 g3Var = n0Var.f46002a;
+        t1 t1Var = (t1) g3Var.f16204b;
+        int indexOfChild = ((RecyclerView) t1Var.f15527b).indexOfChild(view);
+        if (indexOfChild >= 0) {
+            if (((ad.d) g3Var.f16205c).F(indexOfChild)) {
+                g3Var.X(view);
+            }
+            t1Var.Y(indexOfChild);
+        }
+        eVar.g(view);
+    }
+
+    public void T(ba.a aVar, TreeMap treeMap) {
+        String str;
+        List list = (List) treeMap.get("Sec-WebSocket-Protocol");
+        if (list != null && (str = (String) list.get(0)) != null && str.length() != 0) {
+            synchronized (((u) this.f15845b).f46968c) {
+            }
+            throw new tc.n(19, "The protocol contained in the Sec-WebSocket-Protocol header is not supported: ".concat(str), aVar);
+        }
+    }
+
+    @Override
+    public void U(float f7) {
+        gt0 gt0Var = (gt0) this.f15845b;
+        v0.e(gt0Var.P1).k(String.valueOf(qg.m.f44551a.indexOf(gt0Var.W0.getCurrentBrush())), f7);
+        qg.t1 t1Var = gt0Var.K1;
+        t1Var.f44649c = f7;
+        gt0Var.t0(t1Var, null);
+    }
+
+    public Object V() {
+        if (n7.a.f17256b == null) {
+            n7.a.f17256b = new Exception();
+        }
+        synchronized (n7.a.f17255a) {
+        }
+        throw new IllegalStateException("Must call PhenotypeContext.setContext() first");
+    }
+
     @Override
     public int Y() {
-        switch (this.f15841a) {
-            case 4:
+        switch (this.f15844a) {
+            case 5:
                 return 0;
             default:
                 return 0;
@@ -134,49 +761,20 @@ public final class f implements l.i, i, bp0, ne.f, bh.h, a91, r, n5.b, v0.i, y2.
 
     @Override
     public void accept(Object obj, Object obj2) {
-        switch (this.f15841a) {
-            case 15:
-                z zVar = (z) ((r7.k) obj).u();
-                r7.f fVar = new r7.f(1, (TaskCompletionSource) obj2);
-                Parcel N0 = zVar.N0();
-                r7.d.c(N0, (g8.e) this.f15842b);
-                r7.d.d(N0, fVar);
-                N0.writeString(null);
-                zVar.R0(N0, 63);
-                return;
-            default:
-                v8.j jVar = (v8.j) this.f15842b;
-                e8.b bVar = (e8.b) obj;
-                Bundle G = bVar.G();
-                G.putBoolean("com.google.android.gms.wallet.EXTRA_USING_AUTO_RESOLVABLE_RESULT", true);
-                e8.a aVar = new e8.a(0, (TaskCompletionSource) obj2);
-                try {
-                    e8.i iVar = (e8.i) bVar.u();
-                    Parcel obtain = Parcel.obtain();
-                    obtain.writeInterfaceToken("com.google.android.gms.wallet.internal.IOwService");
-                    int i10 = e8.c.f8398a;
-                    obtain.writeInt(1);
-                    jVar.writeToParcel(obtain, 0);
-                    obtain.writeInt(1);
-                    G.writeToParcel(obtain, 0);
-                    obtain.writeStrongBinder(aVar);
-                    iVar.f8406a.transact(19, obtain, null, 1);
-                    obtain.recycle();
-                    return;
-                } catch (RemoteException e) {
-                    Log.e("WalletClientImpl", "RemoteException getting payment data", e);
-                    Bundle bundle = Bundle.EMPTY;
-                    aVar.O(Status.h, null);
-                    return;
-                }
-        }
+        s6.f fVar = new s6.f(0, (TaskCompletionSource) obj2);
+        s6.e eVar = (s6.e) ((s6.h) obj).u();
+        Parcel H0 = eVar.H0();
+        k7.a.d(H0, fVar);
+        k7.a.c(H0, (s6.a) this.f15845b);
+        eVar.I0(H0, 1);
     }
 
     @Override
-    public void b(l.k kVar) {
-        k0.b bVar = ((ActionMenuView) this.f15842b).K;
-        if (bVar != null) {
-            bVar.b(kVar);
+    public void b(Canvas canvas) {
+        er0 er0Var = (er0) this.f15845b;
+        canvas.drawColor(er0Var.getThemedColor(h6.f20989d6));
+        if (SharedConfig.chatBlurEnabled()) {
+            er0Var.P0.b(canvas, -3);
         }
     }
 
@@ -192,21 +790,27 @@ public final class f implements l.i, i, bp0, ne.f, bh.h, a91, r, n5.b, v0.i, y2.
 
     @Override
     public m2.j g(long j10) {
-        return (m2.j) this.f15842b;
+        return (m2.j) this.f15845b;
     }
 
     @Override
-    public Object mo27get() {
-        return new s5.i((Context) ((hd.a) this.f15842b).mo27get(), "com.google.android.datatransport.events", Integer.valueOf(s5.i.d).intValue());
+    public float get() {
+        gt0 gt0Var = (gt0) this.f15845b;
+        int i10 = gt0Var.P1;
+        qg.m currentBrush = gt0Var.W0.getCurrentBrush();
+        if (currentBrush == null) {
+            return v0.e(i10).f44672i;
+        }
+        return v0.e(i10).f(String.valueOf(qg.m.f44551a.indexOf(currentBrush)), currentBrush.d());
     }
 
     @Override
     public CharSequence getContentDescription() {
-        switch (this.f15841a) {
-            case 4:
-                ng.h hVar = (ng.h) this.f15842b;
-                float f7 = hVar.f17459b;
-                return String.valueOf(Math.round((hVar.f17458a.getProgress() * (hVar.f17460c - f7)) + f7));
+        switch (this.f15844a) {
+            case 5:
+                ng.h hVar = (ng.h) this.f15845b;
+                float f7 = hVar.f17462b;
+                return String.valueOf(Math.round((hVar.f17461a.getProgress() * (hVar.f17463c - f7)) + f7));
             default:
                 return " ";
         }
@@ -218,9 +822,8 @@ public final class f implements l.i, i, bp0, ne.f, bh.h, a91, r, n5.b, v0.i, y2.
     }
 
     @Override
-    public k4.d j(y2.i iVar, long j10, long j11, IOException iOException, int i10) {
-        ((d) this.f15842b).f15832a.y(iOException);
-        return y2.l.e;
+    public int j(View view) {
+        return n0.x(view) - ((ViewGroup.MarginLayoutParams) ((o0) view.getLayoutParams())).leftMargin;
     }
 
     @Override
@@ -229,51 +832,46 @@ public final class f implements l.i, i, bp0, ne.f, bh.h, a91, r, n5.b, v0.i, y2.
     }
 
     @Override
-    public void n(y2.i iVar, long j10, long j11) {
-        boolean z10;
-        d dVar = (d) this.f15842b;
-        synchronized (z2.b.f50628b) {
-            z10 = z2.b.f50629c;
-        }
-        if (!z10) {
-            dVar.f15832a.y(new IOException(new ConcurrentModificationException()));
-            return;
-        }
-        dVar.a();
+    public int l() {
+        return ((n0) this.f15845b).D();
     }
 
     @Override
-    public long o(long j10, long j11) {
+    public void n(l.k kVar) {
+        k2.w0 w0Var = ((ActionMenuView) this.f15845b).K;
+        if (w0Var != null) {
+            w0Var.n(kVar);
+        }
+    }
+
+    @Override
+    public void o(Object obj) {
+        ((g8.c) obj).onLocationResult((LocationResult) this.f15845b);
+    }
+
+    @Override
+    public void onComplete(Task task) {
+        e0 e0Var = (e0) this.f15845b;
+        if (task.isSuccessful()) {
+            x8.m.L0(e0Var, true, (byte[]) task.getResult());
+            return;
+        }
+        Log.e("WearableLS", "Failed to resolve future, sending null response", task.getException());
+        x8.m.L0(e0Var, false, null);
+    }
+
+    @Override
+    public long p(long j10, long j11) {
         return 0L;
     }
 
     @Override
-    public void onError(Object obj) {
-        w0.d e = (w0.d) obj;
-        kotlin.jvm.internal.i.e(e, "e");
-        be.m mVar = (be.m) this.f15842b;
-        if (mVar.w()) {
-            mVar.resumeWith(i8.a(e));
-        }
-    }
-
-    @Override
-    public void onResult(Object obj) {
-        v0.c result = (v0.c) obj;
-        kotlin.jvm.internal.i.e(result, "result");
-        be.m mVar = (be.m) this.f15842b;
-        if (mVar.w()) {
-            mVar.resumeWith(result);
-        }
-    }
-
-    @Override
-    public boolean p(l.k kVar, MenuItem menuItem) {
-        m.l lVar = ((ActionMenuView) this.f15842b).P;
+    public boolean q(l.k kVar, MenuItem menuItem) {
+        m.l lVar = ((ActionMenuView) this.f15845b).P;
         if (lVar != null) {
-            Iterator it = ((CopyOnWriteArrayList) ((Toolbar) ((le.b) lVar).f16008b).W.f16202c).iterator();
+            Iterator it = ((CopyOnWriteArrayList) ((Toolbar) ((le.b) lVar).f16011b).W.f16205c).iterator();
             while (it.hasNext()) {
-                if (((b0) it.next()).f3168a.p()) {
+                if (((b0) it.next()).f3166a.p()) {
                     return true;
                 }
             }
@@ -282,21 +880,10 @@ public final class f implements l.i, i, bp0, ne.f, bh.h, a91, r, n5.b, v0.i, y2.
         return false;
     }
 
-    public boolean q(int i10) {
-        u81 u81Var = ((c91) this.f15842b).L;
-        if (u81Var == null) {
-            return false;
-        }
-        return u81Var.c(i10);
-    }
-
     @Override
-    public void r(Canvas canvas) {
-        dr0 dr0Var = (dr0) this.f15842b;
-        canvas.drawColor(dr0Var.getThemedColor(h6.f20986d6));
-        if (SharedConfig.chatBlurEnabled()) {
-            dr0Var.O0.b(canvas, -3);
-        }
+    public int r() {
+        n0 n0Var = (n0) this.f15845b;
+        return n0Var.f46011m - n0Var.E();
     }
 
     @Override
@@ -304,10 +891,274 @@ public final class f implements l.i, i, bp0, ne.f, bh.h, a91, r, n5.b, v0.i, y2.
         return true;
     }
 
-    public void t(Runnable runnable) {
-        Runnable runnable2 = (Runnable) ((HashMap) this.f15842b).remove(runnable);
-        if (runnable2 != null) {
-            AndroidUtilities.cancelRunOnUIThread(runnable2);
+    public void t(int i10, int i11, c3.p pVar) {
+        int i12;
+        int i13;
+        int i14;
+        int i15;
+        int i16;
+        long j10;
+        int i17;
+        int i18;
+        int i19;
+        int i20;
+        byte[] bArr;
+        int i21;
+        u3.f fVar = (u3.f) this.f15845b;
+        u3.g gVar = fVar.f47542b;
+        SparseArray sparseArray = fVar.f47544c;
+        x xVar = fVar.f47557k;
+        x xVar2 = fVar.f47553i;
+        int i22 = 2;
+        int i23 = 0;
+        int i24 = 1;
+        if (i10 != 161 && i10 != 163) {
+            if (i10 != 165) {
+                if (i10 != 16877) {
+                    if (i10 != 16981) {
+                        if (i10 != 18402) {
+                            if (i10 != 21419) {
+                                if (i10 != 25506) {
+                                    if (i10 == 30322) {
+                                        fVar.h(i10);
+                                        byte[] bArr2 = new byte[i11];
+                                        fVar.f47570y.f47532x = bArr2;
+                                        pVar.readFully(bArr2, 0, i11);
+                                        return;
+                                    }
+                                    throw w0.a(null, "Unexpected id: " + i10);
+                                }
+                                fVar.h(i10);
+                                byte[] bArr3 = new byte[i11];
+                                fVar.f47570y.f47521l = bArr3;
+                                pVar.readFully(bArr3, 0, i11);
+                                return;
+                            }
+                            Arrays.fill(xVar.f8293a, (byte) 0);
+                            pVar.readFully(xVar.f8293a, 4 - i11, i11);
+                            xVar.N(0);
+                            fVar.A = (int) xVar.C();
+                            return;
+                        }
+                        byte[] bArr4 = new byte[i11];
+                        pVar.readFully(bArr4, 0, i11);
+                        fVar.h(i10);
+                        fVar.f47570y.f47520k = new i0(1, 0, 0, bArr4);
+                        return;
+                    }
+                    fVar.h(i10);
+                    byte[] bArr5 = new byte[i11];
+                    fVar.f47570y.f47519j = bArr5;
+                    pVar.readFully(bArr5, 0, i11);
+                    return;
+                }
+                fVar.h(i10);
+                u3.e eVar = fVar.f47570y;
+                int i25 = eVar.h;
+                if (i25 != 1685485123 && i25 != 1685480259) {
+                    pVar.r(i11);
+                    return;
+                }
+                byte[] bArr6 = new byte[i11];
+                eVar.P = bArr6;
+                pVar.readFully(bArr6, 0, i11);
+                return;
+            } else if (fVar.O == 2) {
+                u3.e eVar2 = (u3.e) sparseArray.get(fVar.U);
+                int i26 = fVar.X;
+                x xVar3 = fVar.f47562p;
+                if (i26 == 4 && "V_VP9".equals(eVar2.f47514c)) {
+                    xVar3.K(i11);
+                    pVar.readFully(xVar3.f8293a, 0, i11);
+                    return;
+                }
+                pVar.r(i11);
+                return;
+            } else {
+                return;
+            }
+        }
+        if (fVar.O == 0) {
+            fVar.U = (int) gVar.b(pVar, false, true, 8);
+            fVar.V = gVar.f47574c;
+            fVar.Q = -9223372036854775807L;
+            fVar.O = 1;
+            xVar2.K(0);
+        }
+        u3.e eVar3 = (u3.e) sparseArray.get(fVar.U);
+        if (eVar3 == null) {
+            pVar.r(i11 - fVar.V);
+            fVar.O = 0;
+            return;
+        }
+        eVar3.f47511a0.getClass();
+        if (fVar.O == 1) {
+            fVar.l(pVar, 3);
+            int i27 = (xVar2.f8293a[2] & 6) >> 1;
+            byte b10 = 255;
+            if (i27 == 0) {
+                fVar.S = 1;
+                int[] iArr = fVar.T;
+                if (iArr == null) {
+                    iArr = new int[1];
+                } else if (iArr.length < 1) {
+                    iArr = new int[Math.max(iArr.length * 2, 1)];
+                }
+                fVar.T = iArr;
+                iArr[0] = (i11 - fVar.V) - 3;
+            } else {
+                fVar.l(pVar, 4);
+                int i28 = (xVar2.f8293a[3] & 255) + 1;
+                fVar.S = i28;
+                int[] iArr2 = fVar.T;
+                if (iArr2 == null) {
+                    iArr2 = new int[i28];
+                } else if (iArr2.length < i28) {
+                    iArr2 = new int[Math.max(iArr2.length * 2, i28)];
+                }
+                fVar.T = iArr2;
+                if (i27 == 2) {
+                    int i29 = fVar.S;
+                    Arrays.fill(iArr2, 0, i29, ((i11 - fVar.V) - 4) / i29);
+                } else if (i27 == 1) {
+                    int i30 = 0;
+                    int i31 = 0;
+                    int i32 = 4;
+                    while (true) {
+                        i18 = fVar.S - 1;
+                        if (i30 >= i18) {
+                            break;
+                        }
+                        fVar.T[i30] = 0;
+                        while (true) {
+                            i19 = i32 + 1;
+                            fVar.l(pVar, i19);
+                            int i33 = xVar2.f8293a[i32] & 255;
+                            int[] iArr3 = fVar.T;
+                            i20 = iArr3[i30] + i33;
+                            iArr3[i30] = i20;
+                            if (i33 != 255) {
+                                break;
+                            }
+                            i32 = i19;
+                        }
+                        i31 += i20;
+                        i30++;
+                        i32 = i19;
+                    }
+                    fVar.T[i18] = ((i11 - fVar.V) - i32) - i31;
+                } else if (i27 == 3) {
+                    int i34 = 0;
+                    int i35 = 0;
+                    int i36 = 4;
+                    while (true) {
+                        int i37 = fVar.S - i24;
+                        if (i34 < i37) {
+                            fVar.T[i34] = i23;
+                            int i38 = i36 + 1;
+                            fVar.l(pVar, i38);
+                            if (xVar2.f8293a[i36] != 0) {
+                                int i39 = i23;
+                                while (true) {
+                                    if (i39 < 8) {
+                                        int i40 = i24 << (7 - i39);
+                                        i15 = i22;
+                                        if ((xVar2.f8293a[i36] & i40) != 0) {
+                                            int i41 = i38 + i39;
+                                            fVar.l(pVar, i41);
+                                            i16 = i24;
+                                            j10 = xVar2.f8293a[i36] & b10 & (~i40);
+                                            while (i38 < i41) {
+                                                j10 = (j10 << 8) | (xVar2.f8293a[i38] & b10);
+                                                i38++;
+                                                i41 = i41;
+                                                b10 = 255;
+                                            }
+                                            i17 = i41;
+                                            if (i34 > 0) {
+                                                j10 -= (1 << ((i39 * 7) + 6)) - 1;
+                                            }
+                                        } else {
+                                            i39++;
+                                            i22 = i15;
+                                            b10 = 255;
+                                        }
+                                    } else {
+                                        i15 = i22;
+                                        i16 = i24;
+                                        j10 = 0;
+                                        i17 = i38;
+                                        break;
+                                    }
+                                }
+                                if (j10 < -2147483648L || j10 > 2147483647L) {
+                                    break;
+                                }
+                                int i42 = (int) j10;
+                                int[] iArr4 = fVar.T;
+                                if (i34 != 0) {
+                                    i42 += iArr4[i34 - 1];
+                                }
+                                iArr4[i34] = i42;
+                                i35 += i42;
+                                i34++;
+                                i23 = i39;
+                                i22 = i15;
+                                i24 = i16;
+                                i36 = i17;
+                                b10 = 255;
+                            } else {
+                                throw w0.a(null, "No valid varint length mask found");
+                            }
+                        } else {
+                            i12 = i22;
+                            i13 = i23;
+                            i14 = i24;
+                            fVar.T[i37] = ((i11 - fVar.V) - i36) - i35;
+                            break;
+                        }
+                    }
+                    throw w0.a(null, "EBML lacing sample size out of range.");
+                } else {
+                    throw w0.a(null, "Unexpected lacing value: " + i27);
+                }
+            }
+            i12 = 2;
+            i13 = 0;
+            i14 = 1;
+            int i43 = xVar2.f8293a[i14] & 255;
+            fVar.P = fVar.n(i43 | (bArr[i13] << 8)) + fVar.M;
+            if (eVar3.e != i14 && (i10 != 163 || (xVar2.f8293a[i12] & 128) != 128)) {
+                i21 = i13;
+            } else {
+                i21 = 1;
+            }
+            fVar.W = i21;
+            fVar.O = i12;
+            fVar.R = i13;
+        }
+        if (i10 == 163) {
+            while (true) {
+                int i44 = fVar.R;
+                if (i44 < fVar.S) {
+                    fVar.i(eVar3, ((fVar.R * eVar3.f47516f) / 1000) + fVar.P, fVar.W, fVar.o(pVar, eVar3, fVar.T[i44], false), 0);
+                    fVar.R++;
+                } else {
+                    fVar.O = 0;
+                    return;
+                }
+            }
+        } else {
+            while (true) {
+                int i45 = fVar.R;
+                if (i45 < fVar.S) {
+                    int[] iArr5 = fVar.T;
+                    iArr5[i45] = fVar.o(pVar, eVar3, iArr5[i45], true);
+                    fVar.R++;
+                } else {
+                    return;
+                }
+            }
         }
     }
 
@@ -318,7 +1169,7 @@ public final class f implements l.i, i, bp0, ne.f, bh.h, a91, r, n5.b, v0.i, y2.
 
     @Override
     public void v() {
-        int i10 = this.f15841a;
+        int i10 = this.f15844a;
     }
 
     @Override
@@ -327,71 +1178,49 @@ public final class f implements l.i, i, bp0, ne.f, bh.h, a91, r, n5.b, v0.i, y2.
     }
 
     @Override
-    public long x(long j10, long j11) {
+    public View x(int i10) {
+        return ((n0) this.f15845b).q(i10);
+    }
+
+    @Override
+    public long y(long j10, long j11) {
         return 1L;
     }
 
-    public void y() {
-        HashMap hashMap = (HashMap) this.f15842b;
-        for (Map.Entry entry : hashMap.entrySet()) {
-            AndroidUtilities.cancelRunOnUIThread((Runnable) entry.getValue());
+    public boolean z(int i10) {
+        v81 v81Var = ((d91) this.f15845b).L;
+        if (v81Var == null) {
+            return false;
         }
-        hashMap.clear();
+        return v81Var.c(i10);
     }
 
-    public void z(float f7) {
-        c91 c91Var = (c91) this.f15842b;
-        if (f7 == 1.0f) {
-            View[] viewArr = c91Var.e;
-            View[] viewArr2 = c91Var.e;
-            if (viewArr[1] != null) {
-                c91Var.F();
-                c91Var.h.put(c91Var.f25169f[1], viewArr2[1]);
-                c91Var.removeView(viewArr2[1]);
-                c91Var.E(viewArr2[0], 0.0f);
-                viewArr2[1] = null;
-            }
-            c91Var.z(c91Var.f25167b);
-            return;
-        }
-        View[] viewArr3 = c91Var.e;
-        View[] viewArr4 = c91Var.e;
-        View view = viewArr3[1];
-        if (view == null) {
-            return;
-        }
-        if (c91Var.f25175y) {
-            c91Var.E(view, (1.0f - f7) * viewArr3[0].getMeasuredWidth());
-            View view2 = viewArr4[0];
-            c91Var.E(view2, (-view2.getMeasuredWidth()) * f7);
-        } else {
-            c91Var.E(view, (1.0f - f7) * (-viewArr3[0].getMeasuredWidth()));
-            View view3 = viewArr4[0];
-            c91Var.E(view3, view3.getMeasuredWidth() * f7);
-        }
-        c91Var.w(false);
+    public f(s6.g gVar, s6.a aVar) {
+        this.f15844a = 22;
+        this.f15845b = aVar;
     }
 
     public f(int i10) {
-        this.f15841a = i10;
+        this.f15844a = i10;
         switch (i10) {
-            case 23:
-                return;
+            case 19:
+                if (Build.VERSION.SDK_INT >= 26) {
+                    this.f15845b = new uh0(this);
+                    return;
+                } else {
+                    this.f15845b = new uh0(this);
+                    return;
+                }
             default:
-                this.f15842b = new HashMap();
+                this.f15845b = new HashMap();
                 return;
         }
     }
 
-    public f(TextView textView) {
-        this.f15841a = 14;
-        this.f15842b = new q1.g(textView);
+    private final void K() {
     }
 
-    private final void B() {
-    }
-
-    private final void C() {
+    private final void M() {
     }
 
     @Override
@@ -409,13 +1238,5 @@ public final class f implements l.i, i, bp0, ne.f, bh.h, a91, r, n5.b, v0.i, y2.
     @Override
     public long d(long j10, long j11) {
         return j11;
-    }
-
-    @Override
-    public void I(y2.i iVar, long j10, long j11, boolean z10) {
-    }
-
-    @Override
-    public void l(y2.i iVar, long j10, long j11, int i10) {
     }
 }

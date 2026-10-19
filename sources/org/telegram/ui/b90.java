@@ -1,125 +1,35 @@
 package org.telegram.ui;
 
-import android.os.Bundle;
 import java.util.regex.Pattern;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.ActionBarLayout;
-public final class b90 implements Runnable {
-    public final int f35578a = 1;
-    public final LaunchActivity f35579b;
-    public final Bundle f35580c;
-    public final Long d;
-    public final b80 e;
-    public final boolean f35581f;
-    public final pf.c h;
-    public final Long f35582n;
-    public final Integer f35583r;
-    public final Integer f35584s;
-    public final byte[] v;
-    public final org.telegram.ui.ActionBar.n2 f35585w;
-    public final int f35586x;
-    public final Object f35587y;
+import org.telegram.messenger.Utilities;
+public final class b90 implements Utilities.Callback {
+    public final int f35549a;
+    public final Runnable f35550b;
 
-    public b90(LaunchActivity launchActivity, Bundle bundle, Long l4, int[] iArr, b80 b80Var, boolean z10, pf.c cVar, Long l10, Integer num, Integer num2, byte[] bArr, org.telegram.ui.ActionBar.n2 n2Var, int i10) {
-        this.f35579b = launchActivity;
-        this.f35580c = bundle;
-        this.d = l4;
-        this.f35587y = iArr;
-        this.e = b80Var;
-        this.f35581f = z10;
-        this.h = cVar;
-        this.f35582n = l10;
-        this.f35583r = num;
-        this.f35584s = num2;
-        this.v = bArr;
-        this.f35585w = n2Var;
-        this.f35586x = i10;
+    public b90(yh.n4 n4Var, int i10) {
+        this.f35549a = i10;
+        this.f35550b = n4Var;
     }
 
     @Override
-    public final void run() {
-        int i10 = this.f35578a;
-        Object obj = this.f35587y;
+    public final void run(Object obj) {
+        int i10 = this.f35549a;
+        Runnable runnable = this.f35550b;
+        String str = (String) obj;
         switch (i10) {
             case 0:
-                b80 b80Var = this.e;
-                TLObject tLObject = (TLObject) obj;
                 Pattern pattern = LaunchActivity.C1;
-                try {
-                    b80Var.run();
-                } catch (Exception e) {
-                    FileLog.e(e);
+                if (runnable != null && "paid".equals(str)) {
+                    runnable.run();
+                    return;
                 }
-                boolean z10 = tLObject instanceof TLRPC.TL_messages_chats;
-                LaunchActivity launchActivity = this.f35579b;
-                if (z10) {
-                    TLRPC.TL_messages_chats tL_messages_chats = (TLRPC.TL_messages_chats) tLObject;
-                    if (!tL_messages_chats.chats.isEmpty()) {
-                        MessagesController.getInstance(launchActivity.O).putChats(tL_messages_chats.chats, false);
-                        TLRPC.Chat chat = tL_messages_chats.chats.get(0);
-                        Long l4 = this.d;
-                        if (chat != null && this.f35581f && ChatObject.isBoostSupported(chat)) {
-                            launchActivity.w0(Long.valueOf(-l4.longValue()), null, this.h, null);
-                        } else if (chat != null && chat.forum) {
-                            Long l10 = this.f35582n;
-                            Integer num = this.f35584s;
-                            byte[] bArr = this.v;
-                            if (l10 != null) {
-                                launchActivity.l0(-l4.longValue(), this.f35583r, null, num, bArr, null, 0, -1);
-                            } else {
-                                launchActivity.l0(-l4.longValue(), null, null, num, bArr, null, 0, -1);
-                            }
-                        }
-                        org.telegram.ui.ActionBar.n2 n2Var = this.f35585w;
-                        Bundle bundle = this.f35580c;
-                        if (n2Var == null || MessagesController.getInstance(this.f35586x).checkCanOpenChat(bundle, n2Var)) {
-                            ((ActionBarLayout) launchActivity.O()).P(new sn(bundle));
-                            return;
-                        }
-                        return;
-                    }
-                }
-                launchActivity.F0(org.telegram.ui.Components.f5.G(launchActivity, LocaleController.getString(R.string.DialogNotAvailable), LocaleController.getString(R.string.LinkNotFound)));
                 return;
             default:
-                int[] iArr = (int[]) obj;
-                Pattern pattern2 = LaunchActivity.C1;
-                LaunchActivity launchActivity2 = this.f35579b;
-                org.telegram.ui.ActionBar.d5 O = launchActivity2.O();
-                Bundle bundle2 = this.f35580c;
-                if (!((ActionBarLayout) O).P(new sn(bundle2))) {
-                    TLRPC.TL_channels_getChannels tL_channels_getChannels = new TLRPC.TL_channels_getChannels();
-                    TLRPC.TL_inputChannel tL_inputChannel = new TLRPC.TL_inputChannel();
-                    Long l11 = this.d;
-                    tL_inputChannel.channel_id = l11.longValue();
-                    tL_channels_getChannels.f20308id.add(tL_inputChannel);
-                    iArr[0] = ConnectionsManager.getInstance(launchActivity2.O).sendRequest(tL_channels_getChannels, new org.telegram.messenger.k1(launchActivity2, this.e, this.f35581f, l11, this.h, this.f35582n, this.f35583r, this.f35584s, this.v, this.f35585w, this.f35586x, bundle2));
+                if (runnable != null && "paid".equals(str)) {
+                    runnable.run();
                     return;
                 }
                 return;
         }
-    }
-
-    public b90(LaunchActivity launchActivity, b80 b80Var, TLObject tLObject, boolean z10, Long l4, pf.c cVar, Long l10, Integer num, Integer num2, byte[] bArr, org.telegram.ui.ActionBar.n2 n2Var, int i10, Bundle bundle) {
-        this.f35579b = launchActivity;
-        this.e = b80Var;
-        this.f35587y = tLObject;
-        this.f35581f = z10;
-        this.d = l4;
-        this.h = cVar;
-        this.f35582n = l10;
-        this.f35583r = num;
-        this.f35584s = num2;
-        this.v = bArr;
-        this.f35585w = n2Var;
-        this.f35586x = i10;
-        this.f35580c = bundle;
     }
 }

@@ -1,23 +1,77 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.tgnet.TLRPC;
-public final class da0 implements aq {
-    public final ey f36113a;
-    public final int f36114b;
+import android.os.Bundle;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BotWebViewVibrationEffect;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+import org.telegram.ui.ActionBar.ActionBarLayout;
+public final class da0 implements MessagesController.MessagesLoadedCallback {
+    public final z70 f36336a;
+    public final String f36337b;
+    public final org.telegram.ui.ActionBar.n2 f36338c;
+    public final long d;
+    public final Integer e;
+    public final Bundle f36339f;
+    public final LaunchActivity f36340g;
 
-    public da0(ey eyVar, int i10) {
-        this.f36113a = eyVar;
-        this.f36114b = i10;
+    public da0(LaunchActivity launchActivity, z70 z70Var, String str, org.telegram.ui.ActionBar.n2 n2Var, long j10, Integer num, Bundle bundle) {
+        this.f36340g = launchActivity;
+        this.f36336a = z70Var;
+        this.f36337b = str;
+        this.f36338c = n2Var;
+        this.d = j10;
+        this.e = num;
+        this.f36339f = bundle;
     }
 
     @Override
-    public final void b(int i10, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str) {
-        this.f36113a.removeSelfFromStack();
-        NotificationCenter.getInstance(this.f36114b).lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChats, new Object[0]);
+    public final void onError() {
+        LaunchActivity launchActivity = this.f36340g;
+        if (!launchActivity.isFinishing()) {
+            org.telegram.ui.Components.f5.t0((org.telegram.ui.ActionBar.n2) i2.e.h(1, launchActivity.f33155d0), null, LocaleController.getString(R.string.JoinToGroupErrorNotExist), null);
+        }
+        try {
+            this.f36336a.run();
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
     }
 
     @Override
-    public final void a(TLRPC.User user) {
+    public final void onMessagesLoaded(boolean z10) {
+        try {
+            this.f36336a.run();
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
+        LaunchActivity launchActivity = this.f36340g;
+        if (!launchActivity.isFinishing()) {
+            String str = this.f36337b;
+            long j10 = this.d;
+            org.telegram.ui.ActionBar.n2 n2Var = this.f36338c;
+            if (str == null || !(n2Var instanceof qn) || ((qn) n2Var).a() != j10) {
+                if (n2Var instanceof qn) {
+                    qn qnVar = (qn) n2Var;
+                    if (qnVar.a() == j10 && this.e == null) {
+                        AndroidUtilities.shakeViewSpring(qnVar.f40903x0, 5.0f);
+                        BotWebViewVibrationEffect.APP_ERROR.vibrate();
+                        fk fkVar = qnVar.Y;
+                        for (int i10 = 0; i10 < fkVar.getChildCount(); i10++) {
+                            AndroidUtilities.shakeViewSpring(fkVar.getChildAt(i10), 5.0f);
+                        }
+                        org.telegram.ui.ActionBar.k actionBar = qnVar.getActionBar();
+                        for (int i11 = 0; i11 < actionBar.getChildCount(); i11++) {
+                            AndroidUtilities.shakeViewSpring(actionBar.getChildAt(i11), 5.0f);
+                        }
+                    }
+                }
+                n2Var = new qn(this.f36339f);
+                ((ActionBarLayout) launchActivity.O()).P(n2Var);
+            }
+            AndroidUtilities.runOnUIThread(new ai.b2(this, this.f36337b, this.d, n2Var, 22), 150L);
+        }
     }
 }

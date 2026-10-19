@@ -21,7 +21,7 @@ public final class h extends k {
     public h(int i10, List list) {
         this.f264k = i10 == -1 ? 1 : i10;
         if (list != null) {
-            byte[] bArr = e2.g.f8227a;
+            byte[] bArr = e2.g.f8228a;
             if (list.size() == 1 && ((byte[]) list.get(0)).length == 1) {
                 byte b10 = ((byte[]) list.get(0))[0];
             }
@@ -38,7 +38,7 @@ public final class h extends k {
         List list = this.f267n;
         this.f268o = list;
         list.getClass();
-        return new l(list);
+        return new l(list, 0);
     }
 
     @Override
@@ -55,7 +55,7 @@ public final class h extends k {
     @Override
     public final void g(i iVar) {
         boolean z10;
-        ByteBuffer byteBuffer = iVar.f11635c;
+        ByteBuffer byteBuffer = iVar.f11636c;
         byteBuffer.getClass();
         byte[] array = byteBuffer.array();
         int limit = byteBuffer.limit();

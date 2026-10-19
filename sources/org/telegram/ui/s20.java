@@ -1,8 +1,21 @@
 package org.telegram.ui;
-public final class s20 {
-    public final s50 f40855a;
 
-    public s20(s50 s50Var) {
-        this.f40855a = s50Var;
+import android.view.ViewGroup;
+public final class s20 extends s4.k {
+    public final q50 F;
+
+    public s20(q50 q50Var) {
+        this.F = q50Var;
+    }
+
+    @Override
+    public final void P(s4.b1 b1Var) {
+        ViewGroup viewGroup;
+        q50 q50Var = this.F;
+        q50Var.Q.invalidate();
+        q50Var.a2.invalidate();
+        viewGroup = ((org.telegram.ui.ActionBar.f3) q50Var).containerView;
+        viewGroup.invalidate();
+        q50.K0(q50Var);
     }
 }

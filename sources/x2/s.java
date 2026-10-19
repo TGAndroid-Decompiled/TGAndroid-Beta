@@ -1,11 +1,11 @@
 package x2;
 
 import b2.t1;
-import i2.q0;
+import i2.r0;
 public abstract class s {
-    public q0 f49175a;
-    public y2.c f49176b;
-    public r f49177c;
+    public r0 f49174a;
+    public y2.c f49175b;
+    public r f49176c;
 
     public abstract void a();
 

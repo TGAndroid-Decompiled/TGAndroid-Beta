@@ -9,18 +9,18 @@ public final class wc {
     public static final wc I;
     public static final wc[] J;
     public static final wc e;
-    public static final wc f32068f;
+    public static final wc f32067f;
     public static final wc h;
-    public static final wc f32069n;
-    public static final wc f32070r;
-    public static final wc f32071s;
+    public static final wc f32068n;
+    public static final wc f32069r;
+    public static final wc f32070s;
     public static final wc v;
-    public static final wc f32072w;
-    public static final wc f32073x;
-    public static final wc f32074y;
-    public final String f32075a;
-    public final int f32076b;
-    public final boolean f32077c;
+    public static final wc f32071w;
+    public static final wc f32072x;
+    public static final wc f32073y;
+    public final String f32074a;
+    public final int f32075b;
+    public final boolean f32076c;
     public final vc d;
 
     static {
@@ -29,25 +29,25 @@ public final class wc {
         wc wcVar = new wc("PHOTO", 0, "PhotoSavedHint", i10, vcVar);
         e = wcVar;
         wc wcVar2 = new wc("PHOTOS", 1, "PhotosSavedHint", vcVar);
-        f32068f = wcVar2;
+        f32067f = wcVar2;
         wc wcVar3 = new wc("VIDEO", 2, "VideoSavedHint", R.string.VideoSavedHint, vcVar);
         h = wcVar3;
         wc wcVar4 = new wc("VIDEOS", 3, "VideosSavedHint", vcVar);
-        f32069n = wcVar4;
+        f32068n = wcVar4;
         wc wcVar5 = new wc("LIVEPHOTO", 4, "LivePhotoSavedHint", R.string.LivePhotoSavedHint, vcVar);
-        f32070r = wcVar5;
+        f32069r = wcVar5;
         wc wcVar6 = new wc("LIVEPHOTOS", 5, "LivePhotosSavedHint", vcVar);
-        f32071s = wcVar6;
+        f32070s = wcVar6;
         wc wcVar7 = new wc("MEDIA", 6, "MediaSavedHint", vcVar);
         v = wcVar7;
         int i11 = R.string.PhotoSavedToDownloadsHintLinked;
         vc vcVar2 = vc.SAVED_TO_DOWNLOADS;
         wc wcVar8 = new wc("PHOTO_TO_DOWNLOADS", 7, "PhotoSavedToDownloadsHintLinked", i11, vcVar2);
-        f32072w = wcVar8;
+        f32071w = wcVar8;
         wc wcVar9 = new wc("VIDEO_TO_DOWNLOADS", 8, "VideoSavedToDownloadsHintLinked", R.string.VideoSavedToDownloadsHintLinked, vcVar2);
-        f32073x = wcVar9;
+        f32072x = wcVar9;
         wc wcVar10 = new wc("GIF", 9, "GifSavedHint", R.string.GifSavedHint, vc.SAVED_TO_GIFS);
-        f32074y = wcVar10;
+        f32073y = wcVar10;
         wc wcVar11 = new wc("GIF_TO_DOWNLOADS", 10, "GifSavedToDownloadsHintLinked", R.string.GifSavedToDownloadsHintLinked, vcVar2);
         E = wcVar11;
         int i12 = R.string.AudioSavedHint;
@@ -64,10 +64,10 @@ public final class wc {
     }
 
     public wc(String str, int i10, String str2, int i11, vc vcVar) {
-        this.f32075a = str2;
-        this.f32076b = i11;
+        this.f32074a = str2;
+        this.f32075b = i11;
         this.d = vcVar;
-        this.f32077c = false;
+        this.f32076c = false;
     }
 
     public static wc valueOf(String str) {
@@ -79,9 +79,9 @@ public final class wc {
     }
 
     public wc(String str, int i10, String str2, vc vcVar) {
-        this.f32075a = str2;
+        this.f32074a = str2;
         this.d = vcVar;
-        this.f32076b = 0;
-        this.f32077c = true;
+        this.f32075b = 0;
+        this.f32076c = true;
     }
 }

@@ -1,43 +1,30 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import org.telegram.messenger.AndroidUtilities;
-public final class ky0 extends s4.k {
-    public int F = -1;
-    public final ProfileActivity G;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class ky0 implements RequestDelegate {
+    public final int f38692a;
+    public final ny0 f38693b;
 
-    public ky0(ProfileActivity profileActivity) {
-        this.G = profileActivity;
+    public ky0(ny0 ny0Var, int i10) {
+        this.f38692a = i10;
+        this.f38693b = ny0Var;
     }
 
     @Override
-    public final long K(long j10, long j11, long j12) {
-        return 0L;
-    }
-
-    @Override
-    public final void N() {
-        AndroidUtilities.runOnUIThread(new ek0(this, 29));
-    }
-
-    @Override
-    public final void P(s4.b1 b1Var) {
-        this.G.U4();
-    }
-
-    @Override
-    public final void m() {
-        boolean isEmpty = this.f45974p.isEmpty();
-        boolean isEmpty2 = this.f45976r.isEmpty();
-        boolean isEmpty3 = this.f45977s.isEmpty();
-        boolean isEmpty4 = this.f45975q.isEmpty();
-        if (!isEmpty || !isEmpty2 || !isEmpty4 || !isEmpty3) {
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-            ofFloat.addUpdateListener(new e3(this, 26));
-            ofFloat.setDuration(this.e);
-            ofFloat.start();
-            this.F = this.G.getNotificationCenter().setAnimationInProgress(this.F, null);
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f38692a) {
+            case 0:
+                TLRPC.TL_help_dismissSuggestion tL_help_dismissSuggestion = new TLRPC.TL_help_dismissSuggestion();
+                tL_help_dismissSuggestion.suggestion = "VALIDATE_PASSWORD";
+                tL_help_dismissSuggestion.peer = new TLRPC.TL_inputPeerEmpty();
+                ny0 ny0Var = this.f38693b;
+                ny0Var.f39717c.getConnectionsManager().sendRequest(tL_help_dismissSuggestion, new ky0(ny0Var, 1));
+                return;
+            default:
+                this.f38693b.f39717c.getMessagesController().loadAppConfig();
+                return;
         }
-        super.m();
     }
 }

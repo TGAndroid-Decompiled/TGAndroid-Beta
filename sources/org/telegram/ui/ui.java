@@ -1,41 +1,36 @@
 package org.telegram.ui;
 
-import android.util.SparseArray;
-import org.telegram.messenger.MessageObject;
-public final class ui {
-    public boolean f41973a;
-    public final boolean f41974b;
-    public final SparseArray f41975c;
-    public final sn d;
+import android.animation.ValueAnimator;
+import android.view.View;
+public final class ui implements ValueAnimator.AnimatorUpdateListener {
+    public final int f41991a;
+    public final org.telegram.ui.ActionBar.n2 f41992b;
 
-    public ui(sn snVar, boolean z10, SparseArray sparseArray) {
-        this.d = snVar;
-        this.f41974b = z10;
-        this.f41975c = sparseArray;
+    public ui(int i10, org.telegram.ui.ActionBar.n2 n2Var) {
+        this.f41991a = i10;
+        this.f41992b = n2Var;
     }
 
-    public final boolean a(int i10) {
-        sn snVar = this.d;
-        int i11 = i10 - snVar.A0.J;
-        if (i11 >= 0 && i11 < snVar.f41386u6.size()) {
-            MessageObject messageObject = (MessageObject) snVar.f41386u6.get(i11);
-            if (messageObject.contentType == 0) {
-                SparseArray sparseArray = this.f41975c;
-                boolean z10 = this.f41974b;
-                if (!z10 && sparseArray.get(messageObject.getId(), null) == null) {
-                    return true;
+    @Override
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f41991a) {
+            case 0:
+                qn qnVar = (qn) this.f41992b;
+                qnVar.f40760la = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                qnVar.X0.invalidate();
+                return;
+            case 1:
+                cy cyVar = (cy) this.f41992b;
+                cyVar.H0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                View view = cyVar.fragmentView;
+                if (view != null) {
+                    view.invalidate();
+                    return;
                 }
-                if (z10 && sparseArray.get(messageObject.getId(), null) != null) {
-                    return true;
-                }
-                return false;
-            }
-            return false;
+                return;
+            default:
+                ((kc1) this.f41992b).f38571x0.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
         }
-        return false;
-    }
-
-    public final void b(int r8, boolean r9, float r10, float r11) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ui.b(int, boolean, float, float):void");
     }
 }

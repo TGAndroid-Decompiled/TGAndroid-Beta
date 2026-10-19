@@ -1,13 +1,13 @@
 package be;
 public final class i extends w0 {
-    public final Thread f4296s;
+    public final Thread f4294s;
 
     public i(Thread thread) {
-        this.f4296s = thread;
+        this.f4294s = thread;
     }
 
     @Override
     public final Thread g() {
-        return this.f4296s;
+        return this.f4294s;
     }
 }

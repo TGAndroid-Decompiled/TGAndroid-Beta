@@ -7,18 +7,18 @@ import java.util.concurrent.atomic.AtomicReference;
 import m.s3;
 import org.chromium.support_lib_boundary.JsReplyProxyBoundaryInterface;
 public final class g implements Callable {
-    public final int f4204a;
-    public final Object f4205b;
+    public final int f4202a;
+    public final Object f4203b;
 
     public g(Object obj, int i10) {
-        this.f4204a = i10;
-        this.f4205b = obj;
+        this.f4202a = i10;
+        this.f4203b = obj;
     }
 
     private final Object a() {
         boolean z10;
         String str;
-        s3 s3Var = (s3) this.f4205b;
+        s3 s3Var = (s3) this.f4203b;
         synchronized (((AtomicMarkableReference) s3Var.h)) {
             try {
                 z10 = false;
@@ -34,7 +34,7 @@ public final class g implements Callable {
             }
         }
         if (z10) {
-            ((y9.f) s3Var.f16333a).i((String) s3Var.f16335c, str);
+            ((y9.f) s3Var.f16336a).i((String) s3Var.f16338c, str);
         }
         return null;
     }
@@ -42,19 +42,19 @@ public final class g implements Callable {
     @Override
     public final Object call() {
         Map map;
-        switch (this.f4204a) {
+        switch (this.f4202a) {
             case 0:
-                return new h((JsReplyProxyBoundaryInterface) this.f4205b);
+                return new h((JsReplyProxyBoundaryInterface) this.f4203b);
             case 1:
                 return a();
             default:
-                c2.b bVar = (c2.b) this.f4205b;
-                ((AtomicReference) bVar.f4495c).set(null);
+                c2.b bVar = (c2.b) this.f4203b;
+                ((AtomicReference) bVar.f4493c).set(null);
                 synchronized (bVar) {
                     try {
-                        if (((AtomicMarkableReference) bVar.f4494b).isMarked()) {
-                            map = ((y9.d) ((AtomicMarkableReference) bVar.f4494b).getReference()).a();
-                            AtomicMarkableReference atomicMarkableReference = (AtomicMarkableReference) bVar.f4494b;
+                        if (((AtomicMarkableReference) bVar.f4492b).isMarked()) {
+                            map = ((y9.d) ((AtomicMarkableReference) bVar.f4492b).getReference()).a();
+                            AtomicMarkableReference atomicMarkableReference = (AtomicMarkableReference) bVar.f4492b;
                             atomicMarkableReference.set((y9.d) atomicMarkableReference.getReference(), false);
                         } else {
                             map = null;
@@ -65,7 +65,7 @@ public final class g implements Callable {
                 }
                 if (map != null) {
                     s3 s3Var = (s3) bVar.d;
-                    ((y9.f) s3Var.f16333a).g((String) s3Var.f16335c, map, bVar.f4493a);
+                    ((y9.f) s3Var.f16336a).g((String) s3Var.f16338c, map, bVar.f4491a);
                 }
                 return null;
         }

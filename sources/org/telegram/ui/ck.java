@@ -1,33 +1,30 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.os.Bundle;
-public final class ck extends un {
-    public final int f35935f;
-    public boolean h;
+public final class ck extends org.telegram.ui.Components.dp {
+    public final qn f36022f;
 
-    public ck(Context context, org.telegram.ui.ActionBar.d5 d5Var, Bundle bundle, int i10) {
-        super(context, d5Var, bundle);
-        this.f35935f = i10;
+    public ck(qn qnVar, Context context) {
+        super(context);
+        this.f36022f = qnVar;
     }
 
     @Override
-    public final void a() {
-        switch (this.f35935f) {
-            case 0:
-                if (!this.h) {
-                    this.h = true;
-                    super.a();
-                    return;
-                }
-                return;
-            default:
-                if (!this.h) {
-                    this.h = true;
-                    super.a();
-                    return;
-                }
-                return;
+    public final void a(boolean z10) {
+        qn qnVar = this.f36022f;
+        qnVar.w7();
+        qnVar.u7();
+        qnVar.x7();
+        qnVar.y7();
+        vk vkVar = qnVar.f40638bb;
+        if (vkVar != null) {
+            vkVar.setTranslationY(qnVar.w9 + getCurrentHeight());
         }
+        if (z10) {
+            qnVar.D9 = true;
+            qnVar.nc();
+            return;
+        }
+        qnVar.t9();
     }
 }

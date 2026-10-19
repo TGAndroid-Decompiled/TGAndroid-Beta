@@ -1,50 +1,62 @@
 package org.telegram.ui;
 
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
 public final class cn0 implements Runnable {
-    public final int f35948a;
-    public final go0 f35949b;
+    public final int f36033a;
+    public final eo0 f36034b;
+    public final TLRPC.TL_error f36035c;
+    public final TLObject d;
 
-    public cn0(go0 go0Var, int i10) {
-        this.f35948a = i10;
-        this.f35949b = go0Var;
+    public cn0(eo0 eo0Var, TLRPC.TL_error tL_error, TLObject tLObject, int i10) {
+        this.f36033a = i10;
+        this.f36034b = eo0Var;
+        this.f36035c = tL_error;
+        this.d = tLObject;
     }
 
     @Override
     public final void run() {
-        switch (this.f35948a) {
+        switch (this.f36033a) {
             case 0:
-                go0 go0Var = this.f35949b;
-                go0Var.f37228f[0].requestFocus();
-                AndroidUtilities.showKeyboard(go0Var.f37228f[0]);
+                eo0 eo0Var = this.f36034b;
+                eo0Var.f36709e0 = false;
+                if (this.f36035c == null) {
+                    TL_account.Password password = (TL_account.Password) this.d;
+                    eo0Var.f36699a0 = password;
+                    if (!TwoStepVerificationActivity.i0(password, false)) {
+                        org.telegram.ui.Components.f5.w0(eo0Var.getParentActivity(), LocaleController.getString(R.string.UpdateAppAlert), true);
+                        return;
+                    }
+                    TLRPC.PaymentForm paymentForm = eo0Var.C0;
+                    if (paymentForm != null && eo0Var.f36699a0.has_password) {
+                        paymentForm.password_missing = false;
+                        paymentForm.can_save_credentials = true;
+                        eo0Var.K0();
+                    }
+                    TwoStepVerificationActivity.m0(eo0Var.f36699a0);
+                    eo0 eo0Var2 = eo0Var.f36712f0;
+                    if (eo0Var2 != null) {
+                        eo0Var2.C0(eo0Var.f36699a0);
+                    }
+                    if (!eo0Var.f36699a0.has_password && eo0Var.f36707d0 == null) {
+                        an0 an0Var = new an0(eo0Var, 3);
+                        eo0Var.f36707d0 = an0Var;
+                        AndroidUtilities.runOnUIThread(an0Var, 5000L);
+                        return;
+                    }
+                    return;
+                }
                 return;
             case 1:
-                this.f35949b.t0();
+                eo0.V(this.f36034b, this.f36035c, this.d);
                 return;
-            case 2:
-                go0 go0Var2 = this.f35949b;
-                go0Var2.getMessagesController().newMessageCallback = null;
-                if (go0Var2.f37230f1 == 3 && !go0Var2.isFinishing()) {
-                    go0Var2.f37230f1 = 4;
-                    fo0 fo0Var = go0Var2.Z0;
-                    if (fo0Var != null) {
-                        fo0Var.c(4);
-                    }
-                    go0Var2.finishFragment();
-                    return;
-                } else if (go0Var2.f37230f1 == 1 && !go0Var2.isFinishing()) {
-                    go0Var2.finishFragment();
-                    return;
-                } else {
-                    return;
-                }
             default:
-                go0 go0Var3 = this.f35949b;
-                if (go0Var3.f37224d0 != null) {
-                    go0Var3.w0();
-                    go0Var3.f37224d0 = null;
-                    return;
-                }
+                eo0.X(this.f36034b, this.f36035c, this.d);
                 return;
         }
     }

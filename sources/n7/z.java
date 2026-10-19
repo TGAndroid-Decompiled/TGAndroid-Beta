@@ -1,100 +1,248 @@
 package n7;
 
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
-public final class z extends p {
-    public static final Object[] f17325r;
-    public static final z f17326s;
-    public final transient Object[] d;
-    public final transient int e;
-    public final transient Object[] f17327f;
-    public final transient int h;
-    public final transient int f17328n;
+import java.util.NoSuchElementException;
+import java.util.Set;
+public final class z extends s {
+    public static final z h;
+    public final transient m f17330f;
 
     static {
-        Object[] objArr = new Object[0];
-        f17325r = objArr;
-        f17326s = new z(0, 0, 0, objArr, objArr);
+        i iVar = m.f17293b;
+        h = new z(x.e, v.f17319b);
     }
 
-    public z(int i10, int i11, int i12, Object[] objArr, Object[] objArr2) {
-        this.d = objArr;
-        this.e = i10;
-        this.f17327f = objArr2;
-        this.h = i11;
-        this.f17328n = i12;
+    public z(m mVar, Comparator comparator) {
+        super(comparator);
+        this.f17330f = mVar;
+    }
+
+    @Override
+    public final Object ceiling(Object obj) {
+        int y3 = y(obj, true);
+        m mVar = this.f17330f;
+        if (y3 == mVar.size()) {
+            return null;
+        }
+        return mVar.get(y3);
     }
 
     @Override
     public final boolean contains(Object obj) {
         if (obj != null) {
-            Object[] objArr = this.f17327f;
-            if (objArr.length != 0) {
-                int rotateLeft = (int) (Integer.rotateLeft((int) (obj.hashCode() * (-862048943)), 15) * 461845907);
+            try {
+                if (Collections.binarySearch(this.f17330f, obj, this.d) >= 0) {
+                    return true;
+                }
+            } catch (ClassCastException unused) {
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public final boolean containsAll(Collection collection) {
+        if (collection instanceof u) {
+            collection = ((u) collection).zza();
+        }
+        Comparator comparator = this.d;
+        if (a.i(comparator, collection) && collection.size() > 1) {
+            i listIterator = this.f17330f.listIterator(0);
+            Iterator it = collection.iterator();
+            if (listIterator.hasNext()) {
+                Object next = it.next();
+                Object next2 = listIterator.next();
                 while (true) {
-                    int i10 = rotateLeft & this.h;
-                    Object obj2 = objArr[i10];
-                    if (obj2 != null) {
-                        if (obj2.equals(obj)) {
+                    try {
+                        int compare = comparator.compare(next2, next);
+                        if (compare < 0) {
+                            if (!listIterator.hasNext()) {
+                                break;
+                            }
+                            next2 = listIterator.next();
+                        } else if (compare != 0) {
+                            break;
+                        } else if (!it.hasNext()) {
                             return true;
+                        } else {
+                            next = it.next();
                         }
-                        rotateLeft = i10 + 1;
-                    } else {
-                        return false;
+                    } catch (ClassCastException | NullPointerException unused) {
                     }
                 }
-            } else {
-                return false;
             }
-        } else {
             return false;
         }
+        return super.containsAll(collection);
+    }
+
+    @Override
+    public final Iterator descendingIterator() {
+        return this.f17330f.q().listIterator(0);
+    }
+
+    @Override
+    public final boolean equals(Object obj) {
+        if (obj != this) {
+            if (obj instanceof Set) {
+                Set set = (Set) obj;
+                m mVar = this.f17330f;
+                if (mVar.size() == set.size()) {
+                    if (!isEmpty()) {
+                        Comparator comparator = this.d;
+                        if (a.i(comparator, set)) {
+                            Iterator it = set.iterator();
+                            try {
+                                i listIterator = mVar.listIterator(0);
+                                while (listIterator.hasNext()) {
+                                    Object next = listIterator.next();
+                                    Object next2 = it.next();
+                                    if (next2 != null) {
+                                        if (comparator.compare(next, next2) != 0) {
+                                        }
+                                    }
+                                }
+                                return true;
+                            } catch (ClassCastException | NoSuchElementException unused) {
+                            }
+                        } else {
+                            return containsAll(set);
+                        }
+                    } else {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public final Object first() {
+        if (!isEmpty()) {
+            return this.f17330f.get(0);
+        }
+        throw new NoSuchElementException();
+    }
+
+    @Override
+    public final Object floor(Object obj) {
+        int x10 = x(obj, true) - 1;
+        if (x10 == -1) {
+            return null;
+        }
+        return this.f17330f.get(x10);
     }
 
     @Override
     public final int h(Object[] objArr) {
-        Object[] objArr2 = this.d;
-        int i10 = this.f17328n;
-        System.arraycopy(objArr2, 0, objArr, 0, i10);
-        return i10;
+        return this.f17330f.h(objArr);
     }
 
     @Override
-    public final int hashCode() {
-        return this.e;
+    public final Object higher(Object obj) {
+        int y3 = y(obj, false);
+        m mVar = this.f17330f;
+        if (y3 == mVar.size()) {
+            return null;
+        }
+        return mVar.get(y3);
     }
 
     @Override
     public final Iterator iterator() {
-        return s().listIterator(0);
+        return this.f17330f.listIterator(0);
+    }
+
+    @Override
+    public final Object last() {
+        if (!isEmpty()) {
+            m mVar = this.f17330f;
+            return mVar.get(mVar.size() - 1);
+        }
+        throw new NoSuchElementException();
+    }
+
+    @Override
+    public final Object lower(Object obj) {
+        int x10 = x(obj, false) - 1;
+        if (x10 == -1) {
+            return null;
+        }
+        return this.f17330f.get(x10);
     }
 
     @Override
     public final int m() {
-        return this.f17328n;
+        return this.f17330f.m();
     }
 
     @Override
     public final int n() {
-        return 0;
+        return this.f17330f.n();
     }
 
     @Override
-    public final e0 o() {
-        return s().listIterator(0);
+    public final d0 o() {
+        return this.f17330f.listIterator(0);
     }
 
     @Override
     public final Object[] p() {
-        return this.d;
+        return this.f17330f.p();
+    }
+
+    @Override
+    public final m s() {
+        return this.f17330f;
     }
 
     @Override
     public final int size() {
-        return this.f17328n;
+        return this.f17330f.size();
     }
 
-    @Override
-    public final n t() {
-        return n.s(this.f17328n, this.d);
+    public final int x(Object obj, boolean z10) {
+        obj.getClass();
+        int binarySearch = Collections.binarySearch(this.f17330f, obj, this.d);
+        if (binarySearch >= 0) {
+            if (z10) {
+                return binarySearch + 1;
+            }
+            return binarySearch;
+        }
+        return ~binarySearch;
+    }
+
+    public final int y(Object obj, boolean z10) {
+        obj.getClass();
+        int binarySearch = Collections.binarySearch(this.f17330f, obj, this.d);
+        if (binarySearch >= 0) {
+            if (z10) {
+                return binarySearch;
+            }
+            return binarySearch + 1;
+        }
+        return ~binarySearch;
+    }
+
+    public final z z(int i10, int i11) {
+        m mVar = this.f17330f;
+        if (i10 == 0) {
+            if (i11 != mVar.size()) {
+                i10 = 0;
+            } else {
+                return this;
+            }
+        }
+        Comparator comparator = this.d;
+        if (i10 < i11) {
+            return new z(mVar.subList(i10, i11), comparator);
+        }
+        return s.w(comparator);
     }
 }

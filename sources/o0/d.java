@@ -3,18 +3,18 @@ package o0;
 import android.util.Base64;
 import java.util.List;
 public final class d {
-    public final String f17514a;
-    public final String f17515b;
-    public final String f17516c;
+    public final String f17517a;
+    public final String f17518b;
+    public final String f17519c;
     public final List d;
     public final String e;
 
     public d(String str, String str2, String str3, List list) {
         str.getClass();
-        this.f17514a = str;
+        this.f17517a = str;
         str2.getClass();
-        this.f17515b = str2;
-        this.f17516c = str3;
+        this.f17518b = str2;
+        this.f17519c = str3;
         list.getClass();
         this.d = list;
         this.e = str + "-" + str2 + "-" + str3;
@@ -22,7 +22,7 @@ public final class d {
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder();
-        sb2.append("FontRequest {mProviderAuthority: " + this.f17514a + ", mProviderPackage: " + this.f17515b + ", mQuery: " + this.f17516c + ", mCertificates:");
+        sb2.append("FontRequest {mProviderAuthority: " + this.f17517a + ", mProviderPackage: " + this.f17518b + ", mQuery: " + this.f17519c + ", mCertificates:");
         int i10 = 0;
         while (true) {
             List list = this.d;

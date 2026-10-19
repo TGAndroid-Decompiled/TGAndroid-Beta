@@ -12,10 +12,10 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class hn implements uy {
-    public final fo f26906a;
+    public final fo f26901a;
 
     public hn(fo foVar) {
-        this.f26906a = foVar;
+        this.f26901a = foVar;
     }
 
     @Override
@@ -56,9 +56,9 @@ public final class hn implements uy {
         } else {
             z10 = false;
         }
-        fo foVar = this.f26906a;
-        foVar.f26293h1 = z10;
-        foVar.f28238b.f30621u1.requestLayout();
+        fo foVar = this.f26901a;
+        foVar.f26280h1 = z10;
+        foVar.f28225b.f30583u1.requestLayout();
     }
 
     @Override
@@ -69,7 +69,7 @@ public final class hn implements uy {
     @Override
     public final boolean k() {
         EditTextBoldCursor editField;
-        org.telegram.ui.Cells.c6 c6Var = this.f26906a.f26291g1;
+        org.telegram.ui.Cells.c6 c6Var = this.f26901a.f26278g1;
         if (c6Var == null || (editField = c6Var.getEditField()) == null) {
             return false;
         }
@@ -80,7 +80,7 @@ public final class hn implements uy {
     @Override
     public final void l(String str) {
         EditTextBoldCursor editField;
-        org.telegram.ui.Cells.c6 c6Var = this.f26906a.f26291g1;
+        org.telegram.ui.Cells.c6 c6Var = this.f26901a.f26278g1;
         if (c6Var == null || (editField = c6Var.getEditField()) == null) {
             return;
         }
@@ -100,12 +100,12 @@ public final class hn implements uy {
 
     @Override
     public final void n() {
-        fo foVar = this.f26906a;
-        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(foVar.getContext(), 0, foVar.f28237a);
-        alertDialog$Builder.f20601a.R = LocaleController.getString(R.string.ClearRecentEmojiTitle);
-        alertDialog$Builder.f20601a.T = LocaleController.getString(R.string.ClearRecentEmojiText);
+        fo foVar = this.f26901a;
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(foVar.getContext(), 0, foVar.f28224a);
+        alertDialog$Builder.f20604a.R = LocaleController.getString(R.string.ClearRecentEmojiTitle);
+        alertDialog$Builder.f20604a.T = LocaleController.getString(R.string.ClearRecentEmojiText);
         alertDialog$Builder.k(LocaleController.getString(R.string.ClearButton), new s(this, 24));
-        i2.d.r(R.string.Cancel, alertDialog$Builder, null);
+        i2.e.r(R.string.Cancel, alertDialog$Builder, null);
     }
 
     @Override
@@ -117,7 +117,7 @@ public final class hn implements uy {
     public final void x(long j10, TLRPC.Document document, String str, boolean z10) {
         EditTextBoldCursor editField;
         a6 a6Var;
-        org.telegram.ui.Cells.c6 c6Var = this.f26906a.f26291g1;
+        org.telegram.ui.Cells.c6 c6Var = this.f26901a.f26278g1;
         if (c6Var == null || (editField = c6Var.getEditField()) == null) {
             return;
         }
@@ -144,7 +144,7 @@ public final class hn implements uy {
 
     @Override
     public final boolean z() {
-        return this.f26906a.f26293h1;
+        return this.f26901a.f26280h1;
     }
 
     @Override
@@ -152,7 +152,7 @@ public final class hn implements uy {
     }
 
     @Override
-    public final void o(b61 b61Var) {
+    public final void o(c61 c61Var) {
     }
 
     @Override

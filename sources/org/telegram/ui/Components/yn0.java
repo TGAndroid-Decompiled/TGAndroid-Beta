@@ -7,11 +7,11 @@ public final class yn0 extends s4.k {
         eo0 eo0Var;
         do0 do0Var;
         View view = b1Var.f45910a;
-        if ((view instanceof eo0) && (do0Var = (eo0Var = (eo0) view).f25963a) != null) {
-            do0Var.f754i = do0Var.N;
-            do0Var.f752g = do0Var.O;
+        if ((view instanceof eo0) && (do0Var = (eo0Var = (eo0) view).f25954a) != null) {
+            do0Var.f752i = do0Var.N;
+            do0Var.f750g = do0Var.O;
             do0Var.h = do0Var.P;
-            eo0Var.f25964b.d(0.0f, true);
+            eo0Var.f25955b.d(0.0f, true);
             eo0Var.invalidate();
         }
         int translationX = i10 + ((int) view.getTranslationX());

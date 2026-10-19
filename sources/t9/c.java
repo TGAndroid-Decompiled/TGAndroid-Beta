@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 import b5.g;
-import c5.x;
+import c5.y;
 import com.google.android.gms.tasks.TaskCompletionSource;
 import com.google.firebase.messaging.r;
 import com.google.firebase.messaging.u;
@@ -24,27 +24,27 @@ public final class c {
             Log.w("FirebaseCrashlytics", "A null value was passed to recordException. Ignoring.", null);
             return;
         }
-        m mVar = this.f46911a.f49708f;
+        m mVar = this.f46911a.f49707f;
         Thread currentThread = Thread.currentThread();
         mVar.getClass();
         long currentTimeMillis = System.currentTimeMillis();
         r rVar = mVar.e;
         u uVar = new u(mVar, currentTimeMillis, th2, currentThread);
         rVar.getClass();
-        rVar.v(new x(uVar, 9));
+        rVar.v(new y(uVar, 9));
     }
 
     public final void b() {
         o oVar = this.f46911a;
         Boolean bool = Boolean.TRUE;
-        x9.r rVar = oVar.f49706b;
+        x9.r rVar = oVar.f49705b;
         synchronized (rVar) {
-            rVar.f49728f = false;
-            rVar.f49729g = bool;
-            SharedPreferences.Editor edit = rVar.f49725a.edit();
+            rVar.f49727f = false;
+            rVar.f49728g = bool;
+            SharedPreferences.Editor edit = rVar.f49724a.edit();
             edit.putBoolean("firebase_crashlytics_collection_enabled", true);
             edit.apply();
-            synchronized (rVar.f49727c) {
+            synchronized (rVar.f49726c) {
                 if (rVar.a()) {
                     if (!rVar.e) {
                         rVar.d.trySetResult(null);
@@ -59,12 +59,12 @@ public final class c {
     }
 
     public final void c(String str, String str2) {
-        m mVar = this.f46911a.f49708f;
+        m mVar = this.f46911a.f49707f;
         mVar.getClass();
         try {
             ((c2.b) mVar.d.d).x(str, str2);
         } catch (IllegalArgumentException e) {
-            Context context = mVar.f49689a;
+            Context context = mVar.f49688a;
             if (context != null && (context.getApplicationInfo().flags & 2) != 0) {
                 throw e;
             }
@@ -74,7 +74,7 @@ public final class c {
 
     public final void d(String str) {
         boolean equals;
-        s3 s3Var = this.f46911a.f49708f.d;
+        s3 s3Var = this.f46911a.f49707f.d;
         s3Var.getClass();
         String b10 = y9.d.b(1024, str);
         synchronized (((AtomicMarkableReference) s3Var.h)) {
@@ -93,7 +93,7 @@ public final class c {
                     return;
                 }
                 ((AtomicMarkableReference) s3Var.h).set(b10, true);
-                ((r) s3Var.f16334b).v(new g(s3Var, 1));
+                ((r) s3Var.f16337b).v(new g(s3Var, 1));
             } finally {
             }
         }

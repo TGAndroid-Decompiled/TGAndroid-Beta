@@ -7,24 +7,24 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class m9 implements Runnable {
-    public final int f1847a;
-    public final TLObject f1848b;
-    public final Utilities.Callback f1849c;
+    public final int f1843a;
+    public final TLObject f1844b;
+    public final Utilities.Callback f1845c;
 
     public m9(TLObject tLObject, Utilities.Callback callback, int i10) {
-        this.f1847a = i10;
-        this.f1848b = tLObject;
-        this.f1849c = callback;
+        this.f1843a = i10;
+        this.f1844b = tLObject;
+        this.f1845c = callback;
     }
 
     @Override
     public final void run() {
         boolean z10;
-        switch (this.f1847a) {
+        switch (this.f1843a) {
             case 0:
-                TLObject tLObject = this.f1848b;
+                TLObject tLObject = this.f1844b;
                 boolean z11 = tLObject instanceof TL_account.paidMessagesRevenue;
-                Utilities.Callback callback = this.f1849c;
+                Utilities.Callback callback = this.f1845c;
                 if (z11) {
                     callback.run(Long.valueOf(((TL_account.paidMessagesRevenue) tLObject).stars_amount));
                     return;
@@ -33,18 +33,18 @@ public final class m9 implements Runnable {
                     return;
                 }
             default:
-                TLObject tLObject2 = this.f1848b;
+                TLObject tLObject2 = this.f1844b;
                 if (tLObject2 instanceof TLRPC.TL_messages_stickerSet) {
                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) tLObject2;
                     MediaDataController.getInstance(UserConfig.selectedAccount).putStickerSet(tL_messages_stickerSet);
-                    if (!MediaDataController.getInstance(UserConfig.selectedAccount).isStickerPackInstalled(tL_messages_stickerSet.set.f20299id)) {
+                    if (!MediaDataController.getInstance(UserConfig.selectedAccount).isStickerPackInstalled(tL_messages_stickerSet.set.f20302id)) {
                         MediaDataController.getInstance(UserConfig.selectedAccount).toggleStickerSet(null, tL_messages_stickerSet, 2, null, false, false);
                     }
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                this.f1849c.run(Boolean.valueOf(z10));
+                this.f1845c.run(Boolean.valueOf(z10));
                 return;
         }
     }

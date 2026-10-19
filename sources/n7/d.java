@@ -1,5 +1,8 @@
 package n7;
 
-import m.g3;
-public final class d extends g3 {
+import java.io.Serializable;
+public abstract class d implements Serializable {
+    public abstract Object a();
+
+    public abstract boolean b();
 }

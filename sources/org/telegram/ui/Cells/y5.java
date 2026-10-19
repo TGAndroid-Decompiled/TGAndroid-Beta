@@ -14,28 +14,28 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.xp;
 public final class y5 extends FrameLayout {
-    public org.telegram.ui.Components.w9 f23833a;
-    public FrameLayout f23834b;
-    public xp f23835c;
+    public org.telegram.ui.Components.w9 f23836a;
+    public FrameLayout f23837b;
+    public xp f23838c;
     public TextView d;
     public ai.n5 e;
-    public int f23836f;
+    public int f23839f;
     public int h;
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f23835c.b(org.telegram.ui.ActionBar.h6.W9, org.telegram.ui.ActionBar.h6.X9, org.telegram.ui.ActionBar.h6.V9);
+        this.f23838c.b(org.telegram.ui.ActionBar.h6.W9, org.telegram.ui.ActionBar.h6.X9, org.telegram.ui.ActionBar.h6.V9);
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.f23836f + this.h, 1073741824), View.MeasureSpec.makeMeasureSpec(this.f23836f, 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.f23839f + this.h, 1073741824), View.MeasureSpec.makeMeasureSpec(this.f23839f, 1073741824));
     }
 
     public void setImage(MediaController.PhotoEntry photoEntry) {
         ai.n5 n5Var = this.e;
-        org.telegram.ui.Components.w9 w9Var = this.f23833a;
+        org.telegram.ui.Components.w9 w9Var = this.f23836a;
         Drawable drawable = getResources().getDrawable(R.drawable.nophotos);
         String str = photoEntry.thumbPath;
         if (str != null) {
@@ -65,11 +65,11 @@ public final class y5 extends FrameLayout {
     }
 
     public void setNum(int i10) {
-        this.f23835c.setNum(i10);
+        this.f23838c.setNum(i10);
     }
 
     public void setImage(MediaController.SearchImage searchImage) {
-        org.telegram.ui.Components.w9 w9Var = this.f23833a;
+        org.telegram.ui.Components.w9 w9Var = this.f23836a;
         Drawable drawable = getResources().getDrawable(R.drawable.nophotos);
         TLRPC.PhotoSize photoSize = searchImage.thumbPhotoSize;
         if (photoSize != null) {

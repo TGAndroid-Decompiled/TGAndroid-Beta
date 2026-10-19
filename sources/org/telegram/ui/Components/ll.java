@@ -21,9 +21,9 @@ public final class ll extends hg.t0 {
         if (u0Var != null) {
             u0Var.setShowSearchProgress(llVar.J);
         }
-        TextView textView = rlVar.f29991y;
+        TextView textView = rlVar.f29998y;
         if (textView != null) {
-            textView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("NoPlacesFoundInfo", R.string.NoPlacesFoundInfo, llVar.f11821x)));
+            textView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("NoPlacesFoundInfo", R.string.NoPlacesFoundInfo, llVar.f11822x)));
         }
         super.l();
     }

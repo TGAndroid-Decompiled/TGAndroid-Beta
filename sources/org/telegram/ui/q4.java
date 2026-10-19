@@ -5,17 +5,17 @@ import android.view.ViewGroup;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class q4 extends org.telegram.ui.Components.hm0 {
-    public final Context f40272c;
+    public final Context f40367c;
 
     public q4(Context context) {
-        this.f40272c = context;
+        this.f40367c = context;
     }
 
     @Override
     public final boolean D(s4.b1 b1Var) {
         int b10 = b1Var.b();
         if (b10 != 1) {
-            ti.a aVar = ti.e.f47211b;
+            ti.a aVar = ti.e.f47213b;
             aVar.a();
             if (!aVar.d || b10 != 2) {
                 return false;
@@ -46,7 +46,7 @@ public final class q4 extends org.telegram.ui.Components.hm0 {
     @Override
     public final void v(s4.b1 b1Var, int i10) {
         int i11;
-        ti.a aVar = ti.e.f47211b;
+        ti.a aVar = ti.e.f47213b;
         aVar.a();
         boolean z10 = aVar.d;
         int i12 = b1Var.f45913f;
@@ -58,7 +58,7 @@ public final class q4 extends org.telegram.ui.Components.hm0 {
             org.telegram.ui.Cells.ba baVar = (org.telegram.ui.Cells.ba) b1Var.f45910a;
             baVar.setEnabled(z10);
             String string = LocaleController.getString(R.string.AudioRecorderNoiseSuppression);
-            if (((ri.i) ti.e.f47212c.a()) == ri.i.f45806b) {
+            if (((ri.i) ti.e.f47214c.a()) == ri.i.f45806b) {
                 i11 = R.string.AudioRecorderNoiseSuppressionRNNoise;
             } else {
                 i11 = R.string.AudioRecorderNoiseSuppressionOff;
@@ -72,7 +72,7 @@ public final class q4 extends org.telegram.ui.Components.hm0 {
     @Override
     public final s4.b1 x(ViewGroup viewGroup, int i10) {
         org.telegram.ui.Cells.ba baVar;
-        Context context = this.f40272c;
+        Context context = this.f40367c;
         if (i10 == 0) {
             baVar = new org.telegram.ui.Cells.l4(context);
         } else if (i10 == 1) {

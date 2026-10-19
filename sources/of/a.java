@@ -11,12 +11,12 @@ public final class a extends d {
     }
 
     public final long e() {
-        return this.d - this.f7627b;
+        return this.d - this.f7628b;
     }
 
     @Override
     public final int read() {
-        if (this.f7627b == this.d) {
+        if (this.f7628b == this.d) {
             return -1;
         }
         return super.read();
@@ -24,7 +24,7 @@ public final class a extends d {
 
     @Override
     public final long skip(long j10) {
-        long j11 = this.f7627b;
+        long j11 = this.f7628b;
         long j12 = this.d;
         if (j11 + j10 > j12) {
             j10 = (int) (j12 - j11);
@@ -34,7 +34,7 @@ public final class a extends d {
 
     @Override
     public final int read(byte[] bArr, int i10, int i11) {
-        long j10 = this.f7627b;
+        long j10 = this.f7628b;
         long j11 = this.d;
         if (i11 + j10 <= j11 || (i11 = (int) (j11 - j10)) != 0) {
             return super.read(bArr, i10, i11);

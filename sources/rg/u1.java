@@ -18,27 +18,27 @@ public final class u1 extends GestureDetector.SimpleOnGestureListener {
         float f7;
         w1 w1Var = this.d;
         boolean contains = w1Var.e.contains(motionEvent.getX(), motionEvent.getY());
-        if (w1Var.f45687f != contains) {
-            w1Var.f45687f = contains;
+        if (w1Var.f45682f != contains) {
+            w1Var.f45682f = contains;
             w1Var.invalidate();
             if (contains) {
                 v1 v1Var = w1Var.K;
                 if (v1Var != null) {
                     f7 = v1Var.get();
                 } else {
-                    f7 = w1Var.H.f44647c;
+                    f7 = w1Var.H.f44649c;
                 }
                 this.f45655a = f7;
                 this.f45656b = false;
             }
         }
-        return w1Var.f45687f;
+        return w1Var.f45682f;
     }
 
     @Override
     public final boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
         w1 w1Var = this.d;
-        if (w1Var.f45687f) {
+        if (w1Var.f45682f) {
             if (!this.f45656b) {
                 this.f45657c = motionEvent.getY() - motionEvent2.getY();
                 this.f45656b = true;
@@ -52,15 +52,15 @@ public final class u1 extends GestureDetector.SimpleOnGestureListener {
             if (v1Var != null) {
                 v1Var.U(a2);
             } else {
-                w1Var.H.f44647c = a2;
+                w1Var.H.f44649c = a2;
             }
-            w1Var.f45691w.d(a2, true);
+            w1Var.f45686w.d(a2, true);
             Runnable runnable = w1Var.I;
             if (runnable != null) {
                 runnable.run();
             }
             w1Var.invalidate();
         }
-        return w1Var.f45687f;
+        return w1Var.f45682f;
     }
 }

@@ -68,7 +68,7 @@ public final class y1 extends FrameLayout implements ne.d {
         } else {
             y1Var.f2468n = document;
             TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, AndroidUtilities.dp(100.0f));
-            SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(document, org.telegram.ui.ActionBar.h6.f20928a7, 0.3f);
+            SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(document, org.telegram.ui.ActionBar.h6.f20931a7, 0.3f);
             StringBuilder sb2 = new StringBuilder();
             sb2.append(i10);
             sb2.append("_");
@@ -89,24 +89,24 @@ public final class y1 extends FrameLayout implements ne.d {
     public final void b() {
         int f7;
         yh.d1 d1Var = this.f2466c;
-        d1Var.f50210x = null;
+        d1Var.f50209x = null;
         Integer num = this.h;
         ne.b bVar = this.f2469r;
         TextView textView = this.f2467f;
         if (num != null) {
-            f7 = org.telegram.ui.ActionBar.h6.v(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20986d6, false), org.telegram.ui.ActionBar.h6.m1(AndroidUtilities.lerp(0.15f, 1.0f, bVar.e), this.h.intValue()));
-            d1Var.f50210x = this.h;
+            f7 = org.telegram.ui.ActionBar.h6.v(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20989d6, false), org.telegram.ui.ActionBar.h6.m1(AndroidUtilities.lerp(0.15f, 1.0f, bVar.e), this.h.intValue()));
+            d1Var.f50209x = this.h;
             this.f2465b.invalidate();
             textView.setTextColor(i0.a.f(bVar.e, this.h.intValue(), -1));
         } else if (this.f2470s) {
-            int i10 = org.telegram.ui.ActionBar.h6.f20986d6;
+            int i10 = org.telegram.ui.ActionBar.h6.f20989d6;
             int x02 = org.telegram.ui.ActionBar.h6.x0(null, i10, false);
             int i11 = org.telegram.ui.ActionBar.h6.G6;
             int f10 = i0.a.f(bVar.e, i0.a.f(0.05f, x02, org.telegram.ui.ActionBar.h6.x0(null, i11, false)), org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.Oh, false));
             textView.setTextColor(i0.a.f(bVar.e, i0.a.f(0.5f, org.telegram.ui.ActionBar.h6.x0(null, i10, false), org.telegram.ui.ActionBar.h6.x0(null, i11, false)), -1));
             f7 = f10;
         } else {
-            f7 = i0.a.f(0.5f, i0.a.o(this.v.f2286a.center_color, 255), i0.a.o(this.v.f2286a.pattern_color, 255));
+            f7 = i0.a.f(0.5f, i0.a.o(this.v.f2283a.center_color, 255), i0.a.o(this.v.f2283a.pattern_color, 255));
             textView.setTextColor(-1);
         }
         if (textView.getBackground() instanceof ShapeDrawable) {
@@ -118,11 +118,11 @@ public final class y1 extends FrameLayout implements ne.d {
     }
 
     @Override
-    public final void u(int i10, float f7, float f10, ne.e eVar) {
+    public final void r(int i10, float f7, float f10, ne.e eVar) {
         b();
     }
 
     @Override
-    public final void E(float f7, int i10) {
+    public final void H(float f7, int i10) {
     }
 }

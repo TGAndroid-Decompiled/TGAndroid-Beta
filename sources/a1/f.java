@@ -1,5 +1,6 @@
 package a1;
 
+import ah.a0;
 import ah.g1;
 import ah.j1;
 import ah.l1;
@@ -7,9 +8,10 @@ import ah.t0;
 import ah.w;
 import ah.w0;
 import ah.y;
+import ai.d2;
 import ai.fa;
 import ai.ga;
-import ai.i0;
+import ai.h0;
 import ai.k7;
 import ai.le;
 import ai.p7;
@@ -22,9 +24,9 @@ import androidx.credentials.playservices.CredentialProviderPlayServicesImpl;
 import b2.a2;
 import com.google.android.gms.internal.play_billing.k3;
 import e2.m0;
-import i2.a0;
 import i2.b0;
-import i2.h0;
+import i2.c0;
+import i2.i0;
 import java.util.ArrayList;
 import kotlin.jvm.internal.p;
 import n4.s;
@@ -50,7 +52,7 @@ import org.telegram.ui.Components.cl0;
 import org.telegram.ui.Components.qc;
 import org.telegram.ui.Components.xc;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.sn;
+import org.telegram.ui.qn;
 import v0.i;
 public final class f implements Runnable {
     public final int f41a;
@@ -87,46 +89,46 @@ public final class f implements Runnable {
                 CredentialProviderPlayServicesImpl.onClearCredential$lambda$14$lambda$13$lambda$12((i) obj2, (p) obj);
                 return;
             case 2:
-                ((a3.f) ((qf.b) obj2).f44443c).h.onVideoSizeChanged((a2) obj);
+                ((a3.f) ((qf.b) obj2).f44438c).h.onVideoSizeChanged((a2) obj);
                 return;
             case 3:
-                String str = m0.f8253a;
-                s.i(((b0) ((a3.m0) ((s) obj2).f17125c)).f12322a.G, (i2.c) obj);
+                String str = m0.f8254a;
+                s.h(((c0) ((a3.m0) ((s) obj2).f17128c)).f12327a.G, (i2.d) obj);
                 return;
             case 4:
                 a2 a2Var = (a2) obj;
-                String str2 = m0.f8253a;
-                h0 h0Var = ((b0) ((a3.m0) ((s) obj2).f17125c)).f12322a;
-                h0Var.f12396k0 = a2Var;
-                h0Var.f12399m.e(25, new a0(a2Var));
+                String str2 = m0.f8254a;
+                i0 i0Var = ((c0) ((a3.m0) ((s) obj2).f17128c)).f12327a;
+                i0Var.f12401k0 = a2Var;
+                i0Var.f12404m.e(25, new b0(a2Var));
                 return;
             case 5:
-                String str3 = m0.f8253a;
-                j2.f fVar = ((b0) ((a3.m0) ((s) obj2).f17125c)).f12322a.f12410s;
+                String str3 = m0.f8254a;
+                j2.f fVar = ((c0) ((a3.m0) ((s) obj2).f17128c)).f12327a.f12415s;
                 j2.a p5 = fVar.p();
                 fVar.q(p5, 1030, new j2.c(p5, (Exception) obj, 0));
                 return;
             case 6:
-                String str4 = m0.f8253a;
-                j2.f fVar2 = ((b0) ((a3.m0) ((s) obj2).f17125c)).f12322a.f12410s;
+                String str4 = m0.f8254a;
+                j2.f fVar2 = ((c0) ((a3.m0) ((s) obj2).f17128c)).f12327a.f12415s;
                 j2.a p9 = fVar2.p();
                 fVar2.q(p9, 1019, new j2.c(p9, (String) obj, 7));
                 return;
             case 7:
-                ah.a0 a0Var = (ah.a0) obj2;
+                a0 a0Var = (a0) obj2;
                 a6 a6Var = (a6) obj;
-                SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(a0Var.f645n.getText());
+                SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(a0Var.f643n.getText());
                 a6[] a6VarArr = (a6[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), a6.class);
                 int length = a6VarArr.length;
                 while (i13 < length) {
                     a6 a6Var2 = a6VarArr[i13];
                     if (a6Var2 == a6Var) {
-                        int editTextSelectionEnd = a0Var.f645n.getEditTextSelectionEnd();
+                        int editTextSelectionEnd = a0Var.f643n.getEditTextSelectionEnd();
                         int spanEnd = spannableStringBuilder.getSpanEnd(a6Var2);
                         int spanStart = spannableStringBuilder.getSpanStart(a6Var2);
-                        a0Var.f645n.getText().delete(spanStart, spanEnd);
+                        a0Var.f643n.getText().delete(spanStart, spanEnd);
                         int i14 = spanEnd - spanStart;
-                        w wVar = a0Var.f645n;
+                        w wVar = a0Var.f643n;
                         if (spanEnd <= editTextSelectionEnd) {
                             editTextSelectionEnd -= i14;
                         }
@@ -137,7 +139,7 @@ public final class f implements Runnable {
                 }
                 return;
             case 8:
-                ah.a0 a0Var2 = (ah.a0) obj2;
+                a0 a0Var2 = (a0) obj2;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj;
                 if (a0Var2.Q != null && tL_error.text.equals("BOOSTS_REQUIRED")) {
                     l1.f(-a0Var2.M, a0Var2.R, a0Var2.Q);
@@ -151,19 +153,19 @@ public final class f implements Runnable {
                 return;
             case 9:
                 a6 a6Var3 = (a6) obj;
-                ah.a0 a0Var3 = ((y) obj2).f908e2;
-                SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(a0Var3.f645n.getText());
+                a0 a0Var3 = ((y) obj2).f906e2;
+                SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(a0Var3.f643n.getText());
                 a6[] a6VarArr2 = (a6[]) spannableStringBuilder2.getSpans(0, spannableStringBuilder2.length(), a6.class);
                 int length2 = a6VarArr2.length;
                 while (i13 < length2) {
                     a6 a6Var4 = a6VarArr2[i13];
                     if (a6Var4 == a6Var3) {
-                        int editTextSelectionEnd2 = a0Var3.f645n.getEditTextSelectionEnd();
+                        int editTextSelectionEnd2 = a0Var3.f643n.getEditTextSelectionEnd();
                         int spanEnd2 = spannableStringBuilder2.getSpanEnd(a6Var4);
                         int spanStart2 = spannableStringBuilder2.getSpanStart(a6Var4);
-                        a0Var3.f645n.getText().delete(spanStart2, spanEnd2);
+                        a0Var3.f643n.getText().delete(spanStart2, spanEnd2);
                         int i15 = spanEnd2 - spanStart2;
-                        w wVar2 = a0Var3.f645n;
+                        w wVar2 = a0Var3.f643n;
                         if (spanEnd2 <= editTextSelectionEnd2) {
                             editTextSelectionEnd2 -= i15;
                         }
@@ -176,9 +178,9 @@ public final class f implements Runnable {
             case 10:
                 t0 t0Var = (t0) obj2;
                 cl0 cl0Var = (cl0) obj;
-                t0Var.f878l = true;
-                t0Var.f870a.invalidate();
-                cl0Var.f25262b1 = false;
+                t0Var.f876l = true;
+                t0Var.f868a.invalidate();
+                cl0Var.f25240b1 = false;
                 cl0Var.invalidate();
                 t0Var.c(true);
                 return;
@@ -193,8 +195,8 @@ public final class f implements Runnable {
                 j1 j1Var = (j1) obj2;
                 g1 g1Var = (g1) obj;
                 j1Var.getClass();
-                TLRPC.ReactionCount reactionCount = g1Var.f742a;
-                org.telegram.ui.Cells.a0 a0Var4 = j1Var.f814z;
+                TLRPC.ReactionCount reactionCount = g1Var.f740a;
+                org.telegram.ui.Cells.a0 a0Var4 = j1Var.f812z;
                 if (k3.s(a0Var4)) {
                     ((n4) a0Var4).f(reactionCount, true, 0.0f, 0.0f);
                 }
@@ -204,63 +206,101 @@ public final class f implements Runnable {
                 j1Var.U = null;
                 return;
             case 13:
-                ai.h0 h0Var2 = (ai.h0) obj2;
+                h0 h0Var = (h0) obj2;
                 TLObject tLObject = (TLObject) obj;
-                int i16 = h0Var2.f1386a;
-                ArrayList arrayList2 = h0Var2.e;
-                h0Var2.f1391i = 0;
+                int i16 = h0Var.f1382a;
+                ArrayList arrayList2 = h0Var.e;
+                h0Var.f1387i = 0;
                 if (tLObject instanceof TL_payments.connectedStarRefBots) {
                     TL_payments.connectedStarRefBots connectedstarrefbots = (TL_payments.connectedStarRefBots) tLObject;
                     MessagesController.getInstance(i16).putUsers(connectedstarrefbots.users, false);
-                    if (h0Var2.f1388c <= 0) {
+                    if (h0Var.f1384c <= 0) {
                         arrayList2.clear();
                     }
-                    h0Var2.f1388c = connectedstarrefbots.count;
+                    h0Var.f1384c = connectedstarrefbots.count;
                     arrayList2.addAll(connectedstarrefbots.connected_bots);
-                    if (!connectedstarrefbots.connected_bots.isEmpty() && arrayList2.size() < h0Var2.f1388c) {
+                    if (!connectedstarrefbots.connected_bots.isEmpty() && arrayList2.size() < h0Var.f1384c) {
                         z10 = false;
                     } else {
                         z10 = true;
                     }
-                    h0Var2.d = z10;
+                    h0Var.d = z10;
                 } else {
-                    h0Var2.h = true;
-                    h0Var2.d = true;
+                    h0Var.h = true;
+                    h0Var.d = true;
                 }
-                h0Var2.f1390g = false;
-                NotificationCenter.getInstance(i16).lambda$postNotificationNameOnUIThread$1(NotificationCenter.channelConnectedBotsUpdate, Long.valueOf(h0Var2.f1387b));
+                h0Var.f1386g = false;
+                NotificationCenter.getInstance(i16).lambda$postNotificationNameOnUIThread$1(NotificationCenter.channelConnectedBotsUpdate, Long.valueOf(h0Var.f1383b));
                 return;
             case 14:
-                i0 i0Var = (i0) obj2;
+                ai.i0 i0Var2 = (ai.i0) obj2;
                 TLObject tLObject2 = (TLObject) obj;
-                int i17 = i0Var.f1453a;
-                ArrayList arrayList3 = i0Var.e;
+                int i17 = i0Var2.f1449a;
+                ArrayList arrayList3 = i0Var2.e;
                 if (tLObject2 instanceof TL_payments.suggestedStarRefBots) {
                     TL_payments.suggestedStarRefBots suggestedstarrefbots = (TL_payments.suggestedStarRefBots) tLObject2;
                     MessagesController.getInstance(i17).putUsers(suggestedstarrefbots.users, false);
-                    if (i0Var.f1455c <= 0) {
+                    if (i0Var2.f1451c <= 0) {
                         arrayList3.clear();
                     }
-                    i0Var.f1455c = suggestedstarrefbots.count;
+                    i0Var2.f1451c = suggestedstarrefbots.count;
                     arrayList3.addAll(suggestedstarrefbots.suggested_bots);
-                    i0Var.f1459j = suggestedstarrefbots.next_offset;
-                    if (!suggestedstarrefbots.suggested_bots.isEmpty() && arrayList3.size() < i0Var.f1455c) {
+                    i0Var2.f1455j = suggestedstarrefbots.next_offset;
+                    if (!suggestedstarrefbots.suggested_bots.isEmpty() && arrayList3.size() < i0Var2.f1451c) {
                         z11 = false;
                     } else {
                         z11 = true;
                     }
-                    i0Var.d = z11;
+                    i0Var2.d = z11;
                 } else {
-                    i0Var.f1458i = true;
-                    i0Var.d = true;
+                    i0Var2.f1454i = true;
+                    i0Var2.d = true;
                 }
-                i0Var.h = false;
-                NotificationCenter.getInstance(i17).lambda$postNotificationNameOnUIThread$1(NotificationCenter.channelSuggestedBotsUpdate, Long.valueOf(i0Var.f1454b));
+                i0Var2.h = false;
+                NotificationCenter.getInstance(i17).lambda$postNotificationNameOnUIThread$1(NotificationCenter.channelSuggestedBotsUpdate, Long.valueOf(i0Var2.f1450b));
                 return;
             case 15:
-                k7.z0((k7) obj2, (TL_stars.TL_payments_uniqueStarGift) obj);
+                k7.M0((k7) obj2, (Long) obj);
                 return;
             case 16:
+                k7 k7Var = (k7) obj2;
+                if (!((ga) obj).e) {
+                    qc Q = k7Var.getBulletinFactory().Q(R.raw.error, 36, LocaleController.formatString(R.string.UnknownErrorCode, "NO_BALANCE"));
+                    Q.f29606t = true;
+                    Q.j();
+                    return;
+                }
+                k7Var.f1667k0.setLoading(false);
+                k7Var.R1();
+                return;
+            case 17:
+                MessagesController.getInstance(((k7) obj2).currentAccount).lambda$processUpdates$377((TLRPC.Updates) ((TLObject) obj), false);
+                return;
+            case 18:
+                ((k7) obj2).getBulletinFactory().f0((TLRPC.TL_error) obj, false);
+                return;
+            case 19:
+                k7 k7Var2 = (k7) obj2;
+                k7Var2.getClass();
+                ((boolean[]) obj)[0] = true;
+                k7Var2.f1667k0.setLoading(false);
+                k7Var2.R1();
+                return;
+            case 20:
+                k7 k7Var3 = (k7) obj2;
+                xc.a0((qn) obj).K(R.raw.gift, LocaleController.getString(R.string.StarsGiftUpgradeCompleted), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.StarsGiftUpgradeCompletedText, DialogObject.getShortName(k7Var3.X))), LocaleController.getString(R.string.StarsGiftUpgradeCompletedMoreButton), new d2(k7Var3, 10)).k(true);
+                return;
+            case 21:
+                TL_stars.TL_starGiftUnique tL_starGiftUnique = (TL_stars.TL_starGiftUnique) obj;
+                ((k7) obj2).getBulletinFactory().Q(R.raw.ic_delete, 36, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.GiftRemovedDescription, tL_starGiftUnique.title + " #" + tL_starGiftUnique.num))).j();
+                return;
+            case 22:
+                ((k7) obj2).R2((CharSequence) obj);
+                return;
+            case 23:
+                k7.m0((k7) obj2, (TL_stars.TL_payments_uniqueStarGift) obj);
+                return;
+            case 24:
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj;
                 ((b2) obj2).dismiss();
                 n2 U = LaunchActivity.U();
@@ -278,55 +318,17 @@ public final class f implements Runnable {
                     return;
                 }
                 return;
-            case 17:
-                k7.L0((k7) obj2, (Long) obj);
-                return;
-            case 18:
-                k7 k7Var = (k7) obj2;
-                if (!((ga) obj).e) {
-                    qc Q = k7Var.getBulletinFactory().Q(R.raw.error, 36, LocaleController.formatString(R.string.UnknownErrorCode, "NO_BALANCE"));
-                    Q.f29648t = true;
-                    Q.j();
-                    return;
-                }
-                k7Var.f1677k0.setLoading(false);
-                k7Var.K1();
-                return;
-            case 19:
-                MessagesController.getInstance(((k7) obj2).currentAccount).lambda$processUpdates$377((TLRPC.Updates) ((TLObject) obj), false);
-                return;
-            case 20:
-                ((k7) obj2).getBulletinFactory().f0((TLRPC.TL_error) obj, false);
-                return;
-            case 21:
-                k7 k7Var2 = (k7) obj2;
-                xc.a0((sn) obj).K(R.raw.gift, LocaleController.getString(R.string.StarsGiftUpgradeCompleted), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.StarsGiftUpgradeCompletedText, DialogObject.getShortName(k7Var2.X))), LocaleController.getString(R.string.StarsGiftUpgradeCompletedMoreButton), new ai.b2(k7Var2, 0)).k(true);
-                return;
-            case 22:
-                k7 k7Var3 = (k7) obj2;
-                k7Var3.getClass();
-                ((boolean[]) obj)[0] = true;
-                k7Var3.f1677k0.setLoading(false);
-                k7Var3.K1();
-                return;
-            case 23:
-                TL_stars.TL_starGiftUnique tL_starGiftUnique = (TL_stars.TL_starGiftUnique) obj;
-                ((k7) obj2).getBulletinFactory().Q(R.raw.ic_delete, 36, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.GiftRemovedDescription, tL_starGiftUnique.title + " #" + tL_starGiftUnique.num))).j();
-                return;
-            case 24:
-                ((k7) obj2).K2((CharSequence) obj);
-                return;
             case 25:
                 p7 p7Var = (p7) obj2;
-                sn snVar = (sn) obj;
-                org.telegram.ui.Cells.a0 a0Var5 = p7Var.f2015b;
+                qn qnVar = (qn) obj;
+                org.telegram.ui.Cells.a0 a0Var5 = p7Var.f2014b;
                 if (a0Var5 != null) {
                     try {
                         a0Var5.performHapticFeedback(0);
                     } catch (Exception unused) {
                     }
                     p7Var.onTouchEvent(MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0));
-                    org.telegram.ui.Cells.a0 a0Var6 = p7Var.f2015b;
+                    org.telegram.ui.Cells.a0 a0Var6 = p7Var.f2014b;
                     if (a0Var6 instanceof u1) {
                         messageObject = ((u1) a0Var6).getPrimaryMessageObject();
                         if (messageObject != null) {
@@ -351,19 +353,19 @@ public final class f implements Runnable {
                     if (faVar != null) {
                         faVar.b();
                     }
-                    TLRPC.ChatFull chatFull = snVar.Z7;
+                    TLRPC.ChatFull chatFull = qnVar.Z7;
                     Context context = p7Var.getContext();
-                    int currentAccount = snVar.getCurrentAccount();
-                    long a2 = snVar.a();
+                    int currentAccount = qnVar.getCurrentAccount();
+                    long a2 = qnVar.a();
                     if (chatFull != null && !chatFull.paid_reactions_available) {
                         z12 = false;
                     } else {
                         z12 = true;
                     }
-                    le leVar = new le(context, currentAccount, a2, snVar, messageObject2, arrayList4, z12, false, 0L, snVar.getResourceProvider());
+                    le leVar = new le(context, currentAccount, a2, qnVar, messageObject2, arrayList4, z12, false, 0L, qnVar.getResourceProvider());
                     messageObject2.getId();
-                    org.telegram.ui.Cells.a0 a0Var7 = p7Var.f2015b;
-                    leVar.U = snVar;
+                    org.telegram.ui.Cells.a0 a0Var7 = p7Var.f2014b;
+                    leVar.U = qnVar;
                     leVar.V = a0Var7;
                     leVar.show();
                     return;

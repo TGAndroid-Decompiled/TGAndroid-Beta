@@ -13,29 +13,29 @@ import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.vh1;
+import org.telegram.ui.th1;
 public final class np implements ri {
-    public final wp f28810a;
+    public final wp f28828a;
 
     public np(wp wpVar) {
-        this.f28810a = wpVar;
+        this.f28828a = wpVar;
     }
 
     @Override
     public final void O(Object obj) {
         kp kpVar = new kp(obj, null, true, 3);
-        wp wpVar = this.f28810a;
-        kpVar.V1 = wpVar.f32178f0;
+        wp wpVar = this.f28828a;
+        kpVar.V1 = wpVar.f32177f0;
         kpVar.c1(wpVar.v.a());
         kpVar.I1 = new mp(this, 1);
-        wp.r(wpVar, kpVar);
+        wp.s(wpVar, kpVar);
     }
 
     @Override
     public final void b0(int i10, boolean z10, boolean z11, int i11, int i12, long j10, boolean z12, boolean z13, long j11) {
-        wp wpVar = this.f28810a;
+        wp wpVar = this.f28828a;
         try {
-            HashMap<Object, Object> selectedPhotos = wpVar.Y.f30586j0.getSelectedPhotos();
+            HashMap<Object, Object> selectedPhotos = wpVar.Y.f30548j0.getSelectedPhotos();
             if (!selectedPhotos.isEmpty()) {
                 MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) selectedPhotos.values().iterator().next();
                 String str = photoEntry.imagePath;
@@ -48,14 +48,14 @@ public final class np implements ri {
                     Point realScreenSize = AndroidUtilities.getRealScreenSize();
                     Bitmap loadBitmap = ImageLoader.loadBitmap(str, null, (float) realScreenSize.x, (float) realScreenSize.y, true);
                     loadBitmap.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream(file));
-                    kp kpVar = new kp(new vh1(file, file, ""), loadBitmap, false, 2);
-                    kpVar.V1 = wpVar.f32178f0;
+                    kp kpVar = new kp(new th1(file, file, ""), loadBitmap, false, 2);
+                    kpVar.V1 = wpVar.f32177f0;
                     kpVar.F1 = false;
                     kpVar.E1 = false;
-                    kpVar.f39117n1 = 0.2f;
+                    kpVar.f38548n1 = 0.2f;
                     kpVar.c1(wpVar.v.a());
                     kpVar.I1 = new mp(this, 0);
-                    wp.r(wpVar, kpVar);
+                    wp.s(wpVar, kpVar);
                 }
             }
         } catch (Throwable th2) {
@@ -70,7 +70,7 @@ public final class np implements ri {
     }
 
     @Override
-    public final void r(gh ghVar) {
+    public final void u(gh ghVar) {
         ghVar.run();
     }
 

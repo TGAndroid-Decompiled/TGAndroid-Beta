@@ -8,19 +8,19 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 public final class t9 implements RequestDelegate {
-    public final int f2218a;
-    public final v9 f2219b;
+    public final int f2215a;
+    public final v9 f2216b;
 
     public t9(v9 v9Var, int i10) {
-        this.f2218a = i10;
-        this.f2219b = v9Var;
+        this.f2215a = i10;
+        this.f2216b = v9Var;
     }
 
     @Override
     public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f2218a) {
+        switch (this.f2215a) {
             case 0:
-                final v9 v9Var = this.f2219b;
+                final v9 v9Var = this.f2216b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -29,8 +29,8 @@ public final class t9 implements RequestDelegate {
                         v9 v9Var2 = v9Var;
                         switch (i10) {
                             case 0:
-                                long j10 = v9Var2.f2330b;
-                                int i11 = v9Var2.f2329a;
+                                long j10 = v9Var2.f2327b;
+                                int i11 = v9Var2.f2326a;
                                 ArrayList arrayList = v9Var2.e;
                                 if (tLObject2 instanceof TL_stars.TL_starGiftCollections) {
                                     arrayList.clear();
@@ -51,13 +51,13 @@ public final class t9 implements RequestDelegate {
                                         }
                                     }
                                     v9Var2.d = true;
-                                    v9Var2.f2331c = false;
+                                    v9Var2.f2328c = false;
                                     NotificationCenter.getInstance(i11).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starUserGiftCollectionsLoaded, Long.valueOf(j10), v9Var2);
                                     return;
                                 } else if (tLObject2 instanceof TL_stars.TL_starGiftCollectionsNotModified) {
                                     v9Var2.j();
                                     v9Var2.d = true;
-                                    v9Var2.f2331c = false;
+                                    v9Var2.f2328c = false;
                                     NotificationCenter.getInstance(i11).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starUserGiftCollectionsLoaded, Long.valueOf(j10), v9Var2);
                                     return;
                                 } else {
@@ -92,7 +92,7 @@ public final class t9 implements RequestDelegate {
                 });
                 return;
             case 1:
-                final v9 v9Var2 = this.f2219b;
+                final v9 v9Var2 = this.f2216b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -101,8 +101,8 @@ public final class t9 implements RequestDelegate {
                         v9 v9Var22 = v9Var2;
                         switch (i10) {
                             case 0:
-                                long j10 = v9Var22.f2330b;
-                                int i11 = v9Var22.f2329a;
+                                long j10 = v9Var22.f2327b;
+                                int i11 = v9Var22.f2326a;
                                 ArrayList arrayList = v9Var22.e;
                                 if (tLObject2 instanceof TL_stars.TL_starGiftCollections) {
                                     arrayList.clear();
@@ -123,13 +123,13 @@ public final class t9 implements RequestDelegate {
                                         }
                                     }
                                     v9Var22.d = true;
-                                    v9Var22.f2331c = false;
+                                    v9Var22.f2328c = false;
                                     NotificationCenter.getInstance(i11).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starUserGiftCollectionsLoaded, Long.valueOf(j10), v9Var22);
                                     return;
                                 } else if (tLObject2 instanceof TL_stars.TL_starGiftCollectionsNotModified) {
                                     v9Var22.j();
                                     v9Var22.d = true;
-                                    v9Var22.f2331c = false;
+                                    v9Var22.f2328c = false;
                                     NotificationCenter.getInstance(i11).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starUserGiftCollectionsLoaded, Long.valueOf(j10), v9Var22);
                                     return;
                                 } else {
@@ -164,7 +164,7 @@ public final class t9 implements RequestDelegate {
                 });
                 return;
             default:
-                final v9 v9Var3 = this.f2219b;
+                final v9 v9Var3 = this.f2216b;
                 v9Var3.getClass();
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
@@ -174,8 +174,8 @@ public final class t9 implements RequestDelegate {
                         v9 v9Var22 = v9Var3;
                         switch (i10) {
                             case 0:
-                                long j10 = v9Var22.f2330b;
-                                int i11 = v9Var22.f2329a;
+                                long j10 = v9Var22.f2327b;
+                                int i11 = v9Var22.f2326a;
                                 ArrayList arrayList = v9Var22.e;
                                 if (tLObject2 instanceof TL_stars.TL_starGiftCollections) {
                                     arrayList.clear();
@@ -196,13 +196,13 @@ public final class t9 implements RequestDelegate {
                                         }
                                     }
                                     v9Var22.d = true;
-                                    v9Var22.f2331c = false;
+                                    v9Var22.f2328c = false;
                                     NotificationCenter.getInstance(i11).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starUserGiftCollectionsLoaded, Long.valueOf(j10), v9Var22);
                                     return;
                                 } else if (tLObject2 instanceof TL_stars.TL_starGiftCollectionsNotModified) {
                                     v9Var22.j();
                                     v9Var22.d = true;
-                                    v9Var22.f2331c = false;
+                                    v9Var22.f2328c = false;
                                     NotificationCenter.getInstance(i11).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starUserGiftCollectionsLoaded, Long.valueOf(j10), v9Var22);
                                     return;
                                 } else {

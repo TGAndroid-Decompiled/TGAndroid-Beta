@@ -9,9 +9,9 @@ public final class we {
     public final Boolean e;
 
     public we(com.google.android.gms.internal.cast.z5 z5Var) {
-        this.f51219a = (Boolean) z5Var.f6882b;
-        this.f51220b = (Boolean) z5Var.f6883c;
-        this.f51221c = (Boolean) z5Var.f6881a;
+        this.f51219a = (Boolean) z5Var.f6883b;
+        this.f51220b = (Boolean) z5Var.f6884c;
+        this.f51221c = (Boolean) z5Var.f6882a;
         this.d = (Boolean) z5Var.d;
         this.e = (Boolean) z5Var.e;
     }

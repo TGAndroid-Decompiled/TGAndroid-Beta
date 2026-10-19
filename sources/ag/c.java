@@ -1,22 +1,29 @@
 package ag;
-public final class c {
-    public static final c f635a;
-    public static final c f636b;
-    public static final c[] f637c;
 
-    static {
-        ?? r02 = new Enum("STARS", 0);
-        f635a = r02;
-        ?? r12 = new Enum("TON", 1);
-        f636b = r12;
-        f637c = new c[]{r02, r12};
+import org.telegram.tgnet.tl.TL_keyboard;
+public abstract class c {
+    public static TL_keyboard.ButtonTypeProto a(TL_keyboard.KeyboardButtonProto keyboardButtonProto, Class cls) {
+        if (keyboardButtonProto != null) {
+            TL_keyboard.ButtonTypeProto type = keyboardButtonProto.getType();
+            if (cls.isInstance(type)) {
+                return (TL_keyboard.ButtonTypeProto) cls.cast(type);
+            }
+            return null;
+        }
+        return null;
     }
 
-    public static c valueOf(String str) {
-        return (c) Enum.valueOf(c.class, str);
+    public static boolean b(TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
+        if (!c(keyboardButtonProto, TL_keyboard.TL_inlineButtonTypeWebView.class) && !c(keyboardButtonProto, TL_keyboard.TL_buttonTypeSimpleWebView.class)) {
+            return false;
+        }
+        return true;
     }
 
-    public static c[] values() {
-        return (c[]) f637c.clone();
+    public static boolean c(TL_keyboard.KeyboardButtonProto keyboardButtonProto, Class cls) {
+        if (a(keyboardButtonProto, cls) != null) {
+            return true;
+        }
+        return false;
     }
 }

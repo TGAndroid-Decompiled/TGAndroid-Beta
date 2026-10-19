@@ -2,11 +2,11 @@ package hg;
 
 import java.util.ArrayList;
 public interface z1 {
-    a0.h J();
+    a0.h G();
 
     boolean O(int i10);
 
-    void Y(ArrayList arrayList);
+    void S(ArrayList arrayList);
 
     void f(int i10);
 

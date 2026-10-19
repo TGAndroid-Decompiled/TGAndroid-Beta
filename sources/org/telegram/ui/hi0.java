@@ -1,33 +1,65 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.FileLog;
-public final class hi0 implements Runnable {
-    public final int f37543a;
-    public final ii0 f37544b;
+import android.view.View;
+import org.telegram.messenger.MessageObject;
+public final class hi0 extends s4.t {
+    public final li0 S;
 
-    public hi0(ii0 ii0Var, int i10) {
-        this.f37543a = i10;
-        this.f37544b = ii0Var;
+    public hi0(li0 li0Var) {
+        super(true);
+        this.S = li0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f37543a) {
-            case 0:
-                this.f37544b.W = null;
-                if (BuildVars.LOGS_ENABLED) {
-                    FileLog.d("chatItemAnimator enable notifications");
-                    return;
+    public final boolean B1(int i10) {
+        byte b10;
+        li0 li0Var = this.S;
+        MessageObject messageObject = (MessageObject) li0Var.N.get((B() - 1) - i10);
+        MessageObject.GroupedMessages l4 = li0Var.l(messageObject);
+        if (l4 != null) {
+            MessageObject.GroupedMessagePosition position = l4.getPosition(messageObject);
+            if (position.minX != position.maxX && (b10 = position.minY) == position.maxY && b10 != 0) {
+                int size = l4.posArray.size();
+                for (int i11 = 0; i11 < size; i11++) {
+                    MessageObject.GroupedMessagePosition groupedMessagePosition = l4.posArray.get(i11);
+                    if (groupedMessagePosition != position) {
+                        byte b11 = groupedMessagePosition.minY;
+                        byte b12 = position.minY;
+                        if (b11 <= b12 && groupedMessagePosition.maxY >= b12) {
+                            return true;
+                        }
+                    }
                 }
-                return;
-            default:
-                this.f37544b.W = null;
-                if (BuildVars.LOGS_ENABLED) {
-                    FileLog.d("chatItemAnimator enable notifications");
-                    return;
-                }
-                return;
+            }
         }
+        return false;
+    }
+
+    @Override
+    public final boolean C1(View view) {
+        if (view instanceof org.telegram.ui.Cells.u1) {
+            return !((org.telegram.ui.Cells.u1) view).getMessageObject().isOutOwner();
+        }
+        return false;
+    }
+
+    @Override
+    public final int j(s4.y0 y0Var) {
+        return B0(y0Var);
+    }
+
+    @Override
+    public final int k(s4.y0 y0Var) {
+        return C0(y0Var);
+    }
+
+    @Override
+    public final int l(s4.y0 y0Var) {
+        return D0(y0Var);
+    }
+
+    @Override
+    public final boolean y0() {
+        return true;
     }
 }

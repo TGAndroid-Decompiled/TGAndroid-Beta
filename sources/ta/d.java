@@ -12,7 +12,7 @@ public final class d {
 
     public d() {
         if (sb.a.f46154b == null) {
-            Pattern pattern = j.f45173c;
+            Pattern pattern = j.f45171c;
             sb.a.f46154b = new sb.a(24);
         }
         sb.a aVar = sb.a.f46154b;
@@ -40,7 +40,7 @@ public final class d {
     public final synchronized boolean b() {
         boolean z10;
         if (this.f46923c != 0) {
-            this.f46921a.f45174a.getClass();
+            this.f46921a.f45172a.getClass();
             if (System.currentTimeMillis() <= this.f46922b) {
                 z10 = false;
             }
@@ -57,7 +57,7 @@ public final class d {
         if ((i10 < 200 || i10 >= 300) && i10 != 401 && i10 != 404) {
             this.f46923c++;
             long a2 = a(i10);
-            this.f46921a.f45174a.getClass();
+            this.f46921a.f45172a.getClass();
             this.f46922b = System.currentTimeMillis() + a2;
             return;
         }

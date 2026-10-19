@@ -6,7 +6,7 @@ import df.s;
 import java.util.regex.Pattern;
 public final class a extends h {
     public static final Pattern e = Pattern.compile("^<([a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*)>");
-    public static final Pattern f10993f = Pattern.compile("^<[a-zA-Z][a-zA-Z0-9.+-]{1,31}:[^<>\u0000- ]*>");
+    public static final Pattern f10994f = Pattern.compile("^<[a-zA-Z][a-zA-Z0-9.+-]{1,31}:[^<>\u0000- ]*>");
 
     @Override
     public final p b() {
@@ -17,7 +17,7 @@ public final class a extends h {
             kVar.b(new s(j10));
             return kVar;
         }
-        String a10 = a(f10993f);
+        String a10 = a(f10994f);
         if (a10 == null) {
             return null;
         }

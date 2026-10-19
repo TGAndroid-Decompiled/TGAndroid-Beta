@@ -5,10 +5,11 @@ import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
+import ki.t1;
 import m.g3;
 import org.telegram.ui.Components.gl0;
 public abstract class l0 {
-    public l2.f f45987a;
+    public k2.w0 f45987a;
     public ArrayList f45988b;
     public long f45989c;
     public long d;
@@ -42,9 +43,9 @@ public abstract class l0 {
     public abstract boolean c(b1 b1Var, List list);
 
     public final void d(b1 b1Var) {
-        l2.f fVar = this.f45987a;
-        if (fVar != null) {
-            RecyclerView recyclerView = (RecyclerView) fVar.f15842b;
+        k2.w0 w0Var = this.f45987a;
+        if (w0Var != null) {
+            RecyclerView recyclerView = (RecyclerView) w0Var.f14832b;
             boolean z10 = true;
             b1Var.q(true);
             View view = b1Var.f45910a;
@@ -53,18 +54,18 @@ public abstract class l0 {
             }
             b1Var.f45917k = null;
             if ((b1Var.f45918l & 16) == 0) {
-                qf.e eVar = recyclerView.f3607b;
+                qf.e eVar = recyclerView.f3605b;
                 recyclerView.y0();
                 g3 g3Var = recyclerView.e;
-                ad.d dVar = (ad.d) g3Var.f16202c;
-                ih.g gVar = (ih.g) g3Var.f16201b;
-                int indexOfChild = gVar.f13139a.indexOfChild(view);
+                ad.d dVar = (ad.d) g3Var.f16205c;
+                t1 t1Var = (t1) g3Var.f16204b;
+                int indexOfChild = ((RecyclerView) t1Var.f15527b).indexOfChild(view);
                 if (indexOfChild == -1) {
                     g3Var.X(view);
                 } else if (dVar.D(indexOfChild)) {
                     dVar.F(indexOfChild);
                     g3Var.X(view);
-                    gVar.a(indexOfChild);
+                    t1Var.Y(indexOfChild);
                 } else {
                     z10 = false;
                 }
@@ -86,7 +87,7 @@ public abstract class l0 {
         int size = arrayList.size();
         for (int i10 = 0; i10 < size; i10++) {
             gl0 gl0Var = (gl0) arrayList.get(i10);
-            gl0Var.f26585a.c(gl0Var.f26586b, gl0Var.f26587c, gl0Var.d, false);
+            gl0Var.f26614a.c(gl0Var.f26615b, gl0Var.f26616c, gl0Var.d, false);
         }
         arrayList.clear();
     }
@@ -112,8 +113,8 @@ public abstract class l0 {
     public b2.u0 l(y0 y0Var, b1 b1Var, int i10, List list) {
         ?? obj = new Object();
         View view = b1Var.f45910a;
-        obj.f4057a = view.getLeft();
-        obj.f4058b = view.getTop();
+        obj.f4055a = view.getLeft();
+        obj.f4056b = view.getTop();
         view.getRight();
         view.getBottom();
         return obj;

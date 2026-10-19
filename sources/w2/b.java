@@ -43,7 +43,7 @@ public final class b extends l implements z3.e {
         i iVar = (i) hVar;
         j jVar2 = (j) jVar;
         try {
-            ByteBuffer byteBuffer = iVar.f11635c;
+            ByteBuffer byteBuffer = iVar.f11636c;
             byteBuffer.getClass();
             byte[] array = byteBuffer.array();
             int limit = byteBuffer.limit();

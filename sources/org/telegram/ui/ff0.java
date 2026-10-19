@@ -1,25 +1,19 @@
 package org.telegram.ui;
 
-import android.content.Context;
-public final class ff0 extends sr {
-    public final int h;
-    public final if0 f36903n;
+import java.util.TimerTask;
+import org.telegram.messenger.AndroidUtilities;
+public final class ff0 extends TimerTask {
+    public final gf0 f36990a;
 
-    public ff0(if0 if0Var, Context context, int i10) {
-        super(context);
-        this.h = i10;
-        this.f36903n = if0Var;
+    public ff0(gf0 gf0Var) {
+        this.f36990a = gf0Var;
     }
 
     @Override
-    public final void a() {
-        switch (this.h) {
-            case 0:
-                this.f36903n.h(null);
-                return;
-            default:
-                this.f36903n.h(null);
-                return;
+    public final void run() {
+        if (this.f36990a.R == null) {
+            return;
         }
+        AndroidUtilities.runOnUIThread(new dz(this, 25));
     }
 }

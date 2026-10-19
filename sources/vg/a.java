@@ -85,14 +85,14 @@ public final class a extends pg.a {
         int i10;
         int i11;
         if (this != aVar) {
-            if (a.class == aVar.getClass() && (i10 = (aVar2 = (a) aVar).f44291a) == (i11 = this.f44291a)) {
+            if (a.class == aVar.getClass() && (i10 = (aVar2 = (a) aVar).f44286a) == (i11 = this.f44286a)) {
                 if (i11 == 0) {
                     if (this.f48341g == aVar2.f48341g) {
                         return true;
                     }
                     return false;
                 } else if (i10 == 17) {
-                    if (this.f48342i == aVar2.f48342i && this.h == aVar2.h && this.f48346m == aVar2.f48346m && this.f48341g == aVar2.f48341g && this.f44292b == aVar2.f44292b) {
+                    if (this.f48342i == aVar2.f48342i && this.h == aVar2.h && this.f48346m == aVar2.f48346m && this.f48341g == aVar2.f48341g && this.f44287b == aVar2.f44287b) {
                         return true;
                     }
                     return false;
@@ -116,8 +116,8 @@ public final class a extends pg.a {
         if (this != obj) {
             if (obj != null && a.class == obj.getClass()) {
                 a aVar = (a) obj;
-                int i10 = this.f44291a;
-                if (i10 == aVar.f44291a) {
+                int i10 = this.f44286a;
+                if (i10 == aVar.f44286a) {
                     if (i10 != 0) {
                         if (i10 == 17) {
                             if (this.f48342i == aVar.f48342i && this.f48346m == aVar.f48346m) {

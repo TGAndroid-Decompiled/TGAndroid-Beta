@@ -25,7 +25,7 @@ public class YuvHelper {
             I420Copy(byteBuffer, i10, byteBuffer2, i11, byteBuffer3, i12, slice, i15, slice2, i17, byteBuffer4.slice(), i17, i13, i14);
             return;
         }
-        StringBuilder l4 = i2.d.l(i24, "Expected destination buffer capacity to be at least ", " was ");
+        StringBuilder l4 = i2.e.l(i24, "Expected destination buffer capacity to be at least ", " was ");
         l4.append(byteBuffer4.capacity());
         throw new IllegalArgumentException(l4.toString());
     }
@@ -51,7 +51,7 @@ public class YuvHelper {
             nativeI420Rotate(byteBuffer, i10, byteBuffer2, i11, byteBuffer3, i12, slice, i17, slice2, i19, byteBuffer4.slice(), i19, i13, i14, i15);
             return;
         }
-        StringBuilder l4 = i2.d.l(i22, "Expected destination buffer capacity to be at least ", " was ");
+        StringBuilder l4 = i2.e.l(i22, "Expected destination buffer capacity to be at least ", " was ");
         l4.append(byteBuffer4.capacity());
         throw new IllegalArgumentException(l4.toString());
     }
@@ -70,7 +70,7 @@ public class YuvHelper {
             I420ToNV12(byteBuffer, i10, byteBuffer2, i11, byteBuffer3, i12, slice, i15, byteBuffer4.slice(), i17 * 2, i13, i14);
             return;
         }
-        StringBuilder l4 = i2.d.l(i20, "Expected destination buffer capacity to be at least ", " was ");
+        StringBuilder l4 = i2.e.l(i20, "Expected destination buffer capacity to be at least ", " was ");
         l4.append(byteBuffer4.capacity());
         throw new IllegalArgumentException(l4.toString());
     }

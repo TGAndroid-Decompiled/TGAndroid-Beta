@@ -1,25 +1,25 @@
 package x7;
 public final class s extends o {
     public static final s e = new s(0, new Object[0]);
-    public final transient Object[] f49530c;
+    public final transient Object[] f49529c;
     public final transient int d;
 
     public s(int i10, Object[] objArr) {
-        this.f49530c = objArr;
+        this.f49529c = objArr;
         this.d = i10;
     }
 
     @Override
     public final Object get(int i10) {
-        w7.o8.a(i10, this.d);
-        Object obj = this.f49530c[i10];
+        w7.n8.a(i10, this.d);
+        Object obj = this.f49529c[i10];
         obj.getClass();
         return obj;
     }
 
     @Override
     public final int h(Object[] objArr) {
-        Object[] objArr2 = this.f49530c;
+        Object[] objArr2 = this.f49529c;
         int i10 = this.d;
         System.arraycopy(objArr2, 0, objArr, 0, i10);
         return i10;
@@ -37,7 +37,7 @@ public final class s extends o {
 
     @Override
     public final Object[] o() {
-        return this.f49530c;
+        return this.f49529c;
     }
 
     @Override
