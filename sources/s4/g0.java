@@ -5,16 +5,16 @@ import android.os.Trace;
 import android.view.ViewGroup;
 import java.util.List;
 public abstract class g0 {
-    public final h0 f45957a = new Observable();
-    public boolean f45958b = false;
+    public final h0 f45962a = new Observable();
+    public boolean f45963b = false;
 
     public void B(i0 i0Var) {
-        this.f45957a.registerObserver(i0Var);
+        this.f45962a.registerObserver(i0Var);
     }
 
     public final void C(boolean z10) {
-        if (!this.f45957a.a()) {
-            this.f45958b = z10;
+        if (!this.f45962a.a()) {
+            this.f45963b = z10;
             return;
         }
         throw new IllegalStateException("Cannot change whether this adapter has stable IDs while the adapter has registered observers.");
@@ -25,8 +25,8 @@ public abstract class g0 {
             int i11 = n0.g.f17000a;
             Trace.beginSection("RV CreateView");
             b1 x10 = x(viewGroup, i10);
-            if (x10.f45912a.getParent() == null) {
-                x10.f45915f = i10;
+            if (x10.f45917a.getParent() == null) {
+                x10.f45920f = i10;
                 Trace.endSection();
                 return x10;
             }
@@ -53,43 +53,43 @@ public abstract class g0 {
     }
 
     public void l() {
-        this.f45957a.b();
+        this.f45962a.b();
     }
 
     public void m(int i10) {
-        this.f45957a.d(i10, 1, null);
+        this.f45962a.d(i10, 1, null);
     }
 
     public final void n(int i10, Object obj) {
-        this.f45957a.d(i10, 1, obj);
+        this.f45962a.d(i10, 1, obj);
     }
 
     public void o(int i10) {
-        this.f45957a.e(i10, 1);
+        this.f45962a.e(i10, 1);
     }
 
     public void p(int i10, int i11) {
-        this.f45957a.c(i10, i11);
+        this.f45962a.c(i10, i11);
     }
 
     public void q(int i10, int i11) {
-        this.f45957a.d(i10, i11, null);
+        this.f45962a.d(i10, i11, null);
     }
 
     public void r(int i10, int i11, Object obj) {
-        this.f45957a.d(i10, i11, obj);
+        this.f45962a.d(i10, i11, obj);
     }
 
     public void s(int i10, int i11) {
-        this.f45957a.e(i10, i11);
+        this.f45962a.e(i10, i11);
     }
 
     public void t(int i10, int i11) {
-        this.f45957a.f(i10, i11);
+        this.f45962a.f(i10, i11);
     }
 
     public void u(int i10) {
-        this.f45957a.f(i10, 1);
+        this.f45962a.f(i10, 1);
     }
 
     public abstract void v(b1 b1Var, int i10);

@@ -5,13 +5,13 @@ import b2.v0;
 import e2.m0;
 import e2.x;
 import java.nio.charset.StandardCharsets;
-import u2.z0;
+import u2.a1;
 public abstract class c {
-    public static final byte[] f48470a;
+    public static final byte[] f48475a;
 
     static {
         String str = m0.f8252a;
-        f48470a = "OpusHead".getBytes(StandardCharsets.UTF_8);
+        f48475a = "OpusHead".getBytes(StandardCharsets.UTF_8);
     }
 
     public static void a(x xVar) {
@@ -27,7 +27,7 @@ public abstract class c {
         throw new UnsupportedOperationException("Method not decompiled: w3.c.b(e2.x, int, int, int, int, java.lang.String, boolean, b2.s, e2.j0, int):void");
     }
 
-    public static z0 c(int i10, x xVar) {
+    public static a1 c(int i10, x xVar) {
         long j10;
         xVar.N(i10 + 12);
         xVar.O(1);
@@ -63,9 +63,9 @@ public abstract class c {
             } else {
                 j10 = -1;
             }
-            return new z0(e, bArr, j11, j10);
+            return new a1(e, bArr, j11, j10);
         }
-        return new z0(e, null, -1L, -1L);
+        return new a1(e, null, -1L, -1L);
     }
 
     public static int d(x xVar) {

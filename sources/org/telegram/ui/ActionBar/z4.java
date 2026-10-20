@@ -1,15 +1,15 @@
 package org.telegram.ui.ActionBar;
 public final class z4 {
-    public static final z4 f21913a;
-    public static final z4 f21914b;
-    public static final z4[] f21915c;
+    public static final z4 f21916a;
+    public static final z4 f21917b;
+    public static final z4[] f21918c;
 
     static {
         ?? r02 = new Enum("BACK", 0);
-        f21913a = r02;
+        f21916a = r02;
         ?? r12 = new Enum("MENU", 1);
-        f21914b = r12;
-        f21915c = new z4[]{r02, r12};
+        f21917b = r12;
+        f21918c = new z4[]{r02, r12};
     }
 
     public static z4 valueOf(String str) {
@@ -17,6 +17,6 @@ public final class z4 {
     }
 
     public static z4[] values() {
-        return (z4[]) f21915c.clone();
+        return (z4[]) f21918c.clone();
     }
 }

@@ -14,12 +14,12 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.b10;
-import org.telegram.ui.Components.hm0;
+import org.telegram.ui.Components.im0;
 import org.telegram.ui.Components.u80;
 import org.telegram.ui.Components.uc0;
 import org.telegram.ui.Components.x90;
 import org.telegram.ui.qa1;
-public final class p5 extends hm0 {
+public final class p5 extends im0 {
     public final ArrayList f5730c = new ArrayList();
     public final u5 d;
 
@@ -29,7 +29,7 @@ public final class p5 extends hm0 {
 
     @Override
     public final boolean D(s4.b1 b1Var) {
-        if (b1Var.f45915f == 1) {
+        if (b1Var.f45920f == 1) {
             return true;
         }
         return false;
@@ -138,11 +138,11 @@ public final class p5 extends hm0 {
         TLRPC.Message message2;
         u5 u5Var = this.d;
         int i16 = u5Var.v;
-        if (b1Var.f45915f == 1 && i10 >= 0) {
+        if (b1Var.f45920f == 1 && i10 >= 0) {
             ArrayList arrayList = this.f5730c;
             if (i10 < arrayList.size()) {
                 k5 k5Var = (k5) arrayList.get(i10);
-                org.telegram.ui.Cells.n6 n6Var = (org.telegram.ui.Cells.n6) b1Var.f45912a;
+                org.telegram.ui.Cells.n6 n6Var = (org.telegram.ui.Cells.n6) b1Var.f45917a;
                 TL_stories.StoryView storyView = k5Var.f5562b;
                 TL_stories.StoryReaction storyReaction = k5Var.f5563c;
                 if (storyView != null) {
@@ -224,7 +224,7 @@ public final class p5 extends hm0 {
                     } else {
                         z12 = true;
                     }
-                    n6Var.f22637a = z12;
+                    n6Var.f22640a = z12;
                     if (u5Var.d(storyView)) {
                         f7 = 1.0f;
                     } else {
@@ -279,7 +279,7 @@ public final class p5 extends hm0 {
                     if (i12 != 1 && i12 != 11 && i12 != i11) {
                         z13 = false;
                     }
-                    n6Var.f22637a = z13;
+                    n6Var.f22640a = z13;
                     n6Var.a(1.0f, false);
                 }
             }
@@ -313,7 +313,7 @@ public final class p5 extends hm0 {
                 b10 b10Var = new b10(u5Var.getContext(), bVar);
                 b10Var.setIsSingleCell(true);
                 b10Var.setViewType(28);
-                b10Var.f24770w = false;
+                b10Var.f24774w = false;
                 x90Var = b10Var;
                 break;
             case 5:
@@ -378,7 +378,7 @@ public final class p5 extends hm0 {
                         TextView textView = new TextView(o5Var.getContext());
                         textView.setText(string);
                         int i13 = org.telegram.ui.ActionBar.h6.Sh;
-                        org.telegram.ui.ActionBar.d6 d6Var = o5Var.f30354n;
+                        org.telegram.ui.ActionBar.d6 d6Var = o5Var.f30699n;
                         textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(i13, d6Var));
                         textView.setPadding(AndroidUtilities.dp(45.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(45.0f), AndroidUtilities.dp(12.0f));
                         textView.setGravity(17);
@@ -392,7 +392,7 @@ public final class p5 extends hm0 {
                         i4Var.setBackground(org.telegram.ui.ActionBar.h6.j0(dp, dp, dp, dp, w02, o10, o10));
                         w7.b6.b(i4Var, 0.05f, 1.5f);
                         i4Var.addView(textView);
-                        qa1 qa1Var = o5Var.f30350a;
+                        qa1 qa1Var = o5Var.f30695a;
                         qa1Var.setClipChildren(false);
                         qa1Var.addView(i4Var, w7.z5.t(-2, -2, 1, 0, 28, 0, 4));
                     }
@@ -416,14 +416,14 @@ public final class p5 extends hm0 {
                 b10Var2.setIgnoreHeightCheck(true);
                 b10Var2.setItemsCount(20);
                 b10Var2.setViewType(28);
-                b10Var2.f24770w = false;
+                b10Var2.f24774w = false;
                 x90Var = b10Var2;
                 break;
             case 11:
             case 12:
                 x90 x90Var3 = new x90(u5Var.getContext(), null);
                 x90Var3.setTextSize(1, 13.0f);
-                x90Var3.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21375y6, bVar));
+                x90Var3.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21378y6, bVar));
                 x90Var3.setLinkTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.J6, bVar));
                 int dp2 = AndroidUtilities.dp(16.0f);
                 int dp3 = AndroidUtilities.dp(21.0f);

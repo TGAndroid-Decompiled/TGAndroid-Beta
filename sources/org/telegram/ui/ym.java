@@ -13,19 +13,19 @@ public final class ym extends pf.c {
     @Override
     public final void c(boolean z10) {
         if (!z10) {
-            AndroidUtilities.runOnUIThread(new tj(this.e.f36004a, 9), 250L);
+            AndroidUtilities.runOnUIThread(new tj(this.e.f36010a, 9), 250L);
         }
     }
 
     @Override
     public final void d() {
         cn cnVar = this.e;
-        qn qnVar = cnVar.f36004a;
+        qn qnVar = cnVar.f36010a;
         org.telegram.ui.Cells.u1 u1Var = this.d;
-        qnVar.f40892wb = u1Var.getMessageObject().getId();
-        qn qnVar2 = cnVar.f36004a;
-        qnVar2.f40906xb = 2;
-        qnVar2.f40919yb = null;
+        qnVar.f40898wb = u1Var.getMessageObject().getId();
+        qn qnVar2 = cnVar.f36010a;
+        qnVar2.f40912xb = 2;
+        qnVar2.f40925yb = null;
         u1Var.invalidate();
     }
 }

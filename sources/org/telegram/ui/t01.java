@@ -8,67 +8,67 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 public final class t01 extends View {
-    public static final String[] f41561s = {"🎉", "🎆", "🎈"};
-    public final ProfileActivity f41562a;
-    public q01 f41563b;
-    public q01 f41564c;
+    public static final String[] f41567s = {"🎉", "🎆", "🎈"};
+    public final ProfileActivity f41568a;
+    public q01 f41569b;
+    public q01 f41570c;
     public final PointF d;
     public boolean e;
-    public boolean f41565f;
+    public boolean f41571f;
     public float h;
-    public long f41566n;
-    public boolean f41567r;
+    public long f41572n;
+    public boolean f41573r;
 
     public t01(ProfileActivity profileActivity, q01 q01Var) {
         super(profileActivity.getParentActivity());
         this.d = new PointF();
         this.h = 1.0f;
-        this.f41567r = false;
-        this.f41562a = profileActivity;
-        this.f41563b = q01Var;
+        this.f41573r = false;
+        this.f41568a = profileActivity;
+        this.f41569b = q01Var;
     }
 
     public final boolean a() {
-        q01 q01Var = this.f41563b;
-        if (!q01Var.f40335b || this.h < 1.0f) {
+        q01 q01Var = this.f41569b;
+        if (!q01Var.f40341b || this.h < 1.0f) {
             return false;
         }
-        if (q01Var.f40336c.getLottieAnimation() != null) {
-            this.f41563b.f40336c.getLottieAnimation().N(0, false, false);
-            this.f41563b.f40336c.getLottieAnimation().H(true);
+        if (q01Var.f40342c.getLottieAnimation() != null) {
+            this.f41569b.f40342c.getLottieAnimation().N(0, false, false);
+            this.f41569b.f40342c.getLottieAnimation().H(true);
         }
-        this.f41567r = true;
+        this.f41573r = true;
         this.h = 0.0f;
         invalidate();
         return true;
     }
 
     public final void b(q01 q01Var) {
-        if (this.f41563b != q01Var && q01Var != null) {
+        if (this.f41569b != q01Var && q01Var != null) {
             ArrayList arrayList = q01Var.e;
-            if (this.f41567r) {
-                this.f41564c = q01Var;
+            if (this.f41573r) {
+                this.f41570c = q01Var;
                 return;
             }
-            if (this.f41565f) {
-                for (int i10 = 0; i10 < this.f41563b.e.size(); i10++) {
-                    ((s01) this.f41563b.e.get(i10)).setParentView(null);
+            if (this.f41571f) {
+                for (int i10 = 0; i10 < this.f41569b.e.size(); i10++) {
+                    ((s01) this.f41569b.e.get(i10)).setParentView(null);
                 }
-                this.f41565f = false;
+                this.f41571f = false;
             }
-            q01 q01Var2 = this.f41563b;
-            ArrayList arrayList2 = q01Var2.f40340j;
+            q01 q01Var2 = this.f41569b;
+            ArrayList arrayList2 = q01Var2.f40346j;
             arrayList2.remove(this);
-            if (arrayList2.isEmpty() && q01Var2.f40339i) {
+            if (arrayList2.isEmpty() && q01Var2.f40345i) {
                 q01Var2.b(true);
-                q01Var2.f40339i = false;
+                q01Var2.f40345i = false;
             }
-            this.f41563b = q01Var;
-            if (!this.f41565f) {
+            this.f41569b = q01Var;
+            if (!this.f41571f) {
                 for (int i11 = 0; i11 < arrayList.size(); i11++) {
                     ((s01) arrayList.get(i11)).setParentView(this);
                 }
-                this.f41565f = true;
+                this.f41571f = true;
             }
         }
     }
@@ -76,49 +76,49 @@ public final class t01 extends View {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f41563b.f40340j.add(this);
+        this.f41569b.f40346j.add(this);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        if (this.f41565f) {
-            for (int i10 = 0; i10 < this.f41563b.e.size(); i10++) {
-                ((s01) this.f41563b.e.get(i10)).setParentView(null);
+        if (this.f41571f) {
+            for (int i10 = 0; i10 < this.f41569b.e.size(); i10++) {
+                ((s01) this.f41569b.e.get(i10)).setParentView(null);
             }
-            this.f41565f = false;
+            this.f41571f = false;
         }
-        q01 q01Var = this.f41563b;
-        ArrayList arrayList = q01Var.f40340j;
+        q01 q01Var = this.f41569b;
+        ArrayList arrayList = q01Var.f40346j;
         arrayList.remove(this);
-        if (arrayList.isEmpty() && q01Var.f40339i) {
+        if (arrayList.isEmpty() && q01Var.f40345i) {
             q01Var.b(true);
-            q01Var.f40339i = false;
+            q01Var.f40345i = false;
         }
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        if (this.f41563b.f40335b) {
+        if (this.f41569b.f40341b) {
             boolean z10 = true;
-            if (!this.f41565f) {
-                for (int i10 = 0; i10 < this.f41563b.e.size(); i10++) {
-                    ((s01) this.f41563b.e.get(i10)).setParentView(this);
+            if (!this.f41571f) {
+                for (int i10 = 0; i10 < this.f41569b.e.size(); i10++) {
+                    ((s01) this.f41569b.e.get(i10)).setParentView(this);
                 }
-                this.f41565f = true;
+                this.f41571f = true;
                 if (!this.e) {
                     this.e = true;
                     post(new qy0(this, 4));
                 }
             }
-            if (!this.f41567r) {
+            if (!this.f41573r) {
                 return;
             }
             long currentTimeMillis = System.currentTimeMillis();
-            this.h = Utilities.clamp(this.h + (((float) Utilities.clamp(currentTimeMillis - this.f41566n, 20L, 0L)) / 4200.0f), 1.0f, 0.0f);
-            this.f41566n = currentTimeMillis;
-            ProfileActivity profileActivity = this.f41562a;
-            hy0 hy0Var = profileActivity.f33574a;
+            this.h = Utilities.clamp(this.h + (((float) Utilities.clamp(currentTimeMillis - this.f41572n, 20L, 0L)) / 4200.0f), 1.0f, 0.0f);
+            this.f41572n = currentTimeMillis;
+            ProfileActivity profileActivity = this.f41568a;
+            hy0 hy0Var = profileActivity.f33580a;
             int i11 = profileActivity.V2;
             PointF pointF = this.d;
             float f7 = 2.0f;
@@ -130,7 +130,7 @@ public final class t01 extends View {
                     }
                     View childAt = hy0Var.getChildAt(i12);
                     if (i11 == RecyclerView.R(childAt) && (childAt instanceof org.telegram.ui.Cells.b9)) {
-                        wh.n nVar = ((org.telegram.ui.Cells.b9) childAt).f22056a;
+                        wh.n nVar = ((org.telegram.ui.Cells.b9) childAt).f22059a;
                         pointF.set(nVar.getX() + childAt.getX() + hy0Var.getX() + AndroidUtilities.dp(12.0f), (nVar.getMeasuredHeight() / 2.0f) + nVar.getY() + childAt.getY() + hy0Var.getY());
                         break;
                     }
@@ -138,22 +138,22 @@ public final class t01 extends View {
                 }
             }
             float f10 = oy.f();
-            this.f41563b.f40336c.setImageCoords((getWidth() - AndroidUtilities.dp(f10)) / 2.0f, Math.max(0.0f, pointF.y - (AndroidUtilities.dp(f10) * 0.5f)), AndroidUtilities.dp(f10), AndroidUtilities.dp(f10));
+            this.f41569b.f40342c.setImageCoords((getWidth() - AndroidUtilities.dp(f10)) / 2.0f, Math.max(0.0f, pointF.y - (AndroidUtilities.dp(f10) * 0.5f)), AndroidUtilities.dp(f10), AndroidUtilities.dp(f10));
             canvas.save();
             canvas.scale(-1.0f, 1.0f, getWidth() / 2.0f, 0.0f);
-            this.f41563b.f40336c.draw(canvas);
-            this.f41563b.f40336c.setAlpha(1.0f - ((this.h - 0.9f) / 0.1f));
+            this.f41569b.f40342c.draw(canvas);
+            this.f41569b.f40342c.setAlpha(1.0f - ((this.h - 0.9f) / 0.1f));
             canvas.restore();
             int dp = AndroidUtilities.dp(110.0f);
-            int size = this.f41563b.d.size() - 1;
+            int size = this.f41569b.d.size() - 1;
             while (size >= 0) {
-                s01 s01Var = (s01) this.f41563b.d.get(size);
+                s01 s01Var = (s01) this.f41569b.d.get(size);
                 float f11 = size;
-                float cascade = AndroidUtilities.cascade(this.h, f11, this.f41563b.d.size(), 1.8f);
+                float cascade = AndroidUtilities.cascade(this.h, f11, this.f41569b.d.size(), 1.8f);
                 float f12 = dp;
                 float f13 = 0.88f * f12;
                 boolean z11 = z10;
-                float c10 = com.google.android.gms.internal.play_billing.k3.c(f13, this.f41563b.d.size() - 1, getWidth(), f7);
+                float c10 = com.google.android.gms.internal.play_billing.k3.c(f13, this.f41569b.d.size() - 1, getWidth(), f7);
                 float f14 = pointF.x;
                 float f15 = f7;
                 float f16 = pointF.y;
@@ -168,9 +168,9 @@ public final class t01 extends View {
                 f7 = f15;
             }
             if (this.h >= 1.0f) {
-                this.f41567r = false;
-                b(this.f41564c);
-                this.f41564c = null;
+                this.f41573r = false;
+                b(this.f41570c);
+                this.f41570c = null;
                 return;
             }
             invalidate();

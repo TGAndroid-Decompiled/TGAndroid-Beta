@@ -10,7 +10,7 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.kk;
+import org.telegram.messenger.mk;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
@@ -22,7 +22,7 @@ public abstract class j4 {
     public static EditTextBoldCursor a(Context context, org.telegram.ui.ActionBar.d6 d6Var, String str, String str2) {
         EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context);
         editTextBoldCursor.setTextSize(1, 18.0f);
-        editTextBoldCursor.setTextColor(h6.w0(h6.f21093j5, d6Var));
+        editTextBoldCursor.setTextColor(h6.w0(h6.f21096j5, d6Var));
         editTextBoldCursor.setHintText(str);
         editTextBoldCursor.setHintColor(h6.w0(h6.H6, d6Var));
         editTextBoldCursor.setHeaderHintColor(h6.w0(h6.L6, d6Var));
@@ -34,12 +34,12 @@ public abstract class j4 {
             str2 = "";
         }
         editTextBoldCursor.setText(str2);
-        editTextBoldCursor.setLineColors(h6.w0(h6.f21114k6, d6Var), h6.w0(h6.f21131l6, d6Var), h6.w0(h6.f21208p7, d6Var));
+        editTextBoldCursor.setLineColors(h6.w0(h6.f21117k6, d6Var), h6.w0(h6.f21134l6, d6Var), h6.w0(h6.f21211p7, d6Var));
         editTextBoldCursor.setImeOptions(5);
         editTextBoldCursor.setBackgroundDrawable(null);
         editTextBoldCursor.setPadding(0, 0, 0, 0);
-        editTextBoldCursor.setHighlightColor(h6.w0(h6.f21311uf, d6Var));
-        editTextBoldCursor.setHandlesColor(h6.w0(h6.f21329vf, d6Var));
+        editTextBoldCursor.setHighlightColor(h6.w0(h6.f21314uf, d6Var));
+        editTextBoldCursor.setHandlesColor(h6.w0(h6.f21332vf, d6Var));
         return editTextBoldCursor;
     }
 
@@ -216,7 +216,7 @@ public abstract class j4 {
         AlertDialog$Builder alertDialog$Builder;
         int i10;
         boolean c10 = t3Var.c();
-        LinearLayout e = kk.e(context, 1);
+        LinearLayout e = mk.e(context, 1);
         int i11 = 0;
         e.setPadding(AndroidUtilities.dp(24.0f), 0, AndroidUtilities.dp(24.0f), 0);
         String string = LocaleController.getString(R.string.RichEditorButtonText);
@@ -246,7 +246,7 @@ public abstract class j4 {
             i10 = R.string.RichEditorCreateProfileButton;
         }
         String string2 = LocaleController.getString(i10);
-        org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20602a;
+        org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20605a;
         b2Var.R = string2;
         alertDialog$Builder.n(e);
         alertDialog$Builder.k(LocaleController.getString(R.string.OK), new da.b(c10, x9Var, a2, t3Var, 2));
@@ -254,8 +254,8 @@ public abstract class j4 {
             alertDialog$Builder.i(LocaleController.getString(R.string.RichEditorChangeUser), new j5.b(x9Var, 6));
             String string3 = LocaleController.getString(R.string.Delete);
             e4 e4Var = new e4(t3Var, 2);
-            b2Var.f20671p0 = string3;
-            b2Var.f20672q0 = e4Var;
+            b2Var.f20674p0 = string3;
+            b2Var.f20675q0 = e4Var;
             alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
             b2Var.J0 = true;
             i11 = -4;
@@ -269,7 +269,7 @@ public abstract class j4 {
         TL_keyboard.PageButton pageButton;
         String l4;
         AlertDialog$Builder alertDialog$Builder;
-        LinearLayout e = kk.e(context, 1);
+        LinearLayout e = mk.e(context, 1);
         int i10 = 0;
         e.setPadding(AndroidUtilities.dp(24.0f), 0, AndroidUtilities.dp(24.0f), 0);
         String string = LocaleController.getString(R.string.RichEditorButtonText);
@@ -294,7 +294,7 @@ public abstract class j4 {
         } else {
             alertDialog$Builder = new AlertDialog$Builder(context, 0, d6Var);
         }
-        alertDialog$Builder.f20602a.R = str;
+        alertDialog$Builder.f20605a.R = str;
         alertDialog$Builder.n(e);
         alertDialog$Builder.k(LocaleController.getString(R.string.OK), new ai.u2(a2, a10, e4Var, 13));
         if (t3Var.c()) {
@@ -367,11 +367,11 @@ public abstract class j4 {
     }
 
     public static void j(AlertDialog$Builder alertDialog$Builder, EditTextBoldCursor editTextBoldCursor, int i10, org.telegram.ui.ActionBar.d6 d6Var) {
-        org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20602a;
+        org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20605a;
         b2Var.setOnShowListener(new ig.r(1, editTextBoldCursor));
         b2Var.r(250L);
         if (i10 != 0 && (b2Var.d(i10) instanceof TextView)) {
-            ((TextView) b2Var.d(i10)).setTextColor(h6.w0(h6.f21225q7, d6Var));
+            ((TextView) b2Var.d(i10)).setTextColor(h6.w0(h6.f21228q7, d6Var));
         }
     }
 
@@ -387,7 +387,7 @@ public abstract class j4 {
         cyVar.C2 = new j5.b(i4Var, 7);
         if (z10) {
             ?? obj = new Object();
-            obj.f21553a = true;
+            obj.f21556a = true;
             n2Var.showAsSheet(cyVar, obj);
             return;
         }

@@ -3,7 +3,7 @@ package ai;
 import java.util.function.ToDoubleFunction;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.h81;
+import org.telegram.ui.Components.i81;
 public final class o1 implements ToDoubleFunction {
     public final int f1925a;
 
@@ -21,7 +21,7 @@ public final class o1 implements ToDoubleFunction {
             case 2:
                 return a2.Q((TL_stars.starGiftAttributeModel) obj);
             case 3:
-                return ((h81) obj).f26800a;
+                return ((i81) obj).f27192a;
             case 4:
                 return ((TLRPC.TL_topPeer) obj).rating;
             case 5:

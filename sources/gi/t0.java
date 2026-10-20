@@ -16,8 +16,8 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Components.h9;
-import org.telegram.ui.Components.xj0;
 import org.telegram.ui.Components.y6;
+import org.telegram.ui.Components.yj0;
 public final class t0 extends Drawable implements y6 {
     public final Paint f11454a;
     public final Paint f11455b;
@@ -57,9 +57,9 @@ public final class t0 extends Drawable implements y6 {
     }
 
     @Override
-    public final void a(xj0 xj0Var) {
-        this.e.setParentView(xj0Var);
-        this.d.setParentView(xj0Var);
+    public final void a(yj0 yj0Var) {
+        this.e.setParentView(yj0Var);
+        this.d.setParentView(yj0Var);
     }
 
     @Override

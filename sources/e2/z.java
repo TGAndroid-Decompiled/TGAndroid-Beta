@@ -15,7 +15,7 @@ import b2.v1;
 import b2.y0;
 import b2.z0;
 import java.util.List;
-import org.telegram.ui.Components.b81;
+import org.telegram.ui.Components.c81;
 import org.telegram.ui.Components.l60;
 import si.s0;
 public final class z implements d1 {
@@ -76,18 +76,18 @@ public final class z implements d1 {
             case 1:
                 return;
             case 2:
-                ri.p pVar = (ri.p) this.f8298b;
-                ri.g gVar = pVar.e;
-                ri.e eVar = pVar.E;
-                Handler handler = pVar.h;
-                if (pVar.f45844u != z10) {
-                    pVar.f45844u = z10;
-                    handler.removeCallbacks(eVar);
+                ri.o oVar = (ri.o) this.f8298b;
+                ri.f fVar = oVar.f45835f;
+                ri.d dVar = oVar.F;
+                Handler handler = oVar.f45837i;
+                if (oVar.v != z10) {
+                    oVar.v = z10;
+                    handler.removeCallbacks(dVar);
                     if (z10) {
-                        handler.post(eVar);
+                        handler.post(dVar);
                     }
-                    gVar.onPreviewPlaybackChanged(z10);
-                    gVar.onStateChanged(pVar.e());
+                    fVar.onPreviewPlaybackChanged(z10);
+                    fVar.onStateChanged(oVar.e());
                     return;
                 }
                 return;
@@ -140,16 +140,16 @@ public final class z implements d1 {
             case 1:
                 return;
             case 2:
-                ri.p pVar = (ri.p) this.f8298b;
-                if (i10 == 4 && pVar.f45836m == ri.n.e && (i0Var = pVar.A) != null) {
-                    i0Var.Z0(5, pVar.f45841r);
-                    pVar.A.e();
+                ri.o oVar = (ri.o) this.f8298b;
+                if (i10 == 4 && oVar.f45842n == ri.m.e && (i0Var = oVar.B) != null) {
+                    i0Var.Z0(5, oVar.f45847s);
+                    oVar.B.e();
                     return;
                 }
                 return;
             default:
                 s0 s0Var = (s0) this.f8298b;
-                si.n nVar = s0Var.f46766m;
+                si.n nVar = s0Var.f46771m;
                 nVar.b("preview playback state=" + i10);
                 if (s0Var.W == 5 && i10 == 4 && (i0Var2 = s0Var.S) != null) {
                     i0Var2.Z0(5, s0Var.G);
@@ -172,11 +172,11 @@ public final class z implements d1 {
             case 1:
                 return;
             case 2:
-                ((ri.p) this.f8298b).g(y0Var);
+                ((ri.o) this.f8298b).g(y0Var);
                 return;
             default:
                 s0 s0Var = (s0) this.f8298b;
-                si.n nVar = s0Var.f46766m;
+                si.n nVar = s0Var.f46771m;
                 nVar.b("preview player error: code=" + y0Var.f4147a);
                 s0Var.h(y0Var);
                 return;
@@ -194,11 +194,11 @@ public final class z implements d1 {
             case 0:
                 return;
             case 1:
-                b81 b81Var = (b81) this.f8298b;
-                if (!b81Var.H && i10 == 3) {
-                    b81Var.H = true;
-                    if (b81Var.G && b81Var.I) {
-                        b81Var.C();
+                c81 c81Var = (c81) this.f8298b;
+                if (!c81Var.H && i10 == 3) {
+                    c81Var.H = true;
+                    if (c81Var.G && c81Var.I) {
+                        c81Var.C();
                         return;
                     }
                     return;

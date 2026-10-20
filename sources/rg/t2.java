@@ -31,32 +31,32 @@ public final class t2 extends Dialog {
     public boolean F;
     public n0 G;
     public ai.r0 H;
-    public final int f45644a;
-    public final x1 f45645b;
-    public final ai.r f45646c;
+    public final int f45652a;
+    public final x1 f45653b;
+    public final ai.r f45654c;
     public final ai.w1 d;
     public final ImageView e;
-    public final r2 f45647f;
+    public final r2 f45655f;
     public final Rect h;
-    public Bitmap f45648n;
-    public BitmapShader f45649r;
-    public Paint f45650s;
+    public Bitmap f45656n;
+    public BitmapShader f45657r;
+    public Paint f45658s;
     public Matrix v;
-    public final nc0 f45651w;
-    public final nc0 f45652x;
-    public float f45653y;
+    public final nc0 f45659w;
+    public final nc0 f45660x;
+    public float f45661y;
 
     public t2(Context context, final int i10) {
         super(context, R.style.TransparentDialog);
         ci.b bVar = new ci.b();
         this.h = new Rect();
         this.F = false;
-        this.f45644a = i10;
+        this.f45652a = i10;
         x1 x1Var = new x1(this, context, 2);
-        this.f45645b = x1Var;
+        this.f45653b = x1Var;
         x1Var.setOnClickListener(new hg.r0(this, 18));
         ai.r rVar = new ai.r(context, 11);
-        this.f45646c = rVar;
+        this.f45654c = rVar;
         rVar.setOrientation(1);
         x1Var.addView(rVar, z5.d(-2, -2.0f, 17, 8.0f, 8.0f, 8.0f, 8.0f));
         ai.w1 w1Var = new ai.w1(this, context, 11);
@@ -83,68 +83,68 @@ public final class t2 extends Dialog {
         imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
         w1Var2.addView(imageView, z5.e(-1, -1, 119));
         r2 r2Var = new r2(this, context, AndroidUtilities.density);
-        this.f45647f = r2Var;
+        this.f45655f = r2Var;
         w1Var2.addView(r2Var, z5.e(-2, -2, 17));
         i80 F = i80.F(x1Var, bVar, x1Var);
         nc0 nc0Var = new nc0(getContext(), R.raw.position_below, LocaleController.getString(R.string.StoryLinkCaptionAbove), R.raw.position_above, LocaleController.getString(R.string.StoryLinkCaptionBelow), bVar);
-        this.f45651w = nc0Var;
+        this.f45659w = nc0Var;
         nc0Var.setOnClickListener(new View.OnClickListener(this) {
-            public final t2 f45606b;
+            public final t2 f45614b;
 
             {
-                this.f45606b = this;
+                this.f45614b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r3) {
                     case 0:
-                        t2 t2Var = this.f45606b;
+                        t2 t2Var = this.f45614b;
                         n0 n0Var = t2Var.G;
-                        boolean z10 = n0Var.f45512f;
-                        n0Var.f45512f = !z10;
-                        t2Var.f45651w.a(z10, true);
-                        t2Var.f45647f.b(i10, t2Var.G, true);
+                        boolean z10 = n0Var.f45520f;
+                        n0Var.f45520f = !z10;
+                        t2Var.f45659w.a(z10, true);
+                        t2Var.f45655f.b(i10, t2Var.G, true);
                         return;
                     default:
-                        t2 t2Var2 = this.f45606b;
+                        t2 t2Var2 = this.f45614b;
                         n0 n0Var2 = t2Var2.G;
                         boolean z11 = n0Var2.e;
                         n0Var2.e = !z11;
-                        t2Var2.f45652x.a(z11, true);
-                        t2Var2.f45647f.b(i10, t2Var2.G, true);
+                        t2Var2.f45660x.a(z11, true);
+                        t2Var2.f45655f.b(i10, t2Var2.G, true);
                         return;
                 }
             }
         });
         F.q(nc0Var);
         nc0 nc0Var2 = new nc0(context, R.raw.media_shrink, LocaleController.getString(R.string.LinkMediaLarger), R.raw.media_enlarge, LocaleController.getString(R.string.LinkMediaSmaller), bVar);
-        this.f45652x = nc0Var2;
+        this.f45660x = nc0Var2;
         nc0Var2.setOnClickListener(new View.OnClickListener(this) {
-            public final t2 f45606b;
+            public final t2 f45614b;
 
             {
-                this.f45606b = this;
+                this.f45614b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r3) {
                     case 0:
-                        t2 t2Var = this.f45606b;
+                        t2 t2Var = this.f45614b;
                         n0 n0Var = t2Var.G;
-                        boolean z10 = n0Var.f45512f;
-                        n0Var.f45512f = !z10;
-                        t2Var.f45651w.a(z10, true);
-                        t2Var.f45647f.b(i10, t2Var.G, true);
+                        boolean z10 = n0Var.f45520f;
+                        n0Var.f45520f = !z10;
+                        t2Var.f45659w.a(z10, true);
+                        t2Var.f45655f.b(i10, t2Var.G, true);
                         return;
                     default:
-                        t2 t2Var2 = this.f45606b;
+                        t2 t2Var2 = this.f45614b;
                         n0 n0Var2 = t2Var2.G;
                         boolean z11 = n0Var2.e;
                         n0Var2.e = !z11;
-                        t2Var2.f45652x.a(z11, true);
-                        t2Var2.f45647f.b(i10, t2Var2.G, true);
+                        t2Var2.f45660x.a(z11, true);
+                        t2Var2.f45655f.b(i10, t2Var2.G, true);
                         return;
                 }
             }
@@ -165,7 +165,7 @@ public final class t2 extends Dialog {
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
-        float f10 = this.f45653y;
+        float f10 = this.f45661y;
         if (z10) {
             f7 = 1.0f;
         } else {
@@ -198,7 +198,7 @@ public final class t2 extends Dialog {
         }
         this.F = true;
         b(false, new p2(this, 1));
-        this.f45645b.invalidate();
+        this.f45653b.invalidate();
     }
 
     @Override
@@ -212,7 +212,7 @@ public final class t2 extends Dialog {
         Window window = getWindow();
         window.setWindowAnimations(R.style.DialogNoAnimation);
         ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(-1, -1);
-        x1 x1Var = this.f45645b;
+        x1 x1Var = this.f45653b;
         setContentView(x1Var, layoutParams);
         WindowManager.LayoutParams attributes = window.getAttributes();
         attributes.width = -1;

@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.RandomAccess;
 public abstract class i extends e implements List, RandomAccess {
-    public static final g f50902b = new g(m.e, 0);
+    public static final g f50907b = new g(m.e, 0);
 
     public static m q(int i10, Object[] objArr) {
         if (i10 == 0) {
@@ -143,7 +143,7 @@ public abstract class i extends e implements List, RandomAccess {
         int size = size();
         if (i10 >= 0 && i10 <= size) {
             if (isEmpty()) {
-                return f50902b;
+                return f50907b;
             }
             return new g(this, i10);
         }

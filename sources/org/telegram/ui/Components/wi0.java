@@ -1,9 +1,55 @@
 package org.telegram.ui.Components;
 
-import android.widget.FrameLayout;
-public final class wi0 extends FrameLayout {
+import java.util.Locale;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class wi0 implements kd0, md0 {
+    public final int f32129a;
+    public final bj0 f32130b;
+
+    public wi0(bj0 bj0Var, int i10) {
+        this.f32129a = i10;
+        this.f32130b = bj0Var;
+    }
+
     @Override
-    public final boolean hasOverlappingRendering() {
-        return false;
+    public String e(int i10) {
+        int i11 = this.f32129a;
+        bj0 bj0Var = this.f32130b;
+        switch (i11) {
+            case 0:
+                if (bj0Var.O) {
+                    return LocaleController.formatString("MilesShort", R.string.MilesShort, Integer.valueOf(i10));
+                }
+                return LocaleController.formatString("KMetersShort", R.string.KMetersShort, Integer.valueOf(i10));
+            default:
+                if (bj0Var.O) {
+                    if (i10 == 1) {
+                        return LocaleController.formatString("FootsShort", R.string.FootsShort, 250);
+                    }
+                    if (i10 > 1) {
+                        i10--;
+                    }
+                    Locale locale = Locale.US;
+                    return i2.e.j(i10, ".");
+                } else if (i10 == 1) {
+                    return LocaleController.formatString("MetersShort", R.string.MetersShort, 50);
+                } else {
+                    if (i10 > 1) {
+                        i10--;
+                    }
+                    return LocaleController.formatString("MetersShort", R.string.MetersShort, Integer.valueOf(i10 * 100));
+                }
+        }
+    }
+
+    @Override
+    public void q(od0 od0Var, int i10) {
+        bj0 bj0Var = this.f32130b;
+        try {
+            bj0Var.performHapticFeedback(3, 2);
+        } catch (Exception unused) {
+        }
+        bj0Var.c(true);
     }
 }

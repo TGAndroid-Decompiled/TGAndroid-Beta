@@ -108,7 +108,7 @@ public class CaptchaController {
     }
 
     public static void lambda$request$2(String str, String str2, Request request, RecaptchaTasksClient recaptchaTasksClient) {
-        recaptchaTasksClient.executeTask(getAction(str)).addOnSuccessListener(new s0(str, str2, request, 1)).addOnFailureListener(new t0(request, 1));
+        recaptchaTasksClient.executeTask(getAction(str)).addOnSuccessListener(new t0(str, str2, request, 1)).addOnFailureListener(new u0(request, 1));
     }
 
     public static void lambda$request$3(Request request, Exception exc) {
@@ -133,6 +133,6 @@ public class CaptchaController {
             request2.done("RECAPTCHA_FAILED_NO_ACTIVITY");
             return;
         }
-        Recaptcha.getTasksClient(activity.getApplication(), str2).addOnSuccessListener(new s0(str, str2, request2, 0)).addOnFailureListener(new t0(request2, 0));
+        Recaptcha.getTasksClient(activity.getApplication(), str2).addOnSuccessListener(new t0(str, str2, request2, 0)).addOnFailureListener(new u0(request2, 0));
     }
 }

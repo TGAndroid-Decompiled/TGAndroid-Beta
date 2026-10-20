@@ -93,19 +93,19 @@ public class Track {
                 cVar.f10834n = this.height;
                 ?? aVar2 = new com.googlecode.mp4parser.a("avcC");
                 ?? obj = new Object();
-                obj.f46171f = new ArrayList();
-                obj.f46172g = new ArrayList();
+                obj.f46176f = new ArrayList();
+                obj.f46177g = new ArrayList();
                 obj.h = true;
-                obj.f46173i = 1;
-                obj.f46174j = 0;
-                obj.f46175k = 0;
-                obj.f46176l = new ArrayList();
-                obj.f46177m = 63;
-                obj.f46178n = 7;
-                obj.f46179o = 31;
-                obj.f46180p = 31;
-                obj.f46181q = 31;
-                aVar2.f46167a = obj;
+                obj.f46178i = 1;
+                obj.f46179j = 0;
+                obj.f46180k = 0;
+                obj.f46181l = new ArrayList();
+                obj.f46182m = 63;
+                obj.f46183n = 7;
+                obj.f46184o = 31;
+                obj.f46185p = 31;
+                obj.f46186q = 31;
+                aVar2.f46172a = obj;
                 if (mediaFormat.getByteBuffer("csd-0") != null) {
                     ArrayList arrayList = new ArrayList();
                     ByteBuffer byteBuffer = mediaFormat.getByteBuffer("csd-0");
@@ -120,9 +120,9 @@ public class Track {
                     byteBuffer2.get(bArr2);
                     arrayList2.add(bArr2);
                     k3.p(te.a.c(sc.a.h, aVar2, aVar2, arrayList));
-                    aVar2.f46167a.f46171f = arrayList;
-                    k3.p(te.a.c(sc.a.f46161n, aVar2, aVar2, arrayList2));
-                    aVar2.f46167a.f46172g = arrayList2;
+                    aVar2.f46172a.f46176f = arrayList;
+                    k3.p(te.a.c(sc.a.f46166n, aVar2, aVar2, arrayList2));
+                    aVar2.f46172a.f46177g = arrayList2;
                 }
                 if (mediaFormat.containsKey("level")) {
                     int integer = mediaFormat.getInteger("level");
@@ -184,18 +184,18 @@ public class Track {
                 } else {
                     aVar2.e(100);
                 }
-                k3.p(te.a.c(sc.a.f46163s, aVar2, aVar2, new Integer(-1)));
-                aVar2.f46167a.f46174j = -1;
+                k3.p(te.a.c(sc.a.f46168s, aVar2, aVar2, new Integer(-1)));
+                aVar2.f46172a.f46179j = -1;
                 k3.p(te.a.c(sc.a.v, aVar2, aVar2, new Integer(-1)));
-                aVar2.f46167a.f46175k = -1;
-                k3.p(te.a.c(sc.a.f46162r, aVar2, aVar2, new Integer(-1)));
-                aVar2.f46167a.f46173i = -1;
-                k3.p(te.a.c(sc.a.f46158b, aVar2, aVar2, new Integer(1)));
-                aVar2.f46167a.f46168a = 1;
-                k3.p(te.a.c(sc.a.f46160f, aVar2, aVar2, new Integer(3)));
-                aVar2.f46167a.e = 3;
+                aVar2.f46172a.f46180k = -1;
+                k3.p(te.a.c(sc.a.f46167r, aVar2, aVar2, new Integer(-1)));
+                aVar2.f46172a.f46178i = -1;
+                k3.p(te.a.c(sc.a.f46163b, aVar2, aVar2, new Integer(1)));
+                aVar2.f46172a.f46173a = 1;
+                k3.p(te.a.c(sc.a.f46165f, aVar2, aVar2, new Integer(3)));
+                aVar2.f46172a.e = 3;
                 k3.p(te.a.c(sc.a.d, aVar2, aVar2, new Integer(0)));
-                aVar2.f46167a.f46170c = 0;
+                aVar2.f46172a.f46175c = 0;
                 cVar.a(aVar2);
                 this.sampleDescriptionBox.a(cVar);
                 return;

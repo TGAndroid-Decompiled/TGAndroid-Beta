@@ -68,11 +68,11 @@ public final class x4 {
                     t tVar3 = this.e;
                     TLRPC.Document document2 = tVar3.h;
                     if (document2 != null) {
-                        j10 = document2.f20279id;
+                        j10 = document2.f20282id;
                     } else {
                         TLRPC.Photo photo2 = tVar3.f15512g;
                         if (photo2 != null) {
-                            j10 = photo2.f20297id;
+                            j10 = photo2.f20300id;
                         }
                     }
                 }
@@ -105,7 +105,7 @@ public final class x4 {
                     photoSize = null;
                     for (int i14 = 0; i14 < arrayList.size(); i14++) {
                         TLRPC.PhotoSize photoSize4 = arrayList.get(i14);
-                        if (!(photoSize4 instanceof TLRPC.TL_photoStrippedSize) && !(photoSize4 instanceof TLRPC.TL_photoPathSize) && (abs = Math.abs(Math.max(photoSize4.f20298w, photoSize4.h) - photoSize3)) < i13) {
+                        if (!(photoSize4 instanceof TLRPC.TL_photoStrippedSize) && !(photoSize4 instanceof TLRPC.TL_photoPathSize) && (abs = Math.abs(Math.max(photoSize4.f20301w, photoSize4.h) - photoSize3)) < i13) {
                             photoSize = photoSize4;
                             i13 = abs;
                         }

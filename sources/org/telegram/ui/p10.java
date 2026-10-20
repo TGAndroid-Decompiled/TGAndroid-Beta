@@ -32,10 +32,10 @@ public abstract class p10 {
         String p5;
         String formatString2;
         String b10;
-        org.telegram.ui.Components.bz0 bz0Var;
+        org.telegram.ui.Components.cz0 cz0Var;
         int i13;
         org.telegram.ui.ActionBar.f3 f3Var = new org.telegram.ui.ActionBar.f3(1, (Context) activity, d6Var, false);
-        f3Var.fixNavigationBar(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21058h5, d6Var));
+        f3Var.fixNavigationBar(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21061h5, d6Var));
         LinearLayout linearLayout = new LinearLayout(activity);
         linearLayout.setOrientation(1);
         linearLayout.setPadding(AndroidUtilities.dp(16.0f), 0, AndroidUtilities.dp(16.0f), 0);
@@ -102,11 +102,11 @@ public abstract class p10 {
             return;
         }
         if (b10 != null) {
-            bz0Var = new org.telegram.ui.Components.bz0(b10, i10, f3Var, d6Var);
+            cz0Var = new org.telegram.ui.Components.cz0(b10, i10, f3Var, d6Var);
         } else {
-            bz0Var = null;
+            cz0Var = null;
         }
-        SpannableStringBuilder replaceSingleTag = AndroidUtilities.replaceSingleTag(formatString, bz0Var);
+        SpannableStringBuilder replaceSingleTag = AndroidUtilities.replaceSingleTag(formatString, cz0Var);
         SpannableString spannableString = new SpannableString("TON");
         org.telegram.ui.Components.yq yqVar = new org.telegram.ui.Components.yq(R.drawable.mini_gram_16, 0);
         yqVar.recolorDrawable = false;
@@ -116,14 +116,14 @@ public abstract class p10 {
         org.telegram.ui.Components.x90 x90Var = new org.telegram.ui.Components.x90(activity, null);
         x90Var.setTypeface(AndroidUtilities.bold());
         x90Var.setGravity(17);
-        int i17 = org.telegram.ui.ActionBar.h6.f21093j5;
+        int i17 = org.telegram.ui.ActionBar.h6.f21096j5;
         x90Var.setTextColor(org.telegram.ui.ActionBar.h6.w0(i17, d6Var));
-        x90Var.setLinkTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21190o6, d6Var));
+        x90Var.setLinkTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21193o6, d6Var));
         x90Var.setTextSize(1, 16.0f);
         x90Var.setText(replaceSingleTag);
         linearLayout.addView(x90Var, w7.z5.t(-1, -2, 1, 42, 0, 42, 0));
         FrameLayout frameLayout2 = new FrameLayout(activity);
-        frameLayout2.setBackground(org.telegram.ui.ActionBar.h6.d0(AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20980ci, d6Var)));
+        frameLayout2.setBackground(org.telegram.ui.ActionBar.h6.d0(AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20983ci, d6Var)));
         org.telegram.ui.Components.w9 w9Var = new org.telegram.ui.Components.w9(activity);
         w9Var.setRoundRadius(AndroidUtilities.dp(28.0f));
         org.telegram.ui.Components.h9 h9Var = new org.telegram.ui.Components.h9((org.telegram.ui.ActionBar.d6) null);
@@ -139,15 +139,15 @@ public abstract class p10 {
         linearLayout.addView(frameLayout2, w7.z5.t(-2, 28, 1, 42, 10, 42, 18));
         TextView textView2 = new TextView(activity);
         textView2.setGravity(17);
-        org.telegram.messenger.kk.o(i17, d6Var, textView2, 1, 14.0f);
+        org.telegram.messenger.mk.o(i17, d6Var, textView2, 1, 14.0f);
         textView2.setText(replaceCharSequence);
         linearLayout.addView(textView2, w7.z5.t(-1, -2, 1, 32, 0, 32, 19));
         ei.d dVar = new ei.d(activity, d6Var, true);
         dVar.setRoundRadius(24);
         dVar.g(LocaleController.getString(R.string.FragmentUsernameOpen), false, true);
-        dVar.setOnClickListener(new org.telegram.ui.Components.h51(17, activity, tL_collectibleInfo));
+        dVar.setOnClickListener(new org.telegram.ui.Components.i51(17, activity, tL_collectibleInfo));
         linearLayout.addView(dVar, w7.z5.k(6.0f, 0.0f, 6.0f, 0.0f, -1, 48));
-        if (bz0Var != null) {
+        if (cz0Var != null) {
             ei.d dVar2 = new ei.d(activity, d6Var, true);
             dVar2.setRoundRadius(24);
             dVar2.d();
@@ -157,7 +157,7 @@ public abstract class p10 {
                 i13 = R.string.FragmentPhoneCopy;
             }
             dVar2.g(LocaleController.getString(i13), false, true);
-            dVar2.setOnClickListener(new org.telegram.ui.Components.h51(18, bz0Var, f3Var));
+            dVar2.setOnClickListener(new org.telegram.ui.Components.i51(18, cz0Var, f3Var));
             linearLayout.addView(dVar2, w7.z5.k(6.0f, 6.0f, 6.0f, 0.0f, -1, 48));
         }
         f3Var.setCustomView(linearLayout);

@@ -7,39 +7,39 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.Components.b71;
-import org.telegram.ui.Components.d61;
-import org.telegram.ui.Components.f61;
+import org.telegram.ui.Components.c71;
+import org.telegram.ui.Components.e61;
 import org.telegram.ui.Components.g61;
-import org.telegram.ui.Components.im0;
+import org.telegram.ui.Components.h61;
+import org.telegram.ui.Components.jm0;
 import org.telegram.ui.Components.r5;
-import org.telegram.ui.Components.t61;
-import org.telegram.ui.Components.xj0;
-public final class m3 extends f61 {
-    public static final int f50399a = 0;
+import org.telegram.ui.Components.u61;
+import org.telegram.ui.Components.yj0;
+public final class m3 extends g61 {
+    public static final int f50404a = 0;
 
     static {
-        f61.setup(new f61());
+        g61.setup(new g61());
     }
 
     @Override
-    public final void bindView(View view, g61 g61Var, boolean z10, t61 t61Var, b71 b71Var) {
+    public final void bindView(View view, h61 h61Var, boolean z10, u61 u61Var, c71 c71Var) {
         n3 n3Var = (n3) view;
-        TL_stars.starGiftAttributeModel stargiftattributemodel = (TL_stars.starGiftAttributeModel) g61Var.G;
-        int i10 = g61Var.f26510z;
-        String str = (String) g61Var.f26497l;
-        boolean z11 = g61Var.e;
-        xj0 xj0Var = n3Var.f20760c;
+        TL_stars.starGiftAttributeModel stargiftattributemodel = (TL_stars.starGiftAttributeModel) h61Var.G;
+        int i10 = h61Var.f26795z;
+        String str = (String) h61Var.f26782l;
+        boolean z11 = h61Var.e;
+        yj0 yj0Var = n3Var.f20763c;
         l3 l3Var = n3Var.N;
-        if (l3Var == null || n3Var.M != stargiftattributemodel.document.f20279id) {
-            n3Var.M = stargiftattributemodel.document.f20279id;
+        if (l3Var == null || n3Var.M != stargiftattributemodel.document.f20282id) {
+            n3Var.M = stargiftattributemodel.document.f20282id;
             if (l3Var != null) {
-                l3Var.o(xj0Var);
+                l3Var.o(yj0Var);
             }
             n3Var.N = new r5(3, n3Var.L, stargiftattributemodel.document);
         }
-        if (xj0Var.isAttachedToWindow()) {
-            n3Var.N.a(xj0Var);
+        if (yj0Var.isAttachedToWindow()) {
+            n3Var.N.a(yj0Var);
         }
         SpannableStringBuilder spannableStringBuilder = stargiftattributemodel.name;
         if (!TextUtils.isEmpty(str)) {
@@ -50,7 +50,7 @@ public final class m3 extends f61 {
             spannableStringBuilder2.append((CharSequence) "  ");
             int length = spannableStringBuilder2.length();
             spannableStringBuilder2.append((CharSequence) Integer.toString(i10));
-            spannableStringBuilder2.setSpan(new d61(AndroidUtilities.bold()), length, spannableStringBuilder2.length(), 33);
+            spannableStringBuilder2.setSpan(new e61(AndroidUtilities.bold()), length, spannableStringBuilder2.length(), 33);
             spannableStringBuilder = spannableStringBuilder2;
         }
         n3Var.g(spannableStringBuilder, 0, n3Var.N);
@@ -58,7 +58,7 @@ public final class m3 extends f61 {
     }
 
     @Override
-    public final View createView(Context context, im0 im0Var, int i10, int i11, d6 d6Var) {
+    public final View createView(Context context, jm0 jm0Var, int i10, int i11, d6 d6Var) {
         return new n3(context, i10, d6Var);
     }
 }

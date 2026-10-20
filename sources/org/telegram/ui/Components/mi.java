@@ -5,8 +5,8 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLRPC;
 public final class mi extends oi {
-    public TLRPC.User f28530b;
-    public TLRPC.TL_attachMenuBot f28531c;
+    public TLRPC.User f28523b;
+    public TLRPC.TL_attachMenuBot f28524c;
     public final ti d;
 
     public mi(ti tiVar, Context context) {
@@ -20,32 +20,32 @@ public final class mi extends oi {
         ph.b bVar = new ph.b(context);
         bVar.d = d6Var;
         bVar.Q = true;
-        TextView textView = bVar.f44301a;
+        TextView textView = bVar.f44309a;
         textView.setTextSize(1, 11.0f);
         textView.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), 0);
-        bVar.f44302b.setVisibility(8);
+        bVar.f44310b.setVisibility(8);
         bVar.a(false);
         w9 w9Var = new w9(context);
-        bVar.f44303c = w9Var;
+        bVar.f44311c = w9Var;
         bVar.addView(w9Var, w7.z5.d(24, 24.0f, 49, 0.0f, 4.0f, 0.0f, 0.0f));
-        bVar.f44308w = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.cl, d6Var);
-        bVar.f44307s = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.al, d6Var);
+        bVar.f44316w = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.cl, d6Var);
+        bVar.f44315s = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.al, d6Var);
         bVar.v = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.bl, d6Var);
         bVar.f();
-        this.f29004a = bVar;
-        bVar.getBackupImageView().f32040a.setDelegate(new k2(12));
-        addView(this.f29004a, w7.z5.c(-1.0f, -1));
+        this.f29050a = bVar;
+        bVar.getBackupImageView().f31992a.setDelegate(new k2(12));
+        addView(this.f29050a, w7.z5.c(-1.0f, -1));
     }
 
     public final void a(boolean z10) {
         boolean z11;
-        if (this.f28531c != null && (-this.f28530b.f20420id) == this.d.Z0) {
+        if (this.f28524c != null && (-this.f28523b.f20423id) == this.d.Z0) {
             z11 = true;
         } else {
             z11 = false;
         }
-        this.f29004a.e(z11, z10);
-        uj0 lottieAnimation = this.f29004a.getBackupImageView().getImageReceiver().getLottieAnimation();
+        this.f29050a.e(z11, z10);
+        vj0 lottieAnimation = this.f29050a.getBackupImageView().getImageReceiver().getLottieAnimation();
         if (z10) {
             if (z11 && lottieAnimation != null) {
                 lottieAnimation.K(0);

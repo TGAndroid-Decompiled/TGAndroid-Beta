@@ -4,14 +4,14 @@ import org.telegram.messenger.AndroidUtilities;
 public final class ri extends pf.c {
     public final int d;
     public final int e;
-    public final org.telegram.ui.Cells.u1 f41220f;
-    public final qn f41221g;
+    public final org.telegram.ui.Cells.u1 f41226f;
+    public final qn f41227g;
 
     public ri(qn qnVar, int i10, org.telegram.ui.Cells.u1 u1Var, int i11) {
         this.d = i11;
-        this.f41221g = qnVar;
+        this.f41227g = qnVar;
         this.e = i10;
-        this.f41220f = u1Var;
+        this.f41226f = u1Var;
     }
 
     @Override
@@ -43,25 +43,25 @@ public final class ri extends pf.c {
         switch (this.d) {
             case 0:
                 int i10 = this.e;
-                qn qnVar = this.f41221g;
-                qnVar.f40892wb = i10;
-                qnVar.f40906xb = 6;
-                this.f41220f.invalidate();
+                qn qnVar = this.f41227g;
+                qnVar.f40898wb = i10;
+                qnVar.f40912xb = 6;
+                this.f41226f.invalidate();
                 return;
             case 1:
                 int i11 = this.e;
-                qn qnVar2 = this.f41221g;
-                qnVar2.f40892wb = i11;
-                qnVar2.f40906xb = 5;
-                qnVar2.f40931zb = null;
-                this.f41220f.invalidate();
+                qn qnVar2 = this.f41227g;
+                qnVar2.f40898wb = i11;
+                qnVar2.f40912xb = 5;
+                qnVar2.f40937zb = null;
+                this.f41226f.invalidate();
                 return;
             default:
                 int i12 = this.e;
-                qn qnVar3 = this.f41221g;
-                qnVar3.f40892wb = i12;
-                qnVar3.f40906xb = 7;
-                this.f41220f.invalidate();
+                qn qnVar3 = this.f41227g;
+                qnVar3.f40898wb = i12;
+                qnVar3.f40912xb = 7;
+                this.f41226f.invalidate();
                 return;
         }
     }

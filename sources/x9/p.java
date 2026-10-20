@@ -11,28 +11,28 @@ import java.util.Locale;
 import z9.o0;
 import z9.p0;
 public final class p {
-    public static final HashMap f49718f;
-    public static final String f49719g;
-    public final Context f49720a;
-    public final u f49721b;
-    public final a f49722c;
+    public static final HashMap f49723f;
+    public static final String f49724g;
+    public final Context f49725a;
+    public final u f49726b;
+    public final a f49727c;
     public final qf.b d;
     public final ea.b e;
 
     static {
         HashMap hashMap = new HashMap();
-        f49718f = hashMap;
+        f49723f = hashMap;
         k3.n(5, hashMap, "armeabi", 6, "armeabi-v7a");
         k3.n(9, hashMap, "arm64-v8a", 0, "x86");
         hashMap.put("x86_64", 1);
         Locale locale = Locale.US;
-        f49719g = "Crashlytics Android SDK/18.6.0";
+        f49724g = "Crashlytics Android SDK/18.6.0";
     }
 
     public p(Context context, u uVar, a aVar, qf.b bVar, ea.b bVar2) {
-        this.f49720a = context;
-        this.f49721b = uVar;
-        this.f49722c = aVar;
+        this.f49725a = context;
+        this.f49726b = uVar;
+        this.f49727c = aVar;
         this.d = bVar;
         this.e = bVar2;
     }
@@ -96,10 +96,10 @@ public final class p {
     }
 
     public final List a() {
-        a aVar = this.f49722c;
+        a aVar = this.f49727c;
         String str = aVar.e;
         if (str != null) {
-            return Collections.singletonList(new o0(str, 0L, 0L, aVar.f49661b));
+            return Collections.singletonList(new o0(str, 0L, 0L, aVar.f49666b));
         }
         throw new NullPointerException("Null name");
     }

@@ -14,7 +14,7 @@ public final class rx extends s4.s {
     public final void v0(RecyclerView recyclerView, s4.y0 y0Var, int i10) {
         try {
             ei.l1 l1Var = new ei.l1(this, recyclerView.getContext(), 2);
-            l1Var.f46053a = i10;
+            l1Var.f46058a = i10;
             w0(l1Var);
         } catch (Exception e) {
             FileLog.e(e);

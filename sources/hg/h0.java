@@ -24,7 +24,7 @@ import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
-import org.telegram.messenger.kk;
+import org.telegram.messenger.mk;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
@@ -33,9 +33,9 @@ import org.telegram.ui.Cells.pa;
 import org.telegram.ui.Cells.q8;
 import org.telegram.ui.Cells.u3;
 import org.telegram.ui.Components.b10;
-import org.telegram.ui.Components.hm0;
-import org.telegram.ui.Components.oo0;
-import org.telegram.ui.Components.uj0;
+import org.telegram.ui.Components.im0;
+import org.telegram.ui.Components.po0;
+import org.telegram.ui.Components.vj0;
 import org.telegram.ui.Components.w9;
 import org.telegram.ui.Components.yq;
 import org.telegram.ui.cy;
@@ -43,7 +43,7 @@ import org.telegram.ui.nx;
 import org.telegram.ui.sa1;
 import org.telegram.ui.v00;
 import w7.z5;
-public abstract class h0 extends hm0 {
+public abstract class h0 extends im0 {
     public v00 A0;
     public int B0;
     public int C0;
@@ -127,10 +127,10 @@ public abstract class h0 extends hm0 {
         this.H0 = true;
         this.f11882i0 = kVar;
         this.f11892r0 = cyVar;
-        oo0 oo0Var = (oo0) this;
-        y yVar = new y(oo0Var);
+        po0 po0Var = (po0) this;
+        y yVar = new y(po0Var);
         this.f11883j0 = yVar;
-        yVar.f11792a = new a4.l(oo0Var, 22);
+        yVar.f11792a = new a4.l(po0Var, 22);
         yVar.f11804p = z10;
         this.e = context;
         this.V = i10;
@@ -157,7 +157,7 @@ public abstract class h0 extends hm0 {
 
     @Override
     public final boolean D(s4.b1 b1Var) {
-        int i10 = b1Var.f45915f;
+        int i10 = b1Var.f45920f;
         if (i10 != 1 && i10 != 4 && i10 != 10) {
             return true;
         }
@@ -208,7 +208,7 @@ public abstract class h0 extends hm0 {
         if (!z11) {
             MessagesStorage.getInstance(i10).getStorageQueue().postRunnable(new l2(i10, 1));
         } else {
-            MessagesStorage.getInstance(i10).getStorageQueue().postRunnable(new p6(26, (oo0) this, sb2));
+            MessagesStorage.getInstance(i10).getStorageQueue().postRunnable(new p6(26, (po0) this, sb2));
         }
     }
 
@@ -222,20 +222,20 @@ public abstract class h0 extends hm0 {
             if (((TLRPC.User) obj).bot) {
                 return cyVar.A2;
             }
-            return cyVar.f36193z2;
+            return cyVar.f36199z2;
         } else if (!(obj instanceof TLRPC.Chat)) {
             return false;
         } else {
             TLRPC.Chat chat = (TLRPC.Chat) obj;
             if (ChatObject.isChannel(chat)) {
-                return cyVar.f36190y2;
+                return cyVar.f36196y2;
             }
             if (ChatObject.isMegagroup(chat)) {
-                if (cyVar.f36173v2 || cyVar.f36179w2) {
+                if (cyVar.f36179v2 || cyVar.f36185w2) {
                     return true;
                 }
                 return false;
-            } else if (cyVar.f36173v2 || cyVar.f36185x2) {
+            } else if (cyVar.f36179v2 || cyVar.f36191x2) {
                 return true;
             } else {
                 return false;
@@ -341,12 +341,12 @@ public abstract class h0 extends hm0 {
                 boolean z10 = tLObject instanceof TLRPC.User;
                 int i14 = this.f11894s0;
                 if (z10) {
-                    TLRPC.User user = MessagesController.getInstance(i14).getUser(Long.valueOf(((TLRPC.User) tLObject).f20420id));
+                    TLRPC.User user = MessagesController.getInstance(i14).getUser(Long.valueOf(((TLRPC.User) tLObject).f20423id));
                     if (user != null) {
                         return user;
                     }
                     return tLObject;
-                } else if ((tLObject instanceof TLRPC.Chat) && (chat = MessagesController.getInstance(i14).getChat(Long.valueOf(((TLRPC.Chat) tLObject).f20273id))) != null) {
+                } else if ((tLObject instanceof TLRPC.Chat) && (chat = MessagesController.getInstance(i14).getChat(Long.valueOf(((TLRPC.Chat) tLObject).f20276id))) != null) {
                     return chat;
                 } else {
                     return tLObject;
@@ -502,7 +502,7 @@ public abstract class h0 extends hm0 {
 
     public final boolean M() {
         if (!this.N && !MediaDataController.getInstance(this.f11894s0).hints.isEmpty()) {
-            if (this.f11881h0 != 14 || this.f11892r0.f36193z2) {
+            if (this.f11881h0 != 14 || this.f11892r0.f36199z2) {
                 return true;
             }
             return false;
@@ -698,7 +698,7 @@ public abstract class h0 extends hm0 {
                     long a2 = this.U.a();
                     TLRPC.TL_messages_search tL_messages_search = new TLRPC.TL_messages_search();
                     tL_messages_search.limit = 20;
-                    tL_messages_search.f20382q = str;
+                    tL_messages_search.f20385q = str;
                     tL_messages_search.filter = new TLRPC.TL_inputMessagesFilterEmpty();
                     tL_messages_search.peer = MessagesController.getInstance(i12).getInputPeer(a2);
                     if (str.equals(this.Z) && !arrayList.isEmpty()) {
@@ -763,7 +763,7 @@ public abstract class h0 extends hm0 {
                     }
                     tL_messages_searchGlobal.users_only = z12;
                     tL_messages_searchGlobal.limit = 20;
-                    tL_messages_searchGlobal.f20384q = str;
+                    tL_messages_searchGlobal.f20387q = str;
                     tL_messages_searchGlobal.filter = new TLRPC.TL_inputMessagesFilterEmpty();
                     tL_messages_searchGlobal.flags |= 1;
                     tL_messages_searchGlobal.folder_id = this.C0;
@@ -930,7 +930,7 @@ public abstract class h0 extends hm0 {
                 if (i11 != 3) {
                     z11 = false;
                 }
-                h6Var.f22346l0 = z11;
+                h6Var.f22349l0 = z11;
                 sa1Var = h6Var;
                 textView = sa1Var;
                 break;
@@ -960,7 +960,7 @@ public abstract class h0 extends hm0 {
                 break;
             case 6:
                 sa1 sa1Var2 = new sa1(context, 2, null);
-                sa1Var2.setSelectorDrawableColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21076i6, false));
+                sa1Var2.setSelectorDrawableColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21079i6, false));
                 sa1Var2.setTag(9);
                 sa1Var2.setItemAnimator(null);
                 sa1Var2.setLayoutAnimation(null);
@@ -991,14 +991,14 @@ public abstract class h0 extends hm0 {
                 ?? linearLayout = new LinearLayout(context);
                 linearLayout.setOrientation(1);
                 w9 w9Var = new w9(context);
-                w9Var.setImageDrawable(new uj0(R.raw.utyan_empty, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f)));
+                w9Var.setImageDrawable(new vj0(R.raw.utyan_empty, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f)));
                 linearLayout.addView(w9Var, z5.t(120, 120, 1, 0, 27, 0, 0));
                 TextView textView3 = new TextView(context);
                 textView3.setTextSize(1, 17.0f);
                 int i12 = org.telegram.ui.ActionBar.h6.G6;
                 textView3.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, i12, false));
                 textView3.setTypeface(AndroidUtilities.bold());
-                kk.m(R.string.SearchMessagesFilterEmptyTitle, textView3, 17);
+                mk.m(R.string.SearchMessagesFilterEmptyTitle, textView3, 17);
                 linearLayout.addView(textView3, z5.t(-1, -2, 1, 0, 8, 0, 9));
                 TextView textView4 = new TextView(context);
                 linearLayout.f11831a = textView4;

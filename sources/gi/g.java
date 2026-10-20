@@ -4,13 +4,13 @@ import android.app.Activity;
 import android.view.ViewGroup;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.im0;
-import org.telegram.ui.Components.t61;
-public final class g extends t61 {
+import org.telegram.ui.Components.jm0;
+import org.telegram.ui.Components.u61;
+public final class g extends u61 {
     public final l N;
 
-    public g(l lVar, im0 im0Var, Activity activity, int i10, int i11, ai.q qVar, d6 d6Var) {
-        super(im0Var, activity, i10, i11, true, qVar, d6Var);
+    public g(l lVar, jm0 jm0Var, Activity activity, int i10, int i11, ai.q qVar, d6 d6Var) {
+        super(jm0Var, activity, i10, i11, true, qVar, d6Var);
         this.N = lVar;
     }
 

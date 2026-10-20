@@ -208,9 +208,9 @@ public class GiftAuctionController extends BaseController {
             this.gift = starGift;
             this.auctionState = starGiftAuctionState;
             this.auctionUserState = tL_StarGiftAuctionUserState;
-            this.giftId = starGift.f20497id;
+            this.giftId = starGift.f20500id;
             TLRPC.Document document = starGift.sticker;
-            this.giftDocumentId = document != null ? document.f20279id : 0L;
+            this.giftDocumentId = document != null ? document.f20282id : 0L;
             this.giftAuctionSlug = starGift.auction_slug;
             applyAuctionState(starGiftAuctionState);
         }
@@ -293,7 +293,7 @@ public class GiftAuctionController extends BaseController {
     private void applyGiftAuctionStateAndPerformUpdate(TL_stars.StarGift starGift, TL_stars.StarGiftAuctionState starGiftAuctionState, TL_stars.TL_StarGiftAuctionUserState tL_StarGiftAuctionUserState) {
         TL_stars.StarGift starGift2;
         boolean applyGift;
-        AuctionInternal orCreateAuction = getOrCreateAuction(starGift.f20497id);
+        AuctionInternal orCreateAuction = getOrCreateAuction(starGift.f20500id);
         if (orCreateAuction.internalState == null) {
             starGift2 = starGift;
             orCreateAuction.internalState = new Auction(this.currentAccount, starGift2, starGiftAuctionState, tL_StarGiftAuctionUserState);
@@ -305,7 +305,7 @@ public class GiftAuctionController extends BaseController {
         }
         if (applyGift) {
             updateActiveAuctions();
-            performAuctionUpdate(starGift2.f20497id);
+            performAuctionUpdate(starGift2.f20500id);
         }
     }
 
@@ -438,8 +438,8 @@ public class GiftAuctionController extends BaseController {
     }
 
     public void lambda$requestGiftAuctionInternal$3(TL_payments.TL_StarGiftAuctionState tL_StarGiftAuctionState, Utilities.Callback2 callback2, TLRPC.TL_error tL_error, ArrayList arrayList) {
-        getOrCreateAuction(tL_StarGiftAuctionState.gift.f20497id).previewAttributes = arrayList;
-        onGiftAuctionStateReceivedInternal(tL_StarGiftAuctionState.gift.f20497id, tL_StarGiftAuctionState);
+        getOrCreateAuction(tL_StarGiftAuctionState.gift.f20500id).previewAttributes = arrayList;
+        onGiftAuctionStateReceivedInternal(tL_StarGiftAuctionState.gift.f20500id, tL_StarGiftAuctionState);
         callback2.run(tL_StarGiftAuctionState, tL_error);
     }
 
@@ -448,9 +448,9 @@ public class GiftAuctionController extends BaseController {
             getMessagesController().putUsers(tL_StarGiftAuctionState.users, false);
             getMessagesController().putChats(tL_StarGiftAuctionState.chats, false);
         }
-        if (tL_StarGiftAuctionState != null && !this.upgrades.get(tL_StarGiftAuctionState.gift.f20497id, Boolean.FALSE).booleanValue()) {
-            this.upgrades.put(tL_StarGiftAuctionState.gift.f20497id, Boolean.TRUE);
-            requestAuctionUpgrades(tL_StarGiftAuctionState.gift.f20497id, new Utilities.Callback() {
+        if (tL_StarGiftAuctionState != null && !this.upgrades.get(tL_StarGiftAuctionState.gift.f20500id, Boolean.FALSE).booleanValue()) {
+            this.upgrades.put(tL_StarGiftAuctionState.gift.f20500id, Boolean.TRUE);
+            requestAuctionUpgrades(tL_StarGiftAuctionState.gift.f20500id, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
                     GiftAuctionController.this.lambda$requestGiftAuctionInternal$3(tL_StarGiftAuctionState, callback2, tL_error, (ArrayList) obj);
@@ -459,7 +459,7 @@ public class GiftAuctionController extends BaseController {
             return;
         }
         if (tL_StarGiftAuctionState != null) {
-            onGiftAuctionStateReceivedInternal(tL_StarGiftAuctionState.gift.f20497id, tL_StarGiftAuctionState);
+            onGiftAuctionStateReceivedInternal(tL_StarGiftAuctionState.gift.f20500id, tL_StarGiftAuctionState);
         }
         callback2.run(tL_StarGiftAuctionState, tL_error);
     }
@@ -499,7 +499,7 @@ public class GiftAuctionController extends BaseController {
     public void lambda$sendBid$8(AuctionInternal auctionInternal, Utilities.Callback2 callback2, TLRPC.payments_PaymentResult payments_paymentresult, TLRPC.TL_error tL_error) {
         auctionInternal.pendingBid = false;
         if (payments_paymentresult instanceof TLRPC.TL_payments_paymentResult) {
-            Utilities.stageQueue.postRunnable(new i2(10, this, (TLRPC.TL_payments_paymentResult) payments_paymentresult));
+            Utilities.stageQueue.postRunnable(new j2(10, this, (TLRPC.TL_payments_paymentResult) payments_paymentresult));
             callback2.run(Boolean.TRUE, null);
         } else if (tL_error != null) {
             callback2.run(Boolean.FALSE, tL_error.text);
@@ -519,7 +519,7 @@ public class GiftAuctionController extends BaseController {
             TL_stars.TL_payments_sendStarsForm tL_payments_sendStarsForm = new TL_stars.TL_payments_sendStarsForm();
             tL_payments_sendStarsForm.form_id = ((TLRPC.TL_payments_paymentFormStarGift) paymentForm).form_id;
             tL_payments_sendStarsForm.invoice = tL_payments_getPaymentForm.invoice;
-            getConnectionsManager().sendRequestTyped(tL_payments_sendStarsForm, new Object(), new b4(this, auctionInternal, callback2));
+            getConnectionsManager().sendRequestTyped(tL_payments_sendStarsForm, new Object(), new d4(this, auctionInternal, callback2));
         }
     }
 
@@ -535,7 +535,7 @@ public class GiftAuctionController extends BaseController {
         }
         if (tL_StarGiftAuctionState != null && !this.upgrades.get(j10, Boolean.FALSE).booleanValue()) {
             this.upgrades.put(j10, Boolean.TRUE);
-            requestAuctionUpgrades(j10, new g4(this, j10, tL_StarGiftAuctionState));
+            requestAuctionUpgrades(j10, new i4(this, j10, tL_StarGiftAuctionState));
         } else if (tL_StarGiftAuctionState != null) {
             onGiftAuctionStateReceivedInternal(j10, tL_StarGiftAuctionState);
         }
@@ -549,7 +549,7 @@ public class GiftAuctionController extends BaseController {
         applyGiftAuctionStateAndPerformUpdate(tL_StarGiftAuctionState.gift, tL_StarGiftAuctionState.state, tL_StarGiftAuctionState.user_state);
         AuctionInternal auctionInternal = this.auctions.get(j10);
         if (auctionInternal != null && auctionInternal.subscription) {
-            auctionInternal.resubscribe = new e4(this, auctionInternal, j10, 0);
+            auctionInternal.resubscribe = new g4(this, auctionInternal, j10, 0);
             AndroidUtilities.runOnUIThread(auctionInternal.resubscribe, tL_StarGiftAuctionState.timeout * 1000);
         }
     }
@@ -559,9 +559,9 @@ public class GiftAuctionController extends BaseController {
         Auction auction = getAuction(j10);
         re.c cVar = this.listeners;
         Long valueOf = Long.valueOf(j10);
-        synchronized (cVar.f45237c) {
+        synchronized (cVar.f45245c) {
             try {
-                re.b bVar = (re.b) cVar.f45237c.get(valueOf);
+                re.b bVar = (re.b) cVar.f45245c.get(valueOf);
                 if (bVar != null) {
                     it = bVar.iterator();
                 } else {
@@ -590,7 +590,7 @@ public class GiftAuctionController extends BaseController {
         TL_payments.TL_getStarGiftAuctionState tL_getStarGiftAuctionState = new TL_payments.TL_getStarGiftAuctionState();
         tL_getStarGiftAuctionState.auction = inputStarGiftAuction;
         tL_getStarGiftAuctionState.version = 0;
-        return getConnectionsManager().sendRequestTyped(tL_getStarGiftAuctionState, new Object(), new g1(1, this, callback2));
+        return getConnectionsManager().sendRequestTyped(tL_getStarGiftAuctionState, new Object(), new h1(1, this, callback2));
     }
 
     private void subscribeToGiftAuctionStateInternal(long j10) {
@@ -618,7 +618,7 @@ public class GiftAuctionController extends BaseController {
                 this.activeAuctions.add(valueAt.internalState);
             }
         }
-        List.EL.sort(this.activeAuctions, Comparator$CC.comparingInt(new f4(0)));
+        List.EL.sort(this.activeAuctions, Comparator$CC.comparingInt(new h4(0)));
         performUpdateActiveAuctions();
     }
 
@@ -643,7 +643,7 @@ public class GiftAuctionController extends BaseController {
             }
             TL_payments.TL_getStarGiftAuctionAcquiredGifts tL_getStarGiftAuctionAcquiredGifts = new TL_payments.TL_getStarGiftAuctionAcquiredGifts();
             tL_getStarGiftAuctionAcquiredGifts.gift_id = j10;
-            getConnectionsManager().sendRequestTyped(tL_getStarGiftAuctionAcquiredGifts, new Object(), new b4(this, callback, auctionInternal));
+            getConnectionsManager().sendRequestTyped(tL_getStarGiftAuctionAcquiredGifts, new Object(), new d4(this, callback, auctionInternal));
             return;
         }
         callback.run(null);
@@ -654,7 +654,7 @@ public class GiftAuctionController extends BaseController {
         if (auction != null) {
             callback2.run(auction, null);
         } else {
-            requestGiftAuctionById(j10, new jh(this, callback2, j10, 2));
+            requestGiftAuctionById(j10, new lh(this, callback2, j10, 1));
         }
     }
 
@@ -678,7 +678,7 @@ public class GiftAuctionController extends BaseController {
     public void requestAuctionUpgrades(long j10, Utilities.Callback<ArrayList<TL_stars.StarGiftAttribute>> callback) {
         TL_stars.getStarGiftUpgradeAttributes getstargiftupgradeattributes = new TL_stars.getStarGiftUpgradeAttributes();
         getstargiftupgradeattributes.gift_id = j10;
-        getConnectionsManager().sendRequestTyped(getstargiftupgradeattributes, new Object(), new h4(0, callback));
+        getConnectionsManager().sendRequestTyped(getstargiftupgradeattributes, new Object(), new j4(0, callback));
     }
 
     public int requestGiftAuctionById(long j10, Utilities.Callback2<TL_payments.TL_StarGiftAuctionState, TLRPC.TL_error> callback2) {
@@ -696,14 +696,14 @@ public class GiftAuctionController extends BaseController {
     public void requestUserAuctions() {
         TL_payments.TL_getStarGiftActiveAuctions tL_getStarGiftActiveAuctions = new TL_payments.TL_getStarGiftActiveAuctions();
         tL_getStarGiftActiveAuctions.hash = calculateUserAuctionsHash();
-        getConnectionsManager().sendRequestTyped(tL_getStarGiftActiveAuctions, new Object(), new je(this, 3));
+        getConnectionsManager().sendRequestTyped(tL_getStarGiftActiveAuctions, new Object(), new le(this, 3));
     }
 
     public void sendBid(long j10, yh.l lVar, long j11, Utilities.Callback2<Boolean, String> callback2) {
         AuctionInternal auctionInternal = this.auctions.get(j10);
         if (auctionInternal != null && !auctionInternal.pendingBid) {
             if (!ai.ga.y(this.currentAccount, false).e) {
-                ai.ga.y(this.currentAccount, false).r(new w2(this, callback2, j10, lVar, j11));
+                ai.ga.y(this.currentAccount, false).r(new x2(this, callback2, j10, lVar, j11));
                 return;
             }
             boolean hasBid = auctionInternal.hasBid();
@@ -714,20 +714,20 @@ public class GiftAuctionController extends BaseController {
             tL_inputInvoiceStarGiftAuctionBid.bid_amount = j11;
             tL_inputInvoiceStarGiftAuctionBid.update_bid = hasBid;
             if (lVar != null) {
-                long j12 = lVar.f50348a;
+                long j12 = lVar.f50353a;
                 if (j12 == 0) {
                     tL_inputInvoiceStarGiftAuctionBid.peer = new TLRPC.TL_inputPeerSelf();
                 } else {
                     tL_inputInvoiceStarGiftAuctionBid.peer = getMessagesController().getInputPeer(j12);
                 }
-                tL_inputInvoiceStarGiftAuctionBid.message = lVar.f50350c;
-                tL_inputInvoiceStarGiftAuctionBid.hide_name = lVar.f50349b;
+                tL_inputInvoiceStarGiftAuctionBid.message = lVar.f50355c;
+                tL_inputInvoiceStarGiftAuctionBid.hide_name = lVar.f50354b;
             } else if (!hasBid) {
                 tL_inputInvoiceStarGiftAuctionBid.peer = new TLRPC.TL_inputPeerSelf();
                 tL_inputInvoiceStarGiftAuctionBid.hide_name = false;
             }
             tL_payments_getPaymentForm.invoice = tL_inputInvoiceStarGiftAuctionBid;
-            getConnectionsManager().sendRequestTyped(tL_payments_getPaymentForm, new Object(), new c4(this, callback2, auctionInternal, tL_payments_getPaymentForm, 0));
+            getConnectionsManager().sendRequestTyped(tL_payments_getPaymentForm, new Object(), new e4(this, callback2, auctionInternal, tL_payments_getPaymentForm, 0));
             return;
         }
         callback2.run(Boolean.FALSE, null);
@@ -740,18 +740,18 @@ public class GiftAuctionController extends BaseController {
     public Auction subscribeToGiftAuction(long j10, OnAuctionUpdateListener onAuctionUpdateListener) {
         re.c cVar = this.listeners;
         Long valueOf = Long.valueOf(j10);
-        synchronized (cVar.f45237c) {
+        synchronized (cVar.f45245c) {
             try {
-                re.b bVar = (re.b) cVar.f45237c.get(valueOf);
+                re.b bVar = (re.b) cVar.f45245c.get(valueOf);
                 if (bVar == null) {
-                    bVar = cVar.f45236b;
+                    bVar = cVar.f45244b;
                     if (bVar != null) {
-                        cVar.f45236b = bVar.h;
+                        cVar.f45244b = bVar.h;
                         bVar.h = null;
                     } else {
-                        bVar = new re.b(false, cVar.f45235a);
+                        bVar = new re.b(false, cVar.f45243a);
                     }
-                    cVar.f45237c.put(valueOf, bVar);
+                    cVar.f45245c.put(valueOf, bVar);
                 }
                 bVar.add(onAuctionUpdateListener);
             } catch (Throwable th2) {
@@ -769,15 +769,15 @@ public class GiftAuctionController extends BaseController {
     public void unsubscribeFromGiftAuction(long j10, OnAuctionUpdateListener onAuctionUpdateListener) {
         re.c cVar = this.listeners;
         Long valueOf = Long.valueOf(j10);
-        synchronized (cVar.f45237c) {
+        synchronized (cVar.f45245c) {
             try {
-                re.b bVar = (re.b) cVar.f45237c.get(valueOf);
+                re.b bVar = (re.b) cVar.f45245c.get(valueOf);
                 if (bVar != null) {
                     bVar.remove(onAuctionUpdateListener);
                     if (bVar.isEmpty()) {
-                        cVar.f45237c.remove(valueOf);
-                        bVar.h = cVar.f45236b;
-                        cVar.f45236b = bVar;
+                        cVar.f45245c.remove(valueOf);
+                        bVar.h = cVar.f45244b;
+                        cVar.f45244b = bVar;
                     }
                 }
             } catch (Throwable th2) {

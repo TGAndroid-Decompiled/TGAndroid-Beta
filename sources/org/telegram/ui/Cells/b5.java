@@ -5,14 +5,14 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.bp0;
-import org.telegram.ui.Components.o31;
+import org.telegram.ui.Components.cp0;
+import org.telegram.ui.Components.p31;
 import org.telegram.ui.tt;
-public final class b5 implements bp0 {
-    public final tt f22044a;
+public final class b5 implements cp0 {
+    public final tt f22047a;
 
     public b5(tt ttVar) {
-        this.f22044a = ttVar;
+        this.f22047a = ttVar;
     }
 
     @Override
@@ -35,17 +35,17 @@ public final class b5 implements bp0 {
             }
         }
         int i11 = (int) d;
-        tt ttVar = this.f22044a;
+        tt ttVar = this.f22047a;
         long j10 = i11;
         boolean z11 = true;
-        ttVar.f22086b.setText(LocaleController.formatString("AutodownloadSizeLimitUpTo", R.string.AutodownloadSizeLimitUpTo, AndroidUtilities.formatFileSize(j10)));
+        ttVar.f22089b.setText(LocaleController.formatString("AutodownloadSizeLimitUpTo", R.string.AutodownloadSizeLimitUpTo, AndroidUtilities.formatFileSize(j10)));
         ttVar.d = j10;
         v8[] v8VarArr = ttVar.h;
-        AnimatorSet[] animatorSetArr = ttVar.f41740n;
+        AnimatorSet[] animatorSetArr = ttVar.f41746n;
         int i12 = ttVar.e;
-        i10 = ttVar.f41741r.videosRow;
+        i10 = ttVar.f41747r.videosRow;
         if (i12 == i10) {
-            ttVar.f41739f.setText(LocaleController.formatString("AutoDownloadPreloadVideoInfo", R.string.AutoDownloadPreloadVideoInfo, AndroidUtilities.formatFileSize(j10)));
+            ttVar.f41745f.setText(LocaleController.formatString("AutoDownloadPreloadVideoInfo", R.string.AutoDownloadPreloadVideoInfo, AndroidUtilities.formatFileSize(j10)));
             if (i11 <= 2097152) {
                 z11 = false;
             }
@@ -60,7 +60,7 @@ public final class b5 implements bp0 {
                 AnimatorSet animatorSet2 = new AnimatorSet();
                 animatorSetArr[0] = animatorSet2;
                 animatorSet2.playTogether(arrayList);
-                animatorSetArr[0].addListener(new o31(ttVar, 20));
+                animatorSetArr[0].addListener(new p31(ttVar, 20));
                 animatorSetArr[0].setDuration(150L);
                 animatorSetArr[0].start();
             }
@@ -75,10 +75,10 @@ public final class b5 implements bp0 {
     @Override
     public final CharSequence getContentDescription() {
         StringBuilder sb2 = new StringBuilder();
-        tt ttVar = this.f22044a;
-        sb2.append((Object) ttVar.f22085a.getText());
+        tt ttVar = this.f22047a;
+        sb2.append((Object) ttVar.f22088a.getText());
         sb2.append(" ");
-        sb2.append((Object) ttVar.f22086b.getText());
+        sb2.append((Object) ttVar.f22089b.getText());
         return sb2.toString();
     }
 

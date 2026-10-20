@@ -943,7 +943,7 @@ public class NotificationCenter {
                 }
             }
             if (j10 != Long.MAX_VALUE) {
-                AndroidUtilities.runOnUIThread(new qg(this, 0), Math.max(17L, 5017 - (elapsedRealtime - j10)));
+                AndroidUtilities.runOnUIThread(new sg(this, 0), Math.max(17L, 5017 - (elapsedRealtime - j10)));
             }
         }
     }
@@ -1035,7 +1035,7 @@ public class NotificationCenter {
     }
 
     public void lambda$checkForExpiredNotifications$0() {
-        this.checkForExpiredNotifications = new qg(this, 1);
+        this.checkForExpiredNotifications = new sg(this, 1);
     }
 
     public static void lambda$listen$4(int i10, Utilities.Callback callback, int i11, int i12, Object[] objArr) {
@@ -1055,7 +1055,7 @@ public class NotificationCenter {
     }
 
     public static void listenEmojiLoading(View view) {
-        getGlobalInstance().listen(view, emojiLoaded, new d1(view, 2));
+        getGlobalInstance().listen(view, emojiLoaded, new e1(view, 2));
     }
 
     private void postNotificationDebounced(int i10, Object[] objArr) {
@@ -1063,9 +1063,9 @@ public class NotificationCenter {
         if (this.alreadyPostedRunnubles.indexOfKey(hashCode) >= 0) {
             return;
         }
-        a5 a5Var = new a5(this, i10, objArr, hashCode);
-        this.alreadyPostedRunnubles.put(hashCode, a5Var);
-        AndroidUtilities.runOnUIThread(a5Var, 250L);
+        c5 c5Var = new c5(this, i10, objArr, hashCode);
+        this.alreadyPostedRunnubles.put(hashCode, c5Var);
+        AndroidUtilities.runOnUIThread(c5Var, 250L);
     }
 
     public static void sanitize() {
@@ -1220,7 +1220,7 @@ public class NotificationCenter {
             view.addOnAttachStateChangeListener(onAttachStateChangeListener);
             return new ai.ub(this, view, onAttachStateChangeListener, notificationCenterDelegate, i10, 12);
         }
-        return new y1(17);
+        return new z1(17);
     }
 
     public void onAnimationFinish(int i10) {
@@ -1353,7 +1353,7 @@ public class NotificationCenter {
     }
 
     public void postNotificationNameOnUIThread(int i10, Object... objArr) {
-        AndroidUtilities.runOnUIThread(new t4(this, i10, objArr, 19));
+        AndroidUtilities.runOnUIThread(new v4(this, i10, objArr, 19));
     }
 
     public void removeDelayed(Runnable runnable) {
@@ -1517,9 +1517,9 @@ public class NotificationCenter {
         allowedNotifications.allowedIds = iArr;
         this.allowedNotifications.put(this.animationInProgressPointer, allowedNotifications);
         if (this.checkForExpiredNotifications == null) {
-            qg qgVar = new qg(this, 1);
-            this.checkForExpiredNotifications = qgVar;
-            AndroidUtilities.runOnUIThread(qgVar, 5017L);
+            sg sgVar = new sg(this, 1);
+            this.checkForExpiredNotifications = sgVar;
+            AndroidUtilities.runOnUIThread(sgVar, 5017L);
         }
         return this.animationInProgressPointer;
     }

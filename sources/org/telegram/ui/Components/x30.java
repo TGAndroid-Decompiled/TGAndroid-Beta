@@ -5,25 +5,25 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.Utilities;
 public final class x30 implements Runnable {
-    public final int f32293a;
-    public final z30 f32294b;
-    public final String f32295c;
+    public final int f32327a;
+    public final z30 f32328b;
+    public final String f32329c;
     public final int d;
 
     public x30(z30 z30Var, String str, int i10, int i11) {
-        this.f32293a = i11;
-        this.f32294b = z30Var;
-        this.f32295c = str;
+        this.f32327a = i11;
+        this.f32328b = z30Var;
+        this.f32329c = str;
         this.d = i10;
     }
 
     @Override
     public final void run() {
         long j10;
-        switch (this.f32293a) {
+        switch (this.f32327a) {
             case 0:
-                z30 z30Var = this.f32294b;
-                String str = this.f32295c;
+                z30 z30Var = this.f32328b;
+                String str = this.f32329c;
                 int i10 = this.d;
                 if (z30Var.e != null) {
                     z30Var.e = null;
@@ -32,13 +32,13 @@ public final class x30 implements Runnable {
                 }
                 return;
             default:
-                z30 z30Var2 = this.f32294b;
-                String str2 = this.f32295c;
+                z30 z30Var2 = this.f32328b;
+                String str2 = this.f32329c;
                 int i11 = this.d;
                 ArrayList arrayList = null;
                 z30Var2.e = null;
-                if (!ChatObject.isChannel(z30Var2.f32831w.V) && z30Var2.f32831w.W != null) {
-                    arrayList = new ArrayList(z30Var2.f32831w.W.participants.participants);
+                if (!ChatObject.isChannel(z30Var2.f32826w.V) && z30Var2.f32826w.W != null) {
+                    arrayList = new ArrayList(z30Var2.f32826w.W.participants.participants);
                 }
                 ArrayList arrayList2 = arrayList;
                 if (arrayList2 != null) {
@@ -47,9 +47,9 @@ public final class x30 implements Runnable {
                     z30Var2.h = false;
                 }
                 hg.a2 a2Var = z30Var2.d;
-                boolean canAddUsers = ChatObject.canAddUsers(z30Var2.f32831w.V);
-                if (ChatObject.isChannel(z30Var2.f32831w.V)) {
-                    j10 = z30Var2.f32831w.V.f20273id;
+                boolean canAddUsers = ChatObject.canAddUsers(z30Var2.f32826w.V);
+                if (ChatObject.isChannel(z30Var2.f32826w.V)) {
+                    j10 = z30Var2.f32826w.V.f20276id;
                 } else {
                     j10 = 0;
                 }

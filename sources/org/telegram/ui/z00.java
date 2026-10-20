@@ -7,15 +7,15 @@ import android.widget.FrameLayout;
 import java.util.ArrayList;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
-public final class z00 extends org.telegram.ui.Components.em0 {
-    public final Context f43578r;
-    public final int f43579s;
+public final class z00 extends org.telegram.ui.Components.fm0 {
+    public final Context f43584r;
+    public final int f43585s;
     public final e10 v;
 
     public z00(e10 e10Var, Context context, int i10) {
         this.v = e10Var;
-        this.f43578r = context;
-        this.f43579s = i10;
+        this.f43584r = context;
+        this.f43585s = i10;
     }
 
     @Override
@@ -24,7 +24,7 @@ public final class z00 extends org.telegram.ui.Components.em0 {
     }
 
     @Override
-    public final void G(org.telegram.ui.Components.im0 im0Var, float f7, int[] iArr) {
+    public final void G(org.telegram.ui.Components.jm0 jm0Var, float f7, int[] iArr) {
         iArr[0] = 0;
         iArr[1] = 0;
     }
@@ -33,10 +33,10 @@ public final class z00 extends org.telegram.ui.Components.em0 {
     public final int M(int i10) {
         e10 e10Var = this.v;
         int i11 = 1;
-        if (i10 >= e10Var.f36501n.size()) {
+        if (i10 >= e10Var.f36507n.size()) {
             return 1;
         }
-        int size = ((ArrayList) e10Var.f36506r.get(e10Var.f36501n.get(i10))).size();
+        int size = ((ArrayList) e10Var.f36512r.get(e10Var.f36507n.get(i10))).size();
         if (i10 == 0) {
             i11 = 0;
         }
@@ -50,13 +50,13 @@ public final class z00 extends org.telegram.ui.Components.em0 {
 
     @Override
     public final int P(int i10, int i11) {
-        if (i10 >= this.v.f36501n.size()) {
+        if (i10 >= this.v.f36507n.size()) {
             return 2;
         }
         if (i10 != 0 && i11 == 0) {
             return 0;
         }
-        int i12 = this.f43579s;
+        int i12 = this.f43585s;
         if (i12 != 2 && i12 != 4) {
             return 1;
         }
@@ -67,11 +67,11 @@ public final class z00 extends org.telegram.ui.Components.em0 {
     public final int R() {
         e10 e10Var = this.v;
         int i10 = 0;
-        if (e10Var.f36501n.isEmpty()) {
+        if (e10Var.f36507n.isEmpty()) {
             return 0;
         }
-        int size = e10Var.f36501n.size();
-        if (!e10Var.f36501n.isEmpty() && !e10Var.N) {
+        int size = e10Var.f36507n.size();
+        if (!e10Var.f36507n.isEmpty() && !e10Var.N) {
             i10 = 1;
         }
         return size + i10;
@@ -80,7 +80,7 @@ public final class z00 extends org.telegram.ui.Components.em0 {
     @Override
     public final View T(int i10, View view) {
         if (view == null) {
-            view = new org.telegram.ui.Cells.u3(this.f43578r, null);
+            view = new org.telegram.ui.Cells.u3(this.f43584r, null);
             view.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.e7, false) & (-218103809));
         }
         if (i10 == 0) {
@@ -88,9 +88,9 @@ public final class z00 extends org.telegram.ui.Components.em0 {
             return view;
         }
         e10 e10Var = this.v;
-        if (i10 < e10Var.f36501n.size()) {
+        if (i10 < e10Var.f36507n.size()) {
             view.setAlpha(1.0f);
-            ((org.telegram.ui.Cells.u3) view).setText(LocaleController.formatSectionDate(((MessageObject) ((ArrayList) e10Var.f36506r.get((String) e10Var.f36501n.get(i10))).get(0)).messageOwner.date));
+            ((org.telegram.ui.Cells.u3) view).setText(LocaleController.formatSectionDate(((MessageObject) ((ArrayList) e10Var.f36512r.get((String) e10Var.f36507n.get(i10))).get(0)).messageOwner.date));
         }
         return view;
     }
@@ -108,12 +108,12 @@ public final class z00 extends org.telegram.ui.Components.em0 {
         boolean z10;
         boolean z11;
         e10 e10Var = this.v;
-        ArrayList arrayList = e10Var.f36501n;
-        int i12 = b1Var.f45915f;
-        View view = b1Var.f45912a;
+        ArrayList arrayList = e10Var.f36507n;
+        int i12 = b1Var.f45920f;
+        View view = b1Var.f45917a;
         if (i12 != 2) {
-            ArrayList arrayList2 = (ArrayList) e10Var.f36506r.get((String) arrayList.get(i10));
-            int i13 = b1Var.f45915f;
+            ArrayList arrayList2 = (ArrayList) e10Var.f36512r.get((String) arrayList.get(i10));
+            int i13 = b1Var.f45920f;
             boolean z12 = false;
             if (i13 != 0) {
                 boolean z13 = true;
@@ -164,7 +164,7 @@ public final class z00 extends org.telegram.ui.Components.em0 {
     public final s4.b1 x(ViewGroup viewGroup, int i10) {
         FrameLayout frameLayout;
         FrameLayout frameLayout2;
-        Context context = this.f43578r;
+        Context context = this.f43584r;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 != 2) {
@@ -172,7 +172,7 @@ public final class z00 extends org.telegram.ui.Components.em0 {
                     return com.google.android.gms.internal.play_billing.k3.l(frameLayout2, frameLayout2, -1, -2);
                 }
                 org.telegram.ui.Components.b10 b10Var = new org.telegram.ui.Components.b10(context, null);
-                int i11 = this.f43579s;
+                int i11 = this.f43585s;
                 if (i11 != 2 && i11 != 4) {
                     b10Var.setViewType(3);
                 } else {

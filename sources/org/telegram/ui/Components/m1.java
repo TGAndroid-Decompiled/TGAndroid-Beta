@@ -8,37 +8,37 @@ import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.Utilities;
 public final class m1 implements Runnable {
-    public final int f28349a = 0;
-    public final long f28350b;
-    public final int f28351c;
+    public final int f28334a = 0;
+    public final long f28335b;
+    public final int f28336c;
     public final Object d;
     public final Object e;
-    public final Object f28352f;
+    public final Object f28337f;
     public final Object h;
-    public final Object f28353n;
+    public final Object f28338n;
 
     public m1(int i10, long j10, Activity activity, ArrayList arrayList, HashMap hashMap, Utilities.Callback callback, org.telegram.ui.ActionBar.d6 d6Var) {
-        this.f28351c = i10;
-        this.f28350b = j10;
+        this.f28336c = i10;
+        this.f28335b = j10;
         this.d = activity;
         this.e = arrayList;
-        this.f28352f = d6Var;
+        this.f28337f = d6Var;
         this.h = callback;
-        this.f28353n = hashMap;
+        this.f28338n = hashMap;
     }
 
     @Override
     public final void run() {
-        switch (this.f28349a) {
+        switch (this.f28334a) {
             case 0:
                 Activity activity = (Activity) this.d;
                 ArrayList arrayList = (ArrayList) this.e;
-                org.telegram.ui.ActionBar.d6 d6Var = (org.telegram.ui.ActionBar.d6) this.f28352f;
+                org.telegram.ui.ActionBar.d6 d6Var = (org.telegram.ui.ActionBar.d6) this.f28337f;
                 Utilities.Callback callback = (Utilities.Callback) this.h;
-                HashMap hashMap = (HashMap) this.f28353n;
-                int i10 = this.f28351c;
+                HashMap hashMap = (HashMap) this.f28338n;
+                int i10 = this.f28336c;
                 long j10 = ai.ga.y(i10, false).p().amount;
-                long j11 = this.f28350b;
+                long j11 = this.f28335b;
                 if (j10 < j11) {
                     if (activity != null) {
                         long longValue = ((Long) arrayList.get(0)).longValue();
@@ -52,9 +52,9 @@ public final class m1 implements Runnable {
             default:
                 final org.telegram.ui.Wallet.f2 f2Var = (org.telegram.ui.Wallet.f2) this.d;
                 final org.telegram.ui.Wallet.b2 b2Var = (org.telegram.ui.Wallet.b2) this.e;
-                final org.telegram.ui.Wallet.s1 s1Var = (org.telegram.ui.Wallet.s1) this.f28352f;
+                final org.telegram.ui.Wallet.s1 s1Var = (org.telegram.ui.Wallet.s1) this.f28337f;
                 String str = (String) this.h;
-                org.telegram.ui.Wallet.j0 j0Var = (org.telegram.ui.Wallet.j0) this.f28353n;
+                org.telegram.ui.Wallet.j0 j0Var = (org.telegram.ui.Wallet.j0) this.f28338n;
                 f2Var.h = false;
                 if (b2Var == null) {
                     s1Var.run(null, str);
@@ -62,11 +62,11 @@ public final class m1 implements Runnable {
                 }
                 String str2 = b2Var.e;
                 if (f2Var.y(b2Var) && !f2Var.i(b2Var)) {
-                    f2Var.f34192g = b2Var;
-                    if ("sendTransaction".equals(str2) && b2Var.f34012f != null) {
-                        SharedPreferences mainSettings = MessagesController.getMainSettings(f2Var.f34188a);
-                        if (mainSettings.contains(org.telegram.ui.Wallet.f2.j(this.f28350b, this.f28351c) + ".transfer")) {
-                            b2Var.f34018m = true;
+                    f2Var.f34198g = b2Var;
+                    if ("sendTransaction".equals(str2) && b2Var.f34018f != null) {
+                        SharedPreferences mainSettings = MessagesController.getMainSettings(f2Var.f34194a);
+                        if (mainSettings.contains(org.telegram.ui.Wallet.f2.j(this.f28335b, this.f28336c) + ".transfer")) {
+                            b2Var.f34024m = true;
                             f2Var.z(b2Var, j0Var, new Utilities.Callback() {
                                 @Override
                                 public final void run(Object obj) {
@@ -76,7 +76,7 @@ public final class m1 implements Runnable {
                                             f2 f2Var2 = f2Var;
                                             f2Var2.getClass();
                                             b2 b2Var2 = b2Var;
-                                            b2Var2.f34018m = false;
+                                            b2Var2.f34024m = false;
                                             f2Var2.s(b2Var2);
                                             s1Var.run(null, str3);
                                             return;
@@ -90,7 +90,7 @@ public final class m1 implements Runnable {
                             return;
                         }
                     }
-                    if (b2Var.f34017l < 0 && !"disconnect".equals(str2)) {
+                    if (b2Var.f34023l < 0 && !"disconnect".equals(str2)) {
                         s1Var.run(b2Var, null);
                         return;
                     }
@@ -104,7 +104,7 @@ public final class m1 implements Runnable {
                                     f2 f2Var2 = f2Var;
                                     f2Var2.getClass();
                                     b2 b2Var2 = b2Var;
-                                    b2Var2.f34018m = false;
+                                    b2Var2.f34024m = false;
                                     f2Var2.s(b2Var2);
                                     s1Var.run(null, str3);
                                     return;
@@ -125,10 +125,10 @@ public final class m1 implements Runnable {
     public m1(org.telegram.ui.Wallet.f2 f2Var, org.telegram.ui.Wallet.b2 b2Var, org.telegram.ui.Wallet.s1 s1Var, String str, long j10, int i10, org.telegram.ui.Wallet.j0 j0Var) {
         this.d = f2Var;
         this.e = b2Var;
-        this.f28352f = s1Var;
+        this.f28337f = s1Var;
         this.h = str;
-        this.f28350b = j10;
-        this.f28351c = i10;
-        this.f28353n = j0Var;
+        this.f28335b = j10;
+        this.f28336c = i10;
+        this.f28338n = j0Var;
     }
 }

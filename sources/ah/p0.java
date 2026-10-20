@@ -29,8 +29,8 @@ import org.telegram.ui.Cells.s7;
 import org.telegram.ui.Cells.t1;
 import org.telegram.ui.Cells.za;
 import org.telegram.ui.Components.RadialProgressView;
-import org.telegram.ui.Components.c91;
-import org.telegram.ui.Components.cl0;
+import org.telegram.ui.Components.d91;
+import org.telegram.ui.Components.dl0;
 import org.telegram.ui.e5;
 import org.telegram.ui.h5;
 import org.telegram.ui.jd;
@@ -73,14 +73,14 @@ public final class p0 extends AnimatorListenerAdapter {
                 return;
             case 26:
                 za zaVar = (za) this.f846c;
-                AnimatorSet animatorSet3 = zaVar.f23887f;
+                AnimatorSet animatorSet3 = zaVar.f23890f;
                 if (animatorSet3 != null && animatorSet3.equals(animator)) {
-                    zaVar.f23887f = null;
+                    zaVar.f23890f = null;
                     return;
                 }
                 return;
             case 28:
-                ((md) this.f846c).f39187n = null;
+                ((md) this.f846c).f39193n = null;
                 return;
             case 29:
                 qn qnVar = (qn) this.f846c;
@@ -128,7 +128,7 @@ public final class p0 extends AnimatorListenerAdapter {
         switch (this.f844a) {
             case 0:
                 t0 t0Var = (t0) this.f846c;
-                cl0 cl0Var = t0Var.f878n;
+                dl0 dl0Var = t0Var.f878n;
                 t0Var.k();
                 t0Var.l();
                 boolean z12 = this.f845b;
@@ -145,14 +145,14 @@ public final class p0 extends AnimatorListenerAdapter {
                     t0Var.f875k = true;
                     t0Var.f868a.invalidate();
                 }
-                cl0Var.setCustomEmojiEnterProgress(Utilities.clamp(t0Var.f874j, 1.0f, 0.0f));
+                dl0Var.setCustomEmojiEnterProgress(Utilities.clamp(t0Var.f874j, 1.0f, 0.0f));
                 if (!z12) {
-                    cl0Var.setImportantForAccessibility(0);
-                    cl0Var.setSkipDraw(false);
+                    dl0Var.setImportantForAccessibility(0);
+                    dl0Var.setSkipDraw(false);
                     t0Var.f();
                     Runtime.getRuntime().gc();
                     int i13 = t0Var.f888y;
-                    cl0Var.setCustomEmojiReactionsBackground((i13 == 4 || i13 == 5) ? false : false);
+                    dl0Var.setCustomEmojiReactionsBackground((i13 == 4 || i13 == 5) ? false : false);
                 }
                 t0Var.C = false;
                 return;
@@ -222,13 +222,13 @@ public final class p0 extends AnimatorListenerAdapter {
                     f13 = 0.0f;
                 }
                 vVar.f8075w = f13;
-                c91 c91Var = vVar.f8073r;
+                d91 d91Var = vVar.f8073r;
                 if (z15) {
                     f14 = 0.0f;
                 } else {
                     f14 = -42.0f;
                 }
-                c91Var.setTranslationY(AndroidUtilities.dp(f14));
+                d91Var.setTranslationY(AndroidUtilities.dp(f14));
                 di.a aVar = vVar.f8072n;
                 if (z15) {
                     f27 = 42.0f;
@@ -453,9 +453,9 @@ public final class p0 extends AnimatorListenerAdapter {
                     f24 = 0.0f;
                 }
                 l4Var.Y0 = f24;
-                l4Var.f38768q0.setTranslationY(((1.0f - f24) * AndroidUtilities.dp(51.0f)) + l4Var.f38767p0);
+                l4Var.f38774q0.setTranslationY(((1.0f - f24) * AndroidUtilities.dp(51.0f)) + l4Var.f38773p0);
                 if (!z20) {
-                    l4Var.f38768q0.setVisibility(8);
+                    l4Var.f38774q0.setVisibility(8);
                     return;
                 }
                 return;
@@ -471,13 +471,13 @@ public final class p0 extends AnimatorListenerAdapter {
                         }
                         x4 x4Var = (x4) bVar.d;
                         x4Var.E = true;
-                        e5 e5Var = x4Var.f37488y;
+                        e5 e5Var = x4Var.f37494y;
                         if (e5Var != null) {
-                            if (e5Var.f36543g) {
-                                e5Var.f36543g = false;
-                                e5Var.f36540b.removeObserver(e5Var.f36539a, e5Var.e);
+                            if (e5Var.f36549g) {
+                                e5Var.f36549g = false;
+                                e5Var.f36546b.removeObserver(e5Var.f36545a, e5Var.e);
                             }
-                            x4Var.f37488y = null;
+                            x4Var.f37494y = null;
                         }
                         bVar.d = null;
                         ((ViewGroup) bVar.f4490b).requestDisallowInterceptTouchEvent(false);
@@ -492,12 +492,12 @@ public final class p0 extends AnimatorListenerAdapter {
                 org.telegram.ui.Cells.u1 u1Var2 = (org.telegram.ui.Cells.u1) this.f846c;
                 t1 t1Var = u1Var2.Zc;
                 int g10 = t1Var.g();
-                int i18 = u1Var2.f23325hd;
+                int i18 = u1Var2.f23328hd;
                 if (i18 != g10) {
                     u1Var2.t1(i18, g10, this.f845b);
                     return;
                 }
-                u1Var2.f23368kd = false;
+                u1Var2.f23371kd = false;
                 t1Var.a2 = i18;
                 return;
             case 23:
@@ -540,9 +540,9 @@ public final class p0 extends AnimatorListenerAdapter {
                 return;
             case 26:
                 za zaVar = (za) this.f846c;
-                AnimatorSet animatorSet3 = zaVar.f23887f;
+                AnimatorSet animatorSet3 = zaVar.f23890f;
                 if (animatorSet3 != null && animatorSet3.equals(animator)) {
-                    zaVar.f23887f = null;
+                    zaVar.f23890f = null;
                     if (!this.f845b) {
                         zaVar.setBackgroundColor(0);
                         return;
@@ -561,13 +561,13 @@ public final class p0 extends AnimatorListenerAdapter {
                 return;
             case 28:
                 md mdVar = (md) this.f846c;
-                if (mdVar.f39187n != null && (jdVar = mdVar.h) != null) {
+                if (mdVar.f39193n != null && (jdVar = mdVar.h) != null) {
                     if (this.f845b) {
                         jdVar.setVisibility(4);
                     } else {
-                        mdVar.f39192r.setVisibility(4);
+                        mdVar.f39198r.setVisibility(4);
                     }
-                    mdVar.f39187n = null;
+                    mdVar.f39193n = null;
                     return;
                 }
                 return;

@@ -5,27 +5,27 @@ import java.util.ArrayList;
 import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.js0;
+import org.telegram.ui.Components.ks0;
 public final class q1 implements Runnable {
-    public final int f50476a;
-    public final js0 f50477b;
+    public final int f50481a;
+    public final ks0 f50482b;
 
-    public q1(js0 js0Var, int i10) {
-        this.f50476a = i10;
-        this.f50477b = js0Var;
+    public q1(ks0 ks0Var, int i10) {
+        this.f50481a = i10;
+        this.f50482b = ks0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f50476a) {
+        switch (this.f50481a) {
             case 0:
-                this.f50477b.a();
+                this.f50482b.a();
                 return;
             case 1:
-                this.f50477b.setReorderingCollections(true);
+                this.f50482b.setReorderingCollections(true);
                 return;
             default:
-                v9 v9Var = this.f50477b.e;
+                v9 v9Var = this.f50482b.e;
                 v9Var.getClass();
                 TL_stars.reorderStarGiftCollections reorderstargiftcollections = new TL_stars.reorderStarGiftCollections();
                 int i10 = v9Var.f2317a;

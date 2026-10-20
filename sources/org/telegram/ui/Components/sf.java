@@ -4,24 +4,24 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import org.telegram.ui.Components.ChatActivityEnterView;
 public final class sf extends AnimatorListenerAdapter {
-    public final ChatActivityEnterView f30247a;
+    public final ChatActivityEnterView f30262a;
 
     public sf(ChatActivityEnterView chatActivityEnterView) {
-        this.f30247a = chatActivityEnterView;
+        this.f30262a = chatActivityEnterView;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        ChatActivityEnterView chatActivityEnterView = this.f30247a;
-        q81 q81Var = chatActivityEnterView.f23940f1;
-        if (q81Var != null) {
-            q81Var.setVisibility(8);
+        ChatActivityEnterView chatActivityEnterView = this.f30262a;
+        r81 r81Var = chatActivityEnterView.f23943f1;
+        if (r81Var != null) {
+            r81Var.setVisibility(8);
         }
-        dl0 dl0Var = chatActivityEnterView.f23952h1;
-        if (dl0Var != null) {
-            dl0Var.setVisibility(8);
+        el0 el0Var = chatActivityEnterView.f23955h1;
+        if (el0Var != null) {
+            el0Var.setVisibility(8);
         }
-        chatActivityEnterView.f23999p4 = 0.0f;
+        chatActivityEnterView.f24002p4 = 0.0f;
         chatActivityEnterView.v0();
         chatActivityEnterView.n0();
         ChatActivityEnterView.RecordCircle recordCircle = chatActivityEnterView.N1;

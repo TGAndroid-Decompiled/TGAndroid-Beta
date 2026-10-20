@@ -8,25 +8,25 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
 public final class si extends View {
-    public final int f30269a = 0;
-    public final int f30270b;
-    public final Object f30271c;
+    public final int f30289a = 0;
+    public final int f30290b;
+    public final Object f30291c;
     public final Object d;
     public final Object e;
 
     public si(ViewGroup viewGroup, int i10) {
         super(viewGroup.getContext());
-        this.f30271c = new ArrayList();
+        this.f30291c = new ArrayList();
         this.e = new org.telegram.ui.dz(this, 28);
         this.d = viewGroup;
-        this.f30270b = i10;
+        this.f30290b = i10;
     }
 
     public void a() {
         org.telegram.ui.dz dzVar = (org.telegram.ui.dz) this.e;
-        ArrayList arrayList = (ArrayList) this.f30271c;
+        ArrayList arrayList = (ArrayList) this.f30291c;
         boolean isEmpty = arrayList.isEmpty();
-        int i10 = this.f30270b;
+        int i10 = this.f30290b;
         if (isEmpty && getVisibility() != 8) {
             NotificationCenter.getInstance(i10).removeDelayed(dzVar);
             NotificationCenter.getInstance(i10).doOnIdle(dzVar);
@@ -38,11 +38,11 @@ public final class si extends View {
 
     @Override
     public final void onDraw(Canvas canvas) {
-        switch (this.f30269a) {
+        switch (this.f30289a) {
             case 0:
                 zf.y yVar = (zf.y) this.d;
-                org.telegram.ui.ActionBar.d6 d6Var = (org.telegram.ui.ActionBar.d6) this.f30271c;
-                int i10 = this.f30270b;
+                org.telegram.ui.ActionBar.d6 d6Var = (org.telegram.ui.ActionBar.d6) this.f30291c;
+                int i10 = this.f30290b;
                 yVar.b(org.telegram.ui.ActionBar.h6.m1(0.5f, org.telegram.ui.ActionBar.h6.w0(i10, d6Var)));
                 yVar.draw(canvas);
                 zf.y yVar2 = (zf.y) this.e;
@@ -50,7 +50,7 @@ public final class si extends View {
                 yVar2.draw(canvas);
                 return;
             default:
-                ArrayList arrayList = (ArrayList) this.f30271c;
+                ArrayList arrayList = (ArrayList) this.f30291c;
                 if (!arrayList.isEmpty()) {
                     for (int i11 = 0; i11 < arrayList.size(); i11++) {
                         ((org.telegram.ui.mh0) arrayList.get(i11)).a(canvas);
@@ -63,7 +63,7 @@ public final class si extends View {
 
     @Override
     public void onSizeChanged(int i10, int i11, int i12, int i13) {
-        switch (this.f30269a) {
+        switch (this.f30289a) {
             case 0:
                 super.onSizeChanged(i10, i11, i12, i13);
                 int i14 = AndroidUtilities.statusBarHeight;
@@ -84,7 +84,7 @@ public final class si extends View {
         super(context);
         this.d = new zf.y(2);
         this.e = new zf.y(2);
-        this.f30271c = d6Var;
-        this.f30270b = i10;
+        this.f30291c = d6Var;
+        this.f30290b = i10;
     }
 }

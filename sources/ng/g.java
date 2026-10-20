@@ -13,15 +13,15 @@ import org.telegram.ui.Cells.l4;
 import org.telegram.ui.Components.a91;
 import org.telegram.ui.Components.b91;
 import org.telegram.ui.Components.c91;
-import org.telegram.ui.Components.cp0;
-import org.telegram.ui.Components.hm0;
+import org.telegram.ui.Components.d91;
+import org.telegram.ui.Components.dp0;
+import org.telegram.ui.Components.im0;
 import org.telegram.ui.Components.s6;
-import org.telegram.ui.Components.z81;
 import org.telegram.ui.LaunchActivity;
 import s4.b1;
 import s4.o0;
 import w7.z5;
-public final class g extends hm0 {
+public final class g extends im0 {
     public final int f17458c = 0;
     public final Context d;
     public final FrameLayout e;
@@ -35,7 +35,7 @@ public final class g extends hm0 {
     public final boolean D(b1 b1Var) {
         switch (this.f17458c) {
             case 0:
-                if (j.d(3)[b1Var.f45915f] == 1) {
+                if (j.d(3)[b1Var.f45920f] == 1) {
                     return true;
                 }
                 return false;
@@ -50,7 +50,7 @@ public final class g extends hm0 {
             case 0:
                 return ((i) this.e).E.size();
             default:
-                return ((c91) this.e).h.size();
+                return ((d91) this.e).h.size();
         }
     }
 
@@ -58,7 +58,7 @@ public final class g extends hm0 {
     public long i(int i10) {
         switch (this.f17458c) {
             case 1:
-                return ((z81) ((c91) this.e).h.get(i10)).f32886a;
+                return ((a91) ((d91) this.e).h.get(i10)).f24555a;
             default:
                 return super.i(i10);
         }
@@ -77,10 +77,10 @@ public final class g extends hm0 {
     @Override
     public final void v(b1 b1Var, int i10) {
         boolean z10;
-        b91 b91Var;
+        c91 c91Var;
         switch (this.f17458c) {
             case 0:
-                View view = b1Var.f45912a;
+                View view = b1Var.f45917a;
                 a aVar = (a) ((i) this.e).E.get(i10);
                 int i11 = aVar.f17444b;
                 s6 s6Var = aVar.f17446f;
@@ -106,23 +106,23 @@ public final class g extends hm0 {
                     return;
                 }
                 x1 x1Var = (x1) view;
-                x1Var.setTextColor(h6.x0(null, h6.f21093j5, false));
+                x1Var.setTextColor(h6.x0(null, h6.f21096j5, false));
                 x1Var.a(0, charSequence);
                 return;
             default:
-                a91 a91Var = (a91) b1Var.f45912a;
-                c91 c91Var = (c91) this.e;
-                z81 z81Var = (z81) c91Var.h.get(i10);
-                a91Var.f24524a = z81Var;
-                a91Var.setContentDescription(z81Var.f32887b);
-                a91Var.setAlpha(1.0f);
-                a91Var.requestLayout();
-                if (c91Var.m0 && (b91Var = c91Var.f25151y) != null && ((l2.f) b91Var).z(i10)) {
+                b91 b91Var = (b91) b1Var.f45917a;
+                d91 d91Var = (d91) this.e;
+                a91 a91Var = (a91) d91Var.h.get(i10);
+                b91Var.f24833a = a91Var;
+                b91Var.setContentDescription(a91Var.f24556b);
+                b91Var.setAlpha(1.0f);
+                b91Var.requestLayout();
+                if (d91Var.m0 && (c91Var = d91Var.f25417y) != null && ((l2.f) c91Var).z(i10)) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                a91Var.setReordering(z10);
+                b91Var.setReordering(z10);
                 return;
         }
     }
@@ -143,12 +143,12 @@ public final class g extends hm0 {
                         TextPaint textPaint = new TextPaint(1);
                         frameLayout2.h = textPaint;
                         textPaint.setTextSize(AndroidUtilities.dp(16.0f));
-                        cp0 cp0Var = new cp0(context);
-                        frameLayout2.f17459a = cp0Var;
-                        cp0Var.setReportChanges(true);
-                        cp0Var.setDelegate(new l2.f((Object) frameLayout2, 5));
-                        cp0Var.setImportantForAccessibility(2);
-                        frameLayout2.addView(cp0Var, z5.d(-1, 38.0f, 83, 5.0f, 29.0f, 47.0f, 0.0f));
+                        dp0 dp0Var = new dp0(context);
+                        frameLayout2.f17459a = dp0Var;
+                        dp0Var.setReportChanges(true);
+                        dp0Var.setDelegate(new l2.f((Object) frameLayout2, 5));
+                        dp0Var.setImportantForAccessibility(2);
+                        frameLayout2.addView(dp0Var, z5.d(-1, 38.0f, 83, 5.0f, 29.0f, 47.0f, 0.0f));
                         frameLayout = frameLayout2;
                     }
                 } else {
@@ -157,12 +157,12 @@ public final class g extends hm0 {
                 frameLayout.setLayoutParams(new o0(-1, -2));
                 return new b1(frameLayout);
             default:
-                return new b1(new a91((c91) this.e, this.d));
+                return new b1(new b91((d91) this.e, this.d));
         }
     }
 
-    public g(c91 c91Var, Context context) {
-        this.e = c91Var;
+    public g(d91 d91Var, Context context) {
+        this.e = d91Var;
         this.d = context;
     }
 }

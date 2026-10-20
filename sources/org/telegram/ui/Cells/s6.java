@@ -15,20 +15,20 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 public final class s6 extends FrameLayout {
     public final org.telegram.ui.Components.p6 E;
-    public final int f23010a;
-    public final org.telegram.ui.ActionBar.j5 f23011b;
-    public final org.telegram.ui.ActionBar.j5 f23012c;
+    public final int f23013a;
+    public final org.telegram.ui.ActionBar.j5 f23014b;
+    public final org.telegram.ui.ActionBar.j5 f23015c;
     public final ImageView d;
     public long e;
-    public final RectF f23013f;
+    public final RectF f23016f;
     public final boolean h;
-    public final boolean f23014n;
-    public final org.telegram.ui.ActionBar.d6 f23015r;
-    public boolean f23016s;
+    public final boolean f23017n;
+    public final org.telegram.ui.ActionBar.d6 f23018r;
+    public boolean f23019s;
     public final androidx.activity.i v;
-    public final org.telegram.ui.Components.f6 f23017w;
-    public final org.telegram.ui.Components.f6 f23018x;
-    public final org.telegram.ui.Components.f6 f23019y;
+    public final org.telegram.ui.Components.f6 f23020w;
+    public final org.telegram.ui.Components.f6 f23021x;
+    public final org.telegram.ui.Components.f6 f23022y;
 
     public s6(android.content.Context r22, org.telegram.ui.ActionBar.d6 r23, boolean r24, boolean r25) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.s6.<init>(android.content.Context, org.telegram.ui.ActionBar.d6, boolean, boolean):void");
@@ -40,9 +40,9 @@ public final class s6 extends FrameLayout {
 
     public final void a() {
         long j10;
-        LocationController.SharingLocationInfo sharingLocationInfo = LocationController.getInstance(this.f23010a).getSharingLocationInfo(this.e);
+        LocationController.SharingLocationInfo sharingLocationInfo = LocationController.getInstance(this.f23013a).getSharingLocationInfo(this.e);
         if (sharingLocationInfo != null) {
-            if (this.f23014n) {
+            if (this.f23017n) {
                 String string = LocaleController.getString(R.string.StopLiveLocation);
                 TLRPC.Message message = sharingLocationInfo.messageObject.messageOwner;
                 int i10 = message.edit_date;
@@ -61,14 +61,14 @@ public final class s6 extends FrameLayout {
     }
 
     public final void b(String str, String str2) {
-        this.f23012c.l(str, false);
-        this.f23011b.l(str2, false);
+        this.f23015c.l(str, false);
+        this.f23014b.l(str2, false);
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        if (this.f23013f != null) {
+        if (this.f23016f != null) {
             androidx.activity.i iVar = this.v;
             AndroidUtilities.cancelRunOnUIThread(iVar);
             AndroidUtilities.runOnUIThread(iVar, 1000L);
@@ -90,8 +90,8 @@ public final class s6 extends FrameLayout {
         Paint U0;
         float dp;
         int i11;
-        boolean z10 = this.f23016s;
-        org.telegram.ui.ActionBar.d6 d6Var = this.f23015r;
+        boolean z10 = this.f23019s;
+        org.telegram.ui.ActionBar.d6 d6Var = this.f23018r;
         if (z10 && (U0 = org.telegram.ui.ActionBar.h6.U0("paintDivider", d6Var)) != null) {
             if (LocaleController.isRTL) {
                 dp = 0.0f;
@@ -111,13 +111,13 @@ public final class s6 extends FrameLayout {
         } else {
             canvas2 = canvas;
         }
-        if (!this.f23014n) {
-            int i12 = this.f23010a;
+        if (!this.f23017n) {
+            int i12 = this.f23013a;
             LocationController.SharingLocationInfo sharingLocationInfo = LocationController.getInstance(i12).getSharingLocationInfo(this.e);
-            org.telegram.ui.Components.f6 f6Var = this.f23017w;
-            float f11 = f6Var.f26108c;
+            org.telegram.ui.Components.f6 f6Var = this.f23020w;
+            float f11 = f6Var.f26086c;
             int currentTime = ConnectionsManager.getInstance(i12).getCurrentTime();
-            org.telegram.ui.Components.f6 f6Var2 = this.f23018x;
+            org.telegram.ui.Components.f6 f6Var2 = this.f23021x;
             if (sharingLocationInfo != null && (i10 = sharingLocationInfo.stopTime) >= currentTime && sharingLocationInfo.period != Integer.MAX_VALUE) {
                 f11 = Math.abs(i10 - currentTime) / sharingLocationInfo.period;
                 d = f6Var2.e(true);
@@ -131,27 +131,27 @@ public final class s6 extends FrameLayout {
                 return;
             }
             if (LocaleController.isRTL) {
-                this.f23013f.set(AndroidUtilities.dp(13.0f), (getMeasuredHeight() / 2.0f) - AndroidUtilities.dp(15.0f), AndroidUtilities.dp(43.0f), (getMeasuredHeight() / 2.0f) + AndroidUtilities.dp(15.0f));
+                this.f23016f.set(AndroidUtilities.dp(13.0f), (getMeasuredHeight() / 2.0f) - AndroidUtilities.dp(15.0f), AndroidUtilities.dp(43.0f), (getMeasuredHeight() / 2.0f) + AndroidUtilities.dp(15.0f));
             } else {
-                this.f23013f.set(getMeasuredWidth() - AndroidUtilities.dp(43.0f), (getMeasuredHeight() / 2.0f) - AndroidUtilities.dp(15.0f), getMeasuredWidth() - AndroidUtilities.dp(13.0f), (getMeasuredHeight() / 2.0f) + AndroidUtilities.dp(15.0f));
+                this.f23016f.set(getMeasuredWidth() - AndroidUtilities.dp(43.0f), (getMeasuredHeight() / 2.0f) - AndroidUtilities.dp(15.0f), getMeasuredWidth() - AndroidUtilities.dp(13.0f), (getMeasuredHeight() / 2.0f) + AndroidUtilities.dp(15.0f));
             }
             canvas2.save();
             float lerp = AndroidUtilities.lerp(0.6f, 1.0f, f12);
-            canvas2.scale(lerp, lerp, this.f23013f.centerX(), this.f23013f.centerY());
-            int w02 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21275si, d6Var);
-            org.telegram.ui.ActionBar.h6.f21128l2.setColor(w02);
-            int alpha = org.telegram.ui.ActionBar.h6.f21128l2.getAlpha();
+            canvas2.scale(lerp, lerp, this.f23016f.centerX(), this.f23016f.centerY());
+            int w02 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21278si, d6Var);
+            org.telegram.ui.ActionBar.h6.f21131l2.setColor(w02);
+            int alpha = org.telegram.ui.ActionBar.h6.f21131l2.getAlpha();
             float f14 = alpha;
-            org.telegram.ui.ActionBar.h6.f21128l2.setAlpha((int) (0.2f * f14 * f12));
-            canvas2.drawArc(this.f23013f, -90.0f, 360.0f, false, org.telegram.ui.ActionBar.h6.f21128l2);
-            org.telegram.ui.ActionBar.h6.f21128l2.setAlpha((int) (f14 * f12));
-            canvas.drawArc(this.f23013f, -90.0f, f6Var.d(f13, false) * (-360.0f), false, org.telegram.ui.ActionBar.h6.f21128l2);
-            org.telegram.ui.ActionBar.h6.f21128l2.setAlpha(alpha);
+            org.telegram.ui.ActionBar.h6.f21131l2.setAlpha((int) (0.2f * f14 * f12));
+            canvas2.drawArc(this.f23016f, -90.0f, 360.0f, false, org.telegram.ui.ActionBar.h6.f21131l2);
+            org.telegram.ui.ActionBar.h6.f21131l2.setAlpha((int) (f14 * f12));
+            canvas.drawArc(this.f23016f, -90.0f, f6Var.d(f13, false) * (-360.0f), false, org.telegram.ui.ActionBar.h6.f21131l2);
+            org.telegram.ui.ActionBar.h6.f21131l2.setAlpha(alpha);
             org.telegram.ui.Components.p6 p6Var = this.E;
             if (sharingLocationInfo != null) {
                 p6Var.t(LocaleController.formatLocationLeftTime(Math.abs(sharingLocationInfo.stopTime - currentTime)), true, true);
             }
-            int length = p6Var.f29185i.length();
+            int length = p6Var.f29230i.length();
             if (length > 4) {
                 f7 = 0.75f;
             } else if (length > 3) {
@@ -159,12 +159,12 @@ public final class s6 extends FrameLayout {
             } else {
                 f7 = 1.0f;
             }
-            float d10 = this.f23019y.d(f7, false);
-            canvas.scale(d10, d10, this.f23013f.centerX(), this.f23013f.centerY());
+            float d10 = this.f23022y.d(f7, false);
+            canvas.scale(d10, d10, this.f23016f.centerX(), this.f23016f.centerY());
             p6Var.u(w02);
             p6Var.B = (int) (f12 * 255.0f);
-            RectF rectF = this.f23013f;
-            RectF rectF2 = this.f23013f;
+            RectF rectF = this.f23016f;
+            RectF rectF2 = this.f23016f;
             p6Var.setBounds((int) rectF.left, (int) (rectF.centerY() - AndroidUtilities.dp(13.0f)), (int) rectF2.right, (int) (rectF2.centerY() + AndroidUtilities.dp(12.0f)));
             p6Var.draw(canvas);
             canvas.restore();
@@ -186,20 +186,20 @@ public final class s6 extends FrameLayout {
     public void setHasLocation(boolean z10) {
         float f7;
         float f10;
-        if (LocationController.getInstance(this.f23010a).getSharingLocationInfo(this.e) == null) {
+        if (LocationController.getInstance(this.f23013a).getSharingLocationInfo(this.e) == null) {
             float f11 = 0.5f;
             if (z10) {
                 f7 = 1.0f;
             } else {
                 f7 = 0.5f;
             }
-            this.f23012c.setAlpha(f7);
+            this.f23015c.setAlpha(f7);
             if (z10) {
                 f10 = 1.0f;
             } else {
                 f10 = 0.5f;
             }
-            this.f23011b.setAlpha(f10);
+            this.f23014b.setAlpha(f10);
             if (z10) {
                 f11 = 1.0f;
             }

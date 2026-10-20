@@ -1,26 +1,43 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.MessageObject;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-public final class w51 implements my0 {
-    public final c61 f32016a;
+public final class w51 extends s4.r0 {
+    public final d61 f31973a;
 
-    public w51(c61 c61Var) {
-        this.f32016a = c61Var;
+    public w51(d61 d61Var) {
+        this.f31973a = d61Var;
     }
 
     @Override
-    public final boolean b() {
-        return this.f32016a.f25089b.a();
+    public final void a(RecyclerView recyclerView, int i10) {
+        s4.r0 r0Var = this.f31973a.f25356y;
+        if (r0Var != null) {
+            r0Var.a(recyclerView, i10);
+        }
     }
 
     @Override
-    public final boolean c() {
-        return this.f32016a.f25089b.c();
-    }
-
-    @Override
-    public final void e(TLRPC.Document document, String str, Object obj, MessageObject.SendAnimationData sendAnimationData, boolean z10, boolean z11, int i10, int i11) {
-        this.f32016a.f25089b.f(document, obj, z11, i10);
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        d61 d61Var = this.f31973a;
+        c61 c61Var = d61Var.f25353s;
+        t51 t51Var = d61Var.f25351n;
+        s4.r0 r0Var = d61Var.f25356y;
+        if (r0Var != null) {
+            r0Var.b(t51Var, i10, i11);
+        }
+        if (i11 > 0 && t51Var.getAdapter() == c61Var && d61Var.J && !c61Var.f25112r && !c61Var.f25113s) {
+            if (d61Var.f25352r.N0() >= ((c61Var.f25114w + 1) - ((c61Var.v + 1) * 10)) - 1) {
+                d61 d61Var2 = c61Var.f25115x;
+                if (d61Var2.J && !c61Var.f25112r && !c61Var.f25113s) {
+                    c61Var.f25112r = true;
+                    TLRPC.TL_messages_getOldFeaturedStickers tL_messages_getOldFeaturedStickers = new TLRPC.TL_messages_getOldFeaturedStickers();
+                    tL_messages_getOldFeaturedStickers.offset = c61Var.f25111n.size();
+                    tL_messages_getOldFeaturedStickers.limit = 40;
+                    ConnectionsManager.getInstance(d61Var2.f25347a).sendRequest(tL_messages_getOldFeaturedStickers, new y1(c61Var, 17));
+                }
+            }
+        }
     }
 }

@@ -9,30 +9,30 @@ import android.widget.FrameLayout;
 import java.util.ArrayList;
 import org.telegram.ui.z91;
 public final class b30 extends AnimatorListenerAdapter {
-    public final int f24786a = 0;
-    public final View f24787b;
-    public final View f24788c;
+    public final int f24789a = 0;
+    public final View f24790b;
+    public final View f24791c;
     public final View d;
     public final Object e;
-    public final Object f24789f;
+    public final Object f24792f;
 
     public b30(z91 z91Var, si siVar, org.telegram.ui.Cells.u1 u1Var, org.telegram.ui.fk fkVar, org.telegram.ui.qn qnVar) {
-        this.f24789f = z91Var;
-        this.f24787b = siVar;
-        this.f24788c = u1Var;
+        this.f24792f = z91Var;
+        this.f24790b = siVar;
+        this.f24791c = u1Var;
         this.d = fkVar;
         this.e = qnVar;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f24786a) {
+        switch (this.f24789a) {
             case 0:
-                WindowManager windowManager = (WindowManager) this.f24789f;
-                View view = this.f24787b;
+                WindowManager windowManager = (WindowManager) this.f24792f;
+                View view = this.f24790b;
                 if (view.getParent() != null) {
                     view.setVisibility(8);
-                    View view2 = this.f24788c;
+                    View view2 = this.f24791c;
                     view2.setVisibility(8);
                     View view3 = this.d;
                     view3.setVisibility(8);
@@ -44,31 +44,31 @@ public final class b30 extends AnimatorListenerAdapter {
                 }
                 return;
             default:
-                z91 z91Var = (z91) this.f24789f;
+                z91 z91Var = (z91) this.f24792f;
                 z91Var.D.unlock();
-                si siVar = (si) this.f24787b;
-                ((ArrayList) siVar.f30271c).remove(z91Var);
+                si siVar = (si) this.f24790b;
+                ((ArrayList) siVar.f30291c).remove(z91Var);
                 siVar.a();
                 ((ViewGroup) siVar.d).invalidate();
-                org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) this.f24788c;
+                org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) this.f24791c;
                 u1Var.setEnterTransitionInProgress(false);
                 u1Var.getTransitionParams().D0.set(u1Var.getBackgroundDrawableLeft(), u1Var.getBackgroundDrawableTop(), u1Var.getBackgroundDrawableRight(), u1Var.getBackgroundDrawableBottom());
                 ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) this.d;
                 chatActivityEnterView.setTextTransitionIsRunning(false);
                 chatActivityEnterView.getEditField().setAlpha(1.0f);
                 org.telegram.ui.qn qnVar = (org.telegram.ui.qn) this.e;
-                ((ap[]) qnVar.f40606a0.f899b)[0].f24666c.setAlpha(1.0f);
-                ((ap[]) qnVar.f40606a0.f899b)[0].d.setAlpha(1.0f);
+                ((ap[]) qnVar.f40612a0.f899b)[0].f24689c.setAlpha(1.0f);
+                ((ap[]) qnVar.f40612a0.f899b)[0].d.setAlpha(1.0f);
                 a6.release((View) null, z91Var.H);
                 return;
         }
     }
 
     public b30(f30 f30Var, ah.x xVar, FrameLayout frameLayout, WindowManager windowManager, org.telegram.ui.x7 x7Var) {
-        this.f24787b = f30Var;
-        this.f24788c = xVar;
+        this.f24790b = f30Var;
+        this.f24791c = xVar;
         this.d = frameLayout;
-        this.f24789f = windowManager;
+        this.f24792f = windowManager;
         this.e = x7Var;
     }
 }

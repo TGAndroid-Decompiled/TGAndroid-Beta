@@ -41,33 +41,33 @@ public final class o2 extends w7.j0 {
                 return;
             case 2:
                 qn qnVar = (qn) this.f5684b;
-                qnVar.f40777n9 = !z10;
+                qnVar.f40783n9 = !z10;
                 if (z10) {
-                    if (qnVar.f40655d9 != null) {
+                    if (qnVar.f40661d9 != null) {
                         qn.W1(qnVar, 0.0f);
-                        qnVar.f40655d9 = null;
+                        qnVar.f40661d9 = null;
                     }
-                    qnVar.f40666e9 = false;
-                    qnVar.f40679f9 = false;
-                    il ilVar = qnVar.f40704h9;
+                    qnVar.f40672e9 = false;
+                    qnVar.f40685f9 = false;
+                    il ilVar = qnVar.f40710h9;
                     if (ilVar != null) {
                         AndroidUtilities.cancelRunOnUIThread(ilVar.H);
                         ilVar.a();
                     }
                 }
-                qnVar.zc();
+                qnVar.Ac();
                 return;
             default:
                 ic0 ic0Var = (ic0) this.f5684b;
                 ac0 ac0Var = ic0Var.e;
-                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = ic0Var.f27204s;
-                oc0 oc0Var = ic0Var.f27200c0;
-                if (oc0Var.f28953s) {
-                    if (!z10 && actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().f29273b > 0.0f) {
+                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = ic0Var.f27241s;
+                oc0 oc0Var = ic0Var.f27237c0;
+                if (oc0Var.f28991s) {
+                    if (!z10 && actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().f29591b > 0.0f) {
                         actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().b(true);
                         return;
                     } else if (z10) {
-                        if (ac0Var.v - ac0Var.f22010u > MessagesController.getInstance(oc0Var.f28954w).quoteLengthMax) {
+                        if (ac0Var.v - ac0Var.f22013u > MessagesController.getInstance(oc0Var.f28992w).quoteLengthMax) {
                             ic0Var.g();
                             return;
                         }
@@ -80,7 +80,7 @@ public final class o2 extends w7.j0 {
                         MessageObject c10 = ic0Var.c(messageObject);
                         MessagePreviewParams messagePreviewParams = oc0Var.d;
                         if (messagePreviewParams.quote == null) {
-                            int i10 = ac0Var.f22010u;
+                            int i10 = ac0Var.f22013u;
                             messagePreviewParams.quoteStart = i10;
                             int i11 = ac0Var.v;
                             messagePreviewParams.quoteEnd = i11;

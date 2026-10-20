@@ -1,30 +1,11 @@
 package org.telegram.messenger;
-public final class m5 implements Runnable {
-    public final int f18935a;
-    public final LocaleController f18936b;
-    public final int f18937c;
 
-    public m5(LocaleController localeController, int i10, int i11) {
-        this.f18935a = i11;
-        this.f18936b = localeController;
-        this.f18937c = i10;
+import android.graphics.drawable.Drawable;
+import org.telegram.messenger.ImageReceiver;
+public abstract class m5 {
+    public static void b(ImageReceiver.ImageReceiverDelegate imageReceiverDelegate, ImageReceiver imageReceiver) {
     }
 
-    @Override
-    public final void run() {
-        switch (this.f18935a) {
-            case 0:
-                LocaleController.u(this.f18936b, this.f18937c);
-                return;
-            case 1:
-                LocaleController.h(this.f18936b, this.f18937c);
-                return;
-            case 2:
-                LocaleController.k(this.f18936b, this.f18937c);
-                return;
-            default:
-                LocaleController.q(this.f18936b, this.f18937c);
-                return;
-        }
+    public static void a(ImageReceiver.ImageReceiverDelegate imageReceiverDelegate, int i10, String str, Drawable drawable) {
     }
 }

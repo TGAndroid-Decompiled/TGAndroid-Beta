@@ -21,7 +21,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.e11;
+import org.telegram.ui.Components.f11;
 import org.telegram.ui.Components.yq;
 public abstract class ie extends View {
     public final Matrix E;
@@ -31,7 +31,7 @@ public abstract class ie extends View {
     public final org.telegram.ui.Components.p6 I;
     public final yq[] J;
     public final Paint K;
-    public final e11 L;
+    public final f11 L;
     public final org.telegram.ui.Components.f6 M;
     public final org.telegram.ui.Components.f6 N;
     public boolean O;
@@ -93,7 +93,7 @@ public abstract class ie extends View {
         this.J = new yq[1];
         Paint paint = new Paint(1);
         this.K = paint;
-        this.L = new e11(LocaleController.getString(R.string.StarsReactionTop), 14.0f, AndroidUtilities.getTypeface("fonts/rcondensedbold.ttf"));
+        this.L = new f11(LocaleController.getString(R.string.StarsReactionTop), 14.0f, AndroidUtilities.getTypeface("fonts/rcondensedbold.ttf"));
         bs bsVar = bs.h;
         this.M = new org.telegram.ui.Components.f6(this, 0L, 320L, bsVar);
         this.N = new org.telegram.ui.Components.f6(this, 0L, 320L, bsVar);
@@ -118,13 +118,13 @@ public abstract class ie extends View {
         p6Var.w(AndroidUtilities.dp(21.0f));
         p6Var.setCallback(this);
         p6Var.M = AndroidUtilities.displaySize.x;
-        p6Var.f29180b = 17;
+        p6Var.f29225b = 17;
         p6Var2.u(-570425345);
         p6Var2.w(AndroidUtilities.dp(11.0f));
         p6Var2.setCallback(this);
         p6Var2.M = AndroidUtilities.displaySize.x;
-        p6Var2.f29180b = 17;
-        paint.setColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21058h5, d6Var));
+        p6Var2.f29225b = 17;
+        paint.setColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21061h5, d6Var));
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(AndroidUtilities.dp(1.0f));
     }
@@ -252,7 +252,7 @@ public abstract class ie extends View {
         int i12 = (j10 > (-1L) ? 1 : (j10 == (-1L) ? 0 : -1));
         org.telegram.ui.Components.f6 f6Var2 = this.N;
         org.telegram.ui.Components.f6 f6Var3 = this.M;
-        e11 e11Var = this.L;
+        f11 f11Var = this.L;
         Paint paint5 = this.K;
         if (i12 != 0 && b((int) j10) < 1.0f && b((int) this.P) > 0.0f) {
             float dp = rectF2.left + AndroidUtilities.dp(12.0f) + (Utilities.clamp01(b((int) this.P)) * (rectF2.width() - AndroidUtilities.dp(24.0f)));
@@ -270,8 +270,8 @@ public abstract class ie extends View {
                 z13 = false;
             }
             float lerp = AndroidUtilities.lerp(dp2, dp3, f6Var2.e(z13));
-            if (dp + e11Var.f25728c + (AndroidUtilities.dp(16.0f) * 2) > rectF2.right) {
-                f14 = (dp - lerp) - e11Var.f25728c;
+            if (dp + f11Var.f26021c + (AndroidUtilities.dp(16.0f) * 2) > rectF2.right) {
+                f14 = (dp - lerp) - f11Var.f26021c;
             } else {
                 f14 = dp + lerp;
             }
@@ -319,14 +319,14 @@ public abstract class ie extends View {
                 z11 = false;
             }
             float lerp2 = AndroidUtilities.lerp(dp5, dp6, f6Var.e(z11));
-            if (e11Var.f25728c + dp4 + (AndroidUtilities.dp(16.0f) * 2) > rectF2.right) {
-                f13 = (dp4 - lerp2) - e11Var.f25728c;
+            if (f11Var.f26021c + dp4 + (AndroidUtilities.dp(16.0f) * 2) > rectF2.right) {
+                f13 = (dp4 - lerp2) - f11Var.f26021c;
             } else {
                 f13 = lerp2 + dp4;
             }
             float f18 = f13;
             paint2.setStrokeWidth(AndroidUtilities.dp(1.0f));
-            paint2.setColor(org.telegram.ui.ActionBar.h6.m1(0.4f, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21058h5, this.f1516a)));
+            paint2.setColor(org.telegram.ui.ActionBar.h6.m1(0.4f, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21061h5, this.f1516a)));
             i11 = i10;
             canvas2.drawLine(dp4, AndroidUtilities.lerp(rectF2.top, rectF2.centerY(), e7), dp4, AndroidUtilities.lerp(rectF2.bottom, rectF2.centerY(), e7), paint2);
             this.L.c(f18, rectF2.centerY(), 0.75f, -1, canvas);

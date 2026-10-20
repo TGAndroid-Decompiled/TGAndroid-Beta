@@ -1,27 +1,27 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.TLObject;
-public final class j9 implements Runnable {
-    public final int f18689a;
-    public final MediaDataController f18690b;
-    public final String f18691c;
-    public final TLObject d;
+import java.util.ArrayList;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+public final class j9 implements Utilities.Callback {
+    public final int f18678a;
+    public final MediaDataController f18679b;
+    public final TLRPC.StickerSet f18680c;
 
-    public j9(MediaDataController mediaDataController, String str, TLObject tLObject, int i10) {
-        this.f18689a = i10;
-        this.f18690b = mediaDataController;
-        this.f18691c = str;
-        this.d = tLObject;
+    public j9(MediaDataController mediaDataController, TLRPC.StickerSet stickerSet, int i10) {
+        this.f18678a = i10;
+        this.f18679b = mediaDataController;
+        this.f18680c = stickerSet;
     }
 
     @Override
-    public final void run() {
-        switch (this.f18689a) {
+    public final void run(Object obj) {
+        switch (this.f18678a) {
             case 0:
-                this.f18690b.lambda$fetchStickerSetInternal$41(this.f18691c, this.d);
+                this.f18679b.lambda$toggleStickerSetInternal$115(this.f18680c, (ArrayList) obj);
                 return;
             default:
-                this.f18690b.lambda$verifyAnimatedStickerMessageInternal$69(this.f18691c, this.d);
+                this.f18679b.lambda$toggleStickerSetInternal$112(this.f18680c, (ArrayList) obj);
                 return;
         }
     }

@@ -5,9 +5,9 @@ import android.graphics.Typeface;
 import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class lc extends nb {
-    public final w9 f28178a;
-    public final x90 f28179b;
-    public final x90 f28180c;
+    public final w9 f28132a;
+    public final x90 f28133b;
+    public final x90 f28134c;
 
     public lc(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context, d6Var);
@@ -15,21 +15,21 @@ public final class lc extends nb {
         getThemedColor(i10);
         setBackground(getThemedColor(org.telegram.ui.ActionBar.h6.Fi));
         w9 w9Var = new w9(context);
-        this.f28178a = w9Var;
+        this.f28132a = w9Var;
         addView(w9Var, w7.z5.i(32.0f, 32.0f, 8388627, 12.0f, 0.0f, 12.0f, 0.0f));
         int themedColor = getThemedColor(i10);
         int themedColor2 = getThemedColor(org.telegram.ui.ActionBar.h6.Gi);
-        LinearLayout e = org.telegram.messenger.kk.e(context, 1);
+        LinearLayout e = org.telegram.messenger.mk.e(context, 1);
         addView(e, w7.z5.i(-2.0f, -2.0f, 8388627, 52.0f, 8.0f, 8.0f, 8.0f));
         x90 x90Var = new x90(context, null);
-        this.f28179b = x90Var;
+        this.f28133b = x90Var;
         x90Var.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
         x90Var.setTextColor(themedColor);
         x90Var.setTextSize(1, 14.0f);
         x90Var.setTypeface(AndroidUtilities.bold());
         e.addView(x90Var);
         x90 x90Var2 = new x90(context, null);
-        this.f28180c = x90Var2;
+        this.f28134c = x90Var2;
         x90Var2.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
         x90Var2.setTextColor(themedColor);
         x90Var2.setLinkTextColor(themedColor2);
@@ -40,6 +40,6 @@ public final class lc extends nb {
 
     @Override
     public CharSequence getAccessibilityText() {
-        return ((Object) this.f28179b.getText()) + ".\n" + ((Object) this.f28180c.getText());
+        return ((Object) this.f28133b.getText()) + ".\n" + ((Object) this.f28134c.getText());
     }
 }

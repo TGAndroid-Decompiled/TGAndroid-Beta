@@ -8,11 +8,11 @@ import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.TLRPC;
-public final class zi implements org.telegram.ui.Components.xl0 {
-    public final qn f43759a;
+public final class zi implements org.telegram.ui.Components.yl0 {
+    public final qn f43765a;
 
     public zi(qn qnVar) {
-        this.f43759a = qnVar;
+        this.f43765a = qnVar;
     }
 
     @Override
@@ -23,7 +23,7 @@ public final class zi implements org.telegram.ui.Components.xl0 {
         MessageObject messageObject;
         org.telegram.ui.ActionBar.k kVar;
         TLRPC.ChatFull chatFull;
-        qn qnVar = this.f43759a;
+        qn qnVar = this.f43765a;
         if (!qnVar.E9() && ((tL_availableReaction = qnVar.getMediaDataController().getReactionsMap().get((doubleTapReaction = qnVar.getMediaDataController().getDoubleTapReaction()))) != null || (doubleTapReaction != null && doubleTapReaction.startsWith("animated_")))) {
             if (qnVar.T5 >= 0) {
                 z10 = true;
@@ -58,7 +58,7 @@ public final class zi implements org.telegram.ui.Components.xl0 {
         MessageObject messageObject;
         TLRPC.ChatFull chatFull;
         TLRPC.ChatFull chatFull2;
-        qn qnVar = this.f43759a;
+        qn qnVar = this.f43765a;
         if (qnVar.getParentActivity() != null && !qnVar.x() && !qnVar.c() && !qnVar.isInPreviewMode() && !qnVar.E9()) {
             if (view instanceof org.telegram.ui.Cells.u1) {
                 messageObject = ((org.telegram.ui.Cells.u1) view).getPrimaryMessageObject();
@@ -116,7 +116,7 @@ public final class zi implements org.telegram.ui.Components.xl0 {
         MessageObject messageObject2;
         int i11;
         org.telegram.ui.ActionBar.d6 d6Var;
-        qn qnVar = this.f43759a;
+        qn qnVar = this.f43765a;
         z10 = ((org.telegram.ui.ActionBar.n2) qnVar).inPreviewMode;
         if (!z10) {
             qnVar.D4 = true;
@@ -187,7 +187,7 @@ public final class zi implements org.telegram.ui.Components.xl0 {
             }
             if (view instanceof org.telegram.ui.Cells.u1) {
                 org.telegram.ui.Cells.u1 u1Var2 = (org.telegram.ui.Cells.u1) view;
-                if (qnVar.f40642c9.z(u1Var2.getMessageObject())) {
+                if (qnVar.f40648c9.z(u1Var2.getMessageObject())) {
                     return;
                 }
                 z12 = !u1Var2.i3(f7);

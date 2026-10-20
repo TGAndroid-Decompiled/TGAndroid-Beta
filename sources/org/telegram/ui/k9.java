@@ -6,22 +6,22 @@ import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-public final class k9 extends org.telegram.ui.Components.f61 {
-    public static final int f38460a = 0;
+public final class k9 extends org.telegram.ui.Components.g61 {
+    public static final int f38466a = 0;
 
     static {
-        org.telegram.ui.Components.f61.setup(new org.telegram.ui.Components.f61());
+        org.telegram.ui.Components.g61.setup(new org.telegram.ui.Components.g61());
     }
 
     @Override
-    public final void bindView(View view, org.telegram.ui.Components.g61 g61Var, boolean z10, org.telegram.ui.Components.t61 t61Var, org.telegram.ui.Components.b71 b71Var) {
+    public final void bindView(View view, org.telegram.ui.Components.h61 h61Var, boolean z10, org.telegram.ui.Components.u61 u61Var, org.telegram.ui.Components.c71 c71Var) {
         String lowerCase;
         l9 l9Var = (l9) view;
-        TLRPC.Chat chat = (TLRPC.Chat) g61Var.G;
-        View.OnClickListener onClickListener = g61Var.D;
-        l9Var.f38842c = chat;
-        org.telegram.ui.Components.ti0 ti0Var = l9Var.f38841b;
-        ti0Var.setTag(Long.valueOf(chat.f20273id));
+        TLRPC.Chat chat = (TLRPC.Chat) h61Var.G;
+        View.OnClickListener onClickListener = h61Var.D;
+        l9Var.f38848c = chat;
+        org.telegram.ui.Components.ui0 ui0Var = l9Var.f38847b;
+        ui0Var.setTag(Long.valueOf(chat.f20276id));
         if (ChatObject.isChannel(chat) && !chat.megagroup) {
             if (!ChatObject.isPublic(chat)) {
                 lowerCase = LocaleController.getString(R.string.ChannelPrivate).toLowerCase();
@@ -35,12 +35,12 @@ public final class k9 extends org.telegram.ui.Components.f61 {
         } else {
             lowerCase = LocaleController.getString(R.string.MegaPublic).toLowerCase();
         }
-        l9Var.f38840a.u(chat, null, null, lowerCase, false, false);
-        ti0Var.setOnClickListener(onClickListener);
+        l9Var.f38846a.u(chat, null, null, lowerCase, false, false);
+        ui0Var.setOnClickListener(onClickListener);
     }
 
     @Override
-    public final View createView(Context context, org.telegram.ui.Components.im0 im0Var, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
+    public final View createView(Context context, org.telegram.ui.Components.jm0 jm0Var, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
         return new l9(context);
     }
 }

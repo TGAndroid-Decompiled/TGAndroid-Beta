@@ -20,15 +20,15 @@ import org.telegram.messenger.voip.VoIPService;
 import org.telegram.tgnet.ResultCallback;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.xl0;
 import org.telegram.ui.Components.xr;
+import org.telegram.ui.Components.yl0;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.TwoStepVerificationActivity;
 import org.telegram.ui.cy;
 import org.telegram.ui.hf1;
 import org.telegram.ui.jz0;
 import org.telegram.ui.q50;
-public final class f implements hf1, org.telegram.ui.ActionBar.a2, ChatObject.Call.OnParticipantsLoad, ImageReceiver.ImageReceiverDelegate, xl0, MessagesController.IsInChatCheckedCallback, t5.b, s5.e, qa.a {
+public final class f implements hf1, org.telegram.ui.ActionBar.a2, ChatObject.Call.OnParticipantsLoad, ImageReceiver.ImageReceiverDelegate, yl0, MessagesController.IsInChatCheckedCallback, t5.b, s5.e, qa.a {
     public final int f1242a;
     public final long f1243b;
     public final Object f1244c;
@@ -109,7 +109,7 @@ public final class f implements hf1, org.telegram.ui.ActionBar.a2, ChatObject.Ca
 
     @Override
     public void didSetImageBitmap(int i10, String str, Drawable drawable) {
-        org.telegram.messenger.k5.a(this, i10, str, drawable);
+        org.telegram.messenger.m5.a(this, i10, str, drawable);
     }
 
     @Override
@@ -139,7 +139,7 @@ public final class f implements hf1, org.telegram.ui.ActionBar.a2, ChatObject.Ca
             case 4:
             default:
                 q50 q50Var = (q50) this.f1244c;
-                q50Var.d.getMessagesController().addUserToChat(q50Var.j1(), (TLRPC.User) this.d, 0, null, (org.telegram.ui.ActionBar.n2) q50Var.f40403i0.O().getFragmentStack().get(q50Var.f40403i0.O().getFragmentStack().size() - 1), new v3(q50Var, this.f1243b, 28));
+                q50Var.d.getMessagesController().addUserToChat(q50Var.j1(), (TLRPC.User) this.d, 0, null, (org.telegram.ui.ActionBar.n2) q50Var.f40409i0.O().getFragmentStack().get(q50Var.f40409i0.O().getFragmentStack().size() - 1), new v3(q50Var, this.f1243b, 28));
                 return;
             case 5:
                 xr.R((xr) this.f1244c, (ei.d) this.d, this.f1243b);
@@ -169,7 +169,7 @@ public final class f implements hf1, org.telegram.ui.ActionBar.a2, ChatObject.Ca
 
     @Override
     public void onAnimationReady(ImageReceiver imageReceiver) {
-        org.telegram.messenger.k5.b(this, imageReceiver);
+        org.telegram.messenger.m5.b(this, imageReceiver);
     }
 
     @Override

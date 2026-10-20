@@ -1,297 +1,70 @@
 package org.telegram.ui.Components;
 
-import android.os.AsyncTask;
-import java.net.URLEncoder;
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.regex.Matcher;
-import org.json.JSONArray;
-import org.json.JSONObject;
-import org.telegram.messenger.FileLog;
-public final class p91 extends AsyncTask {
-    public final int f29212a;
-    public String f29213b;
-    public final String[] f29214c;
-    public final v91 d;
+import android.content.Context;
+import android.view.MotionEvent;
+import android.view.ViewGroup;
+import android.webkit.WebView;
+import org.telegram.messenger.AndroidUtilities;
+public final class p91 extends WebView {
+    public final int f29268a = 0;
+    public final Object f29269b;
 
-    public p91(v91 v91Var, String str, int i10) {
-        this.f29212a = i10;
-        switch (i10) {
-            case 1:
-                this.d = v91Var;
-                this.f29214c = new String[4];
-                this.f29213b = str;
-                return;
-            case 2:
-                this.d = v91Var;
-                this.f29214c = new String[2];
-                this.f29213b = str;
-                return;
-            case 3:
-                this.d = v91Var;
-                this.f29214c = new String[2];
-                this.f29213b = str;
-                return;
-            case 4:
-                this.d = v91Var;
-                this.f29214c = new String[2];
-                this.f29213b = str;
+    public p91(org.telegram.ui.eo0 eo0Var, Context context) {
+        super(context);
+        this.f29269b = eo0Var;
+    }
+
+    @Override
+    public void onAttachedToWindow() {
+        switch (this.f29268a) {
+            case 0:
+                AndroidUtilities.checkAndroidTheme((Context) this.f29269b, true);
+                super.onAttachedToWindow();
                 return;
             default:
-                this.d = v91Var;
-                this.f29214c = new String[2];
-                this.f29213b = str;
+                super.onAttachedToWindow();
                 return;
         }
     }
 
     @Override
-    public final Object doInBackground(Object[] objArr) {
-        switch (this.f29212a) {
+    public void onDetachedFromWindow() {
+        switch (this.f29268a) {
             case 0:
-                Void[] voidArr = (Void[]) objArr;
-                String[] strArr = this.f29214c;
-                Locale locale = Locale.US;
-                this.d.getClass();
-                String c10 = v91.c(this, "http://www.aparat.com/video/video/embed/vt/frame/showvideo/yes/videohash/" + this.f29213b, null, true);
-                if (isCancelled()) {
-                    return null;
-                }
-                try {
-                    Matcher matcher = v91.f31210r0.matcher(c10);
-                    if (matcher.find()) {
-                        JSONArray jSONArray = new JSONArray(matcher.group(1));
-                        for (int i10 = 0; i10 < jSONArray.length(); i10++) {
-                            JSONArray jSONArray2 = jSONArray.getJSONArray(i10);
-                            if (jSONArray2.length() != 0) {
-                                JSONObject jSONObject = jSONArray2.getJSONObject(0);
-                                if (jSONObject.has("file")) {
-                                    strArr[0] = jSONObject.getString("file");
-                                    strArr[1] = "other";
-                                }
-                            }
-                        }
-                    }
-                } catch (Exception e) {
-                    FileLog.e(e);
-                }
-                if (isCancelled()) {
-                    return null;
-                }
-                return strArr[0];
-            case 1:
-                Void[] voidArr2 = (Void[]) objArr;
-                String[] strArr2 = this.f29214c;
-                Locale locale2 = Locale.US;
-                this.d.getClass();
-                String c11 = v91.c(this, "https://coub.com/api/v2/coubs/" + this.f29213b + ".json", null, true);
-                if (isCancelled()) {
-                    return null;
-                }
-                try {
-                    JSONObject jSONObject2 = new JSONObject(c11).getJSONObject("file_versions").getJSONObject("mobile");
-                    String string = jSONObject2.getString("video");
-                    String string2 = jSONObject2.getJSONArray("audio").getString(0);
-                    if (string != null && string2 != null) {
-                        strArr2[0] = string;
-                        strArr2[1] = "other";
-                        strArr2[2] = string2;
-                        strArr2[3] = "other";
-                    }
-                } catch (Exception e7) {
-                    FileLog.e(e7);
-                }
-                if (isCancelled()) {
-                    return null;
-                }
-                return strArr2[0];
-            case 2:
-                Void[] voidArr3 = (Void[]) objArr;
-                String[] strArr3 = this.f29214c;
-                String str = this.f29213b;
-                this.d.getClass();
-                String c12 = v91.c(this, str, null, false);
-                if (isCancelled()) {
-                    return null;
-                }
-                try {
-                    Matcher matcher2 = v91.f31211s0.matcher(c12);
-                    if (matcher2.find()) {
-                        strArr3[0] = new JSONObject(matcher2.group(1)).getJSONArray("quality_options").getJSONObject(0).getString("source");
-                        strArr3[1] = "other";
-                    }
-                } catch (Exception e10) {
-                    FileLog.e(e10);
-                }
-                if (isCancelled()) {
-                    return null;
-                }
-                return strArr3[0];
-            case 3:
-                Void[] voidArr4 = (Void[]) objArr;
-                String[] strArr4 = this.f29214c;
-                HashMap hashMap = new HashMap();
-                hashMap.put("Client-ID", "jzkbprff40iqj646a697cyrvl0zt2m6");
-                int indexOf = this.f29213b.indexOf(38);
-                if (indexOf > 0) {
-                    this.f29213b = this.f29213b.substring(0, indexOf);
-                }
-                Locale locale3 = Locale.US;
-                this.d.getClass();
-                String c13 = v91.c(this, "https://api.twitch.tv/kraken/streams/" + this.f29213b + "?stream_type=all", hashMap, false);
-                if (isCancelled()) {
-                    return null;
-                }
-                try {
-                    new JSONObject(c13).getJSONObject("stream");
-                    JSONObject jSONObject3 = new JSONObject(v91.c(this, "https://api.twitch.tv/api/channels/" + this.f29213b + "/access_token", hashMap, false));
-                    String encode = URLEncoder.encode(jSONObject3.getString("sig"), "UTF-8");
-                    String encode2 = URLEncoder.encode(jSONObject3.getString("token"), "UTF-8");
-                    URLEncoder.encode("https://youtube.googleapis.com/v/" + this.f29213b, "UTF-8");
-                    String str2 = this.f29213b;
-                    strArr4[0] = "https://usher.ttvnw.net/api/channel/hls/" + str2 + ".m3u8?" + ("allow_source=true&allow_audio_only=true&allow_spectre=true&player=twitchweb&segment_preference=4&p=" + ((int) (Math.random() * 1.0E7d)) + "&sig=" + encode + "&token=" + encode2);
-                    strArr4[1] = "hls";
-                } catch (Exception e11) {
-                    FileLog.e(e11);
-                }
-                if (isCancelled()) {
-                    return null;
-                }
-                return strArr4[0];
+                AndroidUtilities.checkAndroidTheme((Context) this.f29269b, false);
+                super.onDetachedFromWindow();
+                return;
             default:
-                Void[] voidArr5 = (Void[]) objArr;
-                String[] strArr5 = this.f29214c;
-                Locale locale4 = Locale.US;
-                this.d.getClass();
-                String c14 = v91.c(this, "https://player.vimeo.com/video/" + this.f29213b + "/config", null, true);
-                if (isCancelled()) {
-                    return null;
-                }
-                try {
-                    JSONObject jSONObject4 = new JSONObject(c14).getJSONObject("request").getJSONObject("files");
-                    if (jSONObject4.has("hls")) {
-                        JSONObject jSONObject5 = jSONObject4.getJSONObject("hls");
-                        try {
-                            strArr5[0] = jSONObject5.getString("url");
-                        } catch (Exception unused) {
-                            strArr5[0] = jSONObject5.getJSONObject("cdns").getJSONObject(jSONObject5.getString("default_cdn")).getString("url");
-                        }
-                        strArr5[1] = "hls";
-                    } else if (jSONObject4.has("progressive")) {
-                        strArr5[1] = "other";
-                        strArr5[0] = jSONObject4.getJSONArray("progressive").getJSONObject(0).getString("url");
-                    }
-                } catch (Exception e12) {
-                    FileLog.e(e12);
-                }
-                if (isCancelled()) {
-                    return null;
-                }
-                return strArr5[0];
+                super.onDetachedFromWindow();
+                return;
         }
     }
 
     @Override
-    public final void onPostExecute(Object obj) {
-        switch (this.f29212a) {
-            case 0:
-                String str = (String) obj;
-                v91 v91Var = this.d;
-                if (str != null) {
-                    v91Var.f31237w = true;
-                    v91Var.f31238x = str;
-                    v91Var.f31239y = this.f29214c[1];
-                    if (v91Var.f31236s) {
-                        v91Var.i();
-                    }
-                    v91Var.j(false, true);
-                    v91Var.f31228f0.d(true, true);
-                    return;
-                } else if (!isCancelled()) {
-                    v91Var.h();
-                    return;
-                } else {
-                    return;
-                }
+    public void onMeasure(int i10, int i11) {
+        switch (this.f29268a) {
             case 1:
-                String str2 = (String) obj;
-                v91 v91Var2 = this.d;
-                if (str2 != null) {
-                    v91Var2.f31237w = true;
-                    v91Var2.f31238x = str2;
-                    String[] strArr = this.f29214c;
-                    v91Var2.f31239y = strArr[1];
-                    v91Var2.E = strArr[2];
-                    v91Var2.F = strArr[3];
-                    if (v91Var2.f31236s) {
-                        v91Var2.i();
-                    }
-                    v91Var2.j(false, true);
-                    v91Var2.f31228f0.d(true, true);
-                    return;
-                } else if (!isCancelled()) {
-                    v91Var2.h();
-                    return;
-                } else {
-                    return;
-                }
-            case 2:
-                String str3 = (String) obj;
-                v91 v91Var3 = this.d;
-                if (str3 != null) {
-                    v91Var3.f31237w = true;
-                    v91Var3.f31238x = str3;
-                    v91Var3.f31239y = this.f29214c[1];
-                    if (v91Var3.f31236s) {
-                        v91Var3.i();
-                    }
-                    v91Var3.j(false, true);
-                    v91Var3.f31228f0.d(true, true);
-                    return;
-                } else if (!isCancelled()) {
-                    v91Var3.h();
-                    return;
-                } else {
-                    return;
-                }
-            case 3:
-                String str4 = (String) obj;
-                v91 v91Var4 = this.d;
-                if (str4 != null) {
-                    v91Var4.f31237w = true;
-                    v91Var4.f31238x = str4;
-                    v91Var4.f31239y = this.f29214c[1];
-                    if (v91Var4.f31236s) {
-                        v91Var4.i();
-                    }
-                    v91Var4.j(false, true);
-                    v91Var4.f31228f0.d(true, true);
-                    return;
-                } else if (!isCancelled()) {
-                    v91Var4.h();
-                    return;
-                } else {
-                    return;
-                }
+                super.onMeasure(i10, i11);
+                return;
             default:
-                String str5 = (String) obj;
-                v91 v91Var5 = this.d;
-                if (str5 != null) {
-                    v91Var5.f31237w = true;
-                    v91Var5.f31238x = str5;
-                    v91Var5.f31239y = this.f29214c[1];
-                    if (v91Var5.f31236s) {
-                        v91Var5.i();
-                    }
-                    v91Var5.j(false, true);
-                    v91Var5.f31228f0.d(true, true);
-                    return;
-                } else if (!isCancelled()) {
-                    v91Var5.h();
-                    return;
-                } else {
-                    return;
-                }
+                super.onMeasure(i10, i11);
+                return;
         }
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        switch (this.f29268a) {
+            case 1:
+                ((ViewGroup) ((org.telegram.ui.eo0) this.f29269b).fragmentView).requestDisallowInterceptTouchEvent(true);
+                return super.onTouchEvent(motionEvent);
+            default:
+                return super.onTouchEvent(motionEvent);
+        }
+    }
+
+    public p91(Context context, Context context2) {
+        super(context);
+        this.f29269b = context2;
     }
 }

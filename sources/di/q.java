@@ -17,11 +17,11 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Cells.r7;
 import org.telegram.ui.Cells.s7;
-import org.telegram.ui.Components.im0;
-import org.telegram.ui.Components.is0;
-import org.telegram.ui.Components.ql0;
+import org.telegram.ui.Components.jm0;
+import org.telegram.ui.Components.js0;
+import org.telegram.ui.Components.rl0;
 import s4.b1;
-public class q extends ql0 {
+public class q extends rl0 {
     public final Context f8048c;
     public a7 e;
     public q f8049f;
@@ -54,9 +54,9 @@ public class q extends ql0 {
     }
 
     @Override
-    public final void G(im0 im0Var, float f7, int[] iArr) {
+    public final void G(jm0 jm0Var, float f7, int[] iArr) {
         int i10;
-        int measuredHeight = im0Var.getChildAt(0).getMeasuredHeight();
+        int measuredHeight = jm0Var.getChildAt(0).getMeasuredHeight();
         q qVar = this.f8049f;
         r rVar = this.f8052s;
         if (this == qVar) {
@@ -65,7 +65,7 @@ public class q extends ql0 {
             i10 = rVar.d;
         }
         int ceil = (int) (Math.ceil(h() / i10) * measuredHeight);
-        int measuredHeight2 = im0Var.getMeasuredHeight() - im0Var.getPaddingTop();
+        int measuredHeight2 = jm0Var.getMeasuredHeight() - jm0Var.getPaddingTop();
         if (measuredHeight == 0) {
             iArr[1] = 0;
             iArr[0] = 0;
@@ -77,11 +77,11 @@ public class q extends ql0 {
     }
 
     public final boolean L(int i10) {
-        is0 is0Var = this.f8052s.W;
+        js0 js0Var = this.f8052s.W;
         a7 a7Var = this.e;
         if (a7Var != null) {
             if (a7Var instanceof t6) {
-                TLRPC.User user = MessagesController.getInstance(is0Var.f8069b).getUser(Long.valueOf(is0Var.d));
+                TLRPC.User user = MessagesController.getInstance(js0Var.f8069b).getUser(Long.valueOf(js0Var.d));
                 if (user != null && user.bot && user.bot_has_main_app && user.bot_can_edit) {
                     return true;
                 }
@@ -173,23 +173,23 @@ public class q extends ql0 {
         int i12;
         int i13;
         if (this.e != null) {
-            View view = b1Var.f45912a;
+            View view = b1Var.f45917a;
             if (!(view instanceof s7)) {
                 return;
             }
             s7 s7Var = (s7) view;
-            s7Var.f23026d0 = true;
+            s7Var.f23029d0 = true;
             r rVar = this.f8052s;
             ArrayList arrayList = this.d;
             if (i10 >= 0 && i10 < arrayList.size()) {
                 h7 h7Var = (h7) arrayList.get(i10);
-                s7Var.f23029f0 = false;
+                s7Var.f23032f0 = false;
                 if (h7Var.K == null) {
                     TL_stories.TL_storyItem tL_storyItem = new TL_stories.TL_storyItem();
                     long j10 = h7Var.f5466a;
                     int i14 = (int) (j10 ^ (j10 >>> 32));
                     tL_storyItem.messageId = i14;
-                    tL_storyItem.f20507id = i14;
+                    tL_storyItem.f20510id = i14;
                     tL_storyItem.attachPath = h7Var.f5469f;
                     MessageObject messageObject = new MessageObject(this.e.f5146c, tL_storyItem);
                     h7Var.K = messageObject;
@@ -202,7 +202,7 @@ public class q extends ql0 {
                     i13 = rVar.d;
                 }
                 s7Var.k(messageObject2, i13, false);
-                s7Var.f23026d0 = true;
+                s7Var.f23029d0 = true;
                 s7Var.setReorder(false);
                 s7Var.i(false, false);
                 return;
@@ -215,7 +215,7 @@ public class q extends ql0 {
                 } else {
                     z10 = false;
                 }
-                s7Var.f23029f0 = z10;
+                s7Var.f23032f0 = z10;
                 s7Var.setReorder(true);
                 if (this == this.f8049f) {
                     i12 = rVar.e;
@@ -223,36 +223,36 @@ public class q extends ql0 {
                     i12 = rVar.d;
                 }
                 s7Var.k(messageObject3, i12, false);
-                is0 is0Var = rVar.W;
-                if (is0Var.G.C1 && messageObject3 != null) {
-                    s7Var.i(is0Var.c(messageObject3), true);
+                js0 js0Var = rVar.W;
+                if (js0Var.G.C1 && messageObject3 != null) {
+                    s7Var.i(js0Var.c(messageObject3), true);
                     return;
                 } else {
                     s7Var.i(false, false);
                     return;
                 }
             }
-            s7Var.f23029f0 = false;
+            s7Var.f23032f0 = false;
             if (this == this.f8049f) {
                 i11 = rVar.e;
             } else {
                 i11 = rVar.d;
             }
             s7Var.k(null, i11, false);
-            s7Var.f23026d0 = true;
+            s7Var.f23029d0 = true;
         }
     }
 
     @Override
     public final b1 x(ViewGroup viewGroup, int i10) {
-        is0 is0Var = this.f8052s.W;
+        js0 js0Var = this.f8052s.W;
         if (this.h == null) {
-            this.h = new r7(viewGroup.getContext(), is0Var.f8070c);
+            this.h = new r7(viewGroup.getContext(), js0Var.f8070c);
         }
-        s7 s7Var = new s7(this.f8048c, this.h, is0Var.f8069b);
-        s7Var.f23049w0 = true;
+        s7 s7Var = new s7(this.f8048c, this.h, js0Var.f8069b);
+        s7Var.f23052w0 = true;
         s7Var.setGradientView(null);
-        s7Var.f23026d0 = true;
+        s7Var.f23029d0 = true;
         return new b1(s7Var);
     }
 

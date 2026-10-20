@@ -13,7 +13,7 @@ import org.telegram.ui.Cells.v9;
 import org.telegram.ui.Cells.z9;
 import org.telegram.ui.Components.bs;
 import org.telegram.ui.Components.e9;
-import org.telegram.ui.Components.fp0;
+import org.telegram.ui.Components.gp0;
 import org.telegram.ui.Components.m60;
 import org.telegram.ui.Components.ob0;
 import org.telegram.ui.Components.voip.t2;
@@ -75,7 +75,7 @@ public final class k0 implements ValueAnimator.AnimatorUpdateListener {
                 return;
             case 3:
                 u1 u1Var = (u1) this.f817c;
-                u1Var.f23353jd = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                u1Var.f23356jd = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 u1Var.invalidate();
                 if (this.f816b && u1Var.getParent() != null) {
                     ((View) u1Var.getParent()).invalidate();
@@ -111,8 +111,8 @@ public final class k0 implements ValueAnimator.AnimatorUpdateListener {
                 float floatValue4 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 e9Var.i0(floatValue4, false);
                 if (this.f816b) {
-                    x8 x8Var = e9Var.f25853a;
-                    x8Var.f25492w = floatValue4;
+                    x8 x8Var = e9Var.f25842a;
+                    x8Var.f25384w = floatValue4;
                     x8Var.invalidate();
                     return;
                 }
@@ -140,15 +140,15 @@ public final class k0 implements ValueAnimator.AnimatorUpdateListener {
             case 9:
                 t2 t2Var = (t2) this.f817c;
                 TextView[] textViewArr = t2Var.h;
-                t2Var.f31807s = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                t2Var.f31758s = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 t2Var.invalidate();
                 if (this.f816b) {
-                    textViewArr[0].setAlpha(1.0f - t2Var.f31807s);
-                    textViewArr[0].setScaleX(1.0f - t2Var.f31807s);
-                    textViewArr[0].setScaleY(1.0f - t2Var.f31807s);
-                    textViewArr[1].setAlpha(t2Var.f31807s);
-                    textViewArr[1].setScaleX(t2Var.f31807s);
-                    textViewArr[1].setScaleY(t2Var.f31807s);
+                    textViewArr[0].setAlpha(1.0f - t2Var.f31758s);
+                    textViewArr[0].setScaleX(1.0f - t2Var.f31758s);
+                    textViewArr[0].setScaleY(1.0f - t2Var.f31758s);
+                    textViewArr[1].setAlpha(t2Var.f31758s);
+                    textViewArr[1].setScaleX(t2Var.f31758s);
+                    textViewArr[1].setScaleY(t2Var.f31758s);
                     return;
                 }
                 return;
@@ -166,26 +166,26 @@ public final class k0 implements ValueAnimator.AnimatorUpdateListener {
                 return;
             case 11:
                 x31 x31Var = (x31) this.f817c;
-                x31Var.f43025s = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                x31Var.f43016b.invalidate();
-                x31Var.f43018c.invalidate();
+                x31Var.f43031s = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                x31Var.f43022b.invalidate();
+                x31Var.f43024c.invalidate();
                 if (x31Var.S) {
                     x31Var.N.invalidate();
                 }
                 x31Var.e();
-                TextView textView = x31Var.f43028y;
+                TextView textView = x31Var.f43034y;
                 if (textView != null) {
-                    textView.setAlpha(x31Var.f43025s);
+                    textView.setAlpha(x31Var.f43031s);
                 }
                 if (!x31Var.S && (v31Var = x31Var.N) != null && v31Var.getSeekBarWaveform() != null) {
-                    fp0 seekBarWaveform = x31Var.N.getSeekBarWaveform();
+                    gp0 seekBarWaveform = x31Var.N.getSeekBarWaveform();
                     if (this.f816b) {
-                        bsVar = bs.f25013g;
+                        bsVar = bs.f25022g;
                     } else {
-                        bsVar = bs.f25014i;
+                        bsVar = bs.f25023i;
                     }
-                    seekBarWaveform.L = bsVar.getInterpolation(Utilities.clamp(x31Var.f43025s * 1.25f, 1.0f, 0.0f));
-                    u1 u1Var2 = seekBarWaveform.f26327n;
+                    seekBarWaveform.L = bsVar.getInterpolation(Utilities.clamp(x31Var.f43031s * 1.25f, 1.0f, 0.0f));
+                    u1 u1Var2 = seekBarWaveform.f26636n;
                     if (u1Var2 != null) {
                         u1Var2.invalidate();
                         return;
@@ -198,9 +198,9 @@ public final class k0 implements ValueAnimator.AnimatorUpdateListener {
                 float floatValue6 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 l0Var.e = floatValue6;
                 if (!this.f816b) {
-                    l0Var.f45438c.setAlpha(1.0f - floatValue6);
+                    l0Var.f45446c.setAlpha(1.0f - floatValue6);
                 }
-                l0Var.f45437b.invalidate();
+                l0Var.f45445b.invalidate();
                 return;
         }
     }

@@ -1,6 +1,10 @@
 package org.telegram.ui.Components;
-public final class gi0 {
-    public boolean f26596a;
-    public hi0 f26597b;
-    public ei0 f26598c;
+public interface gi0 {
+    void a();
+
+    void b(boolean z10);
+
+    void c();
+
+    void d();
 }

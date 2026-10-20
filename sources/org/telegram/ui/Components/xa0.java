@@ -15,15 +15,15 @@ public final class xa0 extends xh.k {
         switch (this.E) {
             case 0:
                 xh.b bVar = (xh.b) this.F;
-                sx0 sx0Var = bVar.W;
+                tx0 tx0Var = bVar.W;
                 if (this.e.isEmpty()) {
-                    if (sx0Var.getVisibility() != 4) {
-                        sx0Var.setVisibility(4);
+                    if (tx0Var.getVisibility() != 4) {
+                        tx0Var.setVisibility(4);
                         return;
                     }
                     return;
                 } else if (z11) {
-                    bVar.f27738w.J.setText("");
+                    bVar.f28094w.J.setText("");
                     return;
                 } else {
                     super.f(str, z10, z11);

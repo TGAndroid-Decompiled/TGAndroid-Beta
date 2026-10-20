@@ -2,7 +2,7 @@ package ig;
 
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
-import org.telegram.messenger.kk;
+import org.telegram.messenger.mk;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
@@ -33,7 +33,7 @@ public final class z0 implements RequestDelegate {
                                     xc.d0(tL_error2);
                                     return;
                                 } else if (tLObject instanceof TLRPC.TL_boolFalse) {
-                                    kk.q(R.string.UnknownError, xc.a0(d1Var2), null);
+                                    mk.q(R.string.UnknownError, xc.a0(d1Var2), null);
                                     return;
                                 } else {
                                     d1Var2.finishFragment();
@@ -48,7 +48,7 @@ public final class z0 implements RequestDelegate {
                                     return;
                                 } else if (tLObject instanceof TLRPC.TL_boolFalse) {
                                     d1Var3.f12853b.a(0.0f);
-                                    kk.q(R.string.UnknownError, xc.a0(d1Var3), null);
+                                    mk.q(R.string.UnknownError, xc.a0(d1Var3), null);
                                     return;
                                 } else {
                                     d1Var3.finishFragment();
@@ -72,7 +72,7 @@ public final class z0 implements RequestDelegate {
                                     xc.d0(tL_error2);
                                     return;
                                 } else if (tLObject instanceof TLRPC.TL_boolFalse) {
-                                    kk.q(R.string.UnknownError, xc.a0(d1Var22), null);
+                                    mk.q(R.string.UnknownError, xc.a0(d1Var22), null);
                                     return;
                                 } else {
                                     d1Var22.finishFragment();
@@ -87,7 +87,7 @@ public final class z0 implements RequestDelegate {
                                     return;
                                 } else if (tLObject instanceof TLRPC.TL_boolFalse) {
                                     d1Var3.f12853b.a(0.0f);
-                                    kk.q(R.string.UnknownError, xc.a0(d1Var3), null);
+                                    mk.q(R.string.UnknownError, xc.a0(d1Var3), null);
                                     return;
                                 } else {
                                     d1Var3.finishFragment();

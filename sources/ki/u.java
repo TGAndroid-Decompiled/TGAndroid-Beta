@@ -15,7 +15,7 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.voip.GroupCallMessage;
 import org.telegram.tgnet.TLParseException;
-import org.telegram.ui.Components.by0;
+import org.telegram.ui.Components.cy0;
 import org.telegram.ui.Components.iu;
 import org.telegram.ui.eo;
 import org.telegram.ui.qn;
@@ -35,7 +35,7 @@ public final class u implements Runnable {
         long j10;
         switch (this.f15533a) {
             case 0:
-                AndroidUtilities.showKeyboard(((x) this.f15534b).f15632e0.f22399b);
+                AndroidUtilities.showKeyboard(((x) this.f15534b).f15632e0.f22402b);
                 return;
             case 1:
                 ((d0) this.f15534b).invalidate();
@@ -92,9 +92,9 @@ public final class u implements Runnable {
                 if (re1Var.getParentLayout() != null) {
                     re1Var.H = true;
                     Bundle bundle = new Bundle();
-                    bundle.putLong("chat_id", re1Var.f41142a);
+                    bundle.putLong("chat_id", re1Var.f41148a);
                     qn qnVar = new qn(bundle);
-                    qnVar.f40728ja = true;
+                    qnVar.f40734ja = true;
                     re1Var.presentFragment(qnVar);
                     return;
                 }
@@ -119,19 +119,19 @@ public final class u implements Runnable {
                 if (!h1Var2.e.isInLayout()) {
                     h1Var2.e.requestLayout();
                     h1Var2.d.requestLayout();
-                    h1Var2.f31494f.requestLayout();
+                    h1Var2.f31445f.requestLayout();
                     return;
                 }
                 return;
             case 16:
-                ((org.telegram.ui.Components.voip.g1) this.f15534b).f31470a.i(false);
+                ((org.telegram.ui.Components.voip.g1) this.f15534b).f31421a.i(false);
                 return;
             case 17:
                 org.telegram.ui.Components.voip.f2 f2Var = (org.telegram.ui.Components.voip.f2) this.f15534b;
                 f2Var.e = false;
-                HashMap hashMap = f2Var.f31457a;
-                ArrayList arrayList = f2Var.f31459c;
-                ArrayList arrayList2 = f2Var.f31458b;
+                HashMap hashMap = f2Var.f31408a;
+                ArrayList arrayList = f2Var.f31410c;
+                ArrayList arrayList2 = f2Var.f31409b;
                 if (!arrayList2.isEmpty() || !arrayList.isEmpty()) {
                     if (f2Var.getParent() != null) {
                         TransitionManager.beginDelayedTransition(f2Var, f2Var.d);
@@ -143,7 +143,7 @@ public final class u implements Runnable {
                         while (true) {
                             if (i11 >= arrayList.size()) {
                                 break;
-                            } else if (e2Var.f31445a.equals(((org.telegram.ui.Components.voip.e2) arrayList.get(i11)).f31445a)) {
+                            } else if (e2Var.f31396a.equals(((org.telegram.ui.Components.voip.e2) arrayList.get(i11)).f31396a)) {
                                 arrayList2.remove(i10);
                                 arrayList.remove(i11);
                                 i10--;
@@ -162,7 +162,7 @@ public final class u implements Runnable {
                     hashMap.clear();
                     for (int i14 = 0; i14 < f2Var.getChildCount(); i14++) {
                         org.telegram.ui.Components.voip.e2 e2Var2 = (org.telegram.ui.Components.voip.e2) f2Var.getChildAt(i14);
-                        hashMap.put(e2Var2.f31445a, e2Var2);
+                        hashMap.put(e2Var2.f31396a, e2Var2);
                     }
                     arrayList2.clear();
                     arrayList.clear();
@@ -177,13 +177,13 @@ public final class u implements Runnable {
                 }
                 return;
             case 18:
-                TextView[] textViewArr = ((org.telegram.ui.Components.voip.n2) this.f15534b).f31632a;
+                TextView[] textViewArr = ((org.telegram.ui.Components.voip.n2) this.f15534b).f31583a;
                 TextView textView = textViewArr[0];
                 textViewArr[0] = textViewArr[1];
                 textViewArr[1] = textView;
                 return;
             case 19:
-                TextView[] textViewArr2 = ((org.telegram.ui.Components.voip.n2) ((hg.j0) this.f15534b).e).f31632a;
+                TextView[] textViewArr2 = ((org.telegram.ui.Components.voip.n2) ((hg.j0) this.f15534b).e).f31583a;
                 TextView textView2 = textViewArr2[0];
                 textViewArr2[0] = textViewArr2[1];
                 textViewArr2[1] = textView2;
@@ -198,14 +198,14 @@ public final class u implements Runnable {
             case 21:
                 org.telegram.ui.Components.voip.v2 v2Var = (org.telegram.ui.Components.voip.v2) this.f15534b;
                 v2Var.e = Bitmap.createBitmap(v2Var.getMeasuredWidth(), v2Var.getMeasuredHeight(), Bitmap.Config.ARGB_8888);
-                new Canvas(v2Var.e).drawText(v2Var.d, v2Var.getMeasuredWidth() / 2, (int) ((v2Var.getMeasuredHeight() / 2) - ((v2Var.f31844a.ascent() + v2Var.f31844a.descent()) / 2.0f)), v2Var.f31844a);
+                new Canvas(v2Var.e).drawText(v2Var.d, v2Var.getMeasuredWidth() / 2, (int) ((v2Var.getMeasuredHeight() / 2) - ((v2Var.f31795a.ascent() + v2Var.f31795a.descent()) / 2.0f)), v2Var.f31795a);
                 v2Var.postInvalidate();
                 return;
             case 22:
-                ((org.telegram.ui.web.k) this.f15534b).f42695w.W2.N(true);
+                ((org.telegram.ui.web.k) this.f15534b).f42701w.W2.N(true);
                 return;
             case 23:
-                org.telegram.ui.web.i iVar = ((org.telegram.ui.web.o) this.f15534b).f42733s.e;
+                org.telegram.ui.web.i iVar = ((org.telegram.ui.web.o) this.f15534b).f42739s.e;
                 if (iVar != null) {
                     iVar.d();
                     return;
@@ -215,11 +215,11 @@ public final class u implements Runnable {
                 ((iu) this.f15534b).requestFocus();
                 return;
             case 25:
-                pf.d.r(((org.telegram.ui.web.t0) this.f15534b).f42778b.e.getContext(), "https://play.google.com/store/apps/details?id=com.google.android.webview");
+                pf.d.r(((org.telegram.ui.web.t0) this.f15534b).f42784b.e.getContext(), "https://play.google.com/store/apps/details?id=com.google.android.webview");
                 return;
             case 26:
                 org.telegram.ui.web.e1 e1Var = (org.telegram.ui.web.e1) this.f15534b;
-                Utilities.searchQueue.postRunnable(new by0(e1Var, new ArrayList(e1Var.f42621s.e), e1Var.f42621s.f42628n));
+                Utilities.searchQueue.postRunnable(new cy0(e1Var, new ArrayList(e1Var.f42627s.e), e1Var.f42627s.f42634n));
                 return;
             case 27:
                 HttpGetFileTask.a((HttpGetFileTask) this.f15534b);

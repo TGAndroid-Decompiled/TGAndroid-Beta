@@ -14,8 +14,8 @@ import org.telegram.messenger.AnimationNotificationsLocker;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.Components.im0;
-import org.telegram.ui.Components.t61;
+import org.telegram.ui.Components.jm0;
+import org.telegram.ui.Components.u61;
 import org.telegram.ui.Components.xc;
 import org.telegram.ui.LaunchActivity;
 public final class bc implements Runnable {
@@ -68,7 +68,7 @@ public final class bc implements Runnable {
                 wc wcVar = (wc) this.f8801b;
                 wcVar.getClass();
                 try {
-                    im0 currentListView = ((fi.g) wcVar.M0).R.getCurrentListView();
+                    jm0 currentListView = ((fi.g) wcVar.M0).R.getCurrentListView();
                     if (currentListView != null && currentListView.getAdapter() != null) {
                         currentListView.getAdapter().l();
                         return;
@@ -177,9 +177,9 @@ public final class bc implements Runnable {
                 return;
             case 19:
                 ig.k0 k0Var = (ig.k0) this.f8801b;
-                t61 t61Var = k0Var.f12946d0;
-                if (t61Var != null) {
-                    t61Var.N(true);
+                u61 u61Var = k0Var.f12946d0;
+                if (u61Var != null) {
+                    u61Var.N(true);
                 }
                 k0Var.U(true);
                 return;
@@ -230,7 +230,7 @@ public final class bc implements Runnable {
                 }
                 return;
             default:
-                org.telegram.ui.Cells.g3 g3Var = ((org.telegram.ui.Cells.i3) this.f8801b).f22399b;
+                org.telegram.ui.Cells.g3 g3Var = ((org.telegram.ui.Cells.i3) this.f8801b).f22402b;
                 g3Var.requestFocus();
                 AndroidUtilities.showKeyboard(g3Var);
                 return;

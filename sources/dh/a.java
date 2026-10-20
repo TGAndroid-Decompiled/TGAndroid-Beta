@@ -121,7 +121,7 @@ public final class a implements hh.f, h60 {
                 i12++;
             }
         } else {
-            boolean[] zArr2 = privacyControlActivity.f33558y;
+            boolean[] zArr2 = privacyControlActivity.f33564y;
             int i14 = privacyControlActivity.I;
             if (i14 == 2) {
                 c10 = 0;
@@ -140,6 +140,6 @@ public final class a implements hh.f, h60 {
             }
         }
         privacyControlActivity.E0();
-        privacyControlActivity.f33526a.l();
+        privacyControlActivity.f33532a.l();
     }
 }

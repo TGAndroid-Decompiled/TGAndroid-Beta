@@ -24,7 +24,7 @@ import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.fi;
+import org.telegram.messenger.hi;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
@@ -32,7 +32,7 @@ import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_update;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.Components.kh0;
+import org.telegram.ui.Components.lh0;
 import org.telegram.ui.Components.qy;
 import org.telegram.ui.Components.t60;
 import org.telegram.ui.b60;
@@ -169,7 +169,7 @@ public final class vb implements Runnable {
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f2331f;
                 TLObject tLObject2 = (TLObject) this.f2329b;
                 org.telegram.ui.f1 f1Var = (org.telegram.ui.f1) this.h;
-                b70Var.f35520r = false;
+                b70Var.f35526r = false;
                 if (!((org.telegram.ui.j4) this.e).e.isEmpty()) {
                     if (tL_error == null) {
                         TLRPC.TL_contacts_resolvedPeer tL_contacts_resolvedPeer = (TLRPC.TL_contacts_resolvedPeer) tLObject2;
@@ -179,7 +179,7 @@ public final class vb implements Runnable {
                             MessagesController.getInstance(i13).putChats(tL_contacts_resolvedPeer.chats, false);
                             MessagesStorage.getInstance(i13).putUsersAndChats(tL_contacts_resolvedPeer.users, tL_contacts_resolvedPeer.chats, false, true);
                             TLRPC.Chat chat = tL_contacts_resolvedPeer.chats.get(0);
-                            b70Var.f35519n = chat;
+                            b70Var.f35525n = chat;
                             if (chat.left && !chat.kicked) {
                                 f1Var.a(0, false);
                                 return;
@@ -219,7 +219,7 @@ public final class vb implements Runnable {
                     b2Var.dismiss();
                     if (groupCall != null) {
                         TLRPC.TL_inputGroupCall tL_inputGroupCall = new TLRPC.TL_inputGroupCall();
-                        tL_inputGroupCall.f20290id = groupCall.f20283id;
+                        tL_inputGroupCall.f20293id = groupCall.f20286id;
                         tL_inputGroupCall.access_hash = groupCall.access_hash;
                         org.telegram.ui.m9.o0(context, i14, tL_inputGroupCall, groupCall.invite_link, d6Var2, true, true);
                         AndroidUtilities.runOnUIThread(b60Var);
@@ -234,9 +234,9 @@ public final class vb implements Runnable {
                     TLRPC.TL_inputGroupCall tL_inputGroupCall2 = new TLRPC.TL_inputGroupCall();
                     exportgroupcallinvite.call = tL_inputGroupCall2;
                     TLRPC.GroupCall groupCall2 = groupcall.call;
-                    tL_inputGroupCall2.f20290id = groupCall2.f20283id;
+                    tL_inputGroupCall2.f20293id = groupCall2.f20286id;
                     tL_inputGroupCall2.access_hash = groupCall2.access_hash;
-                    ConnectionsManager.getInstance(i14).sendRequest(exportgroupcallinvite, new fi(b2Var, context, i14, exportgroupcallinvite, d6Var2, b60Var));
+                    ConnectionsManager.getInstance(i14).sendRequest(exportgroupcallinvite, new hi(b2Var, context, i14, exportgroupcallinvite, d6Var2, b60Var));
                     return;
                 } else {
                     b2Var.dismiss();
@@ -250,7 +250,7 @@ public final class vb implements Runnable {
                 org.telegram.ui.Components.v9.a((org.telegram.ui.Components.v9) this.d, (Runnable[]) this.f2329b, (Bitmap) this.e, (t60) this.f2331f, this.f2330c, (w7.w5[]) this.h);
                 return;
             case 10:
-                kh0.n((kh0) this.d, (Integer[]) this.e, this.f2330c, (TLObject) this.f2329b, (ArrayList) this.f2331f, (TLRPC.PollAnswerVoters) this.h);
+                lh0.n((lh0) this.d, (Integer[]) this.e, this.f2330c, (TLObject) this.f2329b, (ArrayList) this.f2331f, (TLRPC.PollAnswerVoters) this.h);
                 return;
             case 11:
                 fs.Y((fs) this.d, (TLRPC.FileLocation) this.e, (TLRPC.InputFile) this.f2331f, (TLObject) this.f2329b, (TLRPC.FileLocation) this.h, this.f2330c);
@@ -300,7 +300,7 @@ public final class vb implements Runnable {
                         tL_inputStorePaymentPremiumSubscription2.upgrade = true;
                     }
                     tL_payments_canPurchaseStore.purpose = tL_inputStorePaymentPremiumSubscription2;
-                    ConnectionsManager.getInstance(i16).sendRequest(tL_payments_canPurchaseStore, new fi(i16, 5, n2Var2, pw0Var, gVar, tL_payments_canPurchaseStore, tL_inputStorePaymentPremiumSubscription2));
+                    ConnectionsManager.getInstance(i16).sendRequest(tL_payments_canPurchaseStore, new hi(i16, 5, n2Var2, pw0Var, gVar, tL_payments_canPurchaseStore, tL_inputStorePaymentPremiumSubscription2));
                     return;
                 }
                 return;
@@ -327,11 +327,11 @@ public final class vb implements Runnable {
                 } else {
                     String[] strArr2 = {"cancelled"};
                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(a1Var.getContext());
-                    alertDialog$Builder.f20602a.R = LocaleController.getString(R.string.BotWebViewRequestWriteTitle);
-                    alertDialog$Builder.f20602a.T = LocaleController.getString(R.string.BotWebViewRequestWriteMessage);
+                    alertDialog$Builder.f20605a.R = LocaleController.getString(R.string.BotWebViewRequestWriteTitle);
+                    alertDialog$Builder.f20605a.T = LocaleController.getString(R.string.BotWebViewRequestWriteMessage);
                     alertDialog$Builder.k(LocaleController.getString(R.string.BotWebViewRequestAllow), new org.telegram.ui.web.m(1, a1Var, strArr2));
                     alertDialog$Builder.h(LocaleController.getString(R.string.BotWebViewRequestDontAllow), new fk0(18));
-                    a1Var.X(3, alertDialog$Builder.f20602a, new org.telegram.ui.web.x(strArr2, i17, x0Var, z7Var, 1));
+                    a1Var.X(3, alertDialog$Builder.f20605a, new org.telegram.ui.web.x(strArr2, i17, x0Var, z7Var, 1));
                     return;
                 }
             default:
@@ -429,9 +429,9 @@ public final class vb implements Runnable {
         this.f2330c = i10;
     }
 
-    public vb(kh0 kh0Var, Integer[] numArr, int i10, TLObject tLObject, ArrayList arrayList, TLRPC.PollAnswerVoters pollAnswerVoters) {
+    public vb(lh0 lh0Var, Integer[] numArr, int i10, TLObject tLObject, ArrayList arrayList, TLRPC.PollAnswerVoters pollAnswerVoters) {
         this.f2328a = 10;
-        this.d = kh0Var;
+        this.d = lh0Var;
         this.e = numArr;
         this.f2330c = i10;
         this.f2329b = tLObject;

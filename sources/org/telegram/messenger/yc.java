@@ -1,31 +1,23 @@
 package org.telegram.messenger;
+public final class yc implements Runnable {
+    public final int f20168a;
+    public final boolean[] f20169b;
+    public final Runnable[] f20170c;
 
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-public final class yc implements Utilities.Callback2 {
-    public final int f20152a;
-    public final MessagesController f20153b;
-    public final long f20154c;
-    public final Utilities.Callback2 d;
-
-    public yc(MessagesController messagesController, long j10, Utilities.Callback2 callback2, int i10) {
-        this.f20152a = i10;
-        this.f20153b = messagesController;
-        this.f20154c = j10;
-        this.d = callback2;
+    public yc(boolean[] zArr, Runnable[] runnableArr, int i10) {
+        this.f20168a = i10;
+        this.f20169b = zArr;
+        this.f20170c = runnableArr;
     }
 
     @Override
-    public final void run(Object obj, Object obj2) {
-        switch (this.f20152a) {
+    public final void run() {
+        switch (this.f20168a) {
             case 0:
-                this.f20153b.lambda$resolveCommunityAllJoinPendingRequests$249(this.f20154c, this.d, (TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
-                return;
-            case 1:
-                this.f20153b.lambda$resolveCommunityJoinPendingRequest$248(this.f20154c, this.d, (TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
+                MessagesController.lambda$ensureMessagesLoaded$464(this.f20169b, this.f20170c);
                 return;
             default:
-                this.f20153b.lambda$toggleCommunityParticipantBanned$247(this.f20154c, this.d, (TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
+                PasskeysController.lambda$login$12(this.f20169b, this.f20170c);
                 return;
         }
     }

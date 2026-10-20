@@ -2,8 +2,8 @@ package hg;
 
 import ai.ic;
 import android.view.ViewGroup;
-import org.telegram.ui.Components.hm0;
-public final class p1 extends hm0 {
+import org.telegram.ui.Components.im0;
+public final class p1 extends im0 {
     public j1 f12010c;
     public Integer d;
     public ic e;

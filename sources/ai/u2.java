@@ -51,7 +51,7 @@ import org.telegram.ui.Components.fo;
 import org.telegram.ui.Components.md0;
 import org.telegram.ui.Components.ml;
 import org.telegram.ui.Components.od0;
-import org.telegram.ui.Components.pl0;
+import org.telegram.ui.Components.ql0;
 import org.telegram.ui.Components.rl;
 import org.telegram.ui.Components.td0;
 import org.telegram.ui.Components.ti;
@@ -78,13 +78,13 @@ public final class u2 implements vx, androidx.car.app.utils.b, MessagesStorage.S
         switch (this.f2240a) {
             case 27:
                 rl rlVar = (rl) this.f2241b;
-                rlVar.f29994x0.b((TLRPC.TL_messageMediaGeo) this.f2242c, rlVar.f29996y0, z10, i10, ((Long) this.d).longValue());
-                rlVar.f28223b.dismiss(true);
+                rlVar.f29973x0.b((TLRPC.TL_messageMediaGeo) this.f2242c, rlVar.f29975y0, z10, i10, ((Long) this.d).longValue());
+                rlVar.f28173b.dismiss(true);
                 return;
             default:
                 fo foVar = (fo) this.f2241b;
-                foVar.f26281j0.d((TLRPC.TL_messageMediaToDo) this.f2242c, null, null, null, z10, i10, ((Long) this.d).longValue());
-                foVar.f28223b.dismiss(true);
+                foVar.f26301j0.d((TLRPC.TL_messageMediaToDo) this.f2242c, null, null, null, z10, i10, ((Long) this.d).longValue());
+                foVar.f28173b.dismiss(true);
                 return;
         }
     }
@@ -155,8 +155,8 @@ public final class u2 implements vx, androidx.car.app.utils.b, MessagesStorage.S
                     TL_iv.pageBlockMap pageblockmap = (TL_iv.pageBlockMap) aVar.f15095b;
                     pageblockmap.geo = messageMedia.geo;
                     pageblockmap.zoom = 15;
-                    if (pageblockmap.f20493w <= 0 || pageblockmap.h <= 0) {
-                        pageblockmap.f20493w = 600;
+                    if (pageblockmap.f20496w <= 0 || pageblockmap.h <= 0) {
+                        pageblockmap.f20496w = 600;
                         pageblockmap.h = 400;
                     }
                     ki.h2 h2Var2 = w3Var.H3;
@@ -181,8 +181,8 @@ public final class u2 implements vx, androidx.car.app.utils.b, MessagesStorage.S
                     TL_iv.pageBlockMap pageblockmap2 = (TL_iv.pageBlockMap) aVar2.f15095b;
                     pageblockmap2.geo = messageMedia.geo;
                     pageblockmap2.zoom = 15;
-                    if (pageblockmap2.f20493w <= 0 || pageblockmap2.h <= 0) {
-                        pageblockmap2.f20493w = 600;
+                    if (pageblockmap2.f20496w <= 0 || pageblockmap2.h <= 0) {
+                        pageblockmap2.f20496w = 600;
                         pageblockmap2.h = 400;
                     }
                     ki.h2 h2Var4 = d2Var.P.H3;
@@ -297,7 +297,7 @@ public final class u2 implements vx, androidx.car.app.utils.b, MessagesStorage.S
                 ((boolean[]) this.f2242c)[0] = true;
                 if (user != null) {
                     SharedPreferences.Editor edit = MessagesController.getNotificationsSettings(j1Var.f11925f).edit();
-                    edit.putBoolean("inlinegeo_" + user.f20420id, true).commit();
+                    edit.putBoolean("inlinegeo_" + user.f20423id, true).commit();
                     j1Var.G();
                     return;
                 }
@@ -335,8 +335,8 @@ public final class u2 implements vx, androidx.car.app.utils.b, MessagesStorage.S
                 Activity activity2 = chatActivityEnterView.O2;
                 if (activity2.checkSelfPermission("android.permission.ACCESS_COARSE_LOCATION") != 0) {
                     activity2.requestPermissions(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, 2);
-                    chatActivityEnterView.f23960i3 = messageObject;
-                    chatActivityEnterView.f23966j3 = keyboardButtonProto;
+                    chatActivityEnterView.f23963i3 = messageObject;
+                    chatActivityEnterView.f23969j3 = keyboardButtonProto;
                     return;
                 }
                 SendMessagesHelper.getInstance(chatActivityEnterView.Q).sendCurrentLocation(messageObject, keyboardButtonProto);
@@ -353,7 +353,7 @@ public final class u2 implements vx, androidx.car.app.utils.b, MessagesStorage.S
                     ConnectionsManager.getInstance(i12).sendRequest(tL_messages_toggleBotInAttachMenu, new org.telegram.ui.vc(13, tiVar, tL_attachMenuBot), 66);
                     return;
                 }
-                MediaDataController.getInstance(i12).removeInline(user2.f20420id);
+                MediaDataController.getInstance(i12).removeInline(user2.f20423id);
                 return;
             case 26:
                 al alVar = (al) this.f2241b;
@@ -361,8 +361,8 @@ public final class u2 implements vx, androidx.car.app.utils.b, MessagesStorage.S
                 org.telegram.ui.Cells.a2 a2Var = (org.telegram.ui.Cells.a2) this.d;
                 TextView textView = alVar.R;
                 if (a1Var.getText().toString().getBytes(StandardCharsets.UTF_8).length > 960) {
-                    int i13 = -alVar.f24618s0;
-                    alVar.f24618s0 = i13;
+                    int i13 = -alVar.f24656s0;
+                    alVar.f24656s0 = i13;
                     AndroidUtilities.shakeViewSpring(a1Var, i13);
                     return;
                 }
@@ -370,12 +370,12 @@ public final class u2 implements vx, androidx.car.app.utils.b, MessagesStorage.S
                 if (TextUtils.isEmpty(trim3)) {
                     trim3 = null;
                 }
-                alVar.f24613p0 = trim3;
-                alVar.f24614q0 = !a2Var.b();
-                if (TextUtils.isEmpty(alVar.f24613p0)) {
+                alVar.f24651p0 = trim3;
+                alVar.f24652q0 = !a2Var.b();
+                if (TextUtils.isEmpty(alVar.f24651p0)) {
                     textView.setVisibility(8);
                 } else {
-                    textView.setText(alVar.f24613p0);
+                    textView.setText(alVar.f24651p0);
                     textView.setVisibility(0);
                 }
                 alVar.i0();
@@ -395,7 +395,7 @@ public final class u2 implements vx, androidx.car.app.utils.b, MessagesStorage.S
     @Override
     public void i(Canvas canvas, RectF rectF, float f7) {
         org.telegram.ui.Cells.s7 s7Var = (org.telegram.ui.Cells.s7) this.f2241b;
-        pl0 pl0Var = (pl0) this.f2242c;
+        ql0 ql0Var = (ql0) this.f2242c;
         int[] iArr = (int[]) this.d;
         s7Var.c(canvas, rectF, f7);
         s7Var.f(canvas, rectF, f7);
@@ -404,10 +404,10 @@ public final class u2 implements vx, androidx.car.app.utils.b, MessagesStorage.S
         } else {
             s7Var.e(canvas, rectF, f7);
         }
-        if (pl0Var != null && pl0Var.f29306a0 && pl0Var.getVisibility() == 0) {
+        if (ql0Var != null && ql0Var.f29632a0 && ql0Var.getVisibility() == 0) {
             canvas.saveLayerAlpha(0.0f, 0.0f, canvas.getWidth(), canvas.getHeight(), (int) (f7 * 255.0f), 31);
             canvas.translate(iArr[0], iArr[1]);
-            pl0Var.draw(canvas);
+            ql0Var.draw(canvas);
             canvas.restore();
         }
     }
@@ -420,7 +420,7 @@ public final class u2 implements vx, androidx.car.app.utils.b, MessagesStorage.S
         org.telegram.ui.ActionBar.a3 a3Var = (org.telegram.ui.ActionBar.a3) this.d;
         if (i10 == 1) {
             e5Var.C(2147483646, 0, zArr[0]);
-            runnable = a3Var.f20610a.dismissRunnable;
+            runnable = a3Var.f20613a.dismissRunnable;
             runnable.run();
         }
     }

@@ -1,14 +1,14 @@
 package org.telegram.ui.Cells;
 
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.im0;
+import org.telegram.ui.Components.jm0;
 public final class h9 implements Runnable {
-    public final int f22388a;
-    public final aa f22389b;
+    public final int f22391a;
+    public final aa f22392b;
 
     public h9(aa aaVar, int i10) {
-        this.f22388a = i10;
-        this.f22389b = aaVar;
+        this.f22391a = i10;
+        this.f22392b = aaVar;
     }
 
     @Override
@@ -16,9 +16,9 @@ public final class h9 implements Runnable {
         int m10;
         int i10;
         int p5;
-        switch (this.f22388a) {
+        switch (this.f22391a) {
             case 0:
-                aa aaVar = this.f22389b;
+                aa aaVar = this.f22392b;
                 if (aaVar.N && aaVar.E != null) {
                     if (aaVar.Z && aaVar.W == null) {
                         m10 = AndroidUtilities.dp(8.0f);
@@ -27,7 +27,7 @@ public final class h9 implements Runnable {
                     } else {
                         return;
                     }
-                    if (!aaVar.Z && !aaVar.f21995j0) {
+                    if (!aaVar.Z && !aaVar.f21998j0) {
                         if (aaVar.O) {
                             if (aaVar.W.getBottom() - m10 < aaVar.F.getMeasuredHeight() - aaVar.o()) {
                                 i10 = aaVar.W.getBottom() - aaVar.F.getMeasuredHeight();
@@ -40,23 +40,23 @@ public final class h9 implements Runnable {
                             m10 = i10 + p5;
                         }
                     }
-                    im0 im0Var = aaVar.E;
-                    if (im0Var != null) {
+                    jm0 jm0Var = aaVar.E;
+                    if (jm0Var != null) {
                         if (!aaVar.O) {
                             m10 = -m10;
                         }
-                        im0Var.scrollBy(0, m10);
+                        jm0Var.scrollBy(0, m10);
                     }
                     AndroidUtilities.runOnUIThread(this);
                     return;
                 }
                 return;
             default:
-                aa aaVar2 = this.f22389b;
+                aa aaVar2 = this.f22392b;
                 org.telegram.ui.ActionBar.h4 h4Var = aaVar2.Y;
                 if (h4Var != null && !aaVar2.P) {
                     h4Var.hide(Long.MAX_VALUE);
-                    AndroidUtilities.runOnUIThread(aaVar2.f22002n0, 1000L);
+                    AndroidUtilities.runOnUIThread(aaVar2.f22005n0, 1000L);
                     return;
                 }
                 return;

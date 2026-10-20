@@ -6,49 +6,49 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimationNotificationsLocker;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 public final class la0 implements OnBackAnimationCallback {
-    public boolean f38868b;
+    public boolean f38874b;
     public boolean e;
-    public final LaunchActivity f38870f;
-    public final AnimationNotificationsLocker f38867a = new AnimationNotificationsLocker();
-    public boolean f38869c = false;
+    public final LaunchActivity f38876f;
+    public final AnimationNotificationsLocker f38873a = new AnimationNotificationsLocker();
+    public boolean f38875c = false;
     public boolean d = false;
 
     public la0(LaunchActivity launchActivity) {
-        this.f38870f = launchActivity;
+        this.f38876f = launchActivity;
     }
 
     public final void onBackCancelled() {
         ActionBarLayout actionBarLayout;
-        this.f38869c = false;
+        this.f38875c = false;
         this.d = false;
-        if (this.f38868b) {
-            this.f38867a.unlock();
-            this.f38868b = false;
+        if (this.f38874b) {
+            this.f38873a.unlock();
+            this.f38874b = false;
         }
-        if (!AndroidUtilities.isTablet() && (actionBarLayout = this.f38870f.f33179q0) != null && actionBarLayout.f20551c1) {
-            actionBarLayout.f20551c1 = false;
+        if (!AndroidUtilities.isTablet() && (actionBarLayout = this.f38876f.f33185q0) != null && actionBarLayout.f20554c1) {
+            actionBarLayout.f20554c1 = false;
             actionBarLayout.e(true);
         }
     }
 
     public final void onBackInvoked() {
         this.d = true;
-        if (this.f38868b) {
-            this.f38867a.unlock();
-            this.f38868b = false;
+        if (this.f38874b) {
+            this.f38873a.unlock();
+            this.f38874b = false;
         }
         if (AndroidUtilities.isTablet()) {
-            this.f38870f.onBackPressed();
-        } else if (!this.f38870f.d0(true)) {
+            this.f38876f.onBackPressed();
+        } else if (!this.f38876f.d0(true)) {
         } else {
-            LaunchActivity launchActivity = this.f38870f;
-            ActionBarLayout actionBarLayout = launchActivity.f33179q0;
+            LaunchActivity launchActivity = this.f38876f;
+            ActionBarLayout actionBarLayout = launchActivity.f33185q0;
             if (actionBarLayout != null) {
-                if (!actionBarLayout.f20551c1) {
+                if (!actionBarLayout.f20554c1) {
                     actionBarLayout.G();
                     return;
                 }
-                actionBarLayout.f20551c1 = false;
+                actionBarLayout.f20554c1 = false;
                 actionBarLayout.e(false);
                 return;
             }
@@ -61,7 +61,7 @@ public final class la0 implements OnBackAnimationCallback {
     }
 
     public final void onBackStarted(BackEvent backEvent) {
-        this.f38869c = true;
+        this.f38875c = true;
         this.d = false;
         this.e = false;
     }

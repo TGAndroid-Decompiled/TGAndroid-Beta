@@ -1,38 +1,22 @@
 package org.telegram.messenger;
-
-import java.util.ArrayList;
 public final class rk implements Runnable {
-    public final int f19445a;
-    public final long f19446b;
-    public final BaseController f19447c;
-    public final Object d;
+    public final int f19476a;
+    public final TopicsController f19477b;
 
-    public rk(BaseController baseController, Object obj, long j10, int i10) {
-        this.f19445a = i10;
-        this.f19447c = baseController;
-        this.d = obj;
-        this.f19446b = j10;
+    public rk(TopicsController topicsController, int i10) {
+        this.f19476a = i10;
+        this.f19477b = topicsController;
     }
 
     @Override
     public final void run() {
-        switch (this.f19445a) {
+        switch (this.f19476a) {
             case 0:
-                ((TopicsController) this.f19447c).lambda$updateTopicsWithDeletedMessages$10((ArrayList) this.d, this.f19446b);
-                return;
-            case 1:
-                ((TranslateController) this.f19447c).lambda$setDialogTranslateTo$0(this.f19446b, (String) this.d);
+                this.f19477b.lambda$applyPinnedOrder$17();
                 return;
             default:
-                ((TranslateController) this.f19447c).lambda$invalidateTranslation$9((MessageObject) this.d, this.f19446b);
+                this.f19477b.lambda$databaseCleared$25();
                 return;
         }
-    }
-
-    public rk(TranslateController translateController, long j10, String str) {
-        this.f19445a = 1;
-        this.f19447c = translateController;
-        this.f19446b = j10;
-        this.d = str;
     }
 }

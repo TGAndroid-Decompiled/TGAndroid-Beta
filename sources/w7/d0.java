@@ -14,14 +14,14 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
-import org.telegram.ui.Components.im0;
+import org.telegram.ui.Components.jm0;
 import org.telegram.ui.LaunchActivity;
 public abstract class d0 {
-    public static ng.i f48612a;
+    public static ng.i f48617a;
 
     public static void a(LaunchActivity launchActivity, boolean z10, boolean z11) {
         boolean z12;
-        ng.i iVar = f48612a;
+        ng.i iVar = f48617a;
         if (iVar != null) {
             z12 = true;
         } else {
@@ -56,19 +56,19 @@ public abstract class d0 {
                 textView.setTypeface(AndroidUtilities.bold());
                 textView.setPadding(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(19.0f), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(19.0f));
                 linearLayout.addView(textView, z5.n(-1, -2));
-                im0 im0Var = new im0(launchActivity, null);
-                frameLayout.f17473y = im0Var;
-                im0Var.setLayoutManager(new s4.b0());
-                im0Var.setAdapter(new ng.g((ng.i) frameLayout, launchActivity));
-                im0Var.setOnItemClickListener(new ai.wa(frameLayout, 17));
-                linearLayout.addView(im0Var, z5.l(1.0f, -1, 0));
+                jm0 jm0Var = new jm0(launchActivity, null);
+                frameLayout.f17473y = jm0Var;
+                jm0Var.setLayoutManager(new s4.b0());
+                jm0Var.setAdapter(new ng.g((ng.i) frameLayout, launchActivity));
+                jm0Var.setOnItemClickListener(new ai.wa(frameLayout, 17));
+                linearLayout.addView(jm0Var, z5.l(1.0f, -1, 0));
                 frameLayout.addView(linearLayout, z5.d(-1, -1.0f, 0, 8.0f, 8.0f, 8.0f, 8.0f));
                 frameLayout.d();
                 frameLayout.setFitsSystemWindows(true);
                 frameLayout.setWillNotDraw(false);
-                f48612a = frameLayout;
-                launchActivity.f33191w0.addView((View) frameLayout, new FrameLayout.LayoutParams(-1, -1));
-                ng.i iVar2 = f48612a;
+                f48617a = frameLayout;
+                launchActivity.f33197w0.addView((View) frameLayout, new FrameLayout.LayoutParams(-1, -1));
+                ng.i iVar2 = f48617a;
                 iVar2.f17464a.setVisibility(0);
                 o1.k kVar = new o1.k(new o1.j(0.0f));
                 kVar.f17559u = org.telegram.ui.Cells.c1.l(1000.0f, 750.0f, 0.75f);
@@ -76,8 +76,8 @@ public abstract class d0 {
                 kVar.h();
             } else {
                 iVar.getClass();
-                launchActivity.f33191w0.removeView(f48612a);
-                f48612a = null;
+                launchActivity.f33197w0.removeView(f48617a);
+                f48617a = null;
             }
             if (z11) {
                 SharedConfig.isFloatingDebugActive = z10;

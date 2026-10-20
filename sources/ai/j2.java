@@ -12,14 +12,14 @@ import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.az0;
+import org.telegram.ui.Components.bz0;
 import org.telegram.ui.Components.g30;
 import org.telegram.ui.Components.i90;
 import org.telegram.ui.Components.k10;
 import org.telegram.ui.Components.lg;
 import org.telegram.ui.Components.mz;
 import org.telegram.ui.Components.ny;
-import org.telegram.ui.Components.py0;
+import org.telegram.ui.Components.qy0;
 import org.telegram.ui.g01;
 public final class j2 implements RequestDelegate {
     public final int f1556a;
@@ -89,10 +89,10 @@ public final class j2 implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new i90(tL_error, (ei.d) this.f1557b, (org.telegram.ui.ActionBar.f3) this.f1558c, (Runnable) this.d));
                 return;
             case 17:
-                AndroidUtilities.runOnUIThread(new g30((py0) this.f1557b, (String) this.f1558c, tL_error, tLObject, (TextView) this.d, 1));
+                AndroidUtilities.runOnUIThread(new g30((qy0) this.f1557b, (String) this.f1558c, tL_error, tLObject, (TextView) this.d, 1));
                 return;
             case 18:
-                AndroidUtilities.runOnUIThread(new g30((az0) this.f1557b, tLObject, (TLRPC.UserFull) this.f1558c, (TL_account.TL_birthday) this.d, tL_error, 2));
+                AndroidUtilities.runOnUIThread(new g30((bz0) this.f1557b, tLObject, (TLRPC.UserFull) this.f1558c, (TL_account.TL_birthday) this.d, tL_error, 2));
                 return;
             case 19:
                 AndroidUtilities.runOnUIThread(new org.telegram.ui.web.b0((org.telegram.ui.web.a1) this.f1557b, tL_error, (String) this.f1558c, (TLRPC.TL_inputInvoiceSlug) this.d, tLObject));
@@ -104,14 +104,14 @@ public final class j2 implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new g01(tL_error, (Utilities.Callback) this.f1557b, tLObject, (MessagesController) this.f1558c, (Utilities.Callback) this.d, 9));
                 return;
             case 22:
-                AndroidUtilities.runOnUIThread(new g01(tL_error, (org.telegram.messenger.w) this.f1557b, tLObject, (MessagesController) this.f1558c, (org.telegram.messenger.j2) this.d, 10));
+                AndroidUtilities.runOnUIThread(new g01(tL_error, (org.telegram.messenger.w) this.f1557b, tLObject, (MessagesController) this.f1558c, (org.telegram.messenger.k2) this.d, 10));
                 return;
             case 23:
                 ug.u uVar = (ug.u) this.f1557b;
                 MessagesController messagesController = (MessagesController) this.f1558c;
                 ug.x xVar = (ug.x) this.d;
                 if (tL_error != null) {
-                    AndroidUtilities.runOnUIThread(new uf.c(2, uVar, tL_error));
+                    AndroidUtilities.runOnUIThread(new u2.j0(4, uVar, tL_error));
                     return;
                 } else if (tLObject != null) {
                     messagesController.lambda$processUpdates$377((TLRPC.Updates) tLObject, false);

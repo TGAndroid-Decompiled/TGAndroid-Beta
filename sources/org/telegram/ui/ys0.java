@@ -26,7 +26,7 @@ public final class ys0 extends o4 {
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j10) {
         PhotoViewer photoViewer = this.h;
-        if (view == photoViewer.E3 && photoViewer.f33293g4) {
+        if (view == photoViewer.E3 && photoViewer.f33299g4) {
             return true;
         }
         return super.drawChild(canvas, view, j10);
@@ -36,14 +36,14 @@ public final class ys0 extends o4 {
     public final void onMeasure(int i10, int i11) {
         super.onMeasure(i10, i11);
         PhotoViewer photoViewer = this.h;
-        ImageView imageView = photoViewer.f33445x3;
+        ImageView imageView = photoViewer.f33451x3;
         if (imageView != null) {
             ViewGroup.LayoutParams layoutParams = imageView.getLayoutParams();
             layoutParams.width = getMeasuredWidth();
             layoutParams.height = getMeasuredHeight();
         }
         TextureView textureView = photoViewer.B2;
-        if (textureView instanceof org.telegram.ui.Components.q71) {
+        if (textureView instanceof org.telegram.ui.Components.r71) {
             textureView.setPivotX(textureView.getMeasuredWidth() / 2);
             photoViewer.E2.setPivotX(photoViewer.B2.getMeasuredWidth() / 2);
         } else {
@@ -56,6 +56,6 @@ public final class ys0 extends o4 {
             }
             photoViewer.E2.setPivotX(0.0f);
         }
-        photoViewer.z0();
+        photoViewer.A0();
     }
 }

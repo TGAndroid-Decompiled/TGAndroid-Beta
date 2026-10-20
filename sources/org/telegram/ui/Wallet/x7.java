@@ -6,34 +6,34 @@ import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.qc;
 import org.telegram.ui.Components.xc;
 public final class x7 implements Utilities.Callback {
-    public final int f35114a;
-    public final h8 f35115b;
+    public final int f35120a;
+    public final h8 f35121b;
 
     public x7(h8 h8Var, int i10) {
-        this.f35114a = i10;
-        this.f35115b = h8Var;
+        this.f35120a = i10;
+        this.f35121b = h8Var;
     }
 
     @Override
     public final void run(Object obj) {
-        switch (this.f35114a) {
+        switch (this.f35120a) {
             case 0:
-                m0.w(r0.currentAccount).y(new s1(3, this.f35115b, (Utilities.Callback) obj), true, false);
+                m0.w(r0.currentAccount).y(new s1(3, this.f35121b, (Utilities.Callback) obj), true, false);
                 return;
             case 1:
                 String str = (String) obj;
-                h8 h8Var = this.f35115b;
+                h8 h8Var = this.f35121b;
                 if (str != null) {
                     xc.a0(h8Var).e0(str, false);
                     return;
                 }
                 qc M = xc.a0(h8Var).M(LocaleController.getString(R.string.WalletBackupEnabled), LocaleController.getString(R.string.WalletBackupEnabledInfo), R.raw.contact_check);
-                M.f29594j = 5000;
+                M.f29530j = 5000;
                 M.j();
-                h8Var.f32025a.W2.N(true);
+                h8Var.f32355a.W2.N(true);
                 return;
             default:
-                h8.a0(this.f35115b, (Boolean) obj);
+                h8.a0(this.f35121b, (Boolean) obj);
                 return;
         }
     }

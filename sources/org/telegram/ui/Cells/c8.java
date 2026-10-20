@@ -12,16 +12,16 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class c8 extends FrameLayout {
-    public org.telegram.ui.Components.w9 f22098a;
-    public TLRPC.Document f22099b;
-    public Object f22100c;
+    public org.telegram.ui.Components.w9 f22101a;
+    public TLRPC.Document f22102b;
+    public Object f22103c;
     public long d;
     public boolean e;
-    public float f22101f;
+    public float f22104f;
     public boolean h;
-    public sg.c1 f22102n;
-    public boolean f22103r;
-    public boolean f22104s;
+    public sg.c1 f22105n;
+    public boolean f22106r;
+    public boolean f22107s;
     public org.telegram.ui.ActionBar.d6 v;
 
     static {
@@ -32,32 +32,32 @@ public final class c8 extends FrameLayout {
     public final boolean drawChild(Canvas canvas, View view, long j10) {
         boolean z10;
         boolean drawChild = super.drawChild(canvas, view, j10);
-        org.telegram.ui.Components.w9 w9Var = this.f22098a;
-        if (view == w9Var && (((z10 = this.e) && this.f22101f != 0.8f) || (!z10 && this.f22101f != 1.0f))) {
+        org.telegram.ui.Components.w9 w9Var = this.f22101a;
+        if (view == w9Var && (((z10 = this.e) && this.f22104f != 0.8f) || (!z10 && this.f22104f != 1.0f))) {
             long currentTimeMillis = System.currentTimeMillis();
             long j11 = currentTimeMillis - this.d;
             this.d = currentTimeMillis;
             if (this.e) {
-                float f7 = this.f22101f;
+                float f7 = this.f22104f;
                 if (f7 != 0.8f) {
                     float f10 = f7 - (((float) j11) / 400.0f);
-                    this.f22101f = f10;
+                    this.f22104f = f10;
                     if (f10 < 0.8f) {
-                        this.f22101f = 0.8f;
+                        this.f22104f = 0.8f;
                     }
-                    w9Var.setScaleX(this.f22101f);
-                    w9Var.setScaleY(this.f22101f);
+                    w9Var.setScaleX(this.f22104f);
+                    w9Var.setScaleY(this.f22104f);
                     w9Var.invalidate();
                     invalidate();
                 }
             }
-            float f11 = (((float) j11) / 400.0f) + this.f22101f;
-            this.f22101f = f11;
+            float f11 = (((float) j11) / 400.0f) + this.f22104f;
+            this.f22104f = f11;
             if (f11 > 1.0f) {
-                this.f22101f = 1.0f;
+                this.f22104f = 1.0f;
             }
-            w9Var.setScaleX(this.f22101f);
-            w9Var.setScaleY(this.f22101f);
+            w9Var.setScaleX(this.f22104f);
+            w9Var.setScaleY(this.f22104f);
             w9Var.invalidate();
             invalidate();
         }
@@ -65,11 +65,11 @@ public final class c8 extends FrameLayout {
     }
 
     public Object getParentObject() {
-        return this.f22100c;
+        return this.f22103c;
     }
 
     public MessageObject.SendAnimationData getSendAnimationData() {
-        org.telegram.ui.Components.w9 w9Var = this.f22098a;
+        org.telegram.ui.Components.w9 w9Var = this.f22101a;
         ImageReceiver imageReceiver = w9Var.getImageReceiver();
         if (!imageReceiver.hasNotThumb()) {
             return null;
@@ -85,18 +85,18 @@ public final class c8 extends FrameLayout {
     }
 
     public TLRPC.Document getSticker() {
-        return this.f22099b;
+        return this.f22102b;
     }
 
     @Override
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        if (this.f22099b == null) {
+        if (this.f22102b == null) {
             return;
         }
         String str = null;
-        for (int i10 = 0; i10 < this.f22099b.attributes.size(); i10++) {
-            TLRPC.DocumentAttribute documentAttribute = this.f22099b.attributes.get(i10);
+        for (int i10 = 0; i10 < this.f22102b.attributes.size(); i10++) {
+            TLRPC.DocumentAttribute documentAttribute = this.f22102b.attributes.get(i10);
             if (documentAttribute instanceof TLRPC.TL_documentAttributeSticker) {
                 String str2 = documentAttribute.alt;
                 if (str2 != null && str2.length() > 0) {
@@ -127,7 +127,7 @@ public final class c8 extends FrameLayout {
 
     @Override
     public void setPressed(boolean z10) {
-        org.telegram.ui.Components.w9 w9Var = this.f22098a;
+        org.telegram.ui.Components.w9 w9Var = this.f22101a;
         if (w9Var.getImageReceiver().getPressed() != z10) {
             w9Var.getImageReceiver().setPressed(z10 ? 1 : 0);
             w9Var.invalidate();

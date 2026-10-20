@@ -13,7 +13,7 @@ public class l {
     }
 
     public k2.t0 a(Context context) {
-        return new p4(context).a();
+        return new p4(context, 1).a();
     }
 
     public final i2.b[] b(android.os.Handler r23, i2.c0 r24, i2.c0 r25, i2.c0 r26, i2.c0 r27) {

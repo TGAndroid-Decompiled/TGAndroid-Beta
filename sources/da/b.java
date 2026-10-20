@@ -33,7 +33,7 @@ import org.telegram.ui.ActionBar.a2;
 import org.telegram.ui.ActionBar.b2;
 import org.telegram.ui.ActionBar.n2;
 import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.sy0;
+import org.telegram.ui.Components.ty0;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.qn;
 import x2.d;
@@ -85,7 +85,7 @@ public final class b implements g, MessagesStorage.LongCallback, a2, MessagesCon
             CountDownLatch countDownLatch = new CountDownLatch(1);
             new Thread(new v7(11, cVar, countDownLatch)).start();
             TimeUnit timeUnit = TimeUnit.SECONDS;
-            ExecutorService executorService = w.f49741a;
+            ExecutorService executorService = w.f49746a;
             boolean z11 = false;
             try {
                 long nanos = timeUnit.toNanos(2L);
@@ -205,13 +205,13 @@ public final class b implements g, MessagesStorage.LongCallback, a2, MessagesCon
                 aVar.accept(Boolean.TRUE);
                 return;
             default:
-                sy0 sy0Var = (sy0) this.f7911c;
+                ty0 ty0Var = (ty0) this.f7911c;
                 Utilities.Callback2 callback2 = (Utilities.Callback2) this.d;
                 Context context2 = (Context) this.e;
                 boolean z13 = this.f7910b;
-                String trim2 = sy0Var.getText().toString().trim();
+                String trim2 = ty0Var.getText().toString().trim();
                 if (!TextUtils.isEmpty(trim2) && !TextUtils.isEmpty(AndroidUtilities.translitSafe(trim2.toString()))) {
-                    AndroidUtilities.hideKeyboard(sy0Var);
+                    AndroidUtilities.hideKeyboard(ty0Var);
                     if (z13) {
                         bVar = null;
                     } else {
@@ -219,13 +219,13 @@ public final class b implements g, MessagesStorage.LongCallback, a2, MessagesCon
                     }
                     b2 b2Var2 = new b2(context2, 3, bVar);
                     b2Var2.r(250L);
-                    callback2.run(trim2, new a4(b2Var2, b2Var, sy0Var, 9));
+                    callback2.run(trim2, new a4(b2Var2, b2Var, ty0Var, 9));
                     return;
                 }
-                sy0Var.setErrorText(".");
-                AndroidUtilities.shakeViewSpring(sy0Var, -6.0f);
+                ty0Var.setErrorText(".");
+                AndroidUtilities.shakeViewSpring(ty0Var, -6.0f);
                 BotWebViewVibrationEffect.APP_ERROR.vibrate();
-                AndroidUtilities.showKeyboard(sy0Var);
+                AndroidUtilities.showKeyboard(ty0Var);
                 return;
         }
     }

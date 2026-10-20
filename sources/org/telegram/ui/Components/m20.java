@@ -4,27 +4,27 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import org.telegram.messenger.NotificationCenter;
 public final class m20 extends AnimatorListenerAdapter {
-    public final int f28364a;
-    public final n20 f28365b;
+    public final int f28356a;
+    public final n20 f28357b;
 
     public m20(n20 n20Var, int i10) {
-        this.f28364a = i10;
-        this.f28365b = n20Var;
+        this.f28356a = i10;
+        this.f28357b = n20Var;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f28364a) {
+        switch (this.f28356a) {
             case 0:
-                n20 n20Var = this.f28365b;
-                NotificationCenter.getInstance(n20Var.f28658r.f28881a).onAnimationFinish(n20Var.f28656f);
+                n20 n20Var = this.f28357b;
+                NotificationCenter.getInstance(n20Var.f28664r.f28923a).onAnimationFinish(n20Var.f28662f);
                 n20Var.requestLayout();
                 return;
             default:
-                n20 n20Var2 = this.f28365b;
+                n20 n20Var2 = this.f28357b;
                 n20Var2.d = null;
-                n20Var2.f28653a = null;
-                n20Var2.f28654b = false;
+                n20Var2.f28659a = null;
+                n20Var2.f28660b = false;
                 return;
         }
     }

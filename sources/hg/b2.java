@@ -28,11 +28,11 @@ import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.n2;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.UndoView;
+import org.telegram.ui.Components.ao0;
 import org.telegram.ui.Components.od0;
 import org.telegram.ui.Components.qc;
 import org.telegram.ui.Components.ub;
 import org.telegram.ui.Components.xc;
-import org.telegram.ui.Components.zn0;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PasscodeActivity;
 import org.telegram.ui.SessionsActivity;
@@ -197,8 +197,8 @@ public final class b2 implements MediaDataController.KeywordResultCallback, e2.o
             case 6:
                 qn qnVar = (qn) this.f11814c;
                 boolean[] zArr = (boolean[]) this.d;
-                qnVar.getMessagesController().pinMessage(qnVar.e, qnVar.f40670f, this.f11813b, false, !zArr[1], zArr[0]);
-                qc B = xc.B(qnVar, true, null, null, qnVar.f40667ea);
+                qnVar.getMessagesController().pinMessage(qnVar.e, qnVar.f40676f, this.f11813b, false, !zArr[1], zArr[0]);
+                qc B = xc.B(qnVar, true, null, null, qnVar.f40673ea);
                 B.j();
                 ub ubVar = B.e;
                 ubVar.postDelayed(new dh(0, ubVar), 550L);
@@ -218,11 +218,11 @@ public final class b2 implements MediaDataController.KeywordResultCallback, e2.o
                 AndroidUtilities.shakeView(editTextBoldCursor);
                 return;
             case 9:
-                zn0 zn0Var = (zn0) this.f11814c;
+                ao0 ao0Var = (ao0) this.f11814c;
                 TLRPC.Reaction reaction = (TLRPC.Reaction) this.d;
-                String obj2 = zn0Var.getText().toString();
+                String obj2 = ao0Var.getText().toString();
                 if (obj2.length() > 12) {
-                    AndroidUtilities.shakeView(zn0Var);
+                    AndroidUtilities.shakeView(ao0Var);
                     return;
                 }
                 MessagesController.getInstance(this.f11813b).renameSavedReactionTag(ah.i1.d(reaction), obj2);
@@ -230,13 +230,13 @@ public final class b2 implements MediaDataController.KeywordResultCallback, e2.o
                 return;
             case 11:
                 EditTextBoldCursor editTextBoldCursor2 = (EditTextBoldCursor) this.d;
-                t40 t40Var = ((p40) this.f11814c).f40055n;
-                ChatObject.Call call = t40Var.f41586b.f40370a1;
+                t40 t40Var = ((p40) this.f11814c).f40061n;
+                ChatObject.Call call = t40Var.f41592b.f40376a1;
                 String obj3 = editTextBoldCursor2.getText().toString();
                 int i12 = this.f11813b;
                 call.toggleRecord(obj3, i12);
                 AndroidUtilities.hideKeyboard(editTextBoldCursor2);
-                UndoView l1 = t40Var.f41586b.l1();
+                UndoView l1 = t40Var.f41592b.l1();
                 if (i12 == 0) {
                     i11 = 39;
                 } else {
@@ -251,7 +251,7 @@ public final class b2 implements MediaDataController.KeywordResultCallback, e2.o
             case 12:
                 LaunchActivity launchActivity = (LaunchActivity) this.f11814c;
                 HashMap hashMap = (HashMap) this.d;
-                ArrayList arrayList = launchActivity.f33155d0;
+                ArrayList arrayList = launchActivity.f33161d0;
                 if (!arrayList.isEmpty() && AndroidUtilities.isMapsInstalled((n2) i2.e.h(1, arrayList))) {
                     nc0 nc0Var = new nc0(0);
                     nc0Var.F0 = new i2.s(hashMap, this.f11813b, 12);

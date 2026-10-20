@@ -105,120 +105,120 @@ public final class t1 {
     public boolean Z0;
     public boolean Z1;
     public boolean Z2;
-    public float f23061a;
-    public boolean f23062a0;
-    public boolean f23063a1;
-    public boolean f23064a3;
-    public float f23065b;
-    public boolean f23066b0;
-    public MessageObject.TextLayoutBlocks f23067b1;
-    public int f23068b2;
-    public boolean f23069b3;
-    public float f23070c;
-    public boolean f23071c0;
-    public MessageObject.TextLayoutBlocks f23072c1;
-    public StaticLayout f23073c2;
-    public HashSet f23074c3;
+    public float f23064a;
+    public boolean f23065a0;
+    public boolean f23066a1;
+    public boolean f23067a3;
+    public float f23068b;
+    public boolean f23069b0;
+    public MessageObject.TextLayoutBlocks f23070b1;
+    public int f23071b2;
+    public boolean f23072b3;
+    public float f23073c;
+    public boolean f23074c0;
+    public MessageObject.TextLayoutBlocks f23075c1;
+    public StaticLayout f23076c2;
+    public HashSet f23077c3;
     public float d;
-    public float f23075d0;
-    public boolean f23076d1;
-    public StaticLayout f23077d2;
-    public HashSet f23078d3;
+    public float f23078d0;
+    public boolean f23079d1;
+    public StaticLayout f23080d2;
+    public HashSet f23081d3;
     public float e;
-    public String f23079e0;
-    public boolean f23080e1;
-    public boolean f23081e2;
-    public boolean f23082e3;
-    public float f23083f;
-    public boolean f23084f0;
-    public int f23085f1;
-    public boolean f23086f2;
-    public boolean f23087f3;
-    public boolean f23088g;
-    public float f23089g0;
-    public int f23090g1;
-    public boolean f23091g2;
-    public boolean f23092g3;
+    public String f23082e0;
+    public boolean f23083e1;
+    public boolean f23084e2;
+    public boolean f23085e3;
+    public float f23086f;
+    public boolean f23087f0;
+    public int f23088f1;
+    public boolean f23089f2;
+    public boolean f23090f3;
+    public boolean f23091g;
+    public float f23092g0;
+    public int f23093g1;
+    public boolean f23094g2;
+    public boolean f23095g3;
     public boolean h;
-    public float f23093h0;
-    public boolean f23094h1;
-    public boolean f23095h2;
-    public boolean f23096h3;
-    public boolean f23097i;
-    public float f23098i0;
-    public int f23099i1;
-    public StaticLayout f23100i2;
-    public boolean f23101i3;
-    public boolean f23102j;
-    public float f23103j0;
-    public int f23104j1;
-    public boolean f23105j2;
-    public StaticLayout f23106j3;
-    public String f23107k;
-    public float f23108k0;
-    public boolean f23109k1;
-    public boolean f23110k2;
-    public StaticLayout f23111k3;
-    public float f23112l;
-    public float f23113l0;
+    public float f23096h0;
+    public boolean f23097h1;
+    public boolean f23098h2;
+    public boolean f23099h3;
+    public boolean f23100i;
+    public float f23101i0;
+    public int f23102i1;
+    public StaticLayout f23103i2;
+    public boolean f23104i3;
+    public boolean f23105j;
+    public float f23106j0;
+    public int f23107j1;
+    public boolean f23108j2;
+    public StaticLayout f23109j3;
+    public String f23110k;
+    public float f23111k0;
+    public boolean f23112k1;
+    public boolean f23113k2;
+    public StaticLayout f23114k3;
+    public float f23115l;
+    public float f23116l0;
     public boolean l1;
-    public boolean f23114l2;
-    public org.telegram.ui.Components.w5 f23115l3;
-    public StaticLayout f23116m;
+    public boolean f23117l2;
+    public org.telegram.ui.Components.w5 f23118l3;
+    public StaticLayout f23119m;
     public float m0;
-    public boolean f23117m1;
-    public float f23118m2;
-    public final u1 f23119m3;
-    public StaticLayout f23120n;
-    public float f23121n0;
-    public boolean f23122n1;
-    public float f23123n2;
-    public boolean f23124o;
-    public float f23125o0;
-    public float f23126o1;
-    public float f23127o2;
-    public boolean f23128p;
-    public float f23129p0;
-    public float f23130p1;
-    public int f23131p2;
-    public float f23132q;
-    public float f23133q0;
-    public float f23134q1;
-    public int f23135q2;
-    public float f23136r;
-    public float f23137r0;
-    public float f23138r1;
-    public boolean f23139r2;
-    public float f23140s;
-    public boolean f23141s0;
-    public boolean f23142s1;
-    public int f23143s2;
-    public float f23144t;
-    public int f23146t1;
-    public boolean f23147t2;
-    public boolean f23148u;
-    public boolean f23150u1;
-    public int f23151u2;
+    public boolean f23120m1;
+    public float f23121m2;
+    public final u1 f23122m3;
+    public StaticLayout f23123n;
+    public float f23124n0;
+    public boolean f23125n1;
+    public float f23126n2;
+    public boolean f23127o;
+    public float f23128o0;
+    public float f23129o1;
+    public float f23130o2;
+    public boolean f23131p;
+    public float f23132p0;
+    public float f23133p1;
+    public int f23134p2;
+    public float f23135q;
+    public float f23136q0;
+    public float f23137q1;
+    public int f23138q2;
+    public float f23139r;
+    public float f23140r0;
+    public float f23141r1;
+    public boolean f23142r2;
+    public float f23143s;
+    public boolean f23144s0;
+    public boolean f23145s1;
+    public int f23146s2;
+    public float f23147t;
+    public int f23149t1;
+    public boolean f23150t2;
+    public boolean f23151u;
+    public boolean f23153u1;
+    public int f23154u2;
     public int v;
-    public boolean f23152v0;
-    public boolean f23153v1;
-    public int f23154v2;
-    public int f23155w;
-    public boolean f23156w0;
-    public boolean f23157w1;
-    public boolean f23158w2;
-    public int f23159x;
-    public boolean f23160x0;
-    public int f23161x1;
-    public boolean f23163y;
-    public boolean f23164y0;
-    public boolean f23165y1;
-    public boolean f23167z;
-    public boolean f23169z1;
-    public float f23170z2;
-    public final int[] f23145t0 = new int[4];
-    public float f23149u0 = 1.0f;
-    public float f23168z0 = 1.0f;
+    public boolean f23155v0;
+    public boolean f23156v1;
+    public int f23157v2;
+    public int f23158w;
+    public boolean f23159w0;
+    public boolean f23160w1;
+    public boolean f23161w2;
+    public int f23162x;
+    public boolean f23163x0;
+    public int f23164x1;
+    public boolean f23166y;
+    public boolean f23167y0;
+    public boolean f23168y1;
+    public boolean f23170z;
+    public boolean f23172z1;
+    public float f23173z2;
+    public final int[] f23148t0 = new int[4];
+    public float f23152u0 = 1.0f;
+    public float f23171z0 = 1.0f;
     public final Rect D0 = new Rect();
     public float K1 = 1.0f;
     public final ArrayList L1 = new ArrayList();
@@ -226,11 +226,11 @@ public final class t1 {
     public float Q1 = 0.0f;
     public float R1 = 1.0f;
     public int a2 = -1;
-    public final StaticLayout[] f23162x2 = new StaticLayout[2];
-    public final StaticLayout[] f23166y2 = new StaticLayout[2];
+    public final StaticLayout[] f23165x2 = new StaticLayout[2];
+    public final StaticLayout[] f23169y2 = new StaticLayout[2];
 
     public t1(u1 u1Var) {
-        this.f23119m3 = u1Var;
+        this.f23122m3 = u1Var;
     }
 
     public static void b(t1 t1Var) {
@@ -248,20 +248,20 @@ public final class t1 {
         int i10;
         boolean z11;
         int i11;
-        u1 u1Var = this.f23119m3;
+        u1 u1Var = this.f23122m3;
         int i12 = 8;
         int i13 = 4;
         boolean z12 = true;
-        if (u1Var.f23565y7.isOutOwner()) {
-            if (!u1Var.f23565y7.isSending() && !u1Var.f23565y7.isEditing()) {
-                if (u1Var.f23565y7.isSendError()) {
+        if (u1Var.f23568y7.isOutOwner()) {
+            if (!u1Var.f23568y7.isSending() && !u1Var.f23568y7.isEditing()) {
+                if (u1Var.f23568y7.isSendError()) {
                     z11 = true;
                     i10 = 0;
                     z12 = false;
                     z10 = false;
                 } else {
-                    if (u1Var.f23565y7.isSent()) {
-                        MessageObject messageObject = u1Var.f23565y7;
+                    if (u1Var.f23568y7.isSent()) {
+                        MessageObject messageObject = u1Var.f23568y7;
                         if (!messageObject.scheduled && !messageObject.isUnread()) {
                             i10 = 1;
                         } else {
@@ -281,7 +281,7 @@ public final class t1 {
                 z12 = false;
                 z11 = false;
             }
-            MessageObject messageObject2 = u1Var.f23565y7;
+            MessageObject messageObject2 = u1Var.f23568y7;
             if (messageObject2.notime || messageObject2.isQuickReply()) {
                 i10 = 0;
                 z12 = false;
@@ -302,10 +302,10 @@ public final class t1 {
             }
             return i15 | i12;
         }
-        if (!u1Var.f23565y7.isSending() && !u1Var.f23565y7.isEditing()) {
+        if (!u1Var.f23568y7.isSending() && !u1Var.f23568y7.isEditing()) {
             z12 = false;
         }
-        boolean isSendError = u1Var.f23565y7.isSendError();
+        boolean isSendError = u1Var.f23568y7.isSendError();
         if (!z12) {
             i13 = 0;
         }
@@ -329,21 +329,21 @@ public final class t1 {
         boolean z16;
         o0 o0Var;
         boolean z17 = true;
-        this.f23152v0 = true;
-        u1 u1Var = this.f23119m3;
-        ArrayList arrayList2 = u1Var.f23420o7;
+        this.f23155v0 = true;
+        u1 u1Var = this.f23122m3;
+        ArrayList arrayList2 = u1Var.f23423o7;
         ci.g3 g3Var = u1Var.S0;
-        this.f23061a = g3Var.getImageX();
-        this.f23065b = g3Var.getImageY();
-        this.f23070c = g3Var.getImageWidth();
+        this.f23064a = g3Var.getImageX();
+        this.f23068b = g3Var.getImageY();
+        this.f23073c = g3Var.getImageWidth();
         this.d = g3Var.getImageHeight();
-        System.arraycopy(g3Var.getRoundRadius(), 0, this.f23145t0, 0, 4);
-        org.telegram.ui.ActionBar.f5 f5Var = u1Var.f23491t8;
+        System.arraycopy(g3Var.getRoundRadius(), 0, this.f23148t0, 0, 4);
+        org.telegram.ui.ActionBar.f5 f5Var = u1Var.f23494t8;
         if (f5Var != null) {
             this.D0.set(f5Var.getBounds());
         }
         this.E0 = u1Var.G8;
-        MessageObject messageObject = u1Var.f23565y7;
+        MessageObject messageObject = u1Var.f23568y7;
         HashSet<Integer> hashSet = null;
         if (messageObject != null) {
             arrayList = messageObject.textLayoutBlocks;
@@ -357,47 +357,47 @@ public final class t1 {
             i10 = 0;
         }
         this.J0 = i10;
-        this.Z0 = u1Var.f23226ad;
+        this.Z0 = u1Var.f23229ad;
         if (messageObject != null) {
             richMessageLayout = messageObject.richLayout;
         } else {
             richMessageLayout = null;
         }
         this.M0 = richMessageLayout;
-        this.e = u1Var.f23430p4;
-        this.f23083f = u1Var.f23442q4;
-        this.f23072c1 = u1Var.f23247c4;
+        this.e = u1Var.f23433p4;
+        this.f23086f = u1Var.f23445q4;
+        this.f23075c1 = u1Var.f23250c4;
         if (messageObject != null) {
             z10 = messageObject.summarized;
         } else {
             z10 = false;
         }
-        this.f23076d1 = z10;
+        this.f23079d1 = z10;
         ArrayList arrayList3 = this.L1;
         arrayList3.clear();
         if (!arrayList2.isEmpty()) {
             arrayList3.addAll(arrayList2);
         }
-        this.f23148u = u1Var.f23513v1;
-        this.v = u1Var.f23286f0;
-        this.f23155w = u1Var.V;
-        this.f23159x = u1Var.f23258d0;
+        this.f23151u = u1Var.f23516v1;
+        this.v = u1Var.f23289f0;
+        this.f23158w = u1Var.V;
+        this.f23162x = u1Var.f23261d0;
         if (u1Var.S != null) {
             z11 = true;
         } else {
             z11 = false;
         }
-        this.f23163y = z11;
-        if (u1Var.f23214a0 != null) {
+        this.f23166y = z11;
+        if (u1Var.f23217a0 != null) {
             z12 = true;
         } else {
             z12 = false;
         }
-        this.f23167z = z12;
-        this.G1 = u1Var.f23384m2;
-        this.C1 = u1Var.f23484t1;
-        this.E1 = u1Var.f23499u1;
-        MessageObject messageObject2 = u1Var.f23565y7;
+        this.f23170z = z12;
+        this.G1 = u1Var.f23387m2;
+        this.C1 = u1Var.f23487t1;
+        this.E1 = u1Var.f23502u1;
+        MessageObject messageObject2 = u1Var.f23568y7;
         if (messageObject2 != null && messageObject2.type == 27 && (o0Var = u1Var.v) != null && o0Var.d()) {
             z13 = true;
         } else {
@@ -406,78 +406,78 @@ public final class t1 {
         this.K2 = z13;
         if (u1Var.Z8 != null) {
             this.M = u1Var.getRepliesCount();
-            this.N = u1Var.f23323h9;
+            this.N = u1Var.f23326h9;
             this.T = u1Var.Z8;
-            this.O = u1Var.f23252c9;
-            this.P = u1Var.f23267d9;
-            this.Q = u1Var.f23279e9;
-            this.R = u1Var.f23308g9;
-            this.S = u1Var.f23237b9;
+            this.O = u1Var.f23255c9;
+            this.P = u1Var.f23270d9;
+            this.Q = u1Var.f23282e9;
+            this.R = u1Var.f23311g9;
+            this.S = u1Var.f23240b9;
         }
         this.E = u1Var.getRepliesCount();
-        this.f23068b2 = u1Var.getMessageObject().messageOwner.views;
+        this.f23071b2 = u1Var.getMessageObject().messageOwner.views;
         this.G = u1Var.Vb;
-        this.f23073c2 = u1Var.Sb;
+        this.f23076c2 = u1Var.Sb;
         this.A = u1Var.Y7;
-        this.f23079e0 = u1Var.f7;
-        this.f23109k1 = u1Var.f23445q8;
-        this.f23117m1 = u1Var.L5;
+        this.f23082e0 = u1Var.f7;
+        this.f23112k1 = u1Var.f23448q8;
+        this.f23120m1 = u1Var.L5;
         this.S1 = u1Var.K4;
         this.T1 = u1Var.L4;
-        this.X1 = u1Var.f23400n2;
-        this.f23080e1 = !u1Var.f23523vb;
-        this.f23085f1 = u1Var.f23464rb;
-        this.f23100i2 = u1Var.ob;
-        this.X0 = u1Var.f23435pb;
-        this.f23081e2 = u1Var.f4();
-        this.f23143s2 = u1Var.getTopMediaOffset();
-        this.f23091g2 = u1Var.e4();
-        this.f23102j = u1Var.W3;
-        this.f23105j2 = u1Var.f23466rd;
-        this.f23118m2 = u1Var.f23453r0;
-        this.f23131p2 = u1Var.f23426p0;
-        this.P1 = u1Var.f23476s7;
-        StaticLayout[] staticLayoutArr = u1Var.f23296fb;
+        this.X1 = u1Var.f23403n2;
+        this.f23083e1 = !u1Var.f23526vb;
+        this.f23088f1 = u1Var.f23467rb;
+        this.f23103i2 = u1Var.ob;
+        this.X0 = u1Var.f23438pb;
+        this.f23084e2 = u1Var.f4();
+        this.f23146s2 = u1Var.getTopMediaOffset();
+        this.f23094g2 = u1Var.e4();
+        this.f23105j = u1Var.W3;
+        this.f23108j2 = u1Var.f23469rd;
+        this.f23121m2 = u1Var.f23456r0;
+        this.f23134p2 = u1Var.f23429p0;
+        this.P1 = u1Var.f23479s7;
+        StaticLayout[] staticLayoutArr = u1Var.f23299fb;
         StaticLayout staticLayout = staticLayoutArr[0];
-        StaticLayout[] staticLayoutArr2 = this.f23162x2;
+        StaticLayout[] staticLayoutArr2 = this.f23165x2;
         staticLayoutArr2[0] = staticLayout;
         staticLayoutArr2[1] = staticLayoutArr[1];
-        MessageObject messageObject3 = u1Var.f23565y7;
+        MessageObject messageObject3 = u1Var.f23568y7;
         if (messageObject3 != null && messageObject3.needDrawForwarded()) {
             z14 = true;
         } else {
             z14 = false;
         }
-        this.f23158w2 = z14;
-        this.A2 = u1Var.f23336ib;
+        this.f23161w2 = z14;
+        this.A2 = u1Var.f23339ib;
         int i11 = u1Var.Lc;
-        this.f23154v2 = i11;
+        this.f23157v2 = i11;
         this.H2 = i11;
-        this.C2 = u1Var.f23310gb;
-        this.f23099i1 = u1Var.getCurrentBackgroundLeft();
-        org.telegram.ui.ActionBar.f5 f5Var2 = u1Var.f23491t8;
+        this.C2 = u1Var.f23313gb;
+        this.f23102i1 = u1Var.getCurrentBackgroundLeft();
+        org.telegram.ui.ActionBar.f5 f5Var2 = u1Var.f23494t8;
         if (f5Var2 != null) {
-            this.f23104j1 = f5Var2.getBounds().right;
+            this.f23107j1 = f5Var2.getBounds().right;
         }
-        MessageObject messageObject4 = u1Var.f23565y7;
+        MessageObject messageObject4 = u1Var.f23568y7;
         if (messageObject4 != null) {
             f7 = messageObject4.textXOffset;
         } else {
             f7 = 0.0f;
         }
-        this.f23127o2 = f7;
+        this.f23130o2 = f7;
         this.P0 = u1Var.M9;
         this.E2 = u1Var.D9;
         this.I2 = u1Var.N9;
         u1Var.N.r();
         if (u1Var.C9 != null) {
-            this.f23140s = u1Var.H9;
+            this.f23143s = u1Var.H9;
         } else {
-            this.f23140s = 0.0f;
+            this.f23143s = 0.0f;
         }
         this.M2 = u1Var.Za;
-        this.N2 = u1Var.f23224ab;
-        this.S2 = u1Var.f23288f2;
+        this.N2 = u1Var.f23227ab;
+        this.S2 = u1Var.f23291f2;
         if (u1Var.getPrimaryMessageObject() != null && u1Var.getPrimaryMessageObject().factCheckExpanded) {
             z15 = true;
         } else {
@@ -485,59 +485,59 @@ public final class t1 {
         }
         this.Y2 = z15;
         this.Q2 = u1Var.N1;
-        this.V2 = u1Var.f23273e2;
-        this.f23064a3 = u1Var.ha;
+        this.V2 = u1Var.f23276e2;
+        this.f23067a3 = u1Var.ha;
         if (u1Var.getPrimaryMessageObject() != null) {
             hashSet = u1Var.getPrimaryMessageObject().expandedQuotes;
         }
-        this.f23074c3 = hashSet;
-        MessageObject messageObject5 = u1Var.f23565y7;
+        this.f23077c3 = hashSet;
+        MessageObject messageObject5 = u1Var.f23568y7;
         if (messageObject5 != null && messageObject5.expandedExplanation) {
             z16 = true;
         } else {
             z16 = false;
         }
-        this.f23087f3 = z16;
+        this.f23090f3 = z16;
         if (messageObject5 == null || !messageObject5.translated) {
             z17 = false;
         }
-        this.f23101i3 = z17;
-        this.f23106j3 = u1Var.J2;
+        this.f23104i3 = z17;
+        this.f23109j3 = u1Var.J2;
     }
 
     public final void i() {
-        u1 u1Var = this.f23119m3;
-        StaticLayout[] staticLayoutArr = u1Var.f23296fb;
+        u1 u1Var = this.f23122m3;
+        StaticLayout[] staticLayoutArr = u1Var.f23299fb;
         StaticLayout staticLayout = staticLayoutArr[0];
-        StaticLayout[] staticLayoutArr2 = this.f23162x2;
+        StaticLayout[] staticLayoutArr2 = this.f23165x2;
         staticLayoutArr2[0] = staticLayout;
         staticLayoutArr2[1] = staticLayoutArr[1];
-        this.f23158w2 = u1Var.f23565y7.needDrawForwarded();
-        this.A2 = u1Var.f23336ib;
+        this.f23161w2 = u1Var.f23568y7.needDrawForwarded();
+        this.A2 = u1Var.f23339ib;
         int i10 = u1Var.Lc;
-        this.f23154v2 = i10;
+        this.f23157v2 = i10;
         this.H2 = i10;
-        this.C2 = u1Var.f23310gb;
+        this.C2 = u1Var.f23313gb;
     }
 
     public final void j() {
-        u1 u1Var = this.f23119m3;
+        u1 u1Var = this.f23122m3;
         ci.g3 g3Var = u1Var.S0;
-        this.f23088g = false;
+        this.f23091g = false;
         this.B = false;
-        this.f23156w0 = false;
-        this.f23089g0 = 0.0f;
-        this.f23093h0 = 0.0f;
-        this.f23098i0 = 0.0f;
-        this.f23103j0 = 0.0f;
-        this.f23108k0 = 0.0f;
-        this.f23113l0 = 0.0f;
-        if (this.f23084f0) {
-            float f7 = this.f23125o0;
+        this.f23159w0 = false;
+        this.f23092g0 = 0.0f;
+        this.f23096h0 = 0.0f;
+        this.f23101i0 = 0.0f;
+        this.f23106j0 = 0.0f;
+        this.f23111k0 = 0.0f;
+        this.f23116l0 = 0.0f;
+        if (this.f23087f0) {
+            float f7 = this.f23128o0;
             if (f7 != 0.0f) {
-                float f10 = this.f23129p0;
+                float f10 = this.f23132p0;
                 if (f10 != 0.0f) {
-                    g3Var.setImageCoords(this.m0, this.f23121n0, f7, f10);
+                    g3Var.setImageCoords(this.m0, this.f23124n0, f7, f10);
                 }
             }
         }
@@ -545,12 +545,12 @@ public final class t1 {
             g3Var.setRoundRadius(this.A0);
         }
         this.m0 = 0.0f;
-        this.f23121n0 = 0.0f;
-        this.f23125o0 = 0.0f;
-        this.f23129p0 = 0.0f;
-        this.f23084f0 = false;
-        this.f23168z0 = 1.0f;
-        this.f23149u0 = 1.0f;
+        this.f23124n0 = 0.0f;
+        this.f23128o0 = 0.0f;
+        this.f23132p0 = 0.0f;
+        this.f23087f0 = false;
+        this.f23171z0 = 1.0f;
+        this.f23152u0 = 1.0f;
         this.B0 = false;
         this.K1 = 1.0f;
         this.Q1 = 0.0f;
@@ -569,12 +569,12 @@ public final class t1 {
         this.U0 = null;
         this.V0 = null;
         this.T0 = false;
-        this.f23063a1 = false;
+        this.f23066a1 = false;
         this.C0 = false;
-        this.f23067b1 = null;
+        this.f23070b1 = null;
         org.telegram.ui.Components.a6.release(u1Var, this.O0);
         this.O0 = null;
-        this.f23141s0 = false;
+        this.f23144s0 = false;
         this.J1 = false;
         this.M1.clear();
         this.W1 = false;
@@ -586,39 +586,39 @@ public final class t1 {
         this.H = null;
         this.U = false;
         this.V = null;
-        this.f23077d2 = null;
-        this.f23086f2 = false;
-        this.f23095h2 = false;
-        this.f23094h1 = false;
+        this.f23080d2 = null;
+        this.f23089f2 = false;
+        this.f23098h2 = false;
+        this.f23097h1 = false;
         this.l1 = false;
-        this.f23071c0 = false;
-        this.f23142s1 = false;
-        this.f23150u1 = false;
-        this.f23165y1 = false;
-        this.f23157w1 = false;
-        this.f23169z1 = false;
+        this.f23074c0 = false;
+        this.f23145s1 = false;
+        this.f23153u1 = false;
+        this.f23168y1 = false;
+        this.f23160w1 = false;
+        this.f23172z1 = false;
         this.B1 = false;
-        this.f23153v1 = false;
+        this.f23156v1 = false;
         this.D1 = false;
         this.F1 = false;
         this.L2 = false;
         this.J1 = false;
-        this.f23097i = false;
-        this.f23110k2 = false;
-        this.f23114l2 = false;
-        this.f23139r2 = false;
+        this.f23100i = false;
+        this.f23113k2 = false;
+        this.f23117l2 = false;
+        this.f23142r2 = false;
         this.X2 = false;
         this.Z2 = false;
-        this.f23082e3 = false;
-        this.f23096h3 = false;
+        this.f23085e3 = false;
+        this.f23099h3 = false;
         this.R2 = false;
-        this.f23069b3 = false;
-        this.f23147t2 = false;
+        this.f23072b3 = false;
+        this.f23150t2 = false;
         this.F2 = false;
-        StaticLayout[] staticLayoutArr = this.f23166y2;
+        StaticLayout[] staticLayoutArr = this.f23169y2;
         staticLayoutArr[0] = null;
         staticLayoutArr[1] = null;
-        this.f23128p = false;
+        this.f23131p = false;
         ah.j1 j1Var = u1Var.N;
         ArrayList arrayList = j1Var.v;
         ArrayList arrayList2 = j1Var.f809w;
@@ -632,7 +632,7 @@ public final class t1 {
         for (int i11 = 0; i11 < arrayList.size(); i11++) {
             ((ah.g1) arrayList.get(i11)).f744c = 0;
         }
-        this.f23111k3 = null;
-        org.telegram.ui.Components.a6.release(u1Var, this.f23115l3);
+        this.f23114k3 = null;
+        org.telegram.ui.Components.a6.release(u1Var, this.f23118l3);
     }
 }

@@ -4,11 +4,11 @@ import android.graphics.Canvas;
 import android.text.Layout;
 import org.telegram.messenger.FileLog;
 public class x9 extends aa {
-    public final w9 f23812p0;
+    public final w9 f23815p0;
 
     public x9(ci.r8 r8Var, org.telegram.ui.ActionBar.d6 d6Var) {
-        this.f23812p0 = r8Var;
-        this.f21990g0 = d6Var;
+        this.f23815p0 = r8Var;
+        this.f21993g0 = d6Var;
     }
 
     @Override
@@ -18,19 +18,19 @@ public class x9 extends aa {
     }
 
     public final void W(Canvas canvas) {
-        Layout staticTextLayout = this.f23812p0.getStaticTextLayout();
-        int w02 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Md, this.f21990g0);
-        this.f22003o.setColor(w02);
-        this.f22005p.setColor(w02);
-        h(canvas, staticTextLayout, this.f22010u, this.v, true, true, 0.0f);
+        Layout staticTextLayout = this.f23815p0.getStaticTextLayout();
+        int w02 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Md, this.f21993g0);
+        this.f22006o.setColor(w02);
+        this.f22008p.setColor(w02);
+        h(canvas, staticTextLayout, this.f22013u, this.v, true, true, 0.0f);
     }
 
     @Override
     public final void i(int i10, q9 q9Var, boolean z10) {
-        q9Var.f22790b = this.f23812p0.getStaticTextLayout();
-        q9Var.f22791c = 0.0f;
+        q9Var.f22793b = this.f23815p0.getStaticTextLayout();
+        q9Var.f22794c = 0.0f;
         q9Var.d = 0.0f;
-        q9Var.f22789a = 0;
+        q9Var.f22792a = 0;
     }
 
     @Override
@@ -43,8 +43,8 @@ public class x9 extends aa {
         if (i11 > staticTextLayout.getLineBottom(staticTextLayout.getLineCount() - 1) + 0.0f) {
             i11 = (int) ((staticTextLayout.getLineBottom(staticTextLayout.getLineCount() - 1) + 0.0f) - 1.0f);
         }
-        q9 q9Var = this.f21980a0;
-        Layout layout = q9Var.f22790b;
+        q9 q9Var = this.f21983a0;
+        Layout layout = q9Var.f22793b;
         if (layout != null) {
             int i14 = (int) (i10 - q9Var.d);
             int i15 = 0;
@@ -61,7 +61,7 @@ public class x9 extends aa {
             }
             if (i15 >= 0) {
                 try {
-                    return q9Var.f22789a + layout.getOffsetForHorizontal(i15, i14);
+                    return q9Var.f22792a + layout.getOffsetForHorizontal(i15, i14);
                 } catch (Exception e) {
                     FileLog.e(e);
                 }
@@ -72,7 +72,7 @@ public class x9 extends aa {
 
     @Override
     public final int m() {
-        Layout staticTextLayout = this.f23812p0.getStaticTextLayout();
+        Layout staticTextLayout = this.f23815p0.getStaticTextLayout();
         return staticTextLayout.getLineBottom(0) - staticTextLayout.getLineTop(0);
     }
 

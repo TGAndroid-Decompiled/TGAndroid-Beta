@@ -1,27 +1,27 @@
 package org.telegram.ui;
 public final class rp implements Runnable {
-    public final int f41258a;
-    public final bq f41259b;
-    public final long f41260c;
+    public final int f41264a;
+    public final bq f41265b;
+    public final long f41266c;
 
     public rp(bq bqVar, long j10, int i10) {
-        this.f41258a = i10;
-        this.f41259b = bqVar;
-        this.f41260c = j10;
+        this.f41264a = i10;
+        this.f41265b = bqVar;
+        this.f41266c = j10;
     }
 
     @Override
     public final void run() {
-        switch (this.f41258a) {
+        switch (this.f41264a) {
             case 0:
-                long j10 = this.f41260c;
-                bq bqVar = this.f41259b;
-                bqVar.f35696n = j10;
-                bqVar.f35701r = true;
+                long j10 = this.f41266c;
+                bq bqVar = this.f41265b;
+                bqVar.f35702n = j10;
+                bqVar.f35707r = true;
                 bqVar.n0();
                 return;
             default:
-                bq.Z(this.f41259b, this.f41260c);
+                bq.Z(this.f41265b, this.f41266c);
                 return;
         }
     }

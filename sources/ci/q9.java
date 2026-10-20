@@ -27,8 +27,8 @@ public final class q9 extends x {
         }
         this.m0 = cVar;
         setChildrenDrawingOrderEnabled(true);
-        this.f50696o0 = 1;
-        this.f50695n0 = 2;
+        this.f50701o0 = 1;
+        this.f50700n0 = 2;
         if (z10) {
             s();
         }

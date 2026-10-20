@@ -1,119 +1,39 @@
 package org.telegram.messenger;
 
-import android.os.Bundle;
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.messenger.BotFullscreenButtons;
-import org.telegram.messenger.CompoundEmoji;
-import org.telegram.messenger.FilesMigrationService;
-import org.telegram.messenger.ImageLoader;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.messenger.NotificationBadge;
-import org.telegram.messenger.TelegramMediaSession;
-import org.telegram.tgnet.TLObject;
+import org.telegram.messenger.UnconfirmedAuthController;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.ResultCallback;
 import org.telegram.tgnet.TLRPC;
-public final class h1 implements Runnable {
-    public final int f18488a;
-    public final Object f18489b;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.tgnet.tl.TL_payments;
+public final class h1 implements Utilities.Callback2 {
+    public final int f18502a;
+    public final Object f18503b;
+    public final Object f18504c;
 
-    public h1(Object obj, int i10) {
-        this.f18488a = i10;
-        this.f18489b = obj;
+    public h1(int i10, Object obj, Object obj2) {
+        this.f18502a = i10;
+        this.f18503b = obj;
+        this.f18504c = obj2;
     }
 
     @Override
-    public final void run() {
-        switch (this.f18488a) {
+    public final void run(Object obj, Object obj2) {
+        switch (this.f18502a) {
             case 0:
-                CompoundEmoji.DrawableInfo.a((CompoundEmoji.DrawableInfo) this.f18489b);
+                ((ChatThemeController) this.f18503b).lambda$requestNextChatThemes$21((ResultCallback) this.f18504c, (TL_account.ChatThemes) obj, (TLRPC.TL_error) obj2);
                 return;
             case 1:
-                ((FeedRemoteViewsFactory) this.f18489b).lambda$onDataSetChanged$0();
+                ((GiftAuctionController) this.f18503b).lambda$requestGiftAuctionInternal$4((Utilities.Callback2) this.f18504c, (TL_payments.TL_StarGiftAuctionState) obj, (TLRPC.TL_error) obj2);
                 return;
             case 2:
-                ((FilesMigrationService.AnonymousClass1) this.f18489b).lambda$run$0();
+                ((MessagesController) this.f18503b).lambda$fetchJoinedCommunities$250((Utilities.Callback) this.f18504c, (TLRPC.messages_Chats) obj, (TLRPC.TL_error) obj2);
                 return;
             case 3:
-                ((ImageLoader.AnonymousClass6) this.f18489b).lambda$onReceive$0();
-                return;
-            case 4:
-                ((LocaleController.TimeZoneChangedReceiver) this.f18489b).lambda$onReceive$0();
-                return;
-            case 5:
-                ((MediaController.AnonymousClass7) this.f18489b).lambda$onSurfaceDestroyed$0();
-                return;
-            case 6:
-                ((MediaController.AnonymousClass9) this.f18489b).lambda$onSurfaceDestroyed$0();
-                return;
-            case 7:
-                ((MediaController.GalleryObserverInternal) this.f18489b).lambda$scheduleReloadRunnable$0();
-                return;
-            case 8:
-                ((MediaController.MusicListenReporter) this.f18489b).report();
-                return;
-            case 9:
-                MediaController.VideoConvertRunnable.lambda$runConversion$0((MediaController.VideoConvertMessage) this.f18489b);
-                return;
-            case 10:
-                ((TelegramMediaSession.SessionCallback) this.f18489b).lambda$notifyPlayStateForNotificationRefresh$0();
-                return;
-            case 11:
-                ANRDetector.a((ANRDetector) this.f18489b);
-                return;
-            case 12:
-                AndroidUtilities.lambda$notifyDataSetChanged$26((RecyclerView) this.f18489b);
-                return;
-            case 13:
-                BotFullscreenButtons.a((BotFullscreenButtons) this.f18489b);
-                return;
-            case 14:
-                ((BotFullscreenButtons.OptionsIcon) this.f18489b).invalidateSelf();
-                return;
-            case 15:
-                CompoundEmoji.CompoundEmojiDrawable.a((CompoundEmoji.CompoundEmojiDrawable) this.f18489b);
-                return;
-            case 16:
-                ContactsLoadingObserver.b((ContactsLoadingObserver) this.f18489b);
-                return;
-            case 17:
-                ((FactCheckController) this.f18489b).loadMissing();
-                return;
-            case 18:
-                FileLoaderPriorityQueue.a((FileLoaderPriorityQueue) this.f18489b);
-                return;
-            case 19:
-                ((FilePathDatabase) this.f18489b).lambda$clear$3();
-                return;
-            case 20:
-                FileRefController.lambda$onRequestComplete$46((TLRPC.TL_theme) this.f18489b);
-                return;
-            case 21:
-                ((ImageReceiver) this.f18489b).invalidate();
-                return;
-            case 22:
-                MediaController.lambda$saveFile$47((org.telegram.ui.ActionBar.b2) this.f18489b);
-                return;
-            case 23:
-                ((org.telegram.ui.Components.oc) this.f18489b).f();
-                return;
-            case 24:
-                MediaDataController.lambda$addRecentGif$27((TLRPC.Document) this.f18489b);
-                return;
-            case 25:
-                MessagesController.lambda$setContentSettings$506((TLRPC.TL_error) this.f18489b);
-                return;
-            case 26:
-                MessagesController.lambda$performLogout$320((TLObject) this.f18489b);
-                return;
-            case 27:
-                MessagesController.lambda$convertToGigaGroup$267((MessagesStorage.BooleanCallback) this.f18489b);
-                return;
-            case 28:
-                ((MusicPlayerService) this.f18489b).stopSelf();
+                PasskeysController.lambda$create$4((org.telegram.ui.ActionBar.b2) this.f18503b, (Utilities.Callback2) this.f18504c, (TL_account.Passkey) obj, (TLRPC.TL_error) obj2);
                 return;
             default:
-                NotificationBadge.HuaweiHomeBadger.lambda$executeBadge$0((Bundle) this.f18489b);
+                ((UnconfirmedAuthController.UnconfirmedAuth) this.f18503b).lambda$confirm$0((Utilities.Callback) this.f18504c, (TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
                 return;
         }
     }

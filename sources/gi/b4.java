@@ -4,8 +4,8 @@ import ai.c5;
 import android.view.ViewGroup;
 import java.util.LinkedList;
 import org.telegram.ui.Components.gh;
-import org.telegram.ui.Components.le0;
 import org.telegram.ui.Components.lg;
+import org.telegram.ui.Components.me0;
 import org.telegram.ui.Components.pg;
 import org.telegram.ui.Components.ti;
 import org.telegram.ui.Components.ub;
@@ -63,17 +63,17 @@ public final class b4 implements o1.f {
             case 3:
                 ti tiVar = (ti) ((c5) this.f11098b).d;
                 tiVar.C0.setTranslationY(0.0f);
-                tiVar.C0.l(tiVar.f30562o2);
+                tiVar.C0.l(tiVar.f30573o2);
                 viewGroup = ((org.telegram.ui.ActionBar.f3) tiVar).containerView;
                 viewGroup.invalidate();
                 ((gh) this.f11099c).run();
                 tiVar.e2(0);
                 return;
             default:
-                le0 le0Var = (le0) this.f11098b;
+                me0 me0Var = (me0) this.f11098b;
                 wc0 wc0Var = (wc0) this.f11099c;
-                LinkedList linkedList = le0Var.U;
-                le0Var.T = null;
+                LinkedList linkedList = me0Var.U;
+                me0Var.T = null;
                 wc0Var.D = null;
                 wc0Var.y();
                 if (!z10) {
@@ -81,7 +81,7 @@ public final class b4 implements o1.f {
                     wc0Var.y();
                     if (!linkedList.isEmpty()) {
                         ((Runnable) linkedList.poll()).run();
-                        le0Var.V.poll();
+                        me0Var.V.poll();
                         return;
                     }
                     return;

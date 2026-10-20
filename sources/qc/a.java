@@ -3,24 +3,24 @@ package qc;
 import c5.c0;
 import java.io.InputStream;
 public final class a {
-    public static int f44428f;
-    public InputStream f44429a;
-    public int f44430b;
-    public int f44431c;
+    public static int f44436f;
+    public InputStream f44437a;
+    public int f44438b;
+    public int f44439c;
     public int d;
     public c0 e;
 
     public final int a() {
         char c10;
         if (this.d == 8) {
-            this.f44430b = this.f44431c;
-            this.f44431c = this.f44429a.read();
+            this.f44438b = this.f44439c;
+            this.f44439c = this.f44437a.read();
             this.d = 0;
-            if (this.f44430b == -1) {
+            if (this.f44438b == -1) {
                 return -1;
             }
         }
-        int i10 = this.f44430b;
+        int i10 = this.f44438b;
         int i11 = this.d;
         int i12 = (i10 >> (7 - i11)) & 1;
         this.d = i11 + 1;
@@ -36,7 +36,7 @@ public final class a {
             cArr[i13] = c10;
             c0Var.f4723b = i13 + 1;
         }
-        f44428f++;
+        f44436f++;
         return i12;
     }
 
@@ -89,7 +89,7 @@ public final class a {
 
     public final void f(String str, String str2) {
         StringBuilder sb2 = new StringBuilder();
-        int i10 = f44428f;
+        int i10 = f44436f;
         c0 c0Var = this.e;
         String valueOf = String.valueOf(i10 - c0Var.f4723b);
         int length = 8 - valueOf.length();

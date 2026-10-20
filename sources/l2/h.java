@@ -9,7 +9,6 @@ import b2.i0;
 import b2.j0;
 import b2.o0;
 import b2.p0;
-import e2.m0;
 import g2.b0;
 import g2.c0;
 import j$.util.Objects;
@@ -24,7 +23,7 @@ import u2.e0;
 import u2.g0;
 import u2.u;
 import v7.u6;
-import zh.l0;
+import zh.m0;
 public final class h extends u2.a {
     public y2.l A;
     public c0 B;
@@ -92,7 +91,7 @@ public final class h extends u2.a {
         this.M = -9223372036854775807L;
         this.K = -9223372036854775807L;
         this.f15855s = new t1(this, 3);
-        this.f15860y = new l0(this);
+        this.f15860y = new m0(this);
         this.v = new Runnable(this) {
             public final h f15832b;
 
@@ -205,14 +204,14 @@ public final class h extends u2.a {
 
     @Override
     public final e0 c(g0 g0Var, androidx.biometric.e eVar, long j10) {
-        int intValue = ((Integer) g0Var.f47306a).intValue() - this.N;
+        int intValue = ((Integer) g0Var.f47314a).intValue() - this.N;
         a5.a b10 = b(g0Var);
         n2.k kVar = new n2.k(this.d.f17059c, 0, g0Var);
         int i10 = this.N + intValue;
         m2.c cVar = this.G;
         c0 c0Var = this.B;
         long j11 = this.K;
-        j2.k kVar2 = this.f47249g;
+        j2.k kVar2 = this.f47254g;
         kVar2.getClass();
         b bVar = new b(i10, cVar, this.f15850n, intValue, this.f15846j, c0Var, this.f15848l, kVar, this.f15849m, b10, j11, this.f15860y, eVar, this.f15847k, this.f15859x, kVar2);
         this.f15857u.put(i10, bVar);
@@ -233,7 +232,7 @@ public final class h extends u2.a {
     public final void m(c0 c0Var) {
         this.B = c0Var;
         Looper myLooper = Looper.myLooper();
-        j2.k kVar = this.f47249g;
+        j2.k kVar = this.f47254g;
         kVar.getClass();
         n2.n nVar = this.f15848l;
         nVar.E(myLooper, kVar);
@@ -244,7 +243,7 @@ public final class h extends u2.a {
         }
         this.f15861z = this.f15845i.createDataSource();
         this.A = new y2.l("DashMediaSource");
-        this.D = m0.q(null);
+        this.D = e2.m0.q(null);
         C();
     }
 
@@ -288,9 +287,9 @@ public final class h extends u2.a {
         this.M = -9223372036854775807L;
         this.f15857u.clear();
         qi.e eVar = this.f15850n;
-        ((HashMap) eVar.f44752a).clear();
-        ((HashMap) eVar.f44753b).clear();
-        ((HashMap) eVar.f44754c).clear();
+        ((HashMap) eVar.f44760a).clear();
+        ((HashMap) eVar.f44761b).clear();
+        ((HashMap) eVar.f44762c).clear();
         this.f15848l.release();
     }
 
@@ -308,8 +307,8 @@ public final class h extends u2.a {
         boolean z10;
         y2.l lVar = this.A;
         d dVar = new d(this);
-        synchronized (z2.c.f50630b) {
-            z10 = z2.c.f50631c;
+        synchronized (z2.c.f50635b) {
+            z10 = z2.c.f50636c;
         }
         if (z10) {
             dVar.a();
@@ -322,12 +321,12 @@ public final class h extends u2.a {
     }
 
     public final void x(y2.o oVar, long j10, long j11) {
-        long j12 = oVar.f49929a;
-        g2.m mVar = oVar.f49930b;
+        long j12 = oVar.f49934a;
+        g2.m mVar = oVar.f49935b;
         b0 b0Var = oVar.d;
         u uVar = new u(mVar, b0Var.f10764c, b0Var.d, j10, j11, b0Var.f10763b);
         this.f15849m.getClass();
-        this.f15853q.q(uVar, oVar.f49931c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
+        this.f15853q.q(uVar, oVar.f49936c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
     }
 
     public final void y(IOException iOException) {

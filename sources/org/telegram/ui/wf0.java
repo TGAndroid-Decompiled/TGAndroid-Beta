@@ -18,19 +18,19 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class wf0 implements RequestDelegate {
-    public final int f42866a;
-    public final cg0 f42867b;
+    public final int f42872a;
+    public final cg0 f42873b;
 
     public wf0(cg0 cg0Var, int i10) {
-        this.f42866a = i10;
-        this.f42867b = cg0Var;
+        this.f42872a = i10;
+        this.f42873b = cg0Var;
     }
 
     @Override
     public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f42866a) {
+        switch (this.f42872a) {
             case 0:
-                final cg0 cg0Var = this.f42867b;
+                final cg0 cg0Var = this.f42873b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -39,7 +39,7 @@ public final class wf0 implements RequestDelegate {
                         switch (r4) {
                             case 0:
                                 cg0 cg0Var2 = cg0Var;
-                                kj0 kj0Var = cg0Var2.f35956a;
+                                kj0 kj0Var = cg0Var2.f35962a;
                                 HashMap hashMap = cg0Var2.G;
                                 ArrayList arrayList = cg0Var2.E;
                                 HashMap hashMap2 = cg0Var2.F;
@@ -55,13 +55,13 @@ public final class wf0 implements RequestDelegate {
                                             if (tL_help_countryCode != null) {
                                                 ?? obj = new Object();
                                                 String str = tL_help_country.name;
-                                                obj.f37777a = str;
+                                                obj.f37783a = str;
                                                 String str2 = tL_help_country.default_name;
-                                                obj.f37778b = str2;
+                                                obj.f37784b = str2;
                                                 if (str == null && str2 != null) {
-                                                    obj.f37777a = str2;
+                                                    obj.f37783a = str2;
                                                 }
-                                                obj.f37779c = tL_help_countryCode.country_code;
+                                                obj.f37785c = tL_help_countryCode.country_code;
                                                 obj.d = tL_help_country.iso2;
                                                 arrayList.add(obj);
                                                 List list = (List) hashMap2.get(tL_help_countryCode.country_code);
@@ -154,7 +154,7 @@ public final class wf0 implements RequestDelegate {
                 });
                 return;
             default:
-                final cg0 cg0Var2 = this.f42867b;
+                final cg0 cg0Var2 = this.f42873b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -163,7 +163,7 @@ public final class wf0 implements RequestDelegate {
                         switch (r4) {
                             case 0:
                                 cg0 cg0Var22 = cg0Var2;
-                                kj0 kj0Var = cg0Var22.f35956a;
+                                kj0 kj0Var = cg0Var22.f35962a;
                                 HashMap hashMap = cg0Var22.G;
                                 ArrayList arrayList = cg0Var22.E;
                                 HashMap hashMap2 = cg0Var22.F;
@@ -179,13 +179,13 @@ public final class wf0 implements RequestDelegate {
                                             if (tL_help_countryCode != null) {
                                                 ?? obj = new Object();
                                                 String str = tL_help_country.name;
-                                                obj.f37777a = str;
+                                                obj.f37783a = str;
                                                 String str2 = tL_help_country.default_name;
-                                                obj.f37778b = str2;
+                                                obj.f37784b = str2;
                                                 if (str == null && str2 != null) {
-                                                    obj.f37777a = str2;
+                                                    obj.f37783a = str2;
                                                 }
-                                                obj.f37779c = tL_help_countryCode.country_code;
+                                                obj.f37785c = tL_help_countryCode.country_code;
                                                 obj.d = tL_help_country.iso2;
                                                 arrayList.add(obj);
                                                 List list = (List) hashMap2.get(tL_help_countryCode.country_code);

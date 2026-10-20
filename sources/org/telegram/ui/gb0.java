@@ -2,7 +2,7 @@ package org.telegram.ui;
 
 import android.os.Bundle;
 import org.telegram.messenger.AndroidUtilities;
-public final class gb0 extends zh.m0 {
+public final class gb0 extends zh.n0 {
     public gb0(Bundle bundle) {
         super(bundle);
     }

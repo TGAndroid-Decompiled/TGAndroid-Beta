@@ -96,7 +96,7 @@ public final class n9 extends ViewGroup {
             arrayList3.clear();
             this.f9524b = null;
             this.f9525c = false;
-            hVar.f50149b.setAllowDrawCursor(true);
+            hVar.f50154b.setAllowDrawCursor(true);
         }
         requestLayout();
     }

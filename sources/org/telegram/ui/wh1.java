@@ -11,20 +11,20 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 public final class wh1 implements Runnable {
-    public final int f42876a;
-    public final int f42877b;
-    public final Object f42878c;
+    public final int f42882a;
+    public final int f42883b;
+    public final Object f42884c;
     public final Object d;
     public final Object e;
-    public final Object f42879f;
+    public final Object f42885f;
 
     public wh1(Object obj, int i10, Object obj2, Object obj3, Object obj4, int i11) {
-        this.f42876a = i11;
-        this.f42878c = obj;
-        this.f42877b = i10;
+        this.f42882a = i11;
+        this.f42884c = obj;
+        this.f42883b = i10;
         this.d = obj2;
         this.e = obj3;
-        this.f42879f = obj4;
+        this.f42885f = obj4;
     }
 
     @Override
@@ -34,22 +34,22 @@ public final class wh1 implements Runnable {
         boolean z10;
         TLRPC.DisallowedGiftsSettings disallowedGiftsSettings;
         TLRPC.DisallowedGiftsSettings disallowedGiftsSettings2;
-        switch (this.f42876a) {
+        switch (this.f42882a) {
             case 0:
-                int i12 = this.f42877b;
+                int i12 = this.f42883b;
                 org.telegram.ui.Components.h9 h9Var = (org.telegram.ui.Components.h9) this.d;
                 TLRPC.User user = (TLRPC.User) this.e;
-                ((int[]) this.f42878c)[0] = i12;
+                ((int[]) this.f42884c)[0] = i12;
                 h9Var.r(user);
-                ((org.telegram.ui.Components.w9) this.f42879f).e(user, h9Var);
+                ((org.telegram.ui.Components.w9) this.f42885f).e(user, h9Var);
                 return;
             case 1:
-                rg.n2 n2Var = (rg.n2) this.f42878c;
-                int i13 = this.f42877b;
+                rg.n2 n2Var = (rg.n2) this.f42884c;
+                int i13 = this.f42883b;
                 List list = (List) this.d;
                 ArrayList arrayList = (ArrayList) this.e;
-                wq0 wq0Var = (wq0) this.f42879f;
-                if (n2Var.I != null && !n2Var.f45542y) {
+                wq0 wq0Var = (wq0) this.f42885f;
+                if (n2Var.I != null && !n2Var.f45550y) {
                     Matrix matrix = new Matrix();
                     matrix.postScale(1.0f / n2Var.I.getWidth(), 1.0f / n2Var.I.getHeight());
                     matrix.postTranslate(-0.5f, -0.5f);
@@ -63,67 +63,67 @@ public final class wh1 implements Runnable {
                     if (list.isEmpty()) {
                         rg.k2 k2Var = new rg.k2(n2Var);
                         k2Var.h.set(0.0f, 0.0f, n2Var.I.getWidth(), n2Var.I.getHeight());
-                        k2Var.f45422i.set(k2Var.h);
-                        matrix.mapRect(k2Var.f45422i);
-                        k2Var.f45419c = i13;
+                        k2Var.f45430i.set(k2Var.h);
+                        matrix.mapRect(k2Var.f45430i);
+                        k2Var.f45427c = i13;
                         Bitmap d = n2Var.d(0, 0, n2Var.I, false);
                         k2Var.d = d;
                         if (d == null) {
                             FileLog.e(new RuntimeException("createSmoothEdgesSegmentedImage failed on empty image"));
                             return;
                         }
-                        k2Var.f45420f = k2Var.c();
+                        k2Var.f45428f = k2Var.c();
                         rg.n2.c(k2Var, n2Var.T, n2Var.U);
-                        n2Var.O = k2Var.f45423j;
-                        n2Var.P = k2Var.f45424k;
+                        n2Var.O = k2Var.f45431j;
+                        n2Var.P = k2Var.f45432k;
                         arrayList.add(k2Var);
                         AndroidUtilities.runOnUIThread(new fn0(n2Var, arrayList, wq0Var, k2Var, 28));
                         n2Var.E = k2Var;
-                        n2Var.f45542y = true;
-                        n2Var.f45541x = false;
+                        n2Var.f45550y = true;
+                        n2Var.f45549x = false;
                         return;
                     }
                     for (int i14 = 0; i14 < list.size(); i14++) {
                         rg.m2 m2Var = (rg.m2) list.get(i14);
                         rg.k2 k2Var2 = new rg.k2(n2Var);
-                        k2Var2.h.set(m2Var.f45504b, m2Var.f45505c, i10 + m2Var.d, i11 + m2Var.e);
-                        k2Var2.f45422i.set(k2Var2.h);
-                        matrix.mapRect(k2Var2.f45422i);
-                        k2Var2.f45419c = i13;
-                        Bitmap d10 = n2Var.d(m2Var.f45504b, m2Var.f45505c, m2Var.f45503a, false);
+                        k2Var2.h.set(m2Var.f45512b, m2Var.f45513c, i10 + m2Var.d, i11 + m2Var.e);
+                        k2Var2.f45430i.set(k2Var2.h);
+                        matrix.mapRect(k2Var2.f45430i);
+                        k2Var2.f45427c = i13;
+                        Bitmap d10 = n2Var.d(m2Var.f45512b, m2Var.f45513c, m2Var.f45511a, false);
                         k2Var2.d = d10;
                         if (d10 != null) {
-                            k2Var2.f45420f = k2Var2.c();
+                            k2Var2.f45428f = k2Var2.c();
                             rg.n2.c(k2Var2, n2Var.T, n2Var.U);
-                            n2Var.O = k2Var2.f45423j;
-                            n2Var.P = k2Var2.f45424k;
+                            n2Var.O = k2Var2.f45431j;
+                            n2Var.P = k2Var2.f45432k;
                             arrayList.add(k2Var2);
                         }
                     }
                     n2Var.E = null;
-                    n2Var.f45542y = true;
-                    n2Var.f45541x = false;
+                    n2Var.f45550y = true;
+                    n2Var.f45549x = false;
                     AndroidUtilities.runOnUIThread(new p2.b(14, n2Var, arrayList));
                     return;
                 }
                 return;
             default:
-                yh.o1 o1Var = (yh.o1) this.f42878c;
+                yh.o1 o1Var = (yh.o1) this.f42884c;
                 Context context = (Context) this.d;
-                int i15 = this.f42877b;
+                int i15 = this.f42883b;
                 TL_stars.StarGift starGift = (TL_stars.StarGift) this.e;
-                long j10 = o1Var.f50425c0;
-                yh.l0 l0Var = new yh.l0(o1Var, (Utilities.Callback) this.f42879f, 2);
+                long j10 = o1Var.f50430c0;
+                yh.l0 l0Var = new yh.l0(o1Var, (Utilities.Callback) this.f42885f, 2);
                 boolean z11 = starGift.limited;
                 boolean z12 = false;
                 boolean z13 = true;
-                if (z11 && (disallowedGiftsSettings2 = o1Var.f50424b0) != null && disallowedGiftsSettings2.disallow_limited_stargifts) {
+                if (z11 && (disallowedGiftsSettings2 = o1Var.f50429b0) != null && disallowedGiftsSettings2.disallow_limited_stargifts) {
                     z10 = false;
                     z12 = true;
                 } else {
                     z10 = false;
                 }
-                if (!z11 || (disallowedGiftsSettings = o1Var.f50424b0) == null || !disallowedGiftsSettings.disallow_unique_stargifts) {
+                if (!z11 || (disallowedGiftsSettings = o1Var.f50429b0) == null || !disallowedGiftsSettings.disallow_unique_stargifts) {
                     z13 = z10;
                 }
                 new yh.r0(o1Var, context, i15, starGift, j10, l0Var, z12, z13).show();
@@ -132,11 +132,11 @@ public final class wh1 implements Runnable {
     }
 
     public wh1(yh.o1 o1Var, Context context, int i10, TL_stars.StarGift starGift, Utilities.Callback callback) {
-        this.f42876a = 2;
-        this.f42878c = o1Var;
+        this.f42882a = 2;
+        this.f42884c = o1Var;
         this.d = context;
-        this.f42877b = i10;
+        this.f42883b = i10;
         this.e = starGift;
-        this.f42879f = callback;
+        this.f42885f = callback;
     }
 }

@@ -1,50 +1,74 @@
 package org.telegram.messenger;
 
+import android.net.Uri;
+import java.util.ArrayList;
+import java.util.HashMap;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.MessagesStorage;
+import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.TranslateController;
+import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class al implements Runnable {
-    public final int f17903a;
-    public final BaseController f17904b;
-    public final Object f17905c;
+    public final int f17909a;
+    public final BaseController f17910b;
+    public final Object f17911c;
     public final Object d;
-    public final Object e;
-    public final Runnable f17906f;
-    public final long h;
+    public final long e;
+    public final Object f17912f;
 
-    public al(TopicsController topicsController, TLObject tLObject, long j10, TLRPC.TL_messages_forumTopics tL_messages_forumTopics, a0.h hVar, Runnable runnable) {
-        this.f17903a = 2;
-        this.f17904b = topicsController;
-        this.f17905c = tLObject;
-        this.h = j10;
-        this.d = tL_messages_forumTopics;
-        this.e = hVar;
-        this.f17906f = runnable;
+    public al(BaseController baseController, Object obj, long j10, Object obj2, Object obj3, int i10) {
+        this.f17909a = i10;
+        this.f17910b = baseController;
+        this.f17912f = obj;
+        this.e = j10;
+        this.f17911c = obj2;
+        this.d = obj3;
     }
 
     @Override
     public final void run() {
-        switch (this.f17903a) {
+        switch (this.f17909a) {
             case 0:
-                ((TranslateController) this.f17904b).lambda$translatePhoto$43((MessageObject) this.f17905c, (String) this.d, (TranslateController.MessageKey) this.e, this.f17906f, this.h);
+                ((TranslateController) this.f17910b).lambda$pushPollToTranslate$25((TranslateController.PendingPollTranslation) this.f17912f, (TLObject) this.f17911c, (TLRPC.TL_error) this.d, this.e);
                 return;
             case 1:
-                ((TranslateController) this.f17904b).lambda$translatePhoto$45((MessageObject) this.f17905c, (String) this.d, (TranslateController.MessageKey) this.e, this.f17906f, this.h);
+                ((TranslateController) this.f17910b).lambda$pushRichMessageToTranslate$28((TranslateController.PendingRichTranslation) this.f17912f, (TLObject) this.f17911c, (TLRPC.TL_error) this.d, this.e);
+                return;
+            case 2:
+                ((MessagesController) this.f17910b).lambda$getSavedReactionTags$488((TLObject) this.f17911c, this.e, (TLRPC.messages_SavedReactionTags) this.f17912f, (TLRPC.TL_messages_getSavedReactionTags) this.d);
+                return;
+            case 3:
+                ((MessagesController) this.f17910b).lambda$addUserToChat$305((TLRPC.Updates) this.f17912f, (Utilities.Callback) this.f17911c, (TLRPC.TL_messages_invitedUsers) this.d, this.e);
+                return;
+            case 4:
+                ((MessagesController) this.f17910b).lambda$getSponsoredMessages$442((ArrayList) this.f17912f, this.e, (MessagesController.SponsoredMessagesInfo) this.f17911c, (Integer) this.d);
+                return;
+            case 5:
+                ((SendMessagesHelper) this.f17910b).lambda$prepareImportHistory$113((ArrayList) this.f17912f, this.e, (Uri) this.f17911c, (MessagesStorage.LongCallback) this.d);
                 return;
             default:
-                Runnable runnable = this.f17906f;
-                ((TopicsController) this.f17904b).lambda$reloadTopics$14((TLObject) this.f17905c, this.h, (TLRPC.TL_messages_forumTopics) this.d, (a0.h) this.e, runnable);
+                ((SendMessagesHelper) this.f17910b).lambda$prepareImportHistory$112((HashMap) this.f17912f, this.e, (SendMessagesHelper.ImportingHistory) this.f17911c, (MessagesStorage.LongCallback) this.d);
                 return;
         }
     }
 
-    public al(TranslateController translateController, MessageObject messageObject, String str, TranslateController.MessageKey messageKey, Runnable runnable, long j10, int i10) {
-        this.f17903a = i10;
-        this.f17904b = translateController;
-        this.f17905c = messageObject;
-        this.d = str;
-        this.e = messageKey;
-        this.f17906f = runnable;
-        this.h = j10;
+    public al(BaseController baseController, Object obj, Object obj2, TLObject tLObject, long j10, int i10) {
+        this.f17909a = i10;
+        this.f17910b = baseController;
+        this.f17912f = obj;
+        this.f17911c = obj2;
+        this.d = tLObject;
+        this.e = j10;
+    }
+
+    public al(MessagesController messagesController, TLObject tLObject, long j10, TLRPC.messages_SavedReactionTags messages_savedreactiontags, TLRPC.TL_messages_getSavedReactionTags tL_messages_getSavedReactionTags) {
+        this.f17909a = 2;
+        this.f17910b = messagesController;
+        this.f17911c = tLObject;
+        this.e = j10;
+        this.f17912f = messages_savedreactiontags;
+        this.d = tL_messages_getSavedReactionTags;
     }
 }

@@ -4,11 +4,11 @@ import com.google.android.gms.common.api.internal.m1;
 import java.util.Random;
 import kotlin.jvm.internal.i;
 public final class b extends a {
-    public final m1 f47628b = new m1(2);
+    public final m1 f47636b = new m1(2);
 
     @Override
     public final Random a() {
-        Object obj = this.f47628b.get();
+        Object obj = this.f47636b.get();
         i.d(obj, "get(...)");
         return (Random) obj;
     }

@@ -18,9 +18,9 @@ import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.ActionBar.n2;
 import org.telegram.ui.Components.bb;
 import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.hm0;
 import org.telegram.ui.Components.im0;
-import org.telegram.ui.Components.t61;
+import org.telegram.ui.Components.jm0;
+import org.telegram.ui.Components.u61;
 import org.telegram.ui.Components.xa;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.Wallet.m6;
@@ -33,24 +33,24 @@ public final class f extends bb implements NotificationCenter.NotificationCenter
     public final uc Y;
     public final FrameLayout Z;
     public Runnable f10607a0;
-    public t61 f10608b0;
+    public u61 f10608b0;
 
     public f(Context context, d6 d6Var, ag.a aVar, boolean z10, Runnable runnable) {
         super(context, null, false, false, d6Var);
         this.v = 0.2f;
         this.f10607a0 = runnable;
         fixNavigationBar();
-        im0 im0Var = this.d;
+        jm0 jm0Var = this.d;
         int i10 = this.backgroundPaddingLeft;
-        im0Var.setPadding(i10, 0, i10, 0);
+        jm0Var.setPadding(i10, 0, i10, 0);
         this.d.setOnItemClickListener(new wa(this, 11));
         k kVar = new k();
-        kVar.f45946m = false;
+        kVar.f45951m = false;
         kVar.C = false;
         kVar.o(bs.h);
         kVar.n(350L);
         this.d.setItemAnimator(kVar);
-        setBackgroundColor(h6.w0(h6.f21058h5, d6Var));
+        setBackgroundColor(h6.w0(h6.f21061h5, d6Var));
         this.X = aVar;
         uc ucVar = new uc(context, 2, d6Var);
         this.Y = ucVar;
@@ -106,9 +106,9 @@ public final class f extends bb implements NotificationCenter.NotificationCenter
                 }
             });
         }
-        t61 t61Var = this.f10608b0;
-        if (t61Var != null) {
-            t61Var.N(false);
+        u61 u61Var = this.f10608b0;
+        if (u61Var != null) {
+            u61Var.N(false);
         }
     }
 
@@ -125,9 +125,9 @@ public final class f extends bb implements NotificationCenter.NotificationCenter
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         Runnable runnable;
         if (i10 == NotificationCenter.starOptionsLoaded || i10 == NotificationCenter.starBalanceUpdated) {
-            t61 t61Var = this.f10608b0;
-            if (t61Var != null) {
-                t61Var.N(true);
+            u61 u61Var = this.f10608b0;
+            if (u61Var != null) {
+                u61Var.N(true);
             }
             ag.a s10 = ga.y(this.currentAccount, true).s();
             int i12 = R.string.TonNeededTitle;
@@ -186,9 +186,9 @@ public final class f extends bb implements NotificationCenter.NotificationCenter
     }
 
     @Override
-    public final hm0 x(im0 im0Var) {
-        t61 t61Var = new t61(this.d, getContext(), this.currentAccount, 0, true, new q(this, 22), this.resourcesProvider);
-        this.f10608b0 = t61Var;
-        return t61Var;
+    public final im0 x(jm0 jm0Var) {
+        u61 u61Var = new u61(this.d, getContext(), this.currentAccount, 0, true, new q(this, 22), this.resourcesProvider);
+        this.f10608b0 = u61Var;
+        return u61Var;
     }
 }

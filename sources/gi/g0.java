@@ -15,7 +15,7 @@ import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Components.bs;
 import org.telegram.ui.Components.dq;
 import org.telegram.ui.Components.f6;
-import org.telegram.ui.Components.uj0;
+import org.telegram.ui.Components.vj0;
 public final class g0 extends Drawable {
     public final ImageView f11214a;
     public final Paint f11215b;
@@ -28,7 +28,7 @@ public final class g0 extends Drawable {
     public final f6 f11219i;
     public final f6 f11220j;
     public final f6 f11221k;
-    public uj0 f11222l;
+    public vj0 f11222l;
 
     public g0(Context context, ImageView imageView) {
         Paint paint = new Paint(1);
@@ -53,7 +53,7 @@ public final class g0 extends Drawable {
     public final void draw(Canvas canvas) {
         float f7;
         float f10;
-        uj0 uj0Var;
+        vj0 vj0Var;
         int i10;
         Canvas canvas2 = canvas;
         Rect bounds = getBounds();
@@ -114,10 +114,10 @@ public final class g0 extends Drawable {
             f7 = 0.0f;
             f10 = 255.0f;
         }
-        if (e > f7 && (uj0Var = this.f11222l) != null) {
-            int i12 = uj0Var.f30975b / 2;
-            int i13 = uj0Var.f30977c / 2;
-            uj0Var.setBounds(centerX - i12, centerY - i13, i12 + centerX, i13 + centerY);
+        if (e > f7 && (vj0Var = this.f11222l) != null) {
+            int i12 = vj0Var.f31265b / 2;
+            int i13 = vj0Var.f31267c / 2;
+            vj0Var.setBounds(centerX - i12, centerY - i13, i12 + centerX, i13 + centerY);
             this.f11222l.setAlpha((int) (e * f10));
             this.f11222l.draw(canvas2);
         }

@@ -68,26 +68,26 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.Components.ag0;
-import org.telegram.ui.Components.ah0;
-import org.telegram.ui.Components.b81;
+import org.telegram.ui.Components.bg0;
+import org.telegram.ui.Components.bh0;
 import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.cg0;
+import org.telegram.ui.Components.c81;
+import org.telegram.ui.Components.dg0;
 import org.telegram.ui.Components.dq;
-import org.telegram.ui.Components.e11;
+import org.telegram.ui.Components.f11;
 import org.telegram.ui.Components.i80;
 import org.telegram.ui.Components.iu;
-import org.telegram.ui.Components.n11;
-import org.telegram.ui.Components.n61;
-import org.telegram.ui.Components.q71;
+import org.telegram.ui.Components.o11;
+import org.telegram.ui.Components.o61;
+import org.telegram.ui.Components.r71;
 import org.telegram.ui.Components.rc0;
-import org.telegram.ui.Components.rf0;
-import org.telegram.ui.Components.tf0;
-import org.telegram.ui.Components.uj0;
+import org.telegram.ui.Components.sf0;
+import org.telegram.ui.Components.uf0;
+import org.telegram.ui.Components.vj0;
 import org.telegram.ui.Components.w80;
-import org.telegram.ui.Components.x91;
 import org.telegram.ui.Components.xc;
-import org.telegram.ui.Components.xj0;
+import org.telegram.ui.Components.y91;
+import org.telegram.ui.Components.yj0;
 import org.telegram.ui.Components.zq;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.na0;
@@ -97,21 +97,21 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
     public View A1;
     public boolean A2;
     public ya B0;
-    public cg0 B1;
+    public dg0 B1;
     public boolean B2;
     public v6 C0;
-    public final ag0 C1;
+    public final bg0 C1;
     public db C2;
     public final j7 D0;
     public TextureView D1;
     public float D2;
     public ValueAnimator E;
     public final hc E0;
-    public rf0 E1;
+    public sf0 E1;
     public ValueAnimator E2;
     public qb F;
     public final ic F0;
-    public tf0 F1;
+    public uf0 F1;
     public float G;
     public final z G0;
     public File G1;
@@ -158,7 +158,7 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
     public final v3 U0;
     public int U1;
     public boolean V;
-    public final x91 V0;
+    public final y91 V0;
     public boolean V1;
     public boolean W;
     public final x3 W0;
@@ -194,14 +194,14 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
     public Runnable f9963e2;
     public final WindowManager f9964f;
     public int f9965f0;
-    public uj0 f9966f1;
+    public vj0 f9966f1;
     public AnimatorSet f9967f2;
     public int f9968g0;
-    public final xj0 f9969g1;
+    public final yj0 f9969g1;
     public z9 f9970g2;
     public final WindowManager.LayoutParams h;
     public final hb f9971h0;
-    public uj0 f9972h1;
+    public vj0 f9972h1;
     public boolean f9973h2;
     public final FrameLayout f9974i0;
     public ImageView f9975i1;
@@ -313,7 +313,7 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
         ub ubVar = new ub(this, activity);
         this.f9987n = ubVar;
         ca caVar = new ca(this, 1);
-        WeakHashMap weakHashMap = r0.i0.f44818a;
+        WeakHashMap weakHashMap = r0.i0.f44826a;
         r0.a0.i(ubVar, caVar);
         this.f9987n.setFocusable(true);
         this.f9987n.setImportantForAccessibility(2);
@@ -363,17 +363,17 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
         int i12 = this.J;
         hbVar2.setBackgroundColor((i12 == 1 || i12 == 0) ? 0 : -14737633);
         hb hbVar3 = this.f9971h0;
-        ci.o1 o1Var = zf.j0.f51576a;
+        ci.o1 o1Var = zf.j0.f51581a;
         hbVar3.setOutlineProvider(new zf.i0(0, AndroidUtilities.dp(12.0f)));
         this.f9971h0.setClipToOutline(true);
         t9 t9Var = new t9(this, 14);
         ?? view = new View(activity);
-        view.f24559a = new TextPaint(1);
-        view.f24560b = new TextPaint(1);
+        view.f24932a = new TextPaint(1);
+        view.f24933b = new TextPaint(1);
         bs bsVar = bs.h;
-        view.f24565s = new org.telegram.ui.Components.f6((View) view, 0L, 350L, bsVar);
+        view.f24938s = new org.telegram.ui.Components.f6((View) view, 0L, 350L, bsVar);
         view.I = new rc0(view, 7);
-        view.f24567x = t9Var;
+        view.f24940x = t9Var;
         this.C1 = view;
         jb jbVar = new jb(this, activity, this.f10001r0, this.f10005s0);
         this.X0 = jbVar;
@@ -499,9 +499,9 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
         ?? imageView3 = new ImageView(activity);
         this.f9969g1 = imageView3;
         imageView3.setScaleType(scaleType);
-        xj0 xj0Var = this.f9969g1;
+        yj0 yj0Var = this.f9969g1;
         a8 a8Var = this.K1;
-        xj0Var.setImageResource((a8Var == null || !a8Var.Y) ? R.drawable.media_mute : R.drawable.media_unmute);
+        yj0Var.setImageResource((a8Var == null || !a8Var.Y) ? R.drawable.media_mute : R.drawable.media_unmute);
         this.f9969g1.setColorFilter(new PorterDuffColorFilter(-1, mode));
         this.f9969g1.setBackground(org.telegram.ui.ActionBar.h6.g0(553648127, 1, -1));
         this.f9969g1.setOnClickListener(new v9(this, 2));
@@ -604,7 +604,7 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
         p6Var.u(-1);
         p6Var.x(AndroidUtilities.bold());
         p6Var.setCallback(view2);
-        p6Var.f29180b = 1;
+        p6Var.f29225b = 1;
         view2.a(0L, false);
         this.J0 = view2;
         h0(false, false);
@@ -641,15 +641,15 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
         x3Var5.K = Layout.Alignment.ALIGN_CENTER;
         this.W0 = x3Var5;
         this.f9980k0.addView(x3Var5, w7.z5.d(-1, -1.0f, 80, 0.0f, 0.0f, 0.0f, 100.0f));
-        x91 x91Var = new x91(activity);
-        this.V0 = x91Var;
-        x91Var.M = false;
-        x91Var.setAlpha(0.0f);
+        y91 y91Var = new y91(activity);
+        this.V0 = y91Var;
+        y91Var.M = false;
+        y91Var.setAlpha(0.0f);
         this.f9980k0.addView(this.V0, w7.z5.d(-1, 50.0f, 81, 0.0f, 0.0f, 0.0f, 108.0f));
         this.V0.setDelegate(new ca(this, 4));
-        x91 x91Var2 = this.V0;
+        y91 y91Var2 = this.V0;
         this.T1 = 0.0f;
-        x91Var2.b(0.0f, false);
+        y91Var2.b(0.0f, false);
         j7 j7Var = new j7(activity, i10, new t9(this, 12));
         this.D0 = j7Var;
         j7Var.f9259c = new u9(this, 9);
@@ -881,15 +881,15 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
 
     public final ImageView F() {
         if (this.f9975i1 == null) {
-            uj0 uj0Var = new uj0(R.raw.sun_outline, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), true, null);
-            this.f9972h1 = uj0Var;
-            uj0Var.h = true;
+            vj0 vj0Var = new vj0(R.raw.sun_outline, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), true, null);
+            this.f9972h1 = vj0Var;
+            vj0Var.h = true;
             a8 a8Var = this.K1;
             if (a8Var != null && a8Var.f8743y0) {
-                uj0Var.M(35);
+                vj0Var.M(35);
                 this.f9972h1.P(36);
             } else {
-                uj0Var.P(0);
+                vj0Var.P(0);
                 this.f9972h1.M(0);
             }
             this.f9972h1.Z = true;
@@ -1051,9 +1051,9 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
                 t();
                 G();
             }
-            ag0 ag0Var = this.C1;
-            if (ag0Var != null) {
-                ag0Var.setAllowTouch(false);
+            bg0 bg0Var = this.C1;
+            if (bg0Var != null) {
+                bg0Var.setAllowTouch(false);
             }
             this.X0.x(2, false);
             this.X0.x(3, false);
@@ -1090,14 +1090,14 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
             this.O0.h();
         }
         this.V1 = false;
-        ag0 ag0Var2 = this.C1;
-        if (ag0Var2 != null) {
+        bg0 bg0Var2 = this.C1;
+        if (bg0Var2 != null) {
             if (i11 == 1 && ((i12 = this.f9968g0) == -1 || i12 == 1)) {
                 z11 = true;
             } else {
                 z11 = false;
             }
-            ag0Var2.setAllowTouch(z11);
+            bg0Var2.setAllowTouch(z11);
         }
         lb lbVar = this.f9956c1;
         if (lbVar != null) {
@@ -1152,7 +1152,7 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
         a8 a8Var5;
         a8 a8Var6;
         a8 a8Var7;
-        q71 textureView;
+        r71 textureView;
         a8 a8Var8;
         boolean z21 = true;
         if (i11 == 0) {
@@ -1212,14 +1212,14 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
                 e0(z13, false);
                 this.f9978j1.setVisibility(0);
                 this.X0.x(-9982, false);
-                ((ah0) this.f9978j1.f9070c).a(this.X0.k(), false);
+                ((bh0) this.f9978j1.f9070c).a(this.X0.k(), false);
                 this.f9994p0.setRightPadding(AndroidUtilities.dp(144.0f));
             } else {
                 a8 a8Var11 = this.K1;
                 if (a8Var11 != null && !TextUtils.isEmpty(a8Var11.f8742y)) {
                     this.f9969g1.setVisibility(8);
                     this.f9978j1.setVisibility(0);
-                    ((ah0) this.f9978j1.f9070c).a(true, false);
+                    ((bh0) this.f9978j1.f9070c).a(true, false);
                     this.f9994p0.setRightPadding(AndroidUtilities.dp(48.0f));
                 } else {
                     this.f9994p0.setRightPadding(AndroidUtilities.dp(48.0f));
@@ -1407,8 +1407,8 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
                 maVar.f9366c = arrayList;
                 maVar.d = arrayList2;
                 maVar.e = arrayList3;
-                maVar.f9371w = new e11(Integer.toString(arrayList.size()), 20.0f, AndroidUtilities.getTypeface("fonts/num.otf"));
-                maVar.K = new e11(LocaleController.formatPluralStringComma("HintViewStoriesMultiple", arrayList.size()), 14.0f, null);
+                maVar.f9371w = new f11(Integer.toString(arrayList.size()), 20.0f, AndroidUtilities.getTypeface("fonts/num.otf"));
+                maVar.K = new f11(LocaleController.formatPluralStringComma("HintViewStoriesMultiple", arrayList.size()), 14.0f, null);
                 maVar.f9365b.W2.N(false);
                 this.f9959d1.setSelected(this.H1.indexOf(this.K1));
             }
@@ -1577,9 +1577,9 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
             this.f10009t1.setVideoRight(0.04f + max);
             qVar.run(Boolean.TRUE, Float.valueOf(max));
         }
-        ag0 ag0Var = this.C1;
-        if (ag0Var != null) {
-            ag0Var.setAllowTouch(false);
+        bg0 bg0Var = this.C1;
+        if (bg0Var != null) {
+            bg0Var.setAllowTouch(false);
         }
         x3 x3Var2 = this.f9985m1;
         boolean z24 = true;
@@ -1656,7 +1656,7 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
         }
         xa xaVar = this.f10015v1;
         if (xaVar != null && (d1Var = xaVar.O0.d) != null) {
-            d1Var.postRunnable(d1Var.f44486w);
+            d1Var.postRunnable(d1Var.f44494w);
         }
         jb jbVar = this.X0;
         if (jbVar != null) {
@@ -1735,12 +1735,12 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
         if ((i11 == 0 || i10 == 0) && (xaVar = this.f10015v1) != null) {
             xaVar.f9004d1.setLayerType(0, null);
         }
-        ag0 ag0Var = this.C1;
-        if (ag0Var != null) {
+        bg0 bg0Var = this.C1;
+        if (bg0Var != null) {
             if (i11 != 1 && i11 != -1) {
                 z11 = false;
             }
-            ag0Var.setAllowTouch(z11);
+            bg0Var.setAllowTouch(z11);
         }
         if (i11 == 3) {
             fb fbVar2 = this.f10002r1;
@@ -2032,17 +2032,17 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
         if (jcVar != null) {
             jcVar.bringToFront();
         }
-        ag0 ag0Var = this.C1;
-        if (ag0Var != null) {
-            ag0Var.bringToFront();
+        bg0 bg0Var = this.C1;
+        if (bg0Var != null) {
+            bg0Var.bringToFront();
         }
-        rf0 rf0Var = this.E1;
-        if (rf0Var != null) {
-            rf0Var.bringToFront();
+        sf0 sf0Var = this.E1;
+        if (sf0Var != null) {
+            sf0Var.bringToFront();
         }
-        tf0 tf0Var = this.F1;
-        if (tf0Var != null) {
-            tf0Var.bringToFront();
+        uf0 uf0Var = this.F1;
+        if (uf0Var != null) {
+            uf0Var.bringToFront();
         }
         l6 l6Var = this.f9992o1;
         if (l6Var != null) {
@@ -2090,7 +2090,7 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
             AndroidUtilities.makingGlobalBlurBitmap = false;
             canvas.restore();
             Paint paint = new Paint(2);
-            q71 textureView = this.X0.getTextureView();
+            r71 textureView = this.X0.getTextureView();
             if (a8Var.K && !a8Var.f8735u && textureView != null) {
                 Bitmap bitmap = textureView.getBitmap();
                 Matrix transform = textureView.getTransform(null);
@@ -2137,10 +2137,10 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
                 xa xaVar2 = this.f10015v1;
                 xaVar2.I0 = true;
                 z5 z5Var = xaVar2.R0;
-                z5Var.f45311a = true;
+                z5Var.f45319a = true;
                 z5Var.draw(canvas);
                 xa xaVar3 = this.f10015v1;
-                xaVar3.R0.f45311a = false;
+                xaVar3.R0.f45319a = false;
                 xaVar3.I0 = false;
                 canvas.restore();
             }
@@ -2177,7 +2177,7 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
         int size;
         char c10;
         View[] viewPages;
-        n61[] n61VarArr;
+        o61[] o61VarArr;
         r9 r9Var = this.f9997q0;
         BitmapDrawable bitmapDrawable = null;
         if (r9Var != null) {
@@ -2218,8 +2218,8 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
             CharSequence text = lbVar.getText();
             if (text instanceof Spannable) {
                 Spannable spannable = (Spannable) text;
-                if (((n11[]) spannable.getSpans(0, text.length(), n11.class)).length > 0 || ((URLSpan[]) spannable.getSpans(0, text.length(), URLSpan.class)).length > 0) {
-                    new xc(this.f9987n, bVar).Q(R.raw.voip_invite, 36, AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.StoryPremiumFormatting), org.telegram.ui.ActionBar.h6.f21046gc, 0, new t9(this, 27), bVar)).k(true);
+                if (((o11[]) spannable.getSpans(0, text.length(), o11.class)).length > 0 || ((URLSpan[]) spannable.getSpans(0, text.length(), URLSpan.class)).length > 0) {
+                    new xc(this.f9987n, bVar).Q(R.raw.voip_invite, 36, AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.StoryPremiumFormatting), org.telegram.ui.ActionBar.h6.f21049gc, 0, new t9(this, 27), bVar)).k(true);
                     int i13 = -this.U1;
                     this.U1 = i13;
                     AndroidUtilities.shakeViewSpring(lbVar, i13);
@@ -2251,10 +2251,10 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
             CharSequence text2 = lbVar.getText();
             ArrayList arrayList2 = new ArrayList();
             if (text2 instanceof Spanned) {
-                for (n61 n61Var : (n61[]) ((Spanned) text2).getSpans(0, text2.length(), n61.class)) {
-                    if (n61Var != null) {
+                for (o61 o61Var : (o61[]) ((Spanned) text2).getSpans(0, text2.length(), o61.class)) {
+                    if (o61Var != null) {
                         try {
-                            TLRPC.User user = MessagesController.getInstance(i12).getUser(Long.valueOf(Long.parseLong(n61Var.getURL())));
+                            TLRPC.User user = MessagesController.getInstance(i12).getUser(Long.valueOf(Long.parseLong(o61Var.getURL())));
                             if (user != null && !UserObject.isUserSelf(user) && UserObject.getPublicUsername(user) != null && !arrayList2.contains(user)) {
                                 arrayList2.add(UserObject.getPublicUsername(user));
                             }
@@ -2277,7 +2277,7 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
                             TLObject userOrChat = MessagesController.getInstance(i12).getUserOrChat(charSequence);
                             if (userOrChat instanceof TLRPC.User) {
                                 TLRPC.User user2 = (TLRPC.User) userOrChat;
-                                if (!user2.bot && !UserObject.isUserSelf(user2) && user2.f20420id != 777000 && !UserObject.isReplyUser(user2) && !arrayList2.contains(charSequence)) {
+                                if (!user2.bot && !UserObject.isUserSelf(user2) && user2.f20423id != 777000 && !UserObject.isReplyUser(user2) && !arrayList2.contains(charSequence)) {
                                     arrayList2.add(charSequence);
                                 }
                             }
@@ -2293,7 +2293,7 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
                     TLObject userOrChat2 = MessagesController.getInstance(i12).getUserOrChat(charSequence2);
                     if (userOrChat2 instanceof TLRPC.User) {
                         TLRPC.User user3 = (TLRPC.User) userOrChat2;
-                        if (!user3.bot && !UserObject.isUserSelf(user3) && user3.f20420id != 777000 && !UserObject.isReplyUser(user3) && !arrayList2.contains(charSequence2)) {
+                        if (!user3.bot && !UserObject.isUserSelf(user3) && user3.f20423id != 777000 && !UserObject.isReplyUser(user3) && !arrayList2.contains(charSequence2)) {
                             arrayList2.add(charSequence2);
                         }
                     }
@@ -2393,10 +2393,10 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
                     if (activity.shouldShowRequestPermissionRationale("android.permission.CAMERA")) {
                         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(activity, 0, this.f9947a);
                         alertDialog$Builder.m(R.raw.permission_request_camera, 72, org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.L5, false), null);
-                        alertDialog$Builder.f20602a.T = AndroidUtilities.replaceTags(LocaleController.getString(R.string.PermissionNoCameraWithHint));
+                        alertDialog$Builder.f20605a.T = AndroidUtilities.replaceTags(LocaleController.getString(R.string.PermissionNoCameraWithHint));
                         alertDialog$Builder.k(LocaleController.getString(R.string.PermissionOpenSettings), new ca(this, 13));
                         alertDialog$Builder.h(LocaleController.getString(R.string.ContactsPermissionAlertNotNow), null);
-                        alertDialog$Builder.f20602a.show();
+                        alertDialog$Builder.f20605a.show();
                         return;
                     }
                     activity.requestPermissions(new String[]{"android.permission.CAMERA"}, 111);
@@ -2675,30 +2675,30 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
 
     public final void e0(boolean z10, boolean z11) {
         if (this.f9966f1 == null) {
-            uj0 uj0Var = new uj0(R.raw.media_mute_unmute, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), true, null);
-            this.f9966f1 = uj0Var;
-            uj0Var.F *= 1.5f;
+            vj0 vj0Var = new vj0(R.raw.media_mute_unmute, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), true, null);
+            this.f9966f1 = vj0Var;
+            vj0Var.F *= 1.5f;
         }
         this.f9969g1.setAnimation(this.f9966f1);
         int i10 = 20;
         if (!z11) {
-            uj0 uj0Var2 = this.f9966f1;
+            vj0 vj0Var2 = this.f9966f1;
             if (!z10) {
                 i10 = 0;
             }
-            uj0Var2.N(i10, false, false);
+            vj0Var2.N(i10, false, false);
         } else if (z10) {
-            uj0 uj0Var3 = this.f9966f1;
-            if (uj0Var3.f30974a0 > 20) {
-                uj0Var3.N(0, false, false);
+            vj0 vj0Var3 = this.f9966f1;
+            if (vj0Var3.f31264a0 > 20) {
+                vj0Var3.N(0, false, false);
             }
             this.f9966f1.P(20);
             this.f9966f1.start();
         } else {
-            uj0 uj0Var4 = this.f9966f1;
-            int i11 = uj0Var4.f30974a0;
+            vj0 vj0Var4 = this.f9966f1;
+            int i11 = vj0Var4.f31264a0;
             if (i11 != 0 && i11 < 43) {
-                uj0Var4.P(43);
+                vj0Var4.P(43);
                 this.f9966f1.start();
             }
         }
@@ -2891,17 +2891,17 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
         jb jbVar;
         float f7;
         Bitmap.CompressFormat compressFormat;
-        cg0 cg0Var = this.B1;
-        if (cg0Var != null && (a8Var = this.K1) != null) {
-            a8Var.f8714j = cg0Var.d() | a8Var.f8714j;
+        dg0 dg0Var = this.B1;
+        if (dg0Var != null && (a8Var = this.K1) != null) {
+            a8Var.f8714j = dg0Var.d() | a8Var.f8714j;
             a8 a8Var2 = this.K1;
-            cg0 cg0Var2 = this.B1;
+            dg0 dg0Var2 = this.B1;
             File file = a8Var2.Z0;
             if (file != null) {
                 file.delete();
                 a8Var2.Z0 = null;
             }
-            MediaController.SavedFilterState savedFilterState = cg0Var2.getSavedFilterState();
+            MediaController.SavedFilterState savedFilterState = dg0Var2.getSavedFilterState();
             a8Var2.f8696a1 = savedFilterState;
             if (!a8Var2.K) {
                 if (savedFilterState.isEmpty()) {
@@ -2909,7 +2909,7 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
                         runnable.run();
                     }
                 } else {
-                    Bitmap bitmap = cg0Var2.getBitmap();
+                    Bitmap bitmap = dg0Var2.getBitmap();
                     if (bitmap == null) {
                         if (runnable != null) {
                             runnable.run();
@@ -3031,8 +3031,8 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
     public final void i0(boolean z10) {
         Integer num;
         float f7;
-        x91 x91Var = this.V0;
-        if ((x91Var.getTag() != null && z10) || (x91Var.getTag() == null && !z10)) {
+        y91 y91Var = this.V0;
+        if ((y91Var.getTag() != null && z10) || (y91Var.getTag() == null && !z10)) {
             if (z10) {
                 Runnable runnable = this.f9963e2;
                 if (runnable != null) {
@@ -3054,12 +3054,12 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
         } else {
             num = null;
         }
-        x91Var.setTag(num);
+        y91Var.setTag(num);
         AnimatorSet animatorSet2 = new AnimatorSet();
         this.f9967f2 = animatorSet2;
         animatorSet2.setDuration(180L);
         if (z10) {
-            x91Var.setVisibility(0);
+            y91Var.setVisibility(0);
         }
         AnimatorSet animatorSet3 = this.f9967f2;
         Property property = View.ALPHA;
@@ -3068,7 +3068,7 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
         } else {
             f7 = 0.0f;
         }
-        animatorSet3.playTogether(ObjectAnimator.ofFloat(x91Var, property, f7));
+        animatorSet3.playTogether(ObjectAnimator.ofFloat(y91Var, property, f7));
         this.f9967f2.addListener(new ah.p0(14, this, z10));
         this.f9967f2.start();
         if (z10) {
@@ -3302,19 +3302,19 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
 
     public final void n0(boolean z10) {
         int i10;
-        uj0 uj0Var = this.f9972h1;
-        if (uj0Var != null) {
-            int[] iArr = uj0Var.e;
+        vj0 vj0Var = this.f9972h1;
+        if (vj0Var != null) {
+            int[] iArr = vj0Var.e;
             int i11 = 0;
             if (z10) {
                 a8 a8Var = this.K1;
                 if (a8Var != null && a8Var.f8743y0) {
                     i11 = iArr[0];
                 }
-                uj0Var.P(i11);
-                uj0 uj0Var2 = this.f9972h1;
-                if (uj0Var2 != null) {
-                    uj0Var2.start();
+                vj0Var.P(i11);
+                vj0 vj0Var2 = this.f9972h1;
+                if (vj0Var2 != null) {
+                    vj0Var2.start();
                     return;
                 }
                 return;
@@ -3325,7 +3325,7 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
             } else {
                 i10 = 0;
             }
-            uj0Var.N(i10, false, true);
+            vj0Var.N(i10, false, true);
             this.f9972h1.P(i10);
             ImageView imageView = this.f9975i1;
             if (imageView != null) {
@@ -3395,22 +3395,22 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
                     return;
                 }
                 this.e = true;
-                b81 b81Var = jbVar.f9737y;
-                if (b81Var != null) {
-                    b81Var.B();
+                c81 c81Var = jbVar.f9737y;
+                if (c81Var != null) {
+                    c81Var.B();
                     jbVar.f9737y.H();
                     jbVar.f9737y = null;
                 }
-                b81 b81Var2 = jbVar.f9735x;
-                if (b81Var2 != null) {
-                    j10 = b81Var2.n();
+                c81 c81Var2 = jbVar.f9735x;
+                if (c81Var2 != null) {
+                    j10 = c81Var2.n();
                     jbVar.f9735x.B();
                     jbVar.f9735x.H();
                     jbVar.f9735x = null;
                 }
-                b81 b81Var3 = jbVar.e;
-                if (b81Var3 != null) {
-                    j10 = b81Var3.n();
+                c81 c81Var3 = jbVar.e;
+                if (c81Var3 != null) {
+                    j10 = c81Var3.n();
                     jbVar.e.B();
                     jbVar.e.H();
                     jbVar.e = null;
@@ -3515,18 +3515,18 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
                 bitmap = null;
             }
             if (bitmap != null || this.K1.K) {
-                q71 textureView = this.X0.getTextureView();
+                r71 textureView = this.X0.getTextureView();
                 int orientation = this.X0.getOrientation();
                 a8 a8Var2 = this.K1;
                 if (a8Var2 != null) {
                     savedFilterState = a8Var2.f8696a1;
                 }
-                cg0 cg0Var = new cg0(this.f9950b, textureView, bitmap, null, orientation, savedFilterState, null, 0, false, false, this.f10001r0, this.f9947a);
-                this.B1 = cg0Var;
-                this.f10000r.addView(cg0Var);
-                ag0 ag0Var = this.C1;
-                if (ag0Var != null) {
-                    ag0Var.setFilterView(this.B1);
+                dg0 dg0Var = new dg0(this.f9950b, textureView, bitmap, null, orientation, savedFilterState, null, 0, false, false, this.f10001r0, this.f9947a);
+                this.B1 = dg0Var;
+                this.f10000r.addView(dg0Var);
+                bg0 bg0Var = this.C1;
+                if (bg0Var != null) {
+                    bg0Var.setFilterView(this.B1);
                 }
                 TextureView myTextureView = this.B1.getMyTextureView();
                 this.D1 = myTextureView;
@@ -3540,12 +3540,12 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
                     this.D1.animate().alpha(1.0f).setDuration(220L).start();
                 }
                 i();
-                rf0 blurControl = this.B1.getBlurControl();
+                sf0 blurControl = this.B1.getBlurControl();
                 this.E1 = blurControl;
                 if (blurControl != null) {
                     this.f9971h0.addView(blurControl);
                 }
-                tf0 curveControl = this.B1.getCurveControl();
+                uf0 curveControl = this.B1.getCurveControl();
                 this.F1 = curveControl;
                 if (curveControl != null) {
                     this.f9971h0.addView(curveControl);
@@ -3556,7 +3556,7 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
                 this.B1.getToolsView().setVisibility(8);
                 this.B1.getToolsView().setAlpha(0.0f);
                 this.B1.getToolsView().setTranslationY(AndroidUtilities.dp(186.0f));
-                this.B1.f25192i0.setVisibility(0);
+                this.B1.f25476i0.setVisibility(0);
             }
         }
     }
@@ -3664,11 +3664,11 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
     }
 
     public final void x() {
-        cg0 cg0Var = this.B1;
-        if (cg0Var == null) {
+        dg0 dg0Var = this.B1;
+        if (dg0Var == null) {
             return;
         }
-        cg0Var.e();
+        dg0Var.e();
         this.C1.setFilterView(null);
         this.f10000r.removeView(this.B1);
         TextureView textureView = this.D1;
@@ -3677,14 +3677,14 @@ public final class vb implements NotificationCenter.NotificationCenterDelegate {
             this.D1 = null;
         }
         this.X0.o(null, null);
-        rf0 rf0Var = this.E1;
-        if (rf0Var != null) {
-            this.f9971h0.removeView(rf0Var);
+        sf0 sf0Var = this.E1;
+        if (sf0Var != null) {
+            this.f9971h0.removeView(sf0Var);
             this.E1 = null;
         }
-        tf0 tf0Var = this.F1;
-        if (tf0Var != null) {
-            this.f9971h0.removeView(tf0Var);
+        uf0 uf0Var = this.F1;
+        if (uf0Var != null) {
+            this.f9971h0.removeView(uf0Var);
             this.F1 = null;
         }
         this.B1 = null;

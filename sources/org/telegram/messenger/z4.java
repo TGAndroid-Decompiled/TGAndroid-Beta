@@ -1,46 +1,60 @@
 package org.telegram.messenger;
 
 import org.telegram.messenger.ImageLoader;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.Vector;
 public final class z4 implements Runnable {
-    public final int f20204a;
-    public final long f20205b;
-    public final long f20206c;
-    public final int d;
+    public final int f20208a;
+    public final boolean f20209b;
+    public final int f20210c;
+    public final Object d;
     public final Object e;
 
-    public z4(int i10, String str, long j10, long j11) {
-        this.f20204a = 0;
-        this.d = i10;
-        this.e = str;
-        this.f20205b = j10;
-        this.f20206c = j11;
+    public z4(int i10, int i11, Object obj, TLObject tLObject, boolean z10) {
+        this.f20208a = i11;
+        this.d = obj;
+        this.e = tLObject;
+        this.f20209b = z10;
+        this.f20210c = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f20204a) {
+        switch (this.f20208a) {
             case 0:
-                long j10 = this.f20205b;
-                long j11 = this.f20206c;
-                ImageLoader.AnonymousClass5.lambda$fileLoadProgressChanged$8(this.d, (String) this.e, j10, j11);
+                boolean z10 = this.f20209b;
+                ((ImageLoader.AnonymousClass5) this.d).lambda$fileDidFailedUpload$4(this.f20210c, (String) this.e, z10);
                 return;
             case 1:
-                ((MediaDataController) this.e).lambda$getMediaCounts$131(this.f20205b, this.f20206c, this.d);
+                ((LocaleController) this.d).lambda$loadRemoteLanguages$11((Vector) this.e, this.f20209b, this.f20210c);
                 return;
             case 2:
-                ((NotificationsController) this.e).lambda$deleteNotificationChannel$43(this.f20205b, this.f20206c, this.d);
+                ((MediaDataController) this.d).lambda$loadStickers$91(this.f20210c, this.f20209b, (Utilities.Callback) this.e);
+                return;
+            case 3:
+                ((MessagesStorage) this.d).lambda$loadUserInfo$129((TLRPC.User) this.e, this.f20209b, this.f20210c);
                 return;
             default:
-                ((TopicsController) this.e).lambda$updateMentionsUnread$21(this.f20205b, this.f20206c, this.d);
+                ((SendMessagesHelper) this.d).lambda$toggleTodo$36(this.f20210c, this.f20209b, (Runnable) this.e);
                 return;
         }
     }
 
-    public z4(BaseController baseController, long j10, long j11, int i10, int i11) {
-        this.f20204a = i11;
-        this.e = baseController;
-        this.f20205b = j10;
-        this.f20206c = j11;
-        this.d = i10;
+    public z4(BaseController baseController, int i10, boolean z10, Object obj, int i11) {
+        this.f20208a = i11;
+        this.d = baseController;
+        this.f20210c = i10;
+        this.f20209b = z10;
+        this.e = obj;
+    }
+
+    public z4(ImageLoader.AnonymousClass5 anonymousClass5, int i10, String str, boolean z10) {
+        this.f20208a = 0;
+        this.d = anonymousClass5;
+        this.f20210c = i10;
+        this.e = str;
+        this.f20209b = z10;
     }
 }

@@ -6,13 +6,13 @@ import android.view.ViewGroup;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.EditTextBoldCursor;
-public final class t11 extends org.telegram.ui.Components.hm0 {
-    public final Context f41573c;
+public final class t11 extends org.telegram.ui.Components.im0 {
+    public final Context f41579c;
     public final u11 d;
 
     public t11(u11 u11Var, Context context) {
         this.d = u11Var;
-        this.f41573c = context;
+        this.f41579c = context;
     }
 
     @Override
@@ -20,7 +20,7 @@ public final class t11 extends org.telegram.ui.Components.hm0 {
         int b10 = b1Var.b();
         if (b10 != 0) {
             u11 u11Var = this.d;
-            if (b10 != u11Var.f41781c && b10 != u11Var.d && b10 != u11Var.e) {
+            if (b10 != u11Var.f41787c && b10 != u11Var.d && b10 != u11Var.e) {
                 return false;
             }
             return true;
@@ -36,10 +36,10 @@ public final class t11 extends org.telegram.ui.Components.hm0 {
     @Override
     public final int j(int i10) {
         u11 u11Var = this.d;
-        if (i10 == u11Var.f41782f) {
+        if (i10 == u11Var.f41788f) {
             return 0;
         }
-        if (i10 != 0 && i10 != u11Var.f41781c && i10 != u11Var.d && i10 != u11Var.e) {
+        if (i10 != 0 && i10 != u11Var.f41787c && i10 != u11Var.d && i10 != u11Var.e) {
             return 1;
         }
         return i10 + 9;
@@ -49,8 +49,8 @@ public final class t11 extends org.telegram.ui.Components.hm0 {
     public final void v(s4.b1 b1Var, int i10) {
         String str;
         String str2;
-        int i11 = b1Var.f45915f;
-        View view = b1Var.f45912a;
+        int i11 = b1Var.f45920f;
+        View view = b1Var.f45917a;
         if (i11 != 0) {
             if (i11 != 1) {
                 boolean z10 = false;
@@ -65,7 +65,7 @@ public final class t11 extends org.telegram.ui.Components.hm0 {
                             if (i10 == 0) {
                                 str = LocaleController.getString(R.string.QuickReplyDefault1);
                                 str2 = "quick_reply_msg1";
-                            } else if (i10 == u11Var.f41781c) {
+                            } else if (i10 == u11Var.f41787c) {
                                 str = LocaleController.getString(R.string.QuickReplyDefault2);
                                 str2 = "quick_reply_msg2";
                             } else if (i10 == u11Var.d) {
@@ -82,10 +82,10 @@ public final class t11 extends org.telegram.ui.Components.hm0 {
                             if (i10 != u11Var.e) {
                                 z10 = true;
                             }
-                            EditTextBoldCursor editTextBoldCursor = j3Var.f22457a;
+                            EditTextBoldCursor editTextBoldCursor = j3Var.f22460a;
                             editTextBoldCursor.setText(string);
                             editTextBoldCursor.setHint(str);
-                            j3Var.f22458b = z10;
+                            j3Var.f22461b = z10;
                             j3Var.setWillNotDraw(!z10);
                             return;
                         default:
@@ -99,14 +99,14 @@ public final class t11 extends org.telegram.ui.Components.hm0 {
             return;
         }
         org.telegram.ui.Cells.d9 d9Var = (org.telegram.ui.Cells.d9) view;
-        d9Var.setBackgroundDrawable(org.telegram.ui.ActionBar.h6.W0(this.f41573c, R.drawable.greydivider_bottom, org.telegram.ui.ActionBar.h6.f20949b7));
+        d9Var.setBackgroundDrawable(org.telegram.ui.ActionBar.h6.W0(this.f41579c, R.drawable.greydivider_bottom, org.telegram.ui.ActionBar.h6.f20952b7));
         d9Var.setText(LocaleController.getString(R.string.VoipQuickRepliesExplain));
     }
 
     @Override
     public final s4.b1 x(ViewGroup viewGroup, int i10) {
         View d9Var;
-        Context context = this.f41573c;
+        Context context = this.f41579c;
         if (i10 != 0) {
             if (i10 != 1) {
                 switch (i10) {
@@ -115,18 +115,18 @@ public final class t11 extends org.telegram.ui.Components.hm0 {
                     case 11:
                     case 12:
                         org.telegram.ui.Cells.j3 j3Var = new org.telegram.ui.Cells.j3(context);
-                        j3Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20987d6, false));
-                        this.d.f41783n[i10 - 9] = j3Var;
+                        j3Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20990d6, false));
+                        this.d.f41789n[i10 - 9] = j3Var;
                         d9Var = j3Var;
                         break;
                     default:
                         d9Var = new org.telegram.ui.Cells.v8(context);
-                        d9Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20987d6, false));
+                        d9Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20990d6, false));
                         break;
                 }
             } else {
                 d9Var = new org.telegram.ui.Cells.ba(context);
-                d9Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20987d6, false));
+                d9Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20990d6, false));
             }
         } else {
             d9Var = new org.telegram.ui.Cells.d9(context);

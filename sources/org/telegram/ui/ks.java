@@ -3,20 +3,20 @@ package org.telegram.ui;
 import android.graphics.Canvas;
 import android.view.View;
 public final class ks implements bh.k {
-    public final int f38654a;
-    public final org.telegram.ui.Components.im0 f38655b;
+    public final int f38660a;
+    public final org.telegram.ui.Components.jm0 f38661b;
 
-    public ks(org.telegram.ui.Components.im0 im0Var, int i10) {
-        this.f38654a = i10;
-        this.f38655b = im0Var;
+    public ks(org.telegram.ui.Components.jm0 jm0Var, int i10) {
+        this.f38660a = i10;
+        this.f38661b = jm0Var;
     }
 
     @Override
     public final boolean a(Canvas canvas, View view, long j10) {
-        switch (this.f38654a) {
+        switch (this.f38660a) {
             case 0:
             default:
-                return this.f38655b.drawChild(canvas, view, j10);
+                return this.f38661b.drawChild(canvas, view, j10);
         }
     }
 }

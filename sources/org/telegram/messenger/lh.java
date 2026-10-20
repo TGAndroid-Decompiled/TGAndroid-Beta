@@ -1,38 +1,30 @@
 package org.telegram.messenger;
 
-import android.os.SystemClock;
-import org.telegram.messenger.SharedConfig;
-public final class lh implements Runnable {
-    public final int f18895a;
-    public final SharedConfig.ProxyInfo f18896b;
-    public final long f18897c;
+import org.telegram.messenger.PasskeysController;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_payments;
+public final class lh implements Utilities.Callback2 {
+    public final int f18897a;
+    public final long f18898b;
+    public final Object f18899c;
+    public final Object d;
 
-    public lh(SharedConfig.ProxyInfo proxyInfo, long j10, int i10) {
-        this.f18895a = i10;
-        this.f18896b = proxyInfo;
-        this.f18897c = j10;
+    public lh(Object obj, Object obj2, long j10, int i10) {
+        this.f18897a = i10;
+        this.f18899c = obj;
+        this.d = obj2;
+        this.f18898b = j10;
     }
 
     @Override
-    public final void run() {
-        int i10 = this.f18895a;
-        long j10 = this.f18897c;
-        SharedConfig.ProxyInfo proxyInfo = this.f18896b;
-        switch (i10) {
+    public final void run(Object obj, Object obj2) {
+        switch (this.f18897a) {
             case 0:
-                ProxyRotationController.lambda$new$0(proxyInfo, j10);
+                PasskeysController.AnonymousClass1.lambda$onResult$0((org.telegram.ui.ActionBar.b2) this.f18899c, (Utilities.Callback3) this.d, this.f18898b, (TLRPC.auth_Authorization) obj, (TLRPC.TL_error) obj2);
                 return;
             default:
-                proxyInfo.availableCheckTime = SystemClock.elapsedRealtime();
-                proxyInfo.checking = false;
-                if (j10 == -1) {
-                    proxyInfo.available = false;
-                    proxyInfo.ping = 0L;
-                } else {
-                    proxyInfo.ping = j10;
-                    proxyInfo.available = true;
-                }
-                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.proxyCheckDone, proxyInfo);
+                ((GiftAuctionController) this.f18899c).lambda$getOrRequestAuction$12((Utilities.Callback2) this.d, this.f18898b, (TL_payments.TL_StarGiftAuctionState) obj, (TLRPC.TL_error) obj2);
                 return;
         }
     }

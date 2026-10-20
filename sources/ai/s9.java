@@ -22,7 +22,7 @@ import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_update;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.i90;
-import org.telegram.ui.Components.py0;
+import org.telegram.ui.Components.qy0;
 import org.telegram.ui.Components.x90;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.TwoStepVerificationActivity;
@@ -85,7 +85,7 @@ public final class s9 implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new g3(tL_error, (Context) obj4, (org.telegram.ui.ActionBar.d6) obj3, (ei.d) obj2, (org.telegram.ui.ActionBar.f3) obj5, (Runnable) obj));
                 return;
             case 7:
-                AndroidUtilities.runOnUIThread(new g3((py0) obj4, tLObject, (EditTextBoldCursor) obj3, (TextView) obj2, (TextView) obj5, (int[]) obj, 15));
+                AndroidUtilities.runOnUIThread(new g3((qy0) obj4, tLObject, (EditTextBoldCursor) obj3, (TextView) obj2, (TextView) obj5, (int[]) obj, 15));
                 return;
             case 8:
                 Pattern pattern = LaunchActivity.C1;

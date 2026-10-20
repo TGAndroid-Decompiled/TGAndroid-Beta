@@ -60,7 +60,7 @@ public final class ae extends AnimatorListenerAdapter {
             }
         }
         LaunchActivity launchActivity = LaunchActivity.H1;
-        if (launchActivity != null && (ja0Var = launchActivity.f33193x0) != null) {
+        if (launchActivity != null && (ja0Var = launchActivity.f33199x0) != null) {
             ja0Var.c(true);
         }
     }

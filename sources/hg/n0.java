@@ -38,7 +38,7 @@ public final class n0 extends FrameLayout {
 
     public final void a() {
         int dp = AndroidUtilities.dp(28.0f);
-        int i10 = h6.f20980ci;
+        int i10 = h6.f20983ci;
         d6 d6Var = this.f11988a;
         setBackground(h6.c0(dp, h6.w0(i10, d6Var)));
         this.f11990c.setTextColor(h6.w0(h6.G6, d6Var));
@@ -87,7 +87,7 @@ public final class n0 extends FrameLayout {
             TLObject tLObject = o0Var.f12004f;
             if (tLObject instanceof TLRPC.User) {
                 TLRPC.User user = (TLRPC.User) tLObject;
-                if (UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser().f20420id == user.f20420id) {
+                if (UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser().f20423id == user.f20423id) {
                     zq M3 = h6.M(AndroidUtilities.dp(32.0f), R.drawable.chats_saved);
                     int dp3 = AndroidUtilities.dp(16.0f);
                     int dp4 = AndroidUtilities.dp(16.0f);

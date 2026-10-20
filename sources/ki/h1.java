@@ -20,8 +20,8 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Components.iu;
-import org.telegram.ui.Components.m61;
-import org.telegram.ui.Components.n11;
+import org.telegram.ui.Components.n61;
+import org.telegram.ui.Components.o11;
 import org.telegram.ui.Components.r90;
 public final class h1 extends iu {
     public boolean E;
@@ -106,7 +106,7 @@ public final class h1 extends iu {
     }
 
     @Override
-    public final m61 createUrlSpan(String str) {
+    public final n61 createUrlSpan(String str) {
         return e6.k(str);
     }
 
@@ -237,7 +237,7 @@ public final class h1 extends iu {
 
     @Override
     public final void onDraw(Canvas canvas) {
-        n11[] n11VarArr;
+        o11[] o11VarArr;
         int i10;
         int i11;
         float f7;
@@ -256,15 +256,15 @@ public final class h1 extends iu {
                 this.F = null;
                 if (text instanceof Spanned) {
                     Spanned spanned = (Spanned) text;
-                    for (n11 n11Var : (n11[]) spanned.getSpans(0, spanned.length(), n11.class)) {
-                        int i12 = n11Var.f28645b.f28357a;
+                    for (o11 o11Var : (o11[]) spanned.getSpans(0, spanned.length(), o11.class)) {
+                        int i12 = o11Var.f28919b.f28649a;
                         if ((65536 & i12) != 0) {
-                            int spanStart = spanned.getSpanStart(n11Var);
-                            int spanEnd = spanned.getSpanEnd(n11Var);
+                            int spanStart = spanned.getSpanStart(o11Var);
+                            int spanEnd = spanned.getSpanEnd(o11Var);
                             if (spanStart >= 0 && spanEnd > spanStart) {
                                 if (r90Var == null) {
                                     r90Var = new r90(0);
-                                    r90Var.f29894n = false;
+                                    r90Var.f29897n = false;
                                 }
                                 r90Var.d(layout, spanStart, 0.0f);
                                 if ((32768 & i12) != 0) {
@@ -284,13 +284,13 @@ public final class h1 extends iu {
                                 } else {
                                     i11 = 0;
                                 }
-                                r90Var.f29895o = i11;
+                                r90Var.f29898o = i11;
                                 layout.getSelectionPath(spanStart, spanEnd, r90Var);
                             }
                         }
                     }
                     if (r90Var != null) {
-                        r90Var.f29894n = true;
+                        r90Var.f29897n = true;
                     }
                     this.F = r90Var;
                 }
@@ -649,7 +649,7 @@ public final class h1 extends iu {
         int i10 = this.M;
         org.telegram.ui.ActionBar.d6 d6Var = this.e;
         setTextColor(h6.w0(i10, d6Var));
-        setLinkTextColor(h6.w0(h6.f21046gc, d6Var));
+        setLinkTextColor(h6.w0(h6.f21049gc, d6Var));
         if (this.f15303s) {
             w02 = h6.m1(0.5f, h6.w0(h6.Oh, d6Var));
         } else {
@@ -657,7 +657,7 @@ public final class h1 extends iu {
         }
         setHintTextColor(w02);
         setCursorColor(h6.w0(h6.G6, d6Var));
-        setHandlesColor(h6.w0(h6.f21131l6, d6Var));
+        setHandlesColor(h6.w0(h6.f21134l6, d6Var));
         m();
     }
 

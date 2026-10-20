@@ -5,27 +5,27 @@ import android.text.style.ClickableSpan;
 import android.widget.TextView;
 import org.telegram.messenger.Utilities;
 public final class xq0 implements Utilities.Callback2 {
-    public final int f43254a;
-    public final PhotoViewer f43255b;
+    public final int f43260a;
+    public final PhotoViewer f43261b;
 
     public xq0(PhotoViewer photoViewer, int i10) {
-        this.f43254a = i10;
-        this.f43255b = photoViewer;
+        this.f43260a = i10;
+        this.f43261b = photoViewer;
     }
 
     @Override
     public final void run(Object obj, Object obj2) {
-        int i10 = this.f43254a;
-        PhotoViewer photoViewer = this.f43255b;
+        int i10 = this.f43260a;
+        PhotoViewer photoViewer = this.f43261b;
         switch (i10) {
             case 0:
                 Drawable[] drawableArr = PhotoViewer.U8;
-                photoViewer.X1((ClickableSpan) obj, (TextView) obj2);
+                photoViewer.Z1((ClickableSpan) obj, (TextView) obj2);
                 return;
             default:
                 Drawable[] drawableArr2 = PhotoViewer.U8;
                 photoViewer.getClass();
-                photoViewer.D0(((Boolean) obj2).booleanValue(), false, (((Float) obj).floatValue() * 2.8f) + 0.2f);
+                photoViewer.E0(((Boolean) obj2).booleanValue(), false, (((Float) obj).floatValue() * 2.8f) + 0.2f);
                 return;
         }
     }

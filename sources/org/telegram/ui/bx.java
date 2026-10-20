@@ -5,22 +5,22 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class bx implements r60 {
-    public final org.telegram.ui.ActionBar.b2 f35744a;
-    public final cy f35745b;
+    public final org.telegram.ui.ActionBar.b2 f35750a;
+    public final cy f35751b;
 
     public bx(cy cyVar, org.telegram.ui.ActionBar.b2 b2Var) {
-        this.f35745b = cyVar;
-        this.f35744a = b2Var;
+        this.f35751b = cyVar;
+        this.f35750a = b2Var;
     }
 
     @Override
     public final void a(s60 s60Var, final long j10) {
         final org.telegram.ui.ActionBar.n2[] n2VarArr = {s60Var, null};
         Utilities.Callback callback = new Utilities.Callback(this) {
-            public final bx f43809b;
+            public final bx f43815b;
 
             {
-                this.f43809b = this;
+                this.f43815b = this;
             }
 
             @Override
@@ -28,7 +28,7 @@ public final class bx implements r60 {
                 Runnable runnable = (Runnable) obj;
                 switch (r5) {
                     case 0:
-                        cy cyVar = this.f43809b.f35745b;
+                        cy cyVar = this.f43815b.f35751b;
                         Boolean bool = cyVar.G.has_username;
                         if (bool != null && bool.booleanValue()) {
                             Bundle bundle = new Bundle();
@@ -36,7 +36,7 @@ public final class bx implements r60 {
                             bundle.putLong("chat_id", j10);
                             bundle.putBoolean("forcePublic", cyVar.G.has_username.booleanValue());
                             md mdVar = new md(bundle);
-                            mdVar.f39196t0 = new g5(runnable, 12);
+                            mdVar.f39202t0 = new g5(runnable, 12);
                             cyVar.presentFragment(mdVar);
                             n2VarArr[1] = mdVar;
                             return;
@@ -44,18 +44,18 @@ public final class bx implements r60 {
                         runnable.run();
                         return;
                     default:
-                        bx bxVar = this.f43809b;
-                        cy cyVar2 = bxVar.f35745b;
+                        bx bxVar = this.f43815b;
+                        cy cyVar2 = bxVar.f35751b;
                         cyVar2.O4(cyVar2.getMessagesController().getChat(Long.valueOf(j10)), runnable, new lt(10, bxVar, n2VarArr));
                         return;
                 }
             }
         };
         Utilities.Callback callback2 = new Utilities.Callback(this) {
-            public final bx f43809b;
+            public final bx f43815b;
 
             {
-                this.f43809b = this;
+                this.f43815b = this;
             }
 
             @Override
@@ -63,7 +63,7 @@ public final class bx implements r60 {
                 Runnable runnable = (Runnable) obj;
                 switch (r5) {
                     case 0:
-                        cy cyVar = this.f43809b.f35745b;
+                        cy cyVar = this.f43815b.f35751b;
                         Boolean bool = cyVar.G.has_username;
                         if (bool != null && bool.booleanValue()) {
                             Bundle bundle = new Bundle();
@@ -71,7 +71,7 @@ public final class bx implements r60 {
                             bundle.putLong("chat_id", j10);
                             bundle.putBoolean("forcePublic", cyVar.G.has_username.booleanValue());
                             md mdVar = new md(bundle);
-                            mdVar.f39196t0 = new g5(runnable, 12);
+                            mdVar.f39202t0 = new g5(runnable, 12);
                             cyVar.presentFragment(mdVar);
                             n2VarArr[1] = mdVar;
                             return;
@@ -79,19 +79,19 @@ public final class bx implements r60 {
                         runnable.run();
                         return;
                     default:
-                        bx bxVar = this.f43809b;
-                        cy cyVar2 = bxVar.f35745b;
+                        bx bxVar = this.f43815b;
+                        cy cyVar2 = bxVar.f35751b;
                         cyVar2.O4(cyVar2.getMessagesController().getChat(Long.valueOf(j10)), runnable, new lt(10, bxVar, n2VarArr));
                         return;
                 }
             }
         };
-        org.telegram.ui.ActionBar.b2 b2Var = this.f35744a;
+        org.telegram.ui.ActionBar.b2 b2Var = this.f35750a;
         Utilities.doCallbacks(callback, callback2, new ai.f2(this, b2Var, j10, 2), new Utilities.Callback(this) {
-            public final bx f35432b;
+            public final bx f35438b;
 
             {
-                this.f35432b = this;
+                this.f35438b = this;
             }
 
             @Override
@@ -100,7 +100,7 @@ public final class bx implements r60 {
                 switch (r4) {
                     case 0:
                         Runnable runnable = (Runnable) obj;
-                        cy cyVar = this.f35432b.f35745b;
+                        cy cyVar = this.f35438b.f35751b;
                         if (cyVar.G.bot_admin_rights != null) {
                             TLRPC.User user = cyVar.getMessagesController().getUser(Long.valueOf(cyVar.H));
                             MessagesController messagesController = cyVar.getMessagesController();
@@ -120,7 +120,7 @@ public final class bx implements r60 {
                         return;
                     default:
                         Runnable runnable2 = (Runnable) obj;
-                        cy cyVar2 = this.f35432b.f35745b;
+                        cy cyVar2 = this.f35438b.f35751b;
                         if (cyVar2.G.user_admin_rights != null) {
                             MessagesController messagesController2 = cyVar2.getMessagesController();
                             long j11 = j10;
@@ -132,10 +132,10 @@ public final class bx implements r60 {
                 }
             }
         }, new Utilities.Callback(this) {
-            public final bx f35432b;
+            public final bx f35438b;
 
             {
-                this.f35432b = this;
+                this.f35438b = this;
             }
 
             @Override
@@ -144,7 +144,7 @@ public final class bx implements r60 {
                 switch (r4) {
                     case 0:
                         Runnable runnable = (Runnable) obj;
-                        cy cyVar = this.f35432b.f35745b;
+                        cy cyVar = this.f35438b.f35751b;
                         if (cyVar.G.bot_admin_rights != null) {
                             TLRPC.User user = cyVar.getMessagesController().getUser(Long.valueOf(cyVar.H));
                             MessagesController messagesController = cyVar.getMessagesController();
@@ -164,7 +164,7 @@ public final class bx implements r60 {
                         return;
                     default:
                         Runnable runnable2 = (Runnable) obj;
-                        cy cyVar2 = this.f35432b.f35745b;
+                        cy cyVar2 = this.f35438b.f35751b;
                         if (cyVar2.G.user_admin_rights != null) {
                             MessagesController messagesController2 = cyVar2.getMessagesController();
                             long j11 = j10;

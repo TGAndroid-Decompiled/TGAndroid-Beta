@@ -2,8 +2,8 @@ package ei;
 
 import android.content.Context;
 import android.view.View;
-import org.telegram.ui.Components.v81;
-public final class n8 extends v81 {
+import org.telegram.ui.Components.w81;
+public final class n8 extends w81 {
     public final int f9520a;
     public final Context f9521b;
     public final r9 f9522c;

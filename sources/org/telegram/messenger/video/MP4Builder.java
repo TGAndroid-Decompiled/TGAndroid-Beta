@@ -126,7 +126,7 @@ public class MP4Builder {
         ?? aVar = new com.googlecode.mp4parser.a("mvhd");
         aVar.f10429r = 1.0d;
         aVar.f10430s = 1.0f;
-        rc.d dVar = rc.d.f45217j;
+        rc.d dVar = rc.d.f45225j;
         aVar.v = dVar;
         Date date = new Date();
         k3.p(te.a.c(f5.m.Q, aVar, aVar, date));
@@ -298,7 +298,7 @@ public class MP4Builder {
         String str;
         ?? bVar = new com.googlecode.mp4parser.b("trak");
         ?? aVar = new com.googlecode.mp4parser.a("tkhd");
-        rc.d dVar = rc.d.f45217j;
+        rc.d dVar = rc.d.f45225j;
         aVar.f10456w = dVar;
         com.google.firebase.messaging.r c10 = te.a.c(y.Z, aVar, aVar, new Boolean(true));
         com.googlecode.mp4parser.g.a().getClass();

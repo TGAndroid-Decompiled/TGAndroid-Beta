@@ -13,26 +13,26 @@ import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.ActionBar.j3;
 import org.telegram.ui.ActionBar.y;
 import org.telegram.ui.Components.bb;
-import org.telegram.ui.Components.hm0;
 import org.telegram.ui.Components.im0;
-import org.telegram.ui.Components.t61;
+import org.telegram.ui.Components.jm0;
+import org.telegram.ui.Components.u61;
 import org.telegram.ui.b91;
 import org.telegram.ui.p91;
 public final class g extends bb {
-    public t61 X;
+    public u61 X;
     public final b91 Y;
 
     public g(Activity activity, d6 d6Var, TL_stats.TL_statsPollStats tL_statsPollStats) {
         super(activity, null, true, false, 2, d6Var);
-        setBackgroundColor(h6.w0(h6.f20929a7, d6Var));
+        setBackgroundColor(h6.w0(h6.f20932a7, d6Var));
         this.occupyNavigationBar = true;
         this.drawNavigationBar = false;
         this.L = false;
         this.K = AndroidUtilities.dp(12.0f);
         this.Y = p91.f0(tL_statsPollStats.votes_graph, LocaleController.getString(R.string.PollV2StatsVoteTimeline), 2, false);
-        im0 im0Var = this.d;
+        jm0 jm0Var = this.d;
         int i10 = this.backgroundPaddingLeft;
-        im0Var.setPadding(i10, 0, i10, AndroidUtilities.navigationBarHeight);
+        jm0Var.setPadding(i10, 0, i10, AndroidUtilities.navigationBarHeight);
         this.d.setClipToPadding(false);
         this.d.setSections(true);
         y n10 = this.e.n();
@@ -54,10 +54,10 @@ public final class g extends bb {
     }
 
     @Override
-    public final hm0 x(im0 im0Var) {
-        t61 t61Var = new t61(im0Var, getContext(), this.currentAccount, 0, true, new o(this, 20), this.resourcesProvider);
-        this.X = t61Var;
-        t61Var.f30436r = false;
-        return t61Var;
+    public final im0 x(jm0 jm0Var) {
+        u61 u61Var = new u61(jm0Var, getContext(), this.currentAccount, 0, true, new o(this, 20), this.resourcesProvider);
+        this.X = u61Var;
+        u61Var.f30860r = false;
+        return u61Var;
     }
 }

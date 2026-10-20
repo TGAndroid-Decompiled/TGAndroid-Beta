@@ -14,10 +14,10 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.kk;
+import org.telegram.messenger.mk;
 import org.telegram.ui.Components.he0;
 import org.telegram.ui.Components.hf;
-import org.telegram.ui.Components.le0;
+import org.telegram.ui.Components.me0;
 public final class x8 extends FrameLayout {
     public final int f10105a = 0;
     public final Object f10106b;
@@ -27,9 +27,9 @@ public final class x8 extends FrameLayout {
     public Object f10108f;
     public Object h;
 
-    public x8(le0 le0Var, Context context) {
+    public x8(me0 me0Var, Context context) {
         super(context);
-        this.h = le0Var;
+        this.h = me0Var;
         this.f10106b = new ArrayList(4);
         this.f10107c = new ArrayList(4);
         this.d = new StringBuilder(4);
@@ -108,7 +108,7 @@ public final class x8 extends FrameLayout {
                 ((TextView) arrayList.get(i12)).setAlpha(0.0f);
             }
         }
-        le0.a((le0) x8Var.h);
+        me0.a((me0) x8Var.h);
     }
 
     public void b(String str) {
@@ -189,7 +189,7 @@ public final class x8 extends FrameLayout {
         ((AnimatorSet) this.e).playTogether(arrayList3);
         ((AnimatorSet) this.e).addListener(new he0(this, 0));
         ((AnimatorSet) this.e).start();
-        le0.a((le0) this.h);
+        me0.a((me0) this.h);
     }
 
     public int c(int i10) {
@@ -228,7 +228,7 @@ public final class x8 extends FrameLayout {
             case 0:
                 super.dispatchDraw(canvas);
                 Paint paint = (Paint) this.f10108f;
-                paint.setColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20988d7, (org.telegram.ui.ActionBar.d6) this.f10106b));
+                paint.setColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20991d7, (org.telegram.ui.ActionBar.d6) this.f10106b));
                 canvas.drawRect(0.0f, getHeight() - AndroidUtilities.getShadowHeight(), getWidth(), getHeight(), paint);
                 return;
             default:
@@ -302,9 +302,9 @@ public final class x8 extends FrameLayout {
         this.f10106b = d6Var;
         TextView textView = new TextView(context);
         this.d = textView;
-        kk.k(20.0f, 1, textView);
+        mk.k(20.0f, 1, textView);
         textView.setGravity(LocaleController.isRTL ? 5 : 3);
-        textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21093j5, d6Var));
+        textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21096j5, d6Var));
         boolean z10 = LocaleController.isRTL;
         addView(textView, w7.z5.d(-1, -2.0f, 23, z10 ? 16.0f : 53.0f, 0.0f, z10 ? 53.0f : 16.0f, 0.0f));
         ImageView imageView = new ImageView(context);
@@ -314,7 +314,7 @@ public final class x8 extends FrameLayout {
         imageView.setImageDrawable(g2Var);
         g2Var.a(-1);
         g2Var.b(-1);
-        g2Var.f20865k = 220.0f;
+        g2Var.f20868k = 220.0f;
         addView(imageView, w7.z5.d(24, 24.0f, (LocaleController.isRTL ? 5 : 3) | 16, 16.0f, 0.0f, 16.0f, 0.0f));
         imageView.setOnClickListener(new ah.g0(this, 23));
     }

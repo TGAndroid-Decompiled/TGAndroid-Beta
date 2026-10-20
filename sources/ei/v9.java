@@ -16,7 +16,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.ah0;
+import org.telegram.ui.Components.bh0;
 import org.telegram.ui.Components.bs;
 public final class v9 implements View.OnClickListener {
     public final int f9944a;
@@ -97,7 +97,7 @@ public final class v9 implements View.OnClickListener {
                         valueAnimator2.setDuration(j10);
                         ValueAnimator valueAnimator3 = vbVar2.E2;
                         if (z12) {
-                            bsVar = bs.f25014i;
+                            bsVar = bs.f25023i;
                         } else {
                             bsVar = bs.h;
                         }
@@ -174,7 +174,7 @@ public final class v9 implements View.OnClickListener {
             case 3:
                 boolean k10 = vbVar.X0.k();
                 vbVar.X0.x(-9982, k10);
-                ((ah0) vbVar.f9978j1.f9070c).a(!k10, true);
+                ((bh0) vbVar.f9978j1.f9070c).a(!k10, true);
                 return;
             case 4:
                 if (vbVar.B0 != null && !vbVar.S1) {

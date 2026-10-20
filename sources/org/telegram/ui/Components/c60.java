@@ -5,19 +5,19 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.VideoEditedInfo;
 public final class c60 implements Runnable {
-    public final int f25086a;
-    public final f60 f25087b;
+    public final int f25107a;
+    public final f60 f25108b;
 
     public c60(f60 f60Var, int i10) {
-        this.f25086a = i10;
-        this.f25087b = f60Var;
+        this.f25107a = i10;
+        this.f25108b = f60Var;
     }
 
     @Override
     public final void run() {
         VideoEditedInfo videoEditedInfo;
-        int i10 = this.f25086a;
-        f60 f60Var = this.f25087b;
+        int i10 = this.f25107a;
+        f60 f60Var = this.f25108b;
         switch (i10) {
             case 0:
                 f60Var.H0.r(false, false);
@@ -40,26 +40,26 @@ public final class c60 implements Runnable {
                 videoEditedInfo3.resultWidth = 360;
                 videoEditedInfo3.originalHeight = 360;
                 videoEditedInfo3.resultHeight = 360;
-                videoEditedInfo3.originalPath = m60Var.f28416g0.getAbsolutePath();
-                f60Var.h(m60Var.f28416g0);
-                m60Var.S.estimatedDuration = m60Var.f28424k0;
-                NotificationCenter.getInstance(m60Var.f28413f).lambda$postNotificationNameOnUIThread$1(NotificationCenter.audioDidSent, Integer.valueOf(m60Var.V), m60Var.S, m60Var.f28416g0.getAbsolutePath(), f60Var.A0);
+                videoEditedInfo3.originalPath = m60Var.f28410g0.getAbsolutePath();
+                f60Var.h(m60Var.f28410g0);
+                m60Var.S.estimatedDuration = m60Var.f28418k0;
+                NotificationCenter.getInstance(m60Var.f28407f).lambda$postNotificationNameOnUIThread$1(NotificationCenter.audioDidSent, Integer.valueOf(m60Var.V), m60Var.S, m60Var.f28410g0.getAbsolutePath(), f60Var.A0);
                 return;
             case 2:
                 if (f60Var.G0 && (videoEditedInfo = f60Var.H0.S) != null) {
                     videoEditedInfo.notReadyYet = false;
                 }
-                f60Var.c(f60Var.f26114a, 0L, true);
+                f60Var.c(f60Var.f26092a, 0L, true);
                 MediaController.getInstance().requestRecordAudioFocus(false);
                 return;
             case 3:
-                f60Var.H0.f28421i1 = null;
+                f60Var.H0.f28415i1 = null;
                 return;
             case 4:
-                f60Var.H0.f28433r0.animate().setDuration(120L).alpha(0.0f).setInterpolator(new DecelerateInterpolator()).start();
+                f60Var.H0.f28427r0.animate().setDuration(120L).alpha(0.0f).setInterpolator(new DecelerateInterpolator()).start();
                 return;
             default:
-                f60Var.H0.f28433r0.animate().setDuration(120L).alpha(0.0f).setInterpolator(new DecelerateInterpolator()).start();
+                f60Var.H0.f28427r0.animate().setDuration(120L).alpha(0.0f).setInterpolator(new DecelerateInterpolator()).start();
                 return;
         }
     }

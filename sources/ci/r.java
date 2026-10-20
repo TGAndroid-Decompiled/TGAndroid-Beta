@@ -34,10 +34,10 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.d61;
+import org.telegram.ui.Components.e61;
 import org.telegram.ui.Components.fd;
 import org.telegram.ui.Components.x20;
-import org.telegram.ui.Components.yj0;
+import org.telegram.ui.Components.zj0;
 import org.telegram.ui.cy;
 import org.telegram.ui.tw;
 public abstract class r extends FrameLayout implements NotificationCenter.NotificationCenterDelegate, ne.d {
@@ -94,7 +94,7 @@ public abstract class r extends FrameLayout implements NotificationCenter.Notifi
     public p f5880k0;
     public boolean f5881l0;
     public boolean m0;
-    public yj0 f5882n;
+    public zj0 f5882n;
     public float f5883n0;
     public int f5884o0;
     public q f5885p0;
@@ -162,14 +162,14 @@ public abstract class r extends FrameLayout implements NotificationCenter.Notifi
         jVar.setClipChildren(false);
         fdVar.h = new androidx.fragment.app.d(twVar, 6);
         ah.j jVar2 = new ah.j(twVar, 5);
-        fdVar.f26204l = true;
-        fdVar.f26202j = jVar2;
+        fdVar.f26201l = true;
+        fdVar.f26199j = jVar2;
         jVar.j(new ah.d0(twVar, 5));
         s4.k kVar = new s4.k();
         this.R = kVar;
         kVar.C = false;
         kVar.n(150L);
-        kVar.f45946m = false;
+        kVar.f45951m = false;
         jVar.setItemAnimator(kVar);
         s4.b0 b0Var = new s4.b0(0, false);
         this.S = b0Var;
@@ -204,7 +204,7 @@ public abstract class r extends FrameLayout implements NotificationCenter.Notifi
         addView(imageView, w7.z5.c(22.0f, 90));
         org.telegram.ui.Components.p5 p5Var = new org.telegram.ui.Components.p5(AndroidUtilities.dp(26.0f), null);
         this.f5867a0 = p5Var;
-        p5Var.f29162a = true;
+        p5Var.f29207a = true;
         p5Var.setCallback(this);
         ImageView imageView2 = new ImageView(context);
         this.W = imageView2;
@@ -226,7 +226,7 @@ public abstract class r extends FrameLayout implements NotificationCenter.Notifi
         ?? kVar3 = new s4.k();
         this.d = kVar3;
         kVar3.C = false;
-        kVar3.f45946m = false;
+        kVar3.f45951m = false;
         jVar3.setItemAnimator(kVar3);
         jVar3.setAdapter(nVar2);
         jVar3.setClipChildren(false);
@@ -826,7 +826,7 @@ public abstract class r extends FrameLayout implements NotificationCenter.Notifi
             SpannableStringBuilder replaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.getString("StoriesPremiumHint2").replace('\n', ' '), org.telegram.ui.ActionBar.h6.Gi, 0, new d(this, 1));
             ClickableSpan[] clickableSpanArr = (ClickableSpan[]) replaceSingleTag.getSpans(0, replaceSingleTag.length(), ClickableSpan.class);
             if (clickableSpanArr != null && clickableSpanArr.length >= 1) {
-                replaceSingleTag.setSpan(new d61(AndroidUtilities.bold()), replaceSingleTag.getSpanStart(clickableSpanArr[0]), replaceSingleTag.getSpanEnd(clickableSpanArr[0]), 33);
+                replaceSingleTag.setSpan(new e61(AndroidUtilities.bold()), replaceSingleTag.getSpanStart(clickableSpanArr[0]), replaceSingleTag.getSpanEnd(clickableSpanArr[0]), 33);
             }
             ei.x3 x3Var2 = this.J;
             x3Var2.h = ei.x3.a(replaceSingleTag, x3Var2.getTextPaint());
@@ -865,7 +865,7 @@ public abstract class r extends FrameLayout implements NotificationCenter.Notifi
         }
         if (d8.d != null) {
             int x02 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.xj, false);
-            int x03 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21225q7, false);
+            int x03 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21228q7, false);
             d8.d.d(i0.a.f(0.25f, x02, x03), x03, 0, 0);
         }
         int textColor = getTextColor();
@@ -934,8 +934,8 @@ public abstract class r extends FrameLayout implements NotificationCenter.Notifi
             fdVar.getClass();
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set((int) jVar.getX(), (int) jVar.getY(), x10, y3);
-            fdVar.f26201i = false;
-            fdVar.f26198c = 0;
+            fdVar.f26198i = false;
+            fdVar.f26195c = 0;
             fdVar.a(rectF);
             if (fdVar.b(motionEvent)) {
                 return true;

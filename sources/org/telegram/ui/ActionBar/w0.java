@@ -10,36 +10,36 @@ import android.graphics.Shader;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 public final class w0 implements Utilities.Callback {
-    public final int f21826a;
-    public final Object f21827b;
+    public final int f21829a;
+    public final Object f21830b;
 
     public w0(Object obj, int i10) {
-        this.f21826a = i10;
-        this.f21827b = obj;
+        this.f21829a = i10;
+        this.f21830b = obj;
     }
 
     @Override
     public final void run(Object obj) {
-        switch (this.f21826a) {
+        switch (this.f21829a) {
             case 0:
-                b1 b1Var = (b1) this.f21827b;
+                b1 b1Var = (b1) this.f21830b;
                 Bitmap bitmap = (Bitmap) obj;
                 Paint paint = b1Var.F;
                 b1Var.U = false;
-                b1Var.f20642f = bitmap;
+                b1Var.f20645f = bitmap;
                 Shader.TileMode tileMode = Shader.TileMode.CLAMP;
                 b1Var.h = new BitmapShader(bitmap, tileMode, tileMode);
-                Matrix matrix = b1Var.f20643n;
+                Matrix matrix = b1Var.f20646n;
                 if (matrix == null) {
-                    b1Var.f20643n = new Matrix();
+                    b1Var.f20646n = new Matrix();
                 } else {
                     matrix.reset();
                 }
-                b1Var.f20643n.postScale(8.0f, 8.0f);
-                Matrix matrix2 = b1Var.f20643n;
-                int[] iArr = b1Var.f20644r;
+                b1Var.f20646n.postScale(8.0f, 8.0f);
+                Matrix matrix2 = b1Var.f20646n;
+                int[] iArr = b1Var.f20647r;
                 matrix2.postTranslate(-iArr[0], -iArr[1]);
-                b1Var.h.setLocalMatrix(b1Var.f20643n);
+                b1Var.h.setLocalMatrix(b1Var.f20646n);
                 paint.setShader(b1Var.h);
                 ColorMatrix colorMatrix = new ColorMatrix();
                 AndroidUtilities.adjustSaturationColorMatrix(colorMatrix, -0.2f);
@@ -47,7 +47,7 @@ public final class w0 implements Utilities.Callback {
                 b1Var.invalidate();
                 return;
             default:
-                b2 b2Var = (b2) this.f21827b;
+                b2 b2Var = (b2) this.f21830b;
                 Bitmap bitmap2 = (Bitmap) obj;
                 if (bitmap2 == null) {
                     b2Var.getClass();
@@ -66,10 +66,10 @@ public final class w0 implements Utilities.Callback {
                 b2Var.D0 = matrix3;
                 matrix3.postScale(8.0f, 8.0f);
                 Matrix matrix4 = b2Var.D0;
-                int[] iArr2 = b2Var.f20683x0;
+                int[] iArr2 = b2Var.f20686x0;
                 matrix4.postTranslate(-iArr2[0], -iArr2[1]);
                 b2Var.E0.setLocalMatrix(b2Var.D0);
-                b2Var.f20652a1.invalidate();
+                b2Var.f20655a1.invalidate();
                 return;
         }
     }

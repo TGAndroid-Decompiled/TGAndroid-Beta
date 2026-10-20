@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import java.util.WeakHashMap;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.v81;
+import org.telegram.ui.Components.w81;
 import org.telegram.ui.c31;
 import org.telegram.ui.j41;
 import org.telegram.ui.mg1;
@@ -14,7 +14,7 @@ import org.telegram.ui.n21;
 import org.telegram.ui.o21;
 import org.telegram.ui.og1;
 import org.telegram.ui.s50;
-public final class j5 extends v81 {
+public final class j5 extends w81 {
     public final int f1565a;
     public final Object f1566b;
     public final Object f1567c;
@@ -67,10 +67,10 @@ public final class j5 extends v81 {
                 return;
             case 4:
                 og1 og1Var = (og1) obj;
-                SparseArray sparseArray = og1Var.f39880a;
+                SparseArray sparseArray = og1Var.f39886a;
                 mg1 mg1Var = (mg1) sparseArray.get(i10);
                 if (mg1Var != null) {
-                    n2Var = mg1Var.f39236a;
+                    n2Var = mg1Var.f39242a;
                 } else {
                     org.telegram.ui.ActionBar.n2 V = og1Var.V(i10);
                     mg1 mg1Var2 = new mg1(V);
@@ -78,28 +78,28 @@ public final class j5 extends v81 {
                     n2Var = V;
                     mg1Var = mg1Var2;
                 }
-                if (!mg1Var.f39237b) {
+                if (!mg1Var.f39243b) {
                     n2Var.onFragmentCreate();
-                    mg1Var.f39237b = true;
+                    mg1Var.f39243b = true;
                 }
                 n2Var.setParentLayout(og1Var.getParentLayout());
                 if (n2Var.getFragmentView() == null) {
                     n2Var.performCreateView((Context) this.f1566b);
-                    n2Var.setTitleOverlayText(og1Var.f39884n, og1Var.f39885r, og1Var.f39886s);
+                    n2Var.setTitleOverlayText(og1Var.f39890n, og1Var.f39891r, og1Var.f39892s);
                 }
                 FrameLayout frameLayout2 = (FrameLayout) view;
                 frameLayout2.removeAllViews();
                 View fragmentView = n2Var.getFragmentView();
                 AndroidUtilities.removeFromParent(fragmentView);
                 if (!n2Var.hasOwnBackground() && fragmentView.getBackground() == null) {
-                    fragmentView.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20987d6, false));
+                    fragmentView.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20990d6, false));
                 }
                 frameLayout2.addView(fragmentView, w7.z5.c(-1.0f, -1));
                 if (n2Var.getActionBar() != null && n2Var.getActionBar().K) {
                     AndroidUtilities.removeFromParent(n2Var.getActionBar());
                     frameLayout2.addView(n2Var.getActionBar());
                 }
-                WeakHashMap weakHashMap = r0.i0.f44818a;
+                WeakHashMap weakHashMap = r0.i0.f44826a;
                 r0.y.c(frameLayout2);
                 og1Var.checkSystemBarColors();
                 og1Var.U();

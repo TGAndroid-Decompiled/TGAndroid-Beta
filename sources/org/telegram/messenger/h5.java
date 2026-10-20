@@ -2,28 +2,26 @@ package org.telegram.messenger;
 
 import org.telegram.messenger.ImageLoader;
 public final class h5 implements Runnable {
-    public final int f18497a;
-    public final ImageLoader.HttpImageTask f18498b;
+    public final int f18511a;
+    public final ImageLoader.HttpFileTask f18512b;
+    public final long f18513c;
+    public final long d;
 
-    public h5(ImageLoader.HttpImageTask httpImageTask, int i10) {
-        this.f18497a = i10;
-        this.f18498b = httpImageTask;
+    public h5(ImageLoader.HttpFileTask httpFileTask, long j10, long j11, int i10) {
+        this.f18511a = i10;
+        this.f18512b = httpFileTask;
+        this.f18513c = j10;
+        this.d = j11;
     }
 
     @Override
     public final void run() {
-        switch (this.f18497a) {
+        switch (this.f18511a) {
             case 0:
-                this.f18498b.lambda$onCancelled$6();
-                return;
-            case 1:
-                this.f18498b.lambda$onCancelled$8();
-                return;
-            case 2:
-                this.f18498b.lambda$onPostExecute$5();
+                this.f18512b.lambda$reportProgress$0(this.f18513c, this.d);
                 return;
             default:
-                this.f18498b.lambda$onCancelled$7();
+                this.f18512b.lambda$reportProgress$1(this.f18513c, this.d);
                 return;
         }
     }

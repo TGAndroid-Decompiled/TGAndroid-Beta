@@ -34,7 +34,7 @@ public final class c3 implements ri {
         String str2;
         q4 q4Var = this.f5269a;
         if (q4Var.J0.m0 && (storyItem = q4Var.O1.f5688a) != null && !(storyItem instanceof TL_stories.TL_storyItemSkipped)) {
-            if (i10 != 8 && i10 != 7 && (i10 != 4 || q4Var.I2.f30546j0.getSelectedPhotos().isEmpty())) {
+            if (i10 != 8 && i10 != 7 && (i10 != 4 || q4Var.I2.f30557j0.getSelectedPhotos().isEmpty())) {
                 b3 b3Var = q4Var.I2;
                 if (b3Var != null) {
                     b3Var.dismissWithButtonClick(i10);
@@ -46,8 +46,8 @@ public final class c3 implements ri {
             if (i10 != 8) {
                 q4Var.I2.dismiss(true);
             }
-            HashMap<Object, Object> selectedPhotos = q4Var.I2.f30546j0.getSelectedPhotos();
-            ArrayList<Object> selectedPhotosOrder = q4Var.I2.f30546j0.getSelectedPhotosOrder();
+            HashMap<Object, Object> selectedPhotos = q4Var.I2.f30557j0.getSelectedPhotos();
+            ArrayList<Object> selectedPhotosOrder = q4Var.I2.f30557j0.getSelectedPhotosOrder();
             if (!selectedPhotos.isEmpty()) {
                 int i13 = 0;
                 int i14 = 0;

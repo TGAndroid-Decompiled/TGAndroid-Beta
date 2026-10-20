@@ -60,7 +60,7 @@ public final class h0 implements Runnable {
                 h1 h1Var = (h1) obj3;
                 n9 n9Var = (n9) obj2;
                 j0 j0Var = (j0) obj;
-                k0 k0Var = (k0) ((qf.b) obj4).f44440c;
+                k0 k0Var = (k0) ((qf.b) obj4).f44448c;
                 if (h1Var.length() >= i15 && h1Var.getSelectionStart() != h1Var.getSelectionEnd() && n9Var.j0(j0Var.D(), 0, i14, i15)) {
                     k0Var.d = true;
                     h1Var.setSelection(i15);
@@ -173,7 +173,7 @@ public final class h0 implements Runnable {
                             }
                             TLRPC.User user4 = contact.user;
                             if (user4 != null) {
-                                longSparseIntArray.put(user4.f20420id, 1);
+                                longSparseIntArray.put(user4.f20423id, 1);
                             }
                             arrayList4.add(contact);
                             i17++;
@@ -242,13 +242,13 @@ public final class h0 implements Runnable {
                 org.telegram.ui.ActionBar.n2 n2Var = (org.telegram.ui.ActionBar.n2) obj3;
                 ArrayList arrayList6 = (ArrayList) obj2;
                 qn qnVar2 = (qn) obj;
-                boolean z12 = ChatAttachAlertPhotoLayout.f24074q1;
-                ti tiVar = chatAttachAlertPhotoLayout.f28223b;
+                boolean z12 = ChatAttachAlertPhotoLayout.f24077q1;
+                ti tiVar = chatAttachAlertPhotoLayout.f28173b;
                 if (tiVar.F && !tiVar.G) {
-                    PhotoViewer.t1().K2(null, n2Var, null);
-                    PhotoViewer t12 = PhotoViewer.t1();
-                    t12.h = 0;
-                    t12.f33349n = false;
+                    PhotoViewer.u1().M2(null, n2Var, null);
+                    PhotoViewer u12 = PhotoViewer.u1();
+                    u12.h = 0;
+                    u12.f33355n = false;
                     i12 = 3;
                 } else {
                     i12 = i15;
@@ -257,37 +257,37 @@ public final class h0 implements Runnable {
                     i12 = 13;
                 }
                 int i22 = i12;
-                PhotoViewer t13 = PhotoViewer.t1();
-                im imVar = chatAttachAlertPhotoLayout.f24094h1;
+                PhotoViewer u13 = PhotoViewer.u1();
+                im imVar = chatAttachAlertPhotoLayout.f24097h1;
                 if (tiVar.H) {
                     qnVar = null;
                 } else {
                     qnVar = qnVar2;
                 }
-                t13.g2(arrayList6, this.f15297c, i22, false, imVar, qnVar);
-                PhotoViewer.t1().x2(tiVar.Q);
+                u13.i2(arrayList6, this.f15297c, i22, false, imVar, qnVar);
+                PhotoViewer.u1().z2(tiVar.Q);
                 if (tiVar.F && !tiVar.G) {
-                    PhotoViewer.t1().O = false;
+                    PhotoViewer.u1().O = false;
                 } else if (tiVar.T0 != 0) {
-                    PhotoViewer.t1().O = true;
-                    PhotoViewer t14 = PhotoViewer.t1();
+                    PhotoViewer.u1().O = true;
+                    PhotoViewer u14 = PhotoViewer.u1();
                     if (tiVar.U0 != null) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
-                    t14.P = z10;
+                    u14.P = z10;
                 }
                 if (tiVar.G) {
-                    PhotoViewer.t1().Y0(null, null, false, tiVar.J);
+                    PhotoViewer.u1().Z0(null, null, false, tiVar.J);
                 }
                 if (ChatAttachAlertPhotoLayout.T()) {
-                    PhotoViewer t15 = PhotoViewer.t1();
+                    PhotoViewer u15 = PhotoViewer.u1();
                     Editable text = tiVar.o1().getText();
-                    t15.f33374p7 = true;
-                    t15.f33382q7 = text;
-                    t15.A2(null, text, false, false);
-                    t15.t3(null);
+                    u15.f33380p7 = true;
+                    u15.f33388q7 = text;
+                    u15.C2(null, text, false, false);
+                    u15.v3(null);
                     return;
                 }
                 return;

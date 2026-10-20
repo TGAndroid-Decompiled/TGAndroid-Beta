@@ -5,7 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.gh;
 import org.telegram.ui.Components.hi;
-import org.telegram.ui.Components.im0;
+import org.telegram.ui.Components.jm0;
 import org.telegram.ui.Components.li;
 import org.telegram.ui.Components.ti;
 public final class c5 extends AnimatorListenerAdapter {
@@ -70,23 +70,23 @@ public final class c5 extends AnimatorListenerAdapter {
                 ti tiVar = (ti) this.d;
                 tiVar.B0.setAlpha(0.0f);
                 tiVar.B0.setTranslationY(AndroidUtilities.dp(78.0f) + this.f1078b);
-                hi hiVar = tiVar.f30530e0;
+                hi hiVar = tiVar.f30541e0;
                 li liVar = tiVar.B0;
                 Float valueOf = Float.valueOf(1.0f);
                 hiVar.getClass();
                 hiVar.a(liVar, valueOf);
-                tiVar.f30518a1.setAlpha(0.0f);
+                tiVar.f30529a1.setAlpha(0.0f);
                 o1.k kVar = new o1.k(tiVar.C0, o1.h.f17542n, 0.0f);
                 kVar.f17559u.a(0.75f);
                 kVar.f17559u.b(500.0f);
                 kVar.b(new org.telegram.ui.Components.l7(this, 3));
                 kVar.a(new gi.b4(3, this, (gh) this.f1079c));
-                tiVar.f30588w1 = kVar;
+                tiVar.f30599w1 = kVar;
                 kVar.h();
                 return;
             default:
                 a5.a aVar = (a5.a) this.d;
-                ((im0) aVar.d).scrollBy(0, this.f1078b - ((int[]) this.f1079c)[0]);
+                ((jm0) aVar.d).scrollBy(0, this.f1078b - ((int[]) this.f1079c)[0]);
                 aVar.f282c = null;
                 return;
         }

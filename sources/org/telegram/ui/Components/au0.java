@@ -1,12 +1,20 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Outline;
-import android.view.View;
-import android.view.ViewOutlineProvider;
-import org.telegram.messenger.AndroidUtilities;
-public final class au0 extends ViewOutlineProvider {
+import android.content.Context;
+import android.os.Bundle;
+public final class au0 extends org.telegram.ui.sn {
+    public final uv0 f24723f;
+
+    public au0(uv0 uv0Var, Context context, org.telegram.ui.ActionBar.d5 d5Var, Bundle bundle) {
+        super(context, d5Var, bundle);
+        this.f24723f = uv0Var;
+    }
+
     @Override
-    public final void getOutline(View view, Outline outline) {
-        outline.setRoundRect(0, 0, view.getWidth(), AndroidUtilities.dp(24.0f) + view.getHeight(), AndroidUtilities.dp(24.0f));
+    public final void b(boolean z10) {
+        org.telegram.ui.ActionBar.u0 u0Var = this.f24723f.f31051n0;
+        if (u0Var != null) {
+            u0Var.setShowSearchProgress(z10);
+        }
     }
 }

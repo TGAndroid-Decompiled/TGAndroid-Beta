@@ -4,13 +4,13 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import org.telegram.messenger.SharedConfig;
-public final class zt extends org.telegram.ui.Components.hm0 {
-    public final Context f43797c;
+public final class zt extends org.telegram.ui.Components.im0 {
+    public final Context f43803c;
     public final DataSettingsActivity d;
 
     public zt(DataSettingsActivity dataSettingsActivity, Context context) {
         this.d = dataSettingsActivity;
-        this.f43797c = context;
+        this.f43803c = context;
     }
 
     @Override
@@ -24,13 +24,13 @@ public final class zt extends org.telegram.ui.Components.hm0 {
         int i16;
         int b10 = b1Var.b();
         DataSettingsActivity dataSettingsActivity = this.d;
-        if (b10 != dataSettingsActivity.e && b10 != dataSettingsActivity.f33117f && b10 != dataSettingsActivity.h && b10 != dataSettingsActivity.f33120s) {
+        if (b10 != dataSettingsActivity.e && b10 != dataSettingsActivity.f33123f && b10 != dataSettingsActivity.h && b10 != dataSettingsActivity.f33126s) {
             i10 = dataSettingsActivity.useLessDataForCallsRow;
             if (b10 != i10 && b10 != dataSettingsActivity.v) {
                 i11 = dataSettingsActivity.proxyRow;
                 if (b10 != i11) {
                     i12 = dataSettingsActivity.clearDraftsRow;
-                    if (b10 != i12 && b10 != dataSettingsActivity.E && b10 != dataSettingsActivity.f33123y && b10 != dataSettingsActivity.F && b10 != dataSettingsActivity.G && b10 != dataSettingsActivity.N && b10 != dataSettingsActivity.K && b10 != dataSettingsActivity.J && b10 != dataSettingsActivity.f33118n) {
+                    if (b10 != i12 && b10 != dataSettingsActivity.E && b10 != dataSettingsActivity.f33129y && b10 != dataSettingsActivity.F && b10 != dataSettingsActivity.G && b10 != dataSettingsActivity.N && b10 != dataSettingsActivity.K && b10 != dataSettingsActivity.J && b10 != dataSettingsActivity.f33124n) {
                         i13 = dataSettingsActivity.saveToGalleryGroupsRow;
                         if (b10 != i13) {
                             i14 = dataSettingsActivity.saveToGalleryPeerRow;
@@ -62,20 +62,20 @@ public final class zt extends org.telegram.ui.Components.hm0 {
         int i12;
         int i13;
         DataSettingsActivity dataSettingsActivity = this.d;
-        if (i10 != dataSettingsActivity.f33119r && i10 != dataSettingsActivity.f33121w && i10 != dataSettingsActivity.O && i10 != dataSettingsActivity.Q && i10 != dataSettingsActivity.L && i10 != dataSettingsActivity.R && i10 != dataSettingsActivity.T) {
-            if (i10 != dataSettingsActivity.d && i10 != dataSettingsActivity.f33122x && i10 != dataSettingsActivity.M && i10 != 0 && i10 != dataSettingsActivity.P && i10 != dataSettingsActivity.I && i10 != dataSettingsActivity.S) {
-                if (i10 != dataSettingsActivity.E && i10 != dataSettingsActivity.f33123y && i10 != dataSettingsActivity.F && i10 != dataSettingsActivity.G && i10 != dataSettingsActivity.J && i10 != dataSettingsActivity.K) {
+        if (i10 != dataSettingsActivity.f33125r && i10 != dataSettingsActivity.f33127w && i10 != dataSettingsActivity.O && i10 != dataSettingsActivity.Q && i10 != dataSettingsActivity.L && i10 != dataSettingsActivity.R && i10 != dataSettingsActivity.T) {
+            if (i10 != dataSettingsActivity.d && i10 != dataSettingsActivity.f33128x && i10 != dataSettingsActivity.M && i10 != 0 && i10 != dataSettingsActivity.P && i10 != dataSettingsActivity.I && i10 != dataSettingsActivity.S) {
+                if (i10 != dataSettingsActivity.E && i10 != dataSettingsActivity.f33129y && i10 != dataSettingsActivity.F && i10 != dataSettingsActivity.G && i10 != dataSettingsActivity.J && i10 != dataSettingsActivity.K) {
                     if (i10 == dataSettingsActivity.H) {
                         return 4;
                     }
-                    if (i10 != dataSettingsActivity.e && i10 != dataSettingsActivity.h && i10 != dataSettingsActivity.f33117f) {
+                    if (i10 != dataSettingsActivity.e && i10 != dataSettingsActivity.h && i10 != dataSettingsActivity.f33123f) {
                         i11 = dataSettingsActivity.saveToGalleryGroupsRow;
                         if (i10 != i11) {
                             i12 = dataSettingsActivity.saveToGalleryPeerRow;
                             if (i10 != i12) {
                                 i13 = dataSettingsActivity.saveToGalleryChannelsRow;
                                 if (i10 != i13) {
-                                    if (i10 != dataSettingsActivity.f33120s && i10 != dataSettingsActivity.v && i10 != dataSettingsActivity.f33118n) {
+                                    if (i10 != dataSettingsActivity.f33126s && i10 != dataSettingsActivity.v && i10 != dataSettingsActivity.f33124n) {
                                         return 1;
                                     }
                                     return 6;
@@ -103,7 +103,7 @@ public final class zt extends org.telegram.ui.Components.hm0 {
     @Override
     public final s4.b1 x(ViewGroup viewGroup, int i10) {
         View z6Var;
-        Context context = this.f43797c;
+        Context context = this.f43803c;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 != 2) {
@@ -134,13 +134,13 @@ public final class zt extends org.telegram.ui.Components.hm0 {
 
     @Override
     public final void y(s4.b1 b1Var) {
-        if (b1Var.f45915f == 3) {
-            org.telegram.ui.Cells.v8 v8Var = (org.telegram.ui.Cells.v8) b1Var.f45912a;
+        if (b1Var.f45920f == 3) {
+            org.telegram.ui.Cells.v8 v8Var = (org.telegram.ui.Cells.v8) b1Var.f45917a;
             int b10 = b1Var.b();
             DataSettingsActivity dataSettingsActivity = this.d;
             if (b10 == dataSettingsActivity.E) {
                 v8Var.setChecked(SharedConfig.saveStreamMedia);
-            } else if (b10 == dataSettingsActivity.f33123y) {
+            } else if (b10 == dataSettingsActivity.f33129y) {
                 v8Var.setChecked(SharedConfig.streamMedia);
             } else if (b10 == dataSettingsActivity.F) {
                 v8Var.setChecked(SharedConfig.streamAllVideo);

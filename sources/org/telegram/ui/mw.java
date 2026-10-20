@@ -8,18 +8,18 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.DialogObject;
 import org.telegram.ui.Components.ChatActivityEnterView;
 public final class mw extends ChatActivityEnterView {
-    public final cy f39353o5;
+    public final cy f39359o5;
 
     public mw(cy cyVar, Activity activity, ux uxVar) {
         super(activity, uxVar, null, false, null);
-        this.f39353o5 = cyVar;
+        this.f39359o5 = cyVar;
     }
 
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
         int i10;
         if (motionEvent.getAction() == 0) {
-            cy cyVar = this.f39353o5;
+            cy cyVar = this.f39359o5;
             Activity parentActivity = cyVar.getParentActivity();
             i10 = ((org.telegram.ui.ActionBar.n2) cyVar).classGuid;
             AndroidUtilities.requestAdjustResize(parentActivity, i10);
@@ -30,7 +30,7 @@ public final class mw extends ChatActivityEnterView {
     @Override
     public final int getMessagesCount() {
         CharSequence fieldText;
-        cy cyVar = this.f39353o5;
+        cy cyVar = this.f39359o5;
         int i10 = cyVar.S0;
         mw mwVar = cyVar.B1;
         if (mwVar == null) {
@@ -43,7 +43,7 @@ public final class mw extends ChatActivityEnterView {
 
     @Override
     public final long getStarsPrice() {
-        cy cyVar = this.f39353o5;
+        cy cyVar = this.f39359o5;
         ArrayList arrayList = cyVar.I2;
         if (arrayList == null) {
             return 0L;
@@ -66,8 +66,8 @@ public final class mw extends ChatActivityEnterView {
 
     @Override
     public final void y0(float f7) {
-        cy cyVar = this.f39353o5;
-        cyVar.f36189y1.setInputBubbleHeight(f7);
+        cy cyVar = this.f39359o5;
+        cyVar.f36195y1.setInputBubbleHeight(f7);
         cyVar.q3();
         cyVar.j3();
         cyVar.r3();

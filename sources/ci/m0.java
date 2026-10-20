@@ -9,17 +9,17 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.e11;
+import org.telegram.ui.Components.f11;
 public final class m0 extends Drawable {
     public final float f5599a = 0.75f;
     public final Drawable f5600b;
-    public final e11 f5601c;
+    public final f11 f5601c;
 
     public m0(Context context, int i10) {
         this.f5600b = context.getResources().getDrawable(R.drawable.filled_stream_crown).mutate();
-        e11 e11Var = new e11(i2.e.j(i10, ""), 8.0f, AndroidUtilities.getTypeface("fonts/num.otf"));
-        this.f5601c = e11Var;
-        e11Var.f25726a.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+        f11 f11Var = new f11(i2.e.j(i10, ""), 8.0f, AndroidUtilities.getTypeface("fonts/num.otf"));
+        this.f5601c = f11Var;
+        f11Var.f26019a.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
     }
 
     @Override
@@ -30,7 +30,7 @@ public final class m0 extends Drawable {
         drawable.setBounds(bounds);
         drawable.draw(canvas);
         int centerY = bounds.centerY();
-        this.f5601c.c(bounds.centerX() - (this.f5601c.f25728c / 2.0f), AndroidUtilities.dp(0.15f) + centerY, drawable.getAlpha() / 255.0f, -1, canvas);
+        this.f5601c.c(bounds.centerX() - (this.f5601c.f26021c / 2.0f), AndroidUtilities.dp(0.15f) + centerY, drawable.getAlpha() / 255.0f, -1, canvas);
         canvas.restore();
     }
 

@@ -4,16 +4,16 @@ import androidx.sharetarget.ShortcutInfoCompatSaverImpl;
 import c0.m;
 import java.util.ArrayList;
 public final class e implements Runnable {
-    public final int f47585a;
-    public final ArrayList f47586b;
-    public final m f47587c;
+    public final int f47593a;
+    public final ArrayList f47594b;
+    public final m f47595c;
     public final ShortcutInfoCompatSaverImpl d;
 
     public e(ShortcutInfoCompatSaverImpl shortcutInfoCompatSaverImpl, ArrayList arrayList, m mVar, int i10) {
-        this.f47585a = i10;
+        this.f47593a = i10;
         this.d = shortcutInfoCompatSaverImpl;
-        this.f47586b = arrayList;
-        this.f47587c = mVar;
+        this.f47594b = arrayList;
+        this.f47595c = mVar;
     }
 
     @Override

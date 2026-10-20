@@ -64,7 +64,7 @@ public final class c implements Utilities.Callback2 {
                 Boolean bool = (Boolean) obj2;
                 if (TextUtils.equals((String) obj6, ((String[]) obj5)[0])) {
                     if (bool.booleanValue()) {
-                        imageView.setColorFilter(new PorterDuffColorFilter(h6.w0(h6.f21225q7, d6Var), PorterDuff.Mode.SRC_IN));
+                        imageView.setColorFilter(new PorterDuffColorFilter(h6.w0(h6.f21228q7, d6Var), PorterDuff.Mode.SRC_IN));
                         if (!z10) {
                             int i12 = -iArr[0];
                             iArr[0] = i12;
@@ -95,8 +95,8 @@ public final class c implements Utilities.Callback2 {
                 org.telegram.ui.Wallet.j2 j2Var = (org.telegram.ui.Wallet.j2) callback;
                 TL_wallet.walletTransaction wallettransaction = (TL_wallet.walletTransaction) obj;
                 String str = (String) obj2;
-                if (!zArr[0] && !b2Var.f34018m && !b2Var.f34019n) {
-                    boolean z11 = b2Var.f34021p;
+                if (!zArr[0] && !b2Var.f34024m && !b2Var.f34025n) {
+                    boolean z11 = b2Var.f34027p;
                     zArr2[0] = z11;
                     dVar.setEnabled(z11);
                     boolean z12 = zArr2[0];

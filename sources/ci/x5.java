@@ -3,7 +3,7 @@ package ci;
 import android.animation.ValueAnimator;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.bi0;
+import org.telegram.ui.Components.ci0;
 import org.telegram.ui.Components.xd0;
 public final class x5 implements z4.e {
     public final int f6166a;
@@ -57,11 +57,11 @@ public final class x5 implements z4.e {
             case 2:
                 xd0 xd0Var = (xd0) this.f6167b;
                 xd0Var.h = i10;
-                xd0Var.f32372n = f7;
+                xd0Var.f32397n = f7;
                 if (xd0Var.d.getChildAt(i10) != null) {
                     xd0.a(xd0Var, i10, (int) (xd0Var.d.getChildAt(i10).getWidth() * f7));
                     xd0Var.invalidate();
-                    z4.e eVar = xd0Var.f32370c;
+                    z4.e eVar = xd0Var.f32395c;
                     if (eVar != null) {
                         eVar.a(f7, i10, i11);
                         return;
@@ -70,23 +70,23 @@ public final class x5 implements z4.e {
                 }
                 return;
             default:
-                bi0 bi0Var = (bi0) this.f6167b;
-                if (!bi0Var.f24957a && Math.abs(i10 - bi0Var.f24964w) == 1) {
-                    int i15 = bi0Var.f24964w;
+                ci0 ci0Var = (ci0) this.f6167b;
+                if (!ci0Var.f25195a && Math.abs(i10 - ci0Var.f25202w) == 1) {
+                    int i15 = ci0Var.f25202w;
                     if (i10 > i15) {
-                        bi0.a(bi0Var, 0, 1, 1);
+                        ci0.a(ci0Var, 0, 1, 1);
                     } else if (i10 < i15) {
-                        bi0.a(bi0Var, 1, 0, 0);
-                        bi0.a(bi0Var, 2, 0, -1);
+                        ci0.a(ci0Var, 1, 0, 0);
+                        ci0.a(ci0Var, 2, 0, -1);
                     }
                 }
-                int i16 = bi0Var.f24964w;
-                int i17 = bi0Var.f24965x;
-                bi0Var.f24964w = i10;
-                bi0Var.f24965x = i11;
+                int i16 = ci0Var.f25202w;
+                int i17 = ci0Var.f25203x;
+                ci0Var.f25202w = i10;
+                ci0Var.f25203x = i11;
                 if (i16 != i10 || i17 != i11) {
-                    bi0Var.H = true;
-                    bi0Var.postInvalidateOnAnimation();
+                    ci0Var.H = true;
+                    ci0Var.postInvalidateOnAnimation();
                     return;
                 }
                 return;
@@ -102,7 +102,7 @@ public final class x5 implements z4.e {
                 return;
             case 2:
                 xd0 xd0Var = (xd0) this.f6167b;
-                z4.e eVar = xd0Var.f32370c;
+                z4.e eVar = xd0Var.f32395c;
                 if (eVar != null) {
                     eVar.b(i10);
                 }
@@ -138,7 +138,7 @@ public final class x5 implements z4.e {
                 if (i10 == 0) {
                     xd0.a(xd0Var, xd0Var.e.getCurrentItem(), 0);
                 }
-                z4.e eVar = xd0Var.f32370c;
+                z4.e eVar = xd0Var.f32395c;
                 if (eVar != null) {
                     eVar.c(i10);
                     return;

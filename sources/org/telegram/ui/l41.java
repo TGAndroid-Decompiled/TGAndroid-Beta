@@ -18,7 +18,7 @@ public final class l41 extends s4.s {
             case 0:
                 try {
                     ei.l1 l1Var = new ei.l1(this, recyclerView.getContext(), 3);
-                    l1Var.f46053a = i10;
+                    l1Var.f46058a = i10;
                     w0(l1Var);
                     return;
                 } catch (Exception e) {
@@ -28,7 +28,7 @@ public final class l41 extends s4.s {
             default:
                 try {
                     ei.l1 l1Var2 = new ei.l1(this, recyclerView.getContext(), 5);
-                    l1Var2.f46053a = i10;
+                    l1Var2.f46058a = i10;
                     w0(l1Var2);
                     return;
                 } catch (Exception e7) {

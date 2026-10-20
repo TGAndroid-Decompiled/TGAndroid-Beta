@@ -5,36 +5,36 @@ import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 public final class nh implements o1.g {
-    public final int f28775a = 1;
-    public final boolean f28776b;
-    public final float f28777c;
+    public final int f28793a = 0;
+    public final boolean f28794b;
+    public final float f28795c;
     public final float d;
     public final KeyEvent.Callback e;
 
     public nh(ti tiVar, float f7, float f10, boolean z10) {
         this.e = tiVar;
-        this.f28777c = f7;
+        this.f28795c = f7;
         this.d = f10;
-        this.f28776b = z10;
+        this.f28794b = z10;
     }
 
     @Override
     public final void a(o1.h hVar, float f7, float f10) {
-        switch (this.f28775a) {
+        switch (this.f28793a) {
             case 0:
                 ti tiVar = (ti) this.e;
-                LinearLayout linearLayout = tiVar.f30561o1;
-                LinearLayout linearLayout2 = tiVar.f30567q1;
+                LinearLayout linearLayout = tiVar.f30572o1;
+                LinearLayout linearLayout2 = tiVar.f30578q1;
                 float f11 = f7 / 500.0f;
-                hi hiVar = tiVar.f30530e0;
+                hi hiVar = tiVar.f30541e0;
                 li liVar = tiVar.B0;
                 Float valueOf = Float.valueOf(f11);
                 hiVar.getClass();
                 hiVar.a(liVar, valueOf);
-                tiVar.f30518a1.setAlpha(AndroidUtilities.lerp(this.f28777c, this.d, f11));
+                tiVar.f30529a1.setAlpha(AndroidUtilities.lerp(this.f28795c, this.d, f11));
                 tiVar.b2(tiVar.B0, 0);
                 tiVar.b2(tiVar.C0, 0);
-                if (!(tiVar.C0 instanceof bn) || this.f28776b) {
+                if (!(tiVar.C0 instanceof bn) || this.f28794b) {
                     f11 = 1.0f - f11;
                 }
                 float clamp = Utilities.clamp(f11, 1.0f, 0.0f);
@@ -45,25 +45,25 @@ public final class nh implements o1.g {
                 linearLayout2.setTranslationX(f12 * AndroidUtilities.dp(16.0f));
                 return;
             default:
-                sp0 sp0Var = (sp0) this.e;
-                boolean z10 = this.f28776b;
+                tp0 tp0Var = (tp0) this.e;
+                boolean z10 = this.f28794b;
                 if (z10) {
-                    if (f7 > this.f28777c / 2.0f || !sp0Var.f30302s) {
+                    if (f7 > this.f28795c / 2.0f || !tp0Var.f30647s) {
                         return;
                     }
-                } else if (f7 < this.d / 2.0f || !sp0Var.f30301r) {
+                } else if (f7 < this.d / 2.0f || !tp0Var.f30646r) {
                     return;
                 }
-                sp0Var.f30302s = !z10;
-                sp0Var.f30301r = z10;
+                tp0Var.f30647s = !z10;
+                tp0Var.f30646r = z10;
                 return;
         }
     }
 
-    public nh(sp0 sp0Var, boolean z10, float f7, float f10) {
-        this.e = sp0Var;
-        this.f28776b = z10;
-        this.f28777c = f7;
+    public nh(tp0 tp0Var, boolean z10, float f7, float f10) {
+        this.e = tp0Var;
+        this.f28794b = z10;
+        this.f28795c = f7;
         this.d = f10;
     }
 }

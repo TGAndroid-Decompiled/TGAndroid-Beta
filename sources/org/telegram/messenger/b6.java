@@ -1,49 +1,36 @@
 package org.telegram.messenger;
 public final class b6 implements Runnable {
-    public final int f17932a;
-    public final MediaController f17933b;
+    public final int f17930a;
+    public final org.telegram.ui.ActionBar.b2 f17931b;
+    public final boolean[] f17932c;
 
-    public b6(MediaController mediaController, int i10) {
-        this.f17932a = i10;
-        this.f17933b = mediaController;
+    public b6(org.telegram.ui.ActionBar.b2 b2Var, boolean[] zArr, int i10) {
+        this.f17930a = i10;
+        this.f17931b = b2Var;
+        this.f17932c = zArr;
     }
 
     @Override
     public final void run() {
-        switch (this.f17932a) {
+        switch (this.f17930a) {
             case 0:
-                MediaController.f(this.f17933b);
+                MediaController.lambda$saveFile$46(this.f17932c, this.f17931b);
                 return;
             case 1:
-                MediaController.H(this.f17933b);
+                MediaController.lambda$saveFile$50(this.f17931b, this.f17932c);
                 return;
             case 2:
-                MediaController.c0(this.f17933b);
-                return;
-            case 3:
-                MediaController.G(this.f17933b);
-                return;
-            case 4:
-                MediaController.t(this.f17933b);
-                return;
-            case 5:
-                MediaController.W(this.f17933b);
-                return;
-            case 6:
-                MediaController.c(this.f17933b);
-                return;
-            case 7:
-                MediaController.V(this.f17933b);
-                return;
-            case 8:
-                MediaController.C(this.f17933b);
-                return;
-            case 9:
-                MediaController.Q(this.f17933b);
+                MediaController.lambda$saveFile$53(this.f17932c, this.f17931b);
                 return;
             default:
-                MediaController.J(this.f17933b);
+                MediaController.lambda$saveFile$55(this.f17931b, this.f17932c);
                 return;
         }
+    }
+
+    public b6(boolean[] zArr, org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        this.f17930a = i10;
+        this.f17932c = zArr;
+        this.f17931b = b2Var;
     }
 }

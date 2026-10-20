@@ -11,21 +11,21 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 public final class z90 extends View {
-    public final Drawable f32889a;
-    public final Paint f32890b;
-    public final Paint f32891c;
+    public final Drawable f32860a;
+    public final Paint f32861b;
+    public final Paint f32862c;
     public final f6 d;
     public boolean e;
 
     public z90(Context context) {
         super(context);
         Paint paint = new Paint(1);
-        this.f32890b = paint;
+        this.f32861b = paint;
         Paint paint2 = new Paint(1);
-        this.f32891c = paint2;
+        this.f32862c = paint2;
         this.d = new f6(this, 0L, 320L, bs.h);
         w7.b6.a(this);
-        this.f32889a = context.getResources().getDrawable(R.drawable.media_live_on).mutate();
+        this.f32860a = context.getResources().getDrawable(R.drawable.media_live_on).mutate();
         Paint.Style style = Paint.Style.STROKE;
         paint2.setStyle(style);
         paint2.setColor(-65536);
@@ -50,7 +50,7 @@ public final class z90 extends View {
         Canvas canvas2;
         float e = this.d.e(!this.e);
         int width = getWidth();
-        Drawable drawable = this.f32889a;
+        Drawable drawable = this.f32860a;
         drawable.setBounds((width - drawable.getIntrinsicWidth()) / 2, (getHeight() - drawable.getIntrinsicHeight()) / 2, (drawable.getIntrinsicWidth() + getWidth()) / 2, (drawable.getIntrinsicHeight() + getHeight()) / 2);
         Rect bounds = drawable.getBounds();
         float width2 = (bounds.width() * 0.325f) + bounds.left;
@@ -59,7 +59,7 @@ public final class z90 extends View {
         float width3 = bounds.right - (bounds.width() * 0.101f);
         int i10 = (e > 0.0f ? 1 : (e == 0.0f ? 0 : -1));
         if (i10 > 0) {
-            Paint paint = this.f32891c;
+            Paint paint = this.f32862c;
             paint.setStrokeWidth(AndroidUtilities.dp(4.0f));
             canvas.saveLayerAlpha(bounds.left, bounds.top, bounds.right, bounds.bottom, 255, 31);
             drawable.draw(canvas);
@@ -76,7 +76,7 @@ public final class z90 extends View {
             drawable.draw(canvas2);
         }
         if (i10 > 0) {
-            Paint paint2 = this.f32890b;
+            Paint paint2 = this.f32861b;
             paint2.setStrokeWidth(AndroidUtilities.dp(2.0f));
             if (this.e) {
                 canvas2.drawLine(width3, height2, AndroidUtilities.lerp(width3, width2, e), AndroidUtilities.lerp(height2, height, e), paint2);

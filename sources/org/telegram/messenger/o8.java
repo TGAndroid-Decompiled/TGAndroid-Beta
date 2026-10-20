@@ -1,56 +1,29 @@
 package org.telegram.messenger;
-
-import java.util.ArrayList;
-import org.telegram.messenger.NotificationCenter;
 public final class o8 implements Runnable {
-    public final int f19157a;
-    public final Object f19158b;
-    public final long f19159c;
-    public final boolean d;
-    public final Object e;
+    public final int f19123a;
+    public final MediaDataController f19124b;
+    public final boolean f19125c;
+    public final int d;
 
-    public o8(Object obj, long j10, boolean z10, Object obj2, int i10) {
-        this.f19157a = i10;
-        this.f19158b = obj;
-        this.f19159c = j10;
-        this.d = z10;
-        this.e = obj2;
+    public o8(MediaDataController mediaDataController, boolean z10, int i10, int i11) {
+        this.f19123a = i11;
+        this.f19124b = mediaDataController;
+        this.f19125c = z10;
+        this.d = i10;
     }
 
     @Override
     public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.o8.run():void");
-    }
-
-    public o8(Object obj, boolean z10, long j10, Object obj2, int i10) {
-        this.f19157a = i10;
-        this.f19158b = obj;
-        this.d = z10;
-        this.f19159c = j10;
-        this.e = obj2;
-    }
-
-    public o8(BaseController baseController, Object obj, boolean z10, long j10, int i10) {
-        this.f19157a = i10;
-        this.f19158b = baseController;
-        this.e = obj;
-        this.d = z10;
-        this.f19159c = j10;
-    }
-
-    public o8(MediaDataController mediaDataController, ArrayList arrayList, long j10, boolean z10) {
-        this.f19157a = 1;
-        this.f19158b = mediaDataController;
-        this.e = arrayList;
-        this.f19159c = j10;
-        this.d = z10;
-    }
-
-    public o8(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, long j10, Cloneable cloneable, boolean z10, int i10) {
-        this.f19157a = i10;
-        this.f19158b = notificationCenterDelegate;
-        this.f19159c = j10;
-        this.e = cloneable;
-        this.d = z10;
+        switch (this.f19123a) {
+            case 0:
+                this.f19124b.lambda$loadRecents$49(this.f19125c, this.d);
+                return;
+            case 1:
+                this.f19124b.lambda$processLoadedFeaturedStickers$62(this.f19125c, this.d);
+                return;
+            default:
+                this.f19124b.lambda$loadFeaturedStickers$56(this.f19125c, this.d);
+                return;
+        }
     }
 }

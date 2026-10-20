@@ -79,7 +79,7 @@ public class BirthdayController {
                         if (i21 < contactbirthdays.users.size()) {
                             arrayList2 = arrayList3;
                             i10 = i17;
-                            if (contactbirthdays.users.get(i21).f20420id == tL_contactBirthday2.contact_id) {
+                            if (contactbirthdays.users.get(i21).f20423id == tL_contactBirthday2.contact_id) {
                                 user = contactbirthdays.users.get(i21);
                                 break;
                             }
@@ -112,7 +112,7 @@ public class BirthdayController {
             while (i10 < size) {
                 TLRPC.User user = arrayList.get(i10);
                 i10++;
-                if (user.f20420id == j10) {
+                if (user.f20423id == j10) {
                     return true;
                 }
             }
@@ -122,7 +122,7 @@ public class BirthdayController {
             while (i11 < size2) {
                 TLRPC.User user2 = arrayList2.get(i11);
                 i11++;
-                if (user2.f20420id == j10) {
+                if (user2.f20423id == j10) {
                     return true;
                 }
             }
@@ -132,7 +132,7 @@ public class BirthdayController {
             while (i12 < size3) {
                 TLRPC.User user3 = arrayList3.get(i12);
                 i12++;
-                if (user3.f20420id == j10) {
+                if (user3.f20423id == j10) {
                     return true;
                 }
             }
@@ -282,7 +282,7 @@ public class BirthdayController {
     }
 
     public void lambda$check$3(TLObject tLObject, TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new g3(12, this, tLObject));
+        AndroidUtilities.runOnUIThread(new h3(12, this, tLObject));
     }
 
     public void lambda$new$0(TL_birthdays tL_birthdays, ArrayList arrayList) {

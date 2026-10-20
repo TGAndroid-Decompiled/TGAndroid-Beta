@@ -12,36 +12,36 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 public final class b50 {
-    public final org.telegram.ui.Components.e11 d;
-    public final org.telegram.ui.Components.e11 e;
-    public final org.telegram.ui.Components.e11 f35497f;
-    public v10 f35498g;
-    public int f35500j;
-    public final Paint f35494a = new Paint(1);
-    public final Paint f35495b = new Paint(1);
-    public final d50[] f35496c = new d50[4];
+    public final org.telegram.ui.Components.f11 d;
+    public final org.telegram.ui.Components.f11 e;
+    public final org.telegram.ui.Components.f11 f35503f;
+    public v10 f35504g;
+    public int f35506j;
+    public final Paint f35500a = new Paint(1);
+    public final Paint f35501b = new Paint(1);
+    public final d50[] f35502c = new d50[4];
     public boolean h = true;
-    public final org.telegram.ui.Components.f6 f35499i = new org.telegram.ui.Components.f6(new dz(this, 8), 320, org.telegram.ui.Components.bs.h, 0);
-    public final RectF f35501k = new RectF();
-    public final RectF f35502l = new RectF();
-    public final Path f35503m = new Path();
+    public final org.telegram.ui.Components.f6 f35505i = new org.telegram.ui.Components.f6(new dz(this, 8), 320, org.telegram.ui.Components.bs.h, 0);
+    public final RectF f35507k = new RectF();
+    public final RectF f35508l = new RectF();
+    public final Path f35509m = new Path();
 
     public b50() {
         int i10 = 0;
         while (true) {
-            d50[] d50VarArr = this.f35496c;
+            d50[] d50VarArr = this.f35502c;
             if (i10 < d50VarArr.length) {
                 d50VarArr[i10] = new d50(i10);
                 i10++;
             } else {
-                this.f35494a.setColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21293tg, false));
-                this.d = new org.telegram.ui.Components.e11(LocaleController.getString(R.string.ConferenceEncrypted), 12.0f, AndroidUtilities.bold());
-                org.telegram.ui.Components.e11 e11Var = new org.telegram.ui.Components.e11(LocaleController.getString(R.string.ConferenceEncryptedInfo), 11.0f, null);
-                e11Var.n(99);
-                e11Var.q(AndroidUtilities.dp(200.0f));
-                e11Var.m(AndroidUtilities.dp(2.66f));
-                this.e = e11Var;
-                this.f35497f = new org.telegram.ui.Components.e11(LocaleController.getString(R.string.ConferenceEncryptedClose), 14.0f, AndroidUtilities.bold());
+                this.f35500a.setColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21296tg, false));
+                this.d = new org.telegram.ui.Components.f11(LocaleController.getString(R.string.ConferenceEncrypted), 12.0f, AndroidUtilities.bold());
+                org.telegram.ui.Components.f11 f11Var = new org.telegram.ui.Components.f11(LocaleController.getString(R.string.ConferenceEncryptedInfo), 11.0f, null);
+                f11Var.n(99);
+                f11Var.q(AndroidUtilities.dp(200.0f));
+                f11Var.m(AndroidUtilities.dp(2.66f));
+                this.e = f11Var;
+                this.f35503f = new org.telegram.ui.Components.f11(LocaleController.getString(R.string.ConferenceEncryptedClose), 14.0f, AndroidUtilities.bold());
                 b(null);
                 return;
             }
@@ -51,14 +51,14 @@ public final class b50 {
     public final boolean a(Canvas canvas, float f7, float f10) {
         int dp;
         canvas.save();
-        org.telegram.ui.Components.e11 e11Var = this.d;
-        e11Var.f25738p = f7 - AndroidUtilities.dp(132.0f);
-        int f11 = i0.a.f(f10, this.f35500j, org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21293tg, false));
-        Paint paint = this.f35494a;
+        org.telegram.ui.Components.f11 f11Var = this.d;
+        f11Var.f26031p = f7 - AndroidUtilities.dp(132.0f);
+        int f11 = i0.a.f(f10, this.f35506j, org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21296tg, false));
+        Paint paint = this.f35500a;
         paint.setColor(f11);
-        float e = this.f35499i.e(this.h);
+        float e = this.f35505i.e(this.h);
         int dp2 = AndroidUtilities.dp(14.0f);
-        float l4 = e11Var.l() + AndroidUtilities.dp(86.0f) + dp2;
+        float l4 = f11Var.l() + AndroidUtilities.dp(86.0f) + dp2;
         float dp3 = AndroidUtilities.dp(28.0f);
         float dp4 = AndroidUtilities.dp(232.0f);
         float j10 = this.e.j() + AndroidUtilities.dp(54.0f) + AndroidUtilities.dp(50.0f);
@@ -68,7 +68,7 @@ public final class b50 {
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set((f7 - lerp) / 2.0f, 0.0f, (f7 + lerp) / 2.0f, lerp2);
         canvas.drawRoundRect(rectF, lerp3, lerp3, paint);
-        Path path = this.f35503m;
+        Path path = this.f35509m;
         path.rewind();
         path.addRoundRect(rectF, lerp3, lerp3, Path.Direction.CW);
         canvas.clipPath(path);
@@ -83,17 +83,17 @@ public final class b50 {
         float f13 = centerY;
         int dp9 = AndroidUtilities.dp(7.0f) + ((int) rectF.left);
         float f14 = centerY2;
-        RectF rectF2 = this.f35501k;
+        RectF rectF2 = this.f35507k;
         rectF2.set((dp8 + (dp7 + ((int) rectF.left))) - f12, f13, AndroidUtilities.dp(10.0f) + dp9 + f12, f14);
         float f15 = f7 / 2.0f;
         float f16 = f15 - (dp * 2);
         float dp10 = (int) ((dp4 - AndroidUtilities.dp(32.0f)) / 4.0f);
         float f17 = (int) ((0.5f * dp10) + f16);
         float f18 = dp6 / 2.0f;
-        RectF rectF3 = this.f35502l;
+        RectF rectF3 = this.f35508l;
         rectF3.set(f17 - f18, (int) ((rectF.top + AndroidUtilities.dp(27.33f)) - f18), f17 + f18, (int) (rectF.top + AndroidUtilities.dp(27.33f) + f18));
         AndroidUtilities.lerpCentered(rectF2, rectF3, f10, rectF3);
-        d50[] d50VarArr = this.f35496c;
+        d50[] d50VarArr = this.f35502c;
         boolean b10 = d50VarArr[0].b(canvas, rectF3, f10);
         rectF2.set((AndroidUtilities.dp(10.0f) + (AndroidUtilities.dp(27.0f) + ((int) rectF.left))) - f12, f13, AndroidUtilities.dp(10.0f) + AndroidUtilities.dp(27.0f) + ((int) rectF.left) + f12, f14);
         float f19 = (int) ((1.5f * dp10) + f16);
@@ -104,8 +104,8 @@ public final class b50 {
         if (d50VarArr[1].b(canvas, rectF3, f10)) {
             z10 = true;
         }
-        org.telegram.ui.Components.e11 e11Var2 = this.d;
-        e11Var2.c(f15 - (e11Var2.l() / 2.0f), dp3 / 2.0f, AndroidUtilities.lerp(1.0f, 0.75f, e) * (1.0f - f10), -1, canvas);
+        org.telegram.ui.Components.f11 f11Var2 = this.d;
+        f11Var2.c(f15 - (f11Var2.l() / 2.0f), dp3 / 2.0f, AndroidUtilities.lerp(1.0f, 0.75f, e) * (1.0f - f10), -1, canvas);
         rectF2.set((AndroidUtilities.dp(10.0f) + (((int) rectF.right) - AndroidUtilities.dp(47.0f))) - f12, f13, AndroidUtilities.dp(10.0f) + (((int) rectF.right) - AndroidUtilities.dp(47.0f)) + f12, f14);
         float f20 = (int) ((dp10 * 2.5f) + f16);
         rectF3.set(f20 - f18, (int) ((rectF.top + AndroidUtilities.dp(27.33f)) - f18), f20 + f18, (int) (rectF.top + AndroidUtilities.dp(27.33f) + f18));
@@ -122,11 +122,11 @@ public final class b50 {
         }
         if (f10 > 0.0f) {
             this.e.c(AndroidUtilities.dp(16.0f) + (rectF.centerX() - (dp4 / 2.0f)), AndroidUtilities.dp(54.0f), f10, -1, canvas);
-            Paint paint2 = this.f35495b;
+            Paint paint2 = this.f35501b;
             paint2.setColor(-16777216);
             paint2.setAlpha((int) (255.0f * f10));
             canvas.drawRect(rectF.left, j10 - AndroidUtilities.dp(40.0f), rectF.right, AndroidUtilities.dp(0.66f) + (j10 - AndroidUtilities.dp(40.0f)), paint2);
-            this.f35497f.c(rectF.centerX() - (this.f35497f.l() / 2.0f), j10 - AndroidUtilities.dp(20.0f), f10, -1, canvas);
+            this.f35503f.c(rectF.centerX() - (this.f35503f.l() / 2.0f), j10 - AndroidUtilities.dp(20.0f), f10, -1, canvas);
         }
         canvas.restore();
         return z11;
@@ -143,48 +143,48 @@ public final class b50 {
         }
         this.h = z10;
         for (int i10 = 0; i10 < 4; i10++) {
-            d50 d50Var = this.f35496c[i10];
+            d50 d50Var = this.f35502c[i10];
             if (strArr == null) {
                 str = null;
             } else {
                 str = strArr[i10];
             }
-            c50 c50Var = d50Var.f36263k;
-            boolean z12 = d50Var.f36259f;
+            c50 c50Var = d50Var.f36269k;
+            boolean z12 = d50Var.f36265f;
             if (str != null) {
                 z11 = true;
             } else {
                 z11 = false;
             }
-            d50Var.f36259f = z11;
-            if (str != null && (d50Var.d == null || !TextUtils.equals(d50Var.f36264l, str))) {
+            d50Var.f36265f = z11;
+            if (str != null && (d50Var.d == null || !TextUtils.equals(d50Var.f36270l, str))) {
                 org.telegram.ui.Components.r5 r5Var = d50Var.d;
                 if (r5Var != null) {
                     r5Var.p(c50Var);
                 }
-                d50Var.f36258c = Emoji.getEmojiDrawable(str);
+                d50Var.f36264c = Emoji.getEmojiDrawable(str);
                 int productionAccount = UserConfig.getProductionAccount();
                 ?? drawable = new Drawable();
-                drawable.f29852l = 1.0f;
-                drawable.f29854n = null;
-                drawable.f29855o = null;
-                drawable.f29848g = 21;
+                drawable.f29838l = 1.0f;
+                drawable.f29840n = null;
+                drawable.f29841o = null;
+                drawable.f29834g = 21;
                 drawable.h = productionAccount;
                 drawable.y();
                 org.telegram.ui.Components.r5.x();
                 d50Var.d = drawable;
-                d50Var.f36264l = str;
+                d50Var.f36270l = str;
                 drawable.r(str);
                 d50Var.c();
-                if (d50Var.f36262j) {
+                if (d50Var.f36268j) {
                     d50Var.d.b(c50Var);
                 }
             }
-            if (d50Var.f36259f && !z12) {
+            if (d50Var.f36265f && !z12) {
                 d50Var.e = false;
             }
         }
-        v10 v10Var = this.f35498g;
+        v10 v10Var = this.f35504g;
         if (v10Var != null) {
             v10Var.invalidate();
         }

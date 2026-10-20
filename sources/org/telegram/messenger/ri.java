@@ -2,26 +2,27 @@ package org.telegram.messenger;
 
 import org.telegram.tgnet.tl.TL_update;
 public final class ri implements Runnable {
-    public final int f19436a;
-    public final SendMessagesHelper f19437b;
-    public final TL_update.TL_updateNewChannelMessage f19438c;
-    public final long d;
+    public final int f19465a;
+    public final SendMessagesHelper f19466b;
+    public final TL_update.TL_updateNewMessage f19467c;
 
-    public ri(SendMessagesHelper sendMessagesHelper, TL_update.TL_updateNewChannelMessage tL_updateNewChannelMessage, long j10, int i10) {
-        this.f19436a = i10;
-        this.f19437b = sendMessagesHelper;
-        this.f19438c = tL_updateNewChannelMessage;
-        this.d = j10;
+    public ri(SendMessagesHelper sendMessagesHelper, TL_update.TL_updateNewMessage tL_updateNewMessage, int i10) {
+        this.f19465a = i10;
+        this.f19466b = sendMessagesHelper;
+        this.f19467c = tL_updateNewMessage;
     }
 
     @Override
     public final void run() {
-        switch (this.f19436a) {
+        switch (this.f19465a) {
             case 0:
-                this.f19437b.lambda$performSendMessageRequest$96(this.f19438c, this.d);
+                this.f19466b.lambda$performSendMessageRequest$94(this.f19467c);
+                return;
+            case 1:
+                this.f19466b.lambda$performSendMessageRequestMulti$69(this.f19467c);
                 return;
             default:
-                this.f19437b.lambda$performSendMessageRequestMulti$71(this.f19438c, this.d);
+                this.f19466b.lambda$completeSendingGramTransfer$5(this.f19467c);
                 return;
         }
     }

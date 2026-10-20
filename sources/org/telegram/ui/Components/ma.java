@@ -14,53 +14,53 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class ma extends Drawable {
-    public float f28492a = 1.0f;
-    public final Paint f28493b = new Paint(1);
-    public final Rect f28494c = new Rect();
+    public float f28463a = 1.0f;
+    public final Paint f28464b = new Paint(1);
+    public final Rect f28465c = new Rect();
     public final Path d = new Path();
     public final float e;
-    public final float f28495f;
-    public final Drawable f28496g;
+    public final float f28466f;
+    public final Drawable f28467g;
     public final float h;
-    public final na f28497i;
+    public final na f28468i;
 
     public ma(na naVar, float f7, float f10, Drawable drawable, float f11) {
-        this.f28497i = naVar;
+        this.f28468i = naVar;
         this.e = f7;
-        this.f28495f = f10;
-        this.f28496g = drawable;
+        this.f28466f = f10;
+        this.f28467g = drawable;
         this.h = f11;
     }
 
     @Override
     public final void draw(Canvas canvas) {
         Bitmap b10;
-        na naVar = this.f28497i;
-        ja jaVar = naVar.f28704a;
-        Matrix matrix = naVar.f28716p;
+        na naVar = this.f28468i;
+        ja jaVar = naVar.f28732a;
+        Matrix matrix = naVar.f28744p;
         Paint paint = null;
         if (jaVar != null && (b10 = jaVar.b()) != null) {
-            if (naVar.f28715o == null || naVar.f28714n != b10) {
-                naVar.f28714n = b10;
+            if (naVar.f28743o == null || naVar.f28742n != b10) {
+                naVar.f28742n = b10;
                 Shader.TileMode tileMode = Shader.TileMode.CLAMP;
                 BitmapShader bitmapShader = new BitmapShader(b10, tileMode, tileMode);
-                naVar.f28715o = bitmapShader;
+                naVar.f28743o = bitmapShader;
                 naVar.h.setShader(bitmapShader);
             }
             matrix.reset();
-            matrix.postTranslate((-0.0f) - this.e, (-0.0f) - this.f28495f);
-            View view = jaVar.f27478b;
+            matrix.postTranslate((-0.0f) - this.e, (-0.0f) - this.f28466f);
+            View view = jaVar.f27474b;
             if (view != null) {
-                matrix.preScale(view.getWidth() / b10.getWidth(), jaVar.f27478b.getHeight() / b10.getHeight());
+                matrix.preScale(view.getWidth() / b10.getWidth(), jaVar.f27474b.getHeight() / b10.getHeight());
             }
-            naVar.f28715o.setLocalMatrix(matrix);
-            naVar.h.setAlpha((int) (this.f28492a * 255.0f));
+            naVar.f28743o.setLocalMatrix(matrix);
+            naVar.h.setAlpha((int) (this.f28463a * 255.0f));
             paint = naVar.h;
         }
         Paint paint2 = paint;
         Rect bounds = getBounds();
-        Drawable drawable = this.f28496g;
-        Paint paint3 = this.f28493b;
+        Drawable drawable = this.f28467g;
+        Paint paint3 = this.f28464b;
         float f7 = this.h;
         if (paint2 == null && (jaVar == null || !jaVar.c())) {
             if (drawable != null) {
@@ -83,7 +83,7 @@ public final class ma extends Drawable {
             canvas.saveLayerAlpha(bounds.left, bounds.top, bounds.right, bounds.bottom, 255, 31);
             drawable.setBounds(bounds);
             drawable.draw(canvas);
-            Rect rect = this.f28494c;
+            Rect rect = this.f28465c;
             if (jaVar != null && jaVar.c()) {
                 canvas.save();
                 getPadding(rect);
@@ -144,7 +144,7 @@ public final class ma extends Drawable {
 
     @Override
     public final boolean getPadding(Rect rect) {
-        Drawable drawable = this.f28496g;
+        Drawable drawable = this.f28467g;
         if (drawable != null) {
             return drawable.getPadding(rect);
         }
@@ -154,7 +154,7 @@ public final class ma extends Drawable {
 
     @Override
     public final void setAlpha(int i10) {
-        this.f28492a = i10 / 255.0f;
+        this.f28463a = i10 / 255.0f;
     }
 
     @Override

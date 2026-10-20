@@ -18,13 +18,13 @@ import org.telegram.messenger.Utilities;
 import org.telegram.messenger.camera.CameraController;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.e11;
+import org.telegram.ui.Components.f11;
 import org.telegram.ui.Components.i80;
-import org.telegram.ui.Components.kw0;
-import org.telegram.ui.Components.uj0;
+import org.telegram.ui.Components.lw0;
+import org.telegram.ui.Components.vj0;
 public abstract class r extends m {
     public static final int[] Q1 = {21600, 43200, 86400, 172800};
-    public e11 A1;
+    public f11 A1;
     public Utilities.Callback B1;
     public Utilities.Callback C1;
     public p D1;
@@ -71,19 +71,19 @@ public abstract class r extends m {
     public final RectF f9691u1;
     public final RectF f9692v1;
     public final Path f9693w1;
-    public e11 f9694x1;
+    public f11 f9694x1;
     public Path f9695y1;
     public Paint f9696z1;
 
-    public r(Context context, FrameLayout frameLayout, kw0 kw0Var, FrameLayout frameLayout2, ci.b bVar, org.telegram.ui.Components.ja jaVar) {
-        super(context, frameLayout, kw0Var, frameLayout2, bVar, jaVar);
+    public r(Context context, FrameLayout frameLayout, lw0 lw0Var, FrameLayout frameLayout2, ci.b bVar, org.telegram.ui.Components.ja jaVar) {
+        super(context, frameLayout, lw0Var, frameLayout2, bVar, jaVar);
         this.W0 = true;
         this.X0 = 0;
         lb lbVar = (lb) this;
         this.f9672a1 = new q(lbVar, lbVar);
         org.telegram.ui.Components.p6 p6Var = new org.telegram.ui.Components.p6(false, true, true);
         this.f9673b1 = p6Var;
-        bs bsVar = bs.f25012f;
+        bs bsVar = bs.f25021f;
         p6Var.n(0.16f, 50L, bsVar);
         p6Var.w(AndroidUtilities.dp(15.0f));
         p6Var.x(AndroidUtilities.bold());
@@ -99,11 +99,11 @@ public abstract class r extends m {
         this.f9680i1 = baVar2;
         paint.setColor(-1);
         paint2.setColor(-15033089);
-        baVar.f24854a = AndroidUtilities.dp(47.0f);
-        baVar.f24855b = AndroidUtilities.dp(55.0f);
+        baVar.f24839a = AndroidUtilities.dp(47.0f);
+        baVar.f24840b = AndroidUtilities.dp(55.0f);
         baVar.b();
-        baVar2.f24854a = AndroidUtilities.dp(47.0f);
-        baVar2.f24855b = AndroidUtilities.dp(55.0f);
+        baVar2.f24839a = AndroidUtilities.dp(47.0f);
+        baVar2.f24840b = AndroidUtilities.dp(55.0f);
         baVar2.b();
         this.f9681j1 = getContext().getResources().getDrawable(R.drawable.input_video_pressed).mutate();
         this.l1 = new org.telegram.ui.Components.f6(new n(lbVar, 0), 200L, bsVar, 0);
@@ -172,13 +172,13 @@ public abstract class r extends m {
     public final void B() {
         if (this.Z0) {
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getContext(), 0, this.f9391a);
-            alertDialog$Builder.f20602a.R = LocaleController.getString(R.string.StoryRemoveRoundTitle);
-            alertDialog$Builder.f20602a.T = LocaleController.getString(R.string.StoryRemoveRoundMessage);
+            alertDialog$Builder.f20605a.R = LocaleController.getString(R.string.StoryRemoveRoundTitle);
+            alertDialog$Builder.f20605a.T = LocaleController.getString(R.string.StoryRemoveRoundMessage);
             alertDialog$Builder.k(LocaleController.getString(R.string.Remove), new e1.c(this, 2));
             alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
             TextView textView = (TextView) alertDialog$Builder.o().d(-1);
             if (textView != null) {
-                textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21225q7, this.f9391a));
+                textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21228q7, this.f9391a));
             }
         }
     }
@@ -306,7 +306,7 @@ public abstract class r extends m {
             }
             if (f11 > 0.0f) {
                 if (this.f9694x1 == null) {
-                    this.f9694x1 = new e11(LocaleController.getString(R.string.SlideToCancel2), 15.0f, null);
+                    this.f9694x1 = new f11(LocaleController.getString(R.string.SlideToCancel2), 15.0f, null);
                 }
                 if (this.f9695y1 == null) {
                     Path path = new Path();
@@ -321,7 +321,7 @@ public abstract class r extends m {
                     this.f9696z1.setStrokeJoin(Paint.Join.ROUND);
                 }
                 this.f9696z1.setStrokeWidth(AndroidUtilities.dp(1.33f));
-                this.f9694x1.f25738p = (int) ((rectF.width() - AndroidUtilities.dp(116.0f)) - p6Var.c());
+                this.f9694x1.f26031p = (int) ((rectF.width() - AndroidUtilities.dp(116.0f)) - p6Var.c());
                 float D = com.google.android.gms.internal.play_billing.k3.D(1.0f, this.f9674c1, AndroidUtilities.dp(6.0f) * sin, (rectF.centerX() - ((this.f9694x1.l() + AndroidUtilities.dp(11.33f)) / 2.0f)) - (AndroidUtilities.lerp(this.f9674c1, 1.0f, e7) * (rectF.width() / 6.0f)));
                 if (paint != null) {
                     i11 = -1;
@@ -341,9 +341,9 @@ public abstract class r extends m {
             }
             if (e7 > 0.0f) {
                 if (this.A1 == null) {
-                    this.A1 = new e11(LocaleController.getString(R.string.CancelRound), f12, AndroidUtilities.bold());
+                    this.A1 = new f11(LocaleController.getString(R.string.CancelRound), f12, AndroidUtilities.bold());
                 }
-                this.A1.f25738p = (int) ((rectF.width() - AndroidUtilities.dp(116.0f)) - p6Var.c());
+                this.A1.f26031p = (int) ((rectF.width() - AndroidUtilities.dp(116.0f)) - p6Var.c());
                 float width = ((rectF.width() / 4.0f) * f13) + (rectF.centerX() - (this.A1.l() / 2.0f));
                 if (paint != null) {
                     i10 = -1;
@@ -394,27 +394,27 @@ public abstract class r extends m {
         Paint paint = this.f9678g1;
         if (isEnabled) {
             org.telegram.ui.Components.ba baVar = this.f9679h1;
-            baVar.f24854a = AndroidUtilities.dp(47.0f);
+            baVar.f24839a = AndroidUtilities.dp(47.0f);
             Paint paint2 = baVar.d;
             f10 = 0.0f;
-            baVar.f24855b = (AndroidUtilities.dp(15.0f) * 0.6f) + AndroidUtilities.dp(47.0f);
+            baVar.f24840b = (AndroidUtilities.dp(15.0f) * 0.6f) + AndroidUtilities.dp(47.0f);
             f11 = e7;
             org.telegram.ui.Components.ba baVar2 = this.f9680i1;
-            baVar2.f24854a = AndroidUtilities.dp(50.0f);
+            baVar2.f24839a = AndroidUtilities.dp(50.0f);
             Paint paint3 = baVar2.d;
             f12 = f18;
-            baVar2.f24855b = (AndroidUtilities.dp(12.0f) * 0.6f) + AndroidUtilities.dp(50.0f);
+            baVar2.f24840b = (AndroidUtilities.dp(12.0f) * 0.6f) + AndroidUtilities.dp(50.0f);
             baVar2.e(d, 1.01f);
             baVar.e(d, 1.02f);
             paint3.setColor(org.telegram.ui.ActionBar.h6.m1(0.15f * f7, paint.getColor()));
             canvas.save();
-            float f20 = f19 / baVar2.f24854a;
+            float f20 = f19 / baVar2.f24839a;
             canvas.scale(f20, f20, lerp, dp);
             baVar2.a(lerp, dp, canvas, paint3);
             canvas.restore();
             paint2.setColor(org.telegram.ui.ActionBar.h6.m1(0.3f * f7, paint.getColor()));
             canvas.save();
-            float f21 = f19 / baVar.f24854a;
+            float f21 = f19 / baVar.f24839a;
             canvas.scale(f21, f21, lerp, dp);
             baVar.a(lerp, dp, canvas, paint2);
             canvas.restore();
@@ -477,8 +477,8 @@ public abstract class r extends m {
             canvas.drawRoundRect(rectF2, AndroidUtilities.dp(5.33f), AndroidUtilities.dp(5.33f), this.f9677f1);
         }
         canvas.restore();
-        float f24 = f6Var.f26108c;
-        float f25 = f6Var2.f26108c;
+        float f24 = f6Var.f26086c;
+        float f25 = f6Var2.f26086c;
         if (this.f9674c1 < 0.4f) {
             z10 = true;
         } else {
@@ -553,19 +553,19 @@ public abstract class r extends m {
             int visibility = imageView.getVisibility();
             org.telegram.ui.Components.f6 f6Var3 = this.M0;
             ImageView imageView2 = this.T0;
-            if (visibility == 4 || imageView2.getVisibility() == 4 || f6Var3.f26108c > 0.0f) {
+            if (visibility == 4 || imageView2.getVisibility() == 4 || f6Var3.f26086c > 0.0f) {
                 canvas.saveLayerAlpha(rectF, (int) ((1.0f - this.f9409o0) * 255.0f), 31);
                 Path path3 = this.f9684n1;
                 path3.rewind();
                 path3.addRoundRect(rectF, AndroidUtilities.dp(21.0f), AndroidUtilities.dp(21.0f), direction);
                 canvas.clipPath(path3);
-                if (imageView.getVisibility() == 4 || f6Var3.f26108c > 0.0f) {
+                if (imageView.getVisibility() == 4 || f6Var3.f26086c > 0.0f) {
                     canvas.save();
                     canvas.translate((AndroidUtilities.dp(180.0f) * f12) + imageView.getX(), imageView.getY());
                     imageView.draw(canvas);
                     canvas.restore();
                 }
-                if (imageView2.getVisibility() == 4 || f6Var3.f26108c > 0.0f) {
+                if (imageView2.getVisibility() == 4 || f6Var3.f26086c > 0.0f) {
                     canvas.save();
                     canvas.translate((AndroidUtilities.dp(180.0f) * f12) + imageView2.getX(), imageView2.getY());
                     imageView2.draw(canvas);
@@ -587,12 +587,12 @@ public abstract class r extends m {
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
         q qVar = this.f9672a1;
-        uj0 uj0Var = qVar.h;
+        vj0 vj0Var = qVar.h;
         qVar.f9612f = true;
         if (qVar.f9613g) {
-            uj0Var.start();
+            vj0Var.start();
         }
-        uj0Var.R(qVar.f9614i);
+        vj0Var.R(qVar.f9614i);
     }
 
     @Override
@@ -600,9 +600,9 @@ public abstract class r extends m {
         super.onDetachedFromWindow();
         q qVar = this.f9672a1;
         qVar.f9612f = false;
-        uj0 uj0Var = qVar.h;
-        uj0Var.stop();
-        uj0Var.R(null);
+        vj0 vj0Var = qVar.h;
+        vj0Var.stop();
+        vj0Var.R(null);
     }
 
     public void setAmplitude(double d) {

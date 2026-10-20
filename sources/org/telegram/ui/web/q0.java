@@ -2,40 +2,40 @@ package org.telegram.ui.web;
 
 import android.webkit.JsResult;
 public final class q0 implements org.telegram.ui.ActionBar.a2 {
-    public final int f42753a;
-    public final boolean[] f42754b;
-    public final JsResult f42755c;
+    public final int f42759a;
+    public final boolean[] f42760b;
+    public final JsResult f42761c;
 
     public q0(boolean[] zArr, JsResult jsResult, int i10) {
-        this.f42753a = i10;
-        this.f42754b = zArr;
-        this.f42755c = jsResult;
+        this.f42759a = i10;
+        this.f42760b = zArr;
+        this.f42761c = jsResult;
     }
 
     @Override
     public final void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f42753a) {
+        switch (this.f42759a) {
             case 0:
-                boolean[] zArr = this.f42754b;
+                boolean[] zArr = this.f42760b;
                 if (!zArr[0]) {
                     zArr[0] = true;
-                    this.f42755c.cancel();
+                    this.f42761c.cancel();
                     return;
                 }
                 return;
             case 1:
-                boolean[] zArr2 = this.f42754b;
+                boolean[] zArr2 = this.f42760b;
                 if (!zArr2[0]) {
                     zArr2[0] = true;
-                    this.f42755c.confirm();
+                    this.f42761c.confirm();
                     return;
                 }
                 return;
             default:
-                boolean[] zArr3 = this.f42754b;
+                boolean[] zArr3 = this.f42760b;
                 if (!zArr3[0]) {
                     zArr3[0] = true;
-                    this.f42755c.confirm();
+                    this.f42761c.confirm();
                     return;
                 }
                 return;

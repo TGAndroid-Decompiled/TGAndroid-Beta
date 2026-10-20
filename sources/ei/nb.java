@@ -11,7 +11,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.cg0;
+import org.telegram.ui.Components.dg0;
 import org.telegram.ui.Components.g80;
 public final class nb extends FrameLayout {
     public float f9529a;
@@ -110,9 +110,9 @@ public final class nb extends FrameLayout {
             iVar.layout(0, 0, vbVar.S, vbVar.T);
             vbVar.f9956c1.y();
         }
-        cg0 cg0Var = vbVar.B1;
-        if (cg0Var != null) {
-            cg0Var.layout(0, 0, cg0Var.getMeasuredWidth(), vbVar.B1.getMeasuredHeight());
+        dg0 dg0Var = vbVar.B1;
+        if (dg0Var != null) {
+            dg0Var.layout(0, 0, dg0Var.getMeasuredWidth(), vbVar.B1.getMeasuredHeight());
         }
         xa xaVar = vbVar.f10015v1;
         if (xaVar != null) {
@@ -148,9 +148,9 @@ public final class nb extends FrameLayout {
         if (iVar != null) {
             a(iVar, vbVar.S, vbVar.T);
         }
-        cg0 cg0Var = vbVar.B1;
-        if (cg0Var != null) {
-            a(cg0Var, size, size2);
+        dg0 dg0Var = vbVar.B1;
+        if (dg0Var != null) {
+            a(dg0Var, size, size2);
         }
         xa xaVar = vbVar.f10015v1;
         if (xaVar != null) {

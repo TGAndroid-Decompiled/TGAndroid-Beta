@@ -10,9 +10,9 @@ import android.view.KeyEvent;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.kw0;
+import org.telegram.ui.Components.lw0;
 import org.telegram.ui.Components.xc;
-public final class v1 extends kw0 {
+public final class v1 extends lw0 {
     public boolean f15568w0;
     public final Paint f15569x0;
     public final RectF f15570y0;
@@ -30,7 +30,7 @@ public final class v1 extends kw0 {
     public final void dispatchDraw(Canvas canvas) {
         d2 d2Var = this.f15571z0;
         Rect rect = d2Var.f15224w;
-        int m12 = h6.m1(d2Var.I, d2Var.getThemedColor(h6.f20987d6));
+        int m12 = h6.m1(d2Var.I, d2Var.getThemedColor(h6.f20990d6));
         Paint paint = this.f15569x0;
         paint.setColor(m12);
         if (d2Var.E && d2Var.f15226x != null) {

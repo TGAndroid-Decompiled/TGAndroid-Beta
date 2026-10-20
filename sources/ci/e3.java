@@ -8,10 +8,10 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.er0;
+import org.telegram.ui.Components.fr0;
 import org.telegram.ui.Components.qc;
 import org.telegram.ui.Components.xc;
-public final class e3 extends er0 {
+public final class e3 extends fr0 {
     public final q4 f5352c1;
 
     public e3(q4 q4Var, Context context, String str, String str2, boolean z10, t2 t2Var) {
@@ -31,7 +31,7 @@ public final class e3 extends er0 {
             long j10 = hVar.j(0);
             if (j10 == UserConfig.getInstance(this.currentAccount).clientUserId) {
                 qc G = xcVar.G(R.raw.saved_messages, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.StorySharedToSavedMessages, new Object[0])));
-                G.f29602r = false;
+                G.f29538r = false;
                 G.j();
             } else if (j10 < 0) {
                 TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j10));
@@ -43,16 +43,16 @@ public final class e3 extends er0 {
                     str = chat.title;
                 }
                 qc G2 = xcVar.G(i11, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(i12, str)));
-                G2.f29602r = false;
+                G2.f29538r = false;
                 G2.j();
             } else {
                 qc G3 = xcVar.G(R.raw.forward, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.StorySharedTo, MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j10)).first_name)));
-                G3.f29602r = false;
+                G3.f29538r = false;
                 G3.j();
             }
         } else {
             qc Q = xcVar.Q(R.raw.forward, 36, AndroidUtilities.replaceTags(LocaleController.formatPluralString("StorySharedToManyChats", hVar.m(), Integer.valueOf(hVar.m()))));
-            Q.f29602r = false;
+            Q.f29538r = false;
             Q.j();
         }
         try {

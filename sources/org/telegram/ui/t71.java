@@ -6,45 +6,45 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-public final class t71 extends org.telegram.ui.Components.f61 {
+public final class t71 extends org.telegram.ui.Components.g61 {
     static {
-        org.telegram.ui.Components.f61.setup(new org.telegram.ui.Components.f61());
+        org.telegram.ui.Components.g61.setup(new org.telegram.ui.Components.g61());
     }
 
-    public static org.telegram.ui.Components.g61 a(int i10, int i11, int i12, int i13, CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3) {
-        org.telegram.ui.Components.g61 J = org.telegram.ui.Components.g61.J(t71.class);
+    public static org.telegram.ui.Components.h61 a(int i10, int i11, int i12, int i13, CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3) {
+        org.telegram.ui.Components.h61 J = org.telegram.ui.Components.h61.J(t71.class);
         J.d = i10;
-        J.f26496k = i13;
-        J.f26497l = charSequence;
-        J.f26498m = charSequence2;
-        J.f26499n = charSequence3;
+        J.f26781k = i13;
+        J.f26782l = charSequence;
+        J.f26783m = charSequence2;
+        J.f26784n = charSequence3;
         J.B = (i11 & 4294967295L) | (i12 << 32);
         return J;
     }
 
     @Override
-    public final void bindView(View view, org.telegram.ui.Components.g61 g61Var, boolean z10, org.telegram.ui.Components.t61 t61Var, org.telegram.ui.Components.b71 b71Var) {
+    public final void bindView(View view, org.telegram.ui.Components.h61 h61Var, boolean z10, org.telegram.ui.Components.u61 u61Var, org.telegram.ui.Components.c71 c71Var) {
         boolean z11;
         int i10;
         float f7;
-        long j10 = g61Var.B;
+        long j10 = h61Var.B;
         int i11 = (int) j10;
         int i12 = (int) (j10 >>> 32);
         u71 u71Var = (u71) view;
-        int i13 = g61Var.f26496k;
-        CharSequence charSequence = g61Var.f26497l;
-        CharSequence charSequence2 = g61Var.f26498m;
-        CharSequence charSequence3 = g61Var.f26499n;
+        int i13 = h61Var.f26781k;
+        CharSequence charSequence = h61Var.f26782l;
+        CharSequence charSequence2 = h61Var.f26783m;
+        CharSequence charSequence3 = h61Var.f26784n;
         TextView textView = u71Var.e;
-        TextView textView2 = u71Var.f41822f;
+        TextView textView2 = u71Var.f41828f;
         int i14 = 0;
         if (i11 == 0 && i12 == 0) {
             z11 = false;
         } else {
             z11 = true;
         }
-        u71Var.f41823n = z11;
-        FrameLayout frameLayout = u71Var.f41821c;
+        u71Var.f41829n = z11;
+        FrameLayout frameLayout = u71Var.f41827c;
         if (i13 != 0) {
             i10 = 0;
         } else {
@@ -62,11 +62,11 @@ public final class t71 extends org.telegram.ui.Components.f61 {
             f10 = AndroidUtilities.dp(2.0f);
         }
         textView2.setTranslationX(f10);
-        u71Var.f41820b.b(i11, i12);
+        u71Var.f41826b.b(i11, i12);
         u71Var.d.setImageResource(i13);
         textView.setText(charSequence);
         boolean isEmpty = TextUtils.isEmpty(charSequence2);
-        u71Var.f41824r = !isEmpty;
+        u71Var.f41830r = !isEmpty;
         if (isEmpty) {
             i14 = 8;
         }
@@ -77,7 +77,7 @@ public final class t71 extends org.telegram.ui.Components.f61 {
     }
 
     @Override
-    public final View createView(Context context, org.telegram.ui.Components.im0 im0Var, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
+    public final View createView(Context context, org.telegram.ui.Components.jm0 jm0Var, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
         return new u71(context, d6Var);
     }
 }

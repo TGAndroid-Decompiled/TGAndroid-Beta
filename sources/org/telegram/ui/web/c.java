@@ -1,19 +1,19 @@
 package org.telegram.ui.web;
 
 import android.content.Context;
-import org.telegram.ui.Components.b71;
-public final class c extends b71 {
-    public final k f42603d3;
+import org.telegram.ui.Components.c71;
+public final class c extends c71 {
+    public final k f42609d3;
 
     public c(k kVar, Context context, int i10, hg.o oVar, a aVar, mi.q qVar) {
         super(context, i10, 0, false, oVar, aVar, null, qVar);
-        this.f42603d3 = kVar;
+        this.f42609d3 = kVar;
     }
 
     @Override
     public final void k0(int i10, int i11) {
         i iVar;
-        if (!canScrollVertically(1) && (iVar = this.f42603d3.f42697y) != null && iVar.h) {
+        if (!canScrollVertically(1) && (iVar = this.f42609d3.f42703y) != null && iVar.h) {
             iVar.d();
         }
     }

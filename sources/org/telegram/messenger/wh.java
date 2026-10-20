@@ -1,27 +1,30 @@
 package org.telegram.messenger;
+public final class wh implements Runnable {
+    public final int f20006a;
+    public final SavedMessagesController f20007b;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class wh implements RequestDelegate {
-    public final int f20009a;
-    public final SecretChatHelper f20010b;
-    public final TLRPC.EncryptedChat f20011c;
-
-    public wh(SecretChatHelper secretChatHelper, TLRPC.EncryptedChat encryptedChat, int i10) {
-        this.f20009a = i10;
-        this.f20010b = secretChatHelper;
-        this.f20011c = encryptedChat;
+    public wh(SavedMessagesController savedMessagesController, int i10) {
+        this.f20006a = i10;
+        this.f20007b = savedMessagesController;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f20009a) {
+    public final void run() {
+        switch (this.f20006a) {
             case 0:
-                this.f20010b.lambda$acceptSecretChat$22(this.f20011c, tLObject, tL_error);
+                this.f20007b.update();
+                return;
+            case 1:
+                SavedMessagesController.k(this.f20007b);
+                return;
+            case 2:
+                SavedMessagesController.h(this.f20007b);
+                return;
+            case 3:
+                SavedMessagesController.j(this.f20007b);
                 return;
             default:
-                this.f20010b.lambda$acceptSecretChat$23(this.f20011c, tLObject, tL_error);
+                SavedMessagesController.b(this.f20007b);
                 return;
         }
     }

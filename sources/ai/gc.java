@@ -5,10 +5,10 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.text.style.ReplacementSpan;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.e11;
+import org.telegram.ui.Components.f11;
 public final class gc extends ReplacementSpan {
     public final Paint f1388a;
-    public final e11 f1389b;
+    public final f11 f1389b;
     public final int f1390c;
 
     public gc(int i10, String str) {
@@ -16,14 +16,14 @@ public final class gc extends ReplacementSpan {
         Paint paint = new Paint(1);
         this.f1388a = paint;
         paint.setColor(org.telegram.ui.ActionBar.h6.m1(0.1f, i10));
-        this.f1389b = new e11(str, 13.0f, AndroidUtilities.bold());
+        this.f1389b = new f11(str, 13.0f, AndroidUtilities.bold());
     }
 
     @Override
     public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
         RectF rectF = AndroidUtilities.rectTmp;
         int i15 = i12 + i14;
-        rectF.set(f7, (i15 - AndroidUtilities.dp(20.0f)) / 2.0f, AndroidUtilities.dp(12.0f) + f7 + this.f1389b.f25728c, (AndroidUtilities.dp(20.0f) + i15) / 2.0f);
+        rectF.set(f7, (i15 - AndroidUtilities.dp(20.0f)) / 2.0f, AndroidUtilities.dp(12.0f) + f7 + this.f1389b.f26021c, (AndroidUtilities.dp(20.0f) + i15) / 2.0f);
         canvas.drawRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), this.f1388a);
         int i16 = this.f1390c;
         this.f1389b.c(f7 + AndroidUtilities.dp(6.0f), i15 / 2.0f, 1.0f, i16, canvas);
@@ -31,6 +31,6 @@ public final class gc extends ReplacementSpan {
 
     @Override
     public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
-        return (int) (AndroidUtilities.dp(12.0f) + this.f1389b.f25728c);
+        return (int) (AndroidUtilities.dp(12.0f) + this.f1389b.f26021c);
     }
 }

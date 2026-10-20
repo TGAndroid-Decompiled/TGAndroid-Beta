@@ -1,21 +1,25 @@
 package org.telegram.messenger;
-public final class rc implements Runnable {
-    public final int f19419a;
-    public final boolean[] f19420b;
 
-    public rc(int i10, boolean[] zArr) {
-        this.f19419a = i10;
-        this.f19420b = zArr;
+import org.telegram.tgnet.tl.TL_update;
+public final class rc implements Runnable {
+    public final int f19448a;
+    public final MessagesController f19449b;
+    public final TL_update.TL_updatePeerBlocked f19450c;
+
+    public rc(MessagesController messagesController, TL_update.TL_updatePeerBlocked tL_updatePeerBlocked, int i10) {
+        this.f19448a = i10;
+        this.f19449b = messagesController;
+        this.f19450c = tL_updatePeerBlocked;
     }
 
     @Override
     public final void run() {
-        switch (this.f19419a) {
+        switch (this.f19448a) {
             case 0:
-                MessagesController.lambda$openByUserName$459(this.f19420b);
+                this.f19449b.lambda$processUpdateArray$394(this.f19450c);
                 return;
             default:
-                MessagesController.lambda$openApp$500(this.f19420b);
+                this.f19449b.lambda$processUpdateArray$393(this.f19450c);
                 return;
         }
     }

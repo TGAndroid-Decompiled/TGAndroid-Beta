@@ -1,7 +1,7 @@
 package ci;
 
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.bd;
+import org.telegram.messenger.dd;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
@@ -28,7 +28,7 @@ public final class p6 implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new j6((i7) this.d, this.f5732b, (TL_stories.TL_stories_getAllStories) this.e, tLObject, this.f5733c));
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new bd((TwoStepVerificationActivity) this.d, tL_error, tLObject, this.f5732b, this.f5733c, (Runnable) this.e, 3));
+                AndroidUtilities.runOnUIThread(new dd((TwoStepVerificationActivity) this.d, tL_error, tLObject, this.f5732b, this.f5733c, (Runnable) this.e, 3));
                 return;
         }
     }

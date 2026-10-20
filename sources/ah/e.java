@@ -14,7 +14,7 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.r5;
-import org.telegram.ui.Components.uj0;
+import org.telegram.ui.Components.vj0;
 import org.telegram.ui.oy;
 public final class e {
     public static int f710m;
@@ -153,7 +153,7 @@ public final class e {
                 imageReceiver.setAutoRepeat(0);
                 return;
             }
-            imageReceiver.setImageBitmap(new uj0(R.raw.custom_emoji_reaction, AndroidUtilities.dp(60.0f), AndroidUtilities.dp(60.0f), false, null));
+            imageReceiver.setImageBitmap(new vj0(R.raw.custom_emoji_reaction, AndroidUtilities.dp(60.0f), AndroidUtilities.dp(60.0f), false, null));
         }
     }
 }

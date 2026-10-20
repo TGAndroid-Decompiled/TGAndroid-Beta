@@ -95,7 +95,7 @@ public class TelegramMediaSession {
         b0Var.f(new PlaybackStateCompat(0, 0L, 0L, 1.0f, getAvailableActions(), 0, null, SystemClock.elapsedRealtime(), arrayList, -1L, null));
         updateRepeatMode();
         updateShuffleMode();
-        NotificationCenter.getGlobalInstance().addObserver(new z1(this, 1), NotificationCenter.activeAccountChanged);
+        NotificationCenter.getGlobalInstance().addObserver(new a2(this, 1), NotificationCenter.activeAccountChanged);
     }
 
     private void applyQueueFor(long j10) {
@@ -270,7 +270,7 @@ public class TelegramMediaSession {
                     TLRPC.User user = arrayList4.get(i12);
                     i12++;
                     TLRPC.User user2 = user;
-                    hVar.k(user2, user2.f20420id);
+                    hVar.k(user2, user2.f20423id);
                 }
             }
             if (!arrayList3.isEmpty()) {
@@ -281,7 +281,7 @@ public class TelegramMediaSession {
                     TLRPC.Chat chat = arrayList5.get(i11);
                     i11++;
                     TLRPC.Chat chat2 = chat;
-                    hVar2.k(chat2, chat2.f20273id);
+                    hVar2.k(chat2, chat2.f20276id);
                 }
             }
         } catch (Exception e) {
@@ -322,7 +322,7 @@ public class TelegramMediaSession {
                     TLdeserialize.readAttachPath(byteBufferValue, UserConfig.getInstance(i10).clientUserId);
                     byteBufferValue.reuse();
                     if (MessageObject.isMusicMessage(TLdeserialize)) {
-                        TLdeserialize.f20294id = queryFinalized.intValue(1);
+                        TLdeserialize.f20297id = queryFinalized.intValue(1);
                         TLdeserialize.dialog_id = j10;
                         i11 = i10;
                         try {
@@ -350,7 +350,7 @@ public class TelegramMediaSession {
 
     public void lambda$new$0(int i10, int i11, Object[] objArr) {
         if (i10 == NotificationCenter.activeAccountChanged) {
-            AndroidUtilities.runOnUIThread(new bh(this, 13));
+            AndroidUtilities.runOnUIThread(new dh(this, 13));
         }
     }
 
@@ -361,7 +361,7 @@ public class TelegramMediaSession {
         this.loadingChats = true;
         int i10 = this.currentAccount;
         MessagesStorage messagesStorage = MessagesStorage.getInstance(i10);
-        messagesStorage.getStorageQueue().postRunnable(new t4(this, messagesStorage, i10, 22));
+        messagesStorage.getStorageQueue().postRunnable(new v4(this, messagesStorage, i10, 22));
     }
 
     private java.util.List<android.media.browse.MediaBrowser.MediaItem> loadChildrenSync(java.lang.String r9) {
@@ -411,7 +411,7 @@ public class TelegramMediaSession {
     }
 
     public Bundle buildRootHints() {
-        Bundle d = kk.d(2, "android.media.browse.CONTENT_STYLE_SUPPORTED", "android.media.browse.CONTENT_STYLE_BROWSABLE_HINT", true);
+        Bundle d = mk.d(2, "android.media.browse.CONTENT_STYLE_SUPPORTED", "android.media.browse.CONTENT_STYLE_BROWSABLE_HINT", true);
         d.putInt("android.media.browse.CONTENT_STYLE_PLAYABLE_HINT", 1);
         return d;
     }
@@ -424,7 +424,7 @@ public class TelegramMediaSession {
             }
             return;
         }
-        loadBrowseChildren("__ROOT__", new k4(runnable));
+        loadBrowseChildren("__ROOT__", new m4(runnable));
     }
 
     public long getAvailableActions() {
@@ -465,10 +465,10 @@ public class TelegramMediaSession {
         for (int i10 = 0; i10 < allDialogs.size(); i10++) {
             TLRPC.Dialog dialog = allDialogs.get(i10);
             if (dialog != null) {
-                hashMap.put(Long.valueOf(dialog.f20277id), Integer.valueOf(i10));
+                hashMap.put(Long.valueOf(dialog.f20280id), Integer.valueOf(i10));
             }
         }
-        Collections.sort(arrayList, new mk(hashMap, 0));
+        Collections.sort(arrayList, new ok(hashMap, 0));
         return arrayList;
     }
 
@@ -519,7 +519,7 @@ public class TelegramMediaSession {
         }
         long dialogIdFromMediaId = getDialogIdFromMediaId(str);
         if (dialogIdFromMediaId != 0 && this.musicObjects.f(dialogIdFromMediaId) == null) {
-            loadMusicForDialog(dialogIdFromMediaId, new j8(this, browseChildrenCallback, str, 27));
+            loadMusicForDialog(dialogIdFromMediaId, new l8(this, browseChildrenCallback, str, 27));
         } else {
             browseChildrenCallback.onResult(loadChildrenSync(str));
         }
@@ -585,7 +585,7 @@ public class TelegramMediaSession {
         }
 
         private void notifyPlayStateForNotificationRefresh() {
-            AndroidUtilities.runOnUIThread(new h1(this, 10));
+            AndroidUtilities.runOnUIThread(new i1(this, 10));
         }
 
         @Override

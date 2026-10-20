@@ -20,7 +20,7 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 public final class t21 extends org.telegram.ui.Components.bb {
     public final LinearLayout X;
-    public org.telegram.ui.Components.t61 Y;
+    public org.telegram.ui.Components.u61 Y;
 
     public t21(Context context, boolean z10, org.telegram.ui.ActionBar.d6 d6Var, Utilities.Callback callback) {
         super(context, null, false, false, d6Var);
@@ -55,8 +55,8 @@ public final class t21 extends org.telegram.ui.Components.bb {
             imageView2.setImageDrawable(context.getDrawable(R.drawable.ic_ab_other));
             imageView2.setContentDescription(LocaleController.getString(R.string.AccDescrMoreOptions));
             imageView2.setScaleType(scaleType);
-            imageView2.setColorFilter(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21243r5, false));
-            imageView2.setBackground(org.telegram.ui.ActionBar.h6.g0(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21076i6, false), 1, -1));
+            imageView2.setColorFilter(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21246r5, false));
+            imageView2.setBackground(org.telegram.ui.ActionBar.h6.g0(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21079i6, false), 1, -1));
             d6Var2 = d6Var;
             imageView2.setOnClickListener(new ci.c4(this, callback, d6Var, imageView2, 15));
             frameLayout.addView(imageView2, w7.z5.d(24, 24.0f, 53, 12.0f, 14.0f, 14.0f, 12.0f));
@@ -68,7 +68,7 @@ public final class t21 extends org.telegram.ui.Components.bb {
         textView.setText(LocaleController.getString(R.string.AboutRevenueSharingAds));
         textView.setTypeface(AndroidUtilities.bold());
         int i18 = org.telegram.ui.ActionBar.h6.G6;
-        org.telegram.messenger.kk.o(i18, d6Var2, textView, 1, 20.0f);
+        org.telegram.messenger.mk.o(i18, d6Var2, textView, 1, 20.0f);
         textView.setGravity(1);
         TextView i19 = com.google.android.gms.internal.play_billing.k3.i(linearLayout, textView, w7.z5.t(-2, -2, 1, 22, 14, 22, 0), context);
         i19.setText(LocaleController.getString(R.string.RevenueSharingAdsAlertSubtitle));
@@ -108,19 +108,19 @@ public final class t21 extends org.telegram.ui.Components.bb {
             i14 = R.string.RevenueSharingAdsInfo3Subtitle;
         }
         String formatString = LocaleController.formatString(i14, Integer.valueOf(MessagesController.getInstance(UserConfig.selectedAccount).channelRestrictSponsoredLevelMin));
-        int i22 = org.telegram.ui.ActionBar.h6.f21046gc;
+        int i22 = org.telegram.ui.ActionBar.h6.f21049gc;
         linearLayout.addView(new ci.i4(this, context, R.drawable.menu_feature_noads, LocaleController.getString(R.string.RevenueSharingAdsInfo3Title), AndroidUtilities.replaceSingleTag(formatString, i22, 0, new Runnable(this) {
-            public final t21 f41329b;
+            public final t21 f41335b;
 
             {
-                this.f41329b = this;
+                this.f41335b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        t21 t21Var = this.f41329b;
+                        t21 t21Var = this.f41335b;
                         t21Var.getClass();
                         org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
                         if (U != null) {
@@ -130,7 +130,7 @@ public final class t21 extends org.telegram.ui.Components.bb {
                         }
                         return;
                     default:
-                        t21 t21Var2 = this.f41329b;
+                        t21 t21Var2 = this.f41335b;
                         t21Var2.dismiss();
                         pf.d.r(t21Var2.getContext(), LocaleController.getString(R.string.PromoteUrl));
                         return;
@@ -138,7 +138,7 @@ public final class t21 extends org.telegram.ui.Components.bb {
             }
         })), w7.z5.p(-1, -2, 0.0f, 0, 0, 16, 0, 0));
         View view = new View(getContext());
-        view.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20988d7, d6Var2));
+        view.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20991d7, d6Var2));
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(-1, 1);
         layoutParams.setMargins(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(20.0f));
         linearLayout.addView(view, layoutParams);
@@ -162,17 +162,17 @@ public final class t21 extends org.telegram.ui.Components.bb {
         }
         SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.getString(i16));
         SpannableStringBuilder replaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.RevenueSharingAdsInfo4SubtitleLearnMore), i22, 0, new Runnable(this) {
-            public final t21 f41329b;
+            public final t21 f41335b;
 
             {
-                this.f41329b = this;
+                this.f41335b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        t21 t21Var = this.f41329b;
+                        t21 t21Var = this.f41335b;
                         t21Var.getClass();
                         org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
                         if (U != null) {
@@ -182,7 +182,7 @@ public final class t21 extends org.telegram.ui.Components.bb {
                         }
                         return;
                     default:
-                        t21 t21Var2 = this.f41329b;
+                        t21 t21Var2 = this.f41335b;
                         t21Var2.dismiss();
                         pf.d.r(t21Var2.getContext(), LocaleController.getString(R.string.PromoteUrl));
                         return;
@@ -241,9 +241,9 @@ public final class t21 extends org.telegram.ui.Components.bb {
     }
 
     @Override
-    public final org.telegram.ui.Components.hm0 x(org.telegram.ui.Components.im0 im0Var) {
-        org.telegram.ui.Components.t61 t61Var = new org.telegram.ui.Components.t61(im0Var, getContext(), this.currentAccount, 0, true, new g5(this, 20), this.resourcesProvider);
-        this.Y = t61Var;
-        return t61Var;
+    public final org.telegram.ui.Components.im0 x(org.telegram.ui.Components.jm0 jm0Var) {
+        org.telegram.ui.Components.u61 u61Var = new org.telegram.ui.Components.u61(jm0Var, getContext(), this.currentAccount, 0, true, new g5(this, 20), this.resourcesProvider);
+        this.Y = u61Var;
+        return u61Var;
     }
 }

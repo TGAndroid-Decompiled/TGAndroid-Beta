@@ -94,7 +94,7 @@ public final class z0 extends a0 implements org.telegram.ui.ActionBar.y5, m9, l0
 
     @Override
     public final void d() {
-        this.f15676s.setColor(h6.w0(h6.f21311uf, this.f15675r));
+        this.f15676s.setColor(h6.w0(h6.f21314uf, this.f15675r));
         k0 k0Var = this.F;
         if (k0Var != null) {
             k0Var.a();
@@ -373,7 +373,7 @@ public final class z0 extends a0 implements org.telegram.ui.ActionBar.y5, m9, l0
                 this.Q.draw(canvas);
                 canvas.restore();
             }
-            this.f15678x.setColor(h6.w0(h6.f21177nd, d6Var));
+            this.f15678x.setColor(h6.w0(h6.f21180nd, d6Var));
             StaticLayout staticLayout = this.Q;
             int i12 = 0;
             if (staticLayout == null) {
@@ -391,7 +391,7 @@ public final class z0 extends a0 implements org.telegram.ui.ActionBar.y5, m9, l0
             if (this.S != null && (getParent() instanceof RecyclerView) && (textSelectionHelper = this.S.f15488a.getTextSelectionHelper()) != null && textSelectionHelper.x()) {
                 ((RecyclerView) getParent()).getClass();
                 int R = RecyclerView.R(this);
-                if (R > textSelectionHelper.f22654p0 && R <= textSelectionHelper.f22657s0) {
+                if (R > textSelectionHelper.f22657p0 && R <= textSelectionHelper.f22660s0) {
                     if (this.M) {
                         i11 = 0;
                     } else {

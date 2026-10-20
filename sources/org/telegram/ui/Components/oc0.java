@@ -15,34 +15,34 @@ public abstract class oc0 extends FrameLayout {
     public final ArrayList E;
     public final kc0 F;
     public final bh.b G;
-    public TLRPC.Peer f28947a;
-    public final boolean f28948b;
-    public final org.telegram.ui.qn f28949c;
+    public TLRPC.Peer f28985a;
+    public final boolean f28986b;
+    public final org.telegram.ui.qn f28987c;
     public final MessagePreviewParams d;
     public final mc0 e;
-    public final qb0 f28950f;
+    public final qb0 f28988f;
     public ValueAnimator h;
-    public final TLRPC.User f28951n;
-    public final TLRPC.Chat f28952r;
-    public boolean f28953s;
+    public final TLRPC.User f28989n;
+    public final TLRPC.Chat f28990r;
+    public boolean f28991s;
     public boolean v;
-    public final int f28954w;
-    public boolean f28955x;
-    public final org.telegram.ui.Cells.k7 f28956y;
+    public final int f28992w;
+    public boolean f28993x;
+    public final org.telegram.ui.Cells.k7 f28994y;
 
     public oc0(Context context, org.telegram.ui.qn qnVar, bh.b bVar, MessagePreviewParams messagePreviewParams, TLRPC.User user, TLRPC.Chat chat, int i10, kc0 kc0Var, int i11, final boolean z10) {
         super(context);
-        this.f28956y = new org.telegram.ui.Cells.k7(this, 15);
+        this.f28994y = new org.telegram.ui.Cells.k7(this, 15);
         this.E = new ArrayList(10);
-        this.f28948b = z10;
-        this.f28949c = qnVar;
-        this.f28954w = i10;
+        this.f28986b = z10;
+        this.f28987c = qnVar;
+        this.f28992w = i10;
         this.G = bVar;
-        this.f28951n = user;
-        this.f28952r = chat;
+        this.f28989n = user;
+        this.f28990r = chat;
         this.d = messagePreviewParams;
         this.F = kc0Var;
-        this.f28950f = new qb0(this, context, kc0Var);
+        this.f28988f = new qb0(this, context, kc0Var);
         mc0 mc0Var = new mc0(context, kc0Var);
         this.e = mc0Var;
         dh.d c10 = bVar.c(mc0Var, null, false);
@@ -63,14 +63,14 @@ public abstract class oc0 extends FrameLayout {
                 }
             }
             if (i13 == i11) {
-                i12 = this.e.f28510a.size() - 1;
+                i12 = this.e.f28481a.size() - 1;
             }
         }
-        this.f28950f.setAdapter(new rb0(this, context));
-        this.f28950f.setPosition(i12);
+        this.f28988f.setAdapter(new rb0(this, context));
+        this.f28988f.setPosition(i12);
         this.e.setSelectedTab(i12);
         addView(this.e, w7.z5.e(-1, 66, 87));
-        addView(this.f28950f, w7.z5.d(-1, -1.0f, 119, 0.0f, 0.0f, 0.0f, 66.0f));
+        addView(this.f28988f, w7.z5.d(-1, -1.0f, 119, 0.0f, 0.0f, 0.0f, 66.0f));
         this.e.setOnTabClick(new z2(this, 7));
         setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -83,7 +83,7 @@ public abstract class oc0 extends FrameLayout {
                 return true;
             }
         });
-        this.f28953s = true;
+        this.f28991s = true;
         setAlpha(0.0f);
         setScaleX(0.95f);
         setScaleY(0.95f);
@@ -99,15 +99,15 @@ public abstract class oc0 extends FrameLayout {
     public abstract void c(boolean z10);
 
     public void setSendAsPeer(TLRPC.Peer peer) {
-        this.f28947a = peer;
+        this.f28985a = peer;
         int i10 = 0;
         while (true) {
-            View[] viewArr = this.f28950f.e;
+            View[] viewArr = this.f28988f.e;
             if (i10 < viewArr.length) {
                 View view = viewArr[i10];
                 if (view != null) {
                     ic0 ic0Var = (ic0) view;
-                    if (ic0Var.f27195a == 1) {
+                    if (ic0Var.f27232a == 1) {
                         ic0Var.i();
                     }
                 }

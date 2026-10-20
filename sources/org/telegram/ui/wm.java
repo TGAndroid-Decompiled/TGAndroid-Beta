@@ -7,39 +7,39 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-public final class wm extends org.telegram.ui.Components.er0 {
-    public final MessageObject f42891c1;
-    public final cn f42892d1;
+public final class wm extends org.telegram.ui.Components.fr0 {
+    public final MessageObject f42897c1;
+    public final cn f42898d1;
 
     public wm(cn cnVar, Activity activity, qn qnVar, ArrayList arrayList, boolean z10, boolean z11, org.telegram.ui.ActionBar.d6 d6Var, boolean z12, MessageObject messageObject) {
         super(activity, qnVar, arrayList, null, null, z10, null, null, false, false, z11, null, d6Var);
-        this.f42892d1 = cnVar;
-        this.f42891c1 = messageObject;
-        this.f25978b0 = z12;
+        this.f42898d1 = cnVar;
+        this.f42897c1 = messageObject;
+        this.f26366b0 = z12;
     }
 
     @Override
     public final void T0(a0.h hVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
-        cn cnVar = this.f42892d1;
-        qn qnVar = cnVar.f36004a;
+        cn cnVar = this.f42898d1;
+        qn qnVar = cnVar.f36010a;
         int i11 = qn.Ic;
         qnVar.T7();
-        if (cnVar.f36004a.y3 != null && z10) {
+        if (cnVar.f36010a.y3 != null && z10) {
             if (hVar.m() == 1) {
-                if (((TLRPC.Dialog) hVar.n(0)).f20277id != cnVar.f36004a.getUserConfig().getClientUserId() || !org.telegram.ui.Components.xc.a0(cnVar.f36004a).g0(i10, ((TLRPC.Dialog) hVar.n(0)).f20277id)) {
-                    cnVar.f36004a.y3.k(((TLRPC.Dialog) hVar.n(0)).f20277id, 53, Integer.valueOf(i10), tL_forumTopic, null, null);
+                if (((TLRPC.Dialog) hVar.n(0)).f20280id != cnVar.f36010a.getUserConfig().getClientUserId() || !org.telegram.ui.Components.xc.a0(cnVar.f36010a).g0(i10, ((TLRPC.Dialog) hVar.n(0)).f20280id)) {
+                    cnVar.f36010a.y3.k(((TLRPC.Dialog) hVar.n(0)).f20280id, 53, Integer.valueOf(i10), tL_forumTopic, null, null);
                     return;
                 }
                 return;
             }
-            cnVar.f36004a.y3.k(0L, 53, Integer.valueOf(i10), Integer.valueOf(hVar.m()), null, null);
+            cnVar.f36010a.y3.k(0L, 53, Integer.valueOf(i10), Integer.valueOf(hVar.m()), null, null);
         }
     }
 
     @Override
     public final void U0(final View view) {
         ei.ob obVar;
-        qn qnVar = this.f42892d1.f36004a;
+        qn qnVar = this.f42898d1.f36010a;
         MessageObject.GroupedMessages groupedMessages = null;
         if (view instanceof org.telegram.ui.Cells.e7) {
             obVar = ei.qb.b((org.telegram.ui.Cells.e7) view);
@@ -47,9 +47,9 @@ public final class wm extends org.telegram.ui.Components.er0 {
             obVar = null;
         }
         ArrayList arrayList = new ArrayList();
-        MessageObject messageObject = this.f42891c1;
+        MessageObject messageObject = this.f42897c1;
         if (messageObject.getGroupId() != 0) {
-            groupedMessages = (MessageObject.GroupedMessages) qnVar.f40901x6.f(messageObject.getGroupId());
+            groupedMessages = (MessageObject.GroupedMessages) qnVar.f40907x6.f(messageObject.getGroupId());
         }
         if (groupedMessages != null) {
             arrayList.addAll(groupedMessages.messages);
@@ -87,7 +87,7 @@ public final class wm extends org.telegram.ui.Components.er0 {
     @Override
     public final void dismissInternal() {
         int i10;
-        qn qnVar = this.f42892d1.f36004a;
+        qn qnVar = this.f42898d1.f36010a;
         Activity parentActivity = qnVar.getParentActivity();
         i10 = ((org.telegram.ui.ActionBar.n2) qnVar).classGuid;
         AndroidUtilities.requestAdjustResize(parentActivity, i10);

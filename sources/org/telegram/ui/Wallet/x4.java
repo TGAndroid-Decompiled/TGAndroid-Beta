@@ -10,7 +10,7 @@ public final class x4 extends us {
 
     public x4(o5 o5Var, Context context) {
         super(context);
-        this.G = org.telegram.ui.ActionBar.h6.c0(AndroidUtilities.dp(22.0f), o5Var.getThemedColor(org.telegram.ui.ActionBar.h6.f20987d6));
+        this.G = org.telegram.ui.ActionBar.h6.c0(AndroidUtilities.dp(22.0f), o5Var.getThemedColor(org.telegram.ui.ActionBar.h6.f20990d6));
     }
 
     @Override

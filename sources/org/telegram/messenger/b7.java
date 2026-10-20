@@ -1,34 +1,38 @@
 package org.telegram.messenger;
-
-import org.telegram.tgnet.TLRPC;
 public final class b7 implements Runnable {
-    public final int f17934a;
-    public final MediaDataController f17935b;
-    public final TLRPC.TL_messages_stickerSet f17936c;
+    public final int f17933a;
+    public final MediaDataController f17934b;
+    public final String f17935c;
 
-    public b7(MediaDataController mediaDataController, TLRPC.TL_messages_stickerSet tL_messages_stickerSet, int i10) {
-        this.f17934a = i10;
-        this.f17935b = mediaDataController;
-        this.f17936c = tL_messages_stickerSet;
+    public b7(MediaDataController mediaDataController, String str, int i10) {
+        this.f17933a = i10;
+        this.f17934b = mediaDataController;
+        this.f17935c = str;
     }
 
     @Override
     public final void run() {
-        switch (this.f17934a) {
+        switch (this.f17933a) {
             case 0:
-                this.f17935b.lambda$saveStickerSetIntoCache$40(this.f17936c);
+                MediaDataController.h3(this.f17934b, this.f17935c);
                 return;
             case 1:
-                this.f17935b.lambda$loadGroupStickerSet$45(this.f17936c);
+                MediaDataController.x1(this.f17934b, this.f17935c);
                 return;
             case 2:
-                this.f17935b.lambda$loadGroupStickerSet$43(this.f17936c);
+                MediaDataController.Y0(this.f17934b, this.f17935c);
                 return;
             case 3:
-                this.f17935b.lambda$putSetToCache$47(this.f17936c);
+                MediaDataController.e1(this.f17934b, this.f17935c);
+                return;
+            case 4:
+                MediaDataController.E(this.f17934b, this.f17935c);
+                return;
+            case 5:
+                MediaDataController.U0(this.f17934b, this.f17935c);
                 return;
             default:
-                this.f17935b.lambda$replaceStickerSet$28(this.f17936c);
+                MediaDataController.l(this.f17934b, this.f17935c);
                 return;
         }
     }

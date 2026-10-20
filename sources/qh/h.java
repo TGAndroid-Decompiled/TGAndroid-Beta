@@ -6,18 +6,18 @@ import java.util.WeakHashMap;
 import r0.b0;
 import r0.i0;
 public final class h implements Runnable {
-    public final int f44726a;
-    public final i f44727b;
+    public final int f44734a;
+    public final i f44735b;
 
     public h(i iVar, int i10) {
-        this.f44726a = i10;
-        this.f44727b = iVar;
+        this.f44734a = i10;
+        this.f44735b = iVar;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f44726a;
-        i iVar = this.f44727b;
+        int i10 = this.f44734a;
+        i iVar = this.f44735b;
         switch (i10) {
             case 0:
                 if (iVar.v != 0) {
@@ -31,7 +31,7 @@ public final class h implements Runnable {
                 if (i11 == 0) {
                     View view = iVar.E;
                     RectF rectF = e.e;
-                    WeakHashMap weakHashMap = i0.f44818a;
+                    WeakHashMap weakHashMap = i0.f44826a;
                     iVar.l(e.e1(b0.a(view), view, view.getRootView()), false);
                     return;
                 }

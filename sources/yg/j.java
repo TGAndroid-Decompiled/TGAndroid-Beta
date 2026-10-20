@@ -4,28 +4,28 @@ import android.content.Context;
 import android.view.View;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.Components.b71;
-import org.telegram.ui.Components.f61;
+import org.telegram.ui.Components.c71;
 import org.telegram.ui.Components.g61;
-import org.telegram.ui.Components.im0;
-import org.telegram.ui.Components.t61;
-public final class j extends f61 {
-    public static final int f50160a = 0;
+import org.telegram.ui.Components.h61;
+import org.telegram.ui.Components.jm0;
+import org.telegram.ui.Components.u61;
+public final class j extends g61 {
+    public static final int f50165a = 0;
 
     static {
-        f61.setup(new f61());
+        g61.setup(new g61());
     }
 
     @Override
-    public final void bindView(View view, g61 g61Var, boolean z10, t61 t61Var, b71 b71Var) {
+    public final void bindView(View view, h61 h61Var, boolean z10, u61 u61Var, c71 c71Var) {
         k kVar = (k) view;
-        kVar.setUser((TLRPC.User) g61Var.G);
-        kVar.c(g61Var.e, false);
+        kVar.setUser((TLRPC.User) h61Var.G);
+        kVar.c(h61Var.e, false);
         kVar.setDivider(z10);
     }
 
     @Override
-    public final View createView(Context context, im0 im0Var, int i10, int i11, d6 d6Var) {
+    public final View createView(Context context, jm0 jm0Var, int i10, int i11, d6 d6Var) {
         return new k(context, true, false, d6Var, false);
     }
 }

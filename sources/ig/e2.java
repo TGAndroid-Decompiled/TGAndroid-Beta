@@ -47,7 +47,7 @@ import org.telegram.ui.ActionBar.n2;
 import org.telegram.ui.ActionBar.n3;
 import org.telegram.ui.Cells.ka;
 import org.telegram.ui.Cells.ma;
-import org.telegram.ui.Components.aw0;
+import org.telegram.ui.Components.bw0;
 import org.telegram.ui.Components.f5;
 import org.telegram.ui.Components.ff;
 import org.telegram.ui.Components.i80;
@@ -55,7 +55,7 @@ import org.telegram.ui.Components.k8;
 import org.telegram.ui.Components.lg;
 import org.telegram.ui.Components.ng;
 import org.telegram.ui.Components.qc;
-import org.telegram.ui.Components.qp0;
+import org.telegram.ui.Components.rp0;
 import org.telegram.ui.qn;
 public final class e2 implements Runnable {
     public final int f12879a;
@@ -93,7 +93,7 @@ public final class e2 implements Runnable {
                 return;
             case 1:
                 String str = e2.m0.f8252a;
-                j2.f fVar = ((i2.c0) ((k2.u) ((qf.b) this.f12880b).f44440c)).f12325a.f12413s;
+                j2.f fVar = ((i2.c0) ((k2.u) ((qf.b) this.f12880b).f44448c)).f12325a.f12413s;
                 j2.a p5 = fVar.p();
                 fVar.q(p5, 1009, new j2.e(p5, (b2.w) this.f12881c, (i2.g) this.d, 4));
                 return;
@@ -283,14 +283,14 @@ public final class e2 implements Runnable {
                 if (actionBarPopupWindow$ActionBarPopupWindowLayout != null && (viewGroup = (ViewGroup) actionBarPopupWindow$ActionBarPopupWindowLayout.getParent()) != null) {
                     viewGroup.removeView(actionBarLayout.J);
                 }
-                if (!actionBarLayout.h && !actionBarLayout.f20544a0) {
+                if (!actionBarLayout.h && !actionBarLayout.f20547a0) {
                     actionBarLayout.v.setTranslationX(0.0f);
                 } else {
                     actionBarLayout.v.setScaleX(1.0f);
                     actionBarLayout.v.setScaleY(1.0f);
                     actionBarLayout.h = false;
                     actionBarLayout.J = null;
-                    actionBarLayout.f20544a0 = false;
+                    actionBarLayout.f20547a0 = false;
                 }
                 actionBarLayout.m(n2Var);
                 n2Var.setRemovingFromStack(false);
@@ -300,7 +300,7 @@ public final class e2 implements Runnable {
                 return;
             case 20:
                 ((n2) this.f12881c).presentFragment((qn) this.d);
-                ((n3) this.f12880b).f21612c = false;
+                ((n3) this.f12880b).f21615c = false;
                 return;
             case 21:
                 n3 n3Var = (n3) this.f12880b;
@@ -308,7 +308,7 @@ public final class e2 implements Runnable {
                 m3 m3Var = (m3) this.d;
                 n3Var.getClass();
                 while (i10 < arrayList5.size()) {
-                    if (((k3) arrayList5.get(i10)).f21521a == m3Var) {
+                    if (((k3) arrayList5.get(i10)).f21524a == m3Var) {
                         arrayList5.remove(i10);
                         i10--;
                     }
@@ -322,7 +322,7 @@ public final class e2 implements Runnable {
                 g6 g6Var2 = (g6) this.d;
                 if (tLObject2 instanceof TLRPC.TL_wallPaper) {
                     TLRPC.TL_wallPaper tL_wallPaper = (TLRPC.TL_wallPaper) tLObject2;
-                    g6Var.f20888g0 = FileLoader.getAttachFileName(tL_wallPaper.document);
+                    g6Var.f20891g0 = FileLoader.getAttachFileName(tL_wallPaper.document);
                     NotificationCenter.getInstance(g6Var.E).addObserver(g6Var, NotificationCenter.fileLoaded);
                     NotificationCenter.getInstance(g6Var.E).addObserver(g6Var, NotificationCenter.fileLoadFailed);
                     FileLoader.getInstance(g6Var2.E).loadFile(tL_wallPaper.document, tL_wallPaper, 1, 1);
@@ -332,20 +332,20 @@ public final class e2 implements Runnable {
                 return;
             case 23:
                 org.telegram.ui.Cells.w0 w0Var = (org.telegram.ui.Cells.w0) this.f12880b;
-                org.telegram.ui.Wallet.o5.B0(w0Var.getContext(), w0Var.H, (TL_wallet.walletTransaction) this.f12881c, null, null, null, (org.telegram.ui.Cells.p0) this.d, w0Var.f23697g1);
+                org.telegram.ui.Wallet.o5.B0(w0Var.getContext(), w0Var.H, (TL_wallet.walletTransaction) this.f12881c, null, null, null, (org.telegram.ui.Cells.p0) this.d, w0Var.f23700g1);
                 return;
             case 24:
                 org.telegram.ui.Cells.w0 w0Var2 = (org.telegram.ui.Cells.w0) this.f12880b;
-                w0Var2.f23694f1.C1(w0Var2, (TLRPC.TL_premiumGiftOption) this.f12881c, (String) this.d);
+                w0Var2.f23697f1.C1(w0Var2, (TLRPC.TL_premiumGiftOption) this.f12881c, (String) this.d);
                 return;
             case 25:
                 g6 g6Var3 = (g6) this.f12881c;
-                g6Var3.f20886f = true ^ g6Var3.d((File) this.d, g6Var3.f20882c);
+                g6Var3.f20889f = true ^ g6Var3.d((File) this.d, g6Var3.f20885c);
                 AndroidUtilities.runOnUIThread(new ka(8, (ma) this.f12880b, g6Var3));
                 return;
             case 26:
                 org.telegram.ui.Components.e0 e0Var = (org.telegram.ui.Components.e0) this.f12880b;
-                f5.L((Context) this.f12881c, e0Var.f25685l0, new k2.w0(e0Var, 10), (d6) this.d);
+                f5.L((Context) this.f12881c, e0Var.f25663l0, new k2.w0(e0Var, 10), (d6) this.d);
                 return;
             case 27:
                 k8.p((k8) this.f12880b, (org.telegram.ui.ActionBar.b2) this.d, (TLObject) this.f12881c);
@@ -353,8 +353,8 @@ public final class e2 implements Runnable {
             case 28:
                 ff ffVar = (ff) this.f12880b;
                 ffVar.getClass();
-                ((aw0) this.f12881c).getViewTreeObserver().removeOnDrawListener(ffVar);
-                ((qp0) this.d).f29675a.setHideAvatar(true);
+                ((bw0) this.f12881c).getViewTreeObserver().removeOnDrawListener(ffVar);
+                ((rp0) this.d).f29986a.setHideAvatar(true);
                 return;
             default:
                 ng ngVar = (ng) this.f12880b;

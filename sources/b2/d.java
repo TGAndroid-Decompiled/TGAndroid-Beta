@@ -70,22 +70,22 @@ public abstract class d {
                     break;
                 }
             }
-            if (i12 == 1 && u6.f48837a == null) {
+            if (i12 == 1 && u6.f48842a == null) {
                 int i14 = Build.VERSION.SDK_INT;
                 if (i14 < 37) {
                     int d10 = d(true);
                     if (i14 < 35) {
-                        u6.f48837a = Boolean.valueOf(z10);
+                        u6.f48842a = Boolean.valueOf(z10);
                         if (z10) {
                         }
                     } else {
-                        u6.f48837a = Boolean.valueOf(z10);
+                        u6.f48842a = Boolean.valueOf(z10);
                         if (z10) {
                         }
                     }
                 }
                 z10 = false;
-                u6.f48837a = Boolean.valueOf(z10);
+                u6.f48842a = Boolean.valueOf(z10);
                 if (z10) {
                 }
             }

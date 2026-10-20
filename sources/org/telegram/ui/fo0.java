@@ -8,45 +8,45 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
 public final class fo0 implements zf.a0, r0.n, org.telegram.ui.ActionBar.a2 {
-    public final int f37042a;
-    public final ip0 f37043b;
+    public final int f37048a;
+    public final ip0 f37049b;
 
     public fo0(ip0 ip0Var, int i10) {
-        this.f37042a = i10;
-        this.f37043b = ip0Var;
+        this.f37048a = i10;
+        this.f37049b = ip0Var;
     }
 
     @Override
     public r0.k1 B0(View view, r0.k1 k1Var) {
         i0.b defaultWindowInsets = AndroidUtilities.getDefaultWindowInsets(k1Var, false);
-        ip0 ip0Var = this.f37043b;
-        ip0Var.f38076b0 = defaultWindowInsets;
-        to0 to0Var = ip0Var.h.f36014b;
+        ip0 ip0Var = this.f37049b;
+        ip0Var.f38082b0 = defaultWindowInsets;
+        to0 to0Var = ip0Var.h.f36020b;
         int i10 = defaultWindowInsets.f12283a;
         int paddingTop = to0Var.getPaddingTop();
-        i0.b bVar = ip0Var.f38076b0;
+        i0.b bVar = ip0Var.f38082b0;
         to0Var.setPadding(i10, paddingTop, bVar.f12285c, AndroidUtilities.dp(72.0f) + bVar.d);
-        to0 to0Var2 = ip0Var.f38088n.f36014b;
-        int i11 = ip0Var.f38076b0.f12283a;
+        to0 to0Var2 = ip0Var.f38094n.f36020b;
+        int i11 = ip0Var.f38082b0.f12283a;
         int paddingTop2 = to0Var2.getPaddingTop();
-        i0.b bVar2 = ip0Var.f38076b0;
+        i0.b bVar2 = ip0Var.f38082b0;
         to0Var2.setPadding(i11, paddingTop2, bVar2.f12285c, AndroidUtilities.dp(72.0f) + bVar2.d);
         FrameLayout frameLayout = ip0Var.P;
-        i0.b bVar3 = ip0Var.f38076b0;
+        i0.b bVar3 = ip0Var.f38082b0;
         frameLayout.setPadding(bVar3.f12283a, 0, bVar3.f12285c, bVar3.d);
-        return r0.k1.f44826b;
+        return r0.k1.f44834b;
     }
 
     @Override
     public void a(int i10) {
         int i11;
-        ip0 ip0Var = this.f37043b;
-        gh.d dVar = ip0Var.f38083g0;
-        ArrayList arrayList = ip0Var.f38087k0;
-        bh.f fVar = ip0Var.f38082f0;
+        ip0 ip0Var = this.f37049b;
+        gh.d dVar = ip0Var.f38089g0;
+        ArrayList arrayList = ip0Var.f38093k0;
+        bh.f fVar = ip0Var.f38088f0;
         int i12 = Build.VERSION.SDK_INT;
         if (i12 >= 31 && fVar != null) {
-            ArrayList arrayList2 = ip0Var.f38086j0;
+            ArrayList arrayList2 = ip0Var.f38092j0;
             if (i12 >= 29 && dVar != null) {
                 i11 = dVar.d(0, AndroidUtilities.dp(8.0f), arrayList2);
             } else {
@@ -63,11 +63,11 @@ public final class fo0 implements zf.a0, r0.n, org.telegram.ui.ActionBar.a2 {
                 rectF.bottom = Math.min(ip0Var.d.getHeight(), rectF.bottom);
             }
             fVar.g(a2, arrayList);
-            if (fVar.e(ip0Var.f38085i0, ip0Var.d.getWidth(), ip0Var.d.getHeight())) {
+            if (fVar.e(ip0Var.f38091i0, ip0Var.d.getWidth(), ip0Var.d.getHeight())) {
                 if (dVar != null) {
                     dVar.e();
                 }
-                Iterator it = ip0Var.f38079d0.iterator();
+                Iterator it = ip0Var.f38085d0.iterator();
                 while (it.hasNext()) {
                     ((View) it.next()).invalidate();
                 }
@@ -77,12 +77,12 @@ public final class fo0 implements zf.a0, r0.n, org.telegram.ui.ActionBar.a2 {
 
     @Override
     public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f37042a) {
+        switch (this.f37048a) {
             case 2:
-                this.f37043b.finishFragment();
+                this.f37049b.finishFragment();
                 return;
             default:
-                this.f37043b.y0();
+                this.f37049b.y0();
                 return;
         }
     }

@@ -17,7 +17,7 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_wallet;
-import org.telegram.ui.Components.by0;
+import org.telegram.ui.Components.cy0;
 import org.telegram.ui.TwoStepVerificationActivity;
 import org.telegram.ui.Wallet.WalletEngine2;
 import org.telegram.ui.h61;
@@ -53,15 +53,15 @@ public final class g3 implements Runnable {
     private final void b() {
         byte[] bArr = (byte[]) this.e;
         org.telegram.ui.Wallet.c2 c2Var = (org.telegram.ui.Wallet.c2) this.f1347f;
-        byte[] bArr2 = c2Var.f34062b;
+        byte[] bArr2 = c2Var.f34068b;
         org.telegram.ui.Wallet.s1 s1Var = (org.telegram.ui.Wallet.s1) this.h;
         TL_wallet.tonConnectSession tonconnectsession = (TL_wallet.tonConnectSession) this.d;
-        org.telegram.ui.Wallet.m0 m0Var = ((org.telegram.ui.Wallet.f2) this.f1345b).f34189b;
+        org.telegram.ui.Wallet.m0 m0Var = ((org.telegram.ui.Wallet.f2) this.f1345b).f34195b;
         if (TextUtils.equals((String) this.f1346c, m0Var.s()) && Arrays.equals(bArr, m0Var.x())) {
             TL_wallet.inputTonConnectOauthSession inputtonconnectoauthsession = new TL_wallet.inputTonConnectOauthSession();
-            inputtonconnectoauthsession.session_id = tonconnectsession.f20531id;
+            inputtonconnectoauthsession.session_id = tonconnectsession.f20534id;
             inputtonconnectoauthsession.challenge_answer = bArr2;
-            inputtonconnectoauthsession.body = c2Var.f34063c;
+            inputtonconnectoauthsession.body = c2Var.f34069c;
             inputtonconnectoauthsession.proof = c2Var.d;
             s1Var.run(inputtonconnectoauthsession, null);
             return;
@@ -76,12 +76,12 @@ public final class g3 implements Runnable {
         org.telegram.ui.Wallet.x xVar = (org.telegram.ui.Wallet.x) this.f1347f;
         TL_wallet.tonConnectSession tonconnectsession = (TL_wallet.tonConnectSession) this.h;
         org.telegram.ui.Wallet.c2 c2Var = (org.telegram.ui.Wallet.c2) this.d;
-        org.telegram.ui.Wallet.m0 m0Var = f2Var.f34189b;
+        org.telegram.ui.Wallet.m0 m0Var = f2Var.f34195b;
         if (TextUtils.equals((String) this.f1346c, m0Var.s()) && Arrays.equals(bArr, m0Var.x())) {
             TL_wallet.tonConnectCloseSession tonconnectclosesession = new TL_wallet.tonConnectCloseSession();
-            tonconnectclosesession.session_id = tonconnectsession.f20531id;
-            tonconnectclosesession.body = c2Var.f34063c;
-            f2Var.f34191f.sendRequestTyped(tonconnectclosesession, new Object(), new org.telegram.ui.Wallet.d(xVar, 3));
+            tonconnectclosesession.session_id = tonconnectsession.f20534id;
+            tonconnectclosesession.body = c2Var.f34069c;
+            f2Var.f34197f.sendRequestTyped(tonconnectclosesession, new Object(), new org.telegram.ui.Wallet.d(xVar, 3));
             return;
         }
         xVar.run("Wallet or TON Connect session changed. Open the request again.");
@@ -97,7 +97,7 @@ public final class g3 implements Runnable {
         if (str != null) {
             callback.run(str);
         } else if (f2Var.y(b2Var) && !f2Var.i(b2Var)) {
-            f2Var.f34191f.sendRequestTyped(sendtransfer, new Object(), new x3(f2Var, callback, b2Var, j0Var, sendtransfer, 6));
+            f2Var.f34197f.sendRequestTyped(sendtransfer, new Object(), new x3(f2Var, callback, b2Var, j0Var, sendtransfer, 6));
         } else {
             callback.run("Request expired or wallet changed");
         }
@@ -164,7 +164,7 @@ public final class g3 implements Runnable {
             return;
         }
         int[] iArr = new int[11];
-        Utilities.globalQueue.postRunnable(new by0(file, iArr, new v7((NotificationCenter.NotificationCenterDelegate) a1Var, (Object) iArr, (Object) file, (Object) b2Var, str, (Object) str2, (Object) str3, 14), 6));
+        Utilities.globalQueue.postRunnable(new cy0(file, iArr, new v7((NotificationCenter.NotificationCenterDelegate) a1Var, (Object) iArr, (Object) file, (Object) b2Var, str, (Object) str2, (Object) str3, 14), 6));
     }
 
     @Override

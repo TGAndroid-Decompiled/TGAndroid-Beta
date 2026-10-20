@@ -1,32 +1,33 @@
 package org.telegram.ui.Components;
+public final class yk0 implements Runnable {
+    public final int f32669a;
+    public final bl0 f32670b;
 
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import org.telegram.messenger.ImageReceiver;
-public final class yk0 extends ImageReceiver {
-    public final int f32667a;
-
-    public yk0(int i10, View view) {
-        super(view);
-        this.f32667a = i10;
+    public yk0(bl0 bl0Var, int i10) {
+        this.f32669a = i10;
+        this.f32670b = bl0Var;
     }
 
     @Override
-    public final boolean setImageBitmapByKey(Drawable drawable, String str, int i10, boolean z10, int i11) {
-        switch (this.f32667a) {
+    public final void run() {
+        switch (this.f32669a) {
             case 0:
-                if (drawable instanceof uj0) {
-                    ((uj0) drawable).N(0, false, true);
+                if (this.f32670b.f24975a.getImageReceiver().getLottieAnimation() != null && !this.f32670b.f24975a.getImageReceiver().getLottieAnimation().f31277k0 && !this.f32670b.f24975a.getImageReceiver().getLottieAnimation().y()) {
+                    this.f32670b.f24975a.getImageReceiver().getLottieAnimation().start();
                 }
-                return super.setImageBitmapByKey(drawable, str, i10, z10, i11);
+                this.f32670b.E = false;
+                return;
             default:
-                boolean imageBitmapByKey = super.setImageBitmapByKey(drawable, str, i10, z10, i11);
-                if (imageBitmapByKey && (drawable instanceof uj0)) {
-                    uj0 uj0Var = (uj0) drawable;
-                    uj0Var.N(0, false, true);
-                    uj0Var.stop();
+                bl0 bl0Var = this.f32670b;
+                dl0 dl0Var = bl0Var.P;
+                try {
+                    bl0Var.performHapticFeedback(0);
+                } catch (Exception unused) {
                 }
-                return imageBitmapByKey;
+                dl0Var.m0 = dl0Var.T.indexOf(bl0Var.e);
+                dl0Var.f25547l0 = bl0Var.e;
+                dl0Var.invalidate();
+                return;
         }
     }
 }

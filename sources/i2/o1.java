@@ -10,8 +10,8 @@ public final class o1 extends a {
     public final Object[] f12500m;
     public final HashMap f12501n;
 
-    public o1(b2.o1[] o1VarArr, Object[] objArr, u2.i1 i1Var) {
-        super(i1Var);
+    public o1(b2.o1[] o1VarArr, Object[] objArr, u2.j1 j1Var) {
+        super(j1Var);
         int length = o1VarArr.length;
         this.f12499l = o1VarArr;
         this.f12497j = new int[length];
@@ -87,7 +87,7 @@ public final class o1 extends a {
         return this.f12499l[i10];
     }
 
-    public o1(java.util.ArrayList r8, u2.i1 r9) {
-        throw new UnsupportedOperationException("Method not decompiled: i2.o1.<init>(java.util.ArrayList, u2.i1):void");
+    public o1(java.util.ArrayList r8, u2.j1 r9) {
+        throw new UnsupportedOperationException("Method not decompiled: i2.o1.<init>(java.util.ArrayList, u2.j1):void");
     }
 }

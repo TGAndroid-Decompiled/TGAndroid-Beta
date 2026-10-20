@@ -1,7 +1,7 @@
 package ai;
 
 import java.util.ArrayList;
-import org.telegram.ui.Components.uj0;
+import org.telegram.ui.Components.vj0;
 public final class o7 implements Runnable {
     public final int f1938a;
     public final q7 f1939b;
@@ -33,7 +33,7 @@ public final class o7 implements Runnable {
                 while (i10 < size) {
                     Object obj = arrayList.get(i10);
                     i10++;
-                    ((uj0) obj).C(true);
+                    ((vj0) obj).C(true);
                 }
                 arrayList.clear();
                 return;

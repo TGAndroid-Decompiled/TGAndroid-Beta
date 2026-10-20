@@ -23,7 +23,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.Components.br;
-import org.telegram.ui.Components.e11;
+import org.telegram.ui.Components.f11;
 public final class v6 extends br {
     public final float E;
     public zf.n F;
@@ -41,8 +41,8 @@ public final class v6 extends br {
     public final org.telegram.ui.Components.p5 f2306r;
     public RadialGradient f2307s;
     public final Matrix v;
-    public final e11 f2308w;
-    public final e11 f2309x;
+    public final f11 f2308w;
+    public final f11 f2309x;
     public org.telegram.ui.Components.p6 f2310y;
 
     public v6(View view, TL_stars.StarGift starGift, int i10, float f7) {
@@ -78,24 +78,24 @@ public final class v6 extends br {
             float f13 = i10;
             md.a1(imageReceiver, starGift.sticker, (int) (0.75f * f13));
             String str = starGift.title;
-            e11 e11Var = new e11(str == null ? "Gift" : str, 16.0f, AndroidUtilities.bold());
-            this.f2308w = e11Var;
-            e11Var.o(-1);
+            f11 f11Var = new f11(str == null ? "Gift" : str, 16.0f, AndroidUtilities.bold());
+            this.f2308w = f11Var;
+            f11Var.o(-1);
             float f14 = i10 - 30;
-            e11Var.q(AndroidUtilities.dp(f14));
+            f11Var.q(AndroidUtilities.dp(f14));
             Layout.Alignment alignment = Layout.Alignment.ALIGN_CENTER;
-            e11Var.a();
-            e11Var.n(1);
+            f11Var.a();
+            f11Var.n(1);
             if (starGift.sold_out) {
                 formatPluralString = LocaleController.getString(R.string.Gift2SoldOutTitle);
             } else {
                 formatPluralString = LocaleController.formatPluralString("Gift2SoldAuctionPreviewGifts", starGift.availability_total, new Object[0]);
             }
-            e11 e11Var2 = new e11(formatPluralString, 13.0f, null);
-            this.f2309x = e11Var2;
-            e11Var2.q(AndroidUtilities.dp(f14));
-            e11Var2.a();
-            e11Var2.n(1);
+            f11 f11Var2 = new f11(formatPluralString, 13.0f, null);
+            this.f2309x = f11Var2;
+            f11Var2.q(AndroidUtilities.dp(f14));
+            f11Var2.a();
+            f11Var2.n(1);
             de deVar = new de(1, 40);
             this.e = deVar;
             float f15 = 0.45f * f13;
@@ -255,7 +255,7 @@ public final class v6 extends br {
                 md.a1(imageReceiver, stargiftattributemodel.document, (int) (i10 * 0.75f));
             }
         }
-        ((Paint) this.f25009b).setShader(this.f2307s);
+        ((Paint) this.f25012b).setShader(this.f2307s);
         if (view.isAttachedToWindow()) {
             a();
         }
@@ -286,9 +286,9 @@ public final class v6 extends br {
     }
 
     public final void c(int i10) {
-        e11 e11Var = this.f2309x;
-        if (e11Var != null) {
-            e11Var.o(i10 | (-16777216));
+        f11 f11Var = this.f2309x;
+        if (f11Var != null) {
+            f11Var.o(i10 | (-16777216));
         }
     }
 
@@ -318,8 +318,8 @@ public final class v6 extends br {
 
     @Override
     public final void draw(Canvas canvas) {
-        e11 e11Var;
-        Paint paint = (Paint) this.f25009b;
+        f11 f11Var;
+        Paint paint = (Paint) this.f25012b;
         Rect bounds = getBounds();
         RectF rectF = this.d;
         rectF.set(bounds);
@@ -345,9 +345,9 @@ public final class v6 extends br {
             deVar.b(canvas, -1, 1.0f);
         }
         canvas.restore();
-        e11 e11Var2 = this.f2308w;
+        f11 f11Var2 = this.f2308w;
         ImageReceiver imageReceiver = this.f2305n;
-        if (e11Var2 != null && (e11Var = this.f2309x) != null) {
+        if (f11Var2 != null && (f11Var = this.f2309x) != null) {
             if (this.f2310y != null) {
                 Paint paint2 = this.I;
                 paint2.setColor(1342177280);
@@ -360,8 +360,8 @@ public final class v6 extends br {
             float min = Math.min(rectF.width(), rectF.height()) * 0.6f;
             imageReceiver.setImageCoords(rectF.centerX() - (min / 2.0f), (rectF.height() * 0.12f) + rectF.top, min, min);
             imageReceiver.draw(canvas);
-            e11Var2.e(canvas, rectF.centerX() - (e11Var2.l() / 2.0f), rectF.bottom - AndroidUtilities.dp(50.0f));
-            e11Var.e(canvas, rectF.centerX() - (e11Var.l() / 2.0f), rectF.bottom - AndroidUtilities.dp(30.0f));
+            f11Var2.e(canvas, rectF.centerX() - (f11Var2.l() / 2.0f), rectF.bottom - AndroidUtilities.dp(50.0f));
+            f11Var.e(canvas, rectF.centerX() - (f11Var.l() / 2.0f), rectF.bottom - AndroidUtilities.dp(30.0f));
         } else {
             float min2 = Math.min(rectF.width(), rectF.height()) * 0.75f;
             float f10 = min2 / 2.0f;
@@ -374,7 +374,7 @@ public final class v6 extends br {
     public final void e(int i10, int i11) {
         RadialGradient radialGradient = new RadialGradient(0.0f, 0.0f, AndroidUtilities.dpf2(this.f2304f) / 2.0f, new int[]{i10 | (-16777216), i11 | (-16777216)}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
         this.f2307s = radialGradient;
-        ((Paint) this.f25009b).setShader(radialGradient);
+        ((Paint) this.f25012b).setShader(radialGradient);
     }
 
     public final void f() {
@@ -396,7 +396,7 @@ public final class v6 extends br {
     }
 
     public final void h() {
-        e11 e11Var;
+        f11 f11Var;
         int currentTime = ConnectionsManager.getInstance(UserConfig.selectedAccount).getCurrentTime();
         int i10 = this.G;
         if (currentTime > i10) {
@@ -409,8 +409,8 @@ public final class v6 extends br {
                 this.f2310y.t(AndroidUtilities.formatDuration(i10 - currentTime, true), true, true);
             }
         }
-        if (currentTime > this.G && (e11Var = this.f2309x) != null) {
-            e11Var.r(LocaleController.getString(R.string.Gift2SoldOutTitle));
+        if (currentTime > this.G && (f11Var = this.f2309x) != null) {
+            f11Var.r(LocaleController.getString(R.string.Gift2SoldOutTitle));
         }
     }
 }

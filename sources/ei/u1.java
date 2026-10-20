@@ -3,10 +3,10 @@ package ei;
 import java.util.ArrayList;
 import org.telegram.messenger.FileLoader;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.ew0;
+import org.telegram.ui.Components.fw0;
 import org.telegram.ui.Components.wz;
 public final class u1 extends wz {
-    public final ew0 X;
+    public final fw0 X;
     public final v1 Y;
 
     public u1(v1 v1Var) {
@@ -22,14 +22,14 @@ public final class u1 extends wz {
     }
 
     @Override
-    public final ew0 D1(int i10) {
+    public final fw0 D1(int i10) {
         TLRPC.Document document;
         ArrayList<TLRPC.DocumentAttribute> arrayList;
         TLRPC.PhotoSize closestPhotoSizeWithSize;
         int i11;
         int i12;
-        ew0 ew0Var = this.X;
-        ew0Var.f26040c = false;
+        fw0 fw0Var = this.X;
+        fw0Var.f26430c = false;
         Object F = this.Y.f9928c.F(i10);
         if (F instanceof TLRPC.BotInlineResult) {
             TLRPC.BotInlineResult botInlineResult = (TLRPC.BotInlineResult) F;
@@ -53,26 +53,26 @@ public final class u1 extends wz {
             document = (TLRPC.Document) F;
             arrayList = document.attributes;
         } else {
-            ew0Var.f26040c = true;
-            return ew0Var;
+            fw0Var.f26430c = true;
+            return fw0Var;
         }
-        ew0Var.f26039b = 100.0f;
-        ew0Var.f26038a = 100.0f;
-        ew0Var.f26040c = false;
-        if (document != null && (closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 90)) != null && (i11 = closestPhotoSizeWithSize.f20298w) != 0 && (i12 = closestPhotoSizeWithSize.h) != 0) {
-            ew0Var.f26038a = i11;
-            ew0Var.f26039b = i12;
+        fw0Var.f26429b = 100.0f;
+        fw0Var.f26428a = 100.0f;
+        fw0Var.f26430c = false;
+        if (document != null && (closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 90)) != null && (i11 = closestPhotoSizeWithSize.f20301w) != 0 && (i12 = closestPhotoSizeWithSize.h) != 0) {
+            fw0Var.f26428a = i11;
+            fw0Var.f26429b = i12;
         }
         if (arrayList != null) {
             for (int i13 = 0; i13 < arrayList.size(); i13++) {
                 TLRPC.DocumentAttribute documentAttribute = arrayList.get(i13);
                 if ((documentAttribute instanceof TLRPC.TL_documentAttributeImageSize) || (documentAttribute instanceof TLRPC.TL_documentAttributeVideo)) {
-                    ew0Var.f26038a = documentAttribute.f20280w;
-                    ew0Var.f26039b = documentAttribute.h;
+                    fw0Var.f26428a = documentAttribute.f20283w;
+                    fw0Var.f26429b = documentAttribute.h;
                     break;
                 }
             }
         }
-        return ew0Var;
+        return fw0Var;
     }
 }

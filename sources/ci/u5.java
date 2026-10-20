@@ -26,8 +26,8 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.nl0;
-import org.telegram.ui.Components.nm0;
+import org.telegram.ui.Components.ol0;
+import org.telegram.ui.Components.om0;
 import org.telegram.ui.Components.qc;
 import org.telegram.ui.Components.yz;
 public abstract class u5 extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
@@ -36,7 +36,7 @@ public abstract class u5 extends FrameLayout implements NotificationCenter.Notif
     public d7 G;
     public int H;
     public boolean I;
-    public final nl0 J;
+    public final ol0 J;
     public final aa K;
     public final e5 L;
     public final f5 M;
@@ -77,7 +77,7 @@ public abstract class u5 extends FrameLayout implements NotificationCenter.Notif
         this.v = aaVar.h;
         TextView textView = new TextView(context);
         this.h = textView;
-        textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21093j5, bVar));
+        textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21096j5, bVar));
         textView.setTextSize(1, 20.0f);
         textView.setTypeface(AndroidUtilities.bold());
         textView.setPadding(AndroidUtilities.dp(21.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(21.0f), AndroidUtilities.dp(8.0f));
@@ -86,7 +86,7 @@ public abstract class u5 extends FrameLayout implements NotificationCenter.Notif
         z4 z4Var = new z4(this, context, bVar);
         this.f6051r = z4Var;
         z4Var.setClipToPadding(false);
-        this.J = new nl0(z4Var, true);
+        this.J = new ol0(z4Var, true);
         yz yzVar = new yz(z4Var, 0);
         this.f6054x = yzVar;
         z4Var.setLayoutManager(yzVar);
@@ -107,7 +107,7 @@ public abstract class u5 extends FrameLayout implements NotificationCenter.Notif
         View view = new View(getContext());
         this.f6046a = view;
         GradientDrawable.Orientation orientation = GradientDrawable.Orientation.TOP_BOTTOM;
-        int i10 = org.telegram.ui.ActionBar.h6.f21058h5;
+        int i10 = org.telegram.ui.ActionBar.h6.f21061h5;
         view.setBackground(new GradientDrawable(orientation, new int[]{org.telegram.ui.ActionBar.h6.w0(i10, bVar), 0}));
         frameLayout.addView(view, w7.z5.d(-1, 8.0f, 0, 0.0f, this.e - 8, 0.0f, 0.0f));
         View view2 = new View(getContext());
@@ -154,7 +154,7 @@ public abstract class u5 extends FrameLayout implements NotificationCenter.Notif
             if (sparseArray == null) {
                 t5Var = null;
             } else {
-                t5Var = (t5) sparseArray.get(storyItem.f20507id);
+                t5Var = (t5) sparseArray.get(storyItem.f20510id);
             }
             TL_stories.StoryViews storyViews = storyItem.views;
             if (storyViews == null) {
@@ -176,7 +176,7 @@ public abstract class u5 extends FrameLayout implements NotificationCenter.Notif
                 sparseArray = new SparseArray();
                 hVar.k(sparseArray, j11);
             }
-            sparseArray.put(storyItem.f20507id, t5Var2);
+            sparseArray.put(storyItem.f20510id, t5Var2);
         }
     }
 
@@ -370,7 +370,7 @@ public abstract class u5 extends FrameLayout implements NotificationCenter.Notif
         i();
         h(false);
         if (b6Var != null && b6Var.f5249a != null) {
-            NotificationsController.getInstance(this.v).processSeenStoryReactions(j10, b6Var.f5249a.f20507id);
+            NotificationsController.getInstance(this.v).processSeenStoryReactions(j10, b6Var.f5249a.f20510id);
         }
     }
 
@@ -404,12 +404,12 @@ public abstract class u5 extends FrameLayout implements NotificationCenter.Notif
                 ofFloat.addUpdateListener(new ah.c0(j5Var, 18));
                 j5Var.f5539w.addListener(new ah.b(j5Var, 13));
                 j5Var.f5539w.setDuration(250L);
-                j5Var.f5539w.setInterpolator(bs.f25012f);
+                j5Var.f5539w.setInterpolator(bs.f25021f);
                 j5Var.f5539w.start();
             }
         }
         boolean z12 = f5Var.f5385a;
-        nm0 nm0Var = j5Var.v;
+        om0 om0Var = j5Var.v;
         if (z12) {
             t5 t5Var = this.E;
             if (t5Var != null && t5Var.f6009f) {
@@ -420,7 +420,7 @@ public abstract class u5 extends FrameLayout implements NotificationCenter.Notif
         } else {
             i10 = R.drawable.menu_views_recent3;
         }
-        nm0Var.a(i10, z10);
+        om0Var.a(i10, z10);
     }
 
     public final void i() {

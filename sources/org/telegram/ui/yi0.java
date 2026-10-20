@@ -16,17 +16,17 @@ public final class yi0 extends yg.h {
         super.onLayout(z10, i10, i11, i12, i13);
         int dp = AndroidUtilities.dp(64.0f) + getMeasuredHeight();
         bj0 bj0Var = this.K;
-        bj0Var.f35651l0 = dp;
-        bj0Var.f35650k0.G();
+        bj0Var.f35657l0 = dp;
+        bj0Var.f35656k0.G();
         if (this.J != bj0Var.isKeyboardVisible()) {
             boolean isKeyboardVisible = bj0Var.isKeyboardVisible();
             this.J = isKeyboardVisible;
             if (isKeyboardVisible) {
-                org.telegram.ui.Components.im0 im0Var = bj0Var.d;
+                org.telegram.ui.Components.jm0 jm0Var = bj0Var.d;
                 li.n nVar = new li.n(bj0Var.getContext(), 2, 0.6f);
-                nVar.f46053a = 1;
+                nVar.f46058a = 1;
                 nVar.f16144p = AndroidUtilities.dp(36.0f);
-                im0Var.getLayoutManager().w0(nVar);
+                jm0Var.getLayoutManager().w0(nVar);
             }
         }
     }

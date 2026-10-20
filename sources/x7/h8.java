@@ -2,10 +2,10 @@ package x7;
 
 import java.util.Arrays;
 public final class h8 {
-    public final Float f49406a;
+    public final Float f49411a;
 
     public h8(le.b bVar) {
-        this.f49406a = (Float) bVar.f16009b;
+        this.f49411a = (Float) bVar.f16009b;
     }
 
     public final boolean equals(Object obj) {
@@ -16,13 +16,13 @@ public final class h8 {
             return false;
         }
         h8 h8Var = (h8) obj;
-        if (n6.l.l(null, null) && n6.l.l(this.f49406a, h8Var.f49406a) && n6.l.l(null, null)) {
+        if (n6.l.l(null, null) && n6.l.l(this.f49411a, h8Var.f49411a) && n6.l.l(null, null)) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{null, this.f49406a, null});
+        return Arrays.hashCode(new Object[]{null, this.f49411a, null});
     }
 }

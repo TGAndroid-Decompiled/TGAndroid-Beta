@@ -2,7 +2,7 @@ package ah;
 
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.ui.Components.cl0;
+import org.telegram.ui.Components.dl0;
 import org.telegram.ui.qn;
 import w7.z5;
 public final class b0 implements Runnable {
@@ -40,10 +40,10 @@ public final class b0 implements Runnable {
                     } else {
                         i10 = 0;
                     }
-                    ?? cl0Var = new cl0(i10, qnVar.getCurrentAccount(), f0Var.getContext(), f0Var.f723a, qnVar.getResourceProvider());
-                    cl0Var.l1 = 1.0f;
-                    cl0Var.setWillNotDraw(false);
-                    f0Var.f724b = cl0Var;
+                    ?? dl0Var = new dl0(i10, qnVar.getCurrentAccount(), f0Var.getContext(), f0Var.f723a, qnVar.getResourceProvider());
+                    dl0Var.l1 = 1.0f;
+                    dl0Var.setWillNotDraw(false);
+                    f0Var.f724b = dl0Var;
                     int dp = AndroidUtilities.dp(4.0f);
                     if (LocaleController.isRTL) {
                         i11 = 0;
@@ -56,7 +56,7 @@ public final class b0 implements Runnable {
                     if (!LocaleController.isRTL) {
                         i13 = 0;
                     }
-                    cl0Var.setPadding(i14, dp2, dp3 + i13, AndroidUtilities.dp(i12));
+                    dl0Var.setPadding(i14, dp2, dp3 + i13, AndroidUtilities.dp(i12));
                     f0Var.f724b.setDelegate(new qb.c(f0Var, 3));
                     f0Var.f724b.setClipChildren(false);
                     f0Var.f724b.setClipToPadding(false);

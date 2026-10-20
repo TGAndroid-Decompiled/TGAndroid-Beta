@@ -60,14 +60,14 @@ public final class c8 implements q0.a {
             case 3:
                 org.telegram.ui.h5 h5Var = (org.telegram.ui.h5) this.f1086b;
                 org.telegram.ui.c5 c5Var = (org.telegram.ui.c5) this.f1087c;
-                org.telegram.ui.i5[] i5VarArr = c5Var.f35811i;
-                org.telegram.ui.e5 e5Var = c5Var.f35812j;
+                org.telegram.ui.i5[] i5VarArr = c5Var.f35817i;
+                org.telegram.ui.e5 e5Var = c5Var.f35818j;
                 if (!h5Var.E) {
                     if (obj instanceof TLRPC.UserFull) {
-                        h5Var.a(org.telegram.ui.c5.c((TLRPC.User) e5Var.f36541c, (TLRPC.UserFull) obj, i5VarArr));
+                        h5Var.a(org.telegram.ui.c5.c((TLRPC.User) e5Var.f36547c, (TLRPC.UserFull) obj, i5VarArr));
                         return;
                     } else if (obj instanceof TLRPC.ChatFull) {
-                        h5Var.a(org.telegram.ui.c5.a((TLRPC.Chat) e5Var.f36541c, (TLRPC.ChatFull) obj, i5VarArr));
+                        h5Var.a(org.telegram.ui.c5.a((TLRPC.Chat) e5Var.f36547c, (TLRPC.ChatFull) obj, i5VarArr));
                         return;
                     } else {
                         return;

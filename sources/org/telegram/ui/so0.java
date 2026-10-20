@@ -1,21 +1,21 @@
 package org.telegram.ui;
 public final class so0 implements Runnable {
-    public final int f41496a;
-    public final cp0 f41497b;
+    public final int f41502a;
+    public final cp0 f41503b;
 
     public so0(cp0 cp0Var, int i10) {
-        this.f41496a = i10;
-        this.f41497b = cp0Var;
+        this.f41502a = i10;
+        this.f41503b = cp0Var;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f41496a;
-        cp0 cp0Var = this.f41497b;
+        int i10 = this.f41502a;
+        cp0 cp0Var = this.f41503b;
         switch (i10) {
             case 0:
                 if (cp0Var.G) {
-                    cp0Var.f36014b.invalidate();
+                    cp0Var.f36020b.invalidate();
                     return;
                 }
                 return;
@@ -23,11 +23,11 @@ public final class so0 implements Runnable {
                 cp0Var.h();
                 return;
             case 2:
-                int i11 = cp0.f36011q0;
+                int i11 = cp0.f36017q0;
                 cp0Var.h();
                 return;
             default:
-                int i12 = cp0.f36011q0;
+                int i12 = cp0.f36017q0;
                 cp0Var.h();
                 return;
         }

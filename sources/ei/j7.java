@@ -21,7 +21,7 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.e11;
+import org.telegram.ui.Components.f11;
 import org.telegram.ui.Components.yc;
 import org.telegram.ui.Components.yq;
 public final class j7 extends View {
@@ -41,8 +41,8 @@ public final class j7 extends View {
     public final RectF f9260f;
     public final ImageReceiver h;
     public boolean f9261n;
-    public e11 f9262r;
-    public e11 f9263s;
+    public f11 f9262r;
+    public f11 f9263s;
     public final Path v;
     public final Paint f9264w;
     public final yc f9265x;
@@ -68,7 +68,7 @@ public final class j7 extends View {
         if (i7Var == null) {
             return;
         }
-        this.f9262r = new e11(i7Var.b(), 16.0f, AndroidUtilities.bold());
+        this.f9262r = new f11(i7Var.b(), 16.0f, AndroidUtilities.bold());
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(this.E.a());
         if (spannableStringBuilder.toString().contains(">")) {
             spannableStringBuilder.clear();
@@ -80,7 +80,7 @@ public final class j7 extends View {
             yqVar.setScale(1.25f, 1.25f);
             spannableStringBuilder.setSpan(yqVar, spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 33);
         }
-        this.f9263s = new e11(spannableStringBuilder, 14.0f, null);
+        this.f9263s = new f11(spannableStringBuilder, 14.0f, null);
         this.E.d(this.h);
         this.f9261n = true;
     }
@@ -96,10 +96,10 @@ public final class j7 extends View {
         int[] iArr;
         int[] iArr2;
         float e = this.d.e(this.f9266y);
-        e11 e11Var = this.f9262r;
-        if (e11Var != null && this.f9263s != null && e > 0.0f) {
-            e11Var.f25738p = getWidth() * 0.7f;
-            this.f9263s.f25738p = getWidth() * 0.7f;
+        f11 f11Var = this.f9262r;
+        if (f11Var != null && this.f9263s != null && e > 0.0f) {
+            f11Var.f26031p = getWidth() * 0.7f;
+            this.f9263s.f26031p = getWidth() * 0.7f;
             float dp = AndroidUtilities.dp(5.0f);
             float dp2 = AndroidUtilities.dp(10.0f);
             float dp3 = AndroidUtilities.dp(32.0f);
@@ -111,7 +111,7 @@ public final class j7 extends View {
             } else {
                 f7 = 0.0f;
             }
-            float max = Math.max(min, Math.max(this.f9262r.f25728c, this.f9263s.f25728c) + f7 + dp + AndroidUtilities.dp(15.0f) + dp);
+            float max = Math.max(min, Math.max(this.f9262r.f26021c, this.f9263s.f26021c) + f7 + dp + AndroidUtilities.dp(15.0f) + dp);
             if (this.f9261n) {
                 f10 = dp3;
             } else {
@@ -165,20 +165,20 @@ public final class j7 extends View {
                 imageReceiver.draw(canvas);
             }
             float centerY = rectF.centerY() - ((this.f9263s.j() + (this.f9262r.j() + dp4)) / f12);
-            e11 e11Var2 = this.f9262r;
+            f11 f11Var2 = this.f9262r;
             float f16 = rectF.left;
             if (this.f9261n) {
                 f13 = dp5 + dp3 + dp5;
             } else {
                 f13 = 0.0f;
             }
-            e11Var2.c(f16 + f13 + f11, (e11Var2.j() / f12) + centerY, e, -1, canvas);
-            e11 e11Var3 = this.f9263s;
+            f11Var2.c(f16 + f13 + f11, (f11Var2.j() / f12) + centerY, e, -1, canvas);
+            f11 f11Var3 = this.f9263s;
             float f17 = rectF.left;
             if (this.f9261n) {
                 f14 = dp3 + dp5 + dp5;
             }
-            e11Var3.c(f17 + f14 + f11, this.f9262r.j() + centerY + dp4 + (this.f9263s.j() / f12), e, org.telegram.ui.ActionBar.h6.v(-16777216, -1610612737), canvas);
+            f11Var3.c(f17 + f14 + f11, this.f9262r.j() + centerY + dp4 + (this.f9263s.j() / f12), e, org.telegram.ui.ActionBar.h6.v(-16777216, -1610612737), canvas);
             canvas.restore();
         }
     }
@@ -197,11 +197,11 @@ public final class j7 extends View {
                     ycVar.c(true);
                 }
             } else if (motionEvent.getAction() == 2) {
-                if (ycVar.f32598i && !rectF.contains(motionEvent.getX(), motionEvent.getY())) {
+                if (ycVar.f32631i && !rectF.contains(motionEvent.getX(), motionEvent.getY())) {
                     ycVar.c(false);
                 }
             } else if (motionEvent.getAction() == 1) {
-                if (ycVar.f32598i && (u9Var = this.f9259c) != null && this.E != null) {
+                if (ycVar.f32631i && (u9Var = this.f9259c) != null && this.E != null) {
                     u9Var.run(new f7(this, 1));
                 }
                 ycVar.c(false);
@@ -210,7 +210,7 @@ public final class j7 extends View {
                 ycVar.c(false);
                 this.L = false;
             }
-            if (!this.L && !ycVar.f32598i) {
+            if (!this.L && !ycVar.f32631i) {
                 return false;
             }
             return true;

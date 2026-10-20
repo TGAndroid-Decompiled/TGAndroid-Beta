@@ -12,8 +12,8 @@ import androidx.core.content.FileProvider;
 import java.io.File;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.g71;
 import org.telegram.ui.Components.h71;
+import org.telegram.ui.Components.i71;
 import org.telegram.ui.IUpdateLayout;
 public class ApplicationLoaderImpl extends ApplicationLoader {
     private static long lastUpdateCheckTime;
@@ -129,7 +129,7 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
 
     @Override
     public boolean isCustomUpdate() {
-        return !TextUtils.isEmpty("https://telegram.org/dl/android/apk-public-beta.json");
+        return !TextUtils.isEmpty("null");
     }
 
     @Override
@@ -175,7 +175,7 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
     @Override
     public boolean showCustomUpdateAppPopup(Context context, BetaUpdate betaUpdate, int i10) {
         try {
-            new g71(context, betaUpdate).show();
+            new h71(context, betaUpdate).show();
             return true;
         } catch (Exception e) {
             FileLog.e(e);
@@ -228,7 +228,7 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
         if (!isCustomUpdate()) {
             return null;
         }
-        return new h71(activity, viewGroup);
+        return new i71(activity, viewGroup);
     }
 
     @Override

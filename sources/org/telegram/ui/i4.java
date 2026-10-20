@@ -5,29 +5,29 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 public final class i4 implements Runnable {
-    public final int f37842a;
-    public final int f37843b;
-    public final Object f37844c;
+    public final int f37848a;
+    public final int f37849b;
+    public final Object f37850c;
     public final Object d;
 
     public i4(int i10, Object obj, Object obj2, int i11) {
-        this.f37842a = i11;
-        this.f37843b = i10;
-        this.f37844c = obj;
+        this.f37848a = i11;
+        this.f37849b = i10;
+        this.f37850c = obj;
         this.d = obj2;
     }
 
     private final void a() {
         int i10;
-        org.telegram.ui.Components.i21 i21Var = (org.telegram.ui.Components.i21) this.f37844c;
+        org.telegram.ui.Components.j21 j21Var = (org.telegram.ui.Components.j21) this.f37850c;
         String str = (String) this.d;
-        int i11 = this.f37843b;
-        org.telegram.ui.Components.h21 h21Var = i21Var.f27047r.f24397n;
+        int i11 = this.f37849b;
+        org.telegram.ui.Components.i21 i21Var = j21Var.f27388r.f24400n;
         try {
             String lowerCase = str.trim().toLowerCase();
             if (lowerCase.length() == 0) {
-                i21Var.d = -1;
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.bz0(i21Var, i21Var.d, new ArrayList(), new ArrayList(), 1));
+                j21Var.d = -1;
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.cz0(j21Var, j21Var.d, new ArrayList(), new ArrayList(), 1));
                 return;
             }
             String translitString = LocaleController.getInstance().getTranslitString(lowerCase);
@@ -45,10 +45,10 @@ public final class i4 implements Runnable {
             }
             ArrayList arrayList = new ArrayList();
             ArrayList arrayList2 = new ArrayList();
-            int size = h21Var.d.size();
+            int size = i21Var.d.size();
             for (int i13 = 0; i13 < size; i13++) {
-                ArrayList arrayList3 = (ArrayList) h21Var.d.get(i13);
-                String i14 = org.telegram.ui.ActionBar.g5.i(((org.telegram.ui.ActionBar.j6) arrayList3.get(0)).f21456f);
+                ArrayList arrayList3 = (ArrayList) i21Var.d.get(i13);
+                String i14 = org.telegram.ui.ActionBar.g5.i(((org.telegram.ui.ActionBar.j6) arrayList3.get(0)).f21459f);
                 String lowerCase2 = i14.toLowerCase();
                 int i15 = 0;
                 while (true) {
@@ -56,14 +56,14 @@ public final class i4 implements Runnable {
                         String str2 = strArr[i15];
                         if (lowerCase2.contains(str2)) {
                             arrayList.add(arrayList3);
-                            arrayList2.add(org.telegram.ui.Components.i21.E(i14, str2));
+                            arrayList2.add(org.telegram.ui.Components.j21.E(i14, str2));
                             break;
                         }
                         i15++;
                     }
                 }
             }
-            AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.bz0(i21Var, i11, arrayList, arrayList2, 1));
+            AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.cz0(j21Var, i11, arrayList, arrayList2, 1));
         } catch (Exception e) {
             FileLog.e(e);
         }
@@ -75,23 +75,23 @@ public final class i4 implements Runnable {
     }
 
     public i4(Object obj, int i10, Object obj2, int i11) {
-        this.f37842a = i11;
-        this.f37844c = obj;
-        this.f37843b = i10;
+        this.f37848a = i11;
+        this.f37850c = obj;
+        this.f37849b = i10;
         this.d = obj2;
     }
 
     public i4(Object obj, Object obj2, int i10, int i11) {
-        this.f37842a = i11;
-        this.f37844c = obj;
+        this.f37848a = i11;
+        this.f37850c = obj;
         this.d = obj2;
-        this.f37843b = i10;
+        this.f37849b = i10;
     }
 
     public i4(j4 j4Var, int i10, int[] iArr, int[] iArr2) {
-        this.f37842a = 0;
-        this.f37844c = j4Var;
-        this.f37843b = i10;
+        this.f37848a = 0;
+        this.f37850c = j4Var;
+        this.f37849b = i10;
         this.d = iArr2;
     }
 }

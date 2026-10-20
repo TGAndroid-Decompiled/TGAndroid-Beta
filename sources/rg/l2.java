@@ -9,31 +9,31 @@ import org.telegram.messenger.Utilities;
 import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.tgnet.TLRPC;
 public final class l2 {
-    public String f45445a;
-    public String f45446b;
-    public String f45447c;
+    public String f45453a;
+    public String f45454b;
+    public String f45455c;
     public CharSequence d;
     public TLRPC.TL_inputStickerSetItem e;
-    public TLRPC.TL_messageMediaDocument f45448f;
-    public TLRPC.InputFile f45449g;
+    public TLRPC.TL_messageMediaDocument f45456f;
+    public TLRPC.InputFile f45457g;
     public boolean h;
-    public long f45450i;
-    public TLRPC.StickerSet f45451j;
-    public TLRPC.Document f45452k;
-    public String f45453l;
-    public Utilities.Callback2 f45454m;
-    public Utilities.Callback f45455n;
-    public boolean f45456o;
-    public ArrayList f45457p;
-    public ArrayList f45458q;
-    public MessageObject f45459r;
-    public VideoEditedInfo f45460s;
-    public float f45461t;
-    public float f45462u;
+    public long f45458i;
+    public TLRPC.StickerSet f45459j;
+    public TLRPC.Document f45460k;
+    public String f45461l;
+    public Utilities.Callback2 f45462m;
+    public Utilities.Callback f45463n;
+    public boolean f45464o;
+    public ArrayList f45465p;
+    public ArrayList f45466q;
+    public MessageObject f45467r;
+    public VideoEditedInfo f45468s;
+    public float f45469t;
+    public float f45470u;
 
     public final void a() {
-        ArrayList arrayList = this.f45458q;
-        ArrayList arrayList2 = this.f45457p;
+        ArrayList arrayList = this.f45466q;
+        ArrayList arrayList2 = this.f45465p;
         int size = arrayList2.size();
         int i10 = 0;
         int i11 = 0;
@@ -62,14 +62,14 @@ public final class l2 {
 
     public final float b() {
         float f7;
-        if (this.f45454m == null) {
+        if (this.f45462m == null) {
             f7 = 0.9f;
         } else {
             f7 = 1.0f;
         }
-        if (this.f45460s == null) {
-            return f7 * this.f45462u;
+        if (this.f45468s == null) {
+            return f7 * this.f45470u;
         }
-        return k3.A(this.f45462u, 0.5f, this.f45461t * 0.5f, f7);
+        return k3.A(this.f45470u, 0.5f, this.f45469t * 0.5f, f7);
     }
 }

@@ -1,28 +1,38 @@
 package org.telegram.messenger;
-
-import org.telegram.tgnet.tl.TL_update;
 public final class pi implements Runnable {
-    public final int f19289a;
-    public final SendMessagesHelper f19290b;
-    public final TL_update.TL_updateNewMessage f19291c;
+    public final int f19279a;
+    public final CharSequence f19280b;
+    public final AccountInstance f19281c;
+    public final long d;
+    public final long e;
+    public final boolean f19282f;
+    public final int h;
+    public final int f19283n;
+    public final long f19284r;
 
-    public pi(SendMessagesHelper sendMessagesHelper, TL_update.TL_updateNewMessage tL_updateNewMessage, int i10) {
-        this.f19289a = i10;
-        this.f19290b = sendMessagesHelper;
-        this.f19291c = tL_updateNewMessage;
+    public pi(CharSequence charSequence, AccountInstance accountInstance, long j10, long j11, boolean z10, int i10, int i11, long j12, int i12) {
+        this.f19279a = i12;
+        this.f19280b = charSequence;
+        this.f19281c = accountInstance;
+        this.d = j10;
+        this.e = j11;
+        this.f19282f = z10;
+        this.h = i10;
+        this.f19283n = i11;
+        this.f19284r = j12;
     }
 
     @Override
     public final void run() {
-        switch (this.f19289a) {
+        switch (this.f19279a) {
             case 0:
-                this.f19290b.lambda$performSendMessageRequest$94(this.f19291c);
+                SendMessagesHelper.lambda$prepareSendingText$129(this.f19280b, this.f19281c, this.d, this.e, this.f19282f, this.h, this.f19283n, this.f19284r);
                 return;
             case 1:
-                this.f19290b.lambda$performSendMessageRequestMulti$69(this.f19291c);
+                SendMessagesHelper.lambda$prepareSendingText$127(this.f19280b, this.f19281c, this.d, this.e, this.f19282f, this.h, this.f19283n, this.f19284r);
                 return;
             default:
-                this.f19290b.lambda$completeSendingGramTransfer$5(this.f19291c);
+                SendMessagesHelper.lambda$prepareSendingText$128(this.f19280b, this.f19281c, this.d, this.e, this.f19282f, this.h, this.f19283n, this.f19284r);
                 return;
         }
     }

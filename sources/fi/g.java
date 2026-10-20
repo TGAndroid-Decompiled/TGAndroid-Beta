@@ -34,9 +34,9 @@ import org.telegram.ui.ActionBar.d5;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.ActionBar.k;
 import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.g61;
+import org.telegram.ui.Components.h61;
 import org.telegram.ui.Components.q6;
-import org.telegram.ui.Components.t61;
+import org.telegram.ui.Components.u61;
 import org.telegram.ui.Components.yq;
 import org.telegram.ui.Components.z00;
 import org.telegram.ui.Wallet.m6;
@@ -79,7 +79,7 @@ public final class g extends y10 implements NotificationCenter.NotificationCente
     }
 
     public static void y0(g gVar, int i10) {
-        g61 G;
+        h61 G;
         d dVar = gVar.f10614f0;
         if (dVar != null && (G = dVar.G(i10)) != null) {
             int i11 = G.d;
@@ -101,15 +101,15 @@ public final class g extends y10 implements NotificationCenter.NotificationCente
         }
     }
 
-    public final void D0(ArrayList arrayList, t61 t61Var) {
+    public final void D0(ArrayList arrayList, u61 u61Var) {
         if (getParentActivity() == null) {
             return;
         }
         ga y3 = ga.y(this.currentAccount, true);
-        g61 g61Var = new g61(-2);
-        g61Var.f26491c = (v10) super.r0(getParentActivity());
-        arrayList.add(g61Var);
-        arrayList.add(g61.k(this.U));
+        h61 h61Var = new h61(-2);
+        h61Var.f26776c = (v10) super.r0(getParentActivity());
+        arrayList.add(h61Var);
+        arrayList.add(h61.k(this.U));
         boolean z10 = this.T;
         if (z10) {
             i2.e.B(R.string.GramEarningsHint, arrayList);
@@ -118,12 +118,12 @@ public final class g extends y10 implements NotificationCenter.NotificationCente
         this.f10612d0 = O;
         if (O) {
             if (!z10) {
-                arrayList.add(g61.B(null));
+                arrayList.add(h61.B(null));
             }
-            arrayList.add(g61.p(this.R, AndroidUtilities.dp(24.0f) + k.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight + AndroidUtilities.navigationBarHeight, false));
+            arrayList.add(h61.p(this.R, AndroidUtilities.dp(24.0f) + k.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight + AndroidUtilities.navigationBarHeight, false));
             return;
         }
-        arrayList.add(g61.l(this.S));
+        arrayList.add(h61.l(this.S));
     }
 
     public final void E0() {
@@ -237,15 +237,15 @@ public final class g extends y10 implements NotificationCenter.NotificationCente
         m6Var.setStarParticlesView(this.e);
         this.P.addView(this.Q, z5.d(170, 170.0f, 17, 0.0f, 32.0f, 0.0f, 12.0f));
         m0(LocaleController.getString(R.string.GramEarningsTitle), AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.GramEarningsText), new ra(context, 7)), true), this.P, null);
-        this.f43319c.setOverScrollMode(2);
+        this.f43325c.setOverScrollMode(2);
         s4.k kVar = new s4.k();
-        kVar.f45946m = false;
+        kVar.f45951m = false;
         kVar.C = false;
         kVar.o(bs.h);
         kVar.n(350L);
-        this.f43319c.setItemAnimator(kVar);
-        this.f43319c.setOnItemClickListener(new wa(this, 10));
-        this.f43323s.addView(new z00(getParentActivity()), z5.c(-1.0f, -1));
+        this.f43325c.setItemAnimator(kVar);
+        this.f43325c.setOnItemClickListener(new wa(this, 10));
+        this.f43329s.addView(new z00(getParentActivity()), z5.c(-1.0f, -1));
         ga.y(this.currentAccount, true);
         LinearLayout linearLayout = new LinearLayout(getParentActivity());
         this.U = linearLayout;
@@ -270,7 +270,7 @@ public final class g extends y10 implements NotificationCenter.NotificationCente
         q6Var2.setTextSize(AndroidUtilities.dp(14.0f));
         this.X.setGravity(17);
         this.X.setText(LocaleController.getString(R.string.YourTonBalance));
-        this.X.setTextColor(h6.w0(h6.f21392z6, this.resourceProvider));
+        this.X.setTextColor(h6.w0(h6.f21395z6, this.resourceProvider));
         this.U.addView(this.X, z5.d(-1, 20.0f, 17, 24.0f, 0.0f, 24.0f, 8.0f));
         FrameLayout frameLayout2 = new FrameLayout(getParentActivity());
         x xVar = new x(this, getParentActivity(), 5);
@@ -451,14 +451,14 @@ public final class g extends y10 implements NotificationCenter.NotificationCente
 
     @Override
     public final int getNavigationBarColor() {
-        return h6.x0(null, h6.f21075i5, false);
+        return h6.x0(null, h6.f21078i5, false);
     }
 
     @Override
     public final g0 n0() {
-        d dVar = new d(this, this.f43319c, getParentActivity(), this.currentAccount, this.classGuid, new q(this, 21), getResourceProvider());
+        d dVar = new d(this, this.f43325c, getParentActivity(), this.currentAccount, this.classGuid, new q(this, 21), getResourceProvider());
         this.f10614f0 = dVar;
-        dVar.f30436r = false;
+        dVar.f30860r = false;
         return dVar;
     }
 
@@ -518,7 +518,7 @@ public final class g extends y10 implements NotificationCenter.NotificationCente
         ld ldVar = this.R;
         boolean z10 = false;
         if (ldVar != null && (ldVar.getParent() instanceof View)) {
-            if (this.f43319c.getHeight() - ((View) this.R.getParent()).getBottom() >= 0) {
+            if (this.f43325c.getHeight() - ((View) this.R.getParent()).getBottom() >= 0) {
                 z10 = true;
             }
         }

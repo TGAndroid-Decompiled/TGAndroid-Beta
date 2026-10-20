@@ -10,47 +10,47 @@ import org.telegram.tgnet.RequestTimeDelegate;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.dj0;
 public final class d implements org.telegram.ui.ActionBar.a2, RequestTimeDelegate, MessagesController.ErrorDelegate, dj0, QuickAckDelegate {
-    public final int f18141a;
-    public final Object f18142b;
-    public final Object f18143c;
+    public final int f18131a;
+    public final Object f18132b;
+    public final Object f18133c;
 
     public d(int i10, Object obj, Object obj2) {
-        this.f18141a = i10;
-        this.f18142b = obj;
-        this.f18143c = obj2;
+        this.f18131a = i10;
+        this.f18132b = obj;
+        this.f18133c = obj2;
     }
 
     @Override
     public void b(Canvas canvas) {
-        ((RichMessageLayout.RichThinkingBlock) this.f18142b).lambda$onDrawFaded$0((View) this.f18143c, canvas);
+        ((RichMessageLayout.RichThinkingBlock) this.f18132b).lambda$onDrawFaded$0((View) this.f18133c, canvas);
     }
 
     @Override
     public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f18141a) {
+        switch (this.f18131a) {
             case 0:
-                AndroidUtilities.lambda$isMapsInstalled$11((String) this.f18142b, (org.telegram.ui.ActionBar.n2) this.f18143c, b2Var, i10);
+                AndroidUtilities.lambda$isMapsInstalled$11((String) this.f18132b, (org.telegram.ui.ActionBar.n2) this.f18133c, b2Var, i10);
                 return;
             default:
-                AndroidUtilities.lambda$showProxyAlert$20((SharedPreferences) this.f18142b, (h0) this.f18143c, b2Var, i10);
+                AndroidUtilities.lambda$showProxyAlert$20((SharedPreferences) this.f18132b, (h0) this.f18133c, b2Var, i10);
                 return;
         }
     }
 
     @Override
     public void run() {
-        ((SendMessagesHelper) this.f18142b).lambda$performSendMessageRequest$106((TLRPC.Message) this.f18143c);
+        ((SendMessagesHelper) this.f18132b).lambda$performSendMessageRequest$106((TLRPC.Message) this.f18133c);
     }
 
     @Override
     public void run(long j10) {
-        AndroidUtilities.lambda$showProxyAlert$18((boolean[]) this.f18142b, (org.telegram.ui.Components.zc[]) this.f18143c, j10);
+        AndroidUtilities.lambda$showProxyAlert$18((boolean[]) this.f18132b, (org.telegram.ui.Components.zc[]) this.f18133c, j10);
     }
 
     @Override
     public boolean run(TLRPC.TL_error tL_error) {
         boolean lambda$addUsersToChat$294;
-        lambda$addUsersToChat$294 = MessagesController.lambda$addUsersToChat$294((q0.a) this.f18142b, (TLRPC.User) this.f18143c, tL_error);
+        lambda$addUsersToChat$294 = MessagesController.lambda$addUsersToChat$294((q0.a) this.f18132b, (TLRPC.User) this.f18133c, tL_error);
         return lambda$addUsersToChat$294;
     }
 }

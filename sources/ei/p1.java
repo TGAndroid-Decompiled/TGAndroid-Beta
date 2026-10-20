@@ -16,7 +16,7 @@ import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.aw;
 import org.telegram.ui.Components.gn;
-import org.telegram.ui.Components.hz0;
+import org.telegram.ui.Components.iz0;
 import org.telegram.ui.FiltersSetupActivity;
 import org.telegram.ui.et;
 import org.telegram.ui.h10;
@@ -67,22 +67,22 @@ public final class p1 implements View.OnTouchListener {
                 org.telegram.ui.Components.j8 j8Var = (org.telegram.ui.Components.j8) this.f9578b;
                 org.telegram.ui.Cells.x xVar = (org.telegram.ui.Cells.x) this.f9579c;
                 if (motionEvent.getAction() == 0) {
-                    org.telegram.ui.Components.k8 k8Var = j8Var.f27443n;
-                    k8Var.H.r(k8Var.f27756n.T(xVar));
+                    org.telegram.ui.Components.k8 k8Var = j8Var.f27424n;
+                    k8Var.H.r(k8Var.f27790n.T(xVar));
                     return false;
                 }
                 return false;
             case 3:
                 return aw.n((aw) this.f9578b, (gn) this.f9579c, motionEvent);
             case 4:
-                return hz0.a((hz0) this.f9578b, (org.telegram.ui.Components.j) this.f9579c, motionEvent);
+                return iz0.a((iz0) this.f9578b, (org.telegram.ui.Components.j) this.f9579c, motionEvent);
             case 5:
                 iy iyVar = (iy) this.f9578b;
                 org.telegram.ui.Cells.f4 f4Var = (org.telegram.ui.Cells.f4) this.f9579c;
                 iyVar.getClass();
                 if (motionEvent.getAction() == 0) {
                     ly lyVar = iyVar.d;
-                    lyVar.f39038c.r(lyVar.f39037b.T(f4Var));
+                    lyVar.f39044c.r(lyVar.f39043b.T(f4Var));
                     return false;
                 }
                 return false;
@@ -91,7 +91,7 @@ public final class p1 implements View.OnTouchListener {
                 h10 h10Var = (h10) this.f9579c;
                 if (motionEvent.getAction() == 0) {
                     FiltersSetupActivity filtersSetupActivity = l10Var.e;
-                    filtersSetupActivity.f33136c.r(filtersSetupActivity.f33134a.T(h10Var));
+                    filtersSetupActivity.f33142c.r(filtersSetupActivity.f33140a.T(h10Var));
                     return false;
                 }
                 return false;
@@ -139,7 +139,7 @@ public final class p1 implements View.OnTouchListener {
                         if (intValue == 8) {
                             w9.h(LocaleController.getString(R.string.PassportSelectNotExpire), new xu(27, vm0Var, editTextBoldCursor));
                         }
-                        vm0Var.showDialog(w9.f20602a);
+                        vm0Var.showDialog(w9.f20605a);
                     } catch (Exception e) {
                         FileLog.e(e);
                     }

@@ -48,7 +48,7 @@ public final class g6 extends org.telegram.ui.ActionBar.f3 {
         j5Var.setTextSize(14);
         j5Var.setAlignment(Layout.Alignment.ALIGN_CENTER);
         j5Var.setMaxLines(100);
-        j5Var.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21375y6, d6Var));
+        j5Var.setTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21378y6, d6Var));
         if (UserConfig.getInstance(this.currentAccount).isPremium()) {
             j5Var.l(LocaleController.getString(R.string.StealthModeHint), false);
         } else {
@@ -148,10 +148,10 @@ public final class g6 extends org.telegram.ui.ActionBar.f3 {
             int i10 = R.drawable.msg_stories_stealth2;
             String string = LocaleController.getString(R.string.StealthModeOn);
             String string2 = LocaleController.getString(R.string.StealthModeOnHint);
-            mc mcVar = new mc(X.W(), X.f32364c);
-            mcVar.f28507a.setImageResource(i10);
-            mcVar.f28508b.setText(string);
-            TextView textView = mcVar.f28509c;
+            mc mcVar = new mc(X.W(), X.f32389c);
+            mcVar.f28478a.setImageResource(i10);
+            mcVar.f28479b.setText(string);
+            TextView textView = mcVar.f28480c;
             textView.setText(string2);
             textView.setSingleLine(false);
             textView.setMaxLines(5);

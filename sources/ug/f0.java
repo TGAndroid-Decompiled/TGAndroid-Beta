@@ -9,12 +9,12 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.kk;
+import org.telegram.messenger.mk;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.ActionBar.n2;
-import org.telegram.ui.Components.im0;
+import org.telegram.ui.Components.jm0;
 import org.telegram.ui.Components.qc;
 import org.telegram.ui.cy;
 import w7.z5;
@@ -28,18 +28,18 @@ public final class f0 extends sg.m1 {
         this.R0 = str;
         qc.a((FrameLayout) this.containerView, new o8(15));
         if (!z10) {
-            im0 im0Var = this.d;
+            jm0 jm0Var = this.d;
             int i11 = this.backgroundPaddingLeft;
-            im0Var.setPadding(i11, 0, i11, AndroidUtilities.dp(68.0f));
+            jm0Var.setPadding(i11, 0, i11, AndroidUtilities.dp(68.0f));
             wg.a aVar = new wg.a(getContext(), this.resourcesProvider);
             this.Q0 = aVar;
             aVar.setOnClickListener(new hg.r0(this, 22));
             wg.a aVar2 = this.Q0;
             aVar2.e = true;
-            ei.d dVar = aVar2.f48942a;
+            ei.d dVar = aVar2.f48947a;
             dVar.setEnabled(true);
             dVar.g(LocaleController.getString(R.string.GiftPremiumActivateForFree), false, true);
-            aVar2.f48943b.setBackgroundColor(h6.w0(h6.f21058h5, aVar2.f48944c));
+            aVar2.f48948b.setBackgroundColor(h6.w0(h6.f21061h5, aVar2.f48949c));
             this.containerView.addView(this.Q0, z5.d(-1, 68.0f, 80, 0.0f, 0.0f, 0.0f, 0.0f));
         }
         fixNavigationBar();
@@ -51,17 +51,17 @@ public final class f0 extends sg.m1 {
     }
 
     public static void e0(f0 f0Var) {
-        sg.m1 m1Var = new sg.m1(f0Var.f24897n, UserConfig.selectedAccount, null, null, null, f0Var.resourcesProvider);
+        sg.m1 m1Var = new sg.m1(f0Var.f24882n, UserConfig.selectedAccount, null, null, null, f0Var.resourcesProvider);
         m1Var.J0 = true;
         m1Var.K0 = true;
-        m1Var.f46324c0 = true;
-        f0Var.f24897n.showDialog(m1Var);
+        m1Var.f46329c0 = true;
+        f0Var.f24882n.showDialog(m1Var);
     }
 
     public static void f0(f0 f0Var) {
-        cy cyVar = new cy(kk.d(3, "onlySelect", "dialogsType", true));
+        cy cyVar = new cy(mk.d(3, "onlySelect", "dialogsType", true));
         cyVar.C2 = new org.telegram.ui.web.m(17, f0Var, "https://t.me/giftcode/" + f0Var.R0);
-        f0Var.f24897n.presentFragment(cyVar);
+        f0Var.f24882n.presentFragment(cyVar);
         f0Var.dismiss();
     }
 
@@ -91,22 +91,22 @@ public final class f0 extends sg.m1 {
         this.P0.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
         ((ViewGroup.MarginLayoutParams) this.P0.getLayoutParams()).bottomMargin = AndroidUtilities.dp(14.0f);
         ((ViewGroup.MarginLayoutParams) this.P0.getLayoutParams()).topMargin = AndroidUtilities.dp(12.0f);
-        this.P0.setText(AndroidUtilities.replaceCharSequence("%1$s", AndroidUtilities.replaceSingleTag(LocaleController.getString("GiftPremiumAboutThisLink", R.string.GiftPremiumAboutThisLink), h6.f21046gc, 0, new d0(this, 0)), AndroidUtilities.replaceTags(LocaleController.getString("GiftPremiumAboutThisLinkEnd", R.string.GiftPremiumAboutThisLinkEnd))));
+        this.P0.setText(AndroidUtilities.replaceCharSequence("%1$s", AndroidUtilities.replaceSingleTag(LocaleController.getString("GiftPremiumAboutThisLink", R.string.GiftPremiumAboutThisLink), h6.f21049gc, 0, new d0(this, 0)), AndroidUtilities.replaceTags(LocaleController.getString("GiftPremiumAboutThisLinkEnd", R.string.GiftPremiumAboutThisLinkEnd))));
     }
 
     @Override
     public final void c0() {
-        int i10 = this.f46327f0;
-        this.f46328g0 = i10;
-        this.f46329h0 = i10 + 1;
+        int i10 = this.f46332f0;
+        this.f46333g0 = i10;
+        this.f46334h0 = i10 + 1;
         int i11 = i10 + 2;
-        this.f46327f0 = i11;
-        this.f46330i0 = i11;
-        this.f46331j0 = i11;
+        this.f46332f0 = i11;
+        this.f46335i0 = i11;
+        this.f46336j0 = i11;
         int size = this.X.size() + i11;
-        this.f46332k0 = size;
-        this.f46327f0 = size + 1;
-        this.f46333l0 = size;
+        this.f46337k0 = size;
+        this.f46332f0 = size + 1;
+        this.f46338l0 = size;
     }
 
     @Override

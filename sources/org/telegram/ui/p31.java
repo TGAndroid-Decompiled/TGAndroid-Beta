@@ -1,5 +1,5 @@
 package org.telegram.ui;
-public final class p31 extends org.telegram.ui.Components.b81 {
+public final class p31 extends org.telegram.ui.Components.c81 {
     public final SecretMediaViewer m0;
 
     public p31(SecretMediaViewer secretMediaViewer) {

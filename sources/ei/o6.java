@@ -2,9 +2,9 @@ package ei;
 
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.b00;
-import org.telegram.ui.Components.b81;
+import org.telegram.ui.Components.c81;
 import org.telegram.ui.Components.e00;
-import org.telegram.ui.Components.q71;
+import org.telegram.ui.Components.r71;
 public final class o6 implements Runnable {
     public final int f9554a;
     public final r6 f9555b;
@@ -30,9 +30,9 @@ public final class o6 implements Runnable {
             case 3:
                 r6 r6Var = this.f9555b;
                 o6 o6Var = r6Var.K;
-                b81 b81Var = r6Var.e;
-                if (b81Var != null && r6Var.F != null) {
-                    long n10 = b81Var.n();
+                c81 c81Var = r6Var.e;
+                if (c81Var != null && r6Var.F != null) {
+                    long n10 = c81Var.n();
                     if (r6Var.getDuration() > 1) {
                         float duration = ((float) n10) / ((float) r6Var.getDuration());
                         boolean z11 = false;
@@ -40,9 +40,9 @@ public final class o6 implements Runnable {
                             a8 a8Var = r6Var.d;
                             if ((duration < a8Var.Z || duration > a8Var.f8695a0) && System.currentTimeMillis() - r6Var.J > 500) {
                                 r6Var.J = System.currentTimeMillis();
-                                b81 b81Var2 = r6Var.e;
+                                c81 c81Var2 = r6Var.e;
                                 long duration2 = r6Var.d.Z * ((float) r6Var.getDuration());
-                                b81Var2.L(duration2, false);
+                                c81Var2.L(duration2, false);
                                 r6Var.w(true);
                                 r6Var.y(true);
                                 n10 = duration2;
@@ -83,10 +83,10 @@ public final class o6 implements Runnable {
                         float f11 = (float) a8Var2.C;
                         if ((f7 < f10 * f11 || f7 > a8Var2.F * f11) && System.currentTimeMillis() - r6Var2.J > 500) {
                             r6Var2.J = System.currentTimeMillis();
-                            b81 b81Var3 = r6Var2.f9737y;
+                            c81 c81Var3 = r6Var2.f9737y;
                             a8 a8Var3 = r6Var2.d;
                             long j10 = a8Var3.E * ((float) a8Var3.C);
-                            b81Var3.L(j10, false);
+                            c81Var3.L(j10, false);
                             n11 = j10;
                         }
                     }
@@ -111,10 +111,10 @@ public final class o6 implements Runnable {
                         float f14 = (float) a8Var4.f8728q0;
                         if ((f12 < f13 * f14 || f12 > a8Var4.f8734t0 * f14) && System.currentTimeMillis() - r6Var3.J > 500) {
                             r6Var3.J = System.currentTimeMillis();
-                            b81 b81Var4 = r6Var3.f9735x;
+                            c81 c81Var4 = r6Var3.f9735x;
                             a8 a8Var5 = r6Var3.d;
                             long j11 = a8Var5.f8732s0 * ((float) a8Var5.f8728q0);
-                            b81Var4.L(j11, false);
+                            c81Var4.L(j11, false);
                             r6Var3.w(true);
                             n12 = j11;
                         }
@@ -130,13 +130,13 @@ public final class o6 implements Runnable {
                 return;
             default:
                 r6 r6Var4 = this.f9555b;
-                q71 q71Var = r6Var4.f9721n;
-                if (q71Var != null) {
-                    e00 e00Var = q71Var.f29538b;
+                r71 r71Var = r6Var4.f9721n;
+                if (r71Var != null) {
+                    e00 e00Var = r71Var.f29860b;
                     if (e00Var != null) {
                         e00Var.postRunnable(new b00(e00Var, 0));
                     }
-                    q71Var.f29537a = null;
+                    r71Var.f29859a = null;
                     r6Var4.removeView(r6Var4.f9721n);
                     r6Var4.f9721n = null;
                     return;

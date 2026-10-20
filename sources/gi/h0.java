@@ -18,7 +18,7 @@ import org.telegram.ui.Components.mb;
 import org.telegram.ui.Components.nb;
 import org.telegram.ui.Components.oc;
 import org.telegram.ui.Components.qc;
-import org.telegram.ui.Components.uj0;
+import org.telegram.ui.Components.vj0;
 import org.telegram.ui.LaunchActivity;
 import w7.z5;
 public final class h0 extends nb {
@@ -71,7 +71,7 @@ public final class h0 extends nb {
             if (i10 == 1) {
                 oc ocVar = new oc(getContext(), d6Var, true);
                 ocVar.e(LocaleController.getString(R.string.BotFileDownloadCancel));
-                ocVar.f28944a = new Runnable(this) {
+                ocVar.f28982a = new Runnable(this) {
                     public final h0 f11172b;
 
                     {
@@ -86,7 +86,7 @@ public final class h0 extends nb {
                                 h0 h0Var = this.f11172b;
                                 qc bulletin = h0Var.getBulletin();
                                 if (bulletin != null) {
-                                    bulletin.f29594j = 2750;
+                                    bulletin.f29530j = 2750;
                                     bulletin.i(true);
                                 }
                                 i0 i0Var = h0Var.f11236f;
@@ -112,13 +112,13 @@ public final class h0 extends nb {
                     }
                 };
                 if (getBulletin() != null) {
-                    ocVar.f28946c = getBulletin();
+                    ocVar.f28984c = getBulletin();
                 }
                 setButton(ocVar);
             } else if (i10 == 2) {
                 oc ocVar2 = new oc(getContext(), d6Var, true);
                 ocVar2.e(LocaleController.getString(R.string.BotFileDownloadOpen));
-                ocVar2.f28944a = new Runnable(this) {
+                ocVar2.f28982a = new Runnable(this) {
                     public final h0 f11172b;
 
                     {
@@ -133,7 +133,7 @@ public final class h0 extends nb {
                                 h0 h0Var = this.f11172b;
                                 qc bulletin = h0Var.getBulletin();
                                 if (bulletin != null) {
-                                    bulletin.f29594j = 2750;
+                                    bulletin.f29530j = 2750;
                                     bulletin.i(true);
                                 }
                                 i0 i0Var = h0Var.f11236f;
@@ -159,7 +159,7 @@ public final class h0 extends nb {
                     }
                 };
                 if (getBulletin() != null) {
-                    ocVar2.f28946c = getBulletin();
+                    ocVar2.f28984c = getBulletin();
                 }
                 setButton(ocVar2);
             }
@@ -175,9 +175,9 @@ public final class h0 extends nb {
             g0Var.h = false;
             f6Var.getClass();
             f6Var.d(0.0f, true);
-            uj0 uj0Var = g0Var.f11222l;
-            if (uj0Var != null) {
-                uj0Var.C(true);
+            vj0 vj0Var = g0Var.f11222l;
+            if (vj0Var != null) {
+                vj0Var.C(true);
                 g0Var.f11222l = null;
             }
             f6 f6Var2 = g0Var.f11219i;
@@ -223,9 +223,9 @@ public final class h0 extends nb {
                 setButton(2);
                 if (!g0Var.h) {
                     g0Var.h = true;
-                    uj0 uj0Var2 = new uj0(R.raw.contact_check, AndroidUtilities.dp(40.0f), AndroidUtilities.dp(40.0f));
-                    g0Var.f11222l = uj0Var2;
-                    uj0Var2.R(g0Var.f11214a);
+                    vj0 vj0Var2 = new vj0(R.raw.contact_check, AndroidUtilities.dp(40.0f), AndroidUtilities.dp(40.0f));
+                    g0Var.f11222l = vj0Var2;
+                    vj0Var2.R(g0Var.f11214a);
                     g0Var.f11222l.J(true);
                     g0Var.f11222l.start();
                     g0Var.f11218g = 1.0f;
@@ -233,7 +233,7 @@ public final class h0 extends nb {
                 qc bulletin2 = getBulletin();
                 if (bulletin2 != null) {
                     bulletin2.i(false);
-                    bulletin2.f29594j = 5000;
+                    bulletin2.f29530j = 5000;
                     bulletin2.i(true);
                 }
             }

@@ -2,7 +2,7 @@ package org.telegram.ui;
 
 import android.content.Context;
 import android.graphics.Canvas;
-public final class to0 extends org.telegram.ui.Components.im0 {
+public final class to0 extends org.telegram.ui.Components.jm0 {
     public final int V2;
     public final cp0 W2;
 
@@ -15,7 +15,7 @@ public final class to0 extends org.telegram.ui.Components.im0 {
     @Override
     public final Integer W0(int i10) {
         cp0 cp0Var = this.W2;
-        if ((i10 >= cp0Var.f36015b0 && i10 < cp0Var.f36017c0) || (i10 >= cp0Var.f36018d0 && i10 < cp0Var.f36019e0)) {
+        if ((i10 >= cp0Var.f36021b0 && i10 < cp0Var.f36023c0) || (i10 >= cp0Var.f36024d0 && i10 < cp0Var.f36025e0)) {
             return 0;
         }
         return super.W0(i10);
@@ -38,7 +38,7 @@ public final class to0 extends org.telegram.ui.Components.im0 {
         ai.y9 y9Var;
         super.onLayout(z10, i10, i11, i12, i13);
         cp0 cp0Var = this.W2;
-        ip0 ip0Var = cp0Var.f36031p0;
+        ip0 ip0Var = cp0Var.f36037p0;
         cp0Var.h();
         if (cp0Var.K != null) {
             if (cp0Var.J != null && cp0Var.c()) {
@@ -48,9 +48,9 @@ public final class to0 extends org.telegram.ui.Components.im0 {
             return;
         }
         if (this.V2 == 1) {
-            y9Var = ip0Var.f38077c;
+            y9Var = ip0Var.f38083c;
         } else {
-            y9Var = ip0Var.f38075b;
+            y9Var = ip0Var.f38081b;
         }
         if (y9Var != null && cp0Var.c()) {
             y9Var.a();

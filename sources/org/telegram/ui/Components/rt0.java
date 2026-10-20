@@ -1,170 +1,44 @@
 package org.telegram.ui.Components;
 
-import android.text.TextUtils;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.ImageView;
-public final class rt0 extends org.telegram.ui.ActionBar.g5 {
-    public final tv0 f30047r;
+import android.content.Context;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.TLRPC;
+public final class rt0 implements org.telegram.ui.Cells.l7 {
+    public final uv0 f30015a;
 
-    public rt0(tv0 tv0Var) {
-        this.f30047r = tv0Var;
+    public rt0(uv0 uv0Var) {
+        this.f30015a = uv0Var;
     }
 
     @Override
-    public final void l() {
-        org.telegram.ui.ActionBar.u0 u0Var = this.f30047r.f30713n0;
-        u0Var.setTranslationX(((View) u0Var.getParent()).getMeasuredWidth() - u0Var.getRight());
+    public final void a(String str, boolean z10) {
+        uv0 uv0Var = this.f30015a;
+        org.telegram.ui.ActionBar.n2 n2Var = uv0Var.f31070v1;
+        if (z10) {
+            org.telegram.ui.ActionBar.f3 f3Var = new org.telegram.ui.ActionBar.f3(1, (Context) n2Var.getParentActivity(), (org.telegram.ui.ActionBar.d6) null, false);
+            f3Var.fixNavigationBar();
+            f3Var.title = str;
+            f3Var.bigTitle = false;
+            CharSequence[] charSequenceArr = {LocaleController.getString("Open", R.string.Open), LocaleController.getString("Copy", R.string.Copy)};
+            mg.j jVar = new mg.j(6, this, str);
+            f3Var.items = charSequenceArr;
+            f3Var.onClickListener = jVar;
+            n2Var.showDialog(f3Var);
+            return;
+        }
+        uv0Var.T0(str);
     }
 
     @Override
-    public final void m() {
-        tv0 tv0Var = this.f30047r;
-        gt0 gt0Var = tv0Var.J0;
-        ImageView imageView = tv0Var.f30722r0;
-        tv0Var.V0 = false;
-        tv0Var.W0 = null;
-        org.telegram.ui.ActionBar.u0 u0Var = tv0Var.m0;
-        if (u0Var != null) {
-            u0Var.setVisibility(0);
-        }
-        if (imageView != null && tv0Var.a0(0.0f) > 0.5f) {
-            imageView.setVisibility(0);
-        }
-        if (gt0Var != null) {
-            gt0Var.d.M(new org.telegram.ui.xq(2));
-            gt0Var.h = 0L;
-            gt0Var.g(false);
-        }
-        zt0 zt0Var = tv0Var.T;
-        if (zt0Var != null) {
-            org.telegram.ui.rn rnVar = zt0Var.f41490a;
-            org.telegram.ui.in inVar = rnVar.oc;
-            if (inVar != null) {
-                inVar.m();
-            }
-            rnVar.f40833s3 = false;
-            rnVar.f40781o0 = false;
-            rnVar.lc(false);
-            rnVar.Mc();
-        }
-        tv0Var.U0 = false;
-        tv0Var.f30713n0.setVisibility(0);
-        tv0Var.f30700g0.G(null, true);
-        tv0Var.f30704i0.G(null, true);
-        tv0Var.f30702h0.G(null, true);
-        tv0Var.f30706j0.F(null, true);
-        ev0 ev0Var = tv0Var.S;
-        if (ev0Var != null) {
-            ev0Var.E(null, null);
-        }
-        tv0Var.M0(false);
-        xj0 xj0Var = tv0Var.f30725s0;
-        if (xj0Var != null) {
-            xj0Var.animate().scaleX(1.0f).scaleY(1.0f).alpha(1.0f).setDuration(320L).setInterpolator(bs.h).start();
-        }
-        if (tv0Var.f30742z0) {
-            tv0Var.f30742z0 = false;
-        } else {
-            tv0Var.o1(false);
-        }
+    public final void b(TLRPC.WebPage webPage, MessageObject messageObject) {
+        uv0 uv0Var = this.f30015a;
+        cv.J(uv0Var.f31070v1, messageObject, uv0Var.f31061r1, webPage.site_name, webPage.description, webPage.url, webPage.embed_url, webPage.embed_width, webPage.embed_height, -1, false);
     }
 
     @Override
-    public final void n() {
-        boolean z10;
-        tv0 tv0Var = this.f30047r;
-        tv0Var.V0 = true;
-        gt0 gt0Var = tv0Var.J0;
-        if (gt0Var != null) {
-            if ((tv0Var.getSelectedTab() == 11 || tv0Var.getSelectedTab() == 12) && gt0Var.a()) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            gt0Var.g(z10);
-        }
-        ImageView imageView = tv0Var.f30722r0;
-        if (imageView != null) {
-            imageView.setVisibility(8);
-        }
-        org.telegram.ui.ActionBar.u0 u0Var = tv0Var.m0;
-        if (u0Var != null) {
-            u0Var.setVisibility(8);
-        }
-        tv0Var.f30713n0.setVisibility(8);
-        tv0Var.M0(true);
-        xj0 xj0Var = tv0Var.f30725s0;
-        if (xj0Var != null) {
-            xj0Var.animate().scaleX(0.6f).scaleY(0.6f).alpha(0.0f).setDuration(320L).setInterpolator(bs.h).start();
-        }
-    }
-
-    @Override
-    public final void p(ei.e2 e2Var) {
-        zt0 zt0Var = this.f30047r.T;
-        if (zt0Var != null) {
-            zt0Var.f41490a.r9();
-        }
-    }
-
-    @Override
-    public final void q(EditText editText) {
-        boolean z10;
-        ev0 ev0Var;
-        String obj = editText.getText().toString();
-        tv0 tv0Var = this.f30047r;
-        zt0 zt0Var = tv0Var.T;
-        if (zt0Var != null) {
-            org.telegram.ui.rn rnVar = zt0Var.f41490a;
-            org.telegram.ui.ActionBar.u0 u0Var = rnVar.f40718j0;
-            if (u0Var != null) {
-                rnVar.f40846t3 = obj;
-                u0Var.H(obj, false);
-            }
-            if (TextUtils.isEmpty(obj) && tv0Var.W0 == null) {
-                org.telegram.ui.rn rnVar2 = zt0Var.f41490a;
-                org.telegram.ui.in inVar = rnVar2.oc;
-                if (inVar != null) {
-                    inVar.m();
-                }
-                rnVar2.f40833s3 = false;
-                rnVar2.f40781o0 = false;
-                rnVar2.lc(false);
-                rnVar2.Mc();
-            }
-        }
-        tv0Var.f30713n0.setVisibility(8);
-        if (obj.length() == 0 && tv0Var.W0 == null) {
-            z10 = false;
-        } else {
-            z10 = true;
-        }
-        tv0Var.U0 = z10;
-        tv0Var.post(new gr0(this, 2));
-        int i10 = tv0Var.f30708k0[0].F;
-        if (i10 == 1) {
-            pu0 pu0Var = tv0Var.f30700g0;
-            if (pu0Var != null) {
-                pu0Var.G(obj, true);
-            }
-        } else if (i10 == 3) {
-            pu0 pu0Var2 = tv0Var.f30704i0;
-            if (pu0Var2 != null) {
-                pu0Var2.G(obj, true);
-            }
-        } else if (i10 == 4) {
-            pu0 pu0Var3 = tv0Var.f30702h0;
-            if (pu0Var3 != null) {
-                pu0Var3.G(obj, true);
-            }
-        } else if (i10 == 7) {
-            ku0 ku0Var = tv0Var.f30706j0;
-            if (ku0Var != null) {
-                ku0Var.F(obj, true);
-            }
-        } else if (i10 == 11 && (ev0Var = tv0Var.S) != null) {
-            ev0Var.E(tv0Var.W0, obj);
-        }
+    public final boolean c() {
+        return !this.f30015a.C1;
     }
 }

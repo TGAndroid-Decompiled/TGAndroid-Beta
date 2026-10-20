@@ -48,15 +48,15 @@ import org.telegram.ui.ActionBar.n2;
 import org.telegram.ui.Cells.f4;
 import org.telegram.ui.Components.aa0;
 import org.telegram.ui.Components.bb;
-import org.telegram.ui.Components.bz0;
+import org.telegram.ui.Components.cz0;
 import org.telegram.ui.Components.f5;
 import org.telegram.ui.Components.fr;
 import org.telegram.ui.Components.gr;
 import org.telegram.ui.Components.h9;
-import org.telegram.ui.Components.hm0;
 import org.telegram.ui.Components.im0;
-import org.telegram.ui.Components.kw0;
-import org.telegram.ui.Components.nl0;
+import org.telegram.ui.Components.jm0;
+import org.telegram.ui.Components.lw0;
+import org.telegram.ui.Components.ol0;
 import org.telegram.ui.Components.qc;
 import org.telegram.ui.Components.ry;
 import org.telegram.ui.Components.w9;
@@ -84,7 +84,7 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
     public ei.d G0;
     public Runnable H0;
     public boolean I0;
-    public nl0 J0;
+    public ol0 J0;
     public final n2 K0;
     public v10 L0;
     public androidx.emoji2.text.p M0;
@@ -99,50 +99,50 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
     public int X;
     public boolean Y;
     public int Z;
-    public long f46281a0;
-    public TL_stories.TL_premium_boostsStatus f46282b0;
-    public ChannelBoostsController.CanApplyBoost f46283c0;
-    public j0 f46284d0;
-    public boolean f46285e0;
-    public boolean f46286f0;
-    public org.telegram.ui.Cells.u1 f46287g0;
-    public final int f46288h0;
-    public final ArrayList f46289i0;
-    public boolean f46290j0;
-    public int f46291k0;
-    public int f46292l0;
+    public long f46286a0;
+    public TL_stories.TL_premium_boostsStatus f46287b0;
+    public ChannelBoostsController.CanApplyBoost f46288c0;
+    public j0 f46289d0;
+    public boolean f46290e0;
+    public boolean f46291f0;
+    public org.telegram.ui.Cells.u1 f46292g0;
+    public final int f46293h0;
+    public final ArrayList f46294i0;
+    public boolean f46295j0;
+    public int f46296k0;
+    public int f46297l0;
     public int m0;
-    public int f46293n0;
-    public int f46294o0;
-    public int f46295p0;
-    public int f46296q0;
-    public int f46297r0;
-    public int f46298s0;
-    public int f46299t0;
-    public ArrayList f46300u0;
-    public boolean f46301v0;
-    public int f46302w0;
-    public i0 f46303x0;
-    public final HashSet f46304y0;
-    public final ArrayList f46305z0;
+    public int f46298n0;
+    public int f46299o0;
+    public int f46300p0;
+    public int f46301q0;
+    public int f46302r0;
+    public int f46303s0;
+    public int f46304t0;
+    public ArrayList f46305u0;
+    public boolean f46306v0;
+    public int f46307w0;
+    public i0 f46308x0;
+    public final HashSet f46309y0;
+    public final ArrayList f46310z0;
 
     public k0(int i10, int i11, Context context, n2 n2Var, d6 d6Var) {
         super(context, n2Var, false, w1(i10), d6Var);
         this.Z = -1;
-        this.f46286f0 = false;
-        this.f46289i0 = new ArrayList();
-        this.f46292l0 = -1;
+        this.f46291f0 = false;
+        this.f46294i0 = new ArrayList();
+        this.f46297l0 = -1;
         this.m0 = -1;
-        this.f46293n0 = -1;
-        this.f46294o0 = -1;
-        this.f46295p0 = -1;
-        this.f46296q0 = -1;
-        this.f46297r0 = -1;
-        this.f46298s0 = -1;
-        this.f46299t0 = -1;
-        this.f46302w0 = -1;
-        this.f46304y0 = new HashSet();
-        this.f46305z0 = new ArrayList();
+        this.f46298n0 = -1;
+        this.f46299o0 = -1;
+        this.f46300p0 = -1;
+        this.f46301q0 = -1;
+        this.f46302r0 = -1;
+        this.f46303s0 = -1;
+        this.f46304t0 = -1;
+        this.f46307w0 = -1;
+        this.f46309y0 = new HashSet();
+        this.f46310z0 = new ArrayList();
         this.A0 = new ArrayList();
         this.B0 = new ArrayList();
         this.C0 = new ArrayList();
@@ -150,10 +150,10 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
         this.I0 = false;
         this.R0 = 0;
         this.T0 = -4;
-        fixNavigationBar(h6.w0(h6.f21058h5, this.resourcesProvider));
+        fixNavigationBar(h6.w0(h6.f21061h5, this.resourcesProvider));
         this.K0 = n2Var;
         this.currentAccount = i11;
-        this.f46288h0 = i10;
+        this.f46293h0 = i10;
         O();
         N1();
         if (i10 == 2) {
@@ -190,7 +190,7 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
             textView.setOnClickListener(new u(this, 0));
             int dp = AndroidUtilities.dp(8.0f);
             int w02 = h6.w0(h6.Oh, d6Var);
-            int o10 = i0.a.o(h6.w0(h6.f20987d6, d6Var), 120);
+            int o10 = i0.a.o(h6.w0(h6.f20990d6, d6Var), 120);
             textView.setBackground(h6.j0(dp, dp, dp, dp, w02, o10, o10));
         }
         if (i10 == 32) {
@@ -260,7 +260,7 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
         for (int i10 = 0; i10 < arrayList.size(); i10++) {
             TLRPC.Chat chat = (TLRPC.Chat) arrayList.get(i10);
             MessagesController.getInstance(k0Var.currentAccount).putChat(chat, false);
-            MessagesController.getInstance(k0Var.currentAccount).deleteParticipantFromChat(chat.f20273id, user);
+            MessagesController.getInstance(k0Var.currentAccount).deleteParticipantFromChat(chat.f20276id, user);
         }
     }
 
@@ -276,22 +276,22 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
 
     public static void S(k0 k0Var, ArrayList arrayList, int i10, TLRPC.TL_messages_inactiveChats tL_messages_inactiveChats) {
         int i11;
-        im0 im0Var = k0Var.d;
+        jm0 jm0Var = k0Var.d;
         ArrayList arrayList2 = k0Var.A0;
         arrayList2.clear();
-        ArrayList arrayList3 = k0Var.f46305z0;
+        ArrayList arrayList3 = k0Var.f46310z0;
         arrayList3.clear();
         arrayList2.addAll(arrayList);
         for (int i12 = 0; i12 < i10; i12++) {
             arrayList3.add(tL_messages_inactiveChats.chats.get(i12));
         }
         k0Var.I0 = false;
-        k0Var.J0.b(k0Var.f46293n0 + 4);
+        k0Var.J0.b(k0Var.f46298n0 + 4);
         int i13 = 0;
         while (true) {
-            if (i13 < im0Var.getChildCount()) {
-                if (im0Var.getChildAt(i13) instanceof j0) {
-                    i11 = im0Var.getChildAt(i13).getTop();
+            if (i13 < jm0Var.getChildCount()) {
+                if (jm0Var.getChildAt(i13) instanceof j0) {
+                    i11 = jm0Var.getChildAt(i13).getTop();
                     break;
                 }
                 i13++;
@@ -301,18 +301,18 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
             }
         }
         k0Var.N1();
-        if (k0Var.f46292l0 >= 0 && i11 != 0) {
-            ((s4.b0) im0Var.getLayoutManager()).h1(k0Var.f46292l0 + 1, i11);
+        if (k0Var.f46297l0 >= 0 && i11 != 0) {
+            ((s4.b0) jm0Var.getLayoutManager()).h1(k0Var.f46297l0 + 1, i11);
         }
         if (k0Var.M0 == null) {
-            k0Var.M0 = v1(k0Var.f46288h0, k0Var.currentAccount);
+            k0Var.M0 = v1(k0Var.f46293h0, k0Var.currentAccount);
         }
         int max = Math.max(arrayList3.size(), k0Var.M0.f3115b);
-        i0 i0Var = k0Var.f46303x0;
+        i0 i0Var = k0Var.f46308x0;
         if (i0Var != null) {
             i0Var.g(max, false);
-            k0Var.f46303x0.setBagePosition(max / k0Var.M0.f3116c);
-            i0 i0Var2 = k0Var.f46303x0;
+            k0Var.f46308x0.setBagePosition(max / k0Var.M0.f3116c);
+            i0 i0Var2 = k0Var.f46308x0;
             i0Var2.H = true;
             i0Var2.requestLayout();
         }
@@ -324,22 +324,22 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
 
     public static void T(k0 k0Var) {
         long j10;
-        int i10 = k0Var.f46288h0;
-        HashSet hashSet = k0Var.f46304y0;
-        if (k0Var.f46290j0) {
+        int i10 = k0Var.f46293h0;
+        HashSet hashSet = k0Var.f46309y0;
+        if (k0Var.f46295j0) {
             n2 n2Var = k0Var.K0;
             if (n2Var != 0) {
                 ?? obj = new Object();
-                obj.f21553a = true;
+                obj.f21556a = true;
                 n2Var.showAsSheet(new PremiumPreviewFragment(0, "invite_privacy"), obj);
             } else {
                 return;
             }
         } else if (i10 == 19 || i10 == 32 || k0Var.z1()) {
-            ChannelBoostsController.CanApplyBoost canApplyBoost = k0Var.f46283c0;
+            ChannelBoostsController.CanApplyBoost canApplyBoost = k0Var.f46288c0;
             if (canApplyBoost.canApply) {
-                k0Var.E0.f46383r.callOnClick();
-                ChannelBoostsController.CanApplyBoost canApplyBoost2 = k0Var.f46283c0;
+                k0Var.E0.f46388r.callOnClick();
+                ChannelBoostsController.CanApplyBoost canApplyBoost2 = k0Var.f46288c0;
                 if (canApplyBoost2.alreadyActive && canApplyBoost2.boostedNow) {
                     w wVar = new w(k0Var, 1);
                     if (canApplyBoost2.needSelector) {
@@ -351,8 +351,8 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
                     return;
                 }
                 return;
-            } else if (canApplyBoost.alreadyActive && ug.r.i() && !k0Var.f46283c0.isMaxLvl) {
-                ug.i.i(k0Var.f46281a0, k0Var);
+            } else if (canApplyBoost.alreadyActive && ug.r.i() && !k0Var.f46288c0.isMaxLvl) {
+                ug.i.i(k0Var.f46286a0, k0Var);
                 return;
             } else {
                 k0Var.dismiss();
@@ -365,7 +365,7 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
                     ArrayList arrayList = new ArrayList();
                     Iterator it = hashSet.iterator();
                     while (it.hasNext()) {
-                        k0Var.f46289i0.add((TLRPC.Chat) it.next());
+                        k0Var.f46294i0.add((TLRPC.Chat) it.next());
                     }
                     k0Var.E1(arrayList);
                 } else if (i10 == 5) {
@@ -377,7 +377,7 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
                     }
                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(k0Var.getContext(), 0, k0Var.resourcesProvider);
                     String formatPluralString = LocaleController.formatPluralString("LeaveCommunities", arrayList2.size(), new Object[0]);
-                    b2 b2Var = alertDialog$Builder.f20602a;
+                    b2 b2Var = alertDialog$Builder.f20605a;
                     b2Var.R = formatPluralString;
                     if (arrayList2.size() == 1) {
                         b2Var.T = AndroidUtilities.replaceTags(LocaleController.formatString("ChannelLeaveAlertWithName", R.string.ChannelLeaveAlertWithName, ((TLRPC.Chat) arrayList2.get(0)).title));
@@ -389,7 +389,7 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
                     b2Var.show();
                     TextView textView = (TextView) b2Var.d(-1);
                     if (textView != null) {
-                        textView.setTextColor(h6.w0(h6.f21225q7, k0Var.resourcesProvider));
+                        textView.setTextColor(h6.w0(h6.f21228q7, k0Var.resourcesProvider));
                     }
                 }
             }
@@ -424,7 +424,7 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
                     arrayList.add(LocaleController.formatString("InactiveChatSignature", R.string.InactiveChatSignature, LocaleController.formatPluralString("Members", chat.participants_count, new Object[0]), formatPluralString));
                 }
             }
-            AndroidUtilities.runOnUIThread(new bz0(k0Var, arrayList, min, tL_messages_inactiveChats, 21, false));
+            AndroidUtilities.runOnUIThread(new cz0(k0Var, arrayList, min, tL_messages_inactiveChats, 21, false));
         }
     }
 
@@ -435,7 +435,7 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
     public static void W(k0 k0Var, Context context) {
         int i10;
         n2 n2Var = k0Var.K0;
-        int i11 = k0Var.f46288h0;
+        int i11 = k0Var.f46293h0;
         if (i11 != 11 && i11 != 34) {
             if (i11 != 19 && i11 != 32 && !k0Var.z1()) {
                 if (i11 != 18 && i11 != 20 && i11 != 24 && i11 != 25 && i11 != 26 && i11 != 29 && i11 != 22 && i11 != 23 && i11 != 21 && i11 != 27 && i11 != 28 && i11 != 30 && i11 != 35) {
@@ -457,15 +457,15 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
                 k0Var.dismiss();
                 return;
             }
-            ChannelBoostsController.CanApplyBoost canApplyBoost = k0Var.f46283c0;
+            ChannelBoostsController.CanApplyBoost canApplyBoost = k0Var.f46288c0;
             if (canApplyBoost.empty) {
                 if (UserConfig.getInstance(k0Var.currentAccount).isPremium() && ug.r.i()) {
-                    ug.i.i(k0Var.f46281a0, k0Var);
+                    ug.i.i(k0Var.f46286a0, k0Var);
                     return;
                 }
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, k0Var.resourcesProvider);
                 String string = LocaleController.getString(R.string.PremiumNeeded);
-                b2 b2Var = alertDialog$Builder.f20602a;
+                b2 b2Var = alertDialog$Builder.f20605a;
                 b2Var.R = string;
                 if (k0Var.y1()) {
                     i10 = R.string.PremiumNeededForBoostingGroup;
@@ -481,10 +481,10 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
             boolean z10 = canApplyBoost.canApply;
             if (z10 && canApplyBoost.replaceDialogId == 0) {
                 if (canApplyBoost.needSelector && ug.r.i()) {
-                    k0Var.f46286f0 = true;
-                    k0Var.f46303x0.f24283d0 = false;
-                    n2 n2Var2 = k0Var.f24897n;
-                    ChannelBoostsController.CanApplyBoost canApplyBoost2 = k0Var.f46283c0;
+                    k0Var.f46291f0 = true;
+                    k0Var.f46308x0.f24286d0 = false;
+                    n2 n2Var2 = k0Var.f24882n;
+                    ChannelBoostsController.CanApplyBoost canApplyBoost2 = k0Var.f46288c0;
                     ug.r0 r0Var = new ug.r0(n2Var2, canApplyBoost2.myBoosts, canApplyBoost2.currentChat);
                     r0Var.show();
                     r0Var.setOnHideListener(new ai.bb(k0Var, 12));
@@ -498,11 +498,11 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
                 frameLayout.addView(w9Var, z5.c(60.0f, 60));
                 frameLayout.setClipChildren(false);
                 Paint paint = new Paint(1);
-                paint.setColor(h6.x0(null, h6.f21058h5, false));
+                paint.setColor(h6.x0(null, h6.f21061h5, false));
                 frameLayout.addView(new g6(k0Var.getContext(), paint, k0Var.getContext().getDrawable(R.drawable.filled_limit_boost)), z5.d(28, 28.0f, 0, 34.0f, 34.0f, 0.0f, 0.0f));
                 ImageView imageView = new ImageView(k0Var.getContext());
                 imageView.setImageResource(R.drawable.msg_arrow_avatar);
-                imageView.setColorFilter(h6.x0(null, h6.f21150m6, false));
+                imageView.setColorFilter(h6.x0(null, h6.f21153m6, false));
                 frameLayout.addView(imageView, z5.e(24, 24, 17));
                 w9 w9Var2 = new w9(k0Var.getContext());
                 w9Var2.setRoundRadius(AndroidUtilities.dp(30.0f));
@@ -512,15 +512,15 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
                 frameLayout2.setClipChildren(false);
                 TextView textView = new TextView(context);
                 textView.setLetterSpacing(0.025f);
-                textView.setTextColor(h6.x0(null, h6.f21093j5, false));
+                textView.setTextColor(h6.x0(null, h6.f21096j5, false));
                 textView.setTextSize(1, 16.0f);
                 frameLayout2.addView(textView, z5.t(-1, -2, 0, 24, 80, 24, 0));
                 h9 h9Var = new h9((d6) null);
-                TLRPC.Chat chat = MessagesController.getInstance(k0Var.currentAccount).getChat(Long.valueOf(-k0Var.f46283c0.replaceDialogId));
+                TLRPC.Chat chat = MessagesController.getInstance(k0Var.currentAccount).getChat(Long.valueOf(-k0Var.f46288c0.replaceDialogId));
                 h9Var.k(k0Var.currentAccount, chat);
                 w9Var.e(chat, h9Var);
                 h9 h9Var2 = new h9((d6) null);
-                TLRPC.Chat chat2 = MessagesController.getInstance(k0Var.currentAccount).getChat(Long.valueOf(-k0Var.f46281a0));
+                TLRPC.Chat chat2 = MessagesController.getInstance(k0Var.currentAccount).getChat(Long.valueOf(-k0Var.f46286a0));
                 h9Var2.k(k0Var.currentAccount, chat2);
                 w9Var2.e(chat2, h9Var2);
                 AlertDialog$Builder alertDialog$Builder2 = new AlertDialog$Builder(context);
@@ -542,7 +542,7 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
         String str;
         qc J;
         int i10;
-        HashSet hashSet = k0Var.f46304y0;
+        HashSet hashSet = k0Var.f46309y0;
         if (view instanceof org.telegram.ui.Cells.n) {
             org.telegram.ui.Cells.n nVar = (org.telegram.ui.Cells.n) view;
             TLRPC.Chat currentChannel = nVar.getCurrentChannel();
@@ -551,15 +551,15 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
             } else {
                 hashSet.add(currentChannel);
             }
-            nVar.f22620r.a(hashSet.contains(currentChannel), true);
+            nVar.f22623r.a(hashSet.contains(currentChannel), true);
             k0Var.L1();
         } else if (view instanceof f4) {
-            if (k0Var.Y || ((i10 = k0Var.f46288h0) != 11 && i10 != 34)) {
+            if (k0Var.Y || ((i10 = k0Var.f46293h0) != 11 && i10 != 34)) {
                 f4 f4Var = (f4) view;
                 Object object = f4Var.getObject();
                 if (f4Var.O) {
                     if (object instanceof TLRPC.User) {
-                        long j10 = ((TLRPC.User) object).f20420id;
+                        long j10 = ((TLRPC.User) object).f20423id;
                         int i11 = -k0Var.T0;
                         k0Var.T0 = i11;
                         AndroidUtilities.shakeViewSpring(f4Var, i11);
@@ -741,7 +741,7 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
     @Override
     public final CharSequence A() {
         int i10;
-        int i11 = this.f46288h0;
+        int i11 = this.f46293h0;
         if (i11 != 11) {
             if (i11 != 34) {
                 if (i11 != 35) {
@@ -783,14 +783,14 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
 
     public final void A1() {
         int i10;
-        i0 i0Var = this.f46303x0;
-        TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = this.f46282b0;
+        i0 i0Var = this.f46308x0;
+        TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = this.f46287b0;
         int i11 = tL_premium_boostsStatus.boosts;
         int i12 = tL_premium_boostsStatus.next_level_boosts - tL_premium_boostsStatus.current_level_boosts;
-        i0Var.f24279b++;
-        i0Var.f24277a = w7.r.a((i11 - i10) / i12, 0.0f, 1.0f);
+        i0Var.f24282b++;
+        i0Var.f24280a = w7.r.a((i11 - i10) / i12, 0.0f, 1.0f);
         i0Var.W = true;
-        i0Var.f24278a0 = i0Var.f24292n;
+        i0Var.f24281a0 = i0Var.f24295n;
         i0Var.g(i11, true);
         i0Var.I.requestLayout();
         i0Var.requestLayout();
@@ -811,7 +811,7 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
         int i20;
         int i21;
         int i22;
-        NotificationCenter.getInstance(this.currentAccount).postNotificationNameOnUIThread(NotificationCenter.chatWasBoostedByUser, this.f46282b0, this.f46283c0.copy(), Long.valueOf(this.f46281a0));
+        NotificationCenter.getInstance(this.currentAccount).postNotificationNameOnUIThread(NotificationCenter.chatWasBoostedByUser, this.f46287b0, this.f46288c0.copy(), Long.valueOf(this.f46286a0));
         ei.d dVar = this.S0;
         if (dVar != null) {
             TLRPC.ChatFull u12 = u1();
@@ -826,48 +826,48 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
         TransitionSet transitionSet = new TransitionSet();
         transitionSet.addTransition(new org.telegram.ui.ActionBar.m0(5));
         transitionSet.setOrdering(0);
-        TransitionManager.beginDelayedTransition(this.f46284d0, transitionSet);
-        j0 j0Var = this.f46284d0;
-        ug.b bVar = j0Var.f46273c;
-        int indexOfChild = j0Var.indexOfChild(j0Var.f46272b);
+        TransitionManager.beginDelayedTransition(this.f46289d0, transitionSet);
+        j0 j0Var = this.f46289d0;
+        ug.b bVar = j0Var.f46278c;
+        int indexOfChild = j0Var.indexOfChild(j0Var.f46277b);
         k0 k0Var = j0Var.e;
-        if (k0Var.f46285e0) {
+        if (k0Var.f46290e0) {
             int indexOfChild2 = j0Var.indexOfChild(j0Var.d);
             j0Var.removeView(j0Var.d);
-            j0Var.d.removeView(j0Var.f46271a);
+            j0Var.d.removeView(j0Var.f46276a);
             j0Var.d.removeView(bVar);
             LinearLayout linearLayout = new LinearLayout(j0Var.getContext());
             j0Var.d = linearLayout;
             linearLayout.setOrientation(0);
             j0Var.d.setWeightSum(1.0f);
-            j0Var.d.addView(j0Var.f46271a, z5.o(-2, -2, 1.0f, 0));
+            j0Var.d.addView(j0Var.f46276a, z5.o(-2, -2, 1.0f, 0));
             j0Var.d.addView(bVar, z5.t(-2, -2, 48, 0, 2, 0, 0));
             j0Var.addView(j0Var.d, indexOfChild2, z5.t(-2, -2, 1, 25, 22, 12, 9));
         } else {
-            int indexOfChild3 = j0Var.indexOfChild(j0Var.f46271a);
-            j0Var.removeView(j0Var.f46271a);
+            int indexOfChild3 = j0Var.indexOfChild(j0Var.f46276a);
+            j0Var.removeView(j0Var.f46276a);
             TextView textView = new TextView(j0Var.getContext());
-            j0Var.f46271a = textView;
+            j0Var.f46276a = textView;
             textView.setTypeface(AndroidUtilities.bold());
-            j0Var.f46271a.setTextSize(1, 20.0f);
-            j0Var.f46271a.setTextColor(h6.w0(h6.G6, k0Var.resourcesProvider));
-            j0Var.f46271a.setGravity(17);
-            j0Var.addView(j0Var.f46271a, indexOfChild3, z5.t(-2, -2, 1, 0, 22, 0, 0));
+            j0Var.f46276a.setTextSize(1, 20.0f);
+            j0Var.f46276a.setTextColor(h6.w0(h6.G6, k0Var.resourcesProvider));
+            j0Var.f46276a.setGravity(17);
+            j0Var.addView(j0Var.f46276a, indexOfChild3, z5.t(-2, -2, 1, 0, 22, 0, 0));
         }
-        j0Var.removeView(j0Var.f46272b);
+        j0Var.removeView(j0Var.f46277b);
         TextView textView2 = new TextView(j0Var.getContext());
-        j0Var.f46272b = textView2;
+        j0Var.f46277b = textView2;
         textView2.setTextSize(1, 14.0f);
-        TextView textView3 = j0Var.f46272b;
-        textView3.setLineSpacing(textView3.getLineSpacingExtra(), j0Var.f46272b.getLineSpacingMultiplier() * 1.1f);
-        j0Var.f46272b.setGravity(1);
-        j0Var.f46272b.setTextColor(h6.w0(h6.G6, k0Var.resourcesProvider));
-        j0Var.addView(j0Var.f46272b, indexOfChild, z5.t(-2, -2, 1, 24, -2, 24, 17));
-        this.f46284d0.f46271a.setText(s1());
-        TextView textView4 = this.f46284d0.f46272b;
+        TextView textView3 = j0Var.f46277b;
+        textView3.setLineSpacing(textView3.getLineSpacingExtra(), j0Var.f46277b.getLineSpacingMultiplier() * 1.1f);
+        j0Var.f46277b.setGravity(1);
+        j0Var.f46277b.setTextColor(h6.w0(h6.G6, k0Var.resourcesProvider));
+        j0Var.addView(j0Var.f46277b, indexOfChild, z5.t(-2, -2, 1, 24, -2, 24, 17));
+        this.f46289d0.f46276a.setText(s1());
+        TextView textView4 = this.f46289d0.f46277b;
         MessagesController messagesController = MessagesController.getInstance(this.currentAccount);
         boolean y12 = y1();
-        int i23 = this.f46288h0;
+        int i23 = this.f46293h0;
         if (i23 == 20) {
             if (y12) {
                 i22 = R.string.GroupNeedBoostsForColorDescription;
@@ -969,10 +969,10 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
             z00Var.performHapticFeedback(3);
         } catch (Exception unused) {
         }
-        this.f46284d0.f46273c.a(this.f46283c0.boostCount, true);
+        this.f46289d0.f46278c.a(this.f46288c0.boostCount, true);
         this.d.x0(0);
         if (i23 == 32) {
-            this.f46284d0.f46273c.setVisibility(8);
+            this.f46289d0.f46278c.setVisibility(8);
         }
         return true;
     }
@@ -980,18 +980,18 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
     public final void E1(ArrayList arrayList) {
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getContext(), 0, this.resourcesProvider);
         String formatPluralString = LocaleController.formatPluralString("RevokeLinks", arrayList.size(), new Object[0]);
-        b2 b2Var = alertDialog$Builder.f20602a;
+        b2 b2Var = alertDialog$Builder.f20605a;
         b2Var.R = formatPluralString;
         if (arrayList.size() == 1) {
             TLRPC.Chat chat = (TLRPC.Chat) arrayList.get(0);
-            if (this.f46301v0) {
+            if (this.f46306v0) {
                 int i10 = R.string.RevokeLinkAlertChannel;
                 b2Var.T = AndroidUtilities.replaceTags(LocaleController.formatString("RevokeLinkAlertChannel", i10, MessagesController.getInstance(this.currentAccount).linkPrefix + "/" + ChatObject.getPublicUsername(chat), chat.title));
             } else {
                 int i11 = R.string.RevokeLinkAlert;
                 b2Var.T = AndroidUtilities.replaceTags(LocaleController.formatString("RevokeLinkAlert", i11, MessagesController.getInstance(this.currentAccount).linkPrefix + "/" + ChatObject.getPublicUsername(chat), chat.title));
             }
-        } else if (this.f46301v0) {
+        } else if (this.f46306v0) {
             b2Var.T = AndroidUtilities.replaceTags(LocaleController.formatString("RevokeLinksAlertChannel", R.string.RevokeLinksAlertChannel, new Object[0]));
         } else {
             b2Var.T = AndroidUtilities.replaceTags(LocaleController.formatString("RevokeLinksAlert", R.string.RevokeLinksAlert, new Object[0]));
@@ -1001,7 +1001,7 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
         b2Var.show();
         TextView textView = (TextView) b2Var.d(-1);
         if (textView != null) {
-            textView.setTextColor(h6.w0(h6.f21225q7, this.resourcesProvider));
+            textView.setTextColor(h6.w0(h6.f21228q7, this.resourcesProvider));
         }
     }
 
@@ -1013,7 +1013,7 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
         if (!TextUtils.isEmpty(this.U0)) {
             str = this.U0;
         } else {
-            TLRPC.ChatFull chatFull = MessagesController.getInstance(this.currentAccount).getChatFull(this.O0.f20273id);
+            TLRPC.ChatFull chatFull = MessagesController.getInstance(this.currentAccount).getChatFull(this.O0.f20276id);
             if (chatFull == null) {
                 dismiss();
                 return;
@@ -1032,13 +1032,13 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
         String str2 = str;
         ArrayList arrayList2 = new ArrayList();
         ArrayList arrayList3 = new ArrayList();
-        HashSet hashSet = this.f46304y0;
+        HashSet hashSet = this.f46309y0;
         Iterator it = hashSet.iterator();
         while (it.hasNext()) {
             TLRPC.User user = (TLRPC.User) it.next();
-            long sendPaidMessagesStars = MessagesController.getInstance(this.currentAccount).getSendPaidMessagesStars(user.f20420id);
+            long sendPaidMessagesStars = MessagesController.getInstance(this.currentAccount).getSendPaidMessagesStars(user.f20423id);
             if (sendPaidMessagesStars <= 0) {
-                sendPaidMessagesStars = DialogObject.getMessagesStarsPrice(MessagesController.getInstance(this.currentAccount).isUserContactBlocked(user.f20420id));
+                sendPaidMessagesStars = DialogObject.getMessagesStarsPrice(MessagesController.getInstance(this.currentAccount).isUserContactBlocked(user.f20423id));
             }
             if (sendPaidMessagesStars >= 0) {
                 arrayList = arrayList2;
@@ -1055,7 +1055,7 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
             while (i10 < size) {
                 Object obj = arrayList2.get(i10);
                 i10++;
-                arrayList4.add(Long.valueOf(((TLRPC.User) obj).f20420id));
+                arrayList4.add(Long.valueOf(((TLRPC.User) obj).f20423id));
             }
             f5.b0(this.currentAccount, arrayList4, 1, new ig.l0(this, 17));
             return;
@@ -1067,11 +1067,11 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
             if (hashMap2 == null) {
                 longValue = 0;
             } else {
-                longValue = ((Long) hashMap2.get(Long.valueOf(user2.f20420id))).longValue();
+                longValue = ((Long) hashMap2.get(Long.valueOf(user2.f20423id))).longValue();
             }
             boolean z12 = z10;
             Iterator it3 = it2;
-            SendMessagesHelper.SendMessageParams of2 = SendMessagesHelper.SendMessageParams.of(str2, user2.f20420id, null, null, null, true, null, null, null, false, 0, 0, null, false);
+            SendMessagesHelper.SendMessageParams of2 = SendMessagesHelper.SendMessageParams.of(str2, user2.f20423id, null, null, null, true, null, null, null, false, 0, 0, null, false);
             of2.payStars = longValue;
             SendMessagesHelper.getInstance(this.currentAccount).sendMessage(of2);
             if (of2.payStars > 0) {
@@ -1088,9 +1088,9 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
     }
 
     @Override
-    public final void G(kw0 kw0Var) {
+    public final void G(lw0 lw0Var) {
         int i10;
-        Context context = kw0Var.getContext();
+        Context context = lw0Var.getContext();
         ei.d dVar = new ei.d(context, this.resourcesProvider, true);
         this.G0 = dVar;
         dVar.setFlickeringLoading(true);
@@ -1099,41 +1099,41 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
         a0 a0Var = new a0(this, context, this.resourcesProvider);
         this.E0 = a0Var;
         b6.b(a0Var, 0.02f, 1.2f);
-        if (!this.f24898r && (i10 = this.f46288h0) != 18 && i10 != 20 && i10 != 24 && i10 != 25 && i10 != 26 && i10 != 29 && i10 != 22 && i10 != 23 && i10 != 21 && i10 != 27 && i10 != 28 && i10 != 30 && i10 != 35) {
+        if (!this.f24883r && (i10 = this.f46293h0) != 18 && i10 != 20 && i10 != 24 && i10 != 25 && i10 != 26 && i10 != 29 && i10 != 22 && i10 != 23 && i10 != 21 && i10 != 27 && i10 != 28 && i10 != 30 && i10 != 35) {
             v10 v10Var = new v10(this, context, 12);
             this.L0 = v10Var;
-            v10Var.setBackgroundColor(h6.w0(h6.f21058h5, this.resourcesProvider));
-            kw0Var.addView(this.L0, z5.d(-1, 72.0f, 80, 0.0f, 0.0f, 0.0f, 0.0f));
+            v10Var.setBackgroundColor(h6.w0(h6.f21061h5, this.resourcesProvider));
+            lw0Var.addView(this.L0, z5.d(-1, 72.0f, 80, 0.0f, 0.0f, 0.0f, 0.0f));
         }
         a0 a0Var2 = this.E0;
         float f7 = (this.backgroundPaddingLeft / AndroidUtilities.density) + 16.0f;
-        kw0Var.addView(a0Var2, z5.d(-1, 48.0f, 80, f7, 0.0f, f7, 12.0f));
+        lw0Var.addView(a0Var2, z5.d(-1, 48.0f, 80, f7, 0.0f, f7, 12.0f));
         int dp = AndroidUtilities.dp(72.0f);
-        im0 im0Var = this.d;
-        im0Var.setPadding(0, 0, 0, dp);
-        im0Var.setClipToPadding(false);
-        im0Var.setClipChildren(false);
-        im0Var.setOnItemClickListener(new wa(this, 20));
-        im0Var.setOnItemLongClickListener(new x(this, 2));
-        this.E0.f46383r.setOnClickListener(new qg.n(3, this, context));
+        jm0 jm0Var = this.d;
+        jm0Var.setPadding(0, 0, 0, dp);
+        jm0Var.setClipToPadding(false);
+        jm0Var.setClipChildren(false);
+        jm0Var.setOnItemClickListener(new wa(this, 20));
+        jm0Var.setOnItemLongClickListener(new x(this, 2));
+        this.E0.f46388r.setOnClickListener(new qg.n(3, this, context));
         this.E0.e.setOnClickListener(new u(this, 3));
-        this.J0 = new nl0(im0Var, true);
+        this.J0 = new ol0(jm0Var, true);
     }
 
     public final void G1(TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus, boolean z10) {
-        this.f46282b0 = tL_premium_boostsStatus;
-        this.f46285e0 = z10;
+        this.f46287b0 = tL_premium_boostsStatus;
+        this.f46290e0 = z10;
         N1();
     }
 
     public final void H1(ChannelBoostsController.CanApplyBoost canApplyBoost) {
-        this.f46283c0 = canApplyBoost;
+        this.f46288c0 = canApplyBoost;
         L1();
         M1();
     }
 
     public final void I1(long j10) {
-        this.f46281a0 = j10;
+        this.f46286a0 = j10;
         N1();
     }
 
@@ -1150,7 +1150,7 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
         this.B0 = new ArrayList(arrayList);
         this.C0 = arrayList2;
         this.D0 = arrayList3;
-        HashSet hashSet = this.f46304y0;
+        HashSet hashSet = this.f46309y0;
         hashSet.clear();
         if (this.Y) {
             ArrayList arrayList4 = this.B0;
@@ -1160,14 +1160,14 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
                 Object obj = arrayList4.get(i10);
                 i10++;
                 TLRPC.User user = (TLRPC.User) obj;
-                if (arrayList2 == null || !arrayList2.contains(Long.valueOf(user.f20420id))) {
+                if (arrayList2 == null || !arrayList2.contains(Long.valueOf(user.f20423id))) {
                     hashSet.add(user);
                 }
             }
         }
         N1();
         L1();
-        int i11 = this.f46288h0;
+        int i11 = this.f46293h0;
         if ((i11 == 11 || i11 == 34) && !MessagesController.getInstance(this.currentAccount).premiumFeaturesBlocked()) {
             if (((arrayList3 != null && !arrayList3.isEmpty()) || (arrayList2 != null && arrayList2.size() >= this.B0.size())) && arrayList3 != null && arrayList2 != null) {
                 if ((arrayList3.size() == 1 && arrayList2.size() == 1) || arrayList2.size() >= arrayList3.size()) {
@@ -1179,9 +1179,9 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
                     if (v10Var != null && v10Var.getParent() != null) {
                         ((ViewGroup) this.L0.getParent()).removeView(this.L0);
                     }
-                    im0 im0Var = this.d;
-                    if (im0Var != null) {
-                        im0Var.setPadding(0, 0, 0, 0);
+                    jm0 jm0Var = this.d;
+                    if (jm0Var != null) {
+                        jm0Var.setPadding(0, 0, 0, 0);
                     }
                 }
             }
@@ -1198,14 +1198,14 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
         String str2;
         int i15;
         int i16;
-        this.f46300u0 = new ArrayList();
-        TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = this.f46282b0;
+        this.f46305u0 = new ArrayList();
+        TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = this.f46287b0;
         if (tL_premium_boostsStatus != null) {
             i10 = tL_premium_boostsStatus.level + 1;
         } else {
             i10 = 1;
         }
-        if (this.f46288h0 == 31) {
+        if (this.f46293h0 == 31) {
             i10 = 1;
         }
         MessagesController messagesController = MessagesController.getInstance(this.currentAccount);
@@ -1241,11 +1241,11 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
                     arrayList2.add(f0.a(R.drawable.menu_feature_translate, R.string.BoostFeatureAutotranslation));
                 }
                 f0 b10 = f0.b(R.drawable.menu_feature_stories, i10, "BoostFeatureStoriesPerDay");
-                b10.f46248f = true;
+                b10.f46253f = true;
                 arrayList2.add(b10);
                 if (!y12) {
                     f0 b11 = f0.b(R.drawable.menu_feature_reactions, i10, "BoostFeatureCustomReaction");
-                    b11.f46248f = true;
+                    b11.f46253f = true;
                     arrayList2.add(b11);
                 }
                 MessagesController.PeerColors peerColors3 = messagesController2.peerColors;
@@ -1324,14 +1324,14 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
                     f0 f0Var = (f0) arrayList.get(i22);
                     f0 f0Var2 = (f0) arrayList2.get(i22);
                     int i23 = f0Var.e;
-                    if (f0Var2 != null && ((f0Var.f46248f && i23 > 2) || (f0Var.f46245a == f0Var2.f46245a && f0Var.f46246b == f0Var2.f46246b && TextUtils.equals(f0Var.f46247c, f0Var2.f46247c) && TextUtils.equals(f0Var.d, f0Var2.d) && i23 == f0Var2.e))) {
+                    if (f0Var2 != null && ((f0Var.f46253f && i23 > 2) || (f0Var.f46250a == f0Var2.f46250a && f0Var.f46251b == f0Var2.f46251b && TextUtils.equals(f0Var.f46252c, f0Var2.f46252c) && TextUtils.equals(f0Var.d, f0Var2.d) && i23 == f0Var2.e))) {
                     }
                 }
                 i10++;
             }
-            ArrayList arrayList3 = this.f46300u0;
+            ArrayList arrayList3 = this.f46305u0;
             arrayList3.add(new e0(i10, arrayList3.isEmpty()));
-            this.f46300u0.addAll(arrayList2);
+            this.f46305u0.addAll(arrayList2);
             arrayList = arrayList2;
             i10++;
         }
@@ -1339,14 +1339,14 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
 
     public final void L1() {
         int i10;
-        if (this.f46290j0) {
+        if (this.f46295j0) {
             this.E0.b(LocaleController.getString(R.string.InvitePremiumBlockedSubscribe), false, false);
             return;
         }
-        int i11 = this.f46288h0;
+        int i11 = this.f46293h0;
         if (i11 != 19 && i11 != 32 && !z1()) {
             String str = null;
-            HashSet hashSet = this.f46304y0;
+            HashSet hashSet = this.f46309y0;
             if (i11 != 11 && i11 != 34) {
                 if (hashSet.size() > 0) {
                     if (i11 == 2) {
@@ -1370,10 +1370,10 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
                 gr grVar2 = a0Var2.G;
                 int i12 = h6.Oh;
                 int i13 = h6.Sh;
-                fr frVar = grVar2.f26680a;
+                fr frVar = grVar2.f26651a;
                 frVar.v = i12;
-                frVar.f26359w = i13;
-                frVar.f26342b = 0.8f;
+                frVar.f26358w = i13;
+                frVar.f26341b = 0.8f;
                 a0Var2.setClipChildren(false);
                 a0Var2.addView(a0Var2.G, z5.e(-1, 24, 16));
             }
@@ -1385,11 +1385,11 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
                 this.E0.b(LocaleController.getString(R.string.ActionSkip), true, true);
             }
             gr grVar3 = this.E0.G;
-            grVar3.f26680a.c(hashSet.size(), true);
+            grVar3.f26651a.c(hashSet.size(), true);
             this.E0.invalidate();
             return;
         }
-        ChannelBoostsController.CanApplyBoost canApplyBoost = this.f46283c0;
+        ChannelBoostsController.CanApplyBoost canApplyBoost = this.f46288c0;
         boolean z10 = canApplyBoost.canApply;
         if ((z10 || canApplyBoost.empty) && !canApplyBoost.boostedNow && !canApplyBoost.alreadyActive) {
             if (canApplyBoost.isMaxLvl) {
@@ -1443,11 +1443,11 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
         int i10;
         int i11;
         String string;
-        if (this.f46290j0) {
+        if (this.f46295j0) {
             this.E0.b(LocaleController.getString(R.string.InvitePremiumBlockedSubscribe), false, false);
             return;
         }
-        int i12 = this.f46288h0;
+        int i12 = this.f46293h0;
         if (i12 != 19 && i12 != 32 && !z1()) {
             if (i12 != 18 && i12 != 20 && i12 != 24 && i12 != 25 && i12 != 26 && i12 != 29 && i12 != 22 && i12 != 23 && i12 != 21 && i12 != 27 && i12 != 28 && i12 != 30 && i12 != 35) {
                 if (!UserConfig.getInstance(this.currentAccount).isPremium() && !MessagesController.getInstance(this.currentAccount).premiumFeaturesBlocked() && !this.N0) {
@@ -1469,19 +1469,19 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
                             }
                         }
                         a0 a0Var = this.E0;
-                        a0Var.f46385w.f31485p = null;
-                        a0Var.f46387y.setVisibility(8);
+                        a0Var.f46390w.f31436p = null;
+                        a0Var.f46392y.setVisibility(8);
                         return;
                     }
                     a0 a0Var2 = this.E0;
-                    a0Var2.f46385w.f31485p = null;
-                    a0Var2.f46387y.setVisibility(8);
+                    a0Var2.f46390w.f31436p = null;
+                    a0Var2.f46392y.setVisibility(8);
                     return;
                 }
                 this.E0.d.setText(LocaleController.getString(R.string.OK));
                 a0 a0Var3 = this.E0;
-                a0Var3.f46385w.f31485p = null;
-                a0Var3.f46387y.setVisibility(8);
+                a0Var3.f46390w.f31436p = null;
+                a0Var3.f46392y.setVisibility(8);
                 return;
             }
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("d ");
@@ -1490,7 +1490,7 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
             this.E0.d.setText(spannableStringBuilder);
         } else if (ug.r.i()) {
             p0 p0Var = this.E0.d;
-            ChannelBoostsController.CanApplyBoost canApplyBoost = this.f46283c0;
+            ChannelBoostsController.CanApplyBoost canApplyBoost = this.f46288c0;
             if (canApplyBoost != null && canApplyBoost.alreadyActive) {
                 string = LocaleController.getString(R.string.BoostingBoostAgain);
             } else {
@@ -1502,7 +1502,7 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
                 string = LocaleController.getString(i11);
             }
             p0Var.setText(string);
-            ChannelBoostsController.CanApplyBoost canApplyBoost2 = this.f46283c0;
+            ChannelBoostsController.CanApplyBoost canApplyBoost2 = this.f46288c0;
             if (canApplyBoost2 != null && canApplyBoost2.isMaxLvl) {
                 this.E0.d.setText(LocaleController.getString(R.string.OK));
             }
@@ -1523,82 +1523,82 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
         ArrayList arrayList3;
         ArrayList arrayList4;
         this.m0 = -1;
-        this.f46294o0 = -1;
-        this.f46295p0 = -1;
-        this.f46296q0 = -1;
+        this.f46299o0 = -1;
+        this.f46300p0 = -1;
+        this.f46301q0 = -1;
         this.Z = -1;
-        this.f46297r0 = -1;
-        this.f46299t0 = -1;
-        this.f46291k0 = 1;
-        this.f46292l0 = 0;
-        int i10 = this.f46288h0;
+        this.f46302r0 = -1;
+        this.f46304t0 = -1;
+        this.f46296k0 = 1;
+        this.f46297l0 = 0;
+        int i10 = this.f46293h0;
         if (i10 != 19 && i10 != 18 && i10 != 20 && i10 != 24 && i10 != 27 && i10 != 28 && i10 != 22 && i10 != 23 && i10 != 25 && i10 != 26 && i10 != 29 && i10 != 21 && i10 != 30 && i10 != 35) {
             if (i10 != 31 && i10 != 32) {
                 if (!w1(i10)) {
                     if (i10 != 11 && i10 != 34) {
-                        int i11 = this.f46291k0;
+                        int i11 = this.f46296k0;
                         this.m0 = i11;
-                        this.f46291k0 = i11 + 2;
-                        this.f46293n0 = i11 + 1;
+                        this.f46296k0 = i11 + 2;
+                        this.f46298n0 = i11 + 1;
                     } else {
                         this.v = 0.24f;
                     }
                     if (this.I0) {
-                        int i12 = this.f46291k0;
-                        this.f46291k0 = i12 + 1;
-                        this.f46296q0 = i12;
+                        int i12 = this.f46296k0;
+                        this.f46296k0 = i12 + 1;
+                        this.f46301q0 = i12;
                     } else if (i10 != 11 || this.Y) {
                         if (i10 != 11 || MessagesController.getInstance(this.currentAccount).premiumFeaturesBlocked() || ((((arrayList = this.D0) == null || arrayList.isEmpty()) && ((arrayList2 = this.C0) == null || arrayList2.size() < this.B0.size())) || (arrayList3 = this.D0) == null || arrayList3.size() != 1 || (arrayList4 = this.C0) == null || arrayList4.size() != 1 || !this.Y)) {
-                            int i13 = this.f46291k0;
-                            this.f46294o0 = i13;
+                            int i13 = this.f46296k0;
+                            this.f46299o0 = i13;
                             if (i10 != 11 && i10 != 34) {
                                 if (i10 == 5) {
-                                    this.f46291k0 = this.f46305z0.size() + i13;
+                                    this.f46296k0 = this.f46310z0.size() + i13;
                                 } else {
-                                    this.f46291k0 = this.f46289i0.size() + i13;
+                                    this.f46296k0 = this.f46294i0.size() + i13;
                                 }
                             } else {
-                                this.f46291k0 = this.B0.size() + i13;
+                                this.f46296k0 = this.B0.size() + i13;
                             }
-                            this.f46295p0 = this.f46291k0;
+                            this.f46300p0 = this.f46296k0;
                         }
-                        if (this.f46295p0 - this.f46294o0 > 1) {
-                            int i14 = this.f46291k0;
-                            this.f46291k0 = i14 + 1;
-                            this.f46297r0 = i14;
+                        if (this.f46300p0 - this.f46299o0 > 1) {
+                            int i14 = this.f46296k0;
+                            this.f46296k0 = i14 + 1;
+                            this.f46302r0 = i14;
                         }
                     }
                 }
             } else {
                 this.v = 0.24f;
                 K1();
-                int i15 = this.f46291k0;
-                this.f46294o0 = i15;
+                int i15 = this.f46296k0;
+                this.f46299o0 = i15;
                 int i16 = i15 + 1;
-                this.f46291k0 = i16;
-                this.f46299t0 = i15;
-                int size = (this.f46300u0.size() - 1) + i16;
-                this.f46291k0 = size;
-                this.f46295p0 = size;
+                this.f46296k0 = i16;
+                this.f46304t0 = i15;
+                int size = (this.f46305u0.size() - 1) + i16;
+                this.f46296k0 = size;
+                this.f46300p0 = size;
             }
         } else {
             if (i10 != 19 || ChatObject.hasAdminRights(t1())) {
                 this.v = 0.24f;
-                int i17 = this.f46291k0;
-                this.f46291k0 = i17 + 1;
+                int i17 = this.f46296k0;
+                this.f46296k0 = i17 + 1;
                 this.Z = i17;
                 if (MessagesController.getInstance(this.currentAccount).giveawayGiftsPurchaseAvailable) {
-                    int i18 = this.f46291k0;
-                    this.f46291k0 = i18 + 1;
-                    this.f46298s0 = i18;
+                    int i18 = this.f46296k0;
+                    this.f46296k0 = i18 + 1;
+                    this.f46303s0 = i18;
                 }
             }
             K1();
-            int i19 = this.f46291k0;
+            int i19 = this.f46296k0;
             int i20 = i19 + 1;
-            this.f46291k0 = i20;
-            this.f46299t0 = i19;
-            this.f46291k0 = (this.f46300u0.size() - 1) + i20;
+            this.f46296k0 = i20;
+            this.f46304t0 = i19;
+            this.f46296k0 = (this.f46305u0.size() - 1) + i20;
         }
         this.d.getAdapter().l();
     }
@@ -1612,7 +1612,7 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
         if (i10 == NotificationCenter.boostByChannelCreated) {
             TLRPC.Chat chat = (TLRPC.Chat) objArr[0];
             boolean booleanValue = ((Boolean) objArr[1]).booleanValue();
-            n2 n2Var3 = this.f24897n;
+            n2 n2Var3 = this.f24882n;
             n2 lastFragment = n2Var3.getParentLayout().getLastFragment();
             n2 n2Var4 = null;
             if (lastFragment instanceof ah.a0) {
@@ -1673,7 +1673,7 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
             } else if (booleanValue) {
                 vb vbVar = vb.F2;
                 if (vbVar != null && vbVar.d) {
-                    qn W9 = qn.W9(-chat.f20273id);
+                    qn W9 = qn.W9(-chat.f20276id);
                     LaunchActivity.R().presentFragment(W9, false, false);
                     vb.w();
                     dismiss();
@@ -1692,7 +1692,7 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
             } else {
                 vb vbVar2 = vb.F2;
                 if (vbVar2 != null && vbVar2.d) {
-                    qn W92 = qn.W9(-chat.f20273id);
+                    qn W92 = qn.W9(-chat.f20276id);
                     LaunchActivity.R().presentFragment(W92, false, false);
                     vb.w();
                     dismiss();
@@ -1707,15 +1707,15 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
             int intValue = ((Integer) objArr[1]).intValue();
             int intValue2 = ((Integer) objArr[2]).intValue();
             TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = (TL_stories.TL_premium_boostsStatus) objArr[3];
-            if (tL_premium_boostsStatus != null && this.f46283c0 != null) {
-                this.f46282b0.boosts += intValue;
-                if (this.f46288h0 == 32 && (u12 = u1()) != null) {
+            if (tL_premium_boostsStatus != null && this.f46288c0 != null) {
+                this.f46287b0.boosts += intValue;
+                if (this.f46293h0 == 32 && (u12 = u1()) != null) {
                     u12.boosts_applied += intValue;
                 }
                 A1();
-                G1(tL_premium_boostsStatus, this.f46285e0);
-                ChannelBoostsController.CanApplyBoost canApplyBoost = this.f46283c0;
-                if (this.f46282b0.next_level_boosts <= 0) {
+                G1(tL_premium_boostsStatus, this.f46290e0);
+                ChannelBoostsController.CanApplyBoost canApplyBoost = this.f46288c0;
+                if (this.f46287b0.next_level_boosts <= 0) {
                     z10 = true;
                 } else {
                     z10 = false;
@@ -1725,7 +1725,7 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
                 canApplyBoost.setMyBoosts(tL_premium_myBoosts);
                 if (C1()) {
                     qc Q = new xc(this.container, this.resourcesProvider).Q(R.raw.ic_boosts_replace, 30, LocaleController.formatPluralString("BoostingReassignedFromPlural", intValue, LocaleController.formatPluralString("BoostingFromOtherChannel", intValue2, new Object[0])));
-                    Q.f29594j = 4000;
+                    Q.f29530j = 4000;
                     Q.k(true);
                 }
             }
@@ -1739,18 +1739,18 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
             return;
         }
         aa0Var.setLoading(true);
-        MessagesController.getInstance(this.currentAccount).getBoostsController().applyBoost(this.f46281a0, this.f46283c0.slot, new Utilities.Callback(this) {
-            public final k0 f46515b;
+        MessagesController.getInstance(this.currentAccount).getBoostsController().applyBoost(this.f46286a0, this.f46288c0.slot, new Utilities.Callback(this) {
+            public final k0 f46520b;
 
             {
-                this.f46515b = this;
+                this.f46520b = this;
             }
 
             @Override
             public final void run(Object obj) {
                 switch (r3) {
                     case 0:
-                        MessagesController.getInstance(r1.currentAccount).getBoostsController().getBoostsStats(r1.f46281a0, new a4(this.f46515b, aa0Var, (TL_stories.TL_premium_myBoosts) obj, 11));
+                        MessagesController.getInstance(r1.currentAccount).getBoostsController().getBoostsStats(r1.f46286a0, new a4(this.f46520b, aa0Var, (TL_stories.TL_premium_myBoosts) obj, 11));
                         return;
                     default:
                         TLRPC.TL_error tL_error = (TLRPC.TL_error) obj;
@@ -1759,7 +1759,7 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
                         if (startsWith) {
                             int intValue = Utilities.parseInt((CharSequence) tL_error.text).intValue();
                             if (intValue <= 5) {
-                                AndroidUtilities.runOnUIThread(new p2.b(18, this.f46515b, aa0Var2), intValue * 1000);
+                                AndroidUtilities.runOnUIThread(new p2.b(20, this.f46520b, aa0Var2), intValue * 1000);
                                 return;
                             }
                             ug.i.g(intValue);
@@ -1769,17 +1769,17 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
                 }
             }
         }, new Utilities.Callback(this) {
-            public final k0 f46515b;
+            public final k0 f46520b;
 
             {
-                this.f46515b = this;
+                this.f46520b = this;
             }
 
             @Override
             public final void run(Object obj) {
                 switch (r3) {
                     case 0:
-                        MessagesController.getInstance(r1.currentAccount).getBoostsController().getBoostsStats(r1.f46281a0, new a4(this.f46515b, aa0Var, (TL_stories.TL_premium_myBoosts) obj, 11));
+                        MessagesController.getInstance(r1.currentAccount).getBoostsController().getBoostsStats(r1.f46286a0, new a4(this.f46520b, aa0Var, (TL_stories.TL_premium_myBoosts) obj, 11));
                         return;
                     default:
                         TLRPC.TL_error tL_error = (TLRPC.TL_error) obj;
@@ -1788,7 +1788,7 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
                         if (startsWith) {
                             int intValue = Utilities.parseInt((CharSequence) tL_error.text).intValue();
                             if (intValue <= 5) {
-                                AndroidUtilities.runOnUIThread(new p2.b(18, this.f46515b, aa0Var2), intValue * 1000);
+                                AndroidUtilities.runOnUIThread(new p2.b(20, this.f46520b, aa0Var2), intValue * 1000);
                                 return;
                             }
                             ug.i.g(intValue);
@@ -1834,12 +1834,12 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
     }
 
     public final String q1() {
-        TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = this.f46282b0;
+        TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = this.f46287b0;
         if (tL_premium_boostsStatus != null && !TextUtils.isEmpty(tL_premium_boostsStatus.boost_url)) {
-            return this.f46282b0.boost_url;
+            return this.f46287b0.boost_url;
         }
         int i10 = this.currentAccount;
-        long j10 = -this.f46281a0;
+        long j10 = -this.f46286a0;
         TLRPC.Chat chat = MessagesController.getInstance(i10).getChat(Long.valueOf(j10));
         if (!TextUtils.isEmpty(ChatObject.getPublicUsername(chat))) {
             return "https://t.me/boost/" + ChatObject.getPublicUsername(chat);
@@ -1861,7 +1861,7 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
         int i18;
         int i19;
         String str2;
-        if (this.f46288h0 == 32) {
+        if (this.f46293h0 == 32) {
             TLRPC.Chat t12 = t1();
             TLRPC.ChatFull u12 = u1();
             int max = Math.max(u12.boosts_unrestrict - u12.boosts_applied, 0);
@@ -1872,7 +1872,7 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
             }
             return LocaleController.formatPluralString("BoostingRemoveRestrictionsSubtitle", max, str2);
         }
-        TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-this.f46281a0));
+        TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-this.f46286a0));
         if (chat == null) {
             if (y1()) {
                 i19 = R.string.AccDescrGroup;
@@ -1883,23 +1883,23 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
         } else {
             str = chat.title;
         }
-        TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = this.f46282b0;
+        TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = this.f46287b0;
         if (tL_premium_boostsStatus.boosts == tL_premium_boostsStatus.current_level_boosts) {
             z11 = true;
         } else {
             z11 = false;
         }
-        if (z1() && this.f46282b0.next_level_boosts != 0 && z10) {
+        if (z1() && this.f46287b0.next_level_boosts != 0 && z10) {
             if (y1()) {
                 i18 = R.string.GroupNeedBoostsDescriptionForNewFeatures;
             } else {
                 i18 = R.string.ChannelNeedBoostsDescriptionForNewFeatures;
             }
-            TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus2 = this.f46282b0;
+            TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus2 = this.f46287b0;
             int i20 = tL_premium_boostsStatus2.next_level_boosts - tL_premium_boostsStatus2.boosts;
             return LocaleController.formatString(i18, str, LocaleController.formatPluralString("MoreBoosts", i20, Integer.valueOf(i20)));
-        } else if (z11 && this.f46283c0.alreadyActive) {
-            if (this.f46282b0.level == 1) {
+        } else if (z11 && this.f46288c0.alreadyActive) {
+            if (this.f46287b0.level == 1) {
                 if (y1()) {
                     i17 = R.string.GroupBoostsJustReachedLevel1;
                 } else {
@@ -1912,16 +1912,16 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
             } else {
                 i16 = R.string.ChannelBoostsJustReachedLevelNext;
             }
-            return LocaleController.formatString(i16, Integer.valueOf(this.f46282b0.level), LocaleController.formatPluralString("BoostStories", this.f46282b0.level, new Object[0]));
-        } else if (this.f46283c0.alreadyActive) {
-            TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus3 = this.f46282b0;
+            return LocaleController.formatString(i16, Integer.valueOf(this.f46287b0.level), LocaleController.formatPluralString("BoostStories", this.f46287b0.level, new Object[0]));
+        } else if (this.f46288c0.alreadyActive) {
+            TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus3 = this.f46287b0;
             if (tL_premium_boostsStatus3.level == 0) {
                 if (y1()) {
                     i15 = R.string.GroupNeedBoostsDescriptionForNewFeatures;
                 } else {
                     i15 = R.string.ChannelNeedBoostsDescriptionForNewFeatures;
                 }
-                TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus4 = this.f46282b0;
+                TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus4 = this.f46287b0;
                 int i21 = tL_premium_boostsStatus4.next_level_boosts - tL_premium_boostsStatus4.boosts;
                 return LocaleController.formatString(i15, str, LocaleController.formatPluralString("MoreBoosts", i21, Integer.valueOf(i21)));
             } else if (tL_premium_boostsStatus3.next_level_boosts == 0) {
@@ -1930,26 +1930,26 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
                 } else {
                     i14 = R.string.ChannelBoostsJustReachedLevelNext;
                 }
-                return LocaleController.formatString(i14, Integer.valueOf(this.f46282b0.level), LocaleController.formatPluralString("BoostStories", this.f46282b0.level + 1, new Object[0]));
+                return LocaleController.formatString(i14, Integer.valueOf(this.f46287b0.level), LocaleController.formatPluralString("BoostStories", this.f46287b0.level + 1, new Object[0]));
             } else {
                 if (y1()) {
                     i13 = R.string.GroupNeedBoostsDescriptionForNewFeatures;
                 } else {
                     i13 = R.string.ChannelNeedBoostsDescriptionForNewFeatures;
                 }
-                TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus5 = this.f46282b0;
+                TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus5 = this.f46287b0;
                 int i22 = tL_premium_boostsStatus5.next_level_boosts - tL_premium_boostsStatus5.boosts;
                 return LocaleController.formatString(i13, str, LocaleController.formatPluralString("MoreBoosts", i22, Integer.valueOf(i22)));
             }
         } else {
-            TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus6 = this.f46282b0;
+            TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus6 = this.f46287b0;
             if (tL_premium_boostsStatus6.level == 0) {
                 if (y1()) {
                     i12 = R.string.GroupNeedBoostsDescriptionForNewFeatures;
                 } else {
                     i12 = R.string.ChannelNeedBoostsDescriptionForNewFeatures;
                 }
-                TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus7 = this.f46282b0;
+                TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus7 = this.f46287b0;
                 int i23 = tL_premium_boostsStatus7.next_level_boosts - tL_premium_boostsStatus7.boosts;
                 return LocaleController.formatString(i12, str, LocaleController.formatPluralString("MoreBoosts", i23, Integer.valueOf(i23)));
             } else if (tL_premium_boostsStatus6.next_level_boosts == 0) {
@@ -1958,14 +1958,14 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
                 } else {
                     i11 = R.string.ChannelBoostsJustReachedLevelNext;
                 }
-                return LocaleController.formatString(i11, Integer.valueOf(this.f46282b0.level), LocaleController.formatPluralString("BoostStories", this.f46282b0.level + 1, new Object[0]));
+                return LocaleController.formatString(i11, Integer.valueOf(this.f46287b0.level), LocaleController.formatPluralString("BoostStories", this.f46287b0.level + 1, new Object[0]));
             } else {
                 if (y1()) {
                     i10 = R.string.GroupNeedBoostsDescriptionForNewFeatures;
                 } else {
                     i10 = R.string.ChannelNeedBoostsDescriptionForNewFeatures;
                 }
-                TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus8 = this.f46282b0;
+                TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus8 = this.f46287b0;
                 int i24 = tL_premium_boostsStatus8.next_level_boosts - tL_premium_boostsStatus8.boosts;
                 return LocaleController.formatString(i10, str, LocaleController.formatPluralString("MoreBoosts", i24, Integer.valueOf(i24)));
             }
@@ -1979,11 +1979,11 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
         int i13;
         int i14;
         int i15;
-        TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = this.f46282b0;
+        TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = this.f46287b0;
         if (tL_premium_boostsStatus.next_level_boosts == 0) {
             return LocaleController.formatString("BoostsMaxLevelReached", R.string.BoostsMaxLevelReached, new Object[0]);
         }
-        if (tL_premium_boostsStatus.level > 0 && !this.f46283c0.alreadyActive) {
+        if (tL_premium_boostsStatus.level > 0 && !this.f46288c0.alreadyActive) {
             if (y1()) {
                 i15 = R.string.BoostGroup;
             } else {
@@ -1991,8 +1991,8 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
             }
             return LocaleController.getString(i15);
         }
-        boolean z10 = this.f46285e0;
-        int i16 = this.f46288h0;
+        boolean z10 = this.f46290e0;
+        int i16 = this.f46293h0;
         if (z10) {
             if (i16 == 32) {
                 if (y1()) {
@@ -2002,8 +2002,8 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
                 }
                 return LocaleController.getString(i14);
             }
-            TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-this.f46281a0));
-            if (this.f46283c0.alreadyActive) {
+            TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-this.f46286a0));
+            if (this.f46288c0.alreadyActive) {
                 return LocaleController.formatString("YouBoostedChannel2", R.string.YouBoostedChannel2, chat.title);
             }
             if (y1()) {
@@ -2019,7 +2019,7 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
                 i12 = R.string.BoostChannel;
             }
             return LocaleController.getString(i12);
-        } else if (this.f46283c0.alreadyActive) {
+        } else if (this.f46288c0.alreadyActive) {
             if (y1()) {
                 i11 = R.string.YouBoostedGroup;
             } else {
@@ -2037,20 +2037,20 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
     }
 
     public final TLRPC.Chat t1() {
-        return MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-this.f46281a0));
+        return MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-this.f46286a0));
     }
 
     public final TLRPC.ChatFull u1() {
-        return MessagesController.getInstance(this.currentAccount).getChatFull(-this.f46281a0);
+        return MessagesController.getInstance(this.currentAccount).getChatFull(-this.f46286a0);
     }
 
     @Override
-    public final hm0 x(im0 im0Var) {
+    public final im0 x(jm0 jm0Var) {
         return new d0(this);
     }
 
     public final boolean x1() {
-        int i10 = this.f46288h0;
+        int i10 = this.f46293h0;
         if (i10 != 19 && i10 != 18 && i10 != 20 && i10 != 24 && i10 != 25 && i10 != 26 && i10 != 29 && i10 != 22 && i10 != 27 && i10 != 28 && i10 != 23 && i10 != 30 && i10 != 35) {
             return false;
         }
@@ -2058,7 +2058,7 @@ public class k0 extends bb implements NotificationCenter.NotificationCenterDeleg
     }
 
     public final boolean y1() {
-        return !ChatObject.isChannelAndNotMegaGroup(MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-this.f46281a0)));
+        return !ChatObject.isChannelAndNotMegaGroup(MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-this.f46286a0)));
     }
 
     public final boolean z1() {

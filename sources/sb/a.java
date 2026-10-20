@@ -70,15 +70,15 @@ import r2.o;
 import r9.d;
 import v7.u6;
 public final class a implements w51, e, cg.a, r9.e, fa.a, n, r, y2.n, n2.n, d, og, l1, t0, k, OnFailureListener, s0, SuccessContinuation, y6.d {
-    public static a f46156b;
-    public final int f46157a;
+    public static a f46161b;
+    public final int f46162a;
 
     public a(int i10) {
-        this.f46157a = i10;
+        this.f46162a = i10;
     }
 
     public static MediaCodec r2(l lVar) {
-        String str = ((o) lVar.f7645a).f44933a;
+        String str = ((o) lVar.f7645a).f44941a;
         Trace.beginSection("createCodec:" + str);
         MediaCodec createByCodecName = MediaCodec.createByCodecName(str);
         Trace.endSection();
@@ -357,7 +357,7 @@ public final class a implements w51, e, cg.a, r9.e, fa.a, n, r, y2.n, n2.n, d, o
 
     @Override
     public boolean e() {
-        switch (this.f46157a) {
+        switch (this.f46162a) {
             case 17:
                 return true;
             default:
@@ -382,7 +382,7 @@ public final class a implements w51, e, cg.a, r9.e, fa.a, n, r, y2.n, n2.n, d, o
 
     @Override
     public Object f2() {
-        switch (this.f46157a) {
+        switch (this.f46162a) {
             case 9:
                 return new ArrayList();
             default:
@@ -543,9 +543,9 @@ public final class a implements w51, e, cg.a, r9.e, fa.a, n, r, y2.n, n2.n, d, o
     public List v(ComponentRegistrar componentRegistrar) {
         ArrayList arrayList = new ArrayList();
         for (r9.a aVar : componentRegistrar.getComponents()) {
-            String str = aVar.f45118a;
+            String str = aVar.f45126a;
             if (str != null) {
-                aVar = new r9.a(str, aVar.f45119b, aVar.f45120c, aVar.d, aVar.e, new h0(11, str, aVar), aVar.f45122g);
+                aVar = new r9.a(str, aVar.f45127b, aVar.f45128c, aVar.d, aVar.e, new h0(11, str, aVar), aVar.f45130g);
             }
             arrayList.add(aVar);
         }
@@ -578,11 +578,11 @@ public final class a implements w51, e, cg.a, r9.e, fa.a, n, r, y2.n, n2.n, d, o
     }
 
     public a(Object obj, int i10) {
-        this.f46157a = i10;
+        this.f46162a = i10;
     }
 
     public a() {
-        this.f46157a = 23;
+        this.f46162a = 23;
         new TreeMap(String.CASE_INSENSITIVE_ORDER).clear();
     }
 

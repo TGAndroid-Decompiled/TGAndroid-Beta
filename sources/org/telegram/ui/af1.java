@@ -3,36 +3,36 @@ package org.telegram.ui;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class af1 implements Runnable {
-    public final int f35359a;
-    public final TwoStepVerificationActivity f35360b;
+    public final int f35365a;
+    public final TwoStepVerificationActivity f35366b;
 
     public af1(TwoStepVerificationActivity twoStepVerificationActivity, int i10) {
-        this.f35359a = i10;
-        this.f35360b = twoStepVerificationActivity;
+        this.f35365a = i10;
+        this.f35366b = twoStepVerificationActivity;
     }
 
     @Override
     public final void run() {
         EditTextBoldCursor editTextBoldCursor;
-        switch (this.f35359a) {
+        switch (this.f35365a) {
             case 0:
-                TwoStepVerificationActivity twoStepVerificationActivity = this.f35360b;
-                if (!twoStepVerificationActivity.isFinishing() && !twoStepVerificationActivity.H && (editTextBoldCursor = twoStepVerificationActivity.f33938s) != null) {
+                TwoStepVerificationActivity twoStepVerificationActivity = this.f35366b;
+                if (!twoStepVerificationActivity.isFinishing() && !twoStepVerificationActivity.H && (editTextBoldCursor = twoStepVerificationActivity.f33944s) != null) {
                     editTextBoldCursor.requestFocus();
-                    AndroidUtilities.showKeyboard(twoStepVerificationActivity.f33938s);
+                    AndroidUtilities.showKeyboard(twoStepVerificationActivity.f33944s);
                     return;
                 }
                 return;
             case 1:
-                TwoStepVerificationActivity twoStepVerificationActivity2 = this.f35360b;
+                TwoStepVerificationActivity twoStepVerificationActivity2 = this.f35366b;
                 twoStepVerificationActivity2.U = false;
                 twoStepVerificationActivity2.v.a(0.0f);
                 return;
             case 2:
-                this.f35360b.y0();
+                this.f35366b.y0();
                 return;
             default:
-                TwoStepVerificationActivity twoStepVerificationActivity3 = this.f35360b;
+                TwoStepVerificationActivity twoStepVerificationActivity3 = this.f35366b;
                 af1 af1Var = twoStepVerificationActivity3.V;
                 AndroidUtilities.cancelRunOnUIThread(af1Var);
                 AndroidUtilities.runOnUIThread(af1Var, 1500L);

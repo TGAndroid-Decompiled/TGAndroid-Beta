@@ -1,11 +1,11 @@
 package wh;
 public final class c {
-    public float f49019a;
-    public float f49020b;
-    public float f49021c;
+    public float f49024a;
+    public float f49025b;
+    public float f49026c;
     public float d;
     public float e;
-    public float f49022f;
-    public float f49023g;
+    public float f49027f;
+    public float f49028g;
     public int h;
 }

@@ -196,8 +196,8 @@ public final class t extends EditText implements r0.o, u0.k {
                     dVar = new j2.j(primaryClip, 1);
                 } else {
                     r0.e eVar = new r0.e();
-                    eVar.f44798b = primaryClip;
-                    eVar.f44799c = 1;
+                    eVar.f44806b = primaryClip;
+                    eVar.f44807c = 1;
                     dVar = eVar;
                 }
                 if (i10 == 16908322) {

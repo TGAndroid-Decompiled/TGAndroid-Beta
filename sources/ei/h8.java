@@ -5,20 +5,20 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.b71;
-import org.telegram.ui.Components.f61;
+import org.telegram.ui.Components.c71;
 import org.telegram.ui.Components.g61;
-import org.telegram.ui.Components.im0;
-import org.telegram.ui.Components.t61;
-public final class h8 extends f61 {
+import org.telegram.ui.Components.h61;
+import org.telegram.ui.Components.jm0;
+import org.telegram.ui.Components.u61;
+public final class h8 extends g61 {
     public static final int f9161a = 0;
 
     static {
-        f61.setup(new f61());
+        g61.setup(new g61());
     }
 
     @Override
-    public final void bindView(View view, g61 g61Var, boolean z10, t61 t61Var, b71 b71Var) {
+    public final void bindView(View view, h61 h61Var, boolean z10, u61 u61Var, c71 c71Var) {
         TLRPC.WebPage webPage;
         boolean z11;
         float f7;
@@ -27,13 +27,13 @@ public final class h8 extends f61 {
         float f12;
         String str;
         i8 i8Var = (i8) view;
-        Object obj = g61Var.G;
+        Object obj = h61Var.G;
         if (obj instanceof TLRPC.WebPage) {
             webPage = (TLRPC.WebPage) obj;
         } else {
             webPage = null;
         }
-        View.OnClickListener onClickListener = g61Var.D;
+        View.OnClickListener onClickListener = h61Var.D;
         org.telegram.ui.Components.q6 q6Var = i8Var.e;
         org.telegram.ui.Components.q6 q6Var2 = i8Var.d;
         ImageView imageView = i8Var.f9202c;
@@ -93,7 +93,7 @@ public final class h8 extends f61 {
     }
 
     @Override
-    public final View createView(Context context, im0 im0Var, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
+    public final View createView(Context context, jm0 jm0Var, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
         return new i8(context);
     }
 }

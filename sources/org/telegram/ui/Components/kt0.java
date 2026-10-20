@@ -1,20 +1,16 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-public final class kt0 implements View.OnLayoutChangeListener {
-    public final tv0 f27969a;
+import android.content.Context;
+public final class kt0 extends gv0 {
+    public final uv0 f27948t0;
 
-    public kt0(tv0 tv0Var) {
-        this.f27969a = tv0Var;
+    public kt0(uv0 uv0Var, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(uv0Var, context, d6Var);
+        this.f27948t0 = uv0Var;
     }
 
     @Override
-    public final void onLayoutChange(View view, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17) {
-        tv0 tv0Var = this.f27969a;
-        org.telegram.ui.ActionBar.u0 u0Var = tv0Var.f30713n0;
-        if (u0Var == null) {
-            return;
-        }
-        tv0Var.f30713n0.setTranslationX(((View) u0Var.getParent()).getMeasuredWidth() - tv0Var.f30713n0.getRight());
+    public final int f(int i10) {
+        return this.f27948t0.X0(i10);
     }
 }

@@ -1,14 +1,20 @@
 package ri;
 
 import java.io.File;
-public interface l {
-    void onBytesAvailable(long j10, File file, long j11, long j12);
+public final class l {
+    public final File f45821a;
+    public final long f45822b;
+    public final byte[] f45823c;
 
-    void onOutputCompleted(long j10, File file, long j11, long j12);
-
-    void onOutputError(long j10, Exception exc);
-
-    void onOutputInvalidated(long j10, k kVar);
-
-    void onOutputStarted(long j10, File file);
+    public l(File file, long j10, byte[] bArr) {
+        byte[] bArr2;
+        this.f45821a = file;
+        this.f45822b = j10;
+        if (bArr == null) {
+            bArr2 = null;
+        } else {
+            bArr2 = (byte[]) bArr.clone();
+        }
+        this.f45823c = bArr2;
+    }
 }

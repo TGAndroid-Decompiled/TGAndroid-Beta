@@ -60,7 +60,7 @@ public final class b6 extends FrameLayout {
                 int height = (childAt.getHeight() - childAt.getPaddingTop()) - childAt.getPaddingBottom();
                 float x10 = (width / 2.0f) + childAt.getX() + childAt.getPaddingLeft();
                 float y3 = (height / 2.0f) + childAt.getY() + childAt.getPaddingTop();
-                int i10 = t1Var.f44649a;
+                int i10 = t1Var.f44657a;
                 int i11 = xaVar.Z0;
                 View view = childAt;
                 if (i11 != -1) {
@@ -87,7 +87,7 @@ public final class b6 extends FrameLayout {
                     View childAt3 = g5Var.getChildAt(0);
                     x10 = AndroidUtilities.lerp(x10, (childAt3.getWidth() / 2.0f) + childAt3.getX() + (g5Var.getX() - barView.getLeft()), xaVar.D1);
                     y3 = AndroidUtilities.lerp(y3, (childAt3.getHeight() / 2.0f) + childAt3.getY() + (g5Var.getY() - barView.getTop()), xaVar.D1);
-                    i10 = i0.a.f(xaVar.D1, t1Var.f44649a, this.f8789c.b(0));
+                    i10 = i0.a.f(xaVar.D1, t1Var.f44657a, this.f8789c.b(0));
                 }
                 float f7 = x10;
                 float f10 = y3;

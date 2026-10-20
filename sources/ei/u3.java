@@ -8,7 +8,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.kw0;
+import org.telegram.ui.Components.lw0;
 public final class u3 extends org.telegram.ui.ActionBar.f3 {
     public final t3 f9885b;
     public ValueAnimator f9886c;
@@ -25,10 +25,10 @@ public final class u3 extends org.telegram.ui.ActionBar.f3 {
         t3Var.setMultipleOnClick(false);
         t3Var.setOnBackClickListener(new r3(this, 0));
         t3Var.setOnSelectListener(new ai.q(this, 15));
-        kw0 kw0Var = new kw0(context, null);
-        this.containerView = kw0Var;
+        lw0 lw0Var = new lw0(context, null);
+        this.containerView = lw0Var;
         int i10 = this.backgroundPaddingLeft;
-        kw0Var.setPadding(i10, 0, i10, 0);
+        lw0Var.setPadding(i10, 0, i10, 0);
         this.containerView.addView(t3Var);
     }
 

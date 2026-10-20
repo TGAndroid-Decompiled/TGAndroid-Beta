@@ -32,11 +32,11 @@ import org.telegram.ui.ActionBar.a2;
 import org.telegram.ui.ActionBar.b2;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.bw0;
 import org.telegram.ui.Components.cw0;
 import org.telegram.ui.Components.dw0;
+import org.telegram.ui.Components.ew0;
 import v7.u6;
-public final class b implements d, bw0, cw0, GenericProvider, k, r9.d, o, a2, hh.b {
+public final class b implements d, cw0, dw0, GenericProvider, k, r9.d, o, a2, hh.b {
     public final int f10596a;
 
     public b(int i10) {
@@ -215,7 +215,7 @@ public final class b implements d, bw0, cw0, GenericProvider, k, r9.d, o, a2, hh
                 } else {
                     f7 = 0.76f;
                 }
-                return h6.m1(f7, h6.w0(h6.f20987d6, d6Var));
+                return h6.m1(f7, h6.w0(h6.f20990d6, d6Var));
         }
     }
 
@@ -269,7 +269,7 @@ public final class b implements d, bw0, cw0, GenericProvider, k, r9.d, o, a2, hh
     @Override
     public Object provide(Object obj) {
         Void r12 = (Void) obj;
-        dw0 dw0Var = e4.f11180b0;
+        ew0 ew0Var = e4.f11180b0;
         return Boolean.FALSE;
     }
 

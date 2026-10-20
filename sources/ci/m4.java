@@ -15,12 +15,12 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.yj0;
+import org.telegram.ui.Components.zj0;
 public final class m4 extends FrameLayout {
     public final k4 f5608a;
     public final l4 f5609b;
     public final TextView[] f5610c;
-    public yj0 d;
+    public zj0 d;
     public final o4 e;
     public Paint f5611f;
     public float h;
@@ -77,7 +77,7 @@ public final class m4 extends FrameLayout {
             } else {
                 if (this.f5612n) {
                     this.f5612n = false;
-                    if (this.d.f32647f < 0.2f) {
+                    if (this.d.f32922f < 0.2f) {
                         z12 = true;
                     } else {
                         z12 = false;
@@ -90,34 +90,34 @@ public final class m4 extends FrameLayout {
                 z11 = true;
                 f10 = 1.0f;
             }
-            yj0 yj0Var = this.d;
+            zj0 zj0Var = this.d;
             k4 k4Var = this.f5608a;
-            if (yj0Var == null) {
-                yj0 yj0Var2 = new yj0(k4Var);
-                this.d = yj0Var2;
-                yj0Var2.d(null, true, false);
+            if (zj0Var == null) {
+                zj0 zj0Var2 = new zj0(k4Var);
+                this.d = zj0Var2;
+                zj0Var2.d(null, true, false);
             }
-            this.d.f32657q = 0;
+            this.d.f32932q = 0;
             ImageReceiver imageReceiver = k4Var.getImageReceiver();
             float D = com.google.android.gms.internal.play_billing.k3.D(1.0f, this.h, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(3.0f));
             this.d.f((int) (rectF.left - D), (int) (rectF.top - D), (int) (rectF.right + D), (int) (rectF.bottom + D));
-            yj0 yj0Var3 = this.d;
+            zj0 zj0Var3 = this.d;
             if (z11) {
                 clamp = 1.0f;
             } else {
                 clamp = Utilities.clamp(f10, 1.0f, 0.0f);
             }
-            yj0Var3.e(clamp, true);
-            if (this.f5613r && z11 && this.d.f32647f >= 0.9f) {
+            zj0Var3.e(clamp, true);
+            if (this.f5613r && z11 && this.d.f32922f >= 0.9f) {
                 this.h = Utilities.clamp(this.h - ((1000.0f / AndroidUtilities.screenRefreshRate) / 300.0f), 1.0f, 0.0f);
             }
             if (z10) {
                 if (f7 != 1.0f) {
                     Paint t10 = d8.t(imageReceiver, false);
                     t10.setAlpha((int) (this.h * 255.0f));
-                    yj0 yj0Var4 = this.d;
-                    yj0Var4.f32660t = t10;
-                    yj0Var4.a(canvas);
+                    zj0 zj0Var4 = this.d;
+                    zj0Var4.f32935t = t10;
+                    zj0Var4.a(canvas);
                 }
                 if (this.f5611f == null) {
                     Paint paint = new Paint(1);
@@ -128,9 +128,9 @@ public final class m4 extends FrameLayout {
                     this.f5611f.setStrokeCap(Paint.Cap.ROUND);
                 }
                 this.f5611f.setAlpha((int) (255.0f * f7 * this.h));
-                yj0 yj0Var5 = this.d;
-                yj0Var5.f32660t = this.f5611f;
-                yj0Var5.a(canvas);
+                zj0 zj0Var5 = this.d;
+                zj0Var5.f32935t = this.f5611f;
+                zj0Var5.a(canvas);
             }
         }
     }

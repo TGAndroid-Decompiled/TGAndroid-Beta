@@ -10,21 +10,21 @@ import android.view.animation.Interpolator;
 import android.view.animation.PathInterpolator;
 import org.telegram.ui.ActionBar.h6;
 public final class y extends Drawable {
-    public static final PathInterpolator f51610i = new PathInterpolator(0.42f, 0.0f, 0.58f, 1.0f);
-    public final Interpolator f51611a;
-    public final GradientDrawable f51612b;
+    public static final PathInterpolator f51615i = new PathInterpolator(0.42f, 0.0f, 0.58f, 1.0f);
+    public final Interpolator f51616a;
+    public final GradientDrawable f51617b;
     public final int e;
-    public final int[] f51614f;
-    public int f51615g;
-    public final Paint f51613c = new Paint(1);
+    public final int[] f51619f;
+    public int f51620g;
+    public final Paint f51618c = new Paint(1);
     public final Rect d = new Rect();
     public int h = 255;
 
     public y(int i10) {
         GradientDrawable gradientDrawable = new GradientDrawable();
-        this.f51612b = gradientDrawable;
-        this.f51611a = f51610i;
-        this.f51614f = new int[8];
+        this.f51617b = gradientDrawable;
+        this.f51616a = f51615i;
+        this.f51619f = new int[8];
         this.e = i10;
         if (i10 != 1) {
             if (i10 != 2) {
@@ -53,15 +53,15 @@ public final class y extends Drawable {
     }
 
     public final void b(int i10) {
-        if (this.f51615g == i10) {
+        if (this.f51620g == i10) {
             return;
         }
-        this.f51615g = i10;
-        Interpolator interpolator = this.f51611a;
-        int[] iArr = this.f51614f;
+        this.f51620g = i10;
+        Interpolator interpolator = this.f51616a;
+        int[] iArr = this.f51619f;
         a(interpolator, i10, iArr);
-        this.f51612b.setColors(iArr);
-        this.f51613c.setColor(h6.m1(this.h / 255.0f, this.f51615g));
+        this.f51617b.setColors(iArr);
+        this.f51618c.setColor(h6.m1(this.h / 255.0f, this.f51620g));
     }
 
     public final void c(int i10, int i11) {
@@ -94,19 +94,19 @@ public final class y extends Drawable {
         int i10 = rect.left;
         Rect rect2 = this.d;
         int i11 = rect.bottom - rect2.bottom;
-        this.f51612b.setBounds(i10 + rect2.left, rect.top + rect2.top, rect.right - rect2.right, i11);
+        this.f51617b.setBounds(i10 + rect2.left, rect.top + rect2.top, rect.right - rect2.right, i11);
     }
 
     @Override
     public final void setAlpha(int i10) {
         this.h = i10;
-        this.f51612b.setAlpha(i10);
-        this.f51613c.setColor(h6.m1(this.h / 255.0f, this.f51615g));
+        this.f51617b.setAlpha(i10);
+        this.f51618c.setColor(h6.m1(this.h / 255.0f, this.f51620g));
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        this.f51612b.setColorFilter(colorFilter);
-        this.f51613c.setColorFilter(colorFilter);
+        this.f51617b.setColorFilter(colorFilter);
+        this.f51618c.setColorFilter(colorFilter);
     }
 }

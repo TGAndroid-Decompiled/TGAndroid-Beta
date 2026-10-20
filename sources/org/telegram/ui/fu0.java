@@ -9,28 +9,28 @@ import android.view.animation.DecelerateInterpolator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 public abstract class fu0 {
-    public final View f37077i;
-    public boolean f37084p;
-    public final org.telegram.ui.Components.zq f37085q;
-    public final org.telegram.ui.Components.ah0 f37086r;
-    public final PhotoViewer f37087s;
-    public long f37072a = 0;
-    public float f37073b = 0.0f;
-    public float f37074c = 0.0f;
+    public final View f37083i;
+    public boolean f37090p;
+    public final org.telegram.ui.Components.zq f37091q;
+    public final org.telegram.ui.Components.bh0 f37092r;
+    public final PhotoViewer f37093s;
+    public long f37078a = 0;
+    public float f37079b = 0.0f;
+    public float f37080c = 0.0f;
     public float d = 0.0f;
     public long e = 0;
-    public float f37075f = 0.0f;
-    public final RectF f37076g = new RectF();
+    public float f37081f = 0.0f;
+    public final RectF f37082g = new RectF();
     public int h = -1;
-    public final int f37078j = AndroidUtilities.dp(64.0f);
-    public int f37079k = -2;
-    public float f37080l = 1.0f;
-    public final float[] f37081m = new float[3];
-    public final float[] f37082n = new float[3];
-    public float f37083o = 1.0f;
+    public final int f37084j = AndroidUtilities.dp(64.0f);
+    public int f37085k = -2;
+    public float f37086l = 1.0f;
+    public final float[] f37087m = new float[3];
+    public final float[] f37088n = new float[3];
+    public float f37089o = 1.0f;
 
     public fu0(PhotoViewer photoViewer, View view) {
-        this.f37087s = photoViewer;
+        this.f37093s = photoViewer;
         if (PhotoViewer.X8 == null) {
             PhotoViewer.X8 = new DecelerateInterpolator(1.5f);
             Paint paint = new Paint(1);
@@ -40,20 +40,20 @@ public abstract class fu0 {
             PhotoViewer.Y8.setStrokeWidth(AndroidUtilities.dp(3.0f));
             PhotoViewer.Y8.setColor(-1);
         }
-        this.f37077i = view;
+        this.f37083i = view;
         int i10 = 0;
         while (true) {
-            float[] fArr = this.f37082n;
+            float[] fArr = this.f37088n;
             if (i10 < fArr.length) {
-                this.f37081m[i10] = 1.0f;
+                this.f37087m[i10] = 1.0f;
                 fArr[i10] = 1.0f;
                 i10++;
             } else {
                 a();
-                org.telegram.ui.Components.ah0 ah0Var = new org.telegram.ui.Components.ah0(28);
-                this.f37086r = ah0Var;
-                ah0Var.h = 200;
-                this.f37085q = new org.telegram.ui.Components.zq(photoViewer.f33451y.getDrawable(R.drawable.circle_big).mutate(), ah0Var);
+                org.telegram.ui.Components.bh0 bh0Var = new org.telegram.ui.Components.bh0(28);
+                this.f37092r = bh0Var;
+                bh0Var.h = 200;
+                this.f37091q = new org.telegram.ui.Components.zq(photoViewer.f33457y.getDrawable(R.drawable.circle_big).mutate(), bh0Var);
                 return;
             }
         }
@@ -63,7 +63,7 @@ public abstract class fu0 {
         boolean z10;
         int i10 = 0;
         while (true) {
-            float[] fArr = this.f37082n;
+            float[] fArr = this.f37088n;
             if (i10 < fArr.length) {
                 if (fArr[i10] != 1.0f) {
                     z10 = false;
@@ -75,12 +75,12 @@ public abstract class fu0 {
                 break;
             }
         }
-        if (z10 != this.f37084p) {
-            this.f37084p = z10;
+        if (z10 != this.f37090p) {
+            this.f37090p = z10;
             ds0 ds0Var = (ds0) this;
-            PhotoViewer photoViewer = ds0Var.f36437t;
+            PhotoViewer photoViewer = ds0Var.f36443t;
             if (ds0Var == photoViewer.W0[0]) {
-                photoViewer.r3();
+                photoViewer.t3();
             }
         }
     }
@@ -88,15 +88,15 @@ public abstract class fu0 {
     public final int b() {
         int i10;
         int i11 = AndroidUtilities.displaySize.y;
-        PhotoViewer photoViewer = this.f37087s;
-        if (!photoViewer.f33394s) {
+        PhotoViewer photoViewer = this.f37093s;
+        if (!photoViewer.f33400s) {
             i10 = AndroidUtilities.statusBarHeight;
         } else {
             i10 = 0;
         }
         photoViewer.getClass();
-        int i12 = (int) ((((i11 + i10) - ((int) (this.f37078j * this.f37083o))) / 2) + 0.0f);
-        if (photoViewer.f33256c2 == 1) {
+        int i12 = (int) ((((i11 + i10) - ((int) (this.f37084j * this.f37089o))) / 2) + 0.0f);
+        if (photoViewer.f33262c2 == 1) {
             return i12 - AndroidUtilities.dp(38.0f);
         }
         return i12;
@@ -105,14 +105,14 @@ public abstract class fu0 {
     public final void c(Canvas canvas) {
         int i10;
         Drawable drawable;
-        float f7 = this.f37078j;
-        int i11 = (int) (this.f37083o * f7);
-        int width = (this.f37087s.f33272e0.getWidth() - ((int) (f7 * this.f37083o))) / 2;
+        float f7 = this.f37084j;
+        int i11 = (int) (this.f37089o * f7);
+        int width = (this.f37093s.f33278e0.getWidth() - ((int) (f7 * this.f37089o))) / 2;
         int b10 = b();
         float f10 = 1.0f;
         int i12 = 0;
         while (true) {
-            float[] fArr = this.f37081m;
+            float[] fArr = this.f37087m;
             if (i12 >= fArr.length) {
                 break;
             }
@@ -123,8 +123,8 @@ public abstract class fu0 {
             }
             i12++;
         }
-        int i13 = this.f37079k;
-        Drawable drawable2 = this.f37085q;
+        int i13 = this.f37085k;
+        Drawable drawable2 = this.f37091q;
         if (i13 >= 0) {
             Drawable[] drawableArr = PhotoViewer.U8;
             if (i13 < drawableArr.length + 2) {
@@ -134,7 +134,7 @@ public abstract class fu0 {
                     drawable = drawable2;
                 }
                 if (drawable != null) {
-                    drawable.setAlpha((int) (this.f37080l * 255.0f * f10));
+                    drawable.setAlpha((int) (this.f37086l * 255.0f * f10));
                     drawable.setBounds(width, b10, width + i11, b10 + i11);
                     drawable.draw(canvas);
                 }
@@ -148,8 +148,8 @@ public abstract class fu0 {
                     drawable2 = drawableArr2[i14];
                 }
                 if (drawable2 != null) {
-                    if (this.f37079k != -2) {
-                        drawable2.setAlpha((int) org.telegram.messenger.g0.z(1.0f, this.f37080l, 255.0f, f10));
+                    if (this.f37085k != -2) {
+                        drawable2.setAlpha((int) org.telegram.messenger.g0.z(1.0f, this.f37086l, 255.0f, f10));
                     } else {
                         drawable2.setAlpha((int) (f10 * 255.0f));
                     }
@@ -159,19 +159,19 @@ public abstract class fu0 {
             }
         }
         int i15 = this.h;
-        if (i15 != 0 && i15 != 1 && (i10 = this.f37079k) != 0 && i10 != 1) {
+        if (i15 != 0 && i15 != 1 && (i10 = this.f37085k) != 0 && i10 != 1) {
             g(false);
             return;
         }
         int dp = AndroidUtilities.dp(4.0f);
-        if (this.f37079k != -2) {
-            PhotoViewer.Y8.setAlpha((int) (this.f37080l * 255.0f * f10));
+        if (this.f37085k != -2) {
+            PhotoViewer.Y8.setAlpha((int) (this.f37086l * 255.0f * f10));
         } else {
             PhotoViewer.Y8.setAlpha((int) (f10 * 255.0f));
         }
-        RectF rectF = this.f37076g;
+        RectF rectF = this.f37082g;
         rectF.set(width + dp, b10 + dp, (width + i11) - dp, (b10 + i11) - dp);
-        canvas.drawArc(rectF, this.f37073b - 90.0f, Math.max(4.0f, this.f37075f * 360.0f), false, PhotoViewer.Y8);
+        canvas.drawArc(rectF, this.f37079b - 90.0f, Math.max(4.0f, this.f37081f * 360.0f), false, PhotoViewer.Y8);
         g(true);
     }
 
@@ -182,98 +182,98 @@ public abstract class fu0 {
         if (i12 == i10) {
             return;
         }
-        View view = this.f37077i;
-        org.telegram.ui.Components.ah0 ah0Var = this.f37086r;
-        if (ah0Var != null) {
+        View view = this.f37083i;
+        org.telegram.ui.Components.bh0 bh0Var = this.f37092r;
+        if (bh0Var != null) {
             if (z11 && (i12 == 3 || i12 == 4)) {
                 z12 = true;
             } else {
                 z12 = false;
             }
             if (i10 == 3) {
-                ah0Var.a(false, z12);
+                bh0Var.a(false, z12);
             } else if (i10 == 4) {
-                ah0Var.a(true, z12);
+                bh0Var.a(true, z12);
             }
-            ah0Var.f24575f = view;
-            ah0Var.invalidateSelf();
+            bh0Var.f24945f = view;
+            bh0Var.invalidateSelf();
         }
-        this.f37072a = System.currentTimeMillis();
+        this.f37078a = System.currentTimeMillis();
         if (z10 && (i11 = this.h) != i10) {
-            this.f37079k = i11;
-            this.f37080l = 1.0f;
+            this.f37085k = i11;
+            this.f37086l = 1.0f;
         } else {
-            this.f37079k = -2;
+            this.f37085k = -2;
         }
         this.h = i10;
         ds0 ds0Var = (ds0) this;
-        PhotoViewer photoViewer = ds0Var.f36437t;
+        PhotoViewer photoViewer = ds0Var.f36443t;
         if (ds0Var == photoViewer.W0[0]) {
-            photoViewer.r3();
+            photoViewer.t3();
         }
         view.invalidate();
     }
 
     public final void e(int i10, float f7, boolean z10) {
-        float[] fArr = this.f37082n;
+        float[] fArr = this.f37088n;
         if (fArr[i10] != f7) {
             fArr[i10] = f7;
             if (!z10) {
-                this.f37081m[i10] = f7;
+                this.f37087m[i10] = f7;
             }
             a();
-            this.f37077i.invalidate();
+            this.f37083i.invalidate();
         }
     }
 
     public final void f(float f7, boolean z10) {
         if (!z10) {
-            this.f37075f = f7;
+            this.f37081f = f7;
             this.d = f7;
         } else {
-            this.d = this.f37075f;
+            this.d = this.f37081f;
         }
-        this.f37074c = f7;
+        this.f37080c = f7;
         this.e = 0L;
-        this.f37077i.invalidate();
+        this.f37083i.invalidate();
     }
 
     public final void g(boolean z10) {
         boolean z11;
         long currentTimeMillis = System.currentTimeMillis();
-        long j10 = currentTimeMillis - this.f37072a;
+        long j10 = currentTimeMillis - this.f37078a;
         if (j10 > 18) {
             j10 = 18;
         }
-        this.f37072a = currentTimeMillis;
+        this.f37078a = currentTimeMillis;
         int i10 = 0;
         if (z10) {
-            if (this.f37075f == 1.0f && this.f37074c == 1.0f) {
+            if (this.f37081f == 1.0f && this.f37080c == 1.0f) {
                 z11 = false;
             } else {
-                this.f37073b = (((float) (360 * j10)) / 3000.0f) + this.f37073b;
-                float f7 = this.f37074c - this.d;
+                this.f37079b = (((float) (360 * j10)) / 3000.0f) + this.f37079b;
+                float f7 = this.f37080c - this.d;
                 if (Math.abs(f7) > 0.0f) {
                     long j11 = this.e + j10;
                     this.e = j11;
                     if (j11 >= 300) {
-                        float f10 = this.f37074c;
-                        this.f37075f = f10;
+                        float f10 = this.f37080c;
+                        this.f37081f = f10;
                         this.d = f10;
                         this.e = 0L;
                     } else {
-                        this.f37075f = (PhotoViewer.X8.getInterpolation(((float) j11) / 300.0f) * f7) + this.d;
+                        this.f37081f = (PhotoViewer.X8.getInterpolation(((float) j11) / 300.0f) * f7) + this.d;
                     }
                 }
                 z11 = true;
             }
-            float f11 = this.f37080l;
-            if (f11 > 0.0f && this.f37079k != -2) {
+            float f11 = this.f37086l;
+            if (f11 > 0.0f && this.f37085k != -2) {
                 float f12 = f11 - (((float) j10) / 200.0f);
-                this.f37080l = f12;
+                this.f37086l = f12;
                 if (f12 <= 0.0f) {
-                    this.f37080l = 0.0f;
-                    this.f37079k = -2;
+                    this.f37086l = 0.0f;
+                    this.f37085k = -2;
                 }
                 z11 = true;
             }
@@ -281,12 +281,12 @@ public abstract class fu0 {
             z11 = false;
         }
         while (true) {
-            float[] fArr = this.f37082n;
+            float[] fArr = this.f37088n;
             if (i10 >= fArr.length) {
                 break;
             }
             float f13 = fArr[i10];
-            float[] fArr2 = this.f37081m;
+            float[] fArr2 = this.f37087m;
             float f14 = fArr2[i10];
             if (f13 > f14) {
                 fArr2[i10] = org.telegram.ui.Cells.c1.c((float) j10, 200.0f, f14, 1.0f);
@@ -299,7 +299,7 @@ public abstract class fu0 {
             i10++;
         }
         if (z11) {
-            this.f37077i.postInvalidateOnAnimation();
+            this.f37083i.postInvalidateOnAnimation();
         }
     }
 }

@@ -14,15 +14,15 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.el0;
-import org.telegram.ui.Components.kw0;
+import org.telegram.ui.Components.fl0;
+import org.telegram.ui.Components.lw0;
 import org.telegram.ui.Components.xc;
 public final class lb extends r {
     public final Path R1;
     public final vb S1;
 
-    public lb(vb vbVar, Activity activity, FrameLayout frameLayout, kw0 kw0Var, FrameLayout frameLayout2, ci.b bVar, org.telegram.ui.Components.ja jaVar) {
-        super(activity, frameLayout, kw0Var, frameLayout2, bVar, jaVar);
+    public lb(vb vbVar, Activity activity, FrameLayout frameLayout, lw0 lw0Var, FrameLayout frameLayout2, ci.b bVar, org.telegram.ui.Components.ja jaVar) {
+        super(activity, frameLayout, lw0Var, frameLayout2, bVar, jaVar);
         this.S1 = vbVar;
         this.R1 = new Path();
     }
@@ -30,7 +30,7 @@ public final class lb extends r {
     @Override
     public final boolean e() {
         org.telegram.ui.Components.qc qcVar;
-        if (MessagesController.getInstance(this.U).premiumFeaturesBlocked() || ((qcVar = org.telegram.ui.Components.qc.f29587w) != null && qcVar.f29588a == 2)) {
+        if (MessagesController.getInstance(this.U).premiumFeaturesBlocked() || ((qcVar = org.telegram.ui.Components.qc.f29523w) != null && qcVar.f29524a == 2)) {
             return false;
         }
         int i10 = MessagesController.getInstance(this.U).storyCaptionLengthLimitPremium;
@@ -41,13 +41,13 @@ public final class lb extends r {
             int indexOf2 = replaceTags.toString().indexOf("__");
             if (indexOf2 >= 0) {
                 replaceTags.replace(indexOf2, indexOf2 + 2, (CharSequence) "");
-                replaceTags.setSpan(new ForegroundColorSpan(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21046gc, this.f9391a)), indexOf, indexOf2, 33);
+                replaceTags.setSpan(new ForegroundColorSpan(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21049gc, this.f9391a)), indexOf, indexOf2, 33);
                 replaceTags.setSpan(new kb(this, 0), indexOf, indexOf2, 33);
             }
         }
         org.telegram.ui.Components.qc M = new xc(this.S1.f9983l0, this.f9391a).M(LocaleController.getString(R.string.CaptionPremiumTitle), replaceTags, R.raw.caption_limit);
-        M.f29588a = 2;
-        M.f29594j = 5000;
+        M.f29524a = 2;
+        M.f29530j = 5000;
         M.k(false);
         return true;
     }
@@ -104,11 +104,11 @@ public final class lb extends r {
                 for (int i10 = 0; i10 < vbVar.f10015v1.R0.getChildCount(); i10++) {
                     View childAt = vbVar.f10015v1.R0.getChildAt(i10);
                     if (childAt instanceof rg.j) {
-                        el0 selectionBounds = ((rg.j) childAt).getSelectionBounds();
+                        fl0 selectionBounds = ((rg.j) childAt).getSelectionBounds();
                         RectF rectF = AndroidUtilities.rectTmp;
-                        float f11 = selectionBounds.f25945a;
-                        float f12 = selectionBounds.f25946b;
-                        rectF.set(f11, f12, selectionBounds.f25947c + f11, selectionBounds.d + f12);
+                        float f11 = selectionBounds.f26272a;
+                        float f12 = selectionBounds.f26273b;
+                        rectF.set(f11, f12, selectionBounds.f26274c + f11, selectionBounds.d + f12);
                         if (rectF.contains(x12, y11)) {
                             return true;
                         }

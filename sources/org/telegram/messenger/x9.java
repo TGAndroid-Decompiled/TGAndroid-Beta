@@ -1,45 +1,34 @@
 package org.telegram.messenger;
-public final class x9 implements Runnable {
-    public final int f20064a;
-    public final MessagesController f20065b;
-    public final int f20066c;
-    public final long d;
-    public final long e;
 
-    public x9(int i10, long j10, long j11, MessagesController messagesController) {
-        this.f20064a = 2;
-        this.f20065b = messagesController;
-        this.d = j10;
-        this.e = j11;
-        this.f20066c = i10;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_communities;
+public final class x9 implements Utilities.Callback2 {
+    public final int f20067a;
+    public final MessagesController f20068b;
+    public final Utilities.Callback2 f20069c;
+
+    public x9(MessagesController messagesController, Utilities.Callback2 callback2, int i10) {
+        this.f20067a = i10;
+        this.f20068b = messagesController;
+        this.f20069c = callback2;
     }
 
     @Override
-    public final void run() {
-        switch (this.f20064a) {
+    public final void run(Object obj, Object obj2) {
+        switch (this.f20067a) {
             case 0:
-                long j10 = this.d;
-                long j11 = this.e;
-                this.f20065b.lambda$sendTyping$170(this.f20066c, j10, j11);
+                this.f20068b.lambda$toggleChatNoForwards$277(this.f20069c, (TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
                 return;
             case 1:
-                long j12 = this.d;
-                long j13 = this.e;
-                this.f20065b.lambda$sendTyping$172(this.f20066c, j12, j13);
+                this.f20068b.lambda$fetchCommunityPendingJoinRequests$245(this.f20069c, (TL_communities.PeerLinkRequests) obj, (TLRPC.TL_error) obj2);
+                return;
+            case 2:
+                this.f20068b.lambda$fetchCommunityJoinedChats$246(this.f20069c, (TL_communities.ParticipantJoinedChats) obj, (TLRPC.TL_error) obj2);
                 return;
             default:
-                long j14 = this.e;
-                int i10 = this.f20066c;
-                this.f20065b.lambda$checkDeletingTask$83(this.d, j14, i10);
+                this.f20068b.lambda$fetchChatsToAddToCommunity$251(this.f20069c, (TLRPC.messages_Chats) obj, (TLRPC.TL_error) obj2);
                 return;
         }
-    }
-
-    public x9(MessagesController messagesController, int i10, long j10, long j11, int i11) {
-        this.f20064a = i11;
-        this.f20065b = messagesController;
-        this.f20066c = i10;
-        this.d = j10;
-        this.e = j11;
     }
 }

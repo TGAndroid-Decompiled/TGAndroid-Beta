@@ -34,7 +34,7 @@ public final class g extends o6.a {
         if (bVar == null) {
             asBinder = null;
         } else {
-            asBinder = ((x6.a) bVar.f50628a).asBinder();
+            asBinder = ((x6.a) bVar.f50633a).asBinder();
         }
         f0.f(parcel, 5, asBinder);
         float f7 = this.e;

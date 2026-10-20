@@ -13,7 +13,7 @@ import org.telegram.tgnet.tl.TL_wallet;
 import org.telegram.ui.Cells.d9;
 import org.telegram.ui.Cells.z6;
 import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.t61;
+import org.telegram.ui.Components.u61;
 import org.telegram.ui.Wallet.o5;
 import org.telegram.ui.Wallet.r9;
 import org.telegram.ui.i10;
@@ -53,7 +53,7 @@ public final class c implements Utilities.CallbackReturn {
                 }
                 return Boolean.valueOf(z10);
             case 6:
-                return Boolean.valueOf(t61.K(((Integer) obj).intValue()));
+                return Boolean.valueOf(u61.K(((Integer) obj).intValue()));
             case 7:
                 TL_wallet.disableBackup disablebackup = new TL_wallet.disableBackup();
                 disablebackup.password = (TLRPC.InputCheckPasswordSRP) obj;
@@ -82,7 +82,7 @@ public final class c implements Utilities.CallbackReturn {
                 return Boolean.valueOf(z10);
             default:
                 String str2 = (String) obj;
-                bs bsVar = zh.b0.f51643z0;
+                bs bsVar = zh.b0.f51648z0;
                 if (TextUtils.isEmpty(str2) || (!str2.startsWith("tg:") && !pf.d.e(Uri.parse(str2), false, null))) {
                     z10 = false;
                 }

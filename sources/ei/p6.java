@@ -23,7 +23,7 @@ import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.kk;
+import org.telegram.messenger.mk;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
@@ -131,7 +131,7 @@ public final class p6 implements Runnable {
                         }
                         if (document != null) {
                             TLRPC.TL_inputDocument tL_inputDocument = new TLRPC.TL_inputDocument();
-                            tL_inputDocument.f20285id = document.f20279id;
+                            tL_inputDocument.f20288id = document.f20282id;
                             tL_inputDocument.access_hash = document.access_hash;
                             tL_inputDocument.file_reference = document.file_reference;
                             a8Var2.V0.add(tL_inputDocument);
@@ -147,7 +147,7 @@ public final class p6 implements Runnable {
                 j8 j8Var = (j8) this.f9593b;
                 TextView textView = (TextView) this.f9594c;
                 ClipboardManager clipboardManager = (ClipboardManager) j8Var.getContext().getSystemService("clipboard");
-                org.telegram.ui.Cells.g3 g3Var = j8Var.Y.f22399b;
+                org.telegram.ui.Cells.g3 g3Var = j8Var.Y.f22402b;
                 if ((!TextUtils.isEmpty(g3Var.getText()) && !TextUtils.equals(g3Var.getText(), "https://") && !TextUtils.isEmpty(g3Var.getText().toString())) || clipboardManager == null || !clipboardManager.hasPrimaryClip()) {
                     z10 = false;
                 }
@@ -165,7 +165,7 @@ public final class p6 implements Runnable {
                 if (!z10) {
                     f11 = 0.7f;
                 }
-                kk.t(scaleX.scaleY(f11), bs.h, 300L);
+                mk.t(scaleX.scaleY(f11), bs.h, 300L);
                 return;
             case 9:
                 r9 r9Var = (r9) this.f9593b;
@@ -260,7 +260,7 @@ public final class p6 implements Runnable {
             case 17:
                 gi.d3 d3Var3 = (gi.d3) this.f9593b;
                 org.telegram.ui.Components.qc Q = new xc(d3Var3.f11153p0, d3Var3.E).Q(R.raw.contact_check, 36, AndroidUtilities.replaceTags((String) this.f9594c));
-                Q.f29594j = 5000;
+                Q.f29530j = 5000;
                 Q.k(true);
                 return;
             case 18:
@@ -277,7 +277,7 @@ public final class p6 implements Runnable {
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) this.f9594c;
                 if (!f4Var.T) {
                     if (tL_error2 != null) {
-                        f4Var.f28223b.dismiss();
+                        f4Var.f28173b.dismiss();
                         return;
                     } else {
                         AndroidUtilities.runOnUIThread(f4Var.U, 60000L);
@@ -287,8 +287,8 @@ public final class p6 implements Runnable {
                 return;
             case 21:
                 gi.f4 f4Var2 = (gi.f4) this.f9593b;
-                org.telegram.ui.Components.qc Q2 = new xc(f4Var2.f28223b.getContainer(), f4Var2.f28222a).Q(R.raw.contact_check, 36, AndroidUtilities.replaceTags((String) this.f9594c));
-                Q2.f29594j = 5000;
+                org.telegram.ui.Components.qc Q2 = new xc(f4Var2.f28173b.getContainer(), f4Var2.f28172a).Q(R.raw.contact_check, 36, AndroidUtilities.replaceTags((String) this.f9594c));
+                Q2.f29530j = 5000;
                 Q2.k(true);
                 return;
             case 22:
@@ -401,7 +401,7 @@ public final class p6 implements Runnable {
             default:
                 hi.r rVar = (hi.r) this.f9593b;
                 rVar.getClass();
-                rVar.presentFragment(qn.W9(((ii.e) this.f9594c).f13160b.f20420id));
+                rVar.presentFragment(qn.W9(((ii.e) this.f9594c).f13160b.f20423id));
                 return;
         }
     }

@@ -52,7 +52,7 @@ public class ApplicationLoader extends Application {
     private static volatile ConnectivityManager.NetworkCallback networkCallback;
     private static PushListenerController.IPushListenerServiceProvider pushProvider;
     public static long startTime;
-    private final Runnable debugEverySecondChecks = new y1(3);
+    private final Runnable debugEverySecondChecks = new z1(3);
 
     public static void appCenterLog(Throwable th2) {
         applicationLoaderInstance.appCenterLogInternal(th2);
@@ -164,7 +164,7 @@ public class ApplicationLoader extends Application {
     }
 
     private void initPushServices() {
-        AndroidUtilities.runOnUIThread(new y1(7), 1000L);
+        AndroidUtilities.runOnUIThread(new z1(7), 1000L);
     }
 
     public static boolean isAndroidTestEnvironment() {
@@ -319,7 +319,7 @@ public class ApplicationLoader extends Application {
     }
 
     public static void lambda$new$1() {
-        AndroidUtilities.runOnUIThread(new y1(4));
+        AndroidUtilities.runOnUIThread(new z1(4));
     }
 
     public static void logDualCamera(boolean z10, boolean z11) {
@@ -546,12 +546,12 @@ public class ApplicationLoader extends Application {
                     }
                 }
             };
-            new ANRDetector(new y1(5));
+            new ANRDetector(new z1(5));
             if (BuildVars.LOGS_ENABLED) {
                 FileLog.d("load libs time = " + (SystemClock.elapsedRealtime() - startTime));
             }
             applicationHandler = new Handler(applicationContext.getMainLooper());
-            AndroidUtilities.runOnUIThread(new y1(6));
+            AndroidUtilities.runOnUIThread(new z1(6));
             oa0[] values = oa0.values();
             int length = values.length;
             while (true) {

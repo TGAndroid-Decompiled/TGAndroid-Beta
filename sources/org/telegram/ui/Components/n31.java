@@ -1,31 +1,25 @@
 package org.telegram.ui.Components;
+public final class n31 {
+    public static final n31 f28678a;
+    public static final n31 f28679b;
+    public static final n31 f28680c;
+    public static final n31[] d;
 
-import android.animation.ValueAnimator;
-public final class n31 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f28669a;
-    public final q31 f28670b;
-
-    public n31(q31 q31Var, int i10) {
-        this.f28669a = i10;
-        this.f28670b = q31Var;
+    static {
+        ?? r02 = new Enum("TOP", 0);
+        f28678a = r02;
+        ?? r12 = new Enum("LEFT", 1);
+        f28679b = r12;
+        ?? r32 = new Enum("BOTTOM", 2);
+        f28680c = r32;
+        d = new n31[]{r02, r12, r32};
     }
 
-    @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f28669a) {
-            case 0:
-                q31 q31Var = this.f28670b;
-                q31Var.getClass();
-                q31Var.Q = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                q31Var.h();
-                q31Var.g();
-                return;
-            default:
-                float max = Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue());
-                q31 q31Var2 = this.f28670b;
-                q31Var2.K = max;
-                q31Var2.h.invalidate();
-                return;
-        }
+    public static n31 valueOf(String str) {
+        return (n31) Enum.valueOf(n31.class, str);
+    }
+
+    public static n31[] values() {
+        return (n31[]) d.clone();
     }
 }

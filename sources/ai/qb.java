@@ -22,10 +22,10 @@ public final class qb implements DialogInterface.OnDismissListener {
                 return;
             default:
                 rg.m0 m0Var = (rg.m0) this.f2089c;
-                PhotoViewer photoViewer = ((gt0) m0Var).f37407o2;
+                PhotoViewer photoViewer = ((gt0) m0Var).f37413o2;
                 if (photoViewer.F2 != null) {
                     photoViewer.H2 = false;
-                    photoViewer.u0();
+                    photoViewer.v0();
                     photoViewer.F2.C();
                 }
                 m0Var.C0(this.f2088b);

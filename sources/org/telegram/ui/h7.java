@@ -3,44 +3,44 @@ package org.telegram.ui;
 import android.content.Context;
 import android.view.View;
 import java.util.ArrayList;
-public final class h7 extends org.telegram.ui.Components.v81 {
-    public org.telegram.ui.ActionBar.m1 f37509a;
-    public final Context f37510b;
-    public final org.telegram.ui.ActionBar.n2 f37511c;
+public final class h7 extends org.telegram.ui.Components.w81 {
+    public org.telegram.ui.ActionBar.m1 f37515a;
+    public final Context f37516b;
+    public final org.telegram.ui.ActionBar.n2 f37517c;
     public final v7 d;
 
     public h7(v7 v7Var, Context context, org.telegram.ui.ActionBar.n2 n2Var) {
         this.d = v7Var;
-        this.f37510b = context;
-        this.f37511c = n2Var;
+        this.f37516b = context;
+        this.f37517c = n2Var;
     }
 
     @Override
     public final void b(View view, int i10, int i11) {
-        org.telegram.ui.Components.im0 im0Var = (org.telegram.ui.Components.im0) view;
+        org.telegram.ui.Components.jm0 jm0Var = (org.telegram.ui.Components.jm0) view;
         ArrayList arrayList = this.d.e;
-        im0Var.setAdapter(((u7) arrayList.get(i10)).f41816c);
-        if (((u7) arrayList.get(i10)).f41815b != 1 && ((u7) arrayList.get(i10)).f41815b != 4) {
+        jm0Var.setAdapter(((u7) arrayList.get(i10)).f41822c);
+        if (((u7) arrayList.get(i10)).f41821b != 1 && ((u7) arrayList.get(i10)).f41821b != 4) {
             view.getContext();
-            im0Var.setLayoutManager(new s4.b0());
+            jm0Var.setLayoutManager(new s4.b0());
         } else {
             view.getContext();
-            im0Var.setLayoutManager(new s4.s(3));
+            jm0Var.setLayoutManager(new s4.s(3));
         }
-        im0Var.setTag(Integer.valueOf(((u7) arrayList.get(i10)).f41815b));
+        jm0Var.setTag(Integer.valueOf(((u7) arrayList.get(i10)).f41821b));
     }
 
     @Override
     public final View d(int i10) {
-        org.telegram.ui.Components.im0 im0Var = new org.telegram.ui.Components.im0(this.f37510b, null);
-        s4.k kVar = (s4.k) im0Var.getItemAnimator();
+        org.telegram.ui.Components.jm0 jm0Var = new org.telegram.ui.Components.jm0(this.f37516b, null);
+        s4.k kVar = (s4.k) jm0Var.getItemAnimator();
         kVar.C = false;
-        kVar.f45946m = false;
-        im0Var.setClipToPadding(false);
-        im0Var.setPadding(0, 0, 0, this.d.f42123s);
-        im0Var.setOnItemClickListener(new g7(this, im0Var));
-        im0Var.setOnItemLongClickListener(new e7(this, im0Var, this.f37511c, 0));
-        return im0Var;
+        kVar.f45951m = false;
+        jm0Var.setClipToPadding(false);
+        jm0Var.setPadding(0, 0, 0, this.d.f42129s);
+        jm0Var.setOnItemClickListener(new g7(this, jm0Var));
+        jm0Var.setOnItemLongClickListener(new e7(this, jm0Var, this.f37517c, 0));
+        return jm0Var;
     }
 
     @Override
@@ -50,11 +50,11 @@ public final class h7 extends org.telegram.ui.Components.v81 {
 
     @Override
     public final int f(int i10) {
-        return ((u7) this.d.e.get(i10)).f41815b;
+        return ((u7) this.d.e.get(i10)).f41821b;
     }
 
     @Override
     public final CharSequence g(int i10) {
-        return ((u7) this.d.e.get(i10)).f41814a;
+        return ((u7) this.d.e.get(i10)).f41820a;
     }
 }

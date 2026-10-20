@@ -24,22 +24,22 @@ import org.telegram.messenger.secretmedia.ExtendedDefaultDataSourceFactory;
 import org.telegram.ui.fk0;
 import t7.u;
 public final class d extends m {
-    public static final f f44444l;
-    public static final HashMap f44445m;
+    public static final f f44452l;
+    public static final HashMap f44453m;
     public final ExtendedDefaultDataSourceFactory e;
-    public final fk0 f44446f;
-    public final u f44447g;
+    public final fk0 f44454f;
+    public final u f44455g;
     public final HashMap h;
-    public Pair f44448i;
-    public boolean f44449j;
-    public final AtomicInteger f44450k;
+    public Pair f44456i;
+    public boolean f44457j;
+    public final AtomicInteger f44458k;
 
     static {
         f fVar = new f(new e(Uri.parse("file:///android_asset/cast/default.png"), "image/png", "/assets/default"));
-        f44444l = fVar;
+        f44452l = fVar;
         f[] fVarArr = {fVar};
         HashMap hashMap = new HashMap();
-        f44445m = hashMap;
+        f44453m = hashMap;
         f fVar2 = fVarArr[0];
         hashMap.put(fVar2.d, fVar2);
     }
@@ -47,11 +47,11 @@ public final class d extends m {
     public d() {
         this.f539c = new ad.d(0);
         this.h = new HashMap();
-        this.f44448i = null;
-        this.f44449j = false;
-        this.f44450k = new AtomicInteger();
-        this.f44446f = new fk0(24);
-        this.f44447g = new u(8);
+        this.f44456i = null;
+        this.f44457j = false;
+        this.f44458k = new AtomicInteger();
+        this.f44454f = new fk0(24);
+        this.f44455g = new u(8);
         this.e = new ExtendedDefaultDataSourceFactory(ApplicationLoader.applicationContext, "Mozilla/5.0 (X11; Linux x86_64; rv:10.0) Gecko/20150101 Firefox/47.0 (Chrome)");
     }
 
@@ -87,7 +87,7 @@ public final class d extends m {
     @Override
     public final j e(ad.f fVar) {
         String str;
-        int incrementAndGet = this.f44450k.incrementAndGet();
+        int incrementAndGet = this.f44458k.incrementAndGet();
         StringBuilder l4 = i2.e.l(incrementAndGet, "Request ", " ");
         switch (fVar.f512g) {
             case 1:
@@ -170,7 +170,7 @@ public final class d extends m {
 
     public final void h() {
         if (this.h.isEmpty()) {
-            if (this.f44449j) {
+            if (this.f44457j) {
                 try {
                     m.d(this.f537a);
                     ad.d dVar = this.f539c;
@@ -192,12 +192,12 @@ public final class d extends m {
                 } catch (Exception e) {
                     m.d.log(Level.SEVERE, "Could not stop all connections", (Throwable) e);
                 }
-                this.f44449j = false;
+                this.f44457j = false;
             }
-        } else if (!this.f44449j) {
+        } else if (!this.f44457j) {
             try {
                 f();
-                this.f44449j = true;
+                this.f44457j = true;
             } catch (IOException e7) {
                 throw new RuntimeException(e7);
             }
@@ -210,16 +210,16 @@ public final class d extends m {
 
     public final void l(File file, String str) {
         if (str != null && file != null) {
-            this.f44448i = new Pair(str, file);
+            this.f44456i = new Pair(str, file);
         } else {
-            Pair pair = this.f44448i;
+            Pair pair = this.f44456i;
             if (pair != null && ((File) pair.second).exists()) {
                 try {
-                    ((File) this.f44448i.second).delete();
+                    ((File) this.f44456i.second).delete();
                 } catch (Exception unused) {
                 }
             }
-            this.f44448i = null;
+            this.f44456i = null;
         }
         h();
     }

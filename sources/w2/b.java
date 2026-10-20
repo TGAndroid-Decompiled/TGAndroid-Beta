@@ -8,14 +8,14 @@ import z3.i;
 import z3.j;
 import z3.m;
 public final class b extends l implements z3.e {
-    public final String f48459o;
-    public final m f48460p;
+    public final String f48464o;
+    public final m f48465p;
 
     public b(String str, m mVar) {
         super(new i[2], new j[2]);
-        this.f48459o = str;
+        this.f48464o = str;
         o(1024);
-        this.f48460p = mVar;
+        this.f48465p = mVar;
     }
 
     @Override
@@ -30,7 +30,7 @@ public final class b extends l implements z3.e {
 
     @Override
     public final String getName() {
-        return this.f48459o;
+        return this.f48464o;
     }
 
     @Override
@@ -47,19 +47,19 @@ public final class b extends l implements z3.e {
             byteBuffer.getClass();
             byte[] array = byteBuffer.array();
             int limit = byteBuffer.limit();
-            m mVar = this.f48460p;
+            m mVar = this.f48465p;
             if (z10) {
                 mVar.reset();
             }
             z3.d a2 = mVar.a(0, limit, array);
             long j10 = iVar.e;
-            long j11 = iVar.f50652r;
+            long j11 = iVar.f50657r;
             jVar2.timeUs = j10;
-            jVar2.f50653a = a2;
+            jVar2.f50658a = a2;
             if (j11 != Long.MAX_VALUE) {
                 j10 = j11;
             }
-            jVar2.f50654b = j10;
+            jVar2.f50659b = j10;
             jVar2.shouldBeSkipped = false;
             return null;
         } catch (z3.f e) {

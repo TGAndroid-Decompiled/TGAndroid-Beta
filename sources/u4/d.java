@@ -20,8 +20,8 @@ import java.util.List;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlSerializer;
 public abstract class d {
-    public static volatile ArrayList f47583a;
-    public static final Object f47584b = new Object();
+    public static volatile ArrayList f47591a;
+    public static final Object f47592b = new Object();
 
     public static String a(XmlResourceParser xmlResourceParser, String str) {
         String attributeValue = xmlResourceParser.getAttributeValue("http://schemas.android.com/apk/res/android", str);
@@ -52,7 +52,7 @@ public abstract class d {
                     if (next == 1) {
                         break;
                     } else if (next == 2 && newPullParser.getName().equals("target") && (f7 = f(newPullParser, context)) != null) {
-                        lVar.put(f7.f47593c.f10743b, f7);
+                        lVar.put(f7.f47601c.f10743b, f7);
                     }
                 }
             }
@@ -241,9 +241,9 @@ public abstract class d {
     public static void h(XmlSerializer xmlSerializer, g gVar) {
         Intent[] intentArr;
         xmlSerializer.startTag(null, "target");
-        g0.c cVar = gVar.f47593c;
-        String str = gVar.f47592b;
-        String str2 = gVar.f47591a;
+        g0.c cVar = gVar.f47601c;
+        String str = gVar.f47600b;
+        String str2 = gVar.f47599a;
         g(xmlSerializer, "id", cVar.f10743b);
         g(xmlSerializer, "short_label", cVar.e.toString());
         g(xmlSerializer, "rank", Integer.toString(cVar.f10751m));

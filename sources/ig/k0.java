@@ -26,9 +26,9 @@ import org.telegram.ui.ActionBar.n2;
 import org.telegram.ui.Components.bb;
 import org.telegram.ui.Components.bs;
 import org.telegram.ui.Components.h9;
-import org.telegram.ui.Components.hm0;
 import org.telegram.ui.Components.im0;
-import org.telegram.ui.Components.t61;
+import org.telegram.ui.Components.jm0;
+import org.telegram.ui.Components.u61;
 import org.telegram.ui.Components.w9;
 import org.telegram.ui.Components.xc;
 import org.telegram.ui.LaunchActivity;
@@ -42,7 +42,7 @@ public final class k0 extends bb {
     public final LinearLayout f12943a0;
     public final ei.d f12944b0;
     public final ei.d f12945c0;
-    public t61 f12946d0;
+    public u61 f12946d0;
     public boolean f12947e0;
     public Boolean f12948f0;
 
@@ -77,7 +77,7 @@ public final class k0 extends bb {
         this.e.setTitle(UserObject.getUserName(user));
         TextView textView2 = new TextView(activity);
         textView2.setTextSize(1, 14.0f);
-        textView2.setTextColor(getThemedColor(h6.f21375y6));
+        textView2.setTextColor(getThemedColor(h6.f21378y6));
         textView2.setGravity(17);
         textView2.setText(LocaleController.getString(R.string.SessionBot));
         linearLayout.addView(textView2, z5.r(-1, -2, 1, 32.0f, 0.0f, 32.0f, 3.66f));
@@ -85,17 +85,17 @@ public final class k0 extends bb {
         if (!TextUtils.isEmpty(publicUsername)) {
             TextView textView3 = new TextView(activity);
             textView3.setTextSize(1, 14.0f);
-            textView3.setTextColor(getThemedColor(h6.f21046gc));
+            textView3.setTextColor(getThemedColor(h6.f21049gc));
             textView3.setText("@" + publicUsername);
             textView3.setGravity(17);
             linearLayout.addView(textView3, z5.t(-1, -2, 1, 32, 0, 32, 18));
         }
-        int i10 = h6.f20929a7;
+        int i10 = h6.f20932a7;
         setBackgroundColor(getThemedColor(i10));
         fixNavigationBar(getThemedColor(i10));
-        im0 im0Var = this.d;
+        jm0 jm0Var = this.d;
         int i11 = this.backgroundPaddingLeft;
-        im0Var.setPadding(i11, 0, i11, AndroidUtilities.dp(72.0f));
+        jm0Var.setPadding(i11, 0, i11, AndroidUtilities.dp(72.0f));
         this.d.p1();
         this.d.setOnItemClickListener(new wa(this, 15));
         FrameLayout frameLayout = new FrameLayout(activity);
@@ -122,14 +122,14 @@ public final class k0 extends bb {
         e.rightMargin += i13;
         this.containerView.addView(frameLayout, e);
         s4.k kVar = new s4.k();
-        kVar.f45946m = false;
+        kVar.f45951m = false;
         kVar.C = false;
         kVar.o(bs.h);
         kVar.n(350L);
         this.d.setItemAnimator(kVar);
-        t61 t61Var = this.f12946d0;
-        if (t61Var != null) {
-            t61Var.N(false);
+        u61 u61Var = this.f12946d0;
+        if (u61Var != null) {
+            u61Var.N(false);
         }
     }
 
@@ -385,10 +385,10 @@ public final class k0 extends bb {
     }
 
     @Override
-    public final hm0 x(im0 im0Var) {
-        t61 t61Var = new t61(im0Var, getContext(), this.currentAccount, 0, true, new hg.o(this, 4), this.resourcesProvider);
-        this.f12946d0 = t61Var;
-        t61Var.f30436r = false;
-        return t61Var;
+    public final im0 x(jm0 jm0Var) {
+        u61 u61Var = new u61(jm0Var, getContext(), this.currentAccount, 0, true, new hg.o(this, 4), this.resourcesProvider);
+        this.f12946d0 = u61Var;
+        u61Var.f30860r = false;
+        return u61Var;
     }
 }

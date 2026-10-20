@@ -7,8 +7,8 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.d91;
-public final class i5 extends d91 {
+import org.telegram.ui.Components.e91;
+public final class i5 extends e91 {
     public final l7 T;
 
     public i5(l7 l7Var, Context context) {
@@ -76,11 +76,11 @@ public final class i5 extends d91 {
     @Override
     public final void F() {
         super.F();
-        int i10 = this.f25499b;
+        int i10 = this.f25862b;
         l7 l7Var = this.T;
         boolean z10 = false;
         if (i10 != l7Var.g2(false)) {
-            if (this.f25499b > l7Var.g2(false)) {
+            if (this.f25862b > l7Var.g2(false)) {
                 z10 = true;
             }
             AndroidUtilities.runOnUIThread(new ah.t(3, this, z10));

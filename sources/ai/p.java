@@ -71,17 +71,17 @@ public final class p implements View.OnClickListener {
                     } else {
                         String string = LocaleController.getString(R.string.GiftOfferDuration);
                         r0 r0Var = new r0(b1Var, 0);
-                        Pattern pattern = org.telegram.ui.Components.f5.f26099a;
+                        Pattern pattern = org.telegram.ui.Components.f5.f26077a;
                         ig.f2 b10 = ig.f2.b(UserConfig.selectedAccount);
                         b10.g();
                         if (!b10.d.isEmpty()) {
-                            int x02 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21093j5, false);
-                            int x03 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21058h5, false);
+                            int x02 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21096j5, false);
+                            int x03 = org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21061h5, false);
                             org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.Ji, false);
                             org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.Ni, false);
                             org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.E8, false);
                             org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.G8, false);
-                            org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21076i6, false);
+                            org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21079i6, false);
                             org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.Sh, false);
                             org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.Oh, false);
                             org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.Qh, false);
@@ -256,7 +256,7 @@ public final class p implements View.OnClickListener {
                     return;
                 }
                 org.telegram.ui.Components.qc Q = new org.telegram.ui.Components.xc(q4Var.f5769c1, q4Var.B0).Q(R.raw.error, 36, LocaleController.getString(R.string.StoryHidAccount));
-                Q.f29588a = 3;
+                Q.f29524a = 3;
                 Q.k(true);
                 return;
             case 12:
@@ -288,8 +288,8 @@ public final class p implements View.OnClickListener {
                     FileLog.e(e);
                 }
                 if (charSequence != null) {
-                    i3Var.f22399b.setText(charSequence.toString());
-                    org.telegram.ui.Cells.g3 g3Var = i3Var.f22399b;
+                    i3Var.f22402b.setText(charSequence.toString());
+                    org.telegram.ui.Cells.g3 g3Var = i3Var.f22402b;
                     g3Var.setSelection(0, g3Var.getText().length());
                 }
                 p6Var.run();
@@ -354,13 +354,13 @@ public final class p implements View.OnClickListener {
             case 26:
                 org.telegram.ui.ActionBar.u0 u0Var = (org.telegram.ui.ActionBar.u0) obj2;
                 org.telegram.ui.ActionBar.t0 t0Var = (org.telegram.ui.ActionBar.t0) obj;
-                int indexOf = u0Var.f21737g0.indexOf(t0Var.getFilter());
-                if (u0Var.f21738h0 != indexOf) {
-                    u0Var.f21738h0 = indexOf;
+                int indexOf = u0Var.f21740g0.indexOf(t0Var.getFilter());
+                if (u0Var.f21741h0 != indexOf) {
+                    u0Var.f21741h0 = indexOf;
                     u0Var.y();
                     return;
                 } else if (t0Var.getFilter().h) {
-                    if (!t0Var.f21712a.f17384f) {
+                    if (!t0Var.f21715a.f17384f) {
                         t0Var.setSelectedForDelete(true);
                         return;
                     }
@@ -380,7 +380,7 @@ public final class p implements View.OnClickListener {
                 org.telegram.ui.ActionBar.s0 s0Var = (org.telegram.ui.ActionBar.s0) obj2;
                 org.telegram.ui.ActionBar.u0 u0Var2 = (org.telegram.ui.ActionBar.u0) obj;
                 org.telegram.ui.ActionBar.m1 m1Var = u0Var2.d;
-                if (m1Var != null && m1Var.isShowing() && s0Var.f21693f) {
+                if (m1Var != null && m1Var.isShowing() && s0Var.f21696f) {
                     if (!u0Var2.T) {
                         u0Var2.T = true;
                         u0Var2.d.d(u0Var2.R);
@@ -388,7 +388,7 @@ public final class p implements View.OnClickListener {
                         return;
                     }
                 }
-                org.telegram.ui.ActionBar.y yVar = u0Var2.f21731c;
+                org.telegram.ui.ActionBar.y yVar = u0Var2.f21734c;
                 if (yVar != null) {
                     yVar.o(((Integer) view.getTag()).intValue());
                     return;
@@ -401,12 +401,12 @@ public final class p implements View.OnClickListener {
                 return;
             case 28:
                 org.telegram.ui.ActionBar.b2 b2Var = (org.telegram.ui.ActionBar.b2) obj2;
-                if (!((org.telegram.ui.ActionBar.w1) obj).f21546a) {
+                if (!((org.telegram.ui.ActionBar.w1) obj).f21549a) {
                     org.telegram.ui.ActionBar.a2 a2Var3 = b2Var.m0;
                     if (a2Var3 != null) {
                         a2Var3.g(b2Var, -1);
                     }
-                    if (b2Var.f20663h0) {
+                    if (b2Var.f20666h0) {
                         b2Var.dismiss();
                         return;
                     }
@@ -415,12 +415,12 @@ public final class p implements View.OnClickListener {
                 return;
             default:
                 org.telegram.ui.ActionBar.b2 b2Var2 = (org.telegram.ui.ActionBar.b2) obj2;
-                if (!((org.telegram.ui.ActionBar.w1) obj).f21546a) {
-                    org.telegram.ui.ActionBar.a2 a2Var4 = b2Var2.f20670o0;
+                if (!((org.telegram.ui.ActionBar.w1) obj).f21549a) {
+                    org.telegram.ui.ActionBar.a2 a2Var4 = b2Var2.f20673o0;
                     if (a2Var4 != null) {
                         a2Var4.g(b2Var2, -2);
                     }
-                    if (b2Var2.f20663h0) {
+                    if (b2Var2.f20666h0) {
                         b2Var2.cancel();
                         return;
                     }

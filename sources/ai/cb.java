@@ -1,7 +1,7 @@
 package ai;
 
-import org.telegram.ui.Components.co0;
-import org.telegram.ui.Components.fo0;
+import org.telegram.ui.Components.do0;
+import org.telegram.ui.Components.go0;
 public final class cb implements Runnable {
     public final int f1104a;
     public final int f1105b;
@@ -46,11 +46,11 @@ public final class cb implements Runnable {
         this.f1105b = i10;
     }
 
-    public cb(fo0 fo0Var, int i10, co0 co0Var, org.telegram.ui.ActionBar.d6 d6Var) {
+    public cb(go0 go0Var, int i10, do0 do0Var, org.telegram.ui.ActionBar.d6 d6Var) {
         this.f1104a = 23;
-        this.f1106c = fo0Var;
+        this.f1106c = go0Var;
         this.f1105b = i10;
-        this.e = co0Var;
+        this.e = do0Var;
         this.d = d6Var;
     }
 }

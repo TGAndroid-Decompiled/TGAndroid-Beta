@@ -7,15 +7,15 @@ import android.graphics.RectF;
 import android.os.Build;
 import android.view.View;
 import org.telegram.tgnet.TLRPC;
-public final class s40 implements org.telegram.ui.Components.bl0 {
-    public final Path f41355a = new Path();
-    public final Paint f41356b;
-    public final q50 f41357c;
+public final class s40 implements org.telegram.ui.Components.cl0 {
+    public final Path f41361a = new Path();
+    public final Paint f41362b;
+    public final q50 f41363c;
 
     public s40(q50 q50Var) {
-        this.f41357c = q50Var;
+        this.f41363c = q50Var;
         Paint paint = new Paint(1);
-        this.f41356b = paint;
+        this.f41362b = paint;
         paint.setColor(-14603467);
     }
 
@@ -45,7 +45,7 @@ public final class s40 implements org.telegram.ui.Components.bl0 {
             tL_messageEntityCustomEmoji.length = str.length();
             tL_textWithEntities.entities.add(tL_messageEntityCustomEmoji);
         }
-        q50 q50Var = this.f41357c;
+        q50 q50Var = this.f41363c;
         q50Var.B1(tL_textWithEntities);
         p30 p30Var = q50Var.H;
         if (p30Var.m()) {
@@ -63,18 +63,18 @@ public final class s40 implements org.telegram.ui.Components.bl0 {
     @Override
     public final void q(Canvas canvas, RectF rectF, float f7, float f10, float f11, int i10, boolean z10) {
         int i11 = (f7 > 0.0f ? 1 : (f7 == 0.0f ? 0 : -1));
-        Paint paint = this.f41356b;
+        Paint paint = this.f41362b;
         if (i11 > 0) {
             canvas.drawRoundRect(rectF, f7, f7, paint);
         } else {
             canvas.drawRect(rectF, paint);
         }
         if (Build.VERSION.SDK_INT >= 29 && canvas.isHardwareAccelerated()) {
-            q50 q50Var = this.f41357c;
+            q50 q50Var = this.f41363c;
             if (q50Var.Q2 != null) {
                 canvas.save();
                 if (i11 > 0) {
-                    Path path = this.f41355a;
+                    Path path = this.f41361a;
                     path.rewind();
                     path.addRoundRect(rectF, f7, f7, Path.Direction.CW);
                     path.close();

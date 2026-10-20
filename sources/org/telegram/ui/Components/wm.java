@@ -29,7 +29,7 @@ public final class wm extends org.telegram.ui.zt0 {
         MediaController.PhotoEntry photoEntry;
         ArrayList arrayList;
         an anVar = this.f32150b;
-        ArrayList arrayList2 = anVar.f24646b;
+        ArrayList arrayList2 = anVar.f24671b;
         bn bnVar = anVar.P;
         if (i10 >= 0 && i10 < this.f32149a.size() && x(i10) && (photoEntry = (MediaController.PhotoEntry) this.f32149a.get(i10)) != null) {
             int size = arrayList2.size();
@@ -45,7 +45,7 @@ public final class wm extends org.telegram.ui.zt0 {
                             break;
                         }
                         ym ymVar2 = (ym) arrayList.get(i12);
-                        if (ymVar2 != null && ymVar2.f32672b == photoEntry && ymVar2.f32678k > 0.5d) {
+                        if (ymVar2 != null && ymVar2.f32675b == photoEntry && ymVar2.f32681k > 0.5d) {
                             ymVar = (ym) arrayList.get(i12);
                             break;
                         }
@@ -61,20 +61,20 @@ public final class wm extends org.telegram.ui.zt0 {
                 int[] iArr = new int[2];
                 anVar.getLocationInWindow(iArr);
                 if (Build.VERSION.SDK_INT < 26) {
-                    iArr[0] = iArr[0] - bnVar.f28223b.getLeftInset();
+                    iArr[0] = iArr[0] - bnVar.f28173b.getLeftInset();
                 }
-                ju0Var.f38345b = iArr[0];
-                ju0Var.f38346c = iArr[1] + ((int) zmVar.f32971a);
-                ju0Var.f38351k = 1.0f;
+                ju0Var.f38351b = iArr[0];
+                ju0Var.f38352c = iArr[1] + ((int) zmVar.f32946a);
+                ju0Var.f38357k = 1.0f;
                 ju0Var.d = anVar;
-                ImageReceiver imageReceiver = ymVar.f32673c;
-                ju0Var.f38344a = imageReceiver;
+                ImageReceiver imageReceiver = ymVar.f32676c;
+                ju0Var.f38350a = imageReceiver;
                 ju0Var.e = imageReceiver.getBitmapSafe();
                 ju0Var.h = r5;
-                RectF rectF = ymVar.f32684q;
+                RectF rectF = ymVar.f32687q;
                 int[] iArr2 = {(int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom};
-                ju0Var.f38350j = (int) (-anVar.getY());
-                ju0Var.f38349i = anVar.getHeight() - ((int) (((-anVar.getY()) + bnVar.f24991r.getHeight()) - bnVar.f28223b.n1()));
+                ju0Var.f38356j = (int) (-anVar.getY());
+                ju0Var.f38355i = anVar.getHeight() - ((int) (((-anVar.getY()) + bnVar.f24991r.getHeight()) - bnVar.f28173b.n1()));
                 return ju0Var;
             }
         }
@@ -117,21 +117,21 @@ public final class wm extends org.telegram.ui.zt0 {
             int i11 = photoEntry.imageId;
             an anVar = this.f32150b;
             anVar.invalidate();
-            for (int i12 = 0; i12 < anVar.f24646b.size(); i12++) {
-                zm zmVar = (zm) anVar.f24646b.get(i12);
+            for (int i12 = 0; i12 < anVar.f24671b.size(); i12++) {
+                zm zmVar = (zm) anVar.f24671b.get(i12);
                 if (zmVar != null && (arrayList = zmVar.h) != null) {
                     for (int i13 = 0; i13 < arrayList.size(); i13++) {
                         ym ymVar = (ym) arrayList.get(i13);
-                        if (ymVar != null && ymVar.f32672b.imageId == i11) {
+                        if (ymVar != null && ymVar.f32675b.imageId == i11) {
                             ym.a(ymVar, photoEntry);
                         }
                     }
-                    um umVar = zmVar.f32978k;
-                    if (umVar != null && umVar.f31021g != null) {
+                    um umVar = zmVar.f32953k;
+                    if (umVar != null && umVar.f30962g != null) {
                         z10 = false;
-                        for (int i14 = 0; i14 < zmVar.f32978k.f31021g.size(); i14++) {
-                            if (((MediaController.PhotoEntry) zmVar.f32978k.f31021g.get(i14)).imageId == i11) {
-                                zmVar.f32978k.f31021g.set(i14, photoEntry);
+                        for (int i14 = 0; i14 < zmVar.f32953k.f30962g.size(); i14++) {
+                            if (((MediaController.PhotoEntry) zmVar.f32953k.f30962g.get(i14)).imageId == i11) {
+                                zmVar.f32953k.f30962g.set(i14, photoEntry);
                                 z10 = true;
                             }
                         }
@@ -139,7 +139,7 @@ public final class wm extends org.telegram.ui.zt0 {
                         z10 = false;
                     }
                     if (z10) {
-                        zm.a(zmVar, zmVar.f32978k, true);
+                        zm.a(zmVar, zmVar.f32953k, true);
                     }
                 }
             }

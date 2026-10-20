@@ -12,11 +12,11 @@ import android.view.TextureView;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.cl0;
-import org.telegram.ui.Components.kw0;
+import org.telegram.ui.Components.dl0;
+import org.telegram.ui.Components.lw0;
 import org.telegram.ui.Components.tz;
 import org.telegram.ui.Components.u20;
-public final class ub extends kw0 {
+public final class ub extends lw0 {
     public boolean A0;
     public float B0;
     public float C0;
@@ -221,10 +221,10 @@ public final class ub extends kw0 {
             if (tzVar != null) {
                 tzVar.layout(vbVar.Y, (measuredHeight - vbVar.f9951b0) - tzVar.getMeasuredHeight(), measuredWidth - vbVar.f9948a0, measuredHeight - vbVar.f9951b0);
             }
-            cl0 cl0Var = vbVar.f10015v1.Z1;
-            if (cl0Var != null) {
+            dl0 dl0Var = vbVar.f10015v1.Z1;
+            if (dl0Var != null) {
                 int i21 = vbVar.Y;
-                cl0Var.layout(i21, vbVar.Z, cl0Var.getMeasuredWidth() + i21, vbVar.f10015v1.Z1.getMeasuredHeight() + vbVar.Z);
+                dl0Var.layout(i21, vbVar.Z, dl0Var.getMeasuredWidth() + i21, vbVar.f10015v1.Z1.getMeasuredHeight() + vbVar.Z);
                 if (vbVar.f10015v1.Z1.getReactionsWindow() != null) {
                     vVar = vbVar.f10015v1.Z1.getReactionsWindow().f870c;
                 } else {
@@ -329,9 +329,9 @@ public final class ub extends kw0 {
             if (tzVar != null) {
                 tzVar.measure(View.MeasureSpec.makeMeasureSpec(i16, 1073741824), View.MeasureSpec.makeMeasureSpec(vbVar.f10015v1.f9028p2.getLayoutParams().height, 1073741824));
             }
-            cl0 cl0Var = vbVar.f10015v1.Z1;
-            if (cl0Var != null) {
-                measureChild(cl0Var, i10, i11);
+            dl0 dl0Var = vbVar.f10015v1.Z1;
+            if (dl0Var != null) {
+                measureChild(dl0Var, i10, i11);
                 if (vbVar.f10015v1.Z1.getReactionsWindow() != null) {
                     measureChild(vbVar.f10015v1.Z1.getReactionsWindow().f870c, i10, i11);
                 }

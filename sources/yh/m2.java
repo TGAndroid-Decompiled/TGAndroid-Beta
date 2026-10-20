@@ -5,40 +5,40 @@ import android.graphics.Typeface;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.Components.b71;
-import org.telegram.ui.Components.f61;
+import org.telegram.ui.Components.c71;
 import org.telegram.ui.Components.g61;
-import org.telegram.ui.Components.im0;
-import org.telegram.ui.Components.t61;
+import org.telegram.ui.Components.h61;
+import org.telegram.ui.Components.jm0;
+import org.telegram.ui.Components.u61;
 import org.telegram.ui.Components.x90;
 import org.telegram.ui.Components.xb;
-public final class m2 extends f61 {
-    public static final int f50398a = 0;
+public final class m2 extends g61 {
+    public static final int f50403a = 0;
 
     static {
-        f61.setup(new f61());
+        g61.setup(new g61());
     }
 
     @Override
-    public final void bindView(View view, g61 g61Var, boolean z10, t61 t61Var, b71 b71Var) {
+    public final void bindView(View view, h61 h61Var, boolean z10, u61 u61Var, c71 c71Var) {
         Typeface typeface;
         x90 x90Var = (x90) view;
-        x90Var.setGravity(g61Var.f26510z);
-        x90Var.setTextColor((int) g61Var.B);
-        x90Var.setTextSize(1, g61Var.A);
-        if (g61Var.f26502q) {
+        x90Var.setGravity(h61Var.f26795z);
+        x90Var.setTextColor((int) h61Var.B);
+        x90Var.setTextSize(1, h61Var.A);
+        if (h61Var.f26787q) {
             typeface = AndroidUtilities.bold();
         } else {
             typeface = null;
         }
         x90Var.setTypeface(typeface);
-        int i10 = g61Var.f26494i;
-        x90Var.setPadding(i10, 0, i10, g61Var.f26496k);
-        x90Var.setText(g61Var.f26497l);
+        int i10 = h61Var.f26779i;
+        x90Var.setPadding(i10, 0, i10, h61Var.f26781k);
+        x90Var.setText(h61Var.f26782l);
     }
 
     @Override
-    public final View createView(Context context, im0 im0Var, int i10, int i11, d6 d6Var) {
+    public final View createView(Context context, jm0 jm0Var, int i10, int i11, d6 d6Var) {
         return new xb(context, 5, null);
     }
 }

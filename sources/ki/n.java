@@ -44,7 +44,7 @@ public final class n implements ek {
         try {
             Intent intent = new Intent("android.intent.action.GET_CONTENT");
             intent.setType("*/*");
-            this.f15393b.f28223b.f30534f0.startActivityForResult(intent, 21);
+            this.f15393b.f28173b.f30545f0.startActivityForResult(intent, 21);
         } catch (Exception e) {
             FileLog.e(e);
         }

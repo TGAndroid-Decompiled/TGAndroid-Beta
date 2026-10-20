@@ -4,7 +4,7 @@ import android.graphics.Canvas;
 import android.view.View;
 import java.util.HashSet;
 import org.telegram.messenger.support.LongSparseIntArray;
-public final class w40 extends org.telegram.ui.Components.im0 {
+public final class w40 extends org.telegram.ui.Components.jm0 {
     public final LongSparseIntArray V2;
     public final q50 W2;
 
@@ -37,9 +37,9 @@ public final class w40 extends org.telegram.ui.Components.im0 {
         HashSet hashSet2 = e50Var.H;
         if (e50Var.G == null) {
             hashSet2.clear();
-            hashSet2.addAll(e50Var.f45977q);
+            hashSet2.addAll(e50Var.f45982q);
             hashSet.clear();
-            hashSet.addAll(e50Var.f45976p);
+            hashSet.addAll(e50Var.f45981p);
             e50Var.J = 0.0f;
             e50Var.K = Float.MAX_VALUE;
             if (hashSet2.isEmpty() && hashSet.isEmpty()) {
@@ -50,7 +50,7 @@ public final class w40 extends org.telegram.ui.Components.im0 {
             for (int i15 = 0; i15 < childCount; i15++) {
                 View childAt = w40Var.getChildAt(i15);
                 s4.b1 G = w40Var.G(childAt);
-                if (G != null && (i14 = G.f45915f) != 3 && i14 != 4 && i14 != 5 && i14 != 7 && !hashSet2.contains(G)) {
+                if (G != null && (i14 = G.f45920f) != 3 && i14 != 4 && i14 != 5 && i14 != 7 && !hashSet2.contains(G)) {
                     e50Var.J = Math.max(e50Var.J, childAt.getY() + childAt.getMeasuredHeight());
                     e50Var.K = Math.min(e50Var.K, Math.max(0.0f, childAt.getY()));
                 }

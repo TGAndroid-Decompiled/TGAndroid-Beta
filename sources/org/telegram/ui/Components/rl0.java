@@ -1,41 +1,23 @@
 package org.telegram.ui.Components;
+public abstract class rl0 extends im0 {
+    public boolean E(jm0 jm0Var) {
+        return true;
+    }
 
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewConfiguration;
-import android.view.ViewParent;
-public final class rl0 implements View.OnTouchListener {
-    public float f29998a;
-    public float f29999b;
-    public boolean f30000c;
+    public abstract String F(int i10);
 
-    @Override
-    public final boolean onTouch(View view, MotionEvent motionEvent) {
-        ViewParent parent = view.getParent();
-        if (parent != null) {
-            if (motionEvent.getAction() == 0) {
-                this.f29998a = motionEvent.getX();
-                this.f29999b = motionEvent.getY();
-                this.f30000c = true;
-                parent.requestDisallowInterceptTouchEvent(true);
-            }
-            if (motionEvent.getAction() == 2) {
-                float x10 = this.f29998a - motionEvent.getX();
-                float y3 = this.f29999b - motionEvent.getY();
-                float scaledTouchSlop = ViewConfiguration.get(view.getContext()).getScaledTouchSlop();
-                if (this.f30000c) {
-                    if (Math.sqrt((y3 * y3) + (x10 * x10)) > scaledTouchSlop) {
-                        this.f30000c = false;
-                        parent.requestDisallowInterceptTouchEvent(false);
-                        return false;
-                    }
-                }
-            } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                this.f30000c = false;
-                parent.requestDisallowInterceptTouchEvent(false);
-                return false;
-            }
-        }
-        return false;
+    public abstract void G(jm0 jm0Var, float f7, int[] iArr);
+
+    public float H(jm0 jm0Var) {
+        return jm0Var.computeVerticalScrollOffset() / ((k() * jm0Var.getChildAt(0).getMeasuredHeight()) - jm0Var.getMeasuredHeight());
+    }
+
+    public void I() {
+    }
+
+    public void J(jm0 jm0Var) {
+    }
+
+    public void K() {
     }
 }

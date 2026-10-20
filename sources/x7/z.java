@@ -1,9 +1,9 @@
 package x7;
 public final class z implements c0 {
-    public final int f49635a;
+    public final int f49640a;
 
     public z(int i10) {
-        this.f49635a = i10;
+        this.f49640a = i10;
     }
 
     @Override
@@ -15,8 +15,8 @@ public final class z implements c0 {
     public final boolean equals(Object obj) {
         if (this != obj) {
             if (obj instanceof c0) {
-                if (this.f49635a == ((z) ((c0) obj)).f49635a) {
-                    Object obj2 = b0.f49322a;
+                if (this.f49640a == ((z) ((c0) obj)).f49640a) {
+                    Object obj2 = b0.f49327a;
                     if (obj2.equals(obj2)) {
                         return true;
                     }
@@ -31,11 +31,11 @@ public final class z implements c0 {
 
     @Override
     public final int hashCode() {
-        return (this.f49635a ^ 14552422) + (b0.f49322a.hashCode() ^ 2041407134);
+        return (this.f49640a ^ 14552422) + (b0.f49327a.hashCode() ^ 2041407134);
     }
 
     @Override
     public final String toString() {
-        return "@com.google.firebase.encoders.proto.Protobuf(tag=" + this.f49635a + "intEncoding=" + b0.f49322a + ')';
+        return "@com.google.firebase.encoders.proto.Protobuf(tag=" + this.f49640a + "intEncoding=" + b0.f49327a + ')';
     }
 }

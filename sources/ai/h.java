@@ -17,7 +17,7 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.by0;
+import org.telegram.ui.Components.cy0;
 import org.telegram.ui.jg0;
 public final class h implements RequestDelegate {
     public final int f1395a;
@@ -175,7 +175,7 @@ public final class h implements RequestDelegate {
                             }
                         });
                     }
-                    AndroidUtilities.runOnUIThread(new by0(w0Var, hashMap, arrayList, 23));
+                    AndroidUtilities.runOnUIThread(new cy0(w0Var, hashMap, arrayList, 23));
                     return;
                 }
                 return;
@@ -236,18 +236,18 @@ public final class h implements RequestDelegate {
                             }
                         });
                     }
-                    AndroidUtilities.runOnUIThread(new by0(l0Var, hashMap2, arrayList2, 26));
+                    AndroidUtilities.runOnUIThread(new cy0(l0Var, hashMap2, arrayList2, 26));
                     return;
                 }
                 return;
             case 27:
-                AndroidUtilities.runOnUIThread(new uf.c(7, (ug.m1) obj, tLObject));
+                AndroidUtilities.runOnUIThread(new u2.j0(9, (ug.m1) obj, tLObject));
                 return;
             case 28:
-                AndroidUtilities.runOnUIThread(new uf.c(9, (wf.c) obj, tLObject));
+                AndroidUtilities.runOnUIThread(new u2.j0(11, (wf.c) obj, tLObject));
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new by0((wf.d) obj, tLObject, tL_error, 27));
+                AndroidUtilities.runOnUIThread(new cy0((wf.d) obj, tLObject, tL_error, 27));
                 return;
         }
     }

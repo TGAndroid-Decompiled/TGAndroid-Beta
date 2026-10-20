@@ -30,12 +30,12 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.g61;
-import org.telegram.ui.Components.hm0;
+import org.telegram.ui.Components.h61;
 import org.telegram.ui.Components.im0;
+import org.telegram.ui.Components.jm0;
 import org.telegram.ui.Components.k20;
 import org.telegram.ui.Components.si;
-import org.telegram.ui.Components.t61;
+import org.telegram.ui.Components.u61;
 public final class s7 extends org.telegram.ui.Components.bb implements NotificationCenter.NotificationCenterDelegate, DownloadController.FileDownloadProgressListener, ne.d {
     public String A0;
     public boolean B0;
@@ -71,7 +71,7 @@ public final class s7 extends org.telegram.ui.Components.bb implements Notificat
     public final gh.d f9803n0;
     public final bh.b f9804o0;
     public final m7 f9805p0;
-    public t61 f9806q0;
+    public u61 f9806q0;
     public MessageObject f9807r0;
     public String f9808s0;
     public int f9809t0;
@@ -152,7 +152,7 @@ public final class s7 extends org.telegram.ui.Components.bb implements Notificat
         this.f9791a0 = s7Var;
         this.f9796f0 = callback;
         gh.c cVar = new gh.c();
-        cVar.a(getThemedColor(org.telegram.ui.ActionBar.h6.f20987d6));
+        cVar.a(getThemedColor(org.telegram.ui.ActionBar.h6.f20990d6));
         if (Build.VERSION.SDK_INT >= 31) {
             this.f9802l0 = new bh.f(false);
             gh.d dVar = new gh.d(null);
@@ -172,32 +172,32 @@ public final class s7 extends org.telegram.ui.Components.bb implements Notificat
             this.f9804o0 = new bh.b(cVar);
         }
         this.f9805p0 = new m7(this, 0);
-        int i10 = org.telegram.ui.ActionBar.h6.f20929a7;
+        int i10 = org.telegram.ui.ActionBar.h6.f20932a7;
         si siVar = new si(context, i10, d6Var);
         this.f9801k0 = siVar;
         siVar.setVisibility(4);
         FrameLayout frameLayout = new FrameLayout(context);
         this.f9800j0 = frameLayout;
         k20 k20Var = new k20(context, d6Var);
-        k20Var.f27686r.setOnFocusChangeListener(new p7(this));
-        k20Var.f27688w = true;
+        k20Var.f27726r.setOnFocusChangeListener(new p7(this));
+        k20Var.f27728w = true;
         k20Var.setPadding(AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f));
         k20Var.d();
         k20Var.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f));
-        k20Var.f27686r.addTextChangedListener(new q7(this));
-        k20Var.f27686r.setHint(LocaleController.getString(R.string.Search));
+        k20Var.f27726r.addTextChangedListener(new q7(this));
+        k20Var.f27726r.setHint(LocaleController.getString(R.string.Search));
         frameLayout.addView(siVar, w7.z5.g());
         frameLayout.addView(k20Var, w7.z5.d(-1, 48.0f, 51, 0.0f, 8.0f, 0.0f, 4.0f));
         k20Var.setupBlurredBackground(this.f9804o0.c(k20Var, fh.c.n(d6Var), false));
         frameLayout.setPadding(AndroidUtilities.dp(8.0f) + this.backgroundPaddingLeft, 0, AndroidUtilities.dp(8.0f) + this.backgroundPaddingLeft, 0);
         this.containerView.addView(frameLayout, w7.z5.e(-1, -2, 55));
         setBackgroundColor(getThemedColor(i10));
-        im0 im0Var = this.d;
+        jm0 jm0Var = this.d;
         int i11 = this.backgroundPaddingLeft;
-        im0Var.setPadding(i11, 0, i11, 0);
+        jm0Var.setPadding(i11, 0, i11, 0);
         this.d.p1();
         s4.k kVar = new s4.k();
-        kVar.f45946m = false;
+        kVar.f45951m = false;
         kVar.C = false;
         kVar.o(bsVar);
         kVar.n(350L);
@@ -262,7 +262,7 @@ public final class s7 extends org.telegram.ui.Components.bb implements Notificat
                         tL_message.out = true;
                         int i11 = s7Var.J0;
                         s7Var.J0 = i11 - 1;
-                        tL_message.f20294id = i11;
+                        tL_message.f20297id = i11;
                         tL_message.peer_id = new TLRPC.TL_peerUser();
                         TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
                         tL_message.from_id = tL_peerUser;
@@ -321,7 +321,7 @@ public final class s7 extends org.telegram.ui.Components.bb implements Notificat
             }
             return;
         }
-        g61 G = s7Var.f9806q0.G(i10 - 1);
+        h61 G = s7Var.f9806q0.G(i10 - 1);
         if (G != null && G.d == 1) {
             new s7(s7Var.getContext(), true, s7Var, callback, d6Var).show();
         } else if (G != null && G.d == 2) {
@@ -398,7 +398,7 @@ public final class s7 extends org.telegram.ui.Components.bb implements Notificat
                 File file = new File(audioEntry.path);
                 TLRPC.TL_message tL_message = new TLRPC.TL_message();
                 tL_message.out = true;
-                tL_message.f20294id = i10;
+                tL_message.f20297id = i10;
                 tL_message.peer_id = new TLRPC.TL_peerUser();
                 TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
                 tL_message.from_id = tL_peerUser;
@@ -416,7 +416,7 @@ public final class s7 extends org.telegram.ui.Components.bb implements Notificat
                 tL_message.flags |= 768;
                 String fileExtension = FileLoader.getFileExtension(file);
                 TLRPC.Document document = tL_message.media.document;
-                document.f20279id = 0L;
+                document.f20282id = 0L;
                 document.access_hash = 0L;
                 document.file_reference = new byte[0];
                 document.date = tL_message.date;
@@ -525,34 +525,34 @@ public final class s7 extends org.telegram.ui.Components.bb implements Notificat
             }
             if (!arrayList3.isEmpty() || z11) {
                 if (!arrayList.isEmpty() && arrayList.size() > 1) {
-                    arrayList.add(g61.B(null));
+                    arrayList.add(h61.B(null));
                     i11 = AndroidUtilities.dp(12.0f);
                 } else {
                     i11 = 0;
                 }
                 this.f9806q0.U();
-                arrayList.add(g61.t(str));
+                arrayList.add(h61.t(str));
                 int size2 = arrayList3.size();
                 while (i12 < size2) {
                     Object obj2 = arrayList3.get(i12);
                     i12++;
                     ai.jc jcVar = new ai.jc(this, 1);
-                    int i14 = org.telegram.ui.Cells.g7.f22298a;
-                    g61 J = g61.J(org.telegram.ui.Cells.g7.class);
+                    int i14 = org.telegram.ui.Cells.g7.f22301a;
+                    h61 J = h61.J(org.telegram.ui.Cells.g7.class);
                     J.G = (MessageObject) obj2;
                     J.H = jcVar;
                     arrayList.add(J);
                     i11 += AndroidUtilities.dp(56.0f);
                 }
                 if (z11) {
-                    arrayList.add(g61.n(4));
-                    arrayList.add(g61.n(4));
-                    arrayList.add(g61.n(4));
+                    arrayList.add(h61.n(4));
+                    arrayList.add(h61.n(4));
+                    arrayList.add(h61.n(4));
                     i11 += AndroidUtilities.dp(56.0f) * 3;
                 }
                 if (z12 && !z11) {
-                    g61 c10 = g61.c(i10, R.drawable.arrow_more, LocaleController.getString(R.string.ShowMore));
-                    c10.f26502q = true;
+                    h61 c10 = h61.c(i10, R.drawable.arrow_more, LocaleController.getString(R.string.ShowMore));
+                    c10.f26787q = true;
                     arrayList.add(c10);
                     i11 += AndroidUtilities.dp(50.0f);
                 }
@@ -666,7 +666,7 @@ public final class s7 extends org.telegram.ui.Components.bb implements Notificat
                     str3 = str4;
                 }
                 this.f9813x0 = str3;
-                tL_messages_searchGlobal.f20384q = str3;
+                tL_messages_searchGlobal.f20387q = str3;
                 tL_messages_searchGlobal.limit = 20;
                 if (arrayList.size() > 0) {
                     MessageObject messageObject = (MessageObject) i2.e.h(1, arrayList);
@@ -705,11 +705,11 @@ public final class s7 extends org.telegram.ui.Components.bb implements Notificat
         boolean z10 = false;
         int i10 = 0;
         while (true) {
-            im0 im0Var = this.d;
-            if (i10 >= im0Var.getChildCount()) {
+            jm0 jm0Var = this.d;
+            if (i10 >= jm0Var.getChildCount()) {
                 break;
             }
-            View childAt = im0Var.getChildAt(i10);
+            View childAt = jm0Var.getChildAt(i10);
             if (RecyclerView.R(childAt) >= 1 && childAt.getY() < f7) {
                 f7 = childAt.getY();
             }
@@ -768,11 +768,11 @@ public final class s7 extends org.telegram.ui.Components.bb implements Notificat
     }
 
     @Override
-    public final hm0 x(im0 im0Var) {
-        t61 t61Var = new t61(im0Var, getContext(), this.currentAccount, 0, false, new k7(this, 0), this.resourcesProvider);
-        this.f9806q0 = t61Var;
-        t61Var.f30436r = false;
-        return t61Var;
+    public final im0 x(jm0 jm0Var) {
+        u61 u61Var = new u61(jm0Var, getContext(), this.currentAccount, 0, false, new k7(this, 0), this.resourcesProvider);
+        this.f9806q0 = u61Var;
+        u61Var.f30860r = false;
+        return u61Var;
     }
 
     @Override

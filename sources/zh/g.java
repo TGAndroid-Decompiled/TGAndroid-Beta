@@ -9,23 +9,23 @@ import org.telegram.ui.ActionBar.n2;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.df0;
 public final class g implements Utilities.Callback {
-    public final int f52008a;
-    public final Object f52009b;
+    public final int f52013a;
+    public final Object f52014b;
 
     public g(Object obj, int i10) {
-        this.f52008a = i10;
-        this.f52009b = obj;
+        this.f52013a = i10;
+        this.f52014b = obj;
     }
 
     @Override
     public final void run(Object obj) {
-        switch (this.f52008a) {
+        switch (this.f52013a) {
             case 0:
-                r rVar = (r) this.f52009b;
+                r rVar = (r) this.f52014b;
                 TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) obj;
-                if (rVar.f52094y == null) {
+                if (rVar.f52092y == null) {
                     if (tL_messages_stickerSet != null && tL_messages_stickerSet.documents != null) {
-                        rVar.f52094y = tL_messages_stickerSet;
+                        rVar.f52092y = tL_messages_stickerSet;
                     } else {
                         rVar.F = true;
                     }
@@ -34,7 +34,7 @@ public final class g implements Utilities.Callback {
                 }
                 return;
             case 1:
-                n2 n2Var = (n2) this.f52009b;
+                n2 n2Var = (n2) this.f52014b;
                 Long l4 = (Long) obj;
                 if (!n2Var.isFinished) {
                     if (l4 != null && l4.longValue() != Long.MAX_VALUE) {
@@ -47,36 +47,36 @@ public final class g implements Utilities.Callback {
                 }
                 return;
             case 2:
-                q0 q0Var = (q0) this.f52009b;
+                r0 r0Var = (r0) this.f52014b;
                 TLRPC.TL_exportedContactToken tL_exportedContactToken = (TLRPC.TL_exportedContactToken) obj;
-                c1 c1Var = q0Var.f52076b;
-                if (!q0Var.E && tL_exportedContactToken != null) {
-                    q0Var.f52080r = tL_exportedContactToken;
-                    q0Var.f52081s = 0L;
+                c1 c1Var = r0Var.f52094b;
+                if (!r0Var.E && tL_exportedContactToken != null) {
+                    r0Var.f52098r = tL_exportedContactToken;
+                    r0Var.f52099s = 0L;
                     String str = tL_exportedContactToken.url;
-                    String str2 = q0Var.f52077c.f52062b;
-                    if (!TextUtils.equals(c1Var.f51750f, str2) || c1Var.h) {
-                        c1Var.f51750f = str2;
+                    String str2 = r0Var.f52095c.f52073b;
+                    if (!TextUtils.equals(c1Var.f51755f, str2) || c1Var.h) {
+                        c1Var.f51755f = str2;
                         c1Var.h = false;
                         c1Var.I5 = null;
                         c1Var.J5 = 0;
                     }
                     if (!TextUtils.equals(c1Var.d, str)) {
                         c1Var.d = str;
-                        Utilities.globalQueue.postRunnable(new t0(str, new s0(c1Var, str, 0)));
+                        Utilities.globalQueue.postRunnable(new h0(2, str, new t0(c1Var, str, 0)));
                     }
                     c1Var.setLinkExpires(tL_exportedContactToken.expires);
                     return;
                 }
                 return;
             default:
-                c1 c1Var2 = (c1) this.f52009b;
+                c1 c1Var2 = (c1) this.f52014b;
                 TLRPC.TL_messages_stickerSet tL_messages_stickerSet2 = (TLRPC.TL_messages_stickerSet) obj;
                 if (tL_messages_stickerSet2 != null) {
                     c1Var2.getClass();
                     ArrayList<TLRPC.Document> arrayList = tL_messages_stickerSet2.documents;
                     if (arrayList != null && !arrayList.isEmpty()) {
-                        c1Var2.f51863q8 = tL_messages_stickerSet2.documents.get(0);
+                        c1Var2.f51868q8 = tL_messages_stickerSet2.documents.get(0);
                     }
                 }
                 c1Var2.invalidate();

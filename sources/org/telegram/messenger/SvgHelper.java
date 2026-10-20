@@ -406,9 +406,9 @@ public class SvgHelper {
                         if (runnable != null) {
                             AndroidUtilities.cancelRunOnUIThread(runnable);
                         }
-                        y1 y1Var = new y1(23);
-                        shiftRunnable = y1Var;
-                        AndroidUtilities.runOnUIThread(y1Var, ((int) (1000.0f / AndroidUtilities.screenRefreshRate)) - 1);
+                        z1 z1Var = new z1(23);
+                        shiftRunnable = z1Var;
+                        AndroidUtilities.runOnUIThread(z1Var, ((int) (1000.0f / AndroidUtilities.screenRefreshRate)) - 1);
                     }
                     ImageReceiver imageReceiver = this.parentImageReceiver;
                     if (imageReceiver != null && !z10) {

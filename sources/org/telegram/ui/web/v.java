@@ -8,7 +8,7 @@ import ci.z7;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.kk;
+import org.telegram.messenger.mk;
 import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_keyboard;
@@ -19,15 +19,15 @@ import org.telegram.ui.Components.xc;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.bj0;
 public final class v implements Utilities.Callback2 {
-    public final int f42822a;
-    public final a1 f42823b;
-    public final z7 f42824c;
+    public final int f42828a;
+    public final a1 f42829b;
+    public final z7 f42830c;
     public final String d;
 
     public v(a1 a1Var, z7 z7Var, String str, int i10) {
-        this.f42822a = i10;
-        this.f42823b = a1Var;
-        this.f42824c = z7Var;
+        this.f42828a = i10;
+        this.f42829b = a1Var;
+        this.f42830c = z7Var;
         this.d = str;
     }
 
@@ -35,17 +35,17 @@ public final class v implements Utilities.Callback2 {
     public final void run(Object obj, Object obj2) {
         int i10;
         bj0 bj0Var;
-        int i11 = this.f42822a;
+        int i11 = this.f42828a;
         String str = this.d;
-        z7 z7Var = this.f42824c;
-        a1 a1Var = this.f42823b;
+        z7 z7Var = this.f42830c;
+        a1 a1Var = this.f42829b;
         switch (i11) {
             case 0:
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                a1 a1Var2 = this.f42823b;
+                a1 a1Var2 = this.f42829b;
                 d6 d6Var = a1Var2.e;
                 TL_keyboard.TL_buttonTypeRequestPeer tL_buttonTypeRequestPeer = (TL_keyboard.TL_buttonTypeRequestPeer) ag.c.a((TL_keyboard.KeyboardButton) obj, TL_keyboard.TL_buttonTypeRequestPeer.class);
-                z7 z7Var2 = this.f42824c;
+                z7 z7Var2 = this.f42830c;
                 String str2 = this.d;
                 if (tL_buttonTypeRequestPeer != null) {
                     TLRPC.RequestPeerType requestPeerType = tL_buttonTypeRequestPeer.peer_type;
@@ -63,16 +63,16 @@ public final class v implements Utilities.Callback2 {
                         Boolean bool = tL_requestPeerTypeUser.bot;
                         Boolean bool2 = tL_requestPeerTypeUser.premium;
                         c0 c0Var = new c0(a1Var2, zArr, str2, tL_buttonTypeRequestPeer, z7Var2);
-                        bj0 bj0Var2 = bj0.f35639u0;
+                        bj0 bj0Var2 = bj0.f35645u0;
                         n2 R = LaunchActivity.R();
                         if (R == null) {
                             bj0Var = null;
                         } else {
-                            bj0Var = bj0.f35639u0;
+                            bj0Var = bj0.f35645u0;
                             if (bj0Var == null) {
                                 bj0 bj0Var3 = new bj0(R, i10, bool, bool2, c0Var);
                                 bj0Var3.show();
-                                bj0.f35639u0 = bj0Var3;
+                                bj0.f35645u0 = bj0Var3;
                                 bj0Var = bj0Var3;
                             }
                         }
@@ -82,8 +82,8 @@ public final class v implements Utilities.Callback2 {
                         }
                         return;
                     } else {
-                        Bundle d = kk.d(15, "onlySelect", "dialogsType", true);
-                        d.putLong("requestPeerBotId", a1Var2.U.f20420id);
+                        Bundle d = mk.d(15, "onlySelect", "dialogsType", true);
+                        d.putLong("requestPeerBotId", a1Var2.U.f20423id);
                         try {
                             SerializedData serializedData = new SerializedData(tL_buttonTypeRequestPeer.peer_type.getObjectSize());
                             tL_buttonTypeRequestPeer.peer_type.serializeToStream(serializedData);
@@ -98,7 +98,7 @@ public final class v implements Utilities.Callback2 {
                         n2 U = LaunchActivity.U();
                         if (U != 0) {
                             ?? obj3 = new Object();
-                            obj3.f21553a = true;
+                            obj3.f21556a = true;
                             U.showAsSheet(f0Var, obj3);
                             return;
                         }

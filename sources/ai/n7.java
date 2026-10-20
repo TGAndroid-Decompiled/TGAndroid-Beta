@@ -30,11 +30,11 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.e11;
+import org.telegram.ui.Components.f11;
 public final class n7 {
     public float A;
     public float B;
-    public e11 C;
+    public f11 C;
     public final RectF D;
     public final Path E;
     public final Paint F;
@@ -66,9 +66,9 @@ public final class n7 {
     public TL_stars.starGiftAttributeModel f1887m;
     public boolean f1890p;
     public float f1891q;
-    public e11 f1892r;
+    public f11 f1892r;
     public float f1893s;
-    public e11 f1894t;
+    public f11 f1894t;
     public float f1895u;
     public float v;
     public float f1897x;
@@ -98,7 +98,7 @@ public final class n7 {
         this.J = new org.telegram.ui.Components.yc(view);
         this.d = new ImageReceiver(view);
         this.e = new org.telegram.ui.Components.p5(AndroidUtilities.dp(28.0f), view);
-        j0Var.f50316r = view;
+        j0Var.f50321r = view;
         j0Var.d.setParentView(view);
     }
 
@@ -159,18 +159,18 @@ public final class n7 {
             m12 = stargiftattributebackdrop3.text_color | (-16777216);
         }
         int i10 = m12;
-        this.f1892r.f25738p = eVar.e - AndroidUtilities.dp(12.0f);
-        e11 e11Var = this.f1892r;
-        e11Var.c(f10 - (e11Var.f25728c / 2.0f), this.f1891q, 1.0f, -1, canvas);
-        this.f1894t.f25738p = eVar.e - AndroidUtilities.dp(12.0f);
-        e11 e11Var2 = this.f1894t;
+        this.f1892r.f26031p = eVar.e - AndroidUtilities.dp(12.0f);
+        f11 f11Var = this.f1892r;
+        f11Var.c(f10 - (f11Var.f26021c / 2.0f), this.f1891q, 1.0f, -1, canvas);
+        this.f1894t.f26031p = eVar.e - AndroidUtilities.dp(12.0f);
+        f11 f11Var2 = this.f1894t;
         Canvas canvas2 = canvas;
         int i11 = i10;
-        e11Var2.c(f10 - (e11Var2.f25728c / 2.0f), this.f1893s, 1.0f, i11, canvas2);
+        f11Var2.c(f10 - (f11Var2.f26021c / 2.0f), this.f1893s, 1.0f, i11, canvas2);
         if (this.f1899z) {
             yh.j0 j0Var = this.f1898y;
-            int i12 = j0Var.f50318t;
-            int i13 = j0Var.f50319u;
+            int i12 = j0Var.f50323t;
+            int i13 = j0Var.f50324u;
             int i14 = (int) (f10 - (i12 / 2.0f));
             int i15 = (int) this.f1897x;
             int i16 = i12 + i14;
@@ -192,10 +192,10 @@ public final class n7 {
             while (i17 < size) {
                 int i18 = i17 + 1;
                 m7 m7Var = (m7) arrayList.get(i17);
-                e11 e11Var3 = m7Var.f1820b;
+                f11 f11Var3 = m7Var.f1820b;
                 float f13 = f10 - (dp / 2.0f);
                 float f14 = f12;
-                e11Var3.c((f13 + this.f1895u) - e11Var3.f25728c, m7Var.f1819a, 1.0f, i11, canvas2);
+                f11Var3.c((f13 + this.f1895u) - f11Var3.f26021c, m7Var.f1819a, 1.0f, i11, canvas2);
                 canvas2 = canvas;
                 m7Var.f1821c.c(f13 + this.f1895u + AndroidUtilities.dp(f14), m7Var.f1819a, 1.0f, -1, canvas2);
                 i11 = i11;
@@ -206,10 +206,10 @@ public final class n7 {
         int i19 = i11;
         if (!this.f1890p) {
             float f15 = this.A;
-            float a11 = org.telegram.messenger.g0.a(this.C.f25728c, AndroidUtilities.dp(30.0f), 2.0f, f10);
+            float a11 = org.telegram.messenger.g0.a(this.C.f26021c, AndroidUtilities.dp(30.0f), 2.0f, f10);
             float f16 = this.A + this.B;
             RectF rectF3 = this.D;
-            rectF3.set(f10 - ((this.C.f25728c + AndroidUtilities.dp(30.0f)) / 2.0f), f15, a11, f16);
+            rectF3.set(f10 - ((this.C.f26021c + AndroidUtilities.dp(30.0f)) / 2.0f), f15, a11, f16);
             Path path2 = this.E;
             path2.rewind();
             float f17 = this.B / 2.0f;
@@ -227,7 +227,7 @@ public final class n7 {
             int dp5 = AndroidUtilities.dp(46.67f) + ((int) rectF.top);
             yh.j1 j1Var = this.f1884j;
             j1Var.setBounds(dp2, dp3, dp4, dp5);
-            j1Var.f50326x = i19;
+            j1Var.f50331x = i19;
             j1Var.draw(canvas2);
         }
         canvas2.restore();
@@ -296,21 +296,21 @@ public final class n7 {
         float dp2 = AndroidUtilities.dp(10.0f) + 0.0f + AndroidUtilities.dp(110.0f) + AndroidUtilities.dp(9.33f);
         int i12 = 0;
         if (this.f1890p) {
-            this.f1892r = new e11(tL_starGiftUnique.title, 14.0f, AndroidUtilities.bold());
+            this.f1892r = new f11(tL_starGiftUnique.title, 14.0f, AndroidUtilities.bold());
         } else if (tL_messageActionStarGiftUnique.peer == null && !UserObject.isService(messageObject.getDialogId())) {
             if (messageObject.getDialogId() == UserConfig.getInstance(i11).getClientUserId()) {
                 if (tL_starGiftUnique.crafted) {
-                    this.f1892r = new e11(LocaleController.getString(R.string.Gift2ActionCraftedTitle), 14.0f, AndroidUtilities.bold());
+                    this.f1892r = new f11(LocaleController.getString(R.string.Gift2ActionCraftedTitle), 14.0f, AndroidUtilities.bold());
                 } else if (tL_messageActionStarGiftUnique.resale_amount != null) {
-                    this.f1892r = new e11(LocaleController.getString(R.string.Gift2ActionPurchasedTitle), 14.0f, AndroidUtilities.bold());
+                    this.f1892r = new f11(LocaleController.getString(R.string.Gift2ActionPurchasedTitle), 14.0f, AndroidUtilities.bold());
                 } else {
-                    this.f1892r = new e11(LocaleController.getString(R.string.Gift2ActionUpgradedTitle), 14.0f, AndroidUtilities.bold());
+                    this.f1892r = new f11(LocaleController.getString(R.string.Gift2ActionUpgradedTitle), 14.0f, AndroidUtilities.bold());
                 }
             } else {
-                this.f1892r = new e11(LocaleController.formatString(R.string.Gift2UniqueTitle, shortName), 14.0f, AndroidUtilities.bold());
+                this.f1892r = new f11(LocaleController.formatString(R.string.Gift2UniqueTitle, shortName), 14.0f, AndroidUtilities.bold());
             }
         } else {
-            this.f1892r = new e11(LocaleController.getString(R.string.Gift2UniqueTitle2), 14.0f, AndroidUtilities.bold());
+            this.f1892r = new f11(LocaleController.getString(R.string.Gift2UniqueTitle2), 14.0f, AndroidUtilities.bold());
         }
         this.f1891q = (this.f1892r.j() / 2.0f) + dp2;
         float j10 = this.f1892r.j() + dp2 + AndroidUtilities.dp(3.0f);
@@ -318,7 +318,7 @@ public final class n7 {
         if (this.f1890p) {
             f7 = 10.0f;
             f10 = 3.0f;
-            this.f1894t = new e11(LocaleController.formatPluralStringComma("Gift2CollectionNumber", tL_starGiftUnique.num), 12.0f, AndroidUtilities.bold());
+            this.f1894t = new f11(LocaleController.formatPluralStringComma("Gift2CollectionNumber", tL_starGiftUnique.num), 12.0f, AndroidUtilities.bold());
             f11 = 2.0f;
         } else {
             f7 = 10.0f;
@@ -327,7 +327,7 @@ public final class n7 {
             sb2.append(tL_starGiftUnique.title);
             sb2.append(" #");
             f11 = 2.0f;
-            this.f1894t = new e11(org.telegram.messenger.g0.h(tL_starGiftUnique.num, ',', sb2), 12.0f, null);
+            this.f1894t = new f11(org.telegram.messenger.g0.h(tL_starGiftUnique.num, ',', sb2), 12.0f, null);
         }
         this.f1893s = (this.f1894t.j() / f11) + j10;
         float j11 = this.f1894t.j() + j10;
@@ -344,7 +344,7 @@ public final class n7 {
         TLRPC.TL_textWithEntities tL_textWithEntities = tL_messageActionStarGiftUnique.message;
         yh.j0 j0Var = this.f1898y;
         if (tL_textWithEntities != null) {
-            TextPaint textPaint = j0Var.f50304c;
+            TextPaint textPaint = j0Var.f50309c;
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(tL_textWithEntities.text);
             MessageObject.addEntitiesToText(spannableStringBuilder, tL_textWithEntities.entities, false, false, false, false);
             Spannable replaceAnimatedEmoji = MessageObject.replaceAnimatedEmoji(Emoji.replaceEmoji(spannableStringBuilder, textPaint.getFontMetricsInt(), false), tL_textWithEntities.entities, textPaint.getFontMetricsInt());
@@ -357,11 +357,11 @@ public final class n7 {
             }
             this.f1899z = true;
             j0Var.c(tLObject);
-            j0Var.f50311m = replaceAnimatedEmoji;
-            j0Var.f50317s = -1;
+            j0Var.f50316m = replaceAnimatedEmoji;
+            j0Var.f50322s = -1;
             j0Var.b(((int) f13) - AndroidUtilities.dp(24.0f));
             if (!this.M) {
-                StaticLayout staticLayout = j0Var.f50312n;
+                StaticLayout staticLayout = j0Var.f50317n;
                 if (staticLayout != null) {
                     i10 = staticLayout.getLineCount();
                 } else {
@@ -369,7 +369,7 @@ public final class n7 {
                 }
                 if (i10 > 3) {
                     this.M = true;
-                    StaticLayout staticLayout2 = j0Var.f50312n;
+                    StaticLayout staticLayout2 = j0Var.f50317n;
                     if (staticLayout2 != null) {
                         i12 = staticLayout2.getLineCount();
                     }
@@ -380,12 +380,12 @@ public final class n7 {
             }
             float dp4 = dp3 + AndroidUtilities.dp(4.0f);
             this.f1897x = dp4;
-            dp3 = dp4 + j0Var.f50319u + AndroidUtilities.dp(f10);
+            dp3 = dp4 + j0Var.f50324u + AndroidUtilities.dp(f10);
         } else {
             this.f1899z = false;
             j0Var.c(null);
-            j0Var.f50311m = null;
-            j0Var.f50317s = -1;
+            j0Var.f50316m = null;
+            j0Var.f50322s = -1;
             if (this.f1887m != null) {
                 if (!arrayList.isEmpty()) {
                     dp3 += AndroidUtilities.dp(6.0f);
@@ -393,12 +393,12 @@ public final class n7 {
                 m7 m7Var = new m7(dp3, LocaleController.getString(R.string.Gift2AttributeModel), this.f1887m.name);
                 arrayList.add(m7Var);
                 float f14 = f13 * 0.5f;
-                e11 e11Var = m7Var.f1820b;
-                e11Var.f25738p = f14;
-                this.f1895u = Math.max(this.f1895u, e11Var.f25728c);
-                e11 e11Var2 = m7Var.f1821c;
-                e11Var2.f25738p = f14;
-                this.v = Math.max(this.v, e11Var2.f25728c);
+                f11 f11Var = m7Var.f1820b;
+                f11Var.f26031p = f14;
+                this.f1895u = Math.max(this.f1895u, f11Var.f26021c);
+                f11 f11Var2 = m7Var.f1821c;
+                f11Var2.f26031p = f14;
+                this.v = Math.max(this.v, f11Var2.f26021c);
                 dp3 += m7Var.a();
             }
             if (this.f1885k != null) {
@@ -408,12 +408,12 @@ public final class n7 {
                 m7 m7Var2 = new m7(dp3, LocaleController.getString(R.string.Gift2AttributeBackdrop), this.f1885k.name);
                 arrayList.add(m7Var2);
                 float f15 = f13 * 0.5f;
-                e11 e11Var3 = m7Var2.f1820b;
-                e11Var3.f25738p = f15;
-                this.f1895u = Math.max(this.f1895u, e11Var3.f25728c);
-                e11 e11Var4 = m7Var2.f1821c;
-                e11Var4.f25738p = f15;
-                this.v = Math.max(this.v, e11Var4.f25728c);
+                f11 f11Var3 = m7Var2.f1820b;
+                f11Var3.f26031p = f15;
+                this.f1895u = Math.max(this.f1895u, f11Var3.f26021c);
+                f11 f11Var4 = m7Var2.f1821c;
+                f11Var4.f26031p = f15;
+                this.v = Math.max(this.v, f11Var4.f26021c);
                 dp3 = m7Var2.a() + dp3;
             }
             if (this.f1886l != null) {
@@ -423,19 +423,19 @@ public final class n7 {
                 m7 m7Var3 = new m7(dp3, LocaleController.getString(R.string.Gift2AttributeSymbol), this.f1886l.name);
                 arrayList.add(m7Var3);
                 float f16 = f13 * 0.5f;
-                e11 e11Var5 = m7Var3.f1820b;
-                e11Var5.f25738p = f16;
-                this.f1895u = Math.max(this.f1895u, e11Var5.f25728c);
-                e11 e11Var6 = m7Var3.f1821c;
-                e11Var6.f25738p = f16;
-                this.v = Math.max(this.v, e11Var6.f25728c);
+                f11 f11Var5 = m7Var3.f1820b;
+                f11Var5.f26031p = f16;
+                this.f1895u = Math.max(this.f1895u, f11Var5.f26021c);
+                f11 f11Var6 = m7Var3.f1821c;
+                f11Var6.f26031p = f16;
+                this.v = Math.max(this.v, f11Var6.f26021c);
                 dp3 += m7Var3.a();
             }
         }
         float dp5 = dp3 + AndroidUtilities.dp(11.66f);
         if (!this.f1890p) {
             this.A = dp5;
-            this.C = new e11(LocaleController.getString(R.string.Gift2UniqueView), 14.0f, AndroidUtilities.bold());
+            this.C = new f11(LocaleController.getString(R.string.Gift2UniqueView), 14.0f, AndroidUtilities.bold());
             float dp6 = AndroidUtilities.dp(30.0f);
             this.B = dp6;
             dp5 += dp6;
@@ -452,24 +452,24 @@ public final class n7 {
         float f7 = this.N;
         float dp = AndroidUtilities.dp(10.0f) + 0.0f + AndroidUtilities.dp(110.0f) + AndroidUtilities.dp(9.33f);
         int i11 = 0;
-        e11 e11Var = new e11(LocaleController.formatString(R.string.Gift2UniqueTitle, DialogObject.getShortName(j10)), 14.0f, AndroidUtilities.bold());
-        this.f1892r = e11Var;
-        this.f1891q = (e11Var.j() / 2.0f) + dp;
+        f11 f11Var = new f11(LocaleController.formatString(R.string.Gift2UniqueTitle, DialogObject.getShortName(j10)), 14.0f, AndroidUtilities.bold());
+        this.f1892r = f11Var;
+        this.f1891q = (f11Var.j() / 2.0f) + dp;
         float j11 = this.f1892r.j() + dp + AndroidUtilities.dp(3.0f);
         StringBuilder sb2 = new StringBuilder();
         sb2.append(tL_starGiftUnique.title);
         sb2.append(" #");
         String h = org.telegram.messenger.g0.h(tL_starGiftUnique.num, ',', sb2);
         TLObject tLObject = null;
-        e11 e11Var2 = new e11(h, 12.0f, null);
-        this.f1894t = e11Var2;
-        this.f1893s = (e11Var2.j() / 2.0f) + j11;
+        f11 f11Var2 = new f11(h, 12.0f, null);
+        this.f1894t = f11Var2;
+        this.f1893s = (f11Var2.j() / 2.0f) + j11;
         float j12 = this.f1894t.j() + j11 + AndroidUtilities.dp(11.0f);
         this.f1896w.clear();
         this.f1895u = 0.0f;
         this.v = 0.0f;
         yh.j0 j0Var = this.f1898y;
-        TextPaint textPaint = j0Var.f50304c;
+        TextPaint textPaint = j0Var.f50309c;
         if (tL_textWithEntities != null && !TextUtils.isEmpty(tL_textWithEntities.text)) {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(tL_textWithEntities.text);
             MessageObject.addEntitiesToText(spannableStringBuilder, tL_textWithEntities.entities, false, false, false, false);
@@ -484,11 +484,11 @@ public final class n7 {
         }
         this.f1899z = true;
         j0Var.c(tLObject);
-        j0Var.f50311m = spanned;
-        j0Var.f50317s = -1;
+        j0Var.f50316m = spanned;
+        j0Var.f50322s = -1;
         j0Var.b(((int) f7) - AndroidUtilities.dp(24.0f));
         if (!this.M) {
-            StaticLayout staticLayout = j0Var.f50312n;
+            StaticLayout staticLayout = j0Var.f50317n;
             if (staticLayout != null) {
                 i10 = staticLayout.getLineCount();
             } else {
@@ -496,7 +496,7 @@ public final class n7 {
             }
             if (i10 > 3) {
                 this.M = true;
-                StaticLayout staticLayout2 = j0Var.f50312n;
+                StaticLayout staticLayout2 = j0Var.f50317n;
                 if (staticLayout2 != null) {
                     i11 = staticLayout2.getLineCount();
                 }
@@ -507,9 +507,9 @@ public final class n7 {
         }
         float dp2 = j12 + AndroidUtilities.dp(4.0f);
         this.f1897x = dp2;
-        float dp3 = dp2 + j0Var.f50319u + AndroidUtilities.dp(3.0f) + AndroidUtilities.dp(11.66f);
+        float dp3 = dp2 + j0Var.f50324u + AndroidUtilities.dp(3.0f) + AndroidUtilities.dp(11.66f);
         this.A = dp3;
-        this.C = new e11(str, 14.0f, AndroidUtilities.bold());
+        this.C = new f11(str, 14.0f, AndroidUtilities.bold());
         float dp4 = AndroidUtilities.dp(30.0f);
         this.B = dp4;
         this.O = (int) (dp3 + dp4 + AndroidUtilities.dp(11.0f));

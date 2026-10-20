@@ -6,13 +6,13 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.g5;
-import org.telegram.ui.Components.v61;
+import org.telegram.ui.Components.w61;
 public final class e1 extends g5 {
-    public final ki.u f42620r = new ki.u(this, 26);
-    public final f1 f42621s;
+    public final ki.u f42626r = new ki.u(this, 26);
+    public final f1 f42627s;
 
     public e1(f1 f1Var) {
-        this.f42621s = f1Var;
+        this.f42627s = f1Var;
     }
 
     public static boolean w(String str, String str2) {
@@ -35,17 +35,17 @@ public final class e1 extends g5 {
     @Override
     public final void m() {
         int i10;
-        f1 f1Var = this.f42621s;
-        f1Var.f42628n = null;
+        f1 f1Var = this.f42627s;
+        f1Var.f42634n = null;
         f1Var.h = false;
-        AndroidUtilities.cancelRunOnUIThread(this.f42620r);
-        v61 v61Var = f1Var.f32025a;
-        if (v61Var != null) {
-            v61Var.W2.N(true);
-            f1Var.f32025a.V2.h1(0, 0);
+        AndroidUtilities.cancelRunOnUIThread(this.f42626r);
+        w61 w61Var = f1Var.f32355a;
+        if (w61Var != null) {
+            w61Var.W2.N(true);
+            f1Var.f32355a.V2.h1(0, 0);
         }
-        wh.n nVar = f1Var.f42631w.d;
-        if (TextUtils.isEmpty(f1Var.f42628n)) {
+        wh.n nVar = f1Var.f42637w.d;
+        if (TextUtils.isEmpty(f1Var.f42634n)) {
             i10 = R.string.WebNoHistory;
         } else {
             i10 = R.string.WebNoSearchedHistory;
@@ -56,16 +56,16 @@ public final class e1 extends g5 {
     @Override
     public final void q(EditText editText) {
         int i10;
-        f1 f1Var = this.f42621s;
-        boolean z10 = !TextUtils.isEmpty(f1Var.f42628n);
+        f1 f1Var = this.f42627s;
+        boolean z10 = !TextUtils.isEmpty(f1Var.f42634n);
         String obj = editText.getText().toString();
-        if (!TextUtils.equals(f1Var.f42628n, obj)) {
-            f1Var.f42628n = obj;
+        if (!TextUtils.equals(f1Var.f42634n, obj)) {
+            f1Var.f42634n = obj;
             f1Var.h = true;
-            ki.u uVar = this.f42620r;
+            ki.u uVar = this.f42626r;
             AndroidUtilities.cancelRunOnUIThread(uVar);
             AndroidUtilities.runOnUIThread(uVar, 500L);
-            wh.n nVar = f1Var.f42631w.d;
+            wh.n nVar = f1Var.f42637w.d;
             if (TextUtils.isEmpty(obj)) {
                 i10 = R.string.WebNoHistory;
             } else {
@@ -73,11 +73,11 @@ public final class e1 extends g5 {
             }
             nVar.setText(LocaleController.getString(i10));
         }
-        v61 v61Var = f1Var.f32025a;
-        if (v61Var != null) {
-            v61Var.W2.N(true);
+        w61 w61Var = f1Var.f32355a;
+        if (w61Var != null) {
+            w61Var.W2.N(true);
             if (z10 != (!TextUtils.isEmpty(obj))) {
-                f1Var.f32025a.V2.h1(0, 0);
+                f1Var.f32355a.V2.h1(0, 0);
             }
         }
     }

@@ -16,8 +16,8 @@ public final class o41 extends m51 {
     public final void dispatchDraw(Canvas canvas) {
         float y3;
         x51 x51Var = this.E;
-        j41 j41Var = x51Var.f43053g0;
-        o41 o41Var = x51Var.f43051f0;
+        j41 j41Var = x51Var.f43059g0;
+        o41 o41Var = x51Var.f43057f0;
         x41 x41Var = x51Var.U;
         if (x41Var != null) {
             int measuredWidth = getMeasuredWidth();
@@ -30,7 +30,7 @@ public final class o41 extends m51 {
             RectF rectF = AndroidUtilities.rectTmp;
             float f7 = 0;
             rectF.set(f7, f7, measuredWidth, measuredHeight);
-            org.telegram.ui.Components.bl0 delegate = ((org.telegram.ui.Components.cl0) h0Var.f773c).getDelegate();
+            org.telegram.ui.Components.cl0 delegate = ((org.telegram.ui.Components.dl0) h0Var.f773c).getDelegate();
             float x11 = s0Var.getX() + x10;
             if (t0Var.f888y == 1) {
                 y3 = s0Var.getY() - AndroidUtilities.statusBarHeight;

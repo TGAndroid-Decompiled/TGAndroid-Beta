@@ -15,12 +15,12 @@ public final class mp implements jc1 {
     public final void a(TLRPC.TL_wallPaper tL_wallPaper) {
         switch (this.f28577a) {
             case 0:
-                wp wpVar = this.f28578b.f28826a;
+                wp wpVar = this.f28578b.f28858a;
                 wpVar.Y.dismissInternal();
                 wpVar.dismiss();
                 return;
             default:
-                wp wpVar2 = this.f28578b.f28826a;
+                wp wpVar2 = this.f28578b.f28858a;
                 wpVar2.Y.dismissInternal();
                 wpVar2.dismiss();
                 return;

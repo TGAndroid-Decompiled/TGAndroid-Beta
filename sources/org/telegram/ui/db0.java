@@ -1,21 +1,21 @@
 package org.telegram.ui;
 public final class db0 implements Runnable {
-    public final int f36316a;
-    public final ib0 f36317b;
+    public final int f36322a;
+    public final ib0 f36323b;
 
     public db0(ib0 ib0Var, int i10) {
-        this.f36316a = i10;
-        this.f36317b = ib0Var;
+        this.f36322a = i10;
+        this.f36323b = ib0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f36316a) {
+        switch (this.f36322a) {
             case 0:
-                this.f36317b.b();
+                this.f36323b.b();
                 return;
             default:
-                this.f36317b.c();
+                this.f36323b.c();
                 return;
         }
     }

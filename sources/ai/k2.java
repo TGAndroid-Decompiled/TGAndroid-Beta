@@ -16,7 +16,7 @@ import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.g30;
-import org.telegram.ui.Components.py0;
+import org.telegram.ui.Components.qy0;
 import org.telegram.ui.PrivacyControlActivity;
 import org.telegram.ui.TwoStepVerificationActivity;
 import org.telegram.ui.bq;
@@ -97,15 +97,15 @@ public final class k2 implements RequestDelegate {
                 TLRPC.TL_chatInviteExported tL_chatInviteExported = (TLRPC.TL_chatInviteExported) obj;
                 boolean[] zArr = (boolean[]) obj3;
                 org.telegram.ui.ActionBar.b2 b2Var = (org.telegram.ui.ActionBar.b2) obj2;
-                org.telegram.ui.vb vbVar = pbVar.f40168a.f41105n;
+                org.telegram.ui.vb vbVar = pbVar.f40174a.f41111n;
                 if (tL_error == null) {
                     tL_messages_exportedChatInvite = (TLRPC.TL_messages_exportedChatInvite) tLObject;
                     for (int i11 = 0; i11 < tL_messages_exportedChatInvite.users.size(); i11++) {
                         TLRPC.User user = tL_messages_exportedChatInvite.users.get(i11);
-                        if (vbVar.f42188z0 == null) {
-                            vbVar.f42188z0 = new HashMap();
+                        if (vbVar.f42194z0 == null) {
+                            vbVar.f42194z0 = new HashMap();
                         }
-                        vbVar.f42188z0.put(Long.valueOf(user.f20420id), user);
+                        vbVar.f42194z0.put(Long.valueOf(user.f20423id), user);
                     }
                 } else {
                     tL_messages_exportedChatInvite = null;
@@ -119,7 +119,7 @@ public final class k2 implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new t0((Object) ((bq) obj4), tL_error, (Object) ((TLRPC.InputCheckPasswordSRP) obj), (Object) ((TwoStepVerificationActivity) obj3), (TLObject) ((TLRPC.TL_channels_editCreator) obj2), 28));
                 return;
             case 12:
-                py0.q((xr0) obj4, this.f1631c, (TLRPC.TL_messages_getAttachedStickers) obj3, (org.telegram.ui.vc) obj2, tLObject, tL_error);
+                qy0.q((xr0) obj4, this.f1631c, (TLRPC.TL_messages_getAttachedStickers) obj3, (org.telegram.ui.vc) obj2, tLObject, tL_error);
                 return;
             case 13:
                 AndroidUtilities.runOnUIThread(new g30((dg0) obj4, tL_error, (String) obj, (String) obj3, (String) obj2, 13));

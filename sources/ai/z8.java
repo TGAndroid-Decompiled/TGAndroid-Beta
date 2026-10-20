@@ -4,10 +4,10 @@ import java.util.Set;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.jg0;
-import org.telegram.ui.Components.lt0;
-import org.telegram.ui.Components.tv0;
-import org.telegram.ui.Components.vn0;
+import org.telegram.ui.Components.kg0;
+import org.telegram.ui.Components.mt0;
+import org.telegram.ui.Components.uv0;
+import org.telegram.ui.Components.wn0;
 import org.telegram.ui.n00;
 public final class z8 implements Runnable {
     public final int f2546a;
@@ -53,42 +53,42 @@ public final class z8 implements Runnable {
                 fVar.q(p5, 1033, new j2.c(p5, i12, i13, this.f2548c));
                 return;
             case 2:
-                ((jg0) this.d).f27524a.f27842b.y3(this.f2547b, this.f2548c);
+                ((kg0) this.d).f27874a.f28152b.A3(this.f2547b, this.f2548c);
                 return;
             case 3:
-                vn0 vn0Var = (vn0) this.d;
-                vn0Var.f31341o = null;
-                vn0Var.c(this.f2547b, this.f2548c, true);
+                wn0 wn0Var = (wn0) this.d;
+                wn0Var.f32169o = null;
+                wn0Var.c(this.f2547b, this.f2548c, true);
                 return;
             case 4:
-                tv0 tv0Var = ((lt0) this.d).f28305a;
-                org.telegram.ui.ActionBar.n2 n2Var = tv0Var.f30732v1;
+                uv0 uv0Var = ((mt0) this.d).f28598a;
+                org.telegram.ui.ActionBar.n2 n2Var = uv0Var.f31070v1;
                 if (n2Var != null) {
                     boolean z10 = this.f2548c;
                     int i14 = this.f2547b;
                     if (z10) {
                         TLRPC.TL_channels_setMainProfileTab tL_channels_setMainProfileTab = new TLRPC.TL_channels_setMainProfileTab();
-                        tL_channels_setMainProfileTab.tab = tv0.e0(i14, true);
-                        tL_channels_setMainProfileTab.channel = n2Var.getMessagesController().getInputChannel(tv0Var.f30694d1.f20274id);
-                        TLRPC.ChatFull chatFull = tv0Var.f30694d1;
+                        tL_channels_setMainProfileTab.tab = uv0.e0(i14, true);
+                        tL_channels_setMainProfileTab.channel = n2Var.getMessagesController().getInputChannel(uv0Var.f31032d1.f20277id);
+                        TLRPC.ChatFull chatFull = uv0Var.f31032d1;
                         chatFull.flags2 |= 4194304;
                         chatFull.main_tab = tL_channels_setMainProfileTab.tab;
                         tL_account_setMainProfileTab = tL_channels_setMainProfileTab;
                     } else {
                         TLRPC.TL_account_setMainProfileTab tL_account_setMainProfileTab2 = new TLRPC.TL_account_setMainProfileTab();
-                        TLRPC.ProfileTab e02 = tv0.e0(i14, true);
+                        TLRPC.ProfileTab e02 = uv0.e0(i14, true);
                         tL_account_setMainProfileTab2.tab = e02;
-                        TLRPC.UserFull userFull = tv0Var.f30696e1;
+                        TLRPC.UserFull userFull = uv0Var.f31034e1;
                         tL_account_setMainProfileTab = tL_account_setMainProfileTab2;
                         if (userFull != null) {
                             userFull.flags2 |= 1048576;
                             userFull.main_tab = e02;
-                            n2Var.getMessagesStorage().updateUserInfo(tv0Var.f30696e1, true);
+                            n2Var.getMessagesStorage().updateUserInfo(uv0Var.f31034e1, true);
                             tL_account_setMainProfileTab = tL_account_setMainProfileTab2;
                         }
                     }
                     n2Var.getConnectionsManager().sendRequest(tL_account_setMainProfileTab, null);
-                    tv0Var.y1(true);
+                    uv0Var.y1(true);
                     return;
                 }
                 return;
@@ -107,7 +107,7 @@ public final class z8 implements Runnable {
                     formatPluralString = LocaleController.formatPluralString("FolderLinkRemovedChats", i15, new Object[0]);
                 }
                 org.telegram.ui.Components.qc M = a02.M(formatPluralString, LocaleController.getString(R.string.FolderLinkChatlistUpdate), i10);
-                M.f29594j = 5000;
+                M.f29530j = 5000;
                 M.j();
                 return;
         }

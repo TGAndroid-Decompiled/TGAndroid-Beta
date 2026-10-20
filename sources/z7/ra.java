@@ -11,14 +11,14 @@ public enum ra implements u {
     UI_IMAGE(6),
     CV_PIXEL_BUFFER_REF(9);
     
-    public final int f51158a;
+    public final int f51163a;
 
     ra(int i10) {
-        this.f51158a = i10;
+        this.f51163a = i10;
     }
 
     @Override
     public final int zza() {
-        return this.f51158a;
+        return this.f51163a;
     }
 }

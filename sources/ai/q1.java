@@ -2,9 +2,9 @@ package ai;
 
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
-import org.telegram.ui.Components.g61;
+import org.telegram.ui.Components.h61;
 import org.telegram.ui.Components.ij;
-import org.telegram.ui.Components.py0;
+import org.telegram.ui.Components.qy0;
 import org.telegram.ui.Components.tz;
 import org.telegram.ui.Components.wz;
 import org.telegram.ui.Components.yy;
@@ -31,8 +31,8 @@ public final class q1 extends g.o {
                 wz wzVar = a2Var.f932h0;
                 t1 t1Var = a2Var.f935k0;
                 if (t1Var != null && i10 != 0) {
-                    g61 G = t1Var.G(i10 - 1);
-                    if (G == null || (i11 = G.f26506u) == -1) {
+                    h61 G = t1Var.G(i10 - 1);
+                    if (G == null || (i11 = G.f26791u) == -1) {
                         return wzVar.J;
                     }
                     return i11;
@@ -53,8 +53,8 @@ public final class q1 extends g.o {
                 return 1;
             case 3:
                 ij ijVar = (ij) this.d;
-                int i15 = ijVar.f27255r;
-                int i16 = ijVar.f27257w;
+                int i15 = ijVar.f27280r;
+                int i16 = ijVar.f27282w;
                 if (i10 % i16 != i16 - 1) {
                     i12 = AndroidUtilities.dp(5.0f);
                 } else {
@@ -63,7 +63,7 @@ public final class q1 extends g.o {
                 return i15 + i12;
             case 4:
                 ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = (ChatAttachAlertPhotoLayout) this.d;
-                if (i10 != chatAttachAlertPhotoLayout.G.f30283n - 1 && ((!chatAttachAlertPhotoLayout.P0 && !chatAttachAlertPhotoLayout.O0) || i10 != 0)) {
+                if (i10 != chatAttachAlertPhotoLayout.G.f30319n - 1 && ((!chatAttachAlertPhotoLayout.P0 && !chatAttachAlertPhotoLayout.O0) || i10 != 0)) {
                     if (chatAttachAlertPhotoLayout.O0) {
                         i10--;
                     }
@@ -81,41 +81,41 @@ public final class q1 extends g.o {
                 zy zyVar = (zy) this.d;
                 tz tzVar = zyVar.Y;
                 if (i10 == 0) {
-                    tzVar.f30800n0.getClass();
+                    tzVar.f30754n0.getClass();
                 }
-                s4.g0 adapter = tzVar.f30783h0.getAdapter();
-                yy yyVar = tzVar.f30789j0;
-                if (adapter == yyVar && yyVar.f32773x.isEmpty()) {
+                s4.g0 adapter = tzVar.f30737h0.getAdapter();
+                yy yyVar = tzVar.f30743j0;
+                if (adapter == yyVar && yyVar.f32764x.isEmpty()) {
                     return zyVar.J;
                 }
-                tzVar.f30800n0.getClass();
+                tzVar.f30754n0.getClass();
                 zyVar.B1();
                 return zyVar.R.get(i10);
             case 6:
-                py0 py0Var = (py0) this.d;
-                if ((py0Var.W != null && (py0Var.d.e.get(i10) instanceof Integer)) || i10 == py0Var.d.h) {
-                    return py0Var.d.d;
+                qy0 qy0Var = (qy0) this.d;
+                if ((qy0Var.W != null && (qy0Var.d.e.get(i10) instanceof Integer)) || i10 == qy0Var.d.h) {
+                    return qy0Var.d.d;
                 }
                 return 1;
             case 7:
                 cp0 cp0Var = (cp0) this.d;
-                if (i10 >= cp0Var.f36015b0 && i10 < cp0Var.f36017c0) {
+                if (i10 >= cp0Var.f36021b0 && i10 < cp0Var.f36023c0) {
                     return 1;
                 }
-                if (i10 >= cp0Var.f36018d0 && i10 < cp0Var.f36019e0) {
+                if (i10 >= cp0Var.f36024d0 && i10 < cp0Var.f36025e0) {
                     return 1;
                 }
                 return 3;
             case 8:
-                g61 G2 = ((yh.f4) this.d).f50243i0.G(i10 - 1);
-                if (G2 == null || (i14 = G2.f26506u) == -1) {
+                h61 G2 = ((yh.f4) this.d).f50248i0.G(i10 - 1);
+                if (G2 == null || (i14 = G2.f26791u) == -1) {
                     return 3;
                 }
                 return i14;
             default:
-                zh.j0 j0Var = (zh.j0) this.d;
-                if (j0Var.e.j(i10) == 0) {
-                    return j0Var.f52090r;
+                zh.k0 k0Var = (zh.k0) this.d;
+                if (k0Var.e.j(i10) == 0) {
+                    return k0Var.f52088r;
                 }
                 return 1;
         }

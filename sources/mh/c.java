@@ -31,13 +31,13 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.g0;
-import org.telegram.messenger.kk;
+import org.telegram.messenger.mk;
 import org.telegram.messenger.voip.GroupCallMessage;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.d61;
+import org.telegram.ui.Components.e61;
 import org.telegram.ui.Components.h9;
 import org.telegram.ui.Components.r5;
 import org.telegram.ui.o30;
@@ -95,7 +95,7 @@ public final class c extends ViewGroup implements oe.a, NotificationCenter.Notif
         ImageReceiver imageReceiver = new ImageReceiver(this);
         this.d = imageReceiver;
         imageReceiver.setRoundRadius(AndroidUtilities.dp(11.0f));
-        hVar.f31475c.setStrokeWidth(AndroidUtilities.dp(1.0f));
+        hVar.f31426c.setStrokeWidth(AndroidUtilities.dp(1.0f));
         this.f16931n = new ImageReceiver(this);
         setWillNotDraw(false);
     }
@@ -289,7 +289,7 @@ public final class c extends ViewGroup implements oe.a, NotificationCenter.Notif
             int paddingLeft = getPaddingLeft();
             int paddingRight = getPaddingRight();
             i1 i1Var = this.f16933s;
-            int c10 = kk.c(44.0f, (size - paddingLeft) - paddingRight, Integer.MIN_VALUE);
+            int c10 = mk.c(44.0f, (size - paddingLeft) - paddingRight, Integer.MIN_VALUE);
             int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, 0);
             n nVar = this.v;
             nVar.measure(c10, makeMeasureSpec);
@@ -356,7 +356,7 @@ public final class c extends ViewGroup implements oe.a, NotificationCenter.Notif
             }
         }
         setMeasuredDimension(size, this.f16934w.f3830b);
-        this.h.f31476f = Math.round(((RectF) this.f16934w.f3831c).width() + AndroidUtilities.dp(48.0f));
+        this.h.f31427f = Math.round(((RectF) this.f16934w.f3831c).width() + AndroidUtilities.dp(48.0f));
     }
 
     @Override
@@ -369,8 +369,8 @@ public final class c extends ViewGroup implements oe.a, NotificationCenter.Notif
         this.f16930f.setAlpha(Math.round(this.f16928b.e * 100.0f));
         int round = Math.round(this.f16927a.e * 220.0f);
         org.telegram.ui.Components.voip.h hVar = this.h;
-        hVar.f31473a.setAlpha(round);
-        hVar.f31475c.setAlpha(round);
+        hVar.f31424a.setAlpha(round);
+        hVar.f31426c.setAlpha(round);
         invalidate();
     }
 
@@ -404,7 +404,7 @@ public final class c extends ViewGroup implements oe.a, NotificationCenter.Notif
         }
         this.f16932r = null;
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(name);
-        spannableStringBuilder.setSpan(new d61(AndroidUtilities.bold()), 0, spannableStringBuilder.length(), 33);
+        spannableStringBuilder.setSpan(new e61(AndroidUtilities.bold()), 0, spannableStringBuilder.length(), 33);
         spannableStringBuilder.setSpan(this.J, 0, spannableStringBuilder.length(), 33);
         i1 i1Var = groupCallMessage.visibleReaction;
         n nVar = this.v;

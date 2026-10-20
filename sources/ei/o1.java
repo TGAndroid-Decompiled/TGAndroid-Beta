@@ -10,10 +10,10 @@ import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.SharedConfig;
-import org.telegram.ui.Components.im0;
-import org.telegram.ui.Components.ll0;
-public final class o1 extends im0 {
-    public ll0 V2;
+import org.telegram.ui.Components.jm0;
+import org.telegram.ui.Components.ml0;
+public final class o1 extends jm0 {
+    public ml0 V2;
     public boolean W2;
     public float X2;
     public float Y2;
@@ -43,18 +43,18 @@ public final class o1 extends im0 {
             View m10 = sVar.m(i10);
             int L0 = sVar.L0();
             if ((m10 == null && Math.abs(i10 - L0) > sVar.J * 9.0f) || !SharedConfig.animationsEnabled()) {
-                ll0 ll0Var = o1Var.V2;
+                ml0 ml0Var = o1Var.V2;
                 if (sVar.L0() < i10) {
                     i12 = 0;
                 } else {
                     i12 = 1;
                 }
-                ll0Var.f28242b = i12;
+                ml0Var.f28543b = i12;
                 o1Var.V2.c(i10, i11, false, false);
                 return;
             }
             l1 l1Var = new l1(o1Var, o1Var.getContext(), 0);
-            l1Var.f46053a = i10;
+            l1Var.f46058a = i10;
             l1Var.f16144p = i11;
             sVar.w0(l1Var);
         }
@@ -82,7 +82,7 @@ public final class o1 extends im0 {
         if (!rect.isEmpty()) {
             this.B1.setBounds(rect);
             canvas.save();
-            q0.a aVar = this.f27297m2;
+            q0.a aVar = this.f27577m2;
             if (aVar != null) {
                 aVar.accept(canvas);
             }
@@ -210,10 +210,10 @@ public final class o1 extends im0 {
         super.setLayoutManager(n0Var);
         this.V2 = null;
         if (n0Var instanceof s4.b0) {
-            ll0 ll0Var = new ll0(this, (s4.b0) n0Var);
-            this.V2 = ll0Var;
-            ll0Var.f28246i = new k1(this, 0);
-            ll0Var.h = new e1.c(this, 3);
+            ml0 ml0Var = new ml0(this, (s4.b0) n0Var);
+            this.V2 = ml0Var;
+            ml0Var.f28547i = new k1(this, 0);
+            ml0Var.h = new e1.c(this, 3);
         }
     }
 }

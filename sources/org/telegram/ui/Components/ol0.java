@@ -1,50 +1,87 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
+import android.animation.Animator;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
+import android.util.SparseArray;
 import android.view.View;
-public final class ol0 extends Drawable {
-    public final Paint f29019a = new Paint(1);
-    public final View f29020b;
-    public final Path f29021c;
-    public final RectF d;
-    public final im0 e;
+import android.view.ViewTreeObserver;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
+import java.util.HashSet;
+public final class ol0 {
+    public final jm0 f29064a;
+    public boolean d;
+    public final boolean e;
+    public final SparseArray f29065b = new SparseArray();
+    public final HashSet f29066c = new HashSet();
+    public final boolean f29067f = true;
+    public final ArrayList f29068g = new ArrayList();
+    public final ArrayList h = new ArrayList();
 
-    public ol0(im0 im0Var, View view, Path path, RectF rectF) {
-        this.e = im0Var;
-        this.f29020b = view;
-        this.f29021c = path;
-        this.d = rectF;
+    public ol0(jm0 jm0Var, boolean z10) {
+        this.f29064a = jm0Var;
+        this.e = z10;
+        jm0Var.setItemsEnterAnimator(this);
     }
 
-    @Override
-    public final void draw(Canvas canvas) {
-        canvas.save();
-        View view = this.f29020b;
-        canvas.translate(-view.getX(), -view.getY());
-        canvas.clipPath(this.f29021c);
-        int w02 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20987d6, this.e.f27299n2);
-        Paint paint = this.f29019a;
-        paint.setColor(i0.a.o(w02, paint.getAlpha()));
-        canvas.drawRect(this.d, paint);
-        canvas.restore();
+    public final void a() {
+        ArrayList arrayList = this.f29068g;
+        int i10 = 0;
+        if (!arrayList.isEmpty()) {
+            ArrayList arrayList2 = new ArrayList(arrayList);
+            for (int i11 = 0; i11 < arrayList2.size(); i11++) {
+                ((AnimatorSet) arrayList2.get(i11)).end();
+                ((AnimatorSet) arrayList2.get(i11)).cancel();
+            }
+        }
+        arrayList.clear();
+        while (true) {
+            ArrayList arrayList3 = this.h;
+            int size = arrayList3.size();
+            jm0 jm0Var = this.f29064a;
+            if (i10 < size) {
+                jm0Var.getViewTreeObserver().removeOnPreDrawListener((ViewTreeObserver.OnPreDrawListener) arrayList3.get(i10));
+                i10++;
+            } else {
+                arrayList3.clear();
+                this.f29065b.clear();
+                jm0Var.invalidate();
+                this.d = true;
+                return;
+            }
+        }
     }
 
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-        this.f29019a.setAlpha(i10);
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public final void b(int i10) {
+        Animator ofFloat;
+        jm0 jm0Var = this.f29064a;
+        int childCount = jm0Var.getChildCount();
+        b10 b10Var = null;
+        for (int i11 = 0; i11 < childCount; i11++) {
+            View childAt = jm0Var.getChildAt(i11);
+            if (RecyclerView.R(childAt) >= 0 && (childAt instanceof b10)) {
+                b10Var = childAt;
+            }
+        }
+        s4.n0 layoutManager = jm0Var.getLayoutManager();
+        if (b10Var != null && layoutManager != null) {
+            jm0Var.removeView(b10Var);
+            this.f29066c.add(b10Var);
+            jm0Var.addView(b10Var);
+            layoutManager.M(b10Var);
+            if (this.f29067f) {
+                ofFloat = ObjectAnimator.ofFloat(b10Var, View.ALPHA, b10Var.getAlpha(), 0.0f);
+            } else {
+                ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+            }
+            ofFloat.addListener(new nl0(this, b10Var, layoutManager));
+            ofFloat.start();
+            i10--;
+        }
+        org.telegram.ui.oq oqVar = new org.telegram.ui.oq(this, b10Var, i10, 2);
+        this.h.add(oqVar);
+        jm0Var.getViewTreeObserver().addOnPreDrawListener(oqVar);
     }
 }

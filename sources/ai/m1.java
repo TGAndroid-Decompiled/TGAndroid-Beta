@@ -169,14 +169,14 @@ public abstract class m1 {
                 }
                 float f51 = f26;
                 if (i12 == 18 || i12 == 19 || i12 == 6 || i12 == 7) {
-                    clamp01 = bs.f25014i.getInterpolation(clamp01);
+                    clamp01 = bs.f25023i.getInterpolation(clamp01);
                 }
                 float[] fArr3 = fArr2;
                 float f52 = f45;
                 float D = com.google.android.gms.internal.play_billing.k3.D(f52, f15, AndroidUtilities.dp(12.0f), f47);
                 int i14 = (clamp01 > f52 ? 1 : (clamp01 == f52 ? 0 : -1));
                 if (i14 < 0) {
-                    f46 = AndroidUtilities.lerp(f18, f46, bs.f25014i.getInterpolation(clamp01));
+                    f46 = AndroidUtilities.lerp(f18, f46, bs.f25023i.getInterpolation(clamp01));
                     D = AndroidUtilities.lerp(f19, D, clamp01);
                     dpf27 = AndroidUtilities.lerp(AndroidUtilities.dpf2(8.0f), dpf27, clamp01);
                 }

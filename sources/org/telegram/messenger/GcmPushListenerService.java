@@ -52,6 +52,6 @@ public class GcmPushListenerService extends FirebaseMessagingService {
 
     @Override
     public void onNewToken(String str) {
-        AndroidUtilities.runOnUIThread(new w1(str, 4));
+        AndroidUtilities.runOnUIThread(new x1(str, 4));
     }
 }

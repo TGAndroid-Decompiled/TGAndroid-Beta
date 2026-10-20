@@ -1,97 +1,45 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.os.Handler;
-import android.os.Looper;
-import android.view.TextureView;
+import android.graphics.Bitmap;
+import android.graphics.Matrix;
 import android.view.View;
 import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessagesController;
-public final class u11 extends TextureView {
-    public static Boolean f30859f;
-    public s11 f30860a;
-    public final o1.a f30861b;
-    public final ArrayList f30862c;
+public final class u11 {
+    public final View f30813a;
+    public final ArrayList f30814b;
+    public final Runnable f30815c;
     public Runnable d;
-    public boolean e;
+    public final Bitmap e;
+    public final Matrix f30816f;
+    public float f30817g;
 
-    public u11(Context context, Runnable runnable) {
-        super(context);
-        this.f30861b = new o1.a(this, 1);
-        this.f30862c = new ArrayList();
+    public u11(View view, Runnable runnable) {
+        this.f30817g = 1.0f;
+        this.f30813a = view;
+        this.f30814b = null;
+        this.f30815c = null;
         this.d = runnable;
-        setOpaque(false);
-        setSurfaceTextureListener(new t50(this, 2));
+        this.e = null;
+        this.f30816f = null;
     }
 
-    public static void b(Runnable runnable) {
-        if (runnable == null) {
-            return;
-        }
-        if (Thread.currentThread() != Looper.getMainLooper().getThread()) {
-            AndroidUtilities.runOnUIThread(runnable);
-        } else {
-            runnable.run();
-        }
+    public u11(ArrayList arrayList, ig.e2 e2Var) {
+        this.f30817g = 1.0f;
+        this.f30813a = null;
+        this.f30814b = arrayList;
+        this.f30815c = null;
+        this.d = e2Var;
+        this.e = null;
+        this.f30816f = null;
     }
 
-    public static boolean c() {
-        if (f30859f == null) {
-            f30859f = Boolean.valueOf(MessagesController.getGlobalMainSettings().getBoolean("nothanos", false));
-        }
-        Boolean bool = f30859f;
-        if (bool != null && bool.booleanValue()) {
-            return false;
-        }
-        return true;
-    }
-
-    public final void a(View view) {
-        int i10 = 0;
-        int i11 = 0;
-        boolean z10 = false;
-        while (true) {
-            ArrayList arrayList = this.f30862c;
-            if (i11 >= arrayList.size()) {
-                break;
-            }
-            t11 t11Var = (t11) arrayList.get(i11);
-            if (t11Var.f30382a == view) {
-                Runnable runnable = t11Var.d;
-                if (runnable != null) {
-                    b(runnable);
-                    t11Var.d = null;
-                }
-                arrayList.remove(i11);
-                i11--;
-                z10 = true;
-            }
-            i11++;
-        }
-        if (!z10) {
-            s11 s11Var = this.f30860a;
-            ArrayList arrayList2 = s11Var.W;
-            if (s11Var.f30119b.get()) {
-                Handler handler = s11Var.getHandler();
-                if (handler == null) {
-                    while (i10 < arrayList2.size()) {
-                        r11 r11Var = (r11) arrayList2.get(i10);
-                        if (r11Var.f29772a.contains(view)) {
-                            Runnable runnable2 = r11Var.f29775f;
-                            if (runnable2 != null) {
-                                b(runnable2);
-                                r11Var.f29775f = null;
-                            }
-                            arrayList2.remove(i10);
-                            i10--;
-                        }
-                        i10++;
-                    }
-                    return;
-                }
-                handler.sendMessage(handler.obtainMessage(5, view));
-            }
-        }
+    public u11(Matrix matrix, Bitmap bitmap, Runnable runnable, Runnable runnable2) {
+        this.f30817g = 1.0f;
+        this.f30813a = null;
+        this.f30814b = null;
+        this.f30815c = runnable;
+        this.d = runnable2;
+        this.f30816f = matrix;
+        this.e = bitmap;
     }
 }

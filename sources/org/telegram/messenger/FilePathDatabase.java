@@ -297,7 +297,7 @@ public class FilePathDatabase {
             CountDownLatch countDownLatch = new CountDownLatch(1);
             long currentTimeMillis = System.currentTimeMillis();
             long[] jArr = new long[1];
-            postToFrontRunnable(new lk(this, arrayList2, jArr, countDownLatch, 6));
+            postToFrontRunnable(new nk(this, arrayList2, jArr, countDownLatch, 6));
             try {
                 countDownLatch.await();
             } catch (InterruptedException e) {
@@ -317,7 +317,7 @@ public class FilePathDatabase {
 
     public void clear() {
         this.cache.clear();
-        postRunnable(new h1(this, 19));
+        postRunnable(new i1(this, 19));
     }
 
     public void createDatabase(int i10, boolean z10) {
@@ -454,7 +454,7 @@ public class FilePathDatabase {
     public boolean hasAnotherRefOnFile(String str) {
         CountDownLatch countDownLatch = new CountDownLatch(1);
         boolean[] zArr = {false};
-        postRunnable(new k3(this, str, zArr, countDownLatch, 1));
+        postRunnable(new l3(this, str, zArr, countDownLatch, 1));
         try {
             countDownLatch.await();
         } catch (InterruptedException e) {
@@ -466,7 +466,7 @@ public class FilePathDatabase {
     public boolean isLocallyCreated(String str) {
         CountDownLatch countDownLatch = new CountDownLatch(1);
         boolean[] zArr = {false};
-        postRunnable(new k3(this, str, zArr, countDownLatch, 0));
+        postRunnable(new l3(this, str, zArr, countDownLatch, 0));
         try {
             countDownLatch.await();
         } catch (InterruptedException e) {
@@ -478,7 +478,7 @@ public class FilePathDatabase {
     public LongSparseArray<ArrayList<CacheByChatsController.KeepMediaFile>> lookupFiles(ArrayList<? extends CacheByChatsController.KeepMediaFile> arrayList) {
         CountDownLatch countDownLatch = new CountDownLatch(1);
         LongSparseArray<ArrayList<CacheByChatsController.KeepMediaFile>> longSparseArray = new LongSparseArray<>();
-        postRunnable(new lk(this, arrayList, longSparseArray, countDownLatch, 5));
+        postRunnable(new nk(this, arrayList, longSparseArray, countDownLatch, 5));
         try {
             countDownLatch.await();
             return longSparseArray;
@@ -489,11 +489,11 @@ public class FilePathDatabase {
     }
 
     public void putPath(long j10, int i10, int i11, int i12, String str) {
-        postRunnable(new l3(this, j10, i10, i11, str, i12));
+        postRunnable(new m3(this, j10, i10, i11, str, i12));
     }
 
     public void removeFiles(List<bi.b> list) {
-        postRunnable(new i2(7, this, list));
+        postRunnable(new j2(7, this, list));
     }
 
     public void saveFileDialogId(File file, FileMeta fileMeta) {

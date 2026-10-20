@@ -20,22 +20,22 @@ import zf.p;
 public final class a extends c implements ne.d {
     public final ne.b d;
     public final int[] e;
-    public final Drawable f47187f;
+    public final Drawable f47192f;
     public final TextPaint h;
-    public StaticLayout f47188n;
-    public int f47189r;
-    public int f47190s;
+    public StaticLayout f47193n;
+    public int f47194r;
+    public int f47195s;
 
     public a(Context context, d6 d6Var) {
         super(d6Var);
         this.d = new ne.b(0, this, bs.h, 320L, false);
         this.e = new int[]{16842910, 16842919};
-        this.f47187f = context.getResources().getDrawable(R.drawable.outline_poll_add_24).mutate();
+        this.f47192f = context.getResources().getDrawable(R.drawable.outline_poll_add_24).mutate();
         this.h = new TextPaint(h6.P2);
-        int w02 = h6.w0(h6.f21076i6, d6Var);
-        if (this.f47202b != w02) {
-            h6.C1(this.f47201a, w02, false);
-            this.f47202b = w02;
+        int w02 = h6.w0(h6.f21079i6, d6Var);
+        if (this.f47207b != w02) {
+            h6.C1(this.f47206a, w02, false);
+            this.f47207b = w02;
         }
         b();
         c();
@@ -43,19 +43,19 @@ public final class a extends c implements ne.d {
 
     @Override
     public final void a(int i10) {
-        this.f47201a.setAlpha(i10);
+        this.f47206a.setAlpha(i10);
         b();
         c();
     }
 
     public final void b() {
-        Drawable drawable = this.f47187f;
-        drawable.setAlpha((int) ((1.0f - this.d.e) * this.f47203c));
+        Drawable drawable = this.f47192f;
+        drawable.setAlpha((int) ((1.0f - this.d.e) * this.f47208c));
     }
 
     public final void c() {
         TextPaint textPaint = this.h;
-        textPaint.setAlpha((int) ((1.0f - this.d.e) * this.f47203c));
+        textPaint.setAlpha((int) ((1.0f - this.d.e) * this.f47208c));
     }
 
     public final void d(boolean z10, boolean z11) {
@@ -65,21 +65,21 @@ public final class a extends c implements ne.d {
     @Override
     public final void draw(Canvas canvas) {
         Rect bounds = getBounds();
-        this.f47201a.draw(canvas);
-        p.b(canvas, this.f47187f, 1.0f - this.d.e);
-        if (this.f47188n != null) {
+        this.f47206a.draw(canvas);
+        p.b(canvas, this.f47192f, 1.0f - this.d.e);
+        if (this.f47193n != null) {
             canvas.save();
             canvas.translate(AndroidUtilities.dp(44.0f) + bounds.left, AndroidUtilities.dp(13.66f) + bounds.top);
-            this.f47188n.draw(canvas);
+            this.f47193n.draw(canvas);
             canvas.restore();
         }
     }
 
     public final void e(int i10) {
-        if (this.f47190s != i10) {
-            this.f47190s = i10;
+        if (this.f47195s != i10) {
+            this.f47195s = i10;
             this.h.setColor(i10);
-            this.f47187f.setColorFilter(new PorterDuffColorFilter(i10, PorterDuff.Mode.SRC_IN));
+            this.f47192f.setColorFilter(new PorterDuffColorFilter(i10, PorterDuff.Mode.SRC_IN));
             c();
         }
     }
@@ -91,13 +91,13 @@ public final class a extends c implements ne.d {
         float dp = AndroidUtilities.dp(22.33f) + rect.left;
         AndroidUtilities.dp(27.0f);
         AndroidUtilities.dp(44.0f);
-        p.d(this.f47187f, dp, exactCenterY, 17);
+        p.d(this.f47192f, dp, exactCenterY, 17);
         int width = rect.width() - AndroidUtilities.dp(56.0f);
-        if (this.f47188n != null && this.f47189r == width) {
+        if (this.f47193n != null && this.f47194r == width) {
             return;
         }
-        this.f47189r = width;
-        this.f47188n = new StaticLayout(LocaleController.getString(R.string.PollAddAnOption), this.h, width, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+        this.f47194r = width;
+        this.f47193n = new StaticLayout(LocaleController.getString(R.string.PollAddAnOption), this.h, width, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
     }
 
     @Override

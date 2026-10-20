@@ -12,7 +12,7 @@ import org.telegram.messenger.BillingController;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.kk;
+import org.telegram.messenger.mk;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.sd0;
 import org.telegram.ui.Components.xp;
@@ -48,10 +48,10 @@ public final class l1 extends org.telegram.ui.ActionBar.f3 {
         ag.b bVar2 = ag.b.f633a;
         this.v = ag.a.g(appGlobalConfig.starsStarGiftResaleAmountMin.get(), bVar2);
         this.f1681w = ag.a.g(appGlobalConfig.starsStarGiftResaleAmountMax.get(), bVar2);
-        fixNavigationBar(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21058h5, d6Var));
+        fixNavigationBar(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21061h5, d6Var));
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
-        LinearLayout e = kk.e(context, 0);
+        LinearLayout e = mk.e(context, 0);
         linearLayout.addView(e, w7.z5.t(-1, 56, 55, 0, 0, 0, 0));
         org.telegram.ui.Components.q6 q6Var = new org.telegram.ui.Components.q6(context, false, false, false);
         this.e = q6Var;
@@ -104,7 +104,7 @@ public final class l1 extends org.telegram.ui.ActionBar.f3 {
         sd0Var.addView(imageView2, w7.z5.d(22, 22.0f, 19, 14.0f, 0.0f, 0.0f, 0.0f));
         org.telegram.ui.Components.q6 q6Var2 = new org.telegram.ui.Components.q6(context, false, false, false);
         this.h = q6Var2;
-        int i12 = org.telegram.ui.ActionBar.h6.f21375y6;
+        int i12 = org.telegram.ui.ActionBar.h6.f21378y6;
         q6Var2.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, i12, false));
         q6Var2.setTextSize(AndroidUtilities.dp(13.0f));
         q6Var2.setGravity(5);
@@ -116,14 +116,14 @@ public final class l1 extends org.telegram.ui.ActionBar.f3 {
         linearLayout2.addView(textView, w7.z5.t(-1, -2, 55, 33, 4, 33, 0));
         org.telegram.ui.Cells.w8 w8Var = new org.telegram.ui.Cells.w8(context);
         this.f1678n = w8Var;
-        w8Var.f23769c.setLayoutParams(w7.z5.d(20, 20.0f, (LocaleController.isRTL ? 5 : 3) | 48, 22.0f, 22.0f, 22.0f, 0.0f));
+        w8Var.f23772c.setLayoutParams(w7.z5.d(20, 20.0f, (LocaleController.isRTL ? 5 : 3) | 48, 22.0f, 22.0f, 22.0f, 0.0f));
         w8Var.b(LocaleController.getString(R.string.ResellGiftPriceOnlyTON), LocaleController.getString(R.string.ResellGiftPriceHintOnlyTON), true, false);
         w8Var.setOnClickListener(new ah.g0(this, 3));
         linearLayout2.addView(w8Var, w7.z5.t(-1, -2, 55, 0, 16, 0, 16));
         LinearLayout linearLayout3 = new LinearLayout(context);
         linearLayout3.setOrientation(1);
         linearLayout.addView(linearLayout3, w7.z5.q(-1, -2, 80));
-        ei.d f10 = kk.f(24, context, d6Var, true);
+        ei.d f10 = mk.f(24, context, d6Var, true);
         this.f1677f = f10;
         f10.setOnClickListener(new p(2, this, o2Var));
         f10.g(LocaleController.getString(R.string.ResellGiftButton), false, true);
@@ -238,7 +238,7 @@ public final class l1 extends org.telegram.ui.ActionBar.f3 {
                 editTextBoldCursor.setInputType(8194);
                 editTextBoldCursor.setFilters(new InputFilter[]{new InputFilter.LengthFilter(Long.toString(n().a()).length() + 3)});
             }
-            xp xpVar = this.f1678n.f23769c;
+            xp xpVar = this.f1678n.f23772c;
             if (this.E.f631a == bVar) {
                 z17 = true;
             } else {
@@ -343,7 +343,7 @@ public final class l1 extends org.telegram.ui.ActionBar.f3 {
                     } else {
                         f10 = 0.6f;
                     }
-                    kk.s(animate3, f10, 180L);
+                    mk.s(animate3, f10, 180L);
                 } else {
                     if (z16) {
                         f7 = 1.0f;
@@ -364,7 +364,7 @@ public final class l1 extends org.telegram.ui.ActionBar.f3 {
             if (bVar4 == bVar2) {
                 textView.setText(AndroidUtilities.replaceTags(LocaleController.formatPluralString("ResellGiftInfo", (int) ag.a.i((j13 * appGlobalConfig.starsStarGiftResaleCommissionPermille.get()) / 1000, bVar5).a(), new Object[0])));
             } else if (bVar4 == bVar) {
-                kk.r(R.string.ResellGiftInfoTON, new Object[]{ag.a.i((j13 * appGlobalConfig.tonStarGiftResaleCommissionPermille.get()) / 1000, bVar5).b()}, textView);
+                mk.r(R.string.ResellGiftInfoTON, new Object[]{ag.a.i((j13 * appGlobalConfig.tonStarGiftResaleCommissionPermille.get()) / 1000, bVar5).b()}, textView);
             }
             StringBuilder sb2 = new StringBuilder(10);
             sb2.append('~');

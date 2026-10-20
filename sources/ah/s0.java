@@ -13,7 +13,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.cl0;
+import org.telegram.ui.Components.dl0;
 public final class s0 extends FrameLayout {
     public final Drawable f857a;
     public final Rect f858b;
@@ -69,11 +69,11 @@ public final class s0 extends FrameLayout {
     public final void invalidate() {
         super.invalidate();
         t0 t0Var = this.f864w;
-        cl0 cl0Var = t0Var.f878n;
-        if (t0Var.f888y != 1 && (cl0Var == null || cl0Var.getDelegate() == null || !cl0Var.getDelegate().w())) {
+        dl0 dl0Var = t0Var.f878n;
+        if (t0Var.f888y != 1 && (dl0Var == null || dl0Var.getDelegate() == null || !dl0Var.getDelegate().w())) {
             return;
         }
-        t0Var.f877m.f43051f0.invalidate();
+        t0Var.f877m.f43057f0.invalidate();
     }
 
     @Override

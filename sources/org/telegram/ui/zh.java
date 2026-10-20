@@ -6,22 +6,22 @@ import android.widget.LinearLayout;
 import java.util.concurrent.atomic.AtomicBoolean;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
 public final class zh implements z4.e {
-    public final AtomicBoolean f43749a;
-    public final LinearLayout f43750b;
-    public final int f43751c;
+    public final AtomicBoolean f43755a;
+    public final LinearLayout f43756b;
+    public final int f43757c;
     public final HorizontalScrollView d;
     public final SparseIntArray e;
-    public final ActionBarPopupWindow$ActionBarPopupWindowLayout f43752f;
-    public final int[] f43753g;
+    public final ActionBarPopupWindow$ActionBarPopupWindowLayout f43758f;
+    public final int[] f43759g;
 
     public zh(AtomicBoolean atomicBoolean, LinearLayout linearLayout, int i10, HorizontalScrollView horizontalScrollView, SparseIntArray sparseIntArray, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout, int[] iArr) {
-        this.f43749a = atomicBoolean;
-        this.f43750b = linearLayout;
-        this.f43751c = i10;
+        this.f43755a = atomicBoolean;
+        this.f43756b = linearLayout;
+        this.f43757c = i10;
         this.d = horizontalScrollView;
         this.e = sparseIntArray;
-        this.f43752f = actionBarPopupWindow$ActionBarPopupWindowLayout;
-        this.f43753g = iArr;
+        this.f43758f = actionBarPopupWindow$ActionBarPopupWindowLayout;
+        this.f43759g = iArr;
     }
 
     @Override
@@ -29,31 +29,31 @@ public final class zh implements z4.e {
         HorizontalScrollView horizontalScrollView;
         SparseIntArray sparseIntArray;
         float f10;
-        if (!this.f43749a.get()) {
+        if (!this.f43755a.get()) {
             float f11 = -1.0f;
             float f12 = -1.0f;
             int i12 = 0;
             while (true) {
-                LinearLayout linearLayout = this.f43750b;
+                LinearLayout linearLayout = this.f43756b;
                 int childCount = linearLayout.getChildCount();
                 horizontalScrollView = this.d;
                 if (i12 >= childCount) {
                     break;
                 }
-                org.telegram.ui.Components.nk0 nk0Var = (org.telegram.ui.Components.nk0) linearLayout.getChildAt(i12);
+                org.telegram.ui.Components.ok0 ok0Var = (org.telegram.ui.Components.ok0) linearLayout.getChildAt(i12);
                 if (i12 == i10) {
                     f10 = 1.0f - f7;
-                } else if (i12 == (i10 + 1) % this.f43751c) {
+                } else if (i12 == (i10 + 1) % this.f43757c) {
                     f10 = f7;
                 } else {
                     f10 = 0.0f;
                 }
-                nk0Var.setOutlineProgress(f10);
+                ok0Var.setOutlineProgress(f10);
                 if (i12 == i10) {
-                    f11 = nk0Var.getX() - ((horizontalScrollView.getWidth() - nk0Var.getWidth()) / 2.0f);
+                    f11 = ok0Var.getX() - ((horizontalScrollView.getWidth() - ok0Var.getWidth()) / 2.0f);
                 }
                 if (i12 == i10 + 1) {
-                    f12 = nk0Var.getX() - ((horizontalScrollView.getWidth() - nk0Var.getWidth()) / 2.0f);
+                    f12 = ok0Var.getX() - ((horizontalScrollView.getWidth() - ok0Var.getWidth()) / 2.0f);
                 }
                 i12++;
             }
@@ -61,19 +61,19 @@ public final class zh implements z4.e {
                 horizontalScrollView.setScrollX((int) com.google.android.gms.internal.play_billing.k3.y(f12, f11, f7, f11));
             }
             int i13 = this.e.get(i10, 0);
-            this.f43752f.getSwipeBack().f(this.f43753g[0], (int) ((sparseIntArray.get(i10 + 1, 0) * f7) + ((1.0f - f7) * i13)), false);
+            this.f43758f.getSwipeBack().f(this.f43759g[0], (int) ((sparseIntArray.get(i10 + 1, 0) * f7) + ((1.0f - f7) * i13)), false);
         }
     }
 
     @Override
     public final void b(int i10) {
-        this.f43752f.getSwipeBack().f(this.f43753g[0], this.e.get(i10), true);
+        this.f43758f.getSwipeBack().f(this.f43759g[0], this.e.get(i10), true);
     }
 
     @Override
     public final void c(int i10) {
         if (i10 == 0) {
-            this.f43749a.set(false);
+            this.f43755a.set(false);
         }
     }
 }

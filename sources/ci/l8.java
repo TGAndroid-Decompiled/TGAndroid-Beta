@@ -44,11 +44,11 @@ public final class l8 implements o1.g {
                 rg.m0 m0Var = (rg.m0) this.f5596b;
                 float f13 = f7 / 1000.0f;
                 m0Var.D1 = f13;
-                rg.t1 t1Var2 = m0Var.f45498v1;
+                rg.t1 t1Var2 = m0Var.f45506v1;
                 t1Var2.setAlpha(f13);
                 t1Var2.invalidate();
-                m0Var.f45470d1.invalidate();
-                m0Var.f45497u1.getTypefaceCell().setAlpha(1.0f - m0Var.D1);
+                m0Var.f45478d1.invalidate();
+                m0Var.f45505u1.getTypefaceCell().setAlpha(1.0f - m0Var.D1);
                 return;
         }
     }

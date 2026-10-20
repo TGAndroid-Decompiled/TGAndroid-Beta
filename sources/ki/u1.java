@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.c61;
+import org.telegram.ui.Components.d61;
 import org.telegram.ui.Components.uy;
 import org.telegram.ui.StickersActivity;
 public final class u1 implements uy {
@@ -156,7 +156,7 @@ public final class u1 implements uy {
     }
 
     @Override
-    public final void o(c61 c61Var) {
+    public final void o(d61 d61Var) {
     }
 
     @Override

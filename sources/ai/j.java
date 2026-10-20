@@ -10,7 +10,7 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.i80;
-import org.telegram.ui.Components.r31;
+import org.telegram.ui.Components.s31;
 import org.telegram.ui.TwoStepVerificationActivity;
 public final class j implements Runnable {
     public final int f1538a = 0;
@@ -40,7 +40,7 @@ public final class j implements Runnable {
                 x.Z((x) this.d, (TLRPC.TL_error) this.e, (TwoStepVerificationActivity) this.f1541f, (Activity) this.h, this.f1539b, this.f1540c, this.f1542n);
                 return;
             default:
-                final r31 r31Var = (r31) this.d;
+                final s31 s31Var = (s31) this.d;
                 org.telegram.ui.ActionBar.e1 e1Var = (org.telegram.ui.ActionBar.e1) this.e;
                 final i80 i80Var = (i80) this.f1541f;
                 final TLRPC.User user = (TLRPC.User) this.h;
@@ -58,8 +58,8 @@ public final class j implements Runnable {
                 e1Var.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        r31 r31Var2 = r31.this;
-                        int i11 = r31Var2.f29814b;
+                        s31 s31Var2 = s31.this;
+                        int i11 = s31Var2.f30179b;
                         i80Var.u();
                         boolean z12 = z11;
                         TLRPC.User user2 = user;
@@ -71,15 +71,15 @@ public final class j implements Runnable {
                         tL_channels_editBanned.participant = MessagesController.getInputPeer(user2);
                         tL_channels_editBanned.channel = MessagesController.getInputChannel(chat);
                         tL_channels_editBanned.banned_rights = new TLRPC.TL_chatBannedRights();
-                        ConnectionsManager.getInstance(i11).sendRequest(tL_channels_editBanned, new y1(r31Var2, 15));
+                        ConnectionsManager.getInstance(i11).sendRequest(tL_channels_editBanned, new y1(s31Var2, 15));
                     }
                 });
                 return;
         }
     }
 
-    public j(r31 r31Var, boolean z10, org.telegram.ui.ActionBar.e1 e1Var, i80 i80Var, long j10, TLRPC.User user, TLRPC.Chat chat) {
-        this.d = r31Var;
+    public j(s31 s31Var, boolean z10, org.telegram.ui.ActionBar.e1 e1Var, i80 i80Var, long j10, TLRPC.User user, TLRPC.Chat chat) {
+        this.d = s31Var;
         this.f1539b = z10;
         this.e = e1Var;
         this.f1541f = i80Var;

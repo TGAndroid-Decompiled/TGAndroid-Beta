@@ -4,14 +4,14 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.Map;
 public final class a extends e9.j2 {
-    public final Map f49311b;
-    public final f f49312c;
+    public final Map f49316b;
+    public final f f49317c;
 
     public a(f fVar, Map map) {
         super(1);
-        this.f49312c = fVar;
+        this.f49317c = fVar;
         map.getClass();
-        this.f49311b = map;
+        this.f49316b = map;
     }
 
     @Override
@@ -30,17 +30,17 @@ public final class a extends e9.j2 {
 
     @Override
     public final boolean contains(Object obj) {
-        return this.f49311b.containsKey(obj);
+        return this.f49316b.containsKey(obj);
     }
 
     @Override
     public final boolean containsAll(Collection collection) {
-        return this.f49311b.keySet().containsAll(collection);
+        return this.f49316b.keySet().containsAll(collection);
     }
 
     @Override
     public final boolean equals(Object obj) {
-        if (this != obj && !this.f49311b.keySet().equals(obj)) {
+        if (this != obj && !this.f49316b.keySet().equals(obj)) {
             return false;
         }
         return true;
@@ -48,26 +48,26 @@ public final class a extends e9.j2 {
 
     @Override
     public final int hashCode() {
-        return this.f49311b.keySet().hashCode();
+        return this.f49316b.keySet().hashCode();
     }
 
     @Override
     public final boolean isEmpty() {
-        return this.f49311b.isEmpty();
+        return this.f49316b.isEmpty();
     }
 
     @Override
     public final Iterator iterator() {
-        return new e9.d(this, this.f49311b.entrySet().iterator(), 5);
+        return new e9.d(this, this.f49316b.entrySet().iterator(), 5);
     }
 
     @Override
     public final boolean remove(Object obj) {
-        Collection collection = (Collection) this.f49311b.remove(obj);
+        Collection collection = (Collection) this.f49316b.remove(obj);
         if (collection != null) {
             int size = collection.size();
             collection.clear();
-            this.f49312c.d -= size;
+            this.f49317c.d -= size;
             if (size > 0) {
                 return true;
             }
@@ -78,6 +78,6 @@ public final class a extends e9.j2 {
 
     @Override
     public final int size() {
-        return this.f49311b.size();
+        return this.f49316b.size();
     }
 }

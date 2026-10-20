@@ -43,16 +43,16 @@ import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Cells.m9;
 import org.telegram.ui.Cells.n9;
-import org.telegram.ui.Components.b81;
-import org.telegram.ui.Components.d71;
+import org.telegram.ui.Components.c81;
 import org.telegram.ui.Components.e5;
-import org.telegram.ui.Components.er0;
+import org.telegram.ui.Components.e71;
 import org.telegram.ui.Components.f60;
+import org.telegram.ui.Components.fr0;
 import org.telegram.ui.Components.m60;
 import org.telegram.ui.Components.ti;
-import org.telegram.ui.Components.y71;
+import org.telegram.ui.Components.z71;
 import v7.i8;
-public final class w0 implements x, ki.j0, g1, l.w, l.i, k1.f, e5, bh.h, y71, oe.a, com.google.android.gms.common.api.internal.r, n5.b, v0.i {
+public final class w0 implements x, ki.j0, g1, l.w, l.i, k1.f, e5, bh.h, z71, oe.a, com.google.android.gms.common.api.internal.r, n5.b, v0.i {
     public final int f14829a;
     public Object f14830b;
 
@@ -113,7 +113,7 @@ public final class w0 implements x, ki.j0, g1, l.w, l.i, k1.f, e5, bh.h, y71, oe
     public void I(Exception exc) {
         e2.a.d("MediaCodecAudioRenderer", "Audio sink error", exc);
         qf.b bVar = ((x0) this.f14830b).f14831a1;
-        Handler handler = (Handler) bVar.f44439b;
+        Handler handler = (Handler) bVar.f44447b;
         if (handler != null) {
             handler.post(new q(bVar, exc, 1));
         }
@@ -123,11 +123,11 @@ public final class w0 implements x, ki.j0, g1, l.w, l.i, k1.f, e5, bh.h, y71, oe
     public void J(bh.a aVar) {
         switch (this.f14829a) {
             case 11:
-                aVar.a(((ti) this.f14830b).getThemedColor(h6.f20987d6));
+                aVar.a(((ti) this.f14830b).getThemedColor(h6.f20990d6));
                 aVar.b(SharedConfig.chatBlurEnabled());
                 return;
             default:
-                aVar.a(((er0) this.f14830b).getThemedColor(h6.f20987d6));
+                aVar.a(((fr0) this.f14830b).getThemedColor(h6.f20990d6));
                 aVar.b(SharedConfig.chatBlurEnabled());
                 return;
         }
@@ -179,7 +179,7 @@ public final class w0 implements x, ki.j0, g1, l.w, l.i, k1.f, e5, bh.h, y71, oe
     @Override
     public void Q(u0 u0Var) {
         qf.b bVar = ((x0) this.f14830b).f14831a1;
-        Handler handler = (Handler) bVar.f44439b;
+        Handler handler = (Handler) bVar.f44447b;
         if (handler != null) {
             handler.post(new t(bVar, u0Var, 1));
         }
@@ -198,7 +198,7 @@ public final class w0 implements x, ki.j0, g1, l.w, l.i, k1.f, e5, bh.h, y71, oe
     @Override
     public void T(u0 u0Var) {
         qf.b bVar = ((x0) this.f14830b).f14831a1;
-        Handler handler = (Handler) bVar.f44439b;
+        Handler handler = (Handler) bVar.f44447b;
         if (handler != null) {
             handler.post(new t(bVar, u0Var, 0));
         }
@@ -227,7 +227,7 @@ public final class w0 implements x, ki.j0, g1, l.w, l.i, k1.f, e5, bh.h, y71, oe
         x0 x0Var = (x0) this.f14830b;
         x0Var.f14842m1 = true;
         qf.b bVar = x0Var.f14831a1;
-        Handler handler = (Handler) bVar.f44439b;
+        Handler handler = (Handler) bVar.f44447b;
         if (handler != null) {
             handler.post(new v3(bVar, j10, 13));
         }
@@ -278,17 +278,17 @@ public final class w0 implements x, ki.j0, g1, l.w, l.i, k1.f, e5, bh.h, y71, oe
         switch (this.f14829a) {
             case 11:
                 ti tiVar = (ti) this.f14830b;
-                canvas.drawColor(tiVar.getThemedColor(h6.f20987d6));
+                canvas.drawColor(tiVar.getThemedColor(h6.f20990d6));
                 if (SharedConfig.chatBlurEnabled()) {
                     tiVar.F2.b(canvas, -3);
                     return;
                 }
                 return;
             default:
-                er0 er0Var = (er0) this.f14830b;
-                canvas.drawColor(er0Var.getThemedColor(h6.f20987d6));
+                fr0 fr0Var = (fr0) this.f14830b;
+                canvas.drawColor(fr0Var.getThemedColor(h6.f20990d6));
                 if (SharedConfig.chatBlurEnabled()) {
-                    er0Var.P0.b(canvas, -2);
+                    fr0Var.P0.b(canvas, -2);
                     return;
                 }
                 return;
@@ -371,15 +371,15 @@ public final class w0 implements x, ki.j0, g1, l.w, l.i, k1.f, e5, bh.h, y71, oe
 
     public void i(p4.p pVar, p4.m mVar, Collection collection) {
         p4.e eVar = (p4.e) this.f14830b;
-        if (pVar == eVar.f44109y && mVar != null) {
-            p4.u uVar = eVar.f44108x.f44200a;
+        if (pVar == eVar.f44117y && mVar != null) {
+            p4.u uVar = eVar.f44116x.f44208a;
             String d = mVar.d();
             p4.v vVar = new p4.v(uVar, d, eVar.b(uVar, d), false);
             vVar.i(mVar);
             if (eVar.d != vVar) {
-                eVar.h(eVar, vVar, eVar.f44109y, 3, eVar.f44108x, collection);
-                eVar.f44108x = null;
-                eVar.f44109y = null;
+                eVar.h(eVar, vVar, eVar.f44117y, 3, eVar.f44116x, collection);
+                eVar.f44116x = null;
+                eVar.f44117y = null;
             }
         } else if (pVar == eVar.e) {
             if (mVar != null) {
@@ -477,12 +477,12 @@ public final class w0 implements x, ki.j0, g1, l.w, l.i, k1.f, e5, bh.h, y71, oe
     @Override
     public boolean needClickAt(View view, float f7, float f10) {
         int dp = AndroidUtilities.dp(9.0f);
-        d71 d71Var = (d71) this.f14830b;
+        e71 e71Var = (e71) this.f14830b;
         float f11 = -dp;
-        d71Var.f25441g.inset(f11, f11);
-        boolean contains = d71Var.f25441g.contains(f7, f10);
+        e71Var.f25790g.inset(f11, f11);
+        boolean contains = e71Var.f25790g.contains(f7, f10);
         float f12 = dp;
-        d71Var.f25441g.inset(f12, f12);
+        e71Var.f25790g.inset(f12, f12);
         return contains;
     }
 
@@ -499,7 +499,7 @@ public final class w0 implements x, ki.j0, g1, l.w, l.i, k1.f, e5, bh.h, y71, oe
             jVar.d(i10);
         }
         qf.b bVar = x0Var.f14831a1;
-        Handler handler = (Handler) bVar.f44439b;
+        Handler handler = (Handler) bVar.f44447b;
         if (handler != null) {
             handler.post(new ah.g(bVar, i10, 14));
         }
@@ -507,7 +507,7 @@ public final class w0 implements x, ki.j0, g1, l.w, l.i, k1.f, e5, bh.h, y71, oe
 
     @Override
     public void onClickAt(View view, float f7, float f10) {
-        Runnable runnable = ((d71) this.f14830b).f25443j;
+        Runnable runnable = ((e71) this.f14830b).f25792j;
         if (runnable != null) {
             runnable.run();
         }
@@ -515,12 +515,12 @@ public final class w0 implements x, ki.j0, g1, l.w, l.i, k1.f, e5, bh.h, y71, oe
 
     @Override
     public void onClickTouchDown(View view, float f7, float f10) {
-        ((d71) this.f14830b).h.c(true);
+        ((e71) this.f14830b).h.c(true);
     }
 
     @Override
     public void onClickTouchUp(View view, float f7, float f10) {
-        ((d71) this.f14830b).h.c(false);
+        ((e71) this.f14830b).h.c(false);
     }
 
     @Override
@@ -555,7 +555,7 @@ public final class w0 implements x, ki.j0, g1, l.w, l.i, k1.f, e5, bh.h, y71, oe
     @Override
     public void onSkipSilenceEnabledChanged(boolean z10) {
         qf.b bVar = ((x0) this.f14830b).f14831a1;
-        Handler handler = (Handler) bVar.f44439b;
+        Handler handler = (Handler) bVar.f44447b;
         if (handler != null) {
             handler.post(new ah.t(12, bVar, z10));
         }
@@ -566,14 +566,14 @@ public final class w0 implements x, ki.j0, g1, l.w, l.i, k1.f, e5, bh.h, y71, oe
         m60 m60Var;
         VideoEditedInfo videoEditedInfo;
         f60 f60Var = (f60) this.f14830b;
-        b81 b81Var = f60Var.H0.T;
-        if (b81Var != null && b81Var.y() && i10 == 4 && (videoEditedInfo = (m60Var = f60Var.H0).S) != null) {
-            b81 b81Var2 = m60Var.T;
+        c81 c81Var = f60Var.H0.T;
+        if (c81Var != null && c81Var.y() && i10 == 4 && (videoEditedInfo = (m60Var = f60Var.H0).S) != null) {
+            c81 c81Var2 = m60Var.T;
             long j10 = videoEditedInfo.startTime;
             if (j10 <= 0) {
                 j10 = 0;
             }
-            b81Var2.K(j10);
+            c81Var2.K(j10);
         }
     }
 
@@ -615,7 +615,7 @@ public final class w0 implements x, ki.j0, g1, l.w, l.i, k1.f, e5, bh.h, y71, oe
     @Override
     public void t(int i10, long j10, long j11) {
         qf.b bVar = ((x0) this.f14830b).f14831a1;
-        Handler handler = (Handler) bVar.f44439b;
+        Handler handler = (Handler) bVar.f44447b;
         if (handler != null) {
             handler.post(new s(bVar, i10, j10, j11, 0));
         }
@@ -678,7 +678,7 @@ public final class w0 implements x, ki.j0, g1, l.w, l.i, k1.f, e5, bh.h, y71, oe
     }
 
     @Override
-    public void onError(b81 b81Var, Exception exc) {
+    public void onError(c81 c81Var, Exception exc) {
         FileLog.e(exc);
     }
 

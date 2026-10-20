@@ -6,11 +6,11 @@ import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.view.View;
 public final class y2 extends View {
-    public final z2 f35130a;
+    public final z2 f35136a;
 
     public y2(z2 z2Var, Context context) {
         super(context);
-        this.f35130a = z2Var;
+        this.f35136a = z2Var;
     }
 
     @Override
@@ -20,11 +20,11 @@ public final class y2 extends View {
 
     @Override
     public final void onDraw(Canvas canvas) {
-        z2 z2Var = this.f35130a;
+        z2 z2Var = this.f35136a;
         Bitmap bitmap = z2Var.G;
         if (bitmap != null && !bitmap.isRecycled()) {
-            z2Var.f35171y.set(0.0f, 0.0f, getWidth(), getHeight());
-            canvas.drawBitmap(z2Var.G, (Rect) null, z2Var.f35171y, z2Var.f35170x);
+            z2Var.f35177y.set(0.0f, 0.0f, getWidth(), getHeight());
+            canvas.drawBitmap(z2Var.G, (Rect) null, z2Var.f35177y, z2Var.f35176x);
         }
     }
 }

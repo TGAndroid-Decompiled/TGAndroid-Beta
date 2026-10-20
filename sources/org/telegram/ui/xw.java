@@ -8,21 +8,21 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 public final class xw extends x51 {
-    public final o51[] f43281d2;
-    public final cy f43282e2;
+    public final o51[] f43287d2;
+    public final cy f43288e2;
 
     public xw(cy cyVar, cy cyVar2, Activity activity, Integer num, org.telegram.ui.ActionBar.d6 d6Var, o51[] o51VarArr) {
         super(cyVar2, activity, true, num, 0, d6Var);
-        this.f43282e2 = cyVar;
-        this.f43281d2 = o51VarArr;
+        this.f43288e2 = cyVar;
+        this.f43287d2 = o51VarArr;
     }
 
     @Override
     public final boolean F(TL_stars.TL_starGiftUnique tL_starGiftUnique) {
         int i10;
         if (tL_starGiftUnique != null) {
-            i10 = ((org.telegram.ui.ActionBar.n2) this.f43282e2).currentAccount;
-            if (ai.ga.y(i10, false).n(tL_starGiftUnique.f20497id) != null && MessagesController.getGlobalMainSettings().getInt("statusgiftpage", 0) < 2) {
+            i10 = ((org.telegram.ui.ActionBar.n2) this.f43288e2).currentAccount;
+            if (ai.ga.y(i10, false).n(tL_starGiftUnique.f20500id) != null && MessagesController.getGlobalMainSettings().getInt("statusgiftpage", 0) < 2) {
                 return false;
             }
             return true;
@@ -38,14 +38,14 @@ public final class xw extends x51 {
         int i11;
         int i12;
         org.telegram.ui.ActionBar.d6 d6Var;
-        o51[] o51VarArr = this.f43281d2;
-        cy cyVar = this.f43282e2;
+        o51[] o51VarArr = this.f43287d2;
+        cy cyVar = this.f43288e2;
         if (l4 == null) {
             emojiStatus = new TLRPC.TL_emojiStatusEmpty();
         } else {
             if (tL_starGiftUnique != null) {
                 i10 = ((org.telegram.ui.ActionBar.n2) cyVar).currentAccount;
-                TL_stars.SavedStarGift n10 = ai.ga.y(i10, false).n(tL_starGiftUnique.f20497id);
+                TL_stars.SavedStarGift n10 = ai.ga.y(i10, false).n(tL_starGiftUnique.f20500id);
                 if (n10 != null && MessagesController.getGlobalMainSettings().getInt("statusgiftpage", 0) < 2) {
                     MessagesController.getGlobalMainSettings().edit().putInt("statusgiftpage", MessagesController.getGlobalMainSettings().getInt("statusgiftpage", 0) + 1).apply();
                     Context context = getContext();
@@ -66,7 +66,7 @@ public final class xw extends x51 {
                     return;
                 }
                 TLRPC.TL_inputEmojiStatusCollectible tL_inputEmojiStatusCollectible = new TLRPC.TL_inputEmojiStatusCollectible();
-                tL_inputEmojiStatusCollectible.collectible_id = tL_starGiftUnique.f20497id;
+                tL_inputEmojiStatusCollectible.collectible_id = tL_starGiftUnique.f20500id;
                 tL_emojiStatus = tL_inputEmojiStatusCollectible;
                 if (num != null) {
                     tL_inputEmojiStatusCollectible.flags |= 1;

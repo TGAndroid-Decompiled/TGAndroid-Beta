@@ -7,7 +7,7 @@ import android.widget.FrameLayout;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.kk;
+import org.telegram.messenger.mk;
 import org.telegram.ui.Components.bs;
 public final class k6 extends FrameLayout {
     public View f9314a;
@@ -134,7 +134,7 @@ public final class k6 extends FrameLayout {
         if (i17 < 2) {
             B = 0;
         } else {
-            B = kk.B(40.0f, i17, dp) / (i17 - 1);
+            B = mk.B(40.0f, i17, dp) / (i17 - 1);
         }
         if (c()) {
             f7 = 20.0f;
@@ -142,11 +142,11 @@ public final class k6 extends FrameLayout {
             f7 = 30.0f;
         }
         int min = Math.min(AndroidUtilities.dp(f7), B);
-        int A = kk.A(40.0f, i16, 2);
+        int A = mk.A(40.0f, i16, 2);
         int dp2 = (AndroidUtilities.dp(40.0f) + i16) / 2;
         int dp3 = AndroidUtilities.dp(12.33f);
         if (!c()) {
-            i14 = (kk.B(40.0f, i17, dp) - ((i17 - 1) * min)) / 2;
+            i14 = (mk.B(40.0f, i17, dp) - ((i17 - 1) * min)) / 2;
         } else {
             i14 = 0;
         }

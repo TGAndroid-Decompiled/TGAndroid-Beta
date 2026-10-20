@@ -26,7 +26,7 @@ public abstract class ua extends bb {
     }
 
     @Override
-    public final hm0 x(im0 im0Var) {
+    public final im0 x(jm0 jm0Var) {
         return new ai.m5(this, 2);
     }
 }

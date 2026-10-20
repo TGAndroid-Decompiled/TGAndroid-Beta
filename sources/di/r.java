@@ -24,11 +24,11 @@ import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.im0;
-import org.telegram.ui.Components.is0;
-import org.telegram.ui.Components.lu0;
-import org.telegram.ui.Components.s41;
-import org.telegram.ui.Components.sx0;
+import org.telegram.ui.Components.jm0;
+import org.telegram.ui.Components.js0;
+import org.telegram.ui.Components.mu0;
+import org.telegram.ui.Components.t41;
+import org.telegram.ui.Components.tx0;
 import s4.y;
 import w7.z5;
 public final class r extends FrameLayout {
@@ -51,7 +51,7 @@ public final class r extends FrameLayout {
     public int T;
     public int U;
     public final Rect V;
-    public final is0 W;
+    public final js0 W;
     public t6 f8054a;
     public boolean f8055b;
     public float f8056c;
@@ -60,16 +60,16 @@ public final class r extends FrameLayout {
     public final i f8057f;
     public final h h;
     public final s4.k f8058n;
-    public final lu0 f8059r;
+    public final mu0 f8059r;
     public final k f8060s;
     public final l v;
     public final q f8061w;
     public final m f8062x;
-    public final sx0 f8063y;
+    public final tx0 f8063y;
 
-    public r(is0 is0Var, Context context) {
+    public r(js0 js0Var, Context context) {
         super(context);
-        this.W = is0Var;
+        this.W = js0Var;
         this.d = Utilities.clamp(SharedConfig.storiesColumnsCount, 6, 2);
         this.e = Utilities.clamp(SharedConfig.storiesColumnsCount, 6, 2);
         this.H = false;
@@ -83,7 +83,7 @@ public final class r extends FrameLayout {
         this.f8058n = kVar;
         kVar.n(280L);
         kVar.o(bs.h);
-        kVar.f45946m = false;
+        kVar.f45951m = false;
         i iVar = new i(this, context);
         this.f8057f = iVar;
         iVar.setScrollingTouchSlop(1);
@@ -97,57 +97,57 @@ public final class r extends FrameLayout {
         iVar.i(new j(this, 0));
         iVar.setOnItemClickListener(new wa(this, 5));
         iVar.setOnItemLongClickListener(new a1.c(this, 29));
-        ?? im0Var = new im0(context, null);
-        this.f8059r = im0Var;
+        ?? jm0Var = new jm0(context, null);
+        this.f8059r = jm0Var;
         k kVar2 = new k(this);
         this.f8060s = kVar2;
-        im0Var.setLayoutManager(kVar2);
-        im0Var.i(new j(this, 1));
+        jm0Var.setLayoutManager(kVar2);
+        jm0Var.i(new j(this, 1));
         kVar2.y1(this.e);
-        im0Var.setVisibility(8);
-        addView((View) im0Var, z5.c(-1.0f, -1));
+        jm0Var.setVisibility(8);
+        addView((View) jm0Var, z5.c(-1.0f, -1));
         l lVar = new l(this, context);
         this.v = lVar;
         iVar.setAdapter(lVar);
         q qVar = new q(this, getContext());
         lVar.f8049f = qVar;
         this.f8061w = qVar;
-        im0Var.setAdapter(qVar);
+        jm0Var.setAdapter(qVar);
         m mVar = new m(this, context);
         this.f8062x = mVar;
-        mVar.f24770w = false;
-        sx0 sx0Var = new sx0(context, mVar, 1, null);
-        this.f8063y = sx0Var;
-        sx0Var.setVisibility(8);
-        sx0Var.setAnimateLayoutChange(true);
-        addView(sx0Var, z5.c(-1.0f, -1));
-        sx0Var.setOnTouchListener(new d(0));
-        sx0Var.e(true, false);
-        sx0Var.f30351b.setVisibility(8);
-        sx0Var.d.setText(LocaleController.getString(R.string.ProfileBotPreviewEmptyTitle));
-        sx0Var.e.setText(LocaleController.formatPluralString("ProfileBotPreviewEmptyText", MessagesController.getInstance(is0Var.f8069b).botPreviewMediasMax, new Object[0]));
+        mVar.f24774w = false;
+        tx0 tx0Var = new tx0(context, mVar, 1, null);
+        this.f8063y = tx0Var;
+        tx0Var.setVisibility(8);
+        tx0Var.setAnimateLayoutChange(true);
+        addView(tx0Var, z5.c(-1.0f, -1));
+        tx0Var.setOnTouchListener(new d(0));
+        tx0Var.e(true, false);
+        tx0Var.f30696b.setVisibility(8);
+        tx0Var.d.setText(LocaleController.getString(R.string.ProfileBotPreviewEmptyTitle));
+        tx0Var.e.setText(LocaleController.formatPluralString("ProfileBotPreviewEmptyText", MessagesController.getInstance(js0Var.f8069b).botPreviewMediasMax, new Object[0]));
         String string = LocaleController.getString(R.string.ProfileBotPreviewEmptyButton);
-        ei.d dVar = sx0Var.f30353f;
+        ei.d dVar = tx0Var.f30698f;
         dVar.g(string, false, true);
         dVar.setVisibility(0);
         dVar.setOnClickListener(new e(this, 0));
         n nVar = new n(this, context);
         this.E = nVar;
-        int i10 = h6.f21375y6;
-        d6 d6Var = is0Var.f8070c;
+        int i10 = h6.f21378y6;
+        d6 d6Var = js0Var.f8070c;
         nVar.setTextColor(h6.w0(i10, d6Var));
         nVar.setText(LocaleController.getString(R.string.ProfileBotOr));
         nVar.setTextSize(1, 14.0f);
         nVar.setTextAlignment(4);
         nVar.setGravity(17);
         nVar.setTypeface(AndroidUtilities.bold());
-        sx0Var.f30350a.addView(nVar, z5.t(165, -2, 17, 0, 17, 0, 12));
+        tx0Var.f30695a.addView(nVar, z5.t(165, -2, 17, 0, 17, 0, 12));
         ei.d dVar2 = new ei.d(context, d6Var, false);
         this.F = dVar2;
         dVar2.setMinWidth(AndroidUtilities.dp(200.0f));
-        sx0Var.f30350a.addView(dVar2, z5.q(-2, 44, 17));
-        sx0Var.addView(mVar, 0, z5.c(-1.0f, -1));
-        iVar.setEmptyView(sx0Var);
+        tx0Var.f30695a.addView(dVar2, z5.q(-2, 44, 17));
+        tx0Var.addView(mVar, 0, z5.c(-1.0f, -1));
+        iVar.setEmptyView(tx0Var);
         iVar.W1 = true;
         iVar.X1 = 0;
         new SparseArray();
@@ -166,7 +166,7 @@ public final class r extends FrameLayout {
             float f7 = this.f8056c;
             float f10 = 1.0f;
             int i10 = (f7 > 1.0f ? 1 : (f7 == 1.0f ? 0 : -1));
-            lu0 lu0Var = this.f8059r;
+            mu0 mu0Var = this.f8059r;
             i iVar = this.f8057f;
             if (i10 == 0) {
                 this.f8055b = false;
@@ -176,7 +176,7 @@ public final class r extends FrameLayout {
                 SharedConfig.setStoriesColumnsCount(i11);
                 l lVar = this.v;
                 int h = lVar.h();
-                lu0Var.setVisibility(8);
+                mu0Var.setVisibility(8);
                 int i12 = this.d;
                 h hVar = this.h;
                 hVar.y1(i12);
@@ -197,7 +197,7 @@ public final class r extends FrameLayout {
                 }
             } else if (f7 == 0.0f) {
                 this.f8055b = false;
-                lu0Var.setVisibility(8);
+                mu0Var.setVisibility(8);
                 iVar.invalidate();
             } else {
                 if (f7 > 0.2f) {
@@ -211,7 +211,7 @@ public final class r extends FrameLayout {
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(f7, f10);
                 ofFloat.addUpdateListener(new v4(this, 1));
                 ofFloat.addListener(new p0(6, this, z10));
-                ofFloat.setInterpolator(bs.f25012f);
+                ofFloat.setInterpolator(bs.f25021f);
                 ofFloat.setDuration(200L);
                 ofFloat.start();
             }
@@ -244,20 +244,20 @@ public final class r extends FrameLayout {
             int clamp = Utilities.clamp(i13, 6, i11);
             this.e = clamp;
             if (clamp != this.d && !this.H) {
-                lu0 lu0Var = this.f8059r;
-                lu0Var.setVisibility(0);
-                lu0Var.setAdapter(this.f8061w);
-                lu0Var.setPadding(lu0Var.getPaddingLeft(), 0, lu0Var.getPaddingRight(), this.J.getMeasuredHeight() + AndroidUtilities.dp(42.0f));
+                mu0 mu0Var = this.f8059r;
+                mu0Var.setVisibility(0);
+                mu0Var.setAdapter(this.f8061w);
+                mu0Var.setPadding(mu0Var.getPaddingLeft(), 0, mu0Var.getPaddingRight(), this.J.getMeasuredHeight() + AndroidUtilities.dp(42.0f));
                 k kVar = this.f8060s;
                 kVar.y1(clamp);
-                lu0Var.a0();
+                mu0Var.a0();
                 kVar.O = new g(this, 0);
                 AndroidUtilities.updateVisibleRows(this.f8057f);
                 this.f8055b = true;
                 this.f8056c = 0.0f;
                 int i14 = this.S;
                 if (i14 >= 0) {
-                    kVar.h1(i14, this.T - lu0Var.getPaddingTop());
+                    kVar.h1(i14, this.T - mu0Var.getPaddingTop());
                 }
             }
         }
@@ -295,7 +295,7 @@ public final class r extends FrameLayout {
         if (z10) {
             formatString = LocaleController.getString(R.string.ProfileBotPreviewFooterGeneral);
         } else {
-            formatString = LocaleController.formatString(R.string.ProfileBotPreviewFooterLanguage, s41.E(this.f8054a.E, null, null));
+            formatString = LocaleController.formatString(R.string.ProfileBotPreviewFooterLanguage, t41.E(this.f8054a.E, null, null));
         }
         String string2 = LocaleController.getString(R.string.ProfileBotAddPreview);
         com.google.firebase.messaging.s sVar = new com.google.firebase.messaging.s(this, 3);
@@ -331,24 +331,24 @@ public final class r extends FrameLayout {
         }
         n nVar2 = this.E;
         ei.d dVar2 = this.F;
-        sx0 sx0Var = this.f8063y;
+        tx0 tx0Var = this.f8063y;
         if (z10) {
-            sx0Var.d.setVisibility(0);
-            sx0Var.d.setText(LocaleController.getString(R.string.ProfileBotPreviewEmptyTitle));
-            sx0Var.e.setText(LocaleController.formatPluralString("ProfileBotPreviewEmptyText", MessagesController.getInstance(i12).botPreviewMediasMax, new Object[0]));
-            sx0Var.f30353f.g(LocaleController.getString(R.string.ProfileBotPreviewEmptyButton), false, true);
+            tx0Var.d.setVisibility(0);
+            tx0Var.d.setText(LocaleController.getString(R.string.ProfileBotPreviewEmptyTitle));
+            tx0Var.e.setText(LocaleController.formatPluralString("ProfileBotPreviewEmptyText", MessagesController.getInstance(i12).botPreviewMediasMax, new Object[0]));
+            tx0Var.f30698f.g(LocaleController.getString(R.string.ProfileBotPreviewEmptyButton), false, true);
             nVar2.setVisibility(8);
             dVar2.setVisibility(8);
         } else {
-            sx0Var.d.setVisibility(8);
-            sx0Var.e.setText(LocaleController.formatString(R.string.ProfileBotPreviewFooterLanguage, s41.E(this.f8054a.E, null, null)));
-            sx0Var.f30353f.g(LocaleController.getString(R.string.ProfileBotPreviewEmptyButton), false, true);
+            tx0Var.d.setVisibility(8);
+            tx0Var.e.setText(LocaleController.formatString(R.string.ProfileBotPreviewFooterLanguage, t41.E(this.f8054a.E, null, null)));
+            tx0Var.f30698f.g(LocaleController.getString(R.string.ProfileBotPreviewEmptyButton), false, true);
             nVar2.setVisibility(0);
             dVar2.setVisibility(0);
             dVar2.g(LocaleController.getString(R.string.ProfileBotPreviewFooterDeleteTranslation), false, true);
             dVar2.setOnClickListener(new e(this, 1));
         }
-        ei.d dVar3 = sx0Var.f30353f;
+        ei.d dVar3 = tx0Var.f30698f;
         if (this.v.h() >= MessagesController.getInstance(i12).botPreviewMediasMax) {
             i13 = 8;
         }

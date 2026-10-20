@@ -8,12 +8,12 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.mx0;
-import org.telegram.ui.Components.vn0;
+import org.telegram.ui.Components.nx0;
+import org.telegram.ui.Components.wn0;
 public final class h2 extends FrameLayout {
     public final org.telegram.ui.ActionBar.d6 f9144a;
     public final FrameLayout f9145b;
-    public final vn0 f9146c;
+    public final wn0 f9146c;
     public final e2 d;
     public final int e;
     public g2 f9147f;
@@ -38,12 +38,12 @@ public final class h2 extends FrameLayout {
         ImageView imageView = new ImageView(context);
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
         imageView.setScaleType(scaleType);
-        vn0 vn0Var = new vn0();
-        this.f9146c = vn0Var;
-        vn0Var.c(0, false, false);
+        wn0 wn0Var = new wn0();
+        this.f9146c = wn0Var;
+        wn0Var.c(0, false, false);
         int i10 = org.telegram.ui.ActionBar.h6.Je;
-        vn0Var.a(org.telegram.ui.ActionBar.h6.w0(i10, d6Var));
-        imageView.setImageDrawable(vn0Var);
+        wn0Var.a(org.telegram.ui.ActionBar.h6.w0(i10, d6Var));
+        imageView.setImageDrawable(wn0Var);
         frameLayout.addView(imageView, w7.z5.e(36, 36, 51));
         e2 e2Var = new e2(this, context, 0);
         this.d = e2Var;
@@ -69,7 +69,7 @@ public final class h2 extends FrameLayout {
         this.f9148n = imageView2;
         imageView2.setScaleType(scaleType);
         imageView2.setImageDrawable(new f2(d6Var));
-        imageView2.setBackground(org.telegram.ui.ActionBar.h6.g0(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21076i6, d6Var), 1, AndroidUtilities.dp(15.0f)));
+        imageView2.setBackground(org.telegram.ui.ActionBar.h6.g0(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21079i6, d6Var), 1, AndroidUtilities.dp(15.0f)));
         imageView2.setAlpha(0.0f);
         imageView2.setScaleX(0.7f);
         imageView2.setScaleY(0.7f);
@@ -89,7 +89,7 @@ public final class h2 extends FrameLayout {
                         return;
                     default:
                         h2 h2Var = this.f8818b;
-                        int i12 = h2Var.f9146c.f31337k;
+                        int i12 = h2Var.f9146c.f32165k;
                         if (i12 == 1) {
                             h2Var.b();
                             g2 g2Var = h2Var.f9147f;
@@ -123,7 +123,7 @@ public final class h2 extends FrameLayout {
                         return;
                     default:
                         h2 h2Var = this.f8818b;
-                        int i12 = h2Var.f9146c.f31337k;
+                        int i12 = h2Var.f9146c.f32165k;
                         if (i12 == 1) {
                             h2Var.b();
                             g2 g2Var = h2Var.f9147f;
@@ -181,11 +181,11 @@ public final class h2 extends FrameLayout {
                         h2Var.d(false);
                         return;
                     default:
-                        mx0 mx0Var = (mx0) obj;
+                        nx0 nx0Var = (nx0) obj;
                         h2 h2Var2 = this.f8881b;
                         g2 g2Var3 = h2Var2.f9147f;
                         if (g2Var3 != null) {
-                            if (g2Var3.getSelectedCategory() == mx0Var) {
+                            if (g2Var3.getSelectedCategory() == nx0Var) {
                                 h2Var2.f9147f.G1(null);
                                 Utilities.Callback2 callback2 = h2Var2.v;
                                 if (callback2 != null) {
@@ -194,8 +194,8 @@ public final class h2 extends FrameLayout {
                                 }
                                 return;
                             }
-                            h2Var2.f9147f.G1(mx0Var);
-                            String str = mx0Var.f28618a;
+                            h2Var2.f9147f.G1(nx0Var);
+                            String str = nx0Var.f28892a;
                             int categoryIndex = h2Var2.f9147f.getCategoryIndex();
                             Utilities.Callback2 callback22 = h2Var2.v;
                             if (callback22 != null) {
@@ -226,11 +226,11 @@ public final class h2 extends FrameLayout {
                         h2Var.d(false);
                         return;
                     default:
-                        mx0 mx0Var = (mx0) obj;
+                        nx0 nx0Var = (nx0) obj;
                         h2 h2Var2 = this.f8881b;
                         g2 g2Var3 = h2Var2.f9147f;
                         if (g2Var3 != null) {
-                            if (g2Var3.getSelectedCategory() == mx0Var) {
+                            if (g2Var3.getSelectedCategory() == nx0Var) {
                                 h2Var2.f9147f.G1(null);
                                 Utilities.Callback2 callback2 = h2Var2.v;
                                 if (callback2 != null) {
@@ -239,8 +239,8 @@ public final class h2 extends FrameLayout {
                                 }
                                 return;
                             }
-                            h2Var2.f9147f.G1(mx0Var);
-                            String str = mx0Var.f28618a;
+                            h2Var2.f9147f.G1(nx0Var);
+                            String str = nx0Var.f28892a;
                             int categoryIndex = h2Var2.f9147f.getCategoryIndex();
                             Utilities.Callback2 callback22 = h2Var2.v;
                             if (callback22 != null) {
@@ -286,7 +286,7 @@ public final class h2 extends FrameLayout {
         if (z11 && ((e2Var.length() != 0 || ((g2Var2 = this.f9147f) != null && g2Var2.getSelectedCategory() != null)) && !z10)) {
             return;
         }
-        if (e2Var.length() <= 0 && ((g2Var = this.f9147f) == null || g2Var.f29746m3 <= 0.5f || ((g2Var == null || !g2Var.f29741h3) && g2Var.getSelectedCategory() == null))) {
+        if (e2Var.length() <= 0 && ((g2Var = this.f9147f) == null || g2Var.f30045m3 <= 0.5f || ((g2Var == null || !g2Var.f30040h3) && g2Var.getSelectedCategory() == null))) {
             i10 = 0;
         } else {
             i10 = 1;

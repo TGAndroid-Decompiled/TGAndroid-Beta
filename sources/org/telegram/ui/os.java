@@ -5,25 +5,25 @@ import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
 public final class os extends s4.r0 {
-    public boolean f39963a;
-    public boolean f39964b;
-    public final ContactsActivity f39965c;
+    public boolean f39969a;
+    public boolean f39970b;
+    public final ContactsActivity f39971c;
 
     public os(ContactsActivity contactsActivity) {
-        this.f39965c = contactsActivity;
+        this.f39971c = contactsActivity;
     }
 
     @Override
     public final void a(RecyclerView recyclerView, int i10) {
         if (i10 == 1) {
-            ContactsActivity contactsActivity = this.f39965c;
-            if ((contactsActivity.F && contactsActivity.E) || contactsActivity.Z.f27686r.isFocused()) {
+            ContactsActivity contactsActivity = this.f39971c;
+            if ((contactsActivity.F && contactsActivity.E) || contactsActivity.Z.f27726r.isFocused()) {
                 AndroidUtilities.hideKeyboard(contactsActivity.getParentActivity().getCurrentFocus());
             }
-            this.f39964b = true;
+            this.f39970b = true;
             return;
         }
-        this.f39964b = false;
+        this.f39970b = false;
     }
 
     @Override
@@ -31,8 +31,8 @@ public final class os extends s4.r0 {
         int i12;
         bh.f fVar;
         boolean z10;
-        ContactsActivity contactsActivity = this.f39965c;
-        int L0 = contactsActivity.f33085n.L0();
+        ContactsActivity contactsActivity = this.f39971c;
+        int L0 = contactsActivity.f33091n.L0();
         boolean z11 = false;
         View childAt = recyclerView.getChildAt(0);
         if (childAt != null) {
@@ -40,23 +40,23 @@ public final class os extends s4.r0 {
         } else {
             i12 = 0;
         }
-        if (contactsActivity.f33097w != null && !contactsActivity.F) {
+        if (contactsActivity.f33103w != null && !contactsActivity.F) {
             if (i11 > 0) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            if (i11 != 0 && this.f39963a && (z10 || this.f39964b)) {
-                contactsActivity.f33099x = !z10;
+            if (i11 != 0 && this.f39969a && (z10 || this.f39970b)) {
+                contactsActivity.f33105x = !z10;
                 ContactsActivity.e0(contactsActivity);
             }
-            this.f39963a = true;
+            this.f39969a = true;
         }
-        if (L0 != 0 || i12 < contactsActivity.f33077f.getPaddingTop()) {
+        if (L0 != 0 || i12 < contactsActivity.f33083f.getPaddingTop()) {
             z11 = true;
         }
         contactsActivity.Y.b(z11, true);
-        if (Build.VERSION.SDK_INT >= 31 && (fVar = contactsActivity.f33094t0) != null) {
+        if (Build.VERSION.SDK_INT >= 31 && (fVar = contactsActivity.f33100t0) != null) {
             fVar.f(i10, i11);
             contactsActivity.g0();
         }

@@ -8,26 +8,26 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.b71;
-import org.telegram.ui.Components.f61;
+import org.telegram.ui.Components.c71;
 import org.telegram.ui.Components.g61;
-import org.telegram.ui.Components.im0;
-import org.telegram.ui.Components.t61;
-public final class y0 extends f61 {
+import org.telegram.ui.Components.h61;
+import org.telegram.ui.Components.jm0;
+import org.telegram.ui.Components.u61;
+public final class y0 extends g61 {
     public static final int f15657a = 0;
 
     static {
-        f61.setup(new f61());
+        g61.setup(new g61());
     }
 
     @Override
-    public final void bindView(View view, g61 g61Var, boolean z10, t61 t61Var, b71 b71Var) {
+    public final void bindView(View view, h61 h61Var, boolean z10, u61 u61Var, c71 c71Var) {
         MessageObject messageObject;
         t tVar;
         z0 z0Var = (z0) view;
-        a aVar = (a) g61Var.G;
+        a aVar = (a) h61Var.G;
         z0Var.f15111a = aVar;
-        z0Var.S = (r3) g61Var.H;
+        z0Var.S = (r3) h61Var.H;
         z0Var.M = LocaleController.isRTL;
         z0Var.c(aVar);
         z0Var.F.b();
@@ -39,7 +39,7 @@ public final class y0 extends f61 {
             } else {
                 TLRPC.TL_message tL_message = new TLRPC.TL_message();
                 tL_message.out = true;
-                tL_message.f20294id = -Long.valueOf(i10.f20279id).hashCode();
+                tL_message.f20297id = -Long.valueOf(i10.f20282id).hashCode();
                 tL_message.peer_id = new TLRPC.TL_peerUser();
                 TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
                 tL_message.from_id = tL_peerUser;
@@ -73,9 +73,9 @@ public final class y0 extends f61 {
     }
 
     @Override
-    public final View createView(Context context, im0 im0Var, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
+    public final View createView(Context context, jm0 jm0Var, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
         z0 z0Var = new z0(context, i10, d6Var);
-        z0Var.setBackground(new a2(h6.w0(h6.f20987d6, d6Var)));
+        z0Var.setBackground(new a2(h6.w0(h6.f20990d6, d6Var)));
         return z0Var;
     }
 

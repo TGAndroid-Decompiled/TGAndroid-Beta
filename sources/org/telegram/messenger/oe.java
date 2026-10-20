@@ -1,27 +1,82 @@
 package org.telegram.messenger;
-public final class oe implements Runnable {
-    public final int f19191a;
-    public final MessagesStorage f19192b;
-    public final long f19193c;
-    public final long d;
-    public final String e;
 
-    public oe(MessagesStorage messagesStorage, long j10, long j11, String str, int i10) {
-        this.f19191a = i10;
-        this.f19192b = messagesStorage;
-        this.f19193c = j10;
-        this.d = j11;
-        this.e = str;
+import java.util.ArrayList;
+public final class oe implements Runnable {
+    public final int f19159a;
+    public final MessagesStorage f19160b;
+    public final ArrayList f19161c;
+
+    public oe(int i10, ArrayList arrayList, MessagesStorage messagesStorage) {
+        this.f19159a = i10;
+        this.f19160b = messagesStorage;
+        this.f19161c = arrayList;
     }
 
     @Override
     public final void run() {
-        switch (this.f19191a) {
+        switch (this.f19159a) {
             case 0:
-                this.f19192b.lambda$updateRanksInLastMessages$45(this.f19193c, this.d, this.e);
+                this.f19160b.lambda$markMessagesAsDeletedInternal$230(this.f19161c);
+                return;
+            case 1:
+                this.f19160b.lambda$markVoiceMessageContentAsRead$216(this.f19161c);
+                return;
+            case 2:
+                this.f19160b.lambda$emptyMessagesMedia$96(this.f19161c);
+                return;
+            case 3:
+                this.f19160b.lambda$emptyMessagesMedia$97(this.f19161c);
+                return;
+            case 4:
+                this.f19160b.lambda$loadUserInfo$128(this.f19161c);
+                return;
+            case 5:
+                this.f19160b.lambda$replaceMessageIfExists$233(this.f19161c);
+                return;
+            case 6:
+                this.f19160b.lambda$markMessagesAsDeletedByRandoms$220(this.f19161c);
+                return;
+            case 7:
+                this.f19160b.lambda$deleteFromDownloadQueue$183(this.f19161c);
+                return;
+            case 8:
+                this.f19160b.lambda$deleteContacts$147(this.f19161c);
+                return;
+            case 9:
+                this.f19160b.lambda$updateMessageVerifyFlags$195(this.f19161c);
+                return;
+            case 10:
+                this.f19160b.lambda$putMessagesInternal$198(this.f19161c);
+                return;
+            case 11:
+                this.f19160b.lambda$putMessagesInternal$197(this.f19161c);
+                return;
+            case 12:
+                this.f19160b.lambda$markMessagesAsDeletedByRandoms$221(this.f19161c);
+                return;
+            case 13:
+                this.f19160b.lambda$markMessagesAsDeletedInternal$224(this.f19161c);
+                return;
+            case 14:
+                this.f19160b.lambda$markMessagesAsDeletedInternal$227(this.f19161c);
+                return;
+            case 15:
+                this.f19160b.lambda$onReactionsUpdate$105(this.f19161c);
+                return;
+            case 16:
+                this.f19160b.lambda$deleteDialog$88(this.f19161c);
+                return;
+            case 17:
+                this.f19160b.lambda$saveDialogFiltersOrder$75(this.f19161c);
+                return;
+            case 18:
+                this.f19160b.lambda$putMessages$236(this.f19161c);
+                return;
+            case 19:
+                this.f19160b.lambda$putMessages$237(this.f19161c);
                 return;
             default:
-                this.f19192b.lambda$updateRanksInLastMessages$46(this.f19193c, this.d, this.e);
+                this.f19160b.lambda$putWebPages$187(this.f19161c);
                 return;
         }
     }

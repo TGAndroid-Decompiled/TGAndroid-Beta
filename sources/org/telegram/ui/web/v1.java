@@ -9,30 +9,30 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.UserConfig;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.b71;
-import org.telegram.ui.Components.f61;
+import org.telegram.ui.Components.c71;
 import org.telegram.ui.Components.g61;
-import org.telegram.ui.Components.im0;
+import org.telegram.ui.Components.h61;
+import org.telegram.ui.Components.jm0;
 import org.telegram.ui.Components.r5;
-import org.telegram.ui.Components.t61;
+import org.telegram.ui.Components.u61;
 import org.telegram.ui.Components.zq;
 import org.telegram.ui.kk;
-public final class v1 extends f61 {
-    public static final int f42826a = 0;
+public final class v1 extends g61 {
+    public static final int f42832a = 0;
 
     static {
-        f61.setup(new f61());
+        g61.setup(new g61());
     }
 
     @Override
-    public final void bindView(View view, g61 g61Var, boolean z10, t61 t61Var, b71 b71Var) {
+    public final void bindView(View view, h61 h61Var, boolean z10, u61 u61Var, c71 c71Var) {
         w1 w1Var = (w1) view;
-        CharSequence charSequence = g61Var.f26499n;
-        String str = (String) g61Var.f26497l;
-        long j10 = g61Var.B;
-        ImageView imageView = w1Var.f42832a;
-        w1Var.f42833b.setText(charSequence);
-        kk kkVar = w1Var.f42834c;
+        CharSequence charSequence = h61Var.f26784n;
+        String str = (String) h61Var.f26782l;
+        long j10 = h61Var.B;
+        ImageView imageView = w1Var.f42838a;
+        w1Var.f42839b.setText(charSequence);
+        kk kkVar = w1Var.f42840c;
         kkVar.setText(str);
         if (TextUtils.isEmpty(charSequence)) {
             kkVar.setTranslationY(-AndroidUtilities.dp(14.0f));
@@ -70,12 +70,12 @@ public final class v1 extends f61 {
             zqVar.f33020n = dp2;
             imageView.setImageDrawable(zqVar);
         }
-        w1Var.f42835f = z10;
+        w1Var.f42841f = z10;
         w1Var.invalidate();
     }
 
     @Override
-    public final View createView(Context context, im0 im0Var, int i10, int i11, d6 d6Var) {
+    public final View createView(Context context, jm0 jm0Var, int i10, int i11, d6 d6Var) {
         return new w1(context);
     }
 }

@@ -4,8 +4,8 @@ import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Cells.t7;
-import org.telegram.ui.Components.b71;
-import org.telegram.ui.Components.ew0;
+import org.telegram.ui.Components.c71;
+import org.telegram.ui.Components.fw0;
 import org.telegram.ui.Components.wz;
 import s4.y0;
 public final class h extends wz {
@@ -28,13 +28,13 @@ public final class h extends wz {
     }
 
     @Override
-    public ew0 D1(int i10) {
+    public fw0 D1(int i10) {
         switch (this.X) {
             case 0:
-                ew0 ew0Var = (ew0) this.Y;
-                ew0Var.f26039b = 100.0f;
-                ew0Var.f26038a = 100.0f;
-                return ew0Var;
+                fw0 fw0Var = (fw0) this.Y;
+                fw0Var.f26429b = 100.0f;
+                fw0Var.f26428a = 100.0f;
+                return fw0Var;
             default:
                 return super.D1(i10);
         }
@@ -46,7 +46,7 @@ public final class h extends wz {
         switch (this.X) {
             case 0:
                 super.U(eVar, y0Var, view, cVar);
-                AccessibilityNodeInfo accessibilityNodeInfo = cVar.f45869a;
+                AccessibilityNodeInfo accessibilityNodeInfo = cVar.f45874a;
                 AccessibilityNodeInfo.CollectionItemInfo collectionItemInfo = accessibilityNodeInfo.getCollectionItemInfo();
                 if (collectionItemInfo != null) {
                     cVar2 = new n5.c(collectionItemInfo);
@@ -72,7 +72,7 @@ public final class h extends wz {
     public int W0(y0 y0Var) {
         switch (this.X) {
             case 1:
-                if (((b71) this.Y).Y2) {
+                if (((c71) this.Y).Y2) {
                     return AndroidUtilities.displaySize.y;
                 }
                 return super.W0(y0Var);
@@ -94,8 +94,8 @@ public final class h extends wz {
         }
     }
 
-    public h(b71 b71Var, int i10) {
+    public h(c71 c71Var, int i10) {
         super(i10, false);
-        this.Y = b71Var;
+        this.Y = c71Var;
     }
 }

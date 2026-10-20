@@ -125,7 +125,7 @@ public abstract class nr {
                     } else {
                         formatString = LocaleController.formatString(R.string.CreateManagedBotUsernamePremiumRequired, c11);
                     }
-                    return AndroidUtilities.replaceSingleLink(formatString, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21046gc, d6Var), e2Var);
+                    return AndroidUtilities.replaceSingleLink(formatString, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21049gc, d6Var), e2Var);
                 case 2:
                     return LocaleController.formatString(R.string.CreateManagedBotUsernameSuffixMissing, b(treeSet));
                 case 3:
@@ -176,7 +176,7 @@ public abstract class nr {
             }
         }
         treeSet.remove("bot");
-        org.telegram.ui.ActionBar.f3 i11 = org.telegram.messenger.kk.i(1, context, d6Var, true);
+        org.telegram.ui.ActionBar.f3 i11 = org.telegram.messenger.mk.i(1, context, d6Var, true);
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setClipChildren(false);
         linearLayout.setClipToPadding(false);
@@ -191,20 +191,20 @@ public abstract class nr {
         TextView textView = new TextView(context);
         textView.setTypeface(AndroidUtilities.bold());
         int i12 = org.telegram.ui.ActionBar.h6.G6;
-        org.telegram.messenger.kk.o(i12, d6Var, textView, 1, 20.0f);
-        org.telegram.messenger.kk.m(R.string.CreateManagedBotTitle, textView, 17);
+        org.telegram.messenger.mk.o(i12, d6Var, textView, 1, 20.0f);
+        org.telegram.messenger.mk.m(R.string.CreateManagedBotTitle, textView, 17);
         TextView i13 = com.google.android.gms.internal.play_billing.k3.i(linearLayout, textView, w7.z5.t(-1, -2, 55, 16, 0, 16, 5), context);
-        org.telegram.messenger.kk.o(i12, d6Var, i13, 1, 14.0f);
+        org.telegram.messenger.mk.o(i12, d6Var, i13, 1, 14.0f);
         String formatString = LocaleController.formatString(R.string.CreateManagedBotText, UserObject.getUserName(user));
-        int i14 = org.telegram.ui.ActionBar.h6.f21046gc;
+        int i14 = org.telegram.ui.ActionBar.h6.f21049gc;
         i13.setText(AndroidUtilities.replaceSingleLinkBold(formatString, org.telegram.ui.ActionBar.h6.w0(i14, d6Var)));
         i13.setGravity(17);
         linearLayout.addView(i13, w7.z5.t(-1, -2, 55, 16, 0, 16, 22));
         org.telegram.ui.Cells.i3 i3Var = new org.telegram.ui.Cells.i3(context, LocaleController.getString(R.string.CreateManagedBotName), false, false, -1, d6Var);
-        org.telegram.ui.Cells.g3 g3Var = i3Var.f22399b;
+        org.telegram.ui.Cells.g3 g3Var = i3Var.f22402b;
         g3Var.setImeOptions(5);
         int dp = AndroidUtilities.dp(16.0f);
-        int i15 = org.telegram.ui.ActionBar.h6.f20987d6;
+        int i15 = org.telegram.ui.ActionBar.h6.f20990d6;
         i3Var.setBackground(org.telegram.ui.ActionBar.h6.c0(dp, org.telegram.ui.ActionBar.h6.w0(i15, d6Var)));
         i3Var.setText(tL_requestPeerTypeCreateBot.suggested_name);
         linearLayout.addView(i3Var, w7.z5.t(-1, -2, 55, 12, 0, 12, 0));
@@ -214,7 +214,7 @@ public abstract class nr {
         org.telegram.ui.Cells.i3 i3Var2 = new org.telegram.ui.Cells.i3(context, LocaleController.getString(R.string.CreateManagedBotUsername), false, false, 32, d6Var);
         LinearLayout linearLayout2 = new LinearLayout(context);
         linearLayout2.setOrientation(0);
-        org.telegram.ui.Cells.g3 g3Var2 = i3Var2.f22399b;
+        org.telegram.ui.Cells.g3 g3Var2 = i3Var2.f22402b;
         i3Var2.removeView(g3Var2);
         g3Var2.setHintColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.H6, d6Var));
         g3Var2.setPadding(0, AndroidUtilities.dp(15.0f), AndroidUtilities.dp(63.0f), AndroidUtilities.dp(15.0f));
@@ -252,13 +252,13 @@ public abstract class nr {
         dVar.setColor(org.telegram.ui.ActionBar.h6.m1(0.1f, org.telegram.ui.ActionBar.h6.w0(i12, d6Var)));
         dVar.setText(LocaleController.getString(R.string.Cancel));
         linearLayout3.addView(dVar, w7.z5.p(0, 48, 119.0f, 1, 0, 0, 5, 0));
-        ei.d f7 = org.telegram.messenger.kk.f(24, context, d6Var, true);
+        ei.d f7 = org.telegram.messenger.mk.f(24, context, d6Var, true);
         f7.setText(LocaleController.getString(R.string.CreateManagedBotButton));
         linearLayout3.addView(f7, w7.z5.p(0, 48, 119.0f, 1, 5, 0, 0, 0));
         i11.useBackgroundTopPadding = false;
         i11.smoothKeyboardAnimationEnabled = true;
         i11.doNotOverlayNavigationBar = true;
-        i11.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20929a7, d6Var));
+        i11.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20932a7, d6Var));
         i11.fixNavigationBar();
         boolean[] zArr = new boolean[1];
         boolean[] zArr2 = new boolean[1];

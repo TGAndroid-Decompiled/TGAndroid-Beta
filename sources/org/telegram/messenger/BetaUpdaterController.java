@@ -89,7 +89,7 @@ public class BetaUpdaterController {
     }
 
     public void lambda$downloadUpdate$5(File file) {
-        AndroidUtilities.runOnUIThread(new g3(11, this, file));
+        AndroidUtilities.runOnUIThread(new h3(11, this, file));
     }
 
     public void lambda$downloadUpdate$6(Float f7) {
@@ -188,7 +188,7 @@ public class BetaUpdaterController {
             }
             this.checkingForUpdate = true;
             this.firstCheck = false;
-            new org.telegram.ui.web.h1(new w(0, this, runnable)).execute("https://telegram.org/dl/android/apk-public-beta.json");
+            new org.telegram.ui.web.h1(new w(0, this, runnable)).execute("null");
         }
     }
 
@@ -235,38 +235,38 @@ public class BetaUpdaterController {
         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.appUpdateLoading, new Object[0]);
         if (!TextUtils.isEmpty(this.fileUrl)) {
             HttpGetFileTask overrideExtension = new HttpGetFileTask(new Utilities.Callback(this) {
-                public final BetaUpdaterController f19699b;
+                public final BetaUpdaterController f19702b;
 
                 {
-                    this.f19699b = this;
+                    this.f19702b = this;
                 }
 
                 @Override
                 public final void run(Object obj) {
                     switch (r2) {
                         case 0:
-                            this.f19699b.lambda$downloadUpdate$5((File) obj);
+                            this.f19702b.lambda$downloadUpdate$5((File) obj);
                             return;
                         default:
-                            this.f19699b.lambda$downloadUpdate$6((Float) obj);
+                            this.f19702b.lambda$downloadUpdate$6((Float) obj);
                             return;
                     }
                 }
             }, new Utilities.Callback(this) {
-                public final BetaUpdaterController f19699b;
+                public final BetaUpdaterController f19702b;
 
                 {
-                    this.f19699b = this;
+                    this.f19702b = this;
                 }
 
                 @Override
                 public final void run(Object obj) {
                     switch (r2) {
                         case 0:
-                            this.f19699b.lambda$downloadUpdate$5((File) obj);
+                            this.f19702b.lambda$downloadUpdate$5((File) obj);
                             return;
                         default:
-                            this.f19699b.lambda$downloadUpdate$6((Float) obj);
+                            this.f19702b.lambda$downloadUpdate$6((Float) obj);
                             return;
                     }
                 }

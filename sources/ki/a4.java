@@ -56,7 +56,7 @@ public final class a4 extends HorizontalScrollView {
                 b70 b70Var = (b70) this.f15121b;
                 if (b70Var.d != null) {
                     b70Var.d = null;
-                    b70Var.f35518f = null;
+                    b70Var.f35524f = null;
                     return;
                 }
                 return;

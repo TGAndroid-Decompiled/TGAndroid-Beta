@@ -27,12 +27,12 @@ public final class w3 implements Runnable {
         switch (i10) {
             case 0:
                 org.telegram.ui.Components.qc M = org.telegram.ui.Components.xc.a0(qnVar).M(LocaleController.getString(R.string.Gift2TransferredTitle), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2TransferredText, l7Var.X1(), DialogObject.getShortName(j10))), R.raw.forward);
-                M.f29604t = true;
+                M.f29540t = true;
                 M.j();
                 return;
             default:
                 org.telegram.ui.Components.qc M2 = org.telegram.ui.Components.xc.a0(qnVar).M(LocaleController.getString(R.string.Gift2TransferredTitle), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2TransferredText, l7Var.X1(), DialogObject.getShortName(j10))), R.raw.forward);
-                M2.f29604t = true;
+                M2.f29540t = true;
                 M2.j();
                 return;
         }

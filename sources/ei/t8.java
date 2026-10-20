@@ -12,16 +12,16 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.kk;
+import org.telegram.messenger.mk;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.im0;
-import org.telegram.ui.Components.wl0;
+import org.telegram.ui.Components.jm0;
+import org.telegram.ui.Components.xl0;
 public final class t8 extends org.telegram.ui.ActionBar.f3 implements NotificationCenter.NotificationCenterDelegate {
     public final int f9857b;
     public ArrayList f9858c;
     public final TLRPC.InputPeer d;
     public final Utilities.Callback e;
-    public final im0 f9859f;
+    public final jm0 f9859f;
     public final s8 h;
     public final TextView f9860n;
 
@@ -35,16 +35,16 @@ public final class t8 extends org.telegram.ui.ActionBar.f3 implements Notificati
         this.d = inputPeer;
         this.e = callback;
         this.containerView = new q8(this, context, d6Var);
-        im0 im0Var = new im0(context, d6Var);
-        this.f9859f = im0Var;
+        jm0 jm0Var = new jm0(context, d6Var);
+        this.f9859f = jm0Var;
         int i12 = this.backgroundPaddingLeft;
-        im0Var.setPadding(i12, 0, i12, 0);
+        jm0Var.setPadding(i12, 0, i12, 0);
         s8 s8Var = new s8(this);
         this.h = s8Var;
-        im0Var.setAdapter(s8Var);
-        im0Var.setLayoutManager(new s4.b0());
-        this.containerView.addView(im0Var, w7.z5.e(-1, -1, 119));
-        im0Var.setOnItemClickListener(new wl0() {
+        jm0Var.setAdapter(s8Var);
+        jm0Var.setLayoutManager(new s4.b0());
+        this.containerView.addView(jm0Var, w7.z5.e(-1, -1, 119));
+        jm0Var.setOnItemClickListener(new xl0() {
             @Override
             public final void a(int i13, View view) {
                 if (i13 <= 1) {
@@ -67,12 +67,12 @@ public final class t8 extends org.telegram.ui.ActionBar.f3 implements Notificati
                 t8Var.dismiss();
             }
         });
-        im0Var.setOnScrollListener(new r8(this));
+        jm0Var.setOnScrollListener(new r8(this));
         TextView textView = new TextView(getContext());
         this.f9860n = textView;
-        kk.o(org.telegram.ui.ActionBar.h6.G6, d6Var, textView, 1, 20.0f);
+        mk.o(org.telegram.ui.ActionBar.h6.G6, d6Var, textView, 1, 20.0f);
         textView.setPadding(AndroidUtilities.dp(22.0f) + this.backgroundPaddingLeft, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(22.0f) + this.backgroundPaddingLeft, AndroidUtilities.dp(14.0f));
-        textView.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21058h5, d6Var));
+        textView.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21061h5, d6Var));
         textView.setTypeface(AndroidUtilities.bold());
         if (z10) {
             i11 = R.string.StoryPrivacyPublishLiveAs;
@@ -116,9 +116,9 @@ public final class t8 extends org.telegram.ui.ActionBar.f3 implements Notificati
         float measuredHeight = this.containerView.getMeasuredHeight();
         int i10 = 0;
         while (true) {
-            im0 im0Var = this.f9859f;
-            if (i10 < im0Var.getChildCount()) {
-                View childAt = im0Var.getChildAt(i10);
+            jm0 jm0Var = this.f9859f;
+            if (i10 < jm0Var.getChildCount()) {
+                View childAt = jm0Var.getChildAt(i10);
                 if (childAt != null && (R = RecyclerView.R(childAt)) != -1 && R > 0) {
                     measuredHeight = Math.min(AndroidUtilities.lerp(measuredHeight, childAt.getY(), childAt.getAlpha()), measuredHeight);
                 }

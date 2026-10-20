@@ -1,44 +1,77 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
-public final class sa implements Runnable {
-    public final int f19482a;
-    public final MessagesController f19483b;
-    public final ArrayList f19484c;
+import java.util.HashSet;
+import java.util.Set;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.TranslateController;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class sa implements RequestDelegate {
+    public final int f19505a;
+    public final boolean f19506b;
+    public final long f19507c;
+    public final BaseController d;
+    public final Object e;
+    public final Object f19508f;
 
-    public sa(MessagesController messagesController, ArrayList arrayList, int i10) {
-        this.f19482a = i10;
-        this.f19483b = messagesController;
-        this.f19484c = arrayList;
+    public sa(BaseController baseController, Object obj, boolean z10, long j10, Object obj2, int i10) {
+        this.f19505a = i10;
+        this.d = baseController;
+        this.e = obj;
+        this.f19506b = z10;
+        this.f19507c = j10;
+        this.f19508f = obj2;
     }
 
     @Override
-    public final void run() {
-        switch (this.f19482a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f19505a) {
             case 0:
-                this.f19483b.lambda$processUpdates$382(this.f19484c);
+                boolean z10 = this.f19506b;
+                ((MessagesController) this.d).lambda$getSendAsPeers$446((a0.h) this.e, this.f19507c, (MessagesController.SendAsPeersInfo) this.f19508f, z10, tLObject, tL_error);
                 return;
             case 1:
-                this.f19483b.lambda$processUpdateArray$400(this.f19484c);
+                long j10 = this.f19507c;
+                ((TranslateController) this.d).lambda$pushToTranslate$23((TranslateController.PendingTranslation) this.e, this.f19506b, j10, (Set) this.f19508f, tLObject, tL_error);
                 return;
             case 2:
-                this.f19483b.lambda$checkChatInviter$372(this.f19484c);
+                ((ChatThemeController) this.d).lambda$setWallpaperToPeer$17(this.f19507c, this.f19506b, (String) this.e, (Runnable) this.f19508f, tLObject, tL_error);
                 return;
             case 3:
-                this.f19483b.lambda$processUpdates$381(this.f19484c);
-                return;
-            case 4:
-                this.f19483b.lambda$processUpdateArray$401(this.f19484c);
-                return;
-            case 5:
-                this.f19483b.lambda$getChannelDifference$340(this.f19484c);
-                return;
-            case 6:
-                this.f19483b.lambda$reloadMentionsCountForChannels$221(this.f19484c);
+                long j11 = this.f19507c;
+                ((MemberRequestsController) this.d).lambda$getImporters$1((TLRPC.TL_chatInviteImporter) this.e, this.f19506b, j11, (RequestDelegate) this.f19508f, tLObject, tL_error);
                 return;
             default:
-                this.f19483b.lambda$checkChatInviter$371(this.f19484c);
+                ((TopicsController) this.d).lambda$reloadTopics$16(this.f19506b, this.f19507c, (HashSet) this.e, (Runnable) this.f19508f, tLObject, tL_error);
                 return;
         }
+    }
+
+    public sa(ChatThemeController chatThemeController, long j10, boolean z10, String str, Runnable runnable) {
+        this.f19505a = 2;
+        this.d = chatThemeController;
+        this.f19507c = j10;
+        this.f19506b = z10;
+        this.e = str;
+        this.f19508f = runnable;
+    }
+
+    public sa(MessagesController messagesController, a0.h hVar, long j10, MessagesController.SendAsPeersInfo sendAsPeersInfo, boolean z10) {
+        this.f19505a = 0;
+        this.d = messagesController;
+        this.e = hVar;
+        this.f19507c = j10;
+        this.f19508f = sendAsPeersInfo;
+        this.f19506b = z10;
+    }
+
+    public sa(TopicsController topicsController, boolean z10, long j10, HashSet hashSet, Runnable runnable) {
+        this.f19505a = 4;
+        this.d = topicsController;
+        this.f19506b = z10;
+        this.f19507c = j10;
+        this.e = hashSet;
+        this.f19508f = runnable;
     }
 }

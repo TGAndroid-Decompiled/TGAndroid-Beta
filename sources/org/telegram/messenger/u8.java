@@ -1,53 +1,34 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
+import org.telegram.messenger.MessagesStorage;
 import org.telegram.tgnet.TLRPC;
 public final class u8 implements Runnable {
-    public final int f19638a = 0;
-    public final int f19639b;
-    public final long f19640c;
-    public final long d;
-    public final int e;
-    public final int f19641f;
-    public final boolean h;
-    public final BaseController f19642n;
-    public final Object f19643r;
+    public final int f19651a = 1;
+    public final MediaDataController f19652b;
+    public final MessagesStorage.TopicKey f19653c;
+    public final TLRPC.Message d;
 
-    public u8(MediaDataController mediaDataController, int i10, ArrayList arrayList, boolean z10, long j10, int i11, int i12, long j11) {
-        this.f19642n = mediaDataController;
-        this.f19639b = i10;
-        this.f19643r = arrayList;
-        this.h = z10;
-        this.f19640c = j10;
-        this.e = i11;
-        this.f19641f = i12;
-        this.d = j11;
+    public u8(MediaDataController mediaDataController, MessagesStorage.TopicKey topicKey, TLRPC.Message message) {
+        this.f19652b = mediaDataController;
+        this.f19653c = topicKey;
+        this.d = message;
     }
 
     @Override
     public final void run() {
-        switch (this.f19638a) {
+        switch (this.f19651a) {
             case 0:
-                int i10 = this.f19641f;
-                long j10 = this.d;
-                ((MediaDataController) this.f19642n).lambda$putMediaDatabase$140(this.f19639b, (ArrayList) this.f19643r, this.h, this.f19640c, this.e, i10, j10);
+                this.f19652b.lambda$loadBotKeyboard$196(this.d, this.f19653c);
                 return;
             default:
-                int i11 = this.f19641f;
-                boolean z10 = this.h;
-                ((MessagesStorage) this.f19642n).lambda$putMessages$238(this.f19639b, (TLRPC.messages_Messages) this.f19643r, this.f19640c, this.d, this.e, i11, z10);
+                this.f19652b.lambda$putBotKeyboard$201(this.f19653c, this.d);
                 return;
         }
     }
 
-    public u8(MessagesStorage messagesStorage, int i10, TLRPC.messages_Messages messages_messages, long j10, long j11, int i11, int i12, boolean z10) {
-        this.f19642n = messagesStorage;
-        this.f19639b = i10;
-        this.f19643r = messages_messages;
-        this.f19640c = j10;
-        this.d = j11;
-        this.e = i11;
-        this.f19641f = i12;
-        this.h = z10;
+    public u8(MediaDataController mediaDataController, TLRPC.Message message, MessagesStorage.TopicKey topicKey) {
+        this.f19652b = mediaDataController;
+        this.d = message;
+        this.f19653c = topicKey;
     }
 }

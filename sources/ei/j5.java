@@ -15,12 +15,12 @@ public final class j5 implements rg.v1 {
         switch (this.f9245a) {
             case 0:
                 rg.v2 v2Var = this.f9246b;
-                v2Var.f45670z0 = true;
+                v2Var.f45678z0 = true;
                 v2Var.setBaseFontSize((int) (this.f9247c * f7));
                 return;
             default:
                 rg.v2 v2Var2 = this.f9246b;
-                v2Var2.f45670z0 = true;
+                v2Var2.f45678z0 = true;
                 v2Var2.setBaseFontSize((int) (this.f9247c * f7));
                 return;
         }

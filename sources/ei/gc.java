@@ -25,9 +25,9 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.e11;
+import org.telegram.ui.Components.f11;
 import org.telegram.ui.Components.i80;
-import org.telegram.ui.Components.ln0;
+import org.telegram.ui.Components.mn0;
 public final class gc extends View {
     public final Paint A0;
     public final Paint B0;
@@ -70,7 +70,7 @@ public final class gc extends View {
     public float V;
     public final Paint V0;
     public boolean W;
-    public final ln0 W0;
+    public final mn0 W0;
     public boolean X0;
     public final ai.t0 Y0;
     public long Z0;
@@ -114,7 +114,7 @@ public final class gc extends View {
     public boolean f9111o1;
     public final Path f9112p0;
     public VelocityTracker f9113p1;
-    public final e11 f9114q0;
+    public final f11 f9114q0;
     public boolean f9115q1;
     public final ArrayList f9116r;
     public final Drawable f9117r0;
@@ -196,7 +196,7 @@ public final class gc extends View {
         this.U0 = new Matrix();
         Paint paint8 = new Paint(1);
         this.V0 = paint8;
-        this.W0 = new ln0(getContext(), null);
+        this.W0 = new mn0(getContext(), null);
         this.Z0 = -1L;
         this.f9081a1 = -1L;
         this.f9084b1 = new org.telegram.ui.Components.f6(0.0f, this, 0L, 340L, bsVar);
@@ -228,7 +228,7 @@ public final class gc extends View {
         paint3.setColor(-16777216);
         paint5.setColor(-1);
         paint4.setColor(637534208);
-        this.f9114q0 = new e11(LocaleController.getString(R.string.StoryTimeline), 12.0f, AndroidUtilities.bold());
+        this.f9114q0 = new f11(LocaleController.getString(R.string.StoryTimeline), 12.0f, AndroidUtilities.bold());
         Drawable mutate = getContext().getResources().getDrawable(R.drawable.timeline).mutate();
         this.f9117r0 = mutate;
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
@@ -300,7 +300,7 @@ public final class gc extends View {
                 int i12 = gcVar.f9127v1;
                 int i13 = gcVar.f9136y1;
                 int i14 = gcVar.f9133x1;
-                float min2 = Math.min((i12 - i13) - i14, ((((AndroidUtilities.lerp(gcVar.T, 1.0f, gcVar.f9093f0.f26108c) * ((float) gcVar.R)) + ((float) (gcVar.Q - gcVar.f9092f))) / ((float) min)) * gcVar.f9125u1) + i13 + i14);
+                float min2 = Math.min((i12 - i13) - i14, ((((AndroidUtilities.lerp(gcVar.T, 1.0f, gcVar.f9093f0.f26086c) * ((float) gcVar.R)) + ((float) (gcVar.Q - gcVar.f9092f))) / ((float) min)) * gcVar.f9125u1) + i13 + i14);
                 i80 F = i80.F(viewGroup, d6Var, gcVar);
                 F.q(u7Var);
                 F.o();
@@ -363,7 +363,7 @@ public final class gc extends View {
                 int i15 = gcVar.f9127v1;
                 int i16 = gcVar.f9136y1;
                 int i17 = gcVar.f9133x1;
-                float min4 = Math.min((i15 - i16) - i17, ((((AndroidUtilities.lerp(gcVar.K, 1.0f, gcVar.f9088d0.f26108c) * ((float) gcVar.H)) + ((float) (gcVar.I - gcVar.f9092f))) / ((float) min3)) * gcVar.f9125u1) + i16 + i17);
+                float min4 = Math.min((i15 - i16) - i17, ((((AndroidUtilities.lerp(gcVar.K, 1.0f, gcVar.f9088d0.f26086c) * ((float) gcVar.H)) + ((float) (gcVar.I - gcVar.f9092f))) / ((float) min3)) * gcVar.f9125u1) + i16 + i17);
                 i80 F2 = i80.F(viewGroup, d6Var, gcVar);
                 F2.q(u7Var2);
                 F2.o();
@@ -479,7 +479,7 @@ public final class gc extends View {
             if (f7 > 0.0f) {
                 f7 += AndroidUtilities.dp(4.0f);
             }
-            f7 += AndroidUtilities.lerp(AndroidUtilities.dp(28.0f), AndroidUtilities.dp(38.0f), ((ac) arrayList.get(i10)).f8760k.f26108c);
+            f7 += AndroidUtilities.lerp(AndroidUtilities.dp(28.0f), AndroidUtilities.dp(38.0f), ((ac) arrayList.get(i10)).f8760k.f26086c);
         }
         return f7;
     }
@@ -496,7 +496,7 @@ public final class gc extends View {
         if (acVar == null) {
             return 0.0f;
         }
-        return AndroidUtilities.lerp(AndroidUtilities.dp(28.0f), AndroidUtilities.dp(38.0f), acVar.f8760k.f26108c);
+        return AndroidUtilities.lerp(AndroidUtilities.dp(28.0f), AndroidUtilities.dp(38.0f), acVar.f8760k.f26086c);
     }
 
     public final int c(android.view.MotionEvent r21) {
@@ -505,14 +505,14 @@ public final class gc extends View {
 
     @Override
     public final void computeScroll() {
-        ln0 ln0Var = this.W0;
-        if (ln0Var.b()) {
-            int i10 = ln0Var.f28263j;
+        mn0 mn0Var = this.W0;
+        if (mn0Var.b()) {
+            int i10 = mn0Var.f28564j;
             long min = Math.min(getBaseDuration(), getMaxScrollDuration());
             if (this.f9115q1) {
                 this.f9092f = Math.max(0.0f, (((i10 - this.f9136y1) - this.f9133x1) / this.f9125u1) * ((float) min));
             } else if (!this.P) {
-                ln0Var.a();
+                mn0Var.a();
                 return;
             } else {
                 int i11 = this.f9136y1;
@@ -705,7 +705,7 @@ public final class gc extends View {
     }
 
     public int getTimelineHeight() {
-        return AndroidUtilities.lerp(AndroidUtilities.dp(28.0f) + this.f9138z1 + this.f9138z1, getContentHeight(), this.f9099i0.f26108c);
+        return AndroidUtilities.lerp(AndroidUtilities.dp(28.0f) + this.f9138z1 + this.f9138z1, getContentHeight(), this.f9099i0.f26086c);
     }
 
     public final void h(float f7) {

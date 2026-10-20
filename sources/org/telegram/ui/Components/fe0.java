@@ -5,37 +5,37 @@ import android.animation.AnimatorListenerAdapter;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.SharedConfig;
 public final class fe0 extends AnimatorListenerAdapter {
-    public final int f26215a;
-    public final ge0 f26216b;
+    public final int f26212a;
+    public final ge0 f26213b;
 
     public fe0(ge0 ge0Var, int i10) {
-        this.f26215a = i10;
-        this.f26216b = ge0Var;
+        this.f26212a = i10;
+        this.f26213b = ge0Var;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
         EditTextBoldCursor editTextBoldCursor;
-        switch (this.f26215a) {
+        switch (this.f26212a) {
             case 0:
-                le0 le0Var = this.f26216b.d;
-                if (!le0Var.P) {
-                    le0Var.f28190a0 = 1.0f;
-                    le0Var.g(1.0f);
+                me0 me0Var = this.f26213b.d;
+                if (!me0Var.P) {
+                    me0Var.f28492a0 = 1.0f;
+                    me0Var.h(1.0f);
                     return;
                 }
                 return;
             default:
-                ge0 ge0Var = this.f26216b;
-                le0 le0Var2 = ge0Var.d;
-                if (!le0Var2.P) {
-                    Runnable runnable = ge0Var.f26581c;
+                ge0 ge0Var = this.f26213b;
+                me0 me0Var2 = ge0Var.d;
+                if (!me0Var2.P) {
+                    Runnable runnable = ge0Var.f26577c;
                     if (runnable != null) {
                         runnable.run();
                     }
-                    if (SharedConfig.passcodeType == 1 && le0Var2.f28205x.getVisibility() != 0 && (editTextBoldCursor = le0Var2.f28202r) != null) {
+                    if (SharedConfig.passcodeType == 1 && me0Var2.f28507x.getVisibility() != 0 && (editTextBoldCursor = me0Var2.f28504r) != null) {
                         editTextBoldCursor.requestFocus();
-                        AndroidUtilities.showKeyboard(le0Var2.f28202r);
+                        AndroidUtilities.showKeyboard(me0Var2.f28504r);
                         return;
                     }
                     return;

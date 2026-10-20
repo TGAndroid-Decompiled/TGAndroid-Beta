@@ -1,21 +1,22 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-public final class yt0 extends nv0 {
-    public final tv0 h;
+import android.view.View;
+public final class yt0 implements View.OnClickListener {
+    public final long f32729a;
+    public final org.telegram.ui.ActionBar.d6 f32730b;
+    public final Context f32731c;
+    public final uv0 d;
 
-    public yt0(tv0 tv0Var, Context context) {
-        super(tv0Var, context);
-        this.h = tv0Var;
+    public yt0(uv0 uv0Var, long j10, org.telegram.ui.ActionBar.d6 d6Var, Context context) {
+        this.d = uv0Var;
+        this.f32729a = j10;
+        this.f32730b = d6Var;
+        this.f32731c = context;
     }
 
     @Override
-    public final void l() {
-        super.l();
-        tv0 tv0Var = this.h;
-        mu0 W = tv0Var.W(0);
-        if (W != null && W.f28609r.getVisibility() == 0) {
-            tv0Var.I.l();
-        }
+    public final void onClick(android.view.View r29) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.yt0.onClick(android.view.View):void");
     }
 }

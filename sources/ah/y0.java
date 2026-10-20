@@ -39,7 +39,7 @@ public final class y0 {
         r5 r5Var = this.f908b;
         Rect rect = this.f909c;
         if (r5Var != null) {
-            g3 g3Var = r5Var.f29851k;
+            g3 g3Var = r5Var.f29837k;
             if (g3Var != null) {
                 g3Var.setRoundRadius((int) (rect.width() * 0.1f));
             }
@@ -111,7 +111,7 @@ public final class y0 {
             if (i1Var.f783f != null) {
                 TLRPC.TL_availableReaction tL_availableReaction = MediaDataController.getInstance(this.d).getReactionsMap().get(i1Var.f783f);
                 if (tL_availableReaction != null) {
-                    imageReceiver.setImage(ImageLocation.getForDocument(tL_availableReaction.select_animation), str2, null, null, DocumentObject.getSvgThumb(tL_availableReaction.select_animation, h6.f21150m6, 0.2f), 0L, "tgs", i1Var, 0);
+                    imageReceiver.setImage(ImageLocation.getForDocument(tL_availableReaction.select_animation), str2, null, null, DocumentObject.getSvgThumb(tL_availableReaction.select_animation, h6.f21153m6, 0.2f), 0L, "tgs", i1Var, 0);
                     return;
                 }
                 return;

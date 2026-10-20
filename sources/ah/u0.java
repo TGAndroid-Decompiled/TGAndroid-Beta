@@ -55,7 +55,7 @@ public final class u0 implements View.OnFocusChangeListener {
                 c6.a((c6) this.f892b, z10);
                 return;
             case 6:
-                EditTextBoldCursor editTextBoldCursor = ((qg.w) this.f892b).f44680c;
+                EditTextBoldCursor editTextBoldCursor = ((qg.w) this.f892b).f44688c;
                 if (!z10 && TextUtils.isEmpty(editTextBoldCursor.getText())) {
                     editTextBoldCursor.setText("0");
                     return;

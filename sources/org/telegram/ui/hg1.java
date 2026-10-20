@@ -5,44 +5,44 @@ import android.text.TextWatcher;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class hg1 implements TextWatcher {
-    public final UsersSelectActivity f37618a;
+    public final UsersSelectActivity f37624a;
 
     public hg1(UsersSelectActivity usersSelectActivity) {
-        this.f37618a = usersSelectActivity;
+        this.f37624a = usersSelectActivity;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
-        UsersSelectActivity usersSelectActivity = this.f37618a;
-        if (usersSelectActivity.f33951c.length() != 0) {
+        UsersSelectActivity usersSelectActivity = this.f37624a;
+        if (usersSelectActivity.f33957c.length() != 0) {
             kg1 kg1Var = usersSelectActivity.h;
-            boolean z10 = kg1Var.f38598n;
+            boolean z10 = kg1Var.f38604n;
             if (!z10) {
                 usersSelectActivity.M = true;
                 usersSelectActivity.L = true;
                 if (!z10) {
-                    kg1Var.f38598n = true;
+                    kg1Var.f38604n = true;
                     kg1Var.l();
                 }
                 usersSelectActivity.d.setFastScrollVisible(false);
                 usersSelectActivity.d.setVerticalScrollBarEnabled(true);
-                usersSelectActivity.f33952f.d.setText(LocaleController.getString(R.string.NoResult));
+                usersSelectActivity.f33958f.d.setText(LocaleController.getString(R.string.NoResult));
             }
-            usersSelectActivity.f33952f.e(true, true);
-            usersSelectActivity.h.L(usersSelectActivity.f33951c.getText().toString());
+            usersSelectActivity.f33958f.e(true, true);
+            usersSelectActivity.h.L(usersSelectActivity.f33957c.getText().toString());
             return;
         }
         usersSelectActivity.M = false;
         usersSelectActivity.L = false;
         kg1 kg1Var2 = usersSelectActivity.h;
-        if (kg1Var2.f38598n) {
-            kg1Var2.f38598n = false;
+        if (kg1Var2.f38604n) {
+            kg1Var2.f38604n = false;
             kg1Var2.l();
         }
         usersSelectActivity.h.L(null);
         usersSelectActivity.d.setFastScrollVisible(true);
         usersSelectActivity.d.setVerticalScrollBarEnabled(false);
-        usersSelectActivity.f33952f.d.setText(LocaleController.getString(R.string.NoContacts));
+        usersSelectActivity.f33958f.d.setText(LocaleController.getString(R.string.NoContacts));
     }
 
     @Override

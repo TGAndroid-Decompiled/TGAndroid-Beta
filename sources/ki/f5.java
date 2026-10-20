@@ -5,24 +5,24 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.Components.b71;
-import org.telegram.ui.Components.f61;
+import org.telegram.ui.Components.c71;
 import org.telegram.ui.Components.g61;
-import org.telegram.ui.Components.im0;
-import org.telegram.ui.Components.t61;
-public final class f5 extends f61 {
+import org.telegram.ui.Components.h61;
+import org.telegram.ui.Components.jm0;
+import org.telegram.ui.Components.u61;
+public final class f5 extends g61 {
     public static final int f15266a = 0;
 
     static {
-        f61.setup(new f61());
+        g61.setup(new g61());
     }
 
     @Override
-    public final void bindView(View view, g61 g61Var, boolean z10, t61 t61Var, b71 b71Var) {
+    public final void bindView(View view, h61 h61Var, boolean z10, u61 u61Var, c71 c71Var) {
         TL_iv.RichText richText;
         g5 g5Var = (g5) view;
-        a aVar = (a) g61Var.G;
-        e5 e5Var = (e5) g61Var.H;
+        a aVar = (a) h61Var.G;
+        e5 e5Var = (e5) h61Var.H;
         h1 h1Var = g5Var.f15285r;
         g5Var.f15111a = aVar;
         g5Var.f15286s = e5Var;
@@ -40,7 +40,7 @@ public final class f5 extends f61 {
     }
 
     @Override
-    public final View createView(Context context, im0 im0Var, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
+    public final View createView(Context context, jm0 jm0Var, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
         return new g5(context, d6Var);
     }
 

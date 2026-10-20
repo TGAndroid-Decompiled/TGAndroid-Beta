@@ -48,7 +48,7 @@ import org.telegram.ui.ActionBar.n2;
 import org.telegram.ui.Cells.n4;
 import org.telegram.ui.Cells.u1;
 import org.telegram.ui.Components.a6;
-import org.telegram.ui.Components.cl0;
+import org.telegram.ui.Components.dl0;
 import org.telegram.ui.Components.qc;
 import org.telegram.ui.Components.xc;
 import org.telegram.ui.LaunchActivity;
@@ -89,7 +89,7 @@ public final class f implements Runnable {
                 CredentialProviderPlayServicesImpl.onClearCredential$lambda$14$lambda$13$lambda$12((i) obj2, (p) obj);
                 return;
             case 2:
-                ((a3.f) ((qf.b) obj2).f44440c).h.onVideoSizeChanged((a2) obj);
+                ((a3.f) ((qf.b) obj2).f44448c).h.onVideoSizeChanged((a2) obj);
                 return;
             case 3:
                 String str = m0.f8252a;
@@ -177,11 +177,11 @@ public final class f implements Runnable {
                 return;
             case 10:
                 t0 t0Var = (t0) obj2;
-                cl0 cl0Var = (cl0) obj;
+                dl0 dl0Var = (dl0) obj;
                 t0Var.f876l = true;
                 t0Var.f868a.invalidate();
-                cl0Var.f25238b1 = false;
-                cl0Var.invalidate();
+                dl0Var.f25527b1 = false;
+                dl0Var.invalidate();
                 t0Var.c(true);
                 return;
             case 11:
@@ -287,7 +287,7 @@ public final class f implements Runnable {
                 l7 l7Var = (l7) obj2;
                 if (!((ga) obj).e) {
                     qc Q = l7Var.getBulletinFactory().Q(R.raw.error, 36, LocaleController.formatString(R.string.UnknownErrorCode, "NO_BALANCE"));
-                    Q.f29604t = true;
+                    Q.f29540t = true;
                     Q.j();
                     return;
                 }

@@ -60,12 +60,12 @@ import java.util.zip.Adler32;
 import java.util.zip.InflaterInputStream;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.ui.Components.bl0;
-import org.telegram.ui.Components.e01;
+import org.telegram.ui.Components.cl0;
+import org.telegram.ui.Components.f01;
 import org.telegram.ui.Components.f5;
-import org.telegram.ui.Components.n71;
 import org.telegram.ui.Components.nk;
-import org.telegram.ui.Components.qz0;
+import org.telegram.ui.Components.o71;
+import org.telegram.ui.Components.rz0;
 import org.telegram.ui.Components.ti;
 import org.telegram.ui.iq0;
 import org.xmlpull.v1.XmlPullParserException;
@@ -73,7 +73,7 @@ import v7.b8;
 import v7.q7;
 import v7.u6;
 import w7.i6;
-public class g3 implements bl0, iq0, n5.b, t0.h {
+public class g3 implements cl0, iq0, n5.b, t0.h {
     public final int f16201a;
     public Object f16202b;
     public Object f16203c;
@@ -103,7 +103,7 @@ public class g3 implements bl0, iq0, n5.b, t0.h {
     public static Object[] u(Object[] objArr, int[] iArr) {
         int length = objArr.length;
         Class<?> componentType = objArr.getClass().getComponentType();
-        qz0 qz0Var = e01.R;
+        rz0 rz0Var = f01.R;
         int i10 = -1;
         for (int i11 : iArr) {
             i10 = Math.max(i10, i11);
@@ -480,21 +480,21 @@ public class g3 implements bl0, iq0, n5.b, t0.h {
         ki.t1 t1Var = (ki.t1) this.f16202b;
         s4.b1 U = RecyclerView.U(view);
         if (U != null) {
-            View view2 = U.f45912a;
+            View view2 = U.f45917a;
             RecyclerView recyclerView = (RecyclerView) t1Var.f15525b;
-            int i10 = U.f45927s;
+            int i10 = U.f45932s;
             if (i10 != -1) {
-                U.f45926r = i10;
+                U.f45931r = i10;
             } else {
-                WeakHashMap weakHashMap = r0.i0.f44818a;
-                U.f45926r = view2.getImportantForAccessibility();
+                WeakHashMap weakHashMap = r0.i0.f44826a;
+                U.f45931r = view2.getImportantForAccessibility();
             }
             if (recyclerView.b0()) {
-                U.f45927s = 4;
+                U.f45932s = 4;
                 recyclerView.K0.add(U);
                 return;
             }
-            WeakHashMap weakHashMap2 = r0.i0.f44818a;
+            WeakHashMap weakHashMap2 = r0.i0.f44826a;
             view2.setImportantForAccessibility(4);
         }
     }
@@ -525,16 +525,16 @@ public class g3 implements bl0, iq0, n5.b, t0.h {
             }
             s4.b1 U = RecyclerView.U((View) arrayList.get(size));
             if (U != null) {
-                int i11 = U.f45926r;
+                int i11 = U.f45931r;
                 if (recyclerView.b0()) {
-                    U.f45927s = i11;
+                    U.f45932s = i11;
                     recyclerView.K0.add(U);
                 } else {
-                    View view = U.f45912a;
-                    WeakHashMap weakHashMap = r0.i0.f44818a;
+                    View view = U.f45917a;
+                    WeakHashMap weakHashMap = r0.i0.f44826a;
                     view.setImportantForAccessibility(i11);
                 }
-                U.f45926r = 0;
+                U.f45931r = 0;
             }
             arrayList.remove(size);
         }
@@ -549,7 +549,7 @@ public class g3 implements bl0, iq0, n5.b, t0.h {
 
     public void S(qf.g gVar) {
         if (((qf.d) this.f16202b) != null) {
-            for (int i10 = 0; i10 < gVar.f44460a.size(); i10++) {
+            for (int i10 = 0; i10 < gVar.f44468a.size(); i10++) {
                 qf.d dVar = (qf.d) this.f16202b;
                 dVar.h.remove(gVar.a(i10).d);
                 dVar.h();
@@ -604,16 +604,16 @@ public class g3 implements bl0, iq0, n5.b, t0.h {
             long longValue = l4.longValue();
             JobInfo.Builder builder = new JobInfo.Builder(value, componentName);
             builder.setMinimumLatency(aVar.a(dVar, longValue, i10));
-            Set set = ((r5.b) aVar.f45012b.get(dVar)).f45015c;
-            if (set.contains(r5.c.f45016a)) {
+            Set set = ((r5.b) aVar.f45020b.get(dVar)).f45023c;
+            if (set.contains(r5.c.f45024a)) {
                 builder.setRequiredNetworkType(2);
             } else {
                 builder.setRequiredNetworkType(1);
             }
-            if (set.contains(r5.c.f45018c)) {
+            if (set.contains(r5.c.f45026c)) {
                 builder.setRequiresCharging(true);
             }
-            if (set.contains(r5.c.f45017b)) {
+            if (set.contains(r5.c.f45025b)) {
                 builder.setRequiresDeviceIdle(true);
             }
             PersistableBundle persistableBundle = new PersistableBundle();
@@ -658,16 +658,16 @@ public class g3 implements bl0, iq0, n5.b, t0.h {
         }
         qf.a aVar2 = (qf.a) this.d;
         if (aVar2 != null) {
-            e6.h hVar = aVar2.f44433a;
+            e6.h hVar = aVar2.f44441a;
             n6.l.e("Must be called from the main thread.");
             hVar.f8374i.remove(aVar2);
         }
         if (aVar != null) {
-            aVar.f44433a.p(aVar);
+            aVar.f44441a.p(aVar);
             qf.g gVar3 = (qf.g) this.f16203c;
             if (gVar3 != null) {
                 aVar.d = gVar3;
-                aVar.f44437g = 0;
+                aVar.f44445g = 0;
                 aVar.h = 0;
                 aVar.p();
             }
@@ -701,16 +701,16 @@ public class g3 implements bl0, iq0, n5.b, t0.h {
             s4.b1 U = RecyclerView.U(view);
             if (U != null) {
                 RecyclerView recyclerView = (RecyclerView) t1Var.f15525b;
-                int i10 = U.f45926r;
+                int i10 = U.f45931r;
                 if (recyclerView.b0()) {
-                    U.f45927s = i10;
+                    U.f45932s = i10;
                     recyclerView.K0.add(U);
                 } else {
-                    View view2 = U.f45912a;
-                    WeakHashMap weakHashMap = r0.i0.f44818a;
+                    View view2 = U.f45917a;
+                    WeakHashMap weakHashMap = r0.i0.f44826a;
                     view2.setImportantForAccessibility(i10);
                 }
-                U.f45926r = 0;
+                U.f45931r = 0;
             }
         }
     }
@@ -760,7 +760,7 @@ public class g3 implements bl0, iq0, n5.b, t0.h {
             nk nkVar = (nk) this.d;
             HashMap hashMap = (HashMap) this.f16202b;
             ArrayList arrayList = (ArrayList) this.f16203c;
-            ti tiVar = nkVar.f28223b;
+            ti tiVar = nkVar.f28173b;
             if (!hashMap.isEmpty() && nkVar.Q != null && !nkVar.K) {
                 nkVar.K = true;
                 ArrayList arrayList2 = new ArrayList();
@@ -811,7 +811,7 @@ public class g3 implements bl0, iq0, n5.b, t0.h {
         if (((qf.d) this.f16202b) == null) {
             this.f16202b = new qf.d();
         }
-        for (int i10 = 0; i10 < gVar.f44460a.size(); i10++) {
+        for (int i10 = 0; i10 < gVar.f44468a.size(); i10++) {
             qf.d dVar = (qf.d) this.f16202b;
             qf.f a2 = gVar.a(i10);
             dVar.h.put(a2.d, a2);
@@ -873,7 +873,7 @@ public class g3 implements bl0, iq0, n5.b, t0.h {
             if (!U.l() && !U.r()) {
                 throw new IllegalArgumentException("Called attach on a child which is not detached: " + U + recyclerView.C());
             }
-            U.f45920l &= -257;
+            U.f45925l &= -257;
         }
         RecyclerView.b(recyclerView, view, J, layoutParams);
     }
@@ -902,7 +902,7 @@ public class g3 implements bl0, iq0, n5.b, t0.h {
     public void t() {
         android.support.v4.media.session.b0 b0Var = (android.support.v4.media.session.b0) this.f16202b;
         if (b0Var != null) {
-            int i10 = ((p4.e) this.d).f44099n.d;
+            int i10 = ((p4.e) this.d).f44107n.d;
             android.support.v4.media.session.v vVar = b0Var.f2596a;
             vVar.getClass();
             AudioAttributes.Builder builder = new AudioAttributes.Builder();
@@ -1021,9 +1021,9 @@ public class g3 implements bl0, iq0, n5.b, t0.h {
     public g3(View view) {
         this.f16201a = 15;
         this.d = view;
-        n71 n71Var = new n71(this, view);
-        this.f16202b = n71Var;
-        view.addOnLayoutChangeListener(n71Var);
+        o71 o71Var = new o71(this, view);
+        this.f16202b = o71Var;
+        view.addOnLayoutChangeListener(o71Var);
     }
 
     public g3(int i10) {

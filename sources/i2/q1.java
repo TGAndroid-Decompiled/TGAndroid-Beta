@@ -42,7 +42,7 @@ public final class q1 {
         if (bVar instanceof w2.e) {
             w2.e eVar = (w2.e) bVar;
             u6.p(eVar.f12320y);
-            eVar.f48463a0 = j10;
+            eVar.f48468a0 = j10;
         }
     }
 
@@ -90,14 +90,14 @@ public final class q1 {
     }
 
     public final b d(x0 x0Var) {
-        u2.d1 d1Var;
-        if (x0Var != null && (d1Var = x0Var.f12605c[this.f12538b]) != null) {
+        u2.e1 e1Var;
+        if (x0Var != null && (e1Var = x0Var.f12605c[this.f12538b]) != null) {
             b bVar = this.f12537a;
-            if (bVar.f12316r == d1Var) {
+            if (bVar.f12316r == e1Var) {
                 return bVar;
             }
             b bVar2 = this.f12539c;
-            if (bVar2 != null && bVar2.f12316r == d1Var) {
+            if (bVar2 != null && bVar2.f12316r == e1Var) {
                 return bVar2;
             }
         }
@@ -166,11 +166,11 @@ public final class q1 {
         if (bVar == this.f12539c && this.d == 3) {
             return 1;
         }
-        u2.d1 d1Var = bVar.f12316r;
-        u2.d1[] d1VarArr = x0Var.f12605c;
+        u2.e1 e1Var = bVar.f12316r;
+        u2.e1[] e1VarArr = x0Var.f12605c;
         int i12 = this.f12538b;
         boolean z10 = false;
-        if (d1Var != d1VarArr[i12]) {
+        if (e1Var != e1VarArr[i12]) {
             objArr = 1;
         } else {
             objArr = null;
@@ -178,7 +178,7 @@ public final class q1 {
         boolean b10 = tVar.b(i12);
         if (!b10 || objArr != null) {
             if (!bVar.f12320y) {
-                x2.p pVar = tVar.f49181c[i12];
+                x2.p pVar = tVar.f49186c[i12];
                 if (pVar != null) {
                     i10 = pVar.length();
                 } else {
@@ -189,9 +189,9 @@ public final class q1 {
                     pVar.getClass();
                     wVarArr[i13] = pVar.f(i13);
                 }
-                u2.d1 d1Var2 = x0Var.f12605c[i12];
-                d1Var2.getClass();
-                bVar.y(wVarArr, d1Var2, x0Var.e(), x0Var.f12615p, x0Var.f12607g.f12618a);
+                u2.e1 e1Var2 = x0Var.f12605c[i12];
+                e1Var2.getClass();
+                bVar.y(wVarArr, e1Var2, x0Var.e(), x0Var.f12615p, x0Var.f12607g.f12618a);
                 return 3;
             } else if (!bVar.l()) {
                 return 0;

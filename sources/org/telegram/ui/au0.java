@@ -4,30 +4,30 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.widget.ImageView;
 public final class au0 extends ImageView {
-    public int f35415a;
-    public boolean f35416b;
-    public boolean f35417c;
+    public int f35421a;
+    public boolean f35422b;
+    public boolean f35423c;
     public boolean d;
-    public org.telegram.ui.Components.b81 e;
-    public final org.telegram.ui.Components.bs f35418f;
+    public org.telegram.ui.Components.c81 e;
+    public final org.telegram.ui.Components.bs f35424f;
     public ValueAnimator h;
-    public final PhotoViewer f35419n;
+    public final PhotoViewer f35425n;
 
     public au0(Context context, PhotoViewer photoViewer) {
         super(context);
-        this.f35419n = photoViewer;
-        this.f35415a = 0;
-        this.f35416b = false;
-        this.f35417c = false;
+        this.f35425n = photoViewer;
+        this.f35421a = 0;
+        this.f35422b = false;
+        this.f35423c = false;
         this.d = false;
-        this.f35418f = org.telegram.ui.Components.bs.f25014i;
+        this.f35424f = org.telegram.ui.Components.bs.f25023i;
         setAlpha(0.0f);
     }
 
     public static void a(au0 au0Var) {
-        PhotoViewer photoViewer = au0Var.f35419n;
-        org.telegram.ui.Components.b81 b81Var = photoViewer.F2;
-        if (b81Var != null && b81Var.p() != -9223372036854775807L) {
+        PhotoViewer photoViewer = au0Var.f35425n;
+        org.telegram.ui.Components.c81 c81Var = photoViewer.F2;
+        if (c81Var != null && c81Var.p() != -9223372036854775807L) {
             long max = Math.max(0L, photoViewer.F2.p() - photoViewer.F2.n());
             float max2 = 1.0f - Math.max(Math.min(((float) max) / 250.0f, 1.0f), 0.0f);
             if (max2 <= 0.0f) {
@@ -44,7 +44,7 @@ public final class au0 extends ImageView {
                     au0Var.h = ofFloat;
                     ofFloat.addUpdateListener(new e3(au0Var, 24));
                     au0Var.h.setDuration(max);
-                    au0Var.h.setInterpolator(au0Var.f35418f);
+                    au0Var.h.setInterpolator(au0Var.f35424f);
                     au0Var.h.start();
                     au0Var.setAlpha(max2);
                     return;

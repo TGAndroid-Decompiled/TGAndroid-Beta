@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.Set;
 import n6.l;
 public final class c {
-    public final HashMap f49763a = new HashMap();
+    public final HashMap f49768a = new HashMap();
 
     public c(Set set) {
         HashMap hashMap = new HashMap();
@@ -13,13 +13,13 @@ public final class c {
         while (it.hasNext()) {
             b bVar = (b) it.next();
             bVar.getClass();
-            if (this.f49763a.containsKey(zb.a.class)) {
+            if (this.f49768a.containsKey(zb.a.class)) {
                 Integer num = (Integer) hashMap.get(zb.a.class);
                 l.h(num);
                 if (num.intValue() <= 0) {
                 }
             }
-            this.f49763a.put(zb.a.class, bVar.f49762a);
+            this.f49768a.put(zb.a.class, bVar.f49767a);
             hashMap.put(zb.a.class, 0);
         }
     }

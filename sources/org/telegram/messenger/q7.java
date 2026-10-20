@@ -1,50 +1,33 @@
 package org.telegram.messenger;
 
-import org.telegram.messenger.Utilities;
-public final class q7 implements Runnable {
-    public final int f19326a;
-    public final Utilities.Callback f19327b;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class q7 implements RequestDelegate {
+    public final int f19329a;
+    public final MediaDataController f19330b;
+    public final int f19331c;
 
-    public q7(int i10, Utilities.Callback callback) {
-        this.f19326a = i10;
-        this.f19327b = callback;
+    public q7(MediaDataController mediaDataController, int i10, int i11) {
+        this.f19329a = i11;
+        this.f19330b = mediaDataController;
+        this.f19331c = i10;
     }
 
     @Override
-    public final void run() {
-        switch (this.f19326a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f19329a) {
             case 0:
-                MediaDataController.lambda$loadStickers$98(this.f19327b);
+                this.f19330b.lambda$loadArchivedStickersCount$72(this.f19331c, tLObject, tL_error);
                 return;
             case 1:
-                MediaDataController.lambda$loadStickers$99(this.f19327b);
+                this.f19330b.lambda$fetchEmojiStatuses$234(this.f19331c, tLObject, tL_error);
                 return;
             case 2:
-                MediaDataController.lambda$loadStickers$94(this.f19327b);
-                return;
-            case 3:
-                MediaDataController.lambda$loadStickers$95(this.f19327b);
-                return;
-            case 4:
-                MediaDataController.lambda$loadStickers$96(this.f19327b);
-                return;
-            case 5:
-                MediaDataController.lambda$loadBotInfo$199(this.f19327b);
-                return;
-            case 6:
-                this.f19327b.run(null);
-                return;
-            case 7:
-                MessagesController.lambda$addUserToChat$300(this.f19327b);
-                return;
-            case 8:
-                MessagesController.lambda$addUserToChat$304(this.f19327b);
-                return;
-            case 9:
-                this.f19327b.run(null);
+                this.f19330b.lambda$loadRecents$50(this.f19331c, tLObject, tL_error);
                 return;
             default:
-                ShortcutResultReceiver.a(this.f19327b);
+                this.f19330b.lambda$loadRecents$51(this.f19331c, tLObject, tL_error);
                 return;
         }
     }

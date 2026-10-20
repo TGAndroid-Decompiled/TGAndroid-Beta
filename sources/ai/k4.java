@@ -6,7 +6,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.tv0;
+import org.telegram.ui.Components.uv0;
 import org.telegram.ui.eh;
 public final class k4 implements Utilities.Callback {
     public final int f1635a = 0;
@@ -54,7 +54,7 @@ public final class k4 implements Utilities.Callback {
                 AndroidUtilities.runOnUIThread(new eh(26, qcVar, string), Math.max(1L, 750 - (System.currentTimeMillis() - j10)));
                 return;
             default:
-                ((tv0) obj2).getStoriesController().b(i11, j10, (ArrayList) obj);
+                ((uv0) obj2).getStoriesController().b(i11, j10, (ArrayList) obj);
                 return;
         }
     }
@@ -65,8 +65,8 @@ public final class k4 implements Utilities.Callback {
         this.f1637c = j10;
     }
 
-    public k4(tv0 tv0Var, long j10, int i10) {
-        this.d = tv0Var;
+    public k4(uv0 uv0Var, long j10, int i10) {
+        this.d = uv0Var;
         this.f1637c = j10;
         this.f1636b = i10;
     }

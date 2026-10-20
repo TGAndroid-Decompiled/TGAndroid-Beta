@@ -8,47 +8,47 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class ue1 implements org.telegram.ui.Components.wl0 {
-    public final xe1 f41940a;
+public final class ue1 implements org.telegram.ui.Components.xl0 {
+    public final xe1 f41946a;
 
     public ue1(xe1 xe1Var) {
-        this.f41940a = xe1Var;
+        this.f41946a = xe1Var;
     }
 
     @Override
     public final void a(int i10, View view) {
-        xe1 xe1Var = this.f41940a;
+        xe1 xe1Var = this.f41946a;
         ArrayList arrayList = xe1Var.d;
-        if (((we1) arrayList.get(i10)).f44288a == 1) {
+        if (((we1) arrayList.get(i10)).f44296a == 1) {
             Bundle bundle = new Bundle();
-            bundle.putLong("chat_id", -xe1Var.f43198c);
+            bundle.putLong("chat_id", -xe1Var.f43204c);
             bundle.putBoolean("for_select", true);
             re1 re1Var = new re1(bundle);
             re1Var.A0 = xe1Var.e;
             re1Var.v = new se1(this);
             xe1Var.presentFragment(re1Var);
         }
-        if (((we1) arrayList.get(i10)).f44288a == 2) {
-            TLRPC.TL_forumTopic tL_forumTopic = ((we1) arrayList.get(i10)).f42543c;
+        if (((we1) arrayList.get(i10)).f44296a == 2) {
+            TLRPC.TL_forumTopic tL_forumTopic = ((we1) arrayList.get(i10)).f42549c;
             Bundle bundle2 = new Bundle();
-            bundle2.putLong("dialog_id", xe1Var.f43198c);
-            bundle2.putLong("topic_id", tL_forumTopic.f20325id);
+            bundle2.putLong("dialog_id", xe1Var.f43204c);
+            bundle2.putLong("topic_id", tL_forumTopic.f20328id);
             bundle2.putBoolean("exception", false);
             z01 z01Var = new z01(bundle2, null);
-            z01Var.f43586r = new te1(this, tL_forumTopic);
+            z01Var.f43592r = new te1(this, tL_forumTopic);
             xe1Var.presentFragment(z01Var);
         }
-        if (((we1) arrayList.get(i10)).f44288a == 4) {
+        if (((we1) arrayList.get(i10)).f44296a == 4) {
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(xe1Var.getParentActivity());
-            alertDialog$Builder.f20602a.R = LocaleController.getString(R.string.NotificationsDeleteAllExceptionTitle);
-            alertDialog$Builder.f20602a.T = LocaleController.getString(R.string.NotificationsDeleteAllExceptionAlert);
+            alertDialog$Builder.f20605a.R = LocaleController.getString(R.string.NotificationsDeleteAllExceptionTitle);
+            alertDialog$Builder.f20605a.T = LocaleController.getString(R.string.NotificationsDeleteAllExceptionAlert);
             alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new se1(this));
             alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-            org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20602a;
+            org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20605a;
             xe1Var.showDialog(b2Var);
             TextView textView = (TextView) b2Var.d(-1);
             if (textView != null) {
-                textView.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21225q7, false));
+                textView.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21228q7, false));
             }
         }
     }

@@ -121,8 +121,8 @@ public final class c extends k {
                 l f7 = f();
                 long j12 = this.e;
                 jVar.timeUs = j12;
-                jVar.f50653a = f7;
-                jVar.f50654b = j12;
+                jVar.f50658a = f7;
+                jVar.f50659b = j12;
                 return jVar;
             }
             return null;

@@ -52,13 +52,13 @@ public final class c7 implements ValueAnimator.AnimatorUpdateListener {
                 tg.e eVar = (tg.e) this.f8833f;
                 eVar.getClass();
                 float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                tg.g gVar = ((tg.f) eVar.f47055b).f47056a;
+                tg.g gVar = ((tg.f) eVar.f47060b).f47061a;
                 float f16 = this.f8832c;
                 float f17 = this.f8831b;
                 gVar.d = com.google.android.gms.internal.play_billing.k3.y(f16, f17, floatValue3, f17);
                 float f18 = this.e;
                 float f19 = this.d;
-                gVar.f47071i = com.google.android.gms.internal.play_billing.k3.y(f18, f19, floatValue3, f19);
+                gVar.f47076i = com.google.android.gms.internal.play_billing.k3.y(f18, f19, floatValue3, f19);
                 return;
         }
     }

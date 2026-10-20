@@ -15,9 +15,9 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.Components.bz0;
+import org.telegram.ui.Components.cz0;
 import org.telegram.ui.Components.ps;
-import org.telegram.ui.Components.tv0;
+import org.telegram.ui.Components.uv0;
 import org.telegram.ui.Components.vs;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.b70;
@@ -76,7 +76,7 @@ public final class t8 implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new ub((Object) ((ps) obj3), tLObject, (Object) ((TLRPC.InputPeer) obj2), this.f6026b, (Object) ((int[]) obj), 23));
                 return;
             case 5:
-                tv0 tv0Var = (tv0) obj3;
+                uv0 uv0Var = (uv0) obj3;
                 TLRPC.TL_messages_editMessage tL_messages_editMessage = (TLRPC.TL_messages_editMessage) obj;
                 AndroidUtilities.runOnUIThread(new vs((org.telegram.ui.ActionBar.b2[]) obj2, 2));
                 int i12 = this.f6026b;
@@ -84,7 +84,7 @@ public final class t8 implements RequestDelegate {
                     MessagesController.getInstance(i12).lambda$processUpdates$377((TLRPC.Updates) tLObject, false);
                     return;
                 } else {
-                    AndroidUtilities.runOnUIThread(new cb(tv0Var, i12, tL_error, tL_messages_editMessage, 27));
+                    AndroidUtilities.runOnUIThread(new cb(uv0Var, i12, tL_error, tL_messages_editMessage, 27));
                     return;
                 }
             case 6:
@@ -100,7 +100,7 @@ public final class t8 implements RequestDelegate {
                     AndroidUtilities.runOnUIThread(bi0Var);
                     return;
                 } else if (tL_error != null) {
-                    AndroidUtilities.runOnUIThread(new bz0(i11, tL_error, n2Var2, tL_payments_assignPlayMarketTransaction));
+                    AndroidUtilities.runOnUIThread(new cz0(i11, tL_error, n2Var2, tL_payments_assignPlayMarketTransaction));
                     return;
                 } else {
                     return;

@@ -107,7 +107,7 @@ public final class w2 implements og {
             }
         }
         r40 r40Var2 = q4Var.W2;
-        if (q4Var.f5766b2.f23921c1) {
+        if (q4Var.f5766b2.f23924c1) {
             i10 = R.string.VideoMessagesRestrictedByPrivacy;
         } else {
             i10 = R.string.VoiceMessagesRestrictedByPrivacy;
@@ -183,7 +183,7 @@ public final class w2 implements og {
     @Override
     public final boolean e1() {
         m60 m60Var = this.f6108a.J2;
-        if (m60Var != null && !m60Var.f28422j0) {
+        if (m60Var != null && !m60Var.f28416j0) {
             return true;
         }
         return false;

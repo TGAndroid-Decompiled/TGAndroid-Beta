@@ -1,28 +1,53 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.TLRPC;
+import java.util.ArrayList;
 public final class re implements Runnable {
-    public final int f19424a;
-    public final MessagesStorage f19425b;
-    public final TLRPC.Message f19426c;
+    public final int f19453a;
+    public final MessagesStorage f19454b;
+    public final ArrayList f19455c;
     public final long d;
 
-    public re(int i10, long j10, MessagesStorage messagesStorage, TLRPC.Message message) {
-        this.f19424a = i10;
-        this.f19425b = messagesStorage;
-        this.f19426c = message;
+    public re(MessagesStorage messagesStorage, long j10, ArrayList arrayList, int i10) {
+        this.f19453a = i10;
+        this.f19454b = messagesStorage;
         this.d = j10;
+        this.f19455c = arrayList;
     }
 
     @Override
     public final void run() {
-        switch (this.f19424a) {
+        switch (this.f19453a) {
             case 0:
-                this.f19425b.lambda$updateMessageCustomParams$110(this.f19426c, this.d);
+                this.f19454b.lambda$deleteUserChatHistory$86(this.f19455c, this.d);
+                return;
+            case 1:
+                this.f19454b.lambda$emptyMessagesMedia$99(this.f19455c, this.d);
+                return;
+            case 2:
+                this.f19454b.lambda$deleteSavedDialog$54(this.d, this.f19455c);
+                return;
+            case 3:
+                this.f19454b.lambda$updateChannelUsers$125(this.d, this.f19455c);
+                return;
+            case 4:
+                this.f19454b.lambda$markVoiceMessageContentAsRead$217(this.f19455c, this.d);
+                return;
+            case 5:
+                this.f19454b.lambda$markMessagesAsDeletedInternal$226(this.f19455c, this.d);
+                return;
+            case 6:
+                this.f19454b.lambda$removeTopics$58(this.f19455c, this.d);
                 return;
             default:
-                this.f19425b.lambda$markMessageAsSendErrorWithParams$210(this.f19426c, this.d);
+                this.f19454b.lambda$createTaskForSecretChat$117(this.d, this.f19455c);
                 return;
         }
+    }
+
+    public re(MessagesStorage messagesStorage, ArrayList arrayList, long j10, int i10) {
+        this.f19453a = i10;
+        this.f19454b = messagesStorage;
+        this.f19455c = arrayList;
+        this.d = j10;
     }
 }

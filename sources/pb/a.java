@@ -41,28 +41,28 @@ import org.telegram.ui.Cells.l1;
 import org.telegram.ui.Cells.o9;
 import org.telegram.ui.Cells.u1;
 import org.telegram.ui.Components.a6;
-import org.telegram.ui.Components.bp0;
+import org.telegram.ui.Components.cp0;
 import org.telegram.ui.vu0;
 import org.xml.sax.Attributes;
 import p2.t;
 import p2.u;
 import r0.r;
 import r9.d;
-import ri.h;
+import rb.h;
+import ri.g;
 import t7.s;
 import v2.m;
 import v7.q8;
-import x3.g;
 import y2.i;
 import y6.c;
 import y6.e;
 import zf.j;
 import zf.k;
-public class a implements s0, q, cg.a, dg.a, b, n, eh.a, d, bp0, l1, u, r, h, Continuation, u5.a, m, g, c, i {
-    public final int f44278a;
+public class a implements s0, q, cg.a, dg.a, b, n, eh.a, d, cp0, l1, u, r, g, Continuation, u5.a, m, x3.g, c, i {
+    public final int f44286a;
 
     public a(int i10) {
-        this.f44278a = i10;
+        this.f44286a = i10;
     }
 
     public static k b0(Editable editable, int i10) {
@@ -72,7 +72,7 @@ public class a implements s0, q, cg.a, dg.a, b, n, eh.a, d, bp0, l1, u, r, h, Co
                 int i11 = length - 1;
                 if (editable.getSpanFlags(objArr[i11]) == 17) {
                     k kVar = objArr[i11];
-                    if (kVar.f51579a == i10) {
+                    if (kVar.f51584a == i10) {
                         return kVar;
                     }
                 }
@@ -177,7 +177,7 @@ public class a implements s0, q, cg.a, dg.a, b, n, eh.a, d, bp0, l1, u, r, h, Co
                 k[] kVarArr = (k[]) editable.getSpans(0, editable.length(), k.class);
                 for (int length2 = kVarArr.length - 1; length2 >= 0; length2--) {
                     k kVar = kVarArr[length2];
-                    if (editable.getSpanFlags(kVar) == 17 && ((i10 = kVar.f51579a) == 2 || i10 == 3)) {
+                    if (editable.getSpanFlags(kVar) == 17 && ((i10 = kVar.f51584a) == 2 || i10 == 3)) {
                         obj = kVar;
                         break;
                     }
@@ -261,7 +261,7 @@ public class a implements s0, q, cg.a, dg.a, b, n, eh.a, d, bp0, l1, u, r, h, Co
 
     @Override
     public y2.n J() {
-        return new t(p2.q.f44019n, null);
+        return new t(p2.q.f44027n, null);
     }
 
     @Override
@@ -380,17 +380,17 @@ public class a implements s0, q, cg.a, dg.a, b, n, eh.a, d, bp0, l1, u, r, h, Co
 
     @Override
     public void a() {
-        synchronized (z2.c.f50629a) {
-            Object obj = z2.c.f50630b;
+        synchronized (z2.c.f50634a) {
+            Object obj = z2.c.f50635b;
             synchronized (obj) {
-                if (z2.c.f50631c) {
+                if (z2.c.f50636c) {
                     return;
                 }
                 long a2 = z2.c.a();
                 synchronized (obj) {
                     SystemClock.elapsedRealtime();
                     z2.c.d = a2;
-                    z2.c.f50631c = true;
+                    z2.c.f50636c = true;
                 }
             }
         }
@@ -448,7 +448,7 @@ public class a implements s0, q, cg.a, dg.a, b, n, eh.a, d, bp0, l1, u, r, h, Co
 
     @Override
     public Object f2() {
-        switch (this.f44278a) {
+        switch (this.f44286a) {
             case 9:
                 return new LinkedHashSet();
             default:
@@ -483,9 +483,9 @@ public class a implements s0, q, cg.a, dg.a, b, n, eh.a, d, bp0, l1, u, r, h, Co
 
     @Override
     public Object j2(z5 z5Var) {
-        switch (this.f44278a) {
+        switch (this.f44286a) {
             case 15:
-                return new rb.h();
+                return new h();
             default:
                 rb.g gVar = (rb.g) z5Var.a(rb.g.class);
                 synchronized (s.class) {
@@ -601,7 +601,7 @@ public class a implements s0, q, cg.a, dg.a, b, n, eh.a, d, bp0, l1, u, r, h, Co
     }
 
     public a() {
-        this.f44278a = 11;
+        this.f44286a = 11;
         if (Build.VERSION.SDK_INT >= 35) {
         }
     }

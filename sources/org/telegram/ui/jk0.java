@@ -9,9 +9,9 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.ui.Components.RadioButton;
 public final class jk0 extends FrameLayout {
-    public TextView f38266a;
-    public RadioButton f38267b;
-    public org.telegram.ui.Components.xp f38268c;
+    public TextView f38272a;
+    public RadioButton f38273b;
+    public org.telegram.ui.Components.xp f38274c;
     public boolean d;
     public ik0 e;
 
@@ -31,7 +31,7 @@ public final class jk0 extends FrameLayout {
             if (!LocaleController.isRTL) {
                 f10 = 0.0f;
             }
-            canvas.drawLine(dp, height, measuredWidth - AndroidUtilities.dp(f10), getHeight() - 1, org.telegram.ui.ActionBar.h6.f21108k0);
+            canvas.drawLine(dp, height, measuredWidth - AndroidUtilities.dp(f10), getHeight() - 1, org.telegram.ui.ActionBar.h6.f21111k0);
         }
     }
 
@@ -40,7 +40,7 @@ public final class jk0 extends FrameLayout {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setClassName("android.widget.RadioButton");
         accessibilityNodeInfo.setCheckable(true);
-        accessibilityNodeInfo.setChecked(this.f38267b.f24338f);
+        accessibilityNodeInfo.setChecked(this.f38273b.f24341f);
     }
 
     @Override

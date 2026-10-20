@@ -10,7 +10,7 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.g51;
+import org.telegram.ui.Components.h51;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.uk0;
 public final class w2 implements Utilities.Callback2 {
@@ -44,19 +44,19 @@ public final class w2 implements Utilities.Callback2 {
                 l7.o0((l7) obj6, (pf.c) obj5, (ug.m1) obj4, (u3) obj3, (TL_stars.starGiftDepositPayload) obj, (TLRPC.TL_error) obj2);
                 return;
             case 2:
-                g51 g51Var = (g51) obj5;
+                h51 h51Var = (h51) obj5;
                 String str = (String) obj4;
                 org.telegram.ui.ActionBar.d6 d6Var = (org.telegram.ui.ActionBar.d6) obj3;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
                 ((org.telegram.ui.ActionBar.b2) obj6).dismiss();
                 if (((TLRPC.Bool) obj) instanceof TLRPC.TL_boolTrue) {
-                    g51Var.run();
+                    h51Var.run();
                     return;
                 }
-                org.telegram.ui.ActionBar.f3 f3Var = uk0.f42004a;
+                org.telegram.ui.ActionBar.f3 f3Var = uk0.f42010a;
                 if (f3Var != null) {
                     f3Var.dismiss();
-                    uk0.f42004a = null;
+                    uk0.f42010a = null;
                 }
                 org.telegram.ui.Components.xc a2 = uk0.a();
                 int i11 = R.raw.error;
@@ -79,15 +79,15 @@ public final class w2 implements Utilities.Callback2 {
                 if (updates != null) {
                     MessagesController.getInstance(a1Var.M).lambda$processUpdates$377(updates, false);
                     a1Var.x(z7Var, "requested_chat_sent", org.telegram.ui.web.a1.A(str2, "req_id"));
-                    long j10 = a1Var.U.f20420id;
+                    long j10 = a1Var.U.f20423id;
                     Bundle bundle = new Bundle();
-                    bundle.putLong("user_id", user.f20420id);
+                    bundle.putLong("user_id", user.f20423id);
                     org.telegram.ui.web.e0 e0Var = new org.telegram.ui.web.e0(a1Var, bundle, user, j10);
                     org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
                     if (U != null) {
                         U.presentFragment(e0Var);
                     }
-                    org.telegram.ui.web.g0 g0Var = a1Var.f42559c;
+                    org.telegram.ui.web.g0 g0Var = a1Var.f42565c;
                     if (g0Var != null) {
                         g0Var.b();
                         return;

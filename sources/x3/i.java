@@ -4,22 +4,22 @@ import c3.j0;
 import c3.q;
 import e2.x;
 public abstract class i {
-    public j0 f49208b;
-    public q f49209c;
+    public j0 f49213b;
+    public q f49214c;
     public g d;
     public long e;
-    public long f49210f;
-    public long f49211g;
+    public long f49215f;
+    public long f49216g;
     public int h;
-    public int f49212i;
-    public long f49214k;
-    public boolean f49215l;
-    public boolean f49216m;
-    public final e f49207a = new e();
-    public n2.e f49213j = new n2.e(24, false);
+    public int f49217i;
+    public long f49219k;
+    public boolean f49220l;
+    public boolean f49221m;
+    public final e f49212a = new e();
+    public n2.e f49218j = new n2.e(24, false);
 
     public void a(long j10) {
-        this.f49211g = j10;
+        this.f49216g = j10;
     }
 
     public abstract long b(x xVar);
@@ -28,13 +28,13 @@ public abstract class i {
 
     public void d(boolean z10) {
         if (z10) {
-            this.f49213j = new n2.e(24, false);
-            this.f49210f = 0L;
+            this.f49218j = new n2.e(24, false);
+            this.f49215f = 0L;
             this.h = 0;
         } else {
             this.h = 1;
         }
         this.e = -1L;
-        this.f49211g = 0L;
+        this.f49216g = 0L;
     }
 }

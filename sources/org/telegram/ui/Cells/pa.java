@@ -10,17 +10,17 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.tgnet.TLRPC;
 public final class pa extends FrameLayout {
-    public final org.telegram.ui.Components.w9 f22758a;
-    public final TextView f22759b;
-    public TLRPC.TL_forumTopic f22760c;
+    public final org.telegram.ui.Components.w9 f22761a;
+    public final TextView f22762b;
+    public TLRPC.TL_forumTopic f22763c;
     public boolean d;
 
     public pa(Context context) {
         super(context);
         org.telegram.ui.Components.w9 w9Var = new org.telegram.ui.Components.w9(context);
-        this.f22758a = w9Var;
+        this.f22761a = w9Var;
         TextView textView = new TextView(context);
-        this.f22759b = textView;
+        this.f22762b = textView;
         org.telegram.messenger.g0.m(16.0f, org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.G6, false), 1, textView);
         if (LocaleController.isRTL) {
             addView(w9Var, w7.z5.d(30, 30.0f, 21, 12.0f, 0.0f, 12.0f, 0.0f));
@@ -37,15 +37,15 @@ public final class pa extends FrameLayout {
         if (this.d) {
             int dp = AndroidUtilities.dp(56.0f);
             if (LocaleController.isRTL) {
-                canvas.drawLine(0.0f, getMeasuredHeight() - 1, getMeasuredWidth() - dp, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.h6.f21108k0);
+                canvas.drawLine(0.0f, getMeasuredHeight() - 1, getMeasuredWidth() - dp, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.h6.f21111k0);
             } else {
-                canvas.drawLine(dp, getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, org.telegram.ui.ActionBar.h6.f21108k0);
+                canvas.drawLine(dp, getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, org.telegram.ui.ActionBar.h6.f21111k0);
             }
         }
     }
 
     public TLRPC.TL_forumTopic getTopic() {
-        return this.f22760c;
+        return this.f22763c;
     }
 
     @Override
@@ -54,18 +54,18 @@ public final class pa extends FrameLayout {
     }
 
     public void setTopic(TLRPC.TL_forumTopic tL_forumTopic) {
-        this.f22760c = tL_forumTopic;
+        this.f22763c = tL_forumTopic;
         boolean isEmpty = TextUtils.isEmpty(tL_forumTopic.searchQuery);
-        TextView textView = this.f22759b;
+        TextView textView = this.f22762b;
         if (isEmpty) {
             textView.setText(AndroidUtilities.removeDiacritics(tL_forumTopic.title));
         } else {
             textView.setText(AndroidUtilities.highlightText(AndroidUtilities.removeDiacritics(tL_forumTopic.title), tL_forumTopic.searchQuery, (org.telegram.ui.ActionBar.d6) null));
         }
-        org.telegram.ui.Components.w9 w9Var = this.f22758a;
+        org.telegram.ui.Components.w9 w9Var = this.f22761a;
         og.d.p(w9Var, tL_forumTopic, false, false, null);
         if (w9Var != null && w9Var.getImageReceiver() != null && (w9Var.getImageReceiver().getDrawable() instanceof og.c)) {
-            ((og.c) w9Var.getImageReceiver().getDrawable()).a(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20971c9, false));
+            ((og.c) w9Var.getImageReceiver().getDrawable()).a(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20974c9, false));
         }
     }
 }

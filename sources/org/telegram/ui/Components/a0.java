@@ -3,26 +3,26 @@ package org.telegram.ui.Components;
 import android.view.View;
 import org.telegram.messenger.Utilities;
 public final class a0 implements View.OnClickListener {
-    public final int f24421a;
-    public final Utilities.Callback f24422b;
-    public final int f24423c;
+    public final int f24424a;
+    public final Utilities.Callback f24425b;
+    public final int f24426c;
 
     public a0(int i10, int i11, Utilities.Callback callback) {
-        this.f24421a = i11;
-        this.f24422b = callback;
-        this.f24423c = i10;
+        this.f24424a = i11;
+        this.f24425b = callback;
+        this.f24426c = i10;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f24421a) {
+        switch (this.f24424a) {
             case 0:
-                this.f24422b.run(Integer.valueOf(this.f24423c));
+                this.f24425b.run(Integer.valueOf(this.f24426c));
                 return;
             default:
-                Utilities.Callback callback = this.f24422b;
+                Utilities.Callback callback = this.f24425b;
                 if (callback != null) {
-                    callback.run(Integer.valueOf(this.f24423c));
+                    callback.run(Integer.valueOf(this.f24426c));
                     return;
                 }
                 return;

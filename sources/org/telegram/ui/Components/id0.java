@@ -1,7 +1,7 @@
 package org.telegram.ui.Components;
 
 import org.telegram.messenger.Utilities;
-public final class id0 extends zo0 {
+public final class id0 extends ap0 {
     public final od0 d;
 
     public id0(od0 od0Var) {
@@ -26,7 +26,7 @@ public final class id0 extends zo0 {
     @Override
     public final CharSequence d() {
         od0 od0Var = this.d;
-        Utilities.CallbackReturn callbackReturn = od0Var.f28985s0;
+        Utilities.CallbackReturn callbackReturn = od0Var.f29023s0;
         if (callbackReturn != null) {
             return (CharSequence) callbackReturn.run(Integer.valueOf(od0Var.G));
         }

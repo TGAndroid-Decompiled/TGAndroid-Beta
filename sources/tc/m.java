@@ -12,8 +12,8 @@ import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLException;
 import javax.net.ssl.SSLSession;
 public final class m implements HostnameVerifier {
-    public static final m f46948a = new Object();
-    public static final Pattern f46949b = Pattern.compile("([0-9a-fA-F]*:[0-9a-fA-F:.]*)|([\\d.]+)");
+    public static final m f46953a = new Object();
+    public static final Pattern f46954b = Pattern.compile("([0-9a-fA-F]*:[0-9a-fA-F:.]*)|([\\d.]+)");
 
     public static List a(X509Certificate x509Certificate, int i10) {
         Integer num;

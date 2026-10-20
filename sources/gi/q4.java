@@ -22,12 +22,12 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.e11;
+import org.telegram.ui.Components.f11;
 import org.telegram.ui.Components.f6;
 import org.telegram.ui.Components.h9;
 import org.telegram.ui.Components.r5;
-import org.telegram.ui.Components.xj0;
 import org.telegram.ui.Components.y6;
+import org.telegram.ui.Components.yj0;
 public final class q4 extends Drawable implements y6, NotificationCenter.NotificationCenterDelegate {
     public final Paint f11399a;
     public final Paint f11400b;
@@ -35,7 +35,7 @@ public final class q4 extends Drawable implements y6, NotificationCenter.Notific
     public final ImageReceiver d;
     public int e;
     public final r5[] f11402f;
-    public final e11 h;
+    public final f11 h;
     public final RectF f11403n;
     public final boolean f11404r;
     public final f6 f11405s;
@@ -56,7 +56,7 @@ public final class q4 extends Drawable implements y6, NotificationCenter.Notific
         this.f11403n = new RectF();
         this.f11405s = new f6(new p4(this, 1), 320L, bs.h, 0);
         this.f11404r = false;
-        int i10 = h6.f20987d6;
+        int i10 = h6.f20990d6;
         paint.setColor(h6.x0(null, i10, false));
         paint2.setColor(h6.x0(null, i10, false));
         paint2.setShadowLayer(AndroidUtilities.dp(2.33f), 0.0f, AndroidUtilities.dp(2.0f), h6.m1(0.18f, -16777216));
@@ -65,14 +65,14 @@ public final class q4 extends Drawable implements y6, NotificationCenter.Notific
         imageReceiver.setForUserOrChat(user, h9Var);
         imageReceiver.setRoundRadius(AndroidUtilities.dp(16.0f));
         d();
-        this.h = new e11(UserObject.getUserName(user), 14.0f, null);
+        this.h = new f11(UserObject.getUserName(user), 14.0f, null);
     }
 
     @Override
-    public final void a(xj0 xj0Var) {
-        this.f11407x = xj0Var;
-        this.d.setParentView(xj0Var);
-        this.f11401c.setParentView(xj0Var);
+    public final void a(yj0 yj0Var) {
+        this.f11407x = yj0Var;
+        this.d.setParentView(yj0Var);
+        this.f11401c.setParentView(yj0Var);
     }
 
     @Override
@@ -157,7 +157,7 @@ public final class q4 extends Drawable implements y6, NotificationCenter.Notific
         } else {
             i10 = 28;
         }
-        float dp = (AndroidUtilities.dp((i10 + 38) + 6.66f) + this.h.f25728c) / 2.0f;
+        float dp = (AndroidUtilities.dp((i10 + 38) + 6.66f) + this.h.f26021c) / 2.0f;
         float dp2 = AndroidUtilities.dp(32.0f) / 2.0f;
         RectF rectF = this.f11403n;
         rectF.set(bounds.centerX() - dp, bounds.centerY() - dp2, bounds.centerX() + dp, bounds.centerY() + dp2);
@@ -240,7 +240,7 @@ public final class q4 extends Drawable implements y6, NotificationCenter.Notific
         this.f11403n = new RectF();
         this.f11405s = new f6(new p4(this, 1), 320L, bs.h, 0);
         this.f11404r = true;
-        int i10 = h6.f20987d6;
+        int i10 = h6.f20990d6;
         paint.setColor(h6.x0(null, i10, false));
         paint2.setColor(h6.x0(null, i10, false));
         paint2.setShadowLayer(AndroidUtilities.dp(2.33f), 0.0f, AndroidUtilities.dp(2.0f), h6.m1(0.18f, -16777216));
@@ -249,8 +249,8 @@ public final class q4 extends Drawable implements y6, NotificationCenter.Notific
         imageReceiver.setForUserOrChat(user, h9Var);
         imageReceiver.setRoundRadius(AndroidUtilities.dp(16.0f));
         TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 120);
-        imageReceiver2.setImage(ImageLocation.getForDocument(document), "120_120", ImageLocation.getForDocument(closestPhotoSizeWithSize, document), "120_120", DocumentObject.getSvgThumb(document.thumbs, h6.f20929a7, 0.35f), 0L, null, null, 0);
-        this.h = new e11(UserObject.getUserName(user), 14.0f, null);
+        imageReceiver2.setImage(ImageLocation.getForDocument(document), "120_120", ImageLocation.getForDocument(closestPhotoSizeWithSize, document), "120_120", DocumentObject.getSvgThumb(document.thumbs, h6.f20932a7, 0.35f), 0L, null, null, 0);
+        this.h = new f11(UserObject.getUserName(user), 14.0f, null);
     }
 
     @Override

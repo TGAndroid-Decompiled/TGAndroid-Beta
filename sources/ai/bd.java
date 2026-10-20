@@ -8,7 +8,7 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.im0;
+import org.telegram.ui.Components.jm0;
 import org.telegram.ui.Components.x90;
 public final class bd extends LinearLayout {
     public final int f1056a = 1;
@@ -17,12 +17,12 @@ public final class bd extends LinearLayout {
     public final ViewGroup d;
     public final Object e;
 
-    public bd(Context context, org.telegram.ui.ActionBar.d6 d6Var, im0 im0Var) {
+    public bd(Context context, org.telegram.ui.ActionBar.d6 d6Var, jm0 jm0Var) {
         super(context);
         this.f1057b = new Paint(1);
         this.e = new org.telegram.ui.Components.f6(this);
         this.f1058c = d6Var;
-        this.d = im0Var;
+        this.d = jm0Var;
     }
 
     @Override
@@ -32,11 +32,11 @@ public final class bd extends LinearLayout {
                 org.telegram.ui.Components.f6 f6Var = (org.telegram.ui.Components.f6) this.e;
                 super.dispatchDraw(canvas);
                 Paint paint = (Paint) this.f1057b;
-                paint.setColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20929a7, (org.telegram.ui.ActionBar.d6) this.f1058c));
-                im0 im0Var = (im0) this.d;
+                paint.setColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20932a7, (org.telegram.ui.ActionBar.d6) this.f1058c));
+                jm0 jm0Var = (jm0) this.d;
                 float f7 = 1.0f;
-                if (im0Var != null) {
-                    if (!im0Var.canScrollVertically(1)) {
+                if (jm0Var != null) {
+                    if (!jm0Var.canScrollVertically(1)) {
                         f7 = 0.0f;
                     }
                     paint.setAlpha((int) (f6Var.d(f7, false) * 255.0f));
@@ -87,8 +87,8 @@ public final class bd extends LinearLayout {
         frameLayout.addView(kcVar, w7.z5.c(-1.0f, -1));
         tg.n nVar = new tg.n(context, 1, 2);
         this.f1058c = nVar;
-        tg.g gVar = nVar.f47103b;
-        gVar.f47087z = org.telegram.ui.ActionBar.h6.fk;
+        tg.g gVar = nVar.f47108b;
+        gVar.f47092z = org.telegram.ui.ActionBar.h6.fk;
         gVar.A = org.telegram.ui.ActionBar.h6.gk;
         gVar.b();
         nVar.setStarParticlesView(kcVar);
@@ -103,7 +103,7 @@ public final class bd extends LinearLayout {
         TextView textView = new TextView(context);
         this.f1057b = textView;
         com.google.android.gms.internal.play_billing.k3.m(20.0f, 1, textView);
-        int i11 = org.telegram.ui.ActionBar.h6.f21093j5;
+        int i11 = org.telegram.ui.ActionBar.h6.f21096j5;
         org.telegram.ui.Cells.c1.q(i11, d6Var, textView, 17);
         addView(textView, w7.z5.t(-2, -2, 1, 0, 2, 0, 0));
         TextView textView2 = new TextView(context);

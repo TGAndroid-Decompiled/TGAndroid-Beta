@@ -56,7 +56,7 @@ public final class q4 implements o1.f {
                     ib0Var.setVisibility(i10);
                     if (ib0Var.N && z11) {
                         ib0Var.N = false;
-                        ib0Var.f27184b.setLayoutManager(ib0Var.getNeededLayoutManager());
+                        ib0Var.f27221b.setLayoutManager(ib0Var.getNeededLayoutManager());
                         ib0Var.I = true;
                         ib0Var.o(true);
                         return;

@@ -1,49 +1,56 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
+import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-public final class sc implements RequestDelegate {
-    public final int f19489a;
-    public final MessagesController f19490b;
-    public final int f19491c;
-    public final long d;
-    public final long e;
+import org.telegram.tgnet.tl.TL_bots;
+public final class sc implements Utilities.Callback {
+    public final int f19515a = 2;
+    public final MessagesController f19516b;
+    public final Object f19517c;
+    public final int d;
+    public final Object e;
+    public final Object f19518f;
+    public final Object f19519g;
 
-    public sc(int i10, long j10, long j11, MessagesController messagesController) {
-        this.f19489a = 0;
-        this.f19490b = messagesController;
-        this.d = j10;
-        this.f19491c = i10;
-        this.e = j11;
+    public sc(MessagesController messagesController, TLRPC.TL_messages_invitedUsers tL_messages_invitedUsers, int[] iArr, int i10, TLRPC.Chat chat, Runnable runnable) {
+        this.f19516b = messagesController;
+        this.e = tL_messages_invitedUsers;
+        this.f19518f = iArr;
+        this.d = i10;
+        this.f19519g = chat;
+        this.f19517c = runnable;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f19489a) {
+    public final void run(Object obj) {
+        switch (this.f19515a) {
             case 0:
-                int i10 = this.f19491c;
-                long j10 = this.e;
-                this.f19490b.lambda$getChannelDifference$348(this.d, i10, j10, tLObject, tL_error);
+                this.f19516b.lambda$openByUserName$458((pf.c) this.e, (org.telegram.ui.ActionBar.b2[]) this.f19518f, (org.telegram.ui.ActionBar.n2) this.f19519g, (boolean[]) this.f19517c, this.d, (Long) obj);
                 return;
             case 1:
-                long j11 = this.d;
-                long j12 = this.e;
-                this.f19490b.lambda$sendTyping$171(this.f19491c, j11, j12, tLObject, tL_error);
+                this.f19516b.lambda$openApp$503((boolean[]) this.f19517c, (TL_bots.BotInfo[]) this.e, (TLRPC.User) this.f19518f, this.d, (g3) this.f19519g, (TL_bots.BotInfo) obj);
                 return;
             default:
-                long j13 = this.d;
-                long j14 = this.e;
-                this.f19490b.lambda$sendTyping$173(this.f19491c, j13, j14, tLObject, tL_error);
+                this.f19516b.lambda$addUsersToChat$296((TLRPC.TL_messages_invitedUsers) this.e, (int[]) this.f19518f, this.d, (TLRPC.Chat) this.f19519g, (Runnable) this.f19517c, (TLRPC.TL_messages_invitedUsers) obj);
                 return;
         }
     }
 
-    public sc(MessagesController messagesController, int i10, long j10, long j11, int i11) {
-        this.f19489a = i11;
-        this.f19490b = messagesController;
-        this.f19491c = i10;
-        this.d = j10;
-        this.e = j11;
+    public sc(MessagesController messagesController, pf.c cVar, org.telegram.ui.ActionBar.b2[] b2VarArr, org.telegram.ui.ActionBar.n2 n2Var, boolean[] zArr, int i10) {
+        this.f19516b = messagesController;
+        this.e = cVar;
+        this.f19518f = b2VarArr;
+        this.f19519g = n2Var;
+        this.f19517c = zArr;
+        this.d = i10;
+    }
+
+    public sc(MessagesController messagesController, boolean[] zArr, TL_bots.BotInfo[] botInfoArr, TLRPC.User user, int i10, g3 g3Var) {
+        this.f19516b = messagesController;
+        this.f19517c = zArr;
+        this.e = botInfoArr;
+        this.f19518f = user;
+        this.d = i10;
+        this.f19519g = g3Var;
     }
 }

@@ -28,10 +28,10 @@ import org.telegram.ui.Cells.e8;
 import org.telegram.ui.Cells.k3;
 import org.telegram.ui.Cells.n8;
 import org.telegram.ui.Cells.r3;
-import org.telegram.ui.Components.hm0;
-import org.telegram.ui.Components.q51;
+import org.telegram.ui.Components.im0;
+import org.telegram.ui.Components.r51;
 import w7.z5;
-public final class e2 extends hm0 {
+public final class e2 extends im0 {
     public ImageView L;
     public TextView M;
     public int N;
@@ -41,7 +41,7 @@ public final class e2 extends hm0 {
     public String R;
     public final d6 T;
     public final Context d;
-    public final q51 e;
+    public final r51 e;
     public final TLRPC.StickerSetCovered[] f11850f;
     public final LongSparseArray h;
     public final LongSparseArray f11851n;
@@ -61,9 +61,9 @@ public final class e2 extends hm0 {
     public final SparseArray K = new SparseArray();
     public final c2 S = new c2(this);
 
-    public e2(Context context, q51 q51Var, TLRPC.StickerSetCovered[] stickerSetCoveredArr, LongSparseArray longSparseArray, LongSparseArray longSparseArray2, d6 d6Var) {
+    public e2(Context context, r51 r51Var, TLRPC.StickerSetCovered[] stickerSetCoveredArr, LongSparseArray longSparseArray, LongSparseArray longSparseArray2, d6 d6Var) {
         this.d = context;
-        this.e = q51Var;
+        this.e = r51Var;
         this.f11850f = stickerSetCoveredArr;
         this.h = longSparseArray;
         this.f11851n = longSparseArray2;
@@ -89,7 +89,7 @@ public final class e2 extends hm0 {
         ArrayList<Long> unreadStickerSets = mediaDataController.getUnreadStickerSets();
         TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) this.f11853s.get(i10);
         boolean z17 = true;
-        if (unreadStickerSets != null && unreadStickerSets.contains(Long.valueOf(stickerSetCovered.set.f20300id))) {
+        if (unreadStickerSets != null && unreadStickerSets.contains(Long.valueOf(stickerSetCovered.set.f20303id))) {
             z11 = true;
         } else {
             z11 = false;
@@ -99,10 +99,10 @@ public final class e2 extends hm0 {
             TLRPC.StickerSetCovered[] stickerSetCoveredArr = this.f11850f;
             if (i12 < stickerSetCoveredArr.length) {
                 if (stickerSetCoveredArr[i12] != null) {
-                    TLRPC.TL_messages_stickerSet stickerSetById = MediaDataController.getInstance(i11).getStickerSetById(stickerSetCoveredArr[i12].set.f20300id);
+                    TLRPC.TL_messages_stickerSet stickerSetById = MediaDataController.getInstance(i11).getStickerSetById(stickerSetCoveredArr[i12].set.f20303id);
                     if (stickerSetById != null && !stickerSetById.set.archived) {
                         stickerSetCoveredArr[i12] = null;
-                    } else if (stickerSetCoveredArr[i12].set.f20300id == stickerSetCovered.set.f20300id) {
+                    } else if (stickerSetCoveredArr[i12].set.f20303id == stickerSetCovered.set.f20303id) {
                         z12 = true;
                         break;
                     }
@@ -136,16 +136,16 @@ public final class e2 extends hm0 {
             }
         }
         if (z11) {
-            mediaDataController.markFeaturedStickersByIdAsRead(false, stickerSetCovered.set.f20300id);
+            mediaDataController.markFeaturedStickersByIdAsRead(false, stickerSetCovered.set.f20303id);
         }
-        long j10 = stickerSetCovered.set.f20300id;
+        long j10 = stickerSetCovered.set.f20303id;
         LongSparseArray longSparseArray = this.h;
         if (longSparseArray.indexOfKey(j10) >= 0) {
             z14 = true;
         } else {
             z14 = false;
         }
-        long j11 = stickerSetCovered.set.f20300id;
+        long j11 = stickerSetCovered.set.f20303id;
         LongSparseArray longSparseArray2 = this.f11851n;
         if (longSparseArray2.indexOfKey(j11) >= 0) {
             z15 = true;
@@ -153,11 +153,11 @@ public final class e2 extends hm0 {
             z15 = false;
         }
         if (z14 || z15) {
-            if (z14 && r3Var2.f22939r) {
-                longSparseArray.remove(stickerSetCovered.set.f20300id);
+            if (z14 && r3Var2.f22942r) {
+                longSparseArray.remove(stickerSetCovered.set.f20303id);
                 z14 = false;
-            } else if (z15 && !r3Var2.f22939r) {
-                longSparseArray2.remove(stickerSetCovered.set.f20300id);
+            } else if (z15 && !r3Var2.f22942r) {
+                longSparseArray2.remove(stickerSetCovered.set.f20303id);
             }
         }
         if (!z12 && z14) {
@@ -205,7 +205,7 @@ public final class e2 extends hm0 {
 
     @Override
     public final void l() {
-        q51 q51Var;
+        r51 r51Var;
         int i10;
         SparseArray sparseArray;
         ArrayList arrayList;
@@ -235,9 +235,9 @@ public final class e2 extends hm0 {
         int i14 = 0;
         while (i13 < size + size2 + i12) {
             SparseArray sparseArray6 = this.v;
-            q51 q51Var2 = this.e;
+            r51 r51Var2 = this.e;
             if (i13 < size2) {
-                q51Var = q51Var2;
+                r51Var = r51Var2;
                 ?? r62 = (TLRPC.TL_messages_stickerSet) arrayList6.get(i13);
                 i10 = size;
                 arrayList3 = r62.documents;
@@ -247,7 +247,7 @@ public final class e2 extends hm0 {
                 i11 = i12;
                 stickerSetCovered = r62;
             } else {
-                q51Var = q51Var2;
+                r51Var = r51Var2;
                 i10 = size;
                 int i15 = i13 - size2;
                 if (i15 < i12) {
@@ -273,7 +273,7 @@ public final class e2 extends hm0 {
                             String str3 = str;
                             int i21 = this.f11856y + i17;
                             int i22 = size4;
-                            int a2 = (i17 / q51Var.a()) + i14;
+                            int a2 = (i17 / r51Var.a()) + i14;
                             int i23 = i20;
                             TLRPC.Document document = (TLRPC.Document) arrayList8.get(i20);
                             sparseArray3.put(i21, document);
@@ -296,11 +296,11 @@ public final class e2 extends hm0 {
                     }
                     sparseArray = sparseArray5;
                     arrayList2 = arrayList7;
-                    int ceil = (int) Math.ceil(i17 / q51Var.a());
+                    int ceil = (int) Math.ceil(i17 / r51Var.a());
                     for (int i25 = 0; i25 < ceil; i25++) {
                         sparseArray2.put(i14 + i25, Integer.valueOf(i17));
                     }
-                    this.f11856y = (q51Var.a() * ceil) + this.f11856y;
+                    this.f11856y = (r51Var.a() * ceil) + this.f11856y;
                     i14 += ceil;
                     arrayList4 = arrayList5;
                     i13++;
@@ -321,7 +321,7 @@ public final class e2 extends hm0 {
                 }
             }
             if (!arrayList3.isEmpty()) {
-                int ceil2 = (int) Math.ceil(arrayList3.size() / q51Var.a());
+                int ceil2 = (int) Math.ceil(arrayList3.size() / r51Var.a());
                 sparseArray3.put(this.f11856y, stickerSetCovered);
                 if (i13 >= size2 && (stickerSetCovered instanceof TLRPC.StickerSetCovered)) {
                     sparseArray4.put(this.f11856y, stickerSetCovered);
@@ -333,7 +333,7 @@ public final class e2 extends hm0 {
                     int i27 = i26 + 1;
                     int i28 = ceil2;
                     int i29 = this.f11856y + i27;
-                    int a10 = i26 / q51Var.a();
+                    int a10 = i26 / r51Var.a();
                     ArrayList arrayList10 = arrayList5;
                     sparseArray3.put(i29, arrayList3.get(i26));
                     sparseArray6.put(i29, stickerSetCovered);
@@ -351,7 +351,7 @@ public final class e2 extends hm0 {
                 for (int i32 = 0; i32 < i31; i32++) {
                     sparseArray2.put(i14 + i32, stickerSetCovered);
                 }
-                this.f11856y = (q51Var.a() * i30) + 1 + this.f11856y;
+                this.f11856y = (r51Var.a() * i30) + 1 + this.f11856y;
                 i14 += i31;
                 i13++;
                 size = i10;
@@ -376,8 +376,8 @@ public final class e2 extends hm0 {
     @Override
     public final void v(s4.b1 b1Var, int i10) {
         int i11;
-        int i12 = b1Var.f45915f;
-        View view = b1Var.f45912a;
+        int i12 = b1Var.f45920f;
+        View view = b1Var.f45917a;
         SparseArray sparseArray = this.f11853s;
         if (i12 != 0) {
             if (i12 != 1) {
@@ -425,8 +425,8 @@ public final class e2 extends hm0 {
 
     @Override
     public final void w(s4.b1 b1Var, int i10, List list) {
-        if (list.contains(0) && b1Var.f45915f == 3) {
-            E((r3) b1Var.f45912a, i10, true);
+        if (list.contains(0) && b1Var.f45920f == 3) {
+            E((r3) b1Var.f45917a, i10, true);
         } else {
             v(b1Var, i10);
         }

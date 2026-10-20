@@ -1,61 +1,18 @@
 package org.telegram.ui.Components;
+public final class do0 {
+    public ah.i1 f25575a;
+    public int f25576b;
+    public String f25577c;
+    public int d;
 
-import android.view.View;
-import org.telegram.tgnet.TLRPC;
-public final class do0 extends ah.g1 {
-    public final eo0 f25599h0;
-
-    public do0(eo0 eo0Var, int i10, View view, TLRPC.TL_reactionCount tL_reactionCount, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(null, i10, view, tL_reactionCount, false, true, d6Var);
-        this.f25599h0 = eo0Var;
-    }
-
-    @Override
-    public final boolean e() {
-        if (this.f765w <= 0 && !this.f764u && this.F.f26349l == 1.0f) {
+    public final boolean equals(Object obj) {
+        if (!(obj instanceof do0)) {
+            return false;
+        }
+        do0 do0Var = (do0) obj;
+        if (this.f25576b != do0Var.f25576b || this.f25575a.h != do0Var.f25575a.h || this.d != do0Var.d) {
             return false;
         }
         return true;
-    }
-
-    @Override
-    public final boolean i() {
-        return !e();
-    }
-
-    @Override
-    public final int j() {
-        return 18;
-    }
-
-    @Override
-    public final void s(float f7) {
-        int i10;
-        int i11;
-        int w02;
-        int i12 = this.f752i;
-        eo0 eo0Var = this.f25599h0;
-        if (eo0Var.e) {
-            i10 = org.telegram.ui.ActionBar.h6.Fj;
-        } else {
-            i10 = org.telegram.ui.ActionBar.h6.f21324va;
-        }
-        this.N = i0.a.f(f7, i12, org.telegram.ui.ActionBar.h6.w0(i10, eo0Var.f25958s.f26307c));
-        int i13 = this.f750g;
-        if (eo0Var.e) {
-            i11 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Cj, eo0Var.f25958s.f26307c);
-        } else {
-            i11 = 0;
-        }
-        int f10 = i0.a.f(f7, i13, i11);
-        this.O = f10;
-        this.N = org.telegram.ui.ActionBar.h6.v(f10, this.N);
-        int i14 = this.h;
-        if (eo0Var.e) {
-            w02 = 1526726655;
-        } else {
-            w02 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21342wa, eo0Var.f25958s.f26307c);
-        }
-        this.P = i0.a.f(f7, i14, w02);
     }
 }

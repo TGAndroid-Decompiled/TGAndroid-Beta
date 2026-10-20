@@ -1,8 +1,8 @@
 package u2;
 public final class g0 {
-    public final Object f47306a;
-    public final int f47307b;
-    public final int f47308c;
+    public final Object f47314a;
+    public final int f47315b;
+    public final int f47316c;
     public final long d;
     public final int e;
 
@@ -11,15 +11,15 @@ public final class g0 {
     }
 
     public final g0 a(Object obj) {
-        if (this.f47306a.equals(obj)) {
+        if (this.f47314a.equals(obj)) {
             return this;
         }
         long j10 = this.d;
-        return new g0(this.f47307b, this.f47308c, this.e, j10, obj);
+        return new g0(this.f47315b, this.f47316c, this.e, j10, obj);
     }
 
     public final boolean b() {
-        if (this.f47307b != -1) {
+        if (this.f47315b != -1) {
             return true;
         }
         return false;
@@ -33,14 +33,14 @@ public final class g0 {
             return false;
         }
         g0 g0Var = (g0) obj;
-        if (this.f47306a.equals(g0Var.f47306a) && this.f47307b == g0Var.f47307b && this.f47308c == g0Var.f47308c && this.d == g0Var.d && this.e == g0Var.e) {
+        if (this.f47314a.equals(g0Var.f47314a) && this.f47315b == g0Var.f47315b && this.f47316c == g0Var.f47316c && this.d == g0Var.d && this.e == g0Var.e) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return ((((((((this.f47306a.hashCode() + 527) * 31) + this.f47307b) * 31) + this.f47308c) * 31) + ((int) this.d)) * 31) + this.e;
+        return ((((((((this.f47314a.hashCode() + 527) * 31) + this.f47315b) * 31) + this.f47316c) * 31) + ((int) this.d)) * 31) + this.e;
     }
 
     public g0(Object obj, long j10) {
@@ -52,9 +52,9 @@ public final class g0 {
     }
 
     public g0(int i10, int i11, int i12, long j10, Object obj) {
-        this.f47306a = obj;
-        this.f47307b = i10;
-        this.f47308c = i11;
+        this.f47314a = obj;
+        this.f47315b = i10;
+        this.f47316c = i11;
         this.d = j10;
         this.e = i12;
     }

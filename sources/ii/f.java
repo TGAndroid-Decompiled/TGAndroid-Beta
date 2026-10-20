@@ -14,36 +14,36 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.b71;
-import org.telegram.ui.Components.f61;
+import org.telegram.ui.Components.c71;
 import org.telegram.ui.Components.g61;
+import org.telegram.ui.Components.h61;
 import org.telegram.ui.Components.h9;
-import org.telegram.ui.Components.im0;
-import org.telegram.ui.Components.t61;
+import org.telegram.ui.Components.jm0;
+import org.telegram.ui.Components.u61;
 import org.telegram.ui.Components.w9;
 import s4.o0;
-public final class f extends f61 {
+public final class f extends g61 {
     public static final int f13162a = 0;
 
     static {
-        f61.setup(new f61());
+        g61.setup(new g61());
     }
 
     @Override
-    public final void bindView(View view, g61 g61Var, boolean z10, t61 t61Var, b71 b71Var) {
+    public final void bindView(View view, h61 h61Var, boolean z10, u61 u61Var, c71 c71Var) {
         int i10;
         g gVar = (g) view;
-        e eVar = (e) g61Var.G;
+        e eVar = (e) h61Var.G;
         TLRPC.User user = eVar.f13160b;
         long j10 = eVar.f13159a;
         boolean z11 = eVar.f13161c;
-        boolean z12 = !g61Var.f26495j;
+        boolean z12 = !h61Var.f26780j;
         w9 w9Var = gVar.f13165c;
         TextView textView = gVar.f13167n;
         TextView textView2 = gVar.d;
-        gVar.f13171x = (d) g61Var.H;
+        gVar.f13171x = (d) h61Var.H;
         gVar.f13172y = j10;
-        gVar.E = user.f20420id;
+        gVar.E = user.f20423id;
         int i11 = gVar.f13164b;
         TLRPC.Chat chat = MessagesController.getInstance(i11).getChat(Long.valueOf(-j10));
         TLRPC.User user2 = MessagesController.getInstance(i11).getUser(Long.valueOf(j10));
@@ -83,7 +83,7 @@ public final class f extends f61 {
     }
 
     @Override
-    public final View createView(Context context, im0 im0Var, int i10, int i11, d6 d6Var) {
+    public final View createView(Context context, jm0 jm0Var, int i10, int i11, d6 d6Var) {
         g gVar = new g(context, i10, d6Var);
         gVar.setLayoutParams(new o0(-1, -2));
         gVar.setClickable(false);
@@ -91,9 +91,9 @@ public final class f extends f61 {
     }
 
     @Override
-    public final boolean equals(g61 g61Var, g61 g61Var2) {
-        e eVar = (e) g61Var.G;
-        e eVar2 = (e) g61Var2.G;
+    public final boolean equals(h61 h61Var, h61 h61Var2) {
+        e eVar = (e) h61Var.G;
+        e eVar2 = (e) h61Var2.G;
         if (eVar.f13159a == eVar2.f13159a && DialogObject.getDialogId(eVar.f13160b) == DialogObject.getDialogId(eVar2.f13160b)) {
             return true;
         }

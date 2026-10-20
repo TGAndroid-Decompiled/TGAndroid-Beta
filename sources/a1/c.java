@@ -59,10 +59,10 @@ import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.a2;
 import org.telegram.ui.ActionBar.b2;
 import org.telegram.ui.Components.e5;
-import org.telegram.ui.Components.g61;
-import org.telegram.ui.Components.is0;
-import org.telegram.ui.Components.xl0;
+import org.telegram.ui.Components.h61;
+import org.telegram.ui.Components.js0;
 import org.telegram.ui.Components.yl0;
+import org.telegram.ui.Components.zl0;
 import org.telegram.ui.Wallet.s1;
 import org.telegram.ui.do0;
 import r0.k1;
@@ -70,7 +70,7 @@ import r0.n;
 import s4.l0;
 import wh.k;
 import zf.m;
-public final class c implements OnSuccessListener, i, i5.e, e5, a2, m, ne.d, Utilities.Callback5, do0, yl0, Utilities.Callback2Return, xl0, q7, u9, k, n, Continuation, OnCompleteListener {
+public final class c implements OnSuccessListener, i, i5.e, e5, a2, m, ne.d, Utilities.Callback5, do0, zl0, Utilities.Callback2Return, yl0, q7, u9, k, n, Continuation, OnCompleteListener {
     public final int f34a;
     public final Object f35b;
 
@@ -91,7 +91,7 @@ public final class c implements OnSuccessListener, i, i5.e, e5, a2, m, ne.d, Uti
         }
         marginLayoutParams.topMargin = i10;
         if (aaVar.f5180c) {
-            a2 = k1Var.f44827a.f(2).d;
+            a2 = k1Var.f44835a.f(2).d;
         } else {
             a2 = k1Var.a();
         }
@@ -106,7 +106,7 @@ public final class c implements OnSuccessListener, i, i5.e, e5, a2, m, ne.d, Uti
         if (p9Var != null) {
             p9Var.requestLayout();
         }
-        return k1.f44826b;
+        return k1.f44834b;
     }
 
     @Override
@@ -138,7 +138,7 @@ public final class c implements OnSuccessListener, i, i5.e, e5, a2, m, ne.d, Uti
         String M = f0.f398b.M((e0) obj);
         kotlin.jvm.internal.i.d(M, "SessionEvents.SESSION_EVENT_ENCODER.encode(value)");
         Log.d("EventGDTLogger", "Session Event: ".concat(M));
-        byte[] bytes = M.getBytes(zd.a.f51510a);
+        byte[] bytes = M.getBytes(zd.a.f51515a);
         kotlin.jvm.internal.i.d(bytes, "this as java.lang.String).getBytes(charset)");
         return bytes;
     }
@@ -322,7 +322,7 @@ public final class c implements OnSuccessListener, i, i5.e, e5, a2, m, ne.d, Uti
         r8 r8Var;
         q8 q8Var = (q8) this.f35b;
         if (!q8Var.v.f5936x) {
-            gVar.f49060q = new p8(q8Var, 2);
+            gVar.f49065q = new p8(q8Var, 2);
             float sqrt = (float) Math.sqrt(Math.pow(r8Var.getHeight(), 2.0d) + Math.pow(r8Var.getWidth(), 2.0d));
             ArrayList arrayList = q8Var.f5853i;
             int size = arrayList.size();
@@ -396,10 +396,10 @@ public final class c implements OnSuccessListener, i, i5.e, e5, a2, m, ne.d, Uti
                 Long l4 = (Long) obj;
                 return x0.a((x0) this.f35b, (Long) obj2);
             default:
-                is0 is0Var = (is0) this.f35b;
+                js0 js0Var = (js0) this.f35b;
                 Integer num = (Integer) obj2;
                 if (((Integer) obj).intValue() == -1) {
-                    new di.u(is0Var.f8068a, LocaleController.getString(R.string.ProfileBotPreviewLanguageChoose), new r0(is0Var, 10)).show();
+                    new di.u(js0Var.f8068a, LocaleController.getString(R.string.ProfileBotPreviewLanguageChoose), new r0(js0Var, 10)).show();
                     return Boolean.TRUE;
                 }
                 return Boolean.FALSE;
@@ -440,14 +440,14 @@ public final class c implements OnSuccessListener, i, i5.e, e5, a2, m, ne.d, Uti
                 return;
             default:
                 jd jdVar = (jd) this.f35b;
-                g61 g61Var = (g61) obj;
+                h61 h61Var = (h61) obj;
                 View view = (View) obj2;
                 ((Integer) obj3).intValue();
                 ((Float) obj4).floatValue();
                 ((Float) obj5).floatValue();
                 jdVar.getClass();
-                if (g61Var.G instanceof TL_stars.StarsTransaction) {
-                    md.i1(jdVar.getContext(), false, 0L, jdVar.f1595c, (TL_stars.StarsTransaction) g61Var.G, jdVar.f1594b);
+                if (h61Var.G instanceof TL_stars.StarsTransaction) {
+                    md.i1(jdVar.getContext(), false, 0L, jdVar.f1595c, (TL_stars.StarsTransaction) h61Var.G, jdVar.f1594b);
                     return;
                 }
                 return;

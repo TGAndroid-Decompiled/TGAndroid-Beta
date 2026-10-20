@@ -1,24 +1,25 @@
 package org.telegram.messenger;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-public final class j4 implements OnCompleteListener {
-    public final int f18674a;
-    public final q0.a f18675b;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+public final class j4 implements Utilities.Callback2 {
+    public final int f18664a;
+    public final Utilities.Callback f18665b;
 
-    public j4(q0.a aVar, int i10) {
-        this.f18674a = i10;
-        this.f18675b = aVar;
+    public j4(int i10, Utilities.Callback callback) {
+        this.f18664a = i10;
+        this.f18665b = callback;
     }
 
     @Override
-    public void onComplete(Task task) {
-        switch (this.f18674a) {
+    public final void run(Object obj, Object obj2) {
+        switch (this.f18664a) {
             case 0:
-                GoogleLocationProvider.b(this.f18675b, task);
+                GiftAuctionController.lambda$requestAuctionUpgrades$5(this.f18665b, (TL_stars.starGiftUpgradeAttributes) obj, (TLRPC.TL_error) obj2);
                 return;
             default:
-                GoogleLocationProvider.c(this.f18675b, task);
+                MediaDataController.lambda$searchStickerSets$250(this.f18665b, (TLRPC.messages_FoundStickerSets) obj, (TLRPC.TL_error) obj2);
                 return;
         }
     }

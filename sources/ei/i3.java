@@ -1,7 +1,7 @@
 package ei;
 
 import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.ui.Components.wl0;
+import org.telegram.ui.Components.am0;
 import org.telegram.ui.Components.xl0;
 import org.telegram.ui.Components.yl0;
 import org.telegram.ui.Components.zl0;
@@ -25,14 +25,14 @@ public final class i3 implements Runnable {
                 m3 m3Var = this.f9192c;
                 int R = RecyclerView.R(m3Var);
                 if (R != -1) {
-                    wl0 wl0Var = z2Var.T0;
-                    if (wl0Var != null) {
-                        wl0Var.a(R, m3Var);
+                    xl0 xl0Var = z2Var.T0;
+                    if (xl0Var != null) {
+                        xl0Var.a(R, m3Var);
                         return;
                     }
-                    xl0 xl0Var = z2Var.U0;
-                    if (xl0Var != null) {
-                        xl0Var.d(0.0f, 0.0f, R, m3Var);
+                    yl0 yl0Var = z2Var.U0;
+                    if (yl0Var != null) {
+                        yl0Var.d(0.0f, 0.0f, R, m3Var);
                         return;
                     }
                     return;
@@ -44,14 +44,14 @@ public final class i3 implements Runnable {
                 m3 m3Var2 = this.f9192c;
                 int R2 = RecyclerView.R(m3Var2);
                 if (R2 != -1) {
-                    yl0 yl0Var = z2Var2.V0;
-                    if (yl0Var != null) {
-                        yl0Var.a(R2, m3Var2);
+                    zl0 zl0Var = z2Var2.V0;
+                    if (zl0Var != null) {
+                        zl0Var.a(R2, m3Var2);
                         return;
                     }
-                    zl0 zl0Var = z2Var2.W0;
-                    if (zl0Var != null) {
-                        zl0Var.mo17d(0.0f, 0.0f, R2, m3Var2);
+                    am0 am0Var = z2Var2.W0;
+                    if (am0Var != null) {
+                        am0Var.mo17d(0.0f, 0.0f, R2, m3Var2);
                         return;
                     }
                     return;

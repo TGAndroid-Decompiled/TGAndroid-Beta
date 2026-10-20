@@ -130,7 +130,7 @@ public class WebmEncoder {
                     canvas.drawBitmap(mediaEntity.bitmap, mediaEntity.matrix, this.bitmapPaint);
                     float f7 = mediaEntity.currentFrame + mediaEntity.framesPerDraw;
                     mediaEntity.currentFrame = f7;
-                    if (f7 >= mediaEntity.lottieNative.f24298a[0]) {
+                    if (f7 >= mediaEntity.lottieNative.f24301a[0]) {
                         mediaEntity.currentFrame = 0.0f;
                     }
                 }
@@ -144,7 +144,7 @@ public class WebmEncoder {
                 }
                 b6 b6Var = mediaEntity.animatedFileDrawable.v;
                 if (b6Var != null) {
-                    bitmap = b6Var.f24804b;
+                    bitmap = b6Var.f24809b;
                 } else {
                     bitmap = null;
                 }
@@ -197,7 +197,7 @@ public class WebmEncoder {
                     RLottieNative a2 = RLottieNative.a(mediaEntity.text, null, null, null, 0, null);
                     mediaEntity.lottieNative = a2;
                     if (a2 != null) {
-                        f7 = a2.f24298a[1] / this.fps;
+                        f7 = a2.f24301a[1] / this.fps;
                     } else {
                         f7 = 0.0f;
                     }
@@ -407,7 +407,7 @@ public class WebmEncoder {
             Bitmap bitmap = mediaEntity.bitmap;
             if (bitmap == null && (e6Var = mediaEntity.animatedFileDrawable) != null) {
                 b6 b6Var = e6Var.v;
-                bitmap = b6Var != null ? b6Var.f24804b : null;
+                bitmap = b6Var != null ? b6Var.f24809b : null;
             }
             if (bitmap != null) {
                 matrix.postScale(1.0f / bitmap.getWidth(), 1.0f / bitmap.getHeight());

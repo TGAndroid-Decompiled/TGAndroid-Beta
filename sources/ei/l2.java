@@ -21,7 +21,7 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.ui.Components.ca0;
-import org.telegram.ui.Components.we0;
+import org.telegram.ui.Components.xe0;
 import org.telegram.ui.Components.yc;
 public final class l2 extends View {
     public final Paint f9360a;
@@ -92,7 +92,7 @@ public final class l2 extends View {
             if (MessagesController.getInstance(i10).storyWeatherPreload) {
                 spannableStringBuilder = replaceEmoji;
                 spannableStringBuilder = replaceEmoji;
-                if (we0.d("android.permission.ACCESS_COARSE_LOCATION") && tcVar == null) {
+                if (xe0.d("android.permission.ACCESS_COARSE_LOCATION") && tcVar == null) {
                     SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("___");
                     spannableStringBuilder2.setSpan(new ca0(AndroidUtilities.dp(68.0f), this), 0, spannableStringBuilder2.length(), 33);
                     j2VarArr[0] = new j2(this, spannableStringBuilder2);

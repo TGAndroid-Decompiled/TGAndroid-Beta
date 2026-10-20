@@ -5,44 +5,44 @@ import android.view.View;
 import org.telegram.tgnet.TLObject;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.b71;
-import org.telegram.ui.Components.f61;
+import org.telegram.ui.Components.c71;
 import org.telegram.ui.Components.g61;
-import org.telegram.ui.Components.im0;
-import org.telegram.ui.Components.t61;
+import org.telegram.ui.Components.h61;
+import org.telegram.ui.Components.jm0;
+import org.telegram.ui.Components.u61;
 import org.telegram.ui.ph0;
-public final class m extends f61 {
-    public static final int f45775a = 0;
+public final class m extends g61 {
+    public static final int f45783a = 0;
 
     static {
-        f61.setup(new f61());
+        g61.setup(new g61());
     }
 
     @Override
-    public final void bindView(View view, g61 g61Var, boolean z10, t61 t61Var, b71 b71Var) {
+    public final void bindView(View view, h61 h61Var, boolean z10, u61 u61Var, c71 c71Var) {
         ph0 ph0Var = (ph0) view;
-        ph0Var.a((TLObject) g61Var.G, true, g61Var.f26510z);
-        ph0Var.setOnClickListener(g61Var.D);
+        ph0Var.a((TLObject) h61Var.G, true, h61Var.f26795z);
+        ph0Var.setOnClickListener(h61Var.D);
     }
 
     @Override
-    public final boolean contentsEquals(g61 g61Var, g61 g61Var2) {
-        if (g61Var.B == g61Var2.B) {
+    public final boolean contentsEquals(h61 h61Var, h61 h61Var2) {
+        if (h61Var.B == h61Var2.B) {
             return true;
         }
         return false;
     }
 
     @Override
-    public final View createView(Context context, im0 im0Var, int i10, int i11, d6 d6Var) {
+    public final View createView(Context context, jm0 jm0Var, int i10, int i11, d6 d6Var) {
         ph0 ph0Var = new ph0(context);
         ph0Var.setBackground(h6.L0(false));
         return ph0Var;
     }
 
     @Override
-    public final boolean equals(g61 g61Var, g61 g61Var2) {
-        if (g61Var.B == g61Var2.B) {
+    public final boolean equals(h61 h61Var, h61 h61Var2) {
+        if (h61Var.B == h61Var2.B) {
             return true;
         }
         return false;

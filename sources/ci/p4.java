@@ -6,14 +6,25 @@ import java.util.ArrayList;
 public final class p4 {
     public boolean f5725a;
     public Object f5726b;
-    public Object f5727c = k2.b.f14644f;
+    public Object f5727c;
     public Object d;
     public Object e;
     public Object f5728f;
     public Object f5729g;
 
-    public p4(Context context) {
-        this.f5726b = context;
+    public p4(Context context, int i10) {
+        switch (i10) {
+            case 2:
+                this.d = ri.h.f45812a;
+                this.f5725a = true;
+                this.f5729g = ri.o.H;
+                this.f5726b = context;
+                return;
+            default:
+                this.f5726b = context;
+                this.f5727c = k2.b.f14644f;
+                return;
+        }
     }
 
     public k2.t0 a() {

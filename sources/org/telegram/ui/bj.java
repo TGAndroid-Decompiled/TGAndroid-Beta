@@ -1,36 +1,36 @@
 package org.telegram.ui;
 public final class bj extends eh.b {
-    public final int f35637n;
-    public final qn f35638r;
+    public final int f35643n;
+    public final qn f35644r;
 
     public bj(qn qnVar, org.telegram.ui.ActionBar.d6 d6Var, int i10, int i11) {
         super(i10, d6Var);
-        this.f35637n = i11;
-        this.f35638r = qnVar;
+        this.f35643n = i11;
+        this.f35644r = qnVar;
     }
 
     @Override
     public final int a0() {
         int i10;
         int i11;
-        switch (this.f35637n) {
+        switch (this.f35643n) {
             case 0:
-                qn qnVar = this.f35638r;
+                qn qnVar = this.f35644r;
                 i10 = ((org.telegram.ui.ActionBar.n2) qnVar).currentAccount;
-                if (!fh.c.c(i10, qnVar.f40667ea)) {
+                if (!fh.c.c(i10, qnVar.f40673ea)) {
                     return i0.a.o(qnVar.getThemedColor(org.telegram.ui.ActionBar.h6.Sd), 255);
                 }
-                if (qnVar.f40667ea != null && !org.telegram.ui.ActionBar.h6.I.q()) {
+                if (qnVar.f40673ea != null && !org.telegram.ui.ActionBar.h6.I.q()) {
                     return i0.a.o(this.d, 216);
                 }
                 return this.d;
             default:
-                qn qnVar2 = this.f35638r;
+                qn qnVar2 = this.f35644r;
                 i11 = ((org.telegram.ui.ActionBar.n2) qnVar2).currentAccount;
-                if (!fh.c.c(i11, qnVar2.f40667ea)) {
-                    return i0.a.o(qnVar2.getThemedColor(org.telegram.ui.ActionBar.h6.f20987d6), 255);
+                if (!fh.c.c(i11, qnVar2.f40673ea)) {
+                    return i0.a.o(qnVar2.getThemedColor(org.telegram.ui.ActionBar.h6.f20990d6), 255);
                 }
-                if (qnVar2.f40667ea != null && !org.telegram.ui.ActionBar.h6.I.q()) {
+                if (qnVar2.f40673ea != null && !org.telegram.ui.ActionBar.h6.I.q()) {
                     return i0.a.o(this.d, 216);
                 }
                 return this.d;

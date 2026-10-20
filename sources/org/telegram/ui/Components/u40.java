@@ -14,25 +14,25 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesStorage;
 public final class u40 extends HorizontalScrollView {
     public static final RectF v = new RectF();
-    public final org.telegram.ui.ActionBar.d6 f30880a;
-    public final f6 f30881b;
-    public final f6 f30882c;
+    public final org.telegram.ui.ActionBar.d6 f30837a;
+    public final f6 f30838b;
+    public final f6 f30839c;
     public final LinearLayout d;
     public final Paint e;
-    public final TextPaint f30883f;
+    public final TextPaint f30840f;
     public boolean h;
-    public int f30884n;
-    public final Path f30885r;
-    public final Path f30886s;
+    public int f30841n;
+    public final Path f30842r;
+    public final Path f30843s;
 
     public u40(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
         this.e = new Paint(1);
         TextPaint textPaint = new TextPaint(1);
-        this.f30883f = textPaint;
-        this.f30885r = new Path();
-        this.f30886s = new Path();
-        this.f30880a = d6Var;
+        this.f30840f = textPaint;
+        this.f30842r = new Path();
+        this.f30843s = new Path();
+        this.f30837a = d6Var;
         LinearLayout linearLayout = new LinearLayout(context);
         this.d = linearLayout;
         linearLayout.setLayerType(0, null);
@@ -41,17 +41,17 @@ public final class u40 extends HorizontalScrollView {
         textPaint.setTextSize(AndroidUtilities.dp(13.0f));
         textPaint.setTypeface(AndroidUtilities.bold());
         f6 f6Var = new f6(new Runnable(this) {
-            public final u40 f30417b;
+            public final u40 f30427b;
 
             {
-                this.f30417b = this;
+                this.f30427b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        u40 u40Var = this.f30417b;
+                        u40 u40Var = this.f30427b;
                         u40Var.invalidate();
                         LinearLayout linearLayout2 = u40Var.d;
                         linearLayout2.invalidate();
@@ -60,7 +60,7 @@ public final class u40 extends HorizontalScrollView {
                         }
                         return;
                     default:
-                        u40 u40Var2 = this.f30417b;
+                        u40 u40Var2 = this.f30427b;
                         u40Var2.invalidate();
                         LinearLayout linearLayout3 = u40Var2.d;
                         linearLayout3.invalidate();
@@ -71,20 +71,20 @@ public final class u40 extends HorizontalScrollView {
                 }
             }
         });
-        this.f30881b = f6Var;
-        f6Var.f26110g = 180L;
+        this.f30838b = f6Var;
+        f6Var.f26088g = 180L;
         f6 f6Var2 = new f6(new Runnable(this) {
-            public final u40 f30417b;
+            public final u40 f30427b;
 
             {
-                this.f30417b = this;
+                this.f30427b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        u40 u40Var = this.f30417b;
+                        u40 u40Var = this.f30427b;
                         u40Var.invalidate();
                         LinearLayout linearLayout2 = u40Var.d;
                         linearLayout2.invalidate();
@@ -93,7 +93,7 @@ public final class u40 extends HorizontalScrollView {
                         }
                         return;
                     default:
-                        u40 u40Var2 = this.f30417b;
+                        u40 u40Var2 = this.f30427b;
                         u40Var2.invalidate();
                         LinearLayout linearLayout3 = u40Var2.d;
                         linearLayout3.invalidate();
@@ -104,18 +104,18 @@ public final class u40 extends HorizontalScrollView {
                 }
             }
         });
-        this.f30882c = f6Var2;
-        f6Var2.f26110g = 180L;
+        this.f30839c = f6Var2;
+        f6Var2.f26088g = 180L;
         setVerticalScrollBarEnabled(false);
         setHorizontalScrollBarEnabled(false);
     }
 
     public final void a(int i10, boolean z10) {
-        this.f30884n = i10;
+        this.f30841n = i10;
         LinearLayout linearLayout = this.d;
         boolean z11 = !z10;
-        this.f30881b.d(linearLayout.getChildAt(i10).getLeft(), z11);
-        this.f30882c.d(linearLayout.getChildAt(i10).getRight(), z11);
+        this.f30838b.d(linearLayout.getChildAt(i10).getLeft(), z11);
+        this.f30839c.d(linearLayout.getChildAt(i10).getRight(), z11);
     }
 
     public final void b(ArrayList arrayList, MessagesStorage.IntCallback intCallback) {
@@ -131,7 +131,7 @@ public final class u40 extends HorizontalScrollView {
             if (i10 < arrayList.size() - 1) {
                 n10.rightMargin = AndroidUtilities.dp(4.0f);
             }
-            icVar.f1512b = new e11(charSequence, this.f30883f);
+            icVar.f1512b = new f11(charSequence, this.f30840f);
             linearLayout.addView(icVar, n10);
         }
     }
@@ -141,30 +141,30 @@ public final class u40 extends HorizontalScrollView {
         int w02;
         int w03;
         RectF rectF = v;
-        rectF.set(this.f30881b.c(), 0.0f, this.f30882c.c(), getMeasuredHeight());
-        Path path = this.f30885r;
+        rectF.set(this.f30838b.c(), 0.0f, this.f30839c.c(), getMeasuredHeight());
+        Path path = this.f30842r;
         path.rewind();
         Path.Direction direction = Path.Direction.CW;
         path.addRoundRect(rectF, AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.0f), direction);
         path.close();
-        Path path2 = this.f30886s;
+        Path path2 = this.f30843s;
         path2.rewind();
         LinearLayout linearLayout = this.d;
         path2.addRect(0.0f, 0.0f, linearLayout.getMeasuredWidth(), getMeasuredHeight(), direction);
         path2.addRoundRect(rectF, AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.0f), Path.Direction.CCW);
         path2.close();
         boolean z10 = this.h;
-        org.telegram.ui.ActionBar.d6 d6Var = this.f30880a;
+        org.telegram.ui.ActionBar.d6 d6Var = this.f30837a;
         if (z10) {
             w02 = org.telegram.ui.ActionBar.h6.m1(0.1f, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Oh, d6Var));
         } else {
-            w02 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21375y6, d6Var) & 520093695;
+            w02 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21378y6, d6Var) & 520093695;
         }
         Paint paint = this.e;
         paint.setColor(w02);
         canvas.drawPath(path, paint);
-        int w04 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21375y6, d6Var);
-        TextPaint textPaint = this.f30883f;
+        int w04 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21378y6, d6Var);
+        TextPaint textPaint = this.f30840f;
         textPaint.setColor(w04);
         canvas.save();
         canvas.clipPath(path2);
@@ -193,7 +193,7 @@ public final class u40 extends HorizontalScrollView {
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
-        a(this.f30884n, false);
+        a(this.f30841n, false);
     }
 
     public void setAccent(boolean z10) {

@@ -4,26 +4,26 @@ import android.content.Context;
 import android.graphics.PointF;
 import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.kk;
+import org.telegram.messenger.mk;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.el0;
+import org.telegram.ui.Components.fl0;
 import w7.z5;
 public final class t0 extends j {
-    public final s0 f45638q0;
-    public boolean f45639r0;
-    public int f45640s0;
-    public int f45641t0;
-    public TLRPC.MessageMedia f45642u0;
-    public TL_stories.MediaArea f45643v0;
+    public final s0 f45646q0;
+    public boolean f45647r0;
+    public int f45648s0;
+    public int f45649t0;
+    public TLRPC.MessageMedia f45650u0;
+    public TL_stories.MediaArea f45651v0;
 
     public t0(Context context, PointF pointF, int i10, TLRPC.MessageMedia messageMedia, TL_stories.MediaArea mediaArea, float f7, int i11) {
         super(context, pointF);
         s0 s0Var = new s0(context, f7);
-        this.f45638q0 = s0Var;
+        this.f45646q0 = s0Var;
         s0Var.setMaxWidth(i11);
         r(i10, messageMedia, mediaArea);
-        s0Var.e(0, this.f45640s0);
+        s0Var.e(0, this.f45648s0);
         addView(s0Var, z5.e(-2, -2, 51));
         setClipChildren(false);
         setClipToPadding(false);
@@ -74,7 +74,7 @@ public final class t0 extends j {
     }
 
     public int getColor() {
-        return this.f45640s0;
+        return this.f45648s0;
     }
 
     @Override
@@ -83,7 +83,7 @@ public final class t0 extends j {
     }
 
     @Override
-    public el0 getSelectionBounds() {
+    public fl0 getSelectionBounds() {
         ViewGroup viewGroup = (ViewGroup) getParent();
         if (viewGroup == null) {
             return new Object();
@@ -93,36 +93,36 @@ public final class t0 extends j {
         float dp = (AndroidUtilities.dp(64.0f) / scaleX) + (scale * getMeasuredWidth());
         float scale2 = getScale();
         float dp2 = (AndroidUtilities.dp(64.0f) / scaleX) + (scale2 * getMeasuredHeight());
-        float z10 = kk.z(dp, 2.0f, getPositionX(), scaleX);
-        return new el0(z10, kk.z(dp2, 2.0f, getPositionY(), scaleX), ((dp * scaleX) + z10) - z10, dp2 * scaleX);
+        float z10 = mk.z(dp, 2.0f, getPositionX(), scaleX);
+        return new fl0(z10, mk.z(dp2, 2.0f, getPositionY(), scaleX), ((dp * scaleX) + z10) - z10, dp2 * scaleX);
     }
 
     @Override
     public float getStickyPaddingBottom() {
-        return this.f45638q0.J;
+        return this.f45646q0.J;
     }
 
     @Override
     public float getStickyPaddingLeft() {
-        return this.f45638q0.I;
+        return this.f45646q0.I;
     }
 
     @Override
     public float getStickyPaddingRight() {
-        return this.f45638q0.I;
+        return this.f45646q0.I;
     }
 
     @Override
     public float getStickyPaddingTop() {
-        return this.f45638q0.J;
+        return this.f45646q0.J;
     }
 
     public int getType() {
-        return this.f45641t0;
+        return this.f45649t0;
     }
 
     public int getTypesCount() {
-        return this.f45638q0.getTypesCount() - (!this.f45639r0 ? 1 : 0);
+        return this.f45646q0.getTypesCount() - (!this.f45647r0 ? 1 : 0);
     }
 
     @Override
@@ -141,8 +141,8 @@ public final class t0 extends j {
         String str;
         String str2;
         String str3;
-        this.f45642u0 = messageMedia;
-        this.f45643v0 = mediaArea;
+        this.f45650u0 = messageMedia;
+        this.f45651v0 = mediaArea;
         String str4 = null;
         if (messageMedia instanceof TLRPC.TL_messageMediaGeo) {
             TLRPC.GeoPoint geoPoint = messageMedia.geo;
@@ -172,23 +172,23 @@ public final class t0 extends j {
         } else {
             str = "";
         }
-        s0 s0Var = this.f45638q0;
+        s0 s0Var = this.f45646q0;
         s0Var.d(i10, str4);
         s0Var.setText(str);
         m();
     }
 
     public void setColor(int i10) {
-        this.f45639r0 = true;
-        this.f45640s0 = i10;
+        this.f45647r0 = true;
+        this.f45648s0 = i10;
     }
 
     public void setMaxWidth(int i10) {
-        this.f45638q0.setMaxWidth(i10);
+        this.f45646q0.setMaxWidth(i10);
     }
 
     public void setType(int i10) {
-        this.f45641t0 = i10;
-        this.f45638q0.e(i10, this.f45640s0);
+        this.f45649t0 = i10;
+        this.f45646q0.e(i10, this.f45648s0);
     }
 }

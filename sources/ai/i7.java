@@ -13,8 +13,8 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.TLObject;
 import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.d91;
-import org.telegram.ui.Components.e61;
+import org.telegram.ui.Components.e91;
+import org.telegram.ui.Components.f61;
 public final class i7 extends View {
     public final int f1492a = 1;
     public final Paint f1493b;
@@ -27,11 +27,11 @@ public final class i7 extends View {
         this.f1494c = new ne.b(this, bs.h, 380L);
         this.f1493b = new Paint(1);
         this.d = d6Var;
-        e61 e61Var = new e61(true);
-        this.e = e61Var;
-        e61Var.setCallback(this);
-        e61Var.b(-1);
-        e61Var.f25830i = true;
+        f61 f61Var = new f61(true);
+        this.e = f61Var;
+        f61Var.setCallback(this);
+        f61Var.b(-1);
+        f61Var.f26132i = true;
     }
 
     @Override
@@ -44,7 +44,7 @@ public final class i7 extends View {
                 return;
             case 1:
                 super.onAttachedToWindow();
-                ((e61) this.e).d();
+                ((f61) this.e).d();
                 return;
             default:
                 super.onAttachedToWindow();
@@ -62,7 +62,7 @@ public final class i7 extends View {
                 return;
             case 1:
                 super.onDetachedFromWindow();
-                ((e61) this.e).e();
+                ((f61) this.e).e();
                 return;
             default:
                 super.onDetachedFromWindow();
@@ -102,7 +102,7 @@ public final class i7 extends View {
                 float f10 = ((ne.b) this.f1494c).e;
                 float f11 = 1.0f - f10;
                 if (f11 > 0.0f) {
-                    zf.p.b(canvas, (e61) this.e, f11 * 1.35f);
+                    zf.p.b(canvas, (f61) this.e, f11 * 1.35f);
                     invalidate();
                 }
                 if (f10 > 0.0f) {
@@ -125,16 +125,16 @@ public final class i7 extends View {
             default:
                 org.telegram.ui.Wallet.p4 p4Var = (org.telegram.ui.Wallet.p4) this.e;
                 p4Var.getClass();
-                int themedColor = p4Var.getThemedColor(org.telegram.ui.ActionBar.h6.f20987d6);
+                int themedColor = p4Var.getThemedColor(org.telegram.ui.ActionBar.h6.f20990d6);
                 Paint paint2 = this.f1493b;
                 paint2.setColor(themedColor);
-                ViewGroup viewGroup = p4Var.f34689b0;
+                ViewGroup viewGroup = p4Var.f34695b0;
                 int[] iArr = (int[]) this.f1494c;
                 viewGroup.getLocationInWindow(iArr);
                 int[] iArr2 = (int[]) this.d;
                 getLocationInWindow(iArr2);
                 float f12 = iArr[0] - iArr2[0];
-                View view = ((d91) p4Var.f34689b0).getViewPages()[0];
+                View view = ((e91) p4Var.f34695b0).getViewPages()[0];
                 if (view != null) {
                     i10 = view.getPaddingLeft();
                 } else {
@@ -146,8 +146,8 @@ public final class i7 extends View {
                     i11 = 0;
                 }
                 canvas.save();
-                canvas.clipRect(i10 + f12, 0.0f, (f12 + p4Var.f34689b0.getWidth()) - i11, getHeight());
-                for (View view2 : ((d91) p4Var.f34689b0).getViewPages()) {
+                canvas.clipRect(i10 + f12, 0.0f, (f12 + p4Var.f34695b0.getWidth()) - i11, getHeight());
+                for (View view2 : ((e91) p4Var.f34695b0).getViewPages()) {
                     if (view2 != null && view2.getVisibility() == 0) {
                         canvas.save();
                         canvas.translate(view2.getLeft() + (iArr[0] - iArr2[0]), view2.getTop() + (iArr[1] - iArr2[1]));
@@ -178,7 +178,7 @@ public final class i7 extends View {
         switch (this.f1492a) {
             case 1:
                 super.onSizeChanged(i10, i11, i12, i13);
-                zf.p.d((e61) this.e, i10 / 2.0f, i11 / 2.0f, 17);
+                zf.p.d((f61) this.e, i10 / 2.0f, i11 / 2.0f, 17);
                 return;
             default:
                 super.onSizeChanged(i10, i11, i12, i13);
@@ -190,7 +190,7 @@ public final class i7 extends View {
     public boolean verifyDrawable(Drawable drawable) {
         switch (this.f1492a) {
             case 1:
-                if (!super.verifyDrawable(drawable) && (drawable != ((e61) this.e) || ((ne.b) this.f1494c).f17384f)) {
+                if (!super.verifyDrawable(drawable) && (drawable != ((f61) this.e) || ((ne.b) this.f1494c).f17384f)) {
                     return false;
                 }
                 return true;
@@ -209,7 +209,7 @@ public final class i7 extends View {
         this.d = paint3;
         this.e = new RectF();
         paint2.setColor(-1);
-        paint.setColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20987d6, d6Var));
+        paint.setColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20990d6, d6Var));
         paint3.setColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.wj, d6Var));
     }
 

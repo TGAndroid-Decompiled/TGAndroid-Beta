@@ -18,8 +18,8 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.Components.x31;
 import org.telegram.ui.Components.xc;
+import org.telegram.ui.Components.y31;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.q40;
 import org.telegram.ui.q50;
@@ -65,7 +65,7 @@ public final class d6 implements View.OnClickListener {
                     edit.putInt("popupChannel", iArr[0]);
                 }
                 edit.commit();
-                alertDialog$Builder.f20602a.L0.run();
+                alertDialog$Builder.f20605a.L0.run();
                 sj0Var.run();
                 return;
             case 3:
@@ -75,12 +75,12 @@ public final class d6 implements View.OnClickListener {
                 int size = arrayList.size();
                 int i11 = this.f5321b;
                 if (i11 < size) {
-                    TLRPC.GroupCallParticipant groupCallParticipant2 = (TLRPC.GroupCallParticipant) q50Var.f40370a1.participants.f(MessageObject.getPeerId(groupCallParticipant.peer));
+                    TLRPC.GroupCallParticipant groupCallParticipant2 = (TLRPC.GroupCallParticipant) q50Var.f40376a1.participants.f(MessageObject.getPeerId(groupCallParticipant.peer));
                     if (groupCallParticipant2 != null) {
                         groupCallParticipant = groupCallParticipant2;
                     }
                     q50Var.y1(groupCallParticipant, MessageObject.getPeerId(groupCallParticipant.peer), ((Integer) arrayList.get(i11)).intValue());
-                    q40 q40Var = q50Var.f40394f3;
+                    q40 q40Var = q50Var.f40400f3;
                     if (q40Var != null) {
                         q40Var.dismiss();
                         return;
@@ -124,9 +124,9 @@ public final class d6 implements View.OnClickListener {
                 TLRPC.TL_forumTopic tL_forumTopic = (TLRPC.TL_forumTopic) this.d;
                 ActionBarPopupWindow$ActionBarPopupWindowLayout[] actionBarPopupWindow$ActionBarPopupWindowLayoutArr = (ActionBarPopupWindow$ActionBarPopupWindowLayout[]) this.e;
                 MessagesController messagesController = re1Var.getMessagesController();
-                long j10 = -re1Var.f41142a;
-                if (messagesController.isDialogMuted(j10, tL_forumTopic.f20325id)) {
-                    re1Var.getNotificationsController().muteDialog(j10, tL_forumTopic.f20325id, false);
+                long j10 = -re1Var.f41148a;
+                if (messagesController.isDialogMuted(j10, tL_forumTopic.f20328id)) {
+                    re1Var.getNotificationsController().muteDialog(j10, tL_forumTopic.f20328id, false);
                     re1Var.finishPreviewFragment();
                     if (xc.a(re1Var)) {
                         xc.z(re1Var, 4, 0, re1Var.getResourceProvider()).j();
@@ -145,7 +145,7 @@ public final class d6 implements View.OnClickListener {
                     org.telegram.ui.Wallet.u3 u3Var = new org.telegram.ui.Wallet.u3(dVar2, f3Var2, d6Var, 0);
                     int i13 = this.f5321b;
                     org.telegram.ui.Wallet.m0 w9 = org.telegram.ui.Wallet.m0.w(i13);
-                    w9.j0(new x31(i13, u3Var, w9));
+                    w9.j0(new y31(i13, u3Var, w9));
                     return;
                 }
                 return;

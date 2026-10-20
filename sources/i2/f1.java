@@ -5,7 +5,7 @@ import ai.ub;
 import android.util.Pair;
 import ei.z1;
 import java.io.IOException;
-public final class f1 implements u2.k0, n2.l {
+public final class f1 implements u2.l0, n2.l {
     public final h1 f12352a;
     public final i1 f12353b;
 
@@ -111,7 +111,7 @@ public final class f1 implements u2.k0, n2.l {
             while (true) {
                 if (i11 < h1Var.f12378c.size()) {
                     if (((u2.g0) h1Var.f12378c.get(i11)).d == g0Var.d) {
-                        Object obj = g0Var.f47306a;
+                        Object obj = g0Var.f47314a;
                         Object obj2 = h1Var.f12377b;
                         int i12 = a.f12306g;
                         g0Var2 = g0Var.a(Pair.create(obj2, obj));

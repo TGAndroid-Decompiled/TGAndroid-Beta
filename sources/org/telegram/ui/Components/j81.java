@@ -1,74 +1,268 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapShader;
 import android.graphics.Canvas;
+import android.graphics.Matrix;
 import android.graphics.Paint;
-import android.graphics.Rect;
-import android.os.AsyncTask;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.text.TextPaint;
+import android.view.View;
+import j$.util.Comparator$CC;
+import java.io.File;
+import java.io.RandomAccessFile;
 import java.util.ArrayList;
+import java.util.Collections;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.AnimatedFileDrawableStream;
+import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
-public final class j81 extends AsyncTask {
-    public int f27450a = 0;
-    public final Paint f27451b = new Paint(3);
-    public final m81 f27452c;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.R;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+public abstract class j81 extends View implements NotificationCenter.NotificationCenterDelegate {
+    public int E;
+    public final TextPaint F;
+    public BitmapShader G;
+    public final RectF H;
+    public final Paint I;
+    public final Paint J;
+    public final RectF K;
+    public final Matrix L;
+    public final org.telegram.ui.yq0 M;
+    public org.telegram.ui.ot0 N;
+    public double O;
+    public boolean P;
+    public final ImageReceiver Q;
+    public int R;
+    public int S;
+    public int T;
+    public int U;
+    public final Path V;
+    public long W;
+    public boolean f27431a;
+    public long f27432a0;
+    public e6 f27433b;
+    public int f27434b0;
+    public long f27435c;
+    public int f27436c0;
+    public Uri d;
+    public ArrayList f27437d0;
+    public Runnable e;
+    public TLRPC.Document f27438e0;
+    public h81 f27439f;
+    public String f27440f0;
+    public int f27441g0;
+    public float h;
+    public int f27442n;
+    public int f27443r;
+    public boolean f27444s;
+    public Bitmap v;
+    public Bitmap f27445w;
+    public final Drawable f27446x;
+    public String f27447y;
 
-    public j81(m81 m81Var) {
-        this.f27452c = m81Var;
+    public j81(Context context, org.telegram.ui.yq0 yq0Var) {
+        super(context);
+        this.f27442n = -1;
+        TextPaint textPaint = new TextPaint(1);
+        this.F = textPaint;
+        this.H = new RectF();
+        this.I = new Paint(2);
+        this.J = new Paint(2);
+        this.K = new RectF();
+        this.L = new Matrix();
+        this.V = new Path();
+        this.f27441g0 = -1;
+        setVisibility(4);
+        this.f27446x = context.getResources().getDrawable(R.drawable.videopreview);
+        textPaint.setTextSize(AndroidUtilities.dp(13.0f));
+        textPaint.setColor(-1);
+        this.M = yq0Var;
+        ImageReceiver imageReceiver = new ImageReceiver();
+        this.Q = imageReceiver;
+        imageReceiver.setParentView(this);
+        imageReceiver.setDelegate(new g81(this));
     }
 
-    @Override
-    public final Object doInBackground(Object[] objArr) {
-        Bitmap frameAtTime;
-        m81 m81Var = this.f27452c;
-        this.f27450a = ((Integer[]) objArr)[0].intValue();
-        Bitmap bitmap = null;
-        if (!isCancelled()) {
-            try {
-                frameAtTime = m81Var.f28480y.getFrameAtTime(m81Var.H * this.f27450a * 1000, 2);
-            } catch (Exception e) {
-                e = e;
+    public final void a() {
+        if (this.e != null) {
+            Utilities.globalQueue.cancelRunnable(this.e);
+            this.e = null;
+        }
+        if (this.f27439f != null) {
+            Utilities.globalQueue.cancelRunnable(this.f27439f);
+            this.f27439f = null;
+        }
+        e6 e6Var = this.f27433b;
+        if (e6Var != null) {
+            AnimatedFileDrawableStream animatedFileDrawableStream = e6Var.f25768u0;
+            if (animatedFileDrawableStream != null) {
+                animatedFileDrawableStream.cancel(true);
             }
-            try {
-                if (!isCancelled()) {
-                    if (frameAtTime != null) {
-                        Bitmap createBitmap = Bitmap.createBitmap(m81Var.I, m81Var.J, frameAtTime.getConfig());
-                        Canvas canvas = new Canvas(createBitmap);
-                        float max = Math.max(m81Var.I / frameAtTime.getWidth(), m81Var.J / frameAtTime.getHeight());
-                        int width = (int) (frameAtTime.getWidth() * max);
-                        int height = (int) (frameAtTime.getHeight() * max);
-                        Rect rect = new Rect(0, 0, frameAtTime.getWidth(), frameAtTime.getHeight());
-                        int i10 = m81Var.I;
-                        int i11 = m81Var.J;
-                        canvas.drawBitmap(frameAtTime, rect, new Rect((i10 - width) / 2, (i11 - height) / 2, (i10 + width) / 2, (i11 + height) / 2), this.f27451b);
-                        frameAtTime.recycle();
-                        return createBitmap;
+            if (e6Var.f25748d0 != null) {
+                e6Var.f25748d0.h();
+            }
+        }
+        Utilities.globalQueue.postRunnable(new f81(this, 0));
+        setVisibility(4);
+        this.f27445w = null;
+        this.G = null;
+        invalidate();
+        this.f27442n = -1;
+        this.d = null;
+        this.f27444s = false;
+        this.f27431a = false;
+        if (this.W != 0) {
+            this.W = 0L;
+            this.f27440f0 = null;
+            this.f27438e0 = null;
+            this.f27437d0 = null;
+            b(-1);
+        }
+    }
+
+    public final void b(int i10) {
+        int i11 = this.f27441g0;
+        if (i11 == i10) {
+            return;
+        }
+        if (i10 == -1) {
+            NotificationCenter.getInstance(i11).removeObserver(this, NotificationCenter.fileLoaded);
+            NotificationCenter.getInstance(this.f27441g0).removeObserver(this, NotificationCenter.fileLoadFailed);
+        } else {
+            NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.fileLoaded);
+            NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.fileLoadFailed);
+        }
+        this.f27441g0 = i10;
+    }
+
+    public final void c(org.telegram.ui.Components.c81 r12, org.telegram.messenger.MessageObject r13) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.j81.c(org.telegram.ui.Components.c81, org.telegram.messenger.MessageObject):void");
+    }
+
+    public final void d(File file) {
+        try {
+            RandomAccessFile randomAccessFile = new RandomAccessFile(file, "r");
+            ArrayList arrayList = new ArrayList();
+            long j10 = 0;
+            int i10 = 0;
+            int i11 = 0;
+            while (true) {
+                String readLine = randomAccessFile.readLine();
+                if (readLine != null) {
+                    if (readLine.startsWith("file=mtproto:")) {
+                        j10 = Long.parseLong(readLine.substring(13));
+                    } else if (readLine.startsWith("frame_width=")) {
+                        i10 = Integer.parseInt(readLine.substring(12));
+                    } else if (readLine.startsWith("frame_height=")) {
+                        i11 = Integer.parseInt(readLine.substring(13));
+                    } else {
+                        String[] split = readLine.split(",");
+                        if (split.length == 3) {
+                            arrayList.add(new i81(Integer.parseInt(split[1]), Integer.parseInt(split[2]), Double.parseDouble(split[0])));
+                        }
                     }
-                    return frameAtTime;
+                } else {
+                    Collections.sort(arrayList, Comparator$CC.comparingDouble(new ai.o1(3)));
+                    this.f27432a0 = j10;
+                    this.f27434b0 = i10;
+                    this.f27436c0 = i11;
+                    this.f27437d0 = arrayList;
+                    return;
                 }
-            } catch (Exception e7) {
-                e = e7;
-                bitmap = frameAtTime;
-                FileLog.e(e);
-                return bitmap;
             }
+        } catch (Exception e) {
+            FileLog.e(e);
+            this.f27437d0 = null;
         }
-        return null;
     }
 
     @Override
-    public final void onPostExecute(Object obj) {
-        Bitmap bitmap = (Bitmap) obj;
-        if (!isCancelled()) {
-            m81 m81Var = this.f27452c;
-            ArrayList arrayList = m81Var.F;
-            ?? obj2 = new Object();
-            obj2.f27778a = bitmap;
-            arrayList.add(obj2);
-            m81Var.invalidate();
-            int i10 = this.f27450a;
-            if (i10 < m81Var.K) {
-                m81Var.d(i10 + 1);
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        if (i10 == NotificationCenter.fileLoaded) {
+            if (((String) objArr[0]).equals(this.f27440f0)) {
+                File pathToAttach = FileLoader.getInstance(i11).getPathToAttach(this.f27438e0);
+                if (pathToAttach != null && pathToAttach.exists()) {
+                    d(pathToAttach);
+                }
+                this.f27440f0 = null;
+                this.f27438e0 = null;
+                b(-1);
             }
+        } else if (i10 == NotificationCenter.fileLoadFailed && ((String) objArr[0]).equals(this.f27440f0)) {
+            this.f27440f0 = null;
+            this.f27438e0 = null;
+            b(-1);
         }
+    }
+
+    public final void e(org.telegram.messenger.MessageObject r18, final float r19, int r20) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.j81.e(org.telegram.messenger.MessageObject, float, int):void");
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.Q.onAttachedToWindow();
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.Q.onDetachedFromWindow();
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        Bitmap bitmap = this.v;
+        if (bitmap != null) {
+            bitmap.recycle();
+            this.v = null;
+        }
+        boolean z10 = this.P;
+        TextPaint textPaint = this.F;
+        Drawable drawable = this.f27446x;
+        if (z10) {
+            canvas.save();
+            Path path = this.V;
+            path.rewind();
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+            path.addRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), Path.Direction.CW);
+            canvas.clipPath(path);
+            canvas.scale(getWidth() / this.T, getHeight() / this.U);
+            canvas.translate(-this.R, -this.S);
+            ImageReceiver imageReceiver = this.Q;
+            imageReceiver.setImageCoords(0.0f, 0.0f, imageReceiver.getBitmapWidth(), imageReceiver.getBitmapHeight());
+            imageReceiver.draw(canvas);
+            canvas.restore();
+            drawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
+            drawable.draw(canvas);
+            canvas.drawText(this.f27447y, (getMeasuredWidth() - this.E) / 2.0f, getMeasuredHeight() - AndroidUtilities.dp(9.0f), textPaint);
+        } else if (this.f27445w != null && this.G != null) {
+            Matrix matrix = this.L;
+            matrix.reset();
+            float measuredWidth = getMeasuredWidth() / this.f27445w.getWidth();
+            matrix.preScale(measuredWidth, measuredWidth);
+            RectF rectF2 = this.K;
+            rectF2.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+            canvas.drawRoundRect(rectF2, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), this.J);
+            drawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
+            drawable.draw(canvas);
+            canvas.drawText(this.f27447y, (getMeasuredWidth() - this.E) / 2.0f, getMeasuredHeight() - AndroidUtilities.dp(9.0f), textPaint);
+        }
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
+        setPivotY(getMeasuredHeight());
     }
 }

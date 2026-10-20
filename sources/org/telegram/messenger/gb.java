@@ -1,37 +1,23 @@
 package org.telegram.messenger;
 public final class gb implements Runnable {
-    public final int f18443a;
-    public final MessagesController f18444b;
-    public final long f18445c;
-    public final int d;
-    public final boolean e;
-    public final int f18446f;
-    public final int h;
+    public final int f18449a;
+    public final q0.a f18450b;
+    public final int f18451c;
 
-    public gb(MessagesController messagesController, long j10, int i10, boolean z10, int i11, int i12, int i13) {
-        this.f18443a = i13;
-        this.f18444b = messagesController;
-        this.f18445c = j10;
-        this.d = i10;
-        this.e = z10;
-        this.f18446f = i11;
-        this.h = i12;
+    public gb(q0.a aVar, int i10, int i11) {
+        this.f18449a = i11;
+        this.f18450b = aVar;
+        this.f18451c = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f18443a) {
+        switch (this.f18449a) {
             case 0:
-                int i10 = this.f18446f;
-                int i11 = this.h;
-                int i12 = this.d;
-                this.f18444b.lambda$markDialogAsRead$242(this.f18445c, i12, this.e, i10, i11);
+                MessagesController.lambda$getNextReactionMentionInternal$1(this.f18450b, this.f18451c);
                 return;
             default:
-                int i13 = this.f18446f;
-                int i14 = this.h;
-                int i15 = this.d;
-                this.f18444b.lambda$markDialogAsRead$243(this.f18445c, i15, this.e, i13, i14);
+                MessagesController.lambda$getNextReactionMentionInternal$2(this.f18450b, this.f18451c);
                 return;
         }
     }

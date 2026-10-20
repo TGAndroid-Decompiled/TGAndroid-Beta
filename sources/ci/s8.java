@@ -61,7 +61,7 @@ public class s8 extends NestedScrollView implements h80 {
         this.f5977b0 = r8Var;
         org.telegram.ui.Cells.x9 x9Var = new org.telegram.ui.Cells.x9(r8Var, d6Var);
         this.W = x9Var;
-        x9Var.f21991h0 = false;
+        x9Var.f21994h0 = false;
         frameLayout.addView(r8Var, -1, -2);
         addView(frameLayout, new ViewGroup.LayoutParams(-1, -2));
         paint.setColor(-16777216);
@@ -109,7 +109,7 @@ public class s8 extends NestedScrollView implements h80 {
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
         ofFloat.addUpdateListener(new k8(this, getScrollY(), f7, 0));
         ofFloat.setDuration(250L);
-        ofFloat.setInterpolator(bs.f25012f);
+        ofFloat.setInterpolator(bs.f25021f);
         ofFloat.start();
     }
 
@@ -122,7 +122,7 @@ public class s8 extends NestedScrollView implements h80 {
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
         ofFloat.addUpdateListener(new k8(this, getScrollY(), f7, 1));
         ofFloat.setDuration(250L);
-        ofFloat.setInterpolator(bs.f25012f);
+        ofFloat.setInterpolator(bs.f25021f);
         ofFloat.start();
     }
 

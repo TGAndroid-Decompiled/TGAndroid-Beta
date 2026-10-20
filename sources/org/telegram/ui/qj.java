@@ -54,7 +54,7 @@ public final class qj extends s4.t {
     @Override
     public final int G() {
         if (this.S) {
-            return (int) this.T.f40839s9;
+            return (int) this.T.f40845s9;
         }
         return 0;
     }
@@ -62,7 +62,7 @@ public final class qj extends s4.t {
     @Override
     public final int J() {
         if (this.S) {
-            return (int) this.T.f40839s9;
+            return (int) this.T.f40845s9;
         }
         return F();
     }
@@ -70,14 +70,14 @@ public final class qj extends s4.t {
     @Override
     public final int K() {
         if (this.S) {
-            return (int) ((this.f46014n - this.T.f40839s9) - C());
+            return (int) ((this.f46019n - this.T.f40845s9) - C());
         }
         return super.K();
     }
 
     @Override
     public final int X0() {
-        return (int) this.T.f40839s9;
+        return (int) this.T.f40845s9;
     }
 
     @Override
@@ -97,7 +97,7 @@ public final class qj extends s4.t {
     @Override
     public final void i1(int i10, int i11, boolean z10) {
         if (!z10) {
-            i11 = (int) ((i11 - F()) + this.T.f40839s9);
+            i11 = (int) ((i11 - F()) + this.T.f40845s9);
         }
         super.i1(i10, i11, z10);
     }
@@ -133,9 +133,9 @@ public final class qj extends s4.t {
 
     @Override
     public final void v0(RecyclerView recyclerView, s4.y0 y0Var, int i10) {
-        this.T.f40840sa = false;
+        this.T.f40846sa = false;
         li.n nVar = new li.n(recyclerView.getContext(), 0);
-        nVar.f46053a = i10;
+        nVar.f46058a = i10;
         w0(nVar);
     }
 

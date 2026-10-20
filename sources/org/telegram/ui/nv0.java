@@ -8,30 +8,30 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class nv0 extends FrameLayout {
-    public final int f39687a;
-    public final qv0 f39688b;
+    public final int f39693a;
+    public final qv0 f39694b;
 
     public nv0(qv0 qv0Var, Context context, int i10) {
         super(context);
-        this.f39687a = i10;
-        this.f39688b = qv0Var;
+        this.f39693a = i10;
+        this.f39694b = qv0Var;
     }
 
     @Override
     public void dispatchDraw(Canvas canvas) {
         Canvas canvas2;
         org.telegram.ui.Cells.u1 u1Var;
-        switch (this.f39687a) {
+        switch (this.f39693a) {
             case 0:
-                qv0 qv0Var = this.f39688b;
-                if (qv0Var.f40989y > 0.0f && qv0Var.f40987w != null) {
-                    qv0Var.f40988x.reset();
-                    float width = getWidth() / qv0Var.f40986s.getWidth();
-                    qv0Var.f40988x.postScale(width, width);
-                    qv0Var.v.setLocalMatrix(qv0Var.f40988x);
-                    qv0Var.f40987w.setAlpha((int) (qv0Var.f40989y * 255.0f));
+                qv0 qv0Var = this.f39694b;
+                if (qv0Var.f40995y > 0.0f && qv0Var.f40993w != null) {
+                    qv0Var.f40994x.reset();
+                    float width = getWidth() / qv0Var.f40992s.getWidth();
+                    qv0Var.f40994x.postScale(width, width);
+                    qv0Var.v.setLocalMatrix(qv0Var.f40994x);
+                    qv0Var.f40993w.setAlpha((int) (qv0Var.f40995y * 255.0f));
                     canvas2 = canvas;
-                    canvas2.drawRect(0.0f, 0.0f, getWidth(), getHeight(), qv0Var.f40987w);
+                    canvas2.drawRect(0.0f, 0.0f, getWidth(), getHeight(), qv0Var.f40993w);
                 } else {
                     canvas2 = canvas;
                 }
@@ -50,10 +50,10 @@ public final class nv0 extends FrameLayout {
 
     @Override
     public boolean dispatchKeyEventPreIme(KeyEvent keyEvent) {
-        switch (this.f39687a) {
+        switch (this.f39693a) {
             case 0:
                 if (keyEvent != null && keyEvent.getKeyCode() == 4 && keyEvent.getAction() == 1) {
-                    this.f39688b.c(true);
+                    this.f39694b.c(true);
                     return true;
                 }
                 return super.dispatchKeyEventPreIme(keyEvent);
@@ -64,14 +64,14 @@ public final class nv0 extends FrameLayout {
 
     @Override
     public boolean drawChild(Canvas canvas, View view, long j10) {
-        switch (this.f39687a) {
+        switch (this.f39693a) {
             case 1:
-                qv0 qv0Var = this.f39688b;
+                qv0 qv0Var = this.f39694b;
                 if (view != qv0Var.K && view != qv0Var.J) {
                     return super.drawChild(canvas, view, j10);
                 }
                 canvas.save();
-                canvas.clipRect(0.0f, AndroidUtilities.lerp(qv0Var.M, 0.0f, qv0Var.f40989y), getWidth(), AndroidUtilities.lerp(qv0Var.N, getHeight(), qv0Var.f40989y));
+                canvas.clipRect(0.0f, AndroidUtilities.lerp(qv0Var.M, 0.0f, qv0Var.f40995y), getWidth(), AndroidUtilities.lerp(qv0Var.N, getHeight(), qv0Var.f40995y));
                 boolean drawChild = super.drawChild(canvas, view, j10);
                 canvas.restore();
                 return drawChild;
@@ -82,10 +82,10 @@ public final class nv0 extends FrameLayout {
 
     @Override
     public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        switch (this.f39687a) {
+        switch (this.f39693a) {
             case 0:
                 super.onLayout(z10, i10, i11, i12, i13);
-                this.f39688b.d();
+                this.f39694b.d();
                 return;
             default:
                 super.onLayout(z10, i10, i11, i12, i13);
@@ -95,11 +95,11 @@ public final class nv0 extends FrameLayout {
 
     @Override
     public void onMeasure(int i10, int i11) {
-        switch (this.f39687a) {
+        switch (this.f39693a) {
             case 2:
                 int size = View.MeasureSpec.getSize(i10);
                 int size2 = View.MeasureSpec.getSize(i11);
-                qv0 qv0Var = this.f39688b;
+                qv0 qv0Var = this.f39694b;
                 qv0Var.e();
                 for (int i12 = 0; i12 < getChildCount(); i12++) {
                     View childAt = getChildAt(i12);
@@ -117,9 +117,9 @@ public final class nv0 extends FrameLayout {
                             viewGroup2.measure(View.MeasureSpec.makeMeasureSpec(Math.min(size, (int) f10), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
                         }
                     }
-                    org.telegram.ui.Components.cl0 cl0Var = qv0Var.Q;
-                    if (childAt == cl0Var) {
-                        childAt.measure(View.MeasureSpec.makeMeasureSpec(cl0Var.getTotalWidth(), 1073741824), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
+                    org.telegram.ui.Components.dl0 dl0Var = qv0Var.Q;
+                    if (childAt == dl0Var) {
+                        childAt.measure(View.MeasureSpec.makeMeasureSpec(dl0Var.getTotalWidth(), 1073741824), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
                     } else {
                         childAt.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
                     }
@@ -134,11 +134,11 @@ public final class nv0 extends FrameLayout {
 
     @Override
     public void onSizeChanged(int i10, int i11, int i12, int i13) {
-        switch (this.f39687a) {
+        switch (this.f39693a) {
             case 0:
                 super.onSizeChanged(i10, i11, i12, i13);
-                qv0 qv0Var = this.f39688b;
-                hh.d.c(qv0Var.F, qv0Var.f40977c);
+                qv0 qv0Var = this.f39694b;
+                hh.d.c(qv0Var.F, qv0Var.f40983c);
                 qv0Var.G.d();
                 return;
             default:

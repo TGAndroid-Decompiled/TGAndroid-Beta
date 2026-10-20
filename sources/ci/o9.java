@@ -14,10 +14,10 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.cl0;
-import org.telegram.ui.Components.kw0;
+import org.telegram.ui.Components.dl0;
+import org.telegram.ui.Components.lw0;
 import org.telegram.ui.Components.qc;
-public final class o9 extends kw0 {
+public final class o9 extends lw0 {
     public final Path A0;
     public final RectF B0;
     public final RectF C0;
@@ -76,7 +76,7 @@ public final class o9 extends kw0 {
         int i10;
         q9 q9Var;
         int i11;
-        cl0 cl0Var;
+        dl0 dl0Var;
         aa aaVar = this.I0;
         float[] fArr = aaVar.f5205o0;
         q4 currentPeerView = aaVar.f5203n0.getCurrentPeerView();
@@ -93,7 +93,7 @@ public final class o9 extends kw0 {
             }
         }
         float f7 = 0.0f;
-        if (aaVar.f5208p1 && currentPeerView != null && (cl0Var = currentPeerView.f5817r3) != null) {
+        if (aaVar.f5208p1 && currentPeerView != null && (dl0Var = currentPeerView.f5817r3) != null) {
             float f10 = 0.0f;
             for (View view = currentPeerView; view != null && (view.getParent() instanceof View); view = (View) view.getParent()) {
                 f7 += view.getX();
@@ -105,14 +105,14 @@ public final class o9 extends kw0 {
                 return true;
             }
             Rect rect = AndroidUtilities.rectTmp2;
-            cl0Var.getHitRect(rect);
+            dl0Var.getHitRect(rect);
             rect.offset((int) f7, (int) f10);
             if (motionEvent.getAction() == 0 && !rect.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
                 currentPeerView.b1(false);
                 return true;
             }
             motionEvent.offsetLocation(-rect.left, -rect.top);
-            cl0Var.dispatchTouchEvent(motionEvent);
+            dl0Var.dispatchTouchEvent(motionEvent);
             return true;
         }
         if (motionEvent.getAction() != 1 && motionEvent.getAction() != 3) {
@@ -127,7 +127,7 @@ public final class o9 extends kw0 {
                 ofFloat.addUpdateListener(new l9(this, 0));
                 aaVar.G.addListener(new m9(this, 0));
                 aaVar.G.setDuration(250L);
-                aaVar.G.setInterpolator(bs.f25012f);
+                aaVar.G.setInterpolator(bs.f25021f);
                 aaVar.G.start();
             }
             if (aaVar.V >= 0.3f) {
@@ -286,7 +286,7 @@ public final class o9 extends kw0 {
                 ofFloat.addUpdateListener(new l9(this, 1));
                 aaVar.G.addListener(new m9(this, 1));
                 aaVar.G.setDuration(150L);
-                aaVar.G.setInterpolator(bs.f25012f);
+                aaVar.G.setInterpolator(bs.f25021f);
                 aaVar.G.start();
             }
             q4 t10 = aaVar.t();

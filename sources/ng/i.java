@@ -31,7 +31,7 @@ import org.telegram.ui.ActionBar.d5;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Cells.c1;
 import org.telegram.ui.Cells.z;
-import org.telegram.ui.Components.im0;
+import org.telegram.ui.Components.jm0;
 import org.telegram.ui.Components.zq;
 import org.telegram.ui.LaunchActivity;
 import w7.r;
@@ -51,7 +51,7 @@ public final class i extends FrameLayout implements NotificationCenter.Notificat
     public int v;
     public LinearLayout f17471w;
     public TextView f17472x;
-    public im0 f17473y;
+    public jm0 f17473y;
 
     public static float a(DisplayMetrics displayMetrics, float f7) {
         return r.a(f7, AndroidUtilities.dp(16.0f), displayMetrics.widthPixels - AndroidUtilities.dp(72.0f));
@@ -101,11 +101,11 @@ public final class i extends FrameLayout implements NotificationCenter.Notificat
                 if (O instanceof b) {
                     arrayList.addAll(((b) O).B());
                 }
-                ActionBarLayout actionBarLayout = ((LaunchActivity) getContext()).f33183s0;
+                ActionBarLayout actionBarLayout = ((LaunchActivity) getContext()).f33189s0;
                 if (actionBarLayout != null) {
                     arrayList.addAll(actionBarLayout.B());
                 }
-                ActionBarLayout actionBarLayout2 = ((LaunchActivity) getContext()).f33181r0;
+                ActionBarLayout actionBarLayout2 = ((LaunchActivity) getContext()).f33187r0;
                 if (actionBarLayout2 != null) {
                     arrayList.addAll(actionBarLayout2.B());
                 }
@@ -186,9 +186,9 @@ public final class i extends FrameLayout implements NotificationCenter.Notificat
         zqVar.f33019f = dp2;
         this.f17465b = zqVar;
         Drawable drawable = getResources().getDrawable(R.drawable.popup_fixed_alert3);
-        drawable.setColorFilter(new PorterDuffColorFilter(h6.x0(null, h6.f21058h5, false), mode));
+        drawable.setColorFilter(new PorterDuffColorFilter(h6.x0(null, h6.f21061h5, false), mode));
         this.f17471w.setBackground(drawable);
-        this.f17472x.setTextColor(h6.x0(null, h6.f21093j5, false));
+        this.f17472x.setTextColor(h6.x0(null, h6.f21096j5, false));
         invalidate();
     }
 

@@ -16,7 +16,7 @@ import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.uj0;
+import org.telegram.ui.Components.vj0;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.qn;
 public final class q7 extends View {
@@ -64,7 +64,7 @@ public final class q7 extends View {
         p6Var.s(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(3.5f), 0);
         p6Var.M = AndroidUtilities.displaySize.x;
         p6Var.u(-1);
-        p6Var.f29180b = 17;
+        p6Var.f29225b = 17;
         this.H = new o7(this, 0);
         this.f2072x = new a1.f(25, this, qnVar);
     }
@@ -145,16 +145,16 @@ public final class q7 extends View {
                     if (arrayList.size() <= 4) {
                         break;
                     }
-                    ((uj0) arrayList.remove(0)).C(true);
+                    ((vj0) arrayList.remove(0)).C(true);
                 }
                 Random random = Utilities.fastRandom;
                 int[] iArr = this.K;
-                uj0 uj0Var = new uj0(iArr[random.nextInt(iArr.length)], AndroidUtilities.dp(70.0f), AndroidUtilities.dp(70.0f));
-                uj0Var.R(this);
-                uj0Var.J(true);
-                uj0Var.K(0);
-                uj0Var.start();
-                arrayList.add(uj0Var);
+                vj0 vj0Var = new vj0(iArr[random.nextInt(iArr.length)], AndroidUtilities.dp(70.0f), AndroidUtilities.dp(70.0f));
+                vj0Var.R(this);
+                vj0Var.J(true);
+                vj0Var.K(0);
+                vj0Var.start();
+                arrayList.add(vj0Var);
                 invalidate();
                 ah.g1 m10 = reactionsLayoutInBubble.m("stars");
                 if (m10 != null) {

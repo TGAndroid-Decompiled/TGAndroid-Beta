@@ -6,21 +6,21 @@ import android.os.Parcelable;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 public abstract class b {
-    public final f f49941a;
-    public final f f49942b;
-    public final f f49943c;
+    public final f f49946a;
+    public final f f49947b;
+    public final f f49948c;
 
     public b(f fVar, f fVar2, f fVar3) {
-        this.f49941a = fVar;
-        this.f49942b = fVar2;
-        this.f49943c = fVar3;
+        this.f49946a = fVar;
+        this.f49947b = fVar2;
+        this.f49948c = fVar3;
     }
 
     public abstract c a();
 
     public final Class b(Class cls) {
         String name = cls.getName();
-        f fVar = this.f49943c;
+        f fVar = this.f49948c;
         Class cls2 = (Class) fVar.get(name);
         if (cls2 == null) {
             String name2 = cls.getPackage().getName();
@@ -33,7 +33,7 @@ public abstract class b {
     }
 
     public final Method c(String str) {
-        f fVar = this.f49941a;
+        f fVar = this.f49946a;
         Method method = (Method) fVar.get(str);
         if (method == null) {
             System.currentTimeMillis();
@@ -46,7 +46,7 @@ public abstract class b {
 
     public final Method d(Class cls) {
         String name = cls.getName();
-        f fVar = this.f49942b;
+        f fVar = this.f49947b;
         Method method = (Method) fVar.get(name);
         if (method == null) {
             Class b10 = b(cls);
@@ -118,7 +118,7 @@ public abstract class b {
             try {
                 d(dVar.getClass()).invoke(null, dVar, a2);
                 Parcel parcel = a2.e;
-                int i10 = a2.f49946i;
+                int i10 = a2.f49951i;
                 if (i10 >= 0) {
                     int i11 = a2.d.get(i10);
                     int dataPosition = parcel.dataPosition();

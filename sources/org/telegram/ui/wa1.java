@@ -5,15 +5,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import java.util.ArrayList;
 import org.telegram.ui.ThemeActivity;
-public final class wa1 extends org.telegram.ui.Components.hm0 {
-    public final Context f42519c;
+public final class wa1 extends org.telegram.ui.Components.im0 {
+    public final Context f42525c;
     public org.telegram.ui.ActionBar.g6 d;
     public ArrayList e;
-    public final ThemeActivity f42520f;
+    public final ThemeActivity f42526f;
 
     public wa1(ThemeActivity themeActivity, Context context) {
-        this.f42520f = themeActivity;
-        this.f42519c = context;
+        this.f42526f = themeActivity;
+        this.f42525c = context;
         l();
     }
 
@@ -41,19 +41,19 @@ public final class wa1 extends org.telegram.ui.Components.hm0 {
     @Override
     public final void l() {
         org.telegram.ui.ActionBar.g6 B0;
-        if (this.f42520f.f33898f == 1) {
+        if (this.f42526f.f33904f == 1) {
             B0 = org.telegram.ui.ActionBar.h6.J;
         } else {
             B0 = org.telegram.ui.ActionBar.h6.B0();
         }
         this.d = B0;
-        this.e = new ArrayList(this.d.f20881b0);
+        this.e = new ArrayList(this.d.f20884b0);
         super.l();
     }
 
     @Override
     public final void v(s4.b1 b1Var, int i10) {
-        View view = b1Var.f45912a;
+        View view = b1Var.f45917a;
         int j10 = j(i10);
         if (j10 != 0) {
             if (j10 != 1) {
@@ -61,13 +61,13 @@ public final class wa1 extends org.telegram.ui.Components.hm0 {
             }
             ma1 ma1Var = (ma1) view;
             org.telegram.ui.ActionBar.g6 g6Var = this.d;
-            int i11 = ma1.f39161c;
+            int i11 = ma1.f39167c;
             ma1Var.getClass();
             if (g6Var.W >= 8) {
-                ma1Var.f39163b = new int[]{g6Var.l(6), g6Var.l(4), g6Var.l(7), g6Var.l(2), g6Var.l(0), g6Var.l(5), g6Var.l(3)};
+                ma1Var.f39169b = new int[]{g6Var.l(6), g6Var.l(4), g6Var.l(7), g6Var.l(2), g6Var.l(0), g6Var.l(5), g6Var.l(3)};
                 return;
             } else {
-                ma1Var.f39163b = new int[7];
+                ma1Var.f39169b = new int[7];
                 return;
             }
         }
@@ -79,7 +79,7 @@ public final class wa1 extends org.telegram.ui.Components.hm0 {
 
     @Override
     public final s4.b1 x(ViewGroup viewGroup, int i10) {
-        Context context = this.f42519c;
+        Context context = this.f42525c;
         if (i10 != 0) {
             return new s4.b1(new ma1(context));
         }

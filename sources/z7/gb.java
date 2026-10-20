@@ -5,14 +5,14 @@ public enum gb implements u {
     TYPE_THICK(2),
     TYPE_GMV(3);
     
-    public final int f50884a;
+    public final int f50889a;
 
     gb(int i10) {
-        this.f50884a = i10;
+        this.f50889a = i10;
     }
 
     @Override
     public final int zza() {
-        return this.f50884a;
+        return this.f50889a;
     }
 }

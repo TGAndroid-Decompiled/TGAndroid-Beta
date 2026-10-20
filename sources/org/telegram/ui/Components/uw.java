@@ -2,7 +2,7 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.view.MotionEvent;
-public final class uw extends im0 {
+public final class uw extends jm0 {
     public boolean V2;
     public boolean W2;
     public final tz X2;
@@ -16,7 +16,7 @@ public final class uw extends im0 {
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         org.telegram.ui.et q6 = org.telegram.ui.et.q();
         tz tzVar = this.X2;
-        boolean r10 = q6.r(motionEvent, tzVar.f30783h0, tzVar.f30782g2, this.f27299n2);
+        boolean r10 = q6.r(motionEvent, tzVar.f30737h0, tzVar.f30736g2, this.f27579n2);
         if (!super.onInterceptTouchEvent(motionEvent) && !r10) {
             return false;
         }
@@ -26,12 +26,12 @@ public final class uw extends im0 {
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         tz tzVar = this.X2;
-        if (tzVar.f30809q0 && tzVar.f30800n0.G > 1) {
+        if (tzVar.f30763q0 && tzVar.f30754n0.G > 1) {
             this.V2 = true;
-            tzVar.f30786i0.h1(0, 0);
-            tzVar.f30803o0.setVisibility(0);
-            tzVar.f30806p0.k(0, 0);
-            tzVar.f30809q0 = false;
+            tzVar.f30740i0.h1(0, 0);
+            tzVar.f30757o0.setVisibility(0);
+            tzVar.f30760p0.k(0, 0);
+            tzVar.f30763q0 = false;
             this.V2 = false;
         }
         super.onLayout(z10, i10, i11, i12, i13);
@@ -42,7 +42,7 @@ public final class uw extends im0 {
     public final void onMeasure(int i10, int i11) {
         super.onMeasure(i10, i11);
         if (!this.W2) {
-            this.X2.f30800n0.l();
+            this.X2.f30754n0.l();
             this.W2 = true;
         }
     }

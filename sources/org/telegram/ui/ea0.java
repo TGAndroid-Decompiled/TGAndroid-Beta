@@ -8,17 +8,17 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 public final class ea0 implements MessagesController.MessagesLoadedCallback {
-    public final z70 f36606a;
-    public final boolean[] f36607b;
-    public final Bundle f36608c;
+    public final z70 f36612a;
+    public final boolean[] f36613b;
+    public final Bundle f36614c;
     public final TLRPC.ChatInvite d;
     public final LaunchActivity e;
 
     public ea0(LaunchActivity launchActivity, z70 z70Var, boolean[] zArr, Bundle bundle, TLRPC.ChatInvite chatInvite) {
         this.e = launchActivity;
-        this.f36606a = z70Var;
-        this.f36607b = zArr;
-        this.f36608c = bundle;
+        this.f36612a = z70Var;
+        this.f36613b = zArr;
+        this.f36614c = bundle;
         this.d = chatInvite;
     }
 
@@ -26,10 +26,10 @@ public final class ea0 implements MessagesController.MessagesLoadedCallback {
     public final void onError() {
         LaunchActivity launchActivity = this.e;
         if (!launchActivity.isFinishing()) {
-            org.telegram.ui.Components.f5.t0((org.telegram.ui.ActionBar.n2) i2.e.h(1, launchActivity.f33155d0), null, LocaleController.getString(R.string.JoinToGroupErrorNotExist), null);
+            org.telegram.ui.Components.f5.t0((org.telegram.ui.ActionBar.n2) i2.e.h(1, launchActivity.f33161d0), null, LocaleController.getString(R.string.JoinToGroupErrorNotExist), null);
         }
         try {
-            this.f36606a.run();
+            this.f36612a.run();
         } catch (Exception e) {
             FileLog.e(e);
         }
@@ -38,14 +38,14 @@ public final class ea0 implements MessagesController.MessagesLoadedCallback {
     @Override
     public final void onMessagesLoaded(boolean z10) {
         try {
-            this.f36606a.run();
+            this.f36612a.run();
         } catch (Exception e) {
             FileLog.e(e);
         }
-        if (this.f36607b[0]) {
+        if (this.f36613b[0]) {
             return;
         }
-        qn qnVar = new qn(this.f36608c);
+        qn qnVar = new qn(this.f36614c);
         TLRPC.ChatInvite chatInvite = this.d;
         if (chatInvite instanceof TLRPC.TL_chatInvitePeek) {
             qnVar.K5 = chatInvite;

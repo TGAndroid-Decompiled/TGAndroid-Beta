@@ -17,7 +17,7 @@ import org.telegram.messenger.voip.GroupCallMessagesController;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarLayout;
-import org.telegram.ui.Components.z01;
+import org.telegram.ui.Components.a11;
 import org.telegram.ui.Components.zo;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.cy;
@@ -62,7 +62,7 @@ public final class h0 implements Runnable {
                 long j12 = this.f120b;
                 long j13 = this.f121c;
                 String str4 = e2.m0.f8252a;
-                j2.f fVar2 = ((i2.c0) ((k2.u) ((qf.b) this.d).f44440c)).f12325a.f12413s;
+                j2.f fVar2 = ((i2.c0) ((k2.u) ((qf.b) this.d).f44448c)).f12325a.f12413s;
                 j2.a p9 = fVar2.p();
                 fVar2.q(p9, 1008, new j2.c(p9, str3, j13, j12, 5));
                 return;
@@ -105,7 +105,7 @@ public final class h0 implements Runnable {
                     ArrayList arrayList = new ArrayList();
                     arrayList.add(MessagesStorage.TopicKey.of(j14, j15));
                     cyVar.C2.w(cyVar, arrayList, null, false, cyVar.J2, cyVar.K2, cyVar.L2, re1Var);
-                    if (cyVar.f36108i2) {
+                    if (cyVar.f36114i2) {
                         cyVar.C2 = null;
                         return;
                     }
@@ -125,7 +125,7 @@ public final class h0 implements Runnable {
                 t10.append(" TL_forumTopic ");
                 t10.append(findTopic);
                 FileLog.d(t10.toString());
-                if (launchActivity.f33179q0 != null) {
+                if (launchActivity.f33185q0 != null) {
                     og.d.a(qnVar, MessagesStorage.TopicKey.of(-j16, j17));
                     ((ActionBarLayout) launchActivity.O()).P(qnVar);
                     return;
@@ -136,9 +136,9 @@ public final class h0 implements Runnable {
                 si.o0 o0Var = (si.o0) this.e;
                 long j18 = this.f120b;
                 long j19 = this.f121c;
-                synchronized (s0Var.f46761g) {
+                synchronized (s0Var.f46766g) {
                     if (!o0Var.d && !o0Var.e) {
-                        ((z01) s0Var.e).a(o0Var.f46739a, o0Var.f46740b, j18, j19);
+                        ((a11) s0Var.e).a(o0Var.f46744a, o0Var.f46745b, j18, j19);
                         return;
                     }
                     return;

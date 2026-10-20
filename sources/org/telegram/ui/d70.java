@@ -8,25 +8,25 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 public final class d70 extends ReplacementSpan {
-    public final Paint f36273a;
-    public final ImageReceiver f36274b;
-    public final float f36275c;
+    public final Paint f36279a;
+    public final ImageReceiver f36280b;
+    public final float f36281c;
     public float d;
     public final View e;
-    public boolean f36276f;
+    public boolean f36282f;
     public float h;
-    public int f36277n;
+    public int f36283n;
 
     public d70(View view, float f7, int i10) {
         k5 k5Var = new k5(this, 2);
-        this.f36276f = true;
-        this.f36277n = 255;
+        this.f36282f = true;
+        this.f36283n = 255;
         ImageReceiver imageReceiver = new ImageReceiver(view);
-        this.f36274b = imageReceiver;
+        this.f36280b = imageReceiver;
         imageReceiver.setCurrentAccount(i10);
-        this.f36275c = f7;
+        this.f36281c = f7;
         Paint paint = new Paint(1);
-        this.f36273a = paint;
+        this.f36279a = paint;
         paint.setShadowLayer(AndroidUtilities.dp(1.0f), 0.0f, AndroidUtilities.dp(0.66f), 855638016);
         View view2 = this.e;
         if (view2 != view) {
@@ -51,35 +51,35 @@ public final class d70 extends ReplacementSpan {
     public final void a(float f7) {
         float dp = AndroidUtilities.dp(f7);
         this.d = dp;
-        this.f36274b.setRoundRadius((int) dp);
+        this.f36280b.setRoundRadius((int) dp);
     }
 
     @Override
     public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
-        boolean z10 = this.f36276f;
-        Paint paint2 = this.f36273a;
-        if (z10 && this.f36277n != paint.getAlpha()) {
+        boolean z10 = this.f36282f;
+        Paint paint2 = this.f36279a;
+        if (z10 && this.f36283n != paint.getAlpha()) {
             int alpha = paint.getAlpha();
-            this.f36277n = alpha;
+            this.f36283n = alpha;
             paint2.setAlpha(alpha);
-            paint2.setShadowLayer(AndroidUtilities.dp(1.0f), 0.0f, AndroidUtilities.dp(0.66f), org.telegram.ui.ActionBar.h6.m1(this.f36277n / 255.0f, 855638016));
+            paint2.setShadowLayer(AndroidUtilities.dp(1.0f), 0.0f, AndroidUtilities.dp(0.66f), org.telegram.ui.ActionBar.h6.m1(this.f36283n / 255.0f, 855638016));
         }
         float f10 = this.h + f7;
-        float dp = (((i12 + i14) / 2.0f) + 0.0f) - (AndroidUtilities.dp(this.f36275c) / 2.0f);
-        if (this.f36276f) {
+        float dp = (((i12 + i14) / 2.0f) + 0.0f) - (AndroidUtilities.dp(this.f36281c) / 2.0f);
+        if (this.f36282f) {
             RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(f10, dp, AndroidUtilities.dp(this.f36275c) + f10, AndroidUtilities.dp(this.f36275c) + dp);
+            rectF.set(f10, dp, AndroidUtilities.dp(this.f36281c) + f10, AndroidUtilities.dp(this.f36281c) + dp);
             float f11 = this.d;
             canvas.drawRoundRect(rectF, f11, f11, paint2);
         }
-        ImageReceiver imageReceiver = this.f36274b;
-        imageReceiver.setImageCoords(f10, dp, AndroidUtilities.dp(this.f36275c), AndroidUtilities.dp(this.f36275c));
+        ImageReceiver imageReceiver = this.f36280b;
+        imageReceiver.setImageCoords(f10, dp, AndroidUtilities.dp(this.f36281c), AndroidUtilities.dp(this.f36281c));
         imageReceiver.setAlpha(paint.getAlpha() / 255.0f);
         imageReceiver.draw(canvas);
     }
 
     @Override
     public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
-        return AndroidUtilities.dp(this.f36275c);
+        return AndroidUtilities.dp(this.f36281c);
     }
 }

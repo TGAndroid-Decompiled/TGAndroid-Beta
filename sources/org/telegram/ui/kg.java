@@ -9,12 +9,12 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.messenger.TranslateController;
 public final class kg implements Runnable {
-    public final int f38593a;
-    public final qn f38594b;
+    public final int f38599a;
+    public final qn f38600b;
 
     public kg(qn qnVar, int i10) {
-        this.f38593a = i10;
-        this.f38594b = qnVar;
+        this.f38599a = i10;
+        this.f38600b = qnVar;
     }
 
     @Override
@@ -22,33 +22,33 @@ public final class kg implements Runnable {
         boolean z10;
         boolean z11;
         ei.x3 x3Var;
-        int i10 = this.f38593a;
+        int i10 = this.f38599a;
         boolean z12 = true;
-        qn qnVar = this.f38594b;
+        qn qnVar = this.f38600b;
         switch (i10) {
             case 0:
                 fk fkVar = qnVar.Y;
                 if (fkVar != null && qnVar.Dc != null) {
                     if (fkVar.r0()) {
                         qnVar.Y.k0(false);
-                        AndroidUtilities.showKeyboard(qnVar.Dc.f45734a);
-                        qnVar.Dc.f45735b.f45731a.a(false, true);
+                        AndroidUtilities.showKeyboard(qnVar.Dc.f45742a);
+                        qnVar.Dc.f45743b.f45739a.a(false, true);
                         return;
                     }
                     qnVar.Y.S0(false, false, false);
                     qnVar.Y.p1();
-                    qnVar.Dc.f45735b.f45731a.a(true, true);
+                    qnVar.Dc.f45743b.f45739a.a(true, true);
                     return;
                 }
                 return;
             case 1:
-                ArrayList arrayList = qnVar.f40862u6;
+                ArrayList arrayList = qnVar.f40868u6;
                 qnVar.Hb = System.currentTimeMillis();
-                if (qnVar.f40895x0 != null && qnVar.A0 != null) {
+                if (qnVar.f40901x0 != null && qnVar.A0 != null) {
                     int i11 = Integer.MAX_VALUE;
                     int i12 = Integer.MIN_VALUE;
-                    for (int i13 = 0; i13 < qnVar.f40895x0.getChildCount(); i13++) {
-                        View childAt = qnVar.f40895x0.getChildAt(i13);
+                    for (int i13 = 0; i13 < qnVar.f40901x0.getChildCount(); i13++) {
+                        View childAt = qnVar.f40901x0.getChildAt(i13);
                         if (childAt instanceof org.telegram.ui.Cells.u1) {
                             org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) childAt;
                             if (u1Var.getCurrentMessagesGroup() != null) {
@@ -68,7 +68,7 @@ public final class kg implements Runnable {
                         ArrayList arrayList2 = new ArrayList();
                         for (int i15 = 0; i15 < arrayList.size(); i15++) {
                             MessageObject messageObject = (MessageObject) arrayList.get(i15);
-                            MessageObject.GroupedMessages groupedMessages = (MessageObject.GroupedMessages) qnVar.f40901x6.f(messageObject.getGroupId());
+                            MessageObject.GroupedMessages groupedMessages = (MessageObject.GroupedMessages) qnVar.f40907x6.f(messageObject.getGroupId());
                             if (groupedMessages != null) {
                                 if (!arrayList2.contains(Long.valueOf(groupedMessages.groupId))) {
                                     for (int i16 = 0; i16 < groupedMessages.messages.size(); i16++) {
@@ -102,7 +102,7 @@ public final class kg implements Runnable {
                 if (qnVar.L4 > 0 && qnVar.J4 != null) {
                     qnVar.getMessagesController().getTranslateController().checkTranslation((MessageObject) qnVar.J4.get(Integer.valueOf(qnVar.L4)), true);
                 }
-                qnVar.Yc();
+                qnVar.Zc();
                 return;
             case 2:
                 qnVar.xa();
@@ -112,7 +112,7 @@ public final class kg implements Runnable {
                 return;
             case 4:
                 qnVar.h9();
-                qnVar.Cc(0, true);
+                qnVar.Dc(0, true);
                 return;
             case 5:
                 qnVar.j8(false, true, 0.0f);
@@ -121,7 +121,7 @@ public final class kg implements Runnable {
                 qnVar.X9();
                 return;
             case 7:
-                qnVar.lc(false);
+                qnVar.mc(false);
                 return;
             case 8:
                 qnVar.v9(2);
@@ -145,10 +145,10 @@ public final class kg implements Runnable {
                 qnVar.Q6();
                 return;
             case 15:
-                qnVar.f40605a = (qnVar.f40605a + 1) % 3;
+                qnVar.f40611a = (qnVar.f40611a + 1) % 3;
                 return;
             case 16:
-                qnVar.f40618b = !qnVar.f40618b;
+                qnVar.f40624b = !qnVar.f40624b;
                 return;
             case 17:
                 qnVar.D7(true);
@@ -159,7 +159,7 @@ public final class kg implements Runnable {
                 dm dmVar = qnVar.A0;
                 dmVar.L = false;
                 dmVar.O(true);
-                qnVar.Tb(false);
+                qnVar.Ub(false);
                 return;
             case 19:
                 qnVar.t9();
@@ -168,23 +168,23 @@ public final class kg implements Runnable {
                 qnVar.w7();
                 return;
             case 20:
-                qnVar.f40918ya = false;
-                qnVar.yc();
+                qnVar.f40924ya = false;
+                qnVar.zc();
                 return;
             case 21:
-                qnVar.f40717ic = 0;
-                qnVar.f40730jc = false;
-                qnVar.f40895x0.f1();
+                qnVar.f40723ic = 0;
+                qnVar.f40736jc = false;
+                qnVar.f40901x0.f1();
                 return;
             case 22:
                 qnVar.v9(5);
                 return;
             case 23:
-                qnVar.Cc(0, (qnVar.P5 == 0 || SystemClock.elapsedRealtime() < qnVar.P5 + 150) ? false : false);
+                qnVar.Dc(0, (qnVar.P5 == 0 || SystemClock.elapsedRealtime() < qnVar.P5 + 150) ? false : false);
                 return;
             case 24:
                 ik ikVar = qnVar.R2;
-                if ((ikVar == null || ikVar.getVisibility() != 0) && (x3Var = qnVar.f40883w1) != null) {
+                if ((ikVar == null || ikVar.getVisibility() != 0) && (x3Var = qnVar.f40889w1) != null) {
                     x3Var.u();
                     return;
                 }
@@ -201,10 +201,10 @@ public final class kg implements Runnable {
             case 28:
                 FrameLayout.LayoutParams e = w7.z5.e(-1, -2, 87);
                 e.bottomMargin = qnVar.Y.getMeasuredHeight();
-                qnVar.X0.addView(qnVar.f40910y1, e);
-                qnVar.f40910y1.setTranslationY(-AndroidUtilities.navigationBarHeight);
-                qnVar.f40910y1.m(0.0f, qnVar.Y.getEmojiButton().getX() + AndroidUtilities.dp(22.0f));
-                qnVar.f40910y1.u();
+                qnVar.X0.addView(qnVar.f40916y1, e);
+                qnVar.f40916y1.setTranslationY(-AndroidUtilities.navigationBarHeight);
+                qnVar.f40916y1.m(0.0f, qnVar.Y.getEmojiButton().getX() + AndroidUtilities.dp(22.0f));
+                qnVar.f40916y1.u();
                 return;
             default:
                 int i17 = qn.Ic;

@@ -5,8 +5,8 @@ import b2.t0;
 import b2.v;
 import b2.w;
 import java.util.Map;
-import u2.c1;
-public final class p extends c1 {
+import u2.d1;
+public final class p extends d1 {
     public final Map J;
     public b2.s K;
 
@@ -34,7 +34,7 @@ public final class p extends c1 {
             while (true) {
                 if (i10 < length) {
                     s0 s0Var = s0VarArr[i10];
-                    if ((s0Var instanceof q3.m) && "com.apple.streaming.transportStreamTimestamp".equals(((q3.m) s0Var).f44374b)) {
+                    if ((s0Var instanceof q3.m) && "com.apple.streaming.transportStreamTimestamp".equals(((q3.m) s0Var).f44382b)) {
                         break;
                     }
                     i10++;

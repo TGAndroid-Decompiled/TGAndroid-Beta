@@ -16,16 +16,16 @@ import org.telegram.ui.ActionBar.d3;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.n2;
 import org.telegram.ui.Components.bb;
-import org.telegram.ui.Components.hm0;
 import org.telegram.ui.Components.im0;
-import org.telegram.ui.Components.kw0;
+import org.telegram.ui.Components.jm0;
+import org.telegram.ui.Components.lw0;
 import org.telegram.ui.Components.qc;
 import org.telegram.ui.LaunchActivity;
 public final class b0 extends bb {
     public final TLRPC.TL_payments_checkedGiftCode X;
     public final boolean Y;
     public a0 Z;
-    public final String f47648a0;
+    public final String f47653a0;
 
     public b0(n2 n2Var, TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode, String str) {
         super(n2Var, true);
@@ -37,7 +37,7 @@ public final class b0 extends bb {
         }
         this.Y = z10;
         this.X = tL_payments_checkedGiftCode;
-        this.f47648a0 = str;
+        this.f47653a0 = str;
         setApplyTopPadding(false);
         setApplyBottomPadding(false);
         fixNavigationBar();
@@ -47,9 +47,9 @@ public final class b0 extends bb {
         a0Var.getClass();
         a0Var.d = tL_payments_checkedGiftCode.used_date == 0;
         a0Var.e = n2Var;
-        a0Var.f48360f = tL_payments_checkedGiftCode;
+        a0Var.f48365f = tL_payments_checkedGiftCode;
         a0Var.h = str;
-        a0Var.f48361n = d3Var;
+        a0Var.f48366n = d3Var;
     }
 
     public static d6 Q(b0 b0Var) {
@@ -94,7 +94,7 @@ public final class b0 extends bb {
         AtomicBoolean atomicBoolean = new AtomicBoolean(false);
         if (cVar != null) {
             cVar.d();
-            cVar.f44282b = new d(atomicBoolean, 1);
+            cVar.f44290b = new d(atomicBoolean, 1);
         }
         z2 z2Var = new z2(atomicBoolean, n2Var, str, cVar, 16);
         f fVar = new f(atomicBoolean, cVar, 1);
@@ -114,12 +114,12 @@ public final class b0 extends bb {
     }
 
     @Override
-    public final void G(kw0 kw0Var) {
+    public final void G(lw0 lw0Var) {
         qc.a(this.container, new o8(14));
     }
 
     @Override
-    public final hm0 x(im0 im0Var) {
+    public final im0 x(jm0 jm0Var) {
         a0 a0Var = new a0(this, this.resourcesProvider);
         this.Z = a0Var;
         return a0Var;

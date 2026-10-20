@@ -2,34 +2,34 @@ package org.telegram.ui;
 
 import android.content.Context;
 import android.view.View;
-public final class r71 extends org.telegram.ui.Components.f61 {
-    public static final int f41078a = 0;
+public final class r71 extends org.telegram.ui.Components.g61 {
+    public static final int f41084a = 0;
 
     static {
-        org.telegram.ui.Components.f61.setup(new org.telegram.ui.Components.f61());
+        org.telegram.ui.Components.g61.setup(new org.telegram.ui.Components.g61());
     }
 
     @Override
-    public final void bindView(View view, org.telegram.ui.Components.g61 g61Var, boolean z10, org.telegram.ui.Components.t61 t61Var, org.telegram.ui.Components.b71 b71Var) {
-        ((s71) view).set(g61Var.f26510z);
+    public final void bindView(View view, org.telegram.ui.Components.h61 h61Var, boolean z10, org.telegram.ui.Components.u61 u61Var, org.telegram.ui.Components.c71 c71Var) {
+        ((s71) view).set(h61Var.f26795z);
     }
 
     @Override
-    public final boolean contentsEquals(org.telegram.ui.Components.g61 g61Var, org.telegram.ui.Components.g61 g61Var2) {
-        if (g61Var.f26510z == g61Var2.f26510z) {
+    public final boolean contentsEquals(org.telegram.ui.Components.h61 h61Var, org.telegram.ui.Components.h61 h61Var2) {
+        if (h61Var.f26795z == h61Var2.f26795z) {
             return true;
         }
         return false;
     }
 
     @Override
-    public final View createView(Context context, org.telegram.ui.Components.im0 im0Var, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
+    public final View createView(Context context, org.telegram.ui.Components.jm0 jm0Var, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
         return new s71(context, d6Var);
     }
 
     @Override
-    public final boolean equals(org.telegram.ui.Components.g61 g61Var, org.telegram.ui.Components.g61 g61Var2) {
-        if (g61Var.d == g61Var2.d) {
+    public final boolean equals(org.telegram.ui.Components.h61 h61Var, org.telegram.ui.Components.h61 h61Var2) {
+        if (h61Var.d == h61Var2.d) {
             return true;
         }
         return false;

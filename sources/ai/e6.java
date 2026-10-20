@@ -23,14 +23,14 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.xj0;
+import org.telegram.ui.Components.yj0;
 public final class e6 extends FrameLayout {
     public final org.telegram.ui.Components.z5 E;
     public final t5 F;
     public final LinearLayout G;
     public final org.telegram.ui.Components.q6 H;
     public final org.telegram.ui.Components.q6 I;
-    public final xj0 J;
+    public final yj0 J;
     public final TextView K;
     public final TextView L;
     public final TextView M;
@@ -62,7 +62,7 @@ public final class e6 extends FrameLayout {
     public boolean f1214i0;
     public boolean f1215j0;
     public Runnable f1216k0;
-    public xj0 f1217l0;
+    public yj0 f1217l0;
     public SpannableStringBuilder m0;
     public final c6[] f1218n;
     public final wh.n f1219r;

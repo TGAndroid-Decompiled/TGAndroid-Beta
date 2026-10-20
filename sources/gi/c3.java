@@ -13,11 +13,11 @@ import com.google.android.gms.internal.cast.z5;
 import ei.o8;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.kw0;
-import org.telegram.ui.Components.le0;
+import org.telegram.ui.Components.lw0;
+import org.telegram.ui.Components.me0;
 import org.telegram.ui.Components.qc;
 import org.telegram.ui.LaunchActivity;
-public final class c3 extends kw0 implements org.telegram.ui.ActionBar.u3 {
+public final class c3 extends lw0 implements org.telegram.ui.ActionBar.u3 {
     public final d3 A0;
     public final Paint f11112w0;
     public boolean f11113x0;
@@ -41,11 +41,11 @@ public final class c3 extends kw0 implements org.telegram.ui.ActionBar.u3 {
         Paint paint;
         float f7;
         d3 d3Var = this.A0;
-        le0 le0Var = d3Var.f11158s0;
+        me0 me0Var = d3Var.f11158s0;
         Rect rect = d3Var.h;
         Rect rect2 = d3Var.f11142f;
         if (!this.f11113x0) {
-            int visibility = le0Var.getVisibility();
+            int visibility = me0Var.getVisibility();
             Paint paint2 = this.f11112w0;
             if (visibility != 0) {
                 float f10 = d3Var.f11143f0;
@@ -82,7 +82,7 @@ public final class c3 extends kw0 implements org.telegram.ui.ActionBar.u3 {
             if (z10) {
                 canvas.restore();
             }
-            if (le0Var.getVisibility() != 0) {
+            if (me0Var.getVisibility() != 0) {
                 paint2.setColor(h6.m1(d3Var.N0, d3Var.R));
                 int i11 = rect2.left;
                 if (i11 > 0) {
@@ -236,7 +236,7 @@ public final class c3 extends kw0 implements org.telegram.ui.ActionBar.u3 {
                     canvas2 = canvas;
                 }
                 if (!d3Var.V) {
-                    int w02 = h6.w0(h6.f20987d6, d3Var.E);
+                    int w02 = h6.w0(h6.f20990d6, d3Var.E);
                     paint2.setColor(w02);
                     d3Var.f11164x.setFlickerViewColor(w02);
                     org.telegram.ui.f3 f3Var = d3Var.U0;

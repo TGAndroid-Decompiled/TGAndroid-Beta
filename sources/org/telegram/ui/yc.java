@@ -6,17 +6,17 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.ResultCallback;
 import org.telegram.tgnet.TLRPC;
 public final class yc implements ResultCallback {
-    public final int f43438a;
-    public final zc f43439b;
+    public final int f43444a;
+    public final zc f43445b;
 
     public yc(zc zcVar, int i10) {
-        this.f43439b = zcVar;
-        this.f43438a = i10;
+        this.f43445b = zcVar;
+        this.f43444a = i10;
     }
 
     @Override
     public final void onComplete(Object obj) {
-        NotificationCenter.getInstance(this.f43438a).doOnIdle(new i0(16, this, (List) obj));
+        NotificationCenter.getInstance(this.f43444a).doOnIdle(new i0(16, this, (List) obj));
     }
 
     @Override
@@ -26,6 +26,6 @@ public final class yc implements ResultCallback {
 
     @Override
     public final void onError(TLRPC.TL_error tL_error) {
-        Toast.makeText(this.f43439b.getContext(), tL_error.text, 0).show();
+        Toast.makeText(this.f43445b.getContext(), tL_error.text, 0).show();
     }
 }

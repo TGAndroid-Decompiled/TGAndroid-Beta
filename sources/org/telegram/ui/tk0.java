@@ -4,17 +4,17 @@ import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.drawable.Drawable;
 public final class tk0 extends Drawable {
-    public final org.telegram.ui.Components.e11 f41687a;
-    public final org.telegram.ui.ActionBar.d6 f41688b;
+    public final org.telegram.ui.Components.f11 f41693a;
+    public final org.telegram.ui.ActionBar.d6 f41694b;
 
-    public tk0(org.telegram.ui.Components.e11 e11Var, org.telegram.ui.ActionBar.d6 d6Var) {
-        this.f41687a = e11Var;
-        this.f41688b = d6Var;
+    public tk0(org.telegram.ui.Components.f11 f11Var, org.telegram.ui.ActionBar.d6 d6Var) {
+        this.f41693a = f11Var;
+        this.f41694b = d6Var;
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        this.f41687a.c(getBounds().centerX() - (this.f41687a.f25728c / 2.0f), getBounds().centerY(), 1.0f, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.G6, this.f41688b), canvas);
+        this.f41693a.c(getBounds().centerX() - (this.f41693a.f26021c / 2.0f), getBounds().centerY(), 1.0f, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.G6, this.f41694b), canvas);
     }
 
     @Override

@@ -10,11 +10,11 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.Utilities;
-public final class fk0 implements org.telegram.ui.ActionBar.a2, org.telegram.ui.Components.kd0, Utilities.Callback2Return, org.telegram.ui.Components.nw0, q3.g, g2.g, qg.k0 {
-    public final int f37019a;
+public final class fk0 implements org.telegram.ui.ActionBar.a2, org.telegram.ui.Components.kd0, Utilities.Callback2Return, org.telegram.ui.Components.ow0, q3.g, g2.g, qg.k0 {
+    public final int f37025a;
 
     public fk0(int i10) {
-        this.f37019a = i10;
+        this.f37025a = i10;
     }
 
     public static AudioRecordingConfiguration c(Object obj) {
@@ -27,7 +27,7 @@ public final class fk0 implements org.telegram.ui.ActionBar.a2, org.telegram.ui.
 
     @Override
     public Typeface a() {
-        switch (this.f37019a) {
+        switch (this.f37025a) {
             case 25:
                 return AndroidUtilities.getTypeface("fonts/rmedium.ttf");
             case 26:
@@ -73,7 +73,7 @@ public final class fk0 implements org.telegram.ui.ActionBar.a2, org.telegram.ui.
 
     @Override
     public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f37019a) {
+        switch (this.f37025a) {
             case 0:
                 b2Var.dismiss();
                 return;

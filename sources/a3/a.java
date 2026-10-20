@@ -267,9 +267,9 @@ public abstract class a extends i2.b {
     public final void K(qf.b bVar) {
         i2.g gVar;
         this.f47d0 = true;
-        b2.w wVar = (b2.w) bVar.f44440c;
+        b2.w wVar = (b2.w) bVar.f44448c;
         wVar.getClass();
-        n2.h hVar = (n2.h) bVar.f44439b;
+        n2.h hVar = (n2.h) bVar.f44447b;
         i2.e.D(this.X, hVar);
         this.X = hVar;
         b2.w wVar2 = this.N;

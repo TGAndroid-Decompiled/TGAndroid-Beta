@@ -31,7 +31,7 @@ import ei.y2;
 import gi.d3;
 import gi.f4;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.uj0;
+import org.telegram.ui.Components.vj0;
 import org.telegram.ui.Stories.ProfileStoriesView;
 import org.telegram.ui.oz0;
 public final class b extends AnimatorListenerAdapter {
@@ -255,9 +255,9 @@ public final class b extends AnimatorListenerAdapter {
             case 14:
                 super.onAnimationStart(animator);
                 m7 m7Var = (m7) this.f659b;
-                uj0 uj0Var = ((l7) m7Var.f5620a.get(m7Var.d)).f5591c;
-                uj0Var.L = 2;
-                uj0Var.start();
+                vj0 vj0Var = ((l7) m7Var.f5620a.get(m7Var.d)).f5591c;
+                vj0Var.L = 2;
+                vj0Var.start();
                 return;
             default:
                 super.onAnimationStart(animator);

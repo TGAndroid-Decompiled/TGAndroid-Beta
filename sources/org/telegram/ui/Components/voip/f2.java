@@ -10,29 +10,29 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.ex0;
+import org.telegram.ui.Components.fx0;
 import w7.z5;
 public final class f2 extends LinearLayout {
-    public HashMap f31457a;
-    public ArrayList f31458b;
-    public ArrayList f31459c;
+    public HashMap f31408a;
+    public ArrayList f31409b;
+    public ArrayList f31410c;
     public TransitionSet d;
     public boolean e;
-    public boolean f31460f;
+    public boolean f31411f;
     public Runnable h;
-    public o1 f31461n;
-    public TextPaint f31462r;
+    public o1 f31412n;
+    public TextPaint f31413r;
 
     public final void a(int i10, String str, String str2) {
-        HashMap hashMap = this.f31457a;
+        HashMap hashMap = this.f31408a;
         if (hashMap.get(str2) != null) {
             return;
         }
-        e2 e2Var = new e2(getContext(), this.f31461n, i10);
-        e2Var.f31445a = str2;
+        e2 e2Var = new e2(getContext(), this.f31412n, i10);
+        e2Var.f31396a = str2;
         int dp = AndroidUtilities.displaySize.x - AndroidUtilities.dp(120.0f);
-        TextView textView = e2Var.f31447c;
-        StaticLayout c10 = ex0.c(str, textView.getPaint(), dp, Layout.Alignment.ALIGN_NORMAL, 0.0f, TextUtils.TruncateAt.END, dp, 10, true);
+        TextView textView = e2Var.f31398c;
+        StaticLayout c10 = fx0.c(str, textView.getPaint(), dp, Layout.Alignment.ALIGN_NORMAL, 0.0f, TextUtils.TruncateAt.END, dp, 10, true);
         if (c10 != null) {
             dp = 0;
             for (int i11 = 0; i11 < c10.getLineCount(); i11++) {
@@ -41,13 +41,13 @@ public final class f2 extends LinearLayout {
         }
         textView.setMaxWidth(dp);
         textView.setText(str);
-        e2Var.f31446b.setImageResource(i10);
+        e2Var.f31397b.setImageResource(i10);
         hashMap.put(str2, e2Var);
         if (this.e) {
-            this.f31458b.add(e2Var);
+            this.f31409b.add(e2Var);
             return;
         }
-        this.f31460f = true;
+        this.f31411f = true;
         addView(e2Var, z5.t(-2, -2, 1, 4, 0, 0, 4));
     }
 
@@ -55,21 +55,21 @@ public final class f2 extends LinearLayout {
         if (str == null) {
             return "";
         }
-        return TextUtils.ellipsize(str, this.f31462r, AndroidUtilities.dp(300.0f), TextUtils.TruncateAt.END);
+        return TextUtils.ellipsize(str, this.f31413r, AndroidUtilities.dp(300.0f), TextUtils.TruncateAt.END);
     }
 
     public final void c(String str) {
-        e2 e2Var = (e2) this.f31457a.remove(str);
-        this.f31461n.f31668m.remove(e2Var);
+        e2 e2Var = (e2) this.f31408a.remove(str);
+        this.f31412n.f31619m.remove(e2Var);
         if (e2Var != null) {
             if (this.e) {
-                if (!this.f31458b.remove(e2Var)) {
-                    this.f31459c.add(e2Var);
+                if (!this.f31409b.remove(e2Var)) {
+                    this.f31410c.add(e2Var);
                     return;
                 }
                 return;
             }
-            this.f31460f = true;
+            this.f31411f = true;
             removeView(e2Var);
         }
     }

@@ -263,14 +263,14 @@ public final class r extends g implements l.i, LayoutInflater.Factory2 {
                     if (!j7.h) {
                         try {
                             Field declaredField = Resources.class.getDeclaredField("mResourcesImpl");
-                            j7.f48072g = declaredField;
+                            j7.f48077g = declaredField;
                             declaredField.setAccessible(true);
                         } catch (NoSuchFieldException e) {
                             Log.e("ResourcesFlusher", "Could not retrieve Resources#mResourcesImpl field", e);
                         }
                         j7.h = true;
                     }
-                    Field field = j7.f48072g;
+                    Field field = j7.f48077g;
                     if (field != null) {
                         try {
                             obj = field.get(resources);
@@ -279,17 +279,17 @@ public final class r extends g implements l.i, LayoutInflater.Factory2 {
                             obj = null;
                         }
                         if (obj != null) {
-                            if (!j7.f48069b) {
+                            if (!j7.f48074b) {
                                 try {
                                     Field declaredField2 = obj.getClass().getDeclaredField("mDrawableCache");
-                                    j7.f48068a = declaredField2;
+                                    j7.f48073a = declaredField2;
                                     declaredField2.setAccessible(true);
                                 } catch (NoSuchFieldException e10) {
                                     Log.e("ResourcesFlusher", "Could not retrieve ResourcesImpl#mDrawableCache field", e10);
                                 }
-                                j7.f48069b = true;
+                                j7.f48074b = true;
                             }
-                            Field field2 = j7.f48068a;
+                            Field field2 = j7.f48073a;
                             if (field2 != null) {
                                 try {
                                     obj2 = field2.get(obj);
@@ -303,17 +303,17 @@ public final class r extends g implements l.i, LayoutInflater.Factory2 {
                         }
                     }
                 } else {
-                    if (!j7.f48069b) {
+                    if (!j7.f48074b) {
                         try {
                             Field declaredField3 = Resources.class.getDeclaredField("mDrawableCache");
-                            j7.f48068a = declaredField3;
+                            j7.f48073a = declaredField3;
                             declaredField3.setAccessible(true);
                         } catch (NoSuchFieldException e12) {
                             Log.e("ResourcesFlusher", "Could not retrieve Resources#mDrawableCache field", e12);
                         }
-                        j7.f48069b = true;
+                        j7.f48074b = true;
                     }
-                    Field field3 = j7.f48068a;
+                    Field field3 = j7.f48073a;
                     if (field3 != null) {
                         try {
                             obj2 = field3.get(resources);
@@ -560,7 +560,7 @@ public final class r extends g implements l.i, LayoutInflater.Factory2 {
                 }
                 if (viewGroup != null) {
                     a4.l lVar = new a4.l(this, 18);
-                    WeakHashMap weakHashMap = i0.f44818a;
+                    WeakHashMap weakHashMap = i0.f44826a;
                     r0.a0.i(viewGroup, lVar);
                     if (this.f10721s == null) {
                         this.K = (TextView) viewGroup.findViewById(2131296712);
@@ -626,7 +626,7 @@ public final class r extends g implements l.i, LayoutInflater.Factory2 {
                     ContentFrameLayout contentFrameLayout2 = (ContentFrameLayout) this.J.findViewById(16908290);
                     View decorView = this.f10708f.getDecorView();
                     contentFrameLayout2.h.set(decorView.getPaddingLeft(), decorView.getPaddingTop(), decorView.getPaddingRight(), decorView.getPaddingBottom());
-                    WeakHashMap weakHashMap2 = i0.f44818a;
+                    WeakHashMap weakHashMap2 = i0.f44826a;
                     if (contentFrameLayout2.isLaidOut()) {
                         contentFrameLayout2.requestLayout();
                     }
@@ -787,7 +787,7 @@ public final class r extends g implements l.i, LayoutInflater.Factory2 {
         this.f10712i0 = (1 << i10) | this.f10712i0;
         if (!this.f10711h0) {
             View decorView = this.f10708f.getDecorView();
-            WeakHashMap weakHashMap = i0.f44818a;
+            WeakHashMap weakHashMap = i0.f44826a;
             decorView.postOnAnimation(this.f10713j0);
             this.f10711h0 = true;
         }

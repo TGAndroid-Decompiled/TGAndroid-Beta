@@ -8,23 +8,23 @@ import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class on implements ri {
-    public final org.telegram.ui.ActionBar.n2 f29028a;
-    public final Utilities.Callback f29029b;
-    public final mn f29030c;
+    public final org.telegram.ui.ActionBar.n2 f29078a;
+    public final Utilities.Callback f29079b;
+    public final mn f29080c;
 
     public on(Utilities.Callback callback, org.telegram.ui.ActionBar.n2 n2Var, mn mnVar) {
-        this.f29028a = n2Var;
-        this.f29029b = callback;
-        this.f29030c = mnVar;
+        this.f29078a = n2Var;
+        this.f29079b = callback;
+        this.f29080c = mnVar;
     }
 
     @Override
     public final void b0(int i10, boolean z10, boolean z11, int i11, int i12, long j10, boolean z12, boolean z13, long j11) {
-        mn mnVar = this.f29030c;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = mnVar.f30546j0;
-        Utilities.Callback callback = this.f29029b;
+        mn mnVar = this.f29080c;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = mnVar.f30557j0;
+        Utilities.Callback callback = this.f29079b;
         if (i10 == 15) {
-            org.telegram.ui.ActionBar.n2 n2Var = this.f29028a;
+            org.telegram.ui.ActionBar.n2 n2Var = this.f29078a;
             f5.f0(n2Var.getContext(), n2Var.getResourceProvider(), null, null, new nn(0, callback), null);
         } else if (i10 == 7 || i10 == 8) {
             HashMap<Object, Object> selectedPhotos = chatAttachAlertPhotoLayout.getSelectedPhotos();
@@ -97,7 +97,7 @@ public final class on implements ri {
 
     @Override
     public final void u(gh ghVar) {
-        NotificationCenter.getInstance(this.f29028a.getCurrentAccount()).doOnIdle(ghVar);
+        NotificationCenter.getInstance(this.f29078a.getCurrentAccount()).doOnIdle(ghVar);
     }
 
     @Override

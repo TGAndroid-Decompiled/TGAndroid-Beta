@@ -49,7 +49,7 @@ public final class h1 extends LinearLayout {
         if (z10) {
             w02 = h6.m1(0.5f, h6.w0(i10, d6Var));
         } else {
-            w02 = h6.w0(h6.f21392z6, d6Var);
+            w02 = h6.w0(h6.f21395z6, d6Var);
         }
         i11.setTextColor(w02);
         linearLayout.addView(i11, z5.n(-1, -2));
@@ -84,7 +84,7 @@ public final class h1 extends LinearLayout {
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(LocaleController.formatString(i11, i12.toString()));
         spannableStringBuilder.append((CharSequence) "  d");
         l00 l00Var = new l00(8);
-        l00Var.f38704f = h6.x0(null, h6.Lj, false);
+        l00Var.f38710f = h6.x0(null, h6.Lj, false);
         spannableStringBuilder.setSpan(l00Var, spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 0);
         textView2.setText(spannableStringBuilder);
         textView.setText(LocaleController.getString(R.string.HashtagSuggestion2Text));

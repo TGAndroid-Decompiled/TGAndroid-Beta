@@ -1,12 +1,25 @@
 package org.telegram.messenger;
 
-import org.telegram.messenger.GoogleMapsProvider;
-public final class l4 implements h8.f {
-    public final GoogleMapsProvider.GoogleMapView f18839a;
-    public final q0.a f18840b;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+public final class l4 implements OnCompleteListener {
+    public final int f18859a;
+    public final q0.a f18860b;
 
-    public l4(GoogleMapsProvider.GoogleMapView googleMapView, q0.a aVar) {
-        this.f18839a = googleMapView;
-        this.f18840b = aVar;
+    public l4(q0.a aVar, int i10) {
+        this.f18859a = i10;
+        this.f18860b = aVar;
+    }
+
+    @Override
+    public void onComplete(Task task) {
+        switch (this.f18859a) {
+            case 0:
+                GoogleLocationProvider.b(this.f18860b, task);
+                return;
+            default:
+                GoogleLocationProvider.c(this.f18860b, task);
+                return;
+        }
     }
 }

@@ -7,7 +7,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.R;
-public class at extends t61 {
+public class at extends u61 {
     public final int N;
     public final int O;
     public final boolean P;
@@ -21,24 +21,24 @@ public class at extends t61 {
     public int X;
     public int Y;
     public boolean Z;
-    public boolean f24696a0;
-    public boolean f24697b0;
-    public int f24698c0;
-    public int f24699d0;
-    public String f24700e0;
-    public final ws f24701f0;
-    public boolean f24702g0;
-    public final z2 f24703h0;
+    public boolean f24711a0;
+    public boolean f24712b0;
+    public int f24713c0;
+    public int f24714d0;
+    public String f24715e0;
+    public final ws f24716f0;
+    public boolean f24717g0;
+    public final z2 f24718h0;
 
-    public at(im0 im0Var, Context context, int i10, int i11, boolean z10, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(im0Var, context, i10, 0, true, null, d6Var);
+    public at(jm0 jm0Var, Context context, int i10, int i11, boolean z10, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(jm0Var, context, i10, 0, true, null, d6Var);
         this.R = new ArrayList();
         this.S = new ArrayList();
         this.T = new ArrayList();
-        this.f24701f0 = new ws(this, 0);
-        this.f24702g0 = true;
-        this.f24703h0 = new z2(this, 3);
-        this.f30437s = new d(this, 8);
+        this.f24716f0 = new ws(this, 0);
+        this.f24717g0 = true;
+        this.f24718h0 = new z2(this, 3);
+        this.f30861s = new d(this, 8);
         this.N = i10;
         this.O = i11;
         this.P = z10;
@@ -49,16 +49,16 @@ public class at extends t61 {
     }
 
     public final void V() {
-        boolean isEmpty = TextUtils.isEmpty(this.f24700e0);
-        im0 im0Var = this.d;
+        boolean isEmpty = TextUtils.isEmpty(this.f24715e0);
+        jm0 jm0Var = this.d;
         if (!isEmpty) {
-            if (this.f24697b0 && !this.Z && im0Var != null) {
+            if (this.f24712b0 && !this.Z && jm0Var != null) {
                 int i10 = 0;
                 while (true) {
-                    if (i10 >= im0Var.getChildCount()) {
+                    if (i10 >= jm0Var.getChildCount()) {
                         break;
-                    } else if (im0Var.getChildAt(i10) instanceof b10) {
-                        if (this.f24697b0 && !this.Z && !TextUtils.isEmpty(this.f24700e0)) {
+                    } else if (jm0Var.getChildAt(i10) instanceof b10) {
+                        if (this.f24712b0 && !this.Z && !TextUtils.isEmpty(this.f24715e0)) {
                             W(true);
                         }
                     } else {
@@ -67,10 +67,10 @@ public class at extends t61 {
                 }
             }
         } else {
-            if (!this.f24702g0) {
-                if (im0Var != null) {
-                    for (int i11 = 0; i11 < im0Var.getChildCount(); i11++) {
-                        if (!(im0Var.getChildAt(i11) instanceof b10)) {
+            if (!this.f24717g0) {
+                if (jm0Var != null) {
+                    for (int i11 = 0; i11 < jm0Var.getChildCount(); i11++) {
+                        if (!(jm0Var.getChildAt(i11) instanceof b10)) {
                         }
                     }
                 }
@@ -78,7 +78,7 @@ public class at extends t61 {
             this.Q.a();
             break;
         }
-        this.f24702g0 = false;
+        this.f24717g0 = false;
     }
 
     public final void W(boolean r10) {

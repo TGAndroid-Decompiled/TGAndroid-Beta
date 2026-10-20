@@ -7,10 +7,10 @@ import org.telegram.messenger.MessagesStorage;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 public final class nw implements org.telegram.ui.Components.og {
-    public final cy f39689a;
+    public final cy f39695a;
 
     public nw(cy cyVar) {
-        this.f39689a = cyVar;
+        this.f39695a = cyVar;
     }
 
     @Override
@@ -20,13 +20,13 @@ public final class nw implements org.telegram.ui.Components.og {
 
     @Override
     public final void L(CharSequence charSequence, boolean z10, int i10, int i11, long j10) {
-        cy cyVar = this.f39689a;
+        cy cyVar = this.f39695a;
         if (cyVar.C2 != null && !cyVar.I2.isEmpty()) {
             ArrayList arrayList = new ArrayList();
             for (int i12 = 0; i12 < cyVar.I2.size(); i12++) {
                 arrayList.add(MessagesStorage.TopicKey.of(((Long) cyVar.I2.get(i12)).longValue(), 0L));
             }
-            cy cyVar2 = this.f39689a;
+            cy cyVar2 = this.f39695a;
             cyVar2.C2.w(cyVar2, arrayList, charSequence, false, z10, i10, i11, null);
         }
     }
@@ -58,13 +58,13 @@ public final class nw implements org.telegram.ui.Components.og {
 
     @Override
     public final void g1(CharSequence charSequence, boolean z10, boolean z11) {
-        cy cyVar = this.f39689a;
+        cy cyVar = this.f39695a;
         AndroidUtilities.runOnUIThread(new sv(cyVar, 13), 100L);
-        org.telegram.ui.Components.jr0 jr0Var = cyVar.G2;
-        if (jr0Var != null) {
+        org.telegram.ui.Components.kr0 kr0Var = cyVar.G2;
+        if (kr0Var != null) {
             if (z10) {
-                if (jr0Var.h) {
-                    jr0Var.e(charSequence, true);
+                if (kr0Var.h) {
+                    kr0Var.e(charSequence, true);
                     return;
                 }
                 return;

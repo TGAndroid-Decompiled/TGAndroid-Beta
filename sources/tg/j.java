@@ -3,22 +3,22 @@ package tg;
 import android.animation.AnimatorSet;
 import android.animation.ValueAnimator;
 public final class j implements Runnable {
-    public final int f47092a;
-    public final n f47093b;
+    public final int f47097a;
+    public final n f47098b;
 
     public j(n nVar, int i10) {
-        this.f47092a = i10;
-        this.f47093b = nVar;
+        this.f47097a = i10;
+        this.f47098b = nVar;
     }
 
     @Override
     public final void run() {
         ValueAnimator valueAnimator;
-        switch (this.f47092a) {
+        switch (this.f47097a) {
             case 0:
-                n nVar = this.f47093b;
-                AnimatorSet animatorSet = nVar.f47107d0;
-                if ((animatorSet != null && animatorSet.isRunning()) || ((valueAnimator = nVar.f47106c0) != null && valueAnimator.isRunning())) {
+                n nVar = this.f47098b;
+                AnimatorSet animatorSet = nVar.f47112d0;
+                if ((animatorSet != null && animatorSet.isRunning()) || ((valueAnimator = nVar.f47111c0) != null && valueAnimator.isRunning())) {
                     nVar.j(nVar.L);
                     return;
                 } else {
@@ -26,7 +26,7 @@ public final class j implements Runnable {
                     return;
                 }
             default:
-                this.f47093b.l();
+                this.f47098b.l();
                 return;
         }
     }

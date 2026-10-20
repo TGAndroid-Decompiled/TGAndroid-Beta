@@ -11,10 +11,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.HashSet;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.aw;
-import org.telegram.ui.Components.im0;
+import org.telegram.ui.Components.jm0;
 import org.telegram.ui.et;
 import org.telegram.ui.s10;
-public final class v extends im0 {
+public final class v extends jm0 {
     public final int V2 = 0;
     public final Object W2;
     public final KeyEvent.Callback X2;
@@ -52,7 +52,7 @@ public final class v extends im0 {
                 canvas.restore();
                 return;
             case 1:
-                HashSet hashSet = org.telegram.ui.l4.f38728b1;
+                HashSet hashSet = org.telegram.ui.l4.f38734b1;
                 ((org.telegram.ui.l4) obj).n();
                 super.dispatchDraw(canvas);
                 return;
@@ -60,7 +60,7 @@ public final class v extends im0 {
                 Paint paint = (Paint) obj;
                 aw awVar = (aw) callback;
                 org.telegram.ui.Components.f6 f6Var = awVar.M;
-                if (f6Var != null && awVar.K >= 0 && awVar.L >= 0 && awVar.f24715n != null && this.G) {
+                if (f6Var != null && awVar.K >= 0 && awVar.L >= 0 && awVar.f24728n != null && this.G) {
                     float d = f6Var.d(0.0f, false);
                     if (d > 0.0f) {
                         int i11 = Integer.MAX_VALUE;
@@ -74,7 +74,7 @@ public final class v extends im0 {
                             }
                         }
                         if (i11 < i12) {
-                            paint.setColor(org.telegram.ui.ActionBar.h6.m1(d, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Ld, this.f27299n2)));
+                            paint.setColor(org.telegram.ui.ActionBar.h6.m1(d, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.Ld, this.f27579n2)));
                             canvas.drawRect(0.0f, i11, getMeasuredWidth(), i12, paint);
                         }
                         invalidate();
@@ -114,14 +114,14 @@ public final class v extends im0 {
         switch (this.V2) {
             case 1:
                 org.telegram.ui.x3 x3Var = ((org.telegram.ui.l4) this.W2).K;
-                if (x3Var != null && (w3Var = x3Var.f43005c) != null) {
+                if (x3Var != null && (w3Var = x3Var.f43011c) != null) {
                     w3Var.invalidate();
                     return;
                 }
                 return;
             case 2:
                 aw awVar = (aw) this.X2;
-                awVar.f24714f.a();
+                awVar.f24727f.a();
                 aw.t(awVar).invalidate();
                 return;
             default:
@@ -135,7 +135,7 @@ public final class v extends im0 {
             case 2:
                 super.onDetachedFromWindow();
                 aw awVar = (aw) this.X2;
-                org.telegram.ui.Components.a6.release(aw.u(awVar), awVar.f24712b);
+                org.telegram.ui.Components.a6.release(aw.u(awVar), awVar.f24725b);
                 return;
             default:
                 super.onDetachedFromWindow();
@@ -156,13 +156,13 @@ public final class v extends im0 {
                 return false;
             case 1:
                 org.telegram.ui.l4 l4Var = (org.telegram.ui.l4) this.W2;
-                if (l4Var.d != null && l4Var.f35516b == null && (((m1Var = l4Var.H) == null || !m1Var.isShowing()) && (motionEvent.getAction() == 1 || motionEvent.getAction() == 3))) {
-                    l4Var.f35516b = null;
+                if (l4Var.d != null && l4Var.f35522b == null && (((m1Var = l4Var.H) == null || !m1Var.isShowing()) && (motionEvent.getAction() == 1 || motionEvent.getAction() == 3))) {
+                    l4Var.f35522b = null;
                     l4Var.d = null;
-                    l4Var.f35518f = null;
-                } else if (l4Var.d != null && l4Var.f35516b != null && motionEvent.getAction() == 1 && (getAdapter() instanceof org.telegram.ui.j4)) {
+                    l4Var.f35524f = null;
+                } else if (l4Var.d != null && l4Var.f35522b != null && motionEvent.getAction() == 1 && (getAdapter() instanceof org.telegram.ui.j4)) {
                     motionEvent2 = motionEvent;
-                    org.telegram.ui.l4.l(l4Var, (org.telegram.ui.j4) getAdapter(), motionEvent2, l4Var.f35518f, l4Var.d, 0, 0);
+                    org.telegram.ui.l4.l(l4Var, (org.telegram.ui.j4) getAdapter(), motionEvent2, l4Var.f35524f, l4Var.d, 0, 0);
                     return super.onInterceptTouchEvent(motionEvent2);
                 }
                 motionEvent2 = motionEvent;
@@ -170,7 +170,7 @@ public final class v extends im0 {
             default:
                 et q6 = et.q();
                 aw awVar = (aw) this.X2;
-                boolean r10 = q6.r(motionEvent, awVar.h, awVar.N, this.f27299n2);
+                boolean r10 = q6.r(motionEvent, awVar.h, awVar.N, this.f27579n2);
                 if (!super.onInterceptTouchEvent(motionEvent) && !r10) {
                     return false;
                 }
@@ -187,7 +187,7 @@ public final class v extends im0 {
                 return;
             case 2:
                 super.onLayout(z10, i10, i11, i12, i13);
-                ((aw) this.X2).f24714f.a();
+                ((aw) this.X2).f24727f.a();
                 return;
             default:
                 super.onLayout(z10, i10, i11, i12, i13);
@@ -200,7 +200,7 @@ public final class v extends im0 {
         switch (this.V2) {
             case 2:
                 View.MeasureSpec.getSize(i10);
-                ((aw) this.X2).f24720y.y1(40);
+                ((aw) this.X2).f24733y.y1(40);
                 super.onMeasure(i10, i11);
                 return;
             default:
@@ -215,10 +215,10 @@ public final class v extends im0 {
         switch (this.V2) {
             case 1:
                 org.telegram.ui.l4 l4Var = (org.telegram.ui.l4) this.W2;
-                if (l4Var.d != null && l4Var.f35516b == null && (((m1Var = l4Var.H) == null || !m1Var.isShowing()) && (motionEvent.getAction() == 1 || motionEvent.getAction() == 3))) {
-                    l4Var.f35516b = null;
+                if (l4Var.d != null && l4Var.f35522b == null && (((m1Var = l4Var.H) == null || !m1Var.isShowing()) && (motionEvent.getAction() == 1 || motionEvent.getAction() == 3))) {
+                    l4Var.f35522b = null;
                     l4Var.d = null;
-                    l4Var.f35518f = null;
+                    l4Var.f35524f = null;
                 }
                 return super.onTouchEvent(motionEvent);
             default:

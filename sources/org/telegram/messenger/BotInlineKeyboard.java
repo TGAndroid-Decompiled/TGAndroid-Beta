@@ -195,7 +195,7 @@ public class BotInlineKeyboard {
 
         @Override
         public final boolean isEmpty() {
-            return o0.a(this);
+            return p0.a(this);
         }
 
         private KeyboardSourceArray(Button[][] buttonArr, int i10) {

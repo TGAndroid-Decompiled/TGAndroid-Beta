@@ -6,25 +6,25 @@ import n6.l;
 import y2.g;
 import y2.i;
 public final class b implements g {
-    public final Object f50628a;
+    public final Object f50633a;
 
     public b(x6.a aVar) {
         l.h(aVar);
-        this.f50628a = aVar;
+        this.f50633a = aVar;
     }
 
     @Override
     public k4.d e(i iVar, long j10, long j11, IOException iOException, int i10) {
-        ((l2.d) this.f50628a).f15833a.y(iOException);
+        ((l2.d) this.f50633a).f15833a.y(iOException);
         return y2.l.e;
     }
 
     @Override
     public void k(i iVar, long j10, long j11) {
         boolean z10;
-        l2.d dVar = (l2.d) this.f50628a;
-        synchronized (c.f50630b) {
-            z10 = c.f50631c;
+        l2.d dVar = (l2.d) this.f50633a;
+        synchronized (c.f50635b) {
+            z10 = c.f50636c;
         }
         if (!z10) {
             dVar.f15833a.y(new IOException(new ConcurrentModificationException()));
@@ -34,7 +34,7 @@ public final class b implements g {
     }
 
     public b(l2.d dVar) {
-        this.f50628a = dVar;
+        this.f50633a = dVar;
     }
 
     @Override

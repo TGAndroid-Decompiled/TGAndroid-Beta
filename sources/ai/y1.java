@@ -68,7 +68,7 @@ public final class y1 extends FrameLayout implements ne.d {
         } else {
             y1Var.f2471n = document;
             TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, AndroidUtilities.dp(100.0f));
-            SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(document, org.telegram.ui.ActionBar.h6.f20929a7, 0.3f);
+            SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(document, org.telegram.ui.ActionBar.h6.f20932a7, 0.3f);
             StringBuilder sb2 = new StringBuilder();
             sb2.append(i10);
             sb2.append("_");
@@ -89,17 +89,17 @@ public final class y1 extends FrameLayout implements ne.d {
     public final void b() {
         int f7;
         yh.d1 d1Var = this.f2469c;
-        d1Var.f50211x = null;
+        d1Var.f50216x = null;
         Integer num = this.h;
         ne.b bVar = this.f2472r;
         TextView textView = this.f2470f;
         if (num != null) {
-            f7 = org.telegram.ui.ActionBar.h6.v(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20987d6, false), org.telegram.ui.ActionBar.h6.m1(AndroidUtilities.lerp(0.15f, 1.0f, bVar.e), this.h.intValue()));
-            d1Var.f50211x = this.h;
+            f7 = org.telegram.ui.ActionBar.h6.v(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f20990d6, false), org.telegram.ui.ActionBar.h6.m1(AndroidUtilities.lerp(0.15f, 1.0f, bVar.e), this.h.intValue()));
+            d1Var.f50216x = this.h;
             this.f2468b.invalidate();
             textView.setTextColor(i0.a.f(bVar.e, this.h.intValue(), -1));
         } else if (this.f2473s) {
-            int i10 = org.telegram.ui.ActionBar.h6.f20987d6;
+            int i10 = org.telegram.ui.ActionBar.h6.f20990d6;
             int x02 = org.telegram.ui.ActionBar.h6.x0(null, i10, false);
             int i11 = org.telegram.ui.ActionBar.h6.G6;
             int f10 = i0.a.f(bVar.e, i0.a.f(0.05f, x02, org.telegram.ui.ActionBar.h6.x0(null, i11, false)), org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.Oh, false));

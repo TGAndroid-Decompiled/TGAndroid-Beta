@@ -2,8 +2,8 @@ package l2;
 
 import b2.w;
 import e2.m0;
-import u2.d1;
-public final class m implements d1 {
+import u2.e1;
+public final class m implements e1 {
     public final w f15877a;
     public long[] f15879c;
     public boolean d;
@@ -79,7 +79,7 @@ public final class m implements d1 {
             hVar.setFlags(1);
             return -4;
         } else {
-            bVar.f44440c = this.f15877a;
+            bVar.f44448c = this.f15877a;
             this.f15880f = true;
             return -5;
         }

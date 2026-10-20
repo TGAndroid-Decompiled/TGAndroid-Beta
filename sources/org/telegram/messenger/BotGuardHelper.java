@@ -90,7 +90,7 @@ public class BotGuardHelper extends BaseController {
         TLRPC.User user = getMessagesController().getUser(Long.valueOf(j11));
         if (!z10) {
             if (!SharedPrefsHelper.isWebViewConfirmShown(this.currentAccount, j11) && !getMessagesController().whitelistedBots.contains(Long.valueOf(j11))) {
-                org.telegram.ui.Components.f5.n(R, user, new n0(this, j10, j11, j12, 0), new y1(8));
+                org.telegram.ui.Components.f5.n(R, user, new o0(this, j10, j11, j12, 0), new z1(8));
                 return;
             } else {
                 openGuardBotWebApp(j10, j11, j12, true);

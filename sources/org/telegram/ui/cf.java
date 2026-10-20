@@ -5,21 +5,21 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.function.ToIntFunction;
 public final class cf implements ToIntFunction {
-    public final int f35945a;
-    public final Object f35946b;
+    public final int f35951a;
+    public final Object f35952b;
 
     public cf(Object obj, int i10) {
-        this.f35945a = i10;
-        this.f35946b = obj;
+        this.f35951a = i10;
+        this.f35952b = obj;
     }
 
     @Override
     public final int applyAsInt(Object obj) {
-        switch (this.f35945a) {
+        switch (this.f35951a) {
             case 0:
-                return ((Integer) ((HashMap) this.f35946b).get((View) obj)).intValue();
+                return ((Integer) ((HashMap) this.f35952b).get((View) obj)).intValue();
             default:
-                return ((Integer) ((ArrayList) this.f35946b).get(((Integer) obj).intValue())).intValue();
+                return ((Integer) ((ArrayList) this.f35952b).get(((Integer) obj).intValue())).intValue();
         }
     }
 }

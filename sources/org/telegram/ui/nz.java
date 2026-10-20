@@ -2,22 +2,22 @@ package org.telegram.ui;
 
 import android.view.View;
 import org.telegram.tgnet.TLRPC;
-public final class nz implements org.telegram.ui.Components.yl0, org.telegram.ui.ActionBar.a2 {
-    public final int f39717a;
-    public final n00 f39718b;
+public final class nz implements org.telegram.ui.Components.zl0, org.telegram.ui.ActionBar.a2 {
+    public final int f39723a;
+    public final n00 f39724b;
 
     public nz(n00 n00Var, int i10) {
-        this.f39717a = i10;
-        this.f39718b = n00Var;
+        this.f39723a = i10;
+        this.f39724b = n00Var;
     }
 
     @Override
     public boolean a(int i10, View view) {
-        n00 n00Var = this.f39718b;
+        n00 n00Var = this.f39724b;
         e00 e00Var = (e00) n00Var.P.get(i10);
         if (e00Var != null && (view instanceof org.telegram.ui.Cells.va)) {
             org.telegram.ui.Cells.va vaVar = (org.telegram.ui.Cells.va) view;
-            n00Var.v0(e00Var, vaVar.getName(), vaVar.getCurrentObject(), e00Var.f36468g);
+            n00Var.v0(e00Var, vaVar.getName(), vaVar.getCurrentObject(), e00Var.f36474g);
             return true;
         }
         return false;
@@ -25,28 +25,28 @@ public final class nz implements org.telegram.ui.Components.yl0, org.telegram.ui
 
     @Override
     public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f39717a) {
+        switch (this.f39723a) {
             case 1:
-                n00 n00Var = this.f39718b;
+                n00 n00Var = this.f39724b;
                 org.telegram.ui.ActionBar.b2 b2Var2 = null;
                 if (n00Var.getParentActivity() != null) {
                     org.telegram.ui.ActionBar.b2 b2Var3 = new org.telegram.ui.ActionBar.b2(n00Var.getParentActivity(), 3, null);
-                    b2Var3.f20662g0 = false;
+                    b2Var3.f20665g0 = false;
                     b2Var3.show();
                     b2Var2 = b2Var3;
                 }
                 TLRPC.TL_messages_updateDialogFilter tL_messages_updateDialogFilter = new TLRPC.TL_messages_updateDialogFilter();
-                tL_messages_updateDialogFilter.f20396id = n00Var.f39374r.f17799id;
+                tL_messages_updateDialogFilter.f20399id = n00Var.f39380r.f17799id;
                 n00Var.getConnectionsManager().sendRequest(tL_messages_updateDialogFilter, new vc(27, n00Var, b2Var2));
                 return;
             case 2:
-                this.f39718b.q0();
+                this.f39724b.q0();
                 return;
             case 3:
-                this.f39718b.q0();
+                this.f39724b.q0();
                 return;
             default:
-                this.f39718b.finishFragment();
+                this.f39724b.finishFragment();
                 return;
         }
     }

@@ -5,25 +5,25 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 public final class m8 extends LinearLayout {
-    public TextView f22606a;
-    public boolean f22607b;
+    public TextView f22609a;
+    public boolean f22610b;
 
     @Override
     public final void onMeasure(int i10, int i11) {
         View view;
         int measuredHeight;
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
-        if (this.f22607b && (view = (View) getParent()) != null && getMeasuredHeight() < (measuredHeight = ((view.getMeasuredHeight() - view.getPaddingBottom()) - view.getPaddingTop()) - AndroidUtilities.dp(24.0f))) {
+        if (this.f22610b && (view = (View) getParent()) != null && getMeasuredHeight() < (measuredHeight = ((view.getMeasuredHeight() - view.getPaddingBottom()) - view.getPaddingTop()) - AndroidUtilities.dp(24.0f))) {
             setMeasuredDimension(getMeasuredWidth(), measuredHeight);
         }
     }
 
     public void setAddOnClickListener(View.OnClickListener onClickListener) {
-        this.f22606a.setOnClickListener(onClickListener);
+        this.f22609a.setOnClickListener(onClickListener);
     }
 
     public void setIsLast(boolean z10) {
-        this.f22607b = z10;
+        this.f22610b = z10;
         requestLayout();
     }
 }

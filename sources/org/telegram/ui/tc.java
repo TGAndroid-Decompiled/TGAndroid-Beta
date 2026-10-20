@@ -10,12 +10,12 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_stories;
 public final class tc extends FrameLayout implements org.telegram.ui.ActionBar.y5 {
-    public final oo0 f41630a;
-    public final sc f41631b;
-    public final org.telegram.ui.ActionBar.j5 f41632c;
+    public final oo0 f41636a;
+    public final sc f41637b;
+    public final org.telegram.ui.ActionBar.j5 f41638c;
     public final TextView d;
     public final TextView e;
-    public final LinearLayout f41633f;
+    public final LinearLayout f41639f;
     public final bd h;
 
     public tc(bd bdVar, Activity activity) {
@@ -31,16 +31,16 @@ public final class tc extends FrameLayout implements org.telegram.ui.ActionBar.y
         Context context = getContext();
         d6Var = ((org.telegram.ui.ActionBar.n2) bdVar).resourceProvider;
         oo0 oo0Var = new oo0(context, d6Var);
-        this.f41630a = oo0Var;
+        this.f41636a = oo0Var;
         oo0Var.setProgressToGradient(1.0f);
         oo0Var.F = true;
         addView(oo0Var, w7.z5.e(-1, -1, 119));
         Context context2 = getContext();
         i10 = ((org.telegram.ui.ActionBar.n2) bdVar).currentAccount;
-        long j10 = bdVar.f35566a;
+        long j10 = bdVar.f35572a;
         d6Var2 = ((org.telegram.ui.ActionBar.n2) bdVar).resourceProvider;
         sc scVar = new sc(this, context2, i10, j10, d6Var2);
-        this.f41631b = scVar;
+        this.f41637b = scVar;
         boolean z10 = bdVar.d;
         if (z10) {
             f7 = 230.0f;
@@ -56,7 +56,7 @@ public final class tc extends FrameLayout implements org.telegram.ui.ActionBar.y
         addView(scVar, w7.z5.d(-1, f11, 80, 0.0f, 0.0f, 0.0f, f10));
         if (bdVar instanceof z50) {
             org.telegram.ui.ActionBar.j5 j5Var = new org.telegram.ui.ActionBar.j5(getContext());
-            this.f41632c = j5Var;
+            this.f41638c = j5Var;
             j5Var.setGravity(19);
             int i13 = org.telegram.ui.ActionBar.h6.A8;
             j5Var.setTextColor(bdVar.getThemedColor(i13));
@@ -66,7 +66,7 @@ public final class tc extends FrameLayout implements org.telegram.ui.ActionBar.y
             a();
             addView(j5Var, w7.z5.d(-1, -2.0f, 80, 72.0f, 0.0f, 0.0f, 16.0f));
             LinearLayout linearLayout = new LinearLayout(activity);
-            this.f41633f = linearLayout;
+            this.f41639f = linearLayout;
             linearLayout.setOrientation(0);
             linearLayout.setBackground(org.telegram.ui.ActionBar.h6.h0(org.telegram.ui.ActionBar.h6.m1(0.065f, -16777216), -16777216));
             linearLayout.setGravity(17);
@@ -78,13 +78,13 @@ public final class tc extends FrameLayout implements org.telegram.ui.ActionBar.y
             TextView textView2 = new TextView(activity);
             this.e = textView2;
             textView2.setTextSize(1, 12.0f);
-            if (bdVar.d && bdVar.f35589s == -1) {
+            if (bdVar.d && bdVar.f35595s == -1) {
                 i11 = bdVar.getThemedColor(i13);
             } else {
                 i11 = -1;
             }
             textView2.setTextColor(i11);
-            TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = bdVar.f35570c;
+            TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = bdVar.f35576c;
             if (tL_premium_boostsStatus != null) {
                 i12 = tL_premium_boostsStatus.boosts;
             } else {
@@ -113,7 +113,7 @@ public final class tc extends FrameLayout implements org.telegram.ui.ActionBar.y
         } else {
             i10 = 20;
         }
-        org.telegram.ui.ActionBar.j5 j5Var = this.f41632c;
+        org.telegram.ui.ActionBar.j5 j5Var = this.f41638c;
         j5Var.setTextSize(i10);
         if (AndroidUtilities.isTablet()) {
             f7 = -2.0f;
@@ -129,17 +129,17 @@ public final class tc extends FrameLayout implements org.telegram.ui.ActionBar.y
     @Override
     public final void d() {
         int themedColor;
-        org.telegram.ui.ActionBar.j5 j5Var = this.f41632c;
+        org.telegram.ui.ActionBar.j5 j5Var = this.f41638c;
         if (j5Var != null) {
             bd bdVar = this.h;
             int i10 = -1;
-            if (bdVar.d && bdVar.f35589s != -1) {
+            if (bdVar.d && bdVar.f35595s != -1) {
                 themedColor = -1;
             } else {
                 themedColor = bdVar.getThemedColor(org.telegram.ui.ActionBar.h6.A8);
             }
             j5Var.setTextColor(themedColor);
-            if (bdVar.d && bdVar.f35589s == -1) {
+            if (bdVar.d && bdVar.f35595s == -1) {
                 i10 = bdVar.getThemedColor(org.telegram.ui.ActionBar.h6.A8);
             }
             this.e.setTextColor(i10);

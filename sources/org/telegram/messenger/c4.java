@@ -1,35 +1,29 @@
 package org.telegram.messenger;
+public final class c4 implements Runnable {
+    public final int f18017a;
+    public final boolean f18018b;
 
-import org.telegram.messenger.GiftAuctionController;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-public final class c4 implements Utilities.Callback2 {
-    public final int f18022a;
-    public final BaseController f18023b;
-    public final Object f18024c;
-    public final Object d;
-    public final Object e;
-
-    public c4(BaseController baseController, Object obj, Object obj2, Object obj3, int i10) {
-        this.f18022a = i10;
-        this.f18023b = baseController;
-        this.f18024c = obj;
-        this.d = obj2;
-        this.e = obj3;
+    public c4(int i10, boolean z10) {
+        this.f18017a = i10;
+        this.f18018b = z10;
     }
 
     @Override
-    public final void run(Object obj, Object obj2) {
-        switch (this.f18022a) {
+    public final void run() {
+        int i10 = this.f18017a;
+        boolean z10 = this.f18018b;
+        switch (i10) {
             case 0:
-                ((GiftAuctionController) this.f18023b).lambda$sendBid$9((Utilities.Callback2) this.f18024c, (GiftAuctionController.AuctionInternal) this.d, (TLRPC.TL_payments_getPaymentForm) this.e, (TLRPC.PaymentForm) obj, (TLRPC.TL_error) obj2);
+                FingerprintController.b(z10);
                 return;
             case 1:
-                ((MediaDataController) this.f18023b).lambda$searchStickers$248((MediaDataController.SearchStickersKey) this.f18024c, (MediaDataController.SearchStickersResult) this.d, (Utilities.Callback) this.e, (TLRPC.messages_FoundStickers) obj, (TLRPC.TL_error) obj2);
+                FingerprintController.a(z10);
+                return;
+            case 2:
+                LiteMode.lambda$onPowerSaverApplied$0(z10);
                 return;
             default:
-                ((MediaDataController) this.f18023b).lambda$getStickerSet$38((String) this.f18024c, (Utilities.Callback) this.d, (TLRPC.InputStickerSet) this.e, (Boolean) obj, (TLRPC.TL_messages_stickerSet) obj2);
+                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didSetNewTheme, Boolean.FALSE, Boolean.valueOf(z10));
                 return;
         }
     }

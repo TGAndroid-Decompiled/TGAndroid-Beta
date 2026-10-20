@@ -2,22 +2,22 @@ package org.telegram.ui;
 
 import android.util.SparseIntArray;
 public final class jn implements Runnable {
-    public final int f38277a;
-    public final on f38278b;
+    public final int f38283a;
+    public final on f38284b;
 
     public jn(on onVar, int i10) {
-        this.f38277a = i10;
-        this.f38278b = onVar;
+        this.f38283a = i10;
+        this.f38284b = onVar;
     }
 
     @Override
     public final void run() {
         org.telegram.ui.ActionBar.d5 d5Var;
         org.telegram.ui.ActionBar.d5 d5Var2;
-        switch (this.f38277a) {
+        switch (this.f38283a) {
             case 0:
                 SparseIntArray sparseIntArray = new SparseIntArray();
-                on onVar = this.f38278b;
+                on onVar = this.f38284b;
                 onVar.e = sparseIntArray;
                 qn qnVar = onVar.V;
                 org.telegram.ui.ActionBar.f5 f5Var = (org.telegram.ui.ActionBar.f5) qnVar.getThemedDrawable("drawableMsgOut");
@@ -30,11 +30,11 @@ public final class jn implements Runnable {
                 f5Var2.J = d5Var2.getMessageDrawableOutMediaStart();
                 onVar.I.K = 0.0f;
                 onVar.J.K = 0.0f;
-                qnVar.yc();
+                qnVar.zc();
                 onVar.m(0.0f);
                 return;
             default:
-                on onVar2 = this.f38278b;
+                on onVar2 = this.f38284b;
                 onVar2.I.J = null;
                 onVar2.J.J = null;
                 onVar2.e = null;

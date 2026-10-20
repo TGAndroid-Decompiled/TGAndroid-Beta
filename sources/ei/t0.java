@@ -14,7 +14,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.uj0;
+import org.telegram.ui.Components.vj0;
 import org.telegram.ui.Components.yc;
 public final class t0 extends View {
     public boolean E;
@@ -37,7 +37,7 @@ public final class t0 extends View {
     public final Paint e;
     public final Paint f9832f;
     public final yc h;
-    public uj0 f9833n;
+    public vj0 f9833n;
     public final StaticLayout f9834r;
     public final float f9835s;
     public final float v;
@@ -61,14 +61,14 @@ public final class t0 extends View {
 
     public final void b(int i10, int i11, CharSequence charSequence) {
         float f7;
-        uj0 uj0Var = this.f9833n;
-        if (uj0Var != null) {
-            uj0Var.setCallback(null);
+        vj0 vj0Var = this.f9833n;
+        if (vj0Var != null) {
+            vj0Var.setCallback(null);
             this.f9833n.C(true);
         }
-        uj0 uj0Var2 = new uj0(i10, AndroidUtilities.dp(36.0f), AndroidUtilities.dp(36.0f));
-        this.f9833n = uj0Var2;
-        uj0Var2.setCallback(this);
+        vj0 vj0Var2 = new vj0(i10, AndroidUtilities.dp(36.0f), AndroidUtilities.dp(36.0f));
+        this.f9833n = vj0Var2;
+        vj0Var2.setCallback(this);
         this.f9833n.start();
         StaticLayout staticLayout = new StaticLayout(charSequence, this.f9831c, AndroidUtilities.displaySize.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
         this.f9836w = staticLayout;
@@ -185,9 +185,9 @@ public final class t0 extends View {
         }
         if (d10 > 0.0f) {
             float f15 = d10 * d;
-            uj0 uj0Var = this.f9833n;
-            if (uj0Var != null) {
-                uj0Var.setAlpha((int) (f15 * f12));
+            vj0 vj0Var = this.f9833n;
+            if (vj0Var != null) {
+                vj0Var.setAlpha((int) (f15 * f12));
                 this.f9833n.setBounds((int) (rectF.left + AndroidUtilities.dp(9.0f)), (int) (rectF.top + AndroidUtilities.dp(6.0f)), (int) (rectF.left + AndroidUtilities.dp(45.0f)), (int) (rectF.top + AndroidUtilities.dp(f11)));
                 this.f9833n.draw(canvas2);
             }
@@ -216,7 +216,7 @@ public final class t0 extends View {
             return true;
         }
         if (motionEvent.getAction() == 1) {
-            if (ycVar.f32598i) {
+            if (ycVar.f32631i) {
                 if (contains) {
                     if (this.G) {
                         Runnable runnable = this.Q;

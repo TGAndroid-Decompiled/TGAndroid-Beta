@@ -70,7 +70,7 @@ public final class n extends FrameLayout {
         x90 x90Var = new x90(activity, null);
         this.h = x90Var;
         x90Var.setTextSize(1, 13.0f);
-        x90Var.setLinkTextColor(h6.w0(h6.f21046gc, d6Var));
+        x90Var.setLinkTextColor(h6.w0(h6.f21049gc, d6Var));
         x90Var.setTextColor(h6.w0(i11, d6Var));
         linearLayout.addView(x90Var, z5.k(0.0f, 0.0f, 0.0f, 0.0f, -1, -2));
         NotificationCenter.listenEmojiLoading(x90Var);
@@ -85,7 +85,7 @@ public final class n extends FrameLayout {
         b6.a(imageView);
         imageView.setImageResource(R.drawable.msg_close);
         imageView.setScaleType(ImageView.ScaleType.CENTER);
-        imageView.setColorFilter(new PorterDuffColorFilter(h6.w0(h6.f20993de, d6Var), PorterDuff.Mode.SRC_IN));
+        imageView.setColorFilter(new PorterDuffColorFilter(h6.w0(h6.f20996de, d6Var), PorterDuff.Mode.SRC_IN));
         imageView.setOnClickListener(new ah.f(5));
         imageView.setVisibility(8);
         e.addView(imageView, z5.t(32, 32, 53, 10, 3, 0, 2));

@@ -1,26 +1,26 @@
 package org.telegram.ui.Components;
 public final class dn implements Runnable {
-    public final int f25593a;
-    public final fo f25594b;
-    public final int f25595c;
+    public final int f25570a;
+    public final fo f25571b;
+    public final int f25572c;
 
     public dn(fo foVar, int i10, int i11) {
-        this.f25593a = i11;
-        this.f25594b = foVar;
-        this.f25595c = i10;
+        this.f25570a = i11;
+        this.f25571b = foVar;
+        this.f25572c = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f25593a) {
+        switch (this.f25570a) {
             case 0:
-                this.f25594b.h0(this.f25595c, null);
+                this.f25571b.h0(this.f25572c, null);
                 return;
             case 1:
-                this.f25594b.e0(this.f25595c);
+                this.f25571b.e0(this.f25572c);
                 return;
             default:
-                this.f25594b.h0(this.f25595c, null);
+                this.f25571b.h0(this.f25572c, null);
                 return;
         }
     }

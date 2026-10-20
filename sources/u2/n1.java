@@ -1,97 +1,226 @@
 package u2;
 
-import android.net.Uri;
-import e9.x1;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-import v7.u6;
-public final class n1 extends a {
-    public final g2.m h;
-    public final g2.g f47379i;
-    public final b2.w f47380j;
-    public final oa.d f47382l;
-    public final j1 f47384n;
-    public final b2.o0 f47385o;
-    public g2.c0 f47386p;
-    public final long f47381k = -9223372036854775807L;
-    public final boolean f47383m = true;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
+public final class n1 implements e0, y2.g {
+    public final g2.m f47378a;
+    public final g2.g f47379b;
+    public final g2.c0 f47380c;
+    public final oa.d d;
+    public final a5.a e;
+    public final s1 f47381f;
+    public final ArrayList h = new ArrayList();
+    public final long f47382n;
+    public final y2.l f47383r;
+    public final b2.w f47384s;
+    public final boolean v;
+    public boolean f47385w;
+    public byte[] f47386x;
+    public int f47387y;
 
-    public n1(b2.n0 n0Var, qf.b bVar, oa.d dVar) {
-        b2.j0 j0Var;
-        b2.g0 g0Var;
-        this.f47379i = bVar;
-        this.f47382l = dVar;
-        boolean z10 = true;
-        b2.c0 c0Var = new b2.c0();
-        b2.f0 f0Var = new b2.f0();
-        List list = Collections.EMPTY_LIST;
-        x1 x1Var = x1.e;
-        b2.h0 h0Var = new b2.h0();
-        b2.k0 k0Var = b2.k0.d;
-        Uri uri = Uri.EMPTY;
-        String uri2 = n0Var.f3853a.toString();
-        uri2.getClass();
-        e9.n0 u10 = e9.n0.u(e9.n0.y(n0Var));
-        if (f0Var.f3751b != null && f0Var.f3750a == null) {
-            z10 = false;
-        }
-        u6.p(z10);
-        if (uri != null) {
-            if (f0Var.f3750a != null) {
-                g0Var = new b2.g0(f0Var);
-            } else {
-                g0Var = null;
-            }
-            j0Var = new b2.j0(uri, null, g0Var, null, list, null, u10, -9223372036854775807L);
+    public n1(g2.m mVar, g2.g gVar, g2.c0 c0Var, b2.w wVar, long j10, oa.d dVar, a5.a aVar, boolean z10, z2.a aVar2) {
+        y2.l lVar;
+        this.f47378a = mVar;
+        this.f47379b = gVar;
+        this.f47380c = c0Var;
+        this.f47384s = wVar;
+        this.f47382n = j10;
+        this.d = dVar;
+        this.e = aVar;
+        this.v = z10;
+        this.f47381f = new s1(new b2.p1("", wVar));
+        if (aVar2 != null) {
+            lVar = new y2.l(aVar2);
         } else {
-            j0Var = null;
+            lVar = new y2.l("SingleSampleMediaPeriod");
         }
-        b2.o0 o0Var = new b2.o0(uri2, new b2.d0(c0Var), j0Var, new b2.i0(h0Var), b2.r0.L, k0Var);
-        this.f47385o = o0Var;
-        b2.v vVar = new b2.v();
-        String str = n0Var.f3854b;
-        vVar.f4075r = b2.v0.n(str == null ? "text/x-unknown" : str);
-        vVar.d = n0Var.f3855c;
-        vVar.e = n0Var.d;
-        vVar.f4064f = n0Var.e;
-        vVar.f4062b = n0Var.f3856f;
-        String str2 = n0Var.f3857g;
-        vVar.f4061a = str2 != null ? str2 : null;
-        this.f47380j = new b2.w(vVar);
-        Map map = Collections.EMPTY_MAP;
-        Uri uri3 = n0Var.f3853a;
-        u6.l(uri3, "The uri must be set.");
-        this.h = new g2.m(uri3, 1, null, map, 0L, -1L, null, 1);
-        this.f47384n = new j1(-9223372036854775807L, -9223372036854775807L, -9223372036854775807L, -9223372036854775807L, 0L, 0L, true, false, false, null, o0Var, null);
+        this.f47383r = lVar;
     }
 
     @Override
-    public final e0 c(g0 g0Var, androidx.biometric.e eVar, long j10) {
-        return new m1(this.h, this.f47379i, this.f47386p, this.f47380j, this.f47381k, this.f47382l, b(g0Var), this.f47383m, null);
+    public final void J(y2.i iVar, long j10, long j11, boolean z10) {
+        m1 m1Var = (m1) iVar;
+        g2.b0 b0Var = m1Var.f47367b;
+        u uVar = new u(m1Var.f47366a, b0Var.f10764c, b0Var.d, j10, j11, b0Var.f10763b);
+        this.d.getClass();
+        this.e.q(uVar, 1, -1, null, 0, null, 0L, this.f47382n);
     }
 
     @Override
-    public final b2.o0 i() {
-        return this.f47385o;
+    public final boolean c() {
+        return this.f47383r.d();
     }
 
     @Override
-    public final void m(g2.c0 c0Var) {
-        this.f47386p = c0Var;
-        n(this.f47384n);
+    public final long d() {
+        if (!this.f47385w && !this.f47383r.d()) {
+            return 0L;
+        }
+        return Long.MIN_VALUE;
     }
 
     @Override
-    public final void o(e0 e0Var) {
-        ((m1) e0Var).f47370r.e(null);
+    public final k4.d e(y2.i iVar, long j10, long j11, IOException iOException, int i10) {
+        long min;
+        boolean z10;
+        IOException iOException2;
+        k4.d dVar;
+        m1 m1Var = (m1) iVar;
+        g2.b0 b0Var = m1Var.f47367b;
+        u uVar = new u(m1Var.f47366a, b0Var.f10764c, b0Var.d, j10, j11, b0Var.f10763b);
+        String str = e2.m0.f8252a;
+        this.d.getClass();
+        for (Throwable th2 = iOException; th2 != null; th2 = th2.getCause()) {
+            if ((th2 instanceof b2.w0) || (th2 instanceof FileNotFoundException) || (th2 instanceof g2.u) || (th2 instanceof y2.k) || ((th2 instanceof g2.j) && ((g2.j) th2).f10781a == 2008)) {
+                min = -9223372036854775807L;
+                break;
+            }
+        }
+        min = Math.min((i10 - 1) * 1000, 5000);
+        int i11 = (min > (-9223372036854775807L) ? 1 : (min == (-9223372036854775807L) ? 0 : -1));
+        if (i11 != 0 && i10 < 3) {
+            z10 = false;
+        } else {
+            z10 = true;
+        }
+        if (this.v && z10) {
+            iOException2 = iOException;
+            e2.a.m("SingleSampleMediaPeriod", "Loading failed, treating as end-of-stream.", iOException2);
+            this.f47385w = true;
+            dVar = y2.l.e;
+        } else {
+            iOException2 = iOException;
+            if (i11 != 0) {
+                dVar = new k4.d(0, min, false);
+            } else {
+                dVar = y2.l.f49930f;
+            }
+        }
+        this.e.s(uVar, 1, -1, this.f47384s, 0, null, 0L, this.f47382n, iOException2, !dVar.a());
+        return dVar;
     }
 
     @Override
-    public final void k() {
+    public final void h(y2.i iVar, long j10, long j11, int i10) {
+        u uVar;
+        m1 m1Var = (m1) iVar;
+        g2.b0 b0Var = m1Var.f47367b;
+        if (i10 == 0) {
+            uVar = new u(m1Var.f47366a, j10);
+        } else {
+            uVar = new u(m1Var.f47366a, b0Var.f10764c, b0Var.d, j10, j11, b0Var.f10763b);
+        }
+        this.e.v(uVar, 1, -1, this.f47384s, 0, null, 0L, this.f47382n, i10);
     }
 
     @Override
-    public final void q() {
+    public final long j(long j10) {
+        int i10 = 0;
+        while (true) {
+            ArrayList arrayList = this.h;
+            if (i10 < arrayList.size()) {
+                l1 l1Var = (l1) arrayList.get(i10);
+                if (l1Var.f47359a == 2) {
+                    l1Var.f47359a = 1;
+                }
+                i10++;
+            } else {
+                return j10;
+            }
+        }
+    }
+
+    @Override
+    public final void k(y2.i iVar, long j10, long j11) {
+        m1 m1Var = (m1) iVar;
+        this.f47387y = (int) m1Var.f47367b.f10763b;
+        byte[] bArr = m1Var.f47368c;
+        bArr.getClass();
+        this.f47386x = bArr;
+        this.f47385w = true;
+        g2.b0 b0Var = m1Var.f47367b;
+        u uVar = new u(m1Var.f47366a, b0Var.f10764c, b0Var.d, j10, j11, this.f47387y);
+        this.d.getClass();
+        this.e.r(uVar, 1, -1, this.f47384s, 0, null, 0L, this.f47382n);
+    }
+
+    @Override
+    public final void n(d0 d0Var, long j10) {
+        d0Var.a(this);
+    }
+
+    @Override
+    public final long o() {
+        return -9223372036854775807L;
+    }
+
+    @Override
+    public final boolean p(i2.v0 v0Var) {
+        if (!this.f47385w) {
+            y2.l lVar = this.f47383r;
+            if (!lVar.d() && !lVar.c()) {
+                g2.h createDataSource = this.f47379b.createDataSource();
+                g2.c0 c0Var = this.f47380c;
+                if (c0Var != null) {
+                    createDataSource.addTransferListener(c0Var);
+                }
+                m1 m1Var = new m1(createDataSource, this.f47378a);
+                this.d.getClass();
+                lVar.f(m1Var, this, 3);
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    @Override
+    public final long q(x2.p[] pVarArr, boolean[] zArr, e1[] e1VarArr, boolean[] zArr2, long j10) {
+        for (int i10 = 0; i10 < pVarArr.length; i10++) {
+            e1 e1Var = e1VarArr[i10];
+            ArrayList arrayList = this.h;
+            if (e1Var != null && (pVarArr[i10] == null || !zArr[i10])) {
+                arrayList.remove(e1Var);
+                e1VarArr[i10] = null;
+            }
+            if (e1VarArr[i10] == null && pVarArr[i10] != null) {
+                l1 l1Var = new l1(this);
+                arrayList.add(l1Var);
+                e1VarArr[i10] = l1Var;
+                zArr2[i10] = true;
+            }
+        }
+        return j10;
+    }
+
+    @Override
+    public final s1 r() {
+        return this.f47381f;
+    }
+
+    @Override
+    public final long s() {
+        if (this.f47385w) {
+            return Long.MIN_VALUE;
+        }
+        return 0L;
+    }
+
+    @Override
+    public final void i() {
+    }
+
+    @Override
+    public final void l(long j10) {
+    }
+
+    @Override
+    public final void u(long j10) {
+    }
+
+    @Override
+    public final long t(long j10, i2.s1 s1Var) {
+        return j10;
     }
 }

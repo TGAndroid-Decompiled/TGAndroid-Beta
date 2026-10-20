@@ -5,14 +5,14 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.dw0;
+import org.telegram.ui.Components.ew0;
 public final class l1 extends GestureDetector.SimpleOnGestureListener {
     public float f5575a;
     public float f5576b;
     public final int f5577c;
 
     public l1(int i10) {
-        dw0 dw0Var = p1.X;
+        ew0 ew0Var = p1.X;
         this.f5577c = i10;
     }
 

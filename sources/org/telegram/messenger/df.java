@@ -2,32 +2,24 @@ package org.telegram.messenger;
 
 import org.telegram.messenger.MessagesStorage;
 public final class df implements Runnable {
-    public final int f18193a;
-    public final MessagesStorage f18194b;
-    public final long f18195c;
-    public final MessagesStorage.IntCallback d;
+    public final int f18191a;
+    public final MessagesStorage.IntCallback f18192b;
+    public final int[] f18193c;
 
-    public df(MessagesStorage messagesStorage, long j10, MessagesStorage.IntCallback intCallback, int i10) {
-        this.f18193a = i10;
-        this.f18194b = messagesStorage;
-        this.f18195c = j10;
-        this.d = intCallback;
+    public df(MessagesStorage.IntCallback intCallback, int[] iArr, int i10) {
+        this.f18191a = i10;
+        this.f18192b = intCallback;
+        this.f18193c = iArr;
     }
 
     @Override
     public final void run() {
-        switch (this.f18193a) {
+        switch (this.f18191a) {
             case 0:
-                this.f18194b.lambda$getDialogMaxMessageId$255(this.f18195c, this.d);
-                return;
-            case 1:
-                this.f18194b.lambda$getDialogFolderId$243(this.f18195c, this.d);
-                return;
-            case 2:
-                this.f18194b.lambda$getMessagesCount$158(this.f18195c, this.d);
+                MessagesStorage.lambda$getDialogMaxMessageId$254(this.f18192b, this.f18193c);
                 return;
             default:
-                this.f18194b.lambda$getSavedDialogMaxMessageId$53(this.f18195c, this.d);
+                MessagesStorage.lambda$getSavedDialogMaxMessageId$52(this.f18192b, this.f18193c);
                 return;
         }
     }

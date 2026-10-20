@@ -28,20 +28,20 @@ import org.telegram.ui.Components.xc;
 import org.telegram.ui.LaunchActivity;
 public abstract class i {
     public static void a(b2 b2Var, boolean z10) {
-        wh.n nVar = b2Var.f20660f;
+        wh.n nVar = b2Var.f20663f;
         if (nVar != null) {
             nVar.setTextSize(1, 20);
         }
-        ru ruVar = b2Var.f20668n;
+        ru ruVar = b2Var.f20671n;
         if (ruVar != null) {
             ruVar.setTextSize(1, 14);
         }
-        ru ruVar2 = b2Var.f20668n;
+        ru ruVar2 = b2Var.f20671n;
         if (ruVar2 != null) {
             ruVar2.setLineSpacing(AndroidUtilities.dp(2.5f), 1.0f);
         }
         if (!z10) {
-            ((ViewGroup.MarginLayoutParams) b2Var.f20677t0.getLayoutParams()).topMargin = AndroidUtilities.dp(-14.0f);
+            ((ViewGroup.MarginLayoutParams) b2Var.f20680t0.getLayoutParams()).topMargin = AndroidUtilities.dp(-14.0f);
         }
     }
 
@@ -107,7 +107,7 @@ public abstract class i {
         }
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, d6Var);
         String string = LocaleController.getString("BoostingGiveAwayAbout", R.string.BoostingGiveAwayAbout);
-        b2 b2Var = alertDialog$Builder.f20602a;
+        b2 b2Var = alertDialog$Builder.f20605a;
         b2Var.R = string;
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         if (z12) {
@@ -246,7 +246,7 @@ public abstract class i {
         }
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, d6Var);
         String string2 = LocaleController.getString("BoostingGiveawayEnd", R.string.BoostingGiveawayEnd);
-        b2 b2Var = alertDialog$Builder.f20602a;
+        b2 b2Var = alertDialog$Builder.f20605a;
         b2Var.R = string2;
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         if (z12) {
@@ -331,11 +331,11 @@ public abstract class i {
             f7.setTypeface(AndroidUtilities.bold());
             f7.setGravity(17);
             f7.setText(string3);
-            int i14 = h6.f21208p7;
+            int i14 = h6.f21211p7;
             f7.setTextColor(h6.w0(i14, d6Var));
             f7.setBackground(h6.d0(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), h6.m1(0.1f, h6.w0(i14, d6Var))));
             f7.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f));
-            b2Var.f20656c = f7;
+            b2Var.f20659c = f7;
             b2Var.T = spannableStringBuilder;
             alertDialog$Builder.k(LocaleController.getString("Close", R.string.Close), new sg.y(12));
             a(alertDialog$Builder.o(), true);
@@ -354,11 +354,11 @@ public abstract class i {
         }
         ru ruVar = new ru(context);
         NotificationCenter.listenEmojiLoading(ruVar);
-        ruVar.setTextColor(h6.w0(h6.f21093j5, d6Var));
+        ruVar.setTextColor(h6.w0(h6.f21096j5, d6Var));
         ruVar.setTextSize(1, 14.0f);
         ruVar.setGravity(17);
         ruVar.setText(string);
-        ruVar.setBackground(h6.d0(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), h6.w0(h6.f21384yh, d6Var)));
+        ruVar.setBackground(h6.d0(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), h6.w0(h6.f21387yh, d6Var)));
         ruVar.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(9.0f));
         b2Var.d = ruVar;
         a(alertDialog$Builder.o(), false);
@@ -391,7 +391,7 @@ public abstract class i {
         }
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(R.getContext(), 0, R.getResourceProvider());
         String string = LocaleController.getString(R.string.CantBoostTooOften);
-        b2 b2Var = alertDialog$Builder.f20602a;
+        b2 b2Var = alertDialog$Builder.f20605a;
         b2Var.R = string;
         b2Var.T = AndroidUtilities.replaceTags(LocaleController.formatString("CantBoostTooOftenDescription", R.string.CantBoostTooOftenDescription, str));
         alertDialog$Builder.k(LocaleController.getString(R.string.OK), new sg.y(16));
@@ -418,7 +418,7 @@ public abstract class i {
         }
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(R.getContext(), 0, R.getResourceProvider());
         String string = LocaleController.getString(R.string.BoostingMoreBoostsNeeded);
-        b2 b2Var = alertDialog$Builder.f20602a;
+        b2 b2Var = alertDialog$Builder.f20605a;
         b2Var.R = string;
         b2Var.T = AndroidUtilities.replaceTags(LocaleController.formatPluralString("BoostingGetMoreBoostByGiftingCount", (int) MessagesController.getInstance(UserConfig.selectedAccount).boostsPerSentGift, chat.title));
         alertDialog$Builder.h(LocaleController.getString("GiftPremium", R.string.GiftPremium), new sg.x(k0Var, 3));

@@ -1,15 +1,15 @@
 package org.telegram.ui.Components;
 public final class eq implements z4.e {
-    public int f25966a;
-    public final ki0 f25967b;
+    public int f25944a;
+    public final li0 f25945b;
 
-    public eq(ki0 ki0Var) {
-        this.f25967b = ki0Var;
+    public eq(li0 li0Var) {
+        this.f25945b = li0Var;
     }
 
     @Override
     public final void a(float f7, int i10, int i11) {
-        if (i10 == this.f25967b.getCurrentItem() && f7 == 0.0f && this.f25966a == 1) {
+        if (i10 == this.f25945b.getCurrentItem() && f7 == 0.0f && this.f25944a == 1) {
             d();
         }
     }
@@ -19,16 +19,16 @@ public final class eq implements z4.e {
         if (i10 == 0) {
             d();
         }
-        this.f25966a = i10;
+        this.f25944a = i10;
     }
 
     public final void d() {
-        ki0 ki0Var = this.f25967b;
-        if (ki0Var.f26679w0 != null) {
-            int currentItem = ki0Var.getCurrentItem();
-            int k10 = ki0Var.f26679w0.k(currentItem) + ki0Var.f26679w0.j();
+        li0 li0Var = this.f25945b;
+        if (li0Var.f26648w0 != null) {
+            int currentItem = li0Var.getCurrentItem();
+            int k10 = li0Var.f26648w0.k(currentItem) + li0Var.f26648w0.j();
             if (currentItem != k10) {
-                ki0Var.x(k10, false);
+                li0Var.x(k10, false);
             }
         }
     }

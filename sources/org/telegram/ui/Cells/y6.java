@@ -9,17 +9,17 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.kk;
-import org.telegram.ui.Components.k61;
-import org.telegram.ui.Components.m11;
+import org.telegram.messenger.mk;
+import org.telegram.ui.Components.l61;
+import org.telegram.ui.Components.n11;
 import org.telegram.ui.Components.x90;
 public abstract class y6 extends LinearLayout {
-    public TextView f23838a;
-    public x90 f23839b;
-    public TextView f23840c;
+    public TextView f23841a;
+    public x90 f23842b;
+    public TextView f23843c;
     public TextView d;
     public int e;
-    public int f23841f;
+    public int f23844f;
 
     @Override
     public final void onMeasure(int i10, int i11) {
@@ -27,14 +27,14 @@ public abstract class y6 extends LinearLayout {
     }
 
     public void setType(int i10) {
-        int i11 = this.f23841f;
-        TextView textView = this.f23840c;
-        x90 x90Var = this.f23839b;
-        TextView textView2 = this.f23838a;
+        int i11 = this.f23844f;
+        TextView textView = this.f23843c;
+        x90 x90Var = this.f23842b;
+        TextView textView2 = this.f23841a;
         TextView textView3 = this.d;
         this.e = i10;
         if (i10 == 0) {
-            textView2.setText(LocaleController.formatString(R.string.CheckPhoneNumber, kk.g(new StringBuilder("+"), MessagesController.getInstance(i11).getUser(Long.valueOf(UserConfig.getInstance(i11).clientUserId)).phone, jf.b.c())));
+            textView2.setText(LocaleController.formatString(R.string.CheckPhoneNumber, mk.g(new StringBuilder("+"), MessagesController.getInstance(i11).getUser(Long.valueOf(UserConfig.getInstance(i11).clientUserId)).phone, jf.b.c())));
             String string = LocaleController.getString(R.string.CheckPhoneNumberInfo);
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(string);
             int indexOf = string.indexOf("**");
@@ -43,7 +43,7 @@ public abstract class y6 extends LinearLayout {
                 spannableStringBuilder.replace(lastIndexOf, lastIndexOf + 2, (CharSequence) "");
                 spannableStringBuilder.replace(indexOf, indexOf + 2, (CharSequence) "");
                 try {
-                    spannableStringBuilder.setSpan(new k61(LocaleController.getString(R.string.CheckPhoneNumberLearnMoreUrl), (m11) null), indexOf, lastIndexOf - 2, 33);
+                    spannableStringBuilder.setSpan(new l61(LocaleController.getString(R.string.CheckPhoneNumberLearnMoreUrl), (n11) null), indexOf, lastIndexOf - 2, 33);
                 } catch (Exception e) {
                     FileLog.e(e);
                 }

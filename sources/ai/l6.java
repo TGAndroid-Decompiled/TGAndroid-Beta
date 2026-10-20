@@ -18,11 +18,11 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.kk;
+import org.telegram.messenger.mk;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.Components.k01;
+import org.telegram.ui.Components.l01;
 import org.telegram.ui.Components.u40;
 public final class l6 {
     public final TL_stars.TL_starGiftUnique f1703a;
@@ -65,7 +65,7 @@ public final class l6 {
         } else {
             chat = MessagesController.getInstance(i10).getChat(Long.valueOf(-j10));
         }
-        LinearLayout e = kk.e(context, 1);
+        LinearLayout e = mk.e(context, 1);
         k6 k6Var = new k6(this, context);
         k6Var.addView(e, w7.z5.c(-2.0f, -1));
         if (!z11) {
@@ -79,30 +79,30 @@ public final class l6 {
         } else {
             this.f1708i = null;
             TextView textView = new TextView(context);
-            kk.o(org.telegram.ui.ActionBar.h6.f21375y6, d6Var, textView, 1, 14.0f);
-            kk.m(R.string.Gift2BuyPriceOnlyTON, textView, 17);
+            mk.o(org.telegram.ui.ActionBar.h6.f21378y6, d6Var, textView, 1, 14.0f);
+            mk.m(R.string.Gift2BuyPriceOnlyTON, textView, 17);
             e.addView(textView, w7.z5.t(-2, -2, 17, 24, 4, 24, 4));
         }
         e.addView(new g6(context, tL_starGiftUnique, chat), w7.z5.t(-1, -2, 48, 0, -4, 0, 0));
         TextView textView2 = new TextView(context);
         this.f1709j = textView2;
-        kk.o(org.telegram.ui.ActionBar.h6.f21093j5, d6Var, textView2, 1, 16.0f);
+        mk.o(org.telegram.ui.ActionBar.h6.f21096j5, d6Var, textView2, 1, 16.0f);
         e.addView(textView2, w7.z5.t(-1, -2, 48, 24, 4, 24, 4));
         if (z10) {
-            k01 k01Var = new k01(context, d6Var);
-            l7.I1(k01Var, ga.l(tL_starGiftUnique.attributes, TL_stars.starGiftAttributeModel.class));
-            l7.I1(k01Var, ga.l(tL_starGiftUnique.attributes, TL_stars.starGiftAttributeBackdrop.class));
-            l7.I1(k01Var, ga.l(tL_starGiftUnique.attributes, TL_stars.starGiftAttributePattern.class));
+            l01 l01Var = new l01(context, d6Var);
+            l7.I1(l01Var, ga.l(tL_starGiftUnique.attributes, TL_stars.starGiftAttributeModel.class));
+            l7.I1(l01Var, ga.l(tL_starGiftUnique.attributes, TL_stars.starGiftAttributeBackdrop.class));
+            l7.I1(l01Var, ga.l(tL_starGiftUnique.attributes, TL_stars.starGiftAttributePattern.class));
             if (!TextUtils.isEmpty(tL_starGiftUnique.slug) && (tL_starGiftUnique.flags & 256) != 0) {
-                k01Var.c(LocaleController.getString(R.string.GiftValue2), r4.c.h("~", BillingController.getInstance().formatCurrency(tL_starGiftUnique.value_amount, tL_starGiftUnique.value_currency, BillingController.getInstance().getCurrencyExp(tL_starGiftUnique.value_currency), true)), null, null);
+                l01Var.c(LocaleController.getString(R.string.GiftValue2), r4.c.h("~", BillingController.getInstance().formatCurrency(tL_starGiftUnique.value_amount, tL_starGiftUnique.value_currency, BillingController.getInstance().getCurrencyExp(tL_starGiftUnique.value_currency), true)), null, null);
             }
-            e.addView(k01Var, w7.z5.t(-1, -2, 48, 23, 16, 23, 4));
+            e.addView(l01Var, w7.z5.t(-1, -2, 48, 23, 16, 23, 4));
         }
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, d6Var);
         alertDialog$Builder.n(k6Var);
         alertDialog$Builder.k("_", new j6(this, i10, context, d6Var, callback2, 0));
         alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-        this.h = alertDialog$Builder.f20602a;
+        this.h = alertDialog$Builder.f20605a;
     }
 
     public final void a(boolean z10) {

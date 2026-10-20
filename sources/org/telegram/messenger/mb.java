@@ -1,27 +1,31 @@
 package org.telegram.messenger;
 public final class mb implements Runnable {
-    public final int f18961a;
-    public final org.telegram.ui.ActionBar.n2 f18962b;
+    public final int f18954a;
+    public final MessagesController f18955b;
+    public final a0.h f18956c;
+    public final a0.h d;
 
-    public mb(int i10, org.telegram.ui.ActionBar.n2 n2Var) {
-        this.f18961a = i10;
-        this.f18962b = n2Var;
+    public mb(MessagesController messagesController, a0.h hVar, a0.h hVar2, int i10) {
+        this.f18954a = i10;
+        this.f18955b = messagesController;
+        this.f18956c = hVar;
+        this.d = hVar2;
     }
 
     @Override
     public final void run() {
-        switch (this.f18961a) {
+        switch (this.f18954a) {
             case 0:
-                MessagesController.lambda$checkSensitive$450(this.f18962b);
+                this.f18955b.lambda$checkDeletingTask$85(this.f18956c, this.d);
                 return;
             case 1:
-                org.telegram.ui.Components.f5.s0(7, this.f18962b, null);
+                this.f18955b.lambda$updatePrintingStrings$169(this.f18956c, this.d);
                 return;
             case 2:
-                org.telegram.ui.Components.f5.s0(8, this.f18962b, null);
+                this.f18955b.lambda$getNewDeleteTask$82(this.f18956c, this.d);
                 return;
             default:
-                TranslateController.lambda$pushToSummarize$18(this.f18962b);
+                this.f18955b.lambda$checkDeletingTask$84(this.f18956c, this.d);
                 return;
         }
     }

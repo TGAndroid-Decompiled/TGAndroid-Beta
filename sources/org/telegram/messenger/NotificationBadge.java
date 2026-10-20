@@ -156,7 +156,7 @@ public class NotificationBadge {
             bundle.putString("package", ApplicationLoader.applicationContext.getPackageName());
             bundle.putString("class", NotificationBadge.componentName.getClassName());
             bundle.putInt("badgenumber", i10);
-            AndroidUtilities.runOnUIThread(new h1(bundle, 29));
+            AndroidUtilities.runOnUIThread(new i1(bundle, 29));
         }
 
         @Override
@@ -189,7 +189,7 @@ public class NotificationBadge {
             if (!NotificationBadge.canResolveBroadcast(intent) && !NotificationBadge.canResolveBroadcast(intent2)) {
                 return;
             }
-            AndroidUtilities.runOnUIThread(new kc(29, intent, intent2));
+            AndroidUtilities.runOnUIThread(new mc(29, intent, intent2));
         }
 
         @Override
@@ -467,7 +467,7 @@ public class NotificationBadge {
 
         @Override
         public void executeBadge(int i10) {
-            AndroidUtilities.runOnUIThread(new pg(0, this, org.telegram.ui.Cells.c1.i(i10, "app_badge_count")));
+            AndroidUtilities.runOnUIThread(new rg(0, this, org.telegram.ui.Cells.c1.i(i10, "app_badge_count")));
         }
 
         @Override

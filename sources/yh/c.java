@@ -14,18 +14,18 @@ import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.Components.bb;
-import org.telegram.ui.Components.hm0;
 import org.telegram.ui.Components.im0;
+import org.telegram.ui.Components.jm0;
 import org.telegram.ui.Components.n7;
-import org.telegram.ui.Components.t61;
+import org.telegram.ui.Components.u61;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
 import w7.z5;
 public final class c extends bb {
-    public static final int f50176a0 = 0;
+    public static final int f50181a0 = 0;
     public final List X;
     public final GiftAuctionController.Auction Y;
-    public t61 Z;
+    public u61 Z;
 
     public c(Context context, d6 d6Var, GiftAuctionController.Auction auction, List list) {
         super(context, null, false, false, 2, d6Var);
@@ -80,10 +80,10 @@ public final class c extends bb {
     }
 
     @Override
-    public final hm0 x(im0 im0Var) {
-        t61 t61Var = new t61(this.d, getContext(), this.currentAccount, 0, true, new hg.o(this, 22), this.resourcesProvider);
-        this.Z = t61Var;
-        t61Var.f30436r = false;
-        return t61Var;
+    public final im0 x(jm0 jm0Var) {
+        u61 u61Var = new u61(this.d, getContext(), this.currentAccount, 0, true, new hg.o(this, 22), this.resourcesProvider);
+        this.Z = u61Var;
+        u61Var.f30860r = false;
+        return u61Var;
     }
 }

@@ -7,12 +7,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.kk;
+import org.telegram.messenger.mk;
 import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
 import org.telegram.ui.Components.em;
-import org.telegram.ui.Components.im0;
-import org.telegram.ui.Components.sl0;
+import org.telegram.ui.Components.jm0;
 import org.telegram.ui.Components.ti;
+import org.telegram.ui.Components.tl0;
 public final class e9 extends s4.r0 {
     public final int f8971a;
     public boolean f8972b;
@@ -27,13 +27,13 @@ public final class e9 extends s4.r0 {
     public void a(RecyclerView recyclerView, int i10) {
         boolean z10;
         int i11;
-        sl0 sl0Var;
+        tl0 tl0Var;
         int topScrollOffset;
         int topScrollOffset2;
         switch (this.f8971a) {
             case 0:
                 k9 k9Var = (k9) this.f8973c;
-                im0 im0Var = k9Var.f9328f;
+                jm0 jm0Var = k9Var.f9328f;
                 r9 r9Var = k9Var.W;
                 boolean z11 = true;
                 if (i10 == 1) {
@@ -43,8 +43,8 @@ public final class e9 extends s4.r0 {
                     }
                 }
                 if (i10 == 0) {
-                    k9Var.S = !im0Var.canScrollVertically(-1);
-                    im0Var.canScrollVertically(1);
+                    k9Var.S = !jm0Var.canScrollVertically(-1);
+                    jm0Var.canScrollVertically(1);
                 }
                 if (i10 == 0) {
                     z11 = false;
@@ -57,10 +57,10 @@ public final class e9 extends s4.r0 {
             case 2:
                 ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = (ChatAttachAlertPhotoLayout) this.f8973c;
                 em emVar = chatAttachAlertPhotoLayout.E;
-                ti tiVar = chatAttachAlertPhotoLayout.f28223b;
+                ti tiVar = chatAttachAlertPhotoLayout.f28173b;
                 if (i10 == 0) {
                     int dp = AndroidUtilities.dp(13.0f);
-                    org.telegram.ui.ActionBar.u0 u0Var = tiVar.f30528d1;
+                    org.telegram.ui.ActionBar.u0 u0Var = tiVar.f30539d1;
                     if (u0Var != null) {
                         i11 = AndroidUtilities.dp(u0Var.getAlpha() * 26.0f);
                     } else {
@@ -68,8 +68,8 @@ public final class e9 extends s4.r0 {
                     }
                     int i12 = dp + i11;
                     int backgroundPaddingTop = tiVar.getBackgroundPaddingTop();
-                    if (((tiVar.f30532e2[0] - backgroundPaddingTop) - i12) + backgroundPaddingTop < (tiVar.R0.getAlpha() * tiVar.R0.getMeasuredHeight()) + org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && (sl0Var = (sl0) emVar.K(0)) != null) {
-                        View view = sl0Var.f45912a;
+                    if (((tiVar.f30543e2[0] - backgroundPaddingTop) - i12) + backgroundPaddingTop < (tiVar.R0.getAlpha() * tiVar.R0.getMeasuredHeight()) + org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && (tl0Var = (tl0) emVar.K(0)) != null) {
+                        View view = tl0Var.f45917a;
                         int top = view.getTop();
                         topScrollOffset = chatAttachAlertPhotoLayout.getTopScrollOffset();
                         if (top > topScrollOffset) {
@@ -103,8 +103,8 @@ public final class e9 extends s4.r0 {
             case 0:
                 k9 k9Var = (k9) this.f8973c;
                 r9 r9Var = k9Var.W;
-                im0 im0Var = k9Var.f9328f;
-                boolean canScrollVertically = im0Var.canScrollVertically(1);
+                jm0 jm0Var = k9Var.f9328f;
+                boolean canScrollVertically = jm0Var.canScrollVertically(1);
                 if (canScrollVertically != this.f8972b) {
                     k9Var.f9330r.invalidate();
                     this.f8972b = canScrollVertically;
@@ -112,8 +112,8 @@ public final class e9 extends s4.r0 {
                 k9Var.e.invalidate();
                 viewGroup = ((org.telegram.ui.ActionBar.f3) r9Var).containerView;
                 viewGroup.invalidate();
-                if (k9Var.f9325a == 6 && im0Var.getChildCount() > 0) {
-                    int R = RecyclerView.R(im0Var.getChildAt(0));
+                if (k9Var.f9325a == 6 && jm0Var.getChildCount() > 0) {
+                    int R = RecyclerView.R(jm0Var.getChildAt(0));
                     i12 = ((org.telegram.ui.ActionBar.f3) r9Var).currentAccount;
                     if (R >= MessagesController.getInstance(i12).getStoriesController().L.size()) {
                         i13 = ((org.telegram.ui.ActionBar.f3) r9Var).currentAccount;
@@ -125,7 +125,7 @@ public final class e9 extends s4.r0 {
                 return;
             case 1:
                 org.telegram.ui.c7 c7Var = (org.telegram.ui.c7) this.f8973c;
-                if (c7Var.f35829c.L0() <= 0 && !org.telegram.ui.c7.a0(c7Var).t()) {
+                if (c7Var.f35835c.L0() <= 0 && !org.telegram.ui.c7.a0(c7Var).t()) {
                     z10 = false;
                 } else {
                     z10 = true;
@@ -139,7 +139,7 @@ public final class e9 extends s4.r0 {
                 return;
             case 2:
                 ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = (ChatAttachAlertPhotoLayout) this.f8973c;
-                ti tiVar = chatAttachAlertPhotoLayout.f28223b;
+                ti tiVar = chatAttachAlertPhotoLayout.f28173b;
                 em emVar = chatAttachAlertPhotoLayout.E;
                 if (emVar.getChildCount() > 0) {
                     tiVar.b2(chatAttachAlertPhotoLayout, i11);
@@ -153,7 +153,7 @@ public final class e9 extends s4.r0 {
                             if (this.f8972b) {
                                 f7 = 1.0f;
                             }
-                            kk.s(animate, f7, 100L);
+                            mk.s(animate, f7, 100L);
                         }
                     } else {
                         emVar.getFastScroll().setAlpha(0.0f);

@@ -2,11 +2,11 @@ package org.telegram.ui;
 
 import android.graphics.Canvas;
 import android.graphics.RectF;
-public final class xk implements org.telegram.ui.Components.bl0 {
-    public final qn f43221a;
+public final class xk implements org.telegram.ui.Components.cl0 {
+    public final qn f43227a;
 
     public xk(qn qnVar) {
-        this.f43221a = qnVar;
+        this.f43227a = qnVar;
     }
 
     @Override

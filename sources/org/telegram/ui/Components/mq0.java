@@ -1,74 +1,56 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
-import android.widget.FrameLayout;
-public final class mq0 extends AnimatorListenerAdapter {
+import android.graphics.Rect;
+import android.view.MotionEvent;
+import android.view.View;
+public final class mq0 implements View.OnTouchListener {
     public final int f28587a;
-    public final boolean f28588b;
-    public final er0 f28589c;
+    public final Rect f28588b;
+    public final fr0 f28589c;
 
-    public mq0(er0 er0Var, boolean z10, int i10) {
+    public mq0(fr0 fr0Var, int i10) {
         this.f28587a = i10;
-        this.f28589c = er0Var;
-        this.f28588b = z10;
-    }
-
-    @Override
-    public final void onAnimationCancel(Animator animator) {
-        switch (this.f28587a) {
-            case 0:
-                AnimatorSet[] animatorSetArr = this.f28589c.U;
-                AnimatorSet animatorSet = animatorSetArr[0];
-                if (animatorSet != null && animatorSet.equals(animator)) {
-                    animatorSetArr[0] = null;
-                    return;
-                }
+        switch (i10) {
+            case 1:
+                this.f28589c = fr0Var;
+                this.f28588b = new Rect();
                 return;
             default:
-                er0 er0Var = this.f28589c;
-                if (animator.equals(er0Var.E)) {
-                    er0Var.E = null;
-                    return;
-                }
+                this.f28589c = fr0Var;
+                this.f28588b = new Rect();
                 return;
         }
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
+    public final boolean onTouch(View view, MotionEvent motionEvent) {
+        fr0 fr0Var;
+        org.telegram.ui.ActionBar.m1 m1Var;
+        fr0 fr0Var2;
+        org.telegram.ui.ActionBar.m1 m1Var2;
         switch (this.f28587a) {
             case 0:
-                er0 er0Var = this.f28589c;
-                AnimatorSet[] animatorSetArr = er0Var.U;
-                AnimatorSet animatorSet = animatorSetArr[0];
-                if (animatorSet != null && animatorSet.equals(animator)) {
-                    if (!this.f28588b) {
-                        er0Var.T[0].setVisibility(4);
+                if (motionEvent.getActionMasked() == 0 && (m1Var = (fr0Var = this.f28589c).K0) != null && m1Var.isShowing()) {
+                    Rect rect = this.f28588b;
+                    view.getHitRect(rect);
+                    if (!rect.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
+                        fr0Var.K0.d(true);
+                        return false;
                     }
-                    animatorSetArr[0] = null;
-                    return;
+                    return false;
                 }
-                return;
+                return false;
             default:
-                er0 er0Var2 = this.f28589c;
-                FrameLayout frameLayout = er0Var2.h;
-                if (animator.equals(er0Var2.E)) {
-                    if (!this.f28588b) {
-                        er0Var2.f25979c.setVisibility(4);
-                        FrameLayout frameLayout2 = er0Var2.f25981d0;
-                        if (frameLayout2 != null && frameLayout == null) {
-                            frameLayout2.setVisibility(4);
-                        }
-                        er0Var2.f25983f.setVisibility(4);
-                    } else if (frameLayout != null) {
-                        frameLayout.setVisibility(4);
+                if (motionEvent.getActionMasked() == 0 && (m1Var2 = (fr0Var2 = this.f28589c).K0) != null && m1Var2.isShowing()) {
+                    Rect rect2 = this.f28588b;
+                    view.getHitRect(rect2);
+                    if (!rect2.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
+                        fr0Var2.K0.d(true);
+                        return false;
                     }
-                    er0Var2.E = null;
-                    return;
+                    return false;
                 }
-                return;
+                return false;
         }
     }
 }

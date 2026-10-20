@@ -18,12 +18,12 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UnconfirmedAuthController;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.kk;
+import org.telegram.messenger.mk;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.cg0;
+import org.telegram.ui.Components.dg0;
 import org.telegram.ui.Components.e00;
-import org.telegram.ui.Components.g61;
-import org.telegram.ui.Components.q71;
+import org.telegram.ui.Components.h61;
+import org.telegram.ui.Components.r71;
 import org.telegram.ui.Components.rl;
 import org.telegram.ui.Components.xc;
 import org.telegram.ui.LaunchActivity;
@@ -60,7 +60,7 @@ public final class e4 implements Utilities.Callback {
                 if (view instanceof k4) {
                     g4Var.getClass();
                     int R = RecyclerView.R(view);
-                    g61 G = g4Var.W2.G(R);
+                    h61 G = g4Var.W2.G(R);
                     if (G != null) {
                         k4 k4Var = (k4) view;
                         k4Var.setPosition(l4Var.b(R));
@@ -88,29 +88,29 @@ public final class e4 implements Utilities.Callback {
                 a8Var.B0 = i13;
                 r6Var.T.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, i11, iArr, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
                 r6Var.invalidate();
-                q71 q71Var = r6Var.f9721n;
-                if (q71Var != null) {
+                r71 r71Var = r6Var.f9721n;
+                if (r71Var != null) {
                     int i14 = r6Var.U;
                     int i15 = r6Var.V;
-                    e00 e00Var = q71Var.f29538b;
+                    e00 e00Var = r71Var.f29860b;
                     if (e00Var == null) {
-                        q71Var.f29541n = i14;
-                        q71Var.f29542r = i15;
+                        r71Var.f29863n = i14;
+                        r71Var.f29864r = i15;
                     } else {
                         e00Var.i(i14, i15);
                     }
                 }
-                cg0 cg0Var = r6Var.f9728s;
-                if (cg0Var != null) {
+                dg0 dg0Var = r6Var.f9728s;
+                if (dg0Var != null) {
                     int i16 = r6Var.U;
                     int i17 = r6Var.V;
-                    e00 e00Var2 = cg0Var.f25195l0;
+                    e00 e00Var2 = dg0Var.f25479l0;
                     if (e00Var2 != null) {
                         e00Var2.i(i16, i17);
                         return;
                     }
-                    cg0Var.J0 = i16;
-                    cg0Var.K0 = i17;
+                    dg0Var.J0 = i16;
+                    dg0Var.K0 = i17;
                     return;
                 }
                 return;
@@ -139,7 +139,7 @@ public final class e4 implements Utilities.Callback {
                         textView.setTextSize(1, 20.0f);
                         textView.setGravity(17);
                         textView.setText(LocaleController.formatPluralString("UnconfirmedAuthDeniedTitle", arrayList.size(), new Object[0]));
-                        textView.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21093j5, false));
+                        textView.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21096j5, false));
                         linearLayout.addView(textView, w7.z5.k(28.0f, 14.0f, 28.0f, 0.0f, -1, -2));
                         TextView textView2 = new TextView(saVar.getContext());
                         textView2.setTextSize(1, 14.0f);
@@ -156,12 +156,12 @@ public final class e4 implements Utilities.Callback {
                             }
                             textView2.setText(LocaleController.formatString(R.string.UnconfirmedAuthDeniedMessageMultiple, str2));
                         }
-                        textView2.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21093j5, false));
+                        textView2.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21096j5, false));
                         linearLayout.addView(textView2, w7.z5.k(40.0f, 9.0f, 40.0f, 0.0f, -1, -2));
                         FrameLayout frameLayout = new FrameLayout(saVar.getContext());
                         frameLayout.setPadding(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(10.0f));
                         int dp = AndroidUtilities.dp(12.0f);
-                        int i20 = org.telegram.ui.ActionBar.h6.f21225q7;
+                        int i20 = org.telegram.ui.ActionBar.h6.f21228q7;
                         int x02 = org.telegram.ui.ActionBar.h6.x0(null, i20, false);
                         if (org.telegram.ui.ActionBar.h6.I.q()) {
                             f7 = 0.2f;
@@ -199,7 +199,7 @@ public final class e4 implements Utilities.Callback {
                         AndroidUtilities.runOnUIThread(v7Var, 1000L);
                         dVar.setOnClickListener(new org.telegram.ui.Cells.y2(dVar, f3Var, 1));
                     } else {
-                        kk.q(R.string.UnknownError, new xc(org.telegram.ui.Components.lb.a(saVar.getContext()), null), null);
+                        mk.q(R.string.UnknownError, new xc(org.telegram.ui.Components.lb.a(saVar.getContext()), null), null);
                     }
                 }
                 saVar.e.a(false, true);
@@ -210,11 +210,11 @@ public final class e4 implements Utilities.Callback {
                 TLRPC.TL_messageMediaGeoLive tL_messageMediaGeoLive = new TLRPC.TL_messageMediaGeoLive();
                 TLRPC.TL_geoPoint tL_geoPoint = new TLRPC.TL_geoPoint();
                 tL_messageMediaGeoLive.geo = tL_geoPoint;
-                tL_geoPoint.lat = AndroidUtilities.fixLocationCoord(rlVar.f29983q0.getLatitude());
-                tL_messageMediaGeoLive.geo._long = AndroidUtilities.fixLocationCoord(rlVar.f29983q0.getLongitude());
+                tL_geoPoint.lat = AndroidUtilities.fixLocationCoord(rlVar.f29962q0.getLatitude());
+                tL_messageMediaGeoLive.geo._long = AndroidUtilities.fixLocationCoord(rlVar.f29962q0.getLongitude());
                 tL_messageMediaGeoLive.period = i11;
-                rlVar.f29994x0.b(tL_messageMediaGeoLive, rlVar.f29996y0, true, 0, ((Long) obj).longValue());
-                rlVar.f28223b.dismiss(true);
+                rlVar.f29973x0.b(tL_messageMediaGeoLive, rlVar.f29975y0, true, 0, ((Long) obj).longValue());
+                rlVar.f28173b.dismiss(true);
                 return;
             case 5:
                 z50.e1((z50) obj2, i11, (ChannelBoostsController.CanApplyBoost) obj);
@@ -230,13 +230,13 @@ public final class e4 implements Utilities.Callback {
             default:
                 org.telegram.ui.Wallet.r9 r9Var = (org.telegram.ui.Wallet.r9) obj2;
                 String str3 = (String) obj;
-                if (!r9Var.f34809n && i11 == r9Var.I) {
-                    r9Var.f34814y = 0;
+                if (!r9Var.f34815n && i11 == r9Var.I) {
+                    r9Var.f34820y = 0;
                     r9Var.K = false;
                     if (WalletEngine2.isValidRecipientAddress(str3)) {
                         str = WalletEngine2.toUserFriendlyAddress(str3);
                     }
-                    r9Var.f34812w = str;
+                    r9Var.f34818w = str;
                     d dVar2 = r9Var.V;
                     if (dVar2 != null) {
                         if (str != null) {
@@ -244,7 +244,7 @@ public final class e4 implements Utilities.Callback {
                         }
                         dVar2.setEnabled(z11);
                     }
-                    r9Var.f32025a.W2.N(true);
+                    r9Var.f32355a.W2.N(true);
                     return;
                 }
                 return;

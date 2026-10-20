@@ -7,28 +7,28 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.TLRPC;
 public final class z40 implements ri {
-    public final e50 f32855a;
+    public final e50 f32831a;
 
     public z40(e50 e50Var) {
-        this.f32855a = e50Var;
+        this.f32831a = e50Var;
     }
 
     @Override
     public final void E() {
-        this.f32855a.q();
+        this.f32831a.q();
     }
 
     @Override
     public final void J() {
-        AndroidUtilities.hideKeyboard(this.f32855a.f25775a.getFragmentView().findFocus());
+        AndroidUtilities.hideKeyboard(this.f32831a.f25720a.getFragmentView().findFocus());
     }
 
     @Override
     public final void b0(int i10, boolean z10, boolean z11, int i11, int i12, long j10, boolean z12, boolean z13, long j11) {
         ti tiVar;
-        e50 e50Var = this.f32855a;
-        org.telegram.ui.ActionBar.n2 n2Var = e50Var.f25775a;
-        if (n2Var != null && n2Var.getParentActivity() != null && (tiVar = e50Var.f25777c) != null) {
+        e50 e50Var = this.f32831a;
+        org.telegram.ui.ActionBar.n2 n2Var = e50Var.f25720a;
+        if (n2Var != null && n2Var.getParentActivity() != null && (tiVar = e50Var.f25722c) != null) {
             if (i10 != 8 && i10 != 7) {
                 tiVar.dismissWithButtonClick(i10);
                 if (i10 == 0) {
@@ -37,8 +37,8 @@ public final class z40 implements ri {
                 }
                 return;
             }
-            HashMap<Object, Object> selectedPhotos = tiVar.f30546j0.getSelectedPhotos();
-            ArrayList<Object> selectedPhotosOrder = e50Var.f25777c.f30546j0.getSelectedPhotosOrder();
+            HashMap<Object, Object> selectedPhotos = tiVar.f30557j0.getSelectedPhotos();
+            ArrayList<Object> selectedPhotosOrder = e50Var.f25722c.f30557j0.getSelectedPhotosOrder();
             ArrayList arrayList = new ArrayList();
             boolean z14 = false;
             for (int i13 = 0; i13 < selectedPhotosOrder.size(); i13++) {
@@ -101,7 +101,7 @@ public final class z40 implements ri {
             }
             e50.a(e50Var, z14, arrayList);
             if (i10 != 8) {
-                e50Var.f25777c.dismiss(true);
+                e50Var.f25722c.dismiss(true);
             }
         }
     }

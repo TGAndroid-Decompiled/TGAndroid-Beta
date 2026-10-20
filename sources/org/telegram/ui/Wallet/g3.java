@@ -34,7 +34,7 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.WebFile;
-import org.telegram.messenger.kk;
+import org.telegram.messenger.mk;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_wallet;
 import org.telegram.ui.Components.v40;
@@ -61,34 +61,34 @@ public final class g3 extends FrameLayout implements org.telegram.ui.ActionBar.y
     public final TextView U;
     public final TextView V;
     public boolean W;
-    public final int f34228a;
-    public boolean f34229a0;
-    public final org.telegram.ui.ActionBar.d6 f34230b;
-    public boolean f34231b0;
-    public final org.telegram.ui.Components.h9 f34232c;
-    public boolean f34233c0;
+    public final int f34234a;
+    public boolean f34235a0;
+    public final org.telegram.ui.ActionBar.d6 f34236b;
+    public boolean f34237b0;
+    public final org.telegram.ui.Components.h9 f34238c;
+    public boolean f34239c0;
     public final ImageView d;
     public final org.telegram.ui.Components.w9 e;
-    public final TextView f34234f;
+    public final TextView f34240f;
     public final TextView h;
-    public final TextView f34235n;
-    public final TextView f34236r;
-    public final Drawable f34237s;
+    public final TextView f34241n;
+    public final TextView f34242r;
+    public final Drawable f34243s;
     public final Drawable v;
-    public final da f34238w;
-    public final Paint f34239x;
-    public final Path f34240y;
+    public final da f34244w;
+    public final Paint f34245x;
+    public final Path f34246y;
 
     public g3(Context context, int i10, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
-        this.f34232c = new org.telegram.ui.Components.h9((org.telegram.ui.ActionBar.d6) null);
-        this.f34239x = new Paint(1);
-        this.f34240y = new Path();
+        this.f34238c = new org.telegram.ui.Components.h9((org.telegram.ui.ActionBar.d6) null);
+        this.f34245x = new Paint(1);
+        this.f34246y = new Path();
         GradientDrawable gradientDrawable = new GradientDrawable();
         this.E = gradientDrawable;
         this.I = new k9();
-        this.f34228a = i10;
-        this.f34230b = d6Var;
+        this.f34234a = i10;
+        this.f34236b = d6Var;
         setWillNotDraw(false);
         ImageView imageView = new ImageView(context);
         this.d = imageView;
@@ -108,7 +108,7 @@ public final class g3 extends FrameLayout implements org.telegram.ui.ActionBar.y
         linearLayout2.setGravity(16);
         linearLayout.addView(linearLayout2, w7.z5.l(1.0f, 0, -2));
         TextView textView = new TextView(context);
-        this.f34234f = textView;
+        this.f34240f = textView;
         textView.setSingleLine(true);
         textView.setEllipsize(TextUtils.TruncateAt.MIDDLE);
         textView.setIncludeFontPadding(false);
@@ -125,7 +125,7 @@ public final class g3 extends FrameLayout implements org.telegram.ui.ActionBar.y
         i11.setGravity(16);
         i11.setTextSize(1, 13.0f);
         TextView i12 = com.google.android.gms.internal.play_billing.k3.i(linearLayout2, i11, w7.z5.k(0.0f, 2.0f, 0.0f, 0.0f, -1, 16), context);
-        this.f34235n = i12;
+        this.f34241n = i12;
         i12.setSingleLine(true);
         i12.setEllipsize(truncateAt);
         i12.setIncludeFontPadding(false);
@@ -145,16 +145,16 @@ public final class g3 extends FrameLayout implements org.telegram.ui.ActionBar.y
         linearLayout3.addView(linearLayout4, w7.z5.p(0, -1, 1.0f, 51, 0, 2, 10, 2));
         TextView textView2 = new TextView(context);
         this.U = textView2;
-        kk.k(14.0f, 1, textView2);
+        mk.k(14.0f, 1, textView2);
         TextView i13 = com.google.android.gms.internal.play_billing.k3.i(linearLayout4, textView2, w7.z5.t(-1, -2, 55, 0, 0, 0, 0), context);
         this.V = i13;
         i13.setTextSize(1, 14.0f);
         linearLayout4.addView(i13, w7.z5.t(-1, -2, 55, 0, 0, 0, 0));
         da daVar = new da(context);
-        this.f34238w = daVar;
-        this.f34236r = daVar.f34119a;
+        this.f34244w = daVar;
+        this.f34242r = daVar.f34125a;
         Drawable mutate = context.getResources().getDrawable(R.drawable.wallet_gram_small).mutate();
-        this.f34237s = mutate;
+        this.f34243s = mutate;
         mutate.setBounds(0, 0, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f));
         Drawable mutate2 = context.getResources().getDrawable(R.drawable.wallet_nft).mutate();
         this.v = mutate2;
@@ -179,7 +179,7 @@ public final class g3 extends FrameLayout implements org.telegram.ui.ActionBar.y
 
     public void setPendingProgress(float f7) {
         this.F = f7;
-        this.E.setColor(org.telegram.ui.ActionBar.h6.m1(this.F, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20987d6, this.f34230b)));
+        this.E.setColor(org.telegram.ui.ActionBar.h6.m1(this.F, org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20990d6, this.f34236b)));
         c();
         setElevation(AndroidUtilities.dp(8.0f) * f7);
         if (Build.VERSION.SDK_INT >= 28) {
@@ -189,20 +189,20 @@ public final class g3 extends FrameLayout implements org.telegram.ui.ActionBar.y
         if (!this.M) {
             f7 = 0.0f;
         }
-        da daVar = this.f34238w;
+        da daVar = this.f34244w;
         daVar.d = f7;
         int i10 = (f7 > 0.0f ? 1 : (f7 == 0.0f ? 0 : -1));
-        if (i10 > 0 && daVar.f34121c == null) {
+        if (i10 > 0 && daVar.f34127c == null) {
             m6 m6Var = new m6(40, daVar.getContext(), true);
-            daVar.f34121c = m6Var;
+            daVar.f34127c = m6Var;
             m6Var.setContinuousRotation(300.0f);
-            daVar.addView(daVar.f34121c, w7.z5.c(40.0f, 40));
+            daVar.addView(daVar.f34127c, w7.z5.c(40.0f, 40));
         }
-        m6 m6Var2 = daVar.f34121c;
+        m6 m6Var2 = daVar.f34127c;
         if (m6Var2 != null && i10 == 0) {
             m6Var2.setPaused(true);
-            daVar.removeView(daVar.f34121c);
-            daVar.f34121c = null;
+            daVar.removeView(daVar.f34127c);
+            daVar.f34127c = null;
         }
         daVar.a();
         daVar.requestLayout();
@@ -242,7 +242,7 @@ public final class g3 extends FrameLayout implements org.telegram.ui.ActionBar.y
                                 e = k9Var.e(-0.3f, 0.3f) + 3.1415927f;
                                 e7 = k9Var.e(140.0f, 560.0f);
                             } else if (i12 <= 8) {
-                                if (k9Var.f34436b.nextBoolean()) {
+                                if (k9Var.f34442b.nextBoolean()) {
                                     i10 = 1;
                                 } else {
                                     i10 = -1;
@@ -282,7 +282,7 @@ public final class g3 extends FrameLayout implements org.telegram.ui.ActionBar.y
         setScaleY((1.0f - (this.G * 0.04f)) * f7);
         setTranslationY(AndroidUtilities.dp(4.0f) * this.G);
         float f10 = this.G;
-        da daVar = this.f34238w;
+        da daVar = this.f34244w;
         daVar.e = f10;
         daVar.a();
     }
@@ -290,23 +290,23 @@ public final class g3 extends FrameLayout implements org.telegram.ui.ActionBar.y
     @Override
     public final void d() {
         int w02;
-        int i10 = org.telegram.ui.ActionBar.h6.f20987d6;
-        org.telegram.ui.ActionBar.d6 d6Var = this.f34230b;
+        int i10 = org.telegram.ui.ActionBar.h6.f20990d6;
+        org.telegram.ui.ActionBar.d6 d6Var = this.f34236b;
         this.E.setColor(org.telegram.ui.ActionBar.h6.m1(this.F, org.telegram.ui.ActionBar.h6.w0(i10, d6Var)));
         int i11 = org.telegram.ui.ActionBar.h6.G6;
-        this.f34234f.setTextColor(org.telegram.ui.ActionBar.h6.w0(i11, d6Var));
+        this.f34240f.setTextColor(org.telegram.ui.ActionBar.h6.w0(i11, d6Var));
         this.h.setTextColor(org.telegram.ui.ActionBar.h6.w0(i11, d6Var));
-        int i12 = org.telegram.ui.ActionBar.h6.f21392z6;
-        this.f34235n.setTextColor(org.telegram.ui.ActionBar.h6.w0(i12, d6Var));
-        if (this.f34229a0 && !this.N) {
+        int i12 = org.telegram.ui.ActionBar.h6.f21395z6;
+        this.f34241n.setTextColor(org.telegram.ui.ActionBar.h6.w0(i12, d6Var));
+        if (this.f34235a0 && !this.N) {
             w02 = org.telegram.ui.ActionBar.h6.w0(i12, d6Var);
-        } else if (this.f34231b0) {
+        } else if (this.f34237b0) {
             w02 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.uj, d6Var);
         } else {
             w02 = org.telegram.ui.ActionBar.h6.w0(i11, d6Var);
         }
-        this.f34238w.f34119a.setTextColor(w02);
-        this.S.setBackground(org.telegram.ui.ActionBar.h6.c0(AndroidUtilities.dp(10.0f), org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20929a7, d6Var)));
+        this.f34244w.f34125a.setTextColor(w02);
+        this.S.setBackground(org.telegram.ui.ActionBar.h6.c0(AndroidUtilities.dp(10.0f), org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20932a7, d6Var)));
         this.U.setTextColor(org.telegram.ui.ActionBar.h6.w0(i11, d6Var));
         this.V.setTextColor(org.telegram.ui.ActionBar.h6.w0(i12, d6Var));
     }
@@ -330,12 +330,12 @@ public final class g3 extends FrameLayout implements org.telegram.ui.ActionBar.y
         if (f7 > 0.0f) {
             long uptimeMillis = SystemClock.uptimeMillis() - this.J;
             int i10 = org.telegram.ui.ActionBar.h6.Oh;
-            org.telegram.ui.ActionBar.d6 d6Var = this.f34230b;
+            org.telegram.ui.ActionBar.d6 d6Var = this.f34236b;
             int w02 = org.telegram.ui.ActionBar.h6.w0(i10, d6Var);
-            Paint paint = this.f34239x;
+            Paint paint = this.f34245x;
             paint.setShader(null);
             paint.setStyle(Paint.Style.FILL);
-            paint.setColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20987d6, d6Var));
+            paint.setColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f20990d6, d6Var));
             float f10 = 255.0f * f7;
             paint.setAlpha(Math.round(f10));
             canvas.drawCircle(AndroidUtilities.dp(52.0f), AndroidUtilities.dp(51.0f), AndroidUtilities.dp(8.0f) * f7, paint);
@@ -369,7 +369,7 @@ public final class g3 extends FrameLayout implements org.telegram.ui.ActionBar.y
     public final boolean drawChild(Canvas canvas, View view, long j10) {
         if (this.F > 0.0f && (view == this.e || view == this.d)) {
             int save = canvas.save();
-            Path path = this.f34240y;
+            Path path = this.f34246y;
             path.rewind();
             path.addCircle(AndroidUtilities.dp(52.0f), AndroidUtilities.dp(51.0f), AndroidUtilities.dp(10.0f) * this.F, Path.Direction.CW);
             canvas.clipPath(path, Region.Op.DIFFERENCE);
@@ -392,14 +392,14 @@ public final class g3 extends FrameLayout implements org.telegram.ui.ActionBar.y
 
     public final void f(Canvas canvas, float f7, float f10) {
         double radians = Math.toRadians(f7 - 90.0f);
-        canvas.drawLine(AndroidUtilities.dp(52.0f), AndroidUtilities.dp(51.0f), (((float) Math.cos(radians)) * f10) + AndroidUtilities.dp(52.0f), (((float) Math.sin(radians)) * f10) + AndroidUtilities.dp(51.0f), this.f34239x);
+        canvas.drawLine(AndroidUtilities.dp(52.0f), AndroidUtilities.dp(51.0f), (((float) Math.cos(radians)) * f10) + AndroidUtilities.dp(52.0f), (((float) Math.sin(radians)) * f10) + AndroidUtilities.dp(51.0f), this.f34245x);
     }
 
     public final void g(boolean z10) {
         float f7;
         this.O = z10;
-        da daVar = this.f34238w;
-        daVar.f34122f = z10;
+        da daVar = this.f34244w;
+        daVar.f34128f = z10;
         daVar.a();
         if (!this.N && !z10) {
             f7 = 0.0f;
@@ -414,7 +414,7 @@ public final class g3 extends FrameLayout implements org.telegram.ui.ActionBar.y
     }
 
     public m6 getPendingDiamond() {
-        return this.f34238w.f34121c;
+        return this.f34244w.f34127c;
     }
 
     public final void h(TL_wallet.walletTransaction wallettransaction, f3 f3Var, boolean z10) {
@@ -441,7 +441,7 @@ public final class g3 extends FrameLayout implements org.telegram.ui.ActionBar.y
         int i17;
         TLRPC.WebDocument webDocument;
         String a11;
-        int i18 = e3.f34142a;
+        int i18 = e3.f34148a;
         TL_wallet.walletTransaction wallettransaction2 = this.R;
         if (wallettransaction2 != null && e3.a(wallettransaction2, wallettransaction)) {
             z11 = true;
@@ -454,7 +454,7 @@ public final class g3 extends FrameLayout implements org.telegram.ui.ActionBar.y
             this.Q = false;
             this.J = SystemClock.uptimeMillis();
             e();
-            this.I.f34435a.clear();
+            this.I.f34441a.clear();
         }
         this.R = wallettransaction;
         boolean z17 = wallettransaction.pending;
@@ -476,16 +476,16 @@ public final class g3 extends FrameLayout implements org.telegram.ui.ActionBar.y
         } else {
             z14 = true;
         }
-        this.f34229a0 = z14;
-        this.f34231b0 = z18;
+        this.f34235a0 = z14;
+        this.f34237b0 = z18;
         boolean z19 = wallettransaction.key_change;
         TextView textView = this.h;
         ImageView imageView = this.d;
         org.telegram.ui.Components.w9 w9Var = this.e;
-        TextView textView2 = this.f34234f;
+        TextView textView2 = this.f34240f;
         if (z19) {
             w9Var.setVisibility(8);
-            setIconColor(v40.f31147w);
+            setIconColor(v40.f31144w);
             imageView.setImageResource(R.drawable.wallet_transaction_key);
             textView2.setText(LocaleController.getString(R.string.WalletKeyUpdate));
             if (TextUtils.isEmpty(wallettransaction.peer.address)) {
@@ -498,11 +498,11 @@ public final class g3 extends FrameLayout implements org.telegram.ui.ActionBar.y
         } else {
             TL_wallet.WalletTransactionPeer walletTransactionPeer = wallettransaction.peer;
             boolean z20 = walletTransactionPeer instanceof TL_wallet.walletTransactionPeerUser;
-            int i19 = this.f34228a;
-            v40 v40Var = v40.f31144n;
-            org.telegram.ui.Components.h9 h9Var = this.f34232c;
+            int i19 = this.f34234a;
+            v40 v40Var = v40.f31141n;
+            org.telegram.ui.Components.h9 h9Var = this.f34238c;
             z15 = true;
-            v40 v40Var2 = v40.f31142c;
+            v40 v40Var2 = v40.f31139c;
             if (z20) {
                 TLRPC.User user = MessagesController.getInstance(i19).getUser(Long.valueOf(((TL_wallet.walletTransactionPeerUser) wallettransaction.peer).user_id));
                 if (user != null) {
@@ -512,11 +512,11 @@ public final class g3 extends FrameLayout implements org.telegram.ui.ActionBar.y
                     textView2.setText(UserObject.getUserName(user));
                 } else {
                     w9Var.setVisibility(8);
-                    if (this.f34231b0) {
+                    if (this.f34237b0) {
                         v40Var = v40Var2;
                     }
                     setIconColor(v40Var);
-                    if (this.f34231b0) {
+                    if (this.f34237b0) {
                         i13 = R.drawable.wallet_transaction_in;
                     } else {
                         i13 = R.drawable.wallet_transaction_out;
@@ -533,11 +533,11 @@ public final class g3 extends FrameLayout implements org.telegram.ui.ActionBar.y
                     textView2.setText(chat.title);
                 } else {
                     w9Var.setVisibility(8);
-                    if (this.f34231b0) {
+                    if (this.f34237b0) {
                         v40Var = v40Var2;
                     }
                     setIconColor(v40Var);
-                    if (this.f34231b0) {
+                    if (this.f34237b0) {
                         i12 = R.drawable.wallet_transaction_in;
                     } else {
                         i12 = R.drawable.wallet_transaction_out;
@@ -552,11 +552,11 @@ public final class g3 extends FrameLayout implements org.telegram.ui.ActionBar.y
                 }
             } else if (walletTransactionPeer instanceof TL_wallet.walletTransactionPeerTelegramGift) {
                 w9Var.setVisibility(8);
-                if (!this.f34231b0) {
+                if (!this.f34237b0) {
                     v40Var = v40Var2;
                 }
                 setIconColor(v40Var);
-                if (this.f34231b0) {
+                if (this.f34237b0) {
                     i11 = R.drawable.wallet_transaction_in;
                 } else {
                     i11 = R.drawable.wallet_transaction_out;
@@ -577,11 +577,11 @@ public final class g3 extends FrameLayout implements org.telegram.ui.ActionBar.y
                 textView.setText(f.d(wallettransactionpeeronramp.provider_name, Locale.getDefault()));
             } else {
                 w9Var.setVisibility(8);
-                if (this.f34231b0) {
+                if (this.f34237b0) {
                     v40Var = v40Var2;
                 }
                 setIconColor(v40Var);
-                if (this.f34231b0) {
+                if (this.f34237b0) {
                     i10 = R.drawable.wallet_transaction_in;
                 } else {
                     i10 = R.drawable.wallet_transaction_out;
@@ -605,22 +605,22 @@ public final class g3 extends FrameLayout implements org.telegram.ui.ActionBar.y
         } else {
             z16 = false;
         }
-        this.f34233c0 = z16;
+        this.f34239c0 = z16;
         textView2.setSingleLine(!z16);
-        if (this.f34233c0) {
+        if (this.f34239c0) {
             truncateAt = null;
         } else {
             truncateAt = TextUtils.TruncateAt.MIDDLE;
         }
         textView2.setEllipsize(truncateAt);
-        if (this.f34233c0) {
+        if (this.f34239c0) {
             dp = Integer.MAX_VALUE;
         } else {
             dp = AndroidUtilities.dp(120.0f);
         }
         textView2.setMaxWidth(dp);
         ViewGroup.LayoutParams layoutParams = textView2.getLayoutParams();
-        if (this.f34233c0) {
+        if (this.f34239c0) {
             dp2 = -2;
         } else {
             dp2 = AndroidUtilities.dp(18.0f);
@@ -633,21 +633,21 @@ public final class g3 extends FrameLayout implements org.telegram.ui.ActionBar.y
             TL_wallet.WalletTransactionPeer walletTransactionPeer2 = wallettransaction.peer;
             if (!(walletTransactionPeer2 instanceof TL_wallet.walletTransactionPeerOnramp)) {
                 if ((walletTransactionPeer2 instanceof TL_wallet.walletTransactionPeerTelegramGift) && ((TL_wallet.walletTransactionPeerTelegramGift) walletTransactionPeer2).own_profile) {
-                    if (this.f34231b0) {
+                    if (this.f34237b0) {
                         i16 = R.string.WalletMovedFromProfile;
                     } else {
                         i16 = R.string.WalletMovedToProfile;
                     }
                     textView.setText(LocaleController.getString(i16));
                 } else if (wallettransaction.nft != null) {
-                    if (this.f34231b0) {
+                    if (this.f34237b0) {
                         i15 = R.string.WalletIncomingTransferNft;
                     } else {
                         i15 = R.string.WalletOutgoingTransferNft;
                     }
                     textView.setText(LocaleController.getString(i15));
                 } else {
-                    if (this.f34231b0) {
+                    if (this.f34237b0) {
                         i14 = R.string.WalletIncomingTransfer;
                     } else {
                         i14 = R.string.WalletOutgoingTransfer;
@@ -657,7 +657,7 @@ public final class g3 extends FrameLayout implements org.telegram.ui.ActionBar.y
             }
         }
         boolean z21 = wallettransaction.pending;
-        TextView textView3 = this.f34235n;
+        TextView textView3 = this.f34241n;
         if (z21) {
             textView3.setText(ci.ga.a(textView3, LocaleController.getString(R.string.WalletSending)));
         } else {
@@ -672,10 +672,10 @@ public final class g3 extends FrameLayout implements org.telegram.ui.ActionBar.y
         TL_wallet.nftItem nftitem = wallettransaction.nft;
         LinearLayout linearLayout = this.S;
         org.telegram.ui.Components.w9 w9Var2 = this.T;
-        org.telegram.ui.ActionBar.d6 d6Var = this.f34230b;
+        org.telegram.ui.ActionBar.d6 d6Var = this.f34236b;
         if (nftitem != null) {
             linearLayout.setVisibility(0);
-            int w02 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21375y6, d6Var);
+            int w02 = org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21378y6, d6Var);
             Drawable mutate = getContext().getResources().getDrawable(R.drawable.wallet_nft_placeholder).mutate();
             mutate.setColorFilter(new PorterDuffColorFilter(w02, PorterDuff.Mode.SRC_IN));
             zq zqVar = new zq(org.telegram.ui.ActionBar.h6.c0(AndroidUtilities.dp(8.0f), org.telegram.ui.ActionBar.h6.m1(0.1f, w02)), mutate);
@@ -705,25 +705,25 @@ public final class g3 extends FrameLayout implements org.telegram.ui.ActionBar.y
             w9Var2.b();
         }
         int i21 = (wallettransaction.amount > 0L ? 1 : (wallettransaction.amount == 0L ? 0 : -1));
-        Drawable drawable = this.f34237s;
+        Drawable drawable = this.f34243s;
         Drawable drawable2 = this.v;
-        TextView textView4 = this.f34236r;
+        TextView textView4 = this.f34242r;
         if (i21 == 0 && wallettransaction.key_change) {
             textView4.setVisibility(8);
         } else if (wallettransaction.nft != null) {
             textView4.setVisibility(0);
             textView4.setCompoundDrawablesRelative(null, null, drawable2, null);
-            if (this.f34231b0) {
+            if (this.f34237b0) {
                 drawable2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.uj, d6Var), PorterDuff.Mode.SRC_IN));
                 textView4.setText(LocaleController.getString(R.string.WalletIncomingCollectibleAmount));
             } else {
-                drawable2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21392z6, d6Var), PorterDuff.Mode.SRC_IN));
+                drawable2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21395z6, d6Var), PorterDuff.Mode.SRC_IN));
                 textView4.setText(LocaleController.getString(R.string.WalletOutgoingCollectibleAmount));
             }
         } else {
             textView4.setVisibility(0);
             textView4.setCompoundDrawablesRelative(null, null, drawable, null);
-            boolean z22 = this.f34231b0;
+            boolean z22 = this.f34237b0;
             long abs = Math.abs(wallettransaction.amount);
             SpannableStringBuilder p5 = m0.p(m0.n(abs, false), 0.78571427f);
             int i22 = (abs > 0L ? 1 : (abs == 0L ? 0 : -1));
@@ -735,17 +735,17 @@ public final class g3 extends FrameLayout implements org.telegram.ui.ActionBar.y
             textView4.setText(p5);
         }
         int visibility = textView4.getVisibility();
-        da daVar = this.f34238w;
+        da daVar = this.f34244w;
         daVar.setVisibility(visibility);
         CharSequence text = textView4.getText();
         if (wallettransaction.nft != null) {
             drawable = drawable2;
         }
-        TextView textView5 = daVar.f34119a;
+        TextView textView5 = daVar.f34125a;
         textView5.setText(text);
         textView5.setCompoundDrawablesRelative(null, null, null, null);
-        daVar.f34120b.setImageDrawable(drawable);
-        daVar.f34122f = this.O;
+        daVar.f34126b.setImageDrawable(drawable);
+        daVar.f34128f = this.O;
         daVar.a();
         if (!this.N && !this.O) {
             f7 = 0.0f;
@@ -773,15 +773,15 @@ public final class g3 extends FrameLayout implements org.telegram.ui.ActionBar.y
     @Override
     public final void onDetachedFromWindow() {
         e();
-        this.I.f34435a.clear();
+        this.I.f34441a.clear();
         ValueAnimator valueAnimator = this.K;
         if (valueAnimator != null) {
             valueAnimator.cancel();
             this.K = null;
         }
         this.O = false;
-        da daVar = this.f34238w;
-        daVar.f34122f = false;
+        da daVar = this.f34244w;
+        daVar.f34128f = false;
         daVar.a();
         super.onDetachedFromWindow();
     }
@@ -793,10 +793,10 @@ public final class g3 extends FrameLayout implements org.telegram.ui.ActionBar.y
         super.onDraw(canvas);
         if (this.W && this.F < 1.0f) {
             Paint.Style style = Paint.Style.FILL;
-            Paint paint = this.f34239x;
+            Paint paint = this.f34245x;
             paint.setStyle(style);
-            paint.setColor(org.telegram.ui.ActionBar.h6.f21108k0.getColor());
-            paint.setAlpha(Math.round((1.0f - this.F) * org.telegram.ui.ActionBar.h6.f21108k0.getAlpha()));
+            paint.setColor(org.telegram.ui.ActionBar.h6.f21111k0.getColor());
+            paint.setAlpha(Math.round((1.0f - this.F) * org.telegram.ui.ActionBar.h6.f21111k0.getAlpha()));
             if (LocaleController.isRTL) {
                 dp = 0.0f;
             } else {

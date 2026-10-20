@@ -1,47 +1,19 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
-import org.telegram.messenger.AndroidUtilities;
-public final class wj0 extends Drawable {
-    public final int f32138a;
-    public final int f32139b;
-    public final xj0 f32140c;
+import org.telegram.messenger.ImageReceiver;
+public final class wj0 extends ImageReceiver {
+    public final yj0 f32141a;
 
-    public wj0(xj0 xj0Var, int i10, int i11) {
-        this.f32140c = xj0Var;
-        this.f32138a = i10;
-        this.f32139b = i11;
+    public wj0(yj0 yj0Var) {
+        this.f32141a = yj0Var;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        Rect rect = AndroidUtilities.rectTmp2;
-        int centerX = getBounds().centerX();
-        float f7 = this.f32138a;
-        int dp = centerX - (AndroidUtilities.dp(f7) / 2);
-        int centerY = getBounds().centerY();
-        float f10 = this.f32139b;
-        rect.set(dp, centerY - (AndroidUtilities.dp(f10) / 2), (AndroidUtilities.dp(f7) / 2) + getBounds().centerX(), (AndroidUtilities.dp(f10) / 2) + getBounds().centerY());
-        xj0 xj0Var = this.f32140c;
-        xj0Var.f32411c.setImageCoords(rect);
-        xj0Var.f32411c.draw(canvas);
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-        this.f32140c.f32411c.setAlpha(i10 / 255.0f);
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        this.f32140c.f32411c.setColorFilter(colorFilter);
+    public final boolean setImageBitmapByKey(Drawable drawable, String str, int i10, boolean z10, int i11) {
+        if (drawable != null) {
+            this.f32141a.c();
+        }
+        return super.setImageBitmapByKey(drawable, str, i10, z10, i11);
     }
 }

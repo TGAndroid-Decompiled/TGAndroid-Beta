@@ -7,19 +7,19 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Timer;
 import org.telegram.messenger.Emoji;
-public final class mt extends org.telegram.ui.Components.hm0 {
-    public final Context f39341c;
+public final class mt extends org.telegram.ui.Components.im0 {
+    public final Context f39347c;
     public Timer d;
     public ArrayList e;
-    public final ArrayList f39342f = new ArrayList();
+    public final ArrayList f39348f = new ArrayList();
     public final ot h;
 
     public mt(ot otVar, Context context, HashMap hashMap) {
         this.h = otVar;
-        this.f39341c = context;
+        this.f39347c = context;
         for (List<ht> list : hashMap.values()) {
             for (ht htVar : list) {
-                this.f39342f.add(htVar);
+                this.f39348f.add(htVar);
             }
         }
     }
@@ -47,10 +47,10 @@ public final class mt extends org.telegram.ui.Components.hm0 {
     public final void v(s4.b1 b1Var, int i10) {
         String str;
         ht htVar = (ht) this.e.get(i10);
-        org.telegram.ui.Cells.ba baVar = (org.telegram.ui.Cells.ba) b1Var.f45912a;
+        org.telegram.ui.Cells.ba baVar = (org.telegram.ui.Cells.ba) b1Var.f45917a;
         CharSequence replaceEmoji = Emoji.replaceEmoji(ot.V(htVar), baVar.getTextView().getPaint().getFontMetricsInt(), false);
         if (this.h.h) {
-            str = "+" + htVar.f37779c;
+            str = "+" + htVar.f37785c;
         } else {
             str = null;
         }
@@ -59,6 +59,6 @@ public final class mt extends org.telegram.ui.Components.hm0 {
 
     @Override
     public final s4.b1 x(ViewGroup viewGroup, int i10) {
-        return new s4.b1(ot.U(this.f39341c));
+        return new s4.b1(ot.U(this.f39347c));
     }
 }

@@ -5,10 +5,10 @@ import android.view.View;
 import android.view.ViewOutlineProvider;
 import org.telegram.messenger.AndroidUtilities;
 public final class qm extends ViewOutlineProvider {
-    public final sm f29664a;
+    public final sm f29655a;
 
     public qm(sm smVar) {
-        this.f29664a = smVar;
+        this.f29655a = smVar;
     }
 
     @Override
@@ -18,12 +18,12 @@ public final class qm extends ViewOutlineProvider {
             return;
         }
         int intValue = ((Integer) s5Var.getTag()).intValue();
-        sm smVar = this.f29664a;
+        sm smVar = this.f29655a;
         ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = smVar.v;
         if (smVar.d && chatAttachAlertPhotoLayout.T0 == chatAttachAlertPhotoLayout.U0 && !chatAttachAlertPhotoLayout.O0) {
             intValue++;
         }
-        if (chatAttachAlertPhotoLayout.f24092g1) {
+        if (chatAttachAlertPhotoLayout.f24095g1) {
             intValue++;
         }
         if (intValue == 0) {

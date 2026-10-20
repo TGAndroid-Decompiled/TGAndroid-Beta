@@ -37,7 +37,7 @@ public class ANRDetector implements n10 {
         o10 o10Var = o10.getInstance();
         this.foreground = o10Var.isForeground();
         o10Var.addListener(this);
-        Thread thread = new Thread(new h1(this, 11), "ANRDetector");
+        Thread thread = new Thread(new i1(this, 11), "ANRDetector");
         this.detectorThread = thread;
         thread.start();
     }

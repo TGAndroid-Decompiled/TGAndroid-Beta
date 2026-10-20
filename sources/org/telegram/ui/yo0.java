@@ -6,15 +6,15 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 public final class yo0 extends x51 {
-    public final bp0 f43527d2;
-    public final o51[] f43528e2;
-    public final cp0 f43529f2;
+    public final bp0 f43533d2;
+    public final o51[] f43534e2;
+    public final cp0 f43535f2;
 
     public yo0(cp0 cp0Var, org.telegram.ui.ActionBar.n2 n2Var, Context context, Integer num, int i10, org.telegram.ui.ActionBar.d6 d6Var, int i11, int i12, bp0 bp0Var, o51[] o51VarArr) {
         super(n2Var, context, true, num, i10, true, d6Var, i11, i12);
-        this.f43529f2 = cp0Var;
-        this.f43527d2 = bp0Var;
-        this.f43528e2 = o51VarArr;
+        this.f43535f2 = cp0Var;
+        this.f43533d2 = bp0Var;
+        this.f43534e2 = o51VarArr;
     }
 
     @Override
@@ -25,19 +25,19 @@ public final class yo0 extends x51 {
     @Override
     public final void p(View view, Long l4, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, Integer num) {
         long longValue;
-        cp0 cp0Var = this.f43529f2;
+        cp0 cp0Var = this.f43535f2;
         if (tL_starGiftUnique != null) {
             if (cp0Var.m0 == 0) {
                 TLRPC.PeerColor peerColor = tL_starGiftUnique.peer_color;
                 if (peerColor instanceof TLRPC.TL_peerColorCollectible) {
-                    cp0Var.f36033s = (TLRPC.TL_peerColorCollectible) peerColor;
-                    cp0Var.f36032r = null;
+                    cp0Var.f36039s = (TLRPC.TL_peerColorCollectible) peerColor;
+                    cp0Var.f36038r = null;
                 } else {
                     return;
                 }
             } else {
-                cp0Var.f36033s = null;
-                cp0Var.f36032r = MessagesController.emojiStatusCollectibleFromGift(tL_starGiftUnique);
+                cp0Var.f36039s = null;
+                cp0Var.f36038r = MessagesController.emojiStatusCollectibleFromGift(tL_starGiftUnique);
             }
             cp0Var.I = null;
             cp0Var.h = -1;
@@ -47,21 +47,21 @@ public final class yo0 extends x51 {
             } else {
                 longValue = l4.longValue();
             }
-            cp0Var.f36028n = longValue;
-            cp0Var.f36032r = null;
-            cp0Var.f36033s = null;
+            cp0Var.f36034n = longValue;
+            cp0Var.f36038r = null;
+            cp0Var.f36039s = null;
             cp0Var.I = null;
         }
-        bp0 bp0Var = this.f43527d2;
+        bp0 bp0Var = this.f43533d2;
         if (bp0Var != null) {
             bp0Var.b(true);
         }
         cp0Var.j(true);
         cp0Var.i();
         cp0Var.f(true);
-        o51 o51Var = this.f43528e2[0];
+        o51 o51Var = this.f43534e2[0];
         if (o51Var != null) {
-            cp0Var.f36030o0 = null;
+            cp0Var.f36036o0 = null;
             o51Var.dismiss();
         }
     }

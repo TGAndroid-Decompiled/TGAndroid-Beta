@@ -1,28 +1,24 @@
 package org.telegram.messenger;
+public final class zk implements Runnable {
+    public final int f20269a;
+    public final TranslateController f20270b;
+    public final long f20271c;
 
-import org.telegram.messenger.LanguageDetector;
-public final class zk implements LanguageDetector.StringCallback, LanguageDetector.ExceptionCallback {
-    public final TranslateController f20266a;
-    public final MessageObject f20267b;
-    public final long f20268c;
-    public final int d;
-
-    public zk(TranslateController translateController, MessageObject messageObject, long j10, int i10) {
-        this.f20266a = translateController;
-        this.f20267b = messageObject;
-        this.f20268c = j10;
-        this.d = i10;
+    public zk(TranslateController translateController, long j10, int i10) {
+        this.f20269a = i10;
+        this.f20270b = translateController;
+        this.f20271c = j10;
     }
 
     @Override
-    public void run(Exception exc) {
-        this.f20266a.lambda$checkLanguage$15(this.f20267b, this.f20268c, this.d, exc);
-    }
-
-    @Override
-    public void run(String str) {
-        long j10 = this.f20268c;
-        int i10 = this.d;
-        this.f20266a.lambda$checkLanguage$13(this.f20267b, j10, i10, str);
+    public final void run() {
+        switch (this.f20269a) {
+            case 0:
+                TranslateController.G(this.f20270b, this.f20271c);
+                return;
+            default:
+                TranslateController.p(this.f20270b, this.f20271c);
+                return;
+        }
     }
 }

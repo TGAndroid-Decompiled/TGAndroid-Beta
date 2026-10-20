@@ -2,14 +2,14 @@ package zh;
 
 import java.util.ArrayList;
 public final class o {
-    public final int f52058a;
-    public final String f52059b;
-    public final ArrayList f52060c;
+    public final int f52064a;
+    public final String f52065b;
+    public final ArrayList f52066c;
     public int d;
 
     public o(int i10, String str, ArrayList arrayList) {
-        this.f52058a = i10;
-        this.f52059b = str;
-        this.f52060c = arrayList;
+        this.f52064a = i10;
+        this.f52065b = str;
+        this.f52066c = arrayList;
     }
 }

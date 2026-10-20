@@ -1,40 +1,27 @@
 package org.telegram.messenger;
-
-import org.telegram.tgnet.TLObject;
 public final class ob implements Runnable {
-    public final int f19166a;
-    public final MessagesController f19167b;
-    public final TLObject f19168c;
+    public final int f19137a;
+    public final org.telegram.ui.ActionBar.n2 f19138b;
 
-    public ob(MessagesController messagesController, TLObject tLObject, int i10) {
-        this.f19166a = i10;
-        this.f19167b = messagesController;
-        this.f19168c = tLObject;
+    public ob(int i10, org.telegram.ui.ActionBar.n2 n2Var) {
+        this.f19137a = i10;
+        this.f19138b = n2Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f19166a) {
+        switch (this.f19137a) {
             case 0:
-                this.f19167b.lambda$loadGlobalNotificationsSettings$201(this.f19168c);
+                MessagesController.lambda$checkSensitive$450(this.f19138b);
                 return;
             case 1:
-                this.f19167b.lambda$reloadReactionsNotifySettings$203(this.f19168c);
+                org.telegram.ui.Components.f5.s0(7, this.f19138b, null);
                 return;
             case 2:
-                this.f19167b.lambda$getContentSettings$504(this.f19168c);
-                return;
-            case 3:
-                this.f19167b.lambda$loadSuggestedFilters$24(this.f19168c);
-                return;
-            case 4:
-                this.f19167b.lambda$loadHintDialogs$194(this.f19168c);
-                return;
-            case 5:
-                this.f19167b.lambda$loadUnreadDialogs$360(this.f19168c);
+                org.telegram.ui.Components.f5.s0(8, this.f19138b, null);
                 return;
             default:
-                this.f19167b.lambda$loadSignUpNotificationsSettings$205(this.f19168c);
+                TranslateController.lambda$pushToSummarize$18(this.f19138b);
                 return;
         }
     }

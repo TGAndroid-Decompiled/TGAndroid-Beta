@@ -22,13 +22,13 @@ import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Cells.i6;
 import org.telegram.ui.Components.bb;
 import org.telegram.ui.Components.f5;
-import org.telegram.ui.Components.hm0;
 import org.telegram.ui.Components.im0;
-import org.telegram.ui.Components.t61;
+import org.telegram.ui.Components.jm0;
+import org.telegram.ui.Components.u61;
 import s4.o0;
 import w7.z5;
 public final class a extends bb {
-    public t61 X;
+    public u61 X;
     public boolean Y;
     public final FrameLayout Z;
     public final boolean f14517a0;
@@ -46,7 +46,7 @@ public final class a extends bb {
         this.L = false;
         this.K = AndroidUtilities.dp(12.0f);
         this.e.setTitle(A());
-        setBackgroundColor(h6.w0(h6.f20929a7, this.resourcesProvider));
+        setBackgroundColor(h6.w0(h6.f20932a7, this.resourcesProvider));
         FrameLayout frameLayout = new FrameLayout(context);
         this.Z = frameLayout;
         frameLayout.setPadding(0, AndroidUtilities.dp(3.0f), 0, AndroidUtilities.dp(3.0f));
@@ -62,9 +62,9 @@ public final class a extends bb {
             }
         }
         frameLayout.addView(h6Var, z5.c(-2.0f, i10));
-        im0 im0Var = this.d;
+        jm0 jm0Var = this.d;
         int i12 = this.backgroundPaddingLeft;
-        im0Var.setPadding(i12, 0, i12, AndroidUtilities.dp(64.0f) + AndroidUtilities.navigationBarHeight);
+        jm0Var.setPadding(i12, 0, i12, AndroidUtilities.dp(64.0f) + AndroidUtilities.navigationBarHeight);
         this.d.p1();
         this.d.setClipToPadding(false);
         this.d.setOnItemClickListener(new wa(this, 16));
@@ -118,15 +118,15 @@ public final class a extends bb {
         boolean z11;
         if (this.Y != z10) {
             this.Y = z10;
-            im0 im0Var = this.d;
-            View U0 = im0Var.U0(this.f14519c0 + 1);
+            jm0 jm0Var = this.d;
+            View U0 = jm0Var.U0(this.f14519c0 + 1);
             if (U0 instanceof i6) {
                 ((i6) U0).a(!z10);
                 z11 = false;
             } else {
                 z11 = true;
             }
-            View U02 = im0Var.U0(this.f14519c0 + 2);
+            View U02 = jm0Var.U0(this.f14519c0 + 2);
             if (U02 instanceof i6) {
                 ((i6) U02).a(z10);
             } else {
@@ -139,10 +139,10 @@ public final class a extends bb {
     }
 
     @Override
-    public final hm0 x(im0 im0Var) {
-        t61 t61Var = new t61(this.d, getContext(), this.currentAccount, 0, false, new o(this, 11), this.resourcesProvider);
-        this.X = t61Var;
-        t61Var.f30436r = false;
-        return t61Var;
+    public final im0 x(jm0 jm0Var) {
+        u61 u61Var = new u61(this.d, getContext(), this.currentAccount, 0, false, new o(this, 11), this.resourcesProvider);
+        this.X = u61Var;
+        u61Var.f30860r = false;
+        return u61Var;
     }
 }

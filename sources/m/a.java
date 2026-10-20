@@ -22,7 +22,7 @@ import org.telegram.ui.Components.Crop.CropAreaView;
 import org.telegram.ui.Components.as;
 import org.telegram.ui.Components.r40;
 import org.telegram.ui.Components.r60;
-import org.telegram.ui.Components.ti0;
+import org.telegram.ui.Components.ui0;
 import org.telegram.ui.bd;
 import org.telegram.ui.bq;
 import org.telegram.ui.cc;
@@ -97,24 +97,24 @@ public final class a extends AnimatorListenerAdapter {
                 actionBarOverlayLayout.v = false;
                 return;
             case 1:
-                ((CropAreaView) this.f16146b).f24184c0 = null;
+                ((CropAreaView) this.f16146b).f24187c0 = null;
                 return;
             case 2:
                 l4 l4Var = (l4) this.f16146b;
-                Runnable runnable = l4Var.f38752a0;
+                Runnable runnable = l4Var.f38758a0;
                 if (runnable != null) {
                     runnable.run();
-                    l4Var.f38752a0 = null;
+                    l4Var.f38758a0 = null;
                     return;
                 }
                 return;
             case 3:
                 x3 x3Var = (x3) this.f16146b;
-                x3Var.f43010w = 1.0f;
+                x3Var.f43016w = 1.0f;
                 x3Var.n();
                 x3Var.i();
                 x3Var.h();
-                x3Var.f43003a.unlock();
+                x3Var.f43009a.unlock();
                 return;
             case 4:
                 w4 w4Var = (w4) this.f16146b;
@@ -123,11 +123,11 @@ public final class a extends AnimatorListenerAdapter {
                 return;
             case 5:
                 z4 z4Var = (z4) this.f16146b;
-                z4Var.f43618c = false;
+                z4Var.f43624c = false;
                 z4Var.invalidate();
                 return;
             case 6:
-                ((z5) this.f16146b).f43630f0.setVisibility(8);
+                ((z5) this.f16146b).f43636f0.setVisibility(8);
                 return;
             case 7:
             default:
@@ -138,7 +138,7 @@ public final class a extends AnimatorListenerAdapter {
                 return;
             case 9:
                 org.telegram.ui.Cells.j jVar = (org.telegram.ui.Cells.j) this.f16146b;
-                ((wz0) jVar).f42974c0.e.f33589c.f45903r = false;
+                ((wz0) jVar).f42980c0.e.f33595c.f45908r = false;
                 FrameLayout frameLayout = jVar.J;
                 if (frameLayout.getBackground() == null) {
                     frameLayout.setBackground(jVar.K);
@@ -147,26 +147,26 @@ public final class a extends AnimatorListenerAdapter {
                 return;
             case 10:
                 org.telegram.ui.Cells.w wVar = (org.telegram.ui.Cells.w) this.f16146b;
-                Button button = wVar.f23673n;
-                ti0 ti0Var = wVar.f23672f;
-                if (button == ti0Var) {
+                Button button = wVar.f23676n;
+                ui0 ui0Var = wVar.f23675f;
+                if (button == ui0Var) {
                     wVar.e.setVisibility(4);
                     return;
                 } else {
-                    ti0Var.setVisibility(4);
+                    ui0Var.setVisibility(4);
                     return;
                 }
             case 11:
                 super.onAnimationEnd(animator);
-                ((org.telegram.ui.Cells.e0) this.f16146b).f22172x = null;
+                ((org.telegram.ui.Cells.e0) this.f16146b).f22175x = null;
                 return;
             case 12:
                 ((f4) this.f16146b).G = null;
                 return;
             case 13:
                 s5 s5Var = (s5) this.f16146b;
-                if (animator.equals(s5Var.f23004n)) {
-                    s5Var.f23004n = null;
+                if (animator.equals(s5Var.f23007n)) {
+                    s5Var.f23007n = null;
                     return;
                 }
                 return;
@@ -190,20 +190,20 @@ public final class a extends AnimatorListenerAdapter {
                 return;
             case 17:
                 s7 s7Var = (s7) this.f16146b;
-                s7Var.f23036n.isMediaSpoilersRevealedInSharedMedia = true;
+                s7Var.f23039n.isMediaSpoilersRevealedInSharedMedia = true;
                 s7Var.invalidate();
                 return;
             case 18:
                 super.onAnimationEnd(animator);
                 ca caVar = (ca) this.f16146b;
-                ((da) caVar.f22109b).f22151a.getTransitionParams().j();
-                ((da) caVar.f22109b).f22151a.getTransitionParams().f23088g = false;
-                ((da) caVar.f22109b).f22151a.getTransitionParams().K1 = 1.0f;
+                ((da) caVar.f22112b).f22154a.getTransitionParams().j();
+                ((da) caVar.f22112b).f22154a.getTransitionParams().f23091g = false;
+                ((da) caVar.f22112b).f22154a.getTransitionParams().K1 = 1.0f;
                 return;
             case 19:
                 org.telegram.ui.k3 k3Var = (org.telegram.ui.k3) this.f16146b;
-                if (animator.equals(((vb) k3Var.f38399b).R)) {
-                    ((vb) k3Var.f38399b).R = null;
+                if (animator.equals(((vb) k3Var.f38405b).R)) {
+                    ((vb) k3Var.f38405b).R = null;
                     return;
                 }
                 return;
@@ -226,25 +226,25 @@ public final class a extends AnimatorListenerAdapter {
                     }
                     bdVar.m0 = null;
                 }
-                bdVar.f35584o0 = null;
+                bdVar.f35590o0 = null;
                 super.onAnimationEnd(animator);
                 return;
             case 23:
                 th thVar = (th) this.f16146b;
-                if (thVar.f41668a) {
+                if (thVar.f41674a) {
                     thVar.d.setTranslationY(0.0f);
                 }
-                if (thVar.f41669b) {
+                if (thVar.f41675b) {
                     thVar.e.setTranslationY(0.0f);
                 }
-                if (thVar.f41671f) {
+                if (thVar.f41677f) {
                     thVar.h.setTranslationY(0.0f);
                 }
-                org.telegram.ui.Components.w9 w9Var = thVar.f41670c;
+                org.telegram.ui.Components.w9 w9Var = thVar.f41676c;
                 if (w9Var != null) {
                     w9Var.setTranslationY(0.0f);
                 }
-                thVar.f41672n.H2[1] = null;
+                thVar.f41678n.H2[1] = null;
                 return;
             case 24:
                 fk fkVar = (fk) this.f16146b;
@@ -253,10 +253,10 @@ public final class a extends AnimatorListenerAdapter {
                 if (view != null && view.getVisibility() == 0) {
                     fkVar.G1.setTranslationY(((1.0f - fkVar.getTopViewEnterProgress()) * fkVar.G1.getLayoutParams().height) + fkVar.T1);
                 }
-                fkVar.f37018r5.p9 = null;
+                fkVar.f37024r5.p9 = null;
                 return;
             case 25:
-                r40 r40Var = ((oi) this.f16146b).f39896b.f40660e2;
+                r40 r40Var = ((oi) this.f16146b).f39902b.f40666e2;
                 if (r40Var != null) {
                     r40Var.setVisibility(8);
                     return;
@@ -264,33 +264,33 @@ public final class a extends AnimatorListenerAdapter {
                 return;
             case 26:
                 me meVar = (me) this.f16146b;
-                r60 r60Var = ((dm) ((xl) meVar.f1858c).f43227c).Q.f40622b3;
+                r60 r60Var = ((dm) ((xl) meVar.f1858c).f43233c).Q.f40628b3;
                 if (r60Var != null) {
                     r60Var.setIsMessageTransition(false);
-                    ((dm) ((xl) meVar.f1858c).f43227c).Q.f40622b3.c(true);
-                    ((dm) ((xl) meVar.f1858c).f43227c).Q.f40622b3.setVisibility(4);
+                    ((dm) ((xl) meVar.f1858c).f43233c).Q.f40628b3.c(true);
+                    ((dm) ((xl) meVar.f1858c).f43233c).Q.f40628b3.setVisibility(4);
                     return;
                 }
                 return;
             case 27:
                 cm cmVar = (cm) this.f16146b;
-                dm dmVar = cmVar.f36002b;
-                ArrayList arrayList = dmVar.Q.f40774n6;
-                org.telegram.ui.Cells.u1 u1Var = cmVar.f36001a;
+                dm dmVar = cmVar.f36008b;
+                ArrayList arrayList = dmVar.Q.f40780n6;
+                org.telegram.ui.Cells.u1 u1Var = cmVar.f36007a;
                 arrayList.remove(u1Var);
                 View view2 = dmVar.Q.fragmentView;
                 if (view2 != null) {
                     view2.invalidate();
-                    dmVar.Q.f40895x0.invalidate();
+                    dmVar.Q.f40901x0.invalidate();
                 }
                 u1Var.setAlpha(1.0f);
-                u1Var.getTransitionParams().f23160x0 = false;
+                u1Var.getTransitionParams().f23163x0 = false;
                 return;
             case 28:
                 lp lpVar = (lp) this.f16146b;
                 lpVar.L = 0.0f;
                 lpVar.K = 1.0f;
-                View view3 = lpVar.f38954a0;
+                View view3 = lpVar.f38960a0;
                 if (view3 != null) {
                     view3.invalidate();
                 }
@@ -313,12 +313,12 @@ public final class a extends AnimatorListenerAdapter {
                 return;
             case 7:
                 k8 k8Var = (k8) this.f16146b;
-                for (int i10 = 0; i10 < k8Var.f38435b.getChildCount(); i10++) {
-                    h8.a((h8) k8Var.f38435b.getChildAt(i10), k8Var.P, k8Var.Q);
+                for (int i10 = 0; i10 < k8Var.f38441b.getChildCount(); i10++) {
+                    h8.a((h8) k8Var.f38441b.getChildAt(i10), k8Var.P, k8Var.Q);
                 }
                 return;
             case 9:
-                ((wz0) ((org.telegram.ui.Cells.j) this.f16146b)).f42974c0.e.f33589c.f45903r = true;
+                ((wz0) ((org.telegram.ui.Cells.j) this.f16146b)).f42980c0.e.f33595c.f45908r = true;
                 return;
             default:
                 super.onAnimationStart(animator);

@@ -8,10 +8,10 @@ import c3.i0;
 import c3.j0;
 import e2.m0;
 import e2.x;
-import org.telegram.ui.Components.ep0;
-import u2.c1;
+import org.telegram.ui.Components.fp0;
+import u2.d1;
 public final class o implements j0 {
-    public final c1 f15884a;
+    public final d1 f15884a;
     public final qf.b f15885b = new qf.b(22);
     public final l3.a f15886c = new l3.a();
     public long d = -9223372036854775807L;
@@ -19,7 +19,7 @@ public final class o implements j0 {
 
     public o(p pVar, androidx.biometric.e eVar) {
         this.e = pVar;
-        this.f15884a = new c1(eVar, null, null);
+        this.f15884a = new d1(eVar, null, null);
     }
 
     @Override
@@ -67,17 +67,17 @@ public final class o implements j0 {
                 }
             }
         }
-        c1 c1Var = this.f15884a;
-        ep0 ep0Var = c1Var.f47268a;
-        synchronized (c1Var) {
-            int i13 = c1Var.f47283s;
+        d1 d1Var = this.f15884a;
+        fp0 fp0Var = d1Var.f47279a;
+        synchronized (d1Var) {
+            int i13 = d1Var.f47294s;
             if (i13 == 0) {
                 j11 = -1;
             } else {
-                j11 = c1Var.j(i13);
+                j11 = d1Var.j(i13);
             }
         }
-        ep0Var.b(j11);
+        fp0Var.b(j11);
     }
 
     @Override
@@ -87,16 +87,16 @@ public final class o implements j0 {
 
     @Override
     public final int f(b2.o oVar, int i10, boolean z10) {
-        c1 c1Var = this.f15884a;
-        c1Var.getClass();
-        return c1Var.f(oVar, i10, z10);
+        d1 d1Var = this.f15884a;
+        d1Var.getClass();
+        return d1Var.f(oVar, i10, z10);
     }
 
     @Override
     public final void g(x xVar, int i10, int i11) {
-        c1 c1Var = this.f15884a;
-        c1Var.getClass();
-        c1Var.g(xVar, i10, 0);
+        d1 d1Var = this.f15884a;
+        d1Var.getClass();
+        d1Var.g(xVar, i10, 0);
     }
 
     @Override

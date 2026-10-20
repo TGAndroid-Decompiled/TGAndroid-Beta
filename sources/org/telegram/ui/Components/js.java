@@ -1,21 +1,21 @@
 package org.telegram.ui.Components;
 public final class js implements Runnable {
-    public final int f27594a;
-    public final ps f27595b;
+    public final int f27630a;
+    public final ps f27631b;
 
     public js(ps psVar, int i10) {
-        this.f27594a = i10;
-        this.f27595b = psVar;
+        this.f27630a = i10;
+        this.f27631b = psVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f27594a) {
+        switch (this.f27630a) {
             case 0:
-                this.f27595b.X(false);
+                this.f27631b.X(false);
                 return;
             default:
-                ps.R(this.f27595b);
+                ps.R(this.f27631b);
                 return;
         }
     }

@@ -7,7 +7,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.kk;
+import org.telegram.messenger.mk;
 public final class fd extends LinearLayout {
     public final int f1322a;
     public final org.telegram.ui.ActionBar.d6 f1323b;
@@ -42,12 +42,12 @@ public final class fd extends LinearLayout {
         linearLayout.addView(j5Var, w7.z5.k(0.0f, 0.0f, 0.0f, 2.0f, -1, -2));
         TextView textView = new TextView(context);
         this.e = textView;
-        kk.o(i11, d6Var, textView, 1, 13.0f);
+        mk.o(i11, d6Var, textView, 1, 13.0f);
         textView.setVisibility(8);
         TextView i12 = com.google.android.gms.internal.play_billing.k3.i(linearLayout, textView, w7.z5.k(0.0f, 0.0f, 0.0f, 1.0f, -1, -2), context);
         this.f1325f = i12;
-        int i13 = org.telegram.ui.ActionBar.h6.f21392z6;
-        kk.o(i13, d6Var, i12, 1, 14.0f);
+        int i13 = org.telegram.ui.ActionBar.h6.f21395z6;
+        mk.o(i13, d6Var, i12, 1, 14.0f);
         linearLayout.addView(i12, w7.z5.k(0.0f, 0.0f, 0.0f, 0.0f, -1, -2));
         LinearLayout linearLayout2 = new LinearLayout(context);
         linearLayout2.setOrientation(1);
@@ -58,7 +58,7 @@ public final class fd extends LinearLayout {
         textView2.setGravity(5);
         TextView i14 = com.google.android.gms.internal.play_billing.k3.i(linearLayout2, textView2, w7.z5.t(-1, -2, 5, 0, 0, 0, 1), context);
         this.f1326n = i14;
-        kk.o(i13, d6Var, i14, 1, 13.0f);
+        mk.o(i13, d6Var, i14, 1, 13.0f);
         i14.setGravity(5);
         linearLayout2.addView(i14, w7.z5.t(-1, -2, 5, 0, 0, 0, 0));
     }
@@ -67,7 +67,7 @@ public final class fd extends LinearLayout {
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         if (this.f1328s) {
-            canvas.drawRect(AndroidUtilities.dp(72.0f), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight(), org.telegram.ui.ActionBar.h6.f21108k0);
+            canvas.drawRect(AndroidUtilities.dp(72.0f), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight(), org.telegram.ui.ActionBar.h6.f21111k0);
         }
     }
 

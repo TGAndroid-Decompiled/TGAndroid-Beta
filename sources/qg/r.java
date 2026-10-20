@@ -4,17 +4,17 @@ import ai.uc;
 import android.view.View;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.v81;
-public final class r extends v81 {
-    public final uc f44597a;
+import org.telegram.ui.Components.w81;
+public final class r extends w81 {
+    public final uc f44605a;
 
     public r(uc ucVar) {
-        this.f44597a = ucVar;
+        this.f44605a = ucVar;
     }
 
     @Override
     public final View d(int i10) {
-        uc ucVar = this.f44597a;
+        uc ucVar = this.f44605a;
         if (i10 != 1) {
             if (i10 != 2) {
                 return (u) ucVar.f2277b;

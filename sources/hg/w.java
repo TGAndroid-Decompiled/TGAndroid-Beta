@@ -12,10 +12,10 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.yl0;
+import org.telegram.ui.Components.zl0;
 import org.telegram.ui.cy;
 import org.telegram.ui.nx;
-public final class w implements f0, yl0 {
+public final class w implements f0, zl0 {
     public final h0 f12083a;
 
     public w(h0 h0Var) {
@@ -29,11 +29,11 @@ public final class w implements f0, yl0 {
         if (nxVar != null) {
             Long l4 = (Long) view.getTag();
             long longValue = l4.longValue();
-            cy cyVar = nxVar.f39695a;
+            cy cyVar = nxVar.f39701a;
             if (cyVar.getParentActivity() != null && (user = cyVar.getMessagesController().getUser(l4)) != null) {
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(cyVar.getParentActivity());
                 String string = LocaleController.getString(R.string.ChatHintsDeleteAlertTitle);
-                org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20602a;
+                org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20605a;
                 b2Var.R = string;
                 b2Var.T = AndroidUtilities.replaceTags(LocaleController.formatString("ChatHintsDeleteAlert", R.string.ChatHintsDeleteAlert, ContactsController.formatName(user.first_name, user.last_name)));
                 alertDialog$Builder.k(LocaleController.getString(R.string.StickersRemove), new ci.d1(nxVar, longValue, 9));
@@ -41,7 +41,7 @@ public final class w implements f0, yl0 {
                 cyVar.showDialog(b2Var);
                 TextView textView = (TextView) b2Var.d(-1);
                 if (textView != null) {
-                    textView.setTextColor(cyVar.getThemedColor(h6.f21225q7));
+                    textView.setTextColor(cyVar.getThemedColor(h6.f21228q7));
                 }
             }
         }

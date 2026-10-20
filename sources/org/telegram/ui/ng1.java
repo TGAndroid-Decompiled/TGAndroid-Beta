@@ -8,7 +8,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
-public final class ng1 extends org.telegram.ui.Components.d91 {
+public final class ng1 extends org.telegram.ui.Components.e91 {
     public boolean T;
     public final Path U;
     public final og1 V;
@@ -94,16 +94,16 @@ public final class ng1 extends org.telegram.ui.Components.d91 {
         og1 og1Var = this.V;
         ng0 ng0Var = (ng0) og1Var;
         if (ng0Var.F != null) {
-            ng0Var.m0(ng0Var.f39882c.getCurrentPosition(), true);
+            ng0Var.m0(ng0Var.f39888c.getCurrentPosition(), true);
             ng0Var.n0(0.0f, false);
         }
         ng0Var.d0();
-        ng1 ng1Var = ng0Var.f39882c;
+        ng1 ng1Var = ng0Var.f39888c;
         if (ng1Var != null) {
             int currentPosition = ng1Var.getCurrentPosition();
-            if (currentPosition != 2 && ng0Var.f39585x) {
+            if (currentPosition != 2 && ng0Var.f39591x) {
                 ng0Var.W(2);
-                ng0Var.f39585x = false;
+                ng0Var.f39591x = false;
             }
             if (currentPosition != 3) {
                 ng0Var.W(3);
@@ -123,7 +123,7 @@ public final class ng1 extends org.telegram.ui.Components.d91 {
         ng0 ng0Var = (ng0) og1Var;
         boolean z11 = !z10;
         if (ng0Var.F != null) {
-            float positionAnimated = ng0Var.f39882c.getPositionAnimated();
+            float positionAnimated = ng0Var.f39888c.getPositionAnimated();
             ng0Var.n0(positionAnimated, z11);
             if (!z10) {
                 ng0Var.m0(Math.round(positionAnimated), true);
@@ -131,7 +131,7 @@ public final class ng1 extends org.telegram.ui.Components.d91 {
         }
         ng0Var.h0();
         ng0Var.d0();
-        ng0Var.f39881b.invalidate();
+        ng0Var.f39887b.invalidate();
         og1Var.U();
         og1Var.checkSystemBarColors();
     }

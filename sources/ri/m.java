@@ -1,20 +1,46 @@
 package ri;
-
-import java.io.File;
 public final class m {
-    public final File f45816a;
-    public final long f45817b;
-    public final byte[] f45818c;
+    public static final m f45824a;
+    public static final m f45825b;
+    public static final m f45826c;
+    public static final m d;
+    public static final m e;
+    public static final m f45827f;
+    public static final m h;
+    public static final m f45828n;
+    public static final m f45829r;
+    public static final m f45830s;
+    public static final m[] v;
 
-    public m(File file, long j10, byte[] bArr) {
-        byte[] bArr2;
-        this.f45816a = file;
-        this.f45817b = j10;
-        if (bArr == null) {
-            bArr2 = null;
-        } else {
-            bArr2 = (byte[]) bArr.clone();
-        }
-        this.f45818c = bArr2;
+    static {
+        ?? r02 = new Enum("IDLE", 0);
+        f45824a = r02;
+        ?? r12 = new Enum("STARTING", 1);
+        f45825b = r12;
+        ?? r32 = new Enum("RECORDING", 2);
+        f45826c = r32;
+        ?? r52 = new Enum("PAUSING", 3);
+        d = r52;
+        ?? r72 = new Enum("PREVIEWING", 4);
+        e = r72;
+        ?? r92 = new Enum("RESUMING", 5);
+        f45827f = r92;
+        ?? r11 = new Enum("FINISHING", 6);
+        h = r11;
+        ?? r13 = new Enum("COMPLETED", 7);
+        f45828n = r13;
+        ?? r15 = new Enum("ERROR", 8);
+        f45829r = r15;
+        ?? r22 = new Enum("RELEASED", 9);
+        f45830s = r22;
+        v = new m[]{r02, r12, r32, r52, r72, r92, r11, r13, r15, r22};
+    }
+
+    public static m valueOf(String str) {
+        return (m) Enum.valueOf(m.class, str);
+    }
+
+    public static m[] values() {
+        return (m[]) v.clone();
     }
 }

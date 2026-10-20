@@ -14,8 +14,8 @@ import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.i80;
 import org.telegram.ui.Components.ob0;
 import org.telegram.ui.Components.xc;
-import org.telegram.ui.Components.yl0;
-public final class d5 implements yl0 {
+import org.telegram.ui.Components.zl0;
+public final class d5 implements zl0 {
     public final aa f5318a;
     public final u5 f5319b;
 
@@ -46,12 +46,12 @@ public final class d5 implements yl0 {
             final org.telegram.ui.Cells.n6 n6Var = (org.telegram.ui.Cells.n6) view;
             aa aaVar = this.f5318a;
             if (aaVar.v != null && (storyView = ((k5) u5Var.f6053w.f5730c.get(i10)).f5562b) != null && (user = (messagesController = MessagesController.getInstance(i11)).getUser(Long.valueOf(storyView.user_id))) != null) {
-                if (messagesController.blockePeers.indexOfKey(user.f20420id) >= 0) {
+                if (messagesController.blockePeers.indexOfKey(user.f20423id) >= 0) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                if (!user.contact && ContactsController.getInstance(i11).contactsDict.get(Long.valueOf(user.f20420id)) == null) {
+                if (!user.contact && ContactsController.getInstance(i11).contactsDict.get(Long.valueOf(user.f20423id)) == null) {
                     z11 = false;
                 } else {
                     z11 = true;
@@ -76,10 +76,10 @@ public final class d5 implements yl0 {
                     return false;
                 }
                 i80 F = i80.F(aaVar.v, bVar, view);
-                F.f27116i = 3;
-                F.f27118j = true;
-                F.W(new ColorDrawable(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21058h5, bVar)));
-                F.f27134s = 133;
+                F.f27167i = 3;
+                F.f27169j = true;
+                F.W(new ColorDrawable(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21061h5, bVar)));
+                F.f27185s = 133;
                 if (d && !L && !z10 && !isUserSelf) {
                     z12 = true;
                 } else {
@@ -105,7 +105,7 @@ public final class d5 implements yl0 {
                         d5 d5Var = this.f5246b;
                         switch (i12) {
                             case 0:
-                                messagesController2.getStoriesController().j0(user2.f20420id, true, true);
+                                messagesController2.getStoriesController().j0(user2.f20423id, true, true);
                                 u5 u5Var2 = d5Var.f5319b;
                                 i2.e.s(R.string.StoryHidFromToast, new Object[]{str3}, new xc(u5Var2, u5Var2.f6052s), R.raw.ic_ban, 36);
                                 if (u5Var2.d(storyView2)) {
@@ -114,7 +114,7 @@ public final class d5 implements yl0 {
                                 n6Var2.a(f7, true);
                                 return;
                             default:
-                                messagesController2.getStoriesController().j0(user2.f20420id, false, true);
+                                messagesController2.getStoriesController().j0(user2.f20423id, false, true);
                                 u5 u5Var3 = d5Var.f5319b;
                                 i2.e.s(R.string.StoryShownBackToToast, new Object[]{str3}, new xc(u5Var3, u5Var3.f6052s), R.raw.contact_check, 36);
                                 if (u5Var3.d(storyView2)) {
@@ -151,7 +151,7 @@ public final class d5 implements yl0 {
                         d5 d5Var = this.f5246b;
                         switch (i12) {
                             case 0:
-                                messagesController2.getStoriesController().j0(user2.f20420id, true, true);
+                                messagesController2.getStoriesController().j0(user2.f20423id, true, true);
                                 u5 u5Var2 = d5Var.f5319b;
                                 i2.e.s(R.string.StoryHidFromToast, new Object[]{str3}, new xc(u5Var2, u5Var2.f6052s), R.raw.ic_ban, 36);
                                 if (u5Var2.d(storyView2)) {
@@ -160,7 +160,7 @@ public final class d5 implements yl0 {
                                 n6Var2.a(f7, true);
                                 return;
                             default:
-                                messagesController2.getStoriesController().j0(user2.f20420id, false, true);
+                                messagesController2.getStoriesController().j0(user2.f20423id, false, true);
                                 u5 u5Var3 = d5Var.f5319b;
                                 i2.e.s(R.string.StoryShownBackToToast, new Object[]{str3}, new xc(u5Var3, u5Var3.f6052s), R.raw.contact_check, 36);
                                 if (u5Var3.d(storyView2)) {
@@ -191,7 +191,7 @@ public final class d5 implements yl0 {
                         float f10;
                         switch (r6) {
                             case 0:
-                                messagesController.blockPeer(user.f20420id);
+                                messagesController.blockPeer(user.f20423id);
                                 u5 u5Var2 = this.f5274b.f5319b;
                                 new xc(u5Var2, u5Var2.f6052s).e(true).j();
                                 if (u5Var2.d(storyView)) {
@@ -205,8 +205,8 @@ public final class d5 implements yl0 {
                                 MessagesController messagesController2 = messagesController;
                                 i7 storiesController = messagesController2.getStoriesController();
                                 TLRPC.User user2 = user;
-                                storiesController.j0(user2.f20420id, false, true);
-                                messagesController2.unblockPeer(user2.f20420id);
+                                storiesController.j0(user2.f20423id, false, true);
+                                messagesController2.unblockPeer(user2.f20423id);
                                 u5 u5Var3 = this.f5274b.f5319b;
                                 new xc(u5Var3, u5Var3.f6052s).e(false).j();
                                 if (u5Var3.d(storyView)) {
@@ -237,7 +237,7 @@ public final class d5 implements yl0 {
                         float f10;
                         switch (r6) {
                             case 0:
-                                messagesController.blockPeer(user.f20420id);
+                                messagesController.blockPeer(user.f20423id);
                                 u5 u5Var2 = this.f5274b.f5319b;
                                 new xc(u5Var2, u5Var2.f6052s).e(true).j();
                                 if (u5Var2.d(storyView)) {
@@ -251,8 +251,8 @@ public final class d5 implements yl0 {
                                 MessagesController messagesController2 = messagesController;
                                 i7 storiesController = messagesController2.getStoriesController();
                                 TLRPC.User user2 = user;
-                                storiesController.j0(user2.f20420id, false, true);
-                                messagesController2.unblockPeer(user2.f20420id);
+                                storiesController.j0(user2.f20423id, false, true);
+                                messagesController2.unblockPeer(user2.f20423id);
                                 u5 u5Var3 = this.f5274b.f5319b;
                                 new xc(u5Var3, u5Var3.f6052s).e(false).j();
                                 if (u5Var3.d(storyView)) {

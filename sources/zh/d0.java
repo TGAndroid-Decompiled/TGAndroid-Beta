@@ -15,14 +15,14 @@ import java.util.function.Consumer;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 public final class d0 implements Consumer {
-    public final m0 f51962a;
-    public final m f51963b;
-    public final q f51964c;
+    public final n0 f51967a;
+    public final m f51968b;
+    public final q f51969c;
 
-    public d0(m0 m0Var, m mVar, q qVar) {
-        this.f51962a = m0Var;
-        this.f51963b = mVar;
-        this.f51964c = qVar;
+    public d0(n0 n0Var, m mVar, q qVar) {
+        this.f51967a = n0Var;
+        this.f51968b = mVar;
+        this.f51969c = qVar;
     }
 
     @Override
@@ -58,46 +58,46 @@ public final class d0 implements Consumer {
         m mVar;
         float max2;
         Canvas canvas3 = (Canvas) obj;
-        m0 m0Var = this.f51962a;
-        int[] iArr6 = m0Var.U;
-        int[] iArr7 = m0Var.T;
-        float[] fArr = m0Var.S;
-        RectF rectF2 = m0Var.R;
-        RectF rectF3 = m0Var.f52037h0;
-        Paint paint3 = m0Var.O;
-        Paint paint4 = m0Var.J;
-        int[] iArr8 = m0Var.M;
-        Paint paint5 = m0Var.f52036g0;
-        int[] iArr9 = m0Var.L;
-        Paint paint6 = m0Var.Q;
-        Matrix matrix = m0Var.P;
-        m mVar2 = this.f51963b;
+        n0 n0Var = this.f51967a;
+        int[] iArr6 = n0Var.U;
+        int[] iArr7 = n0Var.T;
+        float[] fArr = n0Var.S;
+        RectF rectF2 = n0Var.R;
+        RectF rectF3 = n0Var.f52048h0;
+        Paint paint3 = n0Var.O;
+        Paint paint4 = n0Var.J;
+        int[] iArr8 = n0Var.M;
+        Paint paint5 = n0Var.f52047g0;
+        int[] iArr9 = n0Var.L;
+        Paint paint6 = n0Var.Q;
+        Matrix matrix = n0Var.P;
+        m mVar2 = this.f51968b;
         if (mVar2.isVerticalScrollBarEnabled()) {
             mVar2.setVerticalScrollBarEnabled(false);
         }
-        if (!m0Var.f52033e0) {
+        if (!n0Var.f52044e0) {
             iArr = iArr6;
-            j0 j0Var = m0Var.h;
-            if (j0Var != null) {
-                m0Var.f52033e0 = true;
-                m0.X(j0Var);
+            k0 k0Var = n0Var.h;
+            if (k0Var != null) {
+                n0Var.f52044e0 = true;
+                n0.X(k0Var);
             }
         } else {
             iArr = iArr6;
         }
-        if (m0Var.h != null && !Float.isNaN(m0Var.K)) {
-            c1 c1Var = m0Var.d;
+        if (n0Var.h != null && !Float.isNaN(n0Var.K)) {
+            c1 c1Var = n0Var.d;
             if (c1Var != null) {
                 f7 = 1.0f;
-                if (c1Var.f51761g1 < 0.5f) {
+                if (c1Var.f51766g1 < 0.5f) {
                     iArr2 = iArr7;
-                    f10 = (-Utilities.clamp01(((float) (AnimationUtils.currentAnimationTimeMillis() - c1Var.f51747e6)) / 150.0f)) - 1.0E-4f;
+                    f10 = (-Utilities.clamp01(((float) (AnimationUtils.currentAnimationTimeMillis() - c1Var.f51752e6)) / 150.0f)) - 1.0E-4f;
                 } else {
                     iArr2 = iArr7;
-                    if (!c1Var.f51757f6) {
+                    if (!c1Var.f51762f6) {
                         f10 = 0.0f;
                     } else {
-                        f10 = Utilities.clamp01(((float) (AnimationUtils.currentAnimationTimeMillis() - c1Var.f51737d6)) / 470.0f);
+                        f10 = Utilities.clamp01(((float) (AnimationUtils.currentAnimationTimeMillis() - c1Var.f51742d6)) / 470.0f);
                     }
                 }
             } else {
@@ -105,15 +105,15 @@ public final class d0 implements Consumer {
                 f7 = 1.0f;
                 f10 = 1.0f;
             }
-            c1 c1Var2 = m0Var.d;
+            c1 c1Var2 = n0Var.d;
             int[] iArr10 = iArr2;
-            if (c1Var2 != null && c1Var2.f51761g1 > 0.5f) {
+            if (c1Var2 != null && c1Var2.f51766g1 > 0.5f) {
                 z10 = true;
             } else {
                 z10 = false;
             }
             if (c1Var2 != null) {
-                f11 = Utilities.clamp01(c1Var2.f51752f1);
+                f11 = Utilities.clamp01(c1Var2.f51757f1);
             } else {
                 f11 = f7;
             }
@@ -121,7 +121,7 @@ public final class d0 implements Consumer {
             boolean z12 = z10;
             float z13 = org.telegram.ui.Cells.c1.z(f24, f24, f24, f7);
             if (z12) {
-                f12 = m0Var.d.V0();
+                f12 = n0Var.d.V0();
             } else {
                 f12 = -1.0f;
             }
@@ -148,7 +148,7 @@ public final class d0 implements Consumer {
             }
             if (i10 >= 0 && f13 < f14) {
                 f16 = f14;
-                m0Var.d.invalidate();
+                n0Var.d.invalidate();
             } else {
                 f16 = f14;
             }
@@ -160,17 +160,17 @@ public final class d0 implements Consumer {
                 float f26 = 0.0f;
                 while (true) {
                     paint = paint5;
-                    if (view == null || view == m0Var.h || !(view.getParent() instanceof View)) {
+                    if (view == null || view == n0Var.h || !(view.getParent() instanceof View)) {
                         break;
                     }
                     f26 += view.getTop();
                     view = (View) view.getParent();
                     paint5 = paint;
                 }
-                if (Float.isNaN(m0Var.K)) {
+                if (Float.isNaN(n0Var.K)) {
                     max2 = mVar2.getHeight();
                 } else {
-                    max2 = Math.max(0.0f, Math.min(mVar2.getHeight(), m0Var.K - f26));
+                    max2 = Math.max(0.0f, Math.min(mVar2.getHeight(), n0Var.K - f26));
                 }
                 mVar2.setPivotX(mVar2.getWidth() / 2.0f);
                 mVar2.setPivotY(max2);
@@ -183,7 +183,7 @@ public final class d0 implements Consumer {
                 mVar2.setAlpha(f15);
             }
             mVar2.getLocationOnScreen(iArr9);
-            m0Var.h.getLocationOnScreen(iArr8);
+            n0Var.h.getLocationOnScreen(iArr8);
             float f27 = iArr9[1] - iArr8[1];
             if (mVar2.getScaleY() > 0.01f) {
                 f17 = mVar2.getScaleY();
@@ -191,29 +191,29 @@ public final class d0 implements Consumer {
                 f17 = 1.0f;
             }
             float width = mVar2.getWidth();
-            if (m0Var.V == null) {
-                LinearGradient e02 = m0.e0(false);
-                m0Var.V = e02;
+            if (n0Var.V == null) {
+                LinearGradient e02 = n0.e0(false);
+                n0Var.V = e02;
                 paint4.setShader(e02);
                 iArr3 = iArr8;
                 PorterDuff.Mode mode = PorterDuff.Mode.DST_IN;
                 paint4.setXfermode(new PorterDuffXfermode(mode));
-                LinearGradient e03 = m0.e0(true);
-                m0Var.N = e03;
+                LinearGradient e03 = n0.e0(true);
+                n0Var.N = e03;
                 paint3.setShader(e03);
                 paint3.setXfermode(new PorterDuffXfermode(mode));
                 paint6.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
             } else {
                 iArr3 = iArr8;
             }
-            q qVar = this.f51964c;
+            q qVar = this.f51969c;
             qVar.getLocationOnScreen(iArr9);
             float f28 = iArr9[1] - iArr3[1];
             float f29 = (f28 - f27) / f17;
             float dp = ((AndroidUtilities.dp(12.0f) + qVar.getHeight()) / f17) + f29;
-            c cVar = m0Var.f52051x;
+            c cVar = n0Var.f52062x;
             if (cVar != null) {
-                float height = (f28 + qVar.getHeight()) - m0Var.f52031c0;
+                float height = (f28 + qVar.getHeight()) - n0Var.f52042c0;
                 paint2 = paint3;
                 if (cVar.K != height) {
                     cVar.K = height;
@@ -222,22 +222,22 @@ public final class d0 implements Consumer {
             } else {
                 paint2 = paint3;
             }
-            qVar.getLocationOnScreen(m0Var.f52038i0);
-            mVar2.getLocationOnScreen(m0Var.f52039j0);
+            qVar.getLocationOnScreen(n0Var.f52049i0);
+            mVar2.getLocationOnScreen(n0Var.f52050j0);
             float scaleX = (iArr4[0] - iArr5[0]) / mVar2.getScaleX();
-            rectF3.set((m0Var.f52027a0 / f17) + scaleX, (m0Var.f52029b0 / f17) + f29, ((qVar.getWidth() - m0Var.f52027a0) / f17) + scaleX, ((qVar.getHeight() - m0Var.f52031c0) / f17) + f29);
+            rectF3.set((n0Var.f52038a0 / f17) + scaleX, (n0Var.f52040b0 / f17) + f29, ((qVar.getWidth() - n0Var.f52038a0) / f17) + scaleX, ((qVar.getHeight() - n0Var.f52042c0) / f17) + f29);
             paint6.setAlpha(255);
             canvas3.drawRoundRect(rectF3, rectF3.height() / 2.0f, rectF3.height() / 2.0f, paint6);
             matrix.setScale(1.0f, dp - f29);
             matrix.postTranslate(0.0f, f29);
-            m0Var.N.setLocalMatrix(matrix);
+            n0Var.N.setLocalMatrix(matrix);
             canvas3.drawRect(0.0f, Math.min(f29, (-f27) / f17), width, dp, paint2);
             float dp2 = AndroidUtilities.dp(10.0f);
-            float f30 = ((m0Var.K - f27) - dp2) / f17;
+            float f30 = ((n0Var.K - f27) - dp2) / f17;
             float f31 = dp2 / f17;
             matrix.setScale(1.0f, f31);
             matrix.postTranslate(0.0f, f30);
-            m0Var.V.setLocalMatrix(matrix);
+            n0Var.V.setLocalMatrix(matrix);
             canvas3.drawRect(0.0f, f30, width, Math.max(f31 + f30, AndroidUtilities.dp(200.0f) + mVar2.getHeight()), paint4);
             if (f10 < 1.0f && !z12) {
                 z11 = true;
@@ -249,12 +249,12 @@ public final class d0 implements Consumer {
             } else {
                 f18 = f10;
             }
-            c1 c1Var3 = m0Var.d;
+            c1 c1Var3 = n0Var.d;
             float f32 = 90.0f;
             if (c1Var3 != null) {
-                m0Var.f52032d0 = m0Var.f52047r - (c1Var3.H0() - AndroidUtilities.dp(8.0f));
+                n0Var.f52043d0 = n0Var.f52058r - (c1Var3.H0() - AndroidUtilities.dp(8.0f));
                 float translationY = qVar.getTranslationY();
-                float f33 = m0Var.f52032d0;
+                float f33 = n0Var.f52043d0;
                 if (translationY != f33) {
                     qVar.setTranslationY(f33);
                     qVar.invalidate();
@@ -284,12 +284,12 @@ public final class d0 implements Consumer {
                 if (qVar.getAlpha() != f22) {
                     qVar.setAlpha(f22);
                 }
-                if ((f23 != 1.0f || f22 != 1.0f) && (mVar = m0Var.Z) != null) {
+                if ((f23 != 1.0f || f22 != 1.0f) && (mVar = n0Var.Z) != null) {
                     mVar.postInvalidateOnAnimation();
                 }
             }
             float max5 = Math.max(0.0f, -f27);
-            float f35 = m0Var.K - f27;
+            float f35 = n0Var.K - f27;
             int i11 = 0;
             float f36 = 0.0f;
             while (true) {
@@ -320,8 +320,8 @@ public final class d0 implements Consumer {
                         canvas2 = canvas3;
                         f21 = 1.0f;
                     }
-                    if (lVar.f52024r != f21) {
-                        lVar.f52024r = f21;
+                    if (lVar.f52030r != f21) {
+                        lVar.f52030r = f21;
                         lVar.invalidate();
                     }
                 }
@@ -332,8 +332,8 @@ public final class d0 implements Consumer {
             Canvas canvas4 = canvas3;
             if (z11 && f36 > 0.0f) {
                 float max8 = Math.max(1.0f, (f35 - max5) / f36);
-                if (m0Var.f52035f0 == null) {
-                    m0Var.f52035f0 = new LinearGradient(0.0f, 0.0f, 0.0f, 1.0f, 0, -16777216, Shader.TileMode.CLAMP);
+                if (n0Var.f52046f0 == null) {
+                    n0Var.f52046f0 = new LinearGradient(0.0f, 0.0f, 0.0f, 1.0f, 0, -16777216, Shader.TileMode.CLAMP);
                 }
                 if (f10 >= 0.0f) {
                     f19 = 1.0f;
@@ -344,9 +344,9 @@ public final class d0 implements Consumer {
                     matrix.setScale(1.0f, f36);
                     matrix.postTranslate(0.0f, ((Math.max(-1.0f, (((-f10) * 150.0f) - 76.5f) / Math.min(25.0f, 60.0f / Math.max(1.0f, max8 - 1.0f))) * f36) + max5) - (f36 / 2.0f));
                 }
-                m0Var.f52035f0.setLocalMatrix(matrix);
+                n0Var.f52046f0.setLocalMatrix(matrix);
                 Paint paint7 = paint;
-                paint7.setShader(m0Var.f52035f0);
+                paint7.setShader(n0Var.f52046f0);
                 if (paint7.getXfermode() == null) {
                     paint7.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
                 }
@@ -357,15 +357,15 @@ public final class d0 implements Consumer {
                 canvas = canvas4;
                 f19 = 1.0f;
             }
-            c cVar2 = m0Var.f52051x;
+            c cVar2 = n0Var.f52062x;
             if (cVar2 != null) {
                 RectF rectF4 = cVar2.F;
-                if (cVar2.f51696x > 0.003f && !rectF4.isEmpty()) {
+                if (cVar2.f51701x > 0.003f && !rectF4.isEmpty()) {
                     RectF rectF5 = rectF;
                     rectF5.set(rectF4);
                     fArr[0] = rectF4.height() / 2.0f;
-                    fArr[1] = cVar2.f51697y;
-                    m0Var.f52051x.getLocationOnScreen(iArr10);
+                    fArr[1] = cVar2.f51702y;
+                    n0Var.f52062x.getLocationOnScreen(iArr10);
                     int[] iArr11 = iArr;
                     mVar2.getLocationOnScreen(iArr11);
                     if (mVar2.getScaleX() > 0.01f) {

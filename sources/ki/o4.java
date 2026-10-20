@@ -92,7 +92,7 @@ public final class o4 extends a0 implements org.telegram.ui.ActionBar.y5, m9, l0
         org.telegram.ui.ActionBar.d6 d6Var = this.f15425r;
         this.f15426s.setColor(h6.w0(i10, d6Var));
         this.v.setColor(h6.w0(h6.Gd, d6Var));
-        this.f15427w.setColor(h6.w0(h6.f21311uf, d6Var));
+        this.f15427w.setColor(h6.w0(h6.f21314uf, d6Var));
         int i11 = h6.G6;
         this.f15428x.setColor(h6.m1(0.5f, h6.w0(i11, d6Var)));
         this.E.setColorFilter(new PorterDuffColorFilter(h6.m1(0.5f, h6.w0(i11, d6Var)), PorterDuff.Mode.SRC_IN));
@@ -228,7 +228,7 @@ public final class o4 extends a0 implements org.telegram.ui.ActionBar.y5, m9, l0
         if (m4Var != null && (textSelectionHelper = ((s3) m4Var).f15501a.getTextSelectionHelper()) != null && textSelectionHelper.x() && (getParent() instanceof RecyclerView)) {
             ((RecyclerView) getParent()).getClass();
             int R = RecyclerView.R(this);
-            if (R >= 0 && R > textSelectionHelper.f22654p0 && R <= textSelectionHelper.f22657s0) {
+            if (R >= 0 && R > textSelectionHelper.f22657p0 && R <= textSelectionHelper.f22660s0) {
                 canvas2.drawRect(getPaddingLeft(), getPaddingTop(), getWidth() - getPaddingRight(), getPaddingTop() + this.K, this.f15427w);
             }
         }
@@ -254,8 +254,8 @@ public final class o4 extends a0 implements org.telegram.ui.ActionBar.y5, m9, l0
         int paddingRight = getPaddingRight();
         int max = Math.max(0, (size - paddingLeft) - paddingRight);
         TL_iv.pageBlockMap map = getMap();
-        if (map != null && map.f20493w > 0 && map.h > 0) {
-            this.K = Math.max(Math.min((int) (((max - AndroidUtilities.dp(32.0f)) * map.h) / map.f20493w), AndroidUtilities.dp(420.0f)), AndroidUtilities.dp(120.0f));
+        if (map != null && map.f20496w > 0 && map.h > 0) {
+            this.K = Math.max(Math.min((int) (((max - AndroidUtilities.dp(32.0f)) * map.h) / map.f20496w), AndroidUtilities.dp(420.0f)), AndroidUtilities.dp(120.0f));
         } else {
             this.K = (AndroidUtilities.dp(200.0f) - getPaddingTop()) - getPaddingBottom();
         }

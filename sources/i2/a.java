@@ -4,11 +4,11 @@ import android.util.Pair;
 public abstract class a extends b2.o1 {
     public static final int f12306g = 0;
     public final int e;
-    public final u2.i1 f12307f;
+    public final u2.j1 f12307f;
 
-    public a(u2.i1 i1Var) {
-        this.f12307f = i1Var;
-        this.e = i1Var.getLength();
+    public a(u2.j1 j1Var) {
+        this.f12307f = j1Var;
+        this.e = j1Var.getLength();
     }
 
     @Override
@@ -54,15 +54,15 @@ public abstract class a extends b2.o1 {
         if (i11 == 0) {
             return -1;
         }
-        u2.i1 i1Var = this.f12307f;
+        u2.j1 j1Var = this.f12307f;
         if (z10) {
-            i10 = i1Var.h();
+            i10 = j1Var.h();
         } else {
             i10 = i11 - 1;
         }
         while (x(i10).p()) {
             if (z10) {
-                i10 = i1Var.d(i10);
+                i10 = j1Var.d(i10);
                 continue;
             } else if (i10 > 0) {
                 i10--;

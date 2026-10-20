@@ -3,9 +3,9 @@ package ci;
 import android.content.Context;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.Components.im0;
+import org.telegram.ui.Components.jm0;
 import org.telegram.ui.qn;
-public abstract class q5 extends im0 implements p7 {
+public abstract class q5 extends jm0 implements p7 {
     public final int V2;
     public final NotificationCenter.NotificationCenterDelegate W2;
 
@@ -24,8 +24,8 @@ public abstract class q5 extends im0 implements p7 {
                 return;
             default:
                 qn qnVar = (qn) this.W2;
-                iArr[0] = ((int) qnVar.f40839s9) - AndroidUtilities.dp(4.0f);
-                iArr[1] = org.telegram.messenger.g0.A(3.0f, qnVar.f40895x0.getPaddingBottom(), qnVar.f40895x0.getMeasuredHeight());
+                iArr[0] = ((int) qnVar.f40845s9) - AndroidUtilities.dp(4.0f);
+                iArr[1] = org.telegram.messenger.g0.A(3.0f, qnVar.f40901x0.getPaddingBottom(), qnVar.f40901x0.getMeasuredHeight());
                 return;
         }
     }

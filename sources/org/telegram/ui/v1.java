@@ -13,32 +13,32 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_iv;
 public final class v1 extends FrameLayout implements org.telegram.ui.Cells.m9 {
-    public final u1 f42079a;
-    public final org.telegram.ui.Components.v91 f42080b;
-    public d3 f42081c;
+    public final u1 f42085a;
+    public final org.telegram.ui.Components.w91 f42086b;
+    public d3 f42087c;
     public d3 d;
     public int e;
-    public int f42082f;
+    public int f42088f;
     public int h;
-    public int f42083n;
-    public int f42084r;
-    public boolean f42085s;
+    public int f42089n;
+    public int f42090r;
+    public boolean f42091s;
     public TL_iv.pageBlockEmbed v;
-    public final j4 f42086w;
-    public final l4 f42087x;
+    public final j4 f42092w;
+    public final l4 f42093x;
 
     public v1(l4 l4Var, Context context, j4 j4Var) {
         super(context);
-        this.f42087x = l4Var;
-        this.f42086w = j4Var;
+        this.f42093x = l4Var;
+        this.f42092w = j4Var;
         setWillNotDraw(false);
         if (Looper.myLooper() == Looper.getMainLooper()) {
-            org.telegram.ui.Components.v91 v91Var = new org.telegram.ui.Components.v91(context, false, new q1(this));
-            this.f42080b = v91Var;
-            addView(v91Var);
+            org.telegram.ui.Components.w91 w91Var = new org.telegram.ui.Components.w91(context, false, new q1(this));
+            this.f42086b = w91Var;
+            addView(w91Var);
             l4Var.N.add(this);
             u1 u1Var = new u1(this, context);
-            this.f42079a = u1Var;
+            this.f42085a = u1Var;
             u1Var.getSettings().setJavaScriptEnabled(true);
             u1Var.getSettings().setDomStorageEnabled(true);
             u1Var.getSettings().setAllowContentAccess(true);
@@ -51,12 +51,12 @@ public final class v1 extends FrameLayout implements org.telegram.ui.Cells.m9 {
             addView(u1Var);
             return;
         }
-        this.f42080b = null;
-        this.f42079a = null;
+        this.f42086b = null;
+        this.f42085a = null;
     }
 
     public final void a(boolean z10) {
-        u1 u1Var = this.f42079a;
+        u1 u1Var = this.f42085a;
         if (u1Var != null) {
             try {
                 u1Var.stopLoading();
@@ -69,15 +69,15 @@ public final class v1 extends FrameLayout implements org.telegram.ui.Cells.m9 {
             }
         }
         this.v = null;
-        org.telegram.ui.Components.v91 v91Var = this.f42080b;
-        if (v91Var != null) {
-            v91Var.b();
+        org.telegram.ui.Components.w91 w91Var = this.f42086b;
+        if (w91Var != null) {
+            w91Var.b();
         }
     }
 
     @Override
     public final void fillTextLayoutBlocks(ArrayList arrayList) {
-        d3 d3Var = this.f42081c;
+        d3 d3Var = this.f42087c;
         if (d3Var != null) {
             arrayList.add(d3Var);
         }
@@ -90,7 +90,7 @@ public final class v1 extends FrameLayout implements org.telegram.ui.Cells.m9 {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        d3 d3Var = this.f42081c;
+        d3 d3Var = this.f42087c;
         if (d3Var != null) {
             d3Var.attach(this);
         }
@@ -103,10 +103,10 @@ public final class v1 extends FrameLayout implements org.telegram.ui.Cells.m9 {
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        if (!this.f42087x.V) {
+        if (!this.f42093x.V) {
             this.v = null;
         }
-        d3 d3Var = this.f42081c;
+        d3 d3Var = this.f42087c;
         if (d3Var != null) {
             d3Var.detach(this);
         }
@@ -119,20 +119,20 @@ public final class v1 extends FrameLayout implements org.telegram.ui.Cells.m9 {
     @Override
     public final void onDraw(Canvas canvas) {
         if (this.v != null) {
-            d3 d3Var = this.f42081c;
-            l4 l4Var = this.f42087x;
+            d3 d3Var = this.f42087c;
+            l4 l4Var = this.f42093x;
             int i10 = 0;
             if (d3Var != null) {
                 canvas.save();
-                canvas.translate(this.e, this.f42082f);
+                canvas.translate(this.e, this.f42088f);
                 l4.v(l4Var, canvas, this, 0);
-                this.f42081c.draw(canvas, this);
+                this.f42087c.draw(canvas, this);
                 canvas.restore();
                 i10 = 1;
             }
             if (this.d != null) {
                 canvas.save();
-                canvas.translate(this.e, this.f42082f + this.h);
+                canvas.translate(this.e, this.f42088f + this.h);
                 l4.v(l4Var, canvas, this, i10);
                 this.d.draw(canvas, this);
                 canvas.restore();
@@ -145,9 +145,9 @@ public final class v1 extends FrameLayout implements org.telegram.ui.Cells.m9 {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setEnabled(true);
         StringBuilder sb2 = new StringBuilder(LocaleController.getString(R.string.AccDescrIVEmbed));
-        if (this.f42081c != null) {
+        if (this.f42087c != null) {
             sb2.append(", ");
-            sb2.append(this.f42081c.d.getText());
+            sb2.append(this.f42087c.d.getText());
         }
         if (this.d != null) {
             sb2.append(", ");
@@ -158,15 +158,15 @@ public final class v1 extends FrameLayout implements org.telegram.ui.Cells.m9 {
 
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        u1 u1Var = this.f42079a;
+        u1 u1Var = this.f42085a;
         if (u1Var != null) {
-            int i14 = this.f42083n;
+            int i14 = this.f42089n;
             u1Var.layout(i14, 0, u1Var.getMeasuredWidth() + i14, u1Var.getMeasuredHeight());
         }
-        org.telegram.ui.Components.v91 v91Var = this.f42080b;
-        if (v91Var != null && v91Var.getParent() == this) {
-            int i15 = this.f42083n;
-            v91Var.layout(i15, 0, v91Var.getMeasuredWidth() + i15, v91Var.getMeasuredHeight());
+        org.telegram.ui.Components.w91 w91Var = this.f42086b;
+        if (w91Var != null && w91Var.getParent() == this) {
+            int i15 = this.f42089n;
+            w91Var.layout(i15, 0, w91Var.getMeasuredWidth() + i15, w91Var.getMeasuredHeight());
         }
     }
 
@@ -177,12 +177,12 @@ public final class v1 extends FrameLayout implements org.telegram.ui.Cells.m9 {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        d3 d3Var = this.f42081c;
+        d3 d3Var = this.f42087c;
         int i10 = this.e;
-        int i11 = this.f42082f;
-        l4 l4Var = this.f42087x;
-        if (!l4.l(l4Var, this.f42086w, motionEvent, this, d3Var, i10, i11)) {
-            if (!l4.l(l4Var, this.f42086w, motionEvent, this, this.d, this.e, this.f42082f + this.h) && !super.onTouchEvent(motionEvent)) {
+        int i11 = this.f42088f;
+        l4 l4Var = this.f42093x;
+        if (!l4.l(l4Var, this.f42092w, motionEvent, this, d3Var, i10, i11)) {
+            if (!l4.l(l4Var, this.f42092w, motionEvent, this, this.d, this.e, this.f42088f + this.h) && !super.onTouchEvent(motionEvent)) {
                 return false;
             }
             return true;

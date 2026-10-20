@@ -17,7 +17,7 @@ public final class f4 implements Runnable {
             case 1:
                 yh.i0 i0Var = this.f1256b;
                 qh.i iVar = i0Var.h;
-                ih.f fVar = i0Var.f50290f;
+                ih.f fVar = i0Var.f50295f;
                 if (fVar != null) {
                     fVar.d();
                 }
@@ -25,7 +25,7 @@ public final class f4 implements Runnable {
                 if (h0Var != null) {
                     h0Var.setTranslationY(-iVar.d());
                 }
-                org.telegram.ui.Components.q6 q6Var = i0Var.f50294w;
+                org.telegram.ui.Components.q6 q6Var = i0Var.f50299w;
                 if (q6Var != null) {
                     q6Var.setTranslationY(-iVar.d());
                 }
@@ -35,7 +35,7 @@ public final class f4 implements Runnable {
                 this.f1256b.H.performClick();
                 return;
             default:
-                this.f1256b.f50291n.G0();
+                this.f1256b.f50296n.G0();
                 return;
         }
     }

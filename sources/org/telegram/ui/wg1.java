@@ -3,10 +3,10 @@ package org.telegram.ui;
 import org.telegram.messenger.AndroidUtilities;
 import org.webrtc.RendererCommon;
 public final class wg1 implements RendererCommon.RendererEvents {
-    public final hh1 f42873a;
+    public final hh1 f42879a;
 
     public wg1(hh1 hh1Var) {
-        this.f42873a = hh1Var;
+        this.f42879a = hh1Var;
     }
 
     @Override

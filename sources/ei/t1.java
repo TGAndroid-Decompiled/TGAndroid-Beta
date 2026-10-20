@@ -14,9 +14,9 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.hm0;
+import org.telegram.ui.Components.im0;
 import org.telegram.ui.Components.yc;
-public final class t1 extends hm0 {
+public final class t1 extends im0 {
     public String e;
     public TLRPC.User f9840f;
     public String h;
@@ -44,7 +44,7 @@ public final class t1 extends hm0 {
 
     @Override
     public final boolean D(s4.b1 b1Var) {
-        if (b1Var.f45915f == 2) {
+        if (b1Var.f45920f == 2) {
             return true;
         }
         return false;
@@ -198,8 +198,8 @@ public final class t1 extends hm0 {
 
     @Override
     public final void v(s4.b1 b1Var, int i10) {
-        int i11 = b1Var.f45915f;
-        View view = b1Var.f45912a;
+        int i11 = b1Var.f45920f;
+        View view = b1Var.f45917a;
         if (i11 == 0) {
             view.setTag(34);
             view.setLayoutParams(new s4.o0(-1, (int) this.f9843s.f9931r.f9502n));
@@ -236,10 +236,10 @@ public final class t1 extends hm0 {
         } else {
             org.telegram.ui.Cells.f2 f2Var2 = new org.telegram.ui.Cells.f2(v1Var.getContext());
             f2Var2.getPhotoImage().setLayerNum(7);
-            if (f2Var2.f22212c0 == null) {
+            if (f2Var2.f22215c0 == null) {
                 yc ycVar = new yc(f2Var2, 1.0f, 3.0f);
                 ycVar.e = 120L;
-                f2Var2.f22212c0 = ycVar;
+                f2Var2.f22215c0 = ycVar;
             }
             f2Var2.setIsKeyboard(true);
             f2Var2.setCanPreviewGif(true);

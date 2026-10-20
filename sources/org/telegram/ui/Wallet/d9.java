@@ -9,17 +9,17 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.bs;
 public final class d9 extends EditTextBoldCursor {
-    public final org.telegram.ui.Components.f6 f34116b;
-    public final org.telegram.ui.Components.f6 f34117c;
+    public final org.telegram.ui.Components.f6 f34122b;
+    public final org.telegram.ui.Components.f6 f34123c;
     public float d;
     public float e;
-    public final h9 f34118f;
+    public final h9 f34124f;
 
     public d9(h9 h9Var, Context context) {
         super(context);
-        this.f34118f = h9Var;
-        this.f34116b = new org.telegram.ui.Components.f6(this, 180L, bs.h);
-        this.f34117c = new org.telegram.ui.Components.f6(this, 320L, h9.R);
+        this.f34124f = h9Var;
+        this.f34122b = new org.telegram.ui.Components.f6(this, 180L, bs.h);
+        this.f34123c = new org.telegram.ui.Components.f6(this, 320L, h9.R);
         this.d = 1.0f;
     }
 
@@ -50,7 +50,7 @@ public final class d9 extends EditTextBoldCursor {
     public final void onSelectionChanged(int i10, int i11) {
         super.onSelectionChanged(i10, i11);
         if (i10 != i11) {
-            this.f34118f.b();
+            this.f34124f.b();
         }
     }
 
@@ -58,13 +58,13 @@ public final class d9 extends EditTextBoldCursor {
     public final boolean onTouchEvent(MotionEvent motionEvent) {
         boolean z10;
         if (motionEvent.getActionMasked() == 0) {
-            this.f34118f.b();
+            this.f34124f.b();
             if (length() == 0) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            this.f34117c.a(z10);
+            this.f34123c.a(z10);
         }
         return super.onTouchEvent(motionEvent);
     }

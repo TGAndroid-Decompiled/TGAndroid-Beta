@@ -7,10 +7,10 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 public final class lj implements TextWatcher {
-    public final xj f28232a;
+    public final xj f28196a;
 
     public lj(xj xjVar) {
-        this.f28232a = xjVar;
+        this.f28196a = xjVar;
     }
 
     @Override
@@ -18,36 +18,36 @@ public final class lj implements TextWatcher {
         int currentTop;
         String obj = editable.toString();
         if (!obj.isEmpty()) {
-            vz vzVar = this.f28232a.G;
+            vz vzVar = this.f28196a.G;
             if (vzVar != null) {
                 vzVar.setText(LocaleController.getString(R.string.NoResult));
             }
         } else {
-            s4.g0 adapter = this.f28232a.f32405s.getAdapter();
-            xj xjVar = this.f28232a;
+            s4.g0 adapter = this.f28196a.f32435s.getAdapter();
+            xj xjVar = this.f28196a;
             if (adapter != xjVar.E) {
                 currentTop = xjVar.getCurrentTop();
-                this.f28232a.G.setText(LocaleController.getString(R.string.NoContacts));
-                this.f28232a.G.c();
-                xj xjVar2 = this.f28232a;
-                xjVar2.f32405s.setAdapter(xjVar2.E);
-                this.f28232a.E.l();
+                this.f28196a.G.setText(LocaleController.getString(R.string.NoContacts));
+                this.f28196a.G.c();
+                xj xjVar2 = this.f28196a;
+                xjVar2.f32435s.setAdapter(xjVar2.E);
+                this.f28196a.E.l();
                 if (currentTop > 0) {
-                    this.f28232a.v.h1(0, -currentTop);
+                    this.f28196a.v.h1(0, -currentTop);
                 }
             }
         }
-        tj tjVar = this.f28232a.F;
+        tj tjVar = this.f28196a.F;
         if (tjVar != null) {
-            if (tjVar.f30606f != null) {
-                Utilities.searchQueue.cancelRunnable(tjVar.f30606f);
-                tjVar.f30606f = null;
+            if (tjVar.f30613f != null) {
+                Utilities.searchQueue.cancelRunnable(tjVar.f30613f);
+                tjVar.f30613f = null;
             }
             int i10 = tjVar.h + 1;
             tjVar.h = i10;
             DispatchQueue dispatchQueue = Utilities.searchQueue;
             sj sjVar = new sj(tjVar, obj, i10, 0);
-            tjVar.f30606f = sjVar;
+            tjVar.f30613f = sjVar;
             dispatchQueue.postRunnable(sjVar, 300L);
         }
     }

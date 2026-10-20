@@ -1,60 +1,25 @@
 package u2;
+public final class s0 {
+    public static final s0 f47427a;
+    public static final s0 f47428b;
+    public static final s0 f47429c;
+    public static final s0[] d;
 
-import java.util.concurrent.atomic.AtomicReference;
-public final class s0 implements c3.j0 {
-    public final c1 f47422a;
-    public final c1 f47423b;
-    public final c3.n f47424c = new c3.n();
-    public final AtomicReference d = new AtomicReference(r0.f47416a);
-
-    public s0(c1 c1Var) {
-        this.f47422a = c1Var;
-        this.f47423b = c1Var;
+    static {
+        ?? r02 = new Enum("PASS_THROUGH", 0);
+        f47427a = r02;
+        ?? r12 = new Enum("DISCARD_AFTER_NEXT_SAMPLE_METADATA", 1);
+        f47428b = r12;
+        ?? r32 = new Enum("DISCARDING", 2);
+        f47429c = r32;
+        d = new s0[]{r02, r12, r32};
     }
 
-    @Override
-    public final int a(b2.o oVar, int i10, boolean z10) {
-        return h().a(oVar, i10, z10);
+    public static s0 valueOf(String str) {
+        return (s0) Enum.valueOf(s0.class, str);
     }
 
-    @Override
-    public final void b(b2.w wVar) {
-        this.f47422a.b(wVar);
-    }
-
-    @Override
-    public final void c(long j10, int i10, int i11, int i12, c3.i0 i0Var) {
-        h().c(j10, i10, i11, i12, i0Var);
-        AtomicReference atomicReference = this.d;
-        if (atomicReference.get() == r0.f47417b) {
-            this.f47423b.G(false);
-            atomicReference.set(r0.f47418c);
-        }
-    }
-
-    @Override
-    public final void d(int i10, e2.x xVar) {
-        h().d(i10, xVar);
-    }
-
-    @Override
-    public final int f(b2.o oVar, int i10, boolean z10) {
-        return h().f(oVar, i10, z10);
-    }
-
-    @Override
-    public final void g(e2.x xVar, int i10, int i11) {
-        h().g(xVar, i10, i11);
-    }
-
-    public final c3.j0 h() {
-        if (this.d.get() == r0.f47418c) {
-            return this.f47424c;
-        }
-        return this.f47423b;
-    }
-
-    @Override
-    public final void e(long j10) {
+    public static s0[] values() {
+        return (s0[]) d.clone();
     }
 }

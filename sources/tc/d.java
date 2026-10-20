@@ -3,8 +3,8 @@ package tc;
 import c5.c0;
 import e2.j0;
 public abstract class d {
-    public static final int[] f46934a = {16, 17, 18, 0, 8, 7, 9, 6, 10, 5, 11, 4, 12, 3, 13, 2, 14, 1, 15};
-    public static final byte[] f46935b = {65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 43, 47};
+    public static final int[] f46939a = {16, 17, 18, 0, 8, 7, 9, 6, 10, 5, 11, 4, 12, 3, 13, 2, 14, 1, 15};
+    public static final byte[] f46940b = {65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 43, 47};
 
     public static String a(byte[] bArr) {
         int i10;
@@ -54,7 +54,7 @@ public abstract class d {
             if (i12 < 0) {
                 break;
             }
-            sb2.append((char) f46935b[i12]);
+            sb2.append((char) f46940b[i12]);
             i15 += 6;
         }
         for (int length2 = sb2.length(); length2 < length; length2++) {
@@ -258,7 +258,7 @@ public abstract class d {
         int s12 = c0Var.s(4, iArr) + 4;
         int[] iArr2 = new int[19];
         for (int i10 = 0; i10 < s12; i10++) {
-            iArr2[f46934a[i10]] = (byte) c0Var.s(3, iArr);
+            iArr2[f46939a[i10]] = (byte) c0Var.s(3, iArr);
         }
         j0 j0Var = new j0(iArr2);
         int[] iArr3 = new int[s10];

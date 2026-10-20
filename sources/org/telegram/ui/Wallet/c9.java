@@ -9,37 +9,37 @@ import android.widget.TextView;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
 import org.telegram.ui.Components.bs;
 public final class c9 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f34075a;
-    public final float f34076b;
-    public final float f34077c;
+    public final int f34081a;
+    public final float f34082b;
+    public final float f34083c;
     public final float d;
     public final float e;
-    public final int f34078f;
-    public final KeyEvent.Callback f34079g;
+    public final int f34084f;
+    public final KeyEvent.Callback f34085g;
 
     public c9(KeyEvent.Callback callback, float f7, float f10, float f11, float f12, int i10, int i11) {
-        this.f34075a = i11;
-        this.f34079g = callback;
-        this.f34076b = f7;
-        this.f34077c = f10;
+        this.f34081a = i11;
+        this.f34085g = callback;
+        this.f34082b = f7;
+        this.f34083c = f10;
         this.d = f11;
         this.e = f12;
-        this.f34078f = i10;
+        this.f34084f = i10;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f34075a) {
+        switch (this.f34081a) {
             case 0:
-                h9 h9Var = (h9) this.f34079g;
+                h9 h9Var = (h9) this.f34085g;
                 h9Var.getClass();
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 bs bsVar = bs.h;
                 float interpolation = bsVar.getInterpolation(floatValue);
                 float interpolation2 = bsVar.getInterpolation(Math.min(1.0f, (floatValue * 320.0f) / 120.0f));
-                m6 m6Var = h9Var.f34288c;
-                float f7 = this.f34077c;
-                float f10 = this.f34076b;
+                m6 m6Var = h9Var.f34294c;
+                float f7 = this.f34083c;
+                float f10 = this.f34082b;
                 m6Var.setAlpha(((f7 - f10) * interpolation2) + f10);
                 TextView textView = h9Var.e;
                 float f11 = this.e;
@@ -47,35 +47,35 @@ public final class c9 implements ValueAnimator.AnimatorUpdateListener {
                 textView.setAlpha(((f11 - f12) * interpolation2) + f12);
                 FrameLayout frameLayout = h9Var.d;
                 ViewGroup.LayoutParams layoutParams = frameLayout.getLayoutParams();
-                int i10 = this.f34078f;
-                layoutParams.width = Math.round(((h9Var.f34294x - i10) * interpolation) + i10);
+                int i10 = this.f34084f;
+                layoutParams.width = Math.round(((h9Var.f34300x - i10) * interpolation) + i10);
                 frameLayout.requestLayout();
                 return;
             default:
-                xh.j jVar = (xh.j) this.f34079g;
+                xh.j jVar = (xh.j) this.f34085g;
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                jVar.f49856x = floatValue2;
-                float f13 = this.f34076b;
+                jVar.f49861x = floatValue2;
+                float f13 = this.f34082b;
                 float y3 = com.google.android.gms.internal.play_billing.k3.y(1.0f, f13, floatValue2, f13);
-                xh.i iVar = jVar.f49857y;
+                xh.i iVar = jVar.f49862y;
                 iVar.setScaleX(y3);
                 iVar.setScaleY(y3);
-                iVar.setTranslationX((1.0f - jVar.f49856x) * this.f34077c);
-                iVar.setTranslationY((1.0f - jVar.f49856x) * this.d);
-                int i11 = (int) ((1.0f - jVar.f49856x) * this.e);
+                iVar.setTranslationX((1.0f - jVar.f49861x) * this.f34083c);
+                iVar.setTranslationY((1.0f - jVar.f49861x) * this.d);
+                int i11 = (int) ((1.0f - jVar.f49861x) * this.e);
                 jVar.h.N(i11, i11);
-                float a2 = w7.r.a((jVar.f49856x * 2.0f) - 1.0f, 0.0f, 1.0f);
-                jVar.f49850c.setAlpha((int) (a2 * 255.0f));
+                float a2 = w7.r.a((jVar.f49861x * 2.0f) - 1.0f, 0.0f, 1.0f);
+                jVar.f49855c.setAlpha((int) (a2 * 255.0f));
                 jVar.d.setAlpha(a2);
                 jVar.e.setAlpha(a2);
-                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = jVar.f49851f;
-                actionBarPopupWindow$ActionBarPopupWindowLayout.setTranslationY((1.0f - jVar.f49856x) * this.f34078f);
+                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = jVar.f49856f;
+                actionBarPopupWindow$ActionBarPopupWindowLayout.setTranslationY((1.0f - jVar.f49861x) * this.f34084f);
                 actionBarPopupWindow$ActionBarPopupWindowLayout.setAlpha(a2);
-                BitmapDrawable bitmapDrawable = jVar.f49855w;
+                BitmapDrawable bitmapDrawable = jVar.f49860w;
                 if (bitmapDrawable != null) {
-                    bitmapDrawable.setAlpha((int) (jVar.f49856x * 255.0f));
+                    bitmapDrawable.setAlpha((int) (jVar.f49861x * 255.0f));
                 }
-                jVar.f49852n.setAlpha(a2);
+                jVar.f49857n.setAlpha(a2);
                 return;
         }
     }

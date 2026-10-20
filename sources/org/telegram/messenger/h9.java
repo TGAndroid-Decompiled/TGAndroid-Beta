@@ -1,27 +1,37 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
-import org.telegram.messenger.Utilities;
+import android.content.SharedPreferences;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class h9 implements Utilities.Callback {
-    public final int f18509a;
-    public final MediaDataController f18510b;
-    public final TLRPC.StickerSet f18511c;
+public final class h9 implements Runnable {
+    public final int f18523a;
+    public final MediaDataController f18524b;
+    public final TLRPC.TL_error f18525c;
+    public final TLObject d;
+    public final SharedPreferences e;
+    public final boolean[] f18526f;
 
-    public h9(MediaDataController mediaDataController, TLRPC.StickerSet stickerSet, int i10) {
-        this.f18509a = i10;
-        this.f18510b = mediaDataController;
-        this.f18511c = stickerSet;
+    public h9(MediaDataController mediaDataController, TLRPC.TL_error tL_error, TLObject tLObject, SharedPreferences sharedPreferences, boolean[] zArr, int i10) {
+        this.f18523a = i10;
+        this.f18524b = mediaDataController;
+        this.f18525c = tL_error;
+        this.d = tLObject;
+        this.e = sharedPreferences;
+        this.f18526f = zArr;
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f18509a) {
+    public final void run() {
+        switch (this.f18523a) {
             case 0:
-                this.f18510b.lambda$toggleStickerSetInternal$115(this.f18511c, (ArrayList) obj);
+                SharedPreferences sharedPreferences = this.e;
+                boolean[] zArr = this.f18526f;
+                this.f18524b.lambda$loadRecentAndTopReactions$238(this.f18525c, this.d, sharedPreferences, zArr);
                 return;
             default:
-                this.f18510b.lambda$toggleStickerSetInternal$112(this.f18511c, (ArrayList) obj);
+                SharedPreferences sharedPreferences2 = this.e;
+                boolean[] zArr2 = this.f18526f;
+                this.f18524b.lambda$loadRecentAndTopReactions$236(this.f18525c, this.d, sharedPreferences2, zArr2);
                 return;
         }
     }

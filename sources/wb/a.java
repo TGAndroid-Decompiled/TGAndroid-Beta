@@ -18,17 +18,17 @@ import w7.la;
 import w7.na;
 import w7.y6;
 public final class a {
-    public volatile Bitmap f48898a;
-    public final int f48899b;
-    public final int f48900c;
+    public volatile Bitmap f48903a;
+    public final int f48904b;
+    public final int f48905c;
     public final int d;
     public final int e;
 
     public a(Bitmap bitmap, int i10) {
         l.h(bitmap);
-        this.f48898a = bitmap;
-        this.f48899b = bitmap.getWidth();
-        this.f48900c = bitmap.getHeight();
+        this.f48903a = bitmap;
+        this.f48904b = bitmap.getWidth();
+        this.f48905c = bitmap.getHeight();
         boolean z10 = true;
         if (i10 != 0 && i10 != 90 && i10 != 180 && i10 != 270) {
             z10 = false;
@@ -67,7 +67,7 @@ public final class a {
         j7 j7Var = j7.INPUT_IMAGE_CONSTRUCTION;
         Task task2 = a2.e;
         long elapsedRealtime3 = SystemClock.elapsedRealtime();
-        HashMap hashMap = a2.f48755i;
+        HashMap hashMap = a2.f48760i;
         if (hashMap.get(j7Var) == null) {
             task = task2;
             aVar = aVar2;
@@ -94,9 +94,9 @@ public final class a {
         if (task.isSuccessful()) {
             a10 = (String) task.getResult();
         } else {
-            a10 = i.f17198c.a(a2.f48754g);
+            a10 = i.f17198c.a(a2.f48759g);
         }
-        m.f45199a.execute(new w(a2, eVar, a10));
+        m.f45207a.execute(new w(a2, eVar, a10));
         return aVar;
     }
 }

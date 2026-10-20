@@ -1,66 +1,41 @@
 package org.telegram.messenger;
-
-import android.os.CancellationSignal;
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.messenger.PushListenerController;
-import org.telegram.messenger.RichMessageLayout;
-import org.telegram.messenger.SendMessagesHelper;
 public final class bh implements Runnable {
-    public final int f17972a;
-    public final Object f17973b;
+    public final int f17970a;
+    public final NotificationsController f17971b;
+    public final int f17972c;
 
-    public bh(Object obj, int i10) {
-        this.f17972a = i10;
-        this.f17973b = obj;
+    public bh(NotificationsController notificationsController, int i10, int i11) {
+        this.f17970a = i11;
+        this.f17971b = notificationsController;
+        this.f17972c = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f17972a) {
+        switch (this.f17970a) {
             case 0:
-                ((NotificationsSettingsFacade) this.f17973b).lambda$applyDialogNotificationsSettings$0();
+                NotificationsController.q(this.f17971b, this.f17972c);
                 return;
             case 1:
-                ((CancellationSignal) this.f17973b).cancel();
+                NotificationsController.V(this.f17971b, this.f17972c);
                 return;
             case 2:
-                ((ProxyRotationController) this.f17973b).lambda$new$2();
+                NotificationsController.a(this.f17971b, this.f17972c);
                 return;
             case 3:
-                ((PushListenerController.GooglePushListenerServiceProvider) this.f17973b).lambda$onRequestPushToken$1();
+                NotificationsController.g(this.f17971b, this.f17972c);
                 return;
             case 4:
-                ((RichMessageLayout.PreviewView) this.f17973b).lambda$onTouchEvent$0();
+                NotificationsController.M(this.f17971b, this.f17972c);
                 return;
             case 5:
-                ((RichMessageLayout.RichButtonRowBlock) this.f17973b).invalidate();
+                NotificationsController.n(this.f17971b, this.f17972c);
                 return;
             case 6:
-                ((RichMessageLayout.RichButtonSpan) this.f17973b).invalidate();
-                return;
-            case 7:
-                RichMessageLayout.RichUnsupportedBlock.lambda$new$0((RichMessageLayout) this.f17973b);
-                return;
-            case 8:
-                ((RichMessageLayout.Text) this.f17973b).lambda$scheduleLongPress$2();
-                return;
-            case 9:
-                ((SecretChatHelper) this.f17973b).lambda$startSecretChat$25();
-                return;
-            case 10:
-                ((SendMessagesHelper) this.f17973b).lambda$new$0();
-                return;
-            case 11:
-                ((MessagesStorage.StringCallback) this.f17973b).run(null);
-                return;
-            case 12:
-                ((SendMessagesHelper.LocationProvider) this.f17973b).lambda$start$0();
-                return;
-            case 13:
-                ((TelegramMediaSession) this.f17973b).onAccountSwitched();
+                NotificationsController.e0(this.f17971b, this.f17972c);
                 return;
             default:
-                ((TranslateController) this.f17973b).loadTranslatingDialogsCached();
+                NotificationsController.t(this.f17971b, this.f17972c);
                 return;
         }
     }

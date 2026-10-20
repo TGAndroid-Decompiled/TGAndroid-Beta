@@ -35,7 +35,7 @@ import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.kk;
+import org.telegram.messenger.mk;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.a2;
@@ -48,9 +48,9 @@ import org.telegram.ui.Components.ai;
 import org.telegram.ui.Components.e5;
 import org.telegram.ui.Components.f5;
 import org.telegram.ui.Components.fo;
-import org.telegram.ui.Components.h01;
-import org.telegram.ui.Components.k01;
+import org.telegram.ui.Components.i01;
 import org.telegram.ui.Components.k8;
+import org.telegram.ui.Components.l01;
 import org.telegram.ui.Components.md0;
 import org.telegram.ui.Components.od0;
 import org.telegram.ui.Components.rd0;
@@ -103,8 +103,8 @@ public final class d implements OnFailureListener, BillingController.ProductDeta
                 return;
             case 10:
                 fo foVar = (fo) this.f37b;
-                foVar.f26281j0.d((TLRPC.TL_messageMediaPoll) this.f38c, foVar.O, foVar.l1, (ArrayList) this.d, z10, i10, ((Long) this.e).longValue());
-                foVar.f28223b.dismiss(true);
+                foVar.f26301j0.d((TLRPC.TL_messageMediaPoll) this.f38c, foVar.O, foVar.l1, (ArrayList) this.d, z10, i10, ((Long) this.e).longValue());
+                foVar.f28173b.dismiss(true);
                 return;
             case 11:
                 ct ctVar = (ct) this.f37b;
@@ -205,7 +205,7 @@ public final class d implements OnFailureListener, BillingController.ProductDeta
                 edit.putBoolean((String) obj2, ((boolean[]) obj)[0]);
                 edit.apply();
                 notificationsCustomSettingsActivity.l0(true);
-                notificationsCustomSettingsActivity.getNotificationsController().updateServerNotificationsSettings(notificationsCustomSettingsActivity.f33205s);
+                notificationsCustomSettingsActivity.getNotificationsController().updateServerNotificationsSettings(notificationsCustomSettingsActivity.f33211s);
                 return;
             default:
                 re1 re1Var = (re1) obj4;
@@ -302,7 +302,7 @@ public final class d implements OnFailureListener, BillingController.ProductDeta
                             d3Var.M0 = true;
                         }
                         b5 b5Var = new b5(new qn(h));
-                        b5Var.f20702b = true;
+                        b5Var.f20705b = true;
                         lastFragment.presentFragment(b5Var);
                     }
                 }
@@ -325,12 +325,12 @@ public final class d implements OnFailureListener, BillingController.ProductDeta
                     h10.putLong("chat_id", -j11);
                 }
                 h10.putString("start_text", "@" + UserObject.getPublicUsername(user2) + " " + str2);
-                n2 n2Var = tiVar.f30534f0;
+                n2 n2Var = tiVar.f30545f0;
                 if (MessagesController.getInstance(tiVar.M1).checkCanOpenChat(h10, n2Var)) {
                     td0Var2.dismiss();
                     tiVar.dismiss(true);
                     b5 b5Var2 = new b5(new qn(h10));
-                    b5Var2.f20702b = true;
+                    b5Var2.f20705b = true;
                     n2Var.presentFragment(b5Var2);
                 }
                 return true;
@@ -350,10 +350,10 @@ public final class d implements OnFailureListener, BillingController.ProductDeta
         Context context = (Context) this.f37b;
         int[] iArr = (int[]) this.f38c;
         d6 d6Var = (d6) this.d;
-        k01 k01Var = (k01) this.e;
+        l01 l01Var = (l01) this.e;
         Integer num = (Integer) obj;
         Float f7 = (Float) obj2;
-        LinearLayout e = kk.e(context, 1);
+        LinearLayout e = mk.e(context, 1);
         LinearLayout linearLayout = new LinearLayout(context);
         e.addView(linearLayout, z5.t(-2, -2, 1, 0, 0, 0, 0));
         ImageView imageView = new ImageView(context);
@@ -370,7 +370,7 @@ public final class d implements OnFailureListener, BillingController.ProductDeta
         }
         TextView textView = new TextView(context);
         textView.setTypeface(AndroidUtilities.getTypeface("fonts/num.otf"));
-        textView.setTextColor(h6.w0(h6.f21093j5, d6Var));
+        textView.setTextColor(h6.w0(h6.f21096j5, d6Var));
         StringBuilder sb2 = new StringBuilder("x");
         int i11 = (f7.floatValue() > 0.0f ? 1 : (f7.floatValue() == 0.0f ? 0 : -1));
         Object obj3 = f7;
@@ -382,7 +382,7 @@ public final class d implements OnFailureListener, BillingController.ProductDeta
         textView.setTextSize(1, 13.0f);
         textView.setGravity(17);
         e.addView(textView, z5.k(0.0f, 3.0f, 0.0f, 0.0f, -1, -2));
-        return new h01(k01Var, e, false);
+        return new i01(l01Var, e, false);
     }
 
     @Override
@@ -401,9 +401,9 @@ public final class d implements OnFailureListener, BillingController.ProductDeta
                                 String fixEmoji = Emoji.fixEmoji(((MediaDataController.KeywordResult) arrayList.get(i10)).emoji);
                                 for (int i11 = 0; i11 < availableEffects.effects.size(); i11++) {
                                     TLRPC.TL_availableEffect tL_availableEffect = availableEffects.effects.get(i11);
-                                    if (!hashSet.contains(Long.valueOf(tL_availableEffect.f20304id)) && (tL_availableEffect.emoticon.contains(fixEmoji) || fixEmoji.contains(tL_availableEffect.emoticon))) {
+                                    if (!hashSet.contains(Long.valueOf(tL_availableEffect.f20307id)) && (tL_availableEffect.emoticon.contains(fixEmoji) || fixEmoji.contains(tL_availableEffect.emoticon))) {
                                         (tL_availableEffect.effect_animation_id == 0 ? arrayList2 : arrayList3).add(i1.e(tL_availableEffect));
-                                        hashSet.add(Long.valueOf(tL_availableEffect.f20304id));
+                                        hashSet.add(Long.valueOf(tL_availableEffect.f20307id));
                                     }
                                 }
                             }

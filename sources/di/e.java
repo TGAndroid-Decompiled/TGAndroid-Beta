@@ -2,7 +2,7 @@ package di;
 
 import android.view.View;
 import ci.t6;
-import org.telegram.ui.Components.is0;
+import org.telegram.ui.Components.js0;
 public final class e implements View.OnClickListener {
     public final int f8036a;
     public final r f8037b;
@@ -18,14 +18,14 @@ public final class e implements View.OnClickListener {
         switch (this.f8036a) {
             case 0:
                 r rVar = this.f8037b;
-                is0 is0Var = rVar.W;
+                js0 js0Var = rVar.W;
                 t6 t6Var = rVar.f8054a;
                 if (t6Var == null) {
                     str = "";
                 } else {
                     str = t6Var.E;
                 }
-                is0Var.a(str);
+                js0Var.a(str);
                 return;
             default:
                 r rVar2 = this.f8037b;

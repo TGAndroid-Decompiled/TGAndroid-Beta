@@ -1,49 +1,29 @@
 package org.telegram.messenger;
 
-import org.telegram.messenger.FileLoadOperation;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class bb implements RequestDelegate {
-    public final int f17949a;
-    public final int f17950b;
-    public final Object f17951c;
-    public final Object d;
+import zf.r;
+public final class bb implements Runnable {
+    public final int f17945a;
+    public final MessagesController f17946b;
+    public final r f17947c;
 
-    public bb(Object obj, int i10, Object obj2, int i11) {
-        this.f17949a = i11;
-        this.f17951c = obj;
-        this.f17950b = i10;
-        this.d = obj2;
+    public bb(MessagesController messagesController, r rVar, int i10) {
+        this.f17945a = i10;
+        this.f17946b = messagesController;
+        this.f17947c = rVar;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f17949a) {
+    public final void run() {
+        switch (this.f17945a) {
             case 0:
-                ((MessagesController) this.f17951c).lambda$checkChatlistFolderUpdate$481(this.f17950b, (MessagesController.ChatlistUpdatesStat) this.d, tLObject, tL_error);
+                this.f17946b.lambda$processUpdateArray$402(this.f17947c);
                 return;
             case 1:
-                ((FileLoadOperation) this.f17951c).lambda$startDownloadRequest$29(this.f17950b, (FileLoadOperation.RequestInfo) this.d, tLObject, tL_error);
-                return;
-            case 2:
-                ((MediaDataController) this.f17951c).lambda$toggleStickerSetInternal$117((TLRPC.StickerSet) this.d, this.f17950b, tLObject, tL_error);
-                return;
-            case 3:
-                ((MediaDataController) this.f17951c).lambda$loadStickers$97(this.f17950b, (Utilities.Callback) this.d, tLObject, tL_error);
+                this.f17946b.lambda$processUpdateArray$405(this.f17947c);
                 return;
             default:
-                ((MessagesController) this.f17951c).lambda$registerForPush$323(this.f17950b, (String) this.d, tLObject, tL_error);
+                this.f17946b.lambda$processUpdateArray$407(this.f17947c);
                 return;
         }
-    }
-
-    public bb(MediaDataController mediaDataController, TLRPC.StickerSet stickerSet, int i10) {
-        this.f17949a = 2;
-        this.f17951c = mediaDataController;
-        this.d = stickerSet;
-        this.f17950b = i10;
     }
 }

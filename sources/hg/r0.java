@@ -29,9 +29,9 @@ import org.telegram.ui.ActionBar.n2;
 import org.telegram.ui.Cells.r3;
 import org.telegram.ui.Components.nq;
 import org.telegram.ui.Components.q6;
-import org.telegram.ui.Components.x31;
 import org.telegram.ui.Components.x90;
 import org.telegram.ui.Components.xc;
+import org.telegram.ui.Components.y31;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PremiumPreviewFragment;
 import org.telegram.ui.ah1;
@@ -63,10 +63,10 @@ public final class r0 implements View.OnClickListener {
                 LongSparseArray longSparseArray = e2Var.f11851n;
                 r3 r3Var = (r3) view.getParent();
                 TLRPC.StickerSetCovered stickerSet = r3Var.getStickerSet();
-                if (stickerSet != null && e2Var.h.indexOfKey(stickerSet.set.f20300id) < 0 && longSparseArray.indexOfKey(stickerSet.set.f20300id) < 0) {
-                    if (r3Var.f22939r) {
-                        longSparseArray.put(stickerSet.set.f20300id, stickerSet);
-                        e2Var.e.f29522a.h(r3Var.getStickerSet());
+                if (stickerSet != null && e2Var.h.indexOfKey(stickerSet.set.f20303id) < 0 && longSparseArray.indexOfKey(stickerSet.set.f20303id) < 0) {
+                    if (r3Var.f22942r) {
+                        longSparseArray.put(stickerSet.set.f20303id, stickerSet);
+                        e2Var.e.f29846a.h(r3Var.getStickerSet());
                         return;
                     }
                     e2Var.F(stickerSet, r3Var);
@@ -77,7 +77,7 @@ public final class r0 implements View.OnClickListener {
                 hi.o oVar = (hi.o) this.f12028b;
                 TLRPC.Chat chat = oVar.H;
                 if (chat != null && !chat.title.equals(((ai.t) oVar.f12195n.f899b).getText().toString())) {
-                    oVar.getMessagesController().changeChatTitle(oVar.H.f20273id, ((ai.t) oVar.f12195n.f899b).getText().toString(), new hi.h(oVar, 1));
+                    oVar.getMessagesController().changeChatTitle(oVar.H.f20276id, ((ai.t) oVar.f12195n.f899b).getText().toString(), new hi.h(oVar, 1));
                 }
                 TLRPC.Chat chat2 = oVar.H;
                 if (chat2 != null && oVar.h != oVar.f12194f) {
@@ -188,8 +188,8 @@ public final class r0 implements View.OnClickListener {
                 return;
             case 12:
                 org.telegram.ui.Components.voip.v0 v0Var = (org.telegram.ui.Components.voip.v0) this.f12028b;
-                if (!v0Var.f31828a) {
-                    if (v0Var.f31836x == 0 && v0Var.f31837y) {
+                if (!v0Var.f31779a) {
+                    if (v0Var.f31787x == 0 && v0Var.f31788y) {
                         ((Activity) v0Var.getContext()).startActivityForResult(((MediaProjectionManager) v0Var.getContext().getSystemService("media_projection")).createScreenCaptureIntent(), 520);
                         return;
                     } else {
@@ -200,8 +200,8 @@ public final class r0 implements View.OnClickListener {
                 return;
             case 13:
                 ah1 ah1Var = (ah1) this.f12028b;
-                if (!ah1Var.f31395a) {
-                    if (ah1Var.f31402w == 0) {
+                if (!ah1Var.f31346a) {
+                    if (ah1Var.f31353w == 0) {
                         ((Activity) ah1Var.getContext()).startActivityForResult(((MediaProjectionManager) ah1Var.getContext().getSystemService("media_projection")).createScreenCaptureIntent(), 520);
                         return;
                     } else {
@@ -226,8 +226,8 @@ public final class r0 implements View.OnClickListener {
             case 15:
                 org.telegram.ui.web.k kVar = (org.telegram.ui.web.k) this.f12028b;
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(kVar.getContext());
-                alertDialog$Builder.f20602a.R = LocaleController.getString(R.string.WebRecentClearTitle);
-                alertDialog$Builder.f20602a.T = LocaleController.getString(R.string.WebRecentClearText);
+                alertDialog$Builder.f20605a.R = LocaleController.getString(R.string.WebRecentClearTitle);
+                alertDialog$Builder.f20605a.T = LocaleController.getString(R.string.WebRecentClearText);
                 alertDialog$Builder.k(LocaleController.getString(R.string.OK), new org.telegram.ui.web.a(kVar));
                 i2.e.r(R.string.Cancel, alertDialog$Builder, null);
                 return;
@@ -235,7 +235,7 @@ public final class r0 implements View.OnClickListener {
                 ((qg.y) this.f12028b).dismiss();
                 return;
             case 17:
-                ((x31) this.f12028b).run();
+                ((y31) this.f12028b).run();
                 return;
             case 18:
                 ((t2) this.f12028b).onBackPressed();
@@ -248,12 +248,12 @@ public final class r0 implements View.OnClickListener {
                 return;
             case 21:
                 PremiumPreviewFragment.p0();
-                PremiumPreviewFragment.k0(((sg.m1) this.f12028b).f46340t0, null, "profile", null);
+                PremiumPreviewFragment.k0(((sg.m1) this.f12028b).f46345t0, null, "profile", null);
                 return;
             case 22:
                 final ug.f0 f0Var = (ug.f0) this.f12028b;
                 wg.a aVar3 = f0Var.Q0;
-                if (!aVar3.f48942a.N) {
+                if (!aVar3.f48947a.N) {
                     aVar3.b(true);
                     String str = f0Var.R0;
                     Utilities.Callback callback = new Utilities.Callback() {
@@ -301,7 +301,7 @@ public final class r0 implements View.OnClickListener {
                 ((ug.i0) this.f12028b).dismiss();
                 return;
             case 24:
-                ((ug.a0) ((vg.e) this.f12028b)).f47642r.dismiss();
+                ((ug.a0) ((vg.e) this.f12028b)).f47647r.dismiss();
                 return;
             case 25:
                 Runnable runnable = ((yg.c) this.f12028b).d;
@@ -317,15 +317,15 @@ public final class r0 implements View.OnClickListener {
                 ((yh.c0) this.f12028b).dismiss();
                 return;
             case 28:
-                if (((yh.o1) this.f12028b).f50428f0.f989f > 0 && (R = LaunchActivity.R()) != 0) {
+                if (((yh.o1) this.f12028b).f50433f0.f989f > 0 && (R = LaunchActivity.R()) != 0) {
                     ?? obj = new Object();
-                    obj.f21553a = true;
+                    obj.f21556a = true;
                     R.showAsSheet(new md(), obj);
                     return;
                 }
                 return;
             default:
-                ((zh.n) this.f12028b).f52055c.f52086b.f52015a.presentFragment(new PremiumPreviewFragment(0, "qr_emoji"));
+                ((zh.n) this.f12028b).f52036c.f52084b.f52023a.presentFragment(new PremiumPreviewFragment(0, "qr_emoji"));
                 return;
         }
     }

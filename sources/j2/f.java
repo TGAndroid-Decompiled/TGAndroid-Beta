@@ -26,7 +26,6 @@ import e2.m0;
 import e2.o;
 import e2.r;
 import e9.c2;
-import e9.l0;
 import e9.n0;
 import e9.x1;
 import i2.b0;
@@ -37,10 +36,10 @@ import java.io.IOException;
 import java.util.List;
 import n2.l;
 import u2.c0;
-import u2.k0;
+import u2.l0;
 import u2.u;
 import v7.u6;
-public final class f implements d1, k0, l {
+public final class f implements d1, l0, l {
     public final g0 f13939a;
     public final l1 f13940b;
     public final n1 f13941c;
@@ -62,7 +61,7 @@ public final class f implements d1, k0, l {
         this.f13941c = new n1();
         ?? obj = new Object();
         obj.f7645a = l1Var;
-        l0 l0Var = n0.f8474b;
+        e9.l0 l0Var = n0.f8474b;
         obj.f7646b = x1.e;
         obj.f7647c = c2.h;
         this.d = obj;
@@ -156,7 +155,7 @@ public final class f implements d1, k0, l {
         }
         long j10 = 0;
         if (g0Var2 != null && g0Var2.b()) {
-            if (z10 && this.h.m0() == g0Var2.f47307b && this.h.N() == g0Var2.f47308c) {
+            if (z10 && this.h.m0() == g0Var2.f47315b && this.h.N() == g0Var2.f47316c) {
                 j10 = this.h.M0();
             }
         } else if (z10) {
@@ -176,7 +175,7 @@ public final class f implements d1, k0, l {
             o1Var = (o1) ((c2) this.d.f7647c).get(g0Var);
         }
         if (g0Var != null && o1Var != null) {
-            return m(o1Var, o1Var.g(g0Var.f47306a, this.f13940b).f3822c, g0Var);
+            return m(o1Var, o1Var.g(g0Var.f47314a, this.f13940b).f3822c, g0Var);
         }
         int n02 = this.h.n0();
         o1 y02 = this.h.y0();

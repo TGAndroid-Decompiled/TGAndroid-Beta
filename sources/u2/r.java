@@ -1,5 +1,5 @@
 package u2;
-public final class r implements d1 {
+public final class r implements e1 {
     @Override
     public final boolean f() {
         return true;

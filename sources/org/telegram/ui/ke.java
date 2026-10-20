@@ -17,12 +17,12 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class ke implements Runnable {
-    public final int f38581a;
-    public final qn f38582b;
+    public final int f38587a;
+    public final qn f38588b;
 
     public ke(qn qnVar, int i10) {
-        this.f38581a = i10;
-        this.f38582b = qnVar;
+        this.f38587a = i10;
+        this.f38588b = qnVar;
     }
 
     @Override
@@ -32,17 +32,17 @@ public final class ke implements Runnable {
         org.telegram.ui.Cells.u1 u1Var;
         MessageObject messageObject;
         int i11;
-        int i12 = this.f38581a;
+        int i12 = this.f38587a;
         TLRPC.ChatTheme chatTheme = null;
         int i13 = 0;
-        qn qnVar = this.f38582b;
+        qn qnVar = this.f38588b;
         switch (i12) {
             case 0:
                 qnVar.L5 = null;
                 if (qnVar.getParentActivity() != null) {
-                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(qnVar.getParentActivity(), 0, qnVar.f40667ea);
+                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(qnVar.getParentActivity(), 0, qnVar.f40673ea);
                     boolean isChannel = ChatObject.isChannel(qnVar.e);
-                    org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20602a;
+                    org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20605a;
                     if (isChannel && !qnVar.e.megagroup) {
                         b2Var.T = LocaleController.getString(R.string.JoinByPeekChannelText);
                         b2Var.R = LocaleController.getString(R.string.JoinByPeekChannelTitle);
@@ -63,8 +63,8 @@ public final class ke implements Runnable {
                 qn.n0(qnVar);
                 return;
             case 3:
-                qnVar.ta(null, qnVar.f40838s8);
-                qnVar.f40838s8 = null;
+                qnVar.ta(null, qnVar.f40844s8);
+                qnVar.f40844s8 = null;
                 return;
             case 4:
                 if (!org.telegram.ui.ActionBar.n2.hasSheets(qnVar) && (fkVar = qnVar.Y) != null) {
@@ -75,7 +75,7 @@ public final class ke implements Runnable {
                 return;
             case 5:
                 qnVar.t9();
-                AndroidUtilities.forEachViews((RecyclerView) qnVar.f40895x0, (Utilities.Callback<View>) new xe(qnVar, 6));
+                AndroidUtilities.forEachViews((RecyclerView) qnVar.f40901x0, (Utilities.Callback<View>) new xe(qnVar, 6));
                 qnVar.x7();
                 wj wjVar = qnVar.X2;
                 if (wjVar != null) {
@@ -94,22 +94,22 @@ public final class ke implements Runnable {
                 return;
             case 6:
                 nd1 a02 = nd1.a0(-qnVar.T5, 0L);
-                a02.f39544y = qnVar;
+                a02.f39550y = qnVar;
                 qnVar.presentFragment(a02);
                 return;
             case 7:
-                qnVar.fc(true);
+                qnVar.gc(true);
                 return;
             case 8:
-                qnVar.f40719j1.d(true);
+                qnVar.f40725j1.d(true);
                 return;
             case 9:
                 qnVar.getNotificationCenter().onAnimationFinish(qnVar.F9);
                 return;
             case 10:
-                int childCount = qnVar.f40895x0.getChildCount();
+                int childCount = qnVar.f40901x0.getChildCount();
                 while (i13 < childCount) {
-                    View childAt = qnVar.f40895x0.getChildAt(i13);
+                    View childAt = qnVar.f40901x0.getChildAt(i13);
                     if (childAt instanceof org.telegram.ui.Cells.u1) {
                         org.telegram.ui.Cells.u1 u1Var2 = (org.telegram.ui.Cells.u1) childAt;
                         if (u1Var2.getMessageObject().type == 4) {
@@ -121,10 +121,10 @@ public final class ke implements Runnable {
                 return;
             case 11:
                 qnVar.Bb = true;
-                qnVar.Bc(true);
+                qnVar.Cc(true);
                 return;
             case 12:
-                vk vkVar = qnVar.f40630bb;
+                vk vkVar = qnVar.f40636bb;
                 if (vkVar != null) {
                     vkVar.requestLayout();
                     return;
@@ -134,7 +134,7 @@ public final class ke implements Runnable {
                 qn.J0(qnVar);
                 return;
             case 14:
-                qnVar.zb(false, true);
+                qnVar.Ab(false, true);
                 return;
             case 15:
                 qnVar.resumeDelayedFragmentAnimation();
@@ -144,11 +144,11 @@ public final class ke implements Runnable {
                 qnVar.getNotificationCenter().runDelayedNotifications();
                 return;
             case 16:
-                TLRPC.UserFull userFull = qnVar.f40613a8;
+                TLRPC.UserFull userFull = qnVar.f40619a8;
                 if (userFull != null) {
                     chatTheme = userFull.theme;
                 }
-                qnVar.mb(chatTheme);
+                qnVar.nb(chatTheme);
                 return;
             case 17:
                 qn.u0(qnVar);
@@ -162,7 +162,7 @@ public final class ke implements Runnable {
                 qnVar.R7 = null;
                 qnVar.S7 = -1;
                 qnVar.M7 = false;
-                qnVar.ad(false);
+                qnVar.bd(false);
                 qnVar.U7 = null;
                 return;
             case 19:
@@ -172,7 +172,7 @@ public final class ke implements Runnable {
                 qnVar.Y.F0();
                 return;
             case 21:
-                AndroidUtilities.forEachViews((RecyclerView) qnVar.f40895x0, (Utilities.Callback<View>) new ci.e(11));
+                AndroidUtilities.forEachViews((RecyclerView) qnVar.f40901x0, (Utilities.Callback<View>) new ci.e(11));
                 dm dmVar = qnVar.A0;
                 if (dmVar != null) {
                     dmVar.O(true);
@@ -180,40 +180,40 @@ public final class ke implements Runnable {
                 }
                 return;
             case 22:
-                qn qnVar2 = this.f38582b;
-                int i14 = qnVar2.f40813qb;
+                qn qnVar2 = this.f38588b;
+                int i14 = qnVar2.f40819qb;
                 if (i14 != 0) {
-                    qnVar2.j(i14, qnVar2.f40827rb, qnVar2.f40841sb, qnVar2.f40854tb, qnVar2.f40866ub, qnVar2.f40879vb);
-                    qnVar2.f40813qb = 0;
+                    qnVar2.j(i14, qnVar2.f40833rb, qnVar2.f40847sb, qnVar2.f40860tb, qnVar2.f40872ub, qnVar2.f40885vb);
+                    qnVar2.f40819qb = 0;
                     return;
                 }
                 return;
             case 23:
-                if (!qnVar.f40746l3 && qnVar.f40895x0 != null && qnVar.getParentActivity() != null && qnVar.fragmentView != null) {
-                    org.telegram.ui.Components.aq aqVar = qnVar.f40870v2;
+                if (!qnVar.f40752l3 && qnVar.f40901x0 != null && qnVar.getParentActivity() != null && qnVar.fragmentView != null) {
+                    org.telegram.ui.Components.aq aqVar = qnVar.f40876v2;
                     if (aqVar == null || aqVar.getTag() == null) {
-                        if (qnVar.f40870v2 == null) {
+                        if (qnVar.f40876v2 == null) {
                             jm jmVar = qnVar.X0;
                             int indexOfChild = jmVar.indexOfChild(qnVar.S);
                             if (indexOfChild != -1) {
                                 i10 = 1;
-                                org.telegram.ui.Components.aq aqVar2 = new org.telegram.ui.Components.aq(qnVar.getParentActivity(), qnVar.f40667ea);
-                                qnVar.f40870v2 = aqVar2;
+                                org.telegram.ui.Components.aq aqVar2 = new org.telegram.ui.Components.aq(qnVar.getParentActivity(), qnVar.f40673ea);
+                                qnVar.f40876v2 = aqVar2;
                                 jmVar.addView(aqVar2, indexOfChild + 1, w7.z5.d(-2, -2.0f, 51, 10.0f, 0.0f, 10.0f, 0.0f));
-                                qnVar.f40870v2.setAlpha(0.0f);
-                                qnVar.f40870v2.setVisibility(4);
+                                qnVar.f40876v2.setAlpha(0.0f);
+                                qnVar.f40876v2.setVisibility(4);
                             } else {
                                 return;
                             }
                         } else {
                             i10 = 1;
                         }
-                        int childCount2 = qnVar.f40895x0.getChildCount();
+                        int childCount2 = qnVar.f40901x0.getChildCount();
                         for (int i15 = 0; i15 < childCount2; i15++) {
-                            View childAt2 = qnVar.f40895x0.getChildAt(i15);
+                            View childAt2 = qnVar.f40901x0.getChildAt(i15);
                             if ((childAt2 instanceof org.telegram.ui.Cells.u1) && (messageObject = (u1Var = (org.telegram.ui.Cells.u1) childAt2).getMessageObject()) != null && messageObject.isOutOwner() && messageObject.isSent()) {
-                                org.telegram.ui.Components.aq aqVar3 = qnVar.f40870v2;
-                                ImageView imageView = aqVar3.f24672c;
+                                org.telegram.ui.Components.aq aqVar3 = qnVar.f40876v2;
+                                ImageView imageView = aqVar3.f24697c;
                                 org.telegram.ui.Components.pg pgVar = aqVar3.e;
                                 if (pgVar != null) {
                                     AndroidUtilities.cancelRunOnUIThread(pgVar);
@@ -231,7 +231,7 @@ public final class ke implements Runnable {
                                     int dp = AndroidUtilities.dp(5.0f) + u1Var.getChecksX();
                                     int measuredWidth = view.getMeasuredWidth();
                                     float measuredHeight = C - aqVar3.getMeasuredHeight();
-                                    aqVar3.f24673f = measuredHeight;
+                                    aqVar3.f24698f = measuredHeight;
                                     aqVar3.setTranslationY(measuredHeight);
                                     int left = u1Var.getLeft() + dp;
                                     int dp2 = AndroidUtilities.dp(15.0f);
@@ -282,7 +282,7 @@ public final class ke implements Runnable {
                                     aqVar3.d.setDuration(180L);
                                     aqVar3.d.start();
                                     while (i13 < 2) {
-                                        ViewPropertyAnimator interpolator = aqVar3.f24670a[i13].animate().scaleX(1.04f).scaleY(1.04f).setInterpolator(org.telegram.ui.Components.bs.f25014i);
+                                        ViewPropertyAnimator interpolator = aqVar3.f24695a[i13].animate().scaleX(1.04f).scaleY(1.04f).setInterpolator(org.telegram.ui.Components.bs.f25023i);
                                         if (i13 == 0) {
                                             i11 = 132;
                                         } else {
@@ -305,7 +305,7 @@ public final class ke implements Runnable {
                 qn.G0(qnVar);
                 return;
             case 25:
-                AndroidUtilities.forEachViews((RecyclerView) qnVar.f40895x0, (Utilities.Callback<View>) new ci.e(10));
+                AndroidUtilities.forEachViews((RecyclerView) qnVar.f40901x0, (Utilities.Callback<View>) new ci.e(10));
                 dm dmVar2 = qnVar.A0;
                 if (dmVar2 != null) {
                     dmVar2.O(false);
@@ -323,7 +323,7 @@ public final class ke implements Runnable {
                 }
                 return;
             case 28:
-                org.telegram.ui.Components.ap apVar = ((org.telegram.ui.Components.ap[]) qnVar.f40606a0.f899b)[0];
+                org.telegram.ui.Components.ap apVar = ((org.telegram.ui.Components.ap[]) qnVar.f40612a0.f899b)[0];
                 org.telegram.ui.ActionBar.j5 j5Var = apVar.d;
                 org.telegram.ui.ActionBar.j5 j5Var2 = apVar.e;
                 qnVar.F1 = !qnVar.F1;
@@ -339,7 +339,7 @@ public final class ke implements Runnable {
                 AndroidUtilities.runOnUIThread(qnVar.G1, 6000L);
                 return;
             default:
-                qnVar.yc();
+                qnVar.zc();
                 return;
         }
     }

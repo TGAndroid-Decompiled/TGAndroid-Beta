@@ -14,12 +14,12 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class dz implements Runnable {
-    public final int f36459a;
-    public final Object f36460b;
+    public final int f36465a;
+    public final Object f36466b;
 
     public dz(Object obj, int i10) {
-        this.f36459a = i10;
-        this.f36460b = obj;
+        this.f36465a = i10;
+        this.f36466b = obj;
     }
 
     @Override
@@ -28,28 +28,28 @@ public final class dz implements Runnable {
         h70 h70Var;
         EGLDisplay eGLDisplay;
         EGLSurface eGLSurface;
-        int i11 = this.f36459a;
-        Object obj = this.f36460b;
+        int i11 = this.f36465a;
+        Object obj = this.f36466b;
         switch (i11) {
             case 0:
-                ((jz) obj).f36824a.getBackground().setState(new int[0]);
+                ((jz) obj).f36830a.getBackground().setState(new int[0]);
                 return;
             case 1:
                 e10 e10Var = (e10) obj;
-                AndroidUtilities.cancelRunOnUIThread(e10Var.f36502n0);
-                e10Var.f36485a.a(false, true);
+                AndroidUtilities.cancelRunOnUIThread(e10Var.f36508n0);
+                e10Var.f36491a.a(false, true);
                 return;
             case 2:
-                e10 e10Var2 = ((t00) obj).f41560a;
-                e10Var2.h(e10Var2.E, e10Var2.F, e10Var2.H, e10Var2.G, e10Var2.f36511y, e10Var2.J, e10Var2.f36509w, false);
+                e10 e10Var2 = ((t00) obj).f41566a;
+                e10Var2.h(e10Var2.E, e10Var2.F, e10Var2.H, e10Var2.G, e10Var2.f36517y, e10Var2.J, e10Var2.f36515w, false);
                 return;
             case 3:
                 ((FiltersSetupActivity) ((g10) obj).W2).getMessagesController().lockFiltersInternal();
                 return;
             case 4:
                 h10 h10Var = (h10) obj;
-                h10Var.f37454s.a();
-                h10Var.f37452n.invalidate();
+                h10Var.f37460s.a();
+                h10Var.f37458n.invalidate();
                 h10Var.E.Z(true);
                 return;
             case 5:
@@ -58,7 +58,7 @@ public final class dz implements Runnable {
                     ArrayList<MessagesController.DialogFilter> dialogFilters = filtersSetupActivity.getMessagesController().getDialogFilters();
                     for (int i12 = 0; i12 < dialogFilters.size(); i12++) {
                         if (dialogFilters.get(i12).isDefault() && i12 != 0) {
-                            FiltersSetupActivity filtersSetupActivity2 = filtersSetupActivity.f33135b.e;
+                            FiltersSetupActivity filtersSetupActivity2 = filtersSetupActivity.f33141b.e;
                             ArrayList<MessagesController.DialogFilter> arrayList = filtersSetupActivity2.getMessagesController().dialogFilters;
                             if (i12 < 0 || i12 >= arrayList.size()) {
                                 i10 = 1;
@@ -71,7 +71,7 @@ public final class dz implements Runnable {
                                 filtersSetupActivity2.e = true;
                                 filtersSetupActivity2.Z(true);
                             }
-                            filtersSetupActivity.f33134a.u0(0);
+                            filtersSetupActivity.f33140a.u0(0);
                             try {
                                 filtersSetupActivity.fragmentView.performHapticFeedback(3, i10);
                             } catch (Exception unused) {
@@ -89,36 +89,36 @@ public final class dz implements Runnable {
                 }
                 return;
             case 6:
-                q50 q50Var = ((x20) obj).f42992b;
-                q50Var.f40409j2 = null;
+                q50 q50Var = ((x20) obj).f42998b;
+                q50Var.f40415j2 = null;
                 q50Var.K1(q50Var.F1, true);
                 return;
             case 7:
                 y40 y40Var = (y40) obj;
-                q50 q50Var2 = y40Var.f43345f;
-                j30 j30Var = q50Var2.f40372b;
+                q50 q50Var2 = y40Var.f43351f;
+                j30 j30Var = q50Var2.f40378b;
                 ImageLocation imageLocation = y40Var.d;
                 if (imageLocation != null) {
                     j30Var.K0 = imageLocation;
-                    j30Var.f27878q1 = null;
-                    j30Var.f27879r1 = null;
+                    j30Var.f28191q1 = null;
+                    j30Var.f28192r1 = null;
                     y40Var.d = null;
                 }
                 TLRPC.Chat chat = q50Var2.d.getMessagesController().getChat(Long.valueOf(-y40Var.e));
                 ImageLocation forChat = ImageLocation.getForChat(chat, 0);
                 ImageLocation forChat2 = ImageLocation.getForChat(chat, 1);
-                if (ImageLocation.getForLocal(y40Var.f43343b) == null) {
-                    forChat2 = ImageLocation.getForLocal(y40Var.f43344c);
+                if (ImageLocation.getForLocal(y40Var.f43349b) == null) {
+                    forChat2 = ImageLocation.getForLocal(y40Var.f43350c);
                 }
                 j30Var.setCreateThumbFromParent(false);
                 j30Var.H(null, forChat, forChat2, true);
-                y40Var.f43344c = null;
-                y40Var.f43343b = null;
+                y40Var.f43350c = null;
+                y40Var.f43349b = null;
                 AndroidUtilities.updateVisibleRows(q50Var2.Q);
                 y40Var.a(1.0f);
                 return;
             case 8:
-                v10 v10Var = ((b50) obj).f35498g;
+                v10 v10Var = ((b50) obj).f35504g;
                 if (v10Var != null) {
                     v10Var.invalidate();
                     return;
@@ -126,7 +126,7 @@ public final class dz implements Runnable {
                 return;
             case 9:
                 s60 s60Var = (s60) obj;
-                s60Var.f41377y = null;
+                s60Var.f41383y = null;
                 s60Var.E = null;
                 s60Var.F = null;
                 s60Var.G = null;
@@ -134,26 +134,26 @@ public final class dz implements Runnable {
                 s60Var.H = null;
                 s60Var.J = 0.0d;
                 s60Var.Z(false, true);
-                s60Var.d.h(null, null, s60Var.f41373r, null);
-                s60Var.f41371f.setAnimation(s60Var.R);
+                s60Var.d.h(null, null, s60Var.f41379r, null);
+                s60Var.f41377f.setAnimation(s60Var.R);
                 s60Var.R.M(0);
                 return;
             case 10:
-                org.telegram.messenger.g0.q(R.string.GroupsEmojiPackUpdated, org.telegram.ui.Components.xc.a0(((v60) obj).f42113c), R.raw.done, 36);
+                org.telegram.messenger.g0.q(R.string.GroupsEmojiPackUpdated, org.telegram.ui.Components.xc.a0(((v60) obj).f42119c), R.raw.done, 36);
                 return;
             case 11:
                 j70 j70Var = (j70) obj;
                 h70 h70Var2 = j70Var.I;
                 int i16 = R.drawable.intro_powerful_mask;
-                int i17 = org.telegram.ui.ActionBar.h6.f20987d6;
+                int i17 = org.telegram.ui.ActionBar.h6.f20990d6;
                 int x02 = org.telegram.ui.ActionBar.h6.x0(null, i17, false);
-                int i18 = h70.f37512y;
+                int i18 = h70.f37518y;
                 h70Var2.b(i16, 17, x02, true);
-                int[] iArr = j70Var.I.f37517n;
+                int[] iArr = j70Var.I.f37523n;
                 Intro.setPowerfulTextures(iArr[17], iArr[18], iArr[16], iArr[15]);
                 h70 h70Var3 = j70Var.I;
                 h70Var3.c(h70Var3.v, 23, true);
-                int[] iArr2 = j70Var.I.f37517n;
+                int[] iArr2 = j70Var.I.f37523n;
                 Intro.setTelegramTextures(iArr2[22], iArr2[21], iArr2[23]);
                 Intro.setBackgroundColor(org.telegram.ui.ActionBar.h6.x0(null, i17, false));
                 return;
@@ -161,14 +161,14 @@ public final class dz implements Runnable {
                 f70 f70Var = (f70) obj;
                 f70Var.getClass();
                 long currentTimeMillis = System.currentTimeMillis();
-                j70 j70Var2 = (j70) f70Var.f36901b;
+                j70 j70Var2 = (j70) f70Var.f36907b;
                 Intro.setPage(j70Var2.H);
                 Intro.setDate(((float) (currentTimeMillis - j70Var2.J)) / 1000.0f);
                 Intro.onDrawFrame(0);
                 h70 h70Var4 = j70Var2.I;
-                if (h70Var4 != null && h70Var4.isAlive() && (eGLDisplay = (h70Var = j70Var2.I).f37515c) != null && (eGLSurface = h70Var.f37516f) != null) {
+                if (h70Var4 != null && h70Var4.isAlive() && (eGLDisplay = (h70Var = j70Var2.I).f37521c) != null && (eGLSurface = h70Var.f37522f) != null) {
                     try {
-                        h70Var.f37514b.eglSwapBuffers(eGLDisplay, eGLSurface);
+                        h70Var.f37520b.eglSwapBuffers(eGLDisplay, eGLSurface);
                         return;
                     } catch (Exception unused2) {
                         return;
@@ -176,7 +176,7 @@ public final class dz implements Runnable {
                 }
                 return;
             case 13:
-                j70 j70Var3 = ((g70) obj).f37204b;
+                j70 j70Var3 = ((g70) obj).f37210b;
                 j70Var3.presentFragment(new dg0(), true);
                 j70Var3.M = true;
                 return;
@@ -192,7 +192,7 @@ public final class dz implements Runnable {
                 ((pf.c) obj).b();
                 return;
             case 16:
-                ((aa0) obj).f35316a.C0.setVisibility(8);
+                ((aa0) obj).f35322a.C0.setVisibility(8);
                 return;
             case 17:
                 gb0 gb0Var = (gb0) obj;
@@ -204,7 +204,7 @@ public final class dz implements Runnable {
                 return;
             case 18:
                 try {
-                    org.telegram.ui.Components.im0 currentListView = ((nc0) ((lc0) obj).f38887z0).K0.getCurrentListView();
+                    org.telegram.ui.Components.jm0 currentListView = ((nc0) ((lc0) obj).f38893z0).K0.getCurrentListView();
                     if (currentListView != null && currentListView.getAdapter() != null) {
                         currentListView.getAdapter().l();
                         return;
@@ -214,7 +214,7 @@ public final class dz implements Runnable {
                     return;
                 }
             case 19:
-                EditTextBoldCursor[] editTextBoldCursorArr = ((sd0) obj).f41431b;
+                EditTextBoldCursor[] editTextBoldCursorArr = ((sd0) obj).f41437b;
                 if (editTextBoldCursorArr != null) {
                     editTextBoldCursorArr[0].requestFocus();
                     EditTextBoldCursor editTextBoldCursor = editTextBoldCursorArr[0];
@@ -225,26 +225,26 @@ public final class dz implements Runnable {
                 return;
             case 20:
                 vd0 vd0Var = (vd0) obj;
-                org.telegram.ui.Components.xj0 xj0Var = vd0Var.e;
-                EditTextBoldCursor editTextBoldCursor2 = vd0Var.f42202a;
+                org.telegram.ui.Components.yj0 yj0Var = vd0Var.e;
+                EditTextBoldCursor editTextBoldCursor2 = vd0Var.f42208a;
                 if (editTextBoldCursor2 != null) {
                     editTextBoldCursor2.requestFocus();
                     editTextBoldCursor2.setSelection(editTextBoldCursor2.length());
-                    dg0.T0(vd0Var.f42211y, editTextBoldCursor2);
-                    xj0Var.getAnimatedDrawable().N(0, false, false);
-                    xj0Var.d();
+                    dg0.T0(vd0Var.f42217y, editTextBoldCursor2);
+                    yj0Var.getAnimatedDrawable().N(0, false, false);
+                    yj0Var.d();
                     return;
                 }
                 return;
             case 21:
-                ((org.telegram.ui.Components.xj0) obj).d();
+                ((org.telegram.ui.Components.yj0) obj).d();
                 return;
             case 22:
                 ((de0) ((ei.e2) obj).f8950c).getClass();
                 return;
             case 23:
                 double currentTimeMillis2 = System.currentTimeMillis();
-                de0 de0Var = ((ce0) obj).f35943a;
+                de0 de0Var = ((ce0) obj).f35949a;
                 double d = de0Var.Q;
                 ff0 ff0Var = de0Var.v;
                 de0Var.Q = currentTimeMillis2;
@@ -289,14 +289,14 @@ public final class dz implements Runnable {
             case 24:
                 double currentTimeMillis3 = System.currentTimeMillis();
                 hf0 hf0Var = (hf0) ((e6.r) obj).f8393b;
-                double d10 = currentTimeMillis3 - hf0Var.f37589b0;
-                hf0Var.f37589b0 = currentTimeMillis3;
+                double d10 = currentTimeMillis3 - hf0Var.f37595b0;
+                hf0Var.f37595b0 = currentTimeMillis3;
                 int i27 = (int) (hf0Var.W - d10);
                 hf0Var.W = i27;
                 if (i27 <= 1000) {
                     hf0.p(hf0Var);
                     hf0Var.v.setVisibility(8);
-                    ff0 ff0Var2 = hf0Var.f37612x;
+                    ff0 ff0Var2 = hf0Var.f37618x;
                     if (ff0Var2 != null) {
                         ff0Var2.setVisibility(0);
                     }
@@ -306,19 +306,19 @@ public final class dz implements Runnable {
                 return;
             case 25:
                 double currentTimeMillis4 = System.currentTimeMillis();
-                hf0 hf0Var2 = ((gf0) obj).f37304a;
-                double d11 = hf0Var2.f37587a0;
+                hf0 hf0Var2 = ((gf0) obj).f37310a;
+                double d11 = hf0Var2.f37593a0;
                 ff0 ff0Var3 = hf0Var2.v;
-                hf0Var2.f37587a0 = currentTimeMillis4;
+                hf0Var2.f37593a0 = currentTimeMillis4;
                 int i28 = (int) (hf0Var2.V - (currentTimeMillis4 - d11));
                 hf0Var2.V = i28;
                 if (i28 >= 1000) {
                     int i29 = i28 / 1000;
                     int i30 = i29 / 60;
                     int i31 = i29 - (i30 * 60);
-                    int i32 = hf0Var2.f37596g0;
+                    int i32 = hf0Var2.f37602g0;
                     if (i32 != 4 && i32 != 3 && i32 != 11) {
-                        if (hf0Var2.f37595f0 == 2 && (i32 == 2 || i32 == 17 || i32 == 16)) {
+                        if (hf0Var2.f37601f0 == 2 && (i32 == 2 || i32 == 17 || i32 == 16)) {
                             ff0Var3.setText(LocaleController.formatString("ResendSmsAvailableIn", R.string.ResendSmsAvailableIn, Integer.valueOf(i30), Integer.valueOf(i31)));
                             return;
                         } else if (i32 == 2 || i32 == 17 || i32 == 16) {
@@ -332,7 +332,7 @@ public final class dz implements Runnable {
                     return;
                 }
                 hf0Var2.w();
-                int i33 = hf0Var2.f37596g0;
+                int i33 = hf0Var2.f37602g0;
                 if (i33 == 3 || i33 == 4 || i33 == 2 || i33 == 17 || i33 == 16 || i33 == 11) {
                     if (i33 == 4) {
                         ff0Var3.setText(LocaleController.getString("RequestCallButton", R.string.RequestCallButton));
@@ -357,7 +357,7 @@ public final class dz implements Runnable {
                 ((org.telegram.ui.Components.si) obj).setVisibility(8);
                 return;
             default:
-                AndroidUtilities.showKeyboard(((mj0) ((g) obj).f37143b).Q);
+                AndroidUtilities.showKeyboard(((mj0) ((g) obj).f37149b).Q);
                 return;
         }
     }

@@ -80,11 +80,11 @@ import org.telegram.ui.Cells.i5;
 import org.telegram.ui.Cells.q8;
 import org.telegram.ui.Cells.v8;
 import org.telegram.ui.Components.f5;
-import org.telegram.ui.Components.g61;
-import org.telegram.ui.Components.kl0;
-import org.telegram.ui.Components.yl0;
+import org.telegram.ui.Components.h61;
+import org.telegram.ui.Components.ll0;
+import org.telegram.ui.Components.zl0;
 import qg.v1;
-public final class c implements OnSuccessListener, l1, a2, kl0, yl0, Utilities.Callback5, v1, CameraController.VideoTakeCallback, g, o, w {
+public final class c implements OnSuccessListener, l1, a2, ll0, zl0, Utilities.Callback5, v1, CameraController.VideoTakeCallback, g, o, w {
     public final int f8178a;
     public final Object f8179b;
 
@@ -444,13 +444,13 @@ public final class c implements OnSuccessListener, l1, a2, kl0, yl0, Utilities.C
         switch (this.f8178a) {
             case 5:
                 ma maVar = (ma) this.f8179b;
-                g61 g61Var = (g61) obj;
+                h61 h61Var = (h61) obj;
                 View view = (View) obj2;
                 ((Integer) obj3).getClass();
                 ((Float) obj4).getClass();
                 ((Float) obj5).getClass();
-                int i12 = g61Var.d;
-                a8 a8Var = (a8) g61Var.G;
+                int i12 = h61Var.d;
+                a8 a8Var = (a8) h61Var.G;
                 maVar.c(false, true);
                 vb vbVar = maVar.O;
                 if (a8Var != vbVar.K1 && !vbVar.X1) {
@@ -477,16 +477,16 @@ public final class c implements OnSuccessListener, l1, a2, kl0, yl0, Utilities.C
                 ((Integer) obj3).getClass();
                 ((Float) obj4).getClass();
                 ((Float) obj5).getClass();
-                ((s4) this.f8179b).V((g61) obj);
+                ((s4) this.f8179b).V((h61) obj);
                 return;
             case 20:
                 f1 f1Var = (f1) this.f8179b;
-                g61 g61Var2 = (g61) obj;
+                h61 h61Var2 = (h61) obj;
                 View view3 = (View) obj2;
                 ((Integer) obj3).getClass();
                 float floatValue = ((Float) obj4).floatValue();
                 ((Float) obj5).getClass();
-                int i13 = g61Var2.d;
+                int i13 = h61Var2.d;
                 if (i13 == -1) {
                     boolean z10 = !f1Var.e;
                     f1Var.e = z10;
@@ -500,21 +500,21 @@ public final class c implements OnSuccessListener, l1, a2, kl0, yl0, Utilities.C
                     n2Var.f12864c = new o2(24, f1Var, view3);
                     f1Var.presentFragment((n2) n2Var);
                     return;
-                } else if (g61Var2.f44288a == 5 && i13 >= 0 && i13 < f1Var.h.length) {
+                } else if (h61Var2.f44296a == 5 && i13 >= 0 && i13 < f1Var.h.length) {
                     if (!LocaleController.isRTL ? floatValue >= view3.getMeasuredWidth() - AndroidUtilities.dp(76.0f) : floatValue <= AndroidUtilities.dp(76.0f)) {
-                        if (f1Var.h[g61Var2.d].isEmpty()) {
+                        if (f1Var.h[h61Var2.d].isEmpty()) {
                             ((i5) view3).setChecked(true);
-                            f1Var.h[g61Var2.d].add(new e1(0, 1439));
-                            f1Var.X(g61Var2.d);
+                            f1Var.h[h61Var2.d].add(new e1(0, 1439));
+                            f1Var.X(h61Var2.d);
                         } else {
-                            f1Var.h[g61Var2.d].clear();
+                            f1Var.h[h61Var2.d].clear();
                             ((i5) view3).setChecked(false);
                         }
-                        ((i5) view3).setValue(f1.a0(f1Var.h[g61Var2.d]));
+                        ((i5) view3).setValue(f1.a0(f1Var.h[h61Var2.d]));
                         f1Var.Y(true);
                         return;
                     }
-                    int i14 = (g61Var2.d + 6) % 7;
+                    int i14 = (h61Var2.d + 6) % 7;
                     int i15 = 0;
                     for (int i16 = 0; i16 < f1Var.h[i14].size(); i16++) {
                         if (((e1) f1Var.h[i14].get(i16)).f12878b > i15) {
@@ -522,7 +522,7 @@ public final class c implements OnSuccessListener, l1, a2, kl0, yl0, Utilities.C
                         }
                     }
                     int max = Math.max(0, i15 - 1439);
-                    int i17 = (g61Var2.d + 1) % 7;
+                    int i17 = (h61Var2.d + 1) % 7;
                     int i18 = 1440;
                     for (int i19 = 0; i19 < f1Var.h[i17].size(); i19++) {
                         if (((e1) f1Var.h[i17].get(i19)).f12877a < i18) {
@@ -530,8 +530,8 @@ public final class c implements OnSuccessListener, l1, a2, kl0, yl0, Utilities.C
                         }
                     }
                     int i20 = i18 + 1439;
-                    CharSequence charSequence = g61Var2.f26497l;
-                    ArrayList arrayList = f1Var.h[g61Var2.d];
+                    CharSequence charSequence = h61Var2.f26782l;
+                    ArrayList arrayList = f1Var.h[h61Var2.d];
                     int i21 = 0;
                     for (int i22 = 0; i22 < 7; i22++) {
                         ArrayList arrayList2 = f1Var.h[i22];
@@ -541,7 +541,7 @@ public final class c implements OnSuccessListener, l1, a2, kl0, yl0, Utilities.C
                     }
                     h1 h1Var = new h1(charSequence, arrayList, max, i20, 28 - i21);
                     h1Var.f12912f = new bc(f1Var, 22);
-                    h1Var.h = new t(6, f1Var, g61Var2);
+                    h1Var.h = new t(6, f1Var, h61Var2);
                     f1Var.presentFragment(h1Var);
                     return;
                 } else {
@@ -549,7 +549,7 @@ public final class c implements OnSuccessListener, l1, a2, kl0, yl0, Utilities.C
                 }
             case 21:
                 final h1 h1Var2 = (h1) this.f8179b;
-                g61 g61Var3 = (g61) obj;
+                h61 h61Var3 = (h61) obj;
                 final View view4 = (View) obj2;
                 ((Integer) obj3).getClass();
                 ((Float) obj4).getClass();
@@ -557,7 +557,7 @@ public final class c implements OnSuccessListener, l1, a2, kl0, yl0, Utilities.C
                 int i23 = h1Var2.f12911c;
                 int i24 = h1Var2.d;
                 ArrayList arrayList3 = h1Var2.f12910b;
-                int i25 = g61Var3.d;
+                int i25 = h61Var3.d;
                 if (i25 == -1) {
                     h1Var2.f12914r = !h1Var2.f12914r;
                     arrayList3.clear();
@@ -566,13 +566,13 @@ public final class c implements OnSuccessListener, l1, a2, kl0, yl0, Utilities.C
                     }
                     v8 v8Var = (v8) view4;
                     boolean z11 = h1Var2.f12914r;
-                    g61Var3.e = z11;
+                    h61Var3.e = z11;
                     v8Var.setChecked(z11);
                     boolean z12 = h1Var2.f12914r;
                     if (z12) {
-                        i11 = h6.f21023f6;
+                        i11 = h6.f21026f6;
                     } else {
-                        i11 = h6.f21004e6;
+                        i11 = h6.f21007e6;
                     }
                     v8Var.b(h6.x0(null, i11, false), z12);
                     h1Var2.f12913n.W2.N(true);
@@ -600,7 +600,7 @@ public final class c implements OnSuccessListener, l1, a2, kl0, yl0, Utilities.C
                     }
                     h1Var2.f12913n.W2.N(true);
                     return;
-                } else if (g61Var3.f44288a == 3 && (i10 = i25 / 3) >= 0 && i10 < arrayList3.size()) {
+                } else if (h61Var3.f44296a == 3 && (i10 = i25 / 3) >= 0 && i10 < arrayList3.size()) {
                     int i27 = i10 - 1;
                     if (i27 >= 0) {
                         e1Var = (e1) arrayList3.get(i27);
@@ -614,7 +614,7 @@ public final class c implements OnSuccessListener, l1, a2, kl0, yl0, Utilities.C
                     } else {
                         e1Var2 = null;
                     }
-                    int i29 = g61Var3.d % 3;
+                    int i29 = h61Var3.d % 3;
                     if (i29 == 0) {
                         Activity parentActivity = h1Var2.getParentActivity();
                         String string = LocaleController.getString(R.string.BusinessHoursDayOpenHourPicker);
@@ -730,7 +730,7 @@ public final class c implements OnSuccessListener, l1, a2, kl0, yl0, Utilities.C
                 ((Integer) obj3).getClass();
                 ((Float) obj4).getClass();
                 ((Float) obj5).getClass();
-                d2.U((d2) this.f8179b, (g61) obj, (View) obj2);
+                d2.U((d2) this.f8179b, (h61) obj, (View) obj2);
                 return;
         }
     }

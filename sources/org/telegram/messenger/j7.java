@@ -1,31 +1,29 @@
 package org.telegram.messenger;
-public final class j7 implements Runnable {
-    public final int f18683a;
-    public final MediaDataController f18684b;
-    public final long f18685c;
-    public final long d;
-    public final int[] e;
 
-    public j7(MediaDataController mediaDataController, long j10, long j11, int[] iArr, int i10) {
-        this.f18683a = i10;
-        this.f18684b = mediaDataController;
-        this.f18685c = j10;
-        this.d = j11;
-        this.e = iArr;
+import java.util.ArrayList;
+import java.util.Comparator;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.tgnet.TLRPC;
+public final class j7 implements Comparator {
+    public final int f18671a;
+    public final ArrayList f18672b;
+
+    public j7(ArrayList arrayList, int i10) {
+        this.f18671a = i10;
+        this.f18672b = arrayList;
     }
 
     @Override
-    public final void run() {
-        switch (this.f18683a) {
+    public final int compare(Object obj, Object obj2) {
+        int lambda$getEmojiSuggestions$221;
+        int lambda$reorderStickers$54;
+        switch (this.f18671a) {
             case 0:
-                this.f18684b.lambda$getMediaCounts$128(this.f18685c, this.d, this.e);
-                return;
-            case 1:
-                this.f18684b.lambda$getMediaCounts$127(this.f18685c, this.d, this.e);
-                return;
+                lambda$getEmojiSuggestions$221 = MediaDataController.lambda$getEmojiSuggestions$221(this.f18672b, (MediaDataController.KeywordResult) obj, (MediaDataController.KeywordResult) obj2);
+                return lambda$getEmojiSuggestions$221;
             default:
-                this.f18684b.lambda$getMediaCounts$130(this.f18685c, this.d, this.e);
-                return;
+                lambda$reorderStickers$54 = MediaDataController.lambda$reorderStickers$54(this.f18672b, (TLRPC.TL_messages_stickerSet) obj, (TLRPC.TL_messages_stickerSet) obj2);
+                return lambda$reorderStickers$54;
         }
     }
 }

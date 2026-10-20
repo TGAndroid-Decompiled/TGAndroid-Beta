@@ -5,9 +5,9 @@ import android.view.View;
 import java.util.ArrayList;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.g61;
-import org.telegram.ui.Components.v81;
-public final class kd extends v81 {
+import org.telegram.ui.Components.h61;
+import org.telegram.ui.Components.w81;
+public final class kd extends w81 {
     public final Context f1661a;
     public final int f1662b;
     public final boolean f1663c;
@@ -56,7 +56,7 @@ public final class kd extends v81 {
         if (i10 >= 0) {
             ArrayList arrayList = this.f1665g;
             if (i10 < arrayList.size()) {
-                return ((g61) arrayList.get(i10)).f26510z;
+                return ((h61) arrayList.get(i10)).f26795z;
             }
             return 0;
         }
@@ -71,23 +71,23 @@ public final class kd extends v81 {
         int i11 = this.f1662b;
         if (i10 == 0) {
             ga y3 = ga.y(i11, this.f1663c);
-            arrayList.add(g61.C(0));
+            arrayList.add(h61.C(0));
             if (y3.O(1)) {
-                arrayList.add(g61.C(1));
+                arrayList.add(h61.C(1));
             }
             if (y3.O(2)) {
-                arrayList.add(g61.C(2));
+                arrayList.add(h61.C(2));
                 return;
             }
             return;
         }
         k0 g10 = k0.g(i11);
-        arrayList.add(g61.C(0));
+        arrayList.add(h61.C(0));
         if (!g10.k(j10).f1543a[1].isEmpty()) {
-            arrayList.add(g61.C(1));
+            arrayList.add(h61.C(1));
         }
         if (!g10.k(j10).f1543a[2].isEmpty()) {
-            arrayList.add(g61.C(2));
+            arrayList.add(h61.C(2));
         }
     }
 

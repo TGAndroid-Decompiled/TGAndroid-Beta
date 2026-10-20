@@ -5,13 +5,13 @@ import android.os.Trace;
 import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicBoolean;
 public final class RLottieNative {
-    public final int[] f24298a;
-    public long f24299b;
-    public final AtomicBoolean f24300c = new AtomicBoolean(false);
+    public final int[] f24301a;
+    public long f24302b;
+    public final AtomicBoolean f24303c = new AtomicBoolean(false);
 
     public RLottieNative(long j10, int[] iArr) {
-        this.f24299b = j10;
-        this.f24298a = iArr;
+        this.f24302b = j10;
+        this.f24301a = iArr;
     }
 
     public static RLottieNative a(String str, String str2, int[] iArr, int[] iArr2, int i10, HashMap hashMap) {
@@ -106,8 +106,8 @@ public final class RLottieNative {
     private static native int nGetFrame(long j10, int i10, Bitmap bitmap, boolean z10);
 
     public final int c(int i10, Bitmap bitmap, boolean z10) {
-        if (!this.f24300c.get()) {
-            long j10 = this.f24299b;
+        if (!this.f24303c.get()) {
+            long j10 = this.f24302b;
             Trace.beginSection("RLottieNative#getFrame");
             try {
                 return nGetFrame(j10, i10, bitmap, z10);
@@ -119,9 +119,9 @@ public final class RLottieNative {
     }
 
     public final void d() {
-        if (this.f24300c.compareAndSet(false, true)) {
-            long j10 = this.f24299b;
-            this.f24299b = 0L;
+        if (this.f24303c.compareAndSet(false, true)) {
+            long j10 = this.f24302b;
+            this.f24302b = 0L;
             if (j10 != 0) {
                 Trace.beginSection("RLottieNative#destroy");
                 try {
@@ -135,7 +135,7 @@ public final class RLottieNative {
 
     public final void finalize() {
         try {
-            if (!this.f24300c.get()) {
+            if (!this.f24303c.get()) {
                 d();
             }
         } finally {

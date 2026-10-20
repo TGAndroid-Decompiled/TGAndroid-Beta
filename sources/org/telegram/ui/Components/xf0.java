@@ -1,76 +1,41 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
 import android.graphics.Matrix;
-import android.graphics.SurfaceTexture;
 import android.view.TextureView;
-public final class xf0 implements TextureView.SurfaceTextureListener {
-    public final boolean f32382a;
-    public final ja f32383b;
-    public final cg0 f32384c;
+import android.view.View;
+public final class xf0 extends TextureView {
+    public final dg0 f32407a;
 
-    public xf0(cg0 cg0Var, boolean z10, ja jaVar) {
-        this.f32384c = cg0Var;
-        this.f32382a = z10;
-        this.f32383b = jaVar;
+    public xf0(dg0 dg0Var, Context context) {
+        super(context);
+        this.f32407a = dg0Var;
     }
 
     @Override
-    public final void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i10, int i11) {
-        cg0 cg0Var = this.f32384c;
-        TextureView textureView = cg0Var.f25192i0;
-        if (cg0Var.f25195l0 == null && surfaceTexture != null) {
-            e00 e00Var = new e00(surfaceTexture, cg0Var.C0, cg0Var.H0, cg0Var.f25209w0, this.f32382a, this.f32383b, i10, i11);
-            cg0Var.f25195l0 = e00Var;
-            if (!this.f32382a) {
-                e00Var.i(cg0Var.J0, cg0Var.K0);
-                e00 e00Var2 = cg0Var.f25195l0;
-                Matrix transform = textureView.getTransform(null);
-                int width = textureView.getWidth();
-                int height = textureView.getHeight();
-                pa paVar = e00Var2.I;
-                if (paVar != null) {
-                    Matrix matrix = paVar.v;
-                    transform.invert(matrix);
-                    float f7 = width;
-                    float f10 = height;
-                    matrix.preScale(f7, f10);
-                    matrix.postScale(1.0f / f7, 1.0f / f10);
-                    paVar.c(matrix);
-                    e00Var2.d(false, false, false);
-                }
+    public final void onMeasure(int i10, int i11) {
+        View.MeasureSpec.getSize(i10);
+        super.onMeasure(i10, i11);
+    }
+
+    @Override
+    public final void setTransform(Matrix matrix) {
+        super.setTransform(matrix);
+        e00 e00Var = this.f32407a.f25479l0;
+        if (e00Var != null) {
+            int width = getWidth();
+            int height = getHeight();
+            pa paVar = e00Var.I;
+            if (paVar != null) {
+                Matrix matrix2 = paVar.v;
+                matrix.invert(matrix2);
+                float f7 = width;
+                float f10 = height;
+                matrix2.preScale(f7, f10);
+                matrix2.postScale(1.0f / f7, 1.0f / f10);
+                paVar.c(matrix2);
+                e00Var.d(false, false, false);
             }
-            cg0Var.f25195l0.f(cg0Var);
-            e00 e00Var3 = cg0Var.f25195l0;
-            e00Var3.getClass();
-            e00Var3.postRunnable(new a00(e00Var3, i10, i11, 1));
-            cg0Var.f25195l0.d(true, true, false);
         }
-    }
-
-    @Override
-    public final boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
-        cg0 cg0Var = this.f32384c;
-        e00 e00Var = cg0Var.f25195l0;
-        if (e00Var != null) {
-            e00Var.postRunnable(new b00(e00Var, 0));
-            cg0Var.f25195l0 = null;
-            return true;
-        }
-        return true;
-    }
-
-    @Override
-    public final void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i10, int i11) {
-        cg0 cg0Var = this.f32384c;
-        e00 e00Var = cg0Var.f25195l0;
-        if (e00Var != null) {
-            e00Var.postRunnable(new a00(e00Var, i10, i11, 1));
-            cg0Var.f25195l0.d(false, true, false);
-            cg0Var.f25195l0.postRunnable(new rc0(this, 6));
-        }
-    }
-
-    @Override
-    public final void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
     }
 }

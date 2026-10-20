@@ -2,25 +2,25 @@ package org.telegram.ui.Components;
 
 import org.telegram.messenger.AndroidUtilities;
 public final class ii extends org.telegram.ui.ActionBar.o1 {
-    public final ji f27252x;
+    public final ji f27278x;
 
     public ii(ji jiVar, ji jiVar2) {
         super(jiVar2);
-        this.f27252x = jiVar;
+        this.f27278x = jiVar;
     }
 
     @Override
     public final boolean b() {
         tz tzVar;
-        ti tiVar = this.f27252x.B0;
-        if ((!tiVar.isDismissed() || tiVar.f30591x0) && tiVar.f30584v1) {
+        ti tiVar = this.f27278x.B0;
+        if ((!tiVar.isDismissed() || tiVar.f30602x0) && tiVar.f30595v1) {
             li liVar = tiVar.B0;
-            if (liVar == tiVar.m0 || liVar == tiVar.f30557n0 || tiVar.o1().m()) {
+            if (liVar == tiVar.m0 || liVar == tiVar.f30568n0 || tiVar.o1().m()) {
                 li liVar2 = tiVar.B0;
                 fo foVar = tiVar.m0;
                 if (liVar2 != foVar || ((tzVar = foVar.E) != null && tzVar.getVisibility() == 0)) {
                     li liVar3 = tiVar.B0;
-                    fo foVar2 = tiVar.f30557n0;
+                    fo foVar2 = tiVar.f30568n0;
                     if (liVar3 == foVar2) {
                         tz tzVar2 = foVar2.E;
                         if (tzVar2 != null && tzVar2.getVisibility() == 0) {
@@ -41,37 +41,37 @@ public final class ii extends org.telegram.ui.ActionBar.o1 {
     @Override
     public final void e(float f7, float f10, boolean z10) {
         float f11;
-        ji jiVar = this.f27252x;
+        ji jiVar = this.f27278x;
         ti tiVar = jiVar.B0;
-        tiVar.f30562o2 = f7;
-        float f12 = tiVar.f30539g2;
+        tiVar.f30573o2 = f7;
+        float f12 = tiVar.f30550g2;
         float f13 = 0.0f;
         if (f12 > 0.0f) {
-            if (tiVar.B0 == tiVar.f30587w0 && !z10) {
+            if (tiVar.B0 == tiVar.f30598w0 && !z10) {
                 f11 = f10;
             } else {
                 f11 = 1.0f - f10;
             }
-            tiVar.f30562o2 = com.google.android.gms.internal.play_billing.k3.y(f12, tiVar.f30542h2, f11, f7);
+            tiVar.f30573o2 = com.google.android.gms.internal.play_billing.k3.y(f12, tiVar.f30553h2, f11, f7);
         }
-        tiVar.f30518a1.setTranslationY(tiVar.f30562o2);
-        tiVar.f30528d1.setTranslationY(tiVar.f30562o2);
-        org.telegram.ui.ActionBar.u0 u0Var = tiVar.f30541h1;
+        tiVar.f30529a1.setTranslationY(tiVar.f30573o2);
+        tiVar.f30539d1.setTranslationY(tiVar.f30573o2);
+        org.telegram.ui.ActionBar.u0 u0Var = tiVar.f30552h1;
         if (u0Var != null) {
-            u0Var.setTranslationY(tiVar.f30562o2);
+            u0Var.setTranslationY(tiVar.f30573o2);
         }
-        org.telegram.ui.ActionBar.u0 u0Var2 = tiVar.f30535f1;
+        org.telegram.ui.ActionBar.u0 u0Var2 = tiVar.f30546f1;
         if (u0Var2 != null) {
-            u0Var2.setTranslationY(tiVar.f30528d1.getTranslationY());
+            u0Var2.setTranslationY(tiVar.f30539d1.getTranslationY());
         }
-        ei.x3 x3Var = tiVar.f30538g1;
+        ei.x3 x3Var = tiVar.f30549g1;
         if (x3Var != null) {
-            x3Var.setTranslationY(tiVar.f30528d1.getTranslationY());
+            x3Var.setTranslationY(tiVar.f30539d1.getTranslationY());
         }
-        tiVar.f30544i1.setTranslationY(tiVar.f30562o2);
+        tiVar.f30555i1.setTranslationY(tiVar.f30573o2);
         tiVar.e2(0);
-        if (tiVar.B0 != tiVar.f30587w0) {
-            f13 = tiVar.f30562o2;
+        if (tiVar.B0 != tiVar.f30598w0) {
+            f13 = tiVar.f30573o2;
         }
         tiVar.setCurrentPanTranslationY(f13);
         jiVar.invalidate();
@@ -79,7 +79,7 @@ public final class ii extends org.telegram.ui.ActionBar.o1 {
         tiVar.Y1();
         li liVar = tiVar.B0;
         if (liVar != null) {
-            liVar.m(tiVar.f30562o2, f10);
+            liVar.m(tiVar.f30573o2, f10);
         }
     }
 
@@ -87,9 +87,9 @@ public final class ii extends org.telegram.ui.ActionBar.o1 {
     public final void f() {
         boolean z10;
         int i10;
-        ti tiVar = this.f27252x.B0;
+        ti tiVar = this.f27278x.B0;
         tiVar.b2(tiVar.B0, 0);
-        tiVar.f30536f2 = tiVar.f30532e2[0];
+        tiVar.f30547f2 = tiVar.f30543e2[0];
         tiVar.B0.y();
         if ((tiVar.B0 instanceof gi.f4) && !tiVar.G1) {
             z10 = ((org.telegram.ui.ActionBar.f3) tiVar).keyboardVisible;
@@ -107,14 +107,14 @@ public final class ii extends org.telegram.ui.ActionBar.o1 {
     @Override
     public final void g(int i10, boolean z10) {
         int i11;
-        ji jiVar = this.f27252x;
+        ji jiVar = this.f27278x;
         ti tiVar = jiVar.B0;
-        int i12 = tiVar.f30536f2;
-        if (i12 > 0 && i12 != (i11 = tiVar.f30532e2[0]) && (z10 || tiVar.B0 == tiVar.f30587w0)) {
-            tiVar.f30539g2 = i12;
-            tiVar.f30542h2 = i11;
+        int i12 = tiVar.f30547f2;
+        if (i12 > 0 && i12 != (i11 = tiVar.f30543e2[0]) && (z10 || tiVar.B0 == tiVar.f30598w0)) {
+            tiVar.f30550g2 = i12;
+            tiVar.f30553h2 = i11;
         } else {
-            tiVar.f30539g2 = -1.0f;
+            tiVar.f30550g2 = -1.0f;
         }
         jiVar.invalidate();
         wh whVar = tiVar.A1;

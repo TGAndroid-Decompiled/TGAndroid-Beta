@@ -6,7 +6,7 @@ public abstract class s {
     public static final String f460b;
 
     static {
-        byte[] bytes = r.c().getBytes(zd.a.f51510a);
+        byte[] bytes = r.c().getBytes(zd.a.f51515a);
         kotlin.jvm.internal.i.d(bytes, "getBytes(...)");
         String encodeToString = Base64.encodeToString(bytes, 10);
         f459a = a1.g.p("firebase_session_", encodeToString, "_data");

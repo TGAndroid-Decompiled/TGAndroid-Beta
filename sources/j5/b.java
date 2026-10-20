@@ -77,9 +77,9 @@ import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.ActionBar.a2;
 import org.telegram.ui.ActionBar.b2;
 import org.telegram.ui.Components.Switch;
-import org.telegram.ui.Components.g61;
-import org.telegram.ui.Components.go0;
 import org.telegram.ui.Components.gu;
+import org.telegram.ui.Components.h61;
+import org.telegram.ui.Components.ho0;
 import org.telegram.ui.Components.i80;
 import org.telegram.ui.Components.voip.k1;
 import org.telegram.ui.Components.voip.t;
@@ -219,14 +219,14 @@ public final class b implements gu, o0, Utilities.Callback5, a2, vx, p5, j, e0, 
         x0 x0Var = (x0) this.f14255b;
         a1 a1Var = x0Var.Q;
         if (webView == x0Var && a1Var != null) {
-            if (webView == a1Var.f42555a && aVar.f281b == 0) {
+            if (webView == a1Var.f42561a && aVar.f281b == 0) {
                 if (uri == null) {
                     uri2 = null;
                 } else {
                     uri2 = uri.toString();
                 }
                 String k10 = a1.k(uri2);
-                if (a1Var.f42580t0 && (TextUtils.isEmpty(a1Var.F0) || !TextUtils.equals(a1Var.F0, k10) || !TextUtils.equals(a1Var.F0, a1Var.getOriginHost()))) {
+                if (a1Var.f42586t0 && (TextUtils.isEmpty(a1Var.F0) || !TextUtils.equals(a1Var.F0, k10) || !TextUtils.equals(a1Var.F0, a1Var.getOriginHost()))) {
                     a1Var.g("onBotWebMessage ignored: untrusted origin");
                     return;
                 }
@@ -432,7 +432,7 @@ public final class b implements gu, o0, Utilities.Callback5, a2, vx, p5, j, e0, 
 
     @Override
     public void mo0run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        g61 g61Var = (g61) obj;
+        h61 h61Var = (h61) obj;
         View view = (View) obj2;
         Integer num = (Integer) obj3;
         Float f7 = (Float) obj4;
@@ -470,7 +470,7 @@ public final class b implements gu, o0, Utilities.Callback5, a2, vx, p5, j, e0, 
             return;
         }
         Utilities.stackBlurBitmap(bitmap, Math.max(7, Math.max(bitmap.getWidth(), bitmap.getHeight()) / 180));
-        AndroidUtilities.runOnUIThread(new go0(26, tVar, bitmap));
+        AndroidUtilities.runOnUIThread(new ho0(26, tVar, bitmap));
     }
 
     @Override

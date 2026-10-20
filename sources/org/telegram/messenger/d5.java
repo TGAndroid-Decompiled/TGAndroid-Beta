@@ -1,24 +1,63 @@
 package org.telegram.messenger;
 
+import java.util.HashMap;
 import org.telegram.messenger.ImageLoader;
+import org.telegram.messenger.MessagesController;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
 public final class d5 implements Runnable {
-    public final int f18158a;
-    public final ImageLoader.ArtworkLoadTask f18159b;
+    public final int f18153a = 0;
+    public final long f18154b;
+    public final int f18155c;
+    public final Object d;
+    public final Object e;
+    public final Object f18156f;
+    public final Object h;
+    public final Object f18157n;
 
-    public d5(ImageLoader.ArtworkLoadTask artworkLoadTask, int i10) {
-        this.f18158a = i10;
-        this.f18159b = artworkLoadTask;
+    public d5(int i10, String str, TLRPC.InputFile inputFile, TLRPC.InputEncryptedFile inputEncryptedFile, byte[] bArr, byte[] bArr2, long j10) {
+        this.f18155c = i10;
+        this.d = str;
+        this.e = inputFile;
+        this.f18156f = inputEncryptedFile;
+        this.h = bArr;
+        this.f18157n = bArr2;
+        this.f18154b = j10;
     }
 
     @Override
     public final void run() {
-        switch (this.f18158a) {
+        switch (this.f18153a) {
             case 0:
-                ImageLoader.ArtworkLoadTask.a(this.f18159b);
+                long j10 = this.f18154b;
+                ImageLoader.AnonymousClass5.lambda$fileDidUploaded$1(this.f18155c, (String) this.d, (TLRPC.InputFile) this.e, (TLRPC.InputEncryptedFile) this.f18156f, (byte[]) this.h, (byte[]) this.f18157n, j10);
+                return;
+            case 1:
+                ((MessagesController) this.d).lambda$ensureMessagesLoaded$462((boolean[]) this.e, (TLRPC.Chat) this.f18156f, (Runnable[]) this.h, this.f18154b, this.f18155c, (MessagesController.MessagesLoadedCallback) this.f18157n);
                 return;
             default:
-                ImageLoader.ArtworkLoadTask.c(this.f18159b);
+                ((MessagesController) this.e).lambda$reloadWebPages$185((HashMap) this.f18156f, (String) this.d, (TLObject) this.h, (a0.h) this.f18157n, this.f18154b, this.f18155c);
                 return;
         }
+    }
+
+    public d5(MessagesController messagesController, HashMap hashMap, String str, TLObject tLObject, a0.h hVar, long j10, int i10) {
+        this.e = messagesController;
+        this.f18156f = hashMap;
+        this.d = str;
+        this.h = tLObject;
+        this.f18157n = hVar;
+        this.f18154b = j10;
+        this.f18155c = i10;
+    }
+
+    public d5(MessagesController messagesController, boolean[] zArr, TLRPC.Chat chat, Runnable[] runnableArr, long j10, int i10, MessagesController.MessagesLoadedCallback messagesLoadedCallback) {
+        this.d = messagesController;
+        this.e = zArr;
+        this.f18156f = chat;
+        this.h = runnableArr;
+        this.f18154b = j10;
+        this.f18155c = i10;
+        this.f18157n = messagesLoadedCallback;
     }
 }

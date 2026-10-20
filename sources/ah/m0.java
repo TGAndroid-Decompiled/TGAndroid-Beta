@@ -13,8 +13,8 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.n2;
 import org.telegram.ui.Components.ob;
 import org.telegram.ui.Components.om;
-import org.telegram.ui.Components.py0;
 import org.telegram.ui.Components.qc;
+import org.telegram.ui.Components.qy0;
 import org.telegram.ui.Components.ub;
 import org.telegram.ui.Components.y7;
 public final class m0 implements ob {
@@ -63,7 +63,7 @@ public final class m0 implements ob {
             case 0:
                 return;
             case 1:
-                if (qcVar.f29588a == 2 && (j4Var = ((r3) this.f829b).f5912x.Q1) != null) {
+                if (qcVar.f29524a == 2 && (j4Var = ((r3) this.f829b).f5912x.Q1) != null) {
                     aa aaVar = ((r9) j4Var).d;
                     aaVar.Y0 = true;
                     aaVar.P();
@@ -109,7 +109,7 @@ public final class m0 implements ob {
             case 0:
                 return;
             case 1:
-                if (qcVar.f29588a == 2 && (j4Var = ((r3) this.f829b).f5912x.Q1) != null) {
+                if (qcVar.f29524a == 2 && (j4Var = ((r3) this.f829b).f5912x.Q1) != null) {
                     aa aaVar = ((r9) j4Var).d;
                     aaVar.Y0 = false;
                     aaVar.P();
@@ -192,10 +192,10 @@ public final class m0 implements ob {
                 return obVar.f(i10);
             case 8:
                 editTextHeight = AndroidUtilities.dp(126.0f);
-                dp = ((om) this.f829b).f29024c.f28223b.getBottomInset();
+                dp = ((om) this.f829b).f29071c.f28173b.getBottomInset();
                 break;
             case 9:
-                FrameLayout frameLayout = ((py0) this.f829b).f29440w;
+                FrameLayout frameLayout = ((qy0) this.f829b).f29768w;
                 if (frameLayout != null) {
                     return frameLayout.getHeight();
                 }

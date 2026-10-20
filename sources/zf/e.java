@@ -18,37 +18,37 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.uj0;
+import org.telegram.ui.Components.vj0;
 import org.telegram.ui.df0;
 public final class e {
     public static int A;
     public static a5.a B;
     public static boolean v;
-    public static volatile boolean f51535x;
-    public static ThreadPoolExecutor f51537z;
-    public final BitmapDrawable f51538a;
-    public final int f51539b;
-    public final int f51540c;
+    public static volatile boolean f51540x;
+    public static ThreadPoolExecutor f51542z;
+    public final BitmapDrawable f51543a;
+    public final int f51544b;
+    public final int f51545c;
     public final AtomicInteger d = new AtomicInteger(0);
     public final ArrayList e;
-    public final boolean f51541f;
-    public byte[] f51542g;
+    public final boolean f51546f;
+    public byte[] f51547g;
     public final Object h;
-    public int f51543i;
-    public boolean f51544j;
-    public volatile boolean f51545k;
-    public final int f51546l;
-    public final File f51547m;
-    public int f51548n;
-    public final AtomicBoolean f51549o;
-    public final p8.b f51550p;
-    public volatile boolean f51551q;
-    public volatile boolean f51552r;
-    public RandomAccessFile f51553s;
-    public BitmapFactory.Options f51554t;
-    public Bitmap f51555u;
-    public static final ConcurrentHashMap f51534w = new ConcurrentHashMap();
-    public static final int f51536y = Utilities.clamp(Runtime.getRuntime().availableProcessors() - 2, 6, 1);
+    public int f51548i;
+    public boolean f51549j;
+    public volatile boolean f51550k;
+    public final int f51551l;
+    public final File f51552m;
+    public int f51553n;
+    public final AtomicBoolean f51554o;
+    public final p8.b f51555p;
+    public volatile boolean f51556q;
+    public volatile boolean f51557r;
+    public RandomAccessFile f51558s;
+    public BitmapFactory.Options f51559t;
+    public Bitmap f51560u;
+    public static final ConcurrentHashMap f51539w = new ConcurrentHashMap();
+    public static final int f51541y = Utilities.clamp(Runtime.getRuntime().availableProcessors() - 2, 6, 1);
 
     public e(File file, c cVar, af.l lVar, int i10, int i11, boolean z10, int i12) {
         String str;
@@ -57,16 +57,16 @@ public final class e {
         ArrayList arrayList = new ArrayList();
         this.e = arrayList;
         this.h = new Object();
-        this.f51549o = new AtomicBoolean(false);
-        this.f51550p = new p8.b(this, 14);
-        this.f51538a = (BitmapDrawable) cVar;
-        this.f51539b = i10;
-        this.f51540c = i11;
-        this.f51546l = lVar.f592a;
+        this.f51554o = new AtomicBoolean(false);
+        this.f51555p = new p8.b(this, 14);
+        this.f51543a = (BitmapDrawable) cVar;
+        this.f51544b = i10;
+        this.f51545c = i11;
+        this.f51551l = lVar.f592a;
         String name = file.getName();
-        if (f51537z == null) {
-            int i13 = f51536y;
-            f51537z = new ThreadPoolExecutor(i13, i13, 60L, TimeUnit.SECONDS, new LinkedBlockingQueue());
+        if (f51542z == null) {
+            int i13 = f51541y;
+            f51542z = new ThreadPoolExecutor(i13, i13, 60L, TimeUnit.SECONDS, new LinkedBlockingQueue());
         }
         File file2 = new File(FileLoader.checkDirectory(4), "acache");
         boolean z11 = true;
@@ -92,46 +92,46 @@ public final class e {
             str2 = "";
         }
         File file3 = new File(file2, a1.g.s(sb2, str2, ".pcache2"));
-        this.f51547m = file3;
-        this.f51541f = (i10 >= AndroidUtilities.dp(60.0f) || i11 >= AndroidUtilities.dp(60.0f)) ? false : z11;
+        this.f51552m = file3;
+        this.f51546f = (i10 >= AndroidUtilities.dp(60.0f) || i11 >= AndroidUtilities.dp(60.0f)) ? false : z11;
         if (SharedConfig.getDevicePerformanceClass() >= 2) {
-            this.f51545k = file3.exists();
+            this.f51550k = file3.exists();
             try {
-                if (this.f51545k) {
+                if (this.f51550k) {
                     try {
                         randomAccessFile = new RandomAccessFile(file3, "r");
                         try {
-                            this.f51551q = randomAccessFile.readBoolean();
-                            if (this.f51551q && arrayList.isEmpty()) {
+                            this.f51556q = randomAccessFile.readBoolean();
+                            if (this.f51556q && arrayList.isEmpty()) {
                                 randomAccessFile.seek(randomAccessFile.readInt());
                                 int readInt = randomAccessFile.readInt();
                                 d(randomAccessFile, readInt > 10000 ? 0 : readInt);
                                 if (arrayList.size() == 0) {
-                                    this.f51551q = false;
-                                    this.f51545k = false;
+                                    this.f51556q = false;
+                                    this.f51550k = false;
                                     file3.delete();
                                 } else {
-                                    if (this.f51553s != randomAccessFile) {
+                                    if (this.f51558s != randomAccessFile) {
                                         a();
                                     }
-                                    this.f51553s = randomAccessFile;
+                                    this.f51558s = randomAccessFile;
                                 }
                             }
-                            if (this.f51553s != randomAccessFile) {
+                            if (this.f51558s != randomAccessFile) {
                                 randomAccessFile.close();
                             }
                         } catch (Throwable th2) {
                             th = th2;
                             try {
                                 th.printStackTrace();
-                                this.f51547m.delete();
-                                this.f51545k = false;
-                                if (this.f51553s != randomAccessFile && randomAccessFile != null) {
+                                this.f51552m.delete();
+                                this.f51550k = false;
+                                if (this.f51558s != randomAccessFile && randomAccessFile != null) {
                                     randomAccessFile.close();
                                 }
                             } catch (Throwable th3) {
                                 try {
-                                    if (this.f51553s != randomAccessFile && randomAccessFile != null) {
+                                    if (this.f51558s != randomAccessFile && randomAccessFile != null) {
                                         randomAccessFile.close();
                                     }
                                 } catch (IOException e) {
@@ -149,8 +149,8 @@ public final class e {
                 e7.printStackTrace();
             }
         } else {
-            this.f51545k = false;
-            this.f51551q = false;
+            this.f51550k = false;
+            this.f51556q = false;
         }
     }
 
@@ -159,12 +159,12 @@ public final class e {
         A = i10;
         if (i10 <= 0) {
             A = 0;
-            uj0.T0.postRunnable(new df0(24));
+            vj0.T0.postRunnable(new df0(24));
         }
     }
 
     public final void a() {
-        RandomAccessFile randomAccessFile = this.f51553s;
+        RandomAccessFile randomAccessFile = this.f51558s;
         if (randomAccessFile != null) {
             try {
                 randomAccessFile.close();
@@ -185,8 +185,8 @@ public final class e {
             ByteBuffer wrap = ByteBuffer.wrap(bArr);
             for (int i11 = 0; i11 < i10; i11++) {
                 d dVar = new d(i11);
-                dVar.f51533c = wrap.getInt();
-                dVar.f51532b = wrap.getInt();
+                dVar.f51538c = wrap.getInt();
+                dVar.f51537b = wrap.getInt();
                 this.e.add(dVar);
             }
         }
@@ -195,29 +195,29 @@ public final class e {
     public final byte[] e(d dVar) {
         boolean z10;
         byte[] bArr;
-        if (this.f51541f && Thread.currentThread().getName().startsWith("DispatchQueuePoolThreadSafety_")) {
+        if (this.f51546f && Thread.currentThread().getName().startsWith("DispatchQueuePoolThreadSafety_")) {
             z10 = true;
         } else {
             z10 = false;
         }
         if (z10) {
-            bArr = (byte[]) f51534w.get(Thread.currentThread());
+            bArr = (byte[]) f51539w.get(Thread.currentThread());
         } else {
-            bArr = this.f51542g;
+            bArr = this.f51547g;
         }
-        if (bArr != null && bArr.length >= dVar.f51532b) {
+        if (bArr != null && bArr.length >= dVar.f51537b) {
             return bArr;
         }
-        byte[] bArr2 = new byte[(int) (dVar.f51532b * 1.3f)];
+        byte[] bArr2 = new byte[(int) (dVar.f51537b * 1.3f)];
         if (z10) {
-            f51534w.put(Thread.currentThread(), bArr2);
-            if (!f51535x) {
-                f51535x = true;
-                AndroidUtilities.runOnUIThread(this.f51550p, 5000L);
+            f51539w.put(Thread.currentThread(), bArr2);
+            if (!f51540x) {
+                f51540x = true;
+                AndroidUtilities.runOnUIThread(this.f51555p, 5000L);
             }
             return bArr2;
         }
-        this.f51542g = bArr2;
+        this.f51547g = bArr2;
         return bArr2;
     }
 
@@ -226,7 +226,7 @@ public final class e {
     }
 
     public final boolean g() {
-        if (this.f51551q && this.f51545k) {
+        if (this.f51556q && this.f51550k) {
             return false;
         }
         return true;

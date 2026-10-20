@@ -27,7 +27,7 @@ public final class b7 implements Utilities.Callback2 {
                 return;
             default:
                 Bitmap bitmap = (Bitmap) obj2;
-                this.f24818b.f27752i0.setBackground(new BitmapDrawable((Bitmap) obj));
+                this.f24818b.f27786i0.setBackground(new BitmapDrawable((Bitmap) obj));
                 return;
         }
     }

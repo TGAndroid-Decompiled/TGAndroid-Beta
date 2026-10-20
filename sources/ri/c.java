@@ -1,36 +1,36 @@
 package ri;
 public final class c implements Runnable {
-    public final int f45796a;
-    public final p f45797b;
-    public final j f45798c;
+    public final int f45804a;
+    public final o f45805b;
+    public final i f45806c;
     public final long d;
     public final long e;
 
-    public c(p pVar, j jVar, long j10, long j11, int i10) {
-        this.f45796a = i10;
-        this.f45797b = pVar;
-        this.f45798c = jVar;
+    public c(o oVar, i iVar, long j10, long j11, int i10) {
+        this.f45804a = i10;
+        this.f45805b = oVar;
+        this.f45806c = iVar;
         this.d = j10;
         this.e = j11;
     }
 
     @Override
     public final void run() {
-        switch (this.f45796a) {
+        switch (this.f45804a) {
             case 0:
-                l lVar = this.f45797b.f45830f;
-                j jVar = this.f45798c;
-                lVar.onOutputCompleted(jVar.f45810a, jVar.f45811b, this.d, this.e);
+                k kVar = this.f45805b.f45836g;
+                i iVar = this.f45806c;
+                kVar.onOutputCompleted(iVar.f45815a, iVar.f45816b, this.d, this.e);
                 return;
             case 1:
-                l lVar2 = this.f45797b.f45830f;
-                j jVar2 = this.f45798c;
-                lVar2.onBytesAvailable(jVar2.f45810a, jVar2.f45811b, this.d, this.e);
+                k kVar2 = this.f45805b.f45836g;
+                i iVar2 = this.f45806c;
+                kVar2.onBytesAvailable(iVar2.f45815a, iVar2.f45816b, this.d, this.e);
                 return;
             default:
-                l lVar3 = this.f45797b.f45830f;
-                j jVar3 = this.f45798c;
-                lVar3.onOutputCompleted(jVar3.f45810a, jVar3.f45811b, this.d, this.e);
+                k kVar3 = this.f45805b.f45836g;
+                i iVar3 = this.f45806c;
+                kVar3.onOutputCompleted(iVar3.f45815a, iVar3.f45816b, this.d, this.e);
                 return;
         }
     }

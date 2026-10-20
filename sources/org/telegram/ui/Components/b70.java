@@ -10,11 +10,11 @@ public final class b70 implements View.OnClickListener {
     public final boolean d;
     public final boolean e;
     public final boolean f24822f;
-    public final hm0 h;
+    public final im0 h;
 
-    public b70(hm0 hm0Var, TLRPC.User user, String str, boolean z10, boolean z11, boolean z12, int i10) {
+    public b70(im0 im0Var, TLRPC.User user, String str, boolean z10, boolean z11, boolean z12, int i10) {
         this.f24819a = i10;
-        this.h = hm0Var;
+        this.h = im0Var;
         this.f24820b = user;
         this.f24821c = str;
         this.d = z10;
@@ -28,15 +28,15 @@ public final class b70 implements View.OnClickListener {
         org.telegram.ui.ActionBar.d6 d6Var;
         switch (this.f24819a) {
             case 0:
-                l70 l70Var = ((g70) this.h).f26514c;
+                l70 l70Var = ((g70) this.h).f26520c;
                 Context context = l70Var.getContext();
                 i10 = ((org.telegram.ui.ActionBar.f3) l70Var).currentAccount;
                 d6Var = ((org.telegram.ui.ActionBar.f3) l70Var).resourcesProvider;
-                w01.b(context, i10, -l70Var.f28131g0, this.f24820b, this.f24821c, this.d, this.e, this.f24822f, d6Var);
+                x01.b(context, i10, -l70Var.f28076g0, this.f24820b, this.f24821c, this.d, this.e, this.f24822f, d6Var);
                 return;
             default:
-                tv0 tv0Var = ((du0) this.h).f25639f;
-                w01.b(tv0Var.getContext(), tv0Var.f30732v1.getCurrentAccount(), tv0Var.f30707j1, this.f24820b, this.f24821c, this.d, this.e, this.f24822f, tv0Var.F1);
+                uv0 uv0Var = ((eu0) this.h).f25970f;
+                x01.b(uv0Var.getContext(), uv0Var.f31070v1.getCurrentAccount(), uv0Var.f31045j1, this.f24820b, this.f24821c, this.d, this.e, this.f24822f, uv0Var.F1);
                 return;
         }
     }

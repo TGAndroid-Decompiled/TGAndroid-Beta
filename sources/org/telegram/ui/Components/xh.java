@@ -9,14 +9,14 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.Shader;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-public final class xh extends im0 {
+public final class xh extends jm0 {
     public final int V2;
     public final Paint W2;
     public final Paint X2;
     public boolean Y2;
     public boolean Z2;
-    public final Object f32398a3;
-    public final Object f32399b3;
+    public final Object f32420a3;
+    public final Object f32421b3;
 
     public xh(Context context, int i10) {
         super(context, null);
@@ -28,16 +28,16 @@ public final class xh extends im0 {
                 this.W2 = paint;
                 Paint paint2 = new Paint(1);
                 this.X2 = paint2;
-                this.f32398a3 = new f6(this);
-                this.f32399b3 = new f6(this);
+                this.f32420a3 = new f6(this);
+                this.f32421b3 = new f6(this);
                 Shader.TileMode tileMode = Shader.TileMode.CLAMP;
                 paint.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(8.0f), new int[]{-16777216, 0}, new float[]{0.0f, 1.0f}, tileMode));
                 paint2.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(8.0f), new int[]{0, -16777216}, new float[]{0.0f, 1.0f}, tileMode));
                 return;
             default:
                 bs bsVar = bs.h;
-                this.f32398a3 = new ne.b(this, bsVar, 320L);
-                this.f32399b3 = new ne.b(this, bsVar, 320L);
+                this.f32420a3 = new ne.b(this, bsVar, 320L);
+                this.f32421b3 = new ne.b(this, bsVar, 320L);
                 Shader.TileMode tileMode2 = Shader.TileMode.CLAMP;
                 LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, AndroidUtilities.dp(8.0f), 0.0f, new int[]{0, -16777216}, (float[]) null, tileMode2);
                 LinearGradient linearGradient2 = new LinearGradient(0.0f, 0.0f, AndroidUtilities.dp(8.0f), 0.0f, new int[]{-16777216, 0}, (float[]) null, tileMode2);
@@ -62,12 +62,12 @@ public final class xh extends im0 {
                 this.Z2 = false;
                 this.Y2 = false;
                 super.dispatchDraw(canvas);
-                ((ne.b) this.f32398a3).a(this.Y2, true);
-                ((ne.b) this.f32399b3).a(this.Z2, true);
+                ((ne.b) this.f32420a3).a(this.Y2, true);
+                ((ne.b) this.f32421b3).a(this.Z2, true);
                 return;
             default:
                 super.dispatchDraw(canvas);
-                f6 f6Var = (f6) this.f32398a3;
+                f6 f6Var = (f6) this.f32420a3;
                 float f10 = 1.0f;
                 if (this.Y2) {
                     f7 = 1.0f;
@@ -77,7 +77,7 @@ public final class xh extends im0 {
                 Paint paint = this.W2;
                 paint.setAlpha((int) (f6Var.d(f7, false) * 255.0f));
                 canvas.drawRect(0.0f, 0.0f, getWidth(), AndroidUtilities.dp(8.0f), paint);
-                f6 f6Var2 = (f6) this.f32399b3;
+                f6 f6Var2 = (f6) this.f32421b3;
                 if (!this.Z2) {
                     f10 = 0.0f;
                 }
@@ -127,7 +127,7 @@ public final class xh extends im0 {
                     canvas.saveLayer(dp, getPaddingTop(), AndroidUtilities.dp(19.0f), getMeasuredHeight() - getPaddingBottom(), null);
                     super.drawChild(canvas, view, j10);
                     canvas.save();
-                    canvas.translate(com.google.android.gms.internal.play_billing.k3.D(1.0f, ((ne.b) this.f32398a3).e, AndroidUtilities.dp(8.0f), dp), 0.0f);
+                    canvas.translate(com.google.android.gms.internal.play_billing.k3.D(1.0f, ((ne.b) this.f32420a3).e, AndroidUtilities.dp(8.0f), dp), 0.0f);
                     canvas.drawPaint(this.W2);
                     canvas.restore();
                     canvas.restore();
@@ -137,7 +137,7 @@ public final class xh extends im0 {
                     canvas.saveLayer(measuredWidth, getPaddingTop(), getMeasuredWidth() - AndroidUtilities.dp(11.0f), getMeasuredHeight() - getPaddingBottom(), null);
                     super.drawChild(canvas, view, j10);
                     canvas.save();
-                    canvas.translate(com.google.android.gms.internal.play_billing.k3.y(1.0f, ((ne.b) this.f32399b3).e, AndroidUtilities.dp(8.0f), measuredWidth), 0.0f);
+                    canvas.translate(com.google.android.gms.internal.play_billing.k3.y(1.0f, ((ne.b) this.f32421b3).e, AndroidUtilities.dp(8.0f), measuredWidth), 0.0f);
                     canvas.drawPaint(this.X2);
                     canvas.restore();
                     canvas.restore();
@@ -178,7 +178,7 @@ public final class xh extends im0 {
                 for (int i13 = 0; i13 < childCount; i13++) {
                     View childAt = getChildAt(i13);
                     if (childAt instanceof oi) {
-                        f10 = ((oi) childAt).f29004a.c() + f10;
+                        f10 = ((oi) childAt).f29050a.c() + f10;
                     }
                 }
                 if (size > f10 && childCount > 0) {
@@ -189,7 +189,7 @@ public final class xh extends im0 {
                 for (int i14 = 0; i14 < childCount; i14++) {
                     View childAt2 = getChildAt(i14);
                     if (childAt2 instanceof oi) {
-                        ((oi) childAt2).f29004a.setAdditionalWidth(i12);
+                        ((oi) childAt2).f29050a.setAdditionalWidth(i12);
                     }
                 }
                 super.onMeasure(i10, i11);

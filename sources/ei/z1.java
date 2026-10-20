@@ -24,7 +24,7 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.kk;
+import org.telegram.messenger.mk;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
@@ -32,7 +32,7 @@ import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_payments;
 import org.telegram.ui.Components.AnimatedFileNative;
 import org.telegram.ui.Components.db0;
-import org.telegram.ui.Components.q51;
+import org.telegram.ui.Components.r51;
 import org.telegram.ui.Components.xc;
 public final class z1 implements Runnable {
     public final int f10193a;
@@ -219,7 +219,7 @@ public final class z1 implements Runnable {
                     ArrayList i18 = r9Var.i1();
                     for (int i19 = 0; i19 < i18.size(); i19++) {
                         TLRPC.User user = (TLRPC.User) i18.get(i19);
-                        if (user != null && (contains = k9Var.f9327c.contains(Long.valueOf(user.f20420id))) != user.close_friend) {
+                        if (user != null && (contains = k9Var.f9327c.contains(Long.valueOf(user.f20423id))) != user.close_friend) {
                             user.close_friend = contains;
                             if (contains) {
                                 i11 = user.flags2 | 4;
@@ -278,7 +278,7 @@ public final class z1 implements Runnable {
                 ArrayList arrayList5 = new ArrayList();
                 for (int i20 = 0; i20 < arrayList4.size(); i20++) {
                     TLRPC.User user2 = (TLRPC.User) arrayList4.get(i20);
-                    Boolean bool = (Boolean) hashMap2.get(Long.valueOf(user2.f20420id));
+                    Boolean bool = (Boolean) hashMap2.get(Long.valueOf(user2.f20423id));
                     if (bool != null && bool.booleanValue()) {
                         z10 = false;
                     } else {
@@ -392,15 +392,15 @@ public final class z1 implements Runnable {
             case 19:
                 hg.c2 c2Var = (hg.c2) obj3;
                 TLRPC.TL_messages_foundStickerSets tL_messages_foundStickerSets = (TLRPC.TL_messages_foundStickerSets) obj;
-                String str5 = ((TLRPC.TL_messages_searchStickerSets) obj2).f20385q;
+                String str5 = ((TLRPC.TL_messages_searchStickerSets) obj2).f20388q;
                 hg.e2 e2Var = c2Var.f11827a;
                 String str6 = e2Var.R;
-                q51 q51Var = e2Var.e;
+                r51 r51Var = e2Var.e;
                 if (str5.equals(str6)) {
                     c2Var.a();
-                    q51Var.f29523b.h.getProgressDrawable().e = false;
+                    r51Var.f29847b.h.getProgressDrawable().e = false;
                     e2Var.N = 0;
-                    q51Var.b(true);
+                    r51Var.b(true);
                     e2Var.E.addAll(tL_messages_foundStickerSets.sets);
                     e2Var.l();
                     return;
@@ -443,7 +443,7 @@ public final class z1 implements Runnable {
                     return;
                 } else if (tLObject5 instanceof TLRPC.TL_boolFalse) {
                     cVar.f12834a.a(0.0f);
-                    kk.q(R.string.UnknownError, xc.a0(cVar), null);
+                    mk.q(R.string.UnknownError, xc.a0(cVar), null);
                     return;
                 } else {
                     cVar.finishFragment();
@@ -459,7 +459,7 @@ public final class z1 implements Runnable {
                     return;
                 } else if (tLObject6 instanceof TLRPC.TL_boolFalse) {
                     mVar.e.a(0.0f);
-                    kk.q(R.string.UnknownError, xc.a0(mVar), null);
+                    mk.q(R.string.UnknownError, xc.a0(mVar), null);
                     return;
                 } else {
                     if (mVar.E != null) {
@@ -501,7 +501,7 @@ public final class z1 implements Runnable {
                     return;
                 } else if (tLObject7 instanceof TLRPC.TL_boolFalse) {
                     v0Var.f13055a.a(0.0f);
-                    kk.q(R.string.UnknownError, xc.a0(v0Var), null);
+                    mk.q(R.string.UnknownError, xc.a0(v0Var), null);
                     return;
                 } else {
                     v0Var.finishFragment();

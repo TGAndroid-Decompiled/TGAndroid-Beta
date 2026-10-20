@@ -8,18 +8,18 @@ import android.view.View;
 import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
 public abstract class qr extends LinearLayout {
-    public final Paint f40950a;
-    public final Paint f40951b;
-    public float f40952c;
+    public final Paint f40956a;
+    public final Paint f40957b;
+    public float f40958c;
     public boolean d;
     public boolean e;
-    public tr[] f40953f;
+    public tr[] f40959f;
 
     public qr(Context context) {
         super(context);
         Paint paint = new Paint(1);
-        this.f40950a = paint;
-        this.f40951b = new Paint(1);
+        this.f40956a = paint;
+        this.f40957b = new Paint(1);
         paint.setStyle(Paint.Style.STROKE);
         setOrientation(0);
     }
@@ -31,12 +31,12 @@ public abstract class qr extends LinearLayout {
     }
 
     public final void c(String str, boolean z10) {
-        if (this.f40953f != null) {
+        if (this.f40959f != null) {
             int i10 = 0;
             if (z10) {
                 int i11 = 0;
                 while (true) {
-                    tr[] trVarArr = this.f40953f;
+                    tr[] trVarArr = this.f40959f;
                     if (i11 >= trVarArr.length) {
                         break;
                     } else if (trVarArr[i11].isFocused()) {
@@ -47,8 +47,8 @@ public abstract class qr extends LinearLayout {
                     }
                 }
             }
-            for (int i12 = i10; i12 < Math.min(this.f40953f.length, str.length() + i10); i12++) {
-                this.f40953f[i12].setText(Character.toString(str.charAt(i12 - i10)));
+            for (int i12 = i10; i12 < Math.min(this.f40959f.length, str.length() + i10); i12++) {
+                this.f40959f[i12].setText(Character.toString(str.charAt(i12 - i10)));
             }
         }
     }
@@ -67,15 +67,15 @@ public abstract class qr extends LinearLayout {
                     }
                 }
                 float successProgress = trVar.getSuccessProgress();
-                int f7 = i0.a.f(successProgress, i0.a.f(trVar.getErrorProgress(), i0.a.f(trVar.getFocusedProgress(), org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21114k6, false), org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21131l6, false)), org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21225q7, false)), org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21077i7, false));
-                Paint paint = this.f40950a;
+                int f7 = i0.a.f(successProgress, i0.a.f(trVar.getErrorProgress(), i0.a.f(trVar.getFocusedProgress(), org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21117k6, false), org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21134l6, false)), org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21228q7, false)), org.telegram.ui.ActionBar.h6.x0(null, org.telegram.ui.ActionBar.h6.f21080i7, false));
+                Paint paint = this.f40956a;
                 paint.setColor(f7);
                 RectF rectF = AndroidUtilities.rectTmp;
                 rectF.set(childAt.getLeft(), childAt.getTop(), childAt.getRight(), childAt.getBottom());
-                float f10 = this.f40952c;
+                float f10 = this.f40958c;
                 rectF.inset(f10, f10);
                 if (successProgress != 0.0f) {
-                    float f11 = -Math.max(0.0f, (trVar.getSuccessScaleProgress() - 1.0f) * this.f40952c);
+                    float f11 = -Math.max(0.0f, (trVar.getSuccessScaleProgress() - 1.0f) * this.f40958c);
                     rectF.inset(f11, f11);
                 }
                 canvas.drawRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), paint);
@@ -92,10 +92,10 @@ public abstract class qr extends LinearLayout {
             float f7 = trVar.v;
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(view.getX(), view.getY(), view.getX() + view.getMeasuredWidth(), view.getY() + view.getMeasuredHeight());
-            float f10 = this.f40952c;
+            float f10 = this.f40958c;
             rectF.inset(f10, f10);
             canvas.clipRect(rectF);
-            if (trVar.f41731x) {
+            if (trVar.f41737x) {
                 float f11 = (f7 * 0.5f) + 0.5f;
                 view.setAlpha(f7);
                 canvas.scale(f11, f11, (trVar.getMeasuredWidth() / 2.0f) + trVar.getX(), (trVar.getMeasuredHeight() / 2.0f) + trVar.getY());
@@ -105,15 +105,15 @@ public abstract class qr extends LinearLayout {
             }
             super.drawChild(canvas, view, j10);
             canvas.restore();
-            float f12 = trVar.f41730w;
+            float f12 = trVar.f41736w;
             if (f12 < 1.0f) {
                 canvas.save();
                 float f13 = 1.0f - f12;
                 float f14 = (f13 * 0.5f) + 0.5f;
                 canvas.scale(f14, f14, (trVar.getMeasuredWidth() / 2.0f) + trVar.getX(), (trVar.getMeasuredHeight() / 2.0f) + trVar.getY());
-                Paint paint = this.f40951b;
+                Paint paint = this.f40957b;
                 paint.setAlpha((int) (f13 * 255.0f));
-                canvas.drawBitmap(trVar.f41732y, trVar.getX(), trVar.getY(), paint);
+                canvas.drawBitmap(trVar.f41738y, trVar.getX(), trVar.getY(), paint);
                 canvas.restore();
                 return true;
             }
@@ -123,13 +123,13 @@ public abstract class qr extends LinearLayout {
     }
 
     public String getCode() {
-        if (this.f40953f == null) {
+        if (this.f40959f == null) {
             return "";
         }
         StringBuilder sb2 = new StringBuilder();
         int i10 = 0;
         while (true) {
-            tr[] trVarArr = this.f40953f;
+            tr[] trVarArr = this.f40959f;
             if (i10 < trVarArr.length) {
                 sb2.append(jf.b.d(trVarArr[i10].getText().toString(), false));
                 i10++;
@@ -143,12 +143,12 @@ public abstract class qr extends LinearLayout {
     public final void onMeasure(int i10, int i11) {
         super.onMeasure(i10, i11);
         float dp = AndroidUtilities.dp(1.5f);
-        this.f40952c = dp;
-        this.f40950a.setStrokeWidth(dp);
+        this.f40958c = dp;
+        this.f40956a.setStrokeWidth(dp);
     }
 
     public void setCode(String str) {
-        this.f40953f[0].setText(str);
+        this.f40959f[0].setText(str);
     }
 
     public void setText(String str) {

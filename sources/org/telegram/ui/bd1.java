@@ -3,20 +3,20 @@ package org.telegram.ui;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
 public final class bd1 extends s4.r0 {
-    public final int f35603a;
-    public final Object f35604b;
+    public final int f35609a;
+    public final Object f35610b;
 
     public bd1(Object obj, int i10) {
-        this.f35603a = i10;
-        this.f35604b = obj;
+        this.f35609a = i10;
+        this.f35610b = obj;
     }
 
     @Override
     public void a(RecyclerView recyclerView, int i10) {
-        switch (this.f35603a) {
+        switch (this.f35609a) {
             case 0:
                 if (i10 == 1) {
-                    AndroidUtilities.hideKeyboard(((gd1) this.f35604b).getParentActivity().getCurrentFocus());
+                    AndroidUtilities.hideKeyboard(((gd1) this.f35610b).getParentActivity().getCurrentFocus());
                     return;
                 }
                 return;
@@ -25,12 +25,12 @@ public final class bd1 extends s4.r0 {
                 return;
             case 2:
                 if (i10 == 1) {
-                    AndroidUtilities.hideKeyboard(((UsersSelectActivity) this.f35604b).f33951c);
+                    AndroidUtilities.hideKeyboard(((UsersSelectActivity) this.f35610b).f33957c);
                     return;
                 }
                 return;
             case 3:
-                WallpapersListActivity wallpapersListActivity = (WallpapersListActivity) this.f35604b;
+                WallpapersListActivity wallpapersListActivity = (WallpapersListActivity) this.f35610b;
                 boolean z10 = true;
                 if (i10 == 1) {
                     AndroidUtilities.hideKeyboard(wallpapersListActivity.getParentActivity().getCurrentFocus());
@@ -38,7 +38,7 @@ public final class bd1 extends s4.r0 {
                 if (i10 == 0) {
                     z10 = false;
                 }
-                wallpapersListActivity.f35217j0 = z10;
+                wallpapersListActivity.f35223j0 = z10;
                 return;
         }
     }
@@ -46,16 +46,16 @@ public final class bd1 extends s4.r0 {
     @Override
     public void b(RecyclerView recyclerView, int i10, int i11) {
         int abs;
-        switch (this.f35603a) {
+        switch (this.f35609a) {
             case 1:
-                ne1 ne1Var = (ne1) this.f35604b;
-                if (ne1Var.m0 && ne1Var.V.N0() + 5 >= ne1Var.f39567k0) {
-                    ne1Var.J(ne1Var.f39558b0);
+                ne1 ne1Var = (ne1) this.f35610b;
+                if (ne1Var.m0 && ne1Var.V.N0() + 5 >= ne1Var.f39573k0) {
+                    ne1Var.J(ne1Var.f39564b0);
                 }
-                re1 re1Var = ne1Var.f39575t0;
-                if (re1Var.f41178s0) {
+                re1 re1Var = ne1Var.f39581t0;
+                if (re1Var.f41184s0) {
                     if (i10 != 0 || i11 != 0) {
-                        AndroidUtilities.hideKeyboard(re1Var.f41173p0.getSearchField());
+                        AndroidUtilities.hideKeyboard(re1Var.f41179p0.getSearchField());
                         return;
                     }
                     return;
@@ -65,7 +65,7 @@ public final class bd1 extends s4.r0 {
             default:
                 return;
             case 3:
-                WallpapersListActivity wallpapersListActivity = (WallpapersListActivity) this.f35604b;
+                WallpapersListActivity wallpapersListActivity = (WallpapersListActivity) this.f35610b;
                 if (wallpapersListActivity.H.getAdapter() == wallpapersListActivity.J) {
                     int L0 = wallpapersListActivity.K.L0();
                     if (L0 == -1) {
@@ -77,8 +77,8 @@ public final class bd1 extends s4.r0 {
                         int B = wallpapersListActivity.K.B();
                         if (abs != 0 && L0 + abs > B - 2) {
                             vh1 vh1Var = wallpapersListActivity.J;
-                            if (!vh1Var.f42255f && vh1Var.f42258s == 0) {
-                                vh1Var.F(vh1Var.h, vh1Var.f42257r, true);
+                            if (!vh1Var.f42261f && vh1Var.f42264s == 0) {
+                                vh1Var.F(vh1Var.h, vh1Var.f42263r, true);
                                 return;
                             }
                             return;

@@ -12,16 +12,16 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 public final class og implements ev0, vx {
-    public final boolean f39877a;
-    public final int f39878b;
-    public final Object f39879c;
+    public final boolean f39883a;
+    public final int f39884b;
+    public final Object f39885c;
     public final Object d;
 
     public og(qn qnVar, boolean z10, MessageObject messageObject, int i10) {
-        this.f39879c = qnVar;
-        this.f39877a = z10;
+        this.f39885c = qnVar;
+        this.f39883a = z10;
         this.d = messageObject;
-        this.f39878b = i10;
+        this.f39884b = i10;
     }
 
     @Override
@@ -37,9 +37,9 @@ public final class og implements ev0, vx {
     @Override
     public void b(TLRPC.MessageMedia messageMedia) {
         int i10;
-        qn qnVar = (qn) this.f39879c;
+        qn qnVar = (qn) this.f39885c;
         MessageObject messageObject = (MessageObject) this.d;
-        if (this.f39877a) {
+        if (this.f39883a) {
             TLRPC.TL_messages_appendTodoList tL_messages_appendTodoList = new TLRPC.TL_messages_appendTodoList();
             tL_messages_appendTodoList.peer = qnVar.getMessagesController().getInputPeer(messageObject.getDialogId());
             tL_messages_appendTodoList.msg_id = messageObject.getId();
@@ -48,20 +48,20 @@ public final class og implements ev0, vx {
                 int i11 = 0;
                 int i12 = 0;
                 while (true) {
-                    i10 = this.f39878b;
+                    i10 = this.f39884b;
                     if (i11 >= i10) {
                         break;
                     }
-                    i12 = Math.max(i12, tL_messageMediaToDo.todo.list.get(i11).f20418id);
+                    i12 = Math.max(i12, tL_messageMediaToDo.todo.list.get(i11).f20421id);
                     i11++;
                 }
                 while (i10 < tL_messageMediaToDo.todo.list.size()) {
                     TLRPC.TodoItem todoItem = tL_messageMediaToDo.todo.list.get(i10);
-                    if (todoItem.f20418id <= i12) {
-                        todoItem.f20418id = i12 + 1;
+                    if (todoItem.f20421id <= i12) {
+                        todoItem.f20421id = i12 + 1;
                     }
                     tL_messages_appendTodoList.list.add(todoItem);
-                    i12 = Math.max(i12, todoItem.f20418id);
+                    i12 = Math.max(i12, todoItem.f20421id);
                     i10++;
                 }
                 TLRPC.MessageMedia messageMedia2 = messageObject.messageOwner.media;
@@ -85,13 +85,13 @@ public final class og implements ev0, vx {
 
     @Override
     public boolean w(cy cyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, re1 re1Var) {
-        LaunchActivity launchActivity = (LaunchActivity) this.f39879c;
+        LaunchActivity launchActivity = (LaunchActivity) this.f39885c;
         String str = (String) this.d;
         Pattern pattern = LaunchActivity.C1;
         long j10 = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
         Bundle bundle = new Bundle();
         bundle.putBoolean("scrollToTopOnResume", true);
-        bundle.putBoolean("hasUrl", this.f39877a);
+        bundle.putBoolean("hasUrl", this.f39883a);
         if (DialogObject.isEncryptedDialog(j10)) {
             bundle.putInt("enc_id", DialogObject.getEncryptedChatId(j10));
         } else if (DialogObject.isUserDialog(j10)) {
@@ -99,7 +99,7 @@ public final class og implements ev0, vx {
         } else {
             bundle.putLong("chat_id", -j10);
         }
-        int i12 = this.f39878b;
+        int i12 = this.f39884b;
         if (MessagesController.getInstance(i12).checkCanOpenChat(bundle, cyVar)) {
             NotificationCenter.getInstance(i12).lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChats, new Object[0]);
             MediaDataController.getInstance(i12).saveDraft(j10, 0, str, null, null, false, 0L);
@@ -109,9 +109,9 @@ public final class og implements ev0, vx {
     }
 
     public og(LaunchActivity launchActivity, boolean z10, int i10, String str) {
-        this.f39879c = launchActivity;
-        this.f39877a = z10;
-        this.f39878b = i10;
+        this.f39885c = launchActivity;
+        this.f39883a = z10;
+        this.f39884b = i10;
         this.d = str;
     }
 }

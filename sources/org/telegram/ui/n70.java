@@ -9,30 +9,30 @@ import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-public final class n70 extends org.telegram.ui.Components.hm0 {
-    public final Context f39437c;
+public final class n70 extends org.telegram.ui.Components.im0 {
+    public final Context f39443c;
     public ArrayList d = new ArrayList();
     public ArrayList e = new ArrayList();
-    public Timer f39438f;
+    public Timer f39444f;
     public boolean h;
-    public final r70 f39439n;
+    public final r70 f39445n;
 
     public n70(r70 r70Var, Context context) {
-        this.f39439n = r70Var;
-        this.f39437c = context;
+        this.f39445n = r70Var;
+        this.f39443c = context;
     }
 
     @Override
     public final void A(s4.b1 b1Var) {
-        View view = b1Var.f45912a;
+        View view = b1Var.f45917a;
         if (view instanceof org.telegram.ui.Cells.o4) {
-            ((org.telegram.ui.Cells.o4) view).f22720a.getImageReceiver().cancelLoadImage();
+            ((org.telegram.ui.Cells.o4) view).f22723a.getImageReceiver().cancelLoadImage();
         }
     }
 
     @Override
     public final boolean D(s4.b1 b1Var) {
-        if (b1Var.f45915f != 2) {
+        if (b1Var.f45920f != 2) {
             return true;
         }
         return false;
@@ -40,7 +40,7 @@ public final class n70 extends org.telegram.ui.Components.hm0 {
 
     public final void E(String str) {
         try {
-            Timer timer = this.f39438f;
+            Timer timer = this.f39444f;
             if (timer != null) {
                 timer.cancel();
             }
@@ -54,7 +54,7 @@ public final class n70 extends org.telegram.ui.Components.hm0 {
             return;
         }
         Timer timer2 = new Timer();
-        this.f39438f = timer2;
+        this.f39444f = timer2;
         timer2.schedule(new m70(this, str), 200L, 300L);
     }
 
@@ -63,7 +63,7 @@ public final class n70 extends org.telegram.ui.Components.hm0 {
         if (this.h) {
             return this.d.size();
         }
-        return this.f39439n.f41075w.size() + 2;
+        return this.f39445n.f41081w.size() + 2;
     }
 
     @Override
@@ -84,17 +84,17 @@ public final class n70 extends org.telegram.ui.Components.hm0 {
     public final void l() {
         int i10;
         super.l();
-        r70 r70Var = this.f39439n;
-        n70 n70Var = r70Var.f41074s;
+        r70 r70Var = this.f39445n;
+        n70 n70Var = r70Var.f41080s;
         if (n70Var != null && !r70Var.E) {
             int h = n70Var.h();
-            org.telegram.ui.Components.sx0 sx0Var = r70Var.f41073r;
+            org.telegram.ui.Components.tx0 tx0Var = r70Var.f41079r;
             if (h == 2) {
                 i10 = 0;
             } else {
                 i10 = 4;
             }
-            sx0Var.setVisibility(i10);
+            tx0Var.setVisibility(i10);
         }
     }
 
@@ -102,18 +102,18 @@ public final class n70 extends org.telegram.ui.Components.hm0 {
     public final void v(s4.b1 b1Var, int i10) {
         ContactsController.Contact contact;
         CharSequence charSequence;
-        if (b1Var.f45915f == 0) {
-            org.telegram.ui.Cells.o4 o4Var = (org.telegram.ui.Cells.o4) b1Var.f45912a;
+        if (b1Var.f45920f == 0) {
+            org.telegram.ui.Cells.o4 o4Var = (org.telegram.ui.Cells.o4) b1Var.f45917a;
             boolean z10 = this.h;
-            r70 r70Var = this.f39439n;
+            r70 r70Var = this.f39445n;
             if (z10) {
                 contact = (ContactsController.Contact) this.d.get(i10);
                 charSequence = (CharSequence) this.e.get(i10);
             } else {
-                contact = (ContactsController.Contact) r70Var.f41075w.get(i10 - 2);
+                contact = (ContactsController.Contact) r70Var.f41081w.get(i10 - 2);
                 charSequence = null;
             }
-            o4Var.f22723f = contact;
+            o4Var.f22726f = contact;
             o4Var.h = charSequence;
             o4Var.a();
             boolean containsKey = r70Var.F.containsKey(contact.key);
@@ -127,7 +127,7 @@ public final class n70 extends org.telegram.ui.Components.hm0 {
     @Override
     public final s4.b1 x(ViewGroup viewGroup, int i10) {
         org.telegram.ui.Cells.q8 q8Var;
-        Context context = this.f39437c;
+        Context context = this.f39443c;
         if (i10 == 1) {
             org.telegram.ui.Cells.q8 q8Var2 = new org.telegram.ui.Cells.q8(context);
             int i11 = org.telegram.ui.ActionBar.h6.G6;

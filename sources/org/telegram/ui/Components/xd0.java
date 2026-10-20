@@ -17,31 +17,31 @@ public final class xd0 extends HorizontalScrollView {
     public int I;
     public final f6 J;
     public final f6 K;
-    public final LinearLayout.LayoutParams f32368a;
-    public final ci.x5 f32369b;
-    public z4.e f32370c;
+    public final LinearLayout.LayoutParams f32393a;
+    public final ci.x5 f32394b;
+    public z4.e f32395c;
     public final LinearLayout d;
     public z4.g e;
-    public int f32371f;
+    public int f32396f;
     public int h;
-    public float f32372n;
-    public final Paint f32373r;
-    public int f32374s;
+    public float f32397n;
+    public final Paint f32398r;
+    public int f32399s;
     public int v;
-    public boolean f32375w;
-    public int f32376x;
-    public int f32377y;
+    public boolean f32400w;
+    public int f32401x;
+    public int f32402y;
 
     public xd0(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
-        this.f32369b = new ci.x5(this, 2);
+        this.f32394b = new ci.x5(this, 2);
         this.h = 0;
-        this.f32372n = 0.0f;
-        this.f32374s = -10066330;
+        this.f32397n = 0.0f;
+        this.f32399s = -10066330;
         this.v = 436207616;
-        this.f32375w = false;
-        this.f32376x = AndroidUtilities.dp(52.0f);
-        this.f32377y = AndroidUtilities.dp(8.0f);
+        this.f32400w = false;
+        this.f32401x = AndroidUtilities.dp(52.0f);
+        this.f32402y = AndroidUtilities.dp(8.0f);
         this.E = AndroidUtilities.dp(2.0f);
         this.F = AndroidUtilities.dp(12.0f);
         this.G = AndroidUtilities.dp(24.0f);
@@ -58,18 +58,18 @@ public final class xd0 extends HorizontalScrollView {
         linearLayout.setLayoutParams(new FrameLayout.LayoutParams(-1, -1));
         addView(linearLayout);
         Paint paint = new Paint();
-        this.f32373r = paint;
+        this.f32398r = paint;
         paint.setAntiAlias(true);
         paint.setStyle(Paint.Style.FILL);
-        this.f32368a = new LinearLayout.LayoutParams(-2, -1);
+        this.f32393a = new LinearLayout.LayoutParams(-2, -1);
     }
 
     public static void a(xd0 xd0Var, int i10, int i11) {
         View childAt;
-        if (xd0Var.f32371f != 0 && (childAt = xd0Var.d.getChildAt(i10)) != null) {
+        if (xd0Var.f32396f != 0 && (childAt = xd0Var.d.getChildAt(i10)) != null) {
             int left = childAt.getLeft() + i11;
             if (i10 > 0 || i11 > 0) {
-                left -= xd0Var.f32376x;
+                left -= xd0Var.f32401x;
             }
             if (left != xd0Var.I) {
                 xd0Var.I = left;
@@ -103,8 +103,8 @@ public final class xd0 extends HorizontalScrollView {
 
     public final void d() {
         this.d.removeAllViews();
-        this.f32371f = this.e.getAdapter().b();
-        for (int i10 = 0; i10 < this.f32371f; i10++) {
+        this.f32396f = this.e.getAdapter().b();
+        for (int i10 = 0; i10 < this.f32396f; i10++) {
             if (this.e.getAdapter() instanceof vd0) {
                 ((vd0) this.e.getAdapter()).getClass();
                 b(i10, this.e.getAdapter().d(i10));
@@ -118,10 +118,10 @@ public final class xd0 extends HorizontalScrollView {
 
     public final void e() {
         float f7;
-        for (int i10 = 0; i10 < this.f32371f; i10++) {
+        for (int i10 = 0; i10 < this.f32396f; i10++) {
             View childAt = this.d.getChildAt(i10);
-            childAt.setLayoutParams(this.f32368a);
-            if (this.f32375w) {
+            childAt.setLayoutParams(this.f32393a);
+            if (this.f32400w) {
                 childAt.setPadding(0, 0, 0, 0);
                 childAt.setLayoutParams(new LinearLayout.LayoutParams(-1, -1, 1.0f));
             } else if (this.e.getAdapter() instanceof vd0) {
@@ -145,19 +145,19 @@ public final class xd0 extends HorizontalScrollView {
     }
 
     public int getIndicatorColor() {
-        return this.f32374s;
+        return this.f32399s;
     }
 
     public int getIndicatorHeight() {
-        return this.f32377y;
+        return this.f32402y;
     }
 
     public int getScrollOffset() {
-        return this.f32376x;
+        return this.f32401x;
     }
 
     public boolean getShouldExpand() {
-        return this.f32375w;
+        return this.f32400w;
     }
 
     public int getTabPaddingLeftRight() {
@@ -177,11 +177,11 @@ public final class xd0 extends HorizontalScrollView {
         float d;
         float d10;
         int i10;
-        if (!isInEditMode() && this.f32371f != 0) {
+        if (!isInEditMode() && this.f32396f != 0) {
             int height = getHeight();
             int i11 = this.E;
             LinearLayout linearLayout = this.d;
-            Paint paint = this.f32373r;
+            Paint paint = this.f32398r;
             if (i11 != 0) {
                 paint.setColor(this.v);
                 RectF rectF = AndroidUtilities.rectTmp;
@@ -193,13 +193,13 @@ public final class xd0 extends HorizontalScrollView {
             if (childAt != null) {
                 float paddingLeft = childAt.getPaddingLeft() + childAt.getLeft();
                 float right = childAt.getRight() - childAt.getPaddingRight();
-                int i12 = (this.f32372n > 0.0f ? 1 : (this.f32372n == 0.0f ? 0 : -1));
+                int i12 = (this.f32397n > 0.0f ? 1 : (this.f32397n == 0.0f ? 0 : -1));
                 f6 f6Var = this.K;
                 f6 f6Var2 = this.J;
-                if (i12 > 0 && (i10 = this.h) < this.f32371f - 1) {
+                if (i12 > 0 && (i10 = this.h) < this.f32396f - 1) {
                     View childAt2 = linearLayout.getChildAt(i10 + 1);
                     float paddingLeft2 = childAt2.getPaddingLeft() + childAt2.getLeft();
-                    float f10 = this.f32372n;
+                    float f10 = this.f32397n;
                     float f11 = 1.0f - f10;
                     d = (paddingLeft * f11) + (paddingLeft2 * f10);
                     d10 = (f11 * right) + (f10 * (childAt2.getRight() - childAt2.getPaddingRight()));
@@ -207,18 +207,18 @@ public final class xd0 extends HorizontalScrollView {
                     f6Var.d(d10, true);
                     if (childAt instanceof wd0) {
                         wd0 wd0Var = (wd0) childAt;
-                        wd0Var.setTextColor(wd0Var.f32105a.c(AndroidUtilities.lerp(0.6f, 0.8f, 1.0f - this.f32372n)));
+                        wd0Var.setTextColor(wd0Var.f32092a.c(AndroidUtilities.lerp(0.6f, 0.8f, 1.0f - this.f32397n)));
                     }
                     if (childAt2 instanceof wd0) {
                         wd0 wd0Var2 = (wd0) childAt2;
-                        wd0Var2.setTextColor(wd0Var2.f32105a.c(AndroidUtilities.lerp(0.6f, 0.8f, this.f32372n)));
+                        wd0Var2.setTextColor(wd0Var2.f32092a.c(AndroidUtilities.lerp(0.6f, 0.8f, this.f32397n)));
                     }
                 } else {
                     d = f6Var2.d(paddingLeft, false);
                     d10 = f6Var.d(right, false);
                 }
-                if (this.f32377y != 0) {
-                    paint.setColor(this.f32374s);
+                if (this.f32402y != 0) {
+                    paint.setColor(this.f32399s);
                     RectF rectF2 = AndroidUtilities.rectTmp;
                     rectF2.set(d - AndroidUtilities.dp(11.0f), getPaddingTop(), d10 + AndroidUtilities.dp(11.0f), height - getPaddingBottom());
                     rectF2.offset(getPaddingLeft(), 0.0f);
@@ -234,14 +234,14 @@ public final class xd0 extends HorizontalScrollView {
     @Override
     public final void onMeasure(int i10, int i11) {
         super.onMeasure(i10, i11);
-        if (this.f32375w && View.MeasureSpec.getMode(i10) != 0) {
+        if (this.f32400w && View.MeasureSpec.getMode(i10) != 0) {
             this.d.measure(getMeasuredWidth() | 1073741824, i11);
         }
     }
 
     @Override
     public final void onSizeChanged(int i10, int i11, int i12, int i13) {
-        if (!this.f32375w) {
+        if (!this.f32400w) {
             post(new rc0(this, 3));
         }
     }
@@ -252,31 +252,31 @@ public final class xd0 extends HorizontalScrollView {
     }
 
     public void setIndicatorColor(int i10) {
-        this.f32374s = i10;
+        this.f32399s = i10;
         invalidate();
     }
 
     public void setIndicatorColorResource(int i10) {
-        this.f32374s = getResources().getColor(i10);
+        this.f32399s = getResources().getColor(i10);
         invalidate();
     }
 
     public void setIndicatorHeight(int i10) {
-        this.f32377y = i10;
+        this.f32402y = i10;
         invalidate();
     }
 
     public void setOnPageChangeListener(z4.e eVar) {
-        this.f32370c = eVar;
+        this.f32395c = eVar;
     }
 
     public void setScrollOffset(int i10) {
-        this.f32376x = i10;
+        this.f32401x = i10;
         invalidate();
     }
 
     public void setShouldExpand(boolean z10) {
-        this.f32375w = z10;
+        this.f32400w = z10;
         this.d.setLayoutParams(new FrameLayout.LayoutParams(-1, -1));
         e();
         requestLayout();
@@ -305,7 +305,7 @@ public final class xd0 extends HorizontalScrollView {
     public void setViewPager(z4.g gVar) {
         this.e = gVar;
         if (gVar.getAdapter() != null) {
-            gVar.setOnPageChangeListener(this.f32369b);
+            gVar.setOnPageChangeListener(this.f32394b);
             d();
             return;
         }

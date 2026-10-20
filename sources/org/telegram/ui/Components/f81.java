@@ -1,146 +1,56 @@
 package org.telegram.ui.Components;
 
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import android.view.ViewGroup;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageReceiver;
-public final class f81 implements ImageReceiver.ImageReceiverDelegate {
-    public final View f26156a;
+import org.telegram.ui.PhotoViewer;
+public final class f81 implements Runnable {
+    public final int f26142a;
+    public final j81 f26143b;
 
-    public f81(View view) {
-        this.f26156a = view;
+    public f81(j81 j81Var, int i10) {
+        this.f26142a = i10;
+        this.f26143b = j81Var;
     }
 
     @Override
-    public void didSetImage(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
-        boolean z13;
-        h81 h81Var;
-        double d;
-        double d10;
-        int i10;
-        int i11;
-        int ceil;
-        double ceil2;
-        i81 i81Var = (i81) this.f26156a;
-        ImageReceiver imageReceiver2 = i81Var.Q;
-        if (z10) {
-            if (i81Var.N != null || i81Var.f27147d0 != null) {
-                int dp = AndroidUtilities.dp(150.0f);
-                org.telegram.ui.ot0 ot0Var = i81Var.N;
-                if (ot0Var != null) {
-                    ArrayList arrayList = ot0Var.v;
-                    int indexOf = arrayList.indexOf(ot0Var.c((int) i81Var.O));
-                    if (indexOf != -1) {
-                        if (indexOf == arrayList.size() - 1) {
-                            int videoDuration = ot0Var.getVideoDuration() / 1000;
-                            if (videoDuration <= 100) {
-                                z13 = true;
-                                ceil2 = Math.ceil(videoDuration);
-                            } else {
-                                z13 = true;
-                                if (videoDuration <= 250) {
-                                    ceil2 = Math.ceil(videoDuration / 2.0f);
-                                } else if (videoDuration <= 500) {
-                                    ceil2 = Math.ceil(videoDuration / 4.0f);
-                                } else if (videoDuration <= 1000) {
-                                    ceil2 = Math.ceil(videoDuration / 5.0f);
-                                } else {
-                                    ceil2 = Math.ceil(videoDuration / 10.0f);
-                                }
-                            }
-                            i11 = Math.min(25, (((int) ceil2) - ((arrayList.size() - 1) * 25)) + 1);
-                        } else {
-                            z13 = true;
-                            i11 = 25;
-                        }
-                    } else {
-                        z13 = true;
-                        i11 = 0;
-                    }
-                    float bitmapWidth = imageReceiver2.getBitmapWidth() / Math.min(i11, 5);
-                    float bitmapHeight = imageReceiver2.getBitmapHeight() / ((int) Math.ceil(i11 / 5.0f));
-                    org.telegram.ui.ot0 ot0Var2 = i81Var.N;
-                    int i12 = (int) i81Var.O;
-                    int videoDuration2 = ot0Var2.getVideoDuration() / 1000;
-                    if (videoDuration2 <= 100) {
-                        ceil = ((int) Math.ceil(i12)) % 25;
-                    } else if (videoDuration2 <= 250) {
-                        ceil = ((int) Math.ceil(i12 / 2.0f)) % 25;
-                    } else if (videoDuration2 <= 500) {
-                        ceil = ((int) Math.ceil(i12 / 4.0f)) % 25;
-                    } else if (videoDuration2 <= 1000) {
-                        ceil = ((int) Math.ceil(i12 / 5.0f)) % 25;
-                    } else {
-                        ceil = ((int) Math.ceil(i12 / 10.0f)) % 25;
-                    }
-                    int min = Math.min(ceil, i11 - 1);
-                    i81Var.R = (int) ((min % 5) * bitmapWidth);
-                    i81Var.S = (int) ((min / 5) * bitmapHeight);
-                    i81Var.T = (int) bitmapWidth;
-                    i81Var.U = (int) bitmapHeight;
-                } else {
-                    z13 = true;
-                    int i13 = 0;
-                    while (true) {
-                        if (i13 < i81Var.f27147d0.size()) {
-                            h81Var = (h81) i81Var.f27147d0.get(i13);
-                            if (i13 == 0) {
-                                d = 0.0d;
-                            } else {
-                                d = h81Var.f26800a;
-                            }
-                            if (i13 == i81Var.f27147d0.size() - 1) {
-                                d10 = 9.9999999E7d;
-                            } else {
-                                d10 = ((h81) i81Var.f27147d0.get(i13 + 1)).f26800a;
-                            }
-                            double d11 = i81Var.O;
-                            if (d11 >= d && d11 <= d10) {
-                                break;
-                            }
-                            i13++;
-                        } else {
-                            h81Var = null;
-                            break;
-                        }
-                    }
-                    if (h81Var != null) {
-                        i81Var.R = h81Var.f26801b;
-                        i81Var.S = h81Var.f26802c;
-                        i81Var.T = i81Var.f27144b0;
-                        i81Var.U = i81Var.f27146c0;
-                    } else {
+    public final void run() {
+        switch (this.f26142a) {
+            case 0:
+                j81 j81Var = this.f26143b;
+                j81Var.h = 0.0f;
+                e6 e6Var = j81Var.f27433b;
+                if (e6Var != null) {
+                    e6Var.u();
+                    j81Var.f27433b = null;
+                    return;
+                }
+                return;
+            case 1:
+                j81 j81Var2 = this.f26143b;
+                j81Var2.f27431a = true;
+                j81Var2.e = null;
+                if (j81Var2.f27433b != null) {
+                    j81Var2.f27444s = true;
+                    PhotoViewer photoViewer = j81Var2.M.f43539a;
+                    if (photoViewer.f33422u3) {
+                        photoViewer.d3(true);
                         return;
                     }
+                    return;
                 }
-                i81Var.P = z13;
-                float f7 = i81Var.T / i81Var.U;
-                if (f7 > 1.0f) {
-                    i10 = (int) (dp / f7);
-                } else {
-                    dp = (int) (dp * f7);
-                    i10 = dp;
+                return;
+            default:
+                j81 j81Var3 = this.f26143b;
+                j81Var3.f27431a = true;
+                j81Var3.e = null;
+                if (j81Var3.f27433b != null) {
+                    j81Var3.f27444s = true;
+                    PhotoViewer photoViewer2 = j81Var3.M.f43539a;
+                    if (photoViewer2.f33422u3) {
+                        photoViewer2.d3(true);
+                        return;
+                    }
+                    return;
                 }
-                ViewGroup.LayoutParams layoutParams = i81Var.getLayoutParams();
-                if (i81Var.getVisibility() != 0 || layoutParams.width != dp || layoutParams.height != i10) {
-                    layoutParams.width = dp;
-                    layoutParams.height = i10;
-                    i81Var.setVisibility(0);
-                    i81Var.requestLayout();
-                }
-            }
+                return;
         }
-    }
-
-    @Override
-    public void didSetImageBitmap(int i10, String str, Drawable drawable) {
-        org.telegram.messenger.k5.a(this, i10, str, drawable);
-    }
-
-    @Override
-    public void onAnimationReady(ImageReceiver imageReceiver) {
-        org.telegram.messenger.k5.b(this, imageReceiver);
     }
 }

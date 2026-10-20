@@ -11,14 +11,14 @@ import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.a2;
 import org.telegram.ui.ActionBar.b2;
-import org.telegram.ui.Components.bw0;
 import org.telegram.ui.Components.cw0;
-import org.telegram.ui.Components.nw0;
-import org.telegram.ui.Components.vl0;
+import org.telegram.ui.Components.dw0;
+import org.telegram.ui.Components.ow0;
+import org.telegram.ui.Components.wl0;
 import org.telegram.ui.tr;
 import org.telegram.utils.code.highlight.PrismaHighlighter;
 import v7.q8;
-public final class v0 implements e2.j, g1, n2.m, d9.k, a2, nw0, Utilities.Callback2Return, ih.h, vl0, bw0, cw0 {
+public final class v0 implements e2.j, g1, n2.m, d9.k, a2, ow0, Utilities.Callback2Return, ih.h, wl0, cw0, dw0 {
     public final int f16761a;
 
     public v0(int i10) {
@@ -84,7 +84,7 @@ public final class v0 implements e2.j, g1, n2.m, d9.k, a2, nw0, Utilities.Callba
     public Object apply(Object obj) {
         o2.q qVar = (o2.q) obj;
         qVar.f();
-        return e9.n0.u(e9.s.x(qVar.Y.f47420b, new sg.y(10)));
+        return e9.n0.u(e9.s.x(qVar.Y.f47431b, new sg.y(10)));
     }
 
     @Override
@@ -92,14 +92,14 @@ public final class v0 implements e2.j, g1, n2.m, d9.k, a2, nw0, Utilities.Callba
         tr trVar = (tr) obj;
         switch (this.f16761a) {
             case 27:
-                trVar.f41724b = f7;
+                trVar.f41730b = f7;
                 if (trVar.getParent() != null) {
                     ((View) trVar.getParent()).invalidate();
                     return;
                 }
                 return;
             default:
-                trVar.f41725c = f7;
+                trVar.f41731c = f7;
                 if (trVar.getParent() != null) {
                     ((View) trVar.getParent()).invalidate();
                     return;
@@ -150,9 +150,9 @@ public final class v0 implements e2.j, g1, n2.m, d9.k, a2, nw0, Utilities.Callba
         tr trVar = (tr) obj;
         switch (this.f16761a) {
             case 26:
-                return trVar.f41724b;
+                return trVar.f41730b;
             default:
-                return trVar.f41725c;
+                return trVar.f41731c;
         }
     }
 

@@ -4,9 +4,9 @@ import android.animation.ValueAnimator;
 import android.view.View;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.d91;
-import org.telegram.ui.Components.t81;
+import org.telegram.ui.Components.e91;
 import org.telegram.ui.Components.u70;
+import org.telegram.ui.Components.u81;
 import org.telegram.ui.pg1;
 public final class v4 implements ValueAnimator.AnimatorUpdateListener {
     public final int f6078a;
@@ -103,34 +103,34 @@ public final class v4 implements ValueAnimator.AnimatorUpdateListener {
                 }
                 return;
             case 9:
-                d91 d91Var = (d91) this.f6079b;
-                View[] viewArr = d91Var.e;
-                if (d91Var.f25506x) {
+                e91 e91Var = (e91) this.f6079b;
+                View[] viewArr = e91Var.e;
+                if (e91Var.f25869x) {
                     float abs = 1.0f - (Math.abs(viewArr[0].getTranslationX()) / viewArr[0].getMeasuredWidth());
-                    d91Var.f25500c = abs;
-                    t81 t81Var = d91Var.M;
-                    if (t81Var != null) {
-                        t81Var.e(abs, d91Var.d, d91Var.f25499b);
+                    e91Var.f25863c = abs;
+                    u81 u81Var = e91Var.M;
+                    if (u81Var != null) {
+                        u81Var.e(abs, e91Var.d, e91Var.f25862b);
                     }
                 }
-                d91Var.w(false);
+                e91Var.w(false);
                 return;
             case 10:
                 org.telegram.ui.Components.voip.s1 s1Var = (org.telegram.ui.Components.voip.s1) this.f6079b;
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 s1Var.J = floatValue;
-                org.telegram.ui.Components.voip.r1 r1Var = s1Var.f31746i0;
+                org.telegram.ui.Components.voip.r1 r1Var = s1Var.f31697i0;
                 if (r1Var != null) {
-                    ((pg1) r1Var).f40222b.f37633d0.d(floatValue, s1Var.P);
+                    ((pg1) r1Var).f40228b.f37639d0.d(floatValue, s1Var.P);
                 }
                 s1Var.invalidate();
                 return;
             case 11:
-                ((s4.u) this.f6079b).f46040x = valueAnimator.getAnimatedFraction();
+                ((s4.u) this.f6079b).f46045x = valueAnimator.getAnimatedFraction();
                 return;
             case 12:
                 sg.q0 q0Var = (sg.q0) this.f6079b;
-                q0Var.f46382n = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                q0Var.f46387n = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 q0Var.e();
                 return;
             default:

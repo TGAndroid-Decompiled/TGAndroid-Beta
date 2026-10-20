@@ -5,7 +5,7 @@ import android.text.TextUtils;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.ConnectionsManager;
-public abstract class n40 extends t61 {
+public abstract class n40 extends u61 {
     public final int N;
     public final ArrayList O;
     public boolean P;
@@ -19,16 +19,16 @@ public abstract class n40 extends t61 {
     public String X;
     public String Y;
     public int Z;
-    public org.telegram.ui.i4 f28672a0;
-    public final boolean[] f28673b0;
+    public org.telegram.ui.i4 f28682a0;
+    public final boolean[] f28683b0;
 
-    public n40(im0 im0Var, Context context, int i10) {
-        super(im0Var, context, i10, 0, false, null, null);
+    public n40(jm0 jm0Var, Context context, int i10) {
+        super(jm0Var, context, i10, 0, false, null, null);
         this.O = new ArrayList();
         this.T = 0;
         this.U = -1;
-        this.f28673b0 = new boolean[1];
-        this.f30437s = new d(this, 16);
+        this.f28683b0 = new boolean[1];
+        this.f30861s = new d(this, 16);
         this.N = i10;
     }
 
@@ -69,16 +69,16 @@ public abstract class n40 extends t61 {
             ConnectionsManager.getInstance(this.N).cancelRequest(this.U, true);
             this.U = -1;
         }
-        AndroidUtilities.cancelRunOnUIThread(this.f28672a0);
+        AndroidUtilities.cancelRunOnUIThread(this.f28682a0);
         this.T++;
         this.S = false;
     }
 
     public final void W() {
-        im0 im0Var;
-        if (!TextUtils.isEmpty(this.X) && !this.V && !this.S && (im0Var = this.d) != null) {
-            for (int i10 = 0; i10 < im0Var.getChildCount(); i10++) {
-                if (im0Var.getChildAt(i10) instanceof b10) {
+        jm0 jm0Var;
+        if (!TextUtils.isEmpty(this.X) && !this.V && !this.S && (jm0Var = this.d) != null) {
+            for (int i10 = 0; i10 < jm0Var.getChildCount(); i10++) {
+                if (jm0Var.getChildAt(i10) instanceof b10) {
                     Y(this.X);
                     return;
                 }
@@ -88,7 +88,7 @@ public abstract class n40 extends t61 {
 
     public final void Y(String str) {
         this.X = str;
-        String X = X(str, this.f28673b0);
+        String X = X(str, this.f28683b0);
         if (!TextUtils.equals(this.Y, X)) {
             this.O.clear();
             this.V = false;
@@ -105,7 +105,7 @@ public abstract class n40 extends t61 {
         this.S = true;
         N(true);
         org.telegram.ui.i4 i4Var = new org.telegram.ui.i4(this, i10, X, 11);
-        this.f28672a0 = i4Var;
+        this.f28682a0 = i4Var;
         AndroidUtilities.runOnUIThread(i4Var, 300L);
     }
 }

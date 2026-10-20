@@ -22,7 +22,7 @@ import org.telegram.messenger.MessageSuggestionParams;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.kk;
+import org.telegram.messenger.mk;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.sd0;
 import org.telegram.ui.Components.u40;
@@ -109,7 +109,7 @@ public final class h1 extends org.telegram.ui.ActionBar.f3 {
                             return;
                         default:
                             h1 h1Var = this.f1127b;
-                            org.telegram.ui.Components.f5.S(context, h1Var.I, new a1.c(h1Var, 3), d6Var, 0).f20610a.show();
+                            org.telegram.ui.Components.f5.S(context, h1Var.I, new a1.c(h1Var, 3), d6Var, 0).f20613a.show();
                             return;
                     }
                 }
@@ -117,10 +117,10 @@ public final class h1 extends org.telegram.ui.ActionBar.f3 {
         } else {
             this.f1403b = null;
         }
-        fixNavigationBar(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21058h5, d6Var));
+        fixNavigationBar(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.f21061h5, d6Var));
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
-        LinearLayout e = kk.e(context, 0);
+        LinearLayout e = mk.e(context, 0);
         linearLayout.addView(e, w7.z5.t(-1, 56, 55, 0, 0, 0, 0));
         TextView textView = new TextView(context);
         int i13 = org.telegram.ui.ActionBar.h6.G6;
@@ -159,7 +159,7 @@ public final class h1 extends org.telegram.ui.ActionBar.f3 {
         } else {
             this.e = null;
         }
-        LinearLayout e7 = kk.e(context, 1);
+        LinearLayout e7 = mk.e(context, 1);
         linearLayout.addView(e7, w7.z5.l(1.0f, -1, -2));
         sd0 sd0Var = new sd0(context, null);
         this.f1405f = sd0Var;
@@ -200,7 +200,7 @@ public final class h1 extends org.telegram.ui.ActionBar.f3 {
         sd0Var.addView(imageView3, w7.z5.d(22, 22.0f, 19, 14.0f, 0.0f, 0.0f, 0.0f));
         org.telegram.ui.Components.q6 q6Var = new org.telegram.ui.Components.q6(context, false, false, false);
         this.v = q6Var;
-        int i15 = org.telegram.ui.ActionBar.h6.f21375y6;
+        int i15 = org.telegram.ui.ActionBar.h6.f21378y6;
         q6Var.setTextColor(org.telegram.ui.ActionBar.h6.x0(null, i15, false));
         q6Var.setTextSize(AndroidUtilities.dp(13.0f));
         q6Var.setGravity(5);
@@ -245,7 +245,7 @@ public final class h1 extends org.telegram.ui.ActionBar.f3 {
                         return;
                     default:
                         h1 h1Var = this.f1127b;
-                        org.telegram.ui.Components.f5.S(context, h1Var.I, new a1.c(h1Var, 3), d6Var, 0).f20610a.show();
+                        org.telegram.ui.Components.f5.S(context, h1Var.I, new a1.c(h1Var, 3), d6Var, 0).f20613a.show();
                         return;
                 }
             }
@@ -343,7 +343,7 @@ public final class h1 extends org.telegram.ui.ActionBar.f3 {
                 if (!z10) {
                     f11 = 0.0f;
                 }
-                kk.s(scaleY, f11, 180L);
+                mk.s(scaleY, f11, 180L);
             }
         }
     }
@@ -365,7 +365,7 @@ public final class h1 extends org.telegram.ui.ActionBar.f3 {
                 if (z11) {
                     f7 = 1.0f;
                 }
-                kk.s(animate, f7, 180L);
+                mk.s(animate, f7, 180L);
                 return;
             }
             if (z11) {

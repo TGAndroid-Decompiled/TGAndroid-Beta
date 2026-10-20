@@ -1,26 +1,21 @@
 package org.telegram.messenger;
 
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-public final class h4 implements Utilities.Callback2 {
-    public final int f18495a;
-    public final Utilities.Callback f18496b;
+import java.util.function.ToIntFunction;
+import org.telegram.messenger.GiftAuctionController;
+public final class h4 implements ToIntFunction {
+    public final int f18510a;
 
-    public h4(int i10, Utilities.Callback callback) {
-        this.f18495a = i10;
-        this.f18496b = callback;
+    public h4(int i10) {
+        this.f18510a = i10;
     }
 
     @Override
-    public final void run(Object obj, Object obj2) {
-        switch (this.f18495a) {
+    public final int applyAsInt(Object obj) {
+        switch (this.f18510a) {
             case 0:
-                GiftAuctionController.lambda$requestAuctionUpgrades$5(this.f18496b, (TL_stars.starGiftUpgradeAttributes) obj, (TLRPC.TL_error) obj2);
-                return;
+                return GiftAuctionController.d((GiftAuctionController.Auction) obj);
             default:
-                MediaDataController.lambda$searchStickerSets$250(this.f18496b, (TLRPC.messages_FoundStickerSets) obj, (TLRPC.TL_error) obj2);
-                return;
+                return Integer.parseInt((String) obj);
         }
     }
 }

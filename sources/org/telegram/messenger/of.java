@@ -1,57 +1,41 @@
 package org.telegram.messenger;
-
-import java.util.ArrayList;
-import org.telegram.ui.Components.ChatActivityEnterView;
 public final class of implements Runnable {
-    public final int f19194a = 0;
-    public final boolean f19195b;
-    public final int f19196c;
-    public final int d;
-    public final long e;
-    public final Object f19197f;
-    public final Object h;
+    public final int f19162a;
+    public final MessagesStorage f19163b;
+    public final int f19164c;
+    public final long d;
 
-    public of(MessagesStorage messagesStorage, long j10, ArrayList arrayList, boolean z10, int i10, int i11) {
-        this.f19197f = messagesStorage;
-        this.e = j10;
-        this.h = arrayList;
-        this.f19195b = z10;
-        this.f19196c = i10;
-        this.d = i11;
+    public of(MessagesStorage messagesStorage, int i10, long j10, int i11) {
+        this.f19162a = i11;
+        this.f19163b = messagesStorage;
+        this.f19164c = i10;
+        this.d = j10;
     }
 
     @Override
     public final void run() {
-        switch (this.f19194a) {
+        switch (this.f19162a) {
             case 0:
-                int i10 = this.f19196c;
-                int i11 = this.d;
-                ((MessagesStorage) this.f19197f).lambda$markMessagesAsDeleted$229(this.e, (ArrayList) this.h, this.f19195b, i10, i11);
+                this.f19163b.lambda$saveChannelPts$34(this.f19164c, this.d);
+                return;
+            case 1:
+                this.f19163b.lambda$markMessageAsMention$113(this.f19164c, this.d);
+                return;
+            case 2:
+                this.f19163b.lambda$setDialogPinned$251(this.f19164c, this.d);
+                return;
+            case 3:
+                this.f19163b.lambda$setDialogTtl$60(this.f19164c, this.d);
+                return;
+            case 4:
+                this.f19163b.lambda$deleteDialog$90(this.f19164c, this.d);
+                return;
+            case 5:
+                this.f19163b.lambda$updateChatOnlineCount$135(this.f19164c, this.d);
                 return;
             default:
-                ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) this.f19197f;
-                CharSequence charSequence = (CharSequence) this.h;
-                chatActivityEnterView.f23939f0 = null;
-                chatActivityEnterView.o0(true);
-                org.telegram.ui.Components.pf pfVar = chatActivityEnterView.E0;
-                if (pfVar != null) {
-                    pfVar.setText("");
-                }
-                org.telegram.ui.Components.og ogVar = chatActivityEnterView.Z2;
-                if (ogVar != null) {
-                    ogVar.L(charSequence, this.f19195b, this.f19196c, this.d, this.e);
-                    return;
-                }
+                this.f19163b.lambda$saveChatLinksCount$133(this.f19164c, this.d);
                 return;
         }
-    }
-
-    public of(ChatActivityEnterView chatActivityEnterView, CharSequence charSequence, boolean z10, int i10, int i11, long j10) {
-        this.f19197f = chatActivityEnterView;
-        this.h = charSequence;
-        this.f19195b = z10;
-        this.f19196c = i10;
-        this.d = i11;
-        this.e = j10;
     }
 }

@@ -3,7 +3,7 @@ public abstract class fq extends z4.a {
     public abstract int j();
 
     public final int k(int i10) {
-        int size = ((ji0) this).f27535c.size();
+        int size = ((ki0) this).f27882c.size();
         int j10 = j();
         if (i10 < j10) {
             return ((size - (j10 * 2)) - ((j10 - i10) - 1)) - 1;

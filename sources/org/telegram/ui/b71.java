@@ -5,19 +5,19 @@ import android.net.Uri;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLog;
 public final class b71 implements org.telegram.ui.ActionBar.a2 {
-    public final int f35525a;
-    public final SessionsActivity f35526b;
+    public final int f35531a;
+    public final SessionsActivity f35532b;
 
     public b71(SessionsActivity sessionsActivity, int i10) {
-        this.f35525a = i10;
-        this.f35526b = sessionsActivity;
+        this.f35531a = i10;
+        this.f35532b = sessionsActivity;
     }
 
     @Override
     public final void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f35525a) {
+        switch (this.f35531a) {
             case 0:
-                SessionsActivity sessionsActivity = this.f35526b;
+                SessionsActivity sessionsActivity = this.f35532b;
                 sessionsActivity.getClass();
                 try {
                     Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
@@ -29,7 +29,7 @@ public final class b71 implements org.telegram.ui.ActionBar.a2 {
                     return;
                 }
             default:
-                SessionsActivity.W(this.f35526b);
+                SessionsActivity.W(this.f35532b);
                 return;
         }
     }

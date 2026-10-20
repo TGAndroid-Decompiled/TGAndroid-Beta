@@ -69,7 +69,7 @@ public final class f {
                                             case 2:
                                                 return q.e((Class) this, bVar);
                                             default:
-                                                return new x0(bVar, (c3.m) ((jg.f) this).f14427c);
+                                                return new y0(bVar, (c3.m) ((jg.f) this).f14427c);
                                         }
                                     }
                                 };
@@ -93,7 +93,7 @@ public final class f {
                                     case 2:
                                         return q.e((Class) asSubclass, bVar);
                                     default:
-                                        return new x0(bVar, (c3.m) ((jg.f) asSubclass).f14427c);
+                                        return new y0(bVar, (c3.m) ((jg.f) asSubclass).f14427c);
                                 }
                             }
                         };
@@ -111,7 +111,7 @@ public final class f {
                                 case 2:
                                     return q.e((Class) asSubclass2, bVar);
                                 default:
-                                    return new x0(bVar, (c3.m) ((jg.f) asSubclass2).f14427c);
+                                    return new y0(bVar, (c3.m) ((jg.f) asSubclass2).f14427c);
                             }
                         }
                     };
@@ -130,7 +130,7 @@ public final class f {
                             case 2:
                                 return q.e((Class) asSubclass3, bVar);
                             default:
-                                return new x0(bVar, (c3.m) ((jg.f) asSubclass3).f14427c);
+                                return new y0(bVar, (c3.m) ((jg.f) asSubclass3).f14427c);
                         }
                     }
                 };
@@ -154,7 +154,7 @@ public final class f {
             this.f14427c = Bitmap.createBitmap(i11, i10, Bitmap.Config.ARGB_8888);
             this.d = new Canvas((Bitmap) this.f14427c);
             rectF.set(0.0f, 0.0f, i11, i10);
-            ((Canvas) this.d).drawColor(h6.w0(h6.f20987d6, (d6) this.f14429g));
+            ((Canvas) this.d).drawColor(h6.w0(h6.f20990d6, (d6) this.f14429g));
             ((Canvas) this.d).drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), (Paint) this.f14428f);
         }
         return (Bitmap) this.f14427c;

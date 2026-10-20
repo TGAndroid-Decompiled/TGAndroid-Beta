@@ -16,12 +16,12 @@ import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.Components.ey;
 import org.telegram.ui.Components.i80;
 import org.telegram.ui.Components.ky;
-import org.telegram.ui.Components.m61;
+import org.telegram.ui.Components.n61;
 import org.telegram.ui.Components.rw;
 import org.telegram.ui.Components.sy;
 import org.telegram.ui.Components.ty;
 import org.telegram.ui.Components.tz;
-import org.telegram.ui.Components.ym0;
+import org.telegram.ui.Components.zm0;
 import org.telegram.ui.cy;
 import org.telegram.ui.ig;
 import org.telegram.ui.qe;
@@ -65,9 +65,9 @@ public final class f3 implements Utilities.Callback {
                 int i10 = qnVar.R3;
                 Object obj2 = this.e;
                 if (i10 == 1) {
-                    org.telegram.ui.Components.f5.L(qnVar.getParentActivity(), qnVar.T5, new a1.d(qnVar, tL_document, str, obj2, 6), qnVar.f40667ea);
+                    org.telegram.ui.Components.f5.L(qnVar.getParentActivity(), qnVar.T5, new a1.d(qnVar, tL_document, str, obj2, 6), qnVar.f40673ea);
                 } else {
-                    qnVar.getSendMessagesHelper().sendSticker(tL_document, str, qnVar.T5, qnVar.f40773n5, qnVar.X3, null, qnVar.f40747l5, sendAnimationData, true, 0, 0, false, obj2, qnVar.H8(), l4.longValue(), qnVar.S8(), qnVar.f40687g5);
+                    qnVar.getSendMessagesHelper().sendSticker(tL_document, str, qnVar.T5, qnVar.f40779n5, qnVar.X3, null, qnVar.f40753l5, sendAnimationData, true, 0, 0, false, obj2, qnVar.H8(), l4.longValue(), qnVar.S8(), qnVar.f40693g5);
                     tL_document = tL_document;
                 }
                 qnVar.j9(false);
@@ -82,20 +82,20 @@ public final class f3 implements Utilities.Callback {
                 CharacterStyle characterStyle = (CharacterStyle) this.f1254f;
                 final TLRPC.User user = (TLRPC.User) obj;
                 if (user != null) {
-                    userFull = qnVar2.getMessagesController().getUserFull(user.f20420id);
+                    userFull = qnVar2.getMessagesController().getUserFull(user.f20423id);
                 } else {
                     userFull = null;
                 }
                 i80 I = i80.I(qnVar2, u1Var);
-                ym0 ym0Var = new ym0(qnVar2.getParentActivity(), qnVar2.f40667ea);
-                I.f27129p = new qe(ym0Var, 1);
+                zm0 zm0Var = new zm0(qnVar2.getParentActivity(), qnVar2.f40673ea);
+                I.f27180p = new qe(zm0Var, 1);
                 org.telegram.ui.z zVar = new org.telegram.ui.z(qnVar2, user, str2, 2);
                 i80 J = I.J();
                 J.c(R.drawable.ic_ab_back, LocaleController.getString(R.string.Back), new st0(I, 26), false);
                 J.k();
                 J.c(R.drawable.msg_addbot, LocaleController.getString(R.string.CreateNewContact), new org.telegram.ui.t1(qnVar2, I, str2), false);
                 J.c(R.drawable.menu_contact_existing, LocaleController.getString(R.string.AddToExistingContact), new st0(zVar, 27), false);
-                if (tL_contact == null && (user == null || !qnVar2.getContactsController().contactsDict.containsKey(Long.valueOf(user.f20420id)))) {
+                if (tL_contact == null && (user == null || !qnVar2.getContactsController().contactsDict.containsKey(Long.valueOf(user.f20423id)))) {
                     I.c(R.drawable.msg_contact_add, LocaleController.getString(R.string.AddToContacts), new gi.g2(I, J, 4), false);
                     I.k();
                 }
@@ -194,11 +194,11 @@ public final class f3 implements Utilities.Callback {
                     I.c(R.drawable.msg_calls_regular, LocaleController.getString(R.string.VoiceCallViaCarrier), new re(qnVar2, str2, 6), false);
                     I.c(R.drawable.msg_copy, LocaleController.getString(R.string.CopyNumber), new re(qnVar2, str2, 7), false);
                     I.k();
-                    I.n(user, LocaleController.getString(R.string.ViewProfile), new org.telegram.ui.t1(qnVar2, ym0Var, user, 17));
+                    I.n(user, LocaleController.getString(R.string.ViewProfile), new org.telegram.ui.t1(qnVar2, zm0Var, user, 17));
                 }
-                ym0Var.e(I);
-                if (characterStyle instanceof m61) {
-                    String url = ((m61) characterStyle).getURL();
+                zm0Var.e(I);
+                if (characterStyle instanceof n61) {
+                    String url = ((n61) characterStyle).getURL();
                     if (url == null) {
                         url = "";
                     }
@@ -211,36 +211,36 @@ public final class f3 implements Utilities.Callback {
                     }
                     SpannableString spannableString = new SpannableString(trim);
                     spannableString.setSpan(characterStyle, 0, spannableString.length(), 33);
-                    ym0Var.f(u1Var, characterStyle, spannableString, false);
+                    zm0Var.f(u1Var, characterStyle, spannableString, false);
                 } else {
-                    ym0Var.f(u1Var, characterStyle, null, false);
+                    zm0Var.f(u1Var, characterStyle, null, false);
                 }
-                qnVar2.showDialog(ym0Var);
+                qnVar2.showDialog(zm0Var);
                 return;
             case 4:
                 ArrayList arrayList = (ArrayList) this.d;
                 ArrayList arrayList2 = (ArrayList) this.e;
                 ArrayList arrayList3 = (ArrayList) this.f1254f;
                 Runnable runnable = (Runnable) obj;
-                ty tyVar = ((sy) this.f1252b).f30360a;
+                ty tyVar = ((sy) this.f1252b).f30372a;
                 String str3 = tyVar.v;
-                ArrayList arrayList4 = tyVar.f30752r;
+                ArrayList arrayList4 = tyVar.f30708r;
                 ArrayList arrayList5 = tyVar.h;
-                ArrayList arrayList6 = tyVar.f30753s;
+                ArrayList arrayList6 = tyVar.f30709s;
                 tz tzVar = tyVar.F;
                 if (((String) this.f1253c).equals(str3)) {
                     rw rwVar = tzVar.V;
                     ey eyVar = tzVar.P;
                     int i11 = 0;
                     rwVar.e(false);
-                    tyVar.f30756y = true;
+                    tyVar.f30712y = true;
                     s4.g0 adapter = eyVar.getAdapter();
                     ty tyVar2 = tzVar.S;
                     if (adapter != tyVar2) {
                         eyVar.setAdapter(tyVar2);
                     }
                     arrayList5.clear();
-                    arrayList5.addAll(tyVar.f30751n);
+                    arrayList5.addAll(tyVar.f30707n);
                     arrayList4.clear();
                     arrayList4.addAll(arrayList);
                     arrayList6.clear();
@@ -251,8 +251,8 @@ public final class f3 implements Utilities.Callback {
                         Object obj3 = arrayList2.get(i12);
                         i12++;
                         ky kyVar = (ky) obj3;
-                        if (longSparseIntArray.indexOfKey(kyVar.f28026c.f20300id) < 0) {
-                            longSparseIntArray.append(kyVar.f28026c.f20300id, 1);
+                        if (longSparseIntArray.indexOfKey(kyVar.f27981c.f20303id) < 0) {
+                            longSparseIntArray.append(kyVar.f27981c.f20303id, 1);
                             arrayList6.add(kyVar);
                         }
                     }
@@ -261,8 +261,8 @@ public final class f3 implements Utilities.Callback {
                         Object obj4 = arrayList3.get(i11);
                         i11++;
                         ky kyVar2 = (ky) obj4;
-                        if (longSparseIntArray.indexOfKey(kyVar2.f28026c.f20300id) < 0) {
-                            longSparseIntArray.append(kyVar2.f28026c.f20300id, 1);
+                        if (longSparseIntArray.indexOfKey(kyVar2.f27981c.f20303id) < 0) {
+                            longSparseIntArray.append(kyVar2.f27981c.f20303id, 1);
                             arrayList6.add(kyVar2);
                         }
                     }

@@ -1,55 +1,35 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.drawable.Drawable;
-import android.os.SystemClock;
-import android.text.TextPaint;
-import org.telegram.messenger.R;
-public final class y31 extends Drawable {
-    public final uj0 f32539a;
-    public int f32540b;
-    public final TextPaint f32541c;
+import org.telegram.messenger.Utilities;
+public final class y31 implements Runnable {
+    public final int f32566a;
+    public final int f32567b;
+    public final Object f32568c;
+    public final Object d;
 
-    public y31(TextPaint textPaint) {
-        ah.f1 f1Var = new ah.f1(this, 7);
-        this.f32541c = textPaint;
-        float textSize = textPaint.getTextSize() * 0.89f;
-        uj0 uj0Var = new uj0(R.raw.dots_loading, (int) textSize, (int) (textSize * 1.25f));
-        this.f32539a = uj0Var;
-        uj0Var.setCallback(f1Var);
-        uj0Var.K(1);
-        uj0Var.M((int) ((((float) SystemClock.elapsedRealtime()) / 16.0f) % 60.0f));
-        uj0Var.J(true);
-        uj0Var.start();
+    public y31(int i10, Utilities.Callback callback, org.telegram.ui.Wallet.m0 m0Var) {
+        this.f32566a = 17;
+        this.f32567b = i10;
+        this.f32568c = callback;
+        this.d = m0Var;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        int color = this.f32541c.getColor();
-        int i10 = this.f32540b;
-        uj0 uj0Var = this.f32539a;
-        if (color != i10) {
-            uj0Var.Z = true;
-            uj0Var.Q(color, "Comp 1");
-            uj0Var.o();
-            uj0Var.J(true);
-            uj0Var.V(0L);
-            this.f32540b = color;
-        }
-        uj0Var.draw(canvas);
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.y31.run():void");
     }
 
-    @Override
-    public final int getOpacity() {
-        return -2;
+    public y31(Object obj, int i10, Object obj2, int i11) {
+        this.f32566a = i11;
+        this.f32568c = obj;
+        this.f32567b = i10;
+        this.d = obj2;
     }
 
-    @Override
-    public final void setAlpha(int i10) {
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public y31(Object obj, Object obj2, int i10, int i11) {
+        this.f32566a = i11;
+        this.f32568c = obj;
+        this.d = obj2;
+        this.f32567b = i10;
     }
 }

@@ -5,13 +5,13 @@ import android.graphics.Canvas;
 import android.graphics.PointF;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.im0;
+import org.telegram.ui.Components.jm0;
 public final class w4 extends s4.m0 {
-    public final PointF f50570a = new PointF();
-    public final x4 f50571b;
+    public final PointF f50575a = new PointF();
+    public final x4 f50576b;
 
     public w4(x4 x4Var) {
-        this.f50571b = x4Var;
+        this.f50576b = x4Var;
     }
 
     @Override
@@ -20,13 +20,13 @@ public final class w4 extends s4.m0 {
         ic icVar;
         float height = recyclerView.getHeight();
         float width = recyclerView.getWidth();
-        x4 x4Var = this.f50571b;
-        s4 s4Var = x4Var.f50596s0;
-        r4 r4Var = x4Var.f50586h0;
-        im0 im0Var = x4Var.d;
-        PointF pointF = this.f50570a;
+        x4 x4Var = this.f50576b;
+        s4 s4Var = x4Var.f50601s0;
+        r4 r4Var = x4Var.f50591h0;
+        jm0 jm0Var = x4Var.d;
+        PointF pointF = this.f50575a;
         float f10 = 0.0f;
-        if (ih.j.b(r4Var, im0Var, pointF)) {
+        if (ih.j.b(r4Var, jm0Var, pointF)) {
             float f11 = pointF.x;
             height = Math.min(height, pointF.y);
             f10 = Math.max(0.0f, pointF.y + r4Var.getMeasuredHeight());
@@ -35,7 +35,7 @@ public final class w4 extends s4.m0 {
         } else {
             f7 = 0.0f;
         }
-        if (ih.j.b(s4Var, im0Var, pointF)) {
+        if (ih.j.b(s4Var, jm0Var, pointF)) {
             height = Math.min(height, pointF.y);
             f10 = Math.max(f10, pointF.y + s4Var.getMeasuredHeight() + AndroidUtilities.dp(12.0f));
         }

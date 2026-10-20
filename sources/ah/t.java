@@ -30,8 +30,8 @@ import org.telegram.messenger.voip.VoIPService;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.hz0;
-import org.telegram.ui.Components.is0;
+import org.telegram.ui.Components.iz0;
+import org.telegram.ui.Components.js0;
 import org.telegram.ui.Components.k10;
 import org.telegram.ui.Components.k40;
 import org.telegram.ui.Components.kw;
@@ -105,7 +105,7 @@ public final class t implements Runnable {
                     }
                 }
                 l7Var2.U0 = -1;
-                qc qcVar = qc.f29587w;
+                qc qcVar = qc.f29523w;
                 if (qcVar != null) {
                     qcVar.c(0L, false);
                     return;
@@ -113,12 +113,12 @@ public final class t implements Runnable {
                 return;
             case 4:
                 di.r rVar = (di.r) obj;
-                is0 is0Var = rVar.W;
+                js0 js0Var = rVar.W;
                 if (z10) {
-                    new di.u(is0Var.f8068a, LocaleController.getString(R.string.ProfileBotPreviewLanguageChoose), new ai.r0(is0Var, 10)).show();
+                    new di.u(js0Var.f8068a, LocaleController.getString(R.string.ProfileBotPreviewLanguageChoose), new ai.r0(js0Var, 10)).show();
                     return;
                 } else {
-                    is0Var.b(rVar.f8054a.E);
+                    js0Var.b(rVar.f8054a.E);
                     return;
                 }
             case 5:
@@ -189,7 +189,7 @@ public final class t implements Runnable {
                 return;
             case 12:
                 String str = e2.m0.f8252a;
-                i2.i0 i0Var = ((i2.c0) ((k2.u) ((qf.b) obj).f44440c)).f12325a;
+                i2.i0 i0Var = ((i2.c0) ((k2.u) ((qf.b) obj).f44448c)).f12325a;
                 if (i0Var.f12387d0 != z10) {
                     i0Var.f12387d0 = z10;
                     i0Var.f12402m.e(23, new i2.y(1, z10));
@@ -236,16 +236,16 @@ public final class t implements Runnable {
                 pf.d.r(context, LocaleController.getString(i11));
                 return;
             case 24:
-                hz0 hz0Var = ((hm) obj).f37681c.f40647d1;
-                if (hz0Var != null && z10) {
-                    hz0Var.setVisibility(8);
+                iz0 iz0Var = ((hm) obj).f37687c.f40653d1;
+                if (iz0Var != null && z10) {
+                    iz0Var.setVisibility(8);
                     return;
                 }
                 return;
             case 25:
                 io ioVar = (io) obj;
-                ioVar.f38057x0.autotranslation = z10;
-                ioVar.getMessagesController().putChat(ioVar.f38057x0, false);
+                ioVar.f38063x0.autotranslation = z10;
+                ioVar.getMessagesController().putChat(ioVar.f38063x0, false);
                 return;
             case 26:
                 wp wpVar = (wp) obj;
@@ -255,19 +255,19 @@ public final class t implements Runnable {
                     if (wpVar.M != null) {
                         wpVar.P = true;
                         if (!wpVar.x()) {
-                            wallPaper = wpVar.f32178n.h;
+                            wallPaper = wpVar.f32214n.h;
                         }
                         TLRPC.WallPaper wallPaper2 = wallPaper;
-                        org.telegram.ui.ActionBar.c4 c4Var2 = wpVar.M.f31898a;
-                        if (c4Var2.f20720a) {
-                            wpVar.f32178n.k(null, wallPaper2, false, Boolean.valueOf(z10), false);
+                        org.telegram.ui.ActionBar.c4 c4Var2 = wpVar.M.f31849a;
+                        if (c4Var2.f20723a) {
+                            wpVar.f32214n.k(null, wallPaper2, false, Boolean.valueOf(z10), false);
                         } else {
-                            wpVar.f32178n.k(c4Var2, wallPaper2, false, Boolean.valueOf(z10), false);
+                            wpVar.f32214n.k(c4Var2, wallPaper2, false, Boolean.valueOf(z10), false);
                         }
                     }
                     if (upVar.d != null) {
                         while (i13 < upVar.d.size()) {
-                            ((vp) upVar.d.get(i13)).f31900c = z10 ? 1 : 0;
+                            ((vp) upVar.d.get(i13)).f31851c = z10 ? 1 : 0;
                             i13++;
                         }
                         upVar.l();
@@ -285,12 +285,12 @@ public final class t implements Runnable {
                 return;
             case 28:
                 k10 k10Var = (k10) obj;
-                k10Var.S(k10Var.f27676y0, z10);
+                k10Var.S(k10Var.f27718y0, z10);
                 return;
             default:
                 k40 k40Var = (k40) obj;
                 if (!z10) {
-                    k40Var.f27703r.setVisibility(8);
+                    k40Var.f27743r.setVisibility(8);
                     return;
                 } else {
                     k40Var.getClass();

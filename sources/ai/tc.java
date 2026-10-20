@@ -4,7 +4,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.Components.a90;
-import org.telegram.ui.Components.g61;
+import org.telegram.ui.Components.h61;
 public final class tc implements Utilities.Callback2 {
     public final int f2229a;
     public final long f2230b;
@@ -22,7 +22,7 @@ public final class tc implements Utilities.Callback2 {
     public final void run(Object obj, Object obj2) {
         switch (this.f2229a) {
             case 0:
-                vc.R((vc) this.f2231c, (g61) this.d, this.f2230b, (Boolean) obj, (String) obj2);
+                vc.R((vc) this.f2231c, (h61) this.d, this.f2230b, (Boolean) obj, (String) obj2);
                 return;
             case 1:
                 a90.n((a90) this.f2231c, this.f2230b, (TLRPC.TL_messages_importChatInvite) this.d, (TLRPC.ChatInviteJoinResult) obj, (TLRPC.TL_error) obj2);

@@ -2,24 +2,24 @@ package org.telegram.ui;
 
 import org.telegram.messenger.AndroidUtilities;
 public final class pn0 extends org.telegram.ui.ActionBar.j {
-    public final eo0 f40257a;
+    public final eo0 f40263a;
 
     public pn0(eo0 eo0Var) {
-        this.f40257a = eo0Var;
+        this.f40263a = eo0Var;
     }
 
     @Override
     public final void b(int i10) {
-        eo0 eo0Var = this.f40257a;
+        eo0 eo0Var = this.f40263a;
         if (i10 == -1) {
             if (!eo0Var.P0) {
                 eo0Var.finishFragment();
             }
         } else if (i10 == 1 && !eo0Var.P0) {
-            if (eo0Var.f36724u0 != 3) {
+            if (eo0Var.f36730u0 != 3) {
                 AndroidUtilities.hideKeyboard(eo0Var.getParentActivity().getCurrentFocus());
             }
-            int i11 = eo0Var.f36724u0;
+            int i11 = eo0Var.f36730u0;
             if (i11 != 0) {
                 int i12 = 0;
                 if (i11 != 1) {
@@ -41,7 +41,7 @@ public final class pn0 extends org.telegram.ui.ActionBar.j {
                     org.telegram.ui.Cells.j6[] j6VarArr = eo0Var.h;
                     if (i12 >= j6VarArr.length) {
                         break;
-                    } else if (j6VarArr[i12].f22482b.f24338f) {
+                    } else if (j6VarArr[i12].f22485b.f24341f) {
                         eo0Var.G0 = eo0Var.E0.shipping_options.get(i12);
                         break;
                     } else {

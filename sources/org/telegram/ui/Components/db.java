@@ -2,34 +2,34 @@ package org.telegram.ui.Components;
 
 import android.widget.FrameLayout;
 public final class db implements Runnable {
-    public final int f25524a;
-    public final qc f25525b;
+    public final int f25434a;
+    public final qc f25435b;
 
     public db(qc qcVar, int i10) {
-        this.f25524a = i10;
-        this.f25525b = qcVar;
+        this.f25434a = i10;
+        this.f25435b = qcVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f25524a) {
+        switch (this.f25434a) {
             case 0:
-                this.f25525b.b();
+                this.f25435b.b();
                 return;
             case 1:
-                qc qcVar = this.f25525b;
+                qc qcVar = this.f25435b;
                 FrameLayout frameLayout = qcVar.h;
                 ub ubVar = qcVar.e;
-                ob obVar = qcVar.f29600p;
+                ob obVar = qcVar.f29536p;
                 if (obVar != null && !ubVar.top) {
                     obVar.c(0.0f);
-                    qcVar.f29600p.d(qcVar);
+                    qcVar.f29536p.d(qcVar);
                 }
                 ubVar.transitionRunningExit = false;
                 ubVar.onExitTransitionEnd();
                 ubVar.onHide();
-                frameLayout.removeView(qcVar.f29591f);
-                frameLayout.removeOnLayoutChangeListener(qcVar.f29590c);
+                frameLayout.removeView(qcVar.f29527f);
+                frameLayout.removeOnLayoutChangeListener(qcVar.f29526c);
                 ubVar.onDetach();
                 Runnable runnable = qcVar.v;
                 if (runnable != null) {
@@ -38,10 +38,10 @@ public final class db implements Runnable {
                 }
                 return;
             default:
-                qc qcVar2 = this.f25525b;
+                qc qcVar2 = this.f25435b;
                 FrameLayout frameLayout2 = qcVar2.h;
-                frameLayout2.removeView(qcVar2.f29591f);
-                frameLayout2.removeOnLayoutChangeListener(qcVar2.f29590c);
+                frameLayout2.removeView(qcVar2.f29527f);
+                frameLayout2.removeOnLayoutChangeListener(qcVar2.f29526c);
                 return;
         }
     }

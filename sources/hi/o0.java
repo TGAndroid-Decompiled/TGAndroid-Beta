@@ -22,13 +22,13 @@ public final class o0 implements Runnable {
                 qn qnVar = this.f12202b;
                 if (i10 != 2) {
                     qnVar.Z9();
-                    qnVar.cc();
+                    qnVar.dc();
                 }
                 t0.f(xc.a0(qnVar), i10, this.f12203c);
                 return;
             default:
                 boolean z10 = this.f12203c;
-                this.f12202b.Cc(this.d, z10);
+                this.f12202b.Dc(this.d, z10);
                 return;
         }
     }

@@ -18,7 +18,7 @@ import org.telegram.tgnet.tl.TL_payments;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.Cells.c6;
 import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.w01;
+import org.telegram.ui.Components.x01;
 import org.telegram.ui.LaunchActivity;
 public final class l3 implements View.OnClickListener {
     public final int f11320a = 1;
@@ -33,9 +33,9 @@ public final class l3 implements View.OnClickListener {
     public final Object f11326s;
     public final Object v;
 
-    public l3(ei.d dVar, w01 w01Var, MessagesController messagesController, long j10, TLRPC.User user, String[] strArr, int i10, org.telegram.ui.ActionBar.f3 f3Var, boolean z10, d6 d6Var) {
+    public l3(ei.d dVar, x01 x01Var, MessagesController messagesController, long j10, TLRPC.User user, String[] strArr, int i10, org.telegram.ui.ActionBar.f3 f3Var, boolean z10, d6 d6Var) {
         this.f11321b = dVar;
-        this.f11325r = w01Var;
+        this.f11325r = x01Var;
         this.f11326s = messagesController;
         this.f11322c = j10;
         this.d = user;
@@ -77,8 +77,8 @@ public final class l3 implements View.OnClickListener {
                 }
                 return;
             default:
-                w01 w01Var = (w01) this.f11325r;
-                c6 c6Var = w01Var.h;
+                x01 x01Var = (x01) this.f11325r;
+                c6 c6Var = x01Var.h;
                 final MessagesController messagesController = (MessagesController) this.f11326s;
                 String[] strArr = (String[]) this.v;
                 final ei.d dVar2 = this.f11321b;
@@ -106,7 +106,7 @@ public final class l3 implements View.OnClickListener {
                                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj3;
                                 org.telegram.ui.ActionBar.f3 f3Var3 = f3Var2;
                                 if (updates != null) {
-                                    long j13 = user2.f20420id;
+                                    long j13 = user2.f20423id;
                                     TLRPC.TL_messages_editChatParticipantRank tL_messages_editChatParticipantRank2 = tL_messages_editChatParticipantRank;
                                     String str = tL_messages_editChatParticipantRank2.rank;
                                     MessagesController messagesController2 = MessagesController.this;
@@ -138,8 +138,8 @@ public final class l3 implements View.OnClickListener {
                         });
                         return;
                     }
-                    float f7 = -w01Var.f31983y;
-                    w01Var.f31983y = f7;
+                    float f7 = -x01Var.f32297y;
+                    x01Var.f32297y = f7;
                     AndroidUtilities.shakeViewSpring(textView, f7);
                     BotWebViewVibrationEffect.APP_ERROR.vibrate();
                     return;

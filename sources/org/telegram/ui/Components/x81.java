@@ -1,16 +1,49 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-public final class x81 extends s4.c0 {
-    public final hg.i0 f32331r;
+import android.view.View;
+import org.telegram.messenger.Utilities;
+public final class x81 implements yl0, zl0 {
+    public final d91 f32366a;
 
-    public x81(hg.i0 i0Var, Context context) {
-        super(context);
-        this.f32331r = i0Var;
+    public x81(d91 d91Var) {
+        this.f32366a = d91Var;
     }
 
     @Override
-    public final void g(android.view.View r6, s4.w0 r7) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.x81.g(android.view.View, s4.w0):void");
+    public boolean P0(View view) {
+        return false;
+    }
+
+    @Override
+    public boolean a(int i10, View view) {
+        Utilities.Callback2Return callback2Return = this.f32366a.f25393b;
+        if (callback2Return == null) {
+            return false;
+        }
+        return ((Boolean) callback2Return.run(Integer.valueOf(((b91) view).f24833a.f24555a), view)).booleanValue();
+    }
+
+    @Override
+    public void d(float f7, float f10, int i10, View view) {
+        d91 d91Var = this.f32366a;
+        c91 c91Var = d91Var.f25417y;
+        if (c91Var != null) {
+            e91 e91Var = (e91) ((l2.f) c91Var).f15843b;
+            if (e91Var.f25869x || e91Var.H) {
+                return;
+            }
+        }
+        b91 b91Var = (b91) view;
+        if (i10 != d91Var.F || c91Var == null) {
+            Utilities.Callback2Return callback2Return = d91Var.f25406l0;
+            if (callback2Return != null && ((Boolean) callback2Return.run(Integer.valueOf(b91Var.f24833a.f24555a), Integer.valueOf(i10))).booleanValue()) {
+                return;
+            }
+            d91Var.d(b91Var.f24833a.f24555a, i10);
+        }
+    }
+
+    @Override
+    public void a0(View view, float f7, float f10) {
     }
 }

@@ -1,112 +1,90 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
-import android.view.accessibility.AccessibilityNodeInfo;
-import android.widget.Button;
-import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-public final class hq0 extends FrameLayout {
-    public final int f26908a;
-    public final er0 f26909b;
+public final class hq0 extends jm0 {
+    public final int V2;
+    public final fr0 W2;
 
-    public hq0(er0 er0Var, Context context, int i10) {
-        super(context);
-        this.f26908a = i10;
-        this.f26909b = er0Var;
+    public hq0(fr0 fr0Var, Context context, org.telegram.ui.ActionBar.d6 d6Var, int i10) {
+        super(context, d6Var);
+        this.V2 = i10;
+        this.W2 = fr0Var;
     }
 
     @Override
-    public void dispatchDraw(Canvas canvas) {
-        switch (this.f26908a) {
+    public final boolean E0(float f7) {
+        float f10;
+        float f11;
+        switch (this.V2) {
             case 0:
-                er0 er0Var = this.f26909b;
-                er0Var.Y0.setBounds(0, (int) er0Var.f26002v0, getMeasuredWidth(), getMeasuredHeight());
-                er0Var.Y0.draw(canvas);
-                canvas.save();
-                canvas.clipRect(0.0f, er0Var.f26002v0, getMeasuredWidth(), getMeasuredHeight());
-                super.dispatchDraw(canvas);
-                canvas.restore();
-                return;
-            default:
-                super.dispatchDraw(canvas);
-                return;
-        }
-    }
-
-    @Override
-    public void onDraw(Canvas canvas) {
-        switch (this.f26908a) {
-            case 0:
-                er0 er0Var = this.f26909b;
-                hq0 hq0Var = er0Var.f25979c;
-                float f7 = er0Var.f26004w0;
-                if (f7 != 0.0f && f7 != hq0Var.getTop() + er0Var.f26004w0) {
-                    ValueAnimator valueAnimator = er0Var.f26006x0;
-                    if (valueAnimator != null) {
-                        valueAnimator.cancel();
-                    }
-                    float top = er0Var.f26004w0 - (hq0Var.getTop() + er0Var.f26002v0);
-                    er0Var.f26002v0 = top;
-                    ValueAnimator ofFloat = ValueAnimator.ofFloat(top, 0.0f);
-                    er0Var.f26006x0 = ofFloat;
-                    ofFloat.addUpdateListener(new b80(this, 18));
-                    er0Var.f26006x0.setInterpolator(bs.f25012f);
-                    er0Var.f26006x0.setDuration(200L);
-                    er0Var.f26006x0.start();
-                    er0Var.f26004w0 = 0.0f;
+                fr0 fr0Var = this.W2;
+                if (fr0Var.f26375i0 && fr0Var.f26382p0[1] != null) {
+                    f10 = 111.0f;
+                } else {
+                    f10 = 58.0f;
                 }
-                er0Var.T[1].setTranslationY((-(hq0Var.getMeasuredHeight() - AndroidUtilities.dp(48.0f))) + er0Var.f26002v0 + er0Var.f26001u0 + ((1.0f - getAlpha()) * (hq0Var.getMeasuredHeight() - AndroidUtilities.dp(48.0f))));
-                return;
+                if (f7 >= AndroidUtilities.dp(f10) + fr0Var.H0.f12284b) {
+                    return true;
+                }
+                return false;
             default:
-                super.onDraw(canvas);
-                return;
+                fr0 fr0Var2 = this.W2;
+                if (fr0Var2.f26375i0 && fr0Var2.f26382p0[1] != null) {
+                    f11 = 111.0f;
+                } else {
+                    f11 = 58.0f;
+                }
+                if (f7 >= AndroidUtilities.dp(f11) + fr0Var2.H0.f12284b) {
+                    return true;
+                }
+                return false;
         }
     }
 
     @Override
-    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        switch (this.f26908a) {
-            case 1:
-                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                accessibilityNodeInfo.setText(LocaleController.formatPluralString("AccDescrShareInChats", this.f26909b.V.m(), new Object[0]));
-                accessibilityNodeInfo.setClassName(Button.class.getName());
-                accessibilityNodeInfo.setLongClickable(true);
-                accessibilityNodeInfo.setClickable(true);
-                return;
-            default:
-                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                return;
-        }
-    }
-
-    @Override
-    public void setAlpha(float f7) {
-        switch (this.f26908a) {
+    public final void draw(Canvas canvas) {
+        float f7;
+        float f10;
+        switch (this.V2) {
             case 0:
-                super.setAlpha(f7);
-                invalidate();
-                return;
-            default:
-                super.setAlpha(f7);
-                return;
-        }
-    }
-
-    @Override
-    public void setVisibility(int i10) {
-        switch (this.f26908a) {
-            case 0:
-                super.setVisibility(i10);
-                if (i10 != 0) {
-                    this.f26909b.T[1].setTranslationY(0.0f);
+                fr0 fr0Var = this.W2;
+                jm0 jm0Var = fr0Var.F;
+                if (jm0Var.getVisibility() != 8) {
+                    canvas.save();
+                    int i10 = fr0Var.f26383q0;
+                    if (fr0Var.f26375i0 && fr0Var.f26382p0[1] != null) {
+                        f7 = 111.0f;
+                    } else {
+                        f7 = 58.0f;
+                    }
+                    canvas.clipRect(0, AndroidUtilities.dp(f7) + i10, getWidth(), getHeight());
+                }
+                super.draw(canvas);
+                if (jm0Var.getVisibility() != 8) {
+                    canvas.restore();
                     return;
                 }
                 return;
             default:
-                super.setVisibility(i10);
+                fr0 fr0Var2 = this.W2;
+                jm0 jm0Var2 = fr0Var2.F;
+                if (jm0Var2.getVisibility() != 8) {
+                    canvas.save();
+                    int i11 = fr0Var2.f26383q0;
+                    if (fr0Var2.f26375i0 && fr0Var2.f26382p0[1] != null) {
+                        f10 = 111.0f;
+                    } else {
+                        f10 = 58.0f;
+                    }
+                    canvas.clipRect(0, AndroidUtilities.dp(f10) + i11, getWidth(), getHeight());
+                }
+                super.draw(canvas);
+                if (jm0Var2.getVisibility() != 8) {
+                    canvas.restore();
+                    return;
+                }
                 return;
         }
     }

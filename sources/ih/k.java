@@ -53,11 +53,11 @@ public final class k {
         gh.b bVar = this.f13149b;
         if (z11) {
             wc0 wc0Var = (wc0) drawable;
-            if (wc0Var.f32094q < 0) {
+            if (wc0Var.f32081q < 0) {
                 cVar.a(-16777216);
                 return cVar;
             }
-            bVar.a(wc0Var.f32088k);
+            bVar.a(wc0Var.f32075k);
             return bVar;
         }
         boolean z12 = drawable instanceof BitmapDrawable;

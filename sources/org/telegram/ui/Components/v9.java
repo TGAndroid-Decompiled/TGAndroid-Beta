@@ -64,7 +64,7 @@ public final class v9 extends GradientDrawable {
         }
         w7.w5 w5Var = w5VarArr[0];
         if (w5Var != null) {
-            w5Var.b(t60Var.f30432a, t60Var.f30433b);
+            w5Var.b(t60Var.f30448a, t60Var.f30449b);
             if (!z10) {
                 w5VarArr[0].a();
                 w5VarArr[0] = null;
@@ -99,7 +99,7 @@ public final class v9 extends GradientDrawable {
 
     public static Rect e(GradientDrawable.Orientation orientation, int i10, int i11) {
         Rect rect = new Rect();
-        switch (t9.f30454a[orientation.ordinal()]) {
+        switch (t9.f30478a[orientation.ordinal()]) {
             case 1:
                 int i12 = i10 / 2;
                 rect.left = i12;
@@ -187,7 +187,7 @@ public final class v9 extends GradientDrawable {
             a0.f fVar2 = this.d;
             if (i11 < i10) {
                 t60 t60Var = (t60) fVar.e(i11);
-                if (t60Var.f30432a == width && t60Var.f30433b == height) {
+                if (t60Var.f30448a == width && t60Var.f30449b == height) {
                     Bitmap bitmap = (Bitmap) fVar.h(i11);
                     if (bitmap != null) {
                         canvas.drawBitmap(bitmap, (Rect) null, bounds, this.f31203f);
@@ -237,7 +237,7 @@ public final class v9 extends GradientDrawable {
         for (int i11 = 0; i11 < i10; i11++) {
             t60 t60Var = (t60) fVar.e(i11);
             float f10 = f7;
-            float sqrt = (float) Math.sqrt(Math.pow(height - t60Var.f30433b, 2.0d) + Math.pow(width - t60Var.f30432a, 2.0d));
+            float sqrt = (float) Math.sqrt(Math.pow(height - t60Var.f30449b, 2.0d) + Math.pow(width - t60Var.f30448a, 2.0d));
             if (sqrt < f10 && (bitmap = (Bitmap) fVar.h(i11)) != null && ((bool = (Boolean) this.f31202c.get(t60Var)) == null || !bool.booleanValue())) {
                 bitmap2 = bitmap;
                 f7 = sqrt;
@@ -287,7 +287,7 @@ public final class v9 extends GradientDrawable {
         this.e.add(runnableArr);
         for (int i10 = 0; i10 < t60VarArr.length; i10++) {
             t60 t60Var = t60VarArr[i10];
-            if (t60Var.f30432a != 0 && t60Var.f30433b != 0) {
+            if (t60Var.f30448a != 0 && t60Var.f30449b != 0) {
                 DispatchQueue dispatchQueue = Utilities.globalQueue;
                 p9 p9Var = new p9(this, t60Var, runnableArr, i10, w5VarArr);
                 runnableArr[i10] = p9Var;

@@ -5,18 +5,18 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.of0;
 import org.telegram.ui.Components.pf0;
+import org.telegram.ui.Components.qf0;
 public final class u5 extends FrameLayout {
-    public TextView f23592a;
-    public TextView f23593b;
-    public pf0 f23594c;
+    public TextView f23595a;
+    public TextView f23596b;
+    public qf0 f23597c;
     public AnimatorSet d;
     public androidx.activity.i e;
 
     public final void a(String str, int i10, float f7) {
-        TextView textView = this.f23592a;
-        TextView textView2 = this.f23593b;
+        TextView textView = this.f23595a;
+        TextView textView2 = this.f23596b;
         AnimatorSet animatorSet = this.d;
         if (animatorSet != null) {
             animatorSet.cancel();
@@ -32,10 +32,10 @@ public final class u5 extends FrameLayout {
         }
         textView2.setAlpha(0.0f);
         textView.setAlpha(1.0f);
-        pf0 pf0Var = this.f23594c;
-        pf0Var.h = i10;
-        pf0Var.f29255n = 100;
-        pf0Var.a((int) f7, false);
+        qf0 qf0Var = this.f23597c;
+        qf0Var.h = i10;
+        qf0Var.f29571n = 100;
+        qf0Var.a((int) f7, false);
     }
 
     @Override
@@ -43,13 +43,13 @@ public final class u5 extends FrameLayout {
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(40.0f), 1073741824));
     }
 
-    public void setSeekBarDelegate(of0 of0Var) {
-        this.f23594c.setDelegate(new j9(this, of0Var));
+    public void setSeekBarDelegate(pf0 pf0Var) {
+        this.f23597c.setDelegate(new j9(this, pf0Var));
     }
 
     @Override
     public void setTag(Object obj) {
         super.setTag(obj);
-        this.f23594c.setTag(obj);
+        this.f23597c.setTag(obj);
     }
 }

@@ -1,23 +1,29 @@
 package org.telegram.messenger;
 
 import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.Utilities;
 public final class ke implements Runnable {
-    public final int f18794a;
-    public final MessagesController.DialogPhotos f18795b;
+    public final int f18800a;
+    public final int f18801b;
+    public final Utilities.Callback2 f18802c;
 
-    public ke(MessagesController.DialogPhotos dialogPhotos, int i10) {
-        this.f18794a = i10;
-        this.f18795b = dialogPhotos;
+    public ke(int i10, int i11, Utilities.Callback2 callback2) {
+        this.f18800a = i11;
+        this.f18801b = i10;
+        this.f18802c = callback2;
     }
 
     @Override
     public final void run() {
-        switch (this.f18794a) {
+        switch (this.f18800a) {
             case 0:
-                this.f18795b.lambda$loadCache$5();
+                MessagesController.AnonymousClass1.lambda$getLocal$1(this.f18801b, this.f18802c);
+                return;
+            case 1:
+                MessagesController.AnonymousClass4.lambda$getLocal$1(this.f18801b, this.f18802c);
                 return;
             default:
-                this.f18795b.lambda$saveCache$6();
+                MessagesController.AnonymousClass5.lambda$getLocal$2(this.f18801b, this.f18802c);
                 return;
         }
     }

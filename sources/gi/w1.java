@@ -9,7 +9,7 @@ import org.telegram.ui.ActionBar.h6;
 public final class w1 {
     public final SparseIntArray f11525a = new SparseIntArray();
     public final SparseIntArray f11526b = new SparseIntArray();
-    public final int[] f11527c = {h6.G6, h6.f21305u8, h6.G8, h6.E8, h6.F8, h6.I5, h6.Ii};
+    public final int[] f11527c = {h6.G6, h6.f21308u8, h6.G8, h6.E8, h6.F8, h6.I5, h6.Ii};
     public float d;
 
     public final int a(int i10) {
@@ -26,7 +26,7 @@ public final class w1 {
         if (imageView != null) {
             imageView.setColorFilter(new PorterDuffColorFilter(a(i10), PorterDuff.Mode.SRC_IN));
         }
-        kVar.B(a(h6.f21305u8), false);
+        kVar.B(a(h6.f21308u8), false);
     }
 
     public final void c(SparseIntArray sparseIntArray, int i10, d6 d6Var) {
@@ -53,7 +53,7 @@ public final class w1 {
             if (i15 != h6.G8 && i15 != h6.E8 && i15 != h6.F8 && i15 != (i12 = h6.I5)) {
                 if (i15 == h6.Ii) {
                     sparseIntArray.put(i15, i0.a.f(0.5f, i10, i11));
-                } else if (i15 != h6.f21305u8 && i15 != i12) {
+                } else if (i15 != h6.f21308u8 && i15 != i12) {
                     sparseIntArray.put(i15, i11);
                 } else {
                     sparseIntArray.put(i15, o10);

@@ -7,20 +7,20 @@ import org.telegram.messenger.FileLog;
 import org.telegram.ui.ActionBar.a2;
 import org.telegram.ui.ActionBar.b2;
 public final class c0 implements a2 {
-    public final m0 f51698a;
+    public final n0 f51703a;
 
-    public c0(m0 m0Var) {
-        this.f51698a = m0Var;
+    public c0(n0 n0Var) {
+        this.f51703a = n0Var;
     }
 
     @Override
     public void g(b2 b2Var, int i10) {
-        m0 m0Var = this.f51698a;
-        m0Var.getClass();
+        n0 n0Var = this.f51703a;
+        n0Var.getClass();
         try {
             Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
             intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
-            m0Var.getParentActivity().startActivity(intent);
+            n0Var.getParentActivity().startActivity(intent);
         } catch (Exception e) {
             FileLog.e(e);
         }

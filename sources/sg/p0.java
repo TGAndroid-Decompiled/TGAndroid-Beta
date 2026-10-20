@@ -6,18 +6,18 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.dq;
 import org.telegram.ui.Components.q6;
 public final class p0 extends q6 {
-    public final int f46367s;
+    public final int f46372s;
     public final q0 v;
 
     public p0(q0 q0Var, Context context, int i10) {
         super(context, true, true, true);
-        this.f46367s = i10;
+        this.f46372s = i10;
         this.v = q0Var;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        switch (this.f46367s) {
+        switch (this.f46372s) {
             case 0:
                 q0 q0Var = this.v;
                 if (q0Var.M > 0.0f) {

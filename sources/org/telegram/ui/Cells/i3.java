@@ -13,33 +13,33 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.bs;
 public class i3 extends FrameLayout {
-    public boolean f22398a;
-    public final g3 f22399b;
-    public final int f22400c;
+    public boolean f22401a;
+    public final g3 f22402b;
+    public final int f22403c;
     public boolean d;
     public int e;
-    public boolean f22401f;
+    public boolean f22404f;
     public boolean h;
-    public boolean f22402n;
-    public final org.telegram.ui.Components.i5 f22403r;
-    public int f22404s;
+    public boolean f22405n;
+    public final org.telegram.ui.Components.i5 f22406r;
+    public int f22407s;
     public final org.telegram.ui.Components.p6 v;
-    public boolean f22405w;
+    public boolean f22408w;
 
     public i3(Context context, String str, boolean z10, boolean z11, int i10, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
         int i11;
         int i12;
         this.e = -1;
-        this.f22403r = new org.telegram.ui.Components.i5(this);
+        this.f22406r = new org.telegram.ui.Components.i5(this);
         org.telegram.ui.Components.p6 p6Var = new org.telegram.ui.Components.p6(false, true, true);
         this.v = p6Var;
         p6Var.n(0.2f, 160L, bs.h);
         p6Var.w(AndroidUtilities.dp(15.33f));
-        p6Var.f29180b = 5;
-        this.f22400c = i10;
+        p6Var.f29225b = 5;
+        this.f22403c = i10;
         g3 g3Var = new g3(this, context, d6Var, i10, d6Var, z11);
-        this.f22399b = g3Var;
+        this.f22402b = g3Var;
         p6Var.setCallback(g3Var);
         g3Var.setTextSize(1, 17.0f);
         g3Var.setHintTextColor(org.telegram.ui.ActionBar.h6.w0(org.telegram.ui.ActionBar.h6.H6, d6Var));
@@ -81,19 +81,19 @@ public class i3 extends FrameLayout {
 
     public final void c() {
         int i10;
-        if (this.f22399b == null) {
+        if (this.f22402b == null) {
             return;
         }
-        this.f22404s = this.f22400c - getText().length();
+        this.f22407s = this.f22403c - getText().length();
         String str = "";
-        if ((!TextUtils.isEmpty(getText()) || this.d) && ((!this.f22401f || (this.f22402n && !this.h)) && ((i10 = this.e) == -1 || this.f22404s <= i10))) {
-            str = "" + this.f22404s;
+        if ((!TextUtils.isEmpty(getText()) || this.d) && ((!this.f22404f || (this.f22405n && !this.h)) && ((i10 = this.e) == -1 || this.f22407s <= i10))) {
+            str = "" + this.f22407s;
         }
         this.v.t(str, true, true);
     }
 
     public CharSequence getText() {
-        return this.f22399b.getText();
+        return this.f22402b.getText();
     }
 
     public TLRPC.TL_textWithEntities getTextWithEntities() {
@@ -109,7 +109,7 @@ public class i3 extends FrameLayout {
         float dp;
         int i10;
         super.onDraw(canvas);
-        if (this.f22405w) {
+        if (this.f22408w) {
             if (LocaleController.isRTL) {
                 dp = 0.0f;
             } else {
@@ -123,17 +123,17 @@ public class i3 extends FrameLayout {
             } else {
                 i10 = 0;
             }
-            canvas.drawLine(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.h6.f21108k0);
+            canvas.drawLine(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.h6.f21111k0);
         }
     }
 
     public void setDivider(boolean z10) {
-        this.f22405w = z10;
+        this.f22408w = z10;
         setWillNotDraw(!z10);
     }
 
     public void setShowLimitOnFocus(boolean z10) {
-        this.f22401f = z10;
+        this.f22404f = z10;
     }
 
     public void setShowLimitWhenEmpty(boolean z10) {
@@ -149,20 +149,20 @@ public class i3 extends FrameLayout {
     }
 
     public void setText(CharSequence charSequence) {
-        this.f22398a = true;
-        g3 g3Var = this.f22399b;
+        this.f22401a = true;
+        g3 g3Var = this.f22402b;
         g3Var.setText(charSequence);
         g3Var.setSelection(g3Var.getText().length());
-        this.f22398a = false;
+        this.f22401a = false;
     }
 
     public void setText(TLRPC.TL_textWithEntities tL_textWithEntities) {
-        this.f22398a = true;
+        this.f22401a = true;
         CharSequence formatTextWithEntities = MessageObject.formatTextWithEntities(tL_textWithEntities, false);
-        g3 g3Var = this.f22399b;
+        g3 g3Var = this.f22402b;
         g3Var.setText(formatTextWithEntities);
         g3Var.setSelection(g3Var.getText().length());
-        this.f22398a = false;
+        this.f22401a = false;
     }
 
     public void a(boolean z10) {

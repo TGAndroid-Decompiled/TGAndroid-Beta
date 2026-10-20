@@ -1,44 +1,100 @@
 package org.telegram.messenger;
+public final class h2 implements Runnable {
+    public final int f18505a;
+    public final MessagesStorage f18506b;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-public final class h2 implements Utilities.Callback {
-    public final int f18490a;
-    public final long f18491b;
-    public final Object f18492c;
-    public final Object d;
-    public final Object e;
-
-    public h2(Object obj, long j10, Object obj2, Object obj3, int i10) {
-        this.f18490a = i10;
-        this.f18492c = obj;
-        this.f18491b = j10;
-        this.d = obj2;
-        this.e = obj3;
+    public h2(MessagesStorage messagesStorage, int i10) {
+        this.f18505a = i10;
+        this.f18506b = messagesStorage;
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f18490a) {
+    public final void run() {
+        switch (this.f18505a) {
             case 0:
-                ((FactCheckController) this.f18492c).lambda$loadMissing$3(this.f18491b, (ArrayList) this.d, (HashMap) this.e, (ArrayList) obj);
+                FactCheckController.f(this.f18506b);
                 return;
             case 1:
-                ((MessagesController) this.f18492c).lambda$checkSensitive$451(this.f18491b, (boolean[]) this.d, (Runnable) this.e, (Boolean) obj);
+                this.f18506b.lambda$saveDialogFilter$73();
+                return;
+            case 2:
+                this.f18506b.lambda$clearLocalDatabase$43();
+                return;
+            case 3:
+                this.f18506b.lambda$fixNotificationSettings$9();
+                return;
+            case 4:
+                this.f18506b.lambda$getWallpapers$81();
+                return;
+            case 5:
+                this.f18506b.lambda$loadUnreadMessages$77();
+                return;
+            case 6:
+                this.f18506b.lambda$updateMutedDialogsFiltersCounters$36();
+                return;
+            case 7:
+                this.f18506b.lambda$openDatabase$1();
+                return;
+            case 8:
+                this.f18506b.lambda$openDatabase$2();
+                return;
+            case 9:
+                this.f18506b.lambda$updateFiltersReadCounter$119();
+                return;
+            case 10:
+                this.f18506b.lambda$clearLocalDatabase$44();
+                return;
+            case 11:
+                this.f18506b.lambda$checkSQLException$8();
+                return;
+            case 12:
+                this.f18506b.lambda$fullReset$62();
+                return;
+            case 13:
+                this.f18506b.lambda$new$0();
+                return;
+            case 14:
+                this.f18506b.lambda$resetAllUnreadCounters$250();
+                return;
+            case 15:
+                this.f18506b.lambda$reset$61();
+                return;
+            case 16:
+                this.f18506b.lambda$updateDbToLastVersion$3();
+                return;
+            case 17:
+                this.f18506b.lambda$updateDbToLastVersion$4();
+                return;
+            case 18:
+                this.f18506b.lambda$deleteDialog$89();
+                return;
+            case 19:
+                this.f18506b.lambda$loadDialogFilters$67();
+                return;
+            case 20:
+                this.f18506b.lambda$clearSentMedia$163();
+                return;
+            case 21:
+                this.f18506b.lambda$fullReset$63();
+                return;
+            case 22:
+                this.f18506b.lambda$loadPendingTasks$33();
+                return;
+            case 23:
+                this.f18506b.lambda$deleteAllStoryPushMessages$40();
+                return;
+            case 24:
+                this.f18506b.lambda$cleanup$5();
+                return;
+            case 25:
+                this.f18506b.lambda$deleteAllStoryReactionPushMessages$41();
+                return;
+            case 26:
+                this.f18506b.lambda$getContacts$151();
                 return;
             default:
-                ((TranslateController) this.f18492c).lambda$checkTranslation$6((MessageObject) this.d, (String) this.e, this.f18491b, (TLRPC.TL_textWithEntities) obj);
+                this.f18506b.lambda$broadcastQuickRepliesMessagesChange$223();
                 return;
         }
-    }
-
-    public h2(TranslateController translateController, MessageObject messageObject, String str, long j10) {
-        this.f18490a = 2;
-        this.f18492c = translateController;
-        this.d = messageObject;
-        this.e = str;
-        this.f18491b = j10;
     }
 }

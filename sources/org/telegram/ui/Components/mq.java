@@ -35,7 +35,7 @@ public final class mq extends org.telegram.ui.ActionBar.f3 {
         this.h = new int[2];
         this.e = true;
         setApplyBottomPadding(false);
-        TLRPC.ChatFull chatFull = MessagesController.getInstance(this.currentAccount).getChatFull(chat.f20273id);
+        TLRPC.ChatFull chatFull = MessagesController.getInstance(this.currentAccount).getChatFull(chat.f20276id);
         if (chatFull != null) {
             i10 = chatFull.ttl_period;
         } else {
@@ -56,7 +56,7 @@ public final class mq extends org.telegram.ui.ActionBar.f3 {
         }
         Drawable mutate = activity.getResources().getDrawable(R.drawable.sheet_shadow_round).mutate();
         this.f28581b = mutate;
-        int i11 = org.telegram.ui.ActionBar.h6.f21058h5;
+        int i11 = org.telegram.ui.ActionBar.h6.f21061h5;
         mutate.setColorFilter(new PorterDuffColorFilter(getThemedColor(i11), PorterDuff.Mode.MULTIPLY));
         iq iqVar = new iq(this, activity);
         iqVar.setFillViewport(true);
@@ -79,13 +79,13 @@ public final class mq extends org.telegram.ui.ActionBar.f3 {
         imageView.d();
         jqVar.addView((View) imageView, w7.z5.t(160, 160, 49, 17, 0, 17, 0));
         TextView textView = new TextView(activity);
-        org.telegram.messenger.kk.k(24.0f, 1, textView);
-        textView.setTextColor(getThemedColor(org.telegram.ui.ActionBar.h6.f21093j5));
+        org.telegram.messenger.mk.k(24.0f, 1, textView);
+        textView.setTextColor(getThemedColor(org.telegram.ui.ActionBar.h6.f21096j5));
         textView.setText(LocaleController.getString(R.string.AutoDeleteAlertTitle));
         jqVar.addView(textView, w7.z5.t(-2, -2, 49, 17, 18, 17, 0));
         TextView textView2 = new TextView(activity);
         textView2.setTextSize(1, 14.0f);
-        textView2.setTextColor(getThemedColor(org.telegram.ui.ActionBar.h6.f21243r5));
+        textView2.setTextColor(getThemedColor(org.telegram.ui.ActionBar.h6.f21246r5));
         textView2.setGravity(1);
         if (ChatObject.isChannel(chat) && !chat.megagroup) {
             textView2.setText(LocaleController.getString(R.string.AutoDeleteAlertChannelInfo));
@@ -93,12 +93,12 @@ public final class mq extends org.telegram.ui.ActionBar.f3 {
             textView2.setText(LocaleController.getString(R.string.AutoDeleteAlertGroupInfo));
         }
         jqVar.addView(textView2, w7.z5.t(-2, -2, 49, 30, 22, 30, 20));
-        ow0 ow0Var = new ow0(activity, null);
-        ow0Var.setCallback(new kq(this, iqVar));
-        ow0Var.b(this.f28584n, null, LocaleController.getString(R.string.AutoDeleteNever), LocaleController.getString(R.string.AutoDelete24Hours), LocaleController.getString(R.string.AutoDelete7Days), LocaleController.getString(R.string.AutoDelete1Month));
-        jqVar.addView(ow0Var, w7.z5.k(0.0f, 8.0f, 0.0f, 0.0f, -1, -2));
+        pw0 pw0Var = new pw0(activity, null);
+        pw0Var.setCallback(new kq(this, iqVar));
+        pw0Var.b(this.f28584n, null, LocaleController.getString(R.string.AutoDeleteNever), LocaleController.getString(R.string.AutoDelete24Hours), LocaleController.getString(R.string.AutoDelete7Days), LocaleController.getString(R.string.AutoDelete1Month));
+        jqVar.addView(pw0Var, w7.z5.k(0.0f, 8.0f, 0.0f, 0.0f, -1, -2));
         FrameLayout frameLayout = new FrameLayout(activity);
-        zq zqVar = new zq(new ColorDrawable(getThemedColor(org.telegram.ui.ActionBar.h6.f20929a7)), org.telegram.ui.ActionBar.h6.W0(activity, R.drawable.greydivider_bottom, org.telegram.ui.ActionBar.h6.f20949b7));
+        zq zqVar = new zq(new ColorDrawable(getThemedColor(org.telegram.ui.ActionBar.h6.f20932a7)), org.telegram.ui.ActionBar.h6.W0(activity, R.drawable.greydivider_bottom, org.telegram.ui.ActionBar.h6.f20952b7));
         zqVar.f33023w = true;
         frameLayout.setBackgroundDrawable(zqVar);
         jqVar.addView(frameLayout, w7.z5.n(-1, -2));
@@ -109,7 +109,7 @@ public final class mq extends org.telegram.ui.ActionBar.f3 {
         this.d = lqVar;
         lqVar.setBackgroundColor(getThemedColor(i11));
         lqVar.setText(LocaleController.getString(R.string.AutoDeleteSet));
-        lqVar.f28283a.setOnClickListener(new f0(this, 8));
+        lqVar.f28247a.setOnClickListener(new f0(this, 8));
         frameLayout.addView(lqVar);
         q(false);
     }

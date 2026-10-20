@@ -45,11 +45,11 @@ public final class r implements RequestDelegate {
                     int i10 = 0;
                     for (int i11 = 0; i11 < messages_messages.chats.size(); i11++) {
                         TLRPC.Chat chat = messages_messages.chats.get(i11);
-                        hVar.k(chat, chat.f20273id);
+                        hVar.k(chat, chat.f20276id);
                     }
                     for (int i12 = 0; i12 < messages_messages.users.size(); i12++) {
                         TLRPC.User user = messages_messages.users.get(i12);
-                        hVar2.k(user, user.f20420id);
+                        hVar2.k(user, user.f20423id);
                     }
                     while (i10 < messages_messages.messages.size()) {
                         a0.h hVar3 = hVar;
@@ -74,11 +74,11 @@ public final class r implements RequestDelegate {
                     a0.h hVar5 = new a0.h();
                     for (int i14 = 0; i14 < messages_messages2.chats.size(); i14++) {
                         TLRPC.Chat chat2 = messages_messages2.chats.get(i14);
-                        hVar4.k(chat2, chat2.f20273id);
+                        hVar4.k(chat2, chat2.f20276id);
                     }
                     for (int i15 = 0; i15 < messages_messages2.users.size(); i15++) {
                         TLRPC.User user2 = messages_messages2.users.get(i15);
-                        hVar5.k(user2, user2.f20420id);
+                        hVar5.k(user2, user2.f20423id);
                     }
                     int i16 = 0;
                     while (i16 < messages_messages2.messages.size()) {

@@ -17,15 +17,15 @@ import org.telegram.ui.ex;
 import org.telegram.ui.l80;
 import org.telegram.ui.qn;
 public final class h implements Runnable {
-    public final int f34262a;
-    public final Object f34263b;
-    public final Object f34264c;
+    public final int f34268a;
+    public final Object f34269b;
+    public final Object f34270c;
     public final Object d;
 
     public h(Object obj, Object obj2, Object obj3, int i10) {
-        this.f34262a = i10;
-        this.f34263b = obj;
-        this.f34264c = obj2;
+        this.f34268a = i10;
+        this.f34269b = obj;
+        this.f34270c = obj2;
         this.d = obj3;
     }
 
@@ -33,10 +33,10 @@ public final class h implements Runnable {
     public final void run() {
         String str;
         byte[] bArr;
-        switch (this.f34262a) {
+        switch (this.f34268a) {
             case 0:
-                WalletEngine2.ImportedWalletProof importedWalletProof = (WalletEngine2.ImportedWalletProof) this.f34263b;
-                Exception exc = (Exception) this.f34264c;
+                WalletEngine2.ImportedWalletProof importedWalletProof = (WalletEngine2.ImportedWalletProof) this.f34269b;
+                Exception exc = (Exception) this.f34270c;
                 Utilities.Callback2 callback2 = (Utilities.Callback2) this.d;
                 if (importedWalletProof == null) {
                     StringBuilder sb2 = new StringBuilder("failed to prove: ");
@@ -58,11 +58,11 @@ public final class h implements Runnable {
                 callback2.run(importedWalletProof, null);
                 return;
             case 1:
-                m0 m0Var = (m0) this.f34263b;
+                m0 m0Var = (m0) this.f34269b;
                 d0 d0Var = (d0) this.d;
-                if (m0Var.N.get((String) this.f34264c) == d0Var) {
+                if (m0Var.N.get((String) this.f34270c) == d0Var) {
                     d0Var.e = true;
-                    ArrayList arrayList = d0Var.f34085f;
+                    ArrayList arrayList = d0Var.f34091f;
                     m0Var.h0(d0Var);
                     int size = arrayList.size();
                     int i10 = 0;
@@ -77,38 +77,38 @@ public final class h implements Runnable {
                 }
                 return;
             case 2:
-                b2 b2Var = (b2) this.f34264c;
+                b2 b2Var = (b2) this.f34270c;
                 ei.d dVar = (ei.d) this.d;
                 boolean z10 = true;
-                if (!((ex) this.f34263b).canScrollVertically(1)) {
-                    b2Var.f34021p = true;
+                if (!((ex) this.f34269b).canScrollVertically(1)) {
+                    b2Var.f34027p = true;
                 }
-                dVar.setEnabled((!b2Var.f34021p || b2Var.f34018m || b2Var.f34019n) ? false : false);
+                dVar.setEnabled((!b2Var.f34027p || b2Var.f34024m || b2Var.f34025n) ? false : false);
                 return;
             case 3:
-                f2 f2Var = (f2) this.f34263b;
-                a2 a2Var = (a2) this.f34264c;
+                f2 f2Var = (f2) this.f34269b;
+                a2 a2Var = (a2) this.f34270c;
                 f2Var.getClass();
                 l lVar = new l((l80) this.d, 2);
                 TL_wallet.tonConnectSession tonconnectsession = a2Var.e;
                 if (!tonconnectsession.closed && !tonconnectsession.closing && tonconnectsession.manifest_error == null && tonconnectsession.manifest != null) {
-                    if (a2Var.f33980f) {
+                    if (a2Var.f33986f) {
                         lVar.run("A TON Connect operation is already in progress");
                         return;
                     }
-                    a2Var.f33980f = true;
-                    f2Var.f34189b.j0(new w6(f2Var, a2Var, lVar, tonconnectsession, 6));
+                    a2Var.f33986f = true;
+                    f2Var.f34195b.j0(new w6(f2Var, a2Var, lVar, tonconnectsession, 6));
                     return;
                 }
                 lVar.run("The dApp manifest is unavailable or the session is closed");
                 return;
             case 4:
-                f2 f2Var2 = (f2) this.f34263b;
-                TL_wallet.tonConnectSession tonconnectsession2 = (TL_wallet.tonConnectSession) this.f34264c;
+                f2 f2Var2 = (f2) this.f34269b;
+                TL_wallet.tonConnectSession tonconnectsession2 = (TL_wallet.tonConnectSession) this.f34270c;
                 f2Var2.getClass();
                 l lVar2 = new l((Utilities.Callback) this.d, 3);
                 if (tonconnectsession2 != null && tonconnectsession2.dapp_client_id != null && tonconnectsession2.client_id != null && tonconnectsession2.nonce != null) {
-                    if (!f2Var2.f34190c.add(Long.valueOf(tonconnectsession2.f20531id))) {
+                    if (!f2Var2.f34196c.add(Long.valueOf(tonconnectsession2.f20534id))) {
                         lVar2.run("A TON Connect operation is already in progress");
                         return;
                     }
@@ -117,20 +117,20 @@ public final class h implements Runnable {
                         pVar.run(null);
                         return;
                     } else {
-                        f2Var2.f34189b.j0(new h(f2Var2, pVar, tonconnectsession2, 6));
+                        f2Var2.f34195b.j0(new h(f2Var2, pVar, tonconnectsession2, 6));
                         return;
                     }
                 }
                 lVar2.run("Missing TON Connect session data");
                 return;
             case 5:
-                ((s1) this.f34263b).run((TL_wallet.inputTonConnectOauthSession) this.f34264c, (String) this.d);
+                ((s1) this.f34269b).run((TL_wallet.inputTonConnectOauthSession) this.f34270c, (String) this.d);
                 return;
             case 6:
-                f2 f2Var3 = (f2) this.f34263b;
-                p pVar2 = (p) this.f34264c;
+                f2 f2Var3 = (f2) this.f34269b;
+                p pVar2 = (p) this.f34270c;
                 TL_wallet.tonConnectSession tonconnectsession3 = (TL_wallet.tonConnectSession) this.d;
-                m0 m0Var2 = f2Var3.f34189b;
+                m0 m0Var2 = f2Var3.f34195b;
                 String s10 = m0Var2.s();
                 byte[] x10 = m0Var2.x();
                 if (x10 == null) {
@@ -147,16 +147,16 @@ public final class h implements Runnable {
                     return;
                 }
             case 7:
-                ((a2) this.f34263b).f33980f = false;
-                ((l) this.f34264c).run((String) this.d);
+                ((a2) this.f34269b).f33986f = false;
+                ((l) this.f34270c).run((String) this.d);
                 return;
             case 8:
-                ((w6) this.f34263b).run();
-                ((i80) this.f34264c).K((i80) this.d);
+                ((w6) this.f34269b).run();
+                ((i80) this.f34270c).K((i80) this.d);
                 return;
             case 9:
-                Utilities.Callback3 callback3 = (Utilities.Callback3) this.f34263b;
-                k2[] k2VarArr = (k2[]) this.f34264c;
+                Utilities.Callback3 callback3 = (Utilities.Callback3) this.f34269b;
+                k2[] k2VarArr = (k2[]) this.f34270c;
                 TL_wallet.walletTransactionPeerUser wallettransactionpeeruser = (TL_wallet.walletTransactionPeerUser) this.d;
                 if (callback3 == null) {
                     k2 k2Var = k2VarArr[0];
@@ -172,13 +172,13 @@ public final class h implements Runnable {
                 }
                 return;
             case 10:
-                k2[] k2VarArr2 = (k2[]) this.f34263b;
-                k2VarArr2[0].setOnDismissListener(new ai.z3(15, (TLRPC.User) this.f34264c, (TL_wallet.walletTransactionPeerUser) this.d));
+                k2[] k2VarArr2 = (k2[]) this.f34269b;
+                k2VarArr2[0].setOnDismissListener(new ai.z3(15, (TLRPC.User) this.f34270c, (TL_wallet.walletTransactionPeerUser) this.d));
                 k2VarArr2[0].dismiss();
                 return;
             case 11:
-                Utilities.Callback3 callback32 = (Utilities.Callback3) this.f34263b;
-                k2[] k2VarArr3 = (k2[]) this.f34264c;
+                Utilities.Callback3 callback32 = (Utilities.Callback3) this.f34269b;
+                k2[] k2VarArr3 = (k2[]) this.f34270c;
                 TL_wallet.WalletTransactionPeer walletTransactionPeer = (TL_wallet.WalletTransactionPeer) this.d;
                 if (callback32 == null) {
                     k2 k2Var2 = k2VarArr3[0];
@@ -194,15 +194,15 @@ public final class h implements Runnable {
                 }
                 return;
             case 12:
-                ((Utilities.Callback2) this.d).run(((String[]) this.f34263b)[0], Boolean.valueOf(((boolean[]) this.f34264c)[0]));
+                ((Utilities.Callback2) this.d).run(((String[]) this.f34269b)[0], Boolean.valueOf(((boolean[]) this.f34270c)[0]));
                 return;
             case 13:
-                s5 s5Var = (s5) this.f34263b;
-                p5 p5Var = (p5) this.f34264c;
-                s5Var.f34836b = p5Var;
-                p5Var.j(s5Var.f34838c);
-                s5Var.f34844g0 = Float.NaN;
-                s5Var.b(s5Var.f34839c0, s5Var.f34843f0);
+                s5 s5Var = (s5) this.f34269b;
+                p5 p5Var = (p5) this.f34270c;
+                s5Var.f34842b = p5Var;
+                p5Var.j(s5Var.f34844c);
+                s5Var.f34850g0 = Float.NaN;
+                s5Var.b(s5Var.f34845c0, s5Var.f34849f0);
                 s5Var.e.setVisibility(0);
                 ((q5) this.d).run();
                 v2 v2Var = s5Var.d;
@@ -213,37 +213,37 @@ public final class h implements Runnable {
                 }
                 return;
             case 14:
-                ((Utilities.Callback2) this.d).run((String) this.f34263b, (String) this.f34264c);
+                ((Utilities.Callback2) this.d).run((String) this.f34269b, (String) this.f34270c);
                 return;
             case 15:
-                ((WalletEngine2) this.f34263b).lambda$previewSignMessage$8((e2) this.f34264c, (Utilities.Callback) this.d);
+                ((WalletEngine2) this.f34269b).lambda$previewSignMessage$8((e2) this.f34270c, (Utilities.Callback) this.d);
                 return;
             case 16:
-                ((Utilities.Callback2) this.d).run((Long) this.f34263b, (String) this.f34264c);
+                ((Utilities.Callback2) this.d).run((Long) this.f34269b, (String) this.f34270c);
                 return;
             case 17:
-                ((WalletEngine2) this.f34263b).lambda$previewTonConnect$2((e2) this.f34264c, (Utilities.Callback2) this.d);
+                ((WalletEngine2) this.f34269b).lambda$previewTonConnect$2((e2) this.f34270c, (Utilities.Callback2) this.d);
                 return;
             case 18:
-                s7 s7Var = (s7) this.f34263b;
-                int[] iArr = (int[]) this.f34264c;
+                s7 s7Var = (s7) this.f34269b;
+                int[] iArr = (int[]) this.f34270c;
                 Bitmap bitmap = (Bitmap) this.d;
                 s7Var.C = false;
-                t7 t7Var = s7Var.f34864d0;
-                boolean z11 = t7Var.f34907a1;
-                x5 x5Var = t7Var.f34911c;
+                t7 t7Var = s7Var.f34870d0;
+                boolean z11 = t7Var.f34913a1;
+                x5 x5Var = t7Var.f34917c;
                 if (!z11) {
-                    if (s7Var.f34879u == null) {
-                        s7Var.f34879u = Bitmap.createBitmap(288, 288, Bitmap.Config.ARGB_8888);
+                    if (s7Var.f34885u == null) {
+                        s7Var.f34885u = Bitmap.createBitmap(288, 288, Bitmap.Config.ARGB_8888);
                         if (x5Var.isShown() && x5Var.getAlpha() > 0.0f) {
-                            r7 r7Var = s7Var.f34876r;
+                            r7 r7Var = s7Var.f34882r;
                             r7Var.a(0.0f);
-                            r7Var.f34804b = 1.0f;
+                            r7Var.f34810b = 1.0f;
                         }
                     }
-                    s7Var.f34879u.setPixels(iArr, 0, 288, 0, 0, 288, 288);
-                    if (bitmap != null && s7Var.f34880w == null) {
-                        s7Var.f34880w = bitmap;
+                    s7Var.f34885u.setPixels(iArr, 0, 288, 0, 0, 288, 288);
+                    if (bitmap != null && s7Var.f34886w == null) {
+                        s7Var.f34886w = bitmap;
                     }
                     if (s7Var.D) {
                         s7Var.c();
@@ -253,20 +253,20 @@ public final class h implements Runnable {
                 }
                 return;
             case 19:
-                h8 h8Var = (h8) this.f34263b;
+                h8 h8Var = (h8) this.f34269b;
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(h8Var.getParentActivity(), 0, h8Var.getResourceProvider());
-                alertDialog$Builder.f20602a.R = LocaleController.getString(R.string.WalletDisableBackupTitle);
-                alertDialog$Builder.f20602a.T = LocaleController.getString(R.string.WalletDisableBackupConfirmInfo);
+                alertDialog$Builder.f20605a.R = LocaleController.getString(R.string.WalletDisableBackupTitle);
+                alertDialog$Builder.f20605a.T = LocaleController.getString(R.string.WalletDisableBackupConfirmInfo);
                 alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-                alertDialog$Builder.k(LocaleController.getString(R.string.WalletDisable), new b8(h8Var, (m0) this.f34264c, (h0) this.d));
+                alertDialog$Builder.k(LocaleController.getString(R.string.WalletDisable), new b8(h8Var, (m0) this.f34270c, (h0) this.d));
                 alertDialog$Builder.d(-1);
                 alertDialog$Builder.o();
                 return;
             default:
-                h8 h8Var2 = (h8) this.f34263b;
-                Boolean bool = (Boolean) this.f34264c;
+                h8 h8Var2 = (h8) this.f34269b;
+                Boolean bool = (Boolean) this.f34270c;
                 AlertDialog$Builder alertDialog$Builder2 = new AlertDialog$Builder(h8Var2.getParentActivity(), 0, h8Var2.getResourceProvider());
-                alertDialog$Builder2.f20602a.R = LocaleController.getString(R.string.WalletReplaceWalletTitle);
+                alertDialog$Builder2.f20605a.R = LocaleController.getString(R.string.WalletReplaceWalletTitle);
                 alertDialog$Builder2.k(LocaleController.getString(R.string.WalletCreateNew), new b8(h8Var2, bool, (m0) this.d, 0));
                 alertDialog$Builder2.h(LocaleController.getString(R.string.WalletImportExisting), new en0(26, h8Var2, bool));
                 alertDialog$Builder2.o();
@@ -275,16 +275,16 @@ public final class h implements Runnable {
     }
 
     public h(Utilities.Callback2 callback2, Serializable serializable, Serializable serializable2, int i10) {
-        this.f34262a = i10;
+        this.f34268a = i10;
         this.d = callback2;
-        this.f34263b = serializable;
-        this.f34264c = serializable2;
+        this.f34269b = serializable;
+        this.f34270c = serializable2;
     }
 
     public h(m0 m0Var, WalletEngine2.ImportedWalletProof importedWalletProof, Exception exc, Utilities.Callback2 callback2) {
-        this.f34262a = 0;
-        this.f34263b = importedWalletProof;
-        this.f34264c = exc;
+        this.f34268a = 0;
+        this.f34269b = importedWalletProof;
+        this.f34270c = exc;
         this.d = callback2;
     }
 }

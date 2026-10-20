@@ -3,13 +3,13 @@ package org.telegram.ui;
 import android.graphics.Canvas;
 import android.graphics.RectF;
 public final class m81 implements ch.a {
-    public final RectF f39134a = new RectF();
-    public final y8 f39135b;
-    public final p91 f39136c;
+    public final RectF f39140a = new RectF();
+    public final y8 f39141b;
+    public final p91 f39142c;
 
     public m81(p91 p91Var, y8 y8Var) {
-        this.f39136c = p91Var;
-        this.f39135b = y8Var;
+        this.f39142c = p91Var;
+        this.f39141b = y8Var;
     }
 
     @Override
@@ -22,21 +22,21 @@ public final class m81 implements ch.a {
         bh.l lVar;
         cc ccVar;
         cc ccVar2;
-        p91 p91Var = this.f39136c;
+        p91 p91Var = this.f39142c;
         p91Var.fragmentView.getMeasuredWidth();
         p91Var.fragmentView.getMeasuredHeight();
-        canvas.drawColor(p91Var.getThemedColor(org.telegram.ui.ActionBar.h6.f20987d6));
+        canvas.drawColor(p91Var.getThemedColor(org.telegram.ui.ActionBar.h6.f20990d6));
         for (int i10 = 0; i10 < 3; i10++) {
             if (i10 == 0) {
                 lVar = p91Var.T;
                 ccVar = p91Var.S;
-            } else if (i10 == 1 && (ccVar2 = p91Var.f40134j0) != null) {
+            } else if (i10 == 1 && (ccVar2 = p91Var.f40140j0) != null) {
                 lVar = ccVar2.G;
                 ccVar = ccVar2;
             } else {
-                ie ieVar = p91Var.f40135k0;
+                ie ieVar = p91Var.f40141k0;
                 if (ieVar != null) {
-                    lVar = ieVar.f37925b1;
+                    lVar = ieVar.f37931b1;
                     ccVar = ieVar;
                 } else {
                     lVar = null;
@@ -44,8 +44,8 @@ public final class m81 implements ch.a {
                 }
             }
             if (lVar != null && ccVar != null) {
-                y8 y8Var = this.f39135b;
-                RectF rectF2 = this.f39134a;
+                y8 y8Var = this.f39141b;
+                RectF rectF2 = this.f39140a;
                 ih.j.c(ccVar, y8Var, rectF2);
                 if (rectF2.right > 0.0f) {
                     p91Var.fragmentView.getMeasuredWidth();

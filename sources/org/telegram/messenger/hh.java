@@ -1,25 +1,31 @@
 package org.telegram.messenger;
 
-import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.ConnectionsManager;
 public final class hh implements Runnable {
-    public final int f18533a;
-    public final Utilities.Callback2 f18534b;
-    public final Exception f18535c;
+    public final int f18551a;
+    public final int f18552b;
+    public final int f18553c;
 
-    public hh(Utilities.Callback2 callback2, Exception exc, int i10) {
-        this.f18533a = i10;
-        this.f18534b = callback2;
-        this.f18535c = exc;
+    public hh(int i10, int i11, int i12) {
+        this.f18551a = i12;
+        this.f18552b = i10;
+        this.f18553c = i11;
     }
 
     @Override
     public final void run() {
-        switch (this.f18533a) {
+        switch (this.f18551a) {
             case 0:
-                PasskeysController.lambda$create$3(this.f18534b, this.f18535c);
+                PasskeysController.f(this.f18552b, this.f18553c);
+                return;
+            case 1:
+                ConnectionsManager.B(this.f18552b, this.f18553c);
+                return;
+            case 2:
+                ConnectionsManager.r(this.f18552b, this.f18553c);
                 return;
             default:
-                PasskeysController.lambda$create$8(this.f18534b, this.f18535c);
+                ConnectionsManager.getInstance(this.f18552b).cancelRequest(this.f18553c, true);
                 return;
         }
     }

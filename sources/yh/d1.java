@@ -24,60 +24,60 @@ public final class d1 extends Drawable {
     public static k1 C = new k1();
     public Paint A;
     public int B;
-    public final ViewGroup f50192a;
-    public final d6 f50193b;
-    public final Paint f50194c;
+    public final ViewGroup f50197a;
+    public final d6 f50198b;
+    public final Paint f50199c;
     public final Paint d;
     public final RectF e;
-    public final Path f50195f;
-    public final boolean f50196g;
+    public final Path f50200f;
+    public final boolean f50201g;
     public TL_stars.starGiftAttributeBackdrop h;
-    public int f50197i;
-    public RadialGradient f50198j;
-    public final Matrix f50199k;
-    public final c1 f50200l;
-    public int[] f50201m;
-    public LinearGradient f50202n;
-    public final Matrix f50203o;
-    public boolean f50204p;
-    public final Paint f50205q;
-    public final f6 f50206r;
-    public float f50207s;
-    public boolean f50208t;
-    public boolean f50209u;
+    public int f50202i;
+    public RadialGradient f50203j;
+    public final Matrix f50204k;
+    public final c1 f50205l;
+    public int[] f50206m;
+    public LinearGradient f50207n;
+    public final Matrix f50208o;
+    public boolean f50209p;
+    public final Paint f50210q;
+    public final f6 f50211r;
+    public float f50212s;
+    public boolean f50213t;
+    public boolean f50214u;
     public int v;
-    public int f50210w;
-    public Integer f50211x;
-    public long f50212y;
-    public Bitmap f50213z;
+    public int f50215w;
+    public Integer f50216x;
+    public long f50217y;
+    public Bitmap f50218z;
 
     public d1(ViewGroup viewGroup, d6 d6Var, boolean z10) {
         Paint paint = new Paint(1);
-        this.f50194c = paint;
+        this.f50199c = paint;
         Paint paint2 = new Paint(1);
         this.d = paint2;
         this.e = new RectF();
-        this.f50195f = new Path();
-        this.f50199k = new Matrix();
+        this.f50200f = new Path();
+        this.f50204k = new Matrix();
         new Path();
-        this.f50203o = new Matrix();
+        this.f50208o = new Matrix();
         Paint paint3 = new Paint(1);
-        this.f50205q = paint3;
-        this.f50206r = new f6(new tg.p(this, 16), 320L, bs.h);
-        this.f50207s = AndroidUtilities.dp(11.0f);
-        this.f50209u = true;
+        this.f50210q = paint3;
+        this.f50211r = new f6(new tg.p(this, 16), 320L, bs.h);
+        this.f50212s = AndroidUtilities.dp(11.0f);
+        this.f50214u = true;
         this.v = 0;
-        int i10 = h6.f20987d6;
-        this.f50210w = i10;
-        this.f50192a = viewGroup;
-        this.f50193b = d6Var;
+        int i10 = h6.f20990d6;
+        this.f50215w = i10;
+        this.f50197a = viewGroup;
+        this.f50198b = d6Var;
         c1 c1Var = new c1(this, viewGroup, AndroidUtilities.dp(28.0f));
-        this.f50200l = c1Var;
+        this.f50205l = c1Var;
         viewGroup.addOnAttachStateChangeListener(new n6(this, 13));
         if (viewGroup.isAttachedToWindow()) {
             c1Var.a();
         }
-        this.f50196g = z10;
+        this.f50201g = z10;
         paint.setColor(h6.w0(i10, d6Var));
         a(z10);
         Paint.Style style = Paint.Style.STROKE;
@@ -86,11 +86,11 @@ public final class d1 extends Drawable {
     }
 
     public final void a(boolean z10) {
-        if (this.f50208t != z10) {
-            this.f50208t = z10;
-            Paint paint = this.f50194c;
+        if (this.f50213t != z10) {
+            this.f50213t = z10;
+            Paint paint = this.f50199c;
             if (z10) {
-                paint.setShadowLayer(AndroidUtilities.dp(1.66f), 0.0f, AndroidUtilities.dp(0.33f), h6.w0(h6.f20928a6, this.f50193b));
+                paint.setShadowLayer(AndroidUtilities.dp(1.66f), 0.0f, AndroidUtilities.dp(0.33f), h6.w0(h6.f20931a6, this.f50198b));
             } else {
                 paint.setShadowLayer(0.0f, 0.0f, 0.0f, 0);
             }
@@ -102,7 +102,7 @@ public final class d1 extends Drawable {
     }
 
     public final void c() {
-        this.f50192a.invalidate();
+        this.f50197a.invalidate();
         if (getCallback() != null) {
             getCallback().invalidateDrawable(this);
         }
@@ -110,7 +110,7 @@ public final class d1 extends Drawable {
 
     public final void d(TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop) {
         if (this.h != stargiftattributebackdrop) {
-            this.f50198j = null;
+            this.f50203j = null;
         }
         this.h = stargiftattributebackdrop;
         c();
@@ -122,8 +122,8 @@ public final class d1 extends Drawable {
     }
 
     public final void e(TL_stars.starGiftAttributePattern stargiftattributepattern) {
-        this.f50212y = 0L;
-        c1 c1Var = this.f50200l;
+        this.f50217y = 0L;
+        c1 c1Var = this.f50205l;
         if (stargiftattributepattern == null) {
             c1Var.g(null, false);
             return;
@@ -131,27 +131,27 @@ public final class d1 extends Drawable {
         c1Var.i(stargiftattributepattern.document, false);
         TLRPC.Document document = stargiftattributepattern.document;
         if (document != null) {
-            this.f50212y = document.f20279id;
+            this.f50217y = document.f20282id;
         }
     }
 
     public final void f(boolean z10, boolean z11) {
-        if (this.f50204p == z10) {
+        if (this.f50209p == z10) {
             return;
         }
-        this.f50204p = z10;
+        this.f50209p = z10;
         if (!z11) {
-            this.f50206r.a(z10);
+            this.f50211r.a(z10);
         }
         c();
     }
 
     public final void g(int[] iArr) {
-        if (this.f50201m == iArr) {
+        if (this.f50206m == iArr) {
             return;
         }
-        this.f50201m = iArr;
-        this.f50202n = null;
+        this.f50206m = iArr;
+        this.f50207n = null;
         c();
     }
 

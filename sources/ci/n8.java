@@ -12,7 +12,7 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.e11;
+import org.telegram.ui.Components.f11;
 import org.telegram.ui.Components.yc;
 import org.telegram.ui.Components.yq;
 public final class n8 {
@@ -26,8 +26,8 @@ public final class n8 {
     public SpannableStringBuilder f5665k;
     public String f5666l;
     public boolean f5667m;
-    public e11 f5668n;
-    public e11 f5669o;
+    public f11 f5668n;
+    public f11 f5669o;
     public boolean f5670p;
     public boolean f5671q;
     public View f5672r;
@@ -78,19 +78,19 @@ public final class n8 {
             } else {
                 bold = AndroidUtilities.bold();
             }
-            this.f5668n = new e11(spannableStringBuilder, f10, bold);
+            this.f5668n = new f11(spannableStringBuilder, f10, bold);
         }
         if (this.f5669o == null || this.f5667m) {
             String str2 = this.f5666l;
             if (str2 != null) {
                 str = str2;
             }
-            this.f5669o = new e11(str, 14.0f, null);
+            this.f5669o = new f11(str, 14.0f, null);
         }
         float e = this.h.e(this.f5661f);
         Paint paint = this.f5674t;
         paint.setColor(1073741824);
-        int min = (int) Math.min(f7, Math.max(this.f5668n.f25728c, this.f5669o.f25728c) + AndroidUtilities.lerp(AndroidUtilities.dp(20.0f), AndroidUtilities.dp(18.0f), e));
+        int min = (int) Math.min(f7, Math.max(this.f5668n.f26021c, this.f5669o.f26021c) + AndroidUtilities.lerp(AndroidUtilities.dp(20.0f), AndroidUtilities.dp(18.0f), e));
         this.f5677x = min;
         int lerp = AndroidUtilities.lerp(AndroidUtilities.dp(42.0f), AndroidUtilities.dp(22.0f), e);
         float f11 = min;
@@ -124,13 +124,13 @@ public final class n8 {
         if (f11 < f7) {
             dp = (int) Math.min(AndroidUtilities.dp(12.0f) + dp, f7 - AndroidUtilities.dp(20.0f));
         }
-        e11 e11Var = this.f5668n;
+        f11 f11Var = this.f5668n;
         float f13 = dp;
-        e11Var.f25738p = f13;
-        e11Var.c(AndroidUtilities.lerp(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(7.0f), e), AndroidUtilities.lerp(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(11.0f), e), 1.0f, -1, canvas);
-        e11 e11Var2 = this.f5669o;
-        e11Var2.f25738p = f13;
-        e11Var2.c(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(30.0f), f12, -1, canvas);
+        f11Var.f26031p = f13;
+        f11Var.c(AndroidUtilities.lerp(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(7.0f), e), AndroidUtilities.lerp(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(11.0f), e), 1.0f, -1, canvas);
+        f11 f11Var2 = this.f5669o;
+        f11Var2.f26031p = f13;
+        f11Var2.c(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(30.0f), f12, -1, canvas);
         canvas.restore();
     }
 

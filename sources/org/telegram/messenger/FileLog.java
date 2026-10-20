@@ -297,7 +297,7 @@ public class FileLog {
 
     public static void dumpUnparsedMessage(TLObject tLObject, long j10, int i10) {
         if (BuildVars.DEBUG_PRIVATE_VERSION && BuildVars.LOGS_ENABLED && tLObject != null) {
-            postProtocolDump(new y4(tLObject, gsonDisabled, System.currentTimeMillis(), j10, i10));
+            postProtocolDump(new a5(tLObject, gsonDisabled, System.currentTimeMillis(), j10, i10));
         }
     }
 
@@ -599,7 +599,7 @@ public class FileLog {
             if (dispatchQueue == null) {
                 atomicInteger.decrementAndGet();
             } else {
-                dispatchQueue.postRunnable(new h3(0, runnable));
+                dispatchQueue.postRunnable(new i3(0, runnable));
             }
         } catch (Throwable th2) {
             pendingProtocolDumps.decrementAndGet();
@@ -612,7 +612,7 @@ public class FileLog {
             ensureInitied();
             Log.w("tmessages", str);
             if (getInstance().streamWriter != null) {
-                getInstance().logQueue.postRunnable(new w1(str, 1));
+                getInstance().logQueue.postRunnable(new x1(str, 1));
             }
         }
     }
@@ -635,7 +635,7 @@ public class FileLog {
             ensureInitied();
             Log.d("tmessages", str);
             if (getInstance().streamWriter != null) {
-                getInstance().logQueue.postRunnable(new w1(str, 3));
+                getInstance().logQueue.postRunnable(new x1(str, 3));
             }
         }
     }
@@ -645,7 +645,7 @@ public class FileLog {
             ensureInitied();
             Log.e("tmessages", str, th2);
             if (getInstance().streamWriter != null) {
-                getInstance().logQueue.postRunnable(new i2(6, str, th2));
+                getInstance().logQueue.postRunnable(new j2(6, str, th2));
             }
         }
     }
@@ -661,7 +661,7 @@ public class FileLog {
             ensureInitied();
             th2.printStackTrace();
             if (getInstance().streamWriter != null) {
-                getInstance().logQueue.postRunnable(new i3(1, th2));
+                getInstance().logQueue.postRunnable(new j3(1, th2));
                 return;
             }
             th2.printStackTrace();
@@ -676,7 +676,7 @@ public class FileLog {
             ensureInitied();
             Log.e("tmessages", str);
             if (getInstance().streamWriter != null) {
-                getInstance().logQueue.postRunnable(new w1(str, 2));
+                getInstance().logQueue.postRunnable(new x1(str, 2));
             }
         }
     }
@@ -707,7 +707,7 @@ public class FileLog {
             ensureInitied();
             th2.printStackTrace();
             if (getInstance().streamWriter != null) {
-                getInstance().logQueue.postRunnable(new i3(0, th2));
+                getInstance().logQueue.postRunnable(new j3(0, th2));
             } else {
                 th2.printStackTrace();
             }

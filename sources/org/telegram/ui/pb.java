@@ -10,32 +10,32 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 public final class pb implements org.telegram.ui.Cells.t0 {
-    public final rb f40168a;
+    public final rb f40174a;
 
     public pb(rb rbVar) {
-        this.f40168a = rbVar;
+        this.f40174a = rbVar;
     }
 
     @Override
     public final org.telegram.ui.ActionBar.n2 L0() {
-        return this.f40168a.f41105n;
+        return this.f40174a.f41111n;
     }
 
     @Override
     public final void N0(TLRPC.TL_chatInviteExported tL_chatInviteExported) {
         Object obj;
-        vb vbVar = this.f40168a.f41105n;
+        vb vbVar = this.f40174a.f41111n;
         if (vbVar.A0) {
             return;
         }
-        if (vbVar.f42187y0.containsKey(tL_chatInviteExported.link)) {
-            obj = vbVar.f42187y0.get(tL_chatInviteExported.link);
+        if (vbVar.f42193y0.containsKey(tL_chatInviteExported.link)) {
+            obj = vbVar.f42193y0.get(tL_chatInviteExported.link);
         } else {
             obj = null;
         }
         if (obj == null) {
             TLRPC.TL_messages_getExportedChatInvite tL_messages_getExportedChatInvite = new TLRPC.TL_messages_getExportedChatInvite();
-            tL_messages_getExportedChatInvite.peer = vbVar.getMessagesController().getInputPeer(-vbVar.f42162f.f20273id);
+            tL_messages_getExportedChatInvite.peer = vbVar.getMessagesController().getInputPeer(-vbVar.f42168f.f20276id);
             tL_messages_getExportedChatInvite.link = tL_chatInviteExported.link;
             vbVar.A0 = true;
             final boolean[] zArr = new boolean[1];
@@ -43,14 +43,14 @@ public final class pb implements org.telegram.ui.Cells.t0 {
             b2Var.setOnCancelListener(new DialogInterface.OnCancelListener() {
                 @Override
                 public final void onCancel(DialogInterface dialogInterface) {
-                    pb.this.f40168a.f41105n.A0 = false;
+                    pb.this.f40174a.f41111n.A0 = false;
                     zArr[0] = true;
                 }
             });
             b2Var.r(300L);
             vbVar.getConnectionsManager().bindRequestToGuid(vbVar.getConnectionsManager().sendRequest(tL_messages_getExportedChatInvite, new ai.k2(this, tL_chatInviteExported, zArr, b2Var, 9)), vb.z0(vbVar));
         } else if (obj instanceof TLRPC.TL_messages_exportedChatInvite) {
-            vb.A0(vbVar, (TLRPC.TL_messages_exportedChatInvite) obj, vbVar.f42188z0);
+            vb.A0(vbVar, (TLRPC.TL_messages_exportedChatInvite) obj, vbVar.f42194z0);
         } else {
             org.telegram.messenger.g0.q(R.string.LinkHashExpired, org.telegram.ui.Components.xc.a0(vbVar), R.raw.linkbroken, 36);
         }
@@ -58,7 +58,7 @@ public final class pb implements org.telegram.ui.Cells.t0 {
 
     @Override
     public final long a() {
-        return -this.f40168a.f41105n.f42162f.f20273id;
+        return -this.f40174a.f41111n.f42168f.f20276id;
     }
 
     @Override
@@ -73,33 +73,33 @@ public final class pb implements org.telegram.ui.Cells.t0 {
 
     @Override
     public final boolean h2(org.telegram.ui.Cells.w0 w0Var, float f7, float f10) {
-        vb vbVar = this.f40168a.f41105n;
+        vb vbVar = this.f40174a.f41111n;
         int i10 = vb.Q0;
         return vbVar.P0(w0Var, 0.0f, 0.0f);
     }
 
     @Override
     public final void k0(org.telegram.ui.Cells.w0 w0Var) {
-        vb vbVar = this.f40168a.f41105n;
+        vb vbVar = this.f40174a.f41111n;
         MessageObject messageObject = w0Var.getMessageObject();
         if (messageObject.type == 22) {
             bd bdVar = new bd(a());
-            bdVar.f35581l0 = vbVar;
+            bdVar.f35587l0 = vbVar;
             vbVar.presentFragment(bdVar);
             return;
         }
-        PhotoViewer.t1().K2(null, vbVar, null);
+        PhotoViewer.u1().M2(null, vbVar, null);
         TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(messageObject.photoThumbs, 640);
         if (closestPhotoSizeWithSize != null) {
-            PhotoViewer.t1().e2(closestPhotoSizeWithSize.location, ImageLocation.getForPhoto(closestPhotoSizeWithSize, messageObject.messageOwner.action.photo), vbVar.B0);
+            PhotoViewer.u1().g2(closestPhotoSizeWithSize.location, ImageLocation.getForPhoto(closestPhotoSizeWithSize, messageObject.messageOwner.action.photo), vbVar.B0);
             return;
         }
-        PhotoViewer.t1().d2(messageObject, null, 0L, 0L, 0L, vbVar.B0);
+        PhotoViewer.u1().f2(messageObject, null, 0L, 0L, 0L, vbVar.B0);
     }
 
     @Override
     public final void s1(long j10) {
-        vb vbVar = this.f40168a.f41105n;
+        vb vbVar = this.f40174a.f41111n;
         if (j10 < 0) {
             Bundle bundle = new Bundle();
             bundle.putLong("chat_id", -j10);

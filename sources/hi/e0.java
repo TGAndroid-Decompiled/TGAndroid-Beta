@@ -7,7 +7,7 @@ import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.f3;
 import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.b71;
+import org.telegram.ui.Components.c71;
 import w7.z5;
 public final class e0 extends h0 {
     public final k0 h;
@@ -25,12 +25,12 @@ public final class e0 extends h0 {
         s sVar = new s(k0Var, 3);
         u uVar = new u(k0Var, 2);
         d6Var = ((f3) k0Var).resourcesProvider;
-        b71 b71Var = new b71(context, i10, 0, false, sVar, uVar, null, d6Var);
-        this.d = b71Var;
-        b71Var.p1();
-        b71 b71Var2 = this.d;
-        b71Var2.W2.f30436r = false;
-        b71Var2.setClipToPadding(false);
+        c71 c71Var = new c71(context, i10, 0, false, sVar, uVar, null, d6Var);
+        this.d = c71Var;
+        c71Var.p1();
+        c71 c71Var2 = this.d;
+        c71Var2.W2.f30860r = false;
+        c71Var2.setClipToPadding(false);
         this.d.setPadding(0, 0, 0, AndroidUtilities.dp(60.0f) + AndroidUtilities.navigationBarHeight);
         this.f12155c.addView(k0Var.G, z5.g());
         this.f12155c.addView(this.d, 0, z5.c(-1.0f, -1));
@@ -40,7 +40,7 @@ public final class e0 extends h0 {
         this.f12153a = kVar;
         kVar.setOccupyStatusBar(false);
         this.f12153a.setTitleColor(k0Var.getThemedColor(h6.G6));
-        this.f12153a.B(k0Var.getThemedColor(h6.f21394z8), false);
+        this.f12153a.B(k0Var.getThemedColor(h6.f21397z8), false);
         org.telegram.ui.ActionBar.k kVar2 = this.f12153a;
         boolean z10 = k0Var.N;
         if (z10) {
@@ -49,7 +49,7 @@ public final class e0 extends h0 {
             i11 = R.drawable.ic_ab_back;
         }
         kVar2.setBackButtonImage(i11);
-        this.f12153a.C(k0Var.getThemedColor(h6.f21377y8), false);
+        this.f12153a.C(k0Var.getThemedColor(h6.f21380y8), false);
         this.f12153a.setTitle(LocaleController.getString(R.string.CommunityAddAChatToCommunity));
         this.f12153a.getTitleTextView().setTranslationX(-AndroidUtilities.dp(18.0f));
         this.f12153a.setActionBarMenuOnItemClick(new ah.s(this, 8));

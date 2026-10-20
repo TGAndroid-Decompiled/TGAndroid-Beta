@@ -2,14 +2,14 @@ package v8;
 
 import java.util.Arrays;
 public final class o implements com.google.android.gms.common.api.b {
-    public final int f48297a;
+    public final int f48302a;
 
     public o(com.google.android.gms.internal.cast.a aVar) {
-        this.f48297a = aVar.f6563a;
+        this.f48302a = aVar.f6563a;
     }
 
     public final boolean equals(Object obj) {
-        if ((obj instanceof o) && n6.l.l(Integer.valueOf(this.f48297a), Integer.valueOf(((o) obj).f48297a)) && n6.l.l(1, 1) && n6.l.l(null, null)) {
+        if ((obj instanceof o) && n6.l.l(Integer.valueOf(this.f48302a), Integer.valueOf(((o) obj).f48302a)) && n6.l.l(1, 1) && n6.l.l(null, null)) {
             Boolean bool = Boolean.TRUE;
             if (n6.l.l(bool, bool)) {
                 return true;
@@ -20,6 +20,6 @@ public final class o implements com.google.android.gms.common.api.b {
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Integer.valueOf(this.f48297a), 1, null, Boolean.TRUE});
+        return Arrays.hashCode(new Object[]{Integer.valueOf(this.f48302a), 1, null, Boolean.TRUE});
     }
 }

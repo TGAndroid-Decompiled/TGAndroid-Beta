@@ -1,69 +1,42 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
-import java.util.List;
 import org.telegram.messenger.ImageLoader;
-import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.TLObject;
 public final class a5 implements Runnable {
-    public final int f17838a;
-    public final int f17839b;
-    public final int f17840c;
-    public final Object d;
-    public final Object e;
+    public final int f17838a = 0;
+    public final boolean f17839b;
+    public final long f17840c;
+    public final long d;
+    public final int e;
+    public final Object f17841f;
 
-    public a5(Object obj, Object obj2, int i10, int i11, int i12) {
-        this.f17838a = i12;
-        this.d = obj;
-        this.e = obj2;
-        this.f17839b = i10;
-        this.f17840c = i11;
+    public a5(int i10, String str, long j10, long j11, boolean z10) {
+        this.e = i10;
+        this.f17841f = str;
+        this.f17840c = j10;
+        this.d = j11;
+        this.f17839b = z10;
     }
 
     @Override
     public final void run() {
         switch (this.f17838a) {
             case 0:
-                ((ImageLoader.AnonymousClass5) this.d).lambda$fileDidFailedLoad$6((String) this.e, this.f17839b, this.f17840c);
-                return;
-            case 1:
-                ((MediaDataController) this.d).lambda$loadReactions$11((List) this.e, this.f17839b, this.f17840c);
-                return;
-            case 2:
-                ((MediaDataController) this.d).lambda$putReactionsToCache$16((ArrayList) this.e, this.f17839b, this.f17840c);
-                return;
-            case 3:
-                ((MessagesController) this.d).lambda$getDifference$349((TLRPC.updates_Difference) this.e, this.f17839b, this.f17840c);
-                return;
-            case 4:
-                ((MessagesController.DialogPhotos) this.d).lambda$load$0((TLRPC.photos_Photos) this.e, this.f17839b, this.f17840c);
-                return;
-            case 5:
-                ((MessagesController.DialogPhotos) this.d).lambda$load$2((TLRPC.messages_Messages) this.e, this.f17839b, this.f17840c);
-                return;
-            case 6:
-                ((MessagesStorage) this.d).lambda$saveSecretParams$7(this.f17839b, this.f17840c, (byte[]) this.e);
+                long j10 = this.d;
+                boolean z10 = this.f17839b;
+                ImageLoader.AnonymousClass5.lambda$fileUploadProgressChanged$0(this.e, (String) this.f17841f, this.f17840c, j10, z10);
                 return;
             default:
-                int i10 = this.f17840c;
-                ((NotificationCenter) this.d).lambda$postNotificationDebounced$2(this.f17839b, (Object[]) this.e, i10);
+                FileLog.lambda$dumpUnparsedMessage$2((TLObject) this.f17841f, this.f17839b, this.f17840c, this.d, this.e);
                 return;
         }
     }
 
-    public a5(MessagesStorage messagesStorage, int i10, int i11, byte[] bArr) {
-        this.f17838a = 6;
-        this.d = messagesStorage;
-        this.f17839b = i10;
-        this.f17840c = i11;
-        this.e = bArr;
-    }
-
-    public a5(NotificationCenter notificationCenter, int i10, Object[] objArr, int i11) {
-        this.f17838a = 7;
-        this.d = notificationCenter;
-        this.f17839b = i10;
-        this.e = objArr;
-        this.f17840c = i11;
+    public a5(TLObject tLObject, boolean z10, long j10, long j11, int i10) {
+        this.f17841f = tLObject;
+        this.f17839b = z10;
+        this.f17840c = j10;
+        this.d = j11;
+        this.e = i10;
     }
 }

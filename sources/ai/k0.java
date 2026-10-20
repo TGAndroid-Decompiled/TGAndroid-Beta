@@ -130,7 +130,7 @@ public final class k0 {
         getconnectedstarrefbot.peer = MessagesController.getInstance(i11).getInputPeer(j10);
         getconnectedstarrefbot.bot = MessagesController.getInstance(i11).getInputUser(j11);
         int sendRequest = ConnectionsManager.getInstance(i11).sendRequest(getconnectedstarrefbot, new d0(this, b2Var, j11, callback, 0));
-        b2Var.f20662g0 = true;
+        b2Var.f20665g0 = true;
         b2Var.setOnCancelListener(new e0(this, sendRequest, 0));
         b2Var.r(200L);
     }
@@ -261,12 +261,12 @@ public final class k0 {
     public final void q(TL_update.TL_updateStarsRevenueStatus tL_updateStarsRevenueStatus) {
         long peerDialogId = DialogObject.getPeerDialogId(tL_updateStarsRevenueStatus.peer);
         if (peerDialogId < 0) {
-            org.telegram.ui.ie ieVar = org.telegram.ui.ie.f37922x1;
-            if (ieVar != null && ieVar.f37949z0 == DialogObject.getPeerDialogId(tL_updateStarsRevenueStatus.peer)) {
-                org.telegram.ui.ie ieVar2 = org.telegram.ui.ie.f37922x1;
+            org.telegram.ui.ie ieVar = org.telegram.ui.ie.f37928x1;
+            if (ieVar != null && ieVar.f37955z0 == DialogObject.getPeerDialogId(tL_updateStarsRevenueStatus.peer)) {
+                org.telegram.ui.ie ieVar2 = org.telegram.ui.ie.f37928x1;
                 TLRPC.TL_starsRevenueStatus tL_starsRevenueStatus = tL_updateStarsRevenueStatus.status;
                 ieVar2.g0(tL_starsRevenueStatus.current_balance instanceof TL_stars.TL_starsTonAmount, tL_starsRevenueStatus);
-                org.telegram.ui.ie.f37922x1.e0();
+                org.telegram.ui.ie.f37928x1.e0();
                 return;
             }
             return;

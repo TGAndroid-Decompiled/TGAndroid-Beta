@@ -97,13 +97,13 @@ public final class m1 implements org.telegram.ui.ActionBar.a2, vx {
                 @Override
                 public final void run(boolean z12, TLRPC.TL_chatAdminRights tL_chatAdminRights2, String str4) {
                     Pattern pattern2 = LaunchActivity.C1;
-                    AndroidUtilities.runOnUIThread(new org.telegram.messenger.i8(LaunchActivity.this, str2, tL_chatAdminRights2, z12, str3, i12, chat, cyVar2, user, j10, str4));
+                    AndroidUtilities.runOnUIThread(new org.telegram.messenger.k8(LaunchActivity.this, str2, tL_chatAdminRights2, z12, str3, i12, chat, cyVar2, user, j10, str4));
                 }
             });
         } else {
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(launchActivity);
             String string = LocaleController.getString(R.string.AddBot);
-            org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20602a;
+            org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20605a;
             b2Var.R = string;
             if (chat == null) {
                 str = "";

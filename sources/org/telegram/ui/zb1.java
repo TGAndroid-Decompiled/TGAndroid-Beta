@@ -47,8 +47,8 @@ public final class zb1 extends org.telegram.ui.Components.w9 {
                     } else {
                         int measuredHeight = getMeasuredHeight();
                         float max = Math.max(getMeasuredWidth() / this.G.getIntrinsicWidth(), measuredHeight / this.G.getIntrinsicHeight());
-                        int ceil = (int) Math.ceil(this.G.getIntrinsicWidth() * max * kc1Var.f38576y1);
-                        int ceil2 = (int) Math.ceil(this.G.getIntrinsicHeight() * max * kc1Var.f38576y1);
+                        int ceil = (int) Math.ceil(this.G.getIntrinsicWidth() * max * kc1Var.f38582y1);
+                        int ceil2 = (int) Math.ceil(this.G.getIntrinsicHeight() * max * kc1Var.f38582y1);
                         int measuredWidth = (getMeasuredWidth() - ceil) / 2;
                         int i10 = (measuredHeight - ceil2) / 2;
                         this.J = i10;
@@ -62,9 +62,9 @@ public final class zb1 extends org.telegram.ui.Components.w9 {
             }
         }
         if (kc1Var.a2) {
-            if (!kc1Var.f38517c.isFinished() && kc1Var.f38517c.computeScrollOffset()) {
-                if (kc1Var.f38517c.getStartX() < kc1Var.W1 && kc1Var.f38517c.getStartX() > 0) {
-                    kc1Var.X1 = kc1Var.f38517c.getCurrX();
+            if (!kc1Var.f38523c.isFinished() && kc1Var.f38523c.computeScrollOffset()) {
+                if (kc1Var.f38523c.getStartX() < kc1Var.W1 && kc1Var.f38523c.getStartX() > 0) {
+                    kc1Var.X1 = kc1Var.f38523c.getCurrX();
                 }
                 kc1Var.V0();
                 invalidate();
@@ -79,9 +79,9 @@ public final class zb1 extends org.telegram.ui.Components.w9 {
             super.onDraw(canvas);
         }
         if (kc1Var.M1) {
-            float f11 = kc1Var.f38549n1;
+            float f11 = kc1Var.f38555n1;
             if (f11 > 0.0f) {
-                canvas.drawColor(i0.a.o(-16777216, (int) (f11 * 255.0f * kc1Var.f38551o1)));
+                canvas.drawColor(i0.a.o(-16777216, (int) (f11 * 255.0f * kc1Var.f38557o1)));
             }
         }
     }
@@ -90,22 +90,22 @@ public final class zb1 extends org.telegram.ui.Components.w9 {
     public final void onMeasure(int i10, int i11) {
         super.onMeasure(i10, i11);
         kc1 kc1Var = this.K;
-        org.telegram.ui.Components.g91 g91Var = kc1Var.f38567v1;
+        org.telegram.ui.Components.h91 h91Var = kc1Var.f38573v1;
         int measuredWidth = getMeasuredWidth();
         int measuredHeight = getMeasuredHeight();
-        g91Var.getClass();
-        float a2 = org.telegram.ui.Components.g91.a(measuredWidth, measuredHeight);
-        kc1Var.f38576y1 = a2;
+        h91Var.getClass();
+        float a2 = org.telegram.ui.Components.h91.a(measuredWidth, measuredHeight);
+        kc1Var.f38582y1 = a2;
         if (kc1Var.E1) {
             setScaleX(a2);
-            setScaleY(kc1Var.f38576y1);
+            setScaleY(kc1Var.f38582y1);
         }
-        if (kc1Var.f38513b == 2) {
+        if (kc1Var.f38519b == 2) {
             getMeasuredWidth();
             getMeasuredHeight();
         }
         int measuredWidth2 = getMeasuredWidth() + (getMeasuredHeight() << 16);
-        if (kc1Var.f38516b2 != measuredWidth2) {
+        if (kc1Var.f38522b2 != measuredWidth2) {
             kc1Var.a2 = false;
             Bitmap bitmap = kc1Var.C1;
             if (bitmap != null) {
@@ -127,7 +127,7 @@ public final class zb1 extends org.telegram.ui.Components.w9 {
                 this.v = false;
             }
         }
-        kc1Var.f38516b2 = measuredWidth2;
+        kc1Var.f38522b2 = measuredWidth2;
     }
 
     @Override

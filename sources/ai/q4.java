@@ -48,7 +48,7 @@ public final class q4 implements Runnable {
                 org.telegram.messenger.video.d dVar = (org.telegram.messenger.video.d) this.f2057r;
                 o21 o21Var = new o21(context, k0Var, this.d, bArr);
                 o21Var.P((TLRPC.TL_channels_sponsoredMessageReportResultChooseOption) ((TLObject) this.f2054c));
-                o21Var.f39745s = new h21((org.telegram.messenger.video.a) this.f2056n, xcVar, context, k0Var, dVar);
+                o21Var.f39751s = new h21((org.telegram.messenger.video.a) this.f2056n, xcVar, context, k0Var, dVar);
                 o21Var.show();
                 return;
             default:

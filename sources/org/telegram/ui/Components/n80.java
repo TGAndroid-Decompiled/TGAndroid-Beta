@@ -1,7 +1,7 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-public final class n80 extends im0 {
+public final class n80 extends jm0 {
     public final r80 V2;
 
     public n80(r80 r80Var, Context context) {
@@ -11,7 +11,7 @@ public final class n80 extends im0 {
 
     @Override
     public final void requestLayout() {
-        if (this.V2.f29876n) {
+        if (this.V2.f29871n) {
             return;
         }
         super.requestLayout();

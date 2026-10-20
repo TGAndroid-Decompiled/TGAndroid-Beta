@@ -9,31 +9,31 @@ import org.telegram.ui.Components.i30;
 import org.telegram.ui.Components.m30;
 import org.telegram.ui.Components.o30;
 import org.telegram.ui.Components.t50;
-import org.telegram.ui.Components.t71;
-import org.telegram.ui.Components.v91;
+import org.telegram.ui.Components.u71;
 import org.telegram.ui.Components.vu;
+import org.telegram.ui.Components.w91;
 public final class ca implements ViewTreeObserver.OnPreDrawListener {
-    public final int f22108a;
-    public final Object f22109b;
+    public final int f22111a;
+    public final Object f22112b;
 
     public ca(Object obj, int i10) {
-        this.f22108a = i10;
-        this.f22109b = obj;
+        this.f22111a = i10;
+        this.f22112b = obj;
     }
 
     @Override
     public final boolean onPreDraw() {
         int[] iArr;
         boolean z10;
-        int i10 = this.f22108a;
-        Object obj = this.f22109b;
+        int i10 = this.f22111a;
+        Object obj = this.f22112b;
         switch (i10) {
             case 0:
-                ea eaVar = ((da) obj).f22151a;
+                ea eaVar = ((da) obj).f22154a;
                 eaVar.getViewTreeObserver().removeOnPreDrawListener(this);
                 eaVar.getTransitionParams().j();
                 eaVar.getTransitionParams().f();
-                eaVar.getTransitionParams().f23088g = true;
+                eaVar.getTransitionParams().f23091g = true;
                 eaVar.getTransitionParams().K1 = 0.0f;
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
                 ofFloat.addUpdateListener(new r(this, 8));
@@ -41,18 +41,18 @@ public final class ca implements ViewTreeObserver.OnPreDrawListener {
                 ofFloat.start();
                 return false;
             case 1:
-                ((vu) obj).f31917a.f25346c.getViewTreeObserver().removeOnPreDrawListener(this);
+                ((vu) obj).f31868a.f25261c.getViewTreeObserver().removeOnPreDrawListener(this);
                 return true;
             case 2:
                 i30 i30Var = (i30) obj;
-                m30 m30Var = i30Var.f27056f;
+                m30 m30Var = i30Var.f27107f;
                 org.telegram.ui.x7 x7Var = i30Var.e;
                 x7Var.getViewTreeObserver().removeOnPreDrawListener(this);
                 x7Var.getLocationOnScreen(i30Var.G);
-                float f7 = i30Var.f27058r.x + i30Var.Q;
+                float f7 = i30Var.f27109r.x + i30Var.Q;
                 o30 o30Var = i30Var.U;
                 float measuredWidth = ((o30Var.getMeasuredWidth() / 2.0f) + f7) - iArr[0];
-                float measuredWidth2 = ((o30Var.getMeasuredWidth() / 2.0f) + (i30Var.f27058r.y + i30Var.R)) - iArr[1];
+                float measuredWidth2 = ((o30Var.getMeasuredWidth() / 2.0f) + (i30Var.f27109r.y + i30Var.R)) - iArr[1];
                 if (measuredWidth2 - AndroidUtilities.dp(61.0f) > 0.0f && AndroidUtilities.dp(61.0f) + measuredWidth2 < x7Var.getMeasuredHeight()) {
                     z10 = true;
                 } else {
@@ -85,20 +85,20 @@ public final class ca implements ViewTreeObserver.OnPreDrawListener {
                 ((ei.g6) obj).invalidate();
                 return true;
             default:
-                v91 v91Var = (v91) ((t50) obj).f30426b;
-                v91Var.f31234n.getViewTreeObserver().removeOnPreDrawListener(this);
-                ImageView imageView = v91Var.e;
+                w91 w91Var = (w91) ((t50) obj).f30442b;
+                w91Var.f32031n.getViewTreeObserver().removeOnPreDrawListener(this);
+                ImageView imageView = w91Var.e;
                 if (imageView != null) {
                     imageView.setVisibility(4);
-                    v91Var.e.setImageDrawable(null);
-                    Bitmap bitmap = v91Var.h;
+                    w91Var.e.setImageDrawable(null);
+                    Bitmap bitmap = w91Var.h;
                     if (bitmap != null) {
                         bitmap.recycle();
-                        v91Var.h = null;
+                        w91Var.h = null;
                     }
                 }
-                AndroidUtilities.runOnUIThread(new t71(this, 3));
-                v91Var.f31235r = 0;
+                AndroidUtilities.runOnUIThread(new u71(this, 3));
+                w91Var.f32032r = 0;
                 return true;
         }
     }

@@ -1,48 +1,48 @@
 package org.telegram.messenger;
 
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.Components.ChatActivityEnterView;
-public final class ta implements Runnable {
-    public final int f19565a;
-    public final NotificationCenter.NotificationCenterDelegate f19566b;
-    public final long f19567c;
-    public final int d;
-    public final int e;
-    public final boolean f19568f;
+import java.util.Comparator;
+import org.telegram.messenger.MessagesController;
+import org.telegram.tgnet.TLRPC;
+public final class ta implements Comparator {
+    public final int f19589a;
+    public final MessagesController f19590b;
 
-    public ta(int i10, int i11, int i12, long j10, MessagesController messagesController, boolean z10) {
-        this.f19565a = i12;
-        this.f19566b = messagesController;
-        this.f19567c = j10;
-        this.d = i10;
-        this.e = i11;
-        this.f19568f = z10;
+    public ta(MessagesController messagesController, int i10) {
+        this.f19589a = i10;
+        this.f19590b = messagesController;
     }
 
     @Override
-    public final void run() {
-        int i10 = this.f19565a;
-        NotificationCenter.NotificationCenterDelegate notificationCenterDelegate = this.f19566b;
-        switch (i10) {
+    public final int compare(Object obj, Object obj2) {
+        int lambda$processUpdatesQueue$326;
+        int lambda$renameSavedReactionTag$487;
+        int lambda$updateSavedReactionTags$486;
+        int lambda$new$9;
+        int lambda$new$10;
+        int lambda$new$11;
+        int lambda$new$12;
+        switch (this.f19589a) {
             case 0:
-                ((MessagesController) notificationCenterDelegate).lambda$markDialogAsRead$240(this.f19567c, this.d, this.e, this.f19568f);
-                return;
+                lambda$processUpdatesQueue$326 = this.f19590b.lambda$processUpdatesQueue$326((TLRPC.Updates) obj, (TLRPC.Updates) obj2);
+                return lambda$processUpdatesQueue$326;
             case 1:
-                ((MessagesController) notificationCenterDelegate).lambda$markDialogAsRead$241(this.f19567c, this.d, this.e, this.f19568f);
-                return;
+                lambda$renameSavedReactionTag$487 = this.f19590b.lambda$renameSavedReactionTag$487((TLRPC.TL_savedReactionTag) obj, (TLRPC.TL_savedReactionTag) obj2);
+                return lambda$renameSavedReactionTag$487;
+            case 2:
+                lambda$updateSavedReactionTags$486 = this.f19590b.lambda$updateSavedReactionTags$486((TLRPC.TL_savedReactionTag) obj, (TLRPC.TL_savedReactionTag) obj2);
+                return lambda$updateSavedReactionTags$486;
+            case 3:
+                lambda$new$9 = this.f19590b.lambda$new$9((TLRPC.Dialog) obj, (TLRPC.Dialog) obj2);
+                return lambda$new$9;
+            case 4:
+                lambda$new$10 = this.f19590b.lambda$new$10((TLRPC.Dialog) obj, (TLRPC.Dialog) obj2);
+                return lambda$new$10;
+            case 5:
+                lambda$new$11 = this.f19590b.lambda$new$11((MessagesController.CommunityPeerDialog) obj, (MessagesController.CommunityPeerDialog) obj2);
+                return lambda$new$11;
             default:
-                int i11 = ChatActivityEnterView.f23905n5;
-                ((ChatActivityEnterView) notificationCenterDelegate).R0(this.d, this.f19568f, this.e, false, this.f19567c);
-                return;
+                lambda$new$12 = this.f19590b.lambda$new$12((TLRPC.Update) obj, (TLRPC.Update) obj2);
+                return lambda$new$12;
         }
-    }
-
-    public ta(ChatActivityEnterView chatActivityEnterView, boolean z10, int i10, int i11, long j10) {
-        this.f19565a = 2;
-        this.f19566b = chatActivityEnterView;
-        this.f19568f = z10;
-        this.d = i10;
-        this.e = i11;
-        this.f19567c = j10;
     }
 }

@@ -50,7 +50,7 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.j2;
+import org.telegram.messenger.k2;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
@@ -191,7 +191,7 @@ public final class l0 implements Runnable {
                 } else {
                     J = X.J(R.raw.contact_check, charSequence, LocaleController.getString(R.string.Gift2UniqueView), runnable);
                 }
-                J.f29604t = true;
+                J.f29540t = true;
                 J.j();
                 return;
             case 9:
@@ -520,7 +520,7 @@ public final class l0 implements Runnable {
                 Utilities.Callback callback2 = (Utilities.Callback) this.d;
                 while (i10 < t6Var.f5149i.size()) {
                     MessageObject messageObject2 = (MessageObject) t6Var.f5149i.get(i10);
-                    if (messageObject2 != null && (storyItem = messageObject2.storyItem) != null && (messageMedia = storyItem.media) != null && (document = storyItem5.media.document) != null && (document2 = messageMedia.document) != null && document2.f20279id == document.f20279id) {
+                    if (messageObject2 != null && (storyItem = messageObject2.storyItem) != null && (messageMedia = storyItem.media) != null && (document = storyItem5.media.document) != null && (document2 = messageMedia.document) != null && document2.f20282id == document.f20282id) {
                         callback2.run(document2);
                         return;
                     }
@@ -548,7 +548,7 @@ public final class l0 implements Runnable {
                 }
             case 23:
                 s6 s6Var = (s6) this.f144c;
-                j2 j2Var = (j2) this.d;
+                k2 k2Var = (k2) this.d;
                 ArrayList arrayList3 = ((t6) this.f143b).f5149i;
                 while (i10 < arrayList3.size()) {
                     MessageObject messageObject3 = (MessageObject) arrayList3.get(i10);
@@ -559,20 +559,20 @@ public final class l0 implements Runnable {
                             TLRPC.Document document5 = messageMedia2.document;
                             if (document5 == null) {
                                 continue;
-                            } else if (document5.f20279id == document4.f20279id) {
-                                j2Var.run((s6) storyItem2);
+                            } else if (document5.f20282id == document4.f20282id) {
+                                k2Var.run((s6) storyItem2);
                                 return;
                             }
                         }
                         TLRPC.Photo photo2 = messageMedia3.photo;
-                        if (photo2 != null && (photo = messageMedia2.photo) != null && photo.f20297id == photo2.f20297id) {
-                            j2Var.run((s6) storyItem2);
+                        if (photo2 != null && (photo = messageMedia2.photo) != null && photo.f20300id == photo2.f20300id) {
+                            k2Var.run((s6) storyItem2);
                             return;
                         }
                     }
                     i10++;
                 }
-                j2Var.run(null);
+                k2Var.run(null);
                 return;
             case 24:
                 t6 t6Var2 = (t6) this.f143b;
@@ -635,8 +635,8 @@ public final class l0 implements Runnable {
                     } else {
                         id2 = messageObject.getId();
                     }
-                    message.f20294id = id2;
-                    storyItem6.f20507id = id2;
+                    message.f20297id = id2;
+                    storyItem6.f20510id = id2;
                     messageObject4.parentStoriesList = t6Var2;
                     messageObject4.generateThumbs(false);
                     if (arrayList6.isEmpty()) {
@@ -667,7 +667,7 @@ public final class l0 implements Runnable {
                 if (tLObject7 != null) {
                     TL_stories.TL_stories_storyViews tL_stories_storyViews = (TL_stories.TL_stories_storyViews) tLObject7;
                     MessagesController.getInstance(i19).putUsers(tL_stories_storyViews.users, false);
-                    if (!jaVar.d(tL_stories_getStoriesViews.f20515id, tL_stories_storyViews)) {
+                    if (!jaVar.d(tL_stories_getStoriesViews.f20518id, tL_stories_storyViews)) {
                         jaVar.d = 0;
                         jaVar.e = false;
                         return;

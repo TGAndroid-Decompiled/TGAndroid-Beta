@@ -15,32 +15,32 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_payments;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.b71;
-import org.telegram.ui.Components.f61;
+import org.telegram.ui.Components.c71;
 import org.telegram.ui.Components.g61;
+import org.telegram.ui.Components.h61;
 import org.telegram.ui.Components.h9;
-import org.telegram.ui.Components.im0;
-import org.telegram.ui.Components.t61;
+import org.telegram.ui.Components.jm0;
+import org.telegram.ui.Components.u61;
 import org.telegram.ui.l00;
-public final class q3 extends f61 {
+public final class q3 extends g61 {
     public static final int f11398a = 0;
 
     static {
-        f61.setup(new f61());
+        g61.setup(new g61());
     }
 
     @Override
-    public final void bindView(View view, g61 g61Var, boolean z10, t61 t61Var, b71 b71Var) {
+    public final void bindView(View view, h61 h61Var, boolean z10, u61 u61Var, c71 c71Var) {
         int i10;
         int i11;
         int i12;
         float f7;
-        Object obj = g61Var.G;
+        Object obj = h61Var.G;
         int i13 = 0;
         if (obj instanceof TL_payments.connectedBotStarRef) {
             r3 r3Var = (r3) view;
             TL_payments.connectedBotStarRef connectedbotstarref = (TL_payments.connectedBotStarRef) obj;
-            boolean z11 = g61Var.f26503r;
+            boolean z11 = h61Var.f26788r;
             View view2 = r3Var.e;
             ImageView imageView = r3Var.f11429f;
             TLRPC.User user = MessagesController.getInstance(r3Var.f11426a).getUser(Long.valueOf(connectedbotstarref.bot_id));
@@ -53,10 +53,10 @@ public final class q3 extends f61 {
             if (connectedbotstarref.commission_permille > 0) {
                 spannableStringBuilder.append((CharSequence) " d");
                 l00 l00Var = new l00();
-                l00Var.f38704f = h6.x0(null, h6.uj, false);
-                l00Var.f38705n = l.H0(connectedbotstarref.commission_permille);
-                if (l00Var.f38703c != null) {
-                    l00Var.f38703c = null;
+                l00Var.f38710f = h6.x0(null, h6.uj, false);
+                l00Var.f38711n = l.H0(connectedbotstarref.commission_permille);
+                if (l00Var.f38709c != null) {
+                    l00Var.f38709c = null;
                     l00Var.a();
                 }
                 spannableStringBuilder.setSpan(l00Var, 1, 2, 33);
@@ -109,7 +109,7 @@ public final class q3 extends f61 {
         } else if (obj instanceof TL_payments.starRefProgram) {
             r3 r3Var2 = (r3) view;
             TL_payments.starRefProgram starrefprogram = (TL_payments.starRefProgram) obj;
-            boolean z12 = g61Var.f26503r;
+            boolean z12 = h61Var.f26788r;
             TLRPC.User user2 = MessagesController.getInstance(r3Var2.f11426a).getUser(Long.valueOf(starrefprogram.bot_id));
             h9 h9Var2 = new h9((d6) null);
             h9Var2.r(user2);
@@ -119,10 +119,10 @@ public final class q3 extends f61 {
             if (starrefprogram.commission_permille > 0) {
                 spannableStringBuilder2.append((CharSequence) " d");
                 l00 l00Var2 = new l00();
-                l00Var2.f38704f = h6.x0(null, h6.uj, false);
-                l00Var2.f38705n = l.H0(starrefprogram.commission_permille);
-                if (l00Var2.f38703c != null) {
-                    l00Var2.f38703c = null;
+                l00Var2.f38710f = h6.x0(null, h6.uj, false);
+                l00Var2.f38711n = l.H0(starrefprogram.commission_permille);
+                if (l00Var2.f38709c != null) {
+                    l00Var2.f38709c = null;
                     l00Var2.a();
                 }
                 spannableStringBuilder2.setSpan(l00Var2, 1, 2, 33);
@@ -150,7 +150,7 @@ public final class q3 extends f61 {
     }
 
     @Override
-    public final View createView(Context context, im0 im0Var, int i10, int i11, d6 d6Var) {
+    public final View createView(Context context, jm0 jm0Var, int i10, int i11, d6 d6Var) {
         return new r3(context, i10, d6Var);
     }
 }

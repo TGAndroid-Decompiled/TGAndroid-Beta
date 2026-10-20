@@ -24,11 +24,11 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.ek;
+import org.telegram.messenger.gk;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.ew0;
+import org.telegram.ui.Components.fw0;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.x51;
 public final class j6 implements Runnable {
@@ -127,7 +127,7 @@ public final class j6 implements Runnable {
                         ArrayList<TL_stories.StoryItem> arrayList2 = peerStories.stories;
                         for (int i15 = i11; i15 < arrayList2.size(); i15++) {
                             if (arrayList2.get(i15) instanceof TL_stories.TL_storyItemSkipped) {
-                                TL_stories.StoryItem f7 = w7Var.f(arrayList2.get(i15).f20507id, peerDialogId);
+                                TL_stories.StoryItem f7 = w7Var.f(arrayList2.get(i15).f20510id, peerDialogId);
                                 if (f7 instanceof TL_stories.TL_storyItem) {
                                     arrayList2.set(i15, f7);
                                 }
@@ -251,14 +251,14 @@ public final class j6 implements Runnable {
                                     AndroidUtilities.cancelRunOnUIThread(z31Var);
                                     x51Var3.I1 = null;
                                 }
-                                String str3 = x51Var3.f43096z1;
+                                String str3 = x51Var3.f43102z1;
                                 String str4 = str2;
                                 if (str4 != str3) {
                                     return;
                                 }
-                                x51Var3.f43094y1 = true;
+                                x51Var3.f43100y1 = true;
                                 x51Var3.z(true, z15);
-                                o41 o41Var = x51Var3.f43051f0;
+                                o41 o41Var = x51Var3.f43057f0;
                                 if (o41Var != null) {
                                     o41Var.e(true);
                                 }
@@ -287,7 +287,7 @@ public final class j6 implements Runnable {
                                     arrayList15.clear();
                                 }
                                 int i18 = 0;
-                                x51Var3.f43057i0.u0(0);
+                                x51Var3.f43063i0.u0(0);
                                 int i19 = x51Var3.W;
                                 if (i19 == 1 || i19 == 14 || i19 == 11 || i19 == 2) {
                                     ArrayList arrayList16 = arrayList8;
@@ -327,7 +327,7 @@ public final class j6 implements Runnable {
                                     i18++;
                                     x51Var3.C1.addAll((ArrayList) obj6);
                                 }
-                                x51Var3.f43072q0.E(true ^ z16);
+                                x51Var3.f43078q0.E(true ^ z16);
                             }
                         });
                     }
@@ -437,7 +437,7 @@ public final class j6 implements Runnable {
                                     return;
                             }
                         }
-                    }, new z2(x51Var, strArr, str, linkedHashSet, 12), new ek(x51Var, fullyConsistsOfEmojis, linkedHashSet, str, reactionsMap, arrayList4), new z2((Object) x51Var, str, arrayList6, (Object) hashMap, 13), new org.telegram.ui.z(x51Var, str, arrayList7, 12), callback2);
+                    }, new z2(x51Var, strArr, str, linkedHashSet, 12), new gk(x51Var, fullyConsistsOfEmojis, linkedHashSet, str, reactionsMap, arrayList4), new z2((Object) x51Var, str, arrayList6, (Object) hashMap, 13), new org.telegram.ui.z(x51Var, str, arrayList7, 12), callback2);
                     return;
                 }
             case 5:
@@ -451,9 +451,9 @@ public final class j6 implements Runnable {
             default:
                 Bitmap[] bitmapArr = (Bitmap[]) obj2;
                 CountDownLatch countDownLatch = (CountDownLatch) obj;
-                qg.t0 t0Var = ((qg.d1) obj3).f44488y.f44514c;
-                ew0 ew0Var = t0Var.f44631g;
-                mi.q h = t0Var.h(new RectF(0.0f, 0.0f, ew0Var.f26038a, ew0Var.f26039b), false, z12, z11);
+                qg.t0 t0Var = ((qg.d1) obj3).f44496y.f44522c;
+                fw0 fw0Var = t0Var.f44639g;
+                mi.q h = t0Var.h(new RectF(0.0f, 0.0f, fw0Var.f26428a, fw0Var.f26429b), false, z12, z11);
                 if (h != null) {
                     bitmapArr[0] = (Bitmap) h.f16973b;
                 }
