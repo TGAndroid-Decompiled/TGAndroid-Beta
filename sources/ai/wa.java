@@ -48,7 +48,6 @@ public final class wa implements xl0 {
         TLRPC.BotInlineResult botInlineResult;
         TLRPC.Document document2;
         long longValue;
-        int i12;
         org.telegram.ui.Components.r5 r5Var;
         org.telegram.ui.ActionBar.k kVar;
         Object O;
@@ -158,8 +157,7 @@ public final class wa implements xl0 {
                             document2 = r5Var.e;
                         }
                         if (document2 == null && longValue != 0) {
-                            i12 = ((org.telegram.ui.ActionBar.f3) n2Var3).currentAccount;
-                            document2 = org.telegram.ui.Components.r5.f(i12, longValue);
+                            document2 = org.telegram.ui.Components.r5.f(ei.n2.Y(n2Var3), longValue);
                         }
                         if (document2 != null) {
                             Utilities.Callback3Return callback3Return2 = n2Var3.f9507y;
@@ -240,14 +238,14 @@ public final class wa implements xl0 {
                     }
                     cyVar.H3();
                     if (AndroidUtilities.isTablet() && cyVar.f36092e0 != null) {
-                        int i13 = 0;
+                        int i12 = 0;
                         while (true) {
                             ay[] ayVarArr = cyVar.f36092e0;
-                            if (i13 < ayVarArr.length) {
-                                jw jwVar = ayVarArr[i13].d;
+                            if (i12 < ayVarArr.length) {
+                                jw jwVar = ayVarArr[i12].d;
                                 cyVar.f36148p2.dialogId = longValue2;
                                 jwVar.f11973s = longValue2;
-                                i13++;
+                                i12++;
                             } else {
                                 cyVar.e5(MessagesController.UPDATE_MASK_SELECT_DIALOG, true);
                             }
@@ -276,9 +274,9 @@ public final class wa implements xl0 {
                 ig.g0 g0Var = i0Var.f12920y;
                 if (adapter == g0Var) {
                     ArrayList arrayList3 = g0Var.d;
-                    int i14 = i10 - 1;
-                    if (i14 >= 0 && i14 < arrayList3.size()) {
-                        O = arrayList3.get(i14);
+                    int i13 = i10 - 1;
+                    if (i13 >= 0 && i13 < arrayList3.size()) {
+                        O = arrayList3.get(i13);
                     } else {
                         O = null;
                     }
@@ -310,17 +308,17 @@ public final class wa implements xl0 {
                 if (G2 != null) {
                     ig.a0 a0Var = k0Var2.Z;
                     if (!a0Var.h(G2)) {
-                        int i15 = G2.d;
-                        int i16 = ig.k0.f12941g0;
-                        if (i15 == -1) {
+                        int i14 = G2.d;
+                        int i15 = ig.k0.f12941g0;
+                        if (i14 == -1) {
                             k0Var2.f12947e0 = true;
                             a0Var.h = true;
                             k0Var2.f12946d0.N(true);
                             k0Var2.U(true);
                             return;
                         }
-                        int i17 = ig.k0.f12942h0;
-                        if (i15 == -2) {
+                        int i16 = ig.k0.f12942h0;
+                        if (i14 == -2) {
                             k0Var2.f12947e0 = false;
                             a0Var.h = false;
                             k0Var2.f12946d0.N(true);
@@ -334,11 +332,11 @@ public final class wa implements xl0 {
                 return;
             case 16:
                 ji.a aVar = (ji.a) this.f2387b;
-                int i18 = aVar.X.G(i10 - 1).d;
-                if (i18 == 151) {
+                int i17 = aVar.X.G(i10 - 1).d;
+                if (i17 == 151) {
                     aVar.R(false);
                     return;
-                } else if (i18 == 150) {
+                } else if (i17 == 150) {
                     aVar.R(true);
                     return;
                 } else {
@@ -401,8 +399,8 @@ public final class wa implements xl0 {
                     Object obj = G.G;
                     if (obj instanceof TL_stars.SavedStarGift) {
                         TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj;
-                        int i19 = savedStarGift.msg_id;
-                        long j10 = i19 == 0 ? savedStarGift.saved_id : i19;
+                        int i18 = savedStarGift.msg_id;
+                        long j10 = i18 == 0 ? savedStarGift.saved_id : i18;
                         boolean z10 = false;
                         if (hashSet.contains(Long.valueOf(j10))) {
                             hashSet.remove(Long.valueOf(j10));
@@ -438,11 +436,11 @@ public final class wa implements xl0 {
                                 return;
                             }
                             zh.c1 c1Var2 = n0Var.d;
-                            int i20 = c1Var2.f51714b;
+                            int i19 = c1Var2.f51714b;
                             String o10 = a1.g.o(j11, "c:");
                             HashMap hashMap = c1Var2.J;
                             if (!hashMap.containsKey(o10)) {
-                                org.telegram.ui.Components.r5 m10 = org.telegram.ui.Components.r5.m(i20, 2, document3);
+                                org.telegram.ui.Components.r5 m10 = org.telegram.ui.Components.r5.m(i19, 2, document3);
                                 m10.a(c1Var2);
                                 hashMap.put(o10, m10);
                             }
@@ -470,11 +468,11 @@ public final class wa implements xl0 {
                                     a1.g.y(1, a10);
                                 }
                                 StringBuilder sb2 = new StringBuilder();
-                                for (int i21 = 0; i21 < a10.size(); i21++) {
-                                    if (i21 > 0) {
+                                for (int i20 = 0; i20 < a10.size(); i20++) {
+                                    if (i20 > 0) {
                                         sb2.append(',');
                                     }
-                                    sb2.append(a10.get(i21));
+                                    sb2.append(a10.get(i20));
                                 }
                                 MessagesController.getMainSettings(k0Var3.f52083a).edit().putString("qrAppliedEmoji", sb2.toString()).apply();
                                 k0Var3.J = true;

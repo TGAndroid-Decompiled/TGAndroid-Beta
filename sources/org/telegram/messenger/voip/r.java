@@ -18,7 +18,7 @@ public final class r implements Runnable {
                 this.f19900b.lambda$playConnectedSound$88();
                 return;
             case 2:
-                this.f19900b.lambda$playStartRecordSound$120();
+                VoIPService.v0(this.f19900b);
                 return;
             case 3:
                 this.f19900b.lambda$playAllowTalkSound$121();
@@ -30,13 +30,13 @@ public final class r implements Runnable {
                 this.f19900b.lambda$callFailed$115();
                 return;
             case 6:
-                this.f19900b.lambda$callFailed$116();
+                VoIPService.z(this.f19900b);
                 return;
             case 7:
                 this.f19900b.lambda$callEnded$123();
                 return;
             case 8:
-                this.f19900b.lambda$callEnded$124();
+                VoIPService.v1(this.f19900b);
                 return;
             case 9:
                 this.f19900b.lambda$callEnded$125();
@@ -45,13 +45,13 @@ public final class r implements Runnable {
                 this.f19900b.lambda$callEnded$126();
                 return;
             case 11:
-                this.f19900b.lambda$onCallUpdated$16();
+                VoIPService.w1(this.f19900b);
                 return;
             case 12:
                 this.f19900b.lambda$onCallUpdated$17();
                 return;
             case 13:
-                this.f19900b.lambda$onCallUpdated$18();
+                VoIPService.j1(this.f19900b);
                 return;
             case 14:
                 this.f19900b.lambda$setMicMute$0();
@@ -63,37 +63,37 @@ public final class r implements Runnable {
                 this.f19900b.lambda$switchToSpeaker$92();
                 return;
             case 17:
-                this.f19900b.lambda$convertToConferenceCall$30();
+                VoIPService.z0(this.f19900b);
                 return;
             case 18:
-                this.f19900b.lambda$initiateActualEncryptedCall$84();
+                VoIPService.t(this.f19900b);
                 return;
             case 19:
-                this.f19900b.lambda$loadResources$109();
+                VoIPService.u(this.f19900b);
                 return;
             case 20:
                 this.f19900b.lambda$setupCaptureDevice$14();
                 return;
             case 21:
-                this.f19900b.lambda$startOutgoingCall$8();
+                VoIPService.e1(this.f19900b);
                 return;
             case 22:
                 this.f19900b.lambda$onStartCommand$2();
                 return;
             case 23:
-                this.f19900b.lambda$onStartCommand$3();
+                VoIPService.n1(this.f19900b);
                 return;
             case 24:
-                this.f19900b.lambda$declineIncomingCall$104();
+                VoIPService.w(this.f19900b);
                 return;
             case 25:
-                this.f19900b.callFailed();
+                VoIPService.r(this.f19900b);
                 return;
             case 26:
                 this.f19900b.lambda$startGroupCheckShortpoll$65();
                 return;
             case 27:
-                this.f19900b.lambda$onDestroy$99();
+                VoIPService.i1(this.f19900b);
                 return;
             case 28:
                 this.f19900b.lambda$onConnectionStateChanged$117();

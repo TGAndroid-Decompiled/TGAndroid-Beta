@@ -870,6 +870,10 @@ public final class vm0 extends org.telegram.ui.ActionBar.n2 implements Notificat
         pf.d.r(parentActivity, "https://telegram.org/deactivate?phone=" + UserConfig.getInstance(vm0Var.currentAccount).getClientPhone());
     }
 
+    public static int e0(vm0 vm0Var) {
+        return vm0Var.currentAccount;
+    }
+
     public static String g1(byte[] bArr, byte[] bArr2, byte[] bArr3) {
         if (bArr != null && bArr2 != null && bArr2.length == 32 && bArr3 != null && bArr3.length == 32) {
             byte[] computeSHA512 = Utilities.computeSHA512(bArr2, bArr3);
@@ -1006,6 +1010,14 @@ public final class vm0 extends org.telegram.ui.ActionBar.n2 implements Notificat
     }
 
     public static int q0(vm0 vm0Var) {
+        return vm0Var.currentAccount;
+    }
+
+    public static int r0(vm0 vm0Var) {
+        return vm0Var.currentAccount;
+    }
+
+    public static int s0(vm0 vm0Var) {
         return vm0Var.currentAccount;
     }
 

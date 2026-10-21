@@ -10,10 +10,6 @@ import org.telegram.ui.Components.h61;
 public final class s3 implements org.telegram.ui.ActionBar.a2, Utilities.Callback5, Utilities.Callback5Return {
     public final o5 f34836a;
 
-    public s3(o5 o5Var) {
-        this.f34836a = o5Var;
-    }
-
     @Override
     public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
         o5 o5Var = this.f34836a;

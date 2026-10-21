@@ -233,6 +233,10 @@ public final class r9 extends org.telegram.ui.ActionBar.f3 implements Notificati
         return r9Var.resourcesProvider;
     }
 
+    public static org.telegram.ui.ActionBar.d6 Z(r9 r9Var) {
+        return r9Var.resourcesProvider;
+    }
+
     public static ArrayList Z0(r9 r9Var) {
         TLRPC.Chat chat;
         ArrayList arrayList = new ArrayList();

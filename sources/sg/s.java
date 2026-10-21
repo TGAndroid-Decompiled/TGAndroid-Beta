@@ -102,7 +102,7 @@ public final class s extends View {
         Paint paint = limitPreviewView.K;
         if (limitPreviewView.J) {
             measuredHeight = getMeasuredHeight();
-            b1.d().f(limitPreviewView.getGlobalXOffset() - getX(), -getTop(), limitPreviewView.getMeasuredWidth(), limitPreviewView.getMeasuredHeight());
+            b1.d().f(LimitPreviewView.c(limitPreviewView) - getX(), -getTop(), limitPreviewView.getMeasuredWidth(), limitPreviewView.getMeasuredHeight());
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(0.0f, AndroidUtilities.dp(3.0f), getMeasuredWidth(), measuredHeight - AndroidUtilities.dp(3.0f));
             float f7 = measuredHeight / 2.0f;
@@ -117,7 +117,7 @@ public final class s extends View {
                 this.v = false;
                 b();
             }
-            b1.d().f(limitPreviewView.getGlobalXOffset() - getX(), -getTop(), limitPreviewView.getMeasuredWidth(), limitPreviewView.getMeasuredHeight());
+            b1.d().f(LimitPreviewView.c(limitPreviewView) - getX(), -getTop(), limitPreviewView.getMeasuredWidth(), limitPreviewView.getMeasuredHeight());
             RectF rectF2 = AndroidUtilities.rectTmp;
             float f10 = measuredHeight;
             rectF2.set(0.0f, 0.0f, getMeasuredWidth(), f10);

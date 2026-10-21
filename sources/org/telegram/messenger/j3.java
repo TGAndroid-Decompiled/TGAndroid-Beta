@@ -21,7 +21,7 @@ public final class j3 implements Runnable {
                 this.f18661b.run();
                 return;
             default:
-                SendMessagesHelper.lambda$prepareSendingPoll$137(this.f18661b);
+                AndroidUtilities.runOnUIThread(this.f18661b);
                 return;
         }
     }
